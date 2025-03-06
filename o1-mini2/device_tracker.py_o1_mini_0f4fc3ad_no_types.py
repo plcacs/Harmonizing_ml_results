@@ -1,0 +1,68 @@
+"""Support for tracking iBeacon devices."""
+from __future__ import annotations
+from typing import Any
+from ibeacon_ble import iBeaconAdvertisement
+from homeassistant.components.device_tracker import SourceType
+from homeassistant.components.device_tracker.config_entry import BaseTrackerEntity
+from homeassistant.const import STATE_HOME, STATE_NOT_HOME
+from homeassistant.core import HomeAssistant, callback
+from homeassistant.helpers.dispatcher import async_dispatcher_connect
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
+from . import IBeaconConfigEntry
+from .const import SIGNAL_IBEACON_DEVICE_NEW
+from .coordinator import IBeaconCoordinator
+from .entity import IBeaconEntity
+
+
+async def async_setup_entry(hass: HomeAssistant, entry: IBeaconConfigEntry,
+    async_add_entities: AddConfigEntryEntitiesCallback) ->None:
+    """Set up device tracker for iBeacon Tracker component."""
+    coordinator: IBeaconCoordinator = entry.runtime_data
+
+    @callback
+    def _async_device_new(unique_id, identifier, ibeacon_advertisement):
+        """Signal a new device."""
+        async_add_entities([IBeaconTrackerEntity(coordinator, identifier,
+            unique_id, ibeacon_advertisement)])
+    entry.async_on_unload(async_dispatcher_connect(hass,
+        SIGNAL_IBEACON_DEVICE_NEW, _async_device_new))
+
+
+class IBeaconTrackerEntity(IBeaconEntity, BaseTrackerEntity):
+    """An iBeacon Tracker entity."""
+    _attr_name: str | None = None
+    _attr_translation_key: str = 'device_tracker'
+    _attr_unique_id: str
+    _active: bool
+
+    def __init__(self, coordinator, identifier, device_unique_id,
+        ibeacon_advertisement):
+        """Initialize an iBeacon tracker entity."""
+        super().__init__(coordinator, identifier, device_unique_id,
+            ibeacon_advertisement)
+        self._attr_unique_id: str = device_unique_id
+        self._active: bool = True
+
+    @property
+    def state(self):
+        """Return the state of the device."""
+        return STATE_HOME if self._active else STATE_NOT_HOME
+
+    @property
+    def source_type(self):
+        """Return tracker source type."""
+        return SourceType.BLUETOOTH_LE
+
+    @callback
+    def _async_seen(self, ibeacon_advertisement):
+        """Update state."""
+        self._active = True
+        self._ibeacon_advertisement: iBeaconAdvertisement = (
+            ibeacon_advertisement)
+        self.async_write_ha_state()
+
+    @callback
+    def _async_unavailable(self):
+        """Set unavailable."""
+        self._active = False
+        self.async_write_ha_state()
