@@ -1,0 +1,463 @@
+```python
+# noqa: E501
+import copy
+import logging
+import re
+import math
+from typing import Any, Dict, List, Tuple, Union, Optional, Callable
+
+
+import torch
+import transformers
+
+from allennlp.common import Params, Registrable, Lazy
+from allennlp.common.checks import ConfigurationError
+
+logger = logging.getLogger(__name__)
+
+
+ParameterGroupsType = List[Tuple[List[str], Dict[str, Any]]]
+
+
+def make_parameter_groups(
+    model_parameters: List[Tuple[str, torch.nn.Parameter]],
+    groups: Optional[ParameterGroupsType] = None,
+) -> Union[List[Dict[str, Any]], List[torch.nn.Parameter]]:
+    if groups:
+        parameter_groups: Union[List[Dict[str, Any]], List[torch.nn.Parameter]] = [
+            {"params": []} for _ in range(len(groups) + 1)
+        ]
+        for k in range(len(groups)):
+            parameter_groups[k].update(groups[k][1])
+
+        regex_use_counts: Dict[str, int] = {}
+        parameter_group_names: List[set] = [set() for _ in range(len(groups) + 1)]
+        for name, param in model_parameters:
+            group_index = None
+            for k, group_regexes in enumerate(groups):
+                for regex in group_regexes[0]:
+                    if regex not in regex_use_counts:
+                        regex_use_counts[regex] = 0
+                    if re.search(regex, name):
+                        if group_index is not None and group_index != k:
+                            raise ValueError(
+                                "{} was specified in two separate parameter groups".format(name)
+                            )
+                        group_index = k
+                        regex_use_counts[regex] += 1
+
+            if group_index is not None:
+                parameter_groups[group_index]["params"].append(param)
+                parameter_group_names[group_index].add(name)
+            else:
+                parameter_groups[-1]["params"].append(param)
+                parameter_group_names[-1].add(name)
+
+        no_grad_group_indices: List[int] = []
+        for k, (names, group) in enumerate(zip(parameter_group_names, parameter_groups)):
+            if group.get("requires_grad") is False:
+                no_grad_group_indices.append(k)
+                logger.info("Disabling gradient for the following parameters: %s", names)
+                for param in group["params"]:
+                    param.requires_grad_(False)
+
+                unused_options = {
+                    key: val for key, val in group.items() if key not in ("params", "requires_grad")
+                }
+                if unused_options:
+                    logger.warning("Ignoring unused options %s for %s", unused_options, names)
+        parameter_group_names = [
+            names
+            for (k, names) in enumerate(parameter_group_names)
+            if k not in no_grad_group_indices
+        ]
+        parameter_groups = [
+            group for (k, group) in enumerate(parameter_groups) if k not in no_grad_group_indices
+        ]
+
+        logger.info("Done constructing parameter groups.")
+        for k in range(len(parameter_groups)):
+            group_options = {
+                key: val for key, val in parameter_groups[k].items() if key != "params"
+            }
+            logger.info("Group %s: %s, %s", k, list(parameter_group_names[k]), group_options)
+
+        for regex, count in regex_use_counts.items():
+            if count == 0:
+                logger.warning(
+                    "When constructing parameter groups, %s does not match any parameter name",
+                    regex,
+                )
+    else:
+        parameter_groups = [param for name, param in model_parameters]
+
+    num_parameters = 0
+    for parameter_group in parameter_groups:
+        if isinstance(parameter_group, dict):
+            num_parameters += sum(parameter.numel() for parameter in parameter_group["params"])
+        else:
+            num_parameters += parameter_group.numel()  # type: ignore
+    logger.info("Number of trainable parameters: %s", num_parameters)
+
+    return parameter_groups
+
+
+class Optimizer(torch.optim.Optimizer, Registrable):
+    default_implementation = "adam"
+
+    @staticmethod
+    def default(model_parameters: List[Tuple[str, torch.nn.Parameter]]) -> "Optimizer":
+        return Optimizer.from_params(model_parameters=model_parameters, params=Params({}))
+
+
+@Optimizer.register("multi")
+class MultiOptimizer(Optimizer):
+    def __init__(
+        self,
+        model_parameters: List[Tuple[str, torch.nn.Parameter]],
+        optimizers: Dict[str, Lazy[Optimizer]],
+        parameter_groups: ParameterGroupsType,
+    ):
+        if "default" not in optimizers:
+            raise ConfigurationError(
+                "No optimizer was provided for the 'default' group."
+                " Please provide an Optimizer under the name 'default'"
+            )
+
+        optimizer_name_to_parameter_groups: Dict[str, ParameterGroupsType] = {
+            optimizer_name: [] for optimizer_name in optimizers.keys()
+        }
+        for parameter_group in parameter_groups:
+            regexes, pg_overrides = parameter_group
+            optimizer_name = pg_overrides.get("optimizer_name", "default")
+            optimizer_name_to_parameter_groups[optimizer_name].append(parameter_group)
+
+        optimizer_name_to_model_parameters: Dict[str, List[Tuple[str, torch.nn.Parameter]]] = {
+            optimizer_name: [] for optimizer_name in optimizers.keys()
+        }
+        for model_parameter_tuple in model_parameters:
+            parameter_name, parameter_tensor = model_parameter_tuple
+            for regexes, pg_overrides in parameter_groups:
+                if any(re.search(regex, parameter_name) for regex in regexes):
+                    optimizer_name = pg_overrides.get("optimizer_name", "default")
+                    optimizer_name_to_model_parameters[optimizer_name].append(model_parameter_tuple)
+                    break
+            else:
+                optimizer_name_to_model_parameters["default"].append(model_parameter_tuple)
+
+        for optimizer_name, optimizer_parameters in optimizer_name_to_model_parameters.items():
+            if optimizer_name != "default" and len(optimizer_parameters) == 0:
+                raise ConfigurationError(
+                    f"Optimizer '{optimizer_name}' did not receive any parameters."
+                    " If you are using `parameter_groups`, please make sure that the regexes you have provided"
+                    " match the desired model parameters, or that the `name` value of this optimizer "
+                    " matches that of the parameter group you are trying to assign to it."
+                    " Alternatively, you can remove this optimizer from the provided `optimizers`"
+                    " if it is not relevant to a particular parameter group."
+                )
+        if len(optimizer_name_to_model_parameters["default"]) == 0:
+            del optimizers["default"]
+            del optimizer_name_to_model_parameters["default"]
+            del optimizer_name_to_parameter_groups["default"]
+
+        self.optimizers = {
+            optimizer_name: lazy_optimizer.construct(
+                model_parameters=optimizer_name_to_model_parameters[optimizer_name],
+                parameter_groups=optimizer_name_to_parameter_groups[optimizer_name],
+            )
+            for optimizer_name, lazy_optimizer in optimizers.items()
+        }
+
+        parameter_groups = copy.deepcopy(parameter_groups)
+        for parameter_group in parameter_groups:
+            regexes, pg_overrides = parameter_group
+            optimizer_name = pg_overrides.get("optimizer_name", "default")
+            optimizer = self.optimizers[optimizer_name]
+            for key, value in optimizer.defaults.items():
+                if key not in pg_overrides:
+                    pg_overrides[key] = value
+
+        made_parameter_groups = make_parameter_groups(model_parameters, parameter_groups)
+        if "default" in self.optimizers:
+            for key, value in self.optimizers["default"].defaults.items():
+                made_parameter_groups[-1][key] = value
+
+        super().__init__(made_parameter_groups, {})
+
+    def step(self) -> None:
+        for optimizer in self.optimizers.values():
+            optimizer.step()
+
+    def state_dict(self) -> Dict[str, Any]:
+        optimizer_state_dict = {
+            f"{optimizer_key}_optimizer": optimizer.state_dict()
+            for optimizer_key, optimizer in self.optimizers.items()
+        }
+        return optimizer_state_dict
+
+    def load_state_dict(self, training_state: Dict[str, Any]) -> None:
+        for optimizer_key, optimizer in self.optimizers.items():
+            optimizer.load_state_dict(training_state[f"{optimizer_key}_optimizer"])
+
+    def zero_grad(self, set_to_none: bool = False) -> None:
+        for optimizer in self.optimizers.values():
+            optimizer.zero_grad(set_to_none)
+
+
+@Optimizer.register("adam")
+class AdamOptimizer(Optimizer, torch.optim.Adam):
+    def __init__(
+        self,
+        model_parameters: List[Tuple[str, torch.nn.Parameter]],
+        parameter_groups: Optional[ParameterGroupsType] = None,
+        lr: float = 0.001,
+        betas: Tuple[float, float] = (0.9, 0.999),
+        eps: float = 1e-08,
+        weight_decay: float = 0.0,
+        amsgrad: bool = False,
+    ):
+        super().__init__(
+            params=make_parameter_groups(model_parameters, parameter_groups),
+            lr=lr,
+            betas=betas,
+            eps=eps,
+            weight_decay=weight_decay,
+            amsgrad=amsgrad,
+        )
+
+
+@Optimizer.register("sparse_adam")
+class SparseAdamOptimizer(Optimizer, torch.optim.SparseAdam):
+    def __init__(
+        self,
+        model_parameters: List[Tuple[str, torch.nn.Parameter]],
+        parameter_groups: Optional[ParameterGroupsType] = None,
+        lr: float = 0.001,
+        betas: Tuple[float, float] = (0.9, 0.999),
+        eps: float = 1e-08,
+    ):
+        super().__init__(
+            params=make_parameter_groups(model_parameters, parameter_groups),
+            lr=lr,
+            betas=betas,
+            eps=eps,
+        )
+
+
+@Optimizer.register("adamax")
+class AdamaxOptimizer(Optimizer, torch.optim.Adamax):
+    def __init__(
+        self,
+        model_parameters: List[Tuple[str, torch.nn.Parameter]],
+        parameter_groups: Optional[ParameterGroupsType] = None,
+        lr: float = 0.002,
+        betas: Tuple[float, float] = (0.9, 0.999),
+        eps: float = 1e-08,
+        weight_decay: float = 0.0,
+    ):
+        super().__init__(
+            params=make_parameter_groups(model_parameters, parameter_groups),
+            lr=lr,
+            betas=betas,
+            eps=eps,
+            weight_decay=weight_decay,
+        )
+
+
+@Optimizer.register("adamw")
+class AdamWOptimizer(Optimizer, torch.optim.AdamW):
+    def __init__(
+        self,
+        model_parameters: List[Tuple[str, torch.nn.Parameter]],
+        parameter_groups: Optional[ParameterGroupsType] = None,
+        lr: float = 0.001,
+        betas: Tuple[float, float] = (0.9, 0.999),
+        eps: float = 1e-08,
+        weight_decay: float = 0.01,
+        amsgrad: bool = False,
+    ):
+        super().__init__(
+            params=make_parameter_groups(model_parameters, parameter_groups),
+            lr=lr,
+            betas=betas,
+            eps=eps,
+            weight_decay=weight_decay,
+            amsgrad=amsgrad,
+        )
+
+
+@Optimizer.register("huggingface_adamw")
+class HuggingfaceAdamWOptimizer(Optimizer, transformers.AdamW):
+    def __init__(
+        self,
+        model_parameters: List[Tuple[str, torch.nn.Parameter]],
+        parameter_groups: Optional[ParameterGroupsType] = None,
+        lr: float = 1e-5,
+        betas: Tuple[float, float] = (0.9, 0.999),
+        eps: float = 1e-08,
+        weight_decay: float = 0.0,
+        correct_bias: bool = True,
+    ):
+        super().__init__(
+            params=make_parameter_groups(model_parameters, parameter_groups),
+            lr=lr,
+            betas=betas,
+            eps=eps,
+            weight_decay=weight_decay,
+            correct_bias=correct_bias,
+        )
+
+
+@Optimizer.register("huggingface_adafactor")
+class HuggingfaceAdafactor(Optimizer, transformers.Adafactor):
+    def __init__(
+        self,
+        model_parameters: List[Tuple[str, torch.nn.Parameter]],
+        parameter_groups: Optional[ParameterGroupsType] = None,
+        lr: Optional[float] = None,
+        eps: Tuple[float, float] = (1e-30, 1e-3),
+        clip_threshold: float = 1.0,
+        decay_rate: float = -0.8,
+        beta1: Optional[float] = None,
+        weight_decay: float = 0.0,
+        scale_parameter: bool = True,
+        relative_step: bool = True,
+        warmup_init: bool = False,
+    ):
+        super().__init__(
+            params=make_parameter_groups(model_parameters, parameter_groups),
+            lr=lr,
+            eps=eps,
+            clip_threshold=clip_threshold,
+            decay_rate=decay_rate,
+            beta1=beta1,
+            weight_decay=weight_decay,
+            scale_parameter=scale_parameter,
+            relative_step=relative_step,
+            warmup_init=warmup_init,
+        )
+
+
+@Optimizer.register("adagrad")
+class AdagradOptimizer(Optimizer, torch.optim.Adagrad):
+    def __init__(
+        self,
+        model_parameters: List[Tuple[str, torch.nn.Parameter]],
+        parameter_groups: Optional[ParameterGroupsType] = None,
+        lr: float = 0.01,
+        lr_decay: float = 0.0,
+        weight_decay: float = 0.0,
+        initial_accumulator_value: float = 0.0,
+        eps: float = 1e-10,
+    ):
+        super().__init__(
+            params=make_parameter_groups(model_parameters, parameter_groups),
+            lr=lr,
+            lr_decay=lr_decay,
+            weight_decay=weight_decay,
+            initial_accumulator_value=initial_accumulator_value,
+            eps=eps,
+        )
+
+
+@Optimizer.register("adadelta")
+class AdadeltaOptimizer(Optimizer, torch.optim.Adadelta):
+    def __init__(
+        self,
+        model_parameters: List[Tuple[str, torch.nn.Parameter]],
+        parameter_groups: Optional[ParameterGroupsType] = None,
+        lr: float = 1.0,
+        rho: float = 0.9,
+        eps: float = 1e-06,
+        weight_decay: float = 0.0,
+    ):
+        super().__init__(
+            params=make_parameter_groups(model_parameters, parameter_groups),
+            lr=lr,
+            rho=rho,
+            eps=eps,
+            weight_decay=weight_decay,
+        )
+
+
+@Optimizer.register("sgd")
+class SgdOptimizer(Optimizer, torch.optim.SGD):
+    def __init__(
+        self,
+        model_parameters: List[Tuple[str, torch.nn.Parameter]],
+        lr: float,
+        parameter_groups: Optional[ParameterGroupsType] = None,
+        momentum: float = 0.0,
+        dampening: float = 0,
+        weight_decay: float = 0.0,
+        nesterov: bool = False,
+    ):
+        super().__init__(
+            params=make_parameter_groups(model_parameters, parameter_groups),
+            lr=lr,
+            momentum=momentum,
+            dampening=dampening,
+            weight_decay=weight_decay,
+            nesterov=nesterov,
+        )
+
+
+@Optimizer.register("rmsprop")
+class RmsPropOptimizer(Optimizer, torch.optim.RMSprop):
+    def __init__(
+        self,
+        model_parameters: List[Tuple[str, torch.nn.Parameter]],
+        parameter_groups: Optional[ParameterGroupsType] = None,
+        lr: float = 0.01,
+        alpha: float = 0.99,
+        eps: float = 1e-08,
+        weight_decay: float = 0.0,
+        momentum: float = 0.0,
+        centered: bool = False,
+    ):
+        super().__init__(
+            params=make_parameter_groups(model_parameters, parameter_groups),
+            lr=lr,
+            alpha=alpha,
+            eps=eps,
+            weight_decay=weight_decay,
+            momentum=momentum,
+            centered=centered,
+        )
+
+
+@Optimizer.register("averaged_sgd")
+class AveragedSgdOptimizer(Optimizer, torch.optim.ASGD):
+    def __init__(
+        self,
+        model_parameters: List[Tuple[str, torch.nn.Parameter]],
+        parameter_groups: Optional[ParameterGroupsType] = None,
+        lr: float = 0.01,
+        lambd: float = 0.0001,
+        alpha: float = 0.75,
+        t0: float = 1000000.0,
+        weight_decay: float = 0.0,
+    ):
+        super().__init__(
+            params=make_parameter_groups(model_parameters, parameter_groups),
+            lr=lr,
+            lambd=lambd,
+            alpha=alpha,
+            t0=t0,
+            weight_decay=weight_decay,
+        )
+
+
+@Optimizer.register("dense_sparse_adam")
+class DenseSparseAdam(Optimizer, torch.optim.Optimizer):
+    def __init__(
+        self,
+        model_parameters: List[Tuple[str, torch.nn.Parameter]],
+        parameter_groups: Optional[ParameterGroupsType] = None,
+        lr: float = 1e-3,
+        betas: Tuple[float, float] = (0.9, 0.999),
+        eps: float = 1e-8,
+    ):
+        if not 0.0 <= lr:
+            raise ValueError("Invalid learning rate: {}".format(lr))
+        if not 0
