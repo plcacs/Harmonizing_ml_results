@@ -1,0 +1,229 @@
+import torch
+from torch.nn.utils.rnn import pad_packed_sequence
+from typing import Optional, Tuple, List, Union
+
+from allennlp.common.checks import ConfigurationError
+from allennlp.modules.augmented_lstm import AugmentedLstm
+from allennlp.modules.seq2seq_encoders.seq2seq_encoder import Seq2SeqEncoder
+from allennlp.modules.stacked_alternating_lstm import StackedAlternatingLstm
+from allennlp.modules.stacked_bidirectional_lstm import StackedBidirectionalLstm
+
+
+class PytorchSeq2SeqWrapper(Seq2SeqEncoder):
+    def __init__(self, module: torch.nn.Module, stateful: bool = False) -> None:
+        super().__init__(stateful)
+        self._module = module
+        try:
+            if not self._module.batch_first:
+                raise ConfigurationError("Our encoder semantics assumes batch is always first!")
+        except AttributeError:
+            pass
+
+        try:
+            self._is_bidirectional: bool = self._module.bidirectional
+        except AttributeError:
+            self._is_bidirectional = False
+        if self._is_bidirectional:
+            self._num_directions: int = 2
+        else:
+            self._num_directions = 1
+
+    def get_input_dim(self) -> int:
+        return self._module.input_size
+
+    def get_output_dim(self) -> int:
+        return self._module.hidden_size * self._num_directions
+
+    def is_bidirectional(self) -> bool:
+        return self._is_bidirectional
+
+    def forward(
+        self, inputs: torch.Tensor, mask: torch.BoolTensor, hidden_state: Optional[torch.Tensor] = None
+    ) -> torch.Tensor:
+
+        if self.stateful and mask is None:
+            raise ValueError("Always pass a mask with stateful RNNs.")
+        if self.stateful and hidden_state is not None:
+            raise ValueError("Stateful RNNs provide their own initial hidden_state.")
+
+        if mask is None:
+            return self._module(inputs, hidden_state)[0]
+
+        batch_size, total_sequence_length = mask.size()
+
+        packed_sequence_output, final_states, restoration_indices = self.sort_and_run_forward(
+            self._module, inputs, mask, hidden_state
+        )
+
+        unpacked_sequence_tensor, _ = pad_packed_sequence(packed_sequence_output, batch_first=True)
+
+        num_valid = unpacked_sequence_tensor.size(0)
+        if not isinstance(final_states, (list, tuple)) and self.stateful:
+            final_states = [final_states]
+
+        if num_valid < batch_size:
+            _, length, output_dim = unpacked_sequence_tensor.size()
+            zeros = unpacked_sequence_tensor.new_zeros(batch_size - num_valid, length, output_dim)
+            unpacked_sequence_tensor = torch.cat([unpacked_sequence_tensor, zeros], 0)
+
+            if self.stateful:
+                new_states: List[torch.Tensor] = []
+                for state in final_states:
+                    num_layers, _, state_dim = state.size()
+                    zeros = state.new_zeros(num_layers, batch_size - num_valid, state_dim)
+                    new_states.append(torch.cat([state, zeros], 1))
+                final_states = new_states
+
+        sequence_length_difference = total_sequence_length - unpacked_sequence_tensor.size(1)
+        if sequence_length_difference > 0:
+            zeros = unpacked_sequence_tensor.new_zeros(
+                batch_size, sequence_length_difference, unpacked_sequence_tensor.size(-1)
+            unpacked_sequence_tensor = torch.cat([unpacked_sequence_tensor, zeros], 1)
+
+        if self.stateful:
+            self._update_states(final_states, restoration_indices)
+
+        return unpacked_sequence_tensor.index_select(0, restoration_indices)
+
+
+@Seq2SeqEncoder.register("gru")
+class GruSeq2SeqEncoder(PytorchSeq2SeqWrapper):
+    def __init__(
+        self,
+        input_size: int,
+        hidden_size: int,
+        num_layers: int = 1,
+        bias: bool = True,
+        dropout: float = 0.0,
+        bidirectional: bool = False,
+        stateful: bool = False,
+    ) -> None:
+        module = torch.nn.GRU(
+            input_size=input_size,
+            hidden_size=hidden_size,
+            num_layers=num_layers,
+            bias=bias,
+            batch_first=True,
+            dropout=dropout,
+            bidirectional=bidirectional,
+        )
+        super().__init__(module=module, stateful=stateful)
+
+
+@Seq2SeqEncoder.register("lstm")
+class LstmSeq2SeqEncoder(PytorchSeq2SeqWrapper):
+    def __init__(
+        self,
+        input_size: int,
+        hidden_size: int,
+        num_layers: int = 1,
+        bias: bool = True,
+        dropout: float = 0.0,
+        bidirectional: bool = False,
+        stateful: bool = False,
+    ) -> None:
+        module = torch.nn.LSTM(
+            input_size=input_size,
+            hidden_size=hidden_size,
+            num_layers=num_layers,
+            bias=bias,
+            batch_first=True,
+            dropout=dropout,
+            bidirectional=bidirectional,
+        )
+        super().__init__(module=module, stateful=stateful)
+
+
+@Seq2SeqEncoder.register("rnn")
+class RnnSeq2SeqEncoder(PytorchSeq2SeqWrapper):
+    def __init__(
+        self,
+        input_size: int,
+        hidden_size: int,
+        num_layers: int = 1,
+        nonlinearity: str = "tanh",
+        bias: bool = True,
+        dropout: float = 0.0,
+        bidirectional: bool = False,
+        stateful: bool = False,
+    ) -> None:
+        module = torch.nn.RNN(
+            input_size=input_size,
+            hidden_size=hidden_size,
+            num_layers=num_layers,
+            nonlinearity=nonlinearity,
+            bias=bias,
+            batch_first=True,
+            dropout=dropout,
+            bidirectional=bidirectional,
+        )
+        super().__init__(module=module, stateful=stateful)
+
+
+@Seq2SeqEncoder.register("augmented_lstm")
+class AugmentedLstmSeq2SeqEncoder(PytorchSeq2SeqWrapper):
+    def __init__(
+        self,
+        input_size: int,
+        hidden_size: int,
+        go_forward: bool = True,
+        recurrent_dropout_probability: float = 0.0,
+        use_highway: bool = True,
+        use_input_projection_bias: bool = True,
+        stateful: bool = False,
+    ) -> None:
+        module = AugmentedLstm(
+            input_size=input_size,
+            hidden_size=hidden_size,
+            go_forward=go_forward,
+            recurrent_dropout_probability=recurrent_dropout_probability,
+            use_highway=use_highway,
+            use_input_projection_bias=use_input_projection_bias,
+        )
+        super().__init__(module=module, stateful=stateful)
+
+
+@Seq2SeqEncoder.register("alternating_lstm")
+class StackedAlternatingLstmSeq2SeqEncoder(PytorchSeq2SeqWrapper):
+    def __init__(
+        self,
+        input_size: int,
+        hidden_size: int,
+        num_layers: int,
+        recurrent_dropout_probability: float = 0.0,
+        use_highway: bool = True,
+        use_input_projection_bias: bool = True,
+        stateful: bool = False,
+    ) -> None:
+        module = StackedAlternatingLstm(
+            input_size=input_size,
+            hidden_size=hidden_size,
+            num_layers=num_layers,
+            recurrent_dropout_probability=recurrent_dropout_probability,
+            use_highway=use_highway,
+            use_input_projection_bias=use_input_projection_bias,
+        )
+        super().__init__(module=module, stateful=stateful)
+
+
+@Seq2SeqEncoder.register("stacked_bidirectional_lstm")
+class StackedBidirectionalLstmSeq2SeqEncoder(PytorchSeq2SeqWrapper):
+    def __init__(
+        self,
+        input_size: int,
+        hidden_size: int,
+        num_layers: int,
+        recurrent_dropout_probability: float = 0.0,
+        layer_dropout_probability: float = 0.0,
+        use_highway: bool = True,
+        stateful: bool = False,
+    ) -> None:
+        module = StackedBidirectionalLstm(
+            input_size=input_size,
+            hidden_size=hidden_size,
+            num_layers=num_layers,
+            recurrent_dropout_probability=recurrent_dropout_probability,
+            layer_dropout_probability=layer_dropout_probability,
+            use_highway=use_highway,
+        )
+        super().__init__(module=module, stateful=stateful)
