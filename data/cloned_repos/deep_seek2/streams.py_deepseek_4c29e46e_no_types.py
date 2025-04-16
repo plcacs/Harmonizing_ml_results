@@ -1,0 +1,164 @@
+import abc
+import asyncio
+import typing
+from typing import Any, AsyncIterable, AsyncIterator, Awaitable, Callable, Iterable, List, Mapping, Optional, Sequence, Set, Tuple, TypeVar, Union, no_type_check
+from mode import Seconds, ServiceT
+from mode.utils.trees import NodeT
+from .channels import ChannelT
+from .core import K
+from .events import EventT
+from .models import FieldDescriptorT, ModelArg
+from .topics import TopicT
+from .tuples import TP
+if typing.TYPE_CHECKING:
+    from .app import AppT as _AppT
+    from .join import JoinT as _JoinT
+    from .serializers import SchemaT as _SchemaT
+else:
+
+    class _AppT:
+        ...
+
+    class _JoinT:
+        ...
+
+    class _SchemaT:
+        ...
+__all__ = ['Processor', 'GroupByKeyArg', 'StreamT', 'T', 'T_co', 'T_contra']
+T = TypeVar('T')
+T_co = TypeVar('T_co', covariant=True)
+T_contra = TypeVar('T_contra', contravariant=True)
+Processor = Callable[[T], Union[T, Awaitable[T]]]
+GroupByKeyArg = Union[FieldDescriptorT, Callable[[T], K]]
+
+class JoinableT(abc.ABC):
+
+    @abc.abstractmethod
+    def combine(self, *nodes: 'JoinableT', **kwargs: Any):
+        ...
+
+    @abc.abstractmethod
+    def join(self, *fields: FieldDescriptorT):
+        ...
+
+    @abc.abstractmethod
+    def left_join(self, *fields: FieldDescriptorT):
+        ...
+
+    @abc.abstractmethod
+    def inner_join(self, *fields: FieldDescriptorT):
+        ...
+
+    @abc.abstractmethod
+    def outer_join(self, *fields: FieldDescriptorT):
+        ...
+
+    @abc.abstractmethod
+    def __and__(self, other):
+        ...
+
+    @abc.abstractmethod
+    def contribute_to_stream(self, active):
+        ...
+
+    @abc.abstractmethod
+    async def remove_from_stream(self, stream: 'StreamT') -> None:
+        ...
+
+    @abc.abstractmethod
+    def _human_channel(self):
+        ...
+
+class StreamT(AsyncIterable[T_co], JoinableT, ServiceT):
+    app: _AppT
+    channel: AsyncIterator[T_co]
+    outbox: Optional[asyncio.Queue] = None
+    join_strategy: Optional[_JoinT] = None
+    task_owner: Optional[asyncio.Task] = None
+    current_event: Optional[EventT] = None
+    active_partitions: Optional[Set[TP]] = None
+    concurrency_index: Optional[int] = None
+    enable_acks: bool = True
+    prefix: str = ''
+    combined: List[JoinableT]
+    _next: Optional['StreamT'] = None
+    _prev: Optional['StreamT'] = None
+
+    @abc.abstractmethod
+    def __init__(self, channel=None, *, app: _AppT=None, processors: Iterable[Processor[T]]=None, combined: List[JoinableT]=None, on_start: Callable=None, join_strategy: _JoinT=None, beacon: NodeT=None, concurrency_index: int=None, prev: 'StreamT'=None, active_partitions: Set[TP]=None, enable_acks: bool=True, prefix: str='', loop: asyncio.AbstractEventLoop=None):
+        ...
+
+    @abc.abstractmethod
+    def get_active_stream(self):
+        ...
+
+    @abc.abstractmethod
+    def add_processor(self, processor):
+        ...
+
+    @abc.abstractmethod
+    def info(self):
+        ...
+
+    @abc.abstractmethod
+    def clone(self, **kwargs: Any):
+        ...
+
+    @abc.abstractmethod
+    @no_type_check
+    async def items(self) -> AsyncIterator[Tuple[K, T_co]]:
+        ...
+
+    @abc.abstractmethod
+    @no_type_check
+    async def events(self) -> AsyncIterable[EventT]:
+        ...
+
+    @abc.abstractmethod
+    @no_type_check
+    async def take(self, max_: int, within: Seconds) -> AsyncIterable[Sequence[T_co]]:
+        ...
+
+    @abc.abstractmethod
+    def enumerate(self, start=0):
+        ...
+
+    @abc.abstractmethod
+    def through(self, channel):
+        ...
+
+    @abc.abstractmethod
+    def echo(self, *channels: Union[str, ChannelT]):
+        ...
+
+    @abc.abstractmethod
+    def group_by(self, key, *, name: str=None, topic: TopicT=None):
+        ...
+
+    @abc.abstractmethod
+    def derive_topic(self, name, *, schema: _SchemaT=None, key_type: ModelArg=None, value_type: ModelArg=None, prefix: str='', suffix: str=''):
+        ...
+
+    @abc.abstractmethod
+    async def throw(self, exc: BaseException) -> None:
+        ...
+
+    @abc.abstractmethod
+    def __copy__(self):
+        ...
+
+    @abc.abstractmethod
+    def __iter__(self):
+        ...
+
+    @abc.abstractmethod
+    def __next__(self):
+        ...
+
+    @abc.abstractmethod
+    def __aiter__(self):
+        ...
+
+    @abc.abstractmethod
+    async def ack(self, event: EventT) -> bool:
+        ...
