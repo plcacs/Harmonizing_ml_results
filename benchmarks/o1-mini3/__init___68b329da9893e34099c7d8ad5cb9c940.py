@@ -1,0 +1,1 @@
+It seems you haven't provided the Python program. Could you please share the code you'd like me to add type annotations to?
