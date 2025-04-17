@@ -21,7 +21,7 @@ def count_parameters(filename):
         pass  # Handle errors gracefully
     return total_params, annotated_params
 
-def run_mypy_and_save_results(directory=".", output_file="mypy_results_deepseek.json"):
+def run_mypy_and_save_results(directory=".", output_file="mypy_results_gpt4o.json"):
     """
     Runs mypy on each Python file, counts parameters, and saves results in JSON.
     """
