@@ -2,9 +2,11 @@ import os
 import ast
 import hashlib
 import astunparse  # Install via: pip install astunparse
+from collections import defaultdict
 
 UN_TYPED_DIR = "untyped_benchmarks"
 os.makedirs(UN_TYPED_DIR, exist_ok=True)
+
 
 def analyze_python_file(file_path):
     with open(file_path, "r", encoding="utf-8") as f:
@@ -27,7 +29,7 @@ def analyze_python_file(file_path):
         return {
             "num_lines": len(source.splitlines()),
             "num_functions": func_count,
-            "num_parameters": param_count
+            "num_parameters": param_count,
         }
     except Exception as e:
         return {"error": str(e)}
@@ -56,8 +58,10 @@ class TypeRemover(ast.NodeTransformer):
             col_offset=node.col_offset,
         )
 
+
 def hash_content(content: str) -> str:
     return hashlib.md5(content.encode("utf-8")).hexdigest()
+
 
 def process_py_file(file_path):
     with open(file_path, "r", encoding="utf-8") as f:
@@ -76,34 +80,38 @@ def process_py_file(file_path):
     except Exception as e:
         print(f"Failed to process {file_path}: {e}")
         return None
+
+
 import json
+
+
 def traverse_and_process(root_dir="."):
-    with open("filtered_python_files.json", "r") as f:
+    with open("short_filtered_paths.json", "r") as f:
         data = json.load(f)
     ordered_categories = ["50+", "30-50", "20-30", "10-20", "05-10"]
     total_files = set()
-    results={}
-    group_number=1
-    member_count=0
-    groups={}
+    results = {}
+    group_number = 1
+    member_count = 0
+    group_dict = defaultdict(list)
     for category in ordered_categories:
         if category in data:
             for file_path in data[category]:
-               if file_path not in total_files:
-                    #print(f"Processing {file_path}")
+                if file_path not in total_files:
+                    # print(f"Processing {file_path}")
                     results[file_path] = analyze_python_file(file_path)
-                    output_path=process_py_file(file_path)
+                    output_path = process_py_file(file_path)
                     total_files.add(file_path)
-                    member_count+=1
+                    member_count += 1
+                    group_dict[group_number].append(file_path)
+                    if member_count >= 150:
+                        group_number += 1
+                        member_count = 0
 
-                    if member_count>=150:
-                        group_number+=1
-                        member_count=0
-               
-                
-    print("Total File count",len(total_files))
-    #for path in data.values():
-        #print(path)
+    print("Total File count", len(total_files))
+    print("Total group count: ", len(group_dict.keys()))
+    # for path in data.values():
+    # print(path)
     #    process_py_file(path)
     """for dirpath, _, filenames in os.walk(root_dir):
         for filename in filenames:
@@ -111,6 +119,7 @@ def traverse_and_process(root_dir="."):
                 file_path = os.path.join(dirpath, filename)
                 if UN_TYPED_DIR not in file_path:  # Avoid processing output files
                     process_py_file(file_path)"""
+
 
 if __name__ == "__main__":
     traverse_and_process()
