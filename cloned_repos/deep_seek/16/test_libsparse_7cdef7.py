@@ -1,0 +1,272 @@
+import operator
+from typing import Any, List, Tuple, Union, Dict, Optional
+import numpy as np
+import pytest
+import pandas._libs.sparse as splib
+import pandas.util._test_decorators as td
+from pandas import Series
+import pandas._testing as tm
+from pandas.core.arrays.sparse import BlockIndex, IntIndex, make_sparse_index
+
+@pytest.fixture
+def test_length() -> int:
+    return 20
+
+@pytest.fixture(params=[
+    [[0, 7, 15], [3, 5, 5], [2, 9, 14], [2, 3, 5], [2, 9, 15], [1, 3, 4]], 
+    [[0, 5], [4, 4], [1], [4], [1], [3]], 
+    [[0], [10], [0, 5], [3, 7], [0, 5], [3, 5]], 
+    [[10], [5], [0, 12], [5, 3], [12], [3]], 
+    [[0, 10], [4, 6], [5, 17], [4, 2], [], []], 
+    [[0], [5], [], [], [], []]
+], ids=['plain_case', 'delete_blocks', 'split_blocks', 'skip_block', 'no_intersect', 'one_empty'])
+def cases(request: pytest.FixtureRequest) -> List[List[List[int]]]:
+    return request.param
+
+class TestSparseIndexUnion:
+
+    @pytest.mark.parametrize('xloc, xlen, yloc, ylen, eloc, elen', [
+        [[0], [5], [5], [4], [0], [9]], 
+        [[0, 10], [5, 5], [2, 17], [5, 2], [0, 10, 17], [7, 5, 2]], 
+        [[1], [5], [3], [5], [1], [7]], 
+        [[2, 10], [4, 4], [4], [8], [2], [12]], 
+        [[0, 5], [3, 5], [0], [7], [0], [10]], 
+        [[2, 10], [4, 4], [4, 13], [8, 4], [2], [15]], 
+        [[2], [15], [4, 9, 14], [3, 2, 2], [2], [15]], 
+        [[0, 10], [3, 3], [5, 15], [2, 2], [0, 5, 10, 15], [3, 2, 3, 2]]
+    ])
+    def test_index_make_union(
+        self, 
+        xloc: List[int], 
+        xlen: List[int], 
+        yloc: List[int], 
+        ylen: List[int], 
+        eloc: List[int], 
+        elen: List[int], 
+        test_length: int
+    ) -> None:
+        xindex = BlockIndex(test_length, xloc, xlen)
+        yindex = BlockIndex(test_length, yloc, ylen)
+        bresult = xindex.make_union(yindex)
+        assert isinstance(bresult, BlockIndex)
+        tm.assert_numpy_array_equal(bresult.blocs, np.array(eloc, dtype=np.int32))
+        tm.assert_numpy_array_equal(bresult.blengths, np.array(elen, dtype=np.int32))
+        ixindex = xindex.to_int_index()
+        iyindex = yindex.to_int_index()
+        iresult = ixindex.make_union(iyindex)
+        assert isinstance(iresult, IntIndex)
+        tm.assert_numpy_array_equal(iresult.indices, bresult.to_int_index().indices)
+
+    def test_int_index_make_union(self) -> None:
+        a = IntIndex(5, np.array([0, 3, 4], dtype=np.int32))
+        b = IntIndex(5, np.array([0, 2], dtype=np.int32))
+        res = a.make_union(b)
+        exp = IntIndex(5, np.array([0, 2, 3, 4], np.int32))
+        assert res.equals(exp)
+        a = IntIndex(5, np.array([], dtype=np.int32))
+        b = IntIndex(5, np.array([0, 2], dtype=np.int32))
+        res = a.make_union(b)
+        exp = IntIndex(5, np.array([0, 2], np.int32))
+        assert res.equals(exp)
+        a = IntIndex(5, np.array([], dtype=np.int32))
+        b = IntIndex(5, np.array([], dtype=np.int32))
+        res = a.make_union(b)
+        exp = IntIndex(5, np.array([], np.int32))
+        assert res.equals(exp)
+        a = IntIndex(5, np.array([0, 1, 2, 3, 4], dtype=np.int32))
+        b = IntIndex(5, np.array([0, 1, 2, 3, 4], dtype=np.int32))
+        res = a.make_union(b)
+        exp = IntIndex(5, np.array([0, 1, 2, 3, 4], np.int32))
+        assert res.equals(exp)
+        a = IntIndex(5, np.array([0, 1], dtype=np.int32))
+        b = IntIndex(4, np.array([0, 1], dtype=np.int32))
+        msg = 'Indices must reference same underlying length'
+        with pytest.raises(ValueError, match=msg):
+            a.make_union(b)
+
+class TestSparseIndexIntersect:
+
+    @td.skip_if_windows
+    def test_intersect(self, cases: List[List[List[int]]], test_length: int) -> None:
+        xloc, xlen, yloc, ylen, eloc, elen = cases
+        xindex = BlockIndex(test_length, xloc, xlen)
+        yindex = BlockIndex(test_length, yloc, ylen)
+        expected = BlockIndex(test_length, eloc, elen)
+        longer_index = BlockIndex(test_length + 1, yloc, ylen)
+        result = xindex.intersect(yindex)
+        assert result.equals(expected)
+        result = xindex.to_int_index().intersect(yindex.to_int_index())
+        assert result.equals(expected.to_int_index())
+        msg = 'Indices must reference same underlying length'
+        with pytest.raises(Exception, match=msg):
+            xindex.intersect(longer_index)
+        with pytest.raises(Exception, match=msg):
+            xindex.to_int_index().intersect(longer_index.to_int_index())
+
+    def test_intersect_empty(self) -> None:
+        xindex = IntIndex(4, np.array([], dtype=np.int32))
+        yindex = IntIndex(4, np.array([2, 3], dtype=np.int32))
+        assert xindex.intersect(yindex).equals(xindex)
+        assert yindex.intersect(xindex).equals(xindex)
+        xindex = xindex.to_block_index()
+        yindex = yindex.to_block_index()
+        assert xindex.intersect(yindex).equals(xindex)
+        assert yindex.intersect(xindex).equals(xindex)
+
+    @pytest.mark.parametrize('case', [
+        IntIndex(5, np.array([1, 2], dtype=np.int32)),
+        IntIndex(5, np.array([0, 2, 4], dtype=np.int32)),
+        IntIndex(0, np.array([], dtype=np.int32)),
+        IntIndex(5, np.array([], dtype=np.int32))
+    ])
+    def test_intersect_identical(self, case: IntIndex) -> None:
+        assert case.intersect(case).equals(case)
+        case = case.to_block_index()
+        assert case.intersect(case).equals(case)
+
+class TestSparseIndexCommon:
+
+    def test_int_internal(self) -> None:
+        idx = make_sparse_index(4, np.array([2, 3], dtype=np.int32), kind='integer')
+        assert isinstance(idx, IntIndex)
+        assert idx.npoints == 2
+        tm.assert_numpy_array_equal(idx.indices, np.array([2, 3], dtype=np.int32))
+        idx = make_sparse_index(4, np.array([], dtype=np.int32), kind='integer')
+        assert isinstance(idx, IntIndex)
+        assert idx.npoints == 0
+        tm.assert_numpy_array_equal(idx.indices, np.array([], dtype=np.int32))
+        idx = make_sparse_index(4, np.array([0, 1, 2, 3], dtype=np.int32), kind='integer')
+        assert isinstance(idx, IntIndex)
+        assert idx.npoints == 4
+        tm.assert_numpy_array_equal(idx.indices, np.array([0, 1, 2, 3], dtype=np.int32))
+
+    def test_block_internal(self) -> None:
+        idx = make_sparse_index(4, np.array([2, 3], dtype=np.int32), kind='block')
+        assert isinstance(idx, BlockIndex)
+        assert idx.npoints == 2
+        tm.assert_numpy_array_equal(idx.blocs, np.array([2], dtype=np.int32))
+        tm.assert_numpy_array_equal(idx.blengths, np.array([2], dtype=np.int32))
+        idx = make_sparse_index(4, np.array([], dtype=np.int32), kind='block')
+        assert isinstance(idx, BlockIndex)
+        assert idx.npoints == 0
+        tm.assert_numpy_array_equal(idx.blocs, np.array([], dtype=np.int32))
+        tm.assert_numpy_array_equal(idx.blengths, np.array([], dtype=np.int32))
+        idx = make_sparse_index(4, np.array([0, 1, 2, 3], dtype=np.int32), kind='block')
+        assert isinstance(idx, BlockIndex)
+        assert idx.npoints == 4
+        tm.assert_numpy_array_equal(idx.blocs, np.array([0], dtype=np.int32))
+        tm.assert_numpy_array_equal(idx.blengths, np.array([4], dtype=np.int32))
+        idx = make_sparse_index(4, np.array([0, 2, 3], dtype=np.int32), kind='block')
+        assert isinstance(idx, BlockIndex)
+        assert idx.npoints == 3
+        tm.assert_numpy_array_equal(idx.blocs, np.array([0, 2], dtype=np.int32))
+        tm.assert_numpy_array_equal(idx.blengths, np.array([1, 2], dtype=np.int32))
+
+    @pytest.mark.parametrize('kind', ['integer', 'block'])
+    def test_lookup(self, kind: str) -> None:
+        idx = make_sparse_index(4, np.array([2, 3], dtype=np.int32), kind=kind)
+        assert idx.lookup(-1) == -1
+        assert idx.lookup(0) == -1
+        assert idx.lookup(1) == -1
+        assert idx.lookup(2) == 0
+        assert idx.lookup(3) == 1
+        assert idx.lookup(4) == -1
+        idx = make_sparse_index(4, np.array([], dtype=np.int32), kind=kind)
+        for i in range(-1, 5):
+            assert idx.lookup(i) == -1
+        idx = make_sparse_index(4, np.array([0, 1, 2, 3], dtype=np.int32), kind=kind)
+        assert idx.lookup(-1) == -1
+        assert idx.lookup(0) == 0
+        assert idx.lookup(1) == 1
+        assert idx.lookup(2) == 2
+        assert idx.lookup(3) == 3
+        assert idx.lookup(4) == -1
+        idx = make_sparse_index(4, np.array([0, 2, 3], dtype=np.int32), kind=kind)
+        assert idx.lookup(-1) == -1
+        assert idx.lookup(0) == 0
+        assert idx.lookup(1) == -1
+        assert idx.lookup(2) == 1
+        assert idx.lookup(3) == 2
+        assert idx.lookup(4) == -1
+
+    @pytest.mark.parametrize('kind', ['integer', 'block'])
+    def test_lookup_array(self, kind: str) -> None:
+        idx = make_sparse_index(4, np.array([2, 3], dtype=np.int32), kind=kind)
+        res = idx.lookup_array(np.array([-1, 0, 2], dtype=np.int32))
+        exp = np.array([-1, -1, 0], dtype=np.int32)
+        tm.assert_numpy_array_equal(res, exp)
+        res = idx.lookup_array(np.array([4, 2, 1, 3], dtype=np.int32))
+        exp = np.array([-1, 0, -1, 1], dtype=np.int32)
+        tm.assert_numpy_array_equal(res, exp)
+        idx = make_sparse_index(4, np.array([], dtype=np.int32), kind=kind)
+        res = idx.lookup_array(np.array([-1, 0, 2, 4], dtype=np.int32))
+        exp = np.array([-1, -1, -1, -1], dtype=np.int32)
+        tm.assert_numpy_array_equal(res, exp)
+        idx = make_sparse_index(4, np.array([0, 1, 2, 3], dtype=np.int32), kind=kind)
+        res = idx.lookup_array(np.array([-1, 0, 2], dtype=np.int32))
+        exp = np.array([-1, 0, 2], dtype=np.int32)
+        tm.assert_numpy_array_equal(res, exp)
+        res = idx.lookup_array(np.array([4, 2, 1, 3], dtype=np.int32))
+        exp = np.array([-1, 2, 1, 3], dtype=np.int32)
+        tm.assert_numpy_array_equal(res, exp)
+        idx = make_sparse_index(4, np.array([0, 2, 3], dtype=np.int32), kind=kind)
+        res = idx.lookup_array(np.array([2, 1, 3, 0], dtype=np.int32))
+        exp = np.array([1, -1, 2, 0], dtype=np.int32)
+        tm.assert_numpy_array_equal(res, exp)
+        res = idx.lookup_array(np.array([1, 4, 2, 5], dtype=np.int32))
+        exp = np.array([-1, -1, 1, -1], dtype=np.int32)
+        tm.assert_numpy_array_equal(res, exp)
+
+    @pytest.mark.parametrize('idx, expected', [
+        [0, -1], [5, 0], [7, 2], [8, -1], [9, -1], 
+        [10, -1], [11, -1], [12, 3], [17, 8], [18, -1]
+    ])
+    def test_lookup_basics(self, idx: int, expected: int) -> None:
+        bindex = BlockIndex(20, [5, 12], [3, 6])
+        assert bindex.lookup(idx) == expected
+        iindex = bindex.to_int_index()
+        assert iindex.lookup(idx) == expected
+
+class TestBlockIndex:
+
+    def test_block_internal(self) -> None:
+        idx = make_sparse_index(4, np.array([2, 3], dtype=np.int32), kind='block')
+        assert isinstance(idx, BlockIndex)
+        assert idx.npoints == 2
+        tm.assert_numpy_array_equal(idx.blocs, np.array([2], dtype=np.int32))
+        tm.assert_numpy_array_equal(idx.blengths, np.array([2], dtype=np.int32))
+        idx = make_sparse_index(4, np.array([], dtype=np.int32), kind='block')
+        assert isinstance(idx, BlockIndex)
+        assert idx.npoints == 0
+        tm.assert_numpy_array_equal(idx.blocs, np.array([], dtype=np.int32))
+        tm.assert_numpy_array_equal(idx.blengths, np.array([], dtype=np.int32))
+        idx = make_sparse_index(4, np.array([0, 1, 2, 3], dtype=np.int32), kind='block')
+        assert isinstance(idx, BlockIndex)
+        assert idx.npoints == 4
+        tm.assert_numpy_array_equal(idx.blocs, np.array([0], dtype=np.int32))
+        tm.assert_numpy_array_equal(idx.blengths, np.array([4], dtype=np.int32))
+        idx = make_sparse_index(4, np.array([0, 2, 3], dtype=np.int32), kind='block')
+        assert isinstance(idx, BlockIndex)
+        assert idx.npoints == 3
+        tm.assert_numpy_array_equal(idx.blocs, np.array([0, 2], dtype=np.int32))
+        tm.assert_numpy_array_equal(idx.blengths, np.array([1, 2], dtype=np.int32))
+
+    @pytest.mark.parametrize('i', [5, 10, 100, 101])
+    def test_make_block_boundary(self, i: int) -> None:
+        idx = make_sparse_index(i, np.arange(0, i, 2, dtype=np.int32), kind='block')
+        exp = np.arange(0, i, 2, dtype=np.int32)
+        tm.assert_numpy_array_equal(idx.blocs, exp)
+        tm.assert_numpy_array_equal(idx.blengths, np.ones(len(exp), dtype=np.int32))
+
+    def test_equals(self) -> None:
+        index = BlockIndex(10, [0, 4], [2, 5])
+        assert index.equals(index)
+        assert not index.equals(BlockIndex(10, [0, 4], [2, 6]))
+
+    def test_check_integrity(self) -> None:
+        locs: List[int] = []
+        lengths: List[int] = []
+        BlockIndex(0, locs, lengths)
+        BlockIndex(1, locs, lengths)
+        msg = 'Block 0 extends beyond end'
+        with pytest.raises(ValueError, match=

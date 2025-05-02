@@ -1,0 +1,119 @@
+import numpy as np
+import pytest
+from pandas._libs import iNaT
+from pandas.core.dtypes.dtypes import DatetimeTZDtype
+import pandas as pd
+import pandas._testing as tm
+from pandas.core.arrays import DatetimeArray
+from typing import Any, List, Tuple, Union, Optional
+from pandas.core.indexes.multi import MultiIndex
+from pandas.core.indexes.datetimes import DatetimeIndex
+from pyarrow import Array, ChunkedArray
+
+class TestDatetimeArrayConstructor:
+
+    def test_from_sequence_invalid_type(self) -> None:
+        mi: MultiIndex = pd.MultiIndex.from_product([np.arange(5), np.arange(5)])
+        with pytest.raises(TypeError, match='Cannot create a DatetimeArray'):
+            DatetimeArray._from_sequence(mi, dtype='M8[ns]')
+
+    @pytest.mark.parametrize('meth', [DatetimeArray._from_sequence, pd.to_datetime, pd.DatetimeIndex])
+    def test_mixing_naive_tzaware_raises(self, meth: Any) -> None:
+        arr: np.ndarray = np.array([pd.Timestamp('2000'), pd.Timestamp('2000', tz='CET')])
+        msg: str = '|'.join(['Cannot mix tz-aware with tz-naive values', 'Tz-aware datetime.datetime cannot be converted to datetime64 unless utc=True'])
+        for obj in [arr, arr[::-1]]:
+            with pytest.raises(ValueError, match=msg):
+                meth(obj)
+
+    def test_from_pandas_array(self) -> None:
+        arr: pd.arrays.IntegerArray = pd.array(np.arange(5, dtype=np.int64)) * 3600 * 10 ** 9
+        result: DatetimeArray = DatetimeArray._from_sequence(arr, dtype='M8[ns]')._with_freq('infer')
+        expected: DatetimeArray = pd.date_range('1970-01-01', periods=5, freq='h')._data
+        tm.assert_datetime_array_equal(result, expected)
+
+    def test_bool_dtype_raises(self) -> None:
+        arr: np.ndarray = np.array([1, 2, 3], dtype='bool')
+        msg: str = 'dtype bool cannot be converted to datetime64\\[ns\\]'
+        with pytest.raises(TypeError, match=msg):
+            DatetimeArray._from_sequence(arr, dtype='M8[ns]')
+        with pytest.raises(TypeError, match=msg):
+            pd.DatetimeIndex(arr)
+        with pytest.raises(TypeError, match=msg):
+            pd.to_datetime(arr)
+
+    def test_copy(self) -> None:
+        data: np.ndarray = np.array([1, 2, 3], dtype='M8[ns]')
+        arr: DatetimeArray = DatetimeArray._from_sequence(data, dtype=data.dtype, copy=False)
+        assert arr._ndarray is data
+        arr = DatetimeArray._from_sequence(data, dtype=data.dtype, copy=True)
+        assert arr._ndarray is not data
+
+    def test_numpy_datetime_unit(self, unit: str) -> None:
+        data: np.ndarray = np.array([1, 2, 3], dtype=f'M8[{unit}]')
+        arr: DatetimeArray = DatetimeArray._from_sequence(data)
+        assert arr.unit == unit
+        assert arr[0].unit == unit
+
+class TestSequenceToDT64NS:
+
+    def test_tz_dtype_mismatch_raises(self) -> None:
+        arr: DatetimeArray = DatetimeArray._from_sequence(['2000'], dtype=DatetimeTZDtype(tz='US/Central'))
+        with pytest.raises(TypeError, match='data is already tz-aware'):
+            DatetimeArray._from_sequence(arr, dtype=DatetimeTZDtype(tz='UTC'))
+
+    def test_tz_dtype_matches(self) -> None:
+        dtype: DatetimeTZDtype = DatetimeTZDtype(tz='US/Central')
+        arr: DatetimeArray = DatetimeArray._from_sequence(['2000'], dtype=dtype)
+        result: DatetimeArray = DatetimeArray._from_sequence(arr, dtype=dtype)
+        tm.assert_equal(arr, result)
+
+    @pytest.mark.parametrize('order', ['F', 'C'])
+    def test_2d(self, order: str) -> None:
+        dti: DatetimeIndex = pd.date_range('2016-01-01', periods=6, tz='US/Pacific')
+        arr: np.ndarray = np.array(dti, dtype=object).reshape(3, 2)
+        if order == 'F':
+            arr = arr.T
+        res: DatetimeArray = DatetimeArray._from_sequence(arr, dtype=dti.dtype)
+        expected: DatetimeArray = DatetimeArray._from_sequence(arr.ravel(), dtype=dti.dtype).reshape(arr.shape)
+        tm.assert_datetime_array_equal(res, expected)
+
+EXTREME_VALUES: List[Optional[int]] = [0, 123456789, None, iNaT, 2 ** 63 - 1, -2 ** 63 + 1]
+FINE_TO_COARSE_SAFE: List[Optional[int]] = [123000000000, None, -123000000000]
+COARSE_TO_FINE_SAFE: List[Optional[int]] = [123, None, -123]
+
+@pytest.mark.parametrize(('pa_unit', 'pd_unit', 'pa_tz', 'pd_tz', 'data'), [('s', 's', 'UTC', 'UTC', EXTREME_VALUES), ('ms', 'ms', 'UTC', 'Europe/Berlin', EXTREME_VALUES), ('us', 'us', 'US/Eastern', 'UTC', EXTREME_VALUES), ('ns', 'ns', 'US/Central', 'Asia/Kolkata', EXTREME_VALUES), ('ns', 's', 'UTC', 'UTC', FINE_TO_COARSE_SAFE), ('us', 'ms', 'UTC', 'Europe/Berlin', FINE_TO_COARSE_SAFE), ('ms', 'us', 'US/Eastern', 'UTC', COARSE_TO_FINE_SAFE), ('s', 'ns', 'US/Central', 'Asia/Kolkata', COARSE_TO_FINE_SAFE)])
+def test_from_arrow_with_different_units_and_timezones_with(pa_unit: str, pd_unit: str, pa_tz: str, pd_tz: str, data: List[Optional[int]]) -> None:
+    pa = pytest.importorskip('pyarrow')
+    pa_type: Any = pa.timestamp(pa_unit, tz=pa_tz)
+    arr: Array = pa.array(data, type=pa_type)
+    dtype: DatetimeTZDtype = DatetimeTZDtype(unit=pd_unit, tz=pd_tz)
+    result: DatetimeArray = dtype.__from_arrow__(arr)
+    expected: DatetimeArray = DatetimeArray._from_sequence(data, dtype=f'M8[{pa_unit}, UTC]').astype(dtype, copy=False)
+    tm.assert_extension_array_equal(result, expected)
+    result = dtype.__from_arrow__(pa.chunked_array([arr]))
+    tm.assert_extension_array_equal(result, expected)
+
+@pytest.mark.parametrize(('unit', 'tz'), [('s', 'UTC'), ('ms', 'Europe/Berlin'), ('us', 'US/Eastern'), ('ns', 'Asia/Kolkata'), ('ns', 'UTC')])
+def test_from_arrow_from_empty(unit: str, tz: str) -> None:
+    pa = pytest.importorskip('pyarrow')
+    data: List[Any] = []
+    arr: Array = pa.array(data)
+    dtype: DatetimeTZDtype = DatetimeTZDtype(unit=unit, tz=tz)
+    result: DatetimeArray = dtype.__from_arrow__(arr)
+    expected: DatetimeArray = DatetimeArray._from_sequence(np.array(data, dtype=f'datetime64[{unit}]'), dtype=np.dtype(f'M8[{unit}]'))
+    expected = expected.tz_localize(tz=tz)
+    tm.assert_extension_array_equal(result, expected)
+    result = dtype.__from_arrow__(pa.chunked_array([arr]))
+    tm.assert_extension_array_equal(result, expected)
+
+def test_from_arrow_from_integers() -> None:
+    pa = pytest.importorskip('pyarrow')
+    data: List[Optional[int]] = [0, 123456789, None, 2 ** 63 - 1, iNaT, -123456789]
+    arr: Array = pa.array(data)
+    dtype: DatetimeTZDtype = DatetimeTZDtype(unit='ns', tz='UTC')
+    result: DatetimeArray = dtype.__from_arrow__(arr)
+    expected: DatetimeArray = DatetimeArray._from_sequence(np.array(data, dtype='datetime64[ns]'), dtype=np.dtype('M8[ns]'))
+    expected = expected.tz_localize('UTC')
+    tm.assert_extension_array_equal(result, expected)
+    result = dtype.__from_arrow__(pa.chunked_array([arr]))
+    tm.assert_extension_array_equal(result, expected)

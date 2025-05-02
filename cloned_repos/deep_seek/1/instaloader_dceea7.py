@@ -1,0 +1,297 @@
+import getpass
+import json
+import os
+import platform
+import re
+import shutil
+import string
+import sys
+import tempfile
+from contextlib import contextmanager, suppress
+from datetime import datetime, timezone
+from functools import wraps
+from io import BytesIO
+from pathlib import Path
+from typing import Any, Callable, IO, Iterator, List, Optional, Set, Union, cast, Dict, Tuple, TypeVar, Generic, overload
+from urllib.parse import urlparse
+import requests
+import urllib3
+from .exceptions import *
+from .instaloadercontext import InstaloaderContext, RateController
+from .lateststamps import LatestStamps
+from .nodeiterator import NodeIterator, resumable_iteration
+from .sectioniterator import SectionIterator
+from .structures import Hashtag, Highlight, JsonExportable, Post, PostLocation, Profile, Story, StoryItem, load_structure_from_file, save_structure_to_file, PostSidecarNode, TitlePic
+
+T = TypeVar('T')
+
+def _get_config_dir() -> str:
+    if platform.system() == 'Windows':
+        localappdata = os.getenv('LOCALAPPDATA')
+        if localappdata is not None:
+            return os.path.join(localappdata, 'Instaloader')
+        return os.path.join(tempfile.gettempdir(), '.instaloader-' + getpass.getuser())
+    return os.path.join(os.getenv('XDG_CONFIG_HOME', os.path.expanduser('~/.config')), 'instaloader')
+
+def get_default_session_filename(username: str) -> str:
+    """Returns default session filename for given username."""
+    configdir = _get_config_dir()
+    sessionfilename = 'session-{}'.format(username)
+    return os.path.join(configdir, sessionfilename)
+
+def get_legacy_session_filename(username: str) -> str:
+    """Returns legacy (until v4.4.3) default session filename for given username."""
+    dirname = tempfile.gettempdir() + '/' + '.instaloader-' + getpass.getuser()
+    filename = dirname + '/' + 'session-' + username
+    return filename.lower()
+
+def get_default_stamps_filename() -> str:
+    """
+    Returns default filename for latest stamps database.
+
+    .. versionadded:: 4.8
+
+    """
+    configdir = _get_config_dir()
+    return os.path.join(configdir, 'latest-stamps.ini')
+
+def format_string_contains_key(format_string: str, key: str) -> bool:
+    for literal_text, field_name, format_spec, conversion in string.Formatter().parse(format_string):
+        if field_name and (field_name == key or field_name.startswith(key + '.')):
+            return True
+    return False
+
+def _requires_login(func: Callable) -> Callable:
+    """Decorator to raise an exception if herewith-decorated function is called without being logged in"""
+
+    @wraps(func)
+    def call(instaloader: 'Instaloader', *args: Any, **kwargs: Any) -> Any:
+        if not instaloader.context.is_logged_in:
+            raise LoginRequiredException('Login required.')
+        return func(instaloader, *args, **kwargs)
+    return call
+
+def _retry_on_connection_error(func: Callable) -> Callable:
+    """Decorator to retry the function max_connection_attempts number of times.
+
+    Herewith-decorated functions need an ``_attempt`` keyword argument.
+
+    This is to decorate functions that do network requests that may fail. Note that
+    :meth:`.get_json`, :meth:`.get_iphone_json`, :meth:`.graphql_query` and :meth:`.graphql_node_list` already have
+    their own logic for retrying, hence functions that only use these for network access must not be decorated with this
+    decorator."""
+
+    @wraps(func)
+    def call(instaloader: 'Instaloader', *args: Any, **kwargs: Any) -> Any:
+        try:
+            return func(instaloader, *args, **kwargs)
+        except (urllib3.exceptions.HTTPError, requests.exceptions.RequestException, ConnectionException) as err:
+            error_string = '{}({}): {}'.format(func.__name__, ', '.join([repr(arg) for arg in args]), err)
+            if (kwargs.get('_attempt') or 1) == instaloader.context.max_connection_attempts:
+                raise ConnectionException(error_string) from None
+            instaloader.context.error(error_string + ' [retrying; skip with ^C]', repeat_at_end=False)
+            try:
+                if kwargs.get('_attempt'):
+                    kwargs['_attempt'] += 1
+                else:
+                    kwargs['_attempt'] = 2
+                instaloader.context.do_sleep()
+                return call(instaloader, *args, **kwargs)
+            except KeyboardInterrupt:
+                instaloader.context.error('[skipped by user]', repeat_at_end=False)
+                raise ConnectionException(error_string) from None
+    return call
+
+class _ArbitraryItemFormatter(string.Formatter):
+    def __init__(self, item: Any) -> None:
+        self._item = item
+
+    def get_value(self, key: str, args: Any, kwargs: Any) -> Any:
+        """Override to substitute {ATTRIBUTE} by attributes of our _item."""
+        if key == 'filename' and isinstance(self._item, (Post, StoryItem, PostSidecarNode, TitlePic)):
+            return '{filename}'
+        if hasattr(self._item, key):
+            return getattr(self._item, key)
+        return super().get_value(key, args, kwargs)
+
+    def format_field(self, value: Any, format_spec: str) -> str:
+        """Override :meth:`string.Formatter.format_field` to have our
+         default format_spec for :class:`datetime.Datetime` objects, and to
+         let None yield an empty string rather than ``None``."""
+        if isinstance(value, datetime) and (not format_spec):
+            return super().format_field(value, '%Y-%m-%d_%H-%M-%S')
+        if value is None:
+            return ''
+        return super().format_field(value, format_spec)
+
+class _PostPathFormatter(_ArbitraryItemFormatter):
+    RESERVED = {'CON', 'PRN', 'AUX', 'NUL', 'COM1', 'COM2', 'COM3', 'COM4', 'COM5', 'COM6', 'COM7', 'COM8', 'COM9', 'LPT1', 'LPT2', 'LPT3', 'LPT4', 'LPT5', 'LPT6', 'LPT7', 'LPT8', 'LPT9'}
+
+    def __init__(self, item: Any, force_windows_path: bool = False) -> None:
+        super().__init__(item)
+        self.force_windows_path = force_windows_path
+
+    def get_value(self, key: str, args: Any, kwargs: Any) -> Any:
+        ret = super().get_value(key, args, kwargs)
+        if not isinstance(ret, str):
+            return ret
+        return self.sanitize_path(ret, self.force_windows_path)
+
+    @staticmethod
+    def sanitize_path(ret: str, force_windows_path: bool = False) -> str:
+        """Replaces '/' with similar looking Division Slash and some other illegal filename characters on Windows."""
+        ret = ret.replace('/', '∕')
+        if ret.startswith('.'):
+            ret = ret.replace('.', '․', 1)
+        if force_windows_path or platform.system() == 'Windows':
+            ret = ret.replace(':', '：').replace('<', '﹤').replace('>', '﹥').replace('"', '＂')
+            ret = ret.replace('\\', '﹨').replace('|', '｜').replace('?', '︖').replace('*', '＊')
+            ret = ret.replace('\n', ' ').replace('\r', ' ')
+            root, ext = os.path.splitext(ret)
+            if root.upper() in _PostPathFormatter.RESERVED:
+                root += '_'
+            if ext == '.':
+                ext = '․'
+            ret = root + ext
+        return ret
+
+class Instaloader:
+    """Instaloader Class.
+
+    :param quiet: :option:`--quiet`
+    :param user_agent: :option:`--user-agent`
+    :param dirname_pattern: :option:`--dirname-pattern`, default is ``{target}``
+    :param filename_pattern: :option:`--filename-pattern`, default is ``{date_utc}_UTC``
+    :param title_pattern:
+       :option:`--title-pattern`, default is ``{date_utc}_UTC_{typename}`` if ``dirname_pattern`` contains
+       ``{target}`` or ``{profile}``, ``{target}_{date_utc}_UTC_{typename}`` otherwise.
+    :param download_pictures: not :option:`--no-pictures`
+    :param download_videos: not :option:`--no-videos`
+    :param download_video_thumbnails: not :option:`--no-video-thumbnails`
+    :param download_geotags: :option:`--geotags`
+    :param download_comments: :option:`--comments`
+    :param save_metadata: not :option:`--no-metadata-json`
+    :param compress_json: not :option:`--no-compress-json`
+    :param post_metadata_txt_pattern:
+       :option:`--post-metadata-txt`, default is ``{caption}``. Set to empty string to avoid creation of post metadata
+       txt file.
+    :param storyitem_metadata_txt_pattern: :option:`--storyitem-metadata-txt`, default is empty (=none)
+    :param max_connection_attempts: :option:`--max-connection-attempts`
+    :param request_timeout: :option:`--request-timeout`, set per-request timeout (seconds)
+    :param rate_controller: Generator for a :class:`RateController` to override rate controlling behavior
+    :param resume_prefix: :option:`--resume-prefix`, or None for :option:`--no-resume`.
+    :param check_resume_bbd: Whether to check the date of expiry of resume files and reject them if expired.
+    :param slide: :option:`--slide`
+    :param fatal_status_codes: :option:`--abort-on`
+    :param iphone_support: not :option:`--no-iphone`
+    :param sanitize_paths: :option:`--sanitize-paths`
+
+    .. attribute:: context
+
+       The associated :class:`InstaloaderContext` with low-level communication functions and logging.
+    """
+
+    def __init__(self, sleep: bool = True, quiet: bool = False, user_agent: Optional[str] = None, dirname_pattern: Optional[str] = None, filename_pattern: Optional[str] = None, download_pictures: bool = True, download_videos: bool = True, download_video_thumbnails: bool = True, download_geotags: bool = False, download_comments: bool = False, save_metadata: bool = True, compress_json: bool = True, post_metadata_txt_pattern: Optional[str] = None, storyitem_metadata_txt_pattern: Optional[str] = None, max_connection_attempts: int = 3, request_timeout: float = 300.0, rate_controller: Optional[Callable[[], RateController]] = None, resume_prefix: str = 'iterator', check_resume_bbd: bool = True, slide: Optional[str] = None, fatal_status_codes: Optional[Set[int]] = None, iphone_support: bool = True, title_pattern: Optional[str] = None, sanitize_paths: bool = False) -> None:
+        self.context = InstaloaderContext(sleep, quiet, user_agent, max_connection_attempts, request_timeout, rate_controller, fatal_status_codes, iphone_support)
+        self.dirname_pattern = dirname_pattern or '{target}'
+        self.filename_pattern = filename_pattern or '{date_utc}_UTC'
+        if title_pattern is not None:
+            self.title_pattern = title_pattern
+        elif format_string_contains_key(self.dirname_pattern, 'profile') or format_string_contains_key(self.dirname_pattern, 'target'):
+            self.title_pattern = '{date_utc}_UTC_{typename}'
+        else:
+            self.title_pattern = '{target}_{date_utc}_UTC_{typename}'
+        self.sanitize_paths = sanitize_paths
+        self.download_pictures = download_pictures
+        self.download_videos = download_videos
+        self.download_video_thumbnails = download_video_thumbnails
+        self.download_geotags = download_geotags
+        self.download_comments = download_comments
+        self.save_metadata = save_metadata
+        self.compress_json = compress_json
+        self.post_metadata_txt_pattern = '{caption}' if post_metadata_txt_pattern is None else post_metadata_txt_pattern
+        self.storyitem_metadata_txt_pattern = '' if storyitem_metadata_txt_pattern is None else storyitem_metadata_txt_pattern
+        self.resume_prefix = resume_prefix
+        self.check_resume_bbd = check_resume_bbd
+        self.slide = slide or ''
+        self.slide_start = 0
+        self.slide_end = -1
+        if self.slide != '':
+            splitted = self.slide.split('-')
+            if len(splitted) == 1:
+                if splitted[0] == 'last':
+                    self.slide_start = -1
+                elif int(splitted[0]) > 0:
+                    self.slide_start = self.slide_end = int(splitted[0]) - 1
+                else:
+                    raise InvalidArgumentException('--slide parameter must be greater than 0.')
+            elif len(splitted) == 2:
+                if splitted[1] == 'last':
+                    self.slide_start = int(splitted[0]) - 1
+                elif 0 < int(splitted[0]) < int(splitted[1]):
+                    self.slide_start = int(splitted[0]) - 1
+                    self.slide_end = int(splitted[1]) - 1
+                else:
+                    raise InvalidArgumentException('Invalid data for --slide parameter.')
+            else:
+                raise InvalidArgumentException('Invalid data for --slide parameter.')
+
+    @contextmanager
+    def anonymous_copy(self) -> Iterator['Instaloader']:
+        """Yield an anonymous, otherwise equally-configured copy of an Instaloader instance; Then copy its error log."""
+        new_loader = Instaloader(sleep=self.context.sleep, quiet=self.context.quiet, user_agent=self.context.user_agent, dirname_pattern=self.dirname_pattern, filename_pattern=self.filename_pattern, download_pictures=self.download_pictures, download_videos=self.download_videos, download_video_thumbnails=self.download_video_thumbnails, download_geotags=self.download_geotags, download_comments=self.download_comments, save_metadata=self.save_metadata, compress_json=self.compress_json, post_metadata_txt_pattern=self.post_metadata_txt_pattern, storyitem_metadata_txt_pattern=self.storyitem_metadata_txt_pattern, max_connection_attempts=self.context.max_connection_attempts, request_timeout=self.context.request_timeout, resume_prefix=self.resume_prefix, check_resume_bbd=self.check_resume_bbd, slide=self.slide, fatal_status_codes=self.context.fatal_status_codes, iphone_support=self.context.iphone_support, sanitize_paths=self.sanitize_paths)
+        yield new_loader
+        self.context.error_log.extend(new_loader.context.error_log)
+        new_loader.context.error_log = []
+        new_loader.close()
+
+    def close(self) -> None:
+        """Close associated session objects and repeat error log."""
+        self.context.close()
+
+    def __enter__(self) -> 'Instaloader':
+        return self
+
+    def __exit__(self, *args: Any) -> None:
+        self.close()
+
+    @_retry_on_connection_error
+    def download_pic(self, filename: str, url: str, mtime: datetime, filename_suffix: Optional[str] = None, _attempt: int = 1) -> bool:
+        """Downloads and saves picture with given url under given directory with given timestamp.
+        Returns true, if file was actually downloaded, i.e. updated."""
+        if filename_suffix is not None:
+            filename += '_' + filename_suffix
+        urlmatch = re.search('\\.[a-z0-9]*\\?', url)
+        file_extension = url[-3:] if urlmatch is None else urlmatch.group(0)[1:-1]
+        nominal_filename = filename + '.' + file_extension
+        if os.path.isfile(nominal_filename):
+            self.context.log(nominal_filename + ' exists', end=' ', flush=True)
+            return False
+        resp = self.context.get_raw(url)
+        if 'Content-Type' in resp.headers and resp.headers['Content-Type']:
+            header_extension = '.' + resp.headers['Content-Type'].split(';')[0].split('/')[-1]
+            header_extension = header_extension.lower().replace('jpeg', 'jpg')
+            filename += header_extension
+        else:
+            filename = nominal_filename
+        if filename != nominal_filename and os.path.isfile(filename):
+            self.context.log(filename + ' exists', end=' ', flush=True)
+            return False
+        self.context.write_raw(resp, filename)
+        os.utime(filename, (datetime.now().timestamp(), mtime.timestamp()))
+        return True
+
+    def save_metadata_json(self, filename: str, structure: JsonExportable) -> None:
+        """Saves metadata JSON file of a structure."""
+        if self.compress_json:
+            filename += '.json.xz'
+        else:
+            filename += '.json'
+        os.makedirs(os.path.dirname(filename), exist_ok=True)
+        save_structure_to_file(structure, filename)
+        if isinstance(structure, (Post, StoryItem)):
+            self.context.log('json', end=' ', flush=True)
+
+    def update_comments(self, filename: str, post: Post) -> None:
+        def _postcommentanswer_asdict(comment: Any) -> Dict[str, Any]:
+            return {'id': comment.id, 'created_at': int(comment

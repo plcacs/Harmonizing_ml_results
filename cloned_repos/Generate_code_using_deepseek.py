@@ -7,10 +7,9 @@ import hashlib
 
 client = OpenAI(api_key="sk-4088954d38254ee4b072d590b59b0e27", base_url="https://api.deepseek.com")
 PROCESSED_FILES_LOG = "processed_files_deep_seek.txt"
-JSON_FILE = "filtered_python_files.json"
-OUTPUT_DIR = "deep_seek2"
-TIMING_LOG = "deepseek_model_timings2.json"
-MAX_FILES = 1100
+JSON_FILE = "grouped_file_paths.json"
+OUTPUT_DIR = "deep_seek"
+TIMING_LOG = "deepseek_model_timings.json"
 
 def get_token_count(text: str, model: str = "deepseek-reasoner"):
     encoding = tiktoken.get_encoding("cl100k_base")  # Use a known encoding
@@ -35,7 +34,7 @@ def generate_type_annotated_code(code: str) -> str:
     prompt = f"Here is a Python program:\n\n{code}\n\nAdd appropriate type annotations. Output only the type annotated Python code. No Explanation. Your output should be directly executable by python compiler."
     
     token_count = get_token_count(prompt) + 1  # Ensure token limit safety
-    max_retries = 5
+    max_retries = 3
     wait_time = 60
     
     for attempt in range(max_retries):
@@ -45,7 +44,7 @@ def generate_type_annotated_code(code: str) -> str:
                 model="deepseek-chat",
                 
                 messages=[{"role": "system", "content": "You are a genius python programmer"},{"role": "user", "content": prompt}],
-                max_tokens=8000,
+                
                 stream=False
             )
             end_time = time.time()  # End timing
@@ -79,7 +78,7 @@ def generate_type_annotated_code(code: str) -> str:
     print("Max retries reached. Skipping request.")
     return code
 
-def process_file(file_path):
+def process_file(file_path, grouped_id):
     """Process a single file, handling encoding errors and logging processing time."""
     processed_files = load_processed_files()
 
@@ -107,14 +106,14 @@ def process_file(file_path):
     except IndexError:
         print(f"Skipping file {file_path} due to unexpected format")
         return
-    
-    if not os.path.exists(OUTPUT_DIR):
-        os.makedirs(OUTPUT_DIR)
+    new_file_path= os.path.join(OUTPUT_DIR, grouped_id)
+    if not os.path.exists(new_file_path):
+        os.makedirs(new_file_path)
     
     filename = os.path.basename(file_path)
-    file_hash = hashlib.md5(file_path.encode()).hexdigest()[:8]  # Take first 8 chars of hash
-    new_file_name = f"{filename}_deepseek_{file_hash}.py"
-    new_file_path = os.path.join(OUTPUT_DIR, new_file_name)
+    #file_hash = hashlib.md5(file_path.encode()).hexdigest()[:8]  # Take first 8 chars of hash
+    #new_file_name = f"{filename}_deepseek_{file_hash}.py"
+    new_file_path = os.path.join(new_file_path, filename)
     
     try:
         with open(new_file_path, 'w', encoding='utf-8', errors='ignore') as file:
@@ -134,30 +133,25 @@ def load_processed_files():
     return set()
 
 def process_files_from_json():
-    """Process files based on JSON file priority order."""
     processed_files = load_processed_files()
     try:
         with open(JSON_FILE, "r", encoding="utf-8") as f:
-            file_groups = json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError) as e:
-        print(f"Error loading JSON file: {e}")
+            file_map = json.load(f)
+    except Exception as e:
+        print(f"Error loading JSON: {e}")
         return
     
-    ordered_categories = ["50+", "30-50", "20-30", "10-20", "05-10"]
     processed_count = 0
-    
-    for category in ordered_categories:
-        if category in file_groups:
-            for file_path in file_groups[category]:
-                if processed_count >= MAX_FILES:
-                    print("Reached processing limit. Stopping.")
-                    return
-                if file_path in processed_files:
-                    print(f"Skipping {file_path}, already processed.")
-                    continue
-                process_file(file_path)
-                processed_count += 1
-                time.sleep(30)  # Respect API limits
-
+    for id_ in range(2,19):
+        grouped_id=str(id_)
+        for file_path in file_map[grouped_id]:
+            
+            if file_path in processed_files:
+                print(f"Skipping already processed file: {file_path}")
+                continue
+            process_file(file_path, grouped_id)
+            processed_count += 1
+            time.sleep(30)
+        time.sleep(3600*2)
 if __name__ == "__main__":
     process_files_from_json()

@@ -6,13 +6,14 @@ from openai import OpenAI
 import hashlib
 
 client = OpenAI()
-PROCESSED_FILES_LOG = "processed_files_gpt.txt"
-JSON_FILE = "python_files_for_ml_inference_group1.json"
-OUTPUT_DIR = "GPT4o2"
-MAX_FILES = 1500
+PROCESSED_FILES_LOG = "processed_files_o1-mini.txt"
+JSON_FILE = "filtered_python_files.json"
+OUTPUT_DIR = "o1-mini3"
+MAX_FILES = 1550
 
-def get_token_count(text: str, model: str = "gpt-4"):
+def get_token_count(text: str, model: str = "o1-mini"):
     encoding = tiktoken.encoding_for_model(model)
+    #encoding = tiktoken.get_encoding("cl100k_base")
     return len(encoding.encode(text))
 
 def load_processed_files():
@@ -28,23 +29,25 @@ def save_processed_file(file_path):
         f.write(file_path + "\n")
 
 def generate_type_annotated_code(code: str) -> str:
-    """Generate type annotations using GPT-4 with retries."""
-    prompt = f"Here is a Python program:\n\n{code}\n\nAdd appropriate type annotations. Output only the annotated Python code. No Explanation needed."
-    token_count = get_token_count(prompt, model="gpt-4") + 1
-    
-    
+    """Generate type annotations using o1-mini with retries."""
+    prompt = f"Here is a Python program:\n\n{code}\n\nAdd appropriate type annotations. Output only the type annotated Python code. No Explanation. Your output should be directly executable by python compiler."
+
+    token_count = get_token_count(prompt, model="o1-mini") + 1  # Ensure o1-mini is valid
+
     max_retries = 3
     wait_time = 60
 
     for attempt in range(max_retries):
         try:
             response = client.chat.completions.create(
-                model="gpt-4o",
-                messages=[{"role": "system", "content": "You are a python programming expert."},
-                          {"role": "user", "content": prompt}],
-                temperature=0,
+                model="o1-mini",
+                messages=[  # No "system" message
+                    {"role": "user", "content": prompt}
+                ],
+                # Remove temperature=0 (only default = 1 is allowed)
+                # Setting it explicitly to 1 might not be necessary
             )
-            return response.choices[0].message
+            return response.choices[0].message.content
         
         except Exception as e:
             error_msg = str(e)
@@ -53,12 +56,21 @@ def generate_type_annotated_code(code: str) -> str:
                 print(f"Rate limit exceeded. Retrying in {wait_time} seconds... (Attempt {attempt+1}/{max_retries})")
                 time.sleep(610)
                 wait_time += 30
+            elif "model_not_found" in error_msg:
+                print("Model `o1-mini` does not exist. Please check available models.")
+                return code
+            elif "unsupported_value" in error_msg:
+                print("This model does not support 'system' messages or temperature settings. Removing them.")
+                return code
             else:
                 print(f"Error generating type-annotated code: {e}")
                 return code 
 
     print("Max retries reached. Skipping file.")
     return code
+
+
+
 
 def process_file(file_path):
     """Process a single file, handling encoding errors."""
@@ -67,6 +79,7 @@ def process_file(file_path):
     if file_path in processed_files:
         print(f"Skipping {file_path}, already processed.")
         return
+    
     print(f"Processing file: {file_path}")
 
     try:
@@ -81,9 +94,9 @@ def process_file(file_path):
     content = modified_code.content if hasattr(modified_code, 'content') else modified_code
     #print(content)
     try:
-        code_block = content
+        code_block = content.split('```python\n')[1].split('```')[0]
     except IndexError:
-        print(f"Skipping {file_path} due to unexpected format")
+        print(f"Skipping file {file_path} due to unexpected format")
         return
 
     if not os.path.exists(OUTPUT_DIR):
@@ -93,17 +106,18 @@ def process_file(file_path):
 
     filename = os.path.basename(file_path)
     file_hash = hashlib.md5(file_path.encode()).hexdigest()[:8]  # Take first 8 chars of hash
-    new_file_name = f"{filename}_gpt4_{file_hash}.py"
+    new_file_name = f"{filename}_o1_mini_{file_hash}.py"
     new_file_path = os.path.join(OUTPUT_DIR, new_file_name)
-
+    save_processed_file(file_path)
     try:
         with open(new_file_path, 'w', encoding='utf-8', errors='ignore') as file:
             file.write(code_block)
+            
     except (UnicodeEncodeError, IOError) as e:
         print(f"Skipping {file_path} due to write error: {e}")
         return
 
-    save_processed_file(file_path)
+    
     print(f"Successfully processed: {file_path}")
 
 def process_files_from_json():
