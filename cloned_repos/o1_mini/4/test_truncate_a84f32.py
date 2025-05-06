@@ -1,0 +1,148 @@
+import numpy as np
+import pytest
+import pandas as pd
+from pandas import (
+    DataFrame,
+    DatetimeIndex,
+    Index,
+    Series,
+    date_range,
+)
+from pandas._testing import get_obj, assert_equal
+from typing import Type, Union, Optional, List
+
+
+class TestDataFrameTruncate:
+
+    def test_truncate(
+        self,
+        datetime_frame: DataFrame,
+        frame_or_series: Type[Union[DataFrame, Series]],
+    ) -> None:
+        ts = datetime_frame[::3]
+        ts = get_obj(ts, frame_or_series)
+        start, end = datetime_frame.index[3], datetime_frame.index[6]
+        start_missing = datetime_frame.index[2]
+        end_missing = datetime_frame.index[7]
+        truncated = ts.truncate()
+        assert_equal(truncated, ts)
+        expected = ts[1:3]
+        truncated = ts.truncate(start, end)
+        assert_equal(truncated, expected)
+        truncated = ts.truncate(start_missing, end_missing)
+        assert_equal(truncated, expected)
+        expected = ts[1:]
+        truncated = ts.truncate(before=start)
+        assert_equal(truncated, expected)
+        truncated = ts.truncate(before=start_missing)
+        assert_equal(truncated, expected)
+        expected = ts[:3]
+        truncated = ts.truncate(after=end)
+        assert_equal(truncated, expected)
+        truncated = ts.truncate(after=end_missing)
+        assert_equal(truncated, expected)
+        truncated = ts.truncate(after=ts.index[0] - ts.index.freq)  # type: ignore
+        assert len(truncated) == 0
+        truncated = ts.truncate(before=ts.index[-1] + ts.index.freq)  # type: ignore
+        assert len(truncated) == 0
+        msg = (
+            "Truncate: 2000-01-06 00:00:00 must be after 2000-01-11 00:00:00"
+        )
+        with pytest.raises(ValueError, match=msg):
+            ts.truncate(
+                before=ts.index[-1] - ts.index.freq, after=ts.index[0] + ts.index.freq  # type: ignore
+            )
+
+    def test_truncate_nonsortedindex(
+        self, frame_or_series: Type[Union[DataFrame, Series]]
+    ) -> None:
+        obj = DataFrame({"A": ["a", "b", "c", "d", "e"]}, index=[5, 3, 2, 9, 0])
+        obj = get_obj(obj, frame_or_series)
+        msg = "truncate requires a sorted index"
+        with pytest.raises(ValueError, match=msg):
+            obj.truncate(before=3, after=9)
+
+    def test_sort_values_nonsortedindex(self) -> None:
+        rng = date_range("2011-01-01", "2012-01-01", freq="W")
+        ts = DataFrame(
+            {
+                "A": np.random.default_rng(2).standard_normal(len(rng)),
+                "B": np.random.default_rng(2).standard_normal(len(rng)),
+            },
+            index=rng,
+        )
+        decreasing = ts.sort_values("A", ascending=False)
+        msg = "truncate requires a sorted index"
+        with pytest.raises(ValueError, match=msg):
+            decreasing.truncate(before="2011-11", after="2011-12")
+
+    def test_truncate_nonsortedindex_axis1(self) -> None:
+        df = DataFrame(
+            {
+                3: np.random.default_rng(2).standard_normal(5),
+                20: np.random.default_rng(2).standard_normal(5),
+                2: np.random.default_rng(2).standard_normal(5),
+                0: np.random.default_rng(2).standard_normal(5),
+            },
+            columns=[3, 20, 2, 0],
+        )
+        msg = "truncate requires a sorted index"
+        with pytest.raises(ValueError, match=msg):
+            df.truncate(before=2, after=20, axis=1)
+
+    @pytest.mark.parametrize(
+        "before, after, indices",
+        [
+            (1, 2, [2, 1]),
+            (None, 2, [2, 1, 0]),
+            (1, None, [3, 2, 1]),
+        ],
+    )
+    @pytest.mark.parametrize(
+        "dtyp",
+        [*pd._testing.ALL_REAL_NUMPY_DTYPES, "datetime64[ns]"],
+    )
+    def test_truncate_decreasing_index(
+        self,
+        before: Optional[int],
+        after: Optional[int],
+        indices: List[Union[int, pd.Timestamp]],
+        dtyp: Union[str, np.dtype],
+        frame_or_series: Type[Union[DataFrame, Series]],
+    ) -> None:
+        idx = Index([3, 2, 1, 0], dtype=dtyp)
+        if isinstance(idx, DatetimeIndex):
+            before = pd.Timestamp(before) if before is not None else None
+            after = pd.Timestamp(after) if after is not None else None
+            indices = [pd.Timestamp(i) for i in indices]
+        values = get_obj(frame_or_series(range(len(idx)), index=idx), frame_or_series)
+        result = values.truncate(before=before, after=after)
+        expected = values.loc[indices]
+        assert_equal(result, expected)
+
+    def test_truncate_multiindex(
+        self, frame_or_series: Type[Union[DataFrame, Series]]
+    ) -> None:
+        mi = pd.MultiIndex.from_product(
+            [[1, 2, 3, 4], ["A", "B"]], names=["L1", "L2"]
+        )
+        s1 = DataFrame(range(mi.shape[0]), index=mi, columns=["col"])
+        s1 = get_obj(s1, frame_or_series)
+        result = s1.truncate(before=2, after=3)
+        df = DataFrame.from_dict(
+            {"L1": [2, 2, 3, 3], "L2": ["A", "B", "A", "B"], "col": [2, 3, 4, 5]}
+        )
+        expected = df.set_index(["L1", "L2"])
+        expected = get_obj(expected, frame_or_series)
+        assert_equal(result, expected)
+
+    def test_truncate_index_only_one_unique_value(
+        self, frame_or_series: Type[Union[DataFrame, Series]]
+    ) -> None:
+        obj = Series(
+            0, index=date_range("2021-06-30", "2021-06-30")
+        ).repeat(5)
+        if frame_or_series is DataFrame:
+            obj = obj.to_frame(name="a")
+        truncated = obj.truncate("2021-06-28", "2021-07-01")
+        assert_equal(truncated, obj)
