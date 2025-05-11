@@ -1,0 +1,300 @@
+import time
+from typing import Any, Dict, List, Literal, Optional
+from googleapiclient.discovery import Resource
+from pydantic import BaseModel, Field
+
+
+class SecretKeySelector(BaseModel):
+    """
+    SecretKeySelector is a data model for specifying a GCP secret to inject
+    into a Cloud Run V2 Job as an environment variable.
+    Follows Cloud Run V2 rest API, docs:
+    https://cloud.google.com/run/docs/reference/rest/v2/Container#SecretKeySelector
+    """
+    name: str
+    key: str
+    optional: Optional[bool] = False
+
+
+class JobV2(BaseModel):
+    """
+    JobV2 is a data model for a job that will be run on Cloud Run with the V2 API.
+    """
+    name: Optional[str] = None
+    uid: Optional[str] = None
+    generation: Optional[int] = None
+    labels: Dict[str, str] = Field(default_factory=dict)
+    annotations: Dict[str, str] = Field(default_factory=dict)
+    createTime: Optional[str] = None
+    updateTime: Optional[str] = None
+    deleteTime: Optional[str] = None
+    expireTime: Optional[str] = None
+    creator: Optional[str] = None
+    lastModifier: Optional[str] = None
+    client: Optional[str] = None
+    clientVersion: Optional[str] = None
+    launchStage: Literal['ALPHA', 'BETA', 'GA', 'DEPRECATED'] = 'GA'
+    binaryAuthorization: Dict[str, Any] = Field(default_factory=dict)
+    template: Dict[str, Any] = Field(default_factory=dict)
+    observedGeneration: Optional[int] = None
+    terminalCondition: Dict[str, Any] = Field(default_factory=dict)
+    conditions: List[Dict[str, Any]] = Field(default_factory=list)
+    latestCreatedExecution: Dict[str, Any] = Field(default_factory=dict)
+    reconciling: bool = False
+    satisfiesPzs: bool = False
+    etag: Optional[str] = None
+    executionCount: Optional[int] = 0
+
+    def is_ready(self) -> bool:
+        """
+        Check if the job is ready to run.
+
+        Returns:
+            Whether the job is ready to run.
+        """
+        ready_condition = self.get_ready_condition()
+        if self._is_missing_container(ready_condition=ready_condition):
+            raise Exception(f"{ready_condition.get('message')}")
+        return ready_condition.get('state') == 'CONDITION_SUCCEEDED'
+
+    def get_ready_condition(self) -> Dict[str, Any]:
+        """
+        Get the ready condition for the job.
+
+        Returns:
+            The ready condition for the job.
+        """
+        if self.terminalCondition.get('type') == 'Ready':
+            return self.terminalCondition
+        return {}
+
+    @classmethod
+    def get(cls, cr_client: Resource, project: str, location: str, job_name: str) -> 'JobV2':
+        """
+        Get a job from Cloud Run with the V2 API.
+
+        Args:
+            cr_client: The base client needed for interacting with GCP
+                Cloud Run V2 API.
+            project: The GCP project ID.
+            location: The GCP region.
+            job_name: The name of the job to get.
+
+        Returns:
+            An instance of JobV2.
+        """
+        request = cr_client.jobs().get(name=f'projects/{project}/locations/{location}/jobs/{job_name}')
+        response = request.execute()
+        return cls(
+            name=response.get('name'),
+            uid=response.get('uid'),
+            generation=response.get('generation'),
+            labels=response.get('labels', {}),
+            annotations=response.get('annotations', {}),
+            createTime=response.get('createTime'),
+            updateTime=response.get('updateTime'),
+            deleteTime=response.get('deleteTime'),
+            expireTime=response.get('expireTime'),
+            creator=response.get('creator'),
+            lastModifier=response.get('lastModifier'),
+            client=response.get('client'),
+            clientVersion=response.get('clientVersion'),
+            launchStage=response.get('launchStage', 'GA'),
+            binaryAuthorization=response.get('binaryAuthorization', {}),
+            template=response.get('template'),
+            observedGeneration=response.get('observedGeneration'),
+            terminalCondition=response.get('terminalCondition', {}),
+            conditions=response.get('conditions', []),
+            executionCount=response.get('executionCount', 0),
+            latestCreatedExecution=response.get('latestCreatedExecution', {}),
+            reconciling=response.get('reconciling', False),
+            satisfiesPzs=response.get('satisfiesPzs', False),
+            etag=response.get('etag')
+        )
+
+    @staticmethod
+    def create(cr_client: Resource, project: str, location: str, job_id: str, body: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Create a job on Cloud Run with the V2 API.
+
+        Args:
+            cr_client: The base client needed for interacting with GCP
+                Cloud Run V2 API.
+            project: The GCP project ID.
+            location: The GCP region.
+            job_id: The ID of the job to create.
+            body: The job body.
+
+        Returns:
+            The response from the Cloud Run V2 API.
+        """
+        request = cr_client.jobs().create(parent=f'projects/{project}/locations/{location}', jobId=job_id, body=body)
+        response = request.execute()
+        return response
+
+    @staticmethod
+    def delete(cr_client: Resource, project: str, location: str, job_name: str) -> Dict[str, Any]:
+        """
+        Delete a job on Cloud Run with the V2 API.
+
+        Args:
+            cr_client (Resource): The base client needed for interacting with GCP
+                Cloud Run V2 API.
+            project: The GCP project ID.
+            location: The GCP region.
+            job_name: The name of the job to delete.
+
+        Returns:
+            Dict: The response from the Cloud Run V2 API.
+        """
+        list_executions_request = cr_client.jobs().executions().list(
+            parent=f'projects/{project}/locations/{location}/jobs/{job_name}'
+        )
+        list_executions_response = list_executions_request.execute()
+        for execution_to_delete in list_executions_response.get('executions', []):
+            delete_execution_request = cr_client.jobs().executions().delete(name=execution_to_delete['name'])
+            delete_execution_request.execute()
+            time.sleep(3)
+        request = cr_client.jobs().delete(name=f'projects/{project}/locations/{location}/jobs/{job_name}')
+        response = request.execute()
+        return response
+
+    @staticmethod
+    def run(cr_client: Resource, project: str, location: str, job_name: str) -> Dict[str, Any]:
+        """
+        Run a job on Cloud Run with the V2 API.
+
+        Args:
+            cr_client: The base client needed for interacting with GCP
+                Cloud Run V2 API.
+            project: The GCP project ID.
+            location: The GCP region.
+            job_name: The name of the job to run.
+
+        Returns:
+            The response from the Cloud Run V2 API.
+        """
+        request = cr_client.jobs().run(name=f'projects/{project}/locations/{location}/jobs/{job_name}')
+        response = request.execute()
+        return response
+
+    @staticmethod
+    def _is_missing_container(ready_condition: Dict[str, Any]) -> bool:
+        """
+        Check if the job is missing a container.
+
+        Args:
+            ready_condition: The ready condition for the job.
+
+        Returns:
+            Whether the job is missing a container.
+        """
+        if ready_condition.get('state') == 'CONTAINER_FAILED' and ready_condition.get('reason') == 'ContainerMissing':
+            return True
+        return False
+
+
+class ExecutionV2(BaseModel):
+    """
+    ExecutionV2 is a data model for an execution of a job that will be run on
+    Cloud Run API v2.
+    """
+    name: Optional[str] = None
+    uid: Optional[str] = None
+    generation: Optional[int] = None
+    labels: Dict[str, str] = Field(default_factory=dict)
+    annotations: Dict[str, str] = Field(default_factory=dict)
+    createTime: Optional[str] = None
+    startTime: Optional[str] = None
+    completionTime: Optional[str] = None
+    deleteTime: Optional[str] = None
+    expireTime: Optional[str] = None
+    launchStage: Literal['ALPHA', 'BETA', 'GA', 'DEPRECATED'] = 'GA'
+    job: Optional[str] = None
+    parallelism: Optional[int] = None
+    taskCount: Optional[int] = None
+    template: Dict[str, Any] = Field(default_factory=dict)
+    reconciling: bool = False
+    conditions: List[Dict[str, Any]] = Field(default_factory=list)
+    observedGeneration: Optional[int] = None
+    runningCount: Optional[int] = 0
+    succeededCount: Optional[int] = 0
+    failedCount: Optional[int] = 0
+    cancelledCount: Optional[int] = 0
+    retriedCount: Optional[int] = 0
+    logUri: Optional[str] = None
+    satisfiesPzs: bool = False
+    etag: Optional[str] = None
+
+    def is_running(self) -> bool:
+        """
+        Return whether the execution is running.
+
+        Returns:
+            Whether the execution is running.
+        """
+        return self.completionTime is None
+
+    def succeeded(self) -> bool:
+        """Whether or not the Execution completed is a successful state."""
+        completed_condition = self.condition_after_completion()
+        if completed_condition and completed_condition.get('state') == 'CONDITION_SUCCEEDED':
+            return True
+        return False
+
+    def condition_after_completion(self) -> Optional[Dict[str, Any]]:
+        """
+        Return the condition after completion.
+
+        Returns:
+            The condition after completion.
+        """
+        for condition in self.conditions:
+            if condition.get('type') == 'Completed':
+                return condition
+        return None
+
+    @classmethod
+    def get(cls, cr_client: Resource, execution_id: str) -> 'ExecutionV2':
+        """
+        Get an execution from Cloud Run with the V2 API.
+
+        Args:
+            cr_client: The base client needed for interacting with GCP
+                Cloud Run V2 API.
+            execution_id: The name of the execution to get, in the form of
+                projects/{project}/locations/{location}/jobs/{job}/executions/{execution}
+
+        Returns:
+            An instance of ExecutionV2.
+        """
+        request = cr_client.jobs().executions().get(name=execution_id)
+        response = request.execute()
+        return cls(
+            name=response.get('name'),
+            uid=response.get('uid'),
+            generation=response.get('generation'),
+            labels=response.get('labels', {}),
+            annotations=response.get('annotations', {}),
+            createTime=response.get('createTime'),
+            startTime=response.get('startTime'),
+            completionTime=response.get('completionTime'),
+            deleteTime=response.get('deleteTime'),
+            expireTime=response.get('expireTime'),
+            launchStage=response.get('launchStage', 'GA'),
+            job=response.get('job'),
+            parallelism=response.get('parallelism'),
+            taskCount=response.get('taskCount'),
+            template=response.get('template', {}),
+            reconciling=response.get('reconciling', False),
+            conditions=response.get('conditions', []),
+            observedGeneration=response.get('observedGeneration'),
+            runningCount=response.get('runningCount', 0),
+            succeededCount=response.get('succeededCount', 0),
+            failedCount=response.get('failedCount', 0),
+            cancelledCount=response.get('cancelledCount', 0),
+            retriedCount=response.get('retriedCount', 0),
+            logUri=response.get('logUri'),
+            satisfiesPzs=response.get('satisfiesPzs', False),
+            etag=response.get('etag')
+        )
