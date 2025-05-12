@@ -47,12 +47,15 @@ def run_mypy_and_save_results(directory, output_file):
             if process.returncode == 0:
                 file_result["error_count"] = 0
                 file_result["isCompiled"] = True
+                file_result["errors"] = []
             else:
                 error_count = output.count("\n")
+                errors = output.splitlines() if output else error_output.splitlines()
                 if error_count == 0 and error_output:
                     error_count = error_output.count('\n')
                 file_result["error_count"] = error_count
                 file_result["isCompiled"] = False
+                file_result["errors"]=errors
             # Use only the file name as the key
             file_key = os.path.basename(filename)
             results[file_key] = file_result
@@ -64,4 +67,4 @@ def run_mypy_and_save_results(directory, output_file):
     print(f"\nResults saved to {output_file}")
 
 if __name__ == "__main__":
-    run_mypy_and_save_results("deep_seek", "mypy_results_deepseek.json")
+    run_mypy_and_save_results("deep_seek", "mypy_results_deepseek_with_errors.json")
