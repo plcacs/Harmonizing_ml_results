@@ -1,435 +1,430 @@
-import os
-from typing import Any, Dict, Set, Generator, List, Optional
-from unittest import mock
+from pathlib import Path
+from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
 import pytest
-import dbt_common.exceptions
-from dbt.adapters import factory, postgres
-from dbt.clients.jinja import MacroStack
-from dbt.config.project import VarProvider
-from dbt.context import base, docs, macros, providers, query_header
-from dbt.contracts.files import FileHash
-from dbt.contracts.graph.nodes import DependsOn, Macro, ModelNode, NodeConfig, UnitTestNode, UnitTestOverrides
-from dbt.node_types import NodeType
-from dbt_common.events.functions import reset_metadata_vars
-from tests.unit.mock_adapter import adapter_factory
-from tests.unit.utils import clear_plugin, config_from_parts_or_dicts, inject_adapter
-
-
-class TestVar:
-
-    @pytest.fixture
-    def model(self):
-        return ModelNode(alias='model_one', name='model_one', database=
-            'dbt', schema='analytics', resource_type=NodeType.Model,
-            unique_id='model.root.model_one', fqn=['root', 'model_one'],
-            package_name='root', original_file_path='model_one.sql', refs=[
-            ], sources=[], depends_on=DependsOn(), config=NodeConfig.
-            from_dict({'enabled': True, 'materialized': 'view',
-            'persist_docs': {}, 'post-hook': [], 'pre-hook': [], 'vars': {},
-            'quoting': {}, 'column_types': {}, 'tags': []}), tags=[], path=
-            'model_one.sql', language='sql', raw_code='', description='',
-            columns={}, checksum=FileHash.from_contents(''))
-
-    @pytest.fixture
-    def context(self) ->mock.MagicMock:
-        return mock.MagicMock()
-
-    @pytest.fixture
-    def provider(self) ->VarProvider:
-        return VarProvider({})
-
-    @pytest.fixture
-    def config(self, provider: VarProvider) ->mock.MagicMock:
-        return mock.MagicMock(config_version=2, vars=provider, cli_vars={},
-            project_name='root')
-
-    def test_var_default_something(self, model: ModelNode, config: mock.
-        MagicMock, context: mock.MagicMock) ->None:
-        config.cli_vars = {'foo': 'baz'}
-        var = providers.RuntimeVar(context, config, model)
-        assert var('foo') == 'baz'
-        assert var('foo', 'bar') == 'baz'
-
-    def test_var_default_none(self, model: ModelNode, config: mock.
-        MagicMock, context: mock.MagicMock) ->None:
-        config.cli_vars = {'foo': None}
-        var = providers.RuntimeVar(context, config, model)
-        assert var('foo') is None
-        assert var('foo', 'bar') is None
-
-    def test_var_not_defined(self, model: ModelNode, config: mock.MagicMock,
-        context: mock.MagicMock) ->None:
-        var = providers.RuntimeVar(self.context, config, model)
-        assert var('foo', 'bar') == 'bar'
-        with pytest.raises(dbt_common.exceptions.CompilationError):
-            var('foo')
-
-    def test_parser_var_default_something(self, model: ModelNode, config:
-        mock.MagicMock, context: mock.MagicMock) ->None:
-        config.cli_vars = {'foo': 'baz'}
-        var = providers.ParseVar(context, config, model)
-        assert var('foo') == 'baz'
-        assert var('foo', 'bar') == 'baz'
-
-    def test_parser_var_default_none(self, model: ModelNode, config: mock.
-        MagicMock, context: mock.MagicMock):
-        config.cli_vars = {'foo': None}
-        var = providers.ParseVar(context, config, model)
-        assert var('foo') is None
-        assert var('foo', 'bar') is None
-
-    def test_parser_var_not_defined(self, model: ModelNode, config: mock.
-        MagicMock, context: mock.MagicMock) ->None:
-        var = providers.ParseVar(context, config, model)
-        assert var('foo', 'bar') == 'bar'
-        assert var('foo') is None
-
-
-class TestParseWrapper:
-
-    @pytest.fixture
-    def mock_adapter(self) ->mock.MagicMock:
-        mock_config = mock.MagicMock()
-        mock_mp_context = mock.MagicMock()
-        adapter_class = adapter_factory()
-        return adapter_class(mock_config, mock_mp_context)
-
-    @pytest.fixture
-    def wrapper(self, mock_adapter: mock.MagicMock
-        ) ->providers.ParseDatabaseWrapper:
-        namespace = mock.MagicMock()
-        return providers.ParseDatabaseWrapper(mock_adapter, namespace)
-
-    @pytest.fixture
-    def responder(self, mock_adapter: mock.MagicMock) ->mock.MagicMock:
-        return mock_adapter.responder
-
-    def test_unwrapped_method(self, wrapper: providers.ParseDatabaseWrapper,
-        responder: mock.MagicMock) ->None:
-        assert wrapper.quote('test_value') == '"test_value"'
-        responder.quote.assert_called_once_with('test_value')
-
-    def test_wrapped_method(self, wrapper: providers.ParseDatabaseWrapper,
-        responder: mock.MagicMock) ->None:
-        found = wrapper.get_relation('database', 'schema', 'identifier')
-        assert found is None
-        responder.get_relation.assert_not_called()
-
-
-class TestRuntimeWrapper:
-
-    @pytest.fixture
-    def mock_adapter(self) ->mock.MagicMock:
-        mock_config = mock.MagicMock()
-        mock_config.quoting = {'database': True, 'schema': True,
-            'identifier': True}
-        mock_mp_context = mock.MagicMock()
-        adapter_class = adapter_factory()
-        return adapter_class(mock_config, mock_mp_context)
-
-    @pytest.fixture
-    def wrapper(self, mock_adapter: mock.MagicMock
-        ) ->providers.RuntimeDatabaseWrapper:
-        namespace = mock.MagicMock()
-        return providers.RuntimeDatabaseWrapper(mock_adapter, namespace)
-
-    @pytest.fixture
-    def responder(self, mock_adapter: mock.MagicMock) ->mock.MagicMock:
-        return mock_adapter.responder
-
-    def test_unwrapped_method(self, wrapper: providers.
-        RuntimeDatabaseWrapper, responder: mock.MagicMock) ->None:
-        assert wrapper.quote('test_value') == '"test_value"'
-        responder.quote.assert_called_once_with('test_value')
-
-
-def assert_has_keys(required_keys, maybe_keys: Set[str], ctx: Dict[str, Any]
-    ) ->None:
-    keys = set(ctx)
-    for key in required_keys:
-        assert key in keys, f'{key} in required keys but not in context'
-        keys.remove(key)
-    extras = keys.difference(maybe_keys)
-    assert not extras, f'got extra keys in context: {extras}'
-
-
-REQUIRED_BASE_KEYS = frozenset({'context', 'builtins', 'dbt_version', 'var',
-    'env_var', 'return', 'fromjson', 'tojson', 'fromyaml', 'toyaml', 'set',
-    'set_strict', 'zip', 'zip_strict', 'log', 'run_started_at',
-    'invocation_id', 'thread_id', 'modules', 'flags', 'print',
-    'diff_of_two_dicts', 'local_md5'})
-REQUIRED_TARGET_KEYS = REQUIRED_BASE_KEYS | {'target'}
-REQUIRED_DOCS_KEYS = REQUIRED_TARGET_KEYS | {'project_name'} | {'doc'}
-MACROS = frozenset({'macro_a', 'macro_b', 'root', 'dbt'})
-REQUIRED_QUERY_HEADER_KEYS = REQUIRED_TARGET_KEYS | {'project_name',
-    'context_macro_stack'} | MACROS
-REQUIRED_MACRO_KEYS = REQUIRED_QUERY_HEADER_KEYS | {'_sql_results',
-    'load_result', 'store_result', 'store_raw_result', 'validation',
-    'write', 'render', 'try_or_compiler_error', 'load_agate_table', 'ref',
-    'source', 'metric', 'config', 'execute', 'exceptions', 'database',
-    'schema', 'adapter', 'api', 'column', 'env', 'graph', 'model',
-    'pre_hooks', 'post_hooks', 'sql', 'sql_now', 'adapter_macro',
-    'selected_resources', 'invocation_args_dict', 'submit_python_job',
-    'dbt_metadata_envs'}
-REQUIRED_MODEL_KEYS = REQUIRED_MACRO_KEYS | {'this', 'compiled_code'}
-MAYBE_KEYS = frozenset({'debug', 'defer_relation'})
-POSTGRES_PROFILE_DATA = {'target': 'test', 'quoting': {}, 'outputs': {
-    'test': {'type': 'postgres', 'host': 'localhost', 'schema': 'analytics',
-    'user': 'test', 'pass': 'test', 'dbname': 'test', 'port': 1}}}
-PROJECT_DATA = {'name': 'root', 'version': '0.1', 'profile': 'test',
-    'project-root': os.getcwd(), 'config-version': 2}
-
-
-def model():
-    return ModelNode(alias='model_one', name='model_one', database='dbt',
-        schema='analytics', resource_type=NodeType.Model, unique_id=
-        'model.root.model_one', fqn=['root', 'model_one'], package_name=
-        'root', original_file_path='model_one.sql', refs=[], sources=[],
-        depends_on=DependsOn(), config=NodeConfig.from_dict({'enabled': 
-        True, 'materialized': 'view', 'persist_docs': {}, 'post-hook': [],
-        'pre-hook': [], 'vars': {}, 'quoting': {}, 'column_types': {},
-        'tags': []}), tags=[], path='model_one.sql', language='sql',
-        raw_code='', description='', columns={})
-
-
-def test_base_context() ->None:
-    ctx = base.generate_base_context({})
-    assert_has_keys(REQUIRED_BASE_KEYS, MAYBE_KEYS, ctx)
-
-
-def mock_macro(name: str, package_name: str) ->mock.MagicMock:
-    macro = mock.MagicMock(__class__=Macro, package_name=package_name,
-        resource_type='macro', unique_id=f'macro.{package_name}.{name}')
-    macro.name = name
-    return macro
-
-
-def mock_manifest(config: mock.MagicMock, additional_macros: Optional[List[
-    mock.MagicMock]]=None) ->mock.MagicMock:
-    default_macro_names = ['macro_a', 'macro_b']
-    default_macros = [mock_macro(name, config.project_name) for name in
-        default_macro_names]
-    additional_macros = additional_macros or []
-    all_macros = default_macros + additional_macros
-    manifest_macros = {}
-    macros_by_package = {}
-    for macro in all_macros:
-        manifest_macros[macro.unique_id] = macro
-        if macro.package_name not in macros_by_package:
-            macros_by_package[macro.package_name] = {}
-        macro_package = macros_by_package[macro.package_name]
-        macro_package[macro.name] = macro
-
-    def gmbp() ->Dict[str, Dict[str, mock.MagicMock]]:
-        return macros_by_package
-    m = mock.MagicMock(macros=manifest_macros)
-    m.get_macros_by_package = gmbp
-    return m
-
-
-def mock_model() ->mock.MagicMock:
-    return mock.MagicMock(__class__=ModelNode, alias='model_one', name=
-        'model_one', database='dbt', schema='analytics', resource_type=
-        NodeType.Model, unique_id='model.root.model_one', fqn=['root',
-        'model_one'], package_name='root', original_file_path=
-        'model_one.sql', refs=[], sources=[], depends_on=DependsOn(),
-        config=NodeConfig.from_dict({'enabled': True, 'materialized':
-        'view', 'persist_docs': {}, 'post-hook': [], 'pre-hook': [], 'vars':
-        {}, 'quoting': {}, 'column_types': {}, 'tags': []}), tags=[], path=
-        'model_one.sql', language='sql', raw_code='', description='',
-        columns={})
-
-
-def mock_unit_test_node() ->mock.MagicMock:
-    return mock.MagicMock(__class__=UnitTestNode, resource_type=NodeType.
-        Unit, tested_node_unique_id='model.root.model_one')
-
-
-@pytest.fixture
-def get_adapter() ->Generator[mock.MagicMock, None, None]:
-    with mock.patch.object(providers, 'get_adapter') as patch:
-        yield patch
-
-
-@pytest.fixture
-def get_include_paths() ->Generator[mock.MagicMock, None, None]:
-    with mock.patch.object(factory, 'get_include_paths') as patch:
-        patch.return_value = []
-        yield patch
-
-
-@pytest.fixture
-def config_postgres() ->mock.MagicMock:
-    return config_from_parts_or_dicts(PROJECT_DATA, POSTGRES_PROFILE_DATA)
-
-
-@pytest.fixture
-def manifest_fx(config_postgres: mock.MagicMock) ->mock.MagicMock:
-    return mock_manifest(config_postgres)
-
-
-@pytest.fixture
-def postgres_adapter(config_postgres: mock.MagicMock, get_adapter: mock.
-    MagicMock) ->Generator[postgres.PostgresAdapter, None, None]:
-    adapter = postgres.PostgresAdapter(config_postgres)
-    inject_adapter(adapter, postgres.Plugin)
-    get_adapter.return_value = adapter
-    yield adapter
-    clear_plugin(postgres.Plugin)
-
-
-def test_query_header_context(config_postgres: mock.MagicMock, manifest_fx:
-    mock.MagicMock) ->None:
-    ctx = query_header.generate_query_header_context(config=config_postgres,
-        manifest=manifest_fx)
-    assert_has_keys(REQUIRED_QUERY_HEADER_KEYS, MAYBE_KEYS, ctx)
-
-
-def test_macro_runtime_context(config_postgres: mock.MagicMock, manifest_fx:
-    mock.MagicMock, get_adapter: mock.MagicMock, get_include_paths: mock.
-    MagicMock) ->None:
-    ctx = providers.generate_runtime_macro_context(macro=manifest_fx.macros
-        ['macro.root.macro_a'], config=config_postgres, manifest=
-        manifest_fx, package_name='root')
-    assert_has_keys(REQUIRED_MACRO_KEYS, MAYBE_KEYS, ctx)
-
-
-def test_invocation_args_to_dict_in_macro_runtime_context(config_postgres:
-    mock.MagicMock, manifest_fx: mock.MagicMock, get_adapter: mock.
-    MagicMock, get_include_paths: mock.MagicMock) ->None:
-    ctx = providers.generate_runtime_macro_context(macro=manifest_fx.macros
-        ['macro.root.macro_a'], config=config_postgres, manifest=
-        manifest_fx, package_name='root')
-    assert ctx['invocation_args_dict']['printer_width'] == 80
-    assert ctx['invocation_args_dict']['profile_dir'] == '/dev/null'
-    assert isinstance(ctx['invocation_args_dict']['warn_error_options'], Dict)
-    assert ctx['invocation_args_dict']['warn_error_options'] == {'include':
-        [], 'exclude': []}
-
-
-def test_model_parse_context(config_postgres: mock.MagicMock, manifest_fx:
-    mock.MagicMock, get_adapter: mock.MagicMock, get_include_paths: mock.
-    MagicMock) ->None:
-    ctx = providers.generate_parser_model_context(model=mock_model(),
-        config=config_postgres, manifest=manifest_fx, context_config=mock.
-        MagicMock())
-    assert_has_keys(REQUIRED_MODEL_KEYS, MAYBE_KEYS, ctx)
-
-
-def test_model_runtime_context(config_postgres: mock.MagicMock, manifest_fx:
-    mock.MagicMock, get_adapter: mock.MagicMock, get_include_paths: mock.
-    MagicMock) ->None:
-    ctx = providers.generate_runtime_model_context(model=mock_model(),
-        config=config_postgres, manifest=manifest_fx)
-    assert_has_keys(REQUIRED_MODEL_KEYS, MAYBE_KEYS, ctx)
-
-
-def test_docs_runtime_context(config_postgres: mock.MagicMock) ->None:
-    ctx = docs.generate_runtime_docs_context(config_postgres, mock_model(),
-        [], 'root')
-    assert_has_keys(REQUIRED_DOCS_KEYS, MAYBE_KEYS, ctx)
-
-
-def test_macro_namespace_duplicates(config_postgres: mock.MagicMock,
-    manifest_fx: mock.MagicMock) ->None:
-    mn = macros.MacroNamespaceBuilder('root', 'search', MacroStack(), [
-        'dbt_postgres', 'dbt'])
-    mn.add_macros(manifest_fx.macros.values(), {})
-    with pytest.raises(dbt_common.exceptions.CompilationError):
-        mn.add_macro(mock_macro('macro_a', 'root'), {})
-    mn.add_macros(mock_macro('macro_a', 'dbt'), {})
-
-
-def test_macro_namespace(config_postgres: mock.MagicMock, manifest_fx: mock
-    .MagicMock) ->None:
-    mn = macros.MacroNamespaceBuilder('root', 'search', MacroStack(), [
-        'dbt_postgres', 'dbt'])
-    mbp = manifest_fx.get_macros_by_package()
-    dbt_macro = mock_macro('some_macro', 'dbt')
-    mbp['dbt'] = {'some_macro': dbt_macro}
-    pg_macro = mock_macro('some_macro', 'dbt_postgres')
-    mbp['dbt_postgres'] = {'some_macro': pg_macro}
-    package_macro = mock_macro('some_macro', 'root')
-    mbp['root']['some_macro'] = package_macro
-    namespace = mn.build_namespace(mbp, {})
-    dct = dict(namespace)
-    for result in [dct, namespace]:
-        assert 'dbt' in result
-        assert 'root' in result
-        assert 'some_macro' in result
-        assert 'dbt_postgres' not in result
-        assert len(result) == 5
-        assert set(result) == {'dbt', 'root', 'some_macro', 'macro_a',
-            'macro_b'}
-        assert len(result['dbt']) == 1
-        assert len(result['root']) == 3
-        assert result['dbt']['some_macro'].macro is pg_macro
-        assert result['root']['some_macro'].macro is package_macro
-        assert result['some_macro'].macro is package_macro
-
-
-def test_dbt_metadata_envs(monkeypatch: pytest.MonkeyPatch, config_postgres:
-    mock.MagicMock, manifest_fx: mock.MagicMock, get_adapter: mock.
-    MagicMock, get_include_paths: mock.MagicMock) ->None:
-    reset_metadata_vars()
-    envs = {'DBT_ENV_CUSTOM_ENV_RUN_ID': 1234, 'DBT_ENV_CUSTOM_ENV_JOB_ID':
-        5678, 'DBT_ENV_RUN_ID': 91011, 'RANDOM_ENV': 121314}
-    monkeypatch.setattr(os, 'environ', envs)
-    ctx = providers.generate_runtime_macro_context(macro=manifest_fx.macros
-        ['macro.root.macro_a'], config=config_postgres, manifest=
-        manifest_fx, package_name='root')
-    assert ctx['dbt_metadata_envs'] == {'JOB_ID': 5678, 'RUN_ID': 1234}
-    reset_metadata_vars()
-
-
-def test_unit_test_runtime_context(config_postgres: mock.MagicMock,
-    manifest_fx: mock.MagicMock, get_adapter: mock.MagicMock,
-    get_include_paths: mock.MagicMock) ->None:
-    ctx = providers.generate_runtime_unit_test_context(unit_test=
-        mock_unit_test_node(), config=config_postgres, manifest=manifest_fx)
-    assert_has_keys(REQUIRED_MODEL_KEYS, MAYBE_KEYS, ctx)
-
-
-def test_unit_test_runtime_context_macro_overrides_global(config_postgres:
-    mock.MagicMock, manifest_fx: mock.MagicMock, get_adapter: mock.
-    MagicMock, get_include_paths: mock.MagicMock) ->None:
-    unit_test = mock_unit_test_node()
-    unit_test.overrides = UnitTestOverrides(macros={'macro_a': 'override'})
-    ctx = providers.generate_runtime_unit_test_context(unit_test=unit_test,
-        config=config_postgres, manifest=manifest_fx)
-    assert ctx['macro_a']() == 'override'
-
-
-def test_unit_test_runtime_context_macro_overrides_package(config_postgres:
-    mock.MagicMock, manifest_fx: mock.MagicMock, get_adapter: mock.
-    MagicMock, get_include_paths: mock.MagicMock) ->None:
-    unit_test = mock_unit_test_node()
-    unit_test.overrides = UnitTestOverrides(macros={
-        'some_package.some_macro': 'override'})
-    dbt_macro = mock_macro('some_macro', 'some_package')
-    manifest_with_dbt_macro = mock_manifest(config_postgres,
-        additional_macros=[dbt_macro])
-    ctx = providers.generate_runtime_unit_test_context(unit_test=unit_test,
-        config=config_postgres, manifest=manifest_with_dbt_macro)
-    assert ctx['some_package']['some_macro']() == 'override'
-
-
-@pytest.mark.parametrize('overrides,expected_override_value', [({
-    'some_macro': 'override'}, 'override'), ({'dbt.some_macro': 'override'},
-    'override'), ({'some_macro': 'dbt_global_override', 'dbt.some_macro':
-    'dbt_namespaced_override'}, 'dbt_global_override'), ({'dbt.some_macro':
-    'dbt_namespaced_override', 'some_macro': 'dbt_global_override'},
-    'dbt_global_override')])
-def test_unit_test_runtime_context_macro_overrides_dbt_macro(overrides:
-    Dict[str, str], expected_override_value: str, config_postgres: mock.
-    MagicMock, manifest_fx: mock.MagicMock, get_adapter: mock.MagicMock,
-    get_include_paths: mock.MagicMock) ->None:
-    unit_test = mock_unit_test_node()
-    unit_test.overrides = UnitTestOverrides(macros=overrides)
-    dbt_macro = mock_macro('some_macro', 'dbt')
-    manifest_with_dbt_macro = mock_manifest(config_postgres,
-        additional_macros=[dbt_macro])
-    ctx = providers.generate_runtime_unit_test_context(unit_test=unit_test,
-        config=config_postgres, manifest=manifest_with_dbt_macro)
-    assert ctx['some_macro']() == expected_override_value
-    assert ctx['dbt']['some_macro']() == expected_override_valu
+from faust.exceptions import ImproperlyConfigured
+from faust.stores import rocksdb
+from faust.stores.rocksdb import RocksDBOptions, Store
+from faust.types import TP
+from mode.utils.mocks import AsyncMock, Mock, call, patch
+from yarl import URL
+TP1 = TP('foo', 0)
+TP2 = TP('foo', 1)
+TP3 = TP('bar', 2)
+TP4 = TP('baz', 3)
+
+
+class MockIterator(Mock):
+
+    @classmethod
+    def from_values(cls, values: List[Any]) ->'MockIterator':
+        it = cls()
+        it.values = values
+        return it
+
+    def __iter__(self) ->Iterable[Any]:
+        return iter(self.values)
+
+
+class test_RocksDBOptions:
+
+    @pytest.mark.parametrize('arg', ['max_open_files', 'write_buffer_size',
+        'max_write_buffer_number', 'target_file_size_base',
+        'block_cache_size', 'block_cache_compressed_size', 'bloom_filter_size']
+        )
+    def test_init(self, arg: str) ->None:
+        opts = RocksDBOptions(**{arg: 30})
+        assert getattr(opts, arg) == 30
+
+    def test_defaults(self) ->None:
+        opts = RocksDBOptions()
+        assert opts.max_open_files == rocksdb.DEFAULT_MAX_OPEN_FILES
+        assert opts.write_buffer_size == rocksdb.DEFAULT_WRITE_BUFFER_SIZE
+        assert opts.max_write_buffer_number == rocksdb.DEFAULT_MAX_WRITE_BUFFER_NUMBER
+        assert opts.target_file_size_base == rocksdb.DEFAULT_TARGET_FILE_SIZE_BASE
+        assert opts.block_cache_size == rocksdb.DEFAULT_BLOCK_CACHE_SIZE
+        assert opts.block_cache_compressed_size == rocksdb.DEFAULT_BLOCK_CACHE_COMPRESSED_SIZE
+        assert opts.bloom_filter_size == rocksdb.DEFAULT_BLOOM_FILTER_SIZE
+
+    def test_open(self) ->None:
+        with patch('faust.stores.rocksdb.rocksdb', Mock()) as rocks:
+            opts = RocksDBOptions()
+            db = opts.open(Path('foo.db'), read_only=True)
+            rocks.DB.assert_called_once_with('foo.db', opts.as_options(),
+                read_only=True)
+            assert db is rocks.DB()
+
+
+class test_Store:
+
+    @pytest.fixture()
+    def table(self) ->Mock:
+        table = Mock(name='table')
+        table.name = 'table1'
+        return table
+
+    @pytest.yield_fixture()
+    def rocks(self) ->Iterable[Mock]:
+        with patch('faust.stores.rocksdb.rocksdb') as rocks:
+            yield rocks
+
+    @pytest.yield_fixture()
+    def no_rocks(self) ->Iterable[None]:
+        with patch('faust.stores.rocksdb.rocksdb', None) as rocks:
+            yield rocks
+
+    @pytest.fixture()
+    def store(self, *, app: Mock, rocks: Mock, table: Mock) ->Store:
+        return Store('rocksdb://', app, table)
+
+    @pytest.fixture()
+    def db_for_partition(self, *, store: Store) ->Mock:
+        dfp = store._db_for_partition = Mock(name='db_for_partition')
+        return dfp
+
+    def test_default_key_index_size(self, *, store: Store) ->None:
+        assert store.key_index_size == store.app.conf.table_key_index_size
+
+    def test_set_key_index_size(self, *, app: Mock, rocks: Mock, table: Mock
+        ) ->None:
+        s = Store('rocksdb://', app, table, key_index_size=12341)
+        assert s.key_index_size == 12341
+
+    def test_no_rocksdb(self, *, app: Mock, table: Mock, no_rocks: None
+        ) ->None:
+        with pytest.raises(ImproperlyConfigured):
+            Store('rocksdb://', app, table)
+
+    def test_url_without_path_adds_table_name(self, *, store: Store) ->None:
+        assert store.url == URL('rocksdb:table1')
+
+    def test_url_having_path(self, *, app: Mock, rocks: Mock, table: Mock
+        ) ->None:
+        store = Store('rocksdb://foobar/', app, table)
+        assert store.url == URL('rocksdb://foobar/')
+
+    def test_init(self, *, store: Store, app: Mock) ->None:
+        assert isinstance(store.rocksdb_options, RocksDBOptions)
+        assert store.key_index_size == app.conf.table_key_index_size
+        assert store._dbs == {}
+        assert store._key_index is not None
+
+    def test_persisted_offset(self, *, store: Store, db_for_partition: Mock
+        ) ->None:
+        db_for_partition.return_value.get.return_value = '300'
+        assert store.persisted_offset(TP1) == 300
+        db_for_partition.assert_called_once_with(TP1.partition)
+        db_for_partition.return_value.get.assert_called_once_with(store.
+            offset_key)
+        db_for_partition.return_value.get.return_value = None
+        assert store.persisted_offset(TP1) is None
+
+    def test_set_persisted_offset(self, *, store: Store, db_for_partition: Mock
+        ) ->None:
+        store.set_persisted_offset(TP1, 3003)
+        db_for_partition.assert_called_once_with(TP1.partition)
+        db_for_partition.return_value.put.assert_called_once_with(store.
+            offset_key, b'3003')
+
+    @pytest.mark.asyncio
+    async def test_need_active_standby_for(self, *, store: Store,
+        db_for_partition: Mock) ->None:
+        with patch('faust.stores.rocksdb.rocksdb.errors.RocksIOError', KeyError
+            ):
+            db_for_partition.side_effect = KeyError('lock acquired')
+            assert not await store.need_active_standby_for(TP1)
+
+    @pytest.mark.asyncio
+    async def test_need_active_standby_for__raises(self, *, store: Store,
+        db_for_partition: Mock) ->None:
+        with patch('faust.stores.rocksdb.rocksdb.errors.RocksIOError', KeyError
+            ):
+            db_for_partition.side_effect = KeyError('oh no')
+            with pytest.raises(KeyError):
+                await store.need_active_standby_for(TP1)
+
+    @pytest.mark.asyncio
+    async def test_need_active_standby_for__active(self, *, store: Store,
+        db_for_partition: Mock) ->None:
+        with patch('faust.stores.rocksdb.rocksdb.errors.RocksIOError', KeyError
+            ):
+            assert await store.need_active_standby_for(TP1)
+
+    def test_apply_changelog_batch(self, *, store: Store, rocks: Mock,
+        db_for_partition: Mock) ->None:
+
+        def new_event(name: str, tp: TP, offset: int, key: str, value:
+            Optional[str]) ->Mock:
+            return Mock(name='event1', message=Mock(tp=tp, topic=tp.topic,
+                partition=tp.partition, offset=offset, key=key, value=value))
+        events = [new_event('event1', TP1, 1001, 'k1', 'v1'), new_event(
+            'event2', TP2, 2002, 'k2', 'v2'), new_event('event3', TP3, 3003,
+            'k3', 'v3'), new_event('event4', TP4, 4004, 'k4', 'v4'),
+            new_event('event5', TP4, 4005, 'k5', None)]
+        dbs = {TP1.partition: Mock(name='db1'), TP2.partition: Mock(name=
+            'db2'), TP3.partition: Mock(name='db3'), TP4.partition: Mock(
+            name='db4')}
+        db_for_partition.side_effect = dbs.get
+        store.set_persisted_offset = Mock(name='set_persisted_offset')
+        store.apply_changelog_batch(events, None, None)
+        rocks.WriteBatch.return_value.delete.assert_called_once_with('k5')
+        rocks.WriteBatch.return_value.put.assert_has_calls([call('k1', 'v1'
+            ), call('k2', 'v2'), call('k3', 'v3'), call('k4', 'v4')])
+        for db in dbs.values():
+            db.write.assert_called_once_with(rocks.WriteBatch())
+        store.set_persisted_offset.assert_has_calls([call(TP1, 1001), call(
+            TP2, 2002), call(TP3, 3003), call(TP4, 4005)])
+
+    @pytest.yield_fixture()
+    def current_event(self) ->Iterable[Mock]:
+        with patch('faust.stores.rocksdb.current_event') as current_event:
+            yield current_event.return_value
+
+    def test__set(self, *, store: Store, db_for_partition: Mock,
+        current_event: Mock) ->None:
+        store._set(b'key', b'value')
+        db_for_partition.assert_called_once_with(current_event.message.
+            partition)
+        assert store._key_index[b'key'] == current_event.message.partition
+        db_for_partition.return_value.put.assert_called_once_with(b'key',
+            b'value')
+
+    def test_db_for_partition(self, *, store: Store) ->None:
+        ofp = store._open_for_partition = Mock(name='open_for_partition')
+        assert store._db_for_partition(1) is ofp.return_value
+        assert store._dbs[1] is ofp.return_value
+        assert store._db_for_partition(1) is ofp.return_value
+        ofp.assert_called_once_with(1)
+
+    def test_open_for_partition(self, *, store: Store) ->None:
+        open = store.rocksdb_options.open = Mock(name='options.open')
+        assert store._open_for_partition(1) is open.return_value
+        open.assert_called_once_with(store.partition_path(1))
+
+    def test__get__missing(self, *, store: Store) ->None:
+        store._get_bucket_for_key = Mock(name='get_bucket_for_key')
+        store._get_bucket_for_key.return_value = None
+        assert store._get(b'key') is None
+
+    def test__get(self, *, store: Store) ->None:
+        db = Mock(name='db')
+        value = b'foo'
+        store._get_bucket_for_key = Mock(name='get_bucket_for_key')
+        store._get_bucket_for_key.return_value = db, value
+        assert store._get(b'key') == value
+
+    def test__get__dbvalue_is_None(self, *, store: Store) ->None:
+        db = Mock(name='db')
+        store._get_bucket_for_key = Mock(name='get_bucket_for_key')
+        store._get_bucket_for_key.return_value = db, None
+        db.key_may_exist.return_value = [False]
+        assert store._get(b'key') is None
+        db.key_may_exist.return_value = [True]
+        db.get.return_value = None
+        assert store._get(b'key') is None
+        db.get.return_value = b'bar'
+        assert store._get(b'key') == b'bar'
+
+    def test_get_bucket_for_key__is_in_index(self, *, store: Store) ->None:
+        store._key_index[b'key'] = 30
+        db = store._dbs[30] = Mock(name='db-p30')
+        db.key_may_exist.return_value = [False]
+        assert store._get_bucket_for_key(b'key') is None
+        db.key_may_exist.return_value = [True]
+        db.get.return_value = None
+        assert store._get_bucket_for_key(b'key') is None
+        db.get.return_value = b'value'
+        assert store._get_bucket_for_key(b'key') == (db, b'value')
+
+    def test_get_bucket_for_key__no_dbs(self, *, store: Store) ->None:
+        assert store._get_bucket_for_key(b'key') is None
+
+    def new_db(self, name: str, exists: bool=False) ->Mock:
+        db = Mock(name=name)
+        db.key_may_exist.return_value = [exists]
+        db.get.return_value = name
+        return db
+
+    def test_get_bucket_for_key__not_in_index(self, *, store: Store) ->None:
+        dbs = {(1): self.new_db(name='db1'), (2): self.new_db(name='db2'),
+            (3): self.new_db(name='db3', exists=True), (4): self.new_db(
+            name='db4', exists=True)}
+        store._dbs.update(dbs)
+        assert store._get_bucket_for_key(b'key') == (dbs[3], 'db3')
+
+    def test__del(self, *, store: Store) ->None:
+        dbs = store._dbs_for_key = Mock(return_value=[Mock(name='db1'),
+            Mock(name='db2'), Mock(name='db3')])
+        store._del(b'key')
+        for db in dbs.return_value:
+            db.delete.assert_called_once_with(b'key')
+
+    @pytest.mark.asyncio
+    async def test_on_rebalance(self, *, store: Store, table: Mock) ->None:
+        store.revoke_partitions = Mock(name='revoke_partitions')
+        store.assign_partitions = AsyncMock(name='assign_partitions')
+        assigned = {TP1, TP2}
+        revoked = {TP3}
+        newly_assigned = {TP2}
+        await store.on_rebalance(table, assigned, revoked, newly_assigned)
+        store.revoke_partitions.assert_called_once_with(table, revoked)
+        store.assign_partitions.assert_called_once_with(table, newly_assigned)
+
+    def test_revoke_partitions(self, *, store: Store, table: Mock) ->None:
+        table.changelog_topic.topics = {TP1.topic, TP3.topic}
+        store._dbs[TP3.partition] = Mock(name='db')
+        with patch('gc.collect') as collect:
+            store.revoke_partitions(table, {TP1, TP2, TP3, TP4})
+            assert not store._dbs
+            collect.assert_called_once_with()
+
+    @pytest.mark.asyncio
+    async def test_assign_partitions(self, *, store: Store, app: Mock,
+        table: Mock) ->None:
+        app.assignor.assigned_standbys = Mock(return_value={TP4})
+        table.changelog_topic.topics = list({tp.topic for tp in (TP1, TP2,
+            TP4)})
+        store._try_open_db_for_partition = AsyncMock()
+        await store.assign_partitions(table, {TP1, TP2, TP3, TP4})
+        store._try_open_db_for_partition.assert_has_calls([call(TP2.
+            partition), call.coro(TP2.partition), call(TP1.partition), call
+            .coro(TP1.partition)], any_order=True)
+
+    @pytest.mark.asyncio
+    async def test_assign_partitions__empty_assignment(self, *, store:
+        Store, app: Mock, table: Mock) ->None:
+        app.assignor.assigned_standbys = Mock(return_value={TP4})
+        table.changelog_topic.topics = list({tp.topic for tp in (TP1, TP2,
+            TP4)})
+        await store.assign_partitions(table, set())
+
+    @pytest.mark.asyncio
+    async def test_open_db_for_partition(self, *, store: Store,
+        db_for_partition: Mock) ->None:
+        with patch('faust.stores.rocksdb.rocksdb.errors.RocksIOError', KeyError
+            ):
+            assert await store._try_open_db_for_partition(3
+                ) is db_for_partition.return_value
+
+    @pytest.mark.asyncio
+    async def test_open_db_for_partition_max_retries(self, *, store: Store,
+        db_for_partition: Mock) ->None:
+        store.sleep = AsyncMock(name='sleep')
+        with patch('faust.stores.rocksdb.rocksdb.errors.RocksIOError', KeyError
+            ):
+            db_for_partition.side_effect = KeyError('lock already')
+            with pytest.raises(KeyError):
+                await store._try_open_db_for_partition(3)
+        assert store.sleep.call_count == 4
+
+    @pytest.mark.asyncio
+    async def test_open_db_for_partition__raises_unexpected_error(self, *,
+        store: Store, db_for_partition: Mock) ->None:
+        with patch('faust.stores.rocksdb.rocksdb.errors.RocksIOError', KeyError
+            ):
+            db_for_partition.side_effect = RuntimeError()
+            with pytest.raises(RuntimeError):
+                await store._try_open_db_for_partition(3)
+
+    @pytest.mark.asyncio
+    async def test_open_db_for_partition_retries_recovers(self, *, store:
+        Store, db_for_partition: Mock) ->None:
+        with patch('faust.stores.rocksdb.rocksdb.errors.RocksIOError', KeyError
+            ):
+
+            def on_call(partition: int) ->None:
+                if db_for_partition.call_count < 3:
+                    raise KeyError('lock already')
+            db_for_partition.side_effect = on_call
+            await store._try_open_db_for_partition(3)
+
+    def test__contains(self, *, store: Store) ->None:
+        db1 = self.new_db('db1', exists=False)
+        db2 = self.new_db('db2', exists=True)
+        dbs = {b'key': [db1, db2]}
+        store._dbs_for_key = Mock(side_effect=dbs.get)
+        db2.get.return_value = None
+        assert not store._contains(b'key')
+        db2.get.return_value = b'value'
+        assert store._contains(b'key')
+
+    def test__dbs_for_key(self, *, store: Store) ->None:
+        dbs = store._dbs = {(1): self.new_db('db1'), (2): self.new_db('db2'
+            ), (3): self.new_db('db3')}
+        store._key_index[b'key'] = 2
+        assert list(store._dbs_for_key(b'other')) == list(dbs.values())
+        assert list(store._dbs_for_key(b'key')) == [dbs[2]]
+
+    def test__dbs_for_actives(self, *, store: Store, table: Mock) ->None:
+        table._changelog_topic_name.return_value = 'clog'
+        store.app.assignor.assigned_actives = Mock(return_value=[TP('clog',
+            1), TP('clog', 2)])
+        dbs = store._dbs = {(1): self.new_db('db1'), (2): self.new_db('db2'
+            ), (3): self.new_db('db3')}
+        table.is_global = False
+        assert list(store._dbs_for_actives()) == [dbs[1], dbs[2]]
+        table.is_global = True
+        assert list(store._dbs_for_actives()) == [dbs[1], dbs[2], dbs[3]]
+
+    def test__size(self, *, store: Store) ->int:
+        dbs = self._setup_keys(db1=[store.offset_key, b'foo', b'bar'], db2=
+            [b'baz', store.offset_key, b'xuz', b'xaz'])
+        store._dbs_for_actives = Mock(return_value=dbs)
+        return store._size()
+
+    def test__iterkeys(self, *, store: Store) ->None:
+        dbs = self._setup_keys(db1=[store.offset_key, b'foo', b'bar'], db2=
+            [b'baz', store.offset_key, b'xuz'])
+        store._dbs_for_actives = Mock(return_value=dbs)
+        assert list(store._iterkeys()) == [b'foo', b'bar', b'baz', b'xuz']
+        for db in dbs:
+            db.iterkeys.assert_called_once_with()
+            db.iterkeys().seek_to_first.assert_called_once_with()
+
+    def _setup_keys(self, **dbs: Dict[str, List[bytes]]) ->List[Mock]:
+        return [self._setup_keys_db(name, values) for name, values in dbs.
+            items()]
+
+    def _setup_keys_db(self, name: str, values: List[bytes]) ->Mock:
+        db = self.new_db(name)
+        db.iterkeys.return_value = MockIterator.from_values(values)
+        return db
+
+    def test__itervalues(self, *, store: Store) ->None:
+        dbs = self._setup_items(db1=[(store.offset_key, b'1001'), (b'k1',
+            b'foo'), (b'k2', b'bar')], db2=[(b'k3', b'baz'), (store.
+            offset_key, b'2002'), (b'k4', b'xuz')])
+        store._dbs_for_actives = Mock(return_value=dbs)
+        assert list(store._itervalues()) == [b'foo', b'bar', b'baz', b'xuz']
+        for db in dbs:
+            db.iteritems.assert_called_once_with()
+            db.iteritems().seek_to_first.assert_called_once_with()
+
+    def _setup_items(self, **dbs: Dict[str, List[Tuple[bytes, bytes]]]) ->List[
+        Mock]:
+        return [self._setup_items_db(name, values) for name, values in dbs.
+            items()]
+
+    def _setup_items_db(self, name: str, values: List[Tuple[bytes, bytes]]):
+        db = self.new_db(name)
+        db.iteritems.return_value = MockIterator.from_values(values)
+        return db
+
+    def test__iteritems(self, *, store: Store) ->None:
+        dbs = self._setup_items(db1=[(store.offset_key, b'1001'), (b'k1',
+            b'foo'), (b'k2', b'bar')], db2=[(b'k3', b'baz'), (store.
+            offset_key, b'2002'), (b'k4', b'xuz')])
+        store._dbs_for_actives = Mock(return_value=dbs)
+        assert list(store._iteritems()) == [(b'k1', b'foo'), (b'k2', b'bar'
+            ), (b'k3', b'baz'), (b'k4', b'xuz')]
+        for db in dbs:
+            db.iteritems.assert_called_once_with()
+            db.iteritems().seek_to_first.assert_called_once_with()
+
+    def test_clear(self, *, store: Store) ->None:
+        with pytest.raises(NotImplementedError):
+            store._clear()
+
+    def test_reset_state(self, *, store: Store) ->None:
+        with patch('shutil.rmtree') as rmtree:
+            store.reset_state()
+            rmtree.assert_called_once_with(store.path.absolute())

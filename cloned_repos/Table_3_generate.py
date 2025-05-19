@@ -1,10 +1,10 @@
 import json
 
-print("Deepseek")
-with open('mypy_results_gpt4o_with_errors.json', 'r') as f:
+print("o1_mini_with_errors")
+with open('mypy_results\mypy_results_o1_mini_with_errors.json', 'r') as f:
     data_gpt4o = json.load(f)
 
-with open('mypy_results_no_type.json', 'r') as f:
+with open('mypy_results\mypy_results_no_type.json', 'r') as f:
     data_no_type = json.load(f)
 
 # Find files with error_count==0 in no_type but not in gpt4O
