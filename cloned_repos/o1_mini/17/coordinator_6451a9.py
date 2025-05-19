@@ -1,0 +1,172 @@
+"""Weather data coordinator for the HKO API."""
+from asyncio import timeout
+from datetime import timedelta
+import logging
+from typing import Any, Dict, List
+from aiohttp import ClientSession
+from hko import HKO, HKOError
+from homeassistant.components.weather import (
+    ATTR_CONDITION_CLOUDY,
+    ATTR_CONDITION_FOG,
+    ATTR_CONDITION_HAIL,
+    ATTR_CONDITION_LIGHTNING_RAINY,
+    ATTR_CONDITION_PARTLYCLOUDY,
+    ATTR_CONDITION_POURING,
+    ATTR_CONDITION_RAINY,
+    ATTR_CONDITION_SNOWY,
+    ATTR_CONDITION_SNOWY_RAINY,
+    ATTR_CONDITION_SUNNY,
+    ATTR_CONDITION_WINDY,
+    ATTR_CONDITION_WINDY_VARIANT,
+    ATTR_FORECAST_CONDITION,
+    ATTR_FORECAST_TEMP,
+    ATTR_FORECAST_TEMP_LOW,
+    ATTR_FORECAST_TIME,
+)
+from homeassistant.config_entries import ConfigEntry
+from homeassistant.core import HomeAssistant
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
+from .const import (
+    API_CURRENT,
+    API_DATA,
+    API_FORECAST,
+    API_FORECAST_DATE,
+    API_FORECAST_ICON,
+    API_FORECAST_MAX_TEMP,
+    API_FORECAST_MIN_TEMP,
+    API_FORECAST_WEATHER,
+    API_HUMIDITY,
+    API_PLACE,
+    API_TEMPERATURE,
+    API_VALUE,
+    API_WEATHER_FORECAST,
+    DOMAIN,
+    ICON_CONDITION_MAP,
+    WEATHER_INFO_AT_TIMES_AT_FIRST,
+    WEATHER_INFO_CLOUD,
+    WEATHER_INFO_FINE,
+    WEATHER_INFO_FOG,
+    WEATHER_INFO_HEAVY,
+    WEATHER_INFO_INTERVAL,
+    WEATHER_INFO_ISOLATED,
+    WEATHER_INFO_MIST,
+    WEATHER_INFO_OVERCAST,
+    WEATHER_INFO_PERIOD,
+    WEATHER_INFO_RAIN,
+    WEATHER_INFO_SHOWER,
+    WEATHER_INFO_SNOW,
+    WEATHER_INFO_SUNNY,
+    WEATHER_INFO_THUNDERSTORM,
+    WEATHER_INFO_WIND,
+)
+
+_LOGGER: logging.Logger = logging.getLogger(__name__)
+
+
+class HKOUpdateCoordinator(DataUpdateCoordinator[Dict[str, Any]]):
+    """HKO Update Coordinator."""
+
+    def __init__(
+        self,
+        hass: HomeAssistant,
+        config_entry: ConfigEntry,
+        session: ClientSession,
+        district: str,
+        location: str,
+    ) -> None:
+        """Initialize the coordinator and HKO client."""
+        self.location: str = location
+        self.district: str = district
+        self.hko: HKO = HKO(session)
+        super().__init__(
+            hass,
+            _LOGGER,
+            config_entry=config_entry,
+            name=DOMAIN,
+            update_interval=timedelta(minutes=15),
+        )
+
+    async def _async_update_data(self) -> Dict[str, Any]:
+        """Fetch data from HKO API."""
+        try:
+            async with timeout(60):
+                rhrread: Any = await self.hko.weather("rhrread")
+                fnd: Any = await self.hko.weather("fnd")
+        except HKOError as error:
+            raise UpdateFailed(error) from error
+        return {
+            API_CURRENT: self._convert_current(rhrread),
+            API_FORECAST: [self._convert_forecast(item) for item in fnd[API_WEATHER_FORECAST]],
+        }
+
+    def _convert_current(self, data: Any) -> Dict[str, Any]:
+        """Convert current weather data to Home Assistant format."""
+        humidity: float = data[API_HUMIDITY][API_DATA][0][API_VALUE]
+        temperature: float = next(
+            (item[API_VALUE] for item in data[API_TEMPERATURE][API_DATA] if item[API_PLACE] == self.location),
+            0,
+        )
+        return {API_HUMIDITY: humidity, API_TEMPERATURE: temperature}
+
+    def _convert_forecast(self, data: Any) -> Dict[str, Any]:
+        """Convert forecast data to Home Assistant format."""
+        date: str = data[API_FORECAST_DATE]
+        forecast_time: str = f"{date[0:4]}-{date[4:6]}-{date[6:8]}T00:00:00+08:00"
+        condition: str = self._convert_icon_condition(data[API_FORECAST_ICON], data[API_FORECAST_WEATHER])
+        temp: float = data[API_FORECAST_MAX_TEMP][API_VALUE]
+        temp_low: float = data[API_FORECAST_MIN_TEMP][API_VALUE]
+        return {
+            ATTR_FORECAST_CONDITION: condition,
+            ATTR_FORECAST_TEMP: temp,
+            ATTR_FORECAST_TEMP_LOW: temp_low,
+            ATTR_FORECAST_TIME: forecast_time,
+        }
+
+    def _convert_icon_condition(self, icon_code: str, info: str) -> str:
+        """Map icon code and info to Home Assistant condition."""
+        for condition, codes in ICON_CONDITION_MAP.items():
+            if icon_code in codes:
+                return condition
+        return self._convert_info_condition(info)
+
+    def _convert_info_condition(self, info: str) -> str:
+        """Map weather info string to Home Assistant condition."""
+        info = info.lower()
+        if WEATHER_INFO_RAIN in info:
+            return ATTR_CONDITION_HAIL
+        if WEATHER_INFO_SNOW in info and WEATHER_INFO_RAIN in info:
+            return ATTR_CONDITION_SNOWY_RAINY
+        if WEATHER_INFO_SNOW in info:
+            return ATTR_CONDITION_SNOWY
+        if WEATHER_INFO_FOG in info or WEATHER_INFO_MIST in info:
+            return ATTR_CONDITION_FOG
+        if WEATHER_INFO_WIND in info and WEATHER_INFO_CLOUD in info:
+            return ATTR_CONDITION_WINDY_VARIANT
+        if WEATHER_INFO_WIND in info:
+            return ATTR_CONDITION_WINDY
+        if WEATHER_INFO_THUNDERSTORM in info and WEATHER_INFO_ISOLATED not in info:
+            return ATTR_CONDITION_LIGHTNING_RAINY
+        if (
+            (WEATHER_INFO_RAIN in info or WEATHER_INFO_SHOWER in info or WEATHER_INFO_THUNDERSTORM in info)
+            and WEATHER_INFO_HEAVY in info
+            and WEATHER_INFO_SUNNY not in info
+            and WEATHER_INFO_FINE not in info
+            and WEATHER_INFO_AT_TIMES_AT_FIRST not in info
+        ):
+            return ATTR_CONDITION_POURING
+        if (
+            (WEATHER_INFO_RAIN in info or WEATHER_INFO_SHOWER in info or WEATHER_INFO_THUNDERSTORM in info)
+            and WEATHER_INFO_SUNNY not in info
+            and WEATHER_INFO_FINE not in info
+        ):
+            return ATTR_CONDITION_RAINY
+        if (
+            (WEATHER_INFO_CLOUD in info or WEATHER_INFO_OVERCAST in info)
+            and not (WEATHER_INFO_INTERVAL in info or WEATHER_INFO_PERIOD in info)
+        ):
+            return ATTR_CONDITION_CLOUDY
+        if WEATHER_INFO_SUNNY in info and (WEATHER_INFO_INTERVAL in info or WEATHER_INFO_PERIOD in info):
+            return ATTR_CONDITION_PARTLYCLOUDY
+        if (WEATHER_INFO_SUNNY in info or WEATHER_INFO_FINE in info) and WEATHER_INFO_SHOWER not in info:
+            return ATTR_CONDITION_SUNNY
+        return ATTR_CONDITION_PARTLYCLOUDY

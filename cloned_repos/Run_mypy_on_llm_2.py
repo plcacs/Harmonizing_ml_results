@@ -67,4 +67,4 @@ def run_mypy_and_save_results(directory, output_file):
     print(f"\nResults saved to {output_file}")
 
 if __name__ == "__main__":
-    run_mypy_and_save_results("gpt4o", "mypy_results_gpt4o_with_errors.json")
+    run_mypy_and_save_results("o1_mini", "mypy_results_o1_mini_with_errors.json")
