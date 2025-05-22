@@ -214,5 +214,5 @@ def process_type_analysis_results(directory, output_file,llm_only_failures):
     print(f"Updated results saved to {output_file}")
 
 if __name__ == "__main__":
-    llm_only_failures=analyze_files("gpt4o", "mypy_results_no_type.json", "mypy_results_gpt4o.json") 
-    process_type_analysis_results("gpt4o", "gpt4O_stats_equal.json",llm_only_failures)
+    llm_only_failures=analyze_files("o1_mini", "mypy_results\mypy_results_no_type.json", "mypy_results\mypy_results_o1_mini_with_errors.json") 
+    process_type_analysis_results("o1_mini", "o1_mini_stats_equal.json",llm_only_failures)
