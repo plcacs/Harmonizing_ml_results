@@ -37,7 +37,7 @@ for model in models:
         annotated = stats.get("parameters_with_annotations", 0)
         error_count = file_data.get("error_count", 0)
 
-        if error_count > 0:
+        if error_count == 0:
             continue
 
         coverage = annotated / total if total > 0 else 0
@@ -68,8 +68,8 @@ for i, model in enumerate(models):
 
 plt.xticks(x + width, custom_labels, rotation=45)
 plt.xlabel("Type Coverage Bins")
-plt.ylabel("Number of Files with error_count == 0")
-plt.title("Type Coverage vs. Files without Errors (ManyTypes4Py)")
+plt.ylabel("Number of Files with error_count>0")
+plt.title("Type Coverage vs. Files with Errors (ManyTypes4Py)")
 plt.legend()
 plt.tight_layout()
-plt.savefig("TypeCoverage_vs_mypy_no_error_ManyTypes4Py.pdf", bbox_inches='tight')
+plt.savefig("TypeCoverage_vs_mypy_error_ManyTypes4Py.pdf", bbox_inches='tight')
