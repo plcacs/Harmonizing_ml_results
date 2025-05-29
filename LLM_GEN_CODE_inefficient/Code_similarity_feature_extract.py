@@ -24,7 +24,7 @@ def extract_signature_features(file_path):
     for node in ast.walk(tree):
         if isinstance(node, ast.FunctionDef):
             features.add(f'func:{node.name}')
-            features.add(f'args:{len(node.args.args)}')
+            #features.add(f'args:{len(node.args.args)}')
         elif isinstance(node, ast.ClassDef):
             features.add(f'class:{node.name}')
     return list(features)
@@ -34,11 +34,11 @@ def process_directory(directory):
     result = {}
     for root, _, files in os.walk(directory):
         for fname in files:
-            if fname.endswith('.py'):
-                fpath = os.path.join(root, fname)
+            if fname.endswith('.py') and not fname.endswith('_no_types.py'):
+                fpath = os.path.abspath(os.path.join(root, fname))
                 features = extract_signature_features(fpath)
                 if features is not None:
-                    result[fpath] = features
+                    result[fname] = features
     return result
 
 # Example usage: update the path as needed
@@ -59,18 +59,21 @@ def update_syntactic_features_json(new_dir, json_output_path):
     # Save updated results
     with open(json_output_path, 'w') as out:
         json.dump(all_results, out, indent=2)
-
-    return new_results
+    
+    #print(f"Number of instances in output: {len(new_results)}")
+    return all_results
 
 # Example usage:
-directories = ["deep_seek","deep_seek2"] # change this as needed for each directory
-json_output_path = 'deepseek_syntactic_features_code_similarity.json'
+directories = ["o1-mini","o1-mini2","o1-mini3"] # change this as needed for each directory
+json_output_path = 'o1-mini_code_similarity_old.json'
 
 
 for dir in directories:
     print(f"Processing directory: {dir}")
     new_dir = dir
-    # Call the function to update the JSON file
-    # This will process the directory and update the JSON file with new features
-    # The function will return the new features added
     update_syntactic_features_json(new_dir, json_output_path)
+
+# Print total count after processing all directories
+with open(json_output_path, 'r') as f:
+    data = json.load(f)
+    print(f"\nTotal number of instances in {json_output_path}: {len(data)}")

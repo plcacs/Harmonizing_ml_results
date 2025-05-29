@@ -24,7 +24,7 @@ def extract_signature_features(file_path):
     for node in ast.walk(tree):
         if isinstance(node, ast.FunctionDef):
             features.add(f'func:{node.name}')
-            features.add(f'args:{len(node.args.args)}')
+            #features.add(f'args:{len(node.args.args)}')
         elif isinstance(node, ast.ClassDef):
             features.add(f'class:{node.name}')
     return list(features)
@@ -38,7 +38,7 @@ def process_directory(directory):
                 fpath = os.path.abspath(os.path.join(root, fname))
                 features = extract_signature_features(fpath)
                 if features is not None:
-                    result[fpath] = features
+                    result[fname] = features
     return result
 
 # Example usage: update the path as needed
@@ -65,7 +65,7 @@ def update_syntactic_features_json(new_dir, json_output_path):
 
 # Example usage:
 directories = ["o1_mini"] # change this as needed for each directory
-json_output_path = 'o1_mini_syntactic_features_code_similarity_new.json'
+json_output_path = 'o1_mini_code_similarity_new.json'
 
 
 for dir in directories:

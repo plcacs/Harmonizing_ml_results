@@ -10,6 +10,10 @@ paths = {
     "DeepSeek": "mypy_results_deepseek_with_errors.json"
 }
 
+# Load base model data
+with open("mypy_results_no_type.json", "r") as f:
+    base_data = json.load(f)
+
 # Custom type coverage bins and labels
 custom_bins = [(0, 0.05), (0.05, 0.10), (0.10, 0.20), (0.20, 0.30),
                (0.30, 0.40), (0.40, 0.50), (0.50, 0.60), (0.60, 0.70),
@@ -31,7 +35,24 @@ for model in models:
     with open(path, "r") as f:
         data = json.load(f)
 
-    for file_data in data.values():
+    error_zero_count = 0
+    error_nonzero_count = 0
+    for file_path, file_data in data.items():
+        base_error_count = base_data.get(file_path, {}).get("error_count", 0)
+        error_count = file_data.get("error_count", 0)
+        
+        if base_error_count == 0 and error_count > 0:
+            error_nonzero_count += 1
+        else:
+            error_zero_count += 1
+
+    print(f"{model}: base_error=0 & model_error>0: {error_nonzero_count}, others: {error_zero_count}")
+
+    for file_path, file_data in data.items():
+        base_error_count = base_data.get(file_path, {}).get("error_count", 0)
+        if base_error_count > 0:
+            continue
+
         stats = file_data.get("stats", {})
         total = stats.get("total_parameters", 0)
         annotated = stats.get("parameters_with_annotations", 0)
@@ -48,14 +69,27 @@ for model in models:
                 bin_stats[custom_labels[i]]["annotated_params"].append(annotated)
                 break
 
-# Print average statistics for each bin
+# Print bin counts and totals for each model
+print("\nBin counts for each model:")
+print("Bin\t\tGPT-4o\tO1-mini\tDeepSeek")
+print("-" * 50)
+for label in custom_labels:
+    counts = [model_bin_counts[model].get(label, 0) for model in models]
+    print(f"{label}\t\t{counts[0]}\t{counts[1]}\t{counts[2]}")
+
+print("\nTotal instances per model:")
+for model in models:
+    total = sum(model_bin_counts[model].values())
+    print(f"{model}: {total}")
+
+"""# Print average statistics for each bin
 print("\nAverage Statistics per Coverage Bin:")
 print("Bin\t\tAvg Total Params\tAvg Annotated Params")
 print("-" * 50)
 for label in custom_labels:
     total_avg = np.mean(bin_stats[label]["total_params"]) if bin_stats[label]["total_params"] else 0
     annotated_avg = np.mean(bin_stats[label]["annotated_params"]) if bin_stats[label]["annotated_params"] else 0
-    print(f"{label}\t\t{total_avg:.1f}\t\t{annotated_avg:.1f}")
+    print(f"{label}\t\t{total_avg:.1f}\t\t{annotated_avg:.1f}")"""
 
 # Plot grouped bar chart
 x = np.arange(len(custom_labels))
@@ -73,3 +107,4 @@ plt.title("Type Coverage vs. Files with Errors (ManyTypes4Py)")
 plt.legend()
 plt.tight_layout()
 plt.savefig("TypeCoverage_vs_mypy_error_ManyTypes4Py.pdf", bbox_inches='tight')
+#plt.show()
