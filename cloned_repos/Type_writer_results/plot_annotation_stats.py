@@ -12,8 +12,8 @@ def get_annotation_stats(json_file):
     return annotation_diffs
 
 # Load data from all files
-files = ['gpt4O_stats_equal.json', 'deepseek_stats_equal.json', 'o1_mini_stats_equal.json']
-model_names = ['GPT-4', 'DeepSeek', 'O1-Mini']
+files = ['gpt4O_stats_equal.json', 'o1_mini_stats_equal.json','deepseek_stats_equal.json' ]
+model_names = ['GPT-4', 'O1-Mini','DeepSeek']
 
 # Define bins
 bins = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, float('inf')]
