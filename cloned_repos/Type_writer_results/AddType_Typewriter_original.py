@@ -123,7 +123,7 @@ def assign_types(input_file: str, initial_code: str, annotations: List[Tuple[str
                 new_score, _ = typecheck(new_code)
                 print("Current new_score for file: ", input_file, new_score)
 
-                if new_score <= best_score:  # Greedy improvement
+                if new_score < best_score:  # Greedy improvement
                     parent_score = best_score
                     best_config = new_config
                     best_score = new_score
@@ -214,5 +214,5 @@ def process_type_analysis_results(directory, output_file,llm_only_failures):
     print(f"Updated results saved to {output_file}")
 
 if __name__ == "__main__":
-    llm_only_failures=analyze_files("deepseek", "mypy_results_no_type.json", "mypy_results_deepseek.json") 
-    process_type_analysis_results("deep_seek", "deepseek_stats_equal.json",llm_only_failures)
+    llm_only_failures=analyze_files("gpt4o", "mypy_results/mypy_results_no_type.json", "mypy_results/mypy_results_gpt4o_with_errors.json") 
+    process_type_analysis_results("gpt4o", "gpt4o_stats_original.json",llm_only_failures)

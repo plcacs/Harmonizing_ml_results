@@ -123,7 +123,7 @@ def assign_types(input_file: str, initial_code: str, annotations: List[Tuple[str
                 new_score, _ = typecheck(new_code)
                 print("Current new_score for file: ", input_file, new_score)
 
-                if new_score <= best_score:  # Greedy improvement
+                if new_score < best_score:  # Greedy improvement
                     parent_score = best_score
                     best_config = new_config
                     best_score = new_score
