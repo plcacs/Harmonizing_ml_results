@@ -29,6 +29,9 @@ models = ["GPT-4o", "O1-mini", "DeepSeek"]
 model_bin_counts = {model: defaultdict(int) for model in models}
 bin_stats = {label: {"total_params": [], "annotated_params": []} for label in custom_labels}
 
+# Store filenames for DeepSeek with 0-5% coverage
+deepseek_low_coverage_files = []
+
 # Load data and calculate counts
 for model in models:
     path = paths[model]
@@ -67,7 +70,15 @@ for model in models:
                 model_bin_counts[model][custom_labels[i]] += 1
                 bin_stats[custom_labels[i]]["total_params"].append(total)
                 bin_stats[custom_labels[i]]["annotated_params"].append(annotated)
+                # Store DeepSeek filenames with 0-5% coverage
+                if model == "DeepSeek" and i == 0:
+                    deepseek_low_coverage_files.append(file_path)
                 break
+
+# Save DeepSeek filenames with 0-5% coverage
+with open("deepseek_low_coverage_files.txt", "w") as f:
+    for file_path in deepseek_low_coverage_files:
+        f.write(f"{file_path}\n")
 
 # Print bin counts and totals for each model
 print("\nBin counts for each model:")
@@ -106,5 +117,5 @@ plt.ylabel("Number of Files with error_count>0")
 plt.title("Type Coverage vs. Files with Errors (ManyTypes4Py)")
 plt.legend()
 plt.tight_layout()
-plt.savefig("TypeCoverage_vs_mypy_error_ManyTypes4Py.pdf", bbox_inches='tight')
+#plt.savefig("TypeCoverage_vs_mypy_error_ManyTypes4Py.pdf", bbox_inches='tight')
 #plt.show()
