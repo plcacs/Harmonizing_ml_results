@@ -66,10 +66,11 @@ for i, model in enumerate(models):
     y_vals = [model_bin_counts[model].get(label, 0) for label in custom_labels]
     plt.bar(x + i * width, y_vals, width=width, label=model)
 
-plt.xticks(x + width, custom_labels, rotation=45)
-plt.xlabel("Type Coverage Bins")
-plt.ylabel("Number of Files with error_count == 0")
-plt.title("Type Coverage vs. Files without Errors (ManyTypes4Py)")
+plt.xticks(x + width, custom_labels, rotation=45, fontsize=20)
+plt.yticks(fontsize=20)
+plt.xlabel("Type Coverage Bins", fontsize=20)
+plt.ylabel("Number of Files with error_count == 0", fontsize=20)
+plt.title("Type Coverage vs. Files without Errors (ManyTypes4Py)", fontsize=20)
 plt.legend()
 plt.tight_layout()
-#plt.savefig("TypeCoverage_vs_mypy_no_error_ManyTypes4Py.pdf", bbox_inches='tight')
+plt.savefig("TypeCoverage_vs_mypy_no_error_ManyTypes4Py.pdf", bbox_inches='tight')

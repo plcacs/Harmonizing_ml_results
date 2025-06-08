@@ -22,9 +22,13 @@ def count_parameters(filename):
 
 def run_mypy_and_save_results(directory, output_file):
     results = {}
-    # Recursively find all .py files in directory and subdirectories
-    for filename in glob.glob(os.path.join(directory, "**", "*.py"), recursive=True):
-        print("Current file: ", filename)
+    all_files = list(glob.glob(os.path.join(directory, "**", "*.py"), recursive=True))
+    total_files = len(all_files)
+    print(f"Total files to process: {total_files}")
+
+    for i, filename in enumerate(all_files, 1):
+        print(f"Processing file {i}/{total_files}: {filename}")
+        abs_path = os.path.abspath(filename)
         command = [
             "mypy",
             "--ignore-missing-imports",
@@ -32,10 +36,16 @@ def run_mypy_and_save_results(directory, output_file):
             "--no-incremental",
             "--disable-error-code=no-redef",
             "--cache-dir=/dev/null",
-            filename,
+            abs_path,
         ]
         try:
-            process = subprocess.run(command, capture_output=True, text=True, check=False)
+            process = subprocess.run(
+                command,
+                cwd=os.path.dirname(abs_path),
+                capture_output=True,
+                text=True,
+                check=False
+            )
             output = process.stdout.strip()
             error_output = process.stderr.strip()
             file_result = {}
@@ -50,13 +60,12 @@ def run_mypy_and_save_results(directory, output_file):
                 file_result["errors"] = []
             else:
                 error_count = output.count("\n")
-                errors = output.splitlines() if output else error_output.splitlines()
                 if error_count == 0 and error_output:
                     error_count = error_output.count('\n')
+                errors = output.splitlines() if output else error_output.splitlines()
                 file_result["error_count"] = error_count
                 file_result["isCompiled"] = False
-                file_result["errors"]=errors
-            # Use only the file name as the key
+                file_result["errors"] = errors
             file_key = os.path.basename(filename)
             results[file_key] = file_result
         except FileNotFoundError:
@@ -64,7 +73,10 @@ def run_mypy_and_save_results(directory, output_file):
             return
         with open(output_file, "w") as f:
             json.dump(results, f, indent=4)
-    print(f"\nResults saved to {output_file}")
-
+    print(f"\\nResults saved to {output_file}")
+import time
 if __name__ == "__main__":
-    run_mypy_and_save_results("untyped_benchmarks", "mypy_results_untyped_with_errors.json")
+    start_time = time.time()
+    run_mypy_and_save_results("gpt4o", "mypy_results_gpt4o_with_errors.json")
+    end_time = time.time()
+    print(f"Time taken: {end_time - start_time} seconds")
