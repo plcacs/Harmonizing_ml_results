@@ -21,7 +21,8 @@ venn3(
     [gpt4o_zero,o1_mini_zero,deepseek_zero ],
     set_labels=('GPT-4o','O1-mini','Deepseek')
 )
-plt.title("Venn Diagram of Files with error_count == 0 (LLMs Only)")
-plt.savefig("venn_diagram_llms.pdf", bbox_inches='tight')
+plt.title("Venn Diagram of Files with error_count == 0 (ManyTypes4Py)")
+plt.tight_layout()
+plt.savefig("venn_diagram_llms_ManyTypes4Py.pdf", bbox_inches='tight')
 #plt.show()
 

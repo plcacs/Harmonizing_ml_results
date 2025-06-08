@@ -1,265 +1,372 @@
+"""Support for manual alarms controllable via MQTT."""
+from __future__ import annotations
+import datetime
 import logging
-from math import sqrt
-from typing import Any, Dict, List, Optional, Tuple, Type
-import torch
-from torch.optim import Optimizer
-import sockeye.constants as C
-from sockeye.utils import check_condition
-logger = logging.getLogger(__name__)
+from typing import Any, Callable, Dict, Optional
+import voluptuous as vol
+from homeassistant.components import mqtt
+from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity, AlarmControlPanelEntityFeature, AlarmControlPanelState, CodeFormat
+from homeassistant.const import CONF_CODE, CONF_DELAY_TIME, CONF_DISARM_AFTER_TRIGGER, CONF_NAME, CONF_PENDING_TIME, CONF_PLATFORM, CONF_TRIGGER_TIME
+from homeassistant.core import Event, HomeAssistant, callback
+from homeassistant.exceptions import HomeAssistantError
+from homeassistant.helpers import config_validation as cv
+from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from homeassistant.helpers.event import async_track_point_in_time, async_track_state_change_event
+from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
+from homeassistant.util import dt as dt_util
+_LOGGER = logging.getLogger(__name__)
+CONF_CODE_TEMPLATE = 'code_template'
+CONF_CODE_ARM_REQUIRED = 'code_arm_required'
+CONF_PAYLOAD_DISARM = 'payload_disarm'
+CONF_PAYLOAD_ARM_HOME = 'payload_arm_home'
+CONF_PAYLOAD_ARM_AWAY = 'payload_arm_away'
+CONF_PAYLOAD_ARM_NIGHT = 'payload_arm_night'
+CONF_PAYLOAD_ARM_VACATION = 'payload_arm_vacation'
+CONF_PAYLOAD_ARM_CUSTOM_BYPASS = 'payload_arm_custom_bypass'
+CONF_ALARM_ARMED_AWAY = 'armed_away'
+CONF_ALARM_ARMED_CUSTOM_BYPASS = 'armed_custom_bypass'
+CONF_ALARM_ARMED_HOME = 'armed_home'
+CONF_ALARM_ARMED_NIGHT = 'armed_night'
+CONF_ALARM_ARMED_VACATION = 'armed_vacation'
+CONF_ALARM_DISARMED = 'disarmed'
+CONF_ALARM_PENDING = 'pending'
+CONF_ALARM_TRIGGERED = 'triggered'
+DEFAULT_ALARM_NAME = 'HA Alarm'
+DEFAULT_DELAY_TIME = datetime.timedelta(seconds=0)
+DEFAULT_PENDING_TIME = datetime.timedelta(seconds=60)
+DEFAULT_TRIGGER_TIME = datetime.timedelta(seconds=120)
+DEFAULT_DISARM_AFTER_TRIGGER = False
+DEFAULT_ARM_AWAY = 'ARM_AWAY'
+DEFAULT_ARM_HOME = 'ARM_HOME'
+DEFAULT_ARM_NIGHT = 'ARM_NIGHT'
+DEFAULT_ARM_VACATION = 'ARM_VACATION'
+DEFAULT_ARM_CUSTOM_BYPASS = 'ARM_CUSTOM_BYPASS'
+DEFAULT_DISARM = 'DISARM'
+SUPPORTED_STATES = [AlarmControlPanelState.DISARMED, AlarmControlPanelState
+    .ARMED_AWAY, AlarmControlPanelState.ARMED_HOME, AlarmControlPanelState.
+    ARMED_NIGHT, AlarmControlPanelState.ARMED_VACATION,
+    AlarmControlPanelState.ARMED_CUSTOM_BYPASS, AlarmControlPanelState.
+    TRIGGERED]
+SUPPORTED_PRETRIGGER_STATES = [state for state in SUPPORTED_STATES if state !=
+    AlarmControlPanelState.TRIGGERED]
+SUPPORTED_PENDING_STATES = [state for state in SUPPORTED_STATES if state !=
+    AlarmControlPanelState.DISARMED]
+ATTR_PRE_PENDING_STATE = 'pre_pending_state'
+ATTR_POST_PENDING_STATE = 'post_pending_state'
 
 
-class LearningRateScheduler:
+def _state_validator(config) ->Dict[str, Any]:
+    """Validate the state."""
+    for state in SUPPORTED_PRETRIGGER_STATES:
+        if CONF_DELAY_TIME not in config[state]:
+            config[state] = config[state] | {CONF_DELAY_TIME: config[
+                CONF_DELAY_TIME]}
+        if CONF_TRIGGER_TIME not in config[state]:
+            config[state] = config[state] | {CONF_TRIGGER_TIME: config[
+                CONF_TRIGGER_TIME]}
+    for state in SUPPORTED_PENDING_STATES:
+        if CONF_PENDING_TIME not in config[state]:
+            config[state] = config[state] | {CONF_PENDING_TIME: config[
+                CONF_PENDING_TIME]}
+    return config
+
+
+def _state_schema(state: AlarmControlPanelState) ->vol.Schema:
+    """Validate the state."""
+    schema: Dict[str, Any] = {}
+    if state in SUPPORTED_PRETRIGGER_STATES:
+        schema[vol.Optional(CONF_DELAY_TIME)] = vol.All(cv.time_period, cv.
+            positive_timedelta)
+        schema[vol.Optional(CONF_TRIGGER_TIME)] = vol.All(cv.time_period,
+            cv.positive_timedelta)
+    if state in SUPPORTED_PENDING_STATES:
+        schema[vol.Optional(CONF_PENDING_TIME)] = vol.All(cv.time_period,
+            cv.positive_timedelta)
+    return vol.Schema(schema)
+
+
+PLATFORM_SCHEMA = vol.Schema(vol.All(mqtt.config.MQTT_BASE_SCHEMA.extend({
+    vol.Required(CONF_PLATFORM): 'manual_mqtt', vol.Optional(CONF_NAME,
+    default=DEFAULT_ALARM_NAME): cv.string, vol.Exclusive(CONF_CODE,
+    'code validation'): cv.string, vol.Exclusive(CONF_CODE_TEMPLATE,
+    'code validation'): cv.template, vol.Optional(CONF_DELAY_TIME, default=
+    DEFAULT_DELAY_TIME): vol.All(cv.time_period, cv.positive_timedelta),
+    vol.Optional(CONF_PENDING_TIME, default=DEFAULT_PENDING_TIME): vol.All(
+    cv.time_period, cv.positive_timedelta), vol.Optional(CONF_TRIGGER_TIME,
+    default=DEFAULT_TRIGGER_TIME): vol.All(cv.time_period, cv.
+    positive_timedelta), vol.Optional(CONF_DISARM_AFTER_TRIGGER, default=
+    DEFAULT_DISARM_AFTER_TRIGGER): cv.boolean, vol.Optional(
+    CONF_ALARM_ARMED_AWAY, default={}): _state_schema(
+    AlarmControlPanelState.ARMED_AWAY), vol.Optional(CONF_ALARM_ARMED_HOME,
+    default={}): _state_schema(AlarmControlPanelState.ARMED_HOME), vol.
+    Optional(CONF_ALARM_ARMED_NIGHT, default={}): _state_schema(
+    AlarmControlPanelState.ARMED_NIGHT), vol.Optional(
+    CONF_ALARM_ARMED_VACATION, default={}): _state_schema(
+    AlarmControlPanelState.ARMED_VACATION), vol.Optional(
+    CONF_ALARM_ARMED_CUSTOM_BYPASS, default={}): _state_schema(
+    AlarmControlPanelState.ARMED_CUSTOM_BYPASS), vol.Optional(
+    CONF_ALARM_DISARMED, default={}): _state_schema(AlarmControlPanelState.
+    DISARMED), vol.Optional(CONF_ALARM_TRIGGERED, default={}):
+    _state_schema(AlarmControlPanelState.TRIGGERED), vol.Required(mqtt.
+    CONF_COMMAND_TOPIC): mqtt.valid_publish_topic, vol.Required(mqtt.
+    CONF_STATE_TOPIC): mqtt.valid_subscribe_topic, vol.Optional(
+    CONF_CODE_ARM_REQUIRED, default=True): cv.boolean, vol.Optional(
+    CONF_PAYLOAD_ARM_AWAY, default=DEFAULT_ARM_AWAY): cv.string, vol.
+    Optional(CONF_PAYLOAD_ARM_HOME, default=DEFAULT_ARM_HOME): cv.string,
+    vol.Optional(CONF_PAYLOAD_ARM_NIGHT, default=DEFAULT_ARM_NIGHT): cv.
+    string, vol.Optional(CONF_PAYLOAD_ARM_VACATION, default=
+    DEFAULT_ARM_VACATION): cv.string, vol.Optional(
+    CONF_PAYLOAD_ARM_CUSTOM_BYPASS, default=DEFAULT_ARM_CUSTOM_BYPASS): cv.
+    string, vol.Optional(CONF_PAYLOAD_DISARM, default=DEFAULT_DISARM): cv.
+    string}), _state_validator))
+
+
+async def async_setup_platform(hass: HomeAssistant, config: ConfigType,
+    add_entities: AddEntitiesCallback, discovery_info: Optional[
+    DiscoveryInfoType]=None) ->None:
+    """Set up the manual MQTT alarm platform."""
+    if not await mqtt.async_wait_for_mqtt_client(hass):
+        _LOGGER.error('MQTT integration is not available')
+        return
+    add_entities([ManualMQTTAlarm(hass, config[CONF_NAME], config.get(
+        CONF_CODE), config.get(CONF_CODE_TEMPLATE), config.get(
+        CONF_DISARM_AFTER_TRIGGER, DEFAULT_DISARM_AFTER_TRIGGER), config.
+        get(mqtt.CONF_STATE_TOPIC), config.get(mqtt.CONF_COMMAND_TOPIC),
+        config.get(mqtt.CONF_QOS), config.get(CONF_CODE_ARM_REQUIRED),
+        config.get(CONF_PAYLOAD_DISARM), config.get(CONF_PAYLOAD_ARM_HOME),
+        config.get(CONF_PAYLOAD_ARM_AWAY), config.get(
+        CONF_PAYLOAD_ARM_NIGHT), config.get(CONF_PAYLOAD_ARM_VACATION),
+        config.get(CONF_PAYLOAD_ARM_CUSTOM_BYPASS), config)])
+
+
+class ManualMQTTAlarm(AlarmControlPanelEntity):
+    """Representation of an alarm status.
+
+    When armed, will be pending for 'pending_time', after that armed.
+    When triggered, will be pending for the triggering state's 'delay_time'
+    plus the triggered state's 'pending_time'.
+    After that will be triggered for 'trigger_time', after that we return to
+    the previous state or disarm if `disarm_after_trigger` is true.
+    A trigger_time of zero disables the alarm_trigger service.
     """
-    Learning rate scheduler base class. A scheduler operates on a specified
-    optimizer instance using an API that is compatible with PyTorch and
-    DeepSpeed. See https://pytorch.org/docs/stable/optim.html for more
-    information on PyTorch optimizers, learning rate schedulers, and parameter
-    groups.
+    _attr_should_poll = False
+    _attr_supported_features = (AlarmControlPanelEntityFeature.ARM_HOME |
+        AlarmControlPanelEntityFeature.ARM_AWAY |
+        AlarmControlPanelEntityFeature.ARM_NIGHT |
+        AlarmControlPanelEntityFeature.ARM_VACATION |
+        AlarmControlPanelEntityFeature.TRIGGER |
+        AlarmControlPanelEntityFeature.ARM_CUSTOM_BYPASS)
 
-    :param optimizer: Optimizer. If None, `LearningRateScheduler(optimizer)`
-                      must be called before running `step()`.
-    :param base_lr: Base learning rate.
-    :param warmup: Number of initial updates during which the learning rate
-                   linearly increases.
-    """
-
-    def __init__(self, optimizer: Optional[Optimizer]=None, base_lr: float=
-        1.0, warmup: int=0) ->None:
-        self.optimizer: Optional[Optimizer] = optimizer
-        self.base_lr: float = base_lr
-        check_condition(warmup >= 0, 'warmup needs to be >= 0.')
-        self.warmup: int = warmup
-        self._t: int = 0
-        self._last_lr: Optional[List[float]] = None
-
-    def __call__(self, optimizer: Optimizer):
-        """
-        DeepSpeed compatibility method: associate otherwise initialized learning
-        rate scheduler with an optimizer.
-        """
-        assert self.optimizer is None, 'This learning rate scheduler is already associated with an optimizer.'
-        self.optimizer = optimizer
-        return self
-
-    def __repr__(self) ->str:
-        return self.__class__.__name__
-
-    def state_dict(self) ->Dict[str, Any]:
-        return {k: v for k, v in self.__dict__.items() if k != 'optimizer'}
-
-    def load_state_dict(self, state_dict: Dict[str, Any]) ->None:
-        self.__dict__.update(state_dict)
-
-    def get_lr(self) ->List[float]:
-        """
-        Get the learning rate for the current step for each param group.
-        """
-        raise NotImplementedError()
-
-    def get_last_lr(self) ->List[float]:
-        """
-        Get the last computed learning rate for each param group.
-        """
-        assert self._last_lr is not None, '`get_last_lr()` cannot be called before `get_lr()`'
-        return self._last_lr
-
-    def step(self, t: Optional[int]=None) ->None:
-        """
-        Increment or specify the time step (update number) and recompute the
-        learning rate for each param group by calling `get_lr()`.
-
-        :param t: Manually specify the time step instead of automatically
-                  incrementing the previous value.
-        """
-        assert self.optimizer is not None, 'This learning rate scheduler is not associated with an optimizer.'
-        if t is None:
-            t = self._t + 1
-        self._t = t
-        for group, lr in zip(self.optimizer.param_groups, self.get_lr()):
-            group['lr'] = lr
-        self._last_lr = [group['lr'] for group in self.optimizer.param_groups]
-
-    def _warmup(self, t: int) ->float:
-        """
-        Returns linearly increasing fraction of base_lr.
-        """
-        if not self.warmup:
-            return self.base_lr
-        return self.base_lr * min(1.0, t / self.warmup)
-
-
-class AdaptiveLearningRateScheduler(LearningRateScheduler):
-    """
-    Learning rate scheduler that implements `new_evaluation_result` and accordingly adaptively adjust the  learning
-    rate.
-    """
-
-    def new_evaluation_result(self, has_improved: bool) ->bool:
-        """
-        Returns true if the parameters should be reset to the ones with the best validation score.
-
-        :param has_improved: Whether the model improved on held-out validation data.
-        :return: True if parameters should be reset to the ones with best validation score.
-        """
-        return False
-
-
-class LearningRateSchedulerInvSqrtDecay(LearningRateScheduler):
-    """
-    Learning rate schedule: lr / sqrt(max(t, warmup_steps)).
-
-    This is the schedule used by Vaswani et al. in the Transformer paper
-    (https://arxiv.org/pdf/1706.03762.pdf)
-    """
-
-    def get_lr(self) ->List[float]:
-        warm_lr: float = self._warmup(self._t)
-        warmup_steps: int = max(1, self.warmup)
-        lr: float = warm_lr / sqrt(max(self._t, warmup_steps))
-        return [lr for _ in self.optimizer.param_groups]
-
-
-class LearningRateSchedulerLinearDecay(LearningRateScheduler):
-    """
-    Learning rate schedule: lr * (1 - t / total_steps)
-    Step grows until it reaches decay_steps then remains constant.
-
-    This is the schedule used by Devlin et al. in the BERT paper
-    (https://arxiv.org/pdf/1810.04805.pdf).
-
-    :param optimizer: Optimizer.
-    :param base_lr: Base learning rate.
-    :param total_steps: Number of total training updates.  The learning rate
-                        linearly decays to zero over this period.
-    :param warmup: Number of initial updates during which the learning rate
-                   linearly increases.
-    """
-
-    def __init__(self, optimizer: Optimizer, base_lr: float, total_steps:
-        int, warmup: int=0) ->None:
-        super().__init__(optimizer, base_lr, warmup)
-        check_condition(total_steps >= 0, 'total_steps need to be >= 0.')
-        self.total_steps: int = total_steps
-
-    def get_lr(self) ->List[float]:
-        warm_lr: float = self._warmup(self._t)
-        bounded_t: int = min(max(self._t, 1), self.total_steps)
-        lr: float = warm_lr * (1 - bounded_t / self.total_steps)
-        return [lr for _ in self.optimizer.param_groups]
-
-
-class LearningRateSchedulerPlateauReduce(AdaptiveLearningRateScheduler):
-    """
-    Lower the learning rate as soon as the validation score plateaus.
-
-    :param optimizer: Optimizer.
-    :param base_lr: Base learning rate.
-    :param reduce_factor: Factor to reduce learning rate with.
-    :param reduce_num_not_improved: Number of checkpoints with no improvement
-                                    after which learning rate is reduced.
-    :param warmup: Number of initial updates during which the learning rate
-                   linearly increases.
-    """
-
-    def __init__(self, optimizer: Optimizer, base_lr: float, reduce_factor:
-        float, reduce_num_not_improved: int, warmup: int=0) ->None:
-        super().__init__(optimizer, base_lr, warmup)
-        self.lr: float = base_lr
-        check_condition(0.0 < reduce_factor < 1,
-            'reduce_factor should be between (0, 1).')
-        self.reduce_factor: float = reduce_factor
-        self.reduce_num_not_improved: int = reduce_num_not_improved
-        self.num_not_improved: int = 0
-        self.warmed_up: bool = not self.warmup > 0
-        logger.info(
-            "Will reduce the learning rate by a factor of %.2f whenever the validation score doesn't improve %d times."
-            , self.reduce_factor, self.reduce_num_not_improved)
-
-    def __repr__(self) ->str:
-        return (
-            f'LearningRateSchedulerPlateauReduce(reduce_factor={self.reduce_factor:.2f}, reduce_num_not_improved={self.reduce_num_not_improved}, num_not_improved={self.num_not_improved}, base_lr={self.base_lr}, lr={self.lr}, warmup={self.warmup}, warmed_up={self.warmed_up})'
-            )
-
-    def new_evaluation_result(self, has_improved: bool) ->bool:
-        """
-        Returns true if the parameters should be reset to the ones with the best validation score.
-
-        :param has_improved: Whether the model improved on held-out validation data.
-        :return: True if parameters should be reset to the ones with best validation score.
-        """
-        if has_improved:
-            self.num_not_improved = 0
+    def __init__(self, hass: HomeAssistant, name: str, code: Optional[str |
+        cv.Template], code_template: Optional[cv.Template],
+        disarm_after_trigger: bool, state_topic: str, command_topic: str,
+        qos: Optional[int], code_arm_required: bool, payload_disarm: str,
+        payload_arm_home: str, payload_arm_away: str, payload_arm_night:
+        str, payload_arm_vacation: str, payload_arm_custom_bypass: str,
+        config: ConfigType) ->None:
+        """Init the manual MQTT alarm panel."""
+        self._state: AlarmControlPanelState = AlarmControlPanelState.DISARMED
+        self._hass = hass
+        self._attr_name = name
+        if code_template:
+            self._code = code_template
         else:
-            self.num_not_improved += 1
-            if (self.num_not_improved >= self.reduce_num_not_improved and 
-                self.reduce_factor < 1.0 and self.warmed_up):
-                old_lr: float = self.lr
-                self.lr *= self.reduce_factor
-                logger.info(
-                    '%d checkpoints since improvement or rate scaling, lowering learning rate: %1.2e -> %1.2e'
-                    , self.num_not_improved, old_lr, self.lr)
-                self.num_not_improved = 0
-                return True
-        return False
+            self._code = code or None
+        self._disarm_after_trigger: bool = disarm_after_trigger
+        self._previous_state: AlarmControlPanelState = self._state
+        self._state_ts: datetime.datetime | None = None
+        self._delay_time_by_state: Dict[AlarmControlPanelState, datetime.
+            timedelta] = {state: config[state][CONF_DELAY_TIME] for state in
+            SUPPORTED_PRETRIGGER_STATES}
+        self._trigger_time_by_state: Dict[AlarmControlPanelState, datetime.
+            timedelta] = {state: config[state][CONF_TRIGGER_TIME] for state in
+            SUPPORTED_PRETRIGGER_STATES}
+        self._pending_time_by_state: Dict[AlarmControlPanelState, datetime.
+            timedelta] = {state: config[state][CONF_PENDING_TIME] for state in
+            SUPPORTED_PENDING_STATES}
+        self._state_topic: str = state_topic
+        self._command_topic: str = command_topic
+        self._qos: Optional[int] = qos
+        self._attr_code_arm_required: bool = code_arm_required
+        self._payload_disarm: str = payload_disarm
+        self._payload_arm_home: str = payload_arm_home
+        self._payload_arm_away: str = payload_arm_away
+        self._payload_arm_night: str = payload_arm_night
+        self._payload_arm_vacation: str = payload_arm_vacation
+        self._payload_arm_custom_bypass: str = payload_arm_custom_bypass
 
-    def get_lr(self) ->List[float]:
-        if self.warmup > 0 and self._t <= self.warmup:
-            lr: float = self._warmup(self._t)
+    @property
+    def alarm_state(self) ->AlarmControlPanelState:
+        """Return the state of the device."""
+        if self._state == AlarmControlPanelState.TRIGGERED:
+            if self._within_pending_time(self._state):
+                return AlarmControlPanelState.PENDING
+            trigger_time = self._trigger_time_by_state[self._previous_state]
+            if self._state_ts and self._state_ts + self._pending_time(self.
+                _state) + trigger_time < dt_util.utcnow():
+                if self._disarm_after_trigger:
+                    return AlarmControlPanelState.DISARMED
+                self._state = self._previous_state
+                return self._state
+        if (self._state in SUPPORTED_PENDING_STATES and self.
+            _within_pending_time(self._state)):
+            return AlarmControlPanelState.PENDING
+        return self._state
+
+    @property
+    def _active_state(self) ->AlarmControlPanelState:
+        """Get the current state."""
+        if self.state == AlarmControlPanelState.PENDING:
+            return self._previous_state
+        return self._state
+
+    def _pending_time(self, state: AlarmControlPanelState
+        ) ->datetime.timedelta:
+        """Get the pending time."""
+        pending_time = self._pending_time_by_state[state]
+        if (state == AlarmControlPanelState.TRIGGERED and self.
+            _previous_state in self._delay_time_by_state):
+            pending_time += self._delay_time_by_state[self._previous_state]
+        return pending_time
+
+    def _within_pending_time(self, state: AlarmControlPanelState) ->bool:
+        """Get if the action is in the pending time window."""
+        if self._state_ts is None:
+            return False
+        return self._state_ts + self._pending_time(state) > dt_util.utcnow()
+
+    @property
+    def code_format(self) ->Optional[CodeFormat]:
+        """Return one or more digits/characters."""
+        if self._code is None:
+            return None
+        if isinstance(self._code, str) and self._code.isdigit():
+            return CodeFormat.NUMBER
+        return CodeFormat.TEXT
+
+    async def async_alarm_disarm(self, code: Optional[str]=None) ->None:
+        """Send disarm command."""
+        self._async_validate_code(code, AlarmControlPanelState.DISARMED)
+        self._state = AlarmControlPanelState.DISARMED
+        self._state_ts = dt_util.utcnow()
+        self.async_write_ha_state()
+
+    async def async_alarm_arm_home(self, code: Optional[str]=None) ->None:
+        """Send arm home command."""
+        self._async_validate_code(code, AlarmControlPanelState.ARMED_HOME)
+        self._async_update_state(AlarmControlPanelState.ARMED_HOME)
+
+    async def async_alarm_arm_away(self, code: Optional[str]=None) ->None:
+        """Send arm away command."""
+        self._async_validate_code(code, AlarmControlPanelState.ARMED_AWAY)
+        self._async_update_state(AlarmControlPanelState.ARMED_AWAY)
+
+    async def async_alarm_arm_night(self, code: Optional[str]=None) ->None:
+        """Send arm night command."""
+        self._async_validate_code(code, AlarmControlPanelState.ARMED_NIGHT)
+        self._async_update_state(AlarmControlPanelState.ARMED_NIGHT)
+
+    async def async_alarm_arm_vacation(self, code: Optional[str]=None) ->None:
+        """Send arm vacation command."""
+        self._async_validate_code(code, AlarmControlPanelState.ARMED_VACATION)
+        self._async_update_state(AlarmControlPanelState.ARMED_VACATION)
+
+    async def async_alarm_arm_custom_bypass(self, code: Optional[str]=None
+        ) ->None:
+        """Send arm custom bypass command."""
+        self._async_validate_code(code, AlarmControlPanelState.
+            ARMED_CUSTOM_BYPASS)
+        self._async_update_state(AlarmControlPanelState.ARMED_CUSTOM_BYPASS)
+
+    async def async_alarm_trigger(self, code: Optional[str]=None) ->None:
+        """Send alarm trigger command.
+
+        No code needed, a trigger time of zero for the current state
+        disables the alarm.
+        """
+        if not self._trigger_time_by_state.get(self._active_state, datetime
+            .timedelta()):
+            return
+        self._async_update_state(AlarmControlPanelState.TRIGGERED)
+
+    def _async_update_state(self, state: AlarmControlPanelState) ->None:
+        """Update the state."""
+        if self._state == state:
+            return
+        self._previous_state = self._state
+        self._state = state
+        self._state_ts = dt_util.utcnow()
+        self.async_write_ha_state()
+        pending_time = self._pending_time(state)
+        if state == AlarmControlPanelState.TRIGGERED:
+            async_track_point_in_time(self._hass, self.
+                async_scheduled_update, self._state_ts + pending_time)
+            trigger_time = self._trigger_time_by_state.get(self.
+                _previous_state, datetime.timedelta())
+            async_track_point_in_time(self._hass, self.
+                async_scheduled_update, self._state_ts + pending_time +
+                trigger_time)
+        elif state in SUPPORTED_PENDING_STATES and pending_time:
+            async_track_point_in_time(self._hass, self.
+                async_scheduled_update, self._state_ts + pending_time)
+
+    def _async_validate_code(self, code: Optional[str], state:
+        AlarmControlPanelState) ->None:
+        """Validate given code."""
+        if state != AlarmControlPanelState.DISARMED and (not self.
+            code_arm_required or self._code is None):
+            return
+        if isinstance(self._code, str):
+            alarm_code = self._code
         else:
-            lr = self.lr
-        if self._t == self.warmup:
-            self.warmed_up = True
-        return [lr for _ in self.optimizer.param_groups]
+            alarm_code = self._code.async_render(from_state=self._state,
+                to_state=state, parse_result=False)
+        if not alarm_code or code == alarm_code:
+            return
+        raise HomeAssistantError('Invalid alarm code provided')
 
+    @property
+    def extra_state_attributes(self) ->Dict[str, Any]:
+        """Return the state attributes."""
+        if self.state != AlarmControlPanelState.PENDING:
+            return {}
+        return {ATTR_PRE_PENDING_STATE: self._previous_state,
+            ATTR_POST_PENDING_STATE: self._state}
 
-def get_lr_scheduler(scheduler_type: Optional[str], base_learning_rate:
-    float, learning_rate_reduce_factor: Optional[float],
-    learning_rate_reduce_num_not_improved: Optional[int],
-    learning_rate_warmup: int=0, max_updates: Optional[int]=None) ->Tuple[
-    Optional[Type[LearningRateScheduler]], Dict[str, Any]]:
-    """
-    Get learning rate scheduler class and kwargs.
+    @callback
+    def async_scheduled_update(self, now: datetime.datetime) ->None:
+        """Update state at a scheduled point in time."""
+        self.async_write_ha_state()
 
-    :param scheduler_type: Scheduler type.
-    :param base_learning_rate: Base learning rate.
-    :param learning_rate_reduce_factor: Factor to reduce learning rate with.
-    :param learning_rate_reduce_num_not_improved: Number of checkpoints with no
-           improvement after which learning rate is reduced.
-    :param learning_rate_warmup: Number of initial updates during which the
-                                 learning rate linearly increases.
-    :param max_updates: Number of total training updates.
+    async def async_added_to_hass(self) ->None:
+        """Subscribe to MQTT events."""
+        async_track_state_change_event(self.hass, [self.entity_id], self.
+            _async_state_changed_listener)
 
-    :raises: ValueError if unknown scheduler_type
+        async def message_received(msg: mqtt.MQTTMessage) ->None:
+            """Run when new MQTT message has been received."""
+            if msg.payload == self._payload_disarm:
+                await self.async_alarm_disarm(self._code)
+            elif msg.payload == self._payload_arm_home:
+                await self.async_alarm_arm_home(self._code)
+            elif msg.payload == self._payload_arm_away:
+                await self.async_alarm_arm_away(self._code)
+            elif msg.payload == self._payload_arm_night:
+                await self.async_alarm_arm_night(self._code)
+            elif msg.payload == self._payload_arm_vacation:
+                await self.async_alarm_arm_vacation(self._code)
+            elif msg.payload == self._payload_arm_custom_bypass:
+                await self.async_alarm_arm_custom_bypass(self._code)
+            else:
+                _LOGGER.warning('Received unexpected payload: %s', msg.payload)
+                return
+        await mqtt.async_subscribe(self.hass, self._command_topic,
+            message_received, self._qos)
 
-    :return: Tuple of LearningRateScheduler class and kwargs dictionary.
-    """
-    if scheduler_type is None or scheduler_type == C.LR_SCHEDULER_NONE:
-        return None, {}
-    if scheduler_type == C.LR_SCHEDULER_INV_SQRT_DECAY:
-        return LearningRateSchedulerInvSqrtDecay, {'base_lr':
-            base_learning_rate, 'warmup': learning_rate_warmup}
-    if scheduler_type == C.LR_SCHEDULER_LINEAR_DECAY:
-        check_condition(max_updates is not None,
-            'The total number of training updates (--max-updates) must be specified when using the linear decay learning rate scheduler.'
-            )
-        return LearningRateSchedulerLinearDecay, {'base_lr':
-            base_learning_rate, 'total_steps': max_updates, 'warmup':
-            learning_rate_warmup}
-    if scheduler_type == C.LR_SCHEDULER_PLATEAU_REDUCE:
-        check_condition(learning_rate_reduce_factor is not None,
-            f'learning_rate_reduce_factor needed for {C.LR_SCHEDULER_PLATEAU_REDUCE} scheduler'
-            )
-        check_condition(learning_rate_reduce_num_not_improved is not None,
-            f'learning_rate_reduce_num_not_improved needed for {C.LR_SCHEDULER_PLATEAU_REDUCE} scheduler'
-            )
-        if learning_rate_reduce_factor >= 1.0:
-            logger.warning(
-                'Not using %s learning rate scheduling: learning_rate_reduce_factor == 1.0'
-                , C.LR_SCHEDULER_PLATEAU_REDUCE)
-            return None, {}
-        return LearningRateSchedulerPlateauReduce, {'base_lr':
-            base_learning_rate, 'reduce_factor':
-            learning_rate_reduce_factor, 'reduce_num_not_improved':
-            learning_rate_reduce_num_not_improved, 'warmup':
-            learning_rate_warmup}
-    raise ValueError(f'Unknown learning rate scheduler type {scheduler_type}.')
+    async def _async_state_changed_listener(self, event: Event) ->None:
+        """Publish state change to MQTT."""
+        new_state = event.data.get('new_state')
+        if new_state is None:
+            return
+        await mqtt.async_publish(self.hass, self._state_topic, new_state.
+            state, self._qos, True)

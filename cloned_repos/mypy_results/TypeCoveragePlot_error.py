@@ -31,7 +31,8 @@ bin_stats = {label: {"total_params": [], "annotated_params": []} for label in cu
 
 # Store filenames for DeepSeek with 0-5% coverage
 deepseek_low_coverage_files = []
-
+def has_syntax_error(errors):
+    return any("syntax" in error.lower() for error in errors)
 # Load data and calculate counts
 for model in models:
     path = paths[model]
@@ -42,7 +43,7 @@ for model in models:
     error_nonzero_count = 0
     for file_path, file_data in data.items():
         base_error_count = base_data.get(file_path, {}).get("error_count", 0)
-        error_count = file_data.get("error_count", 0)
+        error_count = file_data.get("error_count", 0) if not has_syntax_error(file_data.get('errors', [])) else 0
         
         if base_error_count == 0 and error_count > 0:
             error_nonzero_count += 1
@@ -59,7 +60,7 @@ for model in models:
         stats = file_data.get("stats", {})
         total = stats.get("total_parameters", 0)
         annotated = stats.get("parameters_with_annotations", 0)
-        error_count = file_data.get("error_count", 0)
+        error_count = file_data.get("error_count", 0) if not has_syntax_error(file_data.get('errors', [])) else 0
 
         if error_count == 0:
             continue
@@ -76,9 +77,9 @@ for model in models:
                 break
 
 # Save DeepSeek filenames with 0-5% coverage
-with open("deepseek_low_coverage_files.txt", "w") as f:
-    for file_path in deepseek_low_coverage_files:
-        f.write(f"{file_path}\n")
+"""with open("deepseek_low_coverage_files.txt", "w") as f:
+    for file_path in deepseek_low_coverage_files:  
+        f.write(f"{file_path}\n")"""
 
 # Print bin counts and totals for each model
 print("\nBin counts for each model:")
@@ -111,11 +112,12 @@ for i, model in enumerate(models):
     y_vals = [model_bin_counts[model].get(label, 0) for label in custom_labels]
     plt.bar(x + i * width, y_vals, width=width, label=model)
 
-plt.xticks(x + width, custom_labels, rotation=45)
-plt.xlabel("Type Coverage Bins")
-plt.ylabel("Number of Files with error_count>0")
-plt.title("Type Coverage vs. Files with Errors (ManyTypes4Py)")
+plt.xticks(x + width, custom_labels, rotation=45, fontsize=20)
+plt.yticks(fontsize=20)
+plt.xlabel("Type Coverage Bins", fontsize=20)
+plt.ylabel("Number of Files with error_count>0", fontsize=20)
+plt.title("Type Coverage vs. Files with Errors (ManyTypes4Py)", fontsize=20)
 plt.legend()
 plt.tight_layout()
-#plt.savefig("TypeCoverage_vs_mypy_error_ManyTypes4Py.pdf", bbox_inches='tight')
+plt.savefig("TypeCoverage_vs_mypy_error_ManyTypes4Py.pdf", bbox_inches='tight')
 #plt.show()
