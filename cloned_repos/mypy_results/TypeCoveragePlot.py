@@ -24,6 +24,7 @@ custom_labels = [
 models = ["GPT-4o", "O1-mini", "DeepSeek"]
 model_bin_counts = {model: defaultdict(int) for model in models}
 bin_stats = {label: {"total_params": [], "annotated_params": []} for label in custom_labels}
+model_bin_files = {model: {label: [] for label in custom_labels} for model in models}  # Store file names for each model and bin
 
 # Load data and calculate counts
 for model in models:
@@ -31,7 +32,7 @@ for model in models:
     with open(path, "r") as f:
         data = json.load(f)
 
-    for file_data in data.values():
+    for file_name, file_data in data.items():
         stats = file_data.get("stats", {})
         total = stats.get("total_parameters", 0)
         annotated = stats.get("parameters_with_annotations", 0)
@@ -46,7 +47,14 @@ for model in models:
                 model_bin_counts[model][custom_labels[i]] += 1
                 bin_stats[custom_labels[i]]["total_params"].append(total)
                 bin_stats[custom_labels[i]]["annotated_params"].append(annotated)
+                model_bin_files[model][custom_labels[i]].append(file_name)
                 break
+
+# Save file names for each model's bins to separate JSON files
+for model in models:
+    output_file = f"coverage_bin_files_{model.lower().replace('-', '_')}.json"
+    with open(output_file, "w") as f:
+        json.dump(model_bin_files[model], f, indent=2)
 
 # Print average statistics for each bin
 print("\nAverage Statistics per Coverage Bin:")
