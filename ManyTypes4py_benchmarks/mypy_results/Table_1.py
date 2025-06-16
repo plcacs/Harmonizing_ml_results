@@ -163,7 +163,7 @@ def analyze_files(model_name, base_file, model_file):
                 is_type_error = False
                 break
 
-        if is_type_error:
+        if len(error_codes) > 0 and is_type_error:
             type_error_files.append(file)
 
     # Save results to JSON

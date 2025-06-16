@@ -67,7 +67,7 @@ def get_strict_type_error_files(json_file):
                 is_type_error = False
                 break
 
-        if is_type_error:
+        if  len(error_codes) > 0 and is_type_error:
             strict_type_error_files.append(fname)
         """error_msgs = [msg for msg in details.get("errors", []) if "Found" not in msg]
         if (
