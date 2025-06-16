@@ -7,7 +7,7 @@ from collections import defaultdict
 paths = {
     "GPT-4o": "mypy_results_gpt4o_with_errors.json",
     "O1-mini": "mypy_results_o1-mini_with_errors.json",
-    "DeepSeek": "mypy_results_deep_seek_with_errors.json"
+    "DeepSeek": "mypy_results_deep_seek_with_errors.json",
 }
 
 # Load base model data
@@ -45,7 +45,51 @@ custom_labels = [
 
 
 def has_syntax_error(errors):
-    return any(error_type in error.lower() for error in errors for error_type in ["syntax", "empty_body", "name_defined"])
+    return any(
+        error_type in error.lower()
+        for error in errors
+        for error_type in ["syntax", "empty_body", "name_defined"]
+    )
+
+
+def extract_error_code(error):
+    if "[" in error and "]" in error:
+        return error[error.rindex("[") + 1 : error.rindex("]")]
+    return ""
+
+
+non_type_related_errors = [
+    "name-defined",
+    "import",
+    "syntax",
+    "no-redef",
+    "unused-ignore",
+    "override-without-super",
+    "redundant-cast",
+    "literal-required",
+    "typeddict-unknown-key",
+    "typeddict-item",
+    "truthy-function",
+    "str-bytes-safe",
+    "unused-coroutine",
+    "explicit-override",
+    "truthy-iterable",
+    "redundant-self",
+    "redundant-await",
+    "unreachable",
+]
+
+
+def has_type_errors(errors):
+    error_codes = [extract_error_code(error) for error in errors if error]
+    error_codes = [code for code in error_codes if code]  # Filter out empty strings
+    return not any(code in non_type_related_errors for code in error_codes)
+
+
+def count_type_errors(errors):
+    error_codes = [extract_error_code(error) for error in errors if error]
+    error_codes = [code for code in error_codes if code]  # Filter out empty strings
+    return sum(1 for code in error_codes if code not in non_type_related_errors)
 
 
 # Models to evaluate
@@ -69,8 +113,8 @@ for model in models:
         stats = file_data.get("stats", {})
         total = stats.get("total_parameters", 0)
         annotated = stats.get("parameters_with_annotations", 0)
-        error_count = (
-            file_data.get("error_count", 0)
+        type_error_count = (
+            count_type_errors(file_data.get("errors", []))
             if not has_syntax_error(file_data.get("errors", []))
             else 0
         )
@@ -78,10 +122,8 @@ for model in models:
         coverage = annotated / total if total > 0 else 0
         for i, (low, high) in enumerate(custom_bins):
             if low <= coverage < high:
-                if error_count > 0:
-                    bin_stats[model][custom_labels[i]]["error_count"] += 1
-                else:
-                    bin_stats[model][custom_labels[i]]["no_error_count"] += 1
+                bin_stats[model][custom_labels[i]]["error_count"] += type_error_count
+                bin_stats[model][custom_labels[i]]["no_error_count"] += 1
                 break
 
 # Print statistics for each model
@@ -90,9 +132,11 @@ for model in models:
     print(f"\n{model}:")
     for label in custom_labels:
         stats = bin_stats[model][label]
-        total = stats['error_count'] + stats['no_error_count']
-        ratio = (stats['error_count'] / total * 100) if total > 0 else 0
-        print(f"{label}: Errors={stats['error_count']}, No Errors={stats['no_error_count']}, Ratio={ratio:.1f}%")
+        total = stats["error_count"] + stats["no_error_count"]
+        ratio = (stats["error_count"] / total * 100) if total > 0 else 0
+        print(
+            f"{label}: Errors={stats['error_count']}, No Errors={stats['no_error_count']}, Ratio={ratio:.1f}%"
+        )
 
 # Calculate error ratios and plot
 plt.figure(figsize=(14, 6))
@@ -117,4 +161,4 @@ plt.title("Type Coverage vs. Error Ratio (PyPerformance)", fontsize=20)
 plt.legend()
 plt.tight_layout()
 plt.savefig("TypeCoverage_vs_error_ratio_PyPerformance.pdf", bbox_inches="tight")
-#plt.show()
+# plt.show()
