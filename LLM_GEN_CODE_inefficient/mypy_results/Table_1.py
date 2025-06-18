@@ -211,11 +211,11 @@ def analyze_files(model_name, base_file, model_file):
 
 
 if __name__ == "__main__":
-    """analyze_files(
+    analyze_files(
         "gpt4o",
-        "mypy_results_untyped_with_errors.json",
-        "mypy_results_gpt4o_with_errors.json",
-    )"""
+        "mypy_results_ALL_GPT40_old_with_errors_no_types.json",
+        "mypy_results_ALL_GPT40_old_with_errors_with_types.json",
+    )
     analyze_files(
         "o1-mini",
         "mypy_results_o1-mini_old_with_errors_no_types.json",
