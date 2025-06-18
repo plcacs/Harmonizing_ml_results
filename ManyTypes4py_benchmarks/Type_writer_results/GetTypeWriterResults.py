@@ -3,11 +3,11 @@ import os
 
 def process_model(mypy_file, stats_file, output_file):
     # Read the mypy results file
-    with open(f'Type_writer_results/{mypy_file}', 'r') as f:
+    with open(mypy_file, 'r') as f:
         mypy_results = json.load(f)
     
     # Read the stats file
-    with open(f'Type_writer_results/{stats_file}', 'r') as f:
+    with open(stats_file, 'r') as f:
         stats_equal = json.load(f)
     
     # Find files where base_error_count == 0 but llm_error_count > 0
@@ -23,7 +23,7 @@ def process_model(mypy_file, stats_file, output_file):
             output[filename] = stats_equal[filename]
     
     # Save the output to a new JSON file
-    with open(f'Type_writer_results/{output_file}', 'w') as f:
+    with open(output_file, 'w') as f:
         json.dump(output, f, indent=2)
 
 def main():

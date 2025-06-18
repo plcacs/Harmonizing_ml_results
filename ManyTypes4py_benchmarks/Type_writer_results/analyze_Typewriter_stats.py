@@ -1,6 +1,7 @@
 import json
 
 json_files = ['gpt4O_stats_equal.json', 'deepseek_stats_equal.json', 'o1_mini_stats_equal.json']
+error_count_files = ['llm_error_only_results_gpt4.json', 'llm_error_only_results_deepseek.json', 'llm_error_only_results_o1_mini.json']
 
 def analyze_stats(stats_data, model_name):
     total_files = len(stats_data)
@@ -23,11 +24,12 @@ def analyze_stats(stats_data, model_name):
     print(f"Number of files with errors (error_count > 0): {files_with_errors}")
     print(f"Average time taken for files with errors: {avg_time_with_errors:.2f}")
     print(f"Number of files without errors (error_count = 0): {files_without_errors}")
+    print(f"Percentage of files without errors: {(files_without_errors/total_files)*100:.2f}%")
     print(f"Average time taken for files without errors: {avg_time_without_errors:.2f}")
     print(f"Average annotation difference for files without errors: {avg_annotation_diff_without_errors:.2f}")
     print(f"Number of files with score > 0 and time_taken > 2000: {files_with_score_and_time}")
 
-for json_file in json_files:
+for json_file in error_count_files:
     with open(json_file, 'r') as f:
         stats_data = json.load(f)
     analyze_stats(stats_data, json_file)
