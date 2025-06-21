@@ -89,7 +89,10 @@ def has_type_errors(errors):
 def count_type_errors(errors):
     error_codes = [extract_error_code(error) for error in errors if error]
     error_codes = [code for code in error_codes if code]  # Filter out empty strings
-    return sum(1 for code in error_codes if code not in non_type_related_errors)
+    for code in error_codes:
+        if code not in non_type_related_errors:
+            return 0
+    return 1
 
 
 # Models to evaluate
