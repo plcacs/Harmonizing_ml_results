@@ -94,11 +94,6 @@ def get_strict_type_error_files(json_file):
 
 
 # List of JSON files to process
-analysis_files = [
-    "analysis_deepseek.json",
-    "analysis_gpt4o.json",
-    "analysis_o1-mini.json",
-]
 llm_mypy_results = [
     "mypy_results_deepseek_with_errors.json",
     "mypy_results_gpt4o_with_errors.json",
