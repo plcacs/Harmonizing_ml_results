@@ -71,7 +71,7 @@ def collect_type_hints(code: str):
 
 # Step 2: Type checking function
 def typecheck(code: str) -> int:
-    with open("temp_file.py", "w",encoding='utf-8') as f:
+    with open("temp_file2.py", "w",encoding='utf-8') as f:
         f.write(code)
     command = [
             "mypy",
@@ -80,7 +80,7 @@ def typecheck(code: str) -> int:
             "--no-incremental",
             "--disable-error-code=no-redef",
             "--cache-dir=/dev/null",  # Avoid cache
-            "temp_file.py",
+            "temp_file2.py",
         ]
     result = subprocess.run(command, capture_output=True, text=True, check=False)
     error_count = sum(1 for line in result.stdout.splitlines() if "error:" in line)
@@ -140,18 +140,11 @@ def load_json_file(filename):
     with open(filename, 'r') as f:
         return json.load(f)
 
-def analyze_files(model_name, base_file, model_file):
-    print(f"Analyzing {model_name} with {base_file} and {model_file}")
-    # Load both JSON files
-    no_type = load_json_file(base_file)
-    model = load_json_file(model_file)
-
-    # Precompute sets
-    all_keys = set(no_type.keys()) | set(model.keys())
-   
-    # LLM-only failures: error_count == 0 in base but > 0 in model
-    llm_only_failures = [k for k in all_keys if k in no_type and k in model and no_type[k]['error_count'] == 0 and model[k]['error_count'] > 0]
-    return set(llm_only_failures)
+def get_llm_only_failures(json_file_path):
+    """Load the merged JSON file and return all keys as llm_only_failures"""
+    with open(json_file_path, 'r') as f:
+        data = json.load(f)
+    return set(data.keys())
 
 def main(input_file: str,start_time: float):
   
@@ -186,9 +179,13 @@ def process_type_analysis_results(directory, output_file,llm_only_failures):
     #    failed_files = set(json.load(f))
 
     for file_path in glob.glob(os.path.join(directory, "**", "*.py"), recursive=True):
-        if os.path.exists(file_path) and file_path not in updated_results:
+        if os.path.exists(file_path):
             file_key = os.path.basename(file_path)
             if file_key not in llm_only_failures:
+                continue
+            # Skip if file already exists in results
+            if file_key in updated_results:
+                print(f"Skipping {file_path} - already processed")
                 continue
             print(f"Processing: {file_path}")
             start_time = time.time()
@@ -214,5 +211,5 @@ def process_type_analysis_results(directory, output_file,llm_only_failures):
     print(f"Updated results saved to {output_file}")
 
 if __name__ == "__main__":
-    llm_only_failures=analyze_files("o1_mini", "mypy_results\mypy_results_no_type.json", "mypy_results\mypy_results_o1_mini_with_errors.json") 
-    process_type_analysis_results("o1_mini", "o1_mini_stats_original.json",llm_only_failures)
+    llm_only_failures = get_llm_only_failures("mypy_results/Filtered_type_errors/merged_gpt4o.json")
+    process_type_analysis_results("gpt4o", "gpt4O_stats_equal.json", llm_only_failures)

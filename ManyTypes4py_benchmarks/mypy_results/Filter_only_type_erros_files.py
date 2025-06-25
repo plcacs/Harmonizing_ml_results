@@ -1,144 +1,69 @@
 import json
 import os
 
-type_error_keywords = [
-    "incompatible type",
-    "has type",
-    "expected",
-    "type error",
-    "return value type",
-    "argument",
-    "type mismatch",
-    "invalid type",
-    "type hint",
-    "typed",
-    "assignment",
-    "call-arg",
-    "var-annotated",
-]
 
-
-def is_type_error(msg):
-    return any(k in msg.lower() for k in type_error_keywords)
-
-
-def extract_error_code(error):
-    # Extract error code from the end of the message, e.g., "[arg-type]" from "... [arg-type]"
-    if "[" in error and "]" in error:
-        return error[error.rindex("[") + 1 : error.rindex("]")]
-    return ""
-
-
-non_type_related_errors = [
-    "name-defined",
-    "import",
-    "syntax",
-    "no-redef",
-    "unused-ignore",
-    "override-without-super",
-    "redundant-cast",
-    "literal-required",
-    "typeddict-unknown-key",
-    "typeddict-item",
-    "truthy-function",
-    "str-bytes-safe",
-    "unused-coroutine",
-    "explicit-override",
-    "truthy-iterable",
-    "redundant-self",
-    "redundant-await",
-    "unreachable",
-]
-
-
-def has_syntax_error(errors):
-    return any(
-        error_type in error.lower()
-        for error in errors
-        for error_type in ["syntax", "empty_body", "name_defined"]
-    )
-
-
-def get_strict_type_error_files(json_file):
-    with open(json_file) as f:
-        data = json.load(f)
-
-    strict_type_error_files = []
-    for fname, details in data.items():
-        errors = details.get("errors", [])
-        if has_syntax_error(errors):
-            continue
-        if details.get("error_count", 0) == 0:
-            continue
-        error_codes = [extract_error_code(error) for error in errors if error]
-        error_codes = [code for code in error_codes if code]
-        is_type_error = True
-        for error_code in error_codes:
-            if error_code in non_type_related_errors:
-                is_type_error = False
-                break
-
-        if len(error_codes) > 0 and is_type_error:
-            strict_type_error_files.append(fname)
-        """error_msgs = [msg for msg in details.get("errors", []) if "Found" not in msg]
-        if (
-            error_msgs
-            and all(is_type_error(msg) for msg in error_msgs)
-            and all(
-                "syntax" not in msg.lower() and "eof" not in msg.lower()
-                for msg in error_msgs
-            )
-        ):
-            strict_type_error_files.append(fname)"""
-    return strict_type_error_files
-
-
-# List of JSON files to process
+# List of analysis files to process
 analysis_files = [
     "analysis_deepseek.json",
     "analysis_gpt4o.json",
     "analysis_o1-mini.json",
 ]
+
+# Corresponding mypy results files
 llm_mypy_results = [
     "mypy_results_deepseek_with_errors.json",
     "mypy_results_gpt4o_with_errors.json",
     "mypy_results_o1_mini_with_errors.json",
 ]
+
 base_file = "mypy_results_untyped_with_errors.json"
 
 # Create output directory if it doesn't exist
 output_dir = "Filtered_type_errors"
 os.makedirs(output_dir, exist_ok=True)
 
-# Process each file and get strict type error files
-results = {}
-for json_file in llm_mypy_results:
-    results[json_file] = get_strict_type_error_files(json_file)
-    print(f"\nFiles with strict type errors in {json_file}: {len(results[json_file])}")
+# Load base file data
+with open(base_file) as f:
+    base_data = json.load(f)
 
-# Merge results with base file
-merged_results = {}
-for json_file in llm_mypy_results:
-    with open(json_file) as f:
-        llm_data = json.load(f)
-    with open(base_file) as f:
-        base_data = json.load(f)
-
+# Process each analysis file
+for i, analysis_file in enumerate(analysis_files):
+    print(f"\nProcessing {analysis_file}...")
+    
+    # Load analysis file
+    with open(analysis_file) as f:
+        analysis_data = json.load(f)
+    
+    # Load corresponding mypy results
+    mypy_file = llm_mypy_results[i]
+    with open(mypy_file) as f:
+        mypy_data = json.load(f)
+    
+    # Extract files from "llm_only_failures"
+    llm_only_failures = analysis_data.get("files", {}).get("llm_only_failures", [])
+    print(f"Found {len(llm_only_failures)} files in llm_only_failures")
+    
+    # Merge results for each file
     merged_data = {}
-    for fname in results[json_file]:
-        if fname in base_data:
+    for fname in llm_only_failures:
+        if fname in base_data and fname in mypy_data:
             merged_data[fname] = {
                 "base_stats": base_data[fname]["stats"],
-                "llm_stats": llm_data[fname]["stats"],
+                "llm_stats": mypy_data[fname]["stats"],
                 "base_error_count": base_data[fname]["error_count"],
-                "llm_error_count": llm_data[fname]["error_count"],
+                "llm_error_count": mypy_data[fname]["error_count"],
                 "base_errors": base_data[fname]["errors"],
-                "llm_errors": llm_data[fname]["errors"],
+                "llm_errors": mypy_data[fname]["errors"],
             }
-
+        else:
+            print(f"Warning: File {fname} not found in either base or mypy data")
+    
+    # Save merged results
+    
     output_file = os.path.join(
-        output_dir, f"merged_{json_file.replace('_with_errors.json', '')}.json"
+        output_dir, f"merged_{analysis_file.replace('analysis_', '').replace('.json', '')}.json"
     )
     with open(output_file, "w") as f:
         json.dump(merged_data, f, indent=2)
+    
     print(f"Created merged file: {output_file} with {len(merged_data)} entries")

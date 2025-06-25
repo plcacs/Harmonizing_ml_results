@@ -1,372 +1,369 @@
-"""Support for manual alarms controllable via MQTT."""
-from __future__ import annotations
-import datetime
-import logging
-from typing import Any, Callable, Dict, Optional
-import voluptuous as vol
-from homeassistant.components import mqtt
-from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity, AlarmControlPanelEntityFeature, AlarmControlPanelState, CodeFormat
-from homeassistant.const import CONF_CODE, CONF_DELAY_TIME, CONF_DISARM_AFTER_TRIGGER, CONF_NAME, CONF_PENDING_TIME, CONF_PLATFORM, CONF_TRIGGER_TIME
-from homeassistant.core import Event, HomeAssistant, callback
-from homeassistant.exceptions import HomeAssistantError
-from homeassistant.helpers import config_validation as cv
-from homeassistant.helpers.entity_platform import AddEntitiesCallback
-from homeassistant.helpers.event import async_track_point_in_time, async_track_state_change_event
-from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
-from homeassistant.util import dt as dt_util
-_LOGGER = logging.getLogger(__name__)
-CONF_CODE_TEMPLATE = 'code_template'
-CONF_CODE_ARM_REQUIRED = 'code_arm_required'
-CONF_PAYLOAD_DISARM = 'payload_disarm'
-CONF_PAYLOAD_ARM_HOME = 'payload_arm_home'
-CONF_PAYLOAD_ARM_AWAY = 'payload_arm_away'
-CONF_PAYLOAD_ARM_NIGHT = 'payload_arm_night'
-CONF_PAYLOAD_ARM_VACATION = 'payload_arm_vacation'
-CONF_PAYLOAD_ARM_CUSTOM_BYPASS = 'payload_arm_custom_bypass'
-CONF_ALARM_ARMED_AWAY = 'armed_away'
-CONF_ALARM_ARMED_CUSTOM_BYPASS = 'armed_custom_bypass'
-CONF_ALARM_ARMED_HOME = 'armed_home'
-CONF_ALARM_ARMED_NIGHT = 'armed_night'
-CONF_ALARM_ARMED_VACATION = 'armed_vacation'
-CONF_ALARM_DISARMED = 'disarmed'
-CONF_ALARM_PENDING = 'pending'
-CONF_ALARM_TRIGGERED = 'triggered'
-DEFAULT_ALARM_NAME = 'HA Alarm'
-DEFAULT_DELAY_TIME = datetime.timedelta(seconds=0)
-DEFAULT_PENDING_TIME = datetime.timedelta(seconds=60)
-DEFAULT_TRIGGER_TIME = datetime.timedelta(seconds=120)
-DEFAULT_DISARM_AFTER_TRIGGER = False
-DEFAULT_ARM_AWAY = 'ARM_AWAY'
-DEFAULT_ARM_HOME = 'ARM_HOME'
-DEFAULT_ARM_NIGHT = 'ARM_NIGHT'
-DEFAULT_ARM_VACATION = 'ARM_VACATION'
-DEFAULT_ARM_CUSTOM_BYPASS = 'ARM_CUSTOM_BYPASS'
-DEFAULT_DISARM = 'DISARM'
-SUPPORTED_STATES = [AlarmControlPanelState.DISARMED, AlarmControlPanelState
-    .ARMED_AWAY, AlarmControlPanelState.ARMED_HOME, AlarmControlPanelState.
-    ARMED_NIGHT, AlarmControlPanelState.ARMED_VACATION,
-    AlarmControlPanelState.ARMED_CUSTOM_BYPASS, AlarmControlPanelState.
-    TRIGGERED]
-SUPPORTED_PRETRIGGER_STATES = [state for state in SUPPORTED_STATES if state !=
-    AlarmControlPanelState.TRIGGERED]
-SUPPORTED_PENDING_STATES = [state for state in SUPPORTED_STATES if state !=
-    AlarmControlPanelState.DISARMED]
-ATTR_PRE_PENDING_STATE = 'pre_pending_state'
-ATTR_POST_PENDING_STATE = 'post_pending_state'
+from collections import deque
+from http import HTTPStatus
+from statistics import median
+from typing import Any, Dict, Deque, Set, Optional, cast
+import pytest
+from faust import Event, Stream, Table, Topic
+from faust.transport.consumer import Consumer
+from faust.transport.producer import Producer
+from faust.types import Message, TP
+from faust.sensors.monitor import Monitor, TableState
+from mode.utils.mocks import AsyncMock, Mock
+from typing_extensions import TypedDict
+TP1 = TP('foo', 0)
 
 
-def _state_validator(config) ->Dict[str, Any]:
-    """Validate the state."""
-    for state in SUPPORTED_PRETRIGGER_STATES:
-        if CONF_DELAY_TIME not in config[state]:
-            config[state] = config[state] | {CONF_DELAY_TIME: config[
-                CONF_DELAY_TIME]}
-        if CONF_TRIGGER_TIME not in config[state]:
-            config[state] = config[state] | {CONF_TRIGGER_TIME: config[
-                CONF_TRIGGER_TIME]}
-    for state in SUPPORTED_PENDING_STATES:
-        if CONF_PENDING_TIME not in config[state]:
-            config[state] = config[state] | {CONF_PENDING_TIME: config[
-                CONF_PENDING_TIME]}
-    return config
+class StateDict(TypedDict):
+    time_in: Optional[float]
+    time_out: Optional[float]
+    time_total: Optional[float]
 
 
-def _state_schema(state: AlarmControlPanelState) ->vol.Schema:
-    """Validate the state."""
-    schema: Dict[str, Any] = {}
-    if state in SUPPORTED_PRETRIGGER_STATES:
-        schema[vol.Optional(CONF_DELAY_TIME)] = vol.All(cv.time_period, cv.
-            positive_timedelta)
-        schema[vol.Optional(CONF_TRIGGER_TIME)] = vol.All(cv.time_period,
-            cv.positive_timedelta)
-    if state in SUPPORTED_PENDING_STATES:
-        schema[vol.Optional(CONF_PENDING_TIME)] = vol.All(cv.time_period,
-            cv.positive_timedelta)
-    return vol.Schema(schema)
+class RebalanceStateDict(TypedDict):
+    time_start: float
+    time_return: Optional[float]
+    latency_return: Optional[float]
+    time_end: Optional[float]
+    latency_end: Optional[float]
 
 
-PLATFORM_SCHEMA = vol.Schema(vol.All(mqtt.config.MQTT_BASE_SCHEMA.extend({
-    vol.Required(CONF_PLATFORM): 'manual_mqtt', vol.Optional(CONF_NAME,
-    default=DEFAULT_ALARM_NAME): cv.string, vol.Exclusive(CONF_CODE,
-    'code validation'): cv.string, vol.Exclusive(CONF_CODE_TEMPLATE,
-    'code validation'): cv.template, vol.Optional(CONF_DELAY_TIME, default=
-    DEFAULT_DELAY_TIME): vol.All(cv.time_period, cv.positive_timedelta),
-    vol.Optional(CONF_PENDING_TIME, default=DEFAULT_PENDING_TIME): vol.All(
-    cv.time_period, cv.positive_timedelta), vol.Optional(CONF_TRIGGER_TIME,
-    default=DEFAULT_TRIGGER_TIME): vol.All(cv.time_period, cv.
-    positive_timedelta), vol.Optional(CONF_DISARM_AFTER_TRIGGER, default=
-    DEFAULT_DISARM_AFTER_TRIGGER): cv.boolean, vol.Optional(
-    CONF_ALARM_ARMED_AWAY, default={}): _state_schema(
-    AlarmControlPanelState.ARMED_AWAY), vol.Optional(CONF_ALARM_ARMED_HOME,
-    default={}): _state_schema(AlarmControlPanelState.ARMED_HOME), vol.
-    Optional(CONF_ALARM_ARMED_NIGHT, default={}): _state_schema(
-    AlarmControlPanelState.ARMED_NIGHT), vol.Optional(
-    CONF_ALARM_ARMED_VACATION, default={}): _state_schema(
-    AlarmControlPanelState.ARMED_VACATION), vol.Optional(
-    CONF_ALARM_ARMED_CUSTOM_BYPASS, default={}): _state_schema(
-    AlarmControlPanelState.ARMED_CUSTOM_BYPASS), vol.Optional(
-    CONF_ALARM_DISARMED, default={}): _state_schema(AlarmControlPanelState.
-    DISARMED), vol.Optional(CONF_ALARM_TRIGGERED, default={}):
-    _state_schema(AlarmControlPanelState.TRIGGERED), vol.Required(mqtt.
-    CONF_COMMAND_TOPIC): mqtt.valid_publish_topic, vol.Required(mqtt.
-    CONF_STATE_TOPIC): mqtt.valid_subscribe_topic, vol.Optional(
-    CONF_CODE_ARM_REQUIRED, default=True): cv.boolean, vol.Optional(
-    CONF_PAYLOAD_ARM_AWAY, default=DEFAULT_ARM_AWAY): cv.string, vol.
-    Optional(CONF_PAYLOAD_ARM_HOME, default=DEFAULT_ARM_HOME): cv.string,
-    vol.Optional(CONF_PAYLOAD_ARM_NIGHT, default=DEFAULT_ARM_NIGHT): cv.
-    string, vol.Optional(CONF_PAYLOAD_ARM_VACATION, default=
-    DEFAULT_ARM_VACATION): cv.string, vol.Optional(
-    CONF_PAYLOAD_ARM_CUSTOM_BYPASS, default=DEFAULT_ARM_CUSTOM_BYPASS): cv.
-    string, vol.Optional(CONF_PAYLOAD_DISARM, default=DEFAULT_DISARM): cv.
-    string}), _state_validator))
+class WebRequestStateDict(TypedDict):
+    time_start: float
+    time_end: Optional[float]
+    latency_end: Optional[float]
+    status_code: Optional[HTTPStatus]
 
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType,
-    add_entities: AddEntitiesCallback, discovery_info: Optional[
-    DiscoveryInfoType]=None) ->None:
-    """Set up the manual MQTT alarm platform."""
-    if not await mqtt.async_wait_for_mqtt_client(hass):
-        _LOGGER.error('MQTT integration is not available')
-        return
-    add_entities([ManualMQTTAlarm(hass, config[CONF_NAME], config.get(
-        CONF_CODE), config.get(CONF_CODE_TEMPLATE), config.get(
-        CONF_DISARM_AFTER_TRIGGER, DEFAULT_DISARM_AFTER_TRIGGER), config.
-        get(mqtt.CONF_STATE_TOPIC), config.get(mqtt.CONF_COMMAND_TOPIC),
-        config.get(mqtt.CONF_QOS), config.get(CONF_CODE_ARM_REQUIRED),
-        config.get(CONF_PAYLOAD_DISARM), config.get(CONF_PAYLOAD_ARM_HOME),
-        config.get(CONF_PAYLOAD_ARM_AWAY), config.get(
-        CONF_PAYLOAD_ARM_NIGHT), config.get(CONF_PAYLOAD_ARM_VACATION),
-        config.get(CONF_PAYLOAD_ARM_CUSTOM_BYPASS), config)])
+class test_Monitor:
 
+    @pytest.fixture
+    def time(self) ->Mock:
+        timefun = Mock(name='time()')
+        timefun.return_value = 101.1
+        return timefun
 
-class ManualMQTTAlarm(AlarmControlPanelEntity):
-    """Representation of an alarm status.
+    @pytest.fixture
+    def message(self) ->Mock:
+        return Mock(name='message', autospec=Message)
 
-    When armed, will be pending for 'pending_time', after that armed.
-    When triggered, will be pending for the triggering state's 'delay_time'
-    plus the triggered state's 'pending_time'.
-    After that will be triggered for 'trigger_time', after that we return to
-    the previous state or disarm if `disarm_after_trigger` is true.
-    A trigger_time of zero disables the alarm_trigger service.
-    """
-    _attr_should_poll = False
-    _attr_supported_features = (AlarmControlPanelEntityFeature.ARM_HOME |
-        AlarmControlPanelEntityFeature.ARM_AWAY |
-        AlarmControlPanelEntityFeature.ARM_NIGHT |
-        AlarmControlPanelEntityFeature.ARM_VACATION |
-        AlarmControlPanelEntityFeature.TRIGGER |
-        AlarmControlPanelEntityFeature.ARM_CUSTOM_BYPASS)
+    @pytest.fixture
+    def stream(self) ->Mock:
+        return Mock(name='stream', autospec=Stream)
 
-    def __init__(self, hass: HomeAssistant, name: str, code: Optional[str |
-        cv.Template], code_template: Optional[cv.Template],
-        disarm_after_trigger: bool, state_topic: str, command_topic: str,
-        qos: Optional[int], code_arm_required: bool, payload_disarm: str,
-        payload_arm_home: str, payload_arm_away: str, payload_arm_night:
-        str, payload_arm_vacation: str, payload_arm_custom_bypass: str,
-        config: ConfigType) ->None:
-        """Init the manual MQTT alarm panel."""
-        self._state: AlarmControlPanelState = AlarmControlPanelState.DISARMED
-        self._hass = hass
-        self._attr_name = name
-        if code_template:
-            self._code = code_template
-        else:
-            self._code = code or None
-        self._disarm_after_trigger: bool = disarm_after_trigger
-        self._previous_state: AlarmControlPanelState = self._state
-        self._state_ts: datetime.datetime | None = None
-        self._delay_time_by_state: Dict[AlarmControlPanelState, datetime.
-            timedelta] = {state: config[state][CONF_DELAY_TIME] for state in
-            SUPPORTED_PRETRIGGER_STATES}
-        self._trigger_time_by_state: Dict[AlarmControlPanelState, datetime.
-            timedelta] = {state: config[state][CONF_TRIGGER_TIME] for state in
-            SUPPORTED_PRETRIGGER_STATES}
-        self._pending_time_by_state: Dict[AlarmControlPanelState, datetime.
-            timedelta] = {state: config[state][CONF_PENDING_TIME] for state in
-            SUPPORTED_PENDING_STATES}
-        self._state_topic: str = state_topic
-        self._command_topic: str = command_topic
-        self._qos: Optional[int] = qos
-        self._attr_code_arm_required: bool = code_arm_required
-        self._payload_disarm: str = payload_disarm
-        self._payload_arm_home: str = payload_arm_home
-        self._payload_arm_away: str = payload_arm_away
-        self._payload_arm_night: str = payload_arm_night
-        self._payload_arm_vacation: str = payload_arm_vacation
-        self._payload_arm_custom_bypass: str = payload_arm_custom_bypass
+    @pytest.fixture
+    def topic(self) ->Mock:
+        return Mock(name='topic', autospec=Topic)
 
-    @property
-    def alarm_state(self) ->AlarmControlPanelState:
-        """Return the state of the device."""
-        if self._state == AlarmControlPanelState.TRIGGERED:
-            if self._within_pending_time(self._state):
-                return AlarmControlPanelState.PENDING
-            trigger_time = self._trigger_time_by_state[self._previous_state]
-            if self._state_ts and self._state_ts + self._pending_time(self.
-                _state) + trigger_time < dt_util.utcnow():
-                if self._disarm_after_trigger:
-                    return AlarmControlPanelState.DISARMED
-                self._state = self._previous_state
-                return self._state
-        if (self._state in SUPPORTED_PENDING_STATES and self.
-            _within_pending_time(self._state)):
-            return AlarmControlPanelState.PENDING
-        return self._state
+    @pytest.fixture
+    def event(self) ->Mock:
+        return Mock(name='event', autospec=Event)
 
-    @property
-    def _active_state(self) ->AlarmControlPanelState:
-        """Get the current state."""
-        if self.state == AlarmControlPanelState.PENDING:
-            return self._previous_state
-        return self._state
+    @pytest.fixture
+    def table(self) ->Mock:
+        return Mock(name='table', autospec=Table)
 
-    def _pending_time(self, state: AlarmControlPanelState
-        ) ->datetime.timedelta:
-        """Get the pending time."""
-        pending_time = self._pending_time_by_state[state]
-        if (state == AlarmControlPanelState.TRIGGERED and self.
-            _previous_state in self._delay_time_by_state):
-            pending_time += self._delay_time_by_state[self._previous_state]
-        return pending_time
+    @pytest.fixture
+    def mon(self, *, time: Mock) ->Monitor:
+        mon = self.create_monitor()
+        mon.time = time
+        return mon
 
-    def _within_pending_time(self, state: AlarmControlPanelState) ->bool:
-        """Get if the action is in the pending time window."""
-        if self._state_ts is None:
-            return False
-        return self._state_ts + self._pending_time(state) > dt_util.utcnow()
+    def create_monitor(self, **kwargs: Any) ->Monitor:
+        return Monitor(**kwargs)
 
-    @property
-    def code_format(self) ->Optional[CodeFormat]:
-        """Return one or more digits/characters."""
-        if self._code is None:
-            return None
-        if isinstance(self._code, str) and self._code.isdigit():
-            return CodeFormat.NUMBER
-        return CodeFormat.TEXT
+    def create_populated_monitor(self, messages_active: int=101,
+        messages_received_total: int=1001, messages_sent: int=303,
+        messages_s: int=1000, messages_received_by_topic: Dict[str, int]={
+        'foo': 103}, events_active: int=202, events_total: int=2002,
+        events_s: int=3000, events_runtime_avg: float=0.03, events_by_task:
+        Dict[str, int]={'mytask': 105}, events_by_stream: Dict[str, int]={
+        'stream': 105}, commit_latency: List[float]=[1.03, 2.33, 16.33],
+        send_latency: List[float]=[0.01, 0.04, 0.06, 0.01],
+        topic_buffer_full: Dict[str, int]={'topic': 808}, **kwargs: Any
+        ) ->Monitor:
+        return self.create_monitor(messages_active=messages_active,
+            messages_received_total=messages_received_total, messages_sent=
+            messages_sent, messages_s=messages_s,
+            messages_received_by_topic=messages_received_by_topic,
+            events_active=events_active, events_total=events_total,
+            events_s=events_s, events_runtime_avg=events_runtime_avg,
+            events_by_task=events_by_task, events_by_stream=
+            events_by_stream, commit_latency=commit_latency, send_latency=
+            send_latency, topic_buffer_full=topic_buffer_full, **kwargs)
 
-    async def async_alarm_disarm(self, code: Optional[str]=None) ->None:
-        """Send disarm command."""
-        self._async_validate_code(code, AlarmControlPanelState.DISARMED)
-        self._state = AlarmControlPanelState.DISARMED
-        self._state_ts = dt_util.utcnow()
-        self.async_write_ha_state()
+    def test_init_max_avg_history(self) ->None:
+        assert Monitor().max_avg_history == Monitor.max_avg_history
 
-    async def async_alarm_arm_home(self, code: Optional[str]=None) ->None:
-        """Send arm home command."""
-        self._async_validate_code(code, AlarmControlPanelState.ARMED_HOME)
-        self._async_update_state(AlarmControlPanelState.ARMED_HOME)
+    def test_init_max_avg_history__default(self) ->None:
+        assert Monitor(max_avg_history=33).max_avg_history == 33
 
-    async def async_alarm_arm_away(self, code: Optional[str]=None) ->None:
-        """Send arm away command."""
-        self._async_validate_code(code, AlarmControlPanelState.ARMED_AWAY)
-        self._async_update_state(AlarmControlPanelState.ARMED_AWAY)
+    def test_init_max_commit_latency_history(self) ->None:
+        assert Monitor(
+            ).max_commit_latency_history == Monitor.max_commit_latency_history
 
-    async def async_alarm_arm_night(self, code: Optional[str]=None) ->None:
-        """Send arm night command."""
-        self._async_validate_code(code, AlarmControlPanelState.ARMED_NIGHT)
-        self._async_update_state(AlarmControlPanelState.ARMED_NIGHT)
+    def test_init_max_commit_latency_history__default(self) ->None:
+        assert Monitor(max_commit_latency_history=33
+            ).max_commit_latency_history == 33
 
-    async def async_alarm_arm_vacation(self, code: Optional[str]=None) ->None:
-        """Send arm vacation command."""
-        self._async_validate_code(code, AlarmControlPanelState.ARMED_VACATION)
-        self._async_update_state(AlarmControlPanelState.ARMED_VACATION)
+    def test_init_max_send_latency_history(self) ->None:
+        assert Monitor(
+            ).max_send_latency_history == Monitor.max_send_latency_history
 
-    async def async_alarm_arm_custom_bypass(self, code: Optional[str]=None
+    def test_init_max_send_latency_history__default(self) ->None:
+        assert Monitor(max_send_latency_history=33
+            ).max_send_latency_history == 33
+
+    def test_init_max_assignment_latency_history(self) ->None:
+        assert Monitor(
+            ).max_assignment_latency_history == Monitor.max_assignment_latency_history
+
+    def test_init_max_assignment_latency_history__default(self) ->None:
+        assert Monitor(max_assignment_latency_history=33
+            ).max_assignment_latency_history == 33
+
+    def test_init_rebalances(self) ->None:
+        assert Monitor(rebalances=99).rebalances == 99
+
+    def test_asdict(self) ->None:
+        mon = self.create_populated_monitor()
+        assert mon.asdict() == {'messages_active': mon.messages_active,
+            'messages_received_total': mon.messages_received_total,
+            'messages_sent': mon.messages_sent, 'messages_sent_by_topic':
+            mon.messages_sent_by_topic, 'messages_s': mon.messages_s,
+            'messages_received_by_topic': mon.messages_received_by_topic,
+            'events_active': mon.events_active, 'events_total': mon.
+            events_total, 'events_s': mon.events_s, 'events_runtime_avg':
+            mon.events_runtime_avg, 'events_by_task': mon.
+            _events_by_task_dict(), 'events_by_stream': mon.
+            _events_by_stream_dict(), 'commit_latency': mon.commit_latency,
+            'send_latency': mon.send_latency, 'assignment_latency': mon.
+            assignment_latency, 'assignments_completed': mon.
+            assignments_completed, 'assignments_failed': mon.
+            assignments_failed, 'send_errors': mon.send_errors,
+            'topic_buffer_full': mon._topic_buffer_full_dict(),
+            'metric_counts': mon._metric_counts_dict(), 'tables': {name:
+            table.asdict() for name, table in mon.tables.items()},
+            'topic_committed_offsets': {}, 'topic_read_offsets': {},
+            'topic_end_offsets': {}, 'rebalance_end_avg': mon.
+            rebalance_end_avg, 'rebalance_end_latency': mon.
+            rebalance_end_latency, 'rebalance_return_avg': mon.
+            rebalance_return_avg, 'rebalance_return_latency': mon.
+            rebalance_return_latency, 'rebalances': mon.rebalances,
+            'http_response_codes': mon._http_response_codes_dict(),
+            'http_response_latency': mon.http_response_latency,
+            'http_response_latency_avg': mon.http_response_latency_avg}
+
+    def test_on_message_in(self, *, message: Mock, mon: Monitor, time: Mock
         ) ->None:
-        """Send arm custom bypass command."""
-        self._async_validate_code(code, AlarmControlPanelState.
-            ARMED_CUSTOM_BYPASS)
-        self._async_update_state(AlarmControlPanelState.ARMED_CUSTOM_BYPASS)
+        for i in range(1, 11):
+            offset = 3 + i
+            mon.on_message_in(TP1, offset, message)
+            assert mon.messages_received_total == i
+            assert mon.messages_active == i
+            assert mon.messages_received_by_topic[TP1.topic] == i
+            assert message.time_in is time()
+            assert mon.tp_read_offsets[TP1] == offset
 
-    async def async_alarm_trigger(self, code: Optional[str]=None) ->None:
-        """Send alarm trigger command.
+    def test_on_stream_event_in(self, *, event: Mock, mon: Monitor, stream:
+        Mock, time: Mock) ->None:
+        for i in range(1, 11):
+            state = mon.on_stream_event_in(TP1, 3 + i, stream, event)
+            assert mon.events_total == i
+            assert mon.events_by_stream[str(stream)] == i
+            assert mon.events_by_task[str(stream.task_owner)] == i
+            assert mon.events_active == i
+            assert state == {'time_in': time(), 'time_out': None,
+                'time_total': None}
 
-        No code needed, a trigger time of zero for the current state
-        disables the alarm.
-        """
-        if not self._trigger_time_by_state.get(self._active_state, datetime
-            .timedelta()):
-            return
-        self._async_update_state(AlarmControlPanelState.TRIGGERED)
+    def test_on_stream_event_out(self, *, event: Mock, mon: Monitor, stream:
+        Mock, time: Mock) ->None:
+        other_time = 303.3
+        mon.events_active = 10
+        for i in range(1, 11):
+            state: StateDict = {'time_in': other_time, 'time_out': None,
+                'time_total': None}
+            mon.on_stream_event_out(TP1, 3 + i, stream, event, state)
+            assert mon.events_active == 10 - i
+            assert state == {'time_in': other_time, 'time_out': time(),
+                'time_total': time() - other_time}
+            assert mon.events_runtime[-1] == time() - other_time
 
-    def _async_update_state(self, state: AlarmControlPanelState) ->None:
-        """Update the state."""
-        if self._state == state:
-            return
-        self._previous_state = self._state
-        self._state = state
-        self._state_ts = dt_util.utcnow()
-        self.async_write_ha_state()
-        pending_time = self._pending_time(state)
-        if state == AlarmControlPanelState.TRIGGERED:
-            async_track_point_in_time(self._hass, self.
-                async_scheduled_update, self._state_ts + pending_time)
-            trigger_time = self._trigger_time_by_state.get(self.
-                _previous_state, datetime.timedelta())
-            async_track_point_in_time(self._hass, self.
-                async_scheduled_update, self._state_ts + pending_time +
-                trigger_time)
-        elif state in SUPPORTED_PENDING_STATES and pending_time:
-            async_track_point_in_time(self._hass, self.
-                async_scheduled_update, self._state_ts + pending_time)
+    def test_on_stream_event_out__missing_state(self, *, event: Mock, mon:
+        Monitor, stream: Mock, time: Mock) ->None:
+        mon.on_stream_event_out(TP1, 3, stream, event, None)
 
-    def _async_validate_code(self, code: Optional[str], state:
-        AlarmControlPanelState) ->None:
-        """Validate given code."""
-        if state != AlarmControlPanelState.DISARMED and (not self.
-            code_arm_required or self._code is None):
-            return
-        if isinstance(self._code, str):
-            alarm_code = self._code
-        else:
-            alarm_code = self._code.async_render(from_state=self._state,
-                to_state=state, parse_result=False)
-        if not alarm_code or code == alarm_code:
-            return
-        raise HomeAssistantError('Invalid alarm code provided')
+    def test_on_topic_buffer_full(self, *, mon: Monitor) ->None:
+        for i in range(1, 11):
+            mon.on_topic_buffer_full(TP1)
+            assert mon.topic_buffer_full[TP1] == i
 
-    @property
-    def extra_state_attributes(self) ->Dict[str, Any]:
-        """Return the state attributes."""
-        if self.state != AlarmControlPanelState.PENDING:
-            return {}
-        return {ATTR_PRE_PENDING_STATE: self._previous_state,
-            ATTR_POST_PENDING_STATE: self._state}
+    def test_on_message_out(self, *, message: Mock, mon: Monitor, time: Mock
+        ) ->None:
+        mon.messages_active = 10
+        message.time_in = 10.7
+        for i in range(1, 11):
+            mon.on_message_out(TP1, 3 + i, message)
+            assert mon.messages_active == 10 - i
+            assert message.time_out == time()
+            assert message.time_total == time() - message.time_in
+        message.time_in = None
+        mon.on_message_out(TP1, 3 + 11, message)
 
-    @callback
-    def async_scheduled_update(self, now: datetime.datetime) ->None:
-        """Update state at a scheduled point in time."""
-        self.async_write_ha_state()
+    def test_on_table_get(self, *, mon: Monitor, table: Mock) ->None:
+        for i in range(1, 11):
+            mon.on_table_get(table, 'k')
+            assert mon._table_or_create(table).keys_retrieved == i
 
-    async def async_added_to_hass(self) ->None:
-        """Subscribe to MQTT events."""
-        async_track_state_change_event(self.hass, [self.entity_id], self.
-            _async_state_changed_listener)
+    def test_on_table_set(self, *, mon: Monitor, table: Mock) ->None:
+        for i in range(1, 11):
+            mon.on_table_set(table, 'k', 'v')
+            assert mon._table_or_create(table).keys_updated == i
 
-        async def message_received(msg: mqtt.MQTTMessage) ->None:
-            """Run when new MQTT message has been received."""
-            if msg.payload == self._payload_disarm:
-                await self.async_alarm_disarm(self._code)
-            elif msg.payload == self._payload_arm_home:
-                await self.async_alarm_arm_home(self._code)
-            elif msg.payload == self._payload_arm_away:
-                await self.async_alarm_arm_away(self._code)
-            elif msg.payload == self._payload_arm_night:
-                await self.async_alarm_arm_night(self._code)
-            elif msg.payload == self._payload_arm_vacation:
-                await self.async_alarm_arm_vacation(self._code)
-            elif msg.payload == self._payload_arm_custom_bypass:
-                await self.async_alarm_arm_custom_bypass(self._code)
-            else:
-                _LOGGER.warning('Received unexpected payload: %s', msg.payload)
-                return
-        await mqtt.async_subscribe(self.hass, self._command_topic,
-            message_received, self._qos)
+    def test_on_table_del(self, *, mon: Monitor, table: Mock) ->None:
+        for i in range(1, 11):
+            mon.on_table_del(table, 'k')
+            assert mon._table_or_create(table).keys_deleted == i
 
-    async def _async_state_changed_listener(self, event: Event) ->None:
-        """Publish state change to MQTT."""
-        new_state = event.data.get('new_state')
-        if new_state is None:
-            return
-        await mqtt.async_publish(self.hass, self._state_topic, new_state.
-            state, self._qos, True)
+    def test_on_commit_initiated(self, *, mon: Monitor, time: Mock) ->float:
+        return cast(float, mon.on_commit_initiated(Mock(name='consumer',
+            autospec=Consumer)))
+
+    def test_on_commit_completed(self, *, mon: Monitor, time: Mock) ->None:
+        other_time = 56.7
+        mon.on_commit_completed(Mock(name='consumer', autospec=Consumer),
+            other_time)
+        assert mon.commit_latency[-1] == time() - other_time
+
+    def test_on_send_initiated(self, *, mon: Monitor, time: Mock) ->None:
+        for i in range(1, 11):
+            state = mon.on_send_initiated(Mock(name='producer', autospec=
+                Producer), 'topic', 'message', 2, 4)
+            assert mon.messages_sent == i
+            assert mon.messages_sent_by_topic['topic'] == i
+            assert state == time()
+
+    def test_on_send_completed(self, *, mon: Monitor, time: Mock) ->None:
+        other_time = 56.7
+        mon.on_send_completed(Mock(name='producer', autospec=Producer),
+            other_time, Mock(name='metadata'))
+        assert mon.send_latency[-1] == time() - other_time
+
+    def test_on_send_error(self, *, mon: Monitor, time: Mock) ->None:
+        mon.on_send_error(Mock(name='producer', autospec=Producer), Mock(
+            name='state'), KeyError('foo'))
+        assert mon.send_errors == 1
+
+    def test_on_assignment_start(self, *, mon: Monitor, time: Mock) ->Dict[
+        str, float]:
+        state = mon.on_assignment_start(Mock(name='assignor'))
+        assert state['time_start'] == time()
+        return state
+
+    def test_on_assignment_completed(self, *, mon: Monitor, time: Mock) ->None:
+        other_time = 56.7
+        assignor = Mock(name='assignor')
+        assert mon.assignments_completed == 0
+        mon.on_assignment_completed(assignor, {'time_start': other_time})
+        assert mon.assignment_latency[-1] == time() - other_time
+        assert mon.assignments_completed == 1
+
+    def test_on_assignment_error(self, *, mon: Monitor, time: Mock) ->None:
+        other_time = 56.7
+        assignor = Mock(name='assignor')
+        assert mon.assignments_failed == 0
+        mon.on_assignment_error(assignor, {'time_start': other_time},
+            KeyError())
+        assert mon.assignment_latency[-1] == time() - other_time
+        assert mon.assignments_failed == 1
+
+    def test_on_rebalance_start(self, *, mon: Monitor, time: Mock, app: Any
+        ) ->RebalanceStateDict:
+        assert mon.rebalances == 0
+        app.rebalancing_count = 1
+        state = mon.on_rebalance_start(app)
+        assert state['time_start'] == time()
+        assert mon.rebalances == 1
+        return state
+
+    def test_on_rebalance_return(self, *, mon: Monitor, time: Mock, app: Any
+        ) ->None:
+        other_time = 56.7
+        state: RebalanceStateDict = {'time_start': other_time}
+        mon.on_rebalance_return(app, state)
+        assert mon.rebalance_return_latency[-1] == time() - other_time
+        assert state['time_return'] == time()
+        assert state['latency_return'] == time() - other_time
+
+    def test_on_rebalance_end(self, *, mon: Monitor, time: Mock, app: Any
+        ) ->None:
+        other_time = 56.7
+        state: RebalanceStateDict = {'time_start': other_time}
+        mon.on_rebalance_end(app, state)
+        assert mon.rebalance_end_latency[-1] == time() - other_time
+        assert state['time_end'] == time()
+        assert state['latency_end'] == time() - other_time
+
+    def test_on_web_request_start(self, *, mon: Monitor, time: Mock, app: Any
+        ) ->WebRequestStateDict:
+        request = Mock(name='request')
+        view = Mock(name='view')
+        state = mon.on_web_request_start(app, request, view=view)
+        assert state['time_start'] == time()
+        return state
+
+    def test_on_web_request_end(self, *, mon: Monitor, time: Mock, app: Any
+        ) ->None:
+        response = Mock(name='response')
+        response.status = 404
+        self.assert_on_web_request_end(mon, time, app, response,
+            expected_status=404)
+
+    def test_on_web_request_end__None_response(self, *, mon: Monitor, time:
+        Mock, app: Any) ->None:
+        self.assert_on_web_request_end(mon, time, app, None,
+            expected_status=500)
+
+    def assert_on_web_request_end(self, mon: Monitor, time: Mock, app: Any,
+        response: Optional[Mock], expected_status: int) ->None:
+        request = Mock(name='request')
+        view = Mock(name='view')
+        other_time = 156.9
+        state: WebRequestStateDict = {'time_start': other_time}
+        mon.on_web_request_end(app, request, response, state, view=view)
+        assert state['time_end'] == time()
+        assert state['latency_end'] == time() - other_time
+        assert state['status_code'] == HTTPStatus(expected_status)
+        assert mon.http_response_latency[-1] == time() - other_time
+        assert mon.http_response_codes[HTTPStatus(expected_status)] == 1
+
+    def test_TableState_asdict(self, *, mon: Monitor, table: Mock) ->None:
+        state = mon._table_or_create(table)
+        assert isinstance(state, TableState)
+        assert state.table is table
+        assert state.keys_retrieved == 0
+        assert state.keys_updated == 0
+        assert state.keys_deleted == 0
+        expected_asdict = {'keys_retrieved': 0, 'keys_updated': 0,
+            'keys_deleted': 0}
+        assert state.asdict() == expected_asdict
+        assert state.__reduce_keywords__() == {**state.asdict(), 'table': table
+            }
+
+    def test_on_tp_commit(self, *, mon: Monitor):
+        topic = 'foo'
+        for offset in range(20):
+            partitions = list(range(4))
+            tps = {TP(topic=topic, partition=p) for p in partitions}
+            commit_offsets = {tp: offset for tp in tps}
+            mon.on_tp_commit(commit_offsets)
+            assert all(mon.tp_committed_offsets[tp] == commit_offsets[tp] for
+                tp in tps)
+            offsets_dict = mon.asdict()['topic_committed_offsets'][topic]
+            assert all(offsets_dict[p] == offset for p in partitions)
+
+    def test_track_tp_end_offsets(self, *, mon: Monitor) ->None:
+        tp = TP(topic='foo', partition=2)
+        for offset in range(20):
+            mon.track_tp_end_offset(tp, offset)
+            assert mon.tp_end_offsets[tp] == offset
+            offsets_dict = mon
