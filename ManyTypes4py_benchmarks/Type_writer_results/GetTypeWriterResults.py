@@ -19,7 +19,7 @@ def process_model(mypy_file, stats_file, output_file):
     for filename in target_files:
         if filename in stats_equal:
             output[filename] = stats_equal[filename]
-
+    print(len(output))
     # Save the output to a new JSON file
     with open(output_file, "w") as f:
         json.dump(output, f, indent=2)
@@ -28,21 +28,21 @@ def process_model(mypy_file, stats_file, output_file):
 def main():
     # Process GPT4
     process_model(
-        "merged_mypy_results_gpt4o.json",
+        "merged_gpt4o.json",
         "gpt4O_stats_equal.json",
         "llm_error_only_results_gpt4.json",
     )
 
     # Process O1-mini
     process_model(
-        "merged_mypy_results_o1_mini.json",
+        "merged_o1-mini.json",
         "o1_mini_stats_equal.json",
         "llm_error_only_results_o1_mini.json",
     )
 
     # Process DeepSeek
     process_model(
-        "merged_mypy_results_deepseek.json",
+        "merged_deepseek.json",
         "deepseek_stats_equal.json",
         "llm_error_only_results_deepseek.json",
     )
