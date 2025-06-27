@@ -7,17 +7,19 @@ import os
 import time
 import os
 import glob
+
 timeout = 2000
 ERROR_LOG_FILE = "type_errors.json"
 
 from typing import List, Tuple, Set, FrozenSet
+
 
 def apply_config(initial_code: str, config: FrozenSet[Tuple[str, str]]) -> str:
     """
     Applies the given configuration (set of removed annotations) to the code and returns the modified version.
     """
     tree = ast.parse(initial_code)
-    
+
     class TypeRestorer(ast.NodeTransformer):
         def visit_FunctionDef(self, node):
             if (node.name, "return") in config:
@@ -26,14 +28,14 @@ def apply_config(initial_code: str, config: FrozenSet[Tuple[str, str]]) -> str:
                 if (node.name, arg.arg) in config:
                     arg.annotation = None
             return self.generic_visit(node)
-    
+
     return astor.to_source(TypeRestorer().visit(tree))
 
 
 def log_initial_errors(file_path: str, errors: str):
     if not errors.strip():
         return
-    
+
     error_log = {}
     if os.path.exists(ERROR_LOG_FILE):
         with open(ERROR_LOG_FILE, "r") as f:
@@ -41,21 +43,26 @@ def log_initial_errors(file_path: str, errors: str):
                 error_log = json.load(f)
             except json.JSONDecodeError:
                 pass
-    
+
     error_log[file_path] = errors
-    
+
     with open(ERROR_LOG_FILE, "w") as f:
         json.dump(error_log, f, indent=4)
+
 
 # Step 1: Collect the existing type annotations
 def collect_type_hints(code: str):
     annotations = []
-    stats = {"total_type_annotations": 0, "total_parameters": 0, "parameters_with_annotations": 0}
+    stats = {
+        "total_type_annotations": 0,
+        "total_parameters": 0,
+        "parameters_with_annotations": 0,
+    }
     try:
         tree = ast.parse(code)
     except SyntaxError:
         return annotations, stats, False
-    
+
     for node in ast.walk(tree):
         if isinstance(node, ast.FunctionDef):
             stats["total_parameters"] += len(node.args.args)
@@ -65,38 +72,45 @@ def collect_type_hints(code: str):
                     stats["parameters_with_annotations"] += 1
             if node.returns:
                 annotations.append((node.name, "return"))
-    
+
     stats["total_type_annotations"] = len(annotations)
     return annotations, stats, True
 
+
 # Step 2: Type checking function
 def typecheck(code: str) -> int:
-    with open("temp_file2.py", "w",encoding='utf-8') as f:
+    with open("temp_file2.py", "w", encoding="utf-8") as f:
         f.write(code)
     command = [
-            "mypy",
-            "--ignore-missing-imports",
-            "--allow-untyped-defs",
-            "--no-incremental",
-            "--disable-error-code=no-redef",
-            "--cache-dir=/dev/null",  # Avoid cache
-            "temp_file2.py",
-        ]
+        "mypy",
+        "--ignore-missing-imports",
+        "--allow-untyped-defs",
+        "--no-incremental",
+        "--disable-error-code=no-redef",
+        "--cache-dir=/dev/null",  # Avoid cache
+        "temp_file2.py",
+    ]
     result = subprocess.run(command, capture_output=True, text=True, check=False)
     error_count = sum(1 for line in result.stdout.splitlines() if "error:" in line)
     return error_count, result.stdout
 
+
 # Step 3: Modified Algorithm 1
-def assign_types(input_file: str, initial_code: str, annotations: List[Tuple[str, str]], start_time: float):
+def assign_types(
+    input_file: str,
+    initial_code: str,
+    annotations: List[Tuple[str, str]],
+    start_time: float,
+):
     """
-    Implements Algorithm 1 (Greedy Type Assignment) using a queue (FIFO) 
+    Implements Algorithm 1 (Greedy Type Assignment) using a queue (FIFO)
     and annotation configurations instead of full code storage.
     Tracks the parent score that led to the best configuration.
     """
 
     # Step 1: Initialize
     current_score, initial_errors = typecheck(initial_code)
-    #log_initial_errors(input_file, initial_errors)
+    # log_initial_errors(input_file, initial_errors)
 
     if current_score == 0:  # Already statically correct
         return frozenset(), 0, None  # No removals needed
@@ -116,7 +130,9 @@ def assign_types(input_file: str, initial_code: str, annotations: List[Tuple[str
         current_config = work_set.pop(0)
 
         for func_name, param in annotations:
-            new_config = current_config | {(func_name, param)}  # Try removing one annotation
+            new_config = current_config | {
+                (func_name, param)
+            }  # Try removing one annotation
 
             if new_config not in done:
                 new_code = apply_config(initial_code, new_config)
@@ -136,35 +152,40 @@ def assign_types(input_file: str, initial_code: str, annotations: List[Tuple[str
 
     return best_config, best_score, parent_score
 
+
 def load_json_file(filename):
-    with open(filename, 'r') as f:
+    with open(filename, "r") as f:
         return json.load(f)
+
 
 def get_llm_only_failures(json_file_path):
     """Load the merged JSON file and return all keys as llm_only_failures"""
-    with open(json_file_path, 'r') as f:
+    with open(json_file_path, "r") as f:
         data = json.load(f)
     return set(data.keys())
 
-def main(input_file: str,start_time: float):
-  
-    
-    with open(input_file, 'r',encoding='utf-8') as f:
+
+def main(input_file: str, start_time: float):
+
+    with open(input_file, "r", encoding="utf-8") as f:
         original_code = f.read()
-    
+
     annotations, original_stats, isCompiled = collect_type_hints(original_code)
-    #if not isCompiled:
+    # if not isCompiled:
     #    return float("inf"), float("inf"),None, False
-    
-    best_config,score,parent_score = assign_types(input_file,original_code, annotations,start_time)
+
+    best_config, score, parent_score = assign_types(
+        input_file, original_code, annotations, start_time
+    )
     print("Best config for file:", input_file, "is:", best_config)
-    print("score",score)
-    return len(annotations), len(best_config), best_config,True,score,parent_score
+    print("score", score)
+    return len(annotations), len(best_config), best_config, True, score, parent_score
+
 
 # Process only files from failed_original_compiled_no_types.json
-def process_type_analysis_results(directory, output_file,llm_only_failures):
-    #output_file = "deepseek_stats_equal.json"
-    
+def process_type_analysis_results(directory, output_file, llm_only_failures):
+    # output_file = "deepseek_stats_equal.json"
+
     # Load existing results if the file exists
     if os.path.exists(output_file):
         with open(output_file, "r") as outfile:
@@ -174,8 +195,8 @@ def process_type_analysis_results(directory, output_file,llm_only_failures):
                 updated_results = {}
     else:
         updated_results = {}
-    
-    #with open("mismatched_errors.json", "r") as f:
+
+    # with open("mismatched_errors.json", "r") as f:
     #    failed_files = set(json.load(f))
 
     for file_path in glob.glob(os.path.join(directory, "**", "*.py"), recursive=True):
@@ -189,27 +210,39 @@ def process_type_analysis_results(directory, output_file,llm_only_failures):
                 continue
             print(f"Processing: {file_path}")
             start_time = time.time()
-            
-            original_param_count, updated_param_count, updated_param, isCompiled,score,parent_score= main(file_path,start_time)
+
+            (
+                original_param_count,
+                updated_param_count,
+                updated_param,
+                isCompiled,
+                score,
+                parent_score,
+            ) = main(file_path, start_time)
             if not isCompiled:
                 print("Error processing file due to timeout.")
                 continue
-            
+
             updated_results[file_key] = {
-                
                 "original_parameters_with_annotations": original_param_count,
-                "updated_parameters_with_annotations": original_param_count-updated_param_count,
+                "updated_parameters_with_annotations": original_param_count
+                - updated_param_count,
                 "updated_config": list(updated_param),
                 "time_taken": time.time() - start_time,
-                "score":score,
-                "parent_score":parent_score
+                "score": score,
+                "parent_score": parent_score,
             }
             # Write each result to file immediately
             with open(output_file, "w") as outfile:
                 json.dump(updated_results, outfile, indent=4)
-    
+
     print(f"Updated results saved to {output_file}")
 
+
 if __name__ == "__main__":
-    llm_only_failures = get_llm_only_failures("mypy_results/Filtered_type_errors/merged_gpt4o.json")
-    process_type_analysis_results("gpt4o", "gpt4O_stats_equal.json", llm_only_failures)
+    llm_only_failures = get_llm_only_failures(
+        "mypy_results/Filtered_type_errors/merged_o1-mini.json"
+    )
+    process_type_analysis_results(
+        "o1_mini", "o1_mini_stats_equal.json", llm_only_failures
+    )
