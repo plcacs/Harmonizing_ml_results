@@ -1,369 +1,336 @@
-from collections import deque
-from http import HTTPStatus
-from statistics import median
-from typing import Any, Dict, Deque, Set, Optional, cast
+import random
+from collections import defaultdict
+from copy import deepcopy
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+from unittest.mock import ANY, MagicMock, PropertyMock
+from typing import Any, Dict, List, Optional, Tuple, Union
+import numpy as np
+import pandas as pd
 import pytest
-from faust import Event, Stream, Table, Topic
-from faust.transport.consumer import Consumer
-from faust.transport.producer import Producer
-from faust.types import Message, TP
-from faust.sensors.monitor import Monitor, TableState
-from mode.utils.mocks import AsyncMock, Mock
-from typing_extensions import TypedDict
-TP1 = TP('foo', 0)
+from freqtrade import constants
+from freqtrade.commands.optimize_commands import setup_optimize_configuration, start_backtesting
+from freqtrade.configuration import TimeRange
+from freqtrade.data import history
+from freqtrade.data.btanalysis import BT_DATA_COLUMNS, evaluate_result_multi
+from freqtrade.data.converter import clean_ohlcv_dataframe, ohlcv_fill_up_missing_data
+from freqtrade.data.dataprovider import DataProvider
+from freqtrade.data.history import get_timerange
+from freqtrade.enums import CandleType, ExitType, RunMode
+from freqtrade.exceptions import DependencyException, OperationalException
+from freqtrade.exchange import timeframe_to_next_date, timeframe_to_prev_date
+from freqtrade.optimize.backtest_caching import get_backtest_metadata_filename, get_strategy_run_id
+from freqtrade.optimize.backtesting import Backtesting
+from freqtrade.persistence import LocalTrade, Trade
+from freqtrade.resolvers import StrategyResolver
+from freqtrade.util.datetime_helpers import dt_utc
+from tests.conftest import CURRENT_TEST_STRATEGY, EXMS, generate_test_data, get_args, log_has, log_has_re, patch_exchange, patched_configuration_load_config_file
+ORDER_TYPES: List[Dict[str, Union[str, bool]]] = [{'entry': 'limit', 'exit':
+    'limit', 'stoploss': 'limit', 'stoploss_on_exchange': False}, {'entry':
+    'limit', 'exit': 'limit', 'stoploss': 'limit', 'stoploss_on_exchange': 
+    True}]
 
 
-class StateDict(TypedDict):
-    time_in: Optional[float]
-    time_out: Optional[float]
-    time_total: Optional[float]
+def trim_dictlist(dict_list, num: int) ->Dict[str, pd.DataFrame]:
+    new: Dict[str, pd.DataFrame] = {}
+    for pair, pair_data in dict_list.items():
+        new[pair] = pair_data[num:].reset_index()
+    return new
 
 
-class RebalanceStateDict(TypedDict):
-    time_start: float
-    time_return: Optional[float]
-    latency_return: Optional[float]
-    time_end: Optional[float]
-    latency_end: Optional[float]
+def load_data_test(what: str, testdatadir: Path):
+    timerange = TimeRange.parse_timerange('1510694220-1510700340')
+    data = history.load_pair_history(pair='UNITTEST/BTC', datadir=
+        testdatadir, timeframe='1m', timerange=timerange, drop_incomplete=
+        False, fill_up_missing=False)
+    base = 0.001
+    if what == 'raise':
+        data.loc[:, 'open'] = data.index * base
+        data.loc[:, 'high'] = data.index * base + 0.0001
+        data.loc[:, 'low'] = data.index * base - 0.0001
+        data.loc[:, 'close'] = data.index * base
+    if what == 'lower':
+        data.loc[:, 'open'] = 1 - data.index * base
+        data.loc[:, 'high'] = 1 - data.index * base + 0.0001
+        data.loc[:, 'low'] = 1 - data.index * base - 0.0001
+        data.loc[:, 'close'] = 1 - data.index * base
+    if what == 'sine':
+        hz = 0.1
+        data.loc[:, 'open'] = np.sin(data.index * hz) / 1000 + base
+        data.loc[:, 'high'] = np.sin(data.index * hz) / 1000 + base + 0.0001
+        data.loc[:, 'low'] = np.sin(data.index * hz) / 1000 + base - 0.0001
+        data.loc[:, 'close'] = np.sin(data.index * hz) / 1000 + base
+    return {'UNITTEST/BTC': clean_ohlcv_dataframe(data, timeframe='1m',
+        pair='UNITTEST/BTC', fill_missing=True, drop_incomplete=True)}
 
 
-class WebRequestStateDict(TypedDict):
-    time_start: float
-    time_end: Optional[float]
-    latency_end: Optional[float]
-    status_code: Optional[HTTPStatus]
+def _make_backtest_conf(mocker: Any, datadir: Path, conf: Optional[Dict[str,
+    Any]]=None, pair: str='UNITTEST/BTC') ->Dict[str, Any]:
+    data = history.load_data(datadir=datadir, timeframe='1m', pairs=[pair])
+    data = trim_dictlist(data, -201)
+    patch_exchange(mocker)
+    backtesting = Backtesting(conf)
+    backtesting._set_strategy(backtesting.strategylist[0])
+    processed = backtesting.strategy.advise_all_indicators(data)
+    min_date, max_date = get_timerange(processed)
+    return {'processed': processed, 'start_date': min_date, 'end_date':
+        max_date}
 
 
-class test_Monitor:
+def _trend(signals: Dict[str, np.ndarray], buy_value: float, sell_value: float
+    ) ->Dict[str, np.ndarray]:
+    n = len(signals['low'])
+    buy = np.zeros(n)
+    sell = np.zeros(n)
+    for i in range(0, len(signals['date'])):
+        if random.random() > 0.5:
+            buy[i] = buy_value
+            sell[i] = sell_value
+    signals['enter_long'] = buy
+    signals['exit_long'] = sell
+    signals['enter_short'] = 0
+    signals['exit_short'] = 0
+    return signals
 
-    @pytest.fixture
-    def time(self) ->Mock:
-        timefun = Mock(name='time()')
-        timefun.return_value = 101.1
-        return timefun
 
-    @pytest.fixture
-    def message(self) ->Mock:
-        return Mock(name='message', autospec=Message)
+def _trend_alternate(dataframe=None, metadata: Optional[Dict[str, Any]]=None
+    ) ->pd.DataFrame:
+    signals = dataframe
+    low = signals['low']
+    n = len(low)
+    buy = np.zeros(n)
+    sell = np.zeros(n)
+    for i in range(0, len(buy)):
+        if i % 2 == 0:
+            buy[i] = 1
+        else:
+            sell[i] = 1
+    signals['enter_long'] = buy
+    signals['exit_long'] = sell
+    signals['enter_short'] = 0
+    signals['exit_short'] = 0
+    return dataframe
 
-    @pytest.fixture
-    def stream(self) ->Mock:
-        return Mock(name='stream', autospec=Stream)
 
-    @pytest.fixture
-    def topic(self) ->Mock:
-        return Mock(name='topic', autospec=Topic)
+def test_setup_optimize_configuration_without_arguments(mocker: Any,
+    default_conf: Dict[str, Any], caplog: Any) ->None:
+    patched_configuration_load_config_file(mocker, default_conf)
+    args = ['backtesting', '--config', 'config.json', '--strategy',
+        CURRENT_TEST_STRATEGY, '--export', 'none']
+    config = setup_optimize_configuration(get_args(args), RunMode.BACKTEST)
+    assert 'max_open_trades' in config
+    assert 'stake_currency' in config
+    assert 'stake_amount' in config
+    assert 'exchange' in config
+    assert 'pair_whitelist' in config['exchange']
+    assert 'datadir' in config
+    assert log_has('Using data directory: {} ...'.format(config['datadir']),
+        caplog)
+    assert 'timeframe' in config
+    assert not log_has_re('Parameter -i/--ticker-interval detected .*', caplog)
+    assert 'position_stacking' not in config
+    assert not log_has('Parameter --enable-position-stacking detected ...',
+        caplog)
+    assert 'timerange' not in config
+    assert 'export' in config
+    assert config['export'] == 'none'
+    assert 'runmode' in config
+    assert config['runmode'] == RunMode.BACKTEST
 
-    @pytest.fixture
-    def event(self) ->Mock:
-        return Mock(name='event', autospec=Event)
 
-    @pytest.fixture
-    def table(self) ->Mock:
-        return Mock(name='table', autospec=Table)
+def test_setup_bt_configuration_with_arguments(mocker: Any, default_conf:
+    Dict[str, Any], caplog: Any) ->None:
+    patched_configuration_load_config_file(mocker, default_conf)
+    mocker.patch('freqtrade.configuration.configuration.create_datadir', lambda
+        c, x: x)
+    args = ['backtesting', '--config', 'config.json', '--strategy',
+        CURRENT_TEST_STRATEGY, '--datadir', '/foo/bar', '--timeframe', '1m',
+        '--enable-position-stacking', '--timerange', ':100',
+        '--export-filename', 'foo_bar.json', '--fee', '0']
+    config = setup_optimize_configuration(get_args(args), RunMode.BACKTEST)
+    assert 'max_open_trades' in config
+    assert 'stake_currency' in config
+    assert 'stake_amount' in config
+    assert 'exchange' in config
+    assert 'pair_whitelist' in config['exchange']
+    assert 'datadir' in config
+    assert config['runmode'] == RunMode.BACKTEST
+    assert log_has('Using data directory: {} ...'.format(config['datadir']),
+        caplog)
+    assert 'timeframe' in config
+    assert log_has(
+        'Parameter -i/--timeframe detected ... Using timeframe: 1m ...', caplog
+        )
+    assert 'position_stacking' in config
+    assert log_has('Parameter --enable-position-stacking detected ...', caplog)
+    assert 'timerange' in config
+    assert log_has('Parameter --timerange detected: {} ...'.format(config[
+        'timerange']), caplog)
+    assert 'export' in config
+    assert 'exportfilename' in config
+    assert isinstance(config['exportfilename'], Path)
+    assert log_has('Storing backtest results to {} ...'.format(config[
+        'exportfilename']), caplog)
+    assert 'fee' in config
+    assert log_has('Parameter --fee detected, setting fee to: {} ...'.
+        format(config['fee']), caplog)
 
-    @pytest.fixture
-    def mon(self, *, time: Mock) ->Monitor:
-        mon = self.create_monitor()
-        mon.time = time
-        return mon
 
-    def create_monitor(self, **kwargs: Any) ->Monitor:
-        return Monitor(**kwargs)
+def test_setup_optimize_configuration_stake_amount(mocker: Any,
+    default_conf: Dict[str, Any], caplog: Any) ->None:
+    patched_configuration_load_config_file(mocker, default_conf)
+    args = ['backtesting', '--config', 'config.json', '--strategy',
+        CURRENT_TEST_STRATEGY, '--stake-amount', '1', '--starting-balance', '2'
+        ]
+    conf = setup_optimize_configuration(get_args(args), RunMode.BACKTEST)
+    assert isinstance(conf, dict)
+    args = ['backtesting', '--config', 'config.json', '--strategy',
+        CURRENT_TEST_STRATEGY, '--stake-amount', '1', '--starting-balance',
+        '0.5']
+    with pytest.raises(OperationalException, match=
+        'Starting balance .* smaller .*'):
+        setup_optimize_configuration(get_args(args), RunMode.BACKTEST)
 
-    def create_populated_monitor(self, messages_active: int=101,
-        messages_received_total: int=1001, messages_sent: int=303,
-        messages_s: int=1000, messages_received_by_topic: Dict[str, int]={
-        'foo': 103}, events_active: int=202, events_total: int=2002,
-        events_s: int=3000, events_runtime_avg: float=0.03, events_by_task:
-        Dict[str, int]={'mytask': 105}, events_by_stream: Dict[str, int]={
-        'stream': 105}, commit_latency: List[float]=[1.03, 2.33, 16.33],
-        send_latency: List[float]=[0.01, 0.04, 0.06, 0.01],
-        topic_buffer_full: Dict[str, int]={'topic': 808}, **kwargs: Any
-        ) ->Monitor:
-        return self.create_monitor(messages_active=messages_active,
-            messages_received_total=messages_received_total, messages_sent=
-            messages_sent, messages_s=messages_s,
-            messages_received_by_topic=messages_received_by_topic,
-            events_active=events_active, events_total=events_total,
-            events_s=events_s, events_runtime_avg=events_runtime_avg,
-            events_by_task=events_by_task, events_by_stream=
-            events_by_stream, commit_latency=commit_latency, send_latency=
-            send_latency, topic_buffer_full=topic_buffer_full, **kwargs)
 
-    def test_init_max_avg_history(self) ->None:
-        assert Monitor().max_avg_history == Monitor.max_avg_history
+def test_start(mocker: Any, fee: Any, default_conf: Dict[str, Any], caplog: Any
+    ) ->None:
+    start_mock = MagicMock()
+    mocker.patch(f'{EXMS}.get_fee', fee)
+    patch_exchange(mocker)
+    mocker.patch('freqtrade.optimize.backtesting.Backtesting.start', start_mock
+        )
+    patched_configuration_load_config_file(mocker, default_conf)
+    args = ['backtesting', '--config', 'config.json', '--strategy',
+        CURRENT_TEST_STRATEGY]
+    pargs = get_args(args)
+    start_backtesting(pargs)
+    assert log_has('Starting freqtrade in Backtesting mode', caplog)
+    assert start_mock.call_count == 1
 
-    def test_init_max_avg_history__default(self) ->None:
-        assert Monitor(max_avg_history=33).max_avg_history == 33
 
-    def test_init_max_commit_latency_history(self) ->None:
-        assert Monitor(
-            ).max_commit_latency_history == Monitor.max_commit_latency_history
+@pytest.mark.parametrize('order_types', ORDER_TYPES)
+def test_backtesting_init(mocker: Any, default_conf: Dict[str, Any],
+    order_types: List[Dict[str, Union[str, bool]]]) ->None:
+    """
+    Check that stoploss_on_exchange is set to False while backtesting
+    since backtesting assumes a perfect stoploss anyway.
+    """
+    default_conf['order_types'] = order_types
+    patch_exchange(mocker)
+    get_fee = mocker.patch(f'{EXMS}.get_fee', MagicMock(return_value=0.5))
+    backtesting = Backtesting(default_conf)
+    backtesting._set_strategy(backtesting.strategylist[0])
+    assert backtesting.config == default_conf
+    assert backtesting.timeframe == '5m'
+    assert callable(backtesting.strategy.advise_all_indicators)
+    assert callable(backtesting.strategy.advise_entry)
+    assert callable(backtesting.strategy.advise_exit)
+    assert isinstance(backtesting.strategy.dp, DataProvider)
+    get_fee.assert_called()
+    assert backtesting.fee == 0.5
+    assert not backtesting.strategy.order_types['stoploss_on_exchange']
+    assert backtesting.strategy.bot_started is True
 
-    def test_init_max_commit_latency_history__default(self) ->None:
-        assert Monitor(max_commit_latency_history=33
-            ).max_commit_latency_history == 33
 
-    def test_init_max_send_latency_history(self) ->None:
-        assert Monitor(
-            ).max_send_latency_history == Monitor.max_send_latency_history
+def test_backtesting_init_no_timeframe(mocker: Any, default_conf: Dict[str,
+    Any], caplog: Any) ->None:
+    patch_exchange(mocker)
+    del default_conf['timeframe']
+    default_conf['strategy_list'] = [CURRENT_TEST_STRATEGY,
+        'HyperoptableStrategy']
+    mocker.patch(f'{EXMS}.get_fee', MagicMock(return_value=0.5))
+    with pytest.raises(OperationalException, match=
+        'Timeframe needs to be set in either configuration'):
+        Backtesting(default_conf)
 
-    def test_init_max_send_latency_history__default(self) ->None:
-        assert Monitor(max_send_latency_history=33
-            ).max_send_latency_history == 33
 
-    def test_init_max_assignment_latency_history(self) ->None:
-        assert Monitor(
-            ).max_assignment_latency_history == Monitor.max_assignment_latency_history
+def test_data_with_fee(default_conf: Dict[str, Any], mocker: Any) ->None:
+    patch_exchange(mocker)
+    default_conf['fee'] = 0.01234
+    fee_mock = mocker.patch(f'{EXMS}.get_fee', MagicMock(return_value=0.5))
+    backtesting = Backtesting(default_conf)
+    backtesting._set_strategy(backtesting.strategylist[0])
+    assert backtesting.fee == 0.01234
+    assert fee_mock.call_count == 0
+    default_conf['fee'] = 0.0
+    backtesting = Backtesting(default_conf)
+    backtesting._set_strategy(backtesting.strategylist[0])
+    assert backtesting.fee == 0.0
+    assert fee_mock.call_count == 0
 
-    def test_init_max_assignment_latency_history__default(self) ->None:
-        assert Monitor(max_assignment_latency_history=33
-            ).max_assignment_latency_history == 33
 
-    def test_init_rebalances(self) ->None:
-        assert Monitor(rebalances=99).rebalances == 99
+def test_data_to_dataframe_bt(default_conf: Dict[str, Any], mocker: Any,
+    testdatadir: Path) ->None:
+    patch_exchange(mocker)
+    timerange = TimeRange.parse_timerange('1510694220-1510700340')
+    data = history.load_data(testdatadir, '1m', ['UNITTEST/BTC'], timerange
+        =timerange, fill_up_missing=True)
+    backtesting = Backtesting(default_conf)
+    backtesting._set_strategy(backtesting.strategylist[0])
+    processed = backtesting.strategy.advise_all_indicators(data)
+    assert len(processed['UNITTEST/BTC']) == 103
+    strategy = StrategyResolver.load_strategy(default_conf)
+    processed2 = strategy.advise_all_indicators(data)
+    assert processed['UNITTEST/BTC'].equals(processed2['UNITTEST/BTC'])
 
-    def test_asdict(self) ->None:
-        mon = self.create_populated_monitor()
-        assert mon.asdict() == {'messages_active': mon.messages_active,
-            'messages_received_total': mon.messages_received_total,
-            'messages_sent': mon.messages_sent, 'messages_sent_by_topic':
-            mon.messages_sent_by_topic, 'messages_s': mon.messages_s,
-            'messages_received_by_topic': mon.messages_received_by_topic,
-            'events_active': mon.events_active, 'events_total': mon.
-            events_total, 'events_s': mon.events_s, 'events_runtime_avg':
-            mon.events_runtime_avg, 'events_by_task': mon.
-            _events_by_task_dict(), 'events_by_stream': mon.
-            _events_by_stream_dict(), 'commit_latency': mon.commit_latency,
-            'send_latency': mon.send_latency, 'assignment_latency': mon.
-            assignment_latency, 'assignments_completed': mon.
-            assignments_completed, 'assignments_failed': mon.
-            assignments_failed, 'send_errors': mon.send_errors,
-            'topic_buffer_full': mon._topic_buffer_full_dict(),
-            'metric_counts': mon._metric_counts_dict(), 'tables': {name:
-            table.asdict() for name, table in mon.tables.items()},
-            'topic_committed_offsets': {}, 'topic_read_offsets': {},
-            'topic_end_offsets': {}, 'rebalance_end_avg': mon.
-            rebalance_end_avg, 'rebalance_end_latency': mon.
-            rebalance_end_latency, 'rebalance_return_avg': mon.
-            rebalance_return_avg, 'rebalance_return_latency': mon.
-            rebalance_return_latency, 'rebalances': mon.rebalances,
-            'http_response_codes': mon._http_response_codes_dict(),
-            'http_response_latency': mon.http_response_latency,
-            'http_response_latency_avg': mon.http_response_latency_avg}
 
-    def test_on_message_in(self, *, message: Mock, mon: Monitor, time: Mock
-        ) ->None:
-        for i in range(1, 11):
-            offset = 3 + i
-            mon.on_message_in(TP1, offset, message)
-            assert mon.messages_received_total == i
-            assert mon.messages_active == i
-            assert mon.messages_received_by_topic[TP1.topic] == i
-            assert message.time_in is time()
-            assert mon.tp_read_offsets[TP1] == offset
+def test_backtest_abort(default_conf: Dict[str, Any], mocker: Any,
+    testdatadir: Path) ->None:
+    patch_exchange(mocker)
+    backtesting = Backtesting(default_conf)
+    backtesting.check_abort()
+    backtesting.abort = True
+    with pytest.raises(DependencyException, match='Stop requested'):
+        backtesting.check_abort()
+    assert backtesting.abort is False
+    assert backtesting.progress.progress == 0
 
-    def test_on_stream_event_in(self, *, event: Mock, mon: Monitor, stream:
-        Mock, time: Mock) ->None:
-        for i in range(1, 11):
-            state = mon.on_stream_event_in(TP1, 3 + i, stream, event)
-            assert mon.events_total == i
-            assert mon.events_by_stream[str(stream)] == i
-            assert mon.events_by_task[str(stream.task_owner)] == i
-            assert mon.events_active == i
-            assert state == {'time_in': time(), 'time_out': None,
-                'time_total': None}
 
-    def test_on_stream_event_out(self, *, event: Mock, mon: Monitor, stream:
-        Mock, time: Mock) ->None:
-        other_time = 303.3
-        mon.events_active = 10
-        for i in range(1, 11):
-            state: StateDict = {'time_in': other_time, 'time_out': None,
-                'time_total': None}
-            mon.on_stream_event_out(TP1, 3 + i, stream, event, state)
-            assert mon.events_active == 10 - i
-            assert state == {'time_in': other_time, 'time_out': time(),
-                'time_total': time() - other_time}
-            assert mon.events_runtime[-1] == time() - other_time
+def test_backtesting_start(default_conf: Dict[str, Any], mocker: Any, caplog
+    ) ->None:
 
-    def test_on_stream_event_out__missing_state(self, *, event: Mock, mon:
-        Monitor, stream: Mock, time: Mock) ->None:
-        mon.on_stream_event_out(TP1, 3, stream, event, None)
+    def get_timerange(input1: Any) ->Tuple[datetime, datetime]:
+        return dt_utc(2017, 11, 14, 21, 17), dt_utc(2017, 11, 14, 22, 59)
+    mocker.patch('freqtrade.data.history.get_timerange', get_timerange)
+    patch_exchange(mocker)
+    mocker.patch('freqtrade.optimize.backtesting.Backtesting.backtest')
+    mocker.patch('freqtrade.optimize.backtesting.generate_backtest_stats')
+    mocker.patch('freqtrade.optimize.backtesting.show_backtest_results')
+    sbs = mocker.patch('freqtrade.optimize.backtesting.store_backtest_results')
+    mocker.patch('freqtrade.plugins.pairlistmanager.PairListManager.whitelist',
+        PropertyMock(return_value=['UNITTEST/BTC']))
+    default_conf['timeframe'] = '1m'
+    default_conf['export'] = 'signals'
+    default_conf['exportfilename'] = 'export.txt'
+    default_conf['timerange'] = '-1510694220'
+    default_conf['runmode'] = RunMode.BACKTEST
+    backtesting = Backtesting(default_conf)
+    backtesting._set_strategy(backtesting.strategylist[0])
+    backtesting.strategy.bot_loop_start = MagicMock()
+    backtesting.strategy.bot_start = MagicMock()
+    backtesting.start()
+    exists = [
+        'Backtesting with data from 2017-11-14 21:17:00 up to 2017-11-14 22:59:00 (0 days).'
+        ]
+    for line in exists:
+        assert log_has(line, caplog)
+    assert backtesting.strategy.dp._pairlists is not None
+    assert backtesting.strategy.bot_start.call_count == 1
+    assert backtesting.strategy.bot_loop_start.call_count == 0
+    assert sbs.call_count == 1
 
-    def test_on_topic_buffer_full(self, *, mon: Monitor) ->None:
-        for i in range(1, 11):
-            mon.on_topic_buffer_full(TP1)
-            assert mon.topic_buffer_full[TP1] == i
 
-    def test_on_message_out(self, *, message: Mock, mon: Monitor, time: Mock
-        ) ->None:
-        mon.messages_active = 10
-        message.time_in = 10.7
-        for i in range(1, 11):
-            mon.on_message_out(TP1, 3 + i, message)
-            assert mon.messages_active == 10 - i
-            assert message.time_out == time()
-            assert message.time_total == time() - message.time_in
-        message.time_in = None
-        mon.on_message_out(TP1, 3 + 11, message)
+def test_backtesting_start_no_data(default_conf: Dict[str, Any], mocker:
+    Any, caplog: Any, testdatadir: Path) ->None:
 
-    def test_on_table_get(self, *, mon: Monitor, table: Mock) ->None:
-        for i in range(1, 11):
-            mon.on_table_get(table, 'k')
-            assert mon._table_or_create(table).keys_retrieved == i
-
-    def test_on_table_set(self, *, mon: Monitor, table: Mock) ->None:
-        for i in range(1, 11):
-            mon.on_table_set(table, 'k', 'v')
-            assert mon._table_or_create(table).keys_updated == i
-
-    def test_on_table_del(self, *, mon: Monitor, table: Mock) ->None:
-        for i in range(1, 11):
-            mon.on_table_del(table, 'k')
-            assert mon._table_or_create(table).keys_deleted == i
-
-    def test_on_commit_initiated(self, *, mon: Monitor, time: Mock) ->float:
-        return cast(float, mon.on_commit_initiated(Mock(name='consumer',
-            autospec=Consumer)))
-
-    def test_on_commit_completed(self, *, mon: Monitor, time: Mock) ->None:
-        other_time = 56.7
-        mon.on_commit_completed(Mock(name='consumer', autospec=Consumer),
-            other_time)
-        assert mon.commit_latency[-1] == time() - other_time
-
-    def test_on_send_initiated(self, *, mon: Monitor, time: Mock) ->None:
-        for i in range(1, 11):
-            state = mon.on_send_initiated(Mock(name='producer', autospec=
-                Producer), 'topic', 'message', 2, 4)
-            assert mon.messages_sent == i
-            assert mon.messages_sent_by_topic['topic'] == i
-            assert state == time()
-
-    def test_on_send_completed(self, *, mon: Monitor, time: Mock) ->None:
-        other_time = 56.7
-        mon.on_send_completed(Mock(name='producer', autospec=Producer),
-            other_time, Mock(name='metadata'))
-        assert mon.send_latency[-1] == time() - other_time
-
-    def test_on_send_error(self, *, mon: Monitor, time: Mock) ->None:
-        mon.on_send_error(Mock(name='producer', autospec=Producer), Mock(
-            name='state'), KeyError('foo'))
-        assert mon.send_errors == 1
-
-    def test_on_assignment_start(self, *, mon: Monitor, time: Mock) ->Dict[
-        str, float]:
-        state = mon.on_assignment_start(Mock(name='assignor'))
-        assert state['time_start'] == time()
-        return state
-
-    def test_on_assignment_completed(self, *, mon: Monitor, time: Mock) ->None:
-        other_time = 56.7
-        assignor = Mock(name='assignor')
-        assert mon.assignments_completed == 0
-        mon.on_assignment_completed(assignor, {'time_start': other_time})
-        assert mon.assignment_latency[-1] == time() - other_time
-        assert mon.assignments_completed == 1
-
-    def test_on_assignment_error(self, *, mon: Monitor, time: Mock) ->None:
-        other_time = 56.7
-        assignor = Mock(name='assignor')
-        assert mon.assignments_failed == 0
-        mon.on_assignment_error(assignor, {'time_start': other_time},
-            KeyError())
-        assert mon.assignment_latency[-1] == time() - other_time
-        assert mon.assignments_failed == 1
-
-    def test_on_rebalance_start(self, *, mon: Monitor, time: Mock, app: Any
-        ) ->RebalanceStateDict:
-        assert mon.rebalances == 0
-        app.rebalancing_count = 1
-        state = mon.on_rebalance_start(app)
-        assert state['time_start'] == time()
-        assert mon.rebalances == 1
-        return state
-
-    def test_on_rebalance_return(self, *, mon: Monitor, time: Mock, app: Any
-        ) ->None:
-        other_time = 56.7
-        state: RebalanceStateDict = {'time_start': other_time}
-        mon.on_rebalance_return(app, state)
-        assert mon.rebalance_return_latency[-1] == time() - other_time
-        assert state['time_return'] == time()
-        assert state['latency_return'] == time() - other_time
-
-    def test_on_rebalance_end(self, *, mon: Monitor, time: Mock, app: Any
-        ) ->None:
-        other_time = 56.7
-        state: RebalanceStateDict = {'time_start': other_time}
-        mon.on_rebalance_end(app, state)
-        assert mon.rebalance_end_latency[-1] == time() - other_time
-        assert state['time_end'] == time()
-        assert state['latency_end'] == time() - other_time
-
-    def test_on_web_request_start(self, *, mon: Monitor, time: Mock, app: Any
-        ) ->WebRequestStateDict:
-        request = Mock(name='request')
-        view = Mock(name='view')
-        state = mon.on_web_request_start(app, request, view=view)
-        assert state['time_start'] == time()
-        return state
-
-    def test_on_web_request_end(self, *, mon: Monitor, time: Mock, app: Any
-        ) ->None:
-        response = Mock(name='response')
-        response.status = 404
-        self.assert_on_web_request_end(mon, time, app, response,
-            expected_status=404)
-
-    def test_on_web_request_end__None_response(self, *, mon: Monitor, time:
-        Mock, app: Any) ->None:
-        self.assert_on_web_request_end(mon, time, app, None,
-            expected_status=500)
-
-    def assert_on_web_request_end(self, mon: Monitor, time: Mock, app: Any,
-        response: Optional[Mock], expected_status: int) ->None:
-        request = Mock(name='request')
-        view = Mock(name='view')
-        other_time = 156.9
-        state: WebRequestStateDict = {'time_start': other_time}
-        mon.on_web_request_end(app, request, response, state, view=view)
-        assert state['time_end'] == time()
-        assert state['latency_end'] == time() - other_time
-        assert state['status_code'] == HTTPStatus(expected_status)
-        assert mon.http_response_latency[-1] == time() - other_time
-        assert mon.http_response_codes[HTTPStatus(expected_status)] == 1
-
-    def test_TableState_asdict(self, *, mon: Monitor, table: Mock) ->None:
-        state = mon._table_or_create(table)
-        assert isinstance(state, TableState)
-        assert state.table is table
-        assert state.keys_retrieved == 0
-        assert state.keys_updated == 0
-        assert state.keys_deleted == 0
-        expected_asdict = {'keys_retrieved': 0, 'keys_updated': 0,
-            'keys_deleted': 0}
-        assert state.asdict() == expected_asdict
-        assert state.__reduce_keywords__() == {**state.asdict(), 'table': table
-            }
-
-    def test_on_tp_commit(self, *, mon: Monitor):
-        topic = 'foo'
-        for offset in range(20):
-            partitions = list(range(4))
-            tps = {TP(topic=topic, partition=p) for p in partitions}
-            commit_offsets = {tp: offset for tp in tps}
-            mon.on_tp_commit(commit_offsets)
-            assert all(mon.tp_committed_offsets[tp] == commit_offsets[tp] for
-                tp in tps)
-            offsets_dict = mon.asdict()['topic_committed_offsets'][topic]
-            assert all(offsets_dict[p] == offset for p in partitions)
-
-    def test_track_tp_end_offsets(self, *, mon: Monitor) ->None:
-        tp = TP(topic='foo', partition=2)
-        for offset in range(20):
-            mon.track_tp_end_offset(tp, offset)
-            assert mon.tp_end_offsets[tp] == offset
-            offsets_dict = mon
+    def get_timerange(input1: Any) ->Tuple[datetime, datetime]:
+        return dt_utc(2017, 11, 14, 21, 17), dt_utc(2017, 11, 14, 22, 59)
+    mocker.patch('freqtrade.data.history.history_utils.load_pair_history',
+        MagicMock(return_value=pd.DataFrame()))
+    mocker.patch('freqtrade.data.history.get_timerange', get_timerange)
+    patch_exchange(mocker)
+    mocker.patch('freqtrade.optimize.backtesting.Backtesting.backtest')
+    mocker.patch('freqtrade.plugins.pairlistmanager.PairListManager.whitelist',
+        PropertyMock(return_value=['UNITTEST/BTC']))
+    default_conf['timeframe'] = '1m'
+    default
