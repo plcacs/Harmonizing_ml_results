@@ -2,34 +2,12 @@ import json
 from typing import Dict, List, Tuple, Any
 
 
-def load_annotations(file_path: str) -> Dict[str, List[Dict[str, Any]]]:
+def load_annotations(file_path: str) -> Dict[str, Dict[str, List[Dict[str, Any]]]]:
     with open(file_path, "r") as f:
         data = json.load(f)
 
-    # The data structure is: filename -> {function_signature -> [annotations]}
-    # We need to flatten this to: filename -> [all_annotations]
-    flattened_data = {}
-
-    for filename, functions in data.items():
-        all_annotations = []
-        if isinstance(functions, dict):
-            for func_sig, annotations in functions.items():
-                if isinstance(annotations, list):
-                    all_annotations.extend(annotations)
-                elif isinstance(annotations, dict):
-                    all_annotations.append(annotations)
-                elif isinstance(annotations, str):
-                    all_annotations.append(
-                        {"category": "unknown", "type": [annotations]}
-                    )
-        elif isinstance(functions, list):
-            all_annotations = functions
-        elif isinstance(functions, str):
-            all_annotations = [{"category": "unknown", "type": [functions]}]
-
-        flattened_data[filename] = all_annotations
-
-    return flattened_data
+    # Return the original structure: filename -> {function_signature -> [annotations]}
+    return data
 
 
 def normalize_type(type_str: str) -> str:
@@ -52,75 +30,91 @@ def type_level_exact_match(ann1, ann2) -> Tuple[int, int]:
         items2 = ann2[filename]
         is_file_has_type = False
         file_comparisons = []
-        file_json_data = []
+        file_json_data = {}
 
-        if not isinstance(items1, list) or not isinstance(items2, list):
+        if not isinstance(items1, dict) or not isinstance(items2, dict):
             continue
 
-        # Match annotations by category and name
-        for item1 in items1:
-            if not isinstance(item1, dict):
+        # Find common function signatures
+        common_funcs = set(items1.keys()) & set(items2.keys())
+
+        for func_sig in common_funcs:
+            func_items1 = items1[func_sig]
+            func_items2 = items2[func_sig]
+            func_json_data = []
+
+            if not isinstance(func_items1, list) or not isinstance(func_items2, list):
                 continue
 
-            for item2 in items2:
-                if not isinstance(item2, dict):
+            # Match annotations by category and name within this function
+            for item1 in func_items1:
+                if not isinstance(item1, dict):
                     continue
 
-                # Match by category and name
-                if item1.get("category") == item2.get("category") and item1.get(
-                    "name"
-                ) == item2.get("name"):
+                for item2 in func_items2:
+                    if not isinstance(item2, dict):
+                        continue
 
-                    # Get types safely
-                    t1 = item1.get("type", [])
-                    t2 = item2.get("type", [])
+                    # Match by category and name
+                    if item1.get("category") == item2.get("category") and item1.get(
+                        "name"
+                    ) == item2.get("name"):
 
-                    if (
-                        isinstance(t1, list)
-                        and isinstance(t2, list)
-                        and len(t1) > 0
-                        and len(t2) > 0
-                        and isinstance(t1[0], str)
-                        and isinstance(t2[0], str)
-                    ):
-                        # Skip empty, whitespace-only, or "None" types
+                        # Get types safely
+                        t1 = item1.get("type", [])
+                        t2 = item2.get("type", [])
+
                         if (
-                            not t1[0].strip()
-                            or not t2[0].strip()
-                            or t1[0].strip().lower() == "none"
-                            or t2[0].strip().lower() == "none"
+                            isinstance(t1, list)
+                            and isinstance(t2, list)
+                            and len(t1) > 0
+                            and len(t2) > 0
+                            and isinstance(t1[0], str)
+                            and isinstance(t2[0], str)
                         ):
-                            continue
+                            # Skip empty, whitespace-only, "None", or "any/Any" types
+                            if (
+                                not t1[0].strip()
+                                or not t2[0].strip()
+                                or t1[0].strip().lower() == "none"
+                                or t2[0].strip().lower() == "none"
+                                or t1[0].strip().lower() == "any"
+                                or t2[0].strip().lower() == "any"
+                            ):
+                                continue
 
-                        total += 1
-                        is_file_has_type = True
+                            total += 1
+                            is_file_has_type = True
 
-                        is_match = normalize_type(t1[0]) == normalize_type(t2[0])
-                        if is_match:
-                            exact += 1
+                            is_match = normalize_type(t1[0]) == normalize_type(t2[0])
+                            if is_match:
+                                exact += 1
 
-                        # Store comparison details for console output
-                        file_comparisons.append(
-                            {
-                                "category": item1.get("category"),
-                                "name": item1.get("name"),
-                                "human_type": t1[0],
-                                "llm_type": t2[0],
-                                "match": is_match,
-                            }
-                        )
+                            # Store comparison details for console output
+                            file_comparisons.append(
+                                {
+                                    "category": item1.get("category"),
+                                    "name": item1.get("name"),
+                                    "human_type": t1[0],
+                                    "llm_type": t2[0],
+                                    "match": is_match,
+                                }
+                            )
 
-                        # Store JSON data
-                        file_json_data.append(
-                            {
-                                "funcname": item1.get("category", "unknown"),
-                                "param_name": item1.get("name", "unknown"),
-                                "Human": t1[0],
-                                "LLM": t2[0],
-                                "match": is_match,
-                            }
-                        )
-                    break  # Found match, move to next item1
+                            # Store JSON data
+                            func_json_data.append(
+                                {
+                                    "category": item1.get("category", "unknown"),
+                                    "param_name": item1.get("name", "unknown"),
+                                    "Human": t1[0],
+                                    "LLM": t2[0],
+                                    "match": is_match,
+                                }
+                            )
+                        break  # Found match, move to next item1
+
+            if func_json_data:
+                file_json_data[func_sig] = func_json_data
 
         if is_file_has_type:
             file_count += 1
@@ -130,7 +124,8 @@ def type_level_exact_match(ann1, ann2) -> Tuple[int, int]:
                 )
 
             # Add to JSON output
-            json_output[filename] = file_json_data
+            if file_json_data:
+                json_output[filename] = file_json_data
 
     # print(f"Number of files with type annotations: {file_count}")
 
@@ -138,11 +133,9 @@ def type_level_exact_match(ann1, ann2) -> Tuple[int, int]:
     """print(f"\nFirst {len(comparison_details)} files used for comparison:")
     for file_detail in comparison_details:
         print(f"\nFile: {file_detail['filename']}")
-        for comp in file_detail["comparisons"]:
-            match_status = "✓" if comp["match"] else "✗"
-            print(
-                f"  {match_status} {comp['category']} - {comp['name']}: Human='{comp['human_type']}' vs LLM='{comp['llm_type']}'"
-            )
+        for comp in file_detail['comparisons']:
+            match_status = "✓" if comp['match'] else "✗"
+            print(f"  {match_status} {comp['category']} - {comp['name']}: Human='{comp['human_type']}' vs LLM='{comp['llm_type']}'")
     """
     return exact, total, json_output
 
@@ -174,87 +167,101 @@ def top_level_type_match(ann1, ann2) -> Tuple[int, int]:
         items1 = ann1[filename]
         items2 = ann2[filename]
         file_comparisons = []
-        file_json_data = []
+        file_json_data = {}
 
-        if not isinstance(items1, list) or not isinstance(items2, list):
+        if not isinstance(items1, dict) or not isinstance(items2, dict):
             continue
 
-        # Match annotations by category and name
-        for item1 in items1:
-            if not isinstance(item1, dict):
+        # Find common function signatures
+        common_funcs = set(items1.keys()) & set(items2.keys())
+
+        for func_sig in common_funcs:
+            func_items1 = items1[func_sig]
+            func_items2 = items2[func_sig]
+            func_json_data = []
+
+            if not isinstance(func_items1, list) or not isinstance(func_items2, list):
                 continue
 
-            for item2 in items2:
-                if not isinstance(item2, dict):
+            # Match annotations by category and name within this function
+            for item1 in func_items1:
+                if not isinstance(item1, dict):
                     continue
 
-                # Match by category and name
-                if item1.get("category") == item2.get("category") and item1.get(
-                    "name"
-                ) == item2.get("name"):
+                for item2 in func_items2:
+                    if not isinstance(item2, dict):
+                        continue
 
-                    # Get types safely
-                    t1 = item1.get("type", [])
-                    t2 = item2.get("type", [])
+                    # Match by category and name
+                    if item1.get("category") == item2.get("category") and item1.get(
+                        "name"
+                    ) == item2.get("name"):
 
-                    if (
-                        isinstance(t1, list)
-                        and isinstance(t2, list)
-                        and len(t1) > 0
-                        and len(t2) > 0
-                        and isinstance(t1[0], str)
-                        and isinstance(t2[0], str)
-                    ):
-                        # Skip empty, whitespace-only, or "None" types (same as exact match)
+                        # Get types safely
+                        t1 = item1.get("type", [])
+                        t2 = item2.get("type", [])
+
                         if (
-                            not t1[0].strip()
-                            or not t2[0].strip()
-                            or t1[0].strip().lower() == "none"
-                            or t2[0].strip().lower() == "none"
+                            isinstance(t1, list)
+                            and isinstance(t2, list)
+                            and len(t1) > 0
+                            and len(t2) > 0
+                            and isinstance(t1[0], str)
+                            and isinstance(t2[0], str)
                         ):
-                            continue
+                            # Skip empty, whitespace-only, or "None" types (same as exact match)
+                            if (
+                                not t1[0].strip()
+                                or not t2[0].strip()
+                                or t1[0].strip().lower() == "none"
+                                or t2[0].strip().lower() == "none"
+                            ):
+                                continue
 
-                        total += 1
+                            total += 1
 
-                        # Get top-level types and normalize them
-                        top1 = normalize_type(top_level_type(t1[0]))
-                        top2 = normalize_type(top_level_type(t2[0]))
+                            # Get top-level types and normalize them
+                            top1 = normalize_type(top_level_type(t1[0]))
+                            top2 = normalize_type(top_level_type(t2[0]))
 
-                        is_match = top1 == top2
-                        if is_match:
-                            matched += 1
+                            is_match = top1 == top2
+                            if is_match:
+                                matched += 1
 
-                        # Store comparison details for console output
-                        file_comparisons.append(
-                            {
-                                "category": item1.get("category"),
-                                "name": item1.get("name"),
-                                "human_type": t1[0],
-                                "llm_type": t2[0],
-                                "human_top": top_level_type(t1[0]),
-                                "llm_top": top_level_type(t2[0]),
-                                "match": is_match,
-                            }
-                        )
+                            # Store comparison details for console output
+                            file_comparisons.append(
+                                {
+                                    "category": item1.get("category"),
+                                    "name": item1.get("name"),
+                                    "human_type": t1[0],
+                                    "llm_type": t2[0],
+                                    "human_top": top_level_type(t1[0]),
+                                    "llm_top": top_level_type(t2[0]),
+                                    "match": is_match,
+                                }
+                            )
 
-                        # Store JSON data
-                        file_json_data.append(
-                            {
-                                "funcname": item1.get("category", "unknown"),
-                                "param_name": item1.get("name", "unknown"),
-                                "Human": t1[0],
-                                "LLM": t2[0],
-                                "Human_top": top_level_type(t1[0]),
-                                "LLM_top": top_level_type(t2[0]),
-                                "match": is_match,
-                            }
-                        )
-                    break  # Found match, move to next item1
+                            # Store JSON data
+                            func_json_data.append(
+                                {
+                                    "category": item1.get("category", "unknown"),
+                                    "param_name": item1.get("name", "unknown"),
+                                    "Human": t1[0],
+                                    "LLM": t2[0],
+                                    "Human_top": top_level_type(t1[0]),
+                                    "LLM_top": top_level_type(t2[0]),
+                                    "match": is_match,
+                                }
+                            )
+                        break  # Found match, move to next item1
 
-        """if file_comparisons and len(comparison_details) < 10:
+            if func_json_data:
+                file_json_data[func_sig] = func_json_data
+
+        if file_comparisons and len(comparison_details) < 10:
             comparison_details.append(
                 {"filename": filename, "comparisons": file_comparisons}
-            )"""
+            )
 
         # Add to JSON output
         if file_json_data:
@@ -264,11 +271,9 @@ def top_level_type_match(ann1, ann2) -> Tuple[int, int]:
     """print(f"\nFirst {len(comparison_details)} files used for top-level comparison:")
     for file_detail in comparison_details:
         print(f"\nFile: {file_detail['filename']}")
-        for comp in file_detail["comparisons"]:
-            match_status = "✓" if comp["match"] else "✗"
-            print(
-                f"  {match_status} {comp['category']} - {comp['name']}: Human='{comp['human_type']}'({comp['human_top']}) vs LLM='{comp['llm_type']}'({comp['llm_top']})"
-            )
+        for comp in file_detail['comparisons']:
+            match_status = "✓" if comp['match'] else "✗"
+            print(f"  {match_status} {comp['category']} - {comp['name']}: Human='{comp['human_type']}'({comp['human_top']}) vs LLM='{comp['llm_type']}'({comp['llm_top']})")
     """
 
     return matched, total, json_output
@@ -300,19 +305,20 @@ def dynamic_static_pref(ann) -> Tuple[int, int]:
 
 def count_any_types(ann) -> int:
     any_count = 0
-    for entries in ann.values():
-        if not isinstance(entries, list):
-            continue
-        for entry in entries:
-            if isinstance(entry, dict):
-                types = entry.get("type", [])
-                if types and isinstance(types, list) and len(types) > 0:
-                    type_str = types[0]
-                    if isinstance(type_str, str):
-                        # Check for Any in various forms
-                        normalized_type = normalize_type(type_str)
-                        if "any" in normalized_type:
-                            any_count += 1
+    for filename, functions in ann.items():
+        if isinstance(functions, dict):
+            for func_sig, annotations in functions.items():
+                if isinstance(annotations, list):
+                    for entry in annotations:
+                        if isinstance(entry, dict):
+                            types = entry.get("type", [])
+                            if types and isinstance(types, list) and len(types) > 0:
+                                type_str = types[0]
+                                if isinstance(type_str, str):
+                                    # Check for Any in various forms
+                                    normalized_type = normalize_type(type_str)
+                                    if "any" in normalized_type:
+                                        any_count += 1
     return any_count
 
 
@@ -327,48 +333,58 @@ def count_any_intersection(ann1, ann2) -> int:
     common_files = set(ann1.keys()) & set(ann2.keys())
 
     for filename in common_files:
-        items1 = ann1[filename]
-        items2 = ann2[filename]
+        functions1 = ann1[filename]
+        functions2 = ann2[filename]
 
-        if not isinstance(items1, list) or not isinstance(items2, list):
+        if not isinstance(functions1, dict) or not isinstance(functions2, dict):
             continue
 
-        # Match annotations by category and name
-        for item1 in items1:
-            if not isinstance(item1, dict):
+        # Find common function signatures
+        common_funcs = set(functions1.keys()) & set(functions2.keys())
+
+        for func_sig in common_funcs:
+            items1 = functions1[func_sig]
+            items2 = functions2[func_sig]
+
+            if not isinstance(items1, list) or not isinstance(items2, list):
                 continue
 
-            # Check if human typed this as Any
-            types1 = item1.get("type", [])
-            if types1 and isinstance(types1, list) and len(types1) > 0:
-                type_str1 = types1[0]
-                if isinstance(type_str1, str):
-                    normalized_type1 = normalize_type(type_str1)
-                    if "any" in normalized_type1:
+            # Match annotations by category and name
+            for item1 in items1:
+                if not isinstance(item1, dict):
+                    continue
 
-                        # Find corresponding LLM annotation
-                        for item2 in items2:
-                            if not isinstance(item2, dict):
-                                continue
+                # Check if human typed this as Any
+                types1 = item1.get("type", [])
+                if types1 and isinstance(types1, list) and len(types1) > 0:
+                    type_str1 = types1[0]
+                    if isinstance(type_str1, str):
+                        normalized_type1 = normalize_type(type_str1)
+                        if "any" in normalized_type1:
 
-                            # Match by category and name
-                            if item1.get("category") == item2.get(
-                                "category"
-                            ) and item1.get("name") == item2.get("name"):
+                            # Find corresponding LLM annotation
+                            for item2 in items2:
+                                if not isinstance(item2, dict):
+                                    continue
 
-                                # Check if LLM also typed this as Any
-                                types2 = item2.get("type", [])
-                                if (
-                                    types2
-                                    and isinstance(types2, list)
-                                    and len(types2) > 0
-                                ):
-                                    type_str2 = types2[0]
-                                    if isinstance(type_str2, str):
-                                        normalized_type2 = normalize_type(type_str2)
-                                        if "any" in normalized_type2:
-                                            intersection_count += 1
-                                break  # Found match, move to next item1
+                                # Match by category and name
+                                if item1.get("category") == item2.get(
+                                    "category"
+                                ) and item1.get("name") == item2.get("name"):
+
+                                    # Check if LLM also typed this as Any
+                                    types2 = item2.get("type", [])
+                                    if (
+                                        types2
+                                        and isinstance(types2, list)
+                                        and len(types2) > 0
+                                    ):
+                                        type_str2 = types2[0]
+                                        if isinstance(type_str2, str):
+                                            normalized_type2 = normalize_type(type_str2)
+                                            if "any" in normalized_type2:
+                                                intersection_count += 1
+                                    break  # Found match, move to next item1
 
     return intersection_count
 
@@ -438,63 +454,77 @@ def analyze_type_categories_and_complexity(ann1, ann2) -> Tuple[Dict, Dict, Dict
     common_files = set(ann1.keys()) & set(ann2.keys())
 
     for filename in common_files:
-        items1 = ann1[filename]
-        items2 = ann2[filename]
+        functions1 = ann1[filename]
+        functions2 = ann2[filename]
 
-        if not isinstance(items1, list) or not isinstance(items2, list):
+        if not isinstance(functions1, dict) or not isinstance(functions2, dict):
             continue
 
-        # Match annotations by category and name
-        for item1 in items1:
-            if not isinstance(item1, dict):
+        # Find common function signatures
+        common_funcs = set(functions1.keys()) & set(functions2.keys())
+
+        for func_sig in common_funcs:
+            items1 = functions1[func_sig]
+            items2 = functions2[func_sig]
+
+            if not isinstance(items1, list) or not isinstance(items2, list):
                 continue
 
-            # Find corresponding LLM annotation
-            for item2 in items2:
-                if not isinstance(item2, dict):
+            # Match annotations by category and name
+            for item1 in items1:
+                if not isinstance(item1, dict):
                     continue
 
-                # Match by category and name
-                if item1.get("category") == item2.get("category") and item1.get(
-                    "name"
-                ) == item2.get("name"):
+                # Find corresponding LLM annotation
+                for item2 in items2:
+                    if not isinstance(item2, dict):
+                        continue
 
-                    # Get types safely
-                    types1 = item1.get("type", [])
-                    types2 = item2.get("type", [])
+                    # Match by category and name
+                    if item1.get("category") == item2.get("category") and item1.get(
+                        "name"
+                    ) == item2.get("name"):
 
-                    if (
-                        types1
-                        and isinstance(types1, list)
-                        and len(types1) > 0
-                        and types2
-                        and isinstance(types2, list)
-                        and len(types2) > 0
-                    ):
+                        # Get types safely
+                        types1 = item1.get("type", [])
+                        types2 = item2.get("type", [])
 
-                        type_str1 = types1[0]
-                        type_str2 = types2[0]
+                        if (
+                            types1
+                            and isinstance(types1, list)
+                            and len(types1) > 0
+                            and types2
+                            and isinstance(types2, list)
+                            and len(types2) > 0
+                        ):
 
-                        if isinstance(type_str1, str) and isinstance(type_str2, str):
-                            # Analyze human type
-                            if is_simple_type(type_str1):
-                                human_simple += 1
-                            else:
-                                human_complex += 1
+                            type_str1 = types1[0]
+                            type_str2 = types2[0]
 
-                            # Analyze LLM type
-                            if is_simple_type(type_str2):
-                                llm_simple += 1
-                            else:
-                                llm_complex += 1
+                            if isinstance(type_str1, str) and isinstance(
+                                type_str2, str
+                            ):
+                                # Analyze human type
+                                if is_simple_type(type_str1):
+                                    human_simple += 1
+                                else:
+                                    human_complex += 1
 
-                            # Calculate complexity scores
-                            human_complexity_scores.append(
-                                get_type_complexity(type_str1)
-                            )
-                            llm_complexity_scores.append(get_type_complexity(type_str2))
+                                # Analyze LLM type
+                                if is_simple_type(type_str2):
+                                    llm_simple += 1
+                                else:
+                                    llm_complex += 1
 
-                    break  # Found match, move to next item1
+                                # Calculate complexity scores
+                                human_complexity_scores.append(
+                                    get_type_complexity(type_str1)
+                                )
+                                llm_complexity_scores.append(
+                                    get_type_complexity(type_str2)
+                                )
+
+                        break  # Found match, move to next item1
 
     human_categories = {"simple": human_simple, "complex": human_complex}
     llm_categories = {"simple": llm_simple, "complex": llm_complex}
@@ -567,8 +597,22 @@ def compare_json_annotations(file1: str, file2: str, llm_name):
         # Count Any types
         any_count1 = count_any_types(ann1)
         any_count2 = count_any_types(ann2)
-        total_annotations1 = sum(len(v) for v in ann1.values() if isinstance(v, list))
-        total_annotations2 = sum(len(v) for v in ann2.values() if isinstance(v, list))
+
+        # Calculate total annotations for nested structure
+        total_annotations1 = 0
+        total_annotations2 = 0
+
+        for filename, functions in ann1.items():
+            if isinstance(functions, dict):
+                for func_sig, annotations in functions.items():
+                    if isinstance(annotations, list):
+                        total_annotations1 += len(annotations)
+
+        for filename, functions in ann2.items():
+            if isinstance(functions, dict):
+                for func_sig, annotations in functions.items():
+                    if isinstance(annotations, list):
+                        total_annotations2 += len(annotations)
 
         print(
             f"Any Type Usage (Human): {any_count1}/{total_annotations1} ({(any_count1/total_annotations1*100 if total_annotations1 else 0):.2f}%)"

@@ -1,626 +1,538 @@
+"""
+Tests for the pandas.io.common functionalities
+"""
+import codecs
+import errno
+from functools import partial
+from io import BytesIO, StringIO, UnsupportedOperation
+import mmap
+import os
+from pathlib import Path
+import pickle
+import tempfile
+from typing import Any, Callable, Iterator, List, Optional, Tuple, Type, Union
 import numpy as np
 import pytest
+from pandas.compat import WASM, is_platform_windows
+from pandas.compat.pyarrow import pa_version_under19p0
+import pandas.util._test_decorators as td
 import pandas as pd
-from pandas import DataFrame, Index, Series, Timestamp
 import pandas._testing as tm
-from typing import List, Tuple, Any, Union
+import pandas.io.common as icom
+pytestmark = pytest.mark.filterwarnings(
+    'ignore:Passing a BlockManager to DataFrame:DeprecationWarning')
 
 
-@pytest.fixture(params=[['linear', 'single'], ['nearest', 'table']], ids=lambda
-    x: '-'.join(x))
-def interp_method(request: Any) ->Tuple[str, str]:
-    """(interpolation, method) arguments for quantile"""
-    return tuple(request.param)
+class CustomFSPath:
+    """For testing fspath on unknown objects"""
+
+    def __init__(self, path: str) ->None:
+        self.path = path
+
+    def __fspath__(self) ->str:
+        return self.path
 
 
-class TestDataFrameQuantile:
+HERE: str = os.path.abspath(os.path.dirname(__file__))
 
-    @pytest.mark.parametrize('df,expected', [[DataFrame({(0): Series(pd.
-        arrays.SparseArray([1, 2])), (1): Series(pd.arrays.SparseArray([3, 
-        4]))}), Series([1.5, 3.5], name=0.5)], [DataFrame(Series([0.0, None,
-        1.0, 2.0], dtype='Sparse[float]')), Series([1.0], name=0.5)]])
-    def test_quantile_sparse(self, df: DataFrame, expected: Series) ->None:
-        result = df.quantile()
-        expected = expected.astype('Sparse[float]')
-        tm.assert_series_equal(result, expected)
 
-    def test_quantile(self, datetime_frame: DataFrame, interp_method: Tuple
-        [str, str], request: Any) ->None:
-        interpolation, method = interp_method
-        df = datetime_frame
-        result = df.quantile(0.1, axis=0, numeric_only=True, interpolation=
-            interpolation, method=method)
-        expected = Series([np.percentile(df[col], 10) for col in df.columns
-            ], index=df.columns, name=0.1)
-        if interpolation == 'linear':
-            tm.assert_series_equal(result, expected)
-        else:
-            tm.assert_index_equal(result.index, expected.index)
-            assert result.name == expected.name
-        result = df.quantile(0.9, axis=1, numeric_only=True, interpolation=
-            interpolation, method=method)
-        expected = Series([np.percentile(df.loc[date], 90) for date in df.
-            index], index=df.index, name=0.9)
-        if interpolation == 'linear':
-            tm.assert_series_equal(result, expected)
-        else:
-            tm.assert_index_equal(result.index, expected.index)
-            assert result.name == expected.name
+class TestCommonIOCapabilities:
+    data1: str = """index,A,B,C,D
+foo,2,3,4,5
+bar,7,8,9,10
+baz,12,13,14,15
+qux,12,13,14,15
+foo2,12,13,14,15
+bar2,12,13,14,15
+"""
 
-    def test_empty(self, interp_method: Tuple[str, str]) ->None:
-        interpolation, method = interp_method
-        q = DataFrame({'x': [], 'y': []}).quantile(0.1, axis=0,
-            numeric_only=True, interpolation=interpolation, method=method)
-        assert np.isnan(q['x']) and np.isnan(q['y'])
+    def test_expand_user(self) ->None:
+        filename: str = '~/sometest'
+        expanded_name: str = icom._expand_user(filename)
+        assert expanded_name != filename
+        assert os.path.isabs(expanded_name)
+        assert os.path.expanduser(filename) == expanded_name
 
-    def test_non_numeric_exclusion(self, interp_method: Tuple[str, str],
-        request: Any):
-        interpolation, method = interp_method
-        df = DataFrame({'col1': ['A', 'A', 'B', 'B'], 'col2': [1, 2, 3, 4]})
-        rs = df.quantile(0.5, numeric_only=True, interpolation=
-            interpolation, method=method)
-        xp = df.median(numeric_only=True).rename(0.5)
-        if interpolation == 'nearest':
-            xp = (xp + 0.5).astype(np.int64)
-        tm.assert_series_equal(rs, xp)
+    def test_expand_user_normal_path(self) ->None:
+        filename: str = '/somefolder/sometest'
+        expanded_name: str = icom._expand_user(filename)
+        assert expanded_name == filename
+        assert os.path.expanduser(filename) == expanded_name
 
-    def test_axis(self, interp_method: Tuple[str, str]) ->None:
-        interpolation, method = interp_method
-        df = DataFrame({'A': [1, 2, 3], 'B': [2, 3, 4]}, index=[1, 2, 3])
-        result = df.quantile(0.5, axis=1, interpolation=interpolation,
-            method=method)
-        expected = Series([1.5, 2.5, 3.5], index=[1, 2, 3], name=0.5)
-        if interpolation == 'nearest':
-            expected = expected.astype(np.int64)
-        tm.assert_series_equal(result, expected)
-        result = df.quantile([0.5, 0.75], axis=1, interpolation=
-            interpolation, method=method)
-        expected = DataFrame({(1): [1.5, 1.75], (2): [2.5, 2.75], (3): [3.5,
-            3.75]}, index=[0.5, 0.75])
-        if interpolation == 'nearest':
-            expected.iloc[0, :] -= 0.5
-            expected.iloc[1, :] += 0.25
-            expected = expected.astype(np.int64)
-        tm.assert_frame_equal(result, expected, check_index_type=True)
+    def test_stringify_path_pathlib(self) ->None:
+        rel_path: str = icom.stringify_path(Path('.'))
+        assert rel_path == '.'
+        redundant_path: str = icom.stringify_path(Path('foo//bar'))
+        assert redundant_path == os.path.join('foo', 'bar')
 
-    def test_axis_numeric_only_true(self, interp_method: Tuple[str, str]
+    def test_stringify_path_fspath(self) ->None:
+        p: CustomFSPath = CustomFSPath('foo/bar.csv')
+        result: str = icom.stringify_path(p)
+        assert result == 'foo/bar.csv'
+
+    def test_stringify_file_and_path_like(self) ->None:
+        fsspec = pytest.importorskip('fsspec')
+        with tm.ensure_clean() as path:
+            with fsspec.open(f'file://{path}', mode='wb') as fsspec_obj:
+                assert fsspec_obj == icom.stringify_path(fsspec_obj)
+
+    @pytest.mark.parametrize('path_type', [str, CustomFSPath, Path])
+    def test_infer_compression_from_path(self, compression_format: Tuple[
+        str, Optional[str]], path_type: Type[Union[str, CustomFSPath, Path]]
         ) ->None:
-        interpolation, method = interp_method
-        df = DataFrame([[1, 2, 3], ['a', 'b', 4]])
-        result = df.quantile(0.5, axis=1, numeric_only=True, interpolation=
-            interpolation, method=method)
-        expected = Series([3.0, 4.0], index=range(2), name=0.5)
-        if interpolation == 'nearest':
-            expected = expected.astype(np.int64)
-        tm.assert_series_equal(result, expected)
+        extension, expected = compression_format
+        path: Union[str, CustomFSPath, Path] = path_type('foo/bar.csv' +
+            extension)
+        compression: Optional[str] = icom.infer_compression(path,
+            compression='infer')
+        assert compression == expected
 
-    def test_quantile_date_range(self, interp_method: Tuple[str, str]) ->None:
-        interpolation, method = interp_method
-        dti = pd.date_range('2016-01-01', periods=3, tz='US/Pacific')
-        ser = Series(dti)
-        df = DataFrame(ser)
-        result = df.quantile(numeric_only=False, interpolation=
-            interpolation, method=method)
-        expected = Series(['2016-01-02 00:00:00'], name=0.5, dtype=
-            'datetime64[ns, US/Pacific]')
-        tm.assert_series_equal(result, expected)
+    @pytest.mark.parametrize('path_type', [str, CustomFSPath, Path])
+    def test_get_handle_with_path(self, path_type: Type[Union[str,
+        CustomFSPath, Path]]) ->None:
+        with tempfile.TemporaryDirectory(dir=Path.home()) as tmp:
+            filename: Union[str, CustomFSPath, Path] = path_type('~/' +
+                Path(tmp).name + '/sometest')
+            with icom.get_handle(filename, 'w') as handles:
+                assert Path(handles.handle.name).is_absolute()
+                assert os.path.expanduser(filename) == handles.handle.name
 
-    def test_quantile_axis_mixed(self, interp_method: Tuple[str, str]) ->None:
-        interpolation, method = interp_method
-        df = DataFrame({'A': [1, 2, 3], 'B': [2.0, 3.0, 4.0], 'C': pd.
-            date_range('20130101', periods=3), 'D': ['foo', 'bar', 'baz']})
-        result = df.quantile(0.5, axis=1, numeric_only=True, interpolation=
-            interpolation, method=method)
-        expected = Series([1.5, 2.5, 3.5], name=0.5)
-        if interpolation == 'nearest':
-            expected -= 0.5
-        tm.assert_series_equal(result, expected)
-        msg = "'<' not supported between instances of 'Timestamp' and 'float'"
+    def test_get_handle_with_buffer(self) ->None:
+        with StringIO() as input_buffer:
+            with icom.get_handle(input_buffer, 'r') as handles:
+                assert handles.handle == input_buffer
+            assert not input_buffer.closed
+        assert input_buffer.closed
+
+    def test_bytesiowrapper_returns_correct_bytes(self) ->None:
+        data: str = 'a,b,c\n1,2,3\n©,®,®\nLook,a snake,🐍'
+        with icom.get_handle(StringIO(data), 'rb', is_text=False) as handles:
+            result: bytes = b''
+            chunksize: int = 5
+            while True:
+                chunk: bytes = handles.handle.read(chunksize)
+                assert len(chunk) <= chunksize
+                if len(chunk) < chunksize:
+                    assert len(handles.handle.read()) == 0
+                    result += chunk
+                    break
+                result += chunk
+            assert result == data.encode('utf-8')
+
+    def test_get_handle_pyarrow_compat(self) ->None:
+        pa_csv = pytest.importorskip('pyarrow.csv')
+        data: str = 'a,b,c\n1,2,3\n©,®,®\nLook,a snake,🐍'
+        expected: pd.DataFrame = pd.DataFrame({'a': ['1', '©', 'Look'], 'b':
+            ['2', '®', 'a snake'], 'c': ['3', '®', '🐍']})
+        s: StringIO = StringIO(data)
+        with icom.get_handle(s, 'rb', is_text=False) as handles:
+            df: pd.DataFrame = pa_csv.read_csv(handles.handle).to_pandas()
+            if pa_version_under19p0:
+                expected = expected.astype('object')
+            tm.assert_frame_equal(df, expected)
+            assert not s.closed
+
+    def test_iterator(self) ->None:
+        with pd.read_csv(StringIO(self.data1), chunksize=1) as reader:
+            result: pd.DataFrame = pd.concat(reader, ignore_index=True)
+        expected: pd.DataFrame = pd.read_csv(StringIO(self.data1))
+        tm.assert_frame_equal(result, expected)
+        with pd.read_csv(StringIO(self.data1), chunksize=1) as it:
+            first: pd.DataFrame = next(it)
+            tm.assert_frame_equal(first, expected.iloc[[0]])
+            tm.assert_frame_equal(pd.concat(it), expected.iloc[1:])
+
+    @pytest.mark.skipif(WASM, reason='limited file system access on WASM')
+    @pytest.mark.parametrize('reader, module, error_class, fn_ext', [(pd.
+        read_csv, 'os', FileNotFoundError, 'csv'), (pd.read_fwf, 'os',
+        FileNotFoundError, 'txt'), (pd.read_excel, 'xlrd',
+        FileNotFoundError, 'xlsx'), (pd.read_feather, 'pyarrow', OSError,
+        'feather'), (pd.read_hdf, 'tables', FileNotFoundError, 'h5'), (pd.
+        read_stata, 'os', FileNotFoundError, 'dta'), (pd.read_sas, 'os',
+        FileNotFoundError, 'sas7bdat'), (pd.read_json, 'os',
+        FileNotFoundError, 'json'), (pd.read_pickle, 'os',
+        FileNotFoundError, 'pickle')])
+    def test_read_non_existent(self, reader: Callable[..., Any], module:
+        str, error_class: Type[BaseException], fn_ext: str) ->None:
+        pytest.importorskip(module)
+        path: str = os.path.join(HERE, 'data', 'does_not_exist.' + fn_ext)
+        msg1: str = f"File (b')?.+does_not_exist\\.{fn_ext}'? does not exist"
+        msg2: str = (
+            f"\\[Errno 2\\] No such file or directory: '.+does_not_exist\\.{fn_ext}'"
+            )
+        msg3: str = 'Expected object or value'
+        msg4: str = 'path_or_buf needs to be a string file path or file-like'
+        msg5: str = (
+            f"\\[Errno 2\\] File .+does_not_exist\\.{fn_ext} does not exist: '.+does_not_exist\\.{fn_ext}'"
+            )
+        msg6: str = f"\\[Errno 2\\] 没有那个文件或目录: '.+does_not_exist\\.{fn_ext}'"
+        msg7: str = (
+            f"\\[Errno 2\\] File o directory non esistente: '.+does_not_exist\\.{fn_ext}'"
+            )
+        msg8: str = f'Failed to open local file.+does_not_exist\\.{fn_ext}'
+        with pytest.raises(error_class, match=
+            f'({msg1}|{msg2}|{msg3}|{msg4}|{msg5}|{msg6}|{msg7}|{msg8})'):
+            reader(path)
+
+    @pytest.mark.parametrize('writer_name, writer_kwargs, module', [(
+        'to_csv', {}, 'os'), ('to_excel', {'engine': 'openpyxl'},
+        'openpyxl'), ('to_feather', {}, 'pyarrow'), ('to_html', {}, 'os'),
+        ('to_json', {}, 'os'), ('to_latex', {}, 'os'), ('to_pickle', {},
+        'os'), ('to_stata', {'time_stamp': pd.to_datetime(
+        '2019-01-01 00:00')}, 'os')])
+    def test_write_missing_parent_directory(self, method: Callable[[pd.
+        DataFrame, str, Any], None], module: str, fn_ext, writer_name: str,
+        writer_kwargs: dict) ->None:
+        pytest.importorskip(module)
+        dummy_frame: pd.DataFrame = pd.DataFrame({'a': [1, 2, 3], 'b': [2, 
+            3, 4], 'c': [3, 4, 5]})
+        path: str = os.path.join(HERE, 'data', 'missing_folder', 
+            'does_not_exist.' + fn_ext)
+        with pytest.raises(OSError, match=
+            'Cannot save file into a non-existent directory: .*missing_folder'
+            ):
+            method(dummy_frame, path)
+
+    @pytest.mark.skipif(WASM, reason='limited file system access on WASM')
+    @pytest.mark.parametrize('reader, module, error_class, fn_ext', [(pd.
+        read_csv, 'os', FileNotFoundError, 'csv'), (pd.read_table, 'os',
+        FileNotFoundError, 'csv'), (pd.read_fwf, 'os', FileNotFoundError,
+        'txt'), (pd.read_excel, 'xlrd', FileNotFoundError, 'xlsx'), (pd.
+        read_feather, 'pyarrow', OSError, 'feather'), (pd.read_hdf,
+        'tables', FileNotFoundError, 'h5'), (pd.read_stata, 'os',
+        FileNotFoundError, 'dta'), (pd.read_sas, 'os', FileNotFoundError,
+        'sas7bdat'), (pd.read_json, 'os', FileNotFoundError, 'json'), (pd.
+        read_pickle, 'os', FileNotFoundError, 'pickle')])
+    def test_read_expands_user_home_dir(self, reader: Callable[..., Any],
+        module: str, error_class: Type[BaseException], fn_ext: str,
+        monkeypatch: pytest.MonkeyPatch) ->None:
+        pytest.importorskip(module)
+        path: str = os.path.join('~', 'does_not_exist.' + fn_ext)
+        monkeypatch.setattr(icom, '_expand_user', lambda x: os.path.join(
+            'foo', x))
+        msg1: str = f"File (b')?.+does_not_exist\\.{fn_ext}'? does not exist"
+        msg2: str = (
+            f"\\[Errno 2\\] No such file or directory: '.+does_not_exist\\.{fn_ext}'"
+            )
+        msg3: str = "Unexpected character found when decoding 'false'"
+        msg4: str = 'path_or_buf needs to be a string file path or file-like'
+        msg5: str = (
+            f"\\[Errno 2\\] File .+does_not_exist\\.{fn_ext} does not exist: '.+does_not_exist\\.{fn_ext}'"
+            )
+        msg6: str = f"\\[Errno 2\\] 没有那个文件或目录: '.+does_not_exist\\.{fn_ext}'"
+        msg7: str = (
+            f"\\[Errno 2\\] File o directory non esistente: '.+does_not_exist\\.{fn_ext}'"
+            )
+        msg8: str = f'Failed to open local file.+does_not_exist\\.{fn_ext}'
+        with pytest.raises(error_class, match=
+            f'({msg1}|{msg2}|{msg3}|{msg4}|{msg5}|{msg6}|{msg7}|{msg8})'):
+            reader(path)
+
+    @pytest.mark.parametrize('reader, module, path', [(pd.read_csv, 'os', (
+        'io', 'data', 'csv', 'iris.csv')), (pd.read_table, 'os', ('io',
+        'data', 'csv', 'iris.csv')), (pd.read_fwf, 'os', ('io', 'data',
+        'fixed_width', 'fixed_width_format.txt')), (pd.read_excel, 'xlrd',
+        ('io', 'data', 'excel', 'test1.xlsx')), (pd.read_feather, 'pyarrow',
+        ('io', 'data', 'feather', 'feather-0_3_1.feather')), (pd.read_hdf,
+        'tables', ('io', 'data', 'legacy_hdf', 'pytables_native2.h5')), (pd
+        .read_stata, 'os', ('io', 'data', 'stata', 'stata10_115.dta')), (pd
+        .read_sas, 'os', ('io', 'sas', 'data', 'test1.sas7bdat')), (pd.
+        read_json, 'os', ('io', 'json', 'data', 'tsframe_v012.json')), (pd.
+        read_pickle, 'os', ('io', 'data', 'pickle',
+        'categorical.0.25.0.pickle'))])
+    def test_read_fspath_all(self, reader: Callable[..., Any], module: str,
+        path: Tuple[str, ...], datapath: Callable[..., str]) ->None:
+        pytest.importorskip(module)
+        path_str: str = datapath(*path)
+        mypath: CustomFSPath = CustomFSPath(path_str)
+        result: Any = reader(mypath)
+        expected: Any = reader(path_str)
+        if path_str.endswith('.pickle'):
+            tm.assert_categorical_equal(result, expected)
+        else:
+            tm.assert_frame_equal(result, expected)
+
+    @pytest.mark.parametrize('writer_name, writer_kwargs, module', [(
+        'to_csv', {}, 'os'), ('to_excel', {'engine': 'openpyxl'},
+        'openpyxl'), ('to_feather', {}, 'pyarrow'), ('to_html', {}, 'os'),
+        ('to_json', {}, 'os'), ('to_latex', {}, 'os'), ('to_pickle', {},
+        'os'), ('to_stata', {'time_stamp': pd.to_datetime(
+        '2019-01-01 00:00')}, 'os')])
+    def test_write_fspath_all(self, writer_name: str, writer_kwargs: dict,
+        module: str) ->None:
+        if writer_name in ['to_latex']:
+            pytest.importorskip('jinja2')
+        p1: Callable[[], Any] = tm.ensure_clean('string')
+        p2: Callable[[], Any] = tm.ensure_clean('fspath')
+        df: pd.DataFrame = pd.DataFrame({'A': [1, 2]})
+        with p1() as string, p2() as fspath:
+            pytest.importorskip(module)
+            mypath: CustomFSPath = CustomFSPath(fspath)
+            writer: Callable[..., None] = getattr(df, writer_name)
+            writer(string, **writer_kwargs)
+            writer(mypath, **writer_kwargs)
+            with open(string, 'rb') as f_str, open(fspath, 'rb') as f_path:
+                if writer_name == 'to_excel':
+                    result: pd.DataFrame = pd.read_excel(f_str, **writer_kwargs
+                        )
+                    expected: pd.DataFrame = pd.read_excel(f_path, **
+                        writer_kwargs)
+                    tm.assert_frame_equal(result, expected)
+                else:
+                    result: bytes = f_str.read()
+                    expected: bytes = f_path.read()
+                    assert result == expected
+
+    def test_write_fspath_hdf5(self) ->None:
+        pytest.importorskip('tables')
+        df: pd.DataFrame = pd.DataFrame({'A': [1, 2]})
+        p1: Callable[[], Any] = tm.ensure_clean('string')
+        p2: Callable[[], Any] = tm.ensure_clean('fspath')
+        with p1() as string, p2() as fspath:
+            mypath: CustomFSPath = CustomFSPath(fspath)
+            df.to_hdf(mypath, key='bar')
+            df.to_hdf(string, key='bar')
+            result: pd.DataFrame = pd.read_hdf(fspath, key='bar')
+            expected: pd.DataFrame = pd.read_hdf(string, key='bar')
+        tm.assert_frame_equal(result, expected)
+
+
+@pytest.fixture
+def mmap_file(datapath) ->str:
+    return datapath('io', 'data', 'csv', 'test_mmap.csv')
+
+
+class TestMMapWrapper:
+
+    @pytest.mark.skipif(WASM, reason='limited file system access on WASM')
+    def test_constructor_bad_file(self, mmap_file: str) ->None:
+        non_file: StringIO = StringIO('I am not a file')
+        non_file.fileno = lambda : -1
+        if is_platform_windows():
+            msg: str = 'The parameter is incorrect'
+            err: Type[BaseException] = OSError
+        else:
+            msg = '[Errno 22]'
+            err = mmap.error
+        with pytest.raises(err, match=msg):
+            icom._maybe_memory_map(non_file, True)
+        with open(mmap_file, encoding='utf-8') as target:
+            pass
+        msg = 'I/O operation on closed file'
+        with pytest.raises(ValueError, match=msg):
+            icom._maybe_memory_map(target, True)
+
+    @pytest.mark.skipif(WASM, reason='limited file system access on WASM')
+    def test_next(self, mmap_file: str) ->None:
+        with open(mmap_file, encoding='utf-8') as target:
+            lines: List[str] = target.readlines()
+            with icom.get_handle(target, 'r', is_text=True, memory_map=True
+                ) as wrappers:
+                wrapper: Any = wrappers.handle
+                assert isinstance(wrapper.buffer.buffer, mmap.mmap)
+                for line in lines:
+                    next_line: str = next(wrapper)
+                    assert next_line.strip() == line.strip()
+                with pytest.raises(StopIteration, match='^$'):
+                    next(wrapper)
+
+    def test_unknown_engine(self) ->None:
+        with tm.ensure_clean() as path:
+            df: pd.DataFrame = pd.DataFrame(1.1 * np.arange(120).reshape((
+                30, 4)), columns=pd.Index(list('ABCD')), index=pd.Index([
+                f'i-{i}' for i in range(30)]))
+            with pytest.raises(ValueError, match='Unknown engine'):
+                pd.read_csv(path, engine='pyt')
+
+    def test_binary_mode(self) ->None:
+        """
+        'encoding' shouldn't be passed to 'open' in binary mode.
+
+        GH 35058
+        """
+        with tm.ensure_clean() as path:
+            df: pd.DataFrame = pd.DataFrame(1.1 * np.arange(120).reshape((
+                30, 4)), columns=pd.Index(list('ABCD')), index=pd.Index([
+                f'i-{i}' for i in range(30)]))
+            df.to_csv(path, mode='w+b')
+            tm.assert_frame_equal(df, pd.read_csv(path, index_col=0))
+
+    @pytest.mark.parametrize('encoding', ['utf-16', 'utf-32'])
+    @pytest.mark.parametrize('compression_', ['bz2', 'xz'])
+    def test_warning_missing_utf_bom(self, encoding: str, compression_:
+        Optional[str]) ->None:
+        """
+        bz2 and xz do not write the byte order mark (BOM) for utf-16/32.
+
+        https://stackoverflow.com/questions/55171439
+
+        GH 35681
+        """
+        df: pd.DataFrame = pd.DataFrame(1.1 * np.arange(120).reshape((30, 4
+            )), columns=pd.Index(list('ABCD')), index=pd.Index([f'i-{i}' for
+            i in range(30)]))
+        with tm.ensure_clean() as path:
+            with tm.assert_produces_warning(UnicodeWarning, match=
+                'byte order mark'):
+                df.to_csv(path, compression=compression_, encoding=encoding)
+            msg: str = (
+                "UTF-\\d+ stream does not start with BOM|'utf-\\d+' codec can't decode byte"
+                )
+            with pytest.raises(UnicodeError, match=msg):
+                pd.read_csv(path, compression=compression_, encoding=encoding)
+
+
+def test_is_fsspec_url() ->None:
+    assert icom.is_fsspec_url('gcs://pandas/somethingelse.com')
+    assert icom.is_fsspec_url('gs://pandas/somethingelse.com')
+    assert not icom.is_fsspec_url('http://pandas/somethingelse.com')
+    assert not icom.is_fsspec_url('random:pandas/somethingelse.com')
+    assert not icom.is_fsspec_url('/local/path')
+    assert not icom.is_fsspec_url('relative/local/path')
+    assert not icom.is_fsspec_url('this is not fsspec://url')
+    assert not icom.is_fsspec_url("{'url': 'gs://pandas/somethingelse.com'}")
+    assert icom.is_fsspec_url('RFC-3986+compliant.spec://something')
+
+
+@pytest.mark.parametrize('encoding', [None, 'utf-8'])
+@pytest.mark.parametrize('format', ['csv', 'json'])
+def test_codecs_encoding(encoding: Optional[str], format: str) ->None:
+    expected: pd.DataFrame = pd.DataFrame(1.1 * np.arange(120).reshape((30,
+        4)), columns=pd.Index(list('ABCD')), index=pd.Index([f'i-{i}' for i in
+        range(30)]))
+    with tm.ensure_clean() as path:
+        with codecs.open(path, mode='w', encoding=encoding) as handle:
+            getattr(expected, f'to_{format}')(handle)
+        with codecs.open(path, mode='r', encoding=encoding) as handle:
+            if format == 'csv':
+                df: pd.DataFrame = pd.read_csv(handle, index_col=0)
+            else:
+                df: pd.DataFrame = pd.read_json(handle)
+    tm.assert_frame_equal(expected, df)
+
+
+def test_codecs_get_writer_reader() ->None:
+    expected: pd.DataFrame = pd.DataFrame(1.1 * np.arange(120).reshape((30,
+        4)), columns=pd.Index(list('ABCD')), index=pd.Index([f'i-{i}' for i in
+        range(30)]))
+    with tm.ensure_clean() as path:
+        with open(path, 'wb') as handle:
+            with codecs.getwriter('utf-8')(handle) as encoded:
+                expected.to_csv(encoded)
+        with open(path, 'rb') as handle:
+            with codecs.getreader('utf-8')(handle) as encoded:
+                df: pd.DataFrame = pd.read_csv(encoded, index_col=0)
+    tm.assert_frame_equal(expected, df)
+
+
+@pytest.mark.parametrize('io_class,mode,msg', [(BytesIO, 't',
+    "a bytes-like object is required, not 'str'"), (StringIO, 'b',
+    "string argument expected, got 'bytes'")])
+def test_explicit_encoding(io_class: Callable[..., Union[BytesIO, StringIO]
+    ], mode: str, msg: str) ->None:
+    expected: pd.DataFrame = pd.DataFrame(1.1 * np.arange(120).reshape((30,
+        4)), columns=pd.Index(list('ABCD')), index=pd.Index([f'i-{i}' for i in
+        range(30)]))
+    with io_class() as buffer:
         with pytest.raises(TypeError, match=msg):
-            df.quantile(0.5, axis=1, numeric_only=False)
-
-    def test_quantile_axis_parameter(self, interp_method: Tuple[str, str]
-        ) ->None:
-        interpolation, method = interp_method
-        df = DataFrame({'A': [1, 2, 3], 'B': [2, 3, 4]}, index=[1, 2, 3])
-        result = df.quantile(0.5, axis=0, interpolation=interpolation,
-            method=method)
-        expected = Series([2.0, 3.0], index=['A', 'B'], name=0.5)
-        if interpolation == 'nearest':
-            expected = expected.astype(np.int64)
-        tm.assert_series_equal(result, expected)
-        expected = df.quantile(0.5, axis='index', interpolation=
-            interpolation, method=method)
-        if interpolation == 'nearest':
-            expected = expected.astype(np.int64)
-        tm.assert_series_equal(result, expected)
-        result = df.quantile(0.5, axis=1, interpolation=interpolation,
-            method=method)
-        expected = Series([1.5, 2.5, 3.5], index=[1, 2, 3], name=0.5)
-        if interpolation == 'nearest':
-            expected = expected.astype(np.int64)
-        tm.assert_series_equal(result, expected)
-        result = df.quantile(0.5, axis='columns', interpolation=
-            interpolation, method=method)
-        tm.assert_series_equal(result, expected)
-        msg = 'No axis named -1 for object type DataFrame'
-        with pytest.raises(ValueError, match=msg):
-            df.quantile(0.1, axis=-1, interpolation=interpolation, method=
-                method)
-        msg = 'No axis named column for object type DataFrame'
-        with pytest.raises(ValueError, match=msg):
-            df.quantile(0.1, axis='column')
-
-    def test_quantile_interpolation(self) ->None:
-        df = DataFrame({'A': [1, 2, 3], 'B': [2, 3, 4]}, index=[1, 2, 3])
-        result = df.quantile(0.5, axis=1, interpolation='nearest')
-        expected = Series([1, 2, 3], index=[1, 2, 3], name=0.5)
-        tm.assert_series_equal(result, expected)
-        exp = np.percentile(np.array([[1, 2, 3], [2, 3, 4]]), 0.5, axis=0,
-            method='nearest')
-        expected = Series(exp, index=[1, 2, 3], name=0.5, dtype='int64')
-        tm.assert_series_equal(result, expected)
-        df = DataFrame({'A': [1.0, 2.0, 3.0], 'B': [2.0, 3.0, 4.0]}, index=
-            [1, 2, 3])
-        result = df.quantile(0.5, axis=1, interpolation='nearest')
-        expected = Series([1.0, 2.0, 3.0], index=[1, 2, 3], name=0.5)
-        tm.assert_series_equal(result, expected)
-        exp = np.percentile(np.array([[1.0, 2.0, 3.0], [2.0, 3.0, 4.0]]), 
-            0.5, axis=0, method='nearest')
-        expected = Series(exp, index=[1, 2, 3], name=0.5, dtype='float64')
-        tm.assert_series_equal(result, expected)
-        result = df.quantile([0.5, 0.75], axis=1, interpolation='lower')
-        expected = DataFrame({'a': [1.0, 1.0], 'b': [2.0, 2.0], 'c': [3.0, 
-            3.0]}, index=[0.5, 0.75])
-        tm.assert_frame_equal(result, expected)
-        df = DataFrame({'x': [], 'y': []})
-        q = df.quantile(0.1, axis=0, interpolation='higher')
-        assert np.isnan(q['x']) and np.isnan(q['y'])
-        df = DataFrame([[1, 1, 1], [2, 2, 2], [3, 3, 3]], columns=['a', 'b',
-            'c'])
-        result = df.quantile([0.25, 0.5], interpolation='midpoint')
-        expected = DataFrame([[1.5, 1.5, 1.5], [2.0, 2.0, 2.0]], index=[
-            0.25, 0.5], columns=['a', 'b', 'c'])
-        tm.assert_frame_equal(result, expected)
-
-    def test_quantile_interpolation_datetime(self, datetime_frame: DataFrame
-        ) ->None:
-        df = datetime_frame
-        q = df.quantile(0.1, axis=0, numeric_only=True, interpolation='linear')
-        assert q['A'] == np.percentile(df['A'], 10)
-
-    def test_quantile_interpolation_int(self, int_frame: DataFrame) ->None:
-        df = int_frame
-        q = df.quantile(0.1)
-        assert q['A'] == np.percentile(df['A'], 10)
-        q1 = df.quantile(0.1, axis=0, interpolation='linear')
-        assert q1['A'] == np.percentile(df['A'], 10)
-        tm.assert_series_equal(q, q1)
-
-    def test_quantile_multi(self, interp_method: Tuple[str, str]) ->None:
-        interpolation, method = interp_method
-        df = DataFrame([[1, 1, 1], [2, 2, 2], [3, 3, 3]], columns=['a', 'b',
-            'c'])
-        result = df.quantile([0.25, 0.5], interpolation=interpolation,
-            method=method)
-        expected = DataFrame([[1.5, 1.5, 1.5], [2.0, 2.0, 2.0]], index=[
-            0.25, 0.5], columns=['a', 'b', 'c'])
-        if interpolation == 'nearest':
-            expected = expected.astype(np.int64)
-        tm.assert_frame_equal(result, expected)
-
-    def test_quantile_multi_axis_1(self, interp_method: Tuple[str, str]
-        ) ->None:
-        interpolation, method = interp_method
-        df = DataFrame([[1, 1, 1], [2, 2, 2], [3, 3, 3]], columns=['a', 'b',
-            'c'])
-        result = df.quantile([0.25, 0.5], axis=1, interpolation=
-            interpolation, method=method)
-        expected = DataFrame([[1.0, 2.0, 3.0], [1.0, 2.0, 3.0]], index=[
-            0.25, 0.5], columns=[0, 1, 2])
-        if interpolation == 'nearest':
-            expected = expected.astype(np.int64)
-        tm.assert_frame_equal(result, expected)
-
-    def test_quantile_multi_empty(self, interp_method: Tuple[str, str]) ->None:
-        interpolation, method = interp_method
-        result = DataFrame({'x': [], 'y': []}).quantile([0.1, 0.9], axis=0,
-            interpolation=interpolation, method=method)
-        expected = DataFrame({'x': [np.nan, np.nan], 'y': [np.nan, np.nan]},
-            index=[0.1, 0.9])
-        tm.assert_frame_equal(result, expected)
-
-    def test_quantile_datetime(self, unit: str) ->None:
-        dti = pd.to_datetime(['2010', '2011']).as_unit(unit)
-        df = DataFrame({'a': dti, 'b': [0, 5]})
-        result = df.quantile(0.5, numeric_only=True)
-        expected = Series([2.5], index=['b'], name=0.5)
-        tm.assert_series_equal(result, expected)
-        result = df.quantile(0.5, numeric_only=False)
-        expected = Series([Timestamp('2010-07-02 12:00:00'), 2.5], index=[
-            'a', 'b'], name=0.5)
-        tm.assert_series_equal(result, expected)
-        result = df.quantile([0.5], numeric_only=False)
-        expected = DataFrame({'a': pd.Timestamp('2010-07-02 12:00:00').
-            as_unit(unit), 'b': 2.5}, index=[0.5])
-        tm.assert_frame_equal(result, expected)
-        df['c'] = pd.to_datetime(['2011', '2012']).as_unit(unit)
-        result = df[['a', 'c']].quantile(0.5, axis=1, numeric_only=False)
-        expected = Series([Timestamp('2010-07-02 12:00:00'), Timestamp(
-            '2011-07-02 12:00:00')], index=[0, 1], name=0.5, dtype=
-            f'M8[{unit}]')
-        tm.assert_series_equal(result, expected)
-        result = df[['a', 'c']].quantile([0.5], axis=1, numeric_only=False)
-        expected = DataFrame([[Timestamp('2010-07-02 12:00:00'), Timestamp(
-            '2011-07-02 12:00:00')]], index=[0.5], columns=[0, 1], dtype=
-            f'M8[{unit}]')
-        tm.assert_frame_equal(result, expected)
-        result = df[['a', 'c']].quantile(0.5, numeric_only=True)
-        expected = Series([], index=Index([], dtype='str'), dtype=np.
-            float64, name=0.5)
-        tm.assert_series_equal(result, expected)
-        result = df[['a', 'c']].quantile([0.5], numeric_only=True)
-        expected = DataFrame(index=[0.5], columns=Index([], dtype='str'))
-        tm.assert_frame_equal(result, expected)
-
-    @pytest.mark.parametrize('dtype, expected_data, expected_index, axis',
-        [['datetime64[ns]', [], [], 1], ['datetime64[ns, US/Pacific]', [],
-        [], 1], ['timedelta64[ns]', [], [], 1], ['Period[D]', [], [], 1], [
-        'datetime64[ns]', [pd.NaT, pd.NaT], ['a', 'b'], 0], [
-        'datetime64[ns, US/Pacific]', [pd.NaT, pd.NaT], ['a', 'b'], 0], [
-        'timedelta64[ns]', [pd.NaT, pd.NaT], ['a', 'b'], 0], ['Period[D]',
-        [pd.NaT, pd.NaT], ['a', 'b'], 0]])
-    def test_quantile_dt64_empty(self, dtype: str, expected_data: List[Any],
-        expected_index: List[str], axis: int) ->None:
-        interpolation, method = 'linear', 'single'
-        df = DataFrame(columns=['a', 'b'], dtype=dtype)
-        res = df.quantile(0.5, axis=axis, numeric_only=False, interpolation
-            =interpolation, method=method)
-        expected = Series(expected_data, index=Index(expected_index, dtype=
-            'str'), name=0.5, dtype=dtype)
-        tm.assert_series_equal(res, expected)
-        res = df.quantile([0.5], axis=axis, numeric_only=False,
-            interpolation=interpolation, method=method)
-        expected = DataFrame(index=[0.5], columns=Index([], dtype='str'))
-        tm.assert_frame_equal(res, expected)
-
-    @pytest.mark.parametrize('invalid', [-1, 2, [0.5, -1], [0.5, 2]])
-    def test_quantile_invalid(self, invalid: Union[int, List[Union[int,
-        float]]], datetime_frame: DataFrame, interp_method: Tuple[str, str]
-        ) ->None:
-        msg = 'percentiles should all be in the interval \\[0, 1\\]'
-        interpolation, method = interp_method
-        with pytest.raises(ValueError, match=msg):
-            datetime_frame.quantile(invalid, interpolation=interpolation,
-                method=method)
-
-    def test_quantile_box(self, interp_method: Tuple[str, str]) ->None:
-        interpolation, method = interp_method
-        df = DataFrame({'A': [Timestamp('2011-01-01'), Timestamp(
-            '2011-01-02'), Timestamp('2011-01-03')], 'B': [Timestamp(
-            '2011-01-01', tz='US/Eastern'), Timestamp('2011-01-02', tz=
-            'US/Eastern'), Timestamp('2011-01-03', tz='US/Eastern')], 'C':
-            [pd.Timedelta('1 days'), pd.Timedelta('2 days'), pd.Timedelta(
-            '3 days')]})
-        res = df.quantile(0.5, numeric_only=False, interpolation=
-            interpolation, method=method)
-        exp = Series([Timestamp('2011-01-02'), Timestamp('2011-01-02', tz=
-            'US/Eastern'), pd.Timedelta('2 days')], name=0.5, index=['A',
-            'B', 'C'])
-        tm.assert_series_equal(res, exp)
-        res = df.quantile([0.5], numeric_only=False, interpolation=
-            interpolation, method=method)
-        exp = DataFrame([[Timestamp('2011-01-02'), Timestamp('2011-01-02',
-            tz='US/Eastern'), pd.Timedelta('2 days')]], index=[0.5],
-            columns=['A', 'B', 'C'])
-        tm.assert_frame_equal(res, exp)
-
-    def test_quantile_box_nat(self) ->None:
-        df = DataFrame({'A': [Timestamp('2011-01-01'), pd.NaT, Timestamp(
-            '2011-01-02'), Timestamp('2011-01-03')], 'a': [Timestamp(
-            '2011-01-01'), Timestamp('2011-01-02'), pd.NaT, Timestamp(
-            '2011-01-03')], 'B': [Timestamp('2011-01-01', tz='US/Eastern'),
-            pd.NaT, Timestamp('2011-01-02', tz='US/Eastern'), Timestamp(
-            '2011-01-03', tz='US/Eastern')], 'b': [Timestamp('2011-01-01',
-            tz='US/Eastern'), Timestamp('2011-01-02', tz='US/Eastern'), pd.
-            NaT, Timestamp('2011-01-03', tz='US/Eastern')], 'C': [pd.
-            Timedelta('1 days'), pd.Timedelta('2 days'), pd.Timedelta(
-            '3 days'), pd.NaT], 'c': [pd.NaT, pd.Timedelta('1 days'), pd.
-            Timedelta('2 days'), pd.Timedelta('3 days')]}, columns=list(
-            'AaBbCc'))
-        res = df.quantile(0.5, numeric_only=False)
-        exp = Series([Timestamp('2011-01-02'), Timestamp('2011-01-02'),
-            Timestamp('2011-01-02', tz='US/Eastern'), Timestamp(
-            '2011-01-02', tz='US/Eastern'), pd.Timedelta('2 days'), pd.
-            Timedelta('2 days')], name=0.5, index=list('AaBbCc'))
-        tm.assert_series_equal(res, exp)
-        res = df.quantile([0.5], numeric_only=False)
-        exp = DataFrame([[Timestamp('2011-01-02'), Timestamp('2011-01-02'),
-            Timestamp('2011-01-02', tz='US/Eastern'), Timestamp(
-            '2011-01-02', tz='US/Eastern'), pd.Timedelta('2 days'), pd.
-            Timedelta('2 days')]], index=[0.5], columns=list('AaBbCc'))
-        tm.assert_frame_equal(res, exp)
-
-    def test_quantile_nan(self, interp_method: Tuple[str, str]) ->None:
-        interpolation, method = interp_method
-        df = DataFrame({'a': np.arange(1, 6.0), 'b': np.arange(1, 6.0)})
-        df.iloc[-1, 1] = np.nan
-        res = df.quantile(0.5, interpolation=interpolation, method=method)
-        exp = Series([3.0, 2.5 if interpolation == 'linear' else 3.0],
-            index=['a', 'b'], name=0.5)
-        tm.assert_series_equal(res, exp)
-        res = df.quantile([0.5, 0.75], interpolation=interpolation, method=
-            method)
-        exp = DataFrame({'a': [3.0, 4.0], 'b': [2.5, 3.25] if interpolation ==
-            'linear' else [3.0, 4.0]}, index=[0.5, 0.75])
-        tm.assert_frame_equal(res, exp)
-        res = df.quantile(0.5, axis=1, interpolation=interpolation, method=
-            method)
-        exp = Series(np.arange(1.0, 6.0), name=0.5)
-        tm.assert_series_equal(res, exp)
-        res = df.quantile([0.5, 0.75], axis=1, interpolation=interpolation,
-            method=method)
-        exp = DataFrame([np.arange(1.0, 6.0)] * 2, index=[0.5, 0.75])
-        if interpolation == 'nearest':
-            exp.iloc[1, -1] = np.nan
-        tm.assert_frame_equal(res, exp)
-        df['b'] = np.nan
-        res = df.quantile(0.5, interpolation=interpolation, method=method)
-        exp = Series([3.0, np.nan], index=['a', 'b'], name=0.5)
-        tm.assert_series_equal(res, exp)
-        res = df.quantile([0.5, 0.75], interpolation=interpolation, method=
-            method)
-        exp = DataFrame({'a': [3.0, 4.0], 'b': [np.nan, np.nan]}, index=[
-            0.5, 0.75])
-        tm.assert_frame_equal(res, exp)
-
-    def test_quantile_nat(self, interp_method: Tuple[str, str], unit: str
-        ) ->None:
-        interpolation, method = interp_method
-        df = DataFrame({'a': [pd.NaT, pd.NaT, pd.NaT]}, dtype=f'M8[{unit}]')
-        res = df.quantile(0.5, numeric_only=False, interpolation=
-            interpolation, method=method)
-        exp = Series([pd.NaT], index=['a'], name=0.5, dtype=f'M8[{unit}]')
-        tm.assert_series_equal(res, exp)
-        res = df.quantile([0.5], numeric_only=False, interpolation=
-            interpolation, method=method)
-        exp = DataFrame({'a': [pd.NaT]}, index=[0.5], dtype=f'M8[{unit}]')
-        tm.assert_frame_equal(res, exp)
-        df = DataFrame({'a': [Timestamp('2012-01-01'), Timestamp(
-            '2012-01-02'), Timestamp('2012-01-03')], 'b': [pd.NaT, pd.NaT,
-            pd.NaT]}, dtype=f'M8[{unit}]')
-        res = df.quantile(0.5, numeric_only=False, interpolation=
-            interpolation, method=method)
-        exp = Series([Timestamp('2012-01-02'), pd.NaT], index=['a', 'b'],
-            name=0.5, dtype=f'M8[{unit}]')
-        tm.assert_series_equal(res, exp)
-        res = df.quantile([0.5], numeric_only=False, interpolation=
-            interpolation, method=method)
-        exp = DataFrame([[Timestamp('2012-01-02'), pd.NaT]], index=[0.5],
-            columns=['a', 'b'], dtype=f'M8[{unit}]')
-        tm.assert_frame_equal(res, exp)
-
-    def test_quantile_empty_no_rows_floats(self, interp_method: Tuple[str, str]
-        ) ->None:
-        interpolation, method = interp_method
-        df = DataFrame(columns=['a', 'b'], dtype='float64')
-        res = df.quantile(0.5, interpolation=interpolation, method=method)
-        exp = Series([np.nan, np.nan], index=['a', 'b'], name=0.5)
-        tm.assert_series_equal(res, exp)
-        res = df.quantile([0.5], interpolation=interpolation, method=method)
-        exp = DataFrame([[np.nan, np.nan]], columns=['a', 'b'], index=[0.5])
-        tm.assert_frame_equal(res, exp)
-        res = df.quantile(0.5, axis=1, interpolation=interpolation, method=
-            method)
-        exp = Series([], index=Index([], dtype='str'), dtype='float64',
-            name=0.5)
-        tm.assert_series_equal(res, exp)
-        res = df.quantile([0.5], axis=1, interpolation=interpolation,
-            method=method)
-        exp = DataFrame(columns=Index([], dtype='str'), index=[0.5])
-        tm.assert_frame_equal(res, exp)
-
-    def test_quantile_empty_no_rows_ints(self, interp_method: Tuple[str, str]
-        ) ->None:
-        interpolation, method = interp_method
-        df = DataFrame(columns=['a', 'b'], dtype='int64')
-        res = df.quantile(0.5, interpolation=interpolation, method=method)
-        exp = Series([np.nan, np.nan], index=['a', 'b'], name=0.5)
-        tm.assert_series_equal(res, exp)
-
-    def test_quantile_empty_no_rows_dt64(self, interp_method: Tuple[str, str]
-        ) ->None:
-        interpolation, method = interp_method
-        df = DataFrame(columns=['a', 'b'], dtype='datetime64[ns]')
-        res = df.quantile(0.5, numeric_only=False, interpolation=
-            interpolation, method=method)
-        exp = Series([pd.NaT, pd.NaT], index=['a', 'b'], dtype=
-            'datetime64[ns]', name=0.5)
-        tm.assert_series_equal(res, exp)
-        df['a'] = df['a'].dt.tz_localize('US/Central')
-        res = df.quantile(0.5, numeric_only=False, interpolation=
-            interpolation, method=method)
-        exp = exp.astype(object)
-        if interpolation == 'nearest':
-            exp = exp.fillna(np.nan)
-        tm.assert_series_equal(res, exp)
-        df['b'] = df['b'].dt.tz_localize('US/Central')
-        res = df.quantile(0.5, numeric_only=False, interpolation=
-            interpolation, method=method)
-        exp = exp.astype(df['b'].dtype)
-        tm.assert_series_equal(res, exp)
-
-    def test_quantile_empty_no_columns(self, interp_method: Tuple[str, str]
-        ) ->None:
-        interpolation, method = interp_method
-        df = DataFrame(pd.date_range('1/1/18', periods=5))
-        df.columns.name = 'captain tightpants'
-        result = df.quantile(0.5, numeric_only=True, interpolation=
-            interpolation, method=method)
-        expected = Series([], name=0.5, dtype=np.float64)
-        expected.index.name = 'captain tightpants'
-        tm.assert_series_equal(result, expected)
-        result = df.quantile([0.5], numeric_only=True, interpolation=
-            interpolation, method=method)
-        expected = DataFrame([], index=[0.5])
-        expected.columns.name = 'captain tightpants'
-        tm.assert_frame_equal(result, expected)
-
-    def test_quantile_item_cache(self, interp_method: Tuple[str, str]) ->None:
-        interpolation, method = interp_method
-        df = DataFrame(np.random.default_rng(2).standard_normal((4, 3)),
-            columns=['A', 'B', 'C'])
-        df['D'] = df['A'] * 2
-        ser = df['A']
-        assert len(df._mgr.blocks) == 2
-        df.quantile(numeric_only=False, interpolation=interpolation, method
-            =method)
-        ser.iloc[0] = 99
-        assert df.iloc[0, 0] == df['A'][0]
-        assert df.iloc[0, 0] != 99
-
-    def test_invalid_method(self) ->None:
-        with pytest.raises(ValueError, match='Invalid method: foo'):
-            DataFrame(range(1)).quantile(0.5, method='foo')
-
-    def test_table_invalid_interpolation(self) ->None:
-        with pytest.raises(ValueError, match='Invalid interpolation: foo'):
-            DataFrame(range(1)).quantile(0.5, method='table', interpolation
-                ='foo')
+            expected.to_csv(buffer, mode=f'w{mode}')
 
 
-class TestQuantileExtensionDtype:
-
-    @pytest.fixture(params=[pytest.param(pd.IntervalIndex.from_breaks(range
-        (10)), marks=pytest.mark.xfail(reason=
-        'raises when trying to add Intervals')), pd.period_range(
-        '2016-01-01', periods=9, freq='D'), pd.date_range('2016-01-01',
-        periods=9, tz='US/Pacific'), pd.timedelta_range('1 Day', periods=9),
-        pd.array(np.arange(9), dtype='Int64'), pd.array(np.arange(9), dtype
-        ='Float64')], ids=lambda x: str(x.dtype))
-    def index(self, request: Any):
-        idx = request.param
-        idx.name = 'A'
-        return idx
-
-    @pytest.fixture
-    def obj(self, index: Index, frame_or_series: Any) ->Union[Series, DataFrame
-        ]:
-        obj = frame_or_series(index).copy()
-        if frame_or_series is Series:
-            obj.name = 'A'
+@pytest.mark.parametrize('encoding_errors', ['strict', 'replace'])
+@pytest.mark.parametrize('format', ['csv', 'json'])
+def test_encoding_errors(encoding_errors: str, format: str) ->None:
+    msg: str = "'utf-8' codec can't decode byte"
+    bad_encoding: bytes = b'\xe4'
+    if format == 'csv':
+        content: bytes = (b',' + bad_encoding + b'\n' + bad_encoding * 2 +
+            b',' + bad_encoding)
+        reader: Callable[..., pd.DataFrame] = partial(pd.read_csv, index_col=0)
+    else:
+        content = (b'{"' + bad_encoding * 2 + b'": {"' + bad_encoding +
+            b'":"' + bad_encoding + b'"}}')
+        reader = partial(pd.read_json, orient='index')
+    with tm.ensure_clean() as path:
+        file: Path = Path(path)
+        file.write_bytes(content)
+        if encoding_errors != 'replace':
+            with pytest.raises(UnicodeDecodeError, match=msg):
+                reader(path, encoding_errors=encoding_errors)
         else:
-            obj.columns = ['A']
-        return obj
-
-    def compute_quantile(self, obj: Union[Series, DataFrame], qs: Union[
-        float, List[float]]) ->Union[Series, DataFrame]:
-        if isinstance(obj, Series):
-            result = obj.quantile(qs)
-        else:
-            result = obj.quantile(qs, numeric_only=False)
-        return result
-
-    def test_quantile_ea(self, request: Any, obj: Union[Series, DataFrame],
-        index: Index) ->None:
-        indexer = np.arange(len(index), dtype=np.intp)
-        np.random.default_rng(2).shuffle(indexer)
-        obj = obj.iloc[indexer]
-        qs = [0.5, 0, 1]
-        result = self.compute_quantile(obj, qs)
-        exp_dtype = index.dtype
-        if index.dtype == 'Int64':
-            exp_dtype = 'Float64'
-        expected = Series([index[4], index[0], index[-1]], dtype=exp_dtype,
-            index=qs, name='A')
-        expected = type(obj)(expected)
-        tm.assert_equal(result, expected)
-
-    def test_quantile_ea_with_na(self, obj: Union[Series, DataFrame], index:
-        Index) ->None:
-        obj.iloc[0] = index._na_value
-        obj.iloc[-1] = index._na_value
-        indexer = np.arange(len(index), dtype=np.intp)
-        np.random.default_rng(2).shuffle(indexer)
-        obj = obj.iloc[indexer]
-        qs = [0.5, 0, 1]
-        result = self.compute_quantile(obj, qs)
-        expected = Series([index[4], index[1], index[-2]], dtype=index.
-            dtype, index=qs, name='A')
-        expected = type(obj)(expected)
-        tm.assert_equal(result, expected)
-
-    def test_quantile_ea_all_na(self, request: Any, obj: Union[Series,
-        DataFrame], index: Index) ->None:
-        obj.iloc[:] = index._na_value
-        assert np.all(obj.dtypes == index.dtype)
-        indexer = np.arange(len(index), dtype=np.intp)
-        np.random.default_rng(2).shuffle(indexer)
-        obj = obj.iloc[indexer]
-        qs = [0.5, 0, 1]
-        result = self.compute_quantile(obj, qs)
-        expected = index.take([-1, -1, -1], allow_fill=True, fill_value=
-            index._na_value)
-        expected = Series(expected, index=qs, name='A')
-        expected = type(obj)(expected)
-        tm.assert_equal(result, expected)
-
-    def test_quantile_ea_scalar(self, request: Any, obj: Union[Series,
-        DataFrame], index: Index) ->None:
-        indexer = np.arange(len(index), dtype=np.intp)
-        np.random.default_rng(2).shuffle(indexer)
-        obj = obj.iloc[indexer]
-        qs = 0.5
-        result = self.compute_quantile(obj, qs)
-        exp_dtype = index.dtype
-        if index.dtype == 'Int64':
-            exp_dtype = 'Float64'
-        expected = Series({'A': index[4]}, dtype=exp_dtype, name=0.5)
-        if isinstance(obj, Series):
-            expected_val = expected['A']
-            assert result == expected_val
-        else:
-            tm.assert_series_equal(result, expected)
-
-    @pytest.mark.parametrize('dtype, expected_data, expected_index, axis',
-        [['float64', [], [], 1], ['int64', [], [], 1], ['float64', [np.nan,
-        np.nan], ['a', 'b'], 0], ['int64', [np.nan, np.nan], ['a', 'b'], 0]])
-    def test_empty_numeric(self, dtype: str, expected_data: List[float],
-        expected_index: List[str], axis: int) ->None:
-        df = DataFrame(columns=['a', 'b'], dtype=dtype)
-        result = df.quantile(0.5, axis=axis)
-        expected = Series(expected_data, name=0.5, index=Index(
-            expected_index, dtype='str'), dtype='float64')
-        tm.assert_series_equal(result, expected)
-
-    @pytest.mark.parametrize(
-        'dtype, expected_data, expected_index, axis, expected_dtype', [[
-        'datetime64[ns]', [], [], 1, 'datetime64[ns]'], ['datetime64[ns]',
-        [pd.NaT, pd.NaT], ['a', 'b'], 0, 'datetime64[ns]']])
-    def test_empty_datelike(self, dtype: str, expected_data: List[Any],
-        expected_index: List[str], axis: int, expected_dtype: str) ->None:
-        df = DataFrame(columns=['a', 'b'], dtype=dtype)
-        result = df.quantile(0.5, axis=axis, numeric_only=False)
-        expected = Series(expected_data, name=0.5, index=Index(
-            expected_index, dtype='str'), dtype=expected_dtype)
-        tm.assert_series_equal(result, expected)
-
-    @pytest.mark.parametrize('expected_data, expected_index, axis', [[[np.
-        nan, np.nan], list(range(2)), 1], [[], [], 0]])
-    def test_datelike_numeric_only(self, expected_data: List[float],
-        expected_index: List[Union[str, int]], axis: int) ->None:
-        df = DataFrame({'a': pd.to_datetime(['2010', '2011']), 'b': [0, 5],
-            'c': pd.to_datetime(['2011', '2012'])})
-        result = df[['a', 'c']].quantile(0.5, axis=axis, numeric_only=True)
-        expected = Series(expected_data, name=0.5, index=Index(
-            expected_index, dtype='str' if axis == 0 else 'int64'), dtype=
-            np.float64)
-        tm.assert_series_equal(result, expected)
+            df: pd.DataFrame = reader(path, encoding_errors=encoding_errors)
+            decoded: str = bad_encoding.decode(errors=encoding_errors)
+            expected: pd.DataFrame = pd.DataFrame({decoded: [decoded]},
+                index=[decoded * 2])
+            tm.assert_frame_equal(df, expected)
 
 
-def test_multi_quantile_numeric_only_retains_columns() ->None:
-    df = DataFrame(list('abc'))
-    result = df.quantile([0.5, 0.7], numeric_only=True)
-    expected = DataFrame(index=[0.5, 0.7])
-    tm.assert_frame_equal(result, expected, check_index_type=True,
-        check_column_type=True)
+@pytest.mark.parametrize('encoding_errors', [0, None])
+def test_encoding_errors_badtype(encoding_errors: Any) ->None:
+    content: StringIO = StringIO('A,B\n1,2\n3,4\n')
+    reader: Callable[..., pd.DataFrame] = partial(pd.read_csv,
+        encoding_errors=encoding_errors)
+    expected_error: str = 'encoding_errors must be a string, got '
+    expected_error += f'{type(encoding_errors).__name__}'
+    with pytest.raises(ValueError, match=expected_error):
+        reader(content)
+
+
+def test_bad_encdoing_errors() ->None:
+    with tm.ensure_clean() as path:
+        with pytest.raises(LookupError, match='unknown error handler name'):
+            icom.get_handle(path, 'w', errors='bad')
+
+
+@pytest.mark.skipif(WASM, reason='limited file system access on WASM')
+def test_errno_attribute() ->None:
+    with pytest.raises(FileNotFoundError, match='\\[Errno 2\\]') as err:
+        pd.read_csv('doesnt_exist')
+    assert err.value.errno == errno.ENOENT
+
+
+def test_fail_mmap() ->None:
+    with pytest.raises(UnsupportedOperation, match='fileno'):
+        with BytesIO() as buffer:
+            icom.get_handle(buffer, 'rb', memory_map=True)
+
+
+def test_close_on_error() ->None:
+
+
+    class TestError:
+
+        def close(self) ->None:
+            raise OSError('test')
+    with pytest.raises(OSError, match='test'):
+        with BytesIO() as buffer:
+            with icom.get_handle(buffer, 'rb') as handles:
+                handles.created_handles.append(TestError())
+
+
+@td.skip_if_no('fsspec', min_version='2023.1.0')
+@pytest.mark.parametrize('compression', [None, 'infer'])
+def test_read_csv_chained_url_no_error(compression: Optional[str]) ->None:
+    tar_file_path: str = 'pandas/tests/io/data/tar/test-csv.tar'
+    chained_file_url: str = f'tar://test.csv::file://{tar_file_path}'
+    result: pd.DataFrame = pd.read_csv(chained_file_url, compression=
+        compression, sep=';')
+    expected: pd.DataFrame = pd.DataFrame({'1': {(0): 3}, '2': {(0): 4}})
+    tm.assert_frame_equal(expected, result)
+
+
+@pytest.mark.parametrize('reader', [pd.read_csv, pd.read_fwf, pd.read_excel,
+    pd.read_feather, pd.read_hdf, pd.read_stata, pd.read_sas, pd.read_json,
+    pd.read_pickle])
+def test_pickle_reader(reader: Callable[..., Any]) ->None:
+    with BytesIO() as buffer:
+        pickle.dump(reader, buffer)
+
+
+@td.skip_if_no('pyarrow')
+def test_pyarrow_read_csv_datetime_dtype() ->None:
+    data: str = '"date"\n"20/12/2025"\n""\n"31/12/2020"'
+    result: pd.DataFrame = pd.read_csv(StringIO(data), parse_dates=['date'],
+        dayfirst=True, dtype_backend='pyarrow')
+    expect_data: pd.Series = pd.to_datetime(['20/12/2025', pd.NaT,
+        '31/12/2020'], dayfirst=True)
+    expect: pd.DataFrame = pd.DataFrame({'date': expect_data})
+    tm.assert_frame_equal(expect, result)
