@@ -6,7 +6,7 @@ import pandas._testing as tm
 
 class TestSeriesSortValues:
 
-    def test_sort_values(self, datetime_series) ->None:
+    def test_sort_values(self, datetime_series: Series):
         ser: Series = Series([3, 2, 4, 1], ['A', 'B', 'C', 'D'])
         expected: Series = Series([1, 2, 3, 4], ['D', 'B', 'A', 'C'])
         result: Series = ser.sort_values()
@@ -114,7 +114,7 @@ class TestSeriesSortValues:
         'original_list, sorted_list, ignore_index, output_index', [([2, 3, 
         6, 1], [6, 3, 2, 1], True, [0, 1, 2, 3]), ([2, 3, 6, 1], [6, 3, 2, 
         1], False, [2, 1, 0, 3])])
-    def test_sort_values_ignore_index(self, inplace: bool, original_list,
+    def test_sort_values_ignore_index(self, inplace, original_list,
         sorted_list: list[int], ignore_index: bool, output_index: list[int]
         ) ->None:
         ser: Series = Series(original_list)
@@ -155,7 +155,7 @@ class TestSeriesSortValues:
 
 class TestSeriesSortingKey:
 
-    def test_sort_values_key(self):
+    def test_sort_values_key(self) ->None:
         series: Series = Series(np.array(['Hello', 'goodbye']))
         result: Series = series.sort_values(axis=0)
         expected: Series = series
@@ -174,4 +174,4 @@ class TestSeriesSortingKey:
         tm.assert_series_equal(result, expected)
         result = series.sort_values(axis=0, key=lambda x: -x, ascending=False)
         expected = series.iloc[[0, 4, 3, 1, 2, 5]]
-        tm.assert_series_equal(result, e
+        tm.assert_series_equal(result, expected)
