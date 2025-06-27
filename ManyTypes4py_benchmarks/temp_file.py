@@ -31,7 +31,8 @@ ORDER_TYPES: List[Dict[str, Union[str, bool]]] = [{'entry': 'limit', 'exit':
     True}]
 
 
-def trim_dictlist(dict_list, num: int) ->Dict[str, pd.DataFrame]:
+def trim_dictlist(dict_list: Dict[str, pd.DataFrame], num) ->Dict[str, pd.
+    DataFrame]:
     new: Dict[str, pd.DataFrame] = {}
     for pair, pair_data in dict_list.items():
         new[pair] = pair_data[num:].reset_index()
@@ -65,7 +66,7 @@ def load_data_test(what: str, testdatadir: Path):
 
 
 def _make_backtest_conf(mocker: Any, datadir: Path, conf: Optional[Dict[str,
-    Any]]=None, pair: str='UNITTEST/BTC') ->Dict[str, Any]:
+    Any]]=None, pair='UNITTEST/BTC') ->Dict[str, Any]:
     data = history.load_data(datadir=datadir, timeframe='1m', pairs=[pair])
     data = trim_dictlist(data, -201)
     patch_exchange(mocker)
@@ -286,8 +287,8 @@ def test_backtest_abort(default_conf: Dict[str, Any], mocker: Any,
     assert backtesting.progress.progress == 0
 
 
-def test_backtesting_start(default_conf: Dict[str, Any], mocker: Any, caplog
-    ) ->None:
+def test_backtesting_start(default_conf: Dict[str, Any], mocker: Any,
+    caplog: Any) ->None:
 
     def get_timerange(input1: Any) ->Tuple[datetime, datetime]:
         return dt_utc(2017, 11, 14, 21, 17), dt_utc(2017, 11, 14, 22, 59)
