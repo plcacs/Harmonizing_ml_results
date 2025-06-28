@@ -1,538 +1,988 @@
-"""
-Tests for the pandas.io.common functionalities
-"""
-import codecs
-import errno
-from functools import partial
-from io import BytesIO, StringIO, UnsupportedOperation
-import mmap
-import os
-from pathlib import Path
-import pickle
-import tempfile
-from typing import Any, Callable, Iterator, List, Optional, Tuple, Type, Union
+import re
 import numpy as np
 import pytest
-from pandas.compat import WASM, is_platform_windows
-from pandas.compat.pyarrow import pa_version_under19p0
-import pandas.util._test_decorators as td
 import pandas as pd
+from pandas import DataFrame, Index, date_range, lreshape, melt, wide_to_long
 import pandas._testing as tm
-import pandas.io.common as icom
-pytestmark = pytest.mark.filterwarnings(
-    'ignore:Passing a BlockManager to DataFrame:DeprecationWarning')
-
-
-class CustomFSPath:
-    """For testing fspath on unknown objects"""
-
-    def __init__(self, path: str) ->None:
-        self.path = path
-
-    def __fspath__(self) ->str:
-        return self.path
-
-
-HERE: str = os.path.abspath(os.path.dirname(__file__))
-
-
-class TestCommonIOCapabilities:
-    data1: str = """index,A,B,C,D
-foo,2,3,4,5
-bar,7,8,9,10
-baz,12,13,14,15
-qux,12,13,14,15
-foo2,12,13,14,15
-bar2,12,13,14,15
-"""
-
-    def test_expand_user(self) ->None:
-        filename: str = '~/sometest'
-        expanded_name: str = icom._expand_user(filename)
-        assert expanded_name != filename
-        assert os.path.isabs(expanded_name)
-        assert os.path.expanduser(filename) == expanded_name
-
-    def test_expand_user_normal_path(self) ->None:
-        filename: str = '/somefolder/sometest'
-        expanded_name: str = icom._expand_user(filename)
-        assert expanded_name == filename
-        assert os.path.expanduser(filename) == expanded_name
-
-    def test_stringify_path_pathlib(self) ->None:
-        rel_path: str = icom.stringify_path(Path('.'))
-        assert rel_path == '.'
-        redundant_path: str = icom.stringify_path(Path('foo//bar'))
-        assert redundant_path == os.path.join('foo', 'bar')
-
-    def test_stringify_path_fspath(self) ->None:
-        p: CustomFSPath = CustomFSPath('foo/bar.csv')
-        result: str = icom.stringify_path(p)
-        assert result == 'foo/bar.csv'
-
-    def test_stringify_file_and_path_like(self) ->None:
-        fsspec = pytest.importorskip('fsspec')
-        with tm.ensure_clean() as path:
-            with fsspec.open(f'file://{path}', mode='wb') as fsspec_obj:
-                assert fsspec_obj == icom.stringify_path(fsspec_obj)
-
-    @pytest.mark.parametrize('path_type', [str, CustomFSPath, Path])
-    def test_infer_compression_from_path(self, compression_format: Tuple[
-        str, Optional[str]], path_type: Type[Union[str, CustomFSPath, Path]]
-        ) ->None:
-        extension, expected = compression_format
-        path: Union[str, CustomFSPath, Path] = path_type('foo/bar.csv' +
-            extension)
-        compression: Optional[str] = icom.infer_compression(path,
-            compression='infer')
-        assert compression == expected
-
-    @pytest.mark.parametrize('path_type', [str, CustomFSPath, Path])
-    def test_get_handle_with_path(self, path_type: Type[Union[str,
-        CustomFSPath, Path]]) ->None:
-        with tempfile.TemporaryDirectory(dir=Path.home()) as tmp:
-            filename: Union[str, CustomFSPath, Path] = path_type('~/' +
-                Path(tmp).name + '/sometest')
-            with icom.get_handle(filename, 'w') as handles:
-                assert Path(handles.handle.name).is_absolute()
-                assert os.path.expanduser(filename) == handles.handle.name
-
-    def test_get_handle_with_buffer(self) ->None:
-        with StringIO() as input_buffer:
-            with icom.get_handle(input_buffer, 'r') as handles:
-                assert handles.handle == input_buffer
-            assert not input_buffer.closed
-        assert input_buffer.closed
-
-    def test_bytesiowrapper_returns_correct_bytes(self) ->None:
-        data: str = 'a,b,c\n1,2,3\n©,®,®\nLook,a snake,🐍'
-        with icom.get_handle(StringIO(data), 'rb', is_text=False) as handles:
-            result: bytes = b''
-            chunksize: int = 5
-            while True:
-                chunk: bytes = handles.handle.read(chunksize)
-                assert len(chunk) <= chunksize
-                if len(chunk) < chunksize:
-                    assert len(handles.handle.read()) == 0
-                    result += chunk
-                    break
-                result += chunk
-            assert result == data.encode('utf-8')
-
-    def test_get_handle_pyarrow_compat(self) ->None:
-        pa_csv = pytest.importorskip('pyarrow.csv')
-        data: str = 'a,b,c\n1,2,3\n©,®,®\nLook,a snake,🐍'
-        expected: pd.DataFrame = pd.DataFrame({'a': ['1', '©', 'Look'], 'b':
-            ['2', '®', 'a snake'], 'c': ['3', '®', '🐍']})
-        s: StringIO = StringIO(data)
-        with icom.get_handle(s, 'rb', is_text=False) as handles:
-            df: pd.DataFrame = pa_csv.read_csv(handles.handle).to_pandas()
-            if pa_version_under19p0:
-                expected = expected.astype('object')
-            tm.assert_frame_equal(df, expected)
-            assert not s.closed
-
-    def test_iterator(self) ->None:
-        with pd.read_csv(StringIO(self.data1), chunksize=1) as reader:
-            result: pd.DataFrame = pd.concat(reader, ignore_index=True)
-        expected: pd.DataFrame = pd.read_csv(StringIO(self.data1))
-        tm.assert_frame_equal(result, expected)
-        with pd.read_csv(StringIO(self.data1), chunksize=1) as it:
-            first: pd.DataFrame = next(it)
-            tm.assert_frame_equal(first, expected.iloc[[0]])
-            tm.assert_frame_equal(pd.concat(it), expected.iloc[1:])
-
-    @pytest.mark.skipif(WASM, reason='limited file system access on WASM')
-    @pytest.mark.parametrize('reader, module, error_class, fn_ext', [(pd.
-        read_csv, 'os', FileNotFoundError, 'csv'), (pd.read_fwf, 'os',
-        FileNotFoundError, 'txt'), (pd.read_excel, 'xlrd',
-        FileNotFoundError, 'xlsx'), (pd.read_feather, 'pyarrow', OSError,
-        'feather'), (pd.read_hdf, 'tables', FileNotFoundError, 'h5'), (pd.
-        read_stata, 'os', FileNotFoundError, 'dta'), (pd.read_sas, 'os',
-        FileNotFoundError, 'sas7bdat'), (pd.read_json, 'os',
-        FileNotFoundError, 'json'), (pd.read_pickle, 'os',
-        FileNotFoundError, 'pickle')])
-    def test_read_non_existent(self, reader: Callable[..., Any], module:
-        str, error_class: Type[BaseException], fn_ext: str) ->None:
-        pytest.importorskip(module)
-        path: str = os.path.join(HERE, 'data', 'does_not_exist.' + fn_ext)
-        msg1: str = f"File (b')?.+does_not_exist\\.{fn_ext}'? does not exist"
-        msg2: str = (
-            f"\\[Errno 2\\] No such file or directory: '.+does_not_exist\\.{fn_ext}'"
-            )
-        msg3: str = 'Expected object or value'
-        msg4: str = 'path_or_buf needs to be a string file path or file-like'
-        msg5: str = (
-            f"\\[Errno 2\\] File .+does_not_exist\\.{fn_ext} does not exist: '.+does_not_exist\\.{fn_ext}'"
-            )
-        msg6: str = f"\\[Errno 2\\] 没有那个文件或目录: '.+does_not_exist\\.{fn_ext}'"
-        msg7: str = (
-            f"\\[Errno 2\\] File o directory non esistente: '.+does_not_exist\\.{fn_ext}'"
-            )
-        msg8: str = f'Failed to open local file.+does_not_exist\\.{fn_ext}'
-        with pytest.raises(error_class, match=
-            f'({msg1}|{msg2}|{msg3}|{msg4}|{msg5}|{msg6}|{msg7}|{msg8})'):
-            reader(path)
-
-    @pytest.mark.parametrize('writer_name, writer_kwargs, module', [(
-        'to_csv', {}, 'os'), ('to_excel', {'engine': 'openpyxl'},
-        'openpyxl'), ('to_feather', {}, 'pyarrow'), ('to_html', {}, 'os'),
-        ('to_json', {}, 'os'), ('to_latex', {}, 'os'), ('to_pickle', {},
-        'os'), ('to_stata', {'time_stamp': pd.to_datetime(
-        '2019-01-01 00:00')}, 'os')])
-    def test_write_missing_parent_directory(self, method: Callable[[pd.
-        DataFrame, str, Any], None], module: str, fn_ext, writer_name: str,
-        writer_kwargs: dict) ->None:
-        pytest.importorskip(module)
-        dummy_frame: pd.DataFrame = pd.DataFrame({'a': [1, 2, 3], 'b': [2, 
-            3, 4], 'c': [3, 4, 5]})
-        path: str = os.path.join(HERE, 'data', 'missing_folder', 
-            'does_not_exist.' + fn_ext)
-        with pytest.raises(OSError, match=
-            'Cannot save file into a non-existent directory: .*missing_folder'
-            ):
-            method(dummy_frame, path)
-
-    @pytest.mark.skipif(WASM, reason='limited file system access on WASM')
-    @pytest.mark.parametrize('reader, module, error_class, fn_ext', [(pd.
-        read_csv, 'os', FileNotFoundError, 'csv'), (pd.read_table, 'os',
-        FileNotFoundError, 'csv'), (pd.read_fwf, 'os', FileNotFoundError,
-        'txt'), (pd.read_excel, 'xlrd', FileNotFoundError, 'xlsx'), (pd.
-        read_feather, 'pyarrow', OSError, 'feather'), (pd.read_hdf,
-        'tables', FileNotFoundError, 'h5'), (pd.read_stata, 'os',
-        FileNotFoundError, 'dta'), (pd.read_sas, 'os', FileNotFoundError,
-        'sas7bdat'), (pd.read_json, 'os', FileNotFoundError, 'json'), (pd.
-        read_pickle, 'os', FileNotFoundError, 'pickle')])
-    def test_read_expands_user_home_dir(self, reader: Callable[..., Any],
-        module: str, error_class: Type[BaseException], fn_ext: str,
-        monkeypatch: pytest.MonkeyPatch) ->None:
-        pytest.importorskip(module)
-        path: str = os.path.join('~', 'does_not_exist.' + fn_ext)
-        monkeypatch.setattr(icom, '_expand_user', lambda x: os.path.join(
-            'foo', x))
-        msg1: str = f"File (b')?.+does_not_exist\\.{fn_ext}'? does not exist"
-        msg2: str = (
-            f"\\[Errno 2\\] No such file or directory: '.+does_not_exist\\.{fn_ext}'"
-            )
-        msg3: str = "Unexpected character found when decoding 'false'"
-        msg4: str = 'path_or_buf needs to be a string file path or file-like'
-        msg5: str = (
-            f"\\[Errno 2\\] File .+does_not_exist\\.{fn_ext} does not exist: '.+does_not_exist\\.{fn_ext}'"
-            )
-        msg6: str = f"\\[Errno 2\\] 没有那个文件或目录: '.+does_not_exist\\.{fn_ext}'"
-        msg7: str = (
-            f"\\[Errno 2\\] File o directory non esistente: '.+does_not_exist\\.{fn_ext}'"
-            )
-        msg8: str = f'Failed to open local file.+does_not_exist\\.{fn_ext}'
-        with pytest.raises(error_class, match=
-            f'({msg1}|{msg2}|{msg3}|{msg4}|{msg5}|{msg6}|{msg7}|{msg8})'):
-            reader(path)
-
-    @pytest.mark.parametrize('reader, module, path', [(pd.read_csv, 'os', (
-        'io', 'data', 'csv', 'iris.csv')), (pd.read_table, 'os', ('io',
-        'data', 'csv', 'iris.csv')), (pd.read_fwf, 'os', ('io', 'data',
-        'fixed_width', 'fixed_width_format.txt')), (pd.read_excel, 'xlrd',
-        ('io', 'data', 'excel', 'test1.xlsx')), (pd.read_feather, 'pyarrow',
-        ('io', 'data', 'feather', 'feather-0_3_1.feather')), (pd.read_hdf,
-        'tables', ('io', 'data', 'legacy_hdf', 'pytables_native2.h5')), (pd
-        .read_stata, 'os', ('io', 'data', 'stata', 'stata10_115.dta')), (pd
-        .read_sas, 'os', ('io', 'sas', 'data', 'test1.sas7bdat')), (pd.
-        read_json, 'os', ('io', 'json', 'data', 'tsframe_v012.json')), (pd.
-        read_pickle, 'os', ('io', 'data', 'pickle',
-        'categorical.0.25.0.pickle'))])
-    def test_read_fspath_all(self, reader: Callable[..., Any], module: str,
-        path: Tuple[str, ...], datapath: Callable[..., str]) ->None:
-        pytest.importorskip(module)
-        path_str: str = datapath(*path)
-        mypath: CustomFSPath = CustomFSPath(path_str)
-        result: Any = reader(mypath)
-        expected: Any = reader(path_str)
-        if path_str.endswith('.pickle'):
-            tm.assert_categorical_equal(result, expected)
-        else:
-            tm.assert_frame_equal(result, expected)
-
-    @pytest.mark.parametrize('writer_name, writer_kwargs, module', [(
-        'to_csv', {}, 'os'), ('to_excel', {'engine': 'openpyxl'},
-        'openpyxl'), ('to_feather', {}, 'pyarrow'), ('to_html', {}, 'os'),
-        ('to_json', {}, 'os'), ('to_latex', {}, 'os'), ('to_pickle', {},
-        'os'), ('to_stata', {'time_stamp': pd.to_datetime(
-        '2019-01-01 00:00')}, 'os')])
-    def test_write_fspath_all(self, writer_name: str, writer_kwargs: dict,
-        module: str) ->None:
-        if writer_name in ['to_latex']:
-            pytest.importorskip('jinja2')
-        p1: Callable[[], Any] = tm.ensure_clean('string')
-        p2: Callable[[], Any] = tm.ensure_clean('fspath')
-        df: pd.DataFrame = pd.DataFrame({'A': [1, 2]})
-        with p1() as string, p2() as fspath:
-            pytest.importorskip(module)
-            mypath: CustomFSPath = CustomFSPath(fspath)
-            writer: Callable[..., None] = getattr(df, writer_name)
-            writer(string, **writer_kwargs)
-            writer(mypath, **writer_kwargs)
-            with open(string, 'rb') as f_str, open(fspath, 'rb') as f_path:
-                if writer_name == 'to_excel':
-                    result: pd.DataFrame = pd.read_excel(f_str, **writer_kwargs
-                        )
-                    expected: pd.DataFrame = pd.read_excel(f_path, **
-                        writer_kwargs)
-                    tm.assert_frame_equal(result, expected)
-                else:
-                    result: bytes = f_str.read()
-                    expected: bytes = f_path.read()
-                    assert result == expected
-
-    def test_write_fspath_hdf5(self) ->None:
-        pytest.importorskip('tables')
-        df: pd.DataFrame = pd.DataFrame({'A': [1, 2]})
-        p1: Callable[[], Any] = tm.ensure_clean('string')
-        p2: Callable[[], Any] = tm.ensure_clean('fspath')
-        with p1() as string, p2() as fspath:
-            mypath: CustomFSPath = CustomFSPath(fspath)
-            df.to_hdf(mypath, key='bar')
-            df.to_hdf(string, key='bar')
-            result: pd.DataFrame = pd.read_hdf(fspath, key='bar')
-            expected: pd.DataFrame = pd.read_hdf(string, key='bar')
-        tm.assert_frame_equal(result, expected)
-
+from typing import Any, Dict, List, Tuple, Union
 
 @pytest.fixture
-def mmap_file(datapath) ->str:
-    return datapath('io', 'data', 'csv', 'test_mmap.csv')
+def df() -> DataFrame:
+    res: DataFrame = DataFrame(
+        np.random.default_rng(2).standard_normal((10, 4)),
+        columns=Index(list('ABCD')),
+        index=date_range('2000-01-01', periods=10, freq='B')
+    )
+    res['id1'] = (res['A'] > 0).astype(np.int64)
+    res['id2'] = (res['B'] > 0).astype(np.int64)
+    return res
 
+@pytest.fixture
+def df1() -> DataFrame:
+    res: DataFrame = DataFrame([
+        [1.067683, -1.110463, 0.20867],
+        [-1.321405, 0.368915, -1.055342],
+        [-0.807333, 0.08298, -0.873361]
+    ])
+    res.columns = [list('ABC'), list('abc')]
+    res.columns.names = ['CAP', 'low']
+    return res
 
-class TestMMapWrapper:
+@pytest.fixture
+def var_name() -> str:
+    return 'var'
 
-    @pytest.mark.skipif(WASM, reason='limited file system access on WASM')
-    def test_constructor_bad_file(self, mmap_file: str) ->None:
-        non_file: StringIO = StringIO('I am not a file')
-        non_file.fileno = lambda : -1
-        if is_platform_windows():
-            msg: str = 'The parameter is incorrect'
-            err: Type[BaseException] = OSError
-        else:
-            msg = '[Errno 22]'
-            err = mmap.error
-        with pytest.raises(err, match=msg):
-            icom._maybe_memory_map(non_file, True)
-        with open(mmap_file, encoding='utf-8') as target:
-            pass
-        msg = 'I/O operation on closed file'
+@pytest.fixture
+def value_name() -> str:
+    return 'val'
+
+class TestMelt:
+
+    def test_top_level_method(self, df: DataFrame) -> None:
+        result: DataFrame = melt(df)
+        assert result.columns.tolist() == ['variable', 'value']
+
+    def test_method_signatures(self, df: DataFrame, df1: DataFrame, var_name: str, value_name: str) -> None:
+        tm.assert_frame_equal(df.melt(), melt(df))
+        tm.assert_frame_equal(
+            df.melt(id_vars=['id1', 'id2'], value_vars=['A', 'B']),
+            melt(df, id_vars=['id1', 'id2'], value_vars=['A', 'B'])
+        )
+        tm.assert_frame_equal(
+            df.melt(var_name=var_name, value_name=value_name),
+            melt(df, var_name=var_name, value_name=value_name)
+        )
+        tm.assert_frame_equal(
+            df1.melt(col_level=0),
+            melt(df1, col_level=0)
+        )
+
+    def test_default_col_names(self, df: DataFrame) -> None:
+        result: DataFrame = df.melt()
+        assert result.columns.tolist() == ['variable', 'value']
+        result1: DataFrame = df.melt(id_vars=['id1'])
+        assert result1.columns.tolist() == ['id1', 'variable', 'value']
+        result2: DataFrame = df.melt(id_vars=['id1', 'id2'])
+        assert result2.columns.tolist() == ['id1', 'id2', 'variable', 'value']
+
+    def test_value_vars(self, df: DataFrame) -> None:
+        result3: DataFrame = df.melt(id_vars=['id1', 'id2'], value_vars='A')
+        assert len(result3) == 10
+        result4: DataFrame = df.melt(id_vars=['id1', 'id2'], value_vars=['A', 'B'])
+        expected4: DataFrame = DataFrame({
+            'id1': df['id1'].tolist() * 2,
+            'id2': df['id2'].tolist() * 2,
+            'variable': ['A'] * 10 + ['B'] * 10,
+            'value': df['A'].tolist() + df['B'].tolist()
+        }, columns=['id1', 'id2', 'variable', 'value'])
+        tm.assert_frame_equal(result4, expected4)
+
+    @pytest.mark.parametrize('type_', (tuple, list, np.array))
+    def test_value_vars_types(self, type_: type, df: DataFrame) -> None:
+        expected: DataFrame = DataFrame({
+            'id1': df['id1'].tolist() * 2,
+            'id2': df['id2'].tolist() * 2,
+            'variable': ['A'] * 10 + ['B'] * 10,
+            'value': df['A'].tolist() + df['B'].tolist()
+        }, columns=['id1', 'id2', 'variable', 'value'])
+        result: DataFrame = df.melt(id_vars=['id1', 'id2'], value_vars=type_(('A', 'B')))
+        tm.assert_frame_equal(result, expected)
+
+    def test_vars_work_with_multiindex(self, df1: DataFrame) -> None:
+        expected: DataFrame = DataFrame({
+            ('A', 'a'): df1['A', 'a'],
+            'CAP': ['B'] * len(df1),
+            'low': ['b'] * len(df1),
+            'value': df1['B', 'b']
+        }, columns=[('A', 'a'), 'CAP', 'low', 'value'])
+        result: DataFrame = df1.melt(id_vars=[('A', 'a')], value_vars=[('B', 'b')])
+        tm.assert_frame_equal(result, expected)
+
+    @pytest.mark.parametrize(
+        'id_vars, value_vars, col_level, expected',
+        [
+            (
+                ['A'],
+                ['B'],
+                0,
+                {'A': {0: 1.067683, 1: -1.321405, 2: -0.807333},
+                 'CAP': {0: 'B', 1: 'B', 2: 'B'},
+                 'value': {0: -1.110463, 1: 0.368915, 2: 0.08298}}
+            ),
+            (
+                ['a'],
+                ['b'],
+                1,
+                {'a': {0: 1.067683, 1: -1.321405, 2: -0.807333},
+                 'low': {0: 'b', 1: 'b', 2: 'b'},
+                 'value': {0: -1.110463, 1: 0.368915, 2: 0.08298}}
+            )
+        ]
+    )
+    def test_single_vars_work_with_multiindex(
+        self,
+        id_vars: List[str],
+        value_vars: List[str],
+        col_level: Union[int, str],
+        expected: Dict[str, Dict[int, Any]],
+        df1: DataFrame
+    ) -> None:
+        result: DataFrame = df1.melt(id_vars, value_vars, col_level=col_level)
+        expected_df: DataFrame = DataFrame(expected)
+        tm.assert_frame_equal(result, expected_df)
+
+    @pytest.mark.parametrize(
+        'id_vars, value_vars',
+        [
+            ([('A', 'a'), [('B', 'b')]]),
+            ([[('A', 'a')], ('B', 'b')]),
+            ([('A', 'a'), ('B', 'b')])
+        ]
+    )
+    def test_tuple_vars_fail_with_multiindex(
+        self,
+        id_vars: Union[List[Tuple[str, str]], Tuple[str, str]],
+        value_vars: Union[List[Tuple[str, str]], Tuple[str, str]],
+        df1: DataFrame
+    ) -> None:
+        msg: str = '(id|value)_vars must be a list of tuples when columns are a MultiIndex'
         with pytest.raises(ValueError, match=msg):
-            icom._maybe_memory_map(target, True)
+            df1.melt(id_vars=id_vars, value_vars=value_vars)
 
-    @pytest.mark.skipif(WASM, reason='limited file system access on WASM')
-    def test_next(self, mmap_file: str) ->None:
-        with open(mmap_file, encoding='utf-8') as target:
-            lines: List[str] = target.readlines()
-            with icom.get_handle(target, 'r', is_text=True, memory_map=True
-                ) as wrappers:
-                wrapper: Any = wrappers.handle
-                assert isinstance(wrapper.buffer.buffer, mmap.mmap)
-                for line in lines:
-                    next_line: str = next(wrapper)
-                    assert next_line.strip() == line.strip()
-                with pytest.raises(StopIteration, match='^$'):
-                    next(wrapper)
+    def test_custom_var_name(self, df: DataFrame, var_name: str) -> None:
+        result5: DataFrame = df.melt(var_name=var_name)
+        assert result5.columns.tolist() == ['var', 'value']
+        result6: DataFrame = df.melt(id_vars=['id1'], var_name=var_name)
+        assert result6.columns.tolist() == ['id1', 'var', 'value']
+        result7: DataFrame = df.melt(id_vars=['id1', 'id2'], var_name=var_name)
+        assert result7.columns.tolist() == ['id1', 'id2', 'var', 'value']
+        result8: DataFrame = df.melt(id_vars=['id1', 'id2'], value_vars='A', var_name=var_name)
+        assert result8.columns.tolist() == ['id1', 'id2', 'var', 'value']
+        result9: DataFrame = df.melt(id_vars=['id1', 'id2'], value_vars=['A', 'B'], var_name=var_name)
+        expected9: DataFrame = DataFrame({
+            'id1': df['id1'].tolist() * 2,
+            'id2': df['id2'].tolist() * 2,
+            var_name: ['A'] * 10 + ['B'] * 10,
+            'value': df['A'].tolist() + df['B'].tolist()
+        }, columns=['id1', 'id2', var_name, 'value'])
+        tm.assert_frame_equal(result9, expected9)
 
-    def test_unknown_engine(self) ->None:
-        with tm.ensure_clean() as path:
-            df: pd.DataFrame = pd.DataFrame(1.1 * np.arange(120).reshape((
-                30, 4)), columns=pd.Index(list('ABCD')), index=pd.Index([
-                f'i-{i}' for i in range(30)]))
-            with pytest.raises(ValueError, match='Unknown engine'):
-                pd.read_csv(path, engine='pyt')
+    def test_custom_value_name(self, df: DataFrame, value_name: str) -> None:
+        result10: DataFrame = df.melt(value_name=value_name)
+        assert result10.columns.tolist() == ['variable', 'val']
+        result11: DataFrame = df.melt(id_vars=['id1'], value_name=value_name)
+        assert result11.columns.tolist() == ['id1', 'variable', 'val']
+        result12: DataFrame = df.melt(id_vars=['id1', 'id2'], value_name=value_name)
+        assert result12.columns.tolist() == ['id1', 'id2', 'variable', 'val']
+        result13: DataFrame = df.melt(id_vars=['id1', 'id2'], value_vars='A', value_name=value_name)
+        assert result13.columns.tolist() == ['id1', 'id2', 'variable', 'val']
+        result14: DataFrame = df.melt(id_vars=['id1', 'id2'], value_vars=['A', 'B'], value_name=value_name)
+        expected14: DataFrame = DataFrame({
+            'id1': df['id1'].tolist() * 2,
+            'id2': df['id2'].tolist() * 2,
+            'variable': ['A'] * 10 + ['B'] * 10,
+            value_name: df['A'].tolist() + df['B'].tolist()
+        }, columns=['id1', 'id2', 'variable', value_name])
+        tm.assert_frame_equal(result14, expected14)
 
-    def test_binary_mode(self) ->None:
-        """
-        'encoding' shouldn't be passed to 'open' in binary mode.
+    def test_custom_var_and_value_name(self, df: DataFrame, value_name: str, var_name: str) -> None:
+        result15: DataFrame = df.melt(var_name=var_name, value_name=value_name)
+        assert result15.columns.tolist() == ['var', 'val']
+        result16: DataFrame = df.melt(id_vars=['id1'], var_name=var_name, value_name=value_name)
+        assert result16.columns.tolist() == ['id1', 'var', 'val']
+        result17: DataFrame = df.melt(id_vars=['id1', 'id2'], var_name=var_name, value_name=value_name)
+        assert result17.columns.tolist() == ['id1', 'id2', 'var', 'val']
+        result18: DataFrame = df.melt(id_vars=['id1', 'id2'], value_vars='A', var_name=var_name, value_name=value_name)
+        assert result18.columns.tolist() == ['id1', 'id2', 'var', 'val']
+        result19: DataFrame = df.melt(id_vars=['id1', 'id2'], value_vars=['A', 'B'], var_name=var_name, value_name=value_name)
+        expected19: DataFrame = DataFrame({
+            'id1': df['id1'].tolist() * 2,
+            'id2': df['id2'].tolist() * 2,
+            var_name: ['A'] * 10 + ['B'] * 10,
+            value_name: df['A'].tolist() + df['B'].tolist()
+        }, columns=['id1', 'id2', var_name, value_name])
+        tm.assert_frame_equal(result19, expected19)
+        df20: DataFrame = df.copy()
+        df20.columns.name = 'foo'
+        result20: DataFrame = df20.melt()
+        assert result20.columns.tolist() == ['foo', 'value']
 
-        GH 35058
-        """
-        with tm.ensure_clean() as path:
-            df: pd.DataFrame = pd.DataFrame(1.1 * np.arange(120).reshape((
-                30, 4)), columns=pd.Index(list('ABCD')), index=pd.Index([
-                f'i-{i}' for i in range(30)]))
-            df.to_csv(path, mode='w+b')
-            tm.assert_frame_equal(df, pd.read_csv(path, index_col=0))
+    @pytest.mark.parametrize('col_level', [0, 'CAP'])
+    def test_col_level(self, col_level: Union[int, str], df1: DataFrame) -> None:
+        res: DataFrame = df1.melt(col_level=col_level)
+        assert res.columns.tolist() == ['CAP', 'value']
 
-    @pytest.mark.parametrize('encoding', ['utf-16', 'utf-32'])
-    @pytest.mark.parametrize('compression_', ['bz2', 'xz'])
-    def test_warning_missing_utf_bom(self, encoding: str, compression_:
-        Optional[str]) ->None:
-        """
-        bz2 and xz do not write the byte order mark (BOM) for utf-16/32.
+    def test_multiindex(self, df1: DataFrame) -> None:
+        res: DataFrame = df1.melt()
+        assert res.columns.tolist() == ['CAP', 'low', 'value']
 
-        https://stackoverflow.com/questions/55171439
+    @pytest.mark.parametrize('col', [
+        date_range('2010', periods=5, tz='US/Pacific'),
+        pd.Categorical(['a', 'b', 'c', 'a', 'd']),
+        [0, 1, 0, 0, 0]
+    ])
+    def test_pandas_dtypes(self, col: Union[pd.DatetimeIndex, pd.Categorical, List[int]]) -> None:
+        series_col: pd.Series = pd.Series(col)
+        df: DataFrame = DataFrame({
+            'klass': range(5),
+            'col': series_col,
+            'attr1': [1, 0, 0, 0, 0],
+            'attr2': series_col
+        })
+        expected_value: pd.Series = pd.concat([pd.Series([1, 0, 0, 0, 0]), series_col], ignore_index=True)
+        result: DataFrame = melt(
+            df,
+            id_vars=['klass', 'col'],
+            var_name='attribute',
+            value_name='value'
+        )
+        expected: DataFrame = DataFrame({
+            0: list(range(5)) * 2,
+            1: pd.concat([series_col] * 2, ignore_index=True),
+            2: ['attr1'] * 5 + ['attr2'] * 5,
+            3: expected_value
+        })
+        expected.columns = ['klass', 'col', 'attribute', 'value']
+        tm.assert_frame_equal(result, expected)
 
-        GH 35681
-        """
-        df: pd.DataFrame = pd.DataFrame(1.1 * np.arange(120).reshape((30, 4
-            )), columns=pd.Index(list('ABCD')), index=pd.Index([f'i-{i}' for
-            i in range(30)]))
-        with tm.ensure_clean() as path:
-            with tm.assert_produces_warning(UnicodeWarning, match=
-                'byte order mark'):
-                df.to_csv(path, compression=compression_, encoding=encoding)
-            msg: str = (
-                "UTF-\\d+ stream does not start with BOM|'utf-\\d+' codec can't decode byte"
-                )
-            with pytest.raises(UnicodeError, match=msg):
-                pd.read_csv(path, compression=compression_, encoding=encoding)
+    def test_preserve_category(self) -> None:
+        data: DataFrame = DataFrame({
+            'A': [1, 2],
+            'B': pd.Categorical(['X', 'Y'])
+        })
+        result: DataFrame = melt(data, ['B'], ['A'])
+        expected: DataFrame = DataFrame({
+            'B': pd.Categorical(['X', 'Y']),
+            'variable': ['A', 'A'],
+            'value': [1, 2]
+        })
+        tm.assert_frame_equal(result, expected)
 
+    def test_melt_missing_columns_raises(self) -> None:
+        df: DataFrame = DataFrame(
+            np.random.default_rng(2).standard_normal((5, 4)),
+            columns=list('abcd')
+        )
+        msg: str = 'The following id_vars or value_vars are not present in the DataFrame:'
+        with pytest.raises(KeyError, match=msg):
+            df.melt(['a', 'b'], ['C', 'd'])
+        with pytest.raises(KeyError, match=msg):
+            df.melt(['A', 'b'], ['c', 'd'])
+        with pytest.raises(KeyError, match=msg):
+            df.melt(['a', 'b', 'not_here', 'or_there'], ['c', 'd'])
+        df.columns = [list('ABCD'), list('abcd')]
+        with pytest.raises(KeyError, match=msg):
+            df.melt([('E', 'a')], [('B', 'b')])
+        with pytest.raises(KeyError, match=msg):
+            df.melt(['A'], ['F'], col_level=0)
 
-def test_is_fsspec_url() ->None:
-    assert icom.is_fsspec_url('gcs://pandas/somethingelse.com')
-    assert icom.is_fsspec_url('gs://pandas/somethingelse.com')
-    assert not icom.is_fsspec_url('http://pandas/somethingelse.com')
-    assert not icom.is_fsspec_url('random:pandas/somethingelse.com')
-    assert not icom.is_fsspec_url('/local/path')
-    assert not icom.is_fsspec_url('relative/local/path')
-    assert not icom.is_fsspec_url('this is not fsspec://url')
-    assert not icom.is_fsspec_url("{'url': 'gs://pandas/somethingelse.com'}")
-    assert icom.is_fsspec_url('RFC-3986+compliant.spec://something')
+    def test_melt_mixed_int_str_id_vars(self) -> None:
+        df: DataFrame = DataFrame({
+            0: ['foo'],
+            'a': ['bar'],
+            'b': [1],
+            'd': [2]
+        })
+        result: DataFrame = melt(df, id_vars=[0, 'a'], value_vars=['b', 'd'])
+        expected: DataFrame = DataFrame({
+            0: ['foo'] * 2,
+            'a': ['bar'] * 2,
+            'variable': list('bd'),
+            'value': [1, 2]
+        })
+        expected['variable'] = expected['variable'].astype(object)
+        tm.assert_frame_equal(result, expected)
 
+    def test_melt_mixed_int_str_value_vars(self) -> None:
+        df: DataFrame = DataFrame({
+            0: ['foo'],
+            'a': ['bar']
+        })
+        result: DataFrame = melt(df, value_vars=[0, 'a'])
+        expected: DataFrame = DataFrame({
+            'variable': [0, 'a'],
+            'value': ['foo', 'bar']
+        })
+        tm.assert_frame_equal(result, expected)
 
-@pytest.mark.parametrize('encoding', [None, 'utf-8'])
-@pytest.mark.parametrize('format', ['csv', 'json'])
-def test_codecs_encoding(encoding: Optional[str], format: str) ->None:
-    expected: pd.DataFrame = pd.DataFrame(1.1 * np.arange(120).reshape((30,
-        4)), columns=pd.Index(list('ABCD')), index=pd.Index([f'i-{i}' for i in
-        range(30)]))
-    with tm.ensure_clean() as path:
-        with codecs.open(path, mode='w', encoding=encoding) as handle:
-            getattr(expected, f'to_{format}')(handle)
-        with codecs.open(path, mode='r', encoding=encoding) as handle:
-            if format == 'csv':
-                df: pd.DataFrame = pd.read_csv(handle, index_col=0)
-            else:
-                df: pd.DataFrame = pd.read_json(handle)
-    tm.assert_frame_equal(expected, df)
+    def test_ignore_index(self) -> None:
+        df: DataFrame = DataFrame({'foo': [0], 'bar': [1]}, index=['first'])
+        result: DataFrame = melt(df, ignore_index=False)
+        expected: DataFrame = DataFrame({
+            'variable': ['foo', 'bar'],
+            'value': [0, 1]
+        }, index=['first', 'first'])
+        tm.assert_frame_equal(result, expected)
 
+    def test_ignore_multiindex(self) -> None:
+        index: pd.MultiIndex = pd.MultiIndex.from_tuples(
+            [('first', 'second'), ('first', 'third')],
+            names=['baz', 'foobar']
+        )
+        df: DataFrame = DataFrame({'foo': [0, 1], 'bar': [2, 3]}, index=index)
+        result: DataFrame = melt(df, ignore_index=False)
+        expected_index: pd.MultiIndex = pd.MultiIndex.from_tuples(
+            [('first', 'second'), ('first', 'third')] * 2,
+            names=['baz', 'foobar']
+        )
+        expected: DataFrame = DataFrame({
+            'variable': ['foo'] * 2 + ['bar'] * 2,
+            'value': [0, 1, 2, 3]
+        }, index=expected_index)
+        tm.assert_frame_equal(result, expected)
 
-def test_codecs_get_writer_reader() ->None:
-    expected: pd.DataFrame = pd.DataFrame(1.1 * np.arange(120).reshape((30,
-        4)), columns=pd.Index(list('ABCD')), index=pd.Index([f'i-{i}' for i in
-        range(30)]))
-    with tm.ensure_clean() as path:
-        with open(path, 'wb') as handle:
-            with codecs.getwriter('utf-8')(handle) as encoded:
-                expected.to_csv(encoded)
-        with open(path, 'rb') as handle:
-            with codecs.getreader('utf-8')(handle) as encoded:
-                df: pd.DataFrame = pd.read_csv(encoded, index_col=0)
-    tm.assert_frame_equal(expected, df)
+    def test_ignore_index_name_and_type(self) -> None:
+        index: Index = Index(['foo', 'bar'], dtype='category', name='baz')
+        df: DataFrame = DataFrame({'x': [0, 1], 'y': [2, 3]}, index=index)
+        result: DataFrame = melt(df, ignore_index=False)
+        expected_index: Index = Index(['foo', 'bar'] * 2, dtype='category', name='baz')
+        expected: DataFrame = DataFrame({
+            'variable': ['x', 'x', 'y', 'y'],
+            'value': [0, 1, 2, 3]
+        }, index=expected_index)
+        tm.assert_frame_equal(result, expected)
 
+    def test_melt_with_duplicate_columns(self) -> None:
+        df: DataFrame = DataFrame([['id', 2, 3]], columns=['a', 'b', 'b'])
+        result: DataFrame = melt(df, id_vars=['a'], value_vars=['b'])
+        expected: DataFrame = DataFrame([
+            ['id', 'b', 2],
+            ['id', 'b', 3]
+        ], columns=['a', 'variable', 'value'])
+        tm.assert_frame_equal(result, expected)
 
-@pytest.mark.parametrize('io_class,mode,msg', [(BytesIO, 't',
-    "a bytes-like object is required, not 'str'"), (StringIO, 'b',
-    "string argument expected, got 'bytes'")])
-def test_explicit_encoding(io_class: Callable[..., Union[BytesIO, StringIO]
-    ], mode: str, msg: str) ->None:
-    expected: pd.DataFrame = pd.DataFrame(1.1 * np.arange(120).reshape((30,
-        4)), columns=pd.Index(list('ABCD')), index=pd.Index([f'i-{i}' for i in
-        range(30)]))
-    with io_class() as buffer:
-        with pytest.raises(TypeError, match=msg):
-            expected.to_csv(buffer, mode=f'w{mode}')
+    @pytest.mark.parametrize('dtype', ['Int8', 'Int64'])
+    def test_melt_ea_dtype(self, dtype: str) -> None:
+        df: DataFrame = DataFrame({
+            'a': pd.Series([1, 2], dtype='Int8'),
+            'b': pd.Series([3, 4], dtype=dtype)
+        })
+        result: DataFrame = melt(df)
+        expected: DataFrame = DataFrame({
+            'variable': ['a', 'a', 'b', 'b'],
+            'value': pd.Series([1, 2, 3, 4], dtype=dtype)
+        })
+        tm.assert_frame_equal(result, expected)
 
+    def test_melt_ea_columns(self) -> None:
+        df: DataFrame = DataFrame({
+            'A': {0: 'a', 1: 'b', 2: 'c'},
+            'B': {0: 1, 1: 3, 2: 5},
+            'C': {0: 2, 1: 4, 2: 6}
+        })
+        df.columns = df.columns.astype('string[python]')
+        result: DataFrame = melt(df, id_vars=['A'], value_vars=['B'])
+        expected: DataFrame = DataFrame({
+            'A': list('abc'),
+            'variable': pd.Series(['B'] * 3, dtype='string[python]'),
+            'value': [1, 3, 5]
+        })
+        tm.assert_frame_equal(result, expected)
 
-@pytest.mark.parametrize('encoding_errors', ['strict', 'replace'])
-@pytest.mark.parametrize('format', ['csv', 'json'])
-def test_encoding_errors(encoding_errors: str, format: str) ->None:
-    msg: str = "'utf-8' codec can't decode byte"
-    bad_encoding: bytes = b'\xe4'
-    if format == 'csv':
-        content: bytes = (b',' + bad_encoding + b'\n' + bad_encoding * 2 +
-            b',' + bad_encoding)
-        reader: Callable[..., pd.DataFrame] = partial(pd.read_csv, index_col=0)
-    else:
-        content = (b'{"' + bad_encoding * 2 + b'": {"' + bad_encoding +
-            b'":"' + bad_encoding + b'"}}')
-        reader = partial(pd.read_json, orient='index')
-    with tm.ensure_clean() as path:
-        file: Path = Path(path)
-        file.write_bytes(content)
-        if encoding_errors != 'replace':
-            with pytest.raises(UnicodeDecodeError, match=msg):
-                reader(path, encoding_errors=encoding_errors)
-        else:
-            df: pd.DataFrame = reader(path, encoding_errors=encoding_errors)
-            decoded: str = bad_encoding.decode(errors=encoding_errors)
-            expected: pd.DataFrame = pd.DataFrame({decoded: [decoded]},
-                index=[decoded * 2])
-            tm.assert_frame_equal(df, expected)
+    def test_melt_preserves_datetime(self) -> None:
+        df: DataFrame = DataFrame(data=[
+            {
+                'type': 'A0',
+                'start_date': pd.Timestamp('2023/03/01', tz='Asia/Tokyo'),
+                'end_date': pd.Timestamp('2023/03/10', tz='Asia/Tokyo')
+            },
+            {
+                'type': 'A1',
+                'start_date': pd.Timestamp('2023/03/01', tz='Asia/Tokyo'),
+                'end_date': pd.Timestamp('2023/03/11', tz='Asia/Tokyo')
+            }
+        ], index=['aaaa', 'bbbb'])
+        result: DataFrame = melt(
+            df,
+            id_vars=['type'],
+            value_vars=['start_date', 'end_date'],
+            var_name='start/end',
+            value_name='date'
+        )
+        expected: DataFrame = DataFrame({
+            'type': {0: 'A0', 1: 'A1', 2: 'A0', 3: 'A1'},
+            'start/end': {0: 'start_date', 1: 'start_date', 2: 'end_date', 3: 'end_date'},
+            'date': {
+                0: pd.Timestamp('2023-03-01 00:00:00+0900', tz='Asia/Tokyo'),
+                1: pd.Timestamp('2023-03-01 00:00:00+0900', tz='Asia/Tokyo'),
+                2: pd.Timestamp('2023-03-10 00:00:00+0900', tz='Asia/Tokyo'),
+                3: pd.Timestamp('2023-03-11 00:00:00+0900', tz='Asia/Tokyo')
+            }
+        })
+        tm.assert_frame_equal(result, expected)
 
+    def test_melt_allows_non_scalar_id_vars(self) -> None:
+        df: DataFrame = DataFrame({
+            'a': [1, 2, 3],
+            'b': [4, 5, 6]
+        }, index=['11', '22', '33'])
+        result: DataFrame = melt(
+            df,
+            id_vars='a',
+            var_name=0,
+            value_name=1
+        )
+        expected: DataFrame = DataFrame({
+            'a': [1, 2, 3],
+            0: ['b'] * 3,
+            1: [4, 5, 6]
+        })
+        tm.assert_frame_equal(result, expected)
 
-@pytest.mark.parametrize('encoding_errors', [0, None])
-def test_encoding_errors_badtype(encoding_errors: Any) ->None:
-    content: StringIO = StringIO('A,B\n1,2\n3,4\n')
-    reader: Callable[..., pd.DataFrame] = partial(pd.read_csv,
-        encoding_errors=encoding_errors)
-    expected_error: str = 'encoding_errors must be a string, got '
-    expected_error += f'{type(encoding_errors).__name__}'
-    with pytest.raises(ValueError, match=expected_error):
-        reader(content)
+    def test_melt_allows_non_string_var_name(self) -> None:
+        df: DataFrame = DataFrame({
+            'a': [1, 2, 3],
+            'b': [4, 5, 6]
+        }, index=['11', '22', '33'])
+        result: DataFrame = melt(
+            df,
+            id_vars=['a'],
+            var_name=0,
+            value_name=1
+        )
+        expected: DataFrame = DataFrame({
+            'a': [1, 2, 3],
+            0: ['b'] * 3,
+            1: [4, 5, 6]
+        })
+        tm.assert_frame_equal(result, expected)
 
+    def test_melt_non_scalar_var_name_raises(self) -> None:
+        df: DataFrame = DataFrame({
+            'a': [1, 2, 3],
+            'b': [4, 5, 6]
+        }, index=['11', '22', '33'])
+        with pytest.raises(ValueError, match='.* must be a scalar.'):
+            df.melt(id_vars=['a'], var_name=[1, 2])
 
-def test_bad_encdoing_errors() ->None:
-    with tm.ensure_clean() as path:
-        with pytest.raises(LookupError, match='unknown error handler name'):
-            icom.get_handle(path, 'w', errors='bad')
+    def test_melt_multiindex_columns_var_name(self) -> None:
+        df: DataFrame = DataFrame({
+            ('A', 'a'): [1],
+            ('A', 'b'): [2]
+        })
+        expected: DataFrame = DataFrame([
+            ('A', 'a', 1),
+            ('A', 'b', 2)
+        ], columns=['first', 'second', 'value'])
+        tm.assert_frame_equal(
+            df.melt(var_name=['first', 'second']),
+            expected
+        )
+        tm.assert_frame_equal(
+            df.melt(var_name=['first']),
+            expected[['first', 'value']]
+        )
 
+    def test_melt_multiindex_columns_var_name_too_many(self) -> None:
+        df: DataFrame = DataFrame({
+            ('A', 'a'): [1],
+            ('A', 'b'): [2]
+        })
+        with pytest.raises(ValueError, match='but the dataframe columns only have 2 levels'):
+            df.melt(var_name=['first', 'second', 'third'])
 
-@pytest.mark.skipif(WASM, reason='limited file system access on WASM')
-def test_errno_attribute() ->None:
-    with pytest.raises(FileNotFoundError, match='\\[Errno 2\\]') as err:
-        pd.read_csv('doesnt_exist')
-    assert err.value.errno == errno.ENOENT
+class TestLreshape:
 
+    def test_pairs(self) -> None:
+        data: Dict[str, List[Any]] = {
+            'birthdt': ['08jan2009', '20dec2008', '30dec2008', '21dec2008', '11jan2009'],
+            'birthwt': [1766, 3301, 1454, 3139, 4133],
+            'id': [101, 102, 103, 104, 105],
+            'sex': ['Male', 'Female', 'Female', 'Female', 'Female'],
+            'visitdt1': ['11jan2009', '22dec2008', '04jan2009', '29dec2008', '20jan2009'],
+            'visitdt2': ['21jan2009', np.nan, '22jan2009', '31dec2008', '03feb2009'],
+            'visitdt3': ['05feb2009', np.nan, np.nan, '02jan2009', '15feb2009'],
+            'wt1': [1823, 3338, 1549, 3298, 4306],
+            'wt2': [2011.0, np.nan, 1892.0, 3338.0, 4575.0],
+            'wt3': [2293.0, np.nan, np.nan, 3377.0, 4805.0]
+        }
+        df: DataFrame = DataFrame(data)
+        spec: Dict[str, List[str]] = {
+            'visitdt': [f'visitdt{i:d}' for i in range(1, 4)],
+            'wt': [f'wt{i:d}' for i in range(1, 4)]
+        }
+        result: DataFrame = lreshape(df, spec)
+        exp_data: Dict[str, List[Any]] = {
+            'birthdt': [
+                '08jan2009', '20dec2008', '30dec2008', '21dec2008', '11jan2009',
+                '08jan2009', '30dec2008', '21dec2008', '11jan2009', '08jan2009',
+                '21dec2008', '11jan2009'
+            ],
+            'birthwt': [
+                1766, 3301, 1454, 3139, 4133,
+                1766, 1454, 3139, 4133, 1766,
+                3139, 4133
+            ],
+            'id': [
+                101, 102, 103, 104, 105,
+                101, 103, 104, 105, 101,
+                104, 105
+            ],
+            'sex': [
+                'Male', 'Female', 'Female', 'Female', 'Female',
+                'Male', 'Female', 'Female', 'Female', 'Male',
+                'Female', 'Female'
+            ],
+            'visitdt': [
+                '11jan2009', '22dec2008', '04jan2009', '29dec2008', '20jan2009',
+                '21jan2009', '22jan2009', '31dec2008', '03feb2009', '05feb2009',
+                '02jan2009', '15feb2009'
+            ],
+            'wt': [
+                1823.0, 3338.0, 1549.0, 3298.0, 4306.0,
+                2011.0, 1892.0, 3338.0, 4575.0, 2293.0,
+                3377.0, 4805.0
+            ]
+        }
+        exp: DataFrame = DataFrame(exp_data, columns=result.columns)
+        tm.assert_frame_equal(result, exp)
+        result = lreshape(df, spec, dropna=False)
+        exp_data = {
+            'birthdt': [
+                '08jan2009', '20dec2008', '30dec2008', '21dec2008', '11jan2009',
+                '08jan2009', '20dec2008', '30dec2008', '21dec2008', '11jan2009',
+                '08jan2009', '20dec2008', '30dec2008', '21dec2008', '11jan2009'
+            ],
+            'birthwt': [
+                1766, 3301, 1454, 3139, 4133,
+                1766, 3301, 1454, 3139, 4133,
+                1766, 3301, 1454, 3139, 4133
+            ],
+            'id': [
+                101, 102, 103, 104, 105,
+                101, 102, 103, 104, 105,
+                101, 102, 103, 104, 105
+            ],
+            'sex': [
+                'Male', 'Female', 'Female', 'Female', 'Female',
+                'Male', 'Female', 'Female', 'Female', 'Female',
+                'Male', 'Female', 'Female', 'Female', 'Female'
+            ],
+            'visitdt': [
+                '11jan2009', '22dec2008', '04jan2009', '29dec2008', '20jan2009',
+                '21jan2009', np.nan, '22jan2009', '31dec2008', '03feb2009',
+                '05feb2009', np.nan, np.nan, '02jan2009', '15feb2009'
+            ],
+            'wt': [
+                1823.0, 3338.0, 1549.0, 3298.0, 4306.0,
+                2011.0, np.nan, 1892.0, 3338.0, 4575.0,
+                2293.0, np.nan, np.nan, 3377.0, 4805.0
+            ]
+        }
+        exp: DataFrame = DataFrame(exp_data, columns=result.columns)
+        tm.assert_frame_equal(result, exp)
+        spec = {
+            'visitdt': [f'visitdt{i:d}' for i in range(1, 3)],
+            'wt': [f'wt{i:d}' for i in range(1, 4)]
+        }
+        msg: str = 'All column lists must be same length'
+        with pytest.raises(ValueError, match=msg):
+            lreshape(df, spec)
 
-def test_fail_mmap() ->None:
-    with pytest.raises(UnsupportedOperation, match='fileno'):
-        with BytesIO() as buffer:
-            icom.get_handle(buffer, 'rb', memory_map=True)
+class TestWideToLong:
 
+    def test_simple(self) -> None:
+        x: np.ndarray = np.random.default_rng(2).standard_normal(3)
+        df: DataFrame = DataFrame({
+            'A1970': {0: 'a', 1: 'b', 2: 'c'},
+            'A1980': {0: 'd', 1: 'e', 2: 'f'},
+            'B1970': {0: 2.5, 1: 1.2, 2: 0.7},
+            'B1980': {0: 3.2, 1: 1.3, 2: 0.1},
+            'X': dict(zip(range(3), x))
+        })
+        df['id'] = df.index
+        exp_data: Dict[str, Any] = {
+            'X': x.tolist() + x.tolist(),
+            'A': ['a', 'b', 'c', 'd', 'e', 'f'],
+            'B': [2.5, 1.2, 0.7, 3.2, 1.3, 0.1],
+            'year': [1970, 1970, 1970, 1980, 1980, 1980],
+            'id': [0, 1, 2, 0, 1, 2]
+        }
+        expected: DataFrame = DataFrame(exp_data)
+        expected = expected.set_index(['id', 'year'])[['X', 'A', 'B']]
+        result: DataFrame = wide_to_long(df, ['A', 'B'], i='id', j='year')
+        tm.assert_frame_equal(result, expected)
 
-def test_close_on_error() ->None:
+    def test_stubs(self) -> None:
+        df: DataFrame = DataFrame([
+            [0, 1, 2, 3, 8],
+            [4, 5, 6, 7, 9]
+        ])
+        df.columns = ['id', 'inc1', 'inc2', 'edu1', 'edu2']
+        stubs: List[str] = ['inc', 'edu']
+        wide_to_long(df, stubs, i='id', j='age')
+        assert stubs == ['inc', 'edu']
 
+    def test_separating_character(self) -> None:
+        x: np.ndarray = np.random.default_rng(2).standard_normal(3)
+        df: DataFrame = DataFrame({
+            'A.1970': {0: 'a', 1: 'b', 2: 'c'},
+            'A.1980': {0: 'd', 1: 'e', 2: 'f'},
+            'B.1970': {0: 2.5, 1: 1.2, 2: 0.7},
+            'B.1980': {0: 3.2, 1: 1.3, 2: 0.1},
+            'X': dict(zip(range(3), x))
+        })
+        df['id'] = df.index
+        exp_data: Dict[str, Any] = {
+            'X': x.tolist() + x.tolist(),
+            'A': ['a', 'b', 'c', 'd', 'e', 'f'],
+            'B': [2.5, 1.2, 0.7, 3.2, 1.3, 0.1],
+            'year': [1970, 1970, 1970, 1980, 1980, 1980],
+            'id': [0, 1, 2, 0, 1, 2]
+        }
+        expected: DataFrame = DataFrame(exp_data)
+        expected = expected.set_index(['id', 'year'])[['X', 'A', 'B']]
+        result: DataFrame = wide_to_long(df, ['A', 'B'], i='id', j='year', sep='.')
+        tm.assert_frame_equal(result, expected)
 
-    class TestError:
+    def test_escapable_characters(self) -> None:
+        x: np.ndarray = np.random.default_rng(2).standard_normal(3)
+        df: DataFrame = DataFrame({
+            'A(quarterly)1970': {0: 'a', 1: 'b', 2: 'c'},
+            'A(quarterly)1980': {0: 'd', 1: 'e', 2: 'f'},
+            'B(quarterly)1970': {0: 2.5, 1: 1.2, 2: 0.7},
+            'B(quarterly)1980': {0: 3.2, 1: 1.3, 2: 0.1},
+            'X': dict(zip(range(3), x))
+        })
+        df['id'] = df.index
+        exp_data: Dict[str, Any] = {
+            'X': x.tolist() + x.tolist(),
+            'A(quarterly)': ['a', 'b', 'c', 'd', 'e', 'f'],
+            'B(quarterly)': [2.5, 1.2, 0.7, 3.2, 1.3, 0.1],
+            'year': [1970, 1970, 1970, 1980, 1980, 1980],
+            'id': [0, 1, 2, 0, 1, 2]
+        }
+        expected: DataFrame = DataFrame(exp_data)
+        expected = expected.set_index(['id', 'year'])[['X', 'A(quarterly)', 'B(quarterly)']]
+        result: DataFrame = wide_to_long(df, ['A(quarterly)', 'B(quarterly)'], i='id', j='year')
+        tm.assert_frame_equal(result, expected)
 
-        def close(self) ->None:
-            raise OSError('test')
-    with pytest.raises(OSError, match='test'):
-        with BytesIO() as buffer:
-            with icom.get_handle(buffer, 'rb') as handles:
-                handles.created_handles.append(TestError())
+    def test_unbalanced(self) -> None:
+        df: DataFrame = DataFrame({
+            'A2010': [1.0, 2.0],
+            'A2011': [3.0, 4.0],
+            'B2010': [5.0, 6.0],
+            'X': ['X1', 'X2']
+        })
+        df['id'] = df.index
+        exp_data: Dict[str, Any] = {
+            'X': ['X1', 'X2', 'X1', 'X2'],
+            'A': [1.0, 2.0, 3.0, 4.0],
+            'B': [5.0, 6.0, np.nan, np.nan],
+            'id': [0, 1, 0, 1],
+            'year': [2010, 2010, 2011, 2011]
+        }
+        expected: DataFrame = DataFrame(exp_data)
+        expected = expected.set_index(['id', 'year'])[['X', 'A', 'B']]
+        tm.assert_frame_equal(result := wide_to_long(df, ['A', 'B'], i='id', j='year'), expected)
 
+    def test_character_overlap(self) -> None:
+        df: DataFrame = DataFrame({
+            'A11': ['a11', 'a22', 'a33'],
+            'A12': ['a21', 'a22', 'a23'],
+            'B11': ['b11', 'b12', 'b13'],
+            'B12': ['b21', 'b22', 'b23'],
+            'BB11': [1, 2, 3],
+            'BB12': [4, 5, 6],
+            'BBBX': [91, 92, 93],
+            'BBBZ': [91, 92, 93]
+        })
+        df['id'] = df.index
+        expected: DataFrame = DataFrame({
+            'BBBX': [91, 92, 93, 91, 92, 93],
+            'BBBZ': [91, 92, 93, 91, 92, 93],
+            'A': ['a11', 'a22', 'a33', 'a21', 'a22', 'a23'],
+            'B': ['b11', 'b12', 'b13', 'b21', 'b22', 'b23'],
+            'BB': [1, 2, 3, 4, 5, 6],
+            'id': [0, 1, 2, 0, 1, 2],
+            'year': [11, 11, 11, 12, 12, 12]
+        })
+        expected = expected.set_index(['id', 'year'])[['BBBX', 'BBBZ', 'A', 'B', 'BB']]
+        result: DataFrame = wide_to_long(df, ['A', 'B', 'BB'], i='id', j='year')
+        tm.assert_frame_equal(result.sort_index(axis=1), expected.sort_index(axis=1))
 
-@td.skip_if_no('fsspec', min_version='2023.1.0')
-@pytest.mark.parametrize('compression', [None, 'infer'])
-def test_read_csv_chained_url_no_error(compression: Optional[str]) ->None:
-    tar_file_path: str = 'pandas/tests/io/data/tar/test-csv.tar'
-    chained_file_url: str = f'tar://test.csv::file://{tar_file_path}'
-    result: pd.DataFrame = pd.read_csv(chained_file_url, compression=
-        compression, sep=';')
-    expected: pd.DataFrame = pd.DataFrame({'1': {(0): 3}, '2': {(0): 4}})
-    tm.assert_frame_equal(expected, result)
+    def test_invalid_separator(self) -> None:
+        sep: str = 'nope!'
+        df: DataFrame = DataFrame({
+            'A2010': [1.0, 2.0],
+            'A2011': [3.0, 4.0],
+            'B2010': [5.0, 6.0],
+            'X': ['X1', 'X2']
+        })
+        df['id'] = df.index
+        exp_data: Dict[str, List[Any]] = {
+            'X': [],
+            'A2010': [],
+            'A2011': [],
+            'B2010': [],
+            'id': [],
+            'year': [],
+            'A': [],
+            'B': []
+        }
+        expected: DataFrame = DataFrame(exp_data).astype({'year': np.int64})
+        expected = expected.set_index(['id', 'year'])[['X', 'A2010', 'A2011', 'B2010', 'A', 'B']]
+        expected.index = expected.index.set_levels([0, 1], level=0)
+        result: DataFrame = wide_to_long(df, ['A', 'B'], i='id', j='year', sep=sep)
+        tm.assert_frame_equal(result.sort_index(axis=1), expected.sort_index(axis=1))
 
+    def test_num_string_disambiguation(self) -> None:
+        df: DataFrame = DataFrame({
+            'A11': ['a11', 'a22', 'a33'],
+            'A12': ['a21', 'a22', 'a23'],
+            'B11': ['b11', 'b12', 'b13'],
+            'B12': ['b21', 'b22', 'b23'],
+            'BB11': [1, 2, 3],
+            'BB12': [4, 5, 6],
+            'Arating': [91, 92, 93],
+            'Arating_old': [91, 92, 93]
+        })
+        df['id'] = df.index
+        expected: DataFrame = DataFrame({
+            'Arating': [91, 92, 93, 91, 92, 93],
+            'Arating_old': [91, 92, 93, 91, 92, 93],
+            'A': ['a11', 'a22', 'a33', 'a21', 'a22', 'a23'],
+            'B': ['b11', 'b12', 'b13', 'b21', 'b22', 'b23'],
+            'BB': [1, 2, 3, 4, 5, 6],
+            'id': [0, 1, 2, 0, 1, 2],
+            'year': [11, 11, 11, 12, 12, 12]
+        })
+        expected = expected.set_index(['id', 'year'])[['Arating', 'Arating_old', 'A', 'B', 'BB']]
+        result: DataFrame = wide_to_long(df, ['A', 'B', 'BB'], i='id', j='year')
+        tm.assert_frame_equal(result.sort_index(axis=1), expected.sort_index(axis=1))
 
-@pytest.mark.parametrize('reader', [pd.read_csv, pd.read_fwf, pd.read_excel,
-    pd.read_feather, pd.read_hdf, pd.read_stata, pd.read_sas, pd.read_json,
-    pd.read_pickle])
-def test_pickle_reader(reader: Callable[..., Any]) ->None:
-    with BytesIO() as buffer:
-        pickle.dump(reader, buffer)
+    def test_invalid_suffixtype(self) -> None:
+        df: DataFrame = DataFrame({
+            'Aone': [1.0, 2.0],
+            'Atwo': [3.0, 4.0],
+            'Bone': [5.0, 6.0],
+            'X': ['X1', 'X2']
+        })
+        df['id'] = df.index
+        exp_data: Dict[str, List[Any]] = {
+            'X': [],
+            'Aone': [],
+            'Atwo': [],
+            'Bone': [],
+            'id': [],
+            'year': [],
+            'A': [],
+            'B': []
+        }
+        expected: DataFrame = DataFrame(exp_data).astype({'year': np.int64})
+        expected = expected.set_index(['id', 'year'])
+        expected.index = expected.index.set_levels([0, 1], level=0)
+        result: DataFrame = wide_to_long(df, ['A', 'B'], i='id', j='year')
+        tm.assert_frame_equal(result.sort_index(axis=1), expected.sort_index(axis=1))
 
+    def test_multiple_id_columns(self) -> None:
+        df: DataFrame = DataFrame({
+            'famid': [1, 1, 1, 2, 2, 2, 3, 3, 3],
+            'birth': [1, 2, 3, 1, 2, 3, 1, 2, 3],
+            'ht1': [2.8, 2.9, 2.2, 2, 1.8, 1.9, 2.2, 2.3, 2.1],
+            'ht2': [3.4, 3.8, 2.9, 3.2, 2.8, 2.4, 3.3, 3.4, 2.9]
+        })
+        exp_data: Dict[str, Any] = {
+            'ht': [2.8, 2.9, 2.2, 3.4, 3.8, 2.9, 2.0, 1.8, 1.9, 3.2, 2.8, 2.4, 2.2, 2.3, 2.1, 3.3, 3.4, 2.9],
+            'famid': [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3],
+            'birth': [1, 1, 2, 2, 3, 3, 1, 1, 2, 2, 3, 3, 1, 1, 2, 2, 3, 3],
+            'age': [1, 1, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2]
+        }
+        expected: DataFrame = DataFrame(exp_data)
+        expected = expected.set_index(['famid', 'birth', 'age'])[['ht']]
+        result: DataFrame = wide_to_long(df, 'ht', i=['famid', 'birth'], j='age')
+        tm.assert_frame_equal(result, expected)
 
-@td.skip_if_no('pyarrow')
-def test_pyarrow_read_csv_datetime_dtype() ->None:
-    data: str = '"date"\n"20/12/2025"\n""\n"31/12/2020"'
-    result: pd.DataFrame = pd.read_csv(StringIO(data), parse_dates=['date'],
-        dayfirst=True, dtype_backend='pyarrow')
-    expect_data: pd.Series = pd.to_datetime(['20/12/2025', pd.NaT,
-        '31/12/2020'], dayfirst=True)
-    expect: pd.DataFrame = pd.DataFrame({'date': expect_data})
-    tm.assert_frame_equal(expect, result)
+    def test_non_unique_idvars(self) -> None:
+        df: DataFrame = DataFrame({
+            'A_A1': [1, 2, 3, 4, 5],
+            'B_B1': [1, 2, 3, 4, 5],
+            'x': [1, 1, 1, 1, 1]
+        })
+        msg: str = 'the id variables need to uniquely identify each row'
+        with pytest.raises(ValueError, match=msg):
+            wide_to_long(df, ['A_A', 'B_B'], i='x', j='colname')
+
+    def test_cast_j_int(self) -> None:
+        df: DataFrame = DataFrame({
+            'actor_1': ['CCH Pounder', 'Johnny Depp', 'Christoph Waltz'],
+            'actor_2': ['Joel David Moore', 'Orlando Bloom', 'Rory Kinnear'],
+            'actor_fb_likes_1': [1000.0, 40000.0, 11000.0],
+            'actor_fb_likes_2': [936.0, 5000.0, 393.0],
+            'title': ['Avatar', 'Pirates of the Caribbean', 'Spectre']
+        })
+        expected: DataFrame = DataFrame({
+            'actor': ['CCH Pounder', 'Johnny Depp', 'Christoph Waltz', 'Joel David Moore', 'Orlando Bloom', 'Rory Kinnear'],
+            'actor_fb_likes': [1000.0, 40000.0, 11000.0, 936.0, 5000.0, 393.0],
+            'num': [1, 1, 1, 2, 2, 2],
+            'title': ['Avatar', 'Pirates of the Caribbean', 'Spectre', 'Avatar', 'Pirates of the Caribbean', 'Spectre']
+        }).set_index(['title', 'num'])
+        result: DataFrame = wide_to_long(
+            df,
+            ['actor', 'actor_fb_likes'],
+            i='title',
+            j='num',
+            sep='_'
+        )
+        tm.assert_frame_equal(result, expected)
+
+    def test_identical_stubnames(self) -> None:
+        df: DataFrame = DataFrame({
+            'A2010': [1.0, 2.0],
+            'A2011': [3.0, 4.0],
+            'B2010': [5.0, 6.0],
+            'A': ['X1', 'X2']
+        })
+        msg: str = "stubname can't be identical to a column name"
+        with pytest.raises(ValueError, match=msg):
+            wide_to_long(df, ['A', 'B'], i='A', j='colname')
+
+    def test_nonnumeric_suffix(self) -> None:
+        df: DataFrame = DataFrame({
+            'treatment_placebo': [1.0, 2.0],
+            'treatment_test': [3.0, 4.0],
+            'result_placebo': [5.0, 6.0],
+            'A': ['X1', 'X2']
+        })
+        expected: DataFrame = DataFrame({
+            'A': ['X1', 'X2', 'X1', 'X2'],
+            'colname': ['placebo', 'placebo', 'test', 'test'],
+            'result': [5.0, 6.0, np.nan, np.nan],
+            'treatment': [1.0, 2.0, 3.0, 4.0]
+        }).set_index(['A', 'colname'])
+        result: DataFrame = wide_to_long(
+            df,
+            ['result', 'treatment'],
+            i='A',
+            j='colname',
+            suffix='[a-z]+',
+            sep='_'
+        )
+        tm.assert_frame_equal(result, expected)
+
+    def test_mixed_type_suffix(self) -> None:
+        df: DataFrame = DataFrame({
+            'A': ['X1', 'X2'],
+            'result_1': [0, 9],
+            'result_foo': [5.0, 6.0],
+            'treatment_1': [1.0, 2.0],
+            'treatment_foo': [3.0, 4.0]
+        })
+        expected: DataFrame = DataFrame({
+            'A': ['X1', 'X2', 'X1', 'X2'],
+            'colname': ['1', '1', 'foo', 'foo'],
+            'result': [0.0, 9.0, 5.0, 6.0],
+            'treatment': [1.0, 2.0, 3.0, 4.0]
+        }).set_index(['A', 'colname'])
+        result: DataFrame = wide_to_long(
+            df,
+            ['result', 'treatment'],
+            i='A',
+            j='colname',
+            suffix='.+',
+            sep='_'
+        )
+        tm.assert_frame_equal(result, expected)
+
+    def test_float_suffix(self) -> None:
+        df: DataFrame = DataFrame({
+            'treatment_1.1': [1.0, 2.0],
+            'treatment_2.1': [3.0, 4.0],
+            'result_1.2': [5.0, 6.0],
+            'result_1': [0, 9],
+            'A': ['X1', 'X2']
+        })
+        expected: DataFrame = DataFrame({
+            'A': ['X1', 'X2', 'X1', 'X2', 'X1', 'X2', 'X1', 'X2'],
+            'colname': [1.2, 1.2, 1.0, 1.0, 1.1, 1.1, 2.1, 2.1],
+            'result': [5.0, 6.0, 0.0, 9.0, np.nan, np.nan, np.nan, np.nan],
+            'treatment': [np.nan, np.nan, np.nan, np.nan, 1.0, 2.0, 3.0, 4.0]
+        }).set_index(['A', 'colname'])
+        result: DataFrame = wide_to_long(
+            df,
+            ['result', 'treatment'],
+            i='A',
+            j='colname',
+            suffix='[0-9.]+',
+            sep='_'
+        )
+        tm.assert_frame_equal(result, expected)
+
+    def test_col_substring_of_stubname(self) -> None:
+        wide_data: Dict[str, Any] = {
+            'node_id': {0: 0, 1: 1, 2: 2, 3: 3, 4: 4},
+            'A': {0: 0.8, 1: 0.0, 2: 0.25, 3: 1.0, 4: 0.81},
+            'PA0': {0: 0.74, 1: 0.56, 2: 0.56, 3: 0.98, 4: 0.6},
+            'PA1': {0: 0.77, 1: 0.64, 2: 0.52, 3: 0.98, 4: 0.67},
+            'PA3': {0: 0.34, 1: 0.7, 2: 0.52, 3: 0.98, 4: 0.67}
+        }
+        wide_df: DataFrame = DataFrame.from_dict(wide_data)
+        expected: DataFrame = wide_to_long(wide_df, stubnames=['PA'], i=['node_id', 'A'], j='time')
+        result: DataFrame = wide_to_long(wide_df, stubnames='PA', i=['node_id', 'A'], j='time')
+        tm.assert_frame_equal(result, expected)
+
+    def test_raise_of_column_name_value(self) -> None:
+        df: DataFrame = DataFrame({
+            'col': list('ABC'),
+            'value': range(10, 16, 2)
+        })
+        with pytest.raises(ValueError, match=re.escape('value_name (value) cannot match')):
+            df.melt(id_vars='value', value_name='value')
+
+    def test_missing_stubname(self, any_string_dtype: str) -> None:
+        df: DataFrame = DataFrame({
+            'id': ['1', '2'],
+            'a-1': [100, 200],
+            'a-2': [300, 400]
+        })
+        df = df.astype({'id': any_string_dtype})
+        result: DataFrame = wide_to_long(
+            df,
+            stubnames=['a', 'b'],
+            i='id',
+            j='num',
+            sep='-'
+        )
+        index: pd.MultiIndex = pd.MultiIndex.from_tuples([
+            ('1', 1),
+            ('2', 1),
+            ('1', 2),
+            ('2', 2)
+        ], name=('id', 'num'))
+        expected: DataFrame = DataFrame({
+            'a': [100, 200, 300, 400],
+            'b': [np.nan] * 4
+        }, index=index)
+        new_level: pd.Index = expected.index.levels[0].astype(any_string_dtype)
+        if any_string_dtype == 'object':
+            new_level = expected.index.levels[0].astype('str')
+        expected.index = expected.index.set_levels(new_level, level=0)
+        tm.assert_frame_equal(result, expected)
+
+def test_wide_to_long_string_columns(string_storage: str) -> None:
+    string_dtype: pd.StringDtype = pd.StringDtype(string_storage, na_value=np.nan)
+    df: DataFrame = DataFrame({
+        'ID': {0: 1},
+        'R_test1': {0: 1},
+        'R_test2': {0: 1},
+        'R_test3': {0: 2},
+        'D': {0: 1}
+    })
+    df.columns = df.columns.astype(string_dtype)
+    result: DataFrame = wide_to_long(
+        df,
+        stubnames='R',
+        i='ID',
+        j='UNPIVOTED',
+        sep='_',
+        suffix='.*'
+    )
+    expected: DataFrame = DataFrame([
+        [1, 1],
+        [1, 1],
+        [1, 2]
+    ], columns=Index(['D', 'R'], dtype=object), index=pd.MultiIndex.from_arrays([
+        [1, 1, 1],
+        Index(['test1', 'test2', 'test3'], dtype=string_dtype)
+    ], names=['ID', 'UNPIVOTED']))
+    tm.assert_frame_equal(result, expected)
