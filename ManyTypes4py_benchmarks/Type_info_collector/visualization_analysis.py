@@ -292,27 +292,225 @@ def create_same_pattern_analysis(data, llm_name):
     plt.show()
 
 
+def create_error_pattern_analysis_combined(all_data):
+    """Create single figure with grouped bars showing top 10 ranking positions"""
+    # Get top 10 types for each LLM separately
+    llm_top_types = {}
+
+    for llm_name, data in all_data.items():
+        human_type_errors = defaultdict(int)
+        for filename, functions in data.items():
+            for func_sig, annotations in functions.items():
+                for annotation in annotations:
+                    if not annotation["match"]:
+                        human_type = get_type_category(annotation["Human"])
+                        human_type_errors[human_type] += 1
+
+        # Get top 10 for this LLM
+        top_10 = sorted(human_type_errors.items(), key=lambda x: x[1], reverse=True)[
+            :10
+        ]
+        llm_top_types[llm_name] = top_10
+
+    # Prepare data for plotting
+    positions = list(range(1, 11))  # Position 1 to 10
+    x = np.arange(len(positions))
+    width = 0.25
+
+    fig, ax = plt.subplots(figsize=(20, 8))
+
+    colors = ["#FF6B6B", "#4ECDC4", "#45B7D1"]
+    llm_names = list(all_data.keys())
+
+    for i, (llm_name, color) in enumerate(zip(llm_names, colors)):
+        counts = []
+        labels = []
+
+        for position in range(10):
+            if position < len(llm_top_types[llm_name]):
+                type_name, count = llm_top_types[llm_name][position]
+                counts.append(count)
+                labels.append(f"{type_name}")
+            else:
+                counts.append(0)
+                labels.append("")
+
+        bars = ax.bar(x + i * width, counts, width, label=llm_name, color=color)
+
+        # Add value labels on bars
+        for bar, count, label in zip(bars, counts, labels):
+            if count > 0:
+                ax.text(
+                    bar.get_x() + bar.get_width() / 2,
+                    bar.get_height() + 0.5,
+                    f"{count}\n{label}",
+                    ha="center",
+                    va="bottom",
+                    fontsize=8,
+                )
+
+    ax.set_xlabel("Ranking Position")
+    ax.set_ylabel("Number of Times Mismatched")
+    ax.set_title(
+        "Top 10 Mismatched Types by Ranking Position (Each LLM has its own top 10)"
+    )
+    ax.set_xticks(x + width)
+    ax.set_xticklabels([f"Position {i}" for i in positions])
+    ax.legend()
+
+    plt.tight_layout()
+
+    # Create visualizations folder if it doesn't exist
+    os.makedirs("visualizations", exist_ok=True)
+    plt.savefig(f"visualizations/mismatch_analysis_combined.pdf", bbox_inches="tight")
+    plt.show()
+
+
+def create_same_pattern_analysis_combined(all_data):
+    """Create single figure with grouped bars showing top 10 ranking positions"""
+    # Get top 10 types for each LLM separately
+    llm_top_types = {}
+
+    for llm_name, data in all_data.items():
+        human_type_correct = defaultdict(int)
+        for filename, functions in data.items():
+            for func_sig, annotations in functions.items():
+                for annotation in annotations:
+                    if annotation["match"]:
+                        human_type = get_type_category(annotation["Human"])
+                        human_type_correct[human_type] += 1
+
+        # Get top 10 for this LLM
+        top_10 = sorted(human_type_correct.items(), key=lambda x: x[1], reverse=True)[
+            :10
+        ]
+        llm_top_types[llm_name] = top_10
+
+    # Prepare data for plotting
+    positions = list(range(1, 11))  # Position 1 to 10
+    x = np.arange(len(positions))
+    width = 0.25
+
+    fig, ax = plt.subplots(figsize=(20, 8))
+
+    colors = ["#2E8B57", "#32CD32", "#228B22"]  # Different shades of green
+    llm_names = list(all_data.keys())
+
+    for i, (llm_name, color) in enumerate(zip(llm_names, colors)):
+        counts = []
+        labels = []
+
+        for position in range(10):
+            if position < len(llm_top_types[llm_name]):
+                type_name, count = llm_top_types[llm_name][position]
+                counts.append(count)
+                labels.append(f"{type_name}")
+            else:
+                counts.append(0)
+                labels.append("")
+
+        bars = ax.bar(x + i * width, counts, width, label=llm_name, color=color)
+
+        # Add value labels on bars
+        for bar, count, label in zip(bars, counts, labels):
+            if count > 0:
+                ax.text(
+                    bar.get_x() + bar.get_width() / 2,
+                    bar.get_height() + 0.5,
+                    f"{count}\n{label}",
+                    ha="center",
+                    va="bottom",
+                    fontsize=8,
+                )
+
+    ax.set_xlabel("Ranking Position")
+    ax.set_ylabel("Number of Times Correctly Predicted")
+    ax.set_title(
+        "Top 10 Correctly Predicted Types by Ranking Position (Each LLM has its own top 10)"
+    )
+    ax.set_xticks(x + width)
+    ax.set_xticklabels([f"Position {i}" for i in positions])
+    ax.legend()
+
+    plt.tight_layout()
+
+    # Create visualizations folder if it doesn't exist
+    os.makedirs("visualizations", exist_ok=True)
+    plt.savefig(f"visualizations/correct_analysis_combined.pdf", bbox_inches="tight")
+    plt.show()
+
+
+def create_llm_comparison_analysis(all_data):
+    """Create comparison analysis showing performance of each LLM side by side"""
+    llm_performance = {}
+
+    for llm_name, data in all_data.items():
+        total_matches = 0
+        total_comparisons = 0
+
+        for filename, functions in data.items():
+            for func_sig, annotations in functions.items():
+                for annotation in annotations:
+                    total_comparisons += 1
+                    if annotation["match"]:
+                        total_matches += 1
+
+        if total_comparisons > 0:
+            match_rate = (total_matches / total_comparisons) * 100
+            llm_performance[llm_name] = match_rate
+
+    # Create bar chart comparing LLMs
+    llm_names = list(llm_performance.keys())
+    match_rates = list(llm_performance.values())
+
+    plt.figure(figsize=(10, 6))
+    bars = plt.bar(llm_names, match_rates, color=["#FF6B6B", "#4ECDC4", "#45B7D1"])
+    plt.ylabel("Match Rate (%)")
+    plt.title("Type Prediction Performance Comparison Across LLMs")
+    plt.ylim(0, 100)
+
+    # Add value labels on bars
+    for bar, rate in zip(bars, match_rates):
+        plt.text(
+            bar.get_x() + bar.get_width() / 2,
+            bar.get_height() + 1,
+            f"{rate:.1f}%",
+            ha="center",
+            va="bottom",
+        )
+
+    plt.tight_layout()
+
+    # Create visualizations folder if it doesn't exist
+    os.makedirs("visualizations", exist_ok=True)
+    plt.savefig(f"visualizations/llm_comparison_analysis.pdf", bbox_inches="tight")
+    plt.show()
+
+
 def main():
     """Main function to generate all visualizations"""
     llm_names = ["gpt4o", "o1-mini", "deepseek"]
+    all_data = {}
 
+    # Load all comparison data
     for llm_name in llm_names:
-        print(f"Processing {llm_name}...")
-
-        # Load comparison data
+        print(f"Loading {llm_name}...")
         file_path = f"type_comparison_{llm_name}.json"
         try:
             data = load_comparison_data(file_path)
-
-            # Generate visualizations
-            # create_type_category_heatmap(data, llm_name)
-            # create_progressive_match_analysis(data, llm_name)
-            create_error_pattern_analysis(data, llm_name)
-            create_same_pattern_analysis(data, llm_name)
-
+            all_data[llm_name] = data
         except FileNotFoundError:
             print(f"File not found: {file_path}")
             continue
+
+    if all_data:
+        print("Generating combined visualizations...")
+        # Generate combined visualizations
+        create_error_pattern_analysis_combined(all_data)
+        create_same_pattern_analysis_combined(all_data)
+        # create_llm_comparison_analysis(all_data)
+    else:
+        print("No data files found!")
 
 
 if __name__ == "__main__":
