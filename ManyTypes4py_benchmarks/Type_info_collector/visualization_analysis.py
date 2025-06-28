@@ -7,6 +7,7 @@ from collections import defaultdict, Counter
 import plotly.graph_objects as go
 import plotly.express as px
 from plotly.subplots import make_subplots
+import os
 
 
 def load_comparison_data(file_path):
@@ -116,7 +117,14 @@ def create_type_category_heatmap(data, llm_name):
     plt.xlabel("LLM Predicted Type")
     plt.ylabel("Human Type")
     plt.tight_layout()
-    plt.savefig(f"type_category_heatmap_{llm_name}.png", dpi=300, bbox_inches="tight")
+
+    # Create visualizations folder if it doesn't exist
+    os.makedirs("visualizations", exist_ok=True)
+    plt.savefig(
+        f"visualizations/type_category_heatmap_{llm_name}.pdf",
+        dpi=300,
+        bbox_inches="tight",
+    )
     plt.show()
 
 
@@ -179,8 +187,13 @@ def create_progressive_match_analysis(data, llm_name):
         )
 
     plt.tight_layout()
+
+    # Create visualizations folder if it doesn't exist
+    os.makedirs("visualizations", exist_ok=True)
     plt.savefig(
-        f"progressive_match_analysis_{llm_name}.png", dpi=300, bbox_inches="tight"
+        f"visualizations/progressive_match_analysis_{llm_name}.pdf",
+        dpi=300,
+        bbox_inches="tight",
     )
     plt.show()
 
@@ -208,8 +221,8 @@ def create_error_pattern_analysis(data, llm_name):
     plt.figure(figsize=(12, 8))
     bars = plt.barh(range(len(human_types)), frequencies)
     plt.yticks(range(len(human_types)), human_types)
-    plt.xlabel("Number of Times Mistyped")
-    plt.title(f"Most Commonly Mistyped Human Types - {llm_name}")
+    plt.xlabel("Number of Times Mismatched")
+    plt.title(f"Most Commonly Mismatched Human Types - {llm_name}")
     plt.gca().invert_yaxis()
 
     # Add value labels
@@ -222,7 +235,60 @@ def create_error_pattern_analysis(data, llm_name):
         )
 
     plt.tight_layout()
-    plt.savefig(f"error_pattern_analysis_{llm_name}.png", dpi=300, bbox_inches="tight")
+
+    # Create visualizations folder if it doesn't exist
+    os.makedirs("visualizations", exist_ok=True)
+    plt.savefig(
+        f"visualizations/mismatch_analysis_{llm_name}.pdf",
+        bbox_inches="tight",
+    )
+    plt.show()
+
+
+def create_same_pattern_analysis(data, llm_name):
+    """Create analysis showing which human types are most commonly correctly predicted"""
+    human_type_correct = defaultdict(int)
+
+    for filename, functions in data.items():
+        for func_sig, annotations in functions.items():
+            for annotation in annotations:
+                if annotation["match"]:  # Only look at correct matches
+                    human_type = get_type_category(annotation["Human"])
+                    human_type_correct[human_type] += 1
+
+    # Get top correctly predicted human types
+    top_correct = sorted(human_type_correct.items(), key=lambda x: x[1], reverse=True)[
+        :15
+    ]
+
+    # Create bar chart of most correctly predicted human types
+    human_types = [correct[0] for correct in top_correct]
+    frequencies = [correct[1] for correct in top_correct]
+
+    plt.figure(figsize=(12, 8))
+    bars = plt.barh(range(len(human_types)), frequencies, color="green")
+    plt.yticks(range(len(human_types)), human_types)
+    plt.xlabel("Number of Times Correctly Predicted")
+    plt.title(f"Most Commonly Correctly Predicted Human Types - {llm_name}")
+    plt.gca().invert_yaxis()
+
+    # Add value labels
+    for i, (bar, freq) in enumerate(zip(bars, frequencies)):
+        plt.text(
+            bar.get_width() + 0.5,
+            bar.get_y() + bar.get_height() / 2,
+            str(freq),
+            va="center",
+        )
+
+    plt.tight_layout()
+
+    # Create visualizations folder if it doesn't exist
+    os.makedirs("visualizations", exist_ok=True)
+    plt.savefig(
+        f"visualizations/correct_analysis_{llm_name}.pdf",
+        bbox_inches="tight",
+    )
     plt.show()
 
 
@@ -242,6 +308,7 @@ def main():
             # create_type_category_heatmap(data, llm_name)
             # create_progressive_match_analysis(data, llm_name)
             create_error_pattern_analysis(data, llm_name)
+            create_same_pattern_analysis(data, llm_name)
 
         except FileNotFoundError:
             print(f"File not found: {file_path}")
