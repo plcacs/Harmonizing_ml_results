@@ -70,16 +70,31 @@ def collect_type_hints(code: str):
                 if arg.annotation:
                     annotations.append((node.name, arg.arg))
                     stats["parameters_with_annotations"] += 1
-            if node.returns:
-                annotations.append((node.name, "return"))
+            # if node.returns:
+            #    annotations.append((node.name, "return"))
 
     stats["total_type_annotations"] = len(annotations)
     return annotations, stats, True
 
 
 # Step 2: Type checking function
-def typecheck(code: str) -> int:
-    with open("temp_file2.py", "w", encoding="utf-8") as f:
+def typecheck(code: str, file_key: str = None) -> Tuple[int, str]:
+    # Try to use existing mypy results first
+    if file_key:
+        try:
+            with open("mypy_results/mypy_results_o1_mini_with_errors.json", "r") as f:
+                existing_results = json.load(f)
+                if file_key in existing_results:
+                    result = existing_results[file_key]
+                    error_count = result.get("error_count", 0)
+                    errors = result.get("errors", [])
+                    return error_count, "\n".join(errors)
+        except (FileNotFoundError, json.JSONDecodeError, KeyError):
+            pass
+
+    # Fallback: run mypy if no existing results
+    temp_file = os.path.abspath("temp_file2.py")
+    with open(temp_file, "w", encoding="utf-8") as f:
         f.write(code)
     command = [
         "mypy",
@@ -88,11 +103,30 @@ def typecheck(code: str) -> int:
         "--no-incremental",
         "--disable-error-code=no-redef",
         "--cache-dir=/dev/null",  # Avoid cache
-        "temp_file2.py",
+        temp_file,
     ]
-    result = subprocess.run(command, capture_output=True, text=True, check=False)
-    error_count = sum(1 for line in result.stdout.splitlines() if "error:" in line)
-    return error_count, result.stdout
+    result = subprocess.run(
+        command,
+        cwd=os.path.dirname(temp_file),
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    # Count errors from both stdout and stderr
+    stdout_errors = sum(1 for line in result.stdout.splitlines() if "error:" in line)
+    stderr_errors = sum(1 for line in result.stderr.splitlines() if "error:" in line)
+    print("stdout_errors: ", stdout_errors)
+    print("stderr_errors: ", stderr_errors)
+    # If no explicit error lines found but mypy returned non-zero, count as 1 error
+    total_errors = stdout_errors + stderr_errors
+    if total_errors == 0 and result.returncode != 0:
+        total_errors = 1
+
+    # Combine output for return
+    full_output = result.stdout + result.stderr
+
+    return total_errors, full_output
 
 
 # Step 3: Modified Algorithm 1
@@ -109,7 +143,10 @@ def assign_types(
     """
 
     # Step 1: Initialize
-    current_score, initial_errors = typecheck(initial_code)
+    file_key = os.path.basename(input_file)
+    current_score, initial_errors = typecheck(initial_code, file_key)
+    print("Initial score for file: ", input_file, current_score)
+
     # log_initial_errors(input_file, initial_errors)
 
     if current_score == 0:  # Already statically correct
@@ -120,35 +157,55 @@ def assign_types(
     best_config = frozenset()  # Store best set of removed annotations
     best_score = current_score
     parent_score = current_score
+    count = 0
 
     # Step 2: Greedy Iterative Removal
+    max_queue_size = len(annotations) * 2  # Limit queue size
     while work_set:
         if time.time() - start_time > timeout:  # Timeout check
             print("Skipping file due to timeout.")
             return best_config, best_score, parent_score
 
-        current_config = work_set.pop(0)
+        # Prevent queue from growing too large
+        if len(work_set) > max_queue_size:
+            print(f"Queue too large ({len(work_set)}), stopping to prevent explosion.")
+            break
 
+        current_config = work_set.pop(0)
+        count += 1
+        print(
+            "Total number of annotations: ",
+            len(annotations),
+            "count: ",
+            count,
+            "work_set: ",
+            len(work_set),
+        )
         for func_name, param in annotations:
             new_config = current_config | {
                 (func_name, param)
             }  # Try removing one annotation
 
-            if new_config not in done:
+            # Convert to sorted tuple for consistent hashing
+            sorted_config = tuple(sorted(new_config))
+
+            if sorted_config not in done:
                 new_code = apply_config(initial_code, new_config)
-                new_score, _ = typecheck(new_code)
+                new_score, _ = typecheck(new_code, file_key)
                 print("Current new_score for file: ", input_file, new_score)
 
                 if new_score <= best_score:  # Greedy improvement
                     parent_score = best_score
                     best_config = new_config
                     best_score = new_score
-                    work_set.append(new_config)
+                    # Only add to work_set if queue isn't too large
+                    if len(work_set) < max_queue_size:
+                        work_set.append(new_config)
 
                 if new_score == 0:  # Fully type-safe
                     return new_config, 0, parent_score
 
-                done.add(new_config)
+                done.add(sorted_config)
 
     return best_config, best_score, parent_score
 
@@ -171,6 +228,7 @@ def main(input_file: str, start_time: float):
         original_code = f.read()
 
     annotations, original_stats, isCompiled = collect_type_hints(original_code)
+
     # if not isCompiled:
     #    return float("inf"), float("inf"),None, False
 
