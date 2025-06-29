@@ -1,177 +1,320 @@
-import numpy as np
-import pytest
-from pandas import Categorical, DataFrame, Series
-import pandas._testing as tm
+from __future__ import annotations
+import os
+import sys
+import json
+from typing import Dict, Any, Optional, List, Union
+from chalice import __version__ as current_chalice_version
+from chalice.app import Chalice
+from chalice.constants import DEFAULT_STAGE_NAME
+from chalice.constants import DEFAULT_HANDLER_NAME
+StrMap = Dict[str, Any]
 
 
-class TestSeriesSortValues:
+class Config(object):
 
-    def test_sort_values(self, datetime_series: Series):
-        ser: Series = Series([3, 2, 4, 1], ['A', 'B', 'C', 'D'])
-        expected: Series = Series([1, 2, 3, 4], ['D', 'B', 'A', 'C'])
-        result: Series = ser.sort_values()
-        tm.assert_series_equal(expected, result)
-        ts: Series = datetime_series.copy()
-        ts[:5] = np.nan
-        vals: np.ndarray = ts.values
-        result = ts.sort_values()
-        assert np.isnan(result[-5:]).all()
-        tm.assert_numpy_array_equal(result[:-5].values, np.sort(vals[5:]))
-        result = ts.sort_values(na_position='first')
-        assert np.isnan(result[:5]).all()
-        tm.assert_numpy_array_equal(result[5:].values, np.sort(vals[5:]))
-        ser = Series(['A', 'B'], [1, 2])
-        ser.sort_values()
-        ordered: Series = ts.sort_values(ascending=False)
-        expected = np.sort(ts.dropna().values)[::-1]
-        tm.assert_almost_equal(expected, ordered.dropna().values)
-        ordered = ts.sort_values(ascending=False, na_position='first')
-        tm.assert_almost_equal(expected, ordered.dropna().values)
-        ordered = ts.sort_values(ascending=[False])
-        expected = ts.sort_values(ascending=False)
-        tm.assert_series_equal(expected, ordered)
-        ordered = ts.sort_values(ascending=[False], na_position='first')
-        expected = ts.sort_values(ascending=False, na_position='first')
-        tm.assert_series_equal(expected, ordered)
-        msg: str = (
-            'For argument "ascending" expected type bool, received type NoneType.'
-            )
-        with pytest.raises(ValueError, match=msg):
-            ts.sort_values(ascending=None)
-        msg = 'Length of ascending \\(0\\) must be 1 for Series'
-        with pytest.raises(ValueError, match=msg):
-            ts.sort_values(ascending=[])
-        msg = 'Length of ascending \\(3\\) must be 1 for Series'
-        with pytest.raises(ValueError, match=msg):
-            ts.sort_values(ascending=[1, 2, 3])
-        msg = 'Length of ascending \\(2\\) must be 1 for Series'
-        with pytest.raises(ValueError, match=msg):
-            ts.sort_values(ascending=[False, False])
-        msg = 'For argument "ascending" expected type bool, received type str.'
-        with pytest.raises(ValueError, match=msg):
-            ts.sort_values(ascending='foobar')
-        ts = datetime_series.copy()
-        return_value = ts.sort_values(ascending=False, inplace=True)
-        assert return_value is None
-        tm.assert_series_equal(ts, datetime_series.sort_values(ascending=False)
-            )
-        tm.assert_index_equal(ts.index, datetime_series.sort_values(
-            ascending=False).index)
-        df: DataFrame = DataFrame(np.random.default_rng(2).standard_normal(
-            (10, 4)))
-        s: Series = df.iloc[:, 0]
-        s.sort_values(inplace=True)
-        tm.assert_series_equal(s, df.iloc[:, 0].sort_values())
+    def __init__(self, chalice_stage: str=DEFAULT_STAGE_NAME, function_name:
+        str=DEFAULT_HANDLER_NAME, user_provided_params: Optional[Dict[str,
+        Any]]=None, config_from_disk: Optional[Dict[str, Any]]=None,
+        default_params: Optional[Dict[str, Any]]=None, layers: Optional[
+        List[str]]=None) ->None:
+        self.chalice_stage = chalice_stage
+        self.function_name = function_name
+        if user_provided_params is None:
+            user_provided_params = {}
+        self._user_provided_params = user_provided_params
+        if config_from_disk is None:
+            config_from_disk = {}
+        self._config_from_disk = config_from_disk
+        if default_params is None:
+            default_params = {}
+        self._default_params = default_params
+        self._chalice_app: Optional[Chalice] = None
+        self._layers = layers
 
-    def test_sort_values_categorical(self):
-        cat: Series = Series(Categorical(['a', 'b', 'b', 'a'], ordered=False))
-        expected: Series = Series(Categorical(['a', 'a', 'b', 'b'], ordered
-            =False), index=[0, 3, 1, 2])
-        result: Series = cat.sort_values()
-        tm.assert_series_equal(result, expected)
-        cat = Series(Categorical(['a', 'c', 'b', 'd'], ordered=True))
-        res: Series = cat.sort_values()
-        exp: np.ndarray = np.array(['a', 'b', 'c', 'd'], dtype=np.object_)
-        tm.assert_numpy_array_equal(res.__array__(), exp)
-        cat = Series(Categorical(['a', 'c', 'b', 'd'], categories=['a', 'b',
-            'c', 'd'], ordered=True))
-        res = cat.sort_values()
-        exp = np.array(['a', 'b', 'c', 'd'], dtype=np.object_)
-        tm.assert_numpy_array_equal(res.__array__(), exp)
-        res = cat.sort_values(ascending=False)
-        exp = np.array(['d', 'c', 'b', 'a'], dtype=np.object_)
-        tm.assert_numpy_array_equal(res.__array__(), exp)
-        raw_cat1: Categorical = Categorical(['a', 'b', 'c', 'd'],
-            categories=['a', 'b', 'c', 'd'], ordered=False)
-        raw_cat2: Categorical = Categorical(['a', 'b', 'c', 'd'],
-            categories=['d', 'c', 'b', 'a'], ordered=True)
-        s: list[str] = ['a', 'b', 'c', 'd']
-        df: DataFrame = DataFrame({'unsort': raw_cat1, 'sort': raw_cat2,
-            'string': s, 'values': [1, 2, 3, 4]})
-        res = df.sort_values(by=['string'], ascending=False)
-        exp = np.array(['d', 'c', 'b', 'a'], dtype=np.object_)
-        tm.assert_numpy_array_equal(res['sort'].values.__array__(), exp)
-        assert res['sort'].dtype == 'category'
-        res = df.sort_values(by=['sort'], ascending=False)
-        exp = df.sort_values(by=['string'], ascending=True)
-        tm.assert_series_equal(res['values'], exp['values'])
-        assert res['sort'].dtype == 'category'
-        assert res['unsort'].dtype == 'category'
-        df.sort_values(by=['unsort'], ascending=False)
-        df = DataFrame({'id': [6, 5, 4, 3, 2, 1], 'raw_grade': ['a', 'b',
-            'b', 'a', 'a', 'e']})
-        df['grade'] = Categorical(df['raw_grade'], ordered=True)
-        df['grade'] = df['grade'].cat.set_categories(['b', 'e', 'a'])
-        result = df.sort_values(by=['grade'])
-        expected = df.iloc[[1, 2, 5, 0, 3, 4]]
-        tm.assert_frame_equal(result, expected)
-        result = df.sort_values(by=['grade', 'id'])
-        expected = df.iloc[[2, 1, 5, 4, 3, 0]]
-        tm.assert_frame_equal(result, expected)
+    @classmethod
+    def create(cls, chalice_stage: str=DEFAULT_STAGE_NAME, function_name=
+        DEFAULT_HANDLER_NAME, **kwargs: Any) ->Config:
+        return cls(chalice_stage=chalice_stage, user_provided_params=kwargs
+            .copy())
 
-    @pytest.mark.parametrize('inplace', [True, False])
-    @pytest.mark.parametrize(
-        'original_list, sorted_list, ignore_index, output_index', [([2, 3, 
-        6, 1], [6, 3, 2, 1], True, [0, 1, 2, 3]), ([2, 3, 6, 1], [6, 3, 2, 
-        1], False, [2, 1, 0, 3])])
-    def test_sort_values_ignore_index(self, inplace, original_list,
-        sorted_list: list[int], ignore_index: bool, output_index: list[int]
-        ) ->None:
-        ser: Series = Series(original_list)
-        expected: Series = Series(sorted_list, index=output_index)
-        kwargs: dict[str, bool] = {'ignore_index': ignore_index, 'inplace':
-            inplace}
-        if inplace:
-            result_ser: Series = ser.copy()
-            result_ser.sort_values(ascending=False, **kwargs)
-        else:
-            result_ser = ser.sort_values(ascending=False, **kwargs)
-        tm.assert_series_equal(result_ser, expected)
-        tm.assert_series_equal(ser, Series(original_list))
+    @property
+    def profile(self) ->Optional[str]:
+        return self._chain_lookup('profile')
 
-    def test_mergesort_descending_stability(self):
-        s: Series = Series([1, 2, 1, 3], ['first', 'b', 'second', 'c'])
-        result: Series = s.sort_values(ascending=False, kind='mergesort')
-        expected: Series = Series([3, 2, 1, 1], ['c', 'b', 'first', 'second'])
-        tm.assert_series_equal(result, expected)
+    @property
+    def app_name(self) ->Optional[str]:
+        return self._chain_lookup('app_name')
 
-    def test_sort_values_validate_ascending_for_value_error(self) ->None:
-        ser: Series = Series([23, 7, 21])
-        msg: str = (
-            'For argument "ascending" expected type bool, received type str.')
-        with pytest.raises(ValueError, match=msg):
-            ser.sort_values(ascending='False')
+    @property
+    def project_dir(self) ->Optional[str]:
+        return self._chain_lookup('project_dir')
 
-    def test_sort_values_validate_ascending_functional(self, ascending: bool
-        ) ->None:
-        ser: Series = Series([23, 7, 21])
-        expected: np.ndarray = np.sort(ser.values)
-        sorted_ser: Series = ser.sort_values(ascending=ascending)
-        if not ascending:
-            expected = expected[::-1]
-        result: np.ndarray = sorted_ser.values
-        tm.assert_numpy_array_equal(result, expected)
+    @property
+    def chalice_app(self) ->Chalice:
+        v = self._chain_lookup('chalice_app')
+        if isinstance(v, Chalice):
+            return v
+        elif self._chalice_app is not None:
+            return self._chalice_app
+        elif not callable(v):
+            raise TypeError(
+                'Unable to load chalice app, lazy loader is not callable: %s' %
+                v)
+        app = v()
+        self._chalice_app = app
+        return app
+
+    @property
+    def config_from_disk(self) ->Dict[str, Any]:
+        return self._config_from_disk
+
+    @property
+    def lambda_python_version(self) ->str:
+        major, minor = sys.version_info[0], sys.version_info[1]
+        if (major, minor) < (3, 8):
+            return 'python3.8'
+        elif (major, minor) <= (3, 11):
+            return 'python%s.%s' % (major, minor)
+        return 'python3.12'
+
+    @property
+    def log_retention_in_days(self) ->Optional[int]:
+        return self._chain_lookup('log_retention_in_days',
+            varies_per_chalice_stage=True, varies_per_function=True)
+
+    @property
+    def layers(self) ->Optional[List[str]]:
+        return self._chain_lookup('layers', varies_per_chalice_stage=True,
+            varies_per_function=True)
+
+    @property
+    def api_gateway_custom_domain(self) ->Optional[str]:
+        return self._chain_lookup('api_gateway_custom_domain',
+            varies_per_chalice_stage=True)
+
+    @property
+    def websocket_api_custom_domain(self) ->Optional[str]:
+        return self._chain_lookup('websocket_api_custom_domain',
+            varies_per_chalice_stage=True)
+
+    def _chain_lookup(self, name: str, varies_per_chalice_stage: bool=False,
+        varies_per_function: bool=False) ->Optional[Any]:
+        search_dicts = [self._user_provided_params]
+        if varies_per_chalice_stage:
+            search_dicts.append(self._config_from_disk.get('stages', {}).
+                get(self.chalice_stage, {}))
+        if varies_per_function:
+            search_dicts.insert(0, self._config_from_disk.get('stages', {})
+                .get(self.chalice_stage, {}).get('lambda_functions', {}).
+                get(self.function_name, {}))
+            search_dicts.append(self._config_from_disk.get(
+                'lambda_functions', {}).get(self.function_name, {}))
+        search_dicts.extend([self._config_from_disk, self._default_params])
+        for cfg_dict in search_dicts:
+            if isinstance(cfg_dict, dict) and cfg_dict.get(name) is not None:
+                return cfg_dict[name]
+        return None
+
+    def _chain_merge(self, name: str) ->Dict[str, Any]:
+        search_dicts = [self._default_params, self._config_from_disk, self.
+            _config_from_disk.get('stages', {}).get(self.chalice_stage, {}),
+            self._config_from_disk.get('stages', {}).get(self.chalice_stage,
+            {}).get('lambda_functions', {}).get(self.function_name, {}),
+            self._user_provided_params]
+        final: Dict[str, Any] = {}
+        for cfg_dict in search_dicts:
+            value = cfg_dict.get(name, {})
+            if isinstance(value, dict):
+                final.update(value)
+        return final
+
+    @property
+    def config_file_version(self) ->str:
+        return self._config_from_disk.get('version', '1.0')
+
+    @property
+    def api_gateway_stage(self) ->Optional[str]:
+        return self._chain_lookup('api_gateway_stage',
+            varies_per_chalice_stage=True)
+
+    @property
+    def api_gateway_endpoint_type(self) ->Optional[str]:
+        return self._chain_lookup('api_gateway_endpoint_type',
+            varies_per_chalice_stage=True)
+
+    @property
+    def api_gateway_endpoint_vpce(self) ->Optional[str]:
+        return self._chain_lookup('api_gateway_endpoint_vpce',
+            varies_per_chalice_stage=True)
+
+    @property
+    def api_gateway_policy_file(self) ->Optional[str]:
+        return self._chain_lookup('api_gateway_policy_file',
+            varies_per_chalice_stage=True)
+
+    @property
+    def minimum_compression_size(self):
+        return self._chain_lookup('minimum_compression_size',
+            varies_per_chalice_stage=True)
+
+    @property
+    def iam_policy_file(self) ->Optional[str]:
+        return self._chain_lookup('iam_policy_file',
+            varies_per_chalice_stage=True, varies_per_function=True)
+
+    @property
+    def lambda_memory_size(self) ->Optional[int]:
+        return self._chain_lookup('lambda_memory_size',
+            varies_per_chalice_stage=True, varies_per_function=True)
+
+    @property
+    def lambda_timeout(self) ->Optional[int]:
+        return self._chain_lookup('lambda_timeout',
+            varies_per_chalice_stage=True, varies_per_function=True)
+
+    @property
+    def automatic_layer(self) ->bool:
+        v = self._chain_lookup('automatic_layer', varies_per_chalice_stage=
+            True, varies_per_function=False)
+        if v is None:
+            return False
+        return v
+
+    @property
+    def iam_role_arn(self) ->Optional[str]:
+        return self._chain_lookup('iam_role_arn', varies_per_chalice_stage=
+            True, varies_per_function=True)
+
+    @property
+    def manage_iam_role(self) ->bool:
+        result = self._chain_lookup('manage_iam_role',
+            varies_per_chalice_stage=True, varies_per_function=True)
+        if result is None:
+            return True
+        return result
+
+    @property
+    def autogen_policy(self) ->Optional[bool]:
+        return self._chain_lookup('autogen_policy',
+            varies_per_chalice_stage=True, varies_per_function=True)
+
+    @property
+    def xray_enabled(self) ->Optional[bool]:
+        return self._chain_lookup('xray', varies_per_chalice_stage=True,
+            varies_per_function=True)
+
+    @property
+    def environment_variables(self) ->Dict[str, str]:
+        return self._chain_merge('environment_variables')
+
+    @property
+    def tags(self) ->Dict[str, str]:
+        tags = self._chain_merge('tags')
+        tags['aws-chalice'] = 'version=%s:stage=%s:app=%s' % (
+            current_chalice_version, self.chalice_stage, self.app_name)
+        return tags
+
+    @property
+    def security_group_ids(self) ->Optional[List[str]]:
+        return self._chain_lookup('security_group_ids',
+            varies_per_chalice_stage=True, varies_per_function=True)
+
+    @property
+    def subnet_ids(self) ->Optional[List[str]]:
+        return self._chain_lookup('subnet_ids', varies_per_chalice_stage=
+            True, varies_per_function=True)
+
+    @property
+    def reserved_concurrency(self) ->Optional[int]:
+        return self._chain_lookup('reserved_concurrency',
+            varies_per_chalice_stage=True, varies_per_function=True)
+
+    def scope(self, chalice_stage: str, function_name: str) ->Config:
+        clone = self.__class__(chalice_stage=chalice_stage, function_name=
+            function_name, user_provided_params=self._user_provided_params,
+            config_from_disk=self._config_from_disk, default_params=self.
+            _default_params)
+        return clone
+
+    def deployed_resources(self, chalice_stage_name: str) ->Optional[
+        DeployedResources]:
+        deployed_file = os.path.join(self.project_dir, '.chalice',
+            'deployed', '%s.json' % chalice_stage_name)
+        data = self._load_json_file(deployed_file)
+        if data is not None:
+            schema_version = data.get('schema_version', '1.0')
+            if schema_version != '2.0':
+                raise ValueError(
+                    'Unsupported schema version (%s) in file: %s' % (
+                    schema_version, deployed_file))
+            return DeployedResources(data)
+        return self._try_old_deployer_values(chalice_stage_name)
+
+    def _try_old_deployer_values(self, chalice_stage_name: str) ->Optional[
+        DeployedResources]:
+        old_deployed_file = os.path.join(self.project_dir, '.chalice',
+            'deployed.json')
+        data = self._load_json_file(old_deployed_file)
+        if data is None or chalice_stage_name not in data:
+            return DeployedResources.empty()
+        return self._upgrade_deployed_values(chalice_stage_name, data)
+
+    def _load_json_file(self, deployed_file: str) ->Optional[Dict[str, Any]]:
+        if not os.path.isfile(deployed_file):
+            return None
+        with open(deployed_file, 'r') as f:
+            return json.load(f)
+
+    def _upgrade_deployed_values(self, chalice_stage_name: str, data: Dict[
+        str, Any]) ->DeployedResources:
+        deployed = data[chalice_stage_name]
+        prefix = '%s-%s-' % (self.app_name, chalice_stage_name)
+        resources: List[Dict[str, Any]] = []
+        self._upgrade_lambda_functions(resources, deployed, prefix)
+        self._upgrade_rest_api(resources, deployed)
+        return DeployedResources({'resources': resources, 'schema_version':
+            '2.0'})
+
+    def _upgrade_lambda_functions(self, resources: List[Dict[str, Any]],
+        deployed: Dict[str, Any], prefix: str) ->None:
+        lambda_functions = deployed.get('lambda_functions', {})
+        is_pre_10_format = not all(isinstance(v, dict) for v in
+            lambda_functions.values())
+        if is_pre_10_format:
+            lambda_functions = {k: {'type': 'authorizer', 'arn': v} for k,
+                v in lambda_functions.items()}
+        for name, values in lambda_functions.items():
+            short_name = name[len(prefix):]
+            current = {'resource_type': 'lambda_function', 'lambda_arn':
+                values['arn'], 'name': short_name}
+            resources.append(current)
+
+    def _upgrade_rest_api(self, resources: List[Dict[str, Any]], deployed:
+        Dict[str, Any]) ->None:
+        resources.extend([{'name': 'api_handler', 'resource_type':
+            'lambda_function', 'lambda_arn': deployed['api_handler_arn']},
+            {'name': 'rest_api', 'resource_type': 'rest_api', 'rest_api_id':
+            deployed['rest_api_id']}])
 
 
-class TestSeriesSortingKey:
+class DeployedResources(object):
 
-    def test_sort_values_key(self) ->None:
-        series: Series = Series(np.array(['Hello', 'goodbye']))
-        result: Series = series.sort_values(axis=0)
-        expected: Series = series
-        tm.assert_series_equal(result, expected)
-        result = series.sort_values(axis=0, key=lambda x: x.str.lower())
-        expected = series[::-1]
-        tm.assert_series_equal(result, expected)
+    def __init__(self, deployed_values: Dict[str, Any]) ->None:
+        self._deployed_values = deployed_values['resources']
+        self._deployed_values_by_name = {resource['name']: resource for
+            resource in deployed_values['resources']}
 
-    def test_sort_values_key_nan(self) ->None:
-        series: Series = Series(np.array([0, 5, np.nan, 3, 2, np.nan]))
-        result: Series = series.sort_values(axis=0)
-        expected: Series = series.iloc[[0, 4, 3, 1, 2, 5]]
-        tm.assert_series_equal(result, expected)
-        result = series.sort_values(axis=0, key=lambda x: x + 5)
-        expected = series.iloc[[0, 4, 3, 1, 2, 5]]
-        tm.assert_series_equal(result, expected)
-        result = series.sort_values(axis=0, key=lambda x: -x, ascending=False)
-        expected = series.iloc[[0, 4, 3, 1, 2, 5]]
-        tm.assert_series_equal(result, expected)
+    @classmethod
+    def empty(cls) ->DeployedResources:
+        return cls({'resources': [], 'schema_version': '2.0'})
+
+    def resource_values(self, name: str) ->Dict[str, Any]:
+        if 'api_mapping' in name:
+            name = name.split('.')[0]
+        try:
+            return self._deployed_values_by_name[name]
+        except KeyError:
+            raise ValueError('Resource does not exist: %s' % name)
+
+    def resource_names(self) ->List[str]:
+        return [r['name'] for r in self._deployed_values]
