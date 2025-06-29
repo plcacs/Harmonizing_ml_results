@@ -266,7 +266,9 @@ def create_rectangle_visualization(human_file, llm_file):
             continue
 
         # Create figure
-        fig, (ax_human, ax_llm) = plt.subplots(1, 2, figsize=(15, 6))
+        fig, (ax_human, ax_llm) = plt.subplots(
+            2, 1, figsize=(10, 6), height_ratios=[1, 1]
+        )
 
         # Draw rectangles
         rect_width = 0.8
@@ -321,27 +323,9 @@ def create_rectangle_visualization(human_file, llm_file):
             )
             ax_llm.add_patch(llm_param_rect)
 
-            # Add parameter number labels
-            ax_human.text(
-                x_pos + param_width / 2,
-                0.1,
-                str(j + 1),
-                ha="center",
-                va="center",
-                fontsize=8,
-            )
-            ax_llm.text(
-                x_pos + param_width / 2,
-                0.1,
-                str(j + 1),
-                ha="center",
-                va="center",
-                fontsize=8,
-            )
-
         # Set titles and labels
-        ax_human.set_title("Human Annotations")
-        ax_llm.set_title("LLM Annotations")
+        ax_human.set_title("Human Annotations", pad=10)
+        ax_llm.set_title("LLM Annotations", pad=10)
         ax_human.set_xlim(0, 1)
         ax_human.set_ylim(0, 1)
         ax_llm.set_xlim(0, 1)
@@ -350,7 +334,7 @@ def create_rectangle_visualization(human_file, llm_file):
         ax_llm.axis("off")
 
         # Add overall title
-        fig.suptitle(f"Type Annotation Comparison: {filename}", fontsize=14)
+        fig.suptitle(f"Type Annotation Comparison: {filename}", fontsize=14, y=0.95)
 
         # Add legend
         legend_elements = [
@@ -364,6 +348,7 @@ def create_rectangle_visualization(human_file, llm_file):
         )
 
         plt.tight_layout()
+        plt.subplots_adjust(hspace=0.3)
         figures_created += 1
 
         # Save the figure to file
