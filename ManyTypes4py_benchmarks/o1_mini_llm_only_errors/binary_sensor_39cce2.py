@@ -1,0 +1,190 @@
+"""Support for the Airzone sensors."""
+from __future__ import annotations
+from dataclasses import dataclass
+from typing import Any, Final, Callable, Coroutine, Optional, Dict, Set, Tuple, List
+from aioairzone.const import (
+    AZD_AIR_DEMAND,
+    AZD_BATTERY_LOW,
+    AZD_ERRORS,
+    AZD_FLOOR_DEMAND,
+    AZD_PROBLEMS,
+    AZD_SYSTEMS,
+    AZD_ZONES,
+)
+from homeassistant.components.binary_sensor import (
+    BinarySensorDeviceClass,
+    BinarySensorEntity,
+    BinarySensorEntityDescription,
+)
+from homeassistant.config_entries import ConfigEntry
+from homeassistant.const import EntityCategory
+from homeassistant.core import HomeAssistant, callback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
+from .coordinator import AirzoneConfigEntry, AirzoneUpdateCoordinator
+from .entity import AirzoneEntity, AirzoneSystemEntity, AirzoneZoneEntity
+
+
+@dataclass(frozen=True)
+class AirzoneBinarySensorEntityDescription(BinarySensorEntityDescription):
+    """A class that describes airzone binary sensor entities."""
+    attributes: Optional[Dict[str, str]] = None
+
+
+SYSTEM_BINARY_SENSOR_TYPES: Final[Tuple[AirzoneBinarySensorEntityDescription, ...]] = (
+    AirzoneBinarySensorEntityDescription(
+        attributes={'errors': AZD_ERRORS},
+        device_class=BinarySensorDeviceClass.PROBLEM,
+        entity_category=EntityCategory.DIAGNOSTIC,
+        key=AZD_PROBLEMS,
+        translation_key='problems'
+    ),
+)
+
+ZONE_BINARY_SENSOR_TYPES: Final[Tuple[AirzoneBinarySensorEntityDescription, ...]] = (
+    AirzoneBinarySensorEntityDescription(
+        device_class=BinarySensorDeviceClass.RUNNING,
+        key=AZD_AIR_DEMAND,
+        translation_key='air_demand'
+    ),
+    AirzoneBinarySensorEntityDescription(
+        device_class=BinarySensorDeviceClass.BATTERY,
+        key=AZD_BATTERY_LOW
+    ),
+    AirzoneBinarySensorEntityDescription(
+        device_class=BinarySensorDeviceClass.RUNNING,
+        key=AZD_FLOOR_DEMAND,
+        translation_key='floor_demand'
+    ),
+    AirzoneBinarySensorEntityDescription(
+        attributes={'errors': AZD_ERRORS},
+        device_class=BinarySensorDeviceClass.PROBLEM,
+        entity_category=EntityCategory.DIAGNOSTIC,
+        key=AZD_PROBLEMS,
+        translation_key='problems'
+    ),
+)
+
+
+async def async_setup_entry(
+    hass: HomeAssistant,
+    entry: ConfigEntry,
+    async_add_entities: AddConfigEntryEntitiesCallback
+) -> None:
+    """Add Airzone binary sensors from a config_entry."""
+    coordinator: AirzoneUpdateCoordinator = entry.runtime_data
+    added_systems: Set[str] = set()
+    added_zones: Set[str] = set()
+
+    @callback
+    def _async_entity_listener() -> None:
+        """Handle additions of binary sensors."""
+        entities: List[BinarySensorEntity] = []
+        systems_data: Dict[str, Any] = coordinator.data.get(AZD_SYSTEMS, {})
+        received_systems: Set[str] = set(systems_data)
+        new_systems: Set[str] = received_systems - added_systems
+        if new_systems:
+            for system_id in new_systems:
+                system_info = systems_data.get(system_id)
+                if not system_info:
+                    continue
+                for description in SYSTEM_BINARY_SENSOR_TYPES:
+                    if description.key in system_info:
+                        entity = AirzoneSystemBinarySensor(
+                            coordinator,
+                            description,
+                            entry,
+                            system_id,
+                            system_info
+                        )
+                        entities.append(entity)
+            added_systems.update(new_systems)
+
+        zones_data: Dict[str, Any] = coordinator.data.get(AZD_ZONES, {})
+        received_zones: Set[str] = set(zones_data)
+        new_zones: Set[str] = received_zones - added_zones
+        if new_zones:
+            for system_zone_id in new_zones:
+                zone_info = zones_data.get(system_zone_id)
+                if not zone_info:
+                    continue
+                for description in ZONE_BINARY_SENSOR_TYPES:
+                    if description.key in zone_info:
+                        entity = AirzoneZoneBinarySensor(
+                            coordinator,
+                            description,
+                            entry,
+                            system_zone_id,
+                            zone_info
+                        )
+                        entities.append(entity)
+            added_zones.update(new_zones)
+
+        async_add_entities(entities)
+
+    entry.async_on_unload(coordinator.async_add_listener(_async_entity_listener))
+    _async_entity_listener()
+
+
+class AirzoneBinarySensor(AirzoneEntity, BinarySensorEntity):
+    """Define an Airzone binary sensor."""
+
+    def __init__(self) -> None:
+        """Initialize the Airzone binary sensor."""
+        super().__init__()
+
+    @callback
+    def _handle_coordinator_update(self) -> None:
+        """Update attributes when the coordinator updates."""
+        self._async_update_attrs()
+        super()._handle_coordinator_update()
+
+    @callback
+    def _async_update_attrs(self) -> None:
+        """Update binary sensor attributes."""
+        if self.entity_description.key is not None:
+            self._attr_is_on: Optional[bool] = self.get_airzone_value(self.entity_description.key)
+        else:
+            self._attr_is_on = None
+        if self.entity_description.attributes:
+            self._attr_extra_state_attributes = {
+                key: self.get_airzone_value(val)
+                for key, val in self.entity_description.attributes.items()
+            }
+        else:
+            self._attr_extra_state_attributes = None
+
+
+class AirzoneSystemBinarySensor(AirzoneSystemEntity, AirzoneBinarySensor):
+    """Define an Airzone System binary sensor."""
+
+    def __init__(
+        self,
+        coordinator: AirzoneUpdateCoordinator,
+        description: AirzoneBinarySensorEntityDescription,
+        entry: ConfigEntry,
+        system_id: str,
+        system_data: Any
+    ) -> None:
+        """Initialize."""
+        super().__init__(coordinator, entry, system_data)
+        self.entity_description: AirzoneBinarySensorEntityDescription = description
+        self._attr_unique_id: str = f'{self._attr_unique_id}_{system_id}_{description.key}'
+        self._async_update_attrs()
+
+
+class AirzoneZoneBinarySensor(AirzoneZoneEntity, AirzoneBinarySensor):
+    """Define an Airzone Zone binary sensor."""
+
+    def __init__(
+        self,
+        coordinator: AirzoneUpdateCoordinator,
+        description: AirzoneBinarySensorEntityDescription,
+        entry: ConfigEntry,
+        system_zone_id: str,
+        zone_data: Any
+    ) -> None:
+        """Initialize."""
+        super().__init__(coordinator, entry, system_zone_id, zone_data)
+        self.entity_description: AirzoneBinarySensorEntityDescription = description
+        self._attr_unique_id: str = f'{self._attr_unique_id}_{system_zone_id}_{description.key}'
+        self._async_update_attrs()

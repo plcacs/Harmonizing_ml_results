@@ -1,591 +1,267 @@
-from datetime import datetime, timedelta
-import numpy as np
-import pytest
-from pandas import DataFrame, Index, MultiIndex, Series
-import pandas._testing as tm
-from pandas.core.strings.accessor import StringMethods
-from pandas.tests.strings import is_object_or_nan_string_dtype
-from typing import List, Optional, Union
-
-
-@pytest.mark.parametrize('pattern', [0, True, Series(['foo', 'bar'])])
-def test_startswith_endswith_non_str_patterns(pattern: Union[int, bool, Series]
-    ) ->None:
-    ser = Series(['foo', 'bar'])
-    msg = f'expected a string or tuple, not {type(pattern).__name__}'
-    with pytest.raises(TypeError, match=msg):
-        ser.str.startswith(pattern)
-    with pytest.raises(TypeError, match=msg):
-        ser.str.endswith(pattern)
-
-
-def test_iter_raises() ->None:
-    ser = Series(['foo', 'bar'])
-    with pytest.raises(TypeError, match=
-        "'StringMethods' object is not iterable"):
-        iter(ser.str)
-
-
-def test_count(any_string_dtype: str) ->None:
-    ser = Series(['foo', 'foofoo', np.nan, 'foooofooofommmfoo'], dtype=
-        any_string_dtype)
-    result = ser.str.count('f[o]+')
-    expected_dtype = np.float64 if is_object_or_nan_string_dtype(
-        any_string_dtype) else 'Int64'
-    expected = Series([1, 2, np.nan, 4], dtype=expected_dtype)
-    tm.assert_series_equal(result, expected)
-
-
-def test_count_mixed_object() ->None:
-    ser = Series(['a', np.nan, 'b', True, datetime.today(), 'foo', None, 1,
-        2.0], dtype=object)
-    result = ser.str.count('a')
-    expected = Series([1, np.nan, 0, np.nan, np.nan, 0, np.nan, np.nan, np.nan]
-        )
-    tm.assert_series_equal(result, expected)
-
-
-def test_repeat(any_string_dtype: str) ->None:
-    ser = Series(['a', 'b', np.nan, 'c', np.nan, 'd'], dtype=any_string_dtype)
-    result = ser.str.repeat(3)
-    expected = Series(['aaa', 'bbb', np.nan, 'ccc', np.nan, 'ddd'], dtype=
-        any_string_dtype)
-    tm.assert_series_equal(result, expected)
-    result = ser.str.repeat([1, 2, 3, 4, 5, 6])
-    expected = Series(['a', 'bb', np.nan, 'cccc', np.nan, 'dddddd'], dtype=
-        any_string_dtype)
-    tm.assert_series_equal(result, expected)
-
-
-def test_repeat_mixed_object() ->None:
-    ser = Series(['a', np.nan, 'b', True, datetime.today(), 'foo', None, 1,
-        2.0])
-    result = ser.str.repeat(3)
-    expected = Series(['aaa', np.nan, 'bbb', np.nan, np.nan, 'foofoofoo',
-        None, np.nan, np.nan], dtype=object)
-    tm.assert_series_equal(result, expected)
-
-
-@pytest.mark.parametrize('arg, repeat', [[None, 4], ['b', None]])
-def test_repeat_with_null(any_string_dtype: str, arg: Optional[str], repeat:
-    Optional[int]) ->None:
-    ser = Series(['a', arg], dtype=any_string_dtype)
-    result = ser.str.repeat([3, repeat])
-    expected = Series(['aaa', None], dtype=any_string_dtype)
-    tm.assert_series_equal(result, expected)
-
-
-def test_empty_str_methods(any_string_dtype: str) ->None:
-    empty_str = empty = Series(dtype=any_string_dtype)
-    empty_inferred_str = Series(dtype='str')
-    if is_object_or_nan_string_dtype(any_string_dtype):
-        empty_int = Series(dtype='int64')
-        empty_bool = Series(dtype=bool)
-    else:
-        empty_int = Series(dtype='Int64')
-        empty_bool = Series(dtype='boolean')
-    empty_object = Series(dtype=object)
-    empty_bytes = Series(dtype=object)
-    empty_df = DataFrame()
-    tm.assert_series_equal(empty_str, empty.str.cat(empty))
-    assert '' == empty.str.cat()
-    tm.assert_series_equal(empty_str, empty.str.title())
-    tm.assert_series_equal(empty_int, empty.str.count('a'))
-    tm.assert_series_equal(empty_bool, empty.str.contains('a'))
-    tm.assert_series_equal(empty_bool, empty.str.startswith('a'))
-    tm.assert_series_equal(empty_bool, empty.str.endswith('a'))
-    tm.assert_series_equal(empty_str, empty.str.lower())
-    tm.assert_series_equal(empty_str, empty.str.upper())
-    tm.assert_series_equal(empty_str, empty.str.replace('a', 'b'))
-    tm.assert_series_equal(empty_str, empty.str.repeat(3))
-    tm.assert_series_equal(empty_bool, empty.str.match('^a'))
-    tm.assert_frame_equal(DataFrame(columns=range(1), dtype=
-        any_string_dtype), empty.str.extract('()', expand=True))
-    tm.assert_frame_equal(DataFrame(columns=range(2), dtype=
-        any_string_dtype), empty.str.extract('()()', expand=True))
-    tm.assert_series_equal(empty_str, empty.str.extract('()', expand=False))
-    tm.assert_frame_equal(DataFrame(columns=range(2), dtype=
-        any_string_dtype), empty.str.extract('()()', expand=False))
-    tm.assert_frame_equal(empty_df.set_axis([], axis=1), empty.str.
-        get_dummies())
-    tm.assert_series_equal(empty_str, empty_str.str.join(''))
-    tm.assert_series_equal(empty_int, empty.str.len())
-    tm.assert_series_equal(empty_object, empty_str.str.findall('a'))
-    tm.assert_series_equal(empty_int, empty.str.find('a'))
-    tm.assert_series_equal(empty_int, empty.str.rfind('a'))
-    tm.assert_series_equal(empty_str, empty.str.pad(42))
-    tm.assert_series_equal(empty_str, empty.str.center(42))
-    tm.assert_series_equal(empty_object, empty.str.split('a'))
-    tm.assert_series_equal(empty_object, empty.str.rsplit('a'))
-    tm.assert_series_equal(empty_object, empty.str.partition('a', expand=False)
-        )
-    tm.assert_frame_equal(empty_df, empty.str.partition('a'))
-    tm.assert_series_equal(empty_object, empty.str.rpartition('a', expand=
-        False))
-    tm.assert_frame_equal(empty_df, empty.str.rpartition('a'))
-    tm.assert_series_equal(empty_str, empty.str.slice(stop=1))
-    tm.assert_series_equal(empty_str, empty.str.slice(step=1))
-    tm.assert_series_equal(empty_str, empty.str.strip())
-    tm.assert_series_equal(empty_str, empty.str.lstrip())
-    tm.assert_series_equal(empty_str, empty.str.rstrip())
-    tm.assert_series_equal(empty_str, empty.str.wrap(42))
-    tm.assert_series_equal(empty_str, empty.str.get(0))
-    tm.assert_series_equal(empty_inferred_str, empty_bytes.str.decode('ascii'))
-    tm.assert_series_equal(empty_bytes, empty.str.encode('ascii'))
-    tm.assert_series_equal(empty_bool, empty.str.isalnum())
-    tm.assert_series_equal(empty_bool, empty.str.isalpha())
-    tm.assert_series_equal(empty_bool, empty.str.isascii())
-    tm.assert_series_equal(empty_bool, empty.str.isdigit())
-    tm.assert_series_equal(empty_bool, empty.str.isspace())
-    tm.assert_series_equal(empty_bool, empty.str.islower())
-    tm.assert_series_equal(empty_bool, empty.str.isupper())
-    tm.assert_series_equal(empty_bool, empty.str.istitle())
-    tm.assert_series_equal(empty_bool, empty.str.isnumeric())
-    tm.assert_series_equal(empty_bool, empty.str.isdecimal())
-    tm.assert_series_equal(empty_str, empty.str.capitalize())
-    tm.assert_series_equal(empty_str, empty.str.swapcase())
-    tm.assert_series_equal(empty_str, empty.str.normalize('NFC'))
-    table = str.maketrans('a', 'b')
-    tm.assert_series_equal(empty_str, empty.str.translate(table))
-
-
-@pytest.mark.parametrize('method, expected', [('isascii', [True, True, True,
-    True, True, True, True, True, True, True]), ('isalnum', [True, True, 
-    True, True, True, False, True, True, False, False]), ('isalpha', [True,
-    True, True, False, False, False, True, False, False, False]), (
-    'isdigit', [False, False, False, True, False, False, False, True, False,
-    False]), ('isnumeric', [False, False, False, True, False, False, False,
-    True, False, False]), ('isspace', [False, False, False, False, False, 
-    False, False, False, False, True]), ('islower', [False, True, False, 
-    False, False, False, False, False, False, False]), ('isupper', [True, 
-    False, False, False, True, False, True, False, False, False]), (
-    'istitle', [True, False, True, False, True, False, False, False, False,
-    False])])
-def test_ismethods(method: str, expected, any_string_dtype: str) ->None:
-    ser = Series(['A', 'b', 'Xy', '4', '3A', '', 'TT', '55', '-', '  '],
-        dtype=any_string_dtype)
-    expected_dtype = 'bool' if is_object_or_nan_string_dtype(any_string_dtype
-        ) else 'boolean'
-    expected = Series(expected, dtype=expected_dtype)
-    result = getattr(ser.str, method)()
-    tm.assert_series_equal(result, expected)
-    expected_stdlib = [getattr(item, method)() for item in ser]
-    assert list(result) == expected_stdlib
-    ser.iloc[[1, 2, 3, 4]] = np.nan
-    result = getattr(ser.str, method)()
-    if ser.dtype == 'object':
-        expected = expected.astype(object)
-        expected.iloc[[1, 2, 3, 4]] = np.nan
-    elif ser.dtype == 'str':
-        expected.iloc[[1, 2, 3, 4]] = False
-    else:
-        expected.iloc[[1, 2, 3, 4]] = np.nan
-
-
-@pytest.mark.parametrize('method, expected', [('isnumeric', [False, True, 
-    True, False, True, True, False]), ('isdecimal', [False, True, False, 
-    False, False, True, False])])
-def test_isnumeric_unicode(method: str, expected: List[bool],
-    any_string_dtype: str) ->None:
-    ser = Series(['A', '3', '¼', '★', '፸', '３', 'four'], dtype=any_string_dtype
-        )
-    expected_dtype = 'bool' if is_object_or_nan_string_dtype(any_string_dtype
-        ) else 'boolean'
-    expected = Series(expected, dtype=expected_dtype)
-    result = getattr(ser.str, method)()
-    tm.assert_series_equal(result, expected)
-    expected = [getattr(item, method)() for item in ser]
-    assert list(result) == expected
-
-
-@pytest.mark.parametrize('method, expected', [('isnumeric', [False, np.nan,
-    True, False, np.nan, True, False]), ('isdecimal', [False, np.nan, False,
-    False, np.nan, True, False])])
-def test_isnumeric_unicode_missing(method: str, expected: List[Union[bool,
-    float]], any_string_dtype: str) ->None:
-    values = ['A', np.nan, '¼', '★', np.nan, '３', 'four']
-    ser = Series(values, dtype=any_string_dtype)
-    if any_string_dtype == 'str':
-        expected = Series(expected, dtype=object).fillna(False).astype(bool)
-    else:
-        expected_dtype = 'object' if is_object_or_nan_string_dtype(
-            any_string_dtype) else 'boolean'
-        expected = Series(expected, dtype=expected_dtype)
-    result = getattr(ser.str, method)()
-    tm.assert_series_equal(result, expected)
-
-
-def test_spilt_join_roundtrip(any_string_dtype: str) ->None:
-    ser = Series(['a_b_c', 'c_d_e', np.nan, 'f_g_h'], dtype=any_string_dtype)
-    result = ser.str.split('_').str.join('_')
-    expected = ser.astype(object)
-    tm.assert_series_equal(result, expected)
-
-
-def test_spilt_join_roundtrip_mixed_object() ->None:
-    ser = Series(['a_b', np.nan, 'asdf_cas_asdf', True, datetime.today(),
-        'foo', None, 1, 2.0])
-    result = ser.str.split('_').str.join('_')
-    expected = Series(['a_b', np.nan, 'asdf_cas_asdf', np.nan, np.nan,
-        'foo', None, np.nan, np.nan], dtype=object)
-    tm.assert_series_equal(result, expected)
-
-
-def test_len(any_string_dtype: str) ->None:
-    ser = Series(['foo', 'fooo', 'fooooo', np.nan, 'fooooooo', 'foo\n', 'あ'
-        ], dtype=any_string_dtype)
-    result = ser.str.len()
-    expected_dtype = 'float64' if is_object_or_nan_string_dtype(
-        any_string_dtype) else 'Int64'
-    expected = Series([3, 4, 6, np.nan, 8, 4, 1], dtype=expected_dtype)
-    tm.assert_series_equal(result, expected)
-
-
-def test_len_mixed() ->None:
-    ser = Series(['a_b', np.nan, 'asdf_cas_asdf', True, datetime.today(),
-        'foo', None, 1, 2.0])
-    result = ser.str.len()
-    expected = Series([3, np.nan, 13, np.nan, np.nan, 3, np.nan, np.nan, np
-        .nan])
-    tm.assert_series_equal(result, expected)
-
-
-@pytest.mark.parametrize('method,sub,start,end,expected', [('index', 'EF',
-    None, None, [4, 3, 1, 0]), ('rindex', 'EF', None, None, [4, 5, 7, 4]),
-    ('index', 'EF', 3, None, [4, 3, 7, 4]), ('rindex', 'EF', 3, None, [4, 5,
-    7, 4]), ('index', 'E', 4, 8, [4, 5, 7, 4]), ('rindex', 'E', 0, 5, [4, 3,
-    1, 4])])
-def test_index(method: str, sub: str, start: Optional[int], end: Optional[
-    int], index_or_series: Union[Index, Series], any_string_dtype: str,
-    expected: List[int]) ->None:
-    obj = index_or_series(['ABCDEFG', 'BCDEFEF', 'DEFGHIJEF', 'EFGHEF'],
-        dtype=any_string_dtype)
-    expected_dtype = np.int64 if is_object_or_nan_string_dtype(any_string_dtype
-        ) else 'Int64'
-    expected = index_or_series(expected, dtype=expected_dtype)
-    result = getattr(obj.str, method)(sub, start, end)
-    if index_or_series is Series:
-        tm.assert_series_equal(result, expected)
-    else:
-        tm.assert_index_equal(result, expected)
-    expected = [getattr(item, method)(sub, start, end) for item in obj]
-    assert list(result) == expected
-
-
-def test_index_not_found_raises(index_or_series: Union[Index, Series],
-    any_string_dtype: str) ->None:
-    obj = index_or_series(['ABCDEFG', 'BCDEFEF', 'DEFGHIJEF', 'EFGHEF'],
-        dtype=any_string_dtype)
-    with pytest.raises(ValueError, match='substring not found'):
-        obj.str.index('DE')
-
-
-@pytest.mark.parametrize('method', ['index', 'rindex'])
-def test_index_wrong_type_raises(index_or_series: Union[Index, Series],
-    any_string_dtype: str, method: str) ->None:
-    obj = index_or_series([], dtype=any_string_dtype)
-    msg = 'expected a string object, not int'
-    with pytest.raises(TypeError, match=msg):
-        getattr(obj.str, method)(0)
-
-
-@pytest.mark.parametrize('method, exp', [['index', [1, 1, 0]], ['rindex', [
-    3, 1, 2]]])
-def test_index_missing(any_string_dtype: str, method: str, exp: List[int]
-    ) ->None:
-    ser = Series(['abcb', 'ab', 'bcbe', np.nan], dtype=any_string_dtype)
-    expected_dtype = np.float64 if is_object_or_nan_string_dtype(
-        any_string_dtype) else 'Int64'
-    result = getattr(ser.str, method)('b')
-    expected = Series(exp + [np.nan], dtype=expected_dtype)
-    tm.assert_series_equal(result, expected)
-
-
-def test_pipe_failures(any_string_dtype: str) ->None:
-    ser = Series(['A|B|C'], dtype=any_string_dtype)
-    result = ser.str.split('|')
-    expected = Series([['A', 'B', 'C']], dtype=object)
-    tm.assert_series_equal(result, expected)
-    result = ser.str.replace('|', ' ', regex=False)
-    expected = Series(['A B C'], dtype=any_string_dtype)
-    tm.assert_series_equal(result, expected)
-
-
-@pytest.mark.parametrize('start, stop, step, expected', [(2, 5, None, [
-    'foo', 'bar', np.nan, 'baz']), (0, 3, -1, ['', '', np.nan, '']), (None,
-    None, -1, ['owtoofaa', 'owtrabaa', np.nan, 'xuqzabaa']), (None, 2, -1,
-    ['owtoo', 'owtra', np.nan, 'xuqza']), (3, 10, 2, ['oto', 'ato', np.nan,
-    'aqx']), (3, 0, -1, ['ofa', 'aba', np.nan, 'aba'])])
-def test_slice(start: Optional[int], stop, step: Optional[int], expected:
-    List[Optional[str]], any_string_dtype: str) ->None:
-    ser = Series(['aafootwo', 'aabartwo', np.nan, 'aabazqux'], dtype=
-        any_string_dtype)
-    result = ser.str.slice(start, stop, step)
-    expected = Series(expected, dtype=any_string_dtype)
-    tm.assert_series_equal(result, expected)
-
-
-@pytest.mark.parametrize('start, stop, step, expected', [(2, 5, None, [
-    'foo', np.nan, 'bar', np.nan, np.nan, None, np.nan, np.nan]), (4, 1, -1,
-    ['oof', np.nan, 'rab', np.nan, np.nan, None, np.nan, np.nan])])
-def test_slice_mixed_object(start: Optional[int], stop: Optional[int], step:
-    Optional[int], expected: List[Optional[str]]) ->None:
-    ser = Series(['aafootwo', np.nan, 'aabartwo', True, datetime.today(),
-        None, 1, 2.0])
-    result = ser.str.slice(start, stop, step)
-    expected = Series(expected, dtype=object)
-    tm.assert_series_equal(result, expected)
-
-
-@pytest.mark.parametrize('start,stop,repl,expected', [(2, 3, None, ['shrt',
-    'a it longer', 'evnlongerthanthat', '', np.nan]), (2, 3, 'z', ['shzrt',
-    'a zit longer', 'evznlongerthanthat', 'z', np.nan]), (2, 2, 'z', [
-    'shzort', 'a zbit longer', 'evzenlongerthanthat', 'z', np.nan]), (2, 1,
-    'z', ['shzort', 'a zbit longer', 'evzenlongerthanthat', 'z', np.nan]),
-    (-1, None, 'z', ['shorz', 'a bit longez', 'evenlongerthanthaz', 'z', np
-    .nan]), (None, -2, 'z', ['zrt', 'zer', 'zat', 'z', np.nan]), (6, 8, 'z',
-    ['shortz', 'a bit znger', 'evenlozerthanthat', 'z', np.nan]), (-10, 3,
-    'z', ['zrt', 'a zit longer', 'evenlongzerthanthat', 'z', np.nan])])
-def test_slice_replace(start: Optional[int], stop: Optional[int], repl:
-    Optional[str], expected: List[Optional[str]], any_string_dtype: str
-    ) ->None:
-    ser = Series(['short', 'a bit longer', 'evenlongerthanthat', '', np.nan
-        ], dtype=any_string_dtype)
-    expected = Series(expected, dtype=any_string_dtype)
-    result = ser.str.slice_replace(start, stop, repl)
-    tm.assert_series_equal(result, expected)
-
-
-@pytest.mark.parametrize('method, exp', [['strip', ['aa', 'bb', np.nan,
-    'cc']], ['lstrip', ['aa   ', 'bb \n', np.nan, 'cc  ']], ['rstrip', [
-    '  aa', ' bb', np.nan, 'cc']]])
-def test_strip_lstrip_rstrip(any_string_dtype: str, method: str, exp: List[
-    Optional[str]]) ->None:
-    ser = Series(['  aa   ', ' bb \n', np.nan, 'cc  '], dtype=any_string_dtype)
-    result = getattr(ser.str, method)()
-    expected = Series(exp, dtype=any_string_dtype)
-    tm.assert_series_equal(result, expected)
-
-
-@pytest.mark.parametrize('method, exp', [['strip', ['aa', np.nan, 'bb']], [
-    'lstrip', ['aa  ', np.nan, 'bb \t\n']], ['rstrip', ['  aa', np.nan,
-    ' bb']]])
-def test_strip_lstrip_rstrip_mixed_object(method: str, exp: List[Optional[str]]
-    ) ->None:
-    ser = Series(['  aa  ', np.nan, ' bb \t\n', True, datetime.today(),
-        None, 1, 2.0])
-    result = getattr(ser.str, method)()
-    expected = Series(exp + [np.nan, np.nan, None, np.nan, np.nan], dtype=
-        object)
-    tm.assert_series_equal(result, expected)
-
-
-@pytest.mark.parametrize('method, exp', [['strip', ['ABC', ' BNSD',
-    'LDFJH ']], ['lstrip', ['ABCxx', ' BNSD', 'LDFJH xx']], ['rstrip', [
-    'xxABC', 'xx BNSD', 'LDFJH ']]])
-def test_strip_lstrip_rstrip_args(any_string_dtype: str, method: str, exp:
-    List[str]) ->None:
-    ser = Series(['xxABCxx', 'xx BNSD', 'LDFJH xx'], dtype=any_string_dtype)
-    result = getattr(ser.str, method)('x')
-    expected = Series(exp, dtype=any_string_dtype)
-    tm.assert_series_equal(result, expected)
-
-
-@pytest.mark.parametrize('prefix, expected', [('a', ['b', ' b c', 'bc']), (
-    'ab', ['', 'a b c', 'bc'])])
-def test_removeprefix(any_string_dtype: str, prefix: str, expected: List[str]
-    ) ->None:
-    ser = Series(['ab', 'a b c', 'bc'], dtype=any_string_dtype)
-    result = ser.str.removeprefix(prefix)
-    ser_expected = Series(expected, dtype=any_string_dtype)
-    tm.assert_series_equal(result, ser_expected)
-
-
-@pytest.mark.parametrize('suffix, expected', [('c', ['ab', 'a b ', 'b']), (
-    'bc', ['ab', 'a b c', ''])])
-def test_removesuffix(any_string_dtype: str, suffix: str, expected: List[str]
-    ) ->None:
-    ser = Series(['ab', 'a b c', 'bc'], dtype=any_string_dtype)
-    result = ser.str.removesuffix(suffix)
-    ser_expected = Series(expected, dtype=any_string_dtype)
-    tm.assert_series_equal(result, ser_expected)
-
-
-def test_string_slice_get_syntax(any_string_dtype: str) ->None:
-    ser = Series(['YYY', 'B', 'C', 'YYYYYYbYYY', 'BYYYcYYY', np.nan,
-        'CYYYBYYY', 'dog', 'cYYYt'], dtype=any_string_dtype)
-    result = ser.str[0]
-    expected = ser.str.get(0)
-    tm.assert_series_equal(result, expected)
-    result = ser.str[:3]
-    expected = ser.str.slice(stop=3)
-    tm.assert_series_equal(result, expected)
-    result = ser.str[2::-1]
-    expected = ser.str.slice(start=2, step=-1)
-    tm.assert_series_equal(result, expected)
-
-
-def test_string_slice_out_of_bounds_nested() ->None:
-    ser = Series([(1, 2), (1,), (3, 4, 5)])
-    result = ser.str[1]
-    expected = Series([2, np.nan, 4])
-    tm.assert_series_equal(result, expected)
-
-
-def test_string_slice_out_of_bounds(any_string_dtype: str) ->None:
-    ser = Series(['foo', 'b', 'ba'], dtype=any_string_dtype)
-    result = ser.str[1]
-    expected = Series(['o', np.nan, 'a'], dtype=any_string_dtype)
-    tm.assert_series_equal(result, expected)
-
-
-def test_encode_decode(any_string_dtype: str) ->None:
-    ser = Series(['a', 'b', 'aä'], dtype=any_string_dtype).str.encode('utf-8')
-    result = ser.str.decode('utf-8')
-    expected = Series(['a', 'b', 'aä'], dtype='str')
-    tm.assert_series_equal(result, expected)
-
-
-def test_encode_errors_kwarg(any_string_dtype: str) ->None:
-    ser = Series(['a', 'b', 'a\x9d'], dtype=any_string_dtype)
-    msg = (
-        "'charmap' codec can't encode character '\\\\x9d' in position 1: character maps to <undefined>"
-        )
-    with pytest.raises(UnicodeEncodeError, match=msg):
-        ser.str.encode('cp1252')
-    result = ser.str.encode('cp1252', 'ignore')
-    expected = ser.map(lambda x: x.encode('cp1252', 'ignore'))
-    tm.assert_series_equal(result, expected)
-
-
-def test_decode_errors_kwarg() ->None:
-    ser = Series([b'a', b'b', b'a\x9d'])
-    msg = (
-        "'charmap' codec can't decode byte 0x9d in position 1: character maps to <undefined>"
-        )
-    with pytest.raises(UnicodeDecodeError, match=msg):
-        ser.str.decode('cp1252')
-    result = ser.str.decode('cp1252', 'ignore')
-    expected = ser.map(lambda x: x.decode('cp1252', 'ignore')).astype('str')
-    tm.assert_series_equal(result, expected)
-
-
-@pytest.mark.parametrize('form, expected', [('NFKC', ['ABC', 'ABC', '123',
-    np.nan, 'アイエ']), ('NFC', ['ABC', 'ＡＢＣ', '１２３', np.nan, 'ｱｲｴ'])])
-def test_normalize(form: str, expected: List[Optional[str]],
-    any_string_dtype: str) ->None:
-    ser = Series(['ABC', 'ＡＢＣ', '１２３', np.nan, 'ｱｲｴ'], index=['a', 'b', 'c',
-        'd', 'e'], dtype=any_string_dtype)
-    expected = Series(expected, index=['a', 'b', 'c', 'd', 'e'], dtype=
-        any_string_dtype)
-    result = ser.str.normalize(form)
-    tm.assert_series_equal(result, expected)
-
-
-def test_normalize_bad_arg_raises(any_string_dtype: str) ->None:
-    ser = Series(['ABC', 'ＡＢＣ', '１２３', np.nan, 'ｱｲｴ'], index=['a', 'b', 'c',
-        'd', 'e'], dtype=any_string_dtype)
-    with pytest.raises(ValueError, match='invalid normalization form'):
-        ser.str.normalize('xxx')
-
-
-def test_normalize_index() ->None:
-    idx = Index(['ＡＢＣ', '１２３', 'ｱｲｴ'])
-    expected = Index(['ABC', '123', 'アイエ'])
-    result = idx.str.normalize('NFKC')
-    tm.assert_index_equal(result, expected)
-
-
-@pytest.mark.parametrize('values,inferred_type', [(['a', 'b'], 'string'), (
-    ['a', 'b', 1], 'mixed-integer'), (['a', 'b', 1.3], 'mixed'), (['a', 'b',
-    1.3, 1], 'mixed-integer'), (['aa', datetime(2011, 1, 1)], 'mixed')])
-def test_index_str_accessor_visibility(values: List[Union[str, int, float,
-    datetime]], inferred_type: str, index_or_series: Union[Index, Series]
-    ) ->None:
-    obj = index_or_series(values)
-    if index_or_series is Index:
-        assert obj.inferred_type == inferred_type
-    assert isinstance(obj.str, StringMethods)
-
-
-@pytest.mark.parametrize('values,inferred_type', [([1, np.nan], 'floating'),
-    ([datetime(2011, 1, 1)], 'datetime64'), ([timedelta(1)], 'timedelta64')])
-def test_index_str_accessor_non_string_values_raises(values: List[Union[int,
-    float, datetime, timedelta]], inferred_type: str, index_or_series:
-    Union[Index, Series]) ->None:
-    obj = index_or_series(values)
-    if index_or_series is Index:
-        assert obj.inferred_type == inferred_type
-    msg = 'Can only use .str accessor with string values'
-    with pytest.raises(AttributeError, match=msg):
-        obj.str
-
-
-def test_index_str_accessor_multiindex_raises() ->None:
-    idx = MultiIndex.from_tuples([('a', 'b'), ('a', 'b')])
-    assert idx.inferred_type == 'mixed'
-    msg = 'Can only use .str accessor with Index, not MultiIndex'
-    with pytest.raises(AttributeError, match=msg):
-        idx.str
-
-
-def test_str_accessor_no_new_attributes(any_string_dtype: str) ->None:
-    ser = Series(list('aabbcde'), dtype=any_string_dtype)
-    with pytest.raises(AttributeError, match='You cannot add any new attribute'
-        ):
-        ser.str.xlabel = 'a'
-
-
-def test_cat_on_bytes_raises() ->None:
-    lhs = Series(np.array(list('abc'), 'S1').astype(object))
-    rhs = Series(np.array(list('def'), 'S1').astype(object))
-    msg = "Cannot use .str.cat with values of inferred dtype 'bytes'"
-    with pytest.raises(TypeError, match=msg):
-        lhs.str.cat(rhs)
-
-
-def test_str_accessor_in_apply_func() ->None:
-    df = DataFrame(zip('abc', 'def'))
-    expected = Series(['A/D', 'B/E', 'C/F'])
-    result = df.apply(lambda f: '/'.join(f.str.upper()), axis=1)
-    tm.assert_series_equal(result, expected)
-
-
-def test_zfill() ->None:
-    value = Series(['-1', '1', '1000', 10, np.nan])
-    expected = Series(['-01', '001', '1000', np.nan, np.nan], dtype=object)
-    tm.assert_series_equal(value.str.zfill(3), expected)
-    value = Series(['-2', '+5'])
-    expected = Series(['-0002', '+0005'])
-    tm.assert_series_equal(value.str.zfill(5), expected)
-
-
-def test_zfill_with_non_integer_argument() ->None:
-    value = Series(['-2', '+5'])
-    wid = 'a'
-    msg = f'width must be of integer type, not {type(wid).__name__}'
-    with pytest.raises(TypeError, match=msg):
-        value.str.zfill(wid)
-
-
-def test_zfill_with_leading_sign() ->None:
-    value = Series(['-cat', '-1', '+dog'])
-    expected = Series(['-0cat', '-0001', '+0dog'])
-    tm.assert_series_equal(value.str.zfill(5), expected)
-
-
-def test_get_with_dict_label() ->None:
-    s = Series([{'name': 'Hello', 'value': 'World'}, {'name': 'Goodbye',
-        'value': 'Planet'}, {'value': 'Sea'}])
-    result = s.str.get('name')
-    expected = Series(['Hello', 'Goodbye', None], dtype=object)
-    tm.assert_series_equal(result, expected)
-    result = s.str.get('value')
-    expected = Series(['World', 'Planet', 'Sea'], dtype=object)
-    tm.assert_series_equal(result, expected)
-
-
-def test_series_str_decode() ->None:
-    result = Series([b'x', b'y']).str.decode(encoding='UTF-8', errors='strict')
-    expected = Series(['x', 'y'], dtype='str')
-    tm.assert_series_equal(result, expected)
+from typing import Optional, Tuple, List
+import torch
+from allennlp.common.checks import ConfigurationError
+from torch.nn.utils.rnn import PackedSequence, pack_padded_sequence, pad_packed_sequence
+from allennlp.nn.initializers import block_orthogonal
+from allennlp.nn.util import get_dropout_mask
+
+
+class AugmentedLSTMCell(torch.nn.Module):
+
+    def __init__(self, embed_dim: int, lstm_dim: int, use_highway: bool=
+        True, use_bias: bool=True) ->None:
+        super().__init__()
+        self.embed_dim = embed_dim
+        self.lstm_dim = lstm_dim
+        self.use_highway = use_highway
+        self.use_bias = use_bias
+        if use_highway:
+            self._highway_inp_proj_start = 5 * self.lstm_dim
+            self._highway_inp_proj_end = 6 * self.lstm_dim
+            self.input_linearity = torch.nn.Linear(self.embed_dim, self.
+                _highway_inp_proj_end, bias=self.use_bias)
+            self.state_linearity = torch.nn.Linear(self.lstm_dim, self.
+                _highway_inp_proj_start, bias=True)
+        else:
+            self.input_linearity = torch.nn.Linear(self.embed_dim, 4 * self
+                .lstm_dim, bias=self.use_bias)
+            self.state_linearity = torch.nn.Linear(self.lstm_dim, 4 * self.
+                lstm_dim, bias=True)
+        self.reset_parameters()
+
+    def reset_parameters(self) ->None:
+        block_orthogonal(self.input_linearity.weight.data, [self.lstm_dim,
+            self.embed_dim])
+        block_orthogonal(self.state_linearity.weight.data, [self.lstm_dim,
+            self.lstm_dim])
+        self.state_linearity.bias.data.fill_(0.0)
+        self.state_linearity.bias.data[self.lstm_dim:2 * self.lstm_dim].fill_(
+            1.0)
+
+    def forward(self, x: torch.Tensor, states: Tuple[torch.Tensor, torch.
+        Tensor], variational_dropout_mask=None) ->Tuple[torch.Tensor, torch
+        .Tensor]:
+        hidden_state, memory_state = states
+        if variational_dropout_mask is not None and self.training:
+            hidden_state = hidden_state * variational_dropout_mask
+        projected_input = self.input_linearity(x)
+        projected_state = self.state_linearity(hidden_state)
+        (input_gate) = (forget_gate) = (memory_init) = (output_gate) = (
+            highway_gate) = None
+        if self.use_highway:
+            fused_op = projected_input[:, :5 * self.lstm_dim] + projected_state
+            fused_chunked = torch.chunk(fused_op, 5, 1)
+            (input_gate, forget_gate, memory_init, output_gate, highway_gate
+                ) = fused_chunked
+            highway_gate = torch.sigmoid(highway_gate)
+        else:
+            fused_op = projected_input + projected_state
+            input_gate, forget_gate, memory_init, output_gate = torch.chunk(
+                fused_op, 4, 1)
+        input_gate = torch.sigmoid(input_gate)
+        forget_gate = torch.sigmoid(forget_gate)
+        memory_init = torch.tanh(memory_init)
+        output_gate = torch.sigmoid(output_gate)
+        memory = input_gate * memory_init + forget_gate * memory_state
+        timestep_output = output_gate * torch.tanh(memory)
+        if self.use_highway:
+            highway_input_projection = projected_input[:, self.
+                _highway_inp_proj_start:self._highway_inp_proj_end]
+            timestep_output = highway_gate * timestep_output + (1 -
+                highway_gate) * highway_input_projection
+        return timestep_output, memory
+
+
+class AugmentedLstm(torch.nn.Module):
+
+    def __init__(self, input_size: int, hidden_size: int, go_forward: bool=
+        True, recurrent_dropout_probability: float=0.0, use_highway: bool=
+        True, use_input_projection_bias: bool=True) ->None:
+        super().__init__()
+        self.embed_dim = input_size
+        self.lstm_dim = hidden_size
+        self.go_forward = go_forward
+        self.use_highway = use_highway
+        self.recurrent_dropout_probability = recurrent_dropout_probability
+        self.cell = AugmentedLSTMCell(self.embed_dim, self.lstm_dim, self.
+            use_highway, use_input_projection_bias)
+
+    def forward(self, inputs: PackedSequence, states: Optional[Tuple[torch.
+        Tensor, torch.Tensor]]=None) ->Tuple[PackedSequence, Tuple[torch.
+        Tensor, torch.Tensor]]:
+        if not isinstance(inputs, PackedSequence):
+            raise ConfigurationError(
+                'inputs must be PackedSequence but got %s' % type(inputs))
+        sequence_tensor, batch_lengths = pad_packed_sequence(inputs,
+            batch_first=True)
+        batch_size = sequence_tensor.size()[0]
+        total_timesteps = sequence_tensor.size()[1]
+        output_accumulator = sequence_tensor.new_zeros(batch_size,
+            total_timesteps, self.lstm_dim)
+        if states is None:
+            full_batch_previous_memory = sequence_tensor.new_zeros(batch_size,
+                self.lstm_dim)
+            full_batch_previous_state = sequence_tensor.data.new_zeros(
+                batch_size, self.lstm_dim)
+        else:
+            full_batch_previous_state = states[0].squeeze(0)
+            full_batch_previous_memory = states[1].squeeze(0)
+        current_length_index = batch_size - 1 if self.go_forward else 0
+        if self.recurrent_dropout_probability > 0.0:
+            dropout_mask = get_dropout_mask(self.
+                recurrent_dropout_probability, full_batch_previous_memory)
+        else:
+            dropout_mask = None
+        for timestep in range(total_timesteps):
+            index = (timestep if self.go_forward else total_timesteps -
+                timestep - 1)
+            if self.go_forward:
+                while batch_lengths[current_length_index] <= index:
+                    current_length_index -= 1
+            else:
+                while current_length_index < len(batch_lengths
+                    ) - 1 and batch_lengths[current_length_index + 1] > index:
+                    current_length_index += 1
+            previous_memory = full_batch_previous_memory[0:
+                current_length_index + 1].clone()
+            previous_state = full_batch_previous_state[0:
+                current_length_index + 1].clone()
+            timestep_input = sequence_tensor[0:current_length_index + 1, index]
+            timestep_output, memory = self.cell(timestep_input, (
+                previous_state, previous_memory), dropout_mask[0:
+                current_length_index + 1] if dropout_mask is not None else None
+                )
+            full_batch_previous_memory = full_batch_previous_memory.data.clone(
+                )
+            full_batch_previous_state = full_batch_previous_state.data.clone()
+            full_batch_previous_memory[0:current_length_index + 1] = memory
+            full_batch_previous_state[0:current_length_index + 1
+                ] = timestep_output
+            output_accumulator[0:current_length_index + 1, index, :
+                ] = timestep_output
+        output_accumulator = pack_padded_sequence(output_accumulator,
+            batch_lengths, batch_first=True)
+        final_state = full_batch_previous_state.unsqueeze(0
+            ), full_batch_previous_memory.unsqueeze(0)
+        return output_accumulator, final_state
+
+
+class BiAugmentedLstm(torch.nn.Module):
+
+    def __init__(self, input_size: int, hidden_size: int, num_layers: int=1,
+        bias: bool=True, recurrent_dropout_probability: float=0.0,
+        bidirectional: bool=False, padding_value: float=0.0, use_highway:
+        bool=True) ->None:
+        super().__init__()
+        self.input_size = input_size
+        self.padding_value = padding_value
+        self.hidden_size = hidden_size
+        self.num_layers = num_layers
+        self.bidirectional = bidirectional
+        self.recurrent_dropout_probability = recurrent_dropout_probability
+        self.use_highway = use_highway
+        self.use_bias = bias
+        num_directions = int(self.bidirectional) + 1
+        self.forward_layers = torch.nn.ModuleList()
+        if self.bidirectional:
+            self.backward_layers = torch.nn.ModuleList()
+        lstm_embed_dim = self.input_size
+        for _ in range(self.num_layers):
+            self.forward_layers.append(AugmentedLstm(lstm_embed_dim, self.
+                hidden_size, go_forward=True, recurrent_dropout_probability
+                =self.recurrent_dropout_probability, use_highway=self.
+                use_highway, use_input_projection_bias=self.use_bias))
+            if self.bidirectional:
+                self.backward_layers.append(AugmentedLstm(lstm_embed_dim,
+                    self.hidden_size, go_forward=False,
+                    recurrent_dropout_probability=self.
+                    recurrent_dropout_probability, use_highway=self.
+                    use_highway, use_input_projection_bias=self.use_bias))
+            lstm_embed_dim = self.hidden_size * num_directions
+        self.representation_dim = lstm_embed_dim
+
+    def forward(self, inputs: PackedSequence, states: Optional[Tuple[torch.
+        Tensor, torch.Tensor]]=None) ->Tuple[PackedSequence, Tuple[torch.
+        Tensor, torch.Tensor]]:
+        if not isinstance(inputs, PackedSequence):
+            raise ConfigurationError(
+                'inputs must be PackedSequence but got %s' % type(inputs))
+        if self.bidirectional:
+            return self._forward_bidirectional(inputs, states)
+        return self._forward_unidirectional(inputs, states)
+
+    def _forward_bidirectional(self, inputs: PackedSequence, states:
+        Optional[Tuple[torch.Tensor, torch.Tensor]]) ->Tuple[PackedSequence,
+        Tuple[torch.Tensor, torch.Tensor]]:
+        output_sequence = inputs
+        final_h: List[torch.Tensor] = []
+        final_c: List[torch.Tensor] = []
+        if not states:
+            hidden_states = [None] * self.num_layers
+        elif states[0].size()[0] != self.num_layers:
+            raise RuntimeError(
+                'Initial states were passed to forward() but the number of initial states does not match the number of layers.'
+                )
+        else:
+            hidden_states = list(zip(states[0].chunk(self.num_layers, 0),
+                states[1].chunk(self.num_layers, 0)))
+        for i, state in enumerate(hidden_states):
+            if state:
+                forward_state = state[0].chunk(2, -1)
+                backward_state = state[1].chunk(2, -1)
+            else:
+                forward_state = backward_state = None
+            forward_layer = self.forward_layers[i]
+            backward_layer = self.backward_layers[i]
+            forward_output, final_forward_state = forward_layer(output_sequence
+                , forward_state)
+            backward_output, final_backward_state = backward_layer(
+                output_sequence, backward_state)
+            forward_output, lengths = pad_packed_sequence(forward_output,
+                batch_first=True)
+            backward_output, _ = pad_packed_sequence(backward_output,
+                batch_first=True)
+            output_sequence = torch.cat([forward_output, backward_output], -1)
+            output_sequence = pack_padded_sequence(output_sequence, lengths,
+                batch_first=True)
+            final_h.extend([final_forward_state[0], final_backward_state[0]])
+            final_c.extend([final_forward_state[1], final_backward_state[1]])
+        final_h = torch.cat(final_h, dim=0)
+        final_c = torch.cat(final_c, dim=0)
+        final_state_tuple = final_h, final_c
+        output_sequence, batch_lengths = pad_packed_sequence(output_sequence,
+            padding_value=self.padding_value, batch_first=True)
+        output_sequence = pack_padded_sequence(output_sequence,
+            batch_lengths, batch_first=True)
+        return output_sequence, final_state_tuple
+
+    def _forward_unidirectional(self, inputs: PackedSequence, states:
+        Optional[Tuple[torch.Tensor, torch.Tensor]]) ->Tuple[PackedSequence,
+        Tuple[torch.Tensor, torch.Tensor]]:
+        output_sequence = inputs
+        final_h: List[torch.Tensor] = []
+        final_c: List[torch.Tensor] = []
+        if not states:
+            hidden_states = [None] * self.num_layers
+        elif states[0].size()[0] != self.num_layers:
+            raise RuntimeError(
+                'Initial states were passed to forward() but the number of initial states does not match the number of layers.'
+                )
+        else:
+            hidden_states = list(zip(states[0].chunk(self.num_layers, 0),
+                states[1].chunk(self.num_layers, 0)))
+        for i, state in enumerate(hidden_states):
+            forward_layer = self.forward_layers[i]
+            forward_output, final_forward_state = forward_layer(output_sequence
+                , state)
+            output_sequence = forward_output
+            final_h.append(final_forward_state[0])
+            final_c.append(final_forward_state[1])
+        final_h = torch.cat(final_h, dim=0)
+        final_c = torch.cat(final_c, dim=0)
+        final_state_tuple = final_h, final_c
+        output_sequence, batch_lengths = pad_packed_sequence(output_sequence,
+            padding_value=self.padding_value, batch_first=True)
+        output_sequence = pack_padded_sequence(output_sequence,
+            batch_lengths, batch_first=True)
+        return output_sequence, final_state_tuple
