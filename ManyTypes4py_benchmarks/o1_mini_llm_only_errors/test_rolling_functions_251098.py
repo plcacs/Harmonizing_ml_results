@@ -1,0 +1,512 @@
+from datetime import datetime
+from typing import Any, Callable, Dict, List, Optional, Union
+import numpy as np
+import pytest
+import pandas.util._test_decorators as td
+from pandas import (
+    DataFrame,
+    DatetimeIndex,
+    Series,
+    concat,
+    isna,
+    notna,
+)
+import pandas._testing as tm
+from pandas.tseries import offsets
+
+def mean_func(x: np.ndarray) -> float:
+    return np.mean(x)
+
+def nansum_func(x: np.ndarray) -> float:
+    return np.nansum(x)
+
+def count_func(x: np.ndarray) -> float:
+    return np.isfinite(x).astype(float).sum()
+
+def std_ddof1(x: np.ndarray) -> float:
+    return np.std(x, ddof=1)
+
+def std_ddof0(x: np.ndarray) -> float:
+    return np.std(x, ddof=0)
+
+def var_ddof1(x: np.ndarray) -> float:
+    return np.var(x, ddof=1)
+
+def var_ddof0(x: np.ndarray) -> float:
+    return np.var(x, ddof=0)
+
+CompareFuncType = Callable[[np.ndarray], float]
+ParametrizeType = List[List[Union[CompareFuncType, str, Dict[str, Any]]]]
+ParametrizeTypeMinp = List[List[Union[CompareFuncType, str, Dict[str, Any], int]]]
+ParametrizeFuncType = List[Callable[[Series], Any]]
+
+@pytest.mark.parametrize(
+    'compare_func, roll_func, kwargs',
+    [
+        [mean_func, 'mean', {}],
+        [nansum_func, 'sum', {}],
+        [count_func, 'count', {}],
+        [lambda x: np.median(x), 'median', {}],
+        [lambda x: np.min(x), 'min', {}],
+        [lambda x: np.max(x), 'max', {}],
+        [std_ddof1, 'std', {}],
+        [std_ddof0, 'std', {'ddof': 0}],
+        [var_ddof1, 'var', {}],
+        [var_ddof0, 'var', {'ddof': 0}],
+    ],
+)
+def test_series(
+    series: Series,
+    compare_func: CompareFuncType,
+    roll_func: str,
+    kwargs: Dict[str, Any],
+    step: Optional[int],
+) -> None:
+    result: Series = getattr(series.rolling(50, step=step), roll_func)(**kwargs)
+    assert isinstance(result, Series)
+    end_index: int = range(0, len(series), step or 1)[-1] + 1
+    tm.assert_almost_equal(result.iloc[-1], compare_func(series[end_index - 50 : end_index].values))
+
+@pytest.mark.parametrize(
+    'compare_func, roll_func, kwargs',
+    [
+        [mean_func, 'mean', {}],
+        [nansum_func, 'sum', {}],
+        [count_func, 'count', {}],
+        [lambda x: np.median(x), 'median', {}],
+        [lambda x: np.min(x), 'min', {}],
+        [lambda x: np.max(x), 'max', {}],
+        [std_ddof1, 'std', {}],
+        [std_ddof0, 'std', {'ddof': 0}],
+        [var_ddof1, 'var', {}],
+        [var_ddof0, 'var', {'ddof': 0}],
+    ],
+)
+def test_frame(
+    raw: bool,
+    frame: DataFrame,
+    compare_func: CompareFuncType,
+    roll_func: str,
+    kwargs: Dict[str, Any],
+    step: Optional[int],
+) -> None:
+    result: DataFrame = getattr(frame.rolling(50, step=step), roll_func)(**kwargs)
+    assert isinstance(result, DataFrame)
+    end_index: int = range(0, len(frame), step or 1)[-1] + 1
+    expected = frame.iloc[end_index - 50 : end_index].apply(compare_func, axis=0, raw=raw)
+    tm.assert_series_equal(result.iloc[-1, :], expected, check_names=False)
+
+@pytest.mark.parametrize(
+    'compare_func, roll_func, kwargs, minp',
+    [
+        [mean_func, 'mean', {}, 10],
+        [nansum_func, 'sum', {}, 10],
+        [count_func, 'count', {}, 0],
+        [lambda x: np.median(x), 'median', {}, 10],
+        [lambda x: np.min(x), 'min', {}, 10],
+        [lambda x: np.max(x), 'max', {}, 10],
+        [std_ddof1, 'std', {}, 10],
+        [std_ddof0, 'std', {'ddof': 0}, 10],
+        [var_ddof1, 'var', {}, 10],
+        [var_ddof0, 'var', {'ddof': 0}, 10],
+    ],
+)
+def test_time_rule_series(
+    series: Series,
+    compare_func: CompareFuncType,
+    roll_func: str,
+    kwargs: Dict[str, Any],
+    minp: int,
+) -> None:
+    win: int = 25
+    ser: Series = series[::2].resample('B').mean()
+    series_result: Series = getattr(ser.rolling(window=win, min_periods=minp), roll_func)(**kwargs)
+    last_date: pd.Timestamp = series_result.index[-1]
+    prev_date: pd.Timestamp = last_date - 24 * offsets.BDay()
+    trunc_series: Series = series[::2].truncate(before=prev_date, after=last_date)
+    tm.assert_almost_equal(series_result.iloc[-1], compare_func(trunc_series.values))
+
+@pytest.mark.parametrize(
+    'compare_func, roll_func, kwargs, minp',
+    [
+        [mean_func, 'mean', {}, 10],
+        [nansum_func, 'sum', {}, 10],
+        [count_func, 'count', {}, 0],
+        [lambda x: np.median(x), 'median', {}, 10],
+        [lambda x: np.min(x), 'min', {}, 10],
+        [lambda x: np.max(x), 'max', {}, 10],
+        [std_ddof1, 'std', {}, 10],
+        [std_ddof0, 'std', {'ddof': 0}, 10],
+        [var_ddof1, 'var', {}, 10],
+        [var_ddof0, 'var', {'ddof': 0}, 10],
+    ],
+)
+def test_time_rule_frame(
+    raw: bool,
+    frame: DataFrame,
+    compare_func: CompareFuncType,
+    roll_func: str,
+    kwargs: Dict[str, Any],
+    minp: int,
+) -> None:
+    win: int = 25
+    frm: DataFrame = frame[::2].resample('B').mean()
+    frame_result: DataFrame = getattr(frm.rolling(window=win, min_periods=minp), roll_func)(**kwargs)
+    last_date: pd.Timestamp = frame_result.index[-1]
+    prev_date: pd.Timestamp = last_date - 24 * offsets.BDay()
+    trunc_frame: DataFrame = frame[::2].truncate(before=prev_date, after=last_date)
+    expected = trunc_frame.apply(compare_func, raw=raw)
+    tm.assert_series_equal(frame_result.xs(last_date), expected, check_names=False)
+
+@pytest.mark.parametrize(
+    'compare_func, roll_func, kwargs',
+    [
+        [mean_func, 'mean', {}],
+        [nansum_func, 'sum', {}],
+        [lambda x: np.median(x), 'median', {}],
+        [lambda x: np.min(x), 'min', {}],
+        [lambda x: np.max(x), 'max', {}],
+        [std_ddof1, 'std', {}],
+        [std_ddof0, 'std', {'ddof': 0}],
+        [var_ddof1, 'var', {}],
+        [var_ddof0, 'var', {'ddof': 0}],
+    ],
+)
+def test_nans(
+    compare_func: CompareFuncType,
+    roll_func: str,
+    kwargs: Dict[str, Any],
+) -> None:
+    obj: Series = Series(np.random.default_rng(2).standard_normal(50))
+    obj[:10] = np.nan
+    obj[-10:] = np.nan
+    result: Series = getattr(obj.rolling(50, min_periods=30), roll_func)(**kwargs)
+    tm.assert_almost_equal(result.iloc[-1], compare_func(obj[10:-10].values))
+    result = getattr(obj.rolling(20, min_periods=15), roll_func)(**kwargs)
+    assert isna(result.iloc[23])
+    assert not isna(result.iloc[24])
+    assert not isna(result.iloc[-6])
+    assert isna(result.iloc[-5])
+    obj2: Series = Series(np.random.default_rng(2).standard_normal(20))
+    result = getattr(obj2.rolling(10, min_periods=5), roll_func)(**kwargs)
+    assert isna(result.iloc[3])
+    assert notna(result.iloc[4])
+    if roll_func != 'sum':
+        result0: Series = getattr(obj.rolling(20, min_periods=0), roll_func)(**kwargs)
+        result1: Series = getattr(obj.rolling(20, min_periods=1), roll_func)(**kwargs)
+        tm.assert_almost_equal(result0, result1)
+
+def test_nans_count() -> None:
+    obj: Series = Series(np.random.default_rng(2).standard_normal(50))
+    obj[:10] = np.nan
+    obj[-10:] = np.nan
+    result: Series = obj.rolling(50, min_periods=30).count()
+    tm.assert_almost_equal(result.iloc[-1], np.isfinite(obj[10:-10]).astype(float).sum())
+
+@pytest.mark.parametrize(
+    'roll_func, kwargs',
+    [
+        ['mean', {}],
+        ['sum', {}],
+        ['median', {}],
+        ['min', {}],
+        ['max', {}],
+        ['std', {}],
+        ['std', {'ddof': 0}],
+        ['var', {}],
+        ['var', {'ddof': 0}],
+    ],
+)
+@pytest.mark.parametrize('minp', [0, 99, 100])
+def test_min_periods(
+    series: Series,
+    minp: int,
+    roll_func: str,
+    kwargs: Dict[str, Any],
+    step: Optional[int],
+) -> None:
+    window_size: int = len(series) + 1
+    result: Series = getattr(
+        series.rolling(window_size, min_periods=minp, step=step),
+        roll_func,
+    )(**kwargs)
+    expected: Series = getattr(
+        series.rolling(len(series), min_periods=minp, step=step),
+        roll_func,
+    )(**kwargs)
+    nan_mask: Series = isna(result)
+    tm.assert_series_equal(nan_mask, isna(expected))
+    nan_mask = ~nan_mask
+    tm.assert_almost_equal(result[nan_mask].values, expected[nan_mask].values)
+
+def test_min_periods_count(
+    series: Series,
+    step: Optional[int],
+) -> None:
+    result: Series = series.rolling(len(series) + 1, min_periods=0, step=step).count()
+    expected: Series = series.rolling(len(series), min_periods=0, step=step).count()
+    nan_mask: Series = isna(result)
+    tm.assert_series_equal(nan_mask, isna(expected))
+    nan_mask = ~nan_mask
+    tm.assert_almost_equal(result[nan_mask].values, expected[nan_mask].values)
+
+@pytest.mark.parametrize(
+    'roll_func, kwargs, minp, fill_value',
+    [
+        ['mean', {}, 15, None],
+        ['sum', {}, 15, None],
+        ['count', {}, 0, 0],
+        ['median', {}, 15, None],
+        ['min', {}, 15, None],
+        ['max', {}, 15, None],
+        ['std', {}, 15, None],
+        ['std', {'ddof': 0}, 15, None],
+        ['var', {}, 15, None],
+        ['var', {'ddof': 0}, 15, None],
+    ],
+)
+def test_center(
+    roll_func: str,
+    kwargs: Dict[str, Any],
+    minp: int,
+) -> None:
+    obj: Series = Series(np.random.default_rng(2).standard_normal(50))
+    obj[:10] = np.nan
+    obj[-10:] = np.nan
+    result: Series = getattr(
+        obj.rolling(20, min_periods=minp, center=True),
+        roll_func,
+    )(**kwargs)
+    expected: Series = getattr(
+        concat([obj, Series([np.nan] * 9)]).rolling(20, min_periods=minp),
+        roll_func,
+    )(**kwargs).iloc[9:].reset_index(drop=True)
+    tm.assert_series_equal(result, expected)
+
+@pytest.mark.parametrize(
+    'roll_func, kwargs, minp, fill_value',
+    [
+        ['mean', {}, 10, None],
+        ['sum', {}, 10, None],
+        ['count', {}, 0, 0],
+        ['median', {}, 10, None],
+        ['min', {}, 10, None],
+        ['max', {}, 10, None],
+        ['std', {}, 10, None],
+        ['std', {'ddof': 0}, 10, None],
+        ['var', {}, 10, None],
+        ['var', {'ddof': 0}, 10, None],
+    ],
+)
+def test_center_reindex_series(
+    series: Series,
+    roll_func: str,
+    kwargs: Dict[str, Any],
+    minp: int,
+    fill_value: Optional[Union[int, float]],
+) -> None:
+    s: List[str] = [f'x{x:d}' for x in range(12)]
+    series_xp: Series = getattr(
+        series.reindex(list(series.index) + s).rolling(window=25, min_periods=minp),
+        roll_func,
+    )(**kwargs).shift(-12).reindex(series.index)
+    series_rs: Series = getattr(
+        series.rolling(window=25, min_periods=minp, center=True),
+        roll_func,
+    )(**kwargs)
+    if fill_value is not None:
+        series_xp = series_xp.fillna(fill_value)
+    tm.assert_series_equal(series_xp, series_rs)
+
+@pytest.mark.parametrize(
+    'roll_func, kwargs, minp, fill_value',
+    [
+        ['mean', {}, 10, None],
+        ['sum', {}, 10, None],
+        ['count', {}, 0, 0],
+        ['median', {}, 10, None],
+        ['min', {}, 10, None],
+        ['max', {}, 10, None],
+        ['std', {}, 10, None],
+        ['std', {'ddof': 0}, 10, None],
+        ['var', {}, 10, None],
+        ['var', {'ddof': 0}, 10, None],
+    ],
+)
+def test_center_reindex_frame(
+    frame: DataFrame,
+    roll_func: str,
+    kwargs: Dict[str, Any],
+    minp: int,
+    fill_value: Optional[Union[int, float]],
+) -> None:
+    s: List[str] = [f'x{x:d}' for x in range(12)]
+    frame_xp: DataFrame = getattr(
+        frame.reindex(list(frame.index) + s).rolling(window=25, min_periods=minp),
+        roll_func,
+    )(**kwargs).shift(-12).reindex(frame.index)
+    frame_rs: DataFrame = getattr(
+        frame.rolling(window=25, min_periods=minp, center=True),
+        roll_func,
+    )(**kwargs)
+    if fill_value is not None:
+        frame_xp = frame_xp.fillna(fill_value)
+    tm.assert_frame_equal(frame_xp, frame_rs)
+
+@pytest.mark.parametrize(
+    'f',
+    [
+        lambda x: x.rolling(window=10, min_periods=5).cov(x, pairwise=False),
+        lambda x: x.rolling(window=10, min_periods=5).corr(x, pairwise=False),
+        lambda x: x.rolling(window=10, min_periods=5).max(),
+        lambda x: x.rolling(window=10, min_periods=5).min(),
+        lambda x: x.rolling(window=10, min_periods=5).sum(),
+        lambda x: x.rolling(window=10, min_periods=5).mean(),
+        lambda x: x.rolling(window=10, min_periods=5).std(),
+        lambda x: x.rolling(window=10, min_periods=5).var(),
+        lambda x: x.rolling(window=10, min_periods=5).skew(),
+        lambda x: x.rolling(window=10, min_periods=5).kurt(),
+        lambda x: x.rolling(window=10, min_periods=5).first(),
+        lambda x: x.rolling(window=10, min_periods=5).last(),
+        lambda x: x.rolling(window=10, min_periods=5).quantile(q=0.5),
+        lambda x: x.rolling(window=10, min_periods=5).median(),
+        lambda x: x.rolling(window=10, min_periods=5).apply(sum, raw=False),
+        lambda x: x.rolling(window=10, min_periods=5).apply(sum, raw=True),
+        pytest.param(
+            lambda x: x.rolling(win_type='boxcar', window=10, min_periods=5).mean(),
+            marks=td.skip_if_no('scipy'),
+        ),
+    ],
+)
+def test_rolling_functions_window_non_shrinkage(f: Callable[[Union[Series, DataFrame]], Union[Series, DataFrame]]) -> None:
+    s: Series = Series(range(4))
+    s_expected: Series = Series([np.nan] * 4)
+    df: DataFrame = DataFrame([[1, 5], [3, 2], [3, 9], [-1, 0]], columns=['A', 'B'])
+    df_expected: DataFrame = DataFrame(np.nan, index=df.index, columns=df.columns)
+    s_result: Series = f(s)  # type: ignore
+    tm.assert_series_equal(s_result, s_expected)
+    df_result: DataFrame = f(df)  # type: ignore
+    tm.assert_frame_equal(df_result, df_expected)
+
+def test_rolling_max_gh6297(step: Optional[int]) -> None:
+    """Replicate result expected in GH #6297"""
+    indices: List[datetime] = [datetime(1975, 1, i) for i in range(1, 6)]
+    indices.append(datetime(1975, 1, 3, 6, 0))
+    series: Series = Series(range(1, 7), index=indices)
+    series = series.map(lambda x: float(x))
+    series = series.sort_index()
+    expected: Series = Series(
+        [1.0, 2.0, 6.0, 4.0, 5.0],
+        index=DatetimeIndex([datetime(1975, 1, i, 0) for i in range(1, 6)], freq='D'),
+    )[::step]
+    x: Series = series.resample('D').max().rolling(window=1, step=step).max()
+    tm.assert_series_equal(expected, x)
+
+def test_rolling_max_resample(step: Optional[int]) -> None:
+    indices: List[datetime] = [datetime(1975, 1, i) for i in range(1, 6)]
+    indices.append(datetime(1975, 1, 5, 1))
+    indices.append(datetime(1975, 1, 5, 2))
+    series: Series = Series(list(range(5)) + [10, 20], index=indices)
+    series = series.map(lambda x: float(x))
+    series = series.sort_index()
+    expected_max: Series = Series(
+        [0.0, 1.0, 2.0, 3.0, 20.0],
+        index=DatetimeIndex([datetime(1975, 1, i, 0) for i in range(1, 6)], freq='D'),
+    )[::step]
+    x_max: Series = series.resample('D').max().rolling(window=1, step=step).max()
+    tm.assert_series_equal(expected_max, x_max)
+    expected_median: Series = Series(
+        [0.0, 1.0, 2.0, 3.0, 10.0],
+        index=DatetimeIndex([datetime(1975, 1, i, 0) for i in range(1, 6)], freq='D'),
+    )[::step]
+    x_median: Series = series.resample('D').median().rolling(window=1, step=step).max()
+    tm.assert_series_equal(expected_median, x_median)
+    v: float = (4.0 + 10.0 + 20.0) / 3.0
+    expected_mean: Series = Series(
+        [0.0, 1.0, 2.0, 3.0, v],
+        index=DatetimeIndex([datetime(1975, 1, i, 0) for i in range(1, 6)], freq='D'),
+    )[::step]
+    x_mean: Series = series.resample('D').mean().rolling(window=1, step=step).max()
+    tm.assert_series_equal(expected_mean, x_mean)
+
+def test_rolling_min_resample(step: Optional[int]) -> None:
+    indices: List[datetime] = [datetime(1975, 1, i) for i in range(1, 6)]
+    indices.append(datetime(1975, 1, 5, 1))
+    indices.append(datetime(1975, 1, 5, 2))
+    series: Series = Series(list(range(5)) + [10, 20], index=indices)
+    series = series.map(lambda x: float(x))
+    series = series.sort_index()
+    expected: Series = Series(
+        [0.0, 1.0, 2.0, 3.0, 4.0],
+        index=DatetimeIndex([datetime(1975, 1, i, 0) for i in range(1, 6)], freq='D'),
+    )[::step]
+    r = series.resample('D').min().rolling(window=1, step=step)
+    tm.assert_series_equal(expected, r.min())
+
+def test_rolling_median_resample() -> None:
+    indices: List[datetime] = [datetime(1975, 1, i) for i in range(1, 6)]
+    indices.append(datetime(1975, 1, 5, 1))
+    indices.append(datetime(1975, 1, 5, 2))
+    series: Series = Series(list(range(5)) + [10, 20], index=indices)
+    series = series.map(lambda x: float(x))
+    series = series.sort_index()
+    expected: Series = Series(
+        [0.0, 1.0, 2.0, 3.0, 10.0],
+        index=DatetimeIndex([datetime(1975, 1, i, 0) for i in range(1, 6)], freq='D'),
+    )
+    x: Series = series.resample('D').median().rolling(window=1).median()
+    tm.assert_series_equal(expected, x)
+
+def test_rolling_median_memory_error() -> None:
+    n: int = 20000
+    Series(np.random.default_rng(2).standard_normal(n)).rolling(window=2, center=False).median()
+    Series(np.random.default_rng(2).standard_normal(n)).rolling(window=2, center=False).median()
+
+def test_rolling_min_max_numeric_types(any_real_numpy_dtype: np.dtype[Any]) -> None:
+    result: DataFrame = DataFrame(np.arange(20, dtype=any_real_numpy_dtype)).rolling(window=5).max()
+    assert result.dtypes[0] == np.dtype('f8')
+    result = DataFrame(np.arange(20, dtype=any_real_numpy_dtype)).rolling(window=5).min()
+    assert result.dtypes[0] == np.dtype('f8')
+
+@pytest.mark.parametrize(
+    'f',
+    [
+        lambda x: x.rolling(window=10, min_periods=0).count(),
+        lambda x: x.rolling(window=10, min_periods=5).cov(x, pairwise=False),
+        lambda x: x.rolling(window=10, min_periods=5).corr(x, pairwise=False),
+        lambda x: x.rolling(window=10, min_periods=5).max(),
+        lambda x: x.rolling(window=10, min_periods=5).min(),
+        lambda x: x.rolling(window=10, min_periods=5).sum(),
+        lambda x: x.rolling(window=10, min_periods=5).mean(),
+        lambda x: x.rolling(window=10, min_periods=5).std(),
+        lambda x: x.rolling(window=10, min_periods=5).var(),
+        lambda x: x.rolling(window=10, min_periods=5).skew(),
+        lambda x: x.rolling(window=10, min_periods=5).kurt(),
+        lambda x: x.rolling(window=10, min_periods=5).first(),
+        lambda x: x.rolling(window=10, min_periods=5).last(),
+        lambda x: x.rolling(window=10, min_periods=5).quantile(0.5),
+        lambda x: x.rolling(window=10, min_periods=5).median(),
+        lambda x: x.rolling(window=10, min_periods=5).apply(sum, raw=False),
+        lambda x: x.rolling(window=10, min_periods=5).apply(sum, raw=True),
+        pytest.param(
+            lambda x: x.rolling(win_type='boxcar', window=10, min_periods=5).mean(),
+            marks=td.skip_if_no('scipy'),
+        ),
+    ],
+)
+def test_moment_functions_zero_length(
+    f: Callable[[Union[Series, DataFrame]], Union[Series, DataFrame]]
+) -> None:
+    s: Series = Series(dtype=np.float64)
+    s_expected: Series = s
+    df1: DataFrame = DataFrame()
+    df1_expected: DataFrame = df1
+    df2: DataFrame = DataFrame(columns=['a'])
+    df2['a'] = df2['a'].astype('float64')
+    df2_expected: DataFrame = df2
+    s_result: Series = f(s)  # type: ignore
+    tm.assert_series_equal(s_result, s_expected)
+    df1_result: DataFrame = f(df1)  # type: ignore
+    tm.assert_frame_equal(df1_result, df1_expected)
+    df2_result: DataFrame = f(df2)  # type: ignore
+    tm.assert_frame_equal(df2_result, df2_expected)
