@@ -80,20 +80,9 @@ def collect_type_hints(code: str):
 # Step 2: Type checking function
 def typecheck(code: str, file_key: str = None) -> Tuple[int, str]:
     # Try to use existing mypy results first
-    if file_key:
-        try:
-            with open("mypy_results/mypy_results_o1_mini_with_errors.json", "r") as f:
-                existing_results = json.load(f)
-                if file_key in existing_results:
-                    result = existing_results[file_key]
-                    error_count = result.get("error_count", 0)
-                    errors = result.get("errors", [])
-                    return error_count, "\n".join(errors)
-        except (FileNotFoundError, json.JSONDecodeError, KeyError):
-            pass
 
     # Fallback: run mypy if no existing results
-    temp_file = os.path.abspath("temp_file2.py")
+    temp_file = os.path.abspath("temp_file.py")
     with open(temp_file, "w", encoding="utf-8") as f:
         f.write(code)
     command = [
@@ -177,6 +166,7 @@ def assign_types(
                     parent_score = best_score
                     best_config = new_config
                     best_score = new_score
+
                     work_set.append(new_config)
 
                 if new_score == 0:  # Fully type-safe
@@ -261,7 +251,7 @@ def process_type_analysis_results(directory, output_file, llm_only_failures):
             updated_results[file_key] = {
                 "original_parameters_with_annotations": original_param_count,
                 "updated_parameters_with_annotations": original_param_count
-                - updated_param_count,
+                - len(updated_param),
                 "updated_config": list(updated_param),
                 "time_taken": time.time() - start_time,
                 "score": score,
@@ -276,8 +266,8 @@ def process_type_analysis_results(directory, output_file, llm_only_failures):
 
 if __name__ == "__main__":
     llm_only_failures = get_llm_only_failures(
-        "mypy_results/Filtered_type_errors/merged_o1-mini.json"
+        "mypy_results/Filtered_type_errors/merged_deepseek.json"
     )
     process_type_analysis_results(
-        "o1_mini", "o1_mini_stats_original.json", llm_only_failures
+        "deep_seek", "deepseek_stats_original.json", llm_only_failures
     )
