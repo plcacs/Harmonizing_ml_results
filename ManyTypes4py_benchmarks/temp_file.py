@@ -1,369 +1,351 @@
-from collections import deque
-from http import HTTPStatus
-from statistics import median
-from typing import Any, Dict, Deque, Set, Optional, cast
-import pytest
-from faust import Event, Stream, Table, Topic
-from faust.transport.consumer import Consumer
-from faust.transport.producer import Producer
-from faust.types import Message, TP
-from faust.sensors.monitor import Monitor, TableState
-from mode.utils.mocks import AsyncMock, Mock
-from typing_extensions import TypedDict
-TP1 = TP('foo', 0)
+"""Support for exposing Home Assistant via Zeroconf."""
+from __future__ import annotations
+import contextlib
+from contextlib import suppress
+from fnmatch import translate
+from functools import lru_cache, partial
+from ipaddress import IPv4Address, IPv6Address
+import logging
+import re
+import sys
+from typing import TYPE_CHECKING, Any, Final, cast, Dict, List, Optional, Set, Tuple, Union
+import voluptuous as vol
+from zeroconf import BadTypeInNameException, InterfaceChoice, IPVersion, ServiceStateChange
+from zeroconf.asyncio import AsyncServiceBrowser, AsyncServiceInfo
+from homeassistant import config_entries
+from homeassistant.components import network
+from homeassistant.const import EVENT_HOMEASSISTANT_CLOSE, EVENT_HOMEASSISTANT_STOP, __version__
+from homeassistant.core import Event, HomeAssistant, callback
+from homeassistant.helpers import config_validation as cv, discovery_flow, instance_id
+from homeassistant.helpers.deprecation import DeprecatedConstant, all_with_deprecated_constants, check_if_deprecated_constant, dir_with_deprecated_constants
+from homeassistant.helpers.discovery_flow import DiscoveryKey
+from homeassistant.helpers.dispatcher import async_dispatcher_connect
+from homeassistant.helpers.network import NoURLAvailableError, get_url
+from homeassistant.helpers.service_info.zeroconf import ATTR_PROPERTIES_ID as _ATTR_PROPERTIES_ID, ZeroconfServiceInfo as _ZeroconfServiceInfo
+from homeassistant.helpers.typing import ConfigType
+from homeassistant.loader import HomeKitDiscoveredIntegration, ZeroconfMatcher, async_get_homekit, async_get_zeroconf, bind_hass
+from homeassistant.setup import async_when_setup_or_start
+from .models import HaAsyncZeroconf, HaZeroconf
+from .usage import install_multiple_zeroconf_catcher
+_LOGGER: Final = logging.getLogger(__name__)
+DOMAIN: Final = 'zeroconf'
+ZEROCONF_TYPE: Final = '_home-assistant._tcp.local.'
+HOMEKIT_TYPES: Final[List[str]] = ['_hap._tcp.local.', '_hap._udp.local.']
+_HOMEKIT_MODEL_SPLITS: Final[Tuple[Optional[str], ...]] = (None, ' ', '-')
+CONF_DEFAULT_INTERFACE: Final = 'default_interface'
+CONF_IPV6: Final = 'ipv6'
+DEFAULT_DEFAULT_INTERFACE: Final = True
+DEFAULT_IPV6: Final = True
+HOMEKIT_PAIRED_STATUS_FLAG: Final = 'sf'
+HOMEKIT_MODEL_LOWER: Final = 'md'
+HOMEKIT_MODEL_UPPER: Final = 'MD'
+MAX_PROPERTY_VALUE_LEN: Final = 230
+MAX_NAME_LEN: Final = 63
+ATTR_DOMAIN: Final = 'domain'
+ATTR_NAME: Final = 'name'
+ATTR_PROPERTIES: Final = 'properties'
+_DEPRECATED_ATTR_PROPERTIES_ID: Final = DeprecatedConstant(_ATTR_PROPERTIES_ID,
+    'homeassistant.helpers.service_info.zeroconf.ATTR_PROPERTIES_ID', '2026.2')
+CONFIG_SCHEMA: Final = vol.Schema({DOMAIN: vol.All(cv.deprecated(
+    CONF_DEFAULT_INTERFACE), cv.deprecated(CONF_IPV6), vol.Schema({vol.
+    Optional(CONF_DEFAULT_INTERFACE): cv.boolean, vol.Optional(CONF_IPV6,
+    default=DEFAULT_IPV6): cv.boolean}))}, extra=vol.ALLOW_EXTRA)
+_DEPRECATED_ZeroconfServiceInfo: Final = DeprecatedConstant(
+    _ZeroconfServiceInfo,
+    'homeassistant.helpers.service_info.zeroconf.ZeroconfServiceInfo', '2026.2'
+    )
 
 
-class StateDict(TypedDict):
-    time_in: Optional[float]
-    time_out: Optional[float]
-    time_total: Optional[float]
+@bind_hass
+async def async_get_instance(hass: HomeAssistant) ->HaZeroconf:
+    """Get or create the shared HaZeroconf instance."""
+    return cast(HaZeroconf, _async_get_instance(hass).zeroconf)
 
 
-class RebalanceStateDict(TypedDict):
-    time_start: float
-    time_return: Optional[float]
-    latency_return: Optional[float]
-    time_end: Optional[float]
-    latency_end: Optional[float]
+@bind_hass
+async def async_get_async_instance(hass: HomeAssistant) ->HaAsyncZeroconf:
+    """Get or create the shared HaAsyncZeroconf instance."""
+    return _async_get_instance(hass)
 
 
-class WebRequestStateDict(TypedDict):
-    time_start: float
-    time_end: Optional[float]
-    latency_end: Optional[float]
-    status_code: Optional[HTTPStatus]
+@callback
+def async_get_async_zeroconf(hass: HomeAssistant) ->HaAsyncZeroconf:
+    """Get or create the shared HaAsyncZeroconf instance.
+
+    This method must be run in the event loop, and is an alternative
+    to the async_get_async_instance method when a coroutine cannot be used.
+    """
+    return _async_get_instance(hass)
 
 
-class test_Monitor:
+def _async_get_instance(hass: HomeAssistant) ->HaAsyncZeroconf:
+    if DOMAIN in hass.data:
+        return cast(HaAsyncZeroconf, hass.data[DOMAIN])
+    logging.getLogger('zeroconf').setLevel(logging.NOTSET)
+    zeroconf = HaZeroconf(**_async_get_zc_args(hass))
+    aio_zc = HaAsyncZeroconf(zc=zeroconf)
+    install_multiple_zeroconf_catcher(zeroconf)
 
-    @pytest.fixture
-    def time(self) ->Mock:
-        timefun = Mock(name='time()')
-        timefun.return_value = 101.1
-        return timefun
+    async def _async_stop_zeroconf(_event: Event) ->None:
+        """Stop Zeroconf."""
+        await aio_zc.ha_async_close()
+    hass.bus.async_listen_once(EVENT_HOMEASSISTANT_CLOSE, _async_stop_zeroconf)
+    hass.data[DOMAIN] = aio_zc
+    return aio_zc
 
-    @pytest.fixture
-    def message(self) ->Mock:
-        return Mock(name='message', autospec=Message)
 
-    @pytest.fixture
-    def stream(self) ->Mock:
-        return Mock(name='stream', autospec=Stream)
+@callback
+def _async_zc_has_functional_dual_stack() ->bool:
+    """Return true for platforms not supporting IP_ADD_MEMBERSHIP on an AF_INET6 socket.
 
-    @pytest.fixture
-    def topic(self) ->Mock:
-        return Mock(name='topic', autospec=Topic)
+    Zeroconf only supports a single listen socket at this time.
+    """
+    return not sys.platform.startswith('freebsd'
+        ) and not sys.platform.startswith('darwin')
 
-    @pytest.fixture
-    def event(self) ->Mock:
-        return Mock(name='event', autospec=Event)
 
-    @pytest.fixture
-    def table(self) ->Mock:
-        return Mock(name='table', autospec=Table)
+def _async_get_zc_args(hass: HomeAssistant) ->Dict[str, Any]:
+    """Get zeroconf arguments from config."""
+    zc_args: Dict[str, Any] = {'ip_version': IPVersion.V4Only}
+    adapters = network.async_get_loaded_adapters(hass)
+    ipv6 = False
+    if _async_zc_has_functional_dual_stack():
+        if any(adapter['enabled'] and adapter['ipv6'] for adapter in adapters):
+            ipv6 = True
+            zc_args['ip_version'] = IPVersion.All
+    elif not any(adapter['enabled'] and adapter['ipv4'] for adapter in adapters
+        ):
+        zc_args['ip_version'] = IPVersion.V6Only
+        ipv6 = True
+    if not ipv6 and network.async_only_default_interface_enabled(adapters):
+        zc_args['interfaces'] = InterfaceChoice.Default
+    else:
+        zc_args['interfaces'] = [str(source_ip) for source_ip in network.
+            async_get_enabled_source_ips_from_adapters(adapters) if not
+            source_ip.is_loopback and not (isinstance(source_ip,
+            IPv6Address) and source_ip.is_global) and not (isinstance(
+            source_ip, IPv6Address) and zc_args['ip_version'] == IPVersion.
+            V4Only) and not (isinstance(source_ip, IPv4Address) and zc_args
+            ['ip_version'] == IPVersion.V6Only)]
+    return zc_args
 
-    @pytest.fixture
-    def mon(self, *, time: Mock) ->Monitor:
-        mon = self.create_monitor()
-        mon.time = time
-        return mon
 
-    def create_monitor(self, **kwargs: Any) ->Monitor:
-        return Monitor(**kwargs)
+async def async_setup(hass: HomeAssistant, config: ConfigType) ->bool:
+    """Set up Zeroconf and make Home Assistant discoverable."""
+    aio_zc = _async_get_instance(hass)
+    zeroconf = cast(HaZeroconf, aio_zc.zeroconf)
+    zeroconf_types = await async_get_zeroconf(hass)
+    homekit_models = await async_get_homekit(hass)
+    homekit_model_lookup, homekit_model_matchers = (
+        _build_homekit_model_lookups(homekit_models))
+    discovery = ZeroconfDiscovery(hass, zeroconf, zeroconf_types,
+        homekit_model_lookup, homekit_model_matchers)
+    await discovery.async_setup()
 
-    def create_populated_monitor(self, messages_active: int=101,
-        messages_received_total: int=1001, messages_sent: int=303,
-        messages_s: int=1000, messages_received_by_topic: Dict[str, int]={
-        'foo': 103}, events_active: int=202, events_total: int=2002,
-        events_s: int=3000, events_runtime_avg: float=0.03, events_by_task:
-        Dict[str, int]={'mytask': 105}, events_by_stream: Dict[str, int]={
-        'stream': 105}, commit_latency: List[float]=[1.03, 2.33, 16.33],
-        send_latency: List[float]=[0.01, 0.04, 0.06, 0.01],
-        topic_buffer_full: Dict[str, int]={'topic': 808}, **kwargs: Any
-        ) ->Monitor:
-        return self.create_monitor(messages_active=messages_active,
-            messages_received_total=messages_received_total, messages_sent=
-            messages_sent, messages_s=messages_s,
-            messages_received_by_topic=messages_received_by_topic,
-            events_active=events_active, events_total=events_total,
-            events_s=events_s, events_runtime_avg=events_runtime_avg,
-            events_by_task=events_by_task, events_by_stream=
-            events_by_stream, commit_latency=commit_latency, send_latency=
-            send_latency, topic_buffer_full=topic_buffer_full, **kwargs)
-
-    def test_init_max_avg_history(self) ->None:
-        assert Monitor().max_avg_history == Monitor.max_avg_history
-
-    def test_init_max_avg_history__default(self) ->None:
-        assert Monitor(max_avg_history=33).max_avg_history == 33
-
-    def test_init_max_commit_latency_history(self) ->None:
-        assert Monitor(
-            ).max_commit_latency_history == Monitor.max_commit_latency_history
-
-    def test_init_max_commit_latency_history__default(self) ->None:
-        assert Monitor(max_commit_latency_history=33
-            ).max_commit_latency_history == 33
-
-    def test_init_max_send_latency_history(self) ->None:
-        assert Monitor(
-            ).max_send_latency_history == Monitor.max_send_latency_history
-
-    def test_init_max_send_latency_history__default(self) ->None:
-        assert Monitor(max_send_latency_history=33
-            ).max_send_latency_history == 33
-
-    def test_init_max_assignment_latency_history(self) ->None:
-        assert Monitor(
-            ).max_assignment_latency_history == Monitor.max_assignment_latency_history
-
-    def test_init_max_assignment_latency_history__default(self) ->None:
-        assert Monitor(max_assignment_latency_history=33
-            ).max_assignment_latency_history == 33
-
-    def test_init_rebalances(self) ->None:
-        assert Monitor(rebalances=99).rebalances == 99
-
-    def test_asdict(self) ->None:
-        mon = self.create_populated_monitor()
-        assert mon.asdict() == {'messages_active': mon.messages_active,
-            'messages_received_total': mon.messages_received_total,
-            'messages_sent': mon.messages_sent, 'messages_sent_by_topic':
-            mon.messages_sent_by_topic, 'messages_s': mon.messages_s,
-            'messages_received_by_topic': mon.messages_received_by_topic,
-            'events_active': mon.events_active, 'events_total': mon.
-            events_total, 'events_s': mon.events_s, 'events_runtime_avg':
-            mon.events_runtime_avg, 'events_by_task': mon.
-            _events_by_task_dict(), 'events_by_stream': mon.
-            _events_by_stream_dict(), 'commit_latency': mon.commit_latency,
-            'send_latency': mon.send_latency, 'assignment_latency': mon.
-            assignment_latency, 'assignments_completed': mon.
-            assignments_completed, 'assignments_failed': mon.
-            assignments_failed, 'send_errors': mon.send_errors,
-            'topic_buffer_full': mon._topic_buffer_full_dict(),
-            'metric_counts': mon._metric_counts_dict(), 'tables': {name:
-            table.asdict() for name, table in mon.tables.items()},
-            'topic_committed_offsets': {}, 'topic_read_offsets': {},
-            'topic_end_offsets': {}, 'rebalance_end_avg': mon.
-            rebalance_end_avg, 'rebalance_end_latency': mon.
-            rebalance_end_latency, 'rebalance_return_avg': mon.
-            rebalance_return_avg, 'rebalance_return_latency': mon.
-            rebalance_return_latency, 'rebalances': mon.rebalances,
-            'http_response_codes': mon._http_response_codes_dict(),
-            'http_response_latency': mon.http_response_latency,
-            'http_response_latency_avg': mon.http_response_latency_avg}
-
-    def test_on_message_in(self, *, message: Mock, mon: Monitor, time: Mock
+    async def _async_zeroconf_hass_start(hass: HomeAssistant, comp: str
         ) ->None:
-        for i in range(1, 11):
-            offset = 3 + i
-            mon.on_message_in(TP1, offset, message)
-            assert mon.messages_received_total == i
-            assert mon.messages_active == i
-            assert mon.messages_received_by_topic[TP1.topic] == i
-            assert message.time_in is time()
-            assert mon.tp_read_offsets[TP1] == offset
+        """Expose Home Assistant on zeroconf when it starts.
 
-    def test_on_stream_event_in(self, *, event: Mock, mon: Monitor, stream:
-        Mock, time: Mock) ->None:
-        for i in range(1, 11):
-            state = mon.on_stream_event_in(TP1, 3 + i, stream, event)
-            assert mon.events_total == i
-            assert mon.events_by_stream[str(stream)] == i
-            assert mon.events_by_task[str(stream.task_owner)] == i
-            assert mon.events_active == i
-            assert state == {'time_in': time(), 'time_out': None,
-                'time_total': None}
+        Wait till started or otherwise HTTP is not up and running.
+        """
+        uuid = await instance_id.async_get(hass)
+        await _async_register_hass_zc_service(hass, aio_zc, uuid)
 
-    def test_on_stream_event_out(self, *, event: Mock, mon: Monitor, stream:
-        Mock, time: Mock) ->None:
-        other_time = 303.3
-        mon.events_active = 10
-        for i in range(1, 11):
-            state: StateDict = {'time_in': other_time, 'time_out': None,
-                'time_total': None}
-            mon.on_stream_event_out(TP1, 3 + i, stream, event, state)
-            assert mon.events_active == 10 - i
-            assert state == {'time_in': other_time, 'time_out': time(),
-                'time_total': time() - other_time}
-            assert mon.events_runtime[-1] == time() - other_time
+    async def _async_zeroconf_hass_stop(_event: Event) ->None:
+        await discovery.async_stop()
+    hass.bus.async_listen_once(EVENT_HOMEASSISTANT_STOP,
+        _async_zeroconf_hass_stop)
+    async_when_setup_or_start(hass, 'frontend', _async_zeroconf_hass_start)
+    return True
 
-    def test_on_stream_event_out__missing_state(self, *, event: Mock, mon:
-        Monitor, stream: Mock, time: Mock) ->None:
-        mon.on_stream_event_out(TP1, 3, stream, event, None)
 
-    def test_on_topic_buffer_full(self, *, mon: Monitor) ->None:
-        for i in range(1, 11):
-            mon.on_topic_buffer_full(TP1)
-            assert mon.topic_buffer_full[TP1] == i
+def _build_homekit_model_lookups(homekit_models: Dict[str,
+    HomeKitDiscoveredIntegration]) ->Tuple[Dict[str,
+    HomeKitDiscoveredIntegration], Dict[re.Pattern,
+    HomeKitDiscoveredIntegration]]:
+    """Build lookups for homekit models."""
+    homekit_model_lookup: Dict[str, HomeKitDiscoveredIntegration] = {}
+    homekit_model_matchers: Dict[re.Pattern, HomeKitDiscoveredIntegration] = {}
+    for model, discovery in homekit_models.items():
+        if '*' in model or '?' in model or '[' in model:
+            homekit_model_matchers[_compile_fnmatch(model)] = discovery
+        else:
+            homekit_model_lookup[model] = discovery
+    return homekit_model_lookup, homekit_model_matchers
 
-    def test_on_message_out(self, *, message: Mock, mon: Monitor, time: Mock
+
+def _filter_disallowed_characters(name: str) ->str:
+    """Filter disallowed characters from a string.
+
+    . is a reversed character for zeroconf.
+    """
+    return name.replace('.', ' ')
+
+
+async def _async_register_hass_zc_service(hass: HomeAssistant, aio_zc:
+    HaAsyncZeroconf, uuid: str) ->None:
+    valid_location_name = _truncate_location_name_to_valid(
+        _filter_disallowed_characters(hass.config.location_name or 'Home'))
+    params: Dict[str, Any] = {'location_name': valid_location_name, 'uuid':
+        uuid, 'version': __version__, 'external_url': '', 'internal_url':
+        '', 'base_url': '', 'requires_api_password': True}
+    with suppress(NoURLAvailableError):
+        params['external_url'] = get_url(hass, allow_internal=False)
+    with suppress(NoURLAvailableError):
+        params['internal_url'] = get_url(hass, allow_external=False)
+    params['base_url'] = params['external_url'] or params['internal_url']
+    _suppress_invalid_properties(params)
+    info = AsyncServiceInfo(ZEROCONF_TYPE, name=
+        f'{valid_location_name}.{ZEROCONF_TYPE}', server=f'{uuid}.local.',
+        parsed_addresses=await network.async_get_announce_addresses(hass),
+        port=hass.http.server_port, properties=params)
+    _LOGGER.info('Starting Zeroconf broadcast')
+    await aio_zc.async_register_service(info, allow_name_change=True)
+
+
+def _match_against_props(matcher: Dict[str, str], props: Dict[str, str]
+    ) ->bool:
+    """Check a matcher to ensure all values in props."""
+    for key, value in matcher.items():
+        prop_val = props.get(key)
+        if prop_val is None or not _memorized_fnmatch(prop_val.lower(), value):
+            return False
+    return True
+
+
+def is_homekit_paired(props: Dict[str, str]) ->bool:
+    """Check properties to see if a device is homekit paired."""
+    if HOMEKIT_PAIRED_STATUS_FLAG not in props:
+        return False
+    with contextlib.suppress(ValueError):
+        return int(props[HOMEKIT_PAIRED_STATUS_FLAG]) == 0
+    return False
+
+
+class ZeroconfDiscovery:
+    """Discovery via zeroconf."""
+
+    def __init__(self, hass: HomeAssistant, zeroconf: HaZeroconf,
+        zeroconf_types: Dict[str, List[ZeroconfMatcher]],
+        homekit_model_lookups: Dict[str, HomeKitDiscoveredIntegration],
+        homekit_model_matchers: Dict[re.Pattern, HomeKitDiscoveredIntegration]
         ) ->None:
-        mon.messages_active = 10
-        message.time_in = 10.7
-        for i in range(1, 11):
-            mon.on_message_out(TP1, 3 + i, message)
-            assert mon.messages_active == 10 - i
-            assert message.time_out == time()
-            assert message.time_total == time() - message.time_in
-        message.time_in = None
-        mon.on_message_out(TP1, 3 + 11, message)
+        """Init discovery."""
+        self.hass = hass
+        self.zeroconf = zeroconf
+        self.zeroconf_types = zeroconf_types
+        self.homekit_model_lookups = homekit_model_lookups
+        self.homekit_model_matchers = homekit_model_matchers
+        self.async_service_browser: Optional[AsyncServiceBrowser] = None
 
-    def test_on_table_get(self, *, mon: Monitor, table: Mock) ->None:
-        for i in range(1, 11):
-            mon.on_table_get(table, 'k')
-            assert mon._table_or_create(table).keys_retrieved == i
+    async def async_setup(self) ->None:
+        """Start discovery."""
+        types = list(self.zeroconf_types)
+        types.extend(hk_type for hk_type in (ZEROCONF_TYPE, *HOMEKIT_TYPES) if
+            hk_type not in self.zeroconf_types)
+        _LOGGER.debug('Starting Zeroconf browser for: %s', types)
+        self.async_service_browser = AsyncServiceBrowser(self.zeroconf,
+            types, handlers=[self.async_service_update])
+        async_dispatcher_connect(self.hass, config_entries.
+            signal_discovered_config_entry_removed(DOMAIN), self.
+            _handle_config_entry_removed)
 
-    def test_on_table_set(self, *, mon: Monitor, table: Mock) ->None:
-        for i in range(1, 11):
-            mon.on_table_set(table, 'k', 'v')
-            assert mon._table_or_create(table).keys_updated == i
+    async def async_stop(self) ->None:
+        """Cancel the service browser and stop processing the queue."""
+        if self.async_service_browser:
+            await self.async_service_browser.async_cancel()
 
-    def test_on_table_del(self, *, mon: Monitor, table: Mock) ->None:
-        for i in range(1, 11):
-            mon.on_table_del(table, 'k')
-            assert mon._table_or_create(table).keys_deleted == i
-
-    def test_on_commit_initiated(self, *, mon: Monitor, time: Mock) ->float:
-        return cast(float, mon.on_commit_initiated(Mock(name='consumer',
-            autospec=Consumer)))
-
-    def test_on_commit_completed(self, *, mon: Monitor, time: Mock) ->None:
-        other_time = 56.7
-        mon.on_commit_completed(Mock(name='consumer', autospec=Consumer),
-            other_time)
-        assert mon.commit_latency[-1] == time() - other_time
-
-    def test_on_send_initiated(self, *, mon: Monitor, time: Mock) ->None:
-        for i in range(1, 11):
-            state = mon.on_send_initiated(Mock(name='producer', autospec=
-                Producer), 'topic', 'message', 2, 4)
-            assert mon.messages_sent == i
-            assert mon.messages_sent_by_topic['topic'] == i
-            assert state == time()
-
-    def test_on_send_completed(self, *, mon: Monitor, time: Mock) ->None:
-        other_time = 56.7
-        mon.on_send_completed(Mock(name='producer', autospec=Producer),
-            other_time, Mock(name='metadata'))
-        assert mon.send_latency[-1] == time() - other_time
-
-    def test_on_send_error(self, *, mon: Monitor, time: Mock) ->None:
-        mon.on_send_error(Mock(name='producer', autospec=Producer), Mock(
-            name='state'), KeyError('foo'))
-        assert mon.send_errors == 1
-
-    def test_on_assignment_start(self, *, mon: Monitor, time: Mock) ->Dict[
-        str, float]:
-        state = mon.on_assignment_start(Mock(name='assignor'))
-        assert state['time_start'] == time()
-        return state
-
-    def test_on_assignment_completed(self, *, mon: Monitor, time: Mock) ->None:
-        other_time = 56.7
-        assignor = Mock(name='assignor')
-        assert mon.assignments_completed == 0
-        mon.on_assignment_completed(assignor, {'time_start': other_time})
-        assert mon.assignment_latency[-1] == time() - other_time
-        assert mon.assignments_completed == 1
-
-    def test_on_assignment_error(self, *, mon: Monitor, time: Mock) ->None:
-        other_time = 56.7
-        assignor = Mock(name='assignor')
-        assert mon.assignments_failed == 0
-        mon.on_assignment_error(assignor, {'time_start': other_time},
-            KeyError())
-        assert mon.assignment_latency[-1] == time() - other_time
-        assert mon.assignments_failed == 1
-
-    def test_on_rebalance_start(self, *, mon: Monitor, time: Mock, app: Any
-        ) ->RebalanceStateDict:
-        assert mon.rebalances == 0
-        app.rebalancing_count = 1
-        state = mon.on_rebalance_start(app)
-        assert state['time_start'] == time()
-        assert mon.rebalances == 1
-        return state
-
-    def test_on_rebalance_return(self, *, mon: Monitor, time: Mock, app: Any
+    @callback
+    def _handle_config_entry_removed(self, entry: config_entries.ConfigEntry
         ) ->None:
-        other_time = 56.7
-        state: RebalanceStateDict = {'time_start': other_time}
-        mon.on_rebalance_return(app, state)
-        assert mon.rebalance_return_latency[-1] == time() - other_time
-        assert state['time_return'] == time()
-        assert state['latency_return'] == time() - other_time
+        """Handle config entry changes."""
+        for discovery_key in entry.discovery_keys[DOMAIN]:
+            if discovery_key.version != 1:
+                continue
+            _type = discovery_key.key[0]
+            name = discovery_key.key[1]
+            _LOGGER.debug('Rediscover service %s.%s', _type, name)
+            self._async_service_update(self.zeroconf, _type, name)
 
-    def test_on_rebalance_end(self, *, mon: Monitor, time: Mock, app: Any
-        ) ->None:
-        other_time = 56.7
-        state: RebalanceStateDict = {'time_start': other_time}
-        mon.on_rebalance_end(app, state)
-        assert mon.rebalance_end_latency[-1] == time() - other_time
-        assert state['time_end'] == time()
-        assert state['latency_end'] == time() - other_time
+    def _async_dismiss_discoveries(self, name: str) ->None:
+        """Dismiss all discoveries for the given name."""
+        for flow in self.hass.config_entries.flow.async_progress_by_init_data_type(
+            _ZeroconfServiceInfo, lambda service_info: bool(service_info.
+            name == name)):
+            self.hass.config_entries.flow.async_abort(flow['flow_id'])
 
-    def test_on_web_request_start(self, *, mon: Monitor, time: Mock, app: Any
-        ) ->WebRequestStateDict:
-        request = Mock(name='request')
-        view = Mock(name='view')
-        state = mon.on_web_request_start(app, request, view=view)
-        assert state['time_start'] == time()
-        return state
+    @callback
+    def async_service_update(self, zeroconf: HaZeroconf, service_type: str,
+        name: str, state_change: ServiceStateChange) ->None:
+        """Service state changed."""
+        _LOGGER.debug('service_update: type=%s name=%s state_change=%s',
+            service_type, name, state_change)
+        if state_change is ServiceStateChange.Removed:
+            self._async_dismiss_discoveries(name)
+            return
+        self._async_service_update(zeroconf, service_type, name)
 
-    def test_on_web_request_end(self, *, mon: Monitor, time: Mock, app: Any
-        ) ->None:
-        response = Mock(name='response')
-        response.status = 404
-        self.assert_on_web_request_end(mon, time, app, response,
-            expected_status=404)
+    @callback
+    def _async_service_update(self, zeroconf: HaZeroconf, service_type: str,
+        name: str) ->None:
+        """Service state added or changed."""
+        try:
+            async_service_info = AsyncServiceInfo(service_type, name)
+        except BadTypeInNameException as ex:
+            _LOGGER.debug('Bad name in zeroconf record: %s: %s', name, ex)
+            return
+        if async_service_info.load_from_cache(zeroconf):
+            self._async_process_service_update(async_service_info,
+                service_type, name)
+        else:
+            self.hass.async_create_background_task(self.
+                _async_lookup_and_process_service_update(zeroconf,
+                async_service_info, service_type, name), name=
+                f'zeroconf lookup {name}.{service_type}')
 
-    def test_on_web_request_end__None_response(self, *, mon: Monitor, time:
-        Mock, app: Any) ->None:
-        self.assert_on_web_request_end(mon, time, app, None,
-            expected_status=500)
+    async def _async_lookup_and_process_service_update(self, zeroconf:
+        HaZeroconf, async_service_info: AsyncServiceInfo, service_type: str,
+        name: str) ->None:
+        """Update and process a zeroconf update."""
+        await async_service_info.async_request(zeroconf, 3000)
+        self._async_process_service_update(async_service_info, service_type,
+            name)
 
-    def assert_on_web_request_end(self, mon: Monitor, time: Mock, app: Any,
-        response: Optional[Mock], expected_status: int) ->None:
-        request = Mock(name='request')
-        view = Mock(name='view')
-        other_time = 156.9
-        state: WebRequestStateDict = {'time_start': other_time}
-        mon.on_web_request_end(app, request, response, state, view=view)
-        assert state['time_end'] == time()
-        assert state['latency_end'] == time() - other_time
-        assert state['status_code'] == HTTPStatus(expected_status)
-        assert mon.http_response_latency[-1] == time() - other_time
-        assert mon.http_response_codes[HTTPStatus(expected_status)] == 1
-
-    def test_TableState_asdict(self, *, mon: Monitor, table: Mock) ->None:
-        state = mon._table_or_create(table)
-        assert isinstance(state, TableState)
-        assert state.table is table
-        assert state.keys_retrieved == 0
-        assert state.keys_updated == 0
-        assert state.keys_deleted == 0
-        expected_asdict = {'keys_retrieved': 0, 'keys_updated': 0,
-            'keys_deleted': 0}
-        assert state.asdict() == expected_asdict
-        assert state.__reduce_keywords__() == {**state.asdict(), 'table': table
-            }
-
-    def test_on_tp_commit(self, *, mon: Monitor):
-        topic = 'foo'
-        for offset in range(20):
-            partitions = list(range(4))
-            tps = {TP(topic=topic, partition=p) for p in partitions}
-            commit_offsets = {tp: offset for tp in tps}
-            mon.on_tp_commit(commit_offsets)
-            assert all(mon.tp_committed_offsets[tp] == commit_offsets[tp] for
-                tp in tps)
-            offsets_dict = mon.asdict()['topic_committed_offsets'][topic]
-            assert all(offsets_dict[p] == offset for p in partitions)
-
-    def test_track_tp_end_offsets(self, *, mon: Monitor) ->None:
-        tp = TP(topic='foo', partition=2)
-        for offset in range(20):
-            mon.track_tp_end_offset(tp, offset)
-            assert mon.tp_end_offsets[tp] == offset
-            offsets_dict = mon
+    @callback
+    def _async_process_service_update(self, async_service_info:
+        AsyncServiceInfo, service_type: str, name) ->None:
+        """Process a zeroconf update."""
+        info = info_from_service(async_service_info)
+        if not info:
+            _LOGGER.debug('Failed to get addresses for device %s', name)
+            return
+        _LOGGER.debug('Discovered new device %s %s', name, info)
+        props = info.properties
+        discovery_key = DiscoveryKey(domain=DOMAIN, key=(info.type, info.
+            name), version=1)
+        domain: Optional[str] = None
+        if service_type in HOMEKIT_TYPES and (homekit_discovery :=
+            async_get_homekit_discovery(self.homekit_model_lookups, self.
+            homekit_model_matchers, props)):
+            domain = homekit_discovery.domain
+            discovery_flow.async_create_flow(self.hass, homekit_discovery.
+                domain, {'source': config_entries.SOURCE_HOMEKIT}, info,
+                discovery_key=discovery_key)
+            if not is_homekit_paired(props
+                ) and not homekit_discovery.always_discover:
+                return
+        if not (matchers := self.zeroconf_types.get(service_type)):
+            return
+        for matcher in matchers:
+            if len(matcher) > 1:
+                if ATTR_NAME in matcher and not _memorized_fnmatch(info.
+                    name.lower(), matcher[ATTR_NAME]):
+                    continue
+                if ATTR_PROPERTIES in matcher and not _match_against_props(
+                    matcher[ATTR_PROPERTIES], props):
+                    continue
+            matcher_domain = matcher[ATTR_DOMAIN]
+            context = {'source': config_entries.SOURCE_ZEROCONF}
+            if domain:
+                context['alternative_domain'] = domain
+            discovery_flow.async_create_
