@@ -143,10 +143,7 @@ def assign_types(
     """
 
     # Step 1: Initialize
-    file_key = os.path.basename(input_file)
-    current_score, initial_errors = typecheck(initial_code, file_key)
-    print("Initial score for file: ", input_file, current_score)
-
+    current_score, initial_errors = typecheck(initial_code)
     # log_initial_errors(input_file, initial_errors)
 
     if current_score == 0:  # Already statically correct
@@ -157,50 +154,30 @@ def assign_types(
     best_config = frozenset()  # Store best set of removed annotations
     best_score = current_score
     parent_score = current_score
-    count = 0
 
     # Step 2: Greedy Iterative Removal
-    max_queue_size = len(annotations) * 2  # Limit queue size
     while work_set:
         if time.time() - start_time > timeout:  # Timeout check
             print("Skipping file due to timeout.")
             return best_config, best_score, parent_score
 
-        # Prevent queue from growing too large
-        if len(work_set) > max_queue_size:
-            print(f"Queue too large ({len(work_set)}), stopping to prevent explosion.")
-            break
-
         current_config = work_set.pop(0)
-        count += 1
-        print(
-            "Total number of annotations: ",
-            len(annotations),
-            "count: ",
-            count,
-            "work_set: ",
-            len(work_set),
-        )
+
         for func_name, param in annotations:
             new_config = current_config | {
                 (func_name, param)
             }  # Try removing one annotation
-
-            # Convert to sorted tuple for consistent hashing
             sorted_config = tuple(sorted(new_config))
-
             if sorted_config not in done:
                 new_code = apply_config(initial_code, new_config)
-                new_score, _ = typecheck(new_code, file_key)
+                new_score, _ = typecheck(new_code)
                 print("Current new_score for file: ", input_file, new_score)
 
-                if new_score <= best_score:  # Greedy improvement
+                if new_score < best_score:  # Greedy improvement
                     parent_score = best_score
                     best_config = new_config
                     best_score = new_score
-                    # Only add to work_set if queue isn't too large
-                    if len(work_set) < max_queue_size:
-                        work_set.append(new_config)
+                    work_set.append(new_config)
 
                 if new_score == 0:  # Fully type-safe
                     return new_config, 0, parent_score
@@ -302,5 +279,5 @@ if __name__ == "__main__":
         "mypy_results/Filtered_type_errors/merged_o1-mini.json"
     )
     process_type_analysis_results(
-        "o1_mini", "o1_mini_stats_equal.json", llm_only_failures
+        "o1_mini", "o1_mini_stats_original.json", llm_only_failures
     )
