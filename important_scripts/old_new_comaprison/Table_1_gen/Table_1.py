@@ -169,8 +169,8 @@ def analyze_files(model_name, base_file, model_file, file_subset=None):
         },
     }
 
-    with open(f"analysis_{model_name}.json", "w") as f:
-        json.dump(results, f, indent=2)
+    # with open(f"analysis_{model_name}.json", "w") as f:
+    #    json.dump(results, f, indent=2)
 
     # Print table header
     print(f"\nResults for {model_name}:")
@@ -231,7 +231,8 @@ if __name__ == "__main__":
         "signature_comparison_results_gpt4o.json",
         "mypy_results_gpt4o_with_errors.json",
     )
-    print("\n--- GPT4o: Old Files Group ---")
+    print("GPT4o: ", len(old_files), len(new_files), len(common_files))
+    """print("\n--- GPT4o: Old Files Group ---")
     analyze_files(
         "gpt4o_old",
         "mypy_results_ALL_GPT40_old_with_errors_no_types.json",
@@ -251,8 +252,9 @@ if __name__ == "__main__":
         "mypy_results_untyped_with_errors.json",
         "mypy_results_gpt4o_with_errors.json",
         file_subset=common_files,
-    )
+    )"""
 
+    """
     # o1-mini
     old_files, new_files, common_files = get_groups(
         "signature_comparison_results_o1-mini.json",
@@ -305,4 +307,4 @@ if __name__ == "__main__":
         "mypy_results_untyped_with_errors.json",
         "mypy_results_deepseek_with_errors.json",
         file_subset=common_files,
-    )
+    )"""
