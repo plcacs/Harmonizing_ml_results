@@ -41,6 +41,11 @@ SAFE_GLOBALS.update(
 def parse_type_to_ast(type_str: str) -> ast.expr:
     """Parse type string to AST expression"""
     try:
+        # Strip surrounding quotes if present
+        if (type_str.startswith("'") and type_str.endswith("'")) or (
+            type_str.startswith('"') and type_str.endswith('"')
+        ):
+            type_str = type_str[1:-1]
         # Handle Python 3.10+ union syntax
         if " | " in type_str:
             parts = [part.strip() for part in type_str.split(" | ")]
@@ -176,6 +181,9 @@ def process_file(input_json, output_json):
                 htype = param["Human"]
                 ltype = param["LLM"]
                 match = types_equivalent_semantic(htype, ltype)
+                # If original match is true, semantic_match must also be true
+                if param.get("match", False):
+                    match = True
                 new_param = dict(param)
                 new_param["semantic_match"] = match
                 new_params.append(new_param)
