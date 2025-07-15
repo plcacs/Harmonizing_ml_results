@@ -1,0 +1,198 @@
+import json
+import typing
+import typing_inspect
+import ast
+import os
+from typing import Any, Set, Union
+
+# Hardcoded file paths
+INPUT_JSONS = [
+    "type_comparison_deepseek.json",
+    "type_comparison_gpt4o.json",
+    "type_comparison_o1-mini.json",
+]
+OUTPUT_FOLDER = "semantic_comparison_results"
+OUTPUT_JSONS = [
+    "type_comparison_semantic_deepseek.json",
+    "type_comparison_semantic_gpt4o.json",
+    "type_comparison_semantic_o1-mini.json",
+]
+
+# Safe eval for type strings
+SAFE_GLOBALS = {k: v for k, v in vars(typing).items() if not k.startswith("_")}
+SAFE_GLOBALS.update(
+    {
+        "int": int,
+        "str": str,
+        "float": float,
+        "bool": bool,
+        "None": type(None),
+        "dict": dict,
+        "list": list,
+        "set": set,
+        "tuple": tuple,
+        "object": object,
+        "datetime": "datetime",
+        "Pattern": "Pattern",  # Add common types
+    }
+)
+
+
+def parse_type_to_ast(type_str: str) -> ast.expr:
+    """Parse type string to AST expression"""
+    try:
+        # Handle Python 3.10+ union syntax
+        if " | " in type_str:
+            parts = [part.strip() for part in type_str.split(" | ")]
+            if "None" in parts:
+                parts.remove("None")
+                if len(parts) == 1:
+                    # Single type | None -> Union[type, None]
+                    union_parts = f"{parts[0]}, None"
+                    return ast.parse(f"Union[{union_parts}]", mode="eval").body
+                else:
+                    # Multiple types | None -> Union[types, None]
+                    union_parts = ", ".join(parts) + ", None"
+                    return ast.parse(f"Union[{union_parts}]", mode="eval").body
+            else:
+                # Multiple types -> Union[types]
+                union_parts = ", ".join(parts)
+                return ast.parse(f"Union[{union_parts}]", mode="eval").body
+
+        # Handle Optional syntax - convert to Union
+        if type_str.startswith("Optional["):
+            inner = type_str[len("Optional[") : -1]
+            return ast.parse(f"Union[{inner}, None]", mode="eval").body
+
+        # Parse normally
+        return ast.parse(type_str, mode="eval").body
+    except Exception as e:
+        print(f"Error parsing '{type_str}': {e}")
+        # Fallback: return as string literal
+        return ast.Constant(value=type_str)
+
+
+def extract_type_components(expr: ast.expr) -> Set[str]:
+    """Extract all type components from AST expression"""
+    components = set()
+
+    if isinstance(expr, ast.Name):
+        components.add(expr.id)
+    elif isinstance(expr, ast.Constant):
+        if expr.value is None:
+            components.add("None")
+        else:
+            components.add(str(expr.value))
+    elif isinstance(expr, ast.Subscript):
+        # Handle List[str], Dict[str, int], etc.
+        if isinstance(expr.value, ast.Name):
+            components.add(expr.value.id)
+        if isinstance(expr.slice, ast.Tuple):
+            for elt in expr.slice.elts:
+                components.update(extract_type_components(elt))
+        else:
+            components.update(extract_type_components(expr.slice))
+    elif isinstance(expr, ast.BinOp) and isinstance(expr.op, ast.BitOr):
+        # Handle | operator
+        components.update(extract_type_components(expr.left))
+        components.update(extract_type_components(expr.right))
+    elif isinstance(expr, ast.Call):
+        # Handle Union[...], Optional[...], etc.
+        if isinstance(expr.func, ast.Name) and expr.func.id in ["Union", "Optional"]:
+            for arg in expr.args:
+                components.update(extract_type_components(arg))
+
+    return components
+
+
+def normalize_type_components(components: Set[str]) -> Set[str]:
+    """Normalize type components for comparison"""
+    normalized = set()
+    for comp in components:
+        # Normalize built-in types
+        if comp == "List":
+            normalized.add("list")
+        elif comp == "Dict":
+            normalized.add("dict")
+        elif comp == "Set":
+            normalized.add("set")
+        elif comp == "Tuple":
+            normalized.add("tuple")
+        else:
+            normalized.add(comp)
+    return normalized
+
+
+def types_equivalent_semantic(type1: str, type2: str) -> bool:
+    """Compare types semantically using AST parsing"""
+    try:
+        # Parse both types to AST
+        ast1 = parse_type_to_ast(type1)
+        ast2 = parse_type_to_ast(type2)
+
+        # Extract components
+        components1 = extract_type_components(ast1)
+        components2 = extract_type_components(ast2)
+
+        # Normalize components
+        norm1 = normalize_type_components(components1)
+        norm2 = normalize_type_components(components2)
+
+        # Check for exact equality first
+        if norm1 == norm2:
+            return True
+
+        # Check for subtype relationships
+        # Case 1: type1 is Optional[type2] or type2 is Optional[type1]
+        # Case 2: type1 is Union[..., type2, ...] or type2 is Union[..., type1, ...]
+
+        # Remove None from both sets for comparison
+        set1_no_none = norm1 - {"None"}
+        set2_no_none = norm2 - {"None"}
+
+        # Check if one type is a subset of the other (subtype relationship)
+        if set1_no_none == set2_no_none:
+            # Same base types, one might be optional
+            return True
+        elif set1_no_none.issubset(set2_no_none) or set2_no_none.issubset(set1_no_none):
+            # One is a subset of the other (subtype relationship)
+            return True
+
+        return False
+    except Exception:
+        # Fallback to string comparison
+        return type1.strip() == type2.strip()
+
+
+def process_file(input_json, output_json):
+    with open(input_json, "r") as f:
+        data = json.load(f)
+    new_data = {}
+    for filename, funcs in data.items():
+        new_data[filename] = {}
+        for func_sig, params in funcs.items():
+            new_params = []
+            for param in params:
+                htype = param["Human"]
+                ltype = param["LLM"]
+                match = types_equivalent_semantic(htype, ltype)
+                new_param = dict(param)
+                new_param["semantic_match"] = match
+                new_params.append(new_param)
+            new_data[filename][func_sig] = new_params
+    with open(output_json, "w") as f:
+        json.dump(new_data, f, indent=2)
+
+
+def main():
+    # Create output folder if it doesn't exist
+    os.makedirs(OUTPUT_FOLDER, exist_ok=True)
+
+    for input_json, output_json in zip(INPUT_JSONS, OUTPUT_JSONS):
+        output_path = os.path.join(OUTPUT_FOLDER, output_json)
+        print(f"Processing {input_json} -> {output_path}")
+        process_file(input_json, output_path)
+
+
+if __name__ == "__main__":
+    main()
