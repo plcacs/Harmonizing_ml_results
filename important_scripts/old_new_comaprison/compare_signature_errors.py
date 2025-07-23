@@ -47,19 +47,19 @@ if __name__ == "__main__":
             "name": "o1-mini",
             "old_json": "o1-mini_code_similarity_old.json",
             "new_json": "o1-mini_code_similarity_new.json",
-            "output": "signature_comparison_results_o1-mini.json",
+            "output": "matched_group/signature_comparison_results_o1-mini.json",
         },
         {
             "name": "gpt4o",
             "old_json": "gpt40_code_similarity_old.json",
             "new_json": "gpt40_code_similarity_new.json",
-            "output": "signature_comparison_results_gpt4o.json",
+            "output": "matched_group/signature_comparison_results_gpt4o.json",
         },
         {
             "name": "deepseek",
             "old_json": "deepseek_code_similarity_old.json",
             "new_json": "deepseek_code_similarity_new.json",
-            "output": "signature_comparison_results_deepseek.json",
+            "output": "matched_group/signature_comparison_results_deepseek.json",
         },
     ]
     for model in models:
