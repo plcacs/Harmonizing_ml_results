@@ -2,36 +2,33 @@ import os
 import ast
 import json
 from collections import defaultdict
+import parso
 
 
 def extract_signature_features(file_path):
-    """Extracts function and class-based syntactic features from a Python file."""
+    """Extracts function and class-based syntactic features from a Python file, tolerant to syntax errors using parso."""
     try:
         with open(file_path, "r", encoding="utf-8") as f:
             content = f.read()
-        if "\x00" in content:
-            return None  # Skip files with null bytes
     except UnicodeDecodeError:
         try:
             with open(file_path, "r", encoding="latin-1") as f:
                 content = f.read()
-            if "\x00" in content:
-                return None  # Skip files with null bytes
         except Exception:
+            print(f"Error reading file {file_path}")
             return None  # Skip files that can't be decoded
 
     try:
-        tree = ast.parse(content, filename=file_path)
-    except SyntaxError:
-        return None  # Skip files with syntax errors
+        tree = parso.parse(content)
+    except Exception:
+        print(f"Parse error in file {file_path}")
+        return None  # Skip files that can't be parsed
 
     features = set()
-    for node in ast.walk(tree):
-        if isinstance(node, ast.FunctionDef):
-            features.add(f"func:{node.name}")
-            # features.add(f'args:{len(node.args.args)}')
-        elif isinstance(node, ast.ClassDef):
-            features.add(f"class:{node.name}")
+    for node in tree.iter_funcdefs():
+        features.add(f"func:{node.name.value}")
+    for node in tree.iter_classdefs():
+        features.add(f"class:{node.name.value}")
     return sorted(features)
 
 
@@ -77,9 +74,9 @@ directories = [
     "deep_seek",
 ]  # change this as needed for each directory
 json_output_path = [
-    "gpt40_code_similarity_new.json",
-    "o1-mini_code_similarity_new.json",
-    "deepseek_code_similarity_new.json",
+    "codesimilarty/gpt40_code_similarity_new.json",
+    "codesimilarty/o1-mini_code_similarity_new.json",
+    "codesimilarty/deepseek_code_similarity_new.json",
 ]
 
 

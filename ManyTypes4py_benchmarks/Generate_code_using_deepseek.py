@@ -6,10 +6,10 @@ from openai import OpenAI
 import hashlib
 
 client = OpenAI(api_key="sk-4088954d38254ee4b072d590b59b0e27", base_url="https://api.deepseek.com")
-PROCESSED_FILES_LOG = "processed_files_deep_seek.txt"
-JSON_FILE = "grouped_file_paths.json"
-OUTPUT_DIR = "deep_seek"
-TIMING_LOG = "deepseek_model_timings.json"
+PROCESSED_FILES_LOG = "Files_not_for_root_directories/processed_files_deep_seek_2nd_run.txt"
+JSON_FILE = "Files_not_for_root_directories/grouped_file_paths.json"
+OUTPUT_DIR = "deep_seek_2nd_run"
+TIMING_LOG = "Files_not_for_root_directories/deepseek_model_timings_2nd_run.json"
 
 def get_token_count(text: str, model: str = "deepseek-reasoner"):
     encoding = tiktoken.get_encoding("cl100k_base")  # Use a known encoding
@@ -141,17 +141,28 @@ def process_files_from_json():
         print(f"Error loading JSON: {e}")
         return
     
+    all_files = []
+    for id_ in range(1,19):
+        grouped_id = str(id_)
+        all_files.extend(file_map.get(grouped_id, []))
+    # Only count files that are not already processed
+    files_to_process = [f for f in all_files if f not in processed_files]
+    total_to_process = len(files_to_process)
     processed_count = 0
-    for id_ in range(2,19):
+    left_count = total_to_process
+    
+    for id_ in range(1,19):
         grouped_id=str(id_)
         for file_path in file_map[grouped_id]:
-            
             if file_path in processed_files:
                 print(f"Skipping already processed file: {file_path}")
                 continue
             process_file(file_path, grouped_id)
             processed_count += 1
-            time.sleep(30)
-        time.sleep(3600*2)
+            left_count -= 1
+            print(f"Processed: {processed_count}, Left: {left_count}")
+            time.sleep(5)
+        time.sleep(300)
+
 if __name__ == "__main__":
     process_files_from_json()

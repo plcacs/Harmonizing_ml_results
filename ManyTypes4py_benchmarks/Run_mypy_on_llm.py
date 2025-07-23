@@ -77,6 +77,6 @@ def run_mypy_and_save_results(directory, output_file):
 import time
 if __name__ == "__main__":
     start_time = time.time()
-    run_mypy_and_save_results("deep_seek", "mypy_results_deepseek_with_errors.json")
+    run_mypy_and_save_results("deep_seek_2nd_run", "mypy_results/mypy_results_deepseek_2nd_run_with_errors.json")
     end_time = time.time()
     print(f"Time taken: {end_time - start_time} seconds")
