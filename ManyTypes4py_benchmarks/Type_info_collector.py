@@ -98,6 +98,6 @@ def collect_annotations(root_dir: str, output_json: str):
 
 # Example usage
 # collect_annotations("/path/to/python/codebase", "output_annotations.json")
-collect_annotations("o1_mini", "Type_info_o1_mini_benchmarks.json")
-#collect_annotations("gpt4o", "Type_info_gpt4o_benchmarks.json")
-#collect_annotations("deep_seek", "Type_info_deep_seek_benchmarks.json")
+collect_annotations("o1_mini_2nd_run", "Type_info_o1_mini_2nd_run_benchmarks.json")
+collect_annotations("gpt4o_2nd_run", "Type_info_gpt4o_2nd_run_benchmarks.json")
+collect_annotations("deep_seek_2nd_run", "Type_info_deep_seek_2nd_run_benchmarks.json")

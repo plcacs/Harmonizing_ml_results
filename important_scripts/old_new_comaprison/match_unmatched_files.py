@@ -2,24 +2,28 @@ import json
 import re
 from collections import defaultdict
 
+
 def extract_base(filename):
     # Remove .py extension anywhere
-    name = filename.replace('.py', '')
+    name = filename.replace(".py", "")
     # Remove model tags and trailing hashes (e.g., _gpt4_xxx, _7dee21, etc.)
-    name = re.sub(r'(_deepseek_\w+|_[0-9a-f]{6,}|_[a-z]{4,}\d*)$', '', name)
+    name = re.sub(r"(_deepseek_\w+|_[0-9a-f]{6,}|_[a-z]{4,}\d*)$", "", name)
     # Remove any remaining trailing underscores
-    name = name.rstrip('_')
+    name = name.rstrip("_")
     return name
+
 
 def jaccard_similarity(set1, set2):
     intersection = len(set1 & set2)
     union = len(set1 | set2)
     return intersection / union if union else 0
 
+
 def load_unmatched(path):
     with open(path) as f:
         data = json.load(f)
-    return data['unmatched_old'], data['unmatched_new']
+    return data["unmatched_old"], data["unmatched_new"]
+
 
 def parse_sig_map(sig_map):
     # sig_map: {signature_str: [file1, file2, ...]}
@@ -30,9 +34,10 @@ def parse_sig_map(sig_map):
             file_to_sig[f] = sig_set
     return file_to_sig
 
+
 def main():
-    input_path = 'signature_unmatched_results_deepseek.json'
-    output_path = 'matched_unmatched_deepseek.json'
+    input_path = "signature_unmatched_results_deepseek.json"
+    output_path = "matched_unmatched_deepseek.json"
     unmatched_old, unmatched_new = load_unmatched(input_path)
     old_files = parse_sig_map(unmatched_old)
     new_files = parse_sig_map(unmatched_new)
@@ -63,9 +68,12 @@ def main():
                     best_score = score
                     best = cand
             matches[old_f] = best
-    with open(output_path, 'w') as f:
-        json.dump({'matches': matches, 'unmatched_old': unmatched}, f, indent=2)
-    print(f"Done. Matches: {len(matches)}, Unmatched: {len(unmatched)}. Output: {output_path}")
+    with open(output_path, "w") as f:
+        json.dump({"matches": matches, "unmatched_old": unmatched}, f, indent=2)
+    print(
+        f"Done. Matches: {len(matches)}, Unmatched: {len(unmatched)}. Output: {output_path}"
+    )
 
-if __name__ == '__main__':
-    main() 
+
+if __name__ == "__main__":
+    main()

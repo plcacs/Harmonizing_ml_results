@@ -1,0 +1,23 @@
+Lets say I want to simpyfy the Table_1_copy.py. Currently its too much code. 
+I would like to share my thought process then you will decide:
+1.There are basically two run old and new. 
+2. Mypy results for old run: mypy_results_deepseek_old_with_errors_with_types.json, mypy results for old run untype 
+version: mypy_results_deepseek_old_with_errors_no_types.json
+3. Mypy results for new run: mypy_results_deepseek_with_errors.json, my results for new run 
+untyped: mypy_results_untyped_with_errors.json
+4. Common file info you can get it from: signature_comparison_results_deepseek.json.
+
+What i want:
+1. performormance of the common files(they must be same for old and new). Information i want:
+How many common files. You can get this Information from signature_comparison_results_deepseek.json
+2. There would be two section of results:
+ a. In the first section i wll have the result of old_common files.
+ b. In the second section i wll have the result of new_common files.
+ c.  What i want as results: 
+ | Processed by LLM | Not Processed | Both Failures | Both Success | LLM-Only Failures | LLM-Only Success | % Success |
+ d. How to calculate % Success you can take a look at Table_1_copy.py
+
+ Write a new script for it.
+
+
+ 
