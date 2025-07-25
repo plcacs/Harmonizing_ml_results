@@ -12,7 +12,7 @@ if not api_key:
     raise EnvironmentError("ANTHROPIC_API_KEY not found in .env")
 
 # Initialize the Anthropic client
-client = anthropic.Anthropic(api_key="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")
+client = anthropic.Anthropic(api_key=api_key)
 
 # List available models
 models = client.models.list()
