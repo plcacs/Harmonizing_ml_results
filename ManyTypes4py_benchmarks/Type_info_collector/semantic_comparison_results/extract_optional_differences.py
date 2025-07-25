@@ -42,7 +42,8 @@ def extract_optional_differences(data: Dict) -> List[Tuple]:
             for param in params:
                 human_type = param.get("Human", "")
                 llm_type = param.get("LLM", "")
-                param_name = param.get("parameter", "")
+                param_name = param.get("param_name", "")
+                category = param.get("category", "")
                 
                 # Check if either human or LLM has optional type
                 human_optional = has_optional_type(human_type)
@@ -52,10 +53,13 @@ def extract_optional_differences(data: Dict) -> List[Tuple]:
                     # Extract function and class from function signature
                     func_class = func_sig
                     
+                    # Create parameter name/return field with category information
+                    param_return_info = f"{category}:{param_name}" if param_name else category
+                    
                     differences.append((
                         filename,
                         func_class,
-                        param_name,
+                        param_return_info,
                         human_type,
                         llm_type
                     ))
