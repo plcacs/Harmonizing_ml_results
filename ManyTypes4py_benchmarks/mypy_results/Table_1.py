@@ -213,15 +213,15 @@ if __name__ == "__main__":
     analyze_files(
         "gpt4o",
         "mypy_results_untyped_with_errors.json",
-        "mypy_results_gpt4o_with_errors.json",
+        "mypy_results_gpt4o_2nd_run_with_errors.json",
     )
     analyze_files(
         "o1-mini",
         "mypy_results_untyped_with_errors.json",
-        "mypy_results_o1_mini_with_errors.json",
+        "mypy_results_o1_mini_2nd_run_with_errors.json",
     )
     analyze_files(
         "deepseek",
         "mypy_results_untyped_with_errors.json",
-        "mypy_results_deepseek_with_errors.json",
+        "mypy_results_deepseek_2nd_run_with_errors.json",
     )

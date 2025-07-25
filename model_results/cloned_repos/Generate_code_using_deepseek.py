@@ -10,7 +10,7 @@ PROCESSED_FILES_LOG = "processed_files_deep_seek.txt"
 JSON_FILE = "filtered_python_files.json"
 OUTPUT_DIR = "deep_seek2"
 TIMING_LOG = "deepseek_model_timings2.json"
-MAX_FILES = 1100
+MAX_FILES = 1200
 
 def get_token_count(text: str, model: str = "deepseek-reasoner"):
     encoding = tiktoken.get_encoding("cl100k_base")  # Use a known encoding
