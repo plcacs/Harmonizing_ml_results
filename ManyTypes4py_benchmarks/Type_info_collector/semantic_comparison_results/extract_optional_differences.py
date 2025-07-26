@@ -33,8 +33,69 @@ def has_optional_type(type_str: str) -> bool:
     return False
 
 
+def normalize_optional_type(type_str: str) -> str:
+    """Normalize optional type to a standard form for comparison"""
+    if not type_str or type_str.strip() == "":
+        return ""
+    
+    type_str = type_str.strip("'\"")
+    
+    # Handle Optional[T] -> T | None
+    if type_str.startswith("Optional[") and type_str.endswith("]"):
+        inner_type = type_str[9:-1]  # Remove "Optional[" and "]"
+        return f"{inner_type} | None"
+    
+    # Handle Union[T, None] -> T | None
+    if type_str.startswith("Union[") and type_str.endswith("]"):
+        inner_content = type_str[6:-1]  # Remove "Union[" and "]"
+        parts = [part.strip() for part in inner_content.split(",")]
+        if len(parts) == 2 and "None" in parts:
+            non_none_part = parts[0] if parts[1] == "None" else parts[1]
+            return f"{non_none_part} | None"
+    
+    return type_str
+
+
+def are_semantically_equivalent(type1: str, type2: str) -> bool:
+    """Check if two types are semantically equivalent (differing only in Optional syntax)"""
+    if not type1 or not type2:
+        return type1 == type2
+    
+    # Normalize both types
+    norm1 = normalize_optional_type(type1)
+    norm2 = normalize_optional_type(type2)
+    
+    # Check if normalized forms are equal
+    return norm1 == norm2
+
+
+def get_base_type(type_str: str) -> str:
+    """Extract the base type from an optional type (remove Optional, Union, | None)"""
+    if not type_str or type_str.strip() == "":
+        return ""
+    
+    type_str = type_str.strip("'\"")
+    
+    # Handle Optional[T] -> T
+    if type_str.startswith("Optional[") and type_str.endswith("]"):
+        return type_str[9:-1]  # Remove "Optional[" and "]"
+    
+    # Handle Union[T, None] -> T
+    if type_str.startswith("Union[") and type_str.endswith("]"):
+        inner_content = type_str[6:-1]  # Remove "Union[" and "]"
+        parts = [part.strip() for part in inner_content.split(",")]
+        if len(parts) == 2 and "None" in parts:
+            return parts[0] if parts[1] == "None" else parts[1]
+    
+    # Handle T | None -> T
+    if type_str.endswith(" | None"):
+        return type_str[:-7]  # Remove " | None"
+    
+    return type_str
+
+
 def extract_optional_differences(data: Dict) -> List[Tuple]:
-    """Extract parameters where either human or LLM has optional type"""
+    """Extract parameters where one type is optional and the other is not, with different base types"""
     differences = []
     
     for filename, funcs in data.items():
@@ -49,20 +110,27 @@ def extract_optional_differences(data: Dict) -> List[Tuple]:
                 human_optional = has_optional_type(human_type)
                 llm_optional = has_optional_type(llm_type)
                 
-                if human_optional or llm_optional:
-                    # Extract function and class from function signature
-                    func_class = func_sig
+                # Only include cases where one is optional and the other is not
+                if human_optional != llm_optional:
+                    # Get base types
+                    human_base = get_base_type(human_type)
+                    llm_base = get_base_type(llm_type)
                     
-                    # Create parameter name/return field with category information
-                    param_return_info = f"{category}:{param_name}" if param_name else category
-                    
-                    differences.append((
-                        filename,
-                        func_class,
-                        param_return_info,
-                        human_type,
-                        llm_type
-                    ))
+                    # Only include if base types are different
+                    if human_base != llm_base:
+                        # Extract function and class from function signature
+                        func_class = func_sig
+                        
+                        # Create parameter name/return field with category information
+                        param_return_info = f"{category}:{param_name}" if param_name else category
+                        
+                        differences.append((
+                            filename,
+                            func_class,
+                            param_return_info,
+                            human_type,
+                            llm_type
+                        ))
     
     return differences
 
