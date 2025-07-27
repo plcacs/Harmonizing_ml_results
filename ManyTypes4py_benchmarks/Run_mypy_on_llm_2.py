@@ -77,6 +77,6 @@ def run_mypy_and_save_results(directory, output_file):
 import time
 if __name__ == "__main__":
     start_time = time.time()
-    run_mypy_and_save_results("gpt4o_2nd_run", "mypy_results/mypy_results_gpt4o_2nd_run_with_errors.json")
+    run_mypy_and_save_results("original_files", "mypy_results/mypy_results_original_files_with_errors.json")
     end_time = time.time()
     print(f"Time taken: {end_time - start_time} seconds")
