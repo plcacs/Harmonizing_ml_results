@@ -70,6 +70,7 @@ def generate_type_annotated_code(code: str) -> str:
                 print(f"Error generating type-annotated code: {e}")
                 return code, 2
     print("Max retries reached. Skipping file.")
+    
     return code, 2
 
 def process_file(file_path, grouped_id):
@@ -86,6 +87,7 @@ def process_file(file_path, grouped_id):
         return
     start_time = time.time()
     modified_code, isSuccess = generate_type_annotated_code(code)
+   
     end_time = time.time()
     log_timing(file_path, end_time - start_time)
     if isSuccess == 0:
@@ -94,10 +96,21 @@ def process_file(file_path, grouped_id):
             f.write(file_path + "\n")
         return
     content = modified_code.content if hasattr(modified_code, 'content') else modified_code
-    try:
-        code_block = content.split('```python\n')[1].split('```')[0]
-    except IndexError:
-        print(f"Skipping file {file_path} due to unexpected format")
+    
+    # Handle o3-mini response format - it returns code directly without markdown blocks
+    if isinstance(content, str):
+        # Check if content contains markdown code blocks
+        if '```python' in content:
+            try:
+                code_block = content.split('```python\n')[1].split('```')[0]
+            except IndexError:
+                # If markdown parsing fails, use the content as-is
+                code_block = content
+        else:
+            # o3-mini returns code directly, use as-is
+            code_block = content
+    else:
+        print(f"Skipping file {file_path} due to unexpected response format")
         return
     new_file_path = os.path.join(OUTPUT_DIR, grouped_id)
     if not os.path.exists(new_file_path):
