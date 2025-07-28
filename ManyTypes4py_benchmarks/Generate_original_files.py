@@ -90,21 +90,23 @@ def process_py_file(file_path):
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", SyntaxWarning)
             tree = ast.parse(code, filename=file_path)
+        # Generate untyped version to compute hash (same as untyped script)
         transformer = RemoveTypeHints()
-        tree = transformer.visit(tree)
-        ast.fix_missing_locations(tree)
+        tree_untyped = transformer.visit(ast.parse(code, filename=file_path))
+        ast.fix_missing_locations(tree_untyped)
         try:
-            untyped_code = ast.unparse(tree)
+            untyped_code = ast.unparse(tree_untyped)
         except AttributeError:
             import astunparse
-            untyped_code = astunparse.unparse(tree)
-        # Compute a 6-digit hash suffix from content
+            untyped_code = astunparse.unparse(tree_untyped)
+        
+        # Compute hash from untyped version to ensure same filenames
         base_name = os.path.splitext(os.path.basename(file_path))[0]
         hash6 = hashlib.md5(untyped_code.encode('utf-8')).hexdigest()[:6]
         new_filename = f"{base_name}_{hash6}.py"
         output_path = os.path.join(UN_TYPED_DIR, new_filename)
         with open(output_path, "w", encoding="utf-8") as outf:
-            outf.write(code)
+            outf.write(code)  # Write original code with type annotations
         return output_path
     except SyntaxError as e:
         print(f"Syntax error in '{file_path}': {e}")
@@ -115,7 +117,7 @@ def process_py_file(file_path):
 
 
 def traverse_and_process():
-    with open("filtered_python_files.json", "r") as f:
+    with open("Files_not_for_root_directories/filtered_python_files.json", "r") as f:
         data = json.load(f)
     ordered_categories = ["50+", "30-50", "20-30", "10-20", "05-10"]
     total_files = set()
