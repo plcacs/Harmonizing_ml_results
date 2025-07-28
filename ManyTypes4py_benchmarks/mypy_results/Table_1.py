@@ -210,7 +210,7 @@ def analyze_files(model_name, base_file, model_file):
 
 
 if __name__ == "__main__":
-    analyze_files(
+    """analyze_files(
         "gpt4o",
         "mypy_results_untyped_with_errors.json",
         "mypy_results_gpt4o_2nd_run_with_errors.json",
@@ -224,4 +224,9 @@ if __name__ == "__main__":
         "deepseek",
         "mypy_results_untyped_with_errors.json",
         "mypy_results_deepseek_2nd_run_with_errors.json",
+    )"""
+    analyze_files(
+        "original_files",
+        "mypy_results_untyped_with_errors.json",
+        "mypy_results_original_files_with_errors.json",
     )
