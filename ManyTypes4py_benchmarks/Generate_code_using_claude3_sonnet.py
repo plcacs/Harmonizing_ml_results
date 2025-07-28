@@ -148,7 +148,7 @@ def process_files_from_json():
     total_to_process = len(files_to_process)
     processed_count = 0
     left_count = total_to_process
-    for id_ in range(1, 19):
+    for id_ in range(14, 19):
         grouped_id = str(id_)
         for file_path in file_map[grouped_id]:
             if file_path in processed_files:
