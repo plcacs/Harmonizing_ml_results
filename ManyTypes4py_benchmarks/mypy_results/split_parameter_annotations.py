@@ -100,6 +100,7 @@ def print_summary(results: Dict[str, Dict[str, Any]]):
     print(f"Files WITH parameter annotations: {with_annotations_count} ({with_annotations_count/total_count*100:.2f}%)")
     
     # Show some examples from each category
+    """
     if results['no_annotations']:
         print(f"\nSample files with NO parameter annotations:")
         for i, filename in enumerate(list(results['no_annotations'].keys())[:5], 1):
@@ -114,7 +115,7 @@ def print_summary(results: Dict[str, Dict[str, Any]]):
             stats = results['with_annotations'][filename]['stats']
             print(f"  {i}. {filename} (total_params: {stats['total_parameters']}, annotated: {stats['parameters_with_annotations']})")
         if len(results['with_annotations']) > 5:
-            print(f"  ... and {len(results['with_annotations']) - 5} more")
+            print(f"  ... and {len(results['with_annotations']) - 5} more")"""
 
 def main():
     """
@@ -122,7 +123,7 @@ def main():
     """
     
     # Input file path
-    input_file = "mypy_results_original_files_with_errors.json"
+    input_file = "mypy_outputs/mypy_results_original_files_with_errors.json"
     
     # Check if input file exists
     if not os.path.exists(input_file):

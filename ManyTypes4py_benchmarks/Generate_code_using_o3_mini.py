@@ -9,11 +9,11 @@ import hashlib
 load_dotenv()  # Load environment variables from .env
 
 client = OpenAI()
-PROCESSED_FILES_LOG = "Files_not_for_root_directories/processed_files_o3_mini_1st_run.txt"
+PROCESSED_FILES_LOG = "Files_not_for_root_directories/processed_files_o3_mini_2nd_run.txt"
 JSON_FILE = "Files_not_for_root_directories/grouped_file_paths.json"
-OUTPUT_DIR = "o3_mini_1st_run"
-TIMING_LOG = "Files_not_for_root_directories/o3_mini_model_timings_1st_run.json"
-UNPROCESSED_FILES = "Files_not_for_root_directories/unprocessed_files_o3_mini_1st_run.txt"
+OUTPUT_DIR = "o3_mini_2nd_run"
+TIMING_LOG = "Files_not_for_root_directories/o3_mini_model_timings_2nd_run.json"
+UNPROCESSED_FILES = "Files_not_for_root_directories/unprocessed_files_o3_mini_2nd_run.txt"
 
 def get_token_count(text: str, model: str = "o3-mini") -> int:
     try:

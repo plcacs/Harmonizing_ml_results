@@ -8,11 +8,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 client = anthropic.Anthropic()  # Uses ANTHROPIC_API_KEY from environment
-PROCESSED_FILES_LOG = "Files_not_for_root_directories/processed_files_claude3_sonnet.txt"
+PROCESSED_FILES_LOG = "Files_not_for_root_directories/processed_files_claude3_sonnet_2nd_run.txt"
 JSON_FILE = "Files_not_for_root_directories/grouped_file_paths.json"
-OUTPUT_DIR = "claude3_sonnet_1st_run"
-TIMING_LOG = "Files_not_for_root_directories/claude3_sonnet_model_timings_1st_run.json"
-UNPROCESSED_FILES = "Files_not_for_root_directories/unprocessed_files_claude3_sonnet.txt"
+OUTPUT_DIR = "claude3_sonnet_2nd_run"
+TIMING_LOG = "Files_not_for_root_directories/claude3_sonnet_model_timings_2nd_run.json"
+UNPROCESSED_FILES = "Files_not_for_root_directories/unprocessed_files_claude3_sonnet_2nd_run.txt"
 
 MODEL_NAME = "claude-3-7-sonnet-latest"  # Anthropic Claude 3 Sonnet
 
