@@ -353,7 +353,13 @@ def update_field_forward_refs(field: 'ModelField', globalns: Dict[str, Any], loc
     if field.discriminator_key is not None:
         field.prepare_discriminated_union_sub_fields()
 
-def update_model_forward_refs(model: Type[Any], fields: List['ModelField'], json_encoders: Dict[Any, Any], localns: Optional[Dict[str, Any]], exc_to_suppress: Tuple[Type[Exception], ...] = ()) -> None:
+def update_model_forward_refs(
+    model: Type[Any], 
+    fields: List['ModelField'], 
+    json_encoders: Dict[Any, Any], 
+    localns: Optional[Dict[str, Any]], 
+    exc_to_suppress: Tuple[Type[Exception], ...] = ()
+) -> None:
     """
     Try to update model fields ForwardRefs based on model and localns.
     """

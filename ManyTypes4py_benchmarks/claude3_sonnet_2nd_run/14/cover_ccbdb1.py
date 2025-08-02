@@ -11,19 +11,19 @@ from aiopvapi.resources.shade import BaseShade, ShadePosition
 from homeassistant.components.cover import ATTR_POSITION, ATTR_TILT_POSITION, CoverDeviceClass, CoverEntity, CoverEntityFeature
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import CALLBACK_TYPE, HomeAssistant, callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_call_later
 from .const import STATE_ATTRIBUTE_ROOM_NAME
 from .coordinator import PowerviewShadeUpdateCoordinator
 from .entity import ShadeEntity
-from .model import PowerviewConfigEntry, PowerviewDeviceInfo, PowerviewShadeData, Room
+from .model import PowerviewConfigEntry, PowerviewDeviceInfo, PowerviewShadeData
 _LOGGER = logging.getLogger(__name__)
 TRANSITION_COMPLETE_DURATION: int = 40
 PARALLEL_UPDATES: int = 1
 RESYNC_DELAY: int = 60
 SCAN_INTERVAL: timedelta = timedelta(minutes=10)
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None:
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None:
     """Set up the hunter douglas shades."""
     pv_entry: PowerviewConfigEntry = entry.runtime_data
     coordinator: PowerviewShadeUpdateCoordinator = pv_entry.coordinator

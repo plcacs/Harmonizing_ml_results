@@ -153,8 +153,7 @@ class NumpyExtensionArray(OpsMixin, NDArrayBackedExtensionArray, ObjectStringArr
         return type(self)._simple_new(out_data, dtype=self.dtype)
 
     def interpolate(self, *, method: str, axis: AxisInt, index: Index, limit: Optional[int], 
-                   limit_direction: Optional[str], limit_area: Optional[str], 
-                   copy: bool, **kwargs: Any) -> NumpyExtensionArray:
+                   limit_direction: str, limit_area: Optional[str], copy: bool, **kwargs: Any) -> NumpyExtensionArray:
         """
         See NDFrame.interpolate.__doc__.
         """
@@ -164,7 +163,8 @@ class NumpyExtensionArray(OpsMixin, NDArrayBackedExtensionArray, ObjectStringArr
             out_data = self._ndarray
         else:
             out_data = self._ndarray.copy()
-        missing.interpolate_2d_inplace(out_data, method=method, axis=axis, index=index, limit=limit, limit_direction=limit_direction, limit_area=limit_area, **kwargs)
+        missing.interpolate_2d_inplace(out_data, method=method, axis=axis, index=index, limit=limit, 
+                                      limit_direction=limit_direction, limit_area=limit_area, **kwargs)
         if not copy:
             return self
         return type(self)._simple_new(out_data, dtype=self.dtype)
@@ -204,15 +204,13 @@ class NumpyExtensionArray(OpsMixin, NDArrayBackedExtensionArray, ObjectStringArr
         return self._wrap_reduction_result(axis, result)
 
     def mean(self, *, axis: Optional[AxisInt] = None, dtype: Optional[NpDtype] = None, 
-            out: Optional[np.ndarray] = None, keepdims: bool = False, 
-            skipna: bool = True) -> Union[Scalar, np.ndarray]:
+            out: Optional[np.ndarray] = None, keepdims: bool = False, skipna: bool = True) -> Union[Scalar, np.ndarray]:
         nv.validate_mean((), {'dtype': dtype, 'out': out, 'keepdims': keepdims})
         result = nanops.nanmean(self._ndarray, axis=axis, skipna=skipna)
         return self._wrap_reduction_result(axis, result)
 
     def median(self, *, axis: Optional[AxisInt] = None, out: Optional[np.ndarray] = None, 
-              overwrite_input: bool = False, keepdims: bool = False, 
-              skipna: bool = True) -> Union[Scalar, np.ndarray]:
+              overwrite_input: bool = False, keepdims: bool = False, skipna: bool = True) -> Union[Scalar, np.ndarray]:
         nv.validate_median((), {'out': out, 'overwrite_input': overwrite_input, 'keepdims': keepdims})
         result = nanops.nanmedian(self._ndarray, axis=axis, skipna=skipna)
         return self._wrap_reduction_result(axis, result)
@@ -239,15 +237,13 @@ class NumpyExtensionArray(OpsMixin, NDArrayBackedExtensionArray, ObjectStringArr
         return self._wrap_reduction_result(axis, result)
 
     def kurt(self, *, axis: Optional[AxisInt] = None, dtype: Optional[NpDtype] = None, 
-            out: Optional[np.ndarray] = None, keepdims: bool = False, 
-            skipna: bool = True) -> Union[Scalar, np.ndarray]:
+            out: Optional[np.ndarray] = None, keepdims: bool = False, skipna: bool = True) -> Union[Scalar, np.ndarray]:
         nv.validate_stat_ddof_func((), {'dtype': dtype, 'out': out, 'keepdims': keepdims}, fname='kurt')
         result = nanops.nankurt(self._ndarray, axis=axis, skipna=skipna)
         return self._wrap_reduction_result(axis, result)
 
     def skew(self, *, axis: Optional[AxisInt] = None, dtype: Optional[NpDtype] = None, 
-            out: Optional[np.ndarray] = None, keepdims: bool = False, 
-            skipna: bool = True) -> Union[Scalar, np.ndarray]:
+            out: Optional[np.ndarray] = None, keepdims: bool = False, skipna: bool = True) -> Union[Scalar, np.ndarray]:
         nv.validate_stat_ddof_func((), {'dtype': dtype, 'out': out, 'keepdims': keepdims}, fname='skew')
         result = nanops.nanskew(self._ndarray, axis=axis, skipna=skipna)
         return self._wrap_reduction_result(axis, result)

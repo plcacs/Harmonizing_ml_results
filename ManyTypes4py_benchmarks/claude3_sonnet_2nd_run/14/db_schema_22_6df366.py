@@ -127,9 +127,9 @@ class StatisticResult(TypedDict):
     last_reset: Optional[datetime]
     state: Optional[float]
     sum: Optional[float]
+    mean: Optional[float]
     min: Optional[float]
     max: Optional[float]
-    mean: Optional[float]
 
 class StatisticDataBase(TypedDict):
     """Mandatory fields for statistic data class."""
@@ -137,12 +137,12 @@ class StatisticDataBase(TypedDict):
 
 class StatisticData(StatisticDataBase, total=False):
     """Statistic data class."""
+    mean: float
+    min: float
+    max: float
     last_reset: Optional[datetime]
-    state: Optional[float]
-    sum: Optional[float]
-    min: Optional[float]
-    max: Optional[float]
-    mean: Optional[float]
+    state: float
+    sum: float
 
 class StatisticsBase:
     """Statistics base class."""

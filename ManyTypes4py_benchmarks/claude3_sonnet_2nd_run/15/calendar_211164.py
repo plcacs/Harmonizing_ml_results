@@ -108,7 +108,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
             else:
                 request_template: SyncEventsRequest = SyncEventsRequest(calendar_id=calendar_id, start_time=dt_util.now() + SYNC_EVENT_MIN_TIME)
                 sync: CalendarEventSyncManager = CalendarEventSyncManager(calendar_service, store=ScopedCalendarStore(store, unique_id or entity_description.device_id), request_template=request_template)
-                coordinator = CalendarSyncUpdateCoordinator(hass, config_entry, sync, entity_description.name or entity_description.key)
+                coordinator: Union[CalendarQueryUpdateCoordinator, CalendarSyncUpdateCoordinator] = CalendarSyncUpdateCoordinator(hass, config_entry, sync, entity_description.name or entity_description.key)
             entities.append(GoogleCalendarEntity(coordinator, calendar_id, entity_description, unique_id))
     async_add_entities(entities)
     if calendars and new_calendars:
@@ -137,7 +137,7 @@ class GoogleCalendarEntity(CoordinatorEntity[CalendarSyncUpdateCoordinator | Cal
         self._offset: Optional[str] = entity_description.offset
         self._event: Optional[CalendarEvent] = None
         if entity_description.entity_id:
-            self.entity_id = entity_description.entity_id
+            self.entity_id: str = entity_description.entity_id
         self._attr_unique_id: Optional[str] = unique_id
         if not entity_description.read_only:
             self._attr_supported_features: CalendarEntityFeature = CalendarEntityFeature.CREATE_EVENT | CalendarEntityFeature.DELETE_EVENT
@@ -199,8 +199,8 @@ class GoogleCalendarEntity(CoordinatorEntity[CalendarSyncUpdateCoordinator | Cal
             start: DateOrDatetime = DateOrDatetime(date_time=dt_util.as_local(dtstart), timezone=str(dt_util.get_default_time_zone()))
             end: DateOrDatetime = DateOrDatetime(date_time=dt_util.as_local(dtend), timezone=str(dt_util.get_default_time_zone()))
         else:
-            start = DateOrDatetime(date=dtstart)
-            end = DateOrDatetime(date=dtend)
+            start: DateOrDatetime = DateOrDatetime(date=dtstart)
+            end: DateOrDatetime = DateOrDatetime(date=dtend)
         event: Event = Event.parse_obj({EVENT_SUMMARY: kwargs[EVENT_SUMMARY], 'start': start, 'end': end, EVENT_DESCRIPTION: kwargs.get(EVENT_DESCRIPTION)})
         if (location := kwargs.get(EVENT_LOCATION)):
             event.location = location
@@ -240,9 +240,9 @@ async def async_create_event(entity: GoogleCalendarEntity, call: ServiceCall) ->
             start = DateOrDatetime(date=start_in)
             end = DateOrDatetime(date=end_in)
         elif EVENT_IN_WEEKS in call.data[EVENT_IN]:
-            now = datetime.now()
-            start_in = now + timedelta(weeks=call.data[EVENT_IN][EVENT_IN_WEEKS])
-            end_in = start_in + timedelta(days=1)
+            now: datetime = datetime.now()
+            start_in: datetime = now + timedelta(weeks=call.data[EVENT_IN][EVENT_IN_WEEKS])
+            end_in: datetime = start_in + timedelta(days=1)
             start = DateOrDatetime(date=start_in)
             end = DateOrDatetime(date=end_in)
     elif EVENT_START_DATE in call.data and EVENT_END_DATE in call.data:

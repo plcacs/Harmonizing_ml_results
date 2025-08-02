@@ -1,5 +1,5 @@
 import os
-from typing import Dict, List, Any, Optional, Tuple
+from typing import Dict, List, Any, Iterator, Optional
 import pytest
 import yaml
 from dbt.tests.util import run_dbt, run_dbt_and_capture
@@ -8,7 +8,7 @@ from tests.functional.sources.fixtures import models_descendant_model_sql, model
 class BaseSourcesTest:
 
     @pytest.fixture(scope='class', autouse=True)
-    def setEnvVars(self) -> None:
+    def setEnvVars(self) -> Iterator[None]:
         os.environ['DBT_TEST_SCHEMA_NAME_VARIABLE'] = 'test_run_schema'
         yield
         del os.environ['DBT_TEST_SCHEMA_NAME_VARIABLE']
@@ -33,6 +33,6 @@ class BaseSourcesTest:
         self._extend_cmd_with_vars(project, cmd)
         return run_dbt(cmd, *args, **kwargs)
 
-    def run_dbt_and_capture_with_vars(self, project: Any, cmd: List[str], *args: Any, **kwargs: Any) -> Tuple[int, str, str]:
+    def run_dbt_and_capture_with_vars(self, project: Any, cmd: List[str], *args: Any, **kwargs: Any) -> Any:
         self._extend_cmd_with_vars(project, cmd)
         return run_dbt_and_capture(cmd, *args, **kwargs)

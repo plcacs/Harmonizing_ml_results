@@ -56,7 +56,7 @@ class RpcNumber(ShellyRpcAttributeEntity, NumberEntity):
             self._attr_mode = description.mode_fn(coordinator.device.config[key])
 
     @property
-    def native_value(self) -> float | None:
+    def native_value(self) -> Optional[float]:
         """Return value of number."""
         if TYPE_CHECKING:
             assert isinstance(self.attribute_value, float | None)

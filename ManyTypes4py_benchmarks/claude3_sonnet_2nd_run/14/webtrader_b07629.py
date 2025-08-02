@@ -45,7 +45,10 @@ class WebTrader(metaclass=abc.ABCMeta):
         :param config_file 登录数据文件，若无则选择参数登录模式
         :param user: 各家券商的账号
         :param password: 密码, 券商为加密后的密码
-        :param kwargs: 其他参数
+        :param cookies: [雪球登录需要]雪球登录需要设置对应的 cookies
+        :param portfolio_code: [雪球登录需要]组合代码
+        :param portfolio_market: [雪球登录需要]交易市场，
+            可选['cn', 'us', 'hk'] 默认 'cn'
         """
         if config_file is not None:
             self.read_config(config_file)
@@ -211,14 +214,14 @@ class WebTrader(metaclass=abc.ABCMeta):
         :param data: 需要判断是否包含错误信息的数据"""
         return data
 
-    def format_response_data_type(self, response_data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    def format_response_data_type(self, response_data: Union[List[Dict[str, Any]], Any]) -> Any:
         """格式化返回的值为正确的类型
         :param response_data: 返回的数据
         """
         if isinstance(response_data, list) and (not isinstance(response_data, str)):
             return response_data
-        int_match_str: str = '|'.join(self.config['response_format']['int'])
-        float_match_str: str = '|'.join(self.config['response_format']['float'])
+        int_match_str = '|'.join(self.config['response_format']['int'])
+        float_match_str = '|'.join(self.config['response_format']['float'])
         for item in response_data:
             for key in item:
                 try:

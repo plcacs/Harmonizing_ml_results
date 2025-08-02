@@ -61,10 +61,10 @@ async def setup_lgnetcast(hass: HomeAssistant, unique_id: str = UNIQUE_ID) -> Mo
     """Initialize lg netcast and media_player for tests."""
     config_entry = MockConfigEntry(domain=DOMAIN, 
                                   data={CONF_HOST: IP_ADDRESS, 
-                                       CONF_ACCESS_TOKEN: FAKE_PIN, 
-                                       CONF_NAME: MODEL_NAME, 
-                                       CONF_MODEL: MODEL_NAME, 
-                                       CONF_ID: unique_id}, 
+                                        CONF_ACCESS_TOKEN: FAKE_PIN, 
+                                        CONF_NAME: MODEL_NAME, 
+                                        CONF_MODEL: MODEL_NAME, 
+                                        CONF_ID: unique_id}, 
                                   title=MODEL_NAME, 
                                   unique_id=unique_id)
     config_entry.add_to_hass(hass)

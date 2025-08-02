@@ -5,7 +5,7 @@ import shlex
 from collections.abc import Mapping, Sequence
 from re import Match, Pattern
 from textwrap import dedent
-from typing import Any, Dict, List, Optional, Set, Tuple, Union, cast
+from typing import Any, Dict, List, Optional, Union, cast
 import markdown
 from django.conf import settings
 from markdown.extensions import Extension
@@ -60,7 +60,7 @@ def render_python_code_example(function: str, admin_config: bool = False, **kwar
     else:
         config_string = PYTHON_CLIENT_CONFIG
     endpoint, endpoint_method = function.split(':')
-    extra_imports: Optional[Set[str]] = check_additional_imports(endpoint, endpoint_method)
+    extra_imports = check_additional_imports(endpoint, endpoint_method)
     if extra_imports:
         extra_imports = sorted([*extra_imports, 'zulip'])
         extra_imports = [f'import {each_import}' for each_import in extra_imports]

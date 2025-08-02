@@ -1,7 +1,7 @@
 import io
 import os
 from pathlib import Path, PurePosixPath, PureWindowsPath
-from typing import Any, Dict, List, Optional, Union, BinaryIO, Callable, Literal
+from typing import Any, Dict, List, Optional, Union, BinaryIO, Callable, Tuple
 
 import boto3
 import pytest
@@ -27,7 +27,7 @@ def client_parameters(request: pytest.FixtureRequest) -> AwsClientParameters:
     return client_parameters
 
 @pytest.fixture
-def bucket(s3_mock: None, request: pytest.FixtureRequest) -> boto3.resources.base.ServiceResource:
+def bucket(s3_mock: None, request: pytest.FixtureRequest) -> Any:
     s3 = boto3.resource('s3')
     bucket = s3.Bucket('bucket')
     marker = request.node.get_closest_marker('is_public', None)
@@ -38,7 +38,7 @@ def bucket(s3_mock: None, request: pytest.FixtureRequest) -> boto3.resources.bas
     return bucket
 
 @pytest.fixture
-def bucket_2(s3_mock: None, request: pytest.FixtureRequest) -> boto3.resources.base.ServiceResource:
+def bucket_2(s3_mock: None, request: pytest.FixtureRequest) -> Any:
     s3 = boto3.resource('s3')
     bucket = s3.Bucket('bucket_2')
     marker = request.node.get_closest_marker('is_public', None)
@@ -49,21 +49,21 @@ def bucket_2(s3_mock: None, request: pytest.FixtureRequest) -> boto3.resources.b
     return bucket
 
 @pytest.fixture
-def object(bucket: boto3.resources.base.ServiceResource, tmp_path: Path) -> None:
+def object(bucket: Any, tmp_path: Path) -> None:
     file = tmp_path / 'object.txt'
     file.write_text('TEST')
     with open(file, 'rb') as f:
         return bucket.upload_fileobj(f, 'object')
 
 @pytest.fixture
-def object_in_folder(bucket: boto3.resources.base.ServiceResource, tmp_path: Path) -> None:
+def object_in_folder(bucket: Any, tmp_path: Path) -> None:
     file = tmp_path / 'object_in_folder.txt'
     file.write_text('TEST OBJECT IN FOLDER')
     with open(file, 'rb') as f:
         return bucket.upload_fileobj(f, 'folder/object')
 
 @pytest.fixture
-def objects_in_folder(bucket: boto3.resources.base.ServiceResource, tmp_path: Path) -> List[Any]:
+def objects_in_folder(bucket: Any, tmp_path: Path) -> List[Any]:
     objects = []
     for filename in ['folderobject/foo.txt', 'folderobject/bar.txt', 'folder/object/foo.txt', 'folder/object/bar.txt']:
         file = tmp_path / filename
@@ -76,7 +76,7 @@ def objects_in_folder(bucket: boto3.resources.base.ServiceResource, tmp_path: Pa
     return objects
 
 @pytest.fixture
-def a_lot_of_objects(bucket: boto3.resources.base.ServiceResource, tmp_path: Path) -> List[Any]:
+def a_lot_of_objects(bucket: Any, tmp_path: Path) -> List[Any]:
     objects = []
     for i in range(0, 20):
         file = tmp_path / f'object{i}.txt'
@@ -114,7 +114,7 @@ async def test_s3_download_object_not_found(object: None, client_parameters: Aws
         await test_flow()
 
 @pytest.mark.parametrize('client_parameters', aws_clients, indirect=True)
-async def test_s3_upload(bucket: boto3.resources.base.ServiceResource, client_parameters: AwsClientParameters, tmp_path: Path, aws_credentials: AwsCredentials) -> None:
+async def test_s3_upload(bucket: Any, client_parameters: AwsClientParameters, tmp_path: Path, aws_credentials: AwsCredentials) -> None:
 
     @flow
     async def test_flow() -> None:
@@ -130,9 +130,9 @@ async def test_s3_upload(bucket: boto3.resources.base.ServiceResource, client_pa
     assert output == b'NEW OBJECT'
 
 @pytest.mark.parametrize('client_parameters', aws_clients, indirect=True)
-async def test_s3_copy(object: None, bucket: boto3.resources.base.ServiceResource, bucket_2: boto3.resources.base.ServiceResource, aws_credentials: AwsCredentials) -> None:
+async def test_s3_copy(object: None, bucket: Any, bucket_2: Any, aws_credentials: AwsCredentials) -> None:
 
-    def read(bucket: boto3.resources.base.ServiceResource, key: str) -> bytes:
+    def read(bucket: Any, key: str) -> bytes:
         stream = io.BytesIO()
         bucket.download_fileobj(key, stream)
         stream.seek(0)
@@ -147,9 +147,9 @@ async def test_s3_copy(object: None, bucket: boto3.resources.base.ServiceResourc
     assert read(bucket, 'subfolder/new_object') == b'TEST'
 
 @pytest.mark.parametrize('client_parameters', aws_clients, indirect=True)
-async def test_s3_move(object: None, bucket: boto3.resources.base.ServiceResource, bucket_2: boto3.resources.base.ServiceResource, aws_credentials: AwsCredentials) -> None:
+async def test_s3_move(object: None, bucket: Any, bucket_2: Any, aws_credentials: AwsCredentials) -> None:
 
-    def read(bucket: boto3.resources.base.ServiceResource, key: str) -> bytes:
+    def read(bucket: Any, key: str) -> bytes:
         stream = io.BytesIO()
         bucket.download_fileobj(key, stream)
         stream.seek(0)
@@ -167,9 +167,9 @@ async def test_s3_move(object: None, bucket: boto3.resources.base.ServiceResourc
         read(bucket, 'subfolder/object_copy')
 
 @pytest.mark.parametrize('client_parameters', aws_clients, indirect=True)
-async def test_move_object_to_nonexistent_bucket_fails(object: None, bucket: boto3.resources.base.ServiceResource, aws_credentials: AwsCredentials) -> None:
+async def test_move_object_to_nonexistent_bucket_fails(object: None, bucket: Any, aws_credentials: AwsCredentials) -> None:
 
-    def read(bucket: boto3.resources.base.ServiceResource, key: str) -> bytes:
+    def read(bucket: Any, key: str) -> bytes:
         stream = io.BytesIO()
         bucket.download_fileobj(key, stream)
         stream.seek(0)
@@ -183,9 +183,9 @@ async def test_move_object_to_nonexistent_bucket_fails(object: None, bucket: bot
     assert read(bucket, 'object') == b'TEST'
 
 @pytest.mark.parametrize('client_parameters', aws_clients, indirect=True)
-async def test_move_object_fail_cases(object: None, bucket: boto3.resources.base.ServiceResource, aws_credentials: AwsCredentials) -> None:
+async def test_move_object_fail_cases(object: None, bucket: Any, aws_credentials: AwsCredentials) -> None:
 
-    def read(bucket: boto3.resources.base.ServiceResource, key: str) -> bytes:
+    def read(bucket: Any, key: str) -> bytes:
         stream = io.BytesIO()
         bucket.download_fileobj(key, stream)
         stream.seek(0)
@@ -264,13 +264,13 @@ def minio_creds_block() -> MinIOCredentials:
 BUCKET_NAME = 'test_bucket'
 
 @pytest.fixture
-def s3() -> boto3.client:
+def s3() -> Any:
     """Mock connection to AWS S3 with boto3 client."""
     with mock_s3():
         yield boto3.client(service_name='s3', region_name='us-east-1', aws_access_key_id='minioadmin', aws_secret_access_key='testing', aws_session_token='testing')
 
 @pytest.fixture
-def nested_s3_bucket_structure(s3: boto3.client, s3_bucket: S3Bucket, tmp_path: Path) -> None:
+def nested_s3_bucket_structure(s3: Any, s3_bucket: S3Bucket, tmp_path: Path) -> None:
     """Creates an S3 bucket with multiple files in a nested structure"""
     file = tmp_path / 'object.txt'
     file.write_text('TEST')
@@ -282,7 +282,7 @@ def nested_s3_bucket_structure(s3: boto3.client, s3_bucket: S3Bucket, tmp_path: 
     assert not file.exists()
 
 @pytest.fixture(params=['aws_credentials', 'minio_credentials'])
-def s3_bucket(s3: boto3.client, request: pytest.FixtureRequest, aws_creds_block: AwsCredentials, minio_creds_block: MinIOCredentials) -> S3Bucket:
+def s3_bucket(s3: Any, request: pytest.FixtureRequest, aws_creds_block: AwsCredentials, minio_creds_block: MinIOCredentials) -> S3Bucket:
     key = request.param
     if key == 'aws_credentials':
         fs = S3Bucket(bucket_name=BUCKET_NAME, credentials=aws_creds_block)
@@ -292,7 +292,7 @@ def s3_bucket(s3: boto3.client, request: pytest.FixtureRequest, aws_creds_block:
     return fs
 
 @pytest.fixture
-def s3_bucket_with_file(s3_bucket: S3Bucket) -> tuple[S3Bucket, str]:
+def s3_bucket_with_file(s3_bucket: S3Bucket) -> Tuple[S3Bucket, str]:
     key = s3_bucket.write_path('test.txt', content=b'hello')
     return (s3_bucket, key)
 
@@ -322,7 +322,7 @@ async def test_read_fails_does_not_exist(s3_bucket: S3Bucket) -> None:
 
 @pytest.mark.parametrize('type_', [PureWindowsPath, PurePosixPath, str])
 @pytest.mark.parametrize('delimiter', ['\\', '/'])
-async def test_aws_bucket_folder(s3_bucket: S3Bucket, aws_creds_block: AwsCredentials, delimiter: str, type_: type) -> None:
+async def test_aws_bucket_folder(s3_bucket: S3Bucket, aws_creds_block: AwsCredentials, delimiter: str, type_: Any) -> None:
     """Test the bucket folder functionality."""
     s3_bucket_block = S3Bucket(bucket_name=BUCKET_NAME, credentials=aws_creds_block, bucket_folder='subfolder/subsubfolder')
     key = await s3_bucket_block.write_path('test.txt', content=b'hello')
@@ -421,7 +421,7 @@ async def test_put_directory_respects_local_path(s3_bucket: S3Bucket, tmp_path: 
     assert (tmp_path / 'downloaded_files' / 'file4.txt').exists()
     assert (tmp_path / 'downloaded_files' / 'folder2' / 'file5.txt').exists()
 
-def test_read_path_in_sync_context(s3_bucket_with_file: tuple[S3Bucket, str]) -> None:
+def test_read_path_in_sync_context(s3_bucket_with_file: Tuple[S3Bucket, str]) -> None:
     """Test that read path works in a sync context."""
     s3_bucket, key = s3_bucket_with_file
     content = s3_bucket.read_path(key)
@@ -444,12 +444,12 @@ class TestS3Bucket:
             yield request.param
 
     @pytest.fixture
-    def s3_bucket_empty(self, credentials: Union[AwsCredentials, MinIOCredentials], bucket: boto3.resources.base.ServiceResource) -> S3Bucket:
+    def s3_bucket_empty(self, credentials: Union[AwsCredentials, MinIOCredentials], bucket: Any) -> S3Bucket:
         _s3_bucket = S3Bucket(bucket_name='bucket', credentials=credentials)
         return _s3_bucket
 
     @pytest.fixture
-    def s3_bucket_2_empty(self, credentials: Union[AwsCredentials, MinIOCredentials], bucket_2: boto3.resources.base.ServiceResource) -> S3Bucket:
+    def s3_bucket_2_empty(self, credentials: Union[AwsCredentials, MinIOCredentials], bucket_2: Any) -> S3Bucket:
         _s3_bucket = S3Bucket(bucket_name='bucket_2', credentials=credentials, bucket_folder='subfolder')
         return _s3_bucket
 
@@ -692,9 +692,9 @@ class TestS3Bucket:
         assert [object['Key'] for object in objects] == ['folder/object', 'object']
 
     @pytest.mark.parametrize('client_parameters', aws_clients, indirect=True)
-    async def test_async_copy_objects(self, object: None, bucket: boto3.resources.base.ServiceResource, bucket_2: boto3.resources.base.ServiceResource, aws_credentials: AwsCredentials) -> None:
+    async def test_async_copy_objects(self, object: None, bucket: Any, bucket_2: Any, aws_credentials: AwsCredentials) -> None:
 
-        def read(bucket: boto3.resources.base.ServiceResource, key: str) -> bytes:
+        def read(bucket: Any, key: str) -> bytes:
             stream = io.BytesIO()
             bucket.download_fileobj(key, stream)
             stream.seek(0)
@@ -707,9 +707,9 @@ class TestS3Bucket:
         assert read(bucket_2, 'subfolder/new_object') == b'TEST'
 
     @pytest.mark.parametrize('client_parameters', aws_clients, indirect=True)
-    async def test_async_move_objects(self, object: None, bucket: boto3.resources.base.ServiceResource, bucket_2: boto3.resources.base.ServiceResource, aws_credentials: AwsCredentials) -> None:
+    async def test_async_move_objects(self, object: None, bucket: Any, bucket_2: Any, aws_credentials: AwsCredentials) -> None:
 
-        def read(bucket: boto3.resources.base.ServiceResource, key: str) -> bytes:
+        def read(bucket: Any, key: str) -> bytes:
             stream = io.BytesIO()
             bucket.download_fileobj(key, stream)
             stream.seek(0)

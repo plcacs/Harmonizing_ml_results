@@ -122,7 +122,7 @@ class TestIntervalRange:
         tm.assert_index_equal(result, expected)
         result = interval_range(start=start.asm8, end=end.asm8)
         tm.assert_index_equal(result, expected)
-        equiv_freq: list[Union[str, Day, Timedelta, timedelta, DateOffset]] = ['D', Day(), Timedelta(days=1), timedelta(days=1), DateOffset(days=1)]
+        equiv_freq: list[Any] = ['D', Day(), Timedelta(days=1), timedelta(days=1), DateOffset(days=1)]
         for freq in equiv_freq:
             result = interval_range(start=start, end=end, freq=freq)
             tm.assert_index_equal(result, expected)

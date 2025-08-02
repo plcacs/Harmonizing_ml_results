@@ -91,15 +91,15 @@ class Ui(object):
         self.tlyric: str = ''
         self.storage = Storage()
         self.newversion: bool = False
+        self.now_playing: str = ''
         self.startcol: int = 0
-        self.indented_startcol: int = 0
         self.endcol: int = 0
+        self.indented_startcol: int = 0
         self.indented_endcol: int = 0
         self.content_width: int = 0
         self.left_margin_ratio: float = 0.0
         self.right_margin_ratio: float = 0.0
         self.space: str = ''
-        self.now_playing: str = ''
 
     def addstr(self, *args: Any) -> None:
         if len(args) == 1:

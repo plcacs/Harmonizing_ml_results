@@ -122,7 +122,7 @@ class TaskRunner(abc.ABC, Generic[F]):
         self._started = True
         return self
 
-    def __exit__(self, exc_type: Optional[type], exc_value: Optional[Exception], traceback: Optional[Any]) -> None:
+    def __exit__(self, exc_type: Optional[type[BaseException]], exc_value: Optional[BaseException], traceback: Optional[Any]) -> None:
         self.logger.debug('Stopping task runner')
         self._started = False
 
@@ -203,7 +203,7 @@ class ThreadPoolTaskRunner(TaskRunner[PrefectConcurrentFuture[R]]):
         self._executor = ThreadPoolExecutor(max_workers=self._max_workers)
         return self
 
-    def __exit__(self, exc_type: Optional[type], exc_value: Optional[Exception], traceback: Optional[Any]) -> None:
+    def __exit__(self, exc_type: Optional[type[BaseException]], exc_value: Optional[BaseException], traceback: Optional[Any]) -> None:
         self.cancel_all()
         if self._executor is not None:
             self._executor.shutdown(cancel_futures=True)

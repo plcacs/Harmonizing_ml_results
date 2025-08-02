@@ -11,7 +11,7 @@ from copy import deepcopy
 from functools import partial
 from textwrap import dedent
 from types import ModuleType
-from typing import TYPE_CHECKING, Any, Callable, Dict, Generator, List, Optional, Union, Set, Tuple, cast
+from typing import TYPE_CHECKING, Any, Callable, Dict, Generator, List, Optional, Union, Sequence, Set, Tuple, cast
 import anyio
 import anyio.to_thread
 from anyio import run_process
@@ -48,7 +48,7 @@ class IamPolicyResource:
         policy_name: The name of the IAM policy. Defaults to "prefect-ecs-policy".
     """
 
-    def __init__(self, policy_name: str) -> None:
+    def __init__(self, policy_name: str):
         self._iam_client = boto3.client('iam')
         self._policy_name = policy_name
         self._requires_provisioning: Optional[bool] = None
@@ -133,7 +133,7 @@ class IamUserResource:
         user_name: The desired name of the IAM user.
     """
 
-    def __init__(self, user_name: str) -> None:
+    def __init__(self, user_name: str):
         self._iam_client = boto3.client('iam')
         self._user_name = user_name
         self._requires_provisioning: Optional[bool] = None
@@ -193,7 +193,7 @@ class IamUserResource:
 
 class CredentialsBlockResource:
 
-    def __init__(self, user_name: str, block_document_name: str) -> None:
+    def __init__(self, user_name: str, block_document_name: str):
         self._block_document_name = block_document_name
         self._user_name = user_name
         self._requires_provisioning: Optional[bool] = None
@@ -271,7 +271,7 @@ class CredentialsBlockResource:
 
 class AuthenticationResource:
 
-    def __init__(self, work_pool_name: str, user_name: str = 'prefect-ecs-user', policy_name: str = 'prefect-ecs-policy', credentials_block_name: Optional[str] = None) -> None:
+    def __init__(self, work_pool_name: str, user_name: str = 'prefect-ecs-user', policy_name: str = 'prefect-ecs-policy', credentials_block_name: Optional[str] = None):
         self._user_name = user_name
         self._credentials_block_name = credentials_block_name or f'{work_pool_name}-aws-credentials'
         self._policy_name = policy_name
@@ -337,7 +337,7 @@ class AuthenticationResource:
 
 class ClusterResource:
 
-    def __init__(self, cluster_name: str = 'prefect-ecs-cluster') -> None:
+    def __init__(self, cluster_name: str = 'prefect-ecs-cluster'):
         self._ecs_client = boto3.client('ecs')
         self._cluster_name = cluster_name
         self._requires_provisioning: Optional[bool] = None
@@ -402,7 +402,7 @@ class ClusterResource:
 
 class VpcResource:
 
-    def __init__(self, vpc_name: str = 'prefect-ecs-vpc', ecs_security_group_name: str = 'prefect-ecs-security-group') -> None:
+    def __init__(self, vpc_name: str = 'prefect-ecs-vpc', ecs_security_group_name: str = 'prefect-ecs-security-group'):
         self._ec2_client = boto3.client('ec2')
         self._ec2_resource = boto3.resource('ec2')
         self._vpc_name = vpc_name
@@ -530,7 +530,7 @@ class VpcResource:
 
 class ContainerRepositoryResource:
 
-    def __init__(self, work_pool_name: str, repository_name: str = 'prefect-flows') -> None:
+    def __init__(self, work_pool_name: str, repository_name: str = 'prefect-flows'):
         self._ecr_client = boto3.client('ecr')
         self._repository_name = repository_name
         self._requires_provisioning: Optional[bool] = None
@@ -615,7 +615,7 @@ class ContainerRepositoryResource:
 
 class ExecutionRoleResource:
 
-    def __init__(self, execution_role_name: str = 'PrefectEcsTaskExecutionRole') -> None:
+    def __init__(self, execution_role_name: str = 'PrefectEcsTaskExecutionRole'):
         self._iam_client = boto3.client('iam')
         self._execution_role_name = execution_role_name
         self._trust_policy_document = json.dumps({'Version': '2012-10-17', 'Statement': [{'Effect': 'Allow', 'Principal': {'Service': 'ecs-tasks.amazonaws.com'}, 'Action': 'sts:AssumeRole'}]})
@@ -686,7 +686,7 @@ class ElasticContainerServicePushProvisioner:
     An infrastructure provisioner for ECS push work pools.
     """
 
-    def __init__(self) -> None:
+    def __init__(self):
         self._console = Console()
 
     @property

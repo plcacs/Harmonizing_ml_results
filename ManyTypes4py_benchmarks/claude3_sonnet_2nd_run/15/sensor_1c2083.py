@@ -84,16 +84,35 @@ async def async_setup_entry(
     coordinator_data = hass.data[DOMAIN][config_entry.entry_id][COORDINATOR]
     api = coordinator_data[KEY_API]
     entities: list[TradfriSensor] = []
+    
     for device_coordinator in coordinator_data[COORDINATOR_LIST]:
-        if not device_coordinator.device.has_light_control and (not device_coordinator.device.has_socket_control) and (not device_coordinator.device.has_signal_repeater_control) and (not device_coordinator.device.has_air_purifier_control):
+        if (
+            not device_coordinator.device.has_light_control
+            and (not device_coordinator.device.has_socket_control)
+            and (not device_coordinator.device.has_signal_repeater_control)
+            and (not device_coordinator.device.has_air_purifier_control)
+        ):
             descriptions = SENSOR_DESCRIPTIONS_BATTERY
         elif device_coordinator.device.has_air_purifier_control:
             descriptions = SENSOR_DESCRIPTIONS_FAN
         else:
             continue
+            
         for description in descriptions:
-            _migrate_old_unique_ids(hass=hass, old_unique_id=f"{gateway_id}-{device_coordinator.device.id}", key=description.key)
-            entities.append(TradfriSensor(device_coordinator, api, gateway_id, description=description))
+            _migrate_old_unique_ids(
+                hass=hass, 
+                old_unique_id=f"{gateway_id}-{device_coordinator.device.id}", 
+                key=description.key
+            )
+            entities.append(
+                TradfriSensor(
+                    device_coordinator=device_coordinator, 
+                    api=api, 
+                    gateway_id=gateway_id, 
+                    description=description
+                )
+            )
+            
     async_add_entities(entities)
 
 class TradfriSensor(TradfriBaseEntity, SensorEntity):

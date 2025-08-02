@@ -23,30 +23,30 @@ class freqai_test_multimodel_strat(IStrategy):
     linear_roi_offset: DecimalParameter = DecimalParameter(0.0, 0.02, default=0.005, space='sell', optimize=False, load=True)
     max_roi_time_long: IntParameter = IntParameter(0, 800, default=400, space='sell', optimize=False, load=True)
 
-    def feature_engineering_expand_all(self, dataframe: DataFrame, period: int, metadata: Dict, **kwargs: Any) -> DataFrame:
+    def feature_engineering_expand_all(self, dataframe: DataFrame, period: int, metadata: Dict, **kwargs) -> DataFrame:
         dataframe['%-rsi-period'] = ta.RSI(dataframe, timeperiod=period)
         dataframe['%-mfi-period'] = ta.MFI(dataframe, timeperiod=period)
         dataframe['%-adx-period'] = ta.ADX(dataframe, timeperiod=period)
         return dataframe
 
-    def feature_engineering_expand_basic(self, dataframe: DataFrame, metadata: Dict, **kwargs: Any) -> DataFrame:
+    def feature_engineering_expand_basic(self, dataframe: DataFrame, metadata: Dict, **kwargs) -> DataFrame:
         dataframe['%-pct-change'] = dataframe['close'].pct_change()
         dataframe['%-raw_volume'] = dataframe['volume']
         dataframe['%-raw_price'] = dataframe['close']
         return dataframe
 
-    def feature_engineering_standard(self, dataframe: DataFrame, metadata: Dict, **kwargs: Any) -> DataFrame:
+    def feature_engineering_standard(self, dataframe: DataFrame, metadata: Dict, **kwargs) -> DataFrame:
         dataframe['%-day_of_week'] = dataframe['date'].dt.dayofweek
         dataframe['%-hour_of_day'] = dataframe['date'].dt.hour
         return dataframe
 
-    def set_freqai_targets(self, dataframe: DataFrame, metadata: Dict, **kwargs: Any) -> DataFrame:
+    def set_freqai_targets(self, dataframe: DataFrame, metadata: Dict, **kwargs) -> DataFrame:
         dataframe['&-s_close'] = dataframe['close'].shift(-self.freqai_info['feature_parameters']['label_period_candles']).rolling(self.freqai_info['feature_parameters']['label_period_candles']).mean() / dataframe['close'] - 1
         dataframe['&-s_range'] = dataframe['close'].shift(-self.freqai_info['feature_parameters']['label_period_candles']).rolling(self.freqai_info['feature_parameters']['label_period_candles']).max() - dataframe['close'].shift(-self.freqai_info['feature_parameters']['label_period_candles']).rolling(self.freqai_info['feature_parameters']['label_period_candles']).min()
         return dataframe
 
     def populate_indicators(self, dataframe: DataFrame, metadata: Dict) -> DataFrame:
-        self.freqai_info = self.config['freqai']
+        self.freqai_info: Dict[str, Any] = self.config['freqai']
         dataframe = self.freqai.start(dataframe, metadata, self)
         dataframe['target_roi'] = dataframe['&-s_close_mean'] + dataframe['&-s_close_std'] * 1.25
         dataframe['sell_roi'] = dataframe['&-s_close_mean'] - dataframe['&-s_close_std'] * 1.25

@@ -10,7 +10,7 @@ from eth.tools.factories.transaction import new_dynamic_fee_transaction, new_tra
 from eth.vm.forks import BerlinVM
 from typing import Tuple, List, Type, Dict, Any, Optional, cast
 
-FOUR_TXN_GAS_LIMIT: int = 21000 * 4
+FOUR_TXN_GAS_LIMIT = 21000 * 4
 EIP_3541_CREATE_AND_CREATE2_REVERT_TEST_CASES: Tuple[Tuple[bytes, bytes], ...] = ((decode_hex('0x6000356000523660006000f0151560165760006000fd5b'), decode_hex('0x60ef60005360016000f3')), (decode_hex('0x6000356000523660006000f0151560165760006000fd5b'), decode_hex('0x60ef60005360026000f3')), (decode_hex('0x6000356000523660006000f0151560165760006000fd5b'), decode_hex('0x60ef60005360036000f3')), (decode_hex('0x6000356000523660006000f0151560165760006000fd5b'), decode_hex('0x60ef60005360206000f3')), (decode_hex('0x60003560005260003660006000f5151560185760006000fd5b'), decode_hex('0x60ef60005360016000f3')), (decode_hex('0x60003560005260003660006000f5151560185760006000fd5b'), decode_hex('0x60ef60005360026000f3')), (decode_hex('0x60003560005260003660006000f5151560185760006000fd5b'), decode_hex('0x60ef60005360036000f3')), (decode_hex('0x60003560005260003660006000f5151560185760006000fd5b'), decode_hex('0x60ef60005360206000f3')))
 
 def _configure_mining_chain(name: str, genesis_vm: Type[Any], vm_under_test: Type[Any]) -> Type[MiningChain]:

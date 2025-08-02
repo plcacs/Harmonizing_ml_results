@@ -38,9 +38,9 @@ class BiasDirectionWrapper(Registrable):
         t : `torch.Tensor`
             Tensor to which to add small amount of Gaussian noise.
         """
-        if self.noise is not None:
-            return t + self.noise * torch.randn(t.size(), device=t.device)
-        return t
+        if self.noise is None:
+            return t
+        return t + self.noise * torch.randn(t.size(), device=t.device)
 
 @BiasDirectionWrapper.register('pca')
 class PCABiasDirectionWrapper(BiasDirectionWrapper):

@@ -6,7 +6,7 @@ from abc import ABCMeta, abstractmethod
 from contextlib import nullcontext
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Set, Type, Union, ContextManager, TypeVar, Callable, Tuple, Iterator
+from typing import Any, Dict, List, Optional, Set, Union, Type, Tuple, ContextManager, TypeVar, Generic, Callable, Iterator, NoReturn
 
 import dbt.exceptions
 import dbt_common.exceptions.base
@@ -169,11 +169,11 @@ class BaseRunner(metaclass=ABCMeta):
         return result
 
     def _build_run_result(self, node: Any, start_time: float, status: RunStatus, 
-                          timing_info: List[TimingInfo], message: Optional[str], 
-                          agate_table: Optional[Any] = None, 
-                          adapter_response: Optional[Dict[str, Any]] = None, 
-                          failures: Optional[List[Any]] = None, 
-                          batch_results: Optional[List[Any]] = None) -> RunResult:
+                         timing_info: List[TimingInfo], message: Optional[str], 
+                         agate_table: Optional[Any] = None, 
+                         adapter_response: Optional[Dict[str, Any]] = None, 
+                         failures: Optional[List[Any]] = None, 
+                         batch_results: Optional[List[Any]] = None) -> RunResult:
         execution_time = time.time() - start_time
         thread_id = threading.current_thread().name
         if adapter_response is None:

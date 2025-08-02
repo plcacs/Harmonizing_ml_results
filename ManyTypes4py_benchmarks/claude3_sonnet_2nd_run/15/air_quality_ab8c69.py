@@ -2,7 +2,7 @@
 from __future__ import annotations
 from datetime import timedelta
 import logging
-from typing import Any, Callable, Optional, TypeVar, cast
+from typing import Any, Callable, Dict, Optional, Union, cast
 
 import metno
 import voluptuous as vol
@@ -31,8 +31,6 @@ PLATFORM_SCHEMA = AIR_QUALITY_PLATFORM_SCHEMA.extend({
 
 SCAN_INTERVAL = timedelta(minutes=5)
 
-T = TypeVar('T')
-
 async def async_setup_platform(
     hass: HomeAssistant,
     config: ConfigType,
@@ -40,22 +38,22 @@ async def async_setup_platform(
     discovery_info: Optional[DiscoveryInfoType] = None
 ) -> None:
     """Set up the air_quality norway sensor."""
-    forecast: int = config.get(CONF_FORECAST)
-    latitude: Optional[float] = config.get(CONF_LATITUDE, hass.config.latitude)
-    longitude: Optional[float] = config.get(CONF_LONGITUDE, hass.config.longitude)
-    name: str = config.get(CONF_NAME)
+    forecast = config.get(CONF_FORECAST)
+    latitude = config.get(CONF_LATITUDE, hass.config.latitude)
+    longitude = config.get(CONF_LONGITUDE, hass.config.longitude)
+    name = config.get(CONF_NAME)
 
     if None in (latitude, longitude):
         _LOGGER.error('Latitude or longitude not set in Home Assistant config')
         return
 
-    coordinates: dict[str, str] = {'lat': str(latitude), 'lon': str(longitude)}
+    coordinates = {'lat': str(latitude), 'lon': str(longitude)}
     async_add_entities([AirSensor(name, coordinates, forecast, async_get_clientsession(hass))], True)
 
-def round_state(func: Callable[['AirSensor'], Any]) -> Callable[['AirSensor'], Any]:
+def round_state(func: Callable[['AirSensor'], Optional[float]]) -> Callable[['AirSensor'], Optional[Union[float, int]]]:
     """Round state."""
 
-    def _decorator(self: 'AirSensor') -> Any:
+    def _decorator(self: 'AirSensor') -> Optional[Union[float, int]]:
         res = func(self)
         if isinstance(res, float):
             return round(res, 2)
@@ -64,15 +62,15 @@ def round_state(func: Callable[['AirSensor'], Any]) -> Callable[['AirSensor'], A
 
 class AirSensor(AirQualityEntity):
     """Representation of an air quality sensor."""
-    _attr_attribution: str = 'Air quality from https://luftkvalitet.miljostatus.no/, delivered by the Norwegian Meteorological Institute.'
+    _attr_attribution = 'Air quality from https://luftkvalitet.miljostatus.no/, delivered by the Norwegian Meteorological Institute.'
 
-    def __init__(self, name: str, coordinates: dict[str, str], forecast: int, session: Any) -> None:
+    def __init__(self, name: str, coordinates: Dict[str, str], forecast: int, session: Any) -> None:
         """Initialize the sensor."""
         self._name = name
         self._api = metno.AirQualityData(coordinates, forecast, session, api_url=OVERRIDE_URL)
 
     @property
-    def extra_state_attributes(self) -> dict[str, Any]:
+    def extra_state_attributes(self) -> Dict[str, Any]:
         """Return other details about the sensor state."""
         return {
             'level': self._api.data.get('level'),

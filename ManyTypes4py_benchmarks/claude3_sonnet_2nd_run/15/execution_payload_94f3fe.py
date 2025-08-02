@@ -9,7 +9,6 @@ from eth2spec.debug.random_value import get_random_bytes_list
 from eth2spec.test.helpers.withdrawals import get_expected_withdrawals
 from eth2spec.test.helpers.forks import is_post_capella, is_post_deneb, is_post_electra, is_post_eip7732
 from typing import List as PyList, Optional, Any, Dict, Tuple, Union, Callable
-import random
 
 def get_execution_payload_header(spec: Any, execution_payload: Any) -> Any:
     if is_post_eip7732(spec):
@@ -48,7 +47,7 @@ def compute_el_header_block_hash(spec: Any, payload_header: Any, transactions_tr
     """
     if is_post_eip7732(spec):
         return spec.Hash32()
-    execution_payload_header_rlp: PyList[Tuple[Any, Any]] = [(Binary(32, 32), payload_header.parent_hash), (Binary(32, 32), bytes.fromhex('1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347')), (Binary(20, 20), payload_header.fee_recipient), (Binary(32, 32), payload_header.state_root), (Binary(32, 32), transactions_trie_root), (Binary(32, 32), payload_header.receipts_root), (Binary(256, 256), payload_header.logs_bloom), (big_endian_int, 0), (big_endian_int, payload_header.block_number), (big_endian_int, payload_header.gas_limit), (big_endian_int, payload_header.gas_used), (big_endian_int, payload_header.timestamp), (Binary(0, 32), payload_header.extra_data), (Binary(32, 32), payload_header.prev_randao), (Binary(8, 8), bytes.fromhex('0000000000000000')), (big_endian_int, payload_header.base_fee_per_gas)]
+    execution_payload_header_rlp: PyList[Tuple[Union[Binary, Callable], Any]] = [(Binary(32, 32), payload_header.parent_hash), (Binary(32, 32), bytes.fromhex('1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347')), (Binary(20, 20), payload_header.fee_recipient), (Binary(32, 32), payload_header.state_root), (Binary(32, 32), transactions_trie_root), (Binary(32, 32), payload_header.receipts_root), (Binary(256, 256), payload_header.logs_bloom), (big_endian_int, 0), (big_endian_int, payload_header.block_number), (big_endian_int, payload_header.gas_limit), (big_endian_int, payload_header.gas_used), (big_endian_int, payload_header.timestamp), (Binary(0, 32), payload_header.extra_data), (Binary(32, 32), payload_header.prev_randao), (Binary(8, 8), bytes.fromhex('0000000000000000')), (big_endian_int, payload_header.base_fee_per_gas)]
     if is_post_capella(spec):
         execution_payload_header_rlp.append((Binary(32, 32), withdrawals_trie_root))
     if is_post_deneb(spec):
@@ -63,25 +62,25 @@ def compute_el_header_block_hash(spec: Any, payload_header: Any, transactions_tr
     return spec.Hash32(keccak(encoded))
 
 def get_withdrawal_rlp(withdrawal: Any) -> bytes:
-    withdrawal_rlp: PyList[Tuple[Any, Any]] = [(big_endian_int, withdrawal.index), (big_endian_int, withdrawal.validator_index), (Binary(20, 20), withdrawal.address), (big_endian_int, withdrawal.amount)]
+    withdrawal_rlp: PyList[Tuple[Union[Binary, Callable], Any]] = [(big_endian_int, withdrawal.index), (big_endian_int, withdrawal.validator_index), (Binary(20, 20), withdrawal.address), (big_endian_int, withdrawal.amount)]
     sedes = List([schema for schema, _ in withdrawal_rlp])
     values = [value for _, value in withdrawal_rlp]
     return encode(values, sedes)
 
 def get_deposit_request_rlp_bytes(deposit_request: Any) -> bytes:
-    deposit_request_rlp: PyList[Tuple[Any, Any]] = [(Binary(48, 48), deposit_request.pubkey), (Binary(32, 32), deposit_request.withdrawal_credentials), (big_endian_int, deposit_request.amount), (Binary(96, 96), deposit_request.signature), (big_endian_int, deposit_request.index)]
+    deposit_request_rlp: PyList[Tuple[Union[Binary, Callable], Any]] = [(Binary(48, 48), deposit_request.pubkey), (Binary(32, 32), deposit_request.withdrawal_credentials), (big_endian_int, deposit_request.amount), (Binary(96, 96), deposit_request.signature), (big_endian_int, deposit_request.index)]
     sedes = List([schema for schema, _ in deposit_request_rlp])
     values = [value for _, value in deposit_request_rlp]
     return b'\x00' + encode(values, sedes)
 
 def get_withdrawal_request_rlp_bytes(withdrawal_request: Any) -> bytes:
-    withdrawal_request_rlp: PyList[Tuple[Any, Any]] = [(Binary(20, 20), withdrawal_request.source_address), (Binary(48, 48), withdrawal_request.validator_pubkey)]
+    withdrawal_request_rlp: PyList[Tuple[Union[Binary, Callable], Any]] = [(Binary(20, 20), withdrawal_request.source_address), (Binary(48, 48), withdrawal_request.validator_pubkey)]
     sedes = List([schema for schema, _ in withdrawal_request_rlp])
     values = [value for _, value in withdrawal_request_rlp]
     return b'\x01' + encode(values, sedes)
 
 def get_consolidation_request_rlp_bytes(consolidation_request: Any) -> bytes:
-    consolidation_request_rlp: PyList[Tuple[Any, Any]] = [(Binary(20, 20), consolidation_request.source_address), (Binary(48, 48), consolidation_request.source_pubkey), (Binary(48, 48), consolidation_request.target_pubkey)]
+    consolidation_request_rlp: PyList[Tuple[Union[Binary, Callable], Any]] = [(Binary(20, 20), consolidation_request.source_address), (Binary(48, 48), consolidation_request.source_pubkey), (Binary(48, 48), consolidation_request.target_pubkey)]
     sedes = List([schema for schema, _ in consolidation_request_rlp])
     values = [value for _, value in consolidation_request_rlp]
     return b'\x02' + encode(values, sedes)
@@ -156,7 +155,7 @@ def build_empty_execution_payload(spec: Any, state: Any, randao_mix: Optional[by
     payload.block_hash = compute_el_block_hash(spec, payload, state)
     return payload
 
-def build_randomized_execution_payload(spec: Any, state: Any, rng: random.Random) -> Any:
+def build_randomized_execution_payload(spec: Any, state: Any, rng: Any) -> Any:
     execution_payload = build_empty_execution_payload(spec, state)
     execution_payload.fee_recipient = spec.ExecutionAddress(get_random_bytes_list(rng, 20))
     execution_payload.state_root = spec.Bytes32(get_random_bytes_list(rng, 32))
@@ -190,5 +189,5 @@ def build_state_with_execution_payload_header(spec: Any, state: Any, execution_p
     pre_state.latest_execution_payload_header = execution_payload_header
     return pre_state
 
-def get_random_tx(rng: random.Random) -> bytes:
+def get_random_tx(rng: Any) -> bytes:
     return get_random_bytes_list(rng, rng.randint(1, 1000))

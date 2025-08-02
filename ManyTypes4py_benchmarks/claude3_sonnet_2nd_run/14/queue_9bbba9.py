@@ -17,8 +17,8 @@ class GraphQueue:
     """
 
     def __init__(self, graph: nx.DiGraph, manifest: Manifest, selected: Set[UniqueId], preserve_edges: bool = True) -> None:
-        self.graph: nx.DiGraph = graph if preserve_edges else nx.classes.function.create_empty_copy(graph)
-        self.manifest: Manifest = manifest
+        self.graph = graph if preserve_edges else nx.classes.function.create_empty_copy(graph)
+        self.manifest = manifest
         self._selected: Set[UniqueId] = selected
         self.inner: PriorityQueue = PriorityQueue()
         self.in_progress: Set[UniqueId] = set()

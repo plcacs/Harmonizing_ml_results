@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 T = TypeVar("T")
 MaskType = Tuple[np.ndarray, bool]
-MaskInfo2DType = Tuple[Tuple[np.ndarray, np.ndarray], Tuple[bool, bool]]
+MaskInfo2D = Tuple[Tuple[np.ndarray, np.ndarray], Tuple[bool, bool]]
 
 @overload
 def take_nd(arr: np.ndarray, indexer: np.ndarray, axis: int = ..., fill_value: Any = ..., allow_fill: bool = ...) -> np.ndarray: ...
@@ -103,7 +103,7 @@ def take_2d_multi(arr: np.ndarray, indexer: Tuple[np.ndarray, np.ndarray], fill_
     row_idx = ensure_platform_int(row_idx)
     col_idx = ensure_platform_int(col_idx)
     indexer = (row_idx, col_idx)
-    mask_info: Optional[MaskInfo2DType] = None
+    mask_info: Optional[MaskInfo2D] = None
     dtype, fill_value = maybe_promote(arr.dtype, fill_value)
     if dtype != arr.dtype:
         row_mask = row_idx == -1
@@ -156,7 +156,7 @@ def _get_take_nd_function_cached(ndim: int, arr_dtype: np.dtype, out_dtype: np.d
         return func
     return None
 
-def _get_take_nd_function(ndim: int, arr_dtype: np.dtype, out_dtype: np.dtype, axis: int = 0, mask_info: Optional[Union[MaskType, MaskInfo2DType]] = None) -> Callable:
+def _get_take_nd_function(ndim: int, arr_dtype: np.dtype, out_dtype: np.dtype, axis: int = 0, mask_info: Optional[Tuple] = None) -> Callable:
     """
     Get the appropriate "take" implementation for the given dimension, axis
     and dtypes.
@@ -171,7 +171,7 @@ def _get_take_nd_function(ndim: int, arr_dtype: np.dtype, out_dtype: np.dtype, a
             _take_nd_object(arr, indexer, out, axis=axis, fill_value=fill_value, mask_info=mask_info)
     return func
 
-def _view_wrapper(f: Callable, arr_dtype: Optional[np.dtype] = None, out_dtype: Optional[np.dtype] = None, fill_wrap: Optional[Callable[[Any], Any]] = None) -> Callable:
+def _view_wrapper(f: Callable, arr_dtype: Optional[np.dtype] = None, out_dtype: Optional[np.dtype] = None, fill_wrap: Optional[Callable] = None) -> Callable:
 
     def wrapper(arr: np.ndarray, indexer: np.ndarray, out: np.ndarray, fill_value: Any = np.nan) -> None:
         if arr_dtype is not None:
@@ -215,7 +215,7 @@ def _take_nd_object(arr: np.ndarray, indexer: np.ndarray, out: np.ndarray, axis:
         outindexer[axis] = mask
         out[tuple(outindexer)] = fill_value
 
-def _take_2d_multi_object(arr: np.ndarray, indexer: Tuple[np.ndarray, np.ndarray], out: np.ndarray, fill_value: Any, mask_info: Optional[MaskInfo2DType]) -> None:
+def _take_2d_multi_object(arr: np.ndarray, indexer: Tuple[np.ndarray, np.ndarray], out: np.ndarray, fill_value: Any, mask_info: Optional[MaskInfo2D]) -> None:
     row_idx, col_idx = indexer
     if mask_info is not None:
         (row_mask, col_mask), (row_needs, col_needs) = mask_info

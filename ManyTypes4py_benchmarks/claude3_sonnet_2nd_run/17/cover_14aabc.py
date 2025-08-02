@@ -48,7 +48,7 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 
 class CoverTemplate(TemplateEntity, CoverEntity):
     """Representation of a Template cover."""
-    _attr_should_poll = False
+    _attr_should_poll: bool = False
 
     def __init__(self, hass: HomeAssistant, object_id: str, config: dict[str, Any], unique_id: str | None) -> None:
         """Initialize the Template cover."""
@@ -75,9 +75,9 @@ class CoverTemplate(TemplateEntity, CoverEntity):
         if (tilt_action := config.get(TILT_ACTION)) is not None:
             self._tilt_script = Script(hass, tilt_action, friendly_name, DOMAIN)
         optimistic = config.get(CONF_OPTIMISTIC)
-        self._optimistic: bool = optimistic or (optimistic is None and (not self._template) and (not self._position_template))
+        self._optimistic: bool = bool(optimistic or (optimistic is None and (not self._template) and (not self._position_template)))
         tilt_optimistic = config.get(CONF_TILT_OPTIMISTIC)
-        self._tilt_optimistic: bool = tilt_optimistic or not self._tilt_template
+        self._tilt_optimistic: bool = bool(tilt_optimistic or not self._tilt_template)
         self._position: float | None = None
         self._is_opening: bool = False
         self._is_closing: bool = False

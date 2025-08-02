@@ -174,10 +174,10 @@ def test_append_mode_file(tmp_excel: str) -> None:
     df.to_excel(tmp_excel, engine='openpyxl')
     with ExcelWriter(tmp_excel, mode='a', engine='openpyxl', if_sheet_exists='new') as writer:
         df.to_excel(writer)
-    data = Path(tmp_excel).read_bytes()
-    first = data.find(b'docProps/app.xml')
-    second = data.find(b'docProps/app.xml', first + 1)
-    third = data.find(b'docProps/app.xml', second + 1)
+    data: bytes = Path(tmp_excel).read_bytes()
+    first: int = data.find(b'docProps/app.xml')
+    second: int = data.find(b'docProps/app.xml', first + 1)
+    third: int = data.find(b'docProps/app.xml', second + 1)
     assert second != -1 and third == -1
 
 @pytest.mark.parametrize('read_only', [True, False, None])

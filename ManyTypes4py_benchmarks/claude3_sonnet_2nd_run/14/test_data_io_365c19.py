@@ -341,7 +341,7 @@ def _data_batches_equal(db1: data_io.Batch, db2: data_io.Batch) -> bool:
 def test_parallel_sample_iter() -> None:
     batch_size = 2
     buckets = data_io.define_parallel_buckets(100, 100, 10, True, 1.0)
-    bucket_counts = [0] + [None] * (len(buckets) - 1)
+    bucket_counts: List[Optional[int]] = [0] + [None] * (len(buckets) - 1)
     bucket_batch_sizes = data_io.define_bucket_batch_sizes(buckets, batch_size, batch_type=C.BATCH_TYPE_SENTENCE, data_target_average_len=[None] * len(buckets))
     dataset = data_io.ParallelDataSet(*_get_random_bucketed_data(buckets, min_count=0, max_count=5, bucket_counts=bucket_counts))
     it = data_io.ParallelSampleIter(dataset, buckets, batch_size, bucket_batch_sizes)
@@ -379,7 +379,7 @@ def test_parallel_sample_iter() -> None:
 def test_sharded_parallel_sample_iter() -> None:
     batch_size = 2
     buckets = data_io.define_parallel_buckets(100, 100, 10, True, 1.0)
-    bucket_counts = [0] + [None] * (len(buckets) - 1)
+    bucket_counts: List[Optional[int]] = [0] + [None] * (len(buckets) - 1)
     bucket_batch_sizes = data_io.define_bucket_batch_sizes(buckets, batch_size, batch_type=C.BATCH_TYPE_SENTENCE, data_target_average_len=[None] * len(buckets))
     dataset1 = data_io.ParallelDataSet(*_get_random_bucketed_data(buckets, min_count=0, max_count=5, bucket_counts=bucket_counts))
     dataset2 = data_io.ParallelDataSet(*_get_random_bucketed_data(buckets, min_count=0, max_count=5, bucket_counts=bucket_counts))

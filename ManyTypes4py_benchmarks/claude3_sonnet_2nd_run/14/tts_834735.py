@@ -124,17 +124,17 @@ class BaseGoogleCloudProvider:
             if not voice.startswith(language):
                 language = voice[:5]
         request = texttospeech.SynthesizeSpeechRequest(
-            input=texttospeech.SynthesisInput(**{options[CONF_TEXT_TYPE]: message}),
+            input=texttospeech.SynthesisInput(**{options[CONF_TEXT_TYPE]: message}), 
             voice=texttospeech.VoiceSelectionParams(
                 language_code=language, 
                 ssml_gender=gender, 
                 name=voice
-            ),
+            ), 
             audio_config=texttospeech.AudioConfig(
-                audio_encoding=encoding,
-                speaking_rate=options[CONF_SPEED] if options[CONF_SPEED] != DEFAULT_SPEED else None,
-                pitch=options[CONF_PITCH] if options[CONF_PITCH] != DEFAULT_PITCH else None,
-                volume_gain_db=options[CONF_GAIN] if options[CONF_GAIN] != DEFAULT_GAIN else None,
+                audio_encoding=encoding, 
+                speaking_rate=options[CONF_SPEED] if options[CONF_SPEED] != DEFAULT_SPEED else None, 
+                pitch=options[CONF_PITCH] if options[CONF_PITCH] != DEFAULT_PITCH else None, 
+                volume_gain_db=options[CONF_GAIN] if options[CONF_GAIN] != DEFAULT_GAIN else None, 
                 effects_profile_id=options[CONF_PROFILES]
             )
         )

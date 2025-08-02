@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List
 from click.core import Context
 try:
     import jinja2
@@ -13,7 +13,7 @@ PROJECT_NAME: str = 'Superset'
 PROJECT_MODULE: str = 'superset'
 PROJECT_DESCRIPTION: str = 'Apache Superset is a modern, enterprise-ready business intelligence web application.'
 
-def string_comma_to_list(message: Optional[str]) -> List[str]:
+def string_comma_to_list(message: str) -> List[str]:
     if not message:
         return []
     return [element.strip() for element in message.split(',')]
@@ -31,9 +31,9 @@ def render_template(template_file: str, **kwargs: Any) -> str:
 
 class BaseParameters:
 
-    def __init__(self, version: Optional[str], version_rc: Optional[str]) -> None:
-        self.version: Optional[str] = version
-        self.version_rc: Optional[str] = version_rc
+    def __init__(self, version: str, version_rc: str) -> None:
+        self.version: str = version
+        self.version_rc: str = version_rc
         self.template_arguments: Dict[str, Any] = {}
 
     def __repr__(self) -> str:
@@ -43,7 +43,7 @@ class BaseParameters:
 @click.pass_context
 @click.option('--version', envvar='SUPERSET_VERSION')
 @click.option('--version_rc', envvar='SUPERSET_VERSION_RC')
-def cli(ctx: Context, version: Optional[str], version_rc: Optional[str]) -> None:
+def cli(ctx: Context, version: str, version_rc: str) -> None:
     """Welcome to releasing send email CLI interface!"""
     base_parameters = BaseParameters(version, version_rc)
     base_parameters.template_arguments['receiver_email'] = RECEIVER_EMAIL

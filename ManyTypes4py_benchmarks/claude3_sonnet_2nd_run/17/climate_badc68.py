@@ -7,13 +7,13 @@ from whirlpool.aircon import Aircon, FanSpeed as AirconFanSpeed, Mode as AirconM
 from whirlpool.auth import Auth
 from whirlpool.backendselector import BackendSelector
 from homeassistant.components.climate import ENTITY_ID_FORMAT, FAN_AUTO, FAN_HIGH, FAN_LOW, FAN_MEDIUM, FAN_OFF, SWING_HORIZONTAL, SWING_OFF, ClimateEntity, ClimateEntityFeature, HVACMode
-from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE, UnitOfTemperature
-from homeassistant.core import HomeAssistant, callback
+from homeassistant.core import HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity import generate_entity_id
-from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
+from homeassistant.config_entries import ConfigEntry
 from . import WhirlpoolConfigEntry
 from .const import DOMAIN
 _LOGGER = logging.getLogger(__name__)
@@ -28,7 +28,7 @@ SUPPORTED_MIN_TEMP: int = 16
 SUPPORTED_SWING_MODES: List[str] = [SWING_HORIZONTAL, SWING_OFF]
 SUPPORTED_TARGET_TEMPERATURE_STEP: int = 1
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None:
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None:
     """Set up entry."""
     whirlpool_data: WhirlpoolConfigEntry = config_entry.runtime_data
     aircons: List[AirConEntity] = [AirConEntity(hass, ac_data['SAID'], ac_data['NAME'], whirlpool_data.backend_selector, whirlpool_data.auth, async_get_clientsession(hass)) for ac_data in whirlpool_data.appliances_manager.aircons]

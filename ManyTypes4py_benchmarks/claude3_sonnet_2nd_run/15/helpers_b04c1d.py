@@ -83,7 +83,7 @@ class SpecialEvaluationExperiment(base.ExperimentFunction):
             method for selecting the subset (see optimizer.pareto_front)
 
         """
-        funcs: tp.List['SpecialEvaluationExperiment'] = []
+        funcs: tp.List[SpecialEvaluationExperiment] = []
         if 'PYTEST_NEVERGRAD' in os.environ:
             pareto_subset_methods = ('random',)
         for pareto_subset in pareto_subset_methods:

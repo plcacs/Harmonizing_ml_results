@@ -290,7 +290,7 @@ class Superset(BaseSupersetView):
             return self.save_or_overwrite_slice(slc, slice_add_perm, slice_overwrite_perm, slice_download_perm, datasource.id, datasource.type, datasource.name, query_context)
         standalone_mode = ReservedUrlParameters.is_standalone_mode()
         force = request.args.get('force') in {'force', '1', 'true'}
-        dummy_datasource_data = {'type': datasource_type, 'name': datasource_name, 'columns': [], 'metrics': [], 'database': {'id': 0, 'backend': ''}}
+        dummy_datasource_data: Dict[str, Any] = {'type': datasource_type, 'name': datasource_name, 'columns': [], 'metrics': [], 'database': {'id': 0, 'backend': ''}}
         try:
             datasource_data = datasource.data if datasource else dummy_datasource_data
         except (SupersetException, SQLAlchemyError):
@@ -299,7 +299,7 @@ class Superset(BaseSupersetView):
             datasource_data['owners'] = datasource.owners_data
             if isinstance(datasource, Query):
                 datasource_data['columns'] = datasource.columns
-        bootstrap_data = {'can_add': slice_add_perm, 'datasource': sanitize_datasource_data(datasource_data), 'form_data': form_data, 'datasource_id': datasource_id, 'datasource_type': datasource_type, 'slice': slc.data if slc else None, 'standalone': standalone_mode, 'force': force, 'user': bootstrap_user_data(g.user, include_perms=True), 'forced_height': request.args.get('height'), 'common': common_bootstrap_payload()}
+        bootstrap_data: Dict[str, Any] = {'can_add': slice_add_perm, 'datasource': sanitize_datasource_data(datasource_data), 'form_data': form_data, 'datasource_id': datasource_id, 'datasource_type': datasource_type, 'slice': slc.data if slc else None, 'standalone': standalone_mode, 'force': force, 'user': bootstrap_user_data(g.user, include_perms=True), 'forced_height': request.args.get('height'), 'common': common_bootstrap_payload()}
         if slc:
             title = slc.slice_name
         elif datasource:
@@ -492,7 +492,7 @@ class Superset(BaseSupersetView):
             return redirect(appbuilder.get_url_for_login)
         if (welcome_dashboard_id := db.session.query(UserAttribute.welcome_dashboard_id).filter_by(user_id=get_user_id()).scalar()):
             return self.dashboard(dashboard_id_or_slug=str(welcome_dashboard_id))
-        payload = {'user': bootstrap_user_data(g.user, include_perms=True), 'common': common_bootstrap_payload()}
+        payload: Dict[str, Any] = {'user': bootstrap_user_data(g.user, include_perms=True), 'common': common_bootstrap_payload()}
         return self.render_template('superset/spa.html', entry='spa', bootstrap_data=json.dumps(payload, default=json.pessimistic_json_iso_dttm_ser))
 
     @has_access

@@ -33,7 +33,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
     data: SynologyDSMData = hass.data[DOMAIN][entry.unique_id]
     api: SynoApi = data.api
     coordinator: SynologyDSMCentralUpdateCoordinator = data.coordinator_central
-    storage = api.storage
+    storage: SynoStorage = api.storage
     assert storage is not None
     entities: list[SensorEntity] = [SynoDSMUtilSensor(api, coordinator, description) for description in UTILISATION_SENSORS]
     if storage.volumes_ids:

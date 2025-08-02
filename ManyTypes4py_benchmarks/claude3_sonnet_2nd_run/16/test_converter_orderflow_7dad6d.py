@@ -6,7 +6,7 @@ from freqtrade.data.converter.orderflow import ORDERFLOW_ADDED_COLUMNS, stacked_
 from freqtrade.data.converter.trade_converter import trades_list_to_df
 from freqtrade.data.dataprovider import DataProvider
 from tests.strategy.strats.strategy_test_v3 import StrategyTestV3
-from typing import Dict, List, Any, Optional, Union
+from typing import Dict, List, Any, Union, Optional
 BIN_SIZE_SCALE: float = 0.5
 
 def read_csv(filename: str) -> pd.DataFrame:

@@ -12,6 +12,7 @@ from raiden.transfer.utils.secret import encrypt_secret
 from raiden.utils.typing import Address, AddressMetadata, Dict, EncryptedSecret, List, MetadataHash, Optional
 from raiden.utils.validation import MetadataValidation
 
+
 @dataclass
 class RouteMetadata(MetadataValidation):
     address_metadata: Optional[Dict[Address, AddressMetadata]] = None
@@ -41,6 +42,7 @@ class RouteMetadata(MetadataValidation):
 
     def __repr__(self) -> str:
         return f'RouteMetadata: {' -> '.join([to_checksum_address(a) for a in self.route])}'
+
 
 @dataclass(frozen=True)
 class Metadata:

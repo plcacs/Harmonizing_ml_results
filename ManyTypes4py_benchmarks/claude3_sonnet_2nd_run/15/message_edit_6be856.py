@@ -334,7 +334,7 @@ def do_update_message(user_profile: UserProfile, target_message: Message, messag
     changed_messages = Message.objects.filter(id=target_message.id)
     changed_message_ids = [target_message.id]
     changed_messages_count = 1
-    save_changes_for_propagation_mode = lambda: Message.objects.filter(id=target_message.id).select_related(*Message.DEFAULT_SELECT_RELATED)
+    save_changes_for_propagation_mode: Any = lambda: Message.objects.filter(id=target_message.id).select_related(*Message.DEFAULT_SELECT_RELATED)
     if message_edit_request.propagate_mode in ['change_later', 'change_all']:
         topic_only_edit_history_event: Dict[str, Any] = {'user_id': edit_history_event['user_id'], 'timestamp': edit_history_event['timestamp']}
         if message_edit_request.is_topic_edited:

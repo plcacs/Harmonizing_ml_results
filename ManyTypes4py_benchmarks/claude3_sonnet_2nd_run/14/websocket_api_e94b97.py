@@ -38,8 +38,8 @@ class _AdvertisementSubscription:
         self.pending_service_infos: List[BluetoothServiceInfoBleak] = []
         self.ws_msg_id = ws_msg_id
         self.connection = connection
-        self.pending: bool = True
-        self.time_diff: float = round(time.time() - time.monotonic(), 2)
+        self.pending = True
+        self.time_diff = round(time.time() - time.monotonic(), 2)
 
     @callback
     def _async_unsubscribe(self, cancel_callbacks: Iterable[Callable[[], None]]) -> None:

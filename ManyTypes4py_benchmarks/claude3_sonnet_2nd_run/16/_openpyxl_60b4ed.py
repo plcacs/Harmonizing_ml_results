@@ -474,7 +474,7 @@ class OpenpyxlReader(BaseExcelReader['Workbook']):
         self.raise_if_bad_sheet_by_index(index)
         return self.book.worksheets[index]
 
-    def _convert_cell(self, cell: Any) -> Union[str, int, float]:
+    def _convert_cell(self, cell: Any) -> Union[str, int, float, Any]:
         from openpyxl.cell.cell import TYPE_ERROR, TYPE_NUMERIC
         if cell.value is None:
             return ''
@@ -487,17 +487,13 @@ class OpenpyxlReader(BaseExcelReader['Workbook']):
             return float(cell.value)
         return cell.value
 
-    def get_sheet_data(
-        self, 
-        sheet: Any, 
-        file_rows_needed: Optional[int] = None
-    ) -> List[List[Union[str, int, float]]]:
+    def get_sheet_data(self, sheet: Any, file_rows_needed: Optional[int] = None) -> List[List[Any]]:
         if self.book.read_only:
             sheet.reset_dimensions()
-        data: List[List[Union[str, int, float]]] = []
+        data: List[List[Any]] = []
         last_row_with_data = -1
         for row_number, row in enumerate(sheet.rows):
-            converted_row: List[Union[str, int, float]] = [self._convert_cell(cell) for cell in row]
+            converted_row = [self._convert_cell(cell) for cell in row]
             while converted_row and converted_row[-1] == '':
                 converted_row.pop()
             if converted_row:
@@ -509,6 +505,6 @@ class OpenpyxlReader(BaseExcelReader['Workbook']):
         if len(data) > 0:
             max_width = max((len(data_row) for data_row in data))
             if min((len(data_row) for data_row in data)) < max_width:
-                empty_cell: List[str] = ['']
+                empty_cell = ['']
                 data = [data_row + (max_width - len(data_row)) * empty_cell for data_row in data]
         return data

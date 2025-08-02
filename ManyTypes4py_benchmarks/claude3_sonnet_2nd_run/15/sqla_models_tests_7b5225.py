@@ -632,7 +632,7 @@ def test_extra_cache_keys_in_adhoc_metrics_and_columns(
     sql_expression: str,
     expected_cache_keys: List[Union[int, str]],
     has_extra_cache_keys: bool,
-    item_type: str
+    item_type: Literal['columns', 'metrics']
 ) -> None:
     table = SqlaTable(
         table_name='test_has_no_extra_cache_keys_table',
@@ -649,15 +649,7 @@ def test_extra_cache_keys_in_adhoc_metrics_and_columns(
         'is_timeseries': False,
         'filter': []
     }
-    items = {
-        item_type: [
-            {
-                'label': None,
-                'expressionType': 'SQL',
-                'sqlExpression': sql_expression
-            }
-        ]
-    }
+    items = {item_type: [{'label': None, 'expressionType': 'SQL', 'sqlExpression': sql_expression}]}
     query_obj = {**base_query_obj, **items}
     extra_cache_keys = table.get_extra_cache_keys(query_obj)
     assert table.has_extra_cache_key_calls(query_obj) == has_extra_cache_keys

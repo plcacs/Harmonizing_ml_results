@@ -22,6 +22,7 @@ from raiden.transfer.mediated_transfer.events import SendSecretRequest
 from raiden.utils.formatting import to_hex_address
 from raiden.utils.signer import LocalSigner
 from raiden.utils.typing import Address, AddressMetadata, Any, BlockExpiration, Optional, PaymentAmount, PaymentID, UserID
+
 USERID0 = UserID('@0x1234567890123456789012345678901234567890:RestaurantAtTheEndOfTheUniverse')
 USERID1 = UserID(f'@{to_hex_address(factories.HOP1)}:Wonderland')
 
@@ -41,7 +42,8 @@ def mock_raiden_service() -> MockRaidenService:
     return MockRaidenService()
 
 @pytest.fixture()
-def mock_matrix(monkeypatch: Any, mock_raiden_service: MockRaidenService, retry_interval_initial: float, retry_interval_max: float, retries_before_backoff: int) -> MatrixTransport:
+def mock_matrix(monkeypatch: Any, mock_raiden_service: MockRaidenService, retry_interval_initial: float, 
+                retry_interval_max: float, retries_before_backoff: int) -> MatrixTransport:
     from raiden.network.transport.matrix import transport as transport_module
     from raiden.network.transport.matrix.client import GMatrixClient
     from raiden.network.transport.matrix.utils import UserPresence
@@ -105,7 +107,8 @@ def record_sent_messages(mock_matrix: MatrixTransport) -> None:
     original_send_raw = mock_matrix._send_raw
     sent_messages: list[tuple[Address, str]] = []
 
-    def send_raw(receiver_address: Address, data: str, message_type: MatrixMessageType = MatrixMessageType.TEXT, receiver_metadata: Optional[AddressMetadata] = None) -> None:
+    def send_raw(receiver_address: Address, data: str, message_type: MatrixMessageType = MatrixMessageType.TEXT, 
+                 receiver_metadata: Optional[AddressMetadata] = None) -> None:
         for message in data.split('\n'):
             sent_messages.append((receiver_address, message))
     mock_matrix._send_raw = send_raw
@@ -114,8 +117,11 @@ def record_sent_messages(mock_matrix: MatrixTransport) -> None:
     mock_matrix._send_raw = original_send_raw
     del mock_matrix.sent_messages
 
-def make_message_event(recipient: Address, address_metadata: Optional[AddressMetadata] = None, canonical_identifier: Any = CANONICAL_IDENTIFIER_UNORDERED_QUEUE) -> SendSecretRequest:
-    return SendSecretRequest(recipient=recipient, recipient_metadata=address_metadata, canonical_identifier=canonical_identifier, message_identifier=make_message_identifier(), payment_identifier=PaymentID(1), amount=PaymentAmount(1), expiration=BlockExpiration(10), secrethash=factories.UNIT_SECRETHASH)
+def make_message_event(recipient: Address, address_metadata: Optional[AddressMetadata] = None, 
+                       canonical_identifier: Any = CANONICAL_IDENTIFIER_UNORDERED_QUEUE) -> SendSecretRequest:
+    return SendSecretRequest(recipient=recipient, recipient_metadata=address_metadata, canonical_identifier=canonical_identifier, 
+                            message_identifier=make_message_identifier(), payment_identifier=PaymentID(1), 
+                            amount=PaymentAmount(1), expiration=BlockExpiration(10), secrethash=factories.UNIT_SECRETHASH)
 
 def make_message(sign: bool = True, message_event: Optional[SendSecretRequest] = None) -> SecretRequest:
     if message_event is None:
@@ -170,7 +176,8 @@ def test_retry_queue_batch_by_user_id(mock_matrix: MatrixTransport) -> None:
     sent_messages: list[str] = []
     send_raw_call_count = 0
 
-    def send_raw(receiver_address: Address, data: str, message_type: MatrixMessageType = MatrixMessageType.TEXT, receiver_metadata: Optional[AddressMetadata] = None) -> None:
+    def send_raw(receiver_address: Address, data: str, message_type: MatrixMessageType = MatrixMessageType.TEXT, 
+                 receiver_metadata: Optional[AddressMetadata] = None) -> None:
         nonlocal send_raw_call_count
         send_raw_call_count += 1
         for message in data.split('\n'):
@@ -284,7 +291,8 @@ def test_retryqueue_enqueue_not_blocking(mock_matrix: MatrixTransport, monkeypat
     lock = Event()
     call_count = 0
 
-    def send_raw_blocking(receiver_address: Address, data: str, message_type: MatrixMessageType = MatrixMessageType.TEXT, receiver_metadata: Optional[AddressMetadata] = None) -> None:
+    def send_raw_blocking(receiver_address: Address, data: str, message_type: MatrixMessageType = MatrixMessageType.TEXT, 
+                          receiver_metadata: Optional[AddressMetadata] = None) -> None:
         nonlocal call_count
         call_count += 1
         lock.wait()

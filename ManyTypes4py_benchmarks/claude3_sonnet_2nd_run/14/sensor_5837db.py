@@ -1,26 +1,30 @@
 """Support for ISY sensors."""
 from __future__ import annotations
 from typing import Any, cast, Dict, List, Optional, Union
+
 from pyisy.constants import ATTR_ACTION, ATTR_CONTROL, COMMAND_FRIENDLY_NAME, ISY_VALUE_UNKNOWN, NC_NODE_ENABLED, PROP_BATTERY_LEVEL, PROP_COMMS_ERROR, PROP_ENERGY_MODE, PROP_HEAT_COOL_STATE, PROP_HUMIDITY, PROP_ON_LEVEL, PROP_RAMP_RATE, PROP_STATUS, PROP_TEMPERATURE, TAG_ADDRESS
 from pyisy.helpers import EventListener, NodeProperty
 from pyisy.nodes import Node, NodeChangedEvent
+
 from homeassistant.components.sensor import SensorDeviceClass, SensorEntity, SensorStateClass
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import EntityCategory, Platform, UnitOfTemperature
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.device_registry import DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback, AddConfigEntryEntitiesCallback
+from homeassistant.helpers.entity_platform import AddEntitiesCallback
+
 from .const import _LOGGER, DOMAIN, UOM_DOUBLE_TEMP, UOM_FRIENDLY_NAME, UOM_INDEX, UOM_ON_OFF, UOM_TO_STATES
 from .entity import ISYNodeEntity
 from .helpers import convert_isy_value_to_hass
 from .models import IsyData
+
 AUX_DISABLED_BY_DEFAULT_MATCH: List[str] = ['GV', 'DO']
 AUX_DISABLED_BY_DEFAULT_EXACT: set[str] = {PROP_COMMS_ERROR, PROP_ENERGY_MODE, PROP_HEAT_COOL_STATE, PROP_ON_LEVEL, PROP_RAMP_RATE, PROP_STATUS}
 ISY_CONTROL_TO_DEVICE_CLASS: Dict[str, SensorDeviceClass] = {PROP_BATTERY_LEVEL: SensorDeviceClass.BATTERY, PROP_HUMIDITY: SensorDeviceClass.HUMIDITY, PROP_TEMPERATURE: SensorDeviceClass.TEMPERATURE, 'BARPRES': SensorDeviceClass.ATMOSPHERIC_PRESSURE, 'CC': SensorDeviceClass.CURRENT, 'CO2LVL': SensorDeviceClass.CO2, 'CPW': SensorDeviceClass.POWER, 'CV': SensorDeviceClass.VOLTAGE, 'DEWPT': SensorDeviceClass.TEMPERATURE, 'DISTANC': SensorDeviceClass.DISTANCE, 'ETO': SensorDeviceClass.PRECIPITATION_INTENSITY, 'FATM': SensorDeviceClass.WEIGHT, 'FREQ': SensorDeviceClass.FREQUENCY, 'MUSCLEM': SensorDeviceClass.WEIGHT, 'PF': SensorDeviceClass.POWER_FACTOR, 'PM10': SensorDeviceClass.PM10, 'PM25': SensorDeviceClass.PM25, 'PRECIP': SensorDeviceClass.PRECIPITATION, 'RAINRT': SensorDeviceClass.PRECIPITATION_INTENSITY, 'RFSS': SensorDeviceClass.SIGNAL_STRENGTH, 'SOILH': SensorDeviceClass.MOISTURE, 'SOILT': SensorDeviceClass.TEMPERATURE, 'SOLRAD': SensorDeviceClass.IRRADIANCE, 'SPEED': SensorDeviceClass.SPEED, 'TEMPEXH': SensorDeviceClass.TEMPERATURE, 'TEMPOUT': SensorDeviceClass.TEMPERATURE, 'TPW': SensorDeviceClass.ENERGY, 'WATERP': SensorDeviceClass.PRESSURE, 'WATERT': SensorDeviceClass.TEMPERATURE, 'WATERTB': SensorDeviceClass.TEMPERATURE, 'WATERTD': SensorDeviceClass.TEMPERATURE, 'WEIGHT': SensorDeviceClass.WEIGHT, 'WINDCH': SensorDeviceClass.TEMPERATURE}
 ISY_CONTROL_TO_STATE_CLASS: Dict[str, SensorStateClass] = {control: SensorStateClass.MEASUREMENT for control in ISY_CONTROL_TO_DEVICE_CLASS}
 ISY_CONTROL_TO_ENTITY_CATEGORY: Dict[str, EntityCategory] = {PROP_RAMP_RATE: EntityCategory.DIAGNOSTIC, PROP_ON_LEVEL: EntityCategory.DIAGNOSTIC, PROP_COMMS_ERROR: EntityCategory.DIAGNOSTIC}
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None:
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None:
     """Set up the ISY sensor platform."""
     isy_data: IsyData = hass.data[DOMAIN][entry.entry_id]
     entities: List[Union[ISYSensorEntity, ISYAuxSensorEntity]] = []
@@ -44,7 +48,7 @@ class ISYSensorEntity(ISYNodeEntity, SensorEntity):
         return self._node
 
     @property
-    def target_value(self) -> Any:
+    def target_value(self) -> Optional[Any]:
         """Return the target value."""
         return self._node.status
 
@@ -110,7 +114,7 @@ class ISYAuxSensorEntity(ISYSensorEntity):
         self._change_handler: Optional[EventListener] = None
         self._availability_handler: Optional[EventListener] = None
         name: str = COMMAND_FRIENDLY_NAME.get(self._control, self._control)
-        self._attr_name: str = f'{node.name} {name.replace('_', ' ').title()}'
+        self._attr_name: str = f'{node.name} {name.replace("_", " ").title()}'
 
     @property
     def target(self) -> Optional[NodeProperty]:
@@ -120,7 +124,7 @@ class ISYAuxSensorEntity(ISYSensorEntity):
         return cast(NodeProperty, self._node.aux_properties[self._control])
 
     @property
-    def target_value(self) -> Any:
+    def target_value(self) -> Optional[Any]:
         """Return the target value."""
         return None if self.target is None else self.target.value
 

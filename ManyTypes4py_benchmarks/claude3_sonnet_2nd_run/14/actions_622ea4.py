@@ -523,7 +523,7 @@ class CallWebhook(JinjaTemplateAction):
 
     @field_validator('payload', mode='before')
     @classmethod
-    def ensure_payload_is_a_string(cls, value: Any) -> str:
+    def ensure_payload_is_a_string(cls, value: Any) -> Optional[str]:
         """Temporary measure while we migrate payloads from being a dictionary to
         a string template.  This covers both reading from the database where values
         may currently be a dictionary, as well as the API, where older versions of the

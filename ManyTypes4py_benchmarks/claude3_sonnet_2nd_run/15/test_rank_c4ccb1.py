@@ -158,8 +158,8 @@ class TestSeriesRank:
         method, exp = results
         if dtype == 'int64' or (not using_infer_string and dtype == 'str'):
             pytest.skip('int64/str does not support NaN')
-        ser = ser if dtype is None else ser.astype(dtype)
-        result = ser.rank(method=method)
+        s = ser if dtype is None else ser.astype(dtype)
+        result = s.rank(method=method)
         tm.assert_series_equal(result, Series(exp, dtype=expected_dtype(dtype, method)))
 
     @pytest.mark.parametrize('na_option', ['top', 'bottom', 'keep'])

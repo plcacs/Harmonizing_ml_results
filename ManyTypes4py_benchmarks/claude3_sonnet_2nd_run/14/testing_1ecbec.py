@@ -586,6 +586,8 @@ class ExpectLog(logging.Filter):
         if not typ and self.required and (self.deprecated_level_matched >= self.matched):
             warnings.warn('ExpectLog matched at INFO or below without level argument', DeprecationWarning)
 
+T = TypeVar('T')
+
 def setup_with_context_manager(testcase: unittest.TestCase, cm: Any) -> Any:
     """Use a context manager to setUp a test case.
 

@@ -133,7 +133,7 @@ class ViCareClimate(ViCareEntity, ClimateEntity):
         """Return the corresponding vicare mode for an hvac_mode."""
         if 'vicare_modes' not in self._attributes:
             return None
-        supported_modes: List[str] = self._attributes['vicare_modes']
+        supported_modes = self._attributes['vicare_modes']
         for key, value in VICARE_TO_HA_HVAC_HEATING.items():
             if key in supported_modes and value == hvac_mode:
                 return key

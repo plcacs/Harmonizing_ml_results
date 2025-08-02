@@ -5,7 +5,7 @@ import queue
 import socket
 import threading
 import time
-from typing import Any, Dict, Optional, Union, cast
+from typing import Any, Optional, Union, cast
 
 import voluptuous as vol
 
@@ -43,6 +43,7 @@ CONFIG_SCHEMA = vol.Schema({
     })
 }, extra=vol.ALLOW_EXTRA)
 
+
 def setup(hass: HomeAssistant, config: ConfigType) -> bool:
     """Set up the Graphite feeder."""
     conf = config[DOMAIN]
@@ -66,6 +67,7 @@ def setup(hass: HomeAssistant, config: ConfigType) -> bool:
     hass.data[DOMAIN] = GraphiteFeeder(hass, host, port, protocol, prefix)
     return True
 
+
 class GraphiteFeeder(threading.Thread):
     """Feed data to Graphite."""
 
@@ -80,6 +82,7 @@ class GraphiteFeeder(threading.Thread):
         self._queue: queue.Queue[Union[Event, object]] = queue.Queue()
         self._quit_object = object()
         self._unsub_state_changed: Optional[callback] = None
+
         hass.bus.listen_once(EVENT_HOMEASSISTANT_START, self.start_listen)
         _LOGGER.debug('Graphite feeding to %s:%i initialized', self._host, self._port)
 
@@ -123,12 +126,16 @@ class GraphiteFeeder(threading.Thread):
     def _report_attributes(self, entity_id: str, new_state: State) -> None:
         """Report the attributes."""
         now = time.time()
-        things: Dict[str, Any] = dict(new_state.attributes)
+        things: dict[str, Any] = dict(new_state.attributes)
         with suppress(ValueError):
             things['state'] = state.state_as_number(new_state)
-        lines = [f'{self._prefix}.{entity_id}.{key.replace(' ', '_')} {value:f} {now}' for key, value in things.items() if isinstance(value, (float, int))]
+
+        lines = [f'{self._prefix}.{entity_id}.{key.replace(' ', '_')} {value:f} {now}'
+                for key, value in things.items() if isinstance(value, (float, int))]
+
         if not lines:
             return
+
         _LOGGER.debug('Sending to graphite: %s', lines)
         try:
             self._send_to_graphite('\n'.join(lines))
@@ -145,16 +152,23 @@ class GraphiteFeeder(threading.Thread):
                 _LOGGER.debug('Event processing thread stopped')
                 self._queue.task_done()
                 return
-            if cast(Event, event).event_type == EVENT_STATE_CHANGED:
-                if not cast(Event, event).data.get('new_state'):
-                    _LOGGER.debug('Skipping %s without new_state for %s', cast(Event, event).event_type, cast(Event, event).data['entity_id'])
+
+            if isinstance(event, Event) and event.event_type == EVENT_STATE_CHANGED:
+                if not event.data.get('new_state'):
+                    _LOGGER.debug('Skipping %s without new_state for %s', 
+                                 event.event_type, event.data['entity_id'])
                     self._queue.task_done()
                     continue
-                _LOGGER.debug('Processing STATE_CHANGED event for %s', cast(Event, event).data['entity_id'])
+
+                _LOGGER.debug('Processing STATE_CHANGED event for %s', event.data['entity_id'])
                 try:
-                    self._report_attributes(cast(Event, event).data['entity_id'], cast(Event, event).data['new_state'])
+                    self._report_attributes(
+                        cast(str, event.data['entity_id']), 
+                        cast(State, event.data['new_state'])
+                    )
                 except Exception:
                     _LOGGER.exception('Failed to process STATE_CHANGED event')
             else:
-                _LOGGER.warning('Processing unexpected event type %s', cast(Event, event).event_type)
+                if isinstance(event, Event):
+                    _LOGGER.warning('Processing unexpected event type %s', event.event_type)
             self._queue.task_done()

@@ -1,13 +1,15 @@
 from collections import deque
 import re
 import string
-from typing import Any, Callable, Iterable, List, Tuple, Type, Union, cast
+from typing import Any, Callable, Iterable, List, Tuple, Type, TypeVar, Union, cast
 
 import numpy as np
 import pytest
 import pandas as pd
 import pandas._testing as tm
 from pandas.arrays import SparseArray
+
+T = TypeVar('T')
 
 @pytest.fixture(params=[np.add, np.logaddexp])
 def ufunc(request: pytest.FixtureRequest) -> Callable:
@@ -162,7 +164,9 @@ def test_binary_ufunc_drops_series_name(ufunc: Callable, sparse: bool, arrays_fo
     assert result.name is None
 
 def test_object_series_ok() -> None:
+
     class Dummy:
+
         def __init__(self, value: int) -> None:
             self.value = value
 
@@ -178,7 +182,8 @@ def values_for_np_reduce(request: pytest.FixtureRequest) -> Any:
     return request.param
 
 class TestNumpyReductions:
-    def test_multiply(self, values_for_np_reduce: Any, box_with_array: Callable, request: pytest.FixtureRequest) -> None:
+
+    def test_multiply(self, values_for_np_reduce: Any, box_with_array: Callable[[Any], Any], request: pytest.FixtureRequest) -> None:
         box = box_with_array
         values = values_for_np_reduce
         with tm.assert_produces_warning(None):
@@ -202,7 +207,7 @@ class TestNumpyReductions:
             with pytest.raises(TypeError, match=msg):
                 np.multiply.reduce(obj)
 
-    def test_add(self, values_for_np_reduce: Any, box_with_array: Callable) -> None:
+    def test_add(self, values_for_np_reduce: Any, box_with_array: Callable[[Any], Any]) -> None:
         box = box_with_array
         values = values_for_np_reduce
         with tm.assert_produces_warning(None):
@@ -223,7 +228,7 @@ class TestNumpyReductions:
             with pytest.raises(TypeError, match=msg):
                 np.add.reduce(obj)
 
-    def test_max(self, values_for_np_reduce: Any, box_with_array: Callable) -> None:
+    def test_max(self, values_for_np_reduce: Any, box_with_array: Callable[[Any], Any]) -> None:
         box = box_with_array
         values = values_for_np_reduce
         same_type = True
@@ -241,7 +246,7 @@ class TestNumpyReductions:
             if same_type:
                 assert type(result) == type(expected)
 
-    def test_min(self, values_for_np_reduce: Any, box_with_array: Callable) -> None:
+    def test_min(self, values_for_np_reduce: Any, box_with_array: Callable[[Any], Any]) -> None:
         box = box_with_array
         values = values_for_np_reduce
         same_type = True
@@ -268,7 +273,9 @@ def test_binary_ufunc_other_types(type_: Type[Union[list, deque, tuple]]) -> Non
     tm.assert_series_equal(result, expected)
 
 def test_object_dtype_ok() -> None:
+
     class Thing:
+
         def __init__(self, value: int) -> None:
             self.value = value
 
@@ -306,7 +313,8 @@ def test_np_matmul_1D(box: Union[Type[pd.Index], Type[pd.Series]]) -> None:
     assert isinstance(result, np.int64)
 
 def test_array_ufuncs_for_many_arguments() -> None:
-    def add3(x: Any, y: Any, z: Any) -> Any:
+
+    def add3(x: int, y: int, z: int) -> int:
         return x + y + z
     ufunc = np.frompyfunc(add3, 3, 1)
     ser = pd.Series([1, 2])

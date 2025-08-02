@@ -2,7 +2,7 @@
 Contains all classes and functions to deal with lists, dicts, generators and
 iterators in general.
 """
-from typing import Any, Dict, Generator, Iterable, Iterator, List, Optional, Sequence as PySequence, Set, Tuple, Union, cast
+from typing import Dict, Iterator, List, Optional, Sequence as TypingSequence, Set, Tuple, Union, Any, Generator as TypingGenerator, cast
 
 from jedi.inference import compiled
 from jedi.inference import analysis
@@ -106,7 +106,7 @@ class ComprehensionMixin:
     def _get_comp_for_context(self, parent_context: Any, comp_for: Any) -> CompForContext:
         return CompForContext(parent_context, comp_for)
 
-    def _nested(self, comp_fors: Tuple[Any, ...], parent_context: Optional[Any] = None) -> Generator[Union[ValueSet, Tuple[ValueSet, ValueSet]], None, None]:
+    def _nested(self, comp_fors: Tuple[Any, ...], parent_context: Optional[Any] = None) -> TypingGenerator[Union[ValueSet, Tuple[ValueSet, ValueSet]], None, None]:
         comp_for = comp_fors[0]
         is_async = comp_for.parent.type == 'comp_for'
         input_node = comp_for.children[3]
@@ -131,7 +131,7 @@ class ComprehensionMixin:
 
     @inference_state_method_cache(default=[])
     @to_list
-    def _iterate(self) -> Generator[Union[ValueSet, Tuple[ValueSet, ValueSet]], None, None]:
+    def _iterate(self) -> TypingGenerator[Union[ValueSet, Tuple[ValueSet, ValueSet]], None, None]:
         comp_fors = tuple(get_sync_comp_fors(self._sync_comp_for_node))
         yield from self._nested(comp_fors)
 
@@ -148,8 +148,8 @@ class _DictMixin:
         return tuple((c_set.py__class__() for c_set in self.get_mapping_item_values()))
 
 class Sequence(LazyAttributeOverwrite, IterableMixin):
-    api_type: str = 'instance'
-    array_type: Optional[str] = None
+    api_type = 'instance'
+    array_type: str
 
     @property
     def name(self) -> compiled.CompiledValueName:
@@ -191,7 +191,7 @@ class _BaseComprehension(ComprehensionMixin):
         self._entry_node = entry_node
 
 class ListComprehension(_BaseComprehension, Sequence):
-    array_type: str = 'list'
+    array_type = 'list'
 
     def py__simple_getitem__(self, index: Union[int, slice]) -> ValueSet:
         if isinstance(index, slice):
@@ -202,7 +202,7 @@ class ListComprehension(_BaseComprehension, Sequence):
         return lazy_value.infer()
 
 class SetComprehension(_BaseComprehension, Sequence):
-    array_type: str = 'set'
+    array_type = 'set'
 
 class GeneratorComprehension(_BaseComprehension, GeneratorBase):
     pass
@@ -216,7 +216,7 @@ class _DictKeyMixin:
         return self._dict_keys()
 
 class DictComprehension(ComprehensionMixin, Sequence, _DictKeyMixin):
-    array_type: str = 'dict'
+    array_type = 'dict'
 
     def __init__(self, inference_state: Any, defining_context: Any, sync_comp_for_node: Any, key_node: Any, value_node: Any) -> None:
         assert sync_comp_for_node.type == 'sync_comp_for'
@@ -257,7 +257,7 @@ class DictComprehension(ComprehensionMixin, Sequence, _DictKeyMixin):
         return []
 
 class SequenceLiteralValue(Sequence):
-    _TUPLE_LIKE: Tuple[str, ...] = ('testlist_star_expr', 'testlist', 'subscriptlist')
+    _TUPLE_LIKE = ('testlist_star_expr', 'testlist', 'subscriptlist')
     mapping: Dict[str, str] = {'(': 'tuple', '[': 'list', '{': 'set'}
 
     def __init__(self, inference_state: Any, defining_context: Any, atom: Any) -> None:
@@ -338,7 +338,7 @@ class SequenceLiteralValue(Sequence):
         return '<%s of %s>' % (self.__class__.__name__, self.atom)
 
 class DictLiteralValue(_DictMixin, SequenceLiteralValue, _DictKeyMixin):
-    array_type: str = 'dict'
+    array_type = 'dict'
 
     def __init__(self, inference_state: Any, defining_context: Any, atom: Any) -> None:
         Sequence.__init__(self, inference_state)
@@ -376,12 +376,12 @@ class DictLiteralValue(_DictMixin, SequenceLiteralValue, _DictKeyMixin):
         lazy_values = [LazyKnownValue(FakeTuple(self.inference_state, (LazyTreeValue(self._defining_context, key_node), LazyTreeValue(self._defining_context, value_node)))) for key_node, value_node in self.get_tree_entries()]
         return ValueSet([FakeList(self.inference_state, lazy_values)])
 
-    def exact_key_items(self) -> List[Tuple[Any, Any]]:
+    def exact_key_items(self) -> List[Tuple[str, LazyTreeValue]]:
         """
         Returns a generator of tuples like dict.items(), where the key is
         resolved (as a string) and the values are still lazy values.
         """
-        result = []
+        result: List[Tuple[str, LazyTreeValue]] = []
         for key_node, value in self.get_tree_entries():
             for key in self._defining_context.infer_node(key_node):
                 if is_string(key):
@@ -420,13 +420,13 @@ class _FakeSequence(Sequence):
         return '<%s of %s>' % (type(self).__name__, self._lazy_value_list)
 
 class FakeTuple(_FakeSequence):
-    array_type: str = 'tuple'
+    array_type = 'tuple'
 
 class FakeList(_FakeSequence):
-    array_type: str = 'tuple'
+    array_type = 'tuple'
 
 class FakeDict(_DictMixin, Sequence, _DictKeyMixin):
-    array_type: str = 'dict'
+    array_type = 'dict'
 
     def __init__(self, inference_state: Any, dct: Dict[Any, Any]) -> None:
         super().__init__(inference_state)

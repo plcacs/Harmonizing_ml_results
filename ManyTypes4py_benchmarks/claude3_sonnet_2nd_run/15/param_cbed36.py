@@ -9,7 +9,6 @@ from jedi.inference.lazy_value import LazyKnownValue, LazyTreeValue, LazyUnknown
 from jedi.inference.value import iterable
 from jedi.inference.names import ParamName
 
-
 def _add_argument_issue(error_name: str, lazy_value: Any, message: str) -> Optional[Any]:
     if isinstance(lazy_value, LazyTreeValue):
         node = lazy_value.data
@@ -17,7 +16,6 @@ def _add_argument_issue(error_name: str, lazy_value: Any, message: str) -> Optio
             node = node.parent
         return analysis.add(lazy_value.context, error_name, node, message)
     return None
-
 
 class ExecutedParamName(ParamName):
 
@@ -44,7 +42,6 @@ class ExecutedParamName(ParamName):
 
     def __repr__(self) -> str:
         return '<%s: %s>' % (self.__class__.__name__, self.string_name)
-
 
 def get_executed_param_names_and_issues(function_value: Any, arguments: Any) -> Tuple[List[ExecutedParamName], List[Optional[Any]]]:
     """

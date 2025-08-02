@@ -154,13 +154,11 @@ class HyperionCamera(Camera):
 
     async def async_added_to_hass(self) -> None:
         """Register callbacks when entity added to hass."""
-        self.async_on_remove(
-            async_dispatcher_connect(
-                self.hass, 
-                SIGNAL_ENTITY_REMOVE.format(self._attr_unique_id), 
-                functools.partial(self.async_remove, force_remove=True)
-            )
-        )
+        self.async_on_remove(async_dispatcher_connect(
+            self.hass, 
+            SIGNAL_ENTITY_REMOVE.format(self._attr_unique_id), 
+            functools.partial(self.async_remove, force_remove=True)
+        ))
         self._client.add_callbacks(self._client_callbacks)
 
     async def async_will_remove_from_hass(self) -> None:

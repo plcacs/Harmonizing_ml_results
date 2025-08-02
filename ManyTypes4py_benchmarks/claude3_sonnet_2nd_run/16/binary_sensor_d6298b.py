@@ -2,7 +2,7 @@
 from __future__ import annotations
 import logging
 from datetime import timedelta
-from typing import Any, Callable, Optional
+from typing import Any, Callable
 
 import voluptuous as vol
 import W800rf32 as w800
@@ -14,6 +14,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
 from homeassistant.helpers.event import CALLBACK_TYPE
+
 from . import W800RF32_DEVICE
 
 _LOGGER = logging.getLogger(__name__)
@@ -30,11 +31,12 @@ PLATFORM_SCHEMA = BINARY_SENSOR_PLATFORM_SCHEMA.extend({
     }
 }, extra=vol.ALLOW_EXTRA)
 
+
 async def async_setup_platform(
     hass: HomeAssistant,
     config: ConfigType,
     add_entities: AddEntitiesCallback,
-    discovery_info: Optional[DiscoveryInfoType] = None
+    discovery_info: DiscoveryInfoType | None = None
 ) -> None:
     """Set up the Binary Sensor platform to w800rf32."""
     binary_sensors: list[W800rf32BinarySensor] = []
@@ -49,6 +51,7 @@ async def async_setup_platform(
         binary_sensors.append(device)
     add_entities(binary_sensors)
 
+
 class W800rf32BinarySensor(BinarySensorEntity):
     """A representation of a w800rf32 binary sensor."""
     _attr_should_poll = False
@@ -56,17 +59,17 @@ class W800rf32BinarySensor(BinarySensorEntity):
     def __init__(
         self,
         device_id: str,
-        name: Optional[str],
-        device_class: Optional[str] = None,
-        off_delay: Optional[timedelta] = None
+        name: str | None,
+        device_class: str | None = None,
+        off_delay: timedelta | None = None
     ) -> None:
         """Initialize the w800rf32 sensor."""
         self._signal: str = W800RF32_DEVICE.format(device_id)
-        self._name: Optional[str] = name
-        self._device_class: Optional[str] = device_class
-        self._off_delay: Optional[timedelta] = off_delay
+        self._name: str | None = name
+        self._device_class: str | None = device_class
+        self._off_delay: timedelta | None = off_delay
         self._state: bool = False
-        self._delay_listener: Optional[CALLBACK_TYPE] = None
+        self._delay_listener: CALLBACK_TYPE | None = None
 
     @callback
     def _off_delay_listener(self, now: Any) -> None:
@@ -75,12 +78,12 @@ class W800rf32BinarySensor(BinarySensorEntity):
         self.update_state(False)
 
     @property
-    def name(self) -> Optional[str]:
+    def name(self) -> str | None:
         """Return the device name."""
         return self._name
 
     @property
-    def device_class(self) -> Optional[str]:
+    def device_class(self) -> str | None:
         """Return the sensor class."""
         return self._device_class
 

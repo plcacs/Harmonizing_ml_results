@@ -15,7 +15,7 @@ from tests.conftest_trades import entry_side, exit_side
 from tests.freqtradebot.test_freqtradebot import patch_RPCManager
 
 @pytest.mark.parametrize('is_short', [False, True])
-def test_add_stoploss_on_exchange(mocker: MagicMock, default_conf_usdt: Dict[str, Any], limit_order: Dict[str, Dict[str, Any]], is_short: bool, fee: MagicMock) -> None:
+def test_add_stoploss_on_exchange(mocker: MagicMock, default_conf_usdt: Dict[str, Any], limit_order: Dict[str, Any], is_short: bool, fee: MagicMock) -> None:
     patch_RPCManager(mocker)
     patch_exchange(mocker)
     mocker.patch.multiple(EXMS, fetch_ticker=MagicMock(return_value={'bid': 1.9, 'ask': 2.2, 'last': 1.9}), create_order=MagicMock(return_value=limit_order[entry_side(is_short)]), get_fee=fee)
@@ -39,7 +39,7 @@ def test_add_stoploss_on_exchange(mocker: MagicMock, default_conf_usdt: Dict[str
     assert trade.is_open is True
 
 @pytest.mark.parametrize('is_short', [False, True])
-def test_handle_stoploss_on_exchange(mocker: MagicMock, default_conf_usdt: Dict[str, Any], fee: MagicMock, caplog: pytest.LogCaptureFixture, is_short: bool, limit_order: Dict[str, Dict[str, Any]]) -> None:
+def test_handle_stoploss_on_exchange(mocker: MagicMock, default_conf_usdt: Dict[str, Any], fee: MagicMock, caplog: pytest.LogCaptureFixture, is_short: bool, limit_order: Dict[str, Any]) -> None:
     stop_order_dict: Dict[str, Any] = {'id': '13434334'}
     stoploss = MagicMock(return_value=stop_order_dict)
     enter_order = limit_order[entry_side(is_short)]
@@ -112,7 +112,7 @@ def test_handle_stoploss_on_exchange(mocker: MagicMock, default_conf_usdt: Dict[
     assert stoploss.call_count == 0
 
 @pytest.mark.parametrize('is_short', [False, True])
-def test_handle_stoploss_on_exchange_emergency(mocker: MagicMock, default_conf_usdt: Dict[str, Any], fee: MagicMock, is_short: bool, limit_order: Dict[str, Dict[str, Any]]) -> None:
+def test_handle_stoploss_on_exchange_emergency(mocker: MagicMock, default_conf_usdt: Dict[str, Any], fee: MagicMock, is_short: bool, limit_order: Dict[str, Any]) -> None:
     stop_order_dict: Dict[str, Any] = {'id': '13434334'}
     stoploss = MagicMock(return_value=stop_order_dict)
     enter_order = limit_order[entry_side(is_short)]
@@ -145,7 +145,7 @@ def test_handle_stoploss_on_exchange_emergency(mocker: MagicMock, default_conf_u
     assert trade.exit_reason == str(ExitType.EMERGENCY_EXIT)
 
 @pytest.mark.parametrize('is_short', [False, True])
-def test_handle_stoploss_on_exchange_partial(mocker: MagicMock, default_conf_usdt: Dict[str, Any], fee: MagicMock, is_short: bool, limit_order: Dict[str, Dict[str, Any]]) -> None:
+def test_handle_stoploss_on_exchange_partial(mocker: MagicMock, default_conf_usdt: Dict[str, Any], fee: MagicMock, is_short: bool, limit_order: Dict[str, Any]) -> None:
     stop_order_dict: Dict[str, Any] = {'id': '101', 'status': 'open'}
     stoploss = MagicMock(return_value=stop_order_dict)
     enter_order = limit_order[entry_side(is_short)]
@@ -172,7 +172,7 @@ def test_handle_stoploss_on_exchange_partial(mocker: MagicMock, default_conf_usd
     assert trade.open_sl_orders[-1].order_id == '102'
 
 @pytest.mark.parametrize('is_short', [False, True])
-def test_handle_stoploss_on_exchange_partial_cancel_here(mocker: MagicMock, default_conf_usdt: Dict[str, Any], fee: MagicMock, is_short: bool, limit_order: Dict[str, Dict[str, Any]], caplog: pytest.LogCaptureFixture, time_machine: Any) -> None:
+def test_handle_stoploss_on_exchange_partial_cancel_here(mocker: MagicMock, default_conf_usdt: Dict[str, Any], fee: MagicMock, is_short: bool, limit_order: Dict[str, Any], caplog: pytest.LogCaptureFixture, time_machine: Any) -> None:
     stop_order_dict: Dict[str, Any] = {'id': '101', 'status': 'open'}
     time_machine.move_to(dt_now())
     default_conf_usdt['trailing_stop'] = True
@@ -206,7 +206,7 @@ def test_handle_stoploss_on_exchange_partial_cancel_here(mocker: MagicMock, defa
     assert trade.amount == 15
 
 @pytest.mark.parametrize('is_short', [False, True])
-def test_handle_sle_cancel_cant_recreate(mocker: MagicMock, default_conf_usdt: Dict[str, Any], fee: MagicMock, caplog: pytest.LogCaptureFixture, is_short: bool, limit_order: Dict[str, Dict[str, Any]]) -> None:
+def test_handle_sle_cancel_cant_recreate(mocker: MagicMock, default_conf_usdt: Dict[str, Any], fee: MagicMock, caplog: pytest.LogCaptureFixture, is_short: bool, limit_order: Dict[str, Any]) -> None:
     enter_order = limit_order[entry_side(is_short)]
     exit_order = limit_order[exit_side(is_short)]
     patch_RPCManager(mocker)
@@ -227,7 +227,7 @@ def test_handle_sle_cancel_cant_recreate(mocker: MagicMock, default_conf_usdt: D
     assert trade.is_open is True
 
 @pytest.mark.parametrize('is_short', [False, True])
-def test_create_stoploss_order_invalid_order(mocker: MagicMock, default_conf_usdt: Dict[str, Any], caplog: pytest.LogCaptureFixture, fee: MagicMock, is_short: bool, limit_order: Dict[str, Dict[str, Any]]) -> None:
+def test_create_stoploss_order_invalid_order(mocker: MagicMock, default_conf_usdt: Dict[str, Any], caplog: pytest.LogCaptureFixture, fee: MagicMock, is_short: bool, limit_order: Dict[str, Any]) -> None:
     open_order = limit_order[entry_side(is_short)]
     order = limit_order[exit_side(is_short)]
     rpc_mock = patch_RPCManager(mocker)
@@ -259,7 +259,7 @@ def test_create_stoploss_order_invalid_order(mocker: MagicMock, default_conf_usd
     assert rpc_mock.call_args_list[1][0][0]['type'] == 'exit_fill'
 
 @pytest.mark.parametrize('is_short', [False, True])
-def test_create_stoploss_order_insufficient_funds(mocker: MagicMock, default_conf_usdt: Dict[str, Any], caplog: pytest.LogCaptureFixture, fee: MagicMock, limit_order: Dict[str, Dict[str, Any]], is_short: bool) -> None:
+def test_create_stoploss_order_insufficient_funds(mocker: MagicMock, default_conf_usdt: Dict[str, Any], caplog: pytest.LogCaptureFixture, fee: MagicMock, limit_order: Dict[str, Any], is_short: bool) -> None:
     exit_order = limit_order[exit_side(is_short)]['id']
     freqtrade = get_patched_freqtradebot(mocker, default_conf_usdt)
     mock_insuf = mocker.patch('freqtrade.freqtradebot.FreqtradeBot.handle_insufficient_funds')
@@ -281,7 +281,7 @@ def test_create_stoploss_order_insufficient_funds(mocker: MagicMock, default_con
 
 @pytest.mark.parametrize('is_short,bid,ask,stop_price,hang_price', [(False, [4.38, 4.16], [4.4, 4.17], ['2.0805', 4.4 * 0.95], 3), (True, [1.09, 1.21], [1.1, 1.22], ['2.321', 1.09 * 1.05], 1.5)])
 @pytest.mark.usefixtures('init_persistence')
-def test_handle_stoploss_on_exchange_trailing(mocker: MagicMock, default_conf_usdt: Dict[str, Any], fee: MagicMock, is_short: bool, bid: List[float], ask: List[float], limit_order: Dict[str, Dict[str, Any]], stop_price: List[str], hang_price: float, time_machine: Any) -> None:
+def test_handle_stoploss_on_exchange_trailing(mocker: MagicMock, default_conf_usdt: Dict[str, Any], fee: MagicMock, is_short: bool, bid: List[float], ask: List[float], limit_order: Dict[str, Any], stop_price: List[str], hang_price: float, time_machine: Any) -> None:
     enter_order = limit_order[entry_side(is_short)]
     exit_order = limit_order[exit_side(is_short)]
     stoploss = MagicMock(return_value={'id': '13434334', 'status': 'open'})
@@ -339,7 +339,7 @@ def test_handle_stoploss_on_exchange_trailing(mocker: MagicMock, default_conf_us
     assert trade.has_open_sl_orders is False
 
 @pytest.mark.parametrize('is_short', [False, True])
-def test_handle_stoploss_on_exchange_trailing_error(mocker: MagicMock, default_conf_usdt: Dict[str, Any], fee: MagicMock, caplog: pytest.LogCaptureFixture, limit_order: Dict[str, Dict[str, Any]], is_short: bool, time_machine: Any) -> None:
+def test_handle_stoploss_on_exchange_trailing_error(mocker: MagicMock, default_conf_usdt: Dict[str, Any], fee: MagicMock, caplog: pytest.LogCaptureFixture, limit_order: Dict[str, Any], is_short: bool, time_machine: Any) -> None:
     time_machine.move_to(dt_now() - timedelta(minutes=601))
     enter_order = limit_order[entry_side(is_short)]
     exit_order = limit_order[exit_side(is_short)]
@@ -390,7 +390,7 @@ def test_stoploss_on_exchange_price_rounding(mocker: MagicMock, default_conf_usd
 
 @pytest.mark.parametrize('is_short', [False, True])
 @pytest.mark.usefixtures('init_persistence')
-def test_handle_stoploss_on_exchange_custom_stop(mocker: MagicMock, default_conf_usdt: Dict[str, Any], fee: MagicMock, is_short: bool, limit_order: Dict[str, Dict[str, Any]]) -> None:
+def test_handle_stoploss_on_exchange_custom_stop(mocker: MagicMock, default_conf_usdt: Dict[str, Any], fee: MagicMock, is_short: bool, limit_order: Dict[str, Any]) -> None:
     enter_order = limit_order[entry_side(is_short)]
     exit_order = limit_order[exit_side(is_short)]
     stoploss = MagicMock(return_value={'id': 13434334, 'status': 'open'})
@@ -443,7 +443,7 @@ def test_handle_stoploss_on_exchange_custom_stop(mocker: MagicMock, default_conf
     mocker.patch(f'{EXMS}.fetch_ticker', MagicMock(return_value={'bid': 4.17, 'ask': 4.19, 'last': 4.17}))
     assert freqtrade.handle_trade(trade) is True
 
-def test_tsl_on_exchange_compatible_with_edge(mocker: MagicMock, edge_conf: Dict[str, Any], fee: MagicMock, limit_order: Dict[str, Dict[str, Any]]) -> None:
+def test_tsl_on_exchange_compatible_with_edge(mocker: MagicMock, edge_conf: Dict[str, Any], fee: MagicMock, limit_order: Dict[str, Any]) -> None:
     enter_order = limit_order['buy']
     exit_order = limit_order['sell']
     enter_order['average'] = 2.19

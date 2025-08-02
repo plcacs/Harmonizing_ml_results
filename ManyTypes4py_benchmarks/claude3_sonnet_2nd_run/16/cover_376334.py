@@ -29,7 +29,7 @@ async def async_setup_entry(
         auto: bool,
         device_id: str,
         entity_info: dict[str, Any],
-    ) -> list[Entity]:
+    ) -> List[Entity]:
         return [RfxtrxCover(event.device, device_id, venetian_blind_mode=entity_info.get(CONF_VENETIAN_BLIND_MODE), event=event if auto else None)]
     await async_setup_platform_entry(hass, config_entry, async_add_entities, supported, _constructor)
 

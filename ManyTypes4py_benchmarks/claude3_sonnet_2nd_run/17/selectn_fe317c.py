@@ -3,7 +3,7 @@ Implementation of nlargest and nsmallest.
 """
 from __future__ import annotations
 from collections.abc import Hashable, Sequence
-from typing import TYPE_CHECKING, Generic, cast, final, Literal, List, Optional, Union, TypeVar
+from typing import TYPE_CHECKING, Generic, cast, final, Literal, TypeVar, overload, Optional, List, Union
 import numpy as np
 from pandas._libs import algos as libalgos
 from pandas.core.dtypes.common import is_bool_dtype, is_complex_dtype, is_integer_dtype, is_list_like, is_numeric_dtype, needs_i8_conversion
@@ -18,19 +18,16 @@ else:
     DataFrame = T
     Series = T
 
-KeepType = Literal["first", "last", "all"]
-MethodType = Literal["nlargest", "nsmallest"]
-
 class SelectN(Generic[NDFrameT]):
 
-    def __init__(self, obj: NDFrameT, n: int, keep: KeepType) -> None:
+    def __init__(self, obj: NDFrameT, n: int, keep: Literal["first", "last", "all"]) -> None:
         self.obj = obj
         self.n = n
         self.keep = keep
         if self.keep not in ('first', 'last', 'all'):
             raise ValueError('keep must be either "first", "last" or "all"')
 
-    def compute(self, method: MethodType) -> NDFrameT:
+    def compute(self, method: Literal["nlargest", "nsmallest"]) -> NDFrameT:
         raise NotImplementedError
 
     @final
@@ -67,7 +64,7 @@ class SelectNSeries(SelectN[Series]):
     nordered : Series
     """
 
-    def compute(self, method: MethodType) -> Series:
+    def compute(self, method: Literal["nlargest", "nsmallest"]) -> Series:
         from pandas.core.reshape.concat import concat
         n = self.n
         dtype = self.obj.dtype
@@ -134,7 +131,13 @@ class SelectNFrame(SelectN[DataFrame]):
     nordered : DataFrame
     """
 
-    def __init__(self, obj: DataFrame, n: int, keep: KeepType, columns: Union[List[Hashable], Hashable]) -> None:
+    def __init__(
+        self, 
+        obj: DataFrame, 
+        n: int, 
+        keep: Literal["first", "last", "all"], 
+        columns: Union[List[Hashable], Hashable]
+    ) -> None:
         super().__init__(obj, n, keep)
         if not is_list_like(columns) or isinstance(columns, tuple):
             columns = [columns]
@@ -142,7 +145,7 @@ class SelectNFrame(SelectN[DataFrame]):
         columns = list(columns)
         self.columns = columns
 
-    def compute(self, method: MethodType) -> DataFrame:
+    def compute(self, method: Literal["nlargest", "nsmallest"]) -> DataFrame:
         n = self.n
         frame = self.obj
         columns = self.columns

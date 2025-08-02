@@ -59,10 +59,10 @@ class _Frontier(NamedTuple):
     history: List[Union[Keep, Insert, Remove]]
 
 def _finalize(
-    history: List[Union[Keep, Insert, Remove]],
-    state_dict_a: Dict[str, torch.Tensor],
-    state_dict_b: Dict[str, torch.Tensor],
-    scale: float,
+    history: List[Union[Keep, Insert, Remove]], 
+    state_dict_a: Dict[str, torch.Tensor], 
+    state_dict_b: Dict[str, torch.Tensor], 
+    scale: float, 
     threshold: float
 ) -> List[Union[Keep, Insert, Remove, Modify]]:
     out = cast(List[Union[Keep, Insert, Remove, Modify]], history)
@@ -77,9 +77,9 @@ def _finalize(
     return out
 
 def checkpoint_diff(
-    state_dict_a: Dict[str, torch.Tensor],
-    state_dict_b: Dict[str, torch.Tensor],
-    scale: float,
+    state_dict_a: Dict[str, torch.Tensor], 
+    state_dict_b: Dict[str, torch.Tensor], 
+    scale: float, 
     threshold: float
 ) -> List[Union[Keep, Insert, Remove, Modify]]:
     """

@@ -14,14 +14,14 @@ from homeassistant.data_entry_flow import FlowResultType
 from homeassistant.setup import async_setup_component
 from tests.common import MockConfigEntry, MockModule, mock_config_flow, mock_integration, mock_platform
 
-TEST_DOMAIN: str = 'test_firmware_domain'
-TEST_DEVICE: str = '/dev/SomeDevice123'
-TEST_HARDWARE_NAME: str = 'Some Hardware Name'
+TEST_DOMAIN = 'test_firmware_domain'
+TEST_DEVICE = '/dev/SomeDevice123'
+TEST_HARDWARE_NAME = 'Some Hardware Name'
 
 class FakeFirmwareConfigFlow(BaseFirmwareConfigFlow, domain=TEST_DOMAIN):
     """Config flow for `test_firmware_domain`."""
-    VERSION: int = 1
-    MINOR_VERSION: int = 2
+    VERSION = 1
+    MINOR_VERSION = 2
 
     @staticmethod
     @callback
@@ -48,8 +48,8 @@ class FakeFirmwareOptionsFlowHandler(BaseFirmwareOptionsFlow):
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         """Instantiate options flow."""
         super().__init__(*args, **kwargs)
-        self._device: str = self.config_entry.data['device']
-        self._hardware_name: str = self.config_entry.data['hardware']
+        self._device = self.config_entry.data['device']
+        self._hardware_name = self.config_entry.data['hardware']
         self._get_translation_placeholders()
 
     def _async_flow_finished(self) -> ConfigFlowResult:

@@ -321,7 +321,7 @@ def _purge_filtered_data(instance: "Recorder", session: Session) -> bool:
     now_timestamp = time.time()
     entity_filter = instance.entity_filter
     has_more_to_purge = False
-    excluded_metadata_ids: List[int] = [metadata_id for metadata_id, entity_id in session.query(StatesMeta.metadata_id, StatesMeta.entity_id).all() if entity_filter and (not entity_filter(entity_id))]
+    excluded_metadata_ids = [metadata_id for metadata_id, entity_id in session.query(StatesMeta.metadata_id, StatesMeta.entity_id).all() if entity_filter and (not entity_filter(entity_id))]
     if excluded_metadata_ids:
         has_more_to_purge |= not _purge_filtered_states(instance, session, excluded_metadata_ids, database_engine, now_timestamp)
     if (event_type_to_event_type_ids := instance.event_type_manager.get_many(instance.exclude_event_types, session)) and (excluded_event_type_ids := [event_type_id for event_type_id in event_type_to_event_type_ids.values() if event_type_id is not None]):
@@ -333,7 +333,7 @@ def _purge_filtered_states(instance: "Recorder", session: Session, metadata_ids_
 
     Return true if all states are purged
     """
-    to_purge: List[Tuple[int, Optional[int], Optional[int]]] = list(session.query(States.state_id, States.attributes_id, States.event_id).filter(States.metadata_id.in_(metadata_ids_to_purge)).filter(States.last_updated_ts < purge_before_timestamp).limit(instance.max_bind_vars).all())
+    to_purge = list(session.query(States.state_id, States.attributes_id, States.event_id).filter(States.metadata_id.in_(metadata_ids_to_purge)).filter(States.last_updated_ts < purge_before_timestamp).limit(instance.max_bind_vars).all())
     if not to_purge:
         return True
     state_ids, attributes_ids, event_ids = zip(*to_purge, strict=False)
@@ -352,7 +352,7 @@ def _purge_filtered_events(instance: "Recorder", session: Session, excluded_even
     """
     database_engine = instance.database_engine
     assert database_engine is not None
-    to_purge: List[Tuple[int, Optional[int]]] = list(session.query(Events.event_id, Events.data_id).filter(Events.event_type_id.in_(excluded_event_type_ids)).filter(Events.time_fired_ts < purge_before_timestamp).limit(instance.max_bind_vars).all())
+    to_purge = list(session.query(Events.event_id, Events.data_id).filter(Events.event_type_id.in_(excluded_event_type_ids)).filter(Events.time_fired_ts < purge_before_timestamp).limit(instance.max_bind_vars).all())
     if not to_purge:
         return True
     event_ids, data_ids = zip(*to_purge, strict=False)
@@ -372,7 +372,7 @@ def purge_entity_data(instance: "Recorder", entity_filter: Callable[[str], bool]
     assert database_engine is not None
     purge_before_timestamp = purge_before.timestamp()
     with session_scope(session=instance.get_session()) as session:
-        selected_metadata_ids: List[int] = [metadata_id for metadata_id, entity_id in session.query(StatesMeta.metadata_id, StatesMeta.entity_id).all() if entity_filter and entity_filter(entity_id)]
+        selected_metadata_ids = [metadata_id for metadata_id, entity_id in session.query(StatesMeta.metadata_id, StatesMeta.entity_id).all() if entity_filter and entity_filter(entity_id)]
         _LOGGER.debug('Purging entity data for %s', selected_metadata_ids)
         if not selected_metadata_ids:
             return True

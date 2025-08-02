@@ -31,7 +31,9 @@ class RemoteActivityPlanData:
 class ActivityHeaderEntry:
     pass
 
-def make_table(title: str, cols: List[str], rows: List[Dict[str, Any]], *, header: Optional[Dict[str, Any]] = None, totals: Optional[Dict[str, Any]] = None, title_link: Optional[str] = None, has_row_class: bool = False) -> str:
+def make_table(title: str, cols: List[str], rows: List[Dict[str, Any]], *, header: Optional[Dict[str, Any]] = None, 
+               totals: Optional[Dict[str, Any]] = None, title_link: Optional[str] = None, 
+               has_row_class: bool = False) -> str:
     if not has_row_class:
 
         def fix_row(row: Dict[str, Any]) -> Dict[str, Any]:
@@ -128,7 +130,9 @@ def get_plan_rate_percentage(discount: Optional[str]) -> str:
         precision = 2
     return f'{rate:.{precision}f}%'
 
-def get_remote_activity_plan_data(plan: CustomerPlan, license_ledger: LicenseLedger, *, remote_realm: Optional[RemoteRealm] = None, remote_server: Optional[RemoteZulipServer] = None) -> RemoteActivityPlanData:
+def get_remote_activity_plan_data(plan: CustomerPlan, license_ledger: LicenseLedger, *, 
+                                  remote_realm: Optional[RemoteRealm] = None, 
+                                  remote_server: Optional[RemoteZulipServer] = None) -> RemoteActivityPlanData:
     from corporate.lib.stripe import RemoteRealmBillingSession, RemoteServerBillingSession
     if plan.tier == CustomerPlan.TIER_SELF_HOSTED_LEGACY or plan.status in (CustomerPlan.DOWNGRADE_AT_END_OF_FREE_TRIAL, CustomerPlan.DOWNGRADE_AT_END_OF_CYCLE):
         renewal_cents = 0

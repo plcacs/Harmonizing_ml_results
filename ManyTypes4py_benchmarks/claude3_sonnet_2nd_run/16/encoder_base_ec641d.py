@@ -162,7 +162,11 @@ class _EncoderBase(torch.nn.Module):
             sorted_states = [state.index_select(1, sorting_indices) for state in correctly_shaped_states]
             return tuple((state[:, :num_valid, :].contiguous() for state in sorted_states))
 
-    def _update_states(self, final_states: RnnStateStorage, restoration_indices: torch.LongTensor) -> None:
+    def _update_states(
+        self, 
+        final_states: RnnStateStorage, 
+        restoration_indices: torch.LongTensor
+    ) -> None:
         """
         After the RNN has run forward, the states need to be updated.
         This method just sets the state to the updated new state, performing

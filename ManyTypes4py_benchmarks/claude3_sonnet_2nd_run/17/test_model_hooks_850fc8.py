@@ -1,6 +1,6 @@
 from pathlib import Path
 import pytest
-from typing import Dict, List, Any, Optional, Union
+from typing import Dict, List, Any, Optional
 from dbt.exceptions import ParsingError
 from dbt.tests.util import run_dbt, write_file
 from dbt_common.exceptions import CompilationError
@@ -48,7 +48,7 @@ class TestPrePostModelHooks(BaseTestPrePost):
         return {'models': {'test': {'pre-hook': [MODEL_PRE_HOOK, {'sql': 'vacuum {{ this.schema }}.on_model_hook', 'transaction': False}], 'post-hook': [{'sql': 'vacuum {{ this.schema }}.on_model_hook', 'transaction': False}, MODEL_POST_HOOK]}}}
 
     @pytest.fixture(scope='class')
-    def models(self) -> Dict[str, str]:
+    def models(self) -> Dict[str, Any]:
         return {'hooks.sql': models__hooks}
 
     def test_pre_and_post_run_hooks(self, project: Any, dbt_profile_target: Dict[str, Any]) -> None:
@@ -69,7 +69,7 @@ class TestHookRefs(BaseTestPrePost):
         return {'models': {'test': {'hooked': {'post-hook': ['\n                        insert into {{this.schema}}.on_model_hook select\n                        test_state,\n                        \'{{ target.dbname }}\' as target_dbname,\n                        \'{{ target.host }}\' as target_host,\n                        \'{{ target.name }}\' as target_name,\n                        \'{{ target.schema }}\' as target_schema,\n                        \'{{ target.type }}\' as target_type,\n                        \'{{ target.user }}\' as target_user,\n                        \'{{ target.get(pass, "") }}\' as target_pass,\n                        {{ target.threads }} as target_threads,\n                        \'{{ run_started_at }}\' as run_started_at,\n                        \'{{ invocation_id }}\' as invocation_id,\n                        \'{{ thread_id }}\' as thread_id\n                        from {{ ref(\'post\') }}'.strip()]}}}}
 
     @pytest.fixture(scope='class')
-    def models(self) -> Dict[str, str]:
+    def models(self) -> Dict[str, Any]:
         return {'hooked.sql': models__hooked, 'post.sql': models__post, 'pre.sql': models__pre}
 
     def test_pre_post_model_hooks_refed(self, project: Any, dbt_profile_target: Dict[str, Any]) -> None:
@@ -80,11 +80,11 @@ class TestHookRefs(BaseTestPrePost):
 class TestPrePostModelHooksOnSeeds:
 
     @pytest.fixture(scope='class')
-    def seeds(self) -> Dict[str, str]:
+    def seeds(self) -> Dict[str, Any]:
         return {'example_seed.csv': seeds__example_seed_csv}
 
     @pytest.fixture(scope='class')
-    def models(self) -> Dict[str, str]:
+    def models(self) -> Dict[str, Any]:
         return {'schema.yml': properties__seed_models}
 
     @pytest.fixture(scope='class')
@@ -100,11 +100,11 @@ class TestPrePostModelHooksOnSeeds:
 class TestPrePostModelHooksWithMacros(BaseTestPrePost):
 
     @pytest.fixture(scope='class')
-    def macros(self) -> Dict[str, str]:
+    def macros(self) -> Dict[str, Any]:
         return {'before-and-after.sql': macros__before_and_after}
 
     @pytest.fixture(scope='class')
-    def models(self) -> Dict[str, str]:
+    def models(self) -> Dict[str, Any]:
         return {'schema.yml': properties__model_hooks, 'hooks.sql': models__hooks}
 
     def test_pre_and_post_run_hooks(self, project: Any, dbt_profile_target: Dict[str, Any]) -> None:
@@ -115,7 +115,7 @@ class TestPrePostModelHooksWithMacros(BaseTestPrePost):
 class TestPrePostModelHooksListWithMacros(TestPrePostModelHooksWithMacros):
 
     @pytest.fixture(scope='class')
-    def models(self) -> Dict[str, str]:
+    def models(self) -> Dict[str, Any]:
         return {'schema.yml': properties__model_hooks_list, 'hooks.sql': models__hooks}
 
 class TestHooksRefsOnSeeds:
@@ -125,11 +125,11 @@ class TestHooksRefsOnSeeds:
     """
 
     @pytest.fixture(scope='class')
-    def seeds(self) -> Dict[str, str]:
+    def seeds(self) -> Dict[str, Any]:
         return {'example_seed.csv': seeds__example_seed_csv}
 
     @pytest.fixture(scope='class')
-    def models(self) -> Dict[str, str]:
+    def models(self) -> Dict[str, Any]:
         return {'schema.yml': properties__seed_models, 'post.sql': models__post}
 
     @pytest.fixture(scope='class')
@@ -162,11 +162,11 @@ class TestPrePostModelHooksOnSnapshots:
         write_file(snapshots__test_snapshot, path, 'snapshot.sql')
 
     @pytest.fixture(scope='class')
-    def models(self) -> Dict[str, str]:
+    def models(self) -> Dict[str, Any]:
         return {'schema.yml': properties__test_snapshot_models}
 
     @pytest.fixture(scope='class')
-    def seeds(self) -> Dict[str, str]:
+    def seeds(self) -> Dict[str, Any]:
         return {'example_seed.csv': seeds__example_seed_csv}
 
     @pytest.fixture(scope='class')
@@ -184,11 +184,11 @@ class TestPrePostModelHooksOnSnapshots:
 class PrePostModelHooksInConfigSetup(BaseTestPrePost):
 
     @pytest.fixture(scope='class')
-    def project_config_update(self) -> Dict[str, List[str]]:
+    def project_config_update(self) -> Dict[str, Any]:
         return {'macro-paths': ['macros']}
 
     @pytest.fixture(scope='class')
-    def models(self) -> Dict[str, str]:
+    def models(self) -> Dict[str, Any]:
         return {'hooks.sql': models__hooks_configured}
 
 class TestPrePostModelHooksInConfig(PrePostModelHooksInConfigSetup):
@@ -212,7 +212,7 @@ class TestPrePostModelHooksInConfigWithCount(PrePostModelHooksInConfigSetup):
 class TestPrePostModelHooksInConfigKwargs(TestPrePostModelHooksInConfig):
 
     @pytest.fixture(scope='class')
-    def models(self) -> Dict[str, str]:
+    def models(self) -> Dict[str, Any]:
         return {'hooks.sql': models__hooks_kwargs}
 
 class TestPrePostSnapshotHooksInConfigKwargs(TestPrePostModelHooksOnSnapshots):
@@ -230,7 +230,7 @@ class TestPrePostSnapshotHooksInConfigKwargs(TestPrePostModelHooksOnSnapshots):
 class TestDuplicateHooksInConfigs:
 
     @pytest.fixture(scope='class')
-    def models(self) -> Dict[str, str]:
+    def models(self) -> Dict[str, Any]:
         return {'hooks.sql': models__hooks_error}
 
     def test_run_duplicate_hook_defs(self, project: Any) -> None:

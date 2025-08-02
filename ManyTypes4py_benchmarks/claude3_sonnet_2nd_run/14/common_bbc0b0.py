@@ -8,19 +8,20 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.typing import ConfigType, GPSType
 from homeassistant.loader import bind_hass
 from tests.common import MockPlatform, mock_platform
+from typing import Any, Dict, List, Optional, Union
 
 @callback
 @bind_hass
 def async_see(
     hass: HomeAssistant,
-    mac: str | None = None,
-    dev_id: str | None = None,
-    host_name: str | None = None,
-    location_name: str | None = None,
-    gps: GPSType | None = None,
-    gps_accuracy: int | None = None,
-    battery: int | None = None,
-    attributes: dict | None = None,
+    mac: Optional[str] = None,
+    dev_id: Optional[str] = None,
+    host_name: Optional[str] = None,
+    location_name: Optional[str] = None,
+    gps: Optional[GPSType] = None,
+    gps_accuracy: Optional[int] = None,
+    battery: Optional[int] = None,
+    attributes: Optional[Dict[str, Any]] = None,
 ) -> None:
     """Call service to notify you see device."""
     data = {key: value for key, value in ((ATTR_MAC, mac), (ATTR_DEV_ID, dev_id), (ATTR_HOST_NAME, host_name), (ATTR_LOCATION_NAME, location_name), (ATTR_GPS, gps), (ATTR_GPS_ACCURACY, gps_accuracy), (ATTR_BATTERY, battery)) if value is not None}
@@ -81,7 +82,7 @@ class MockScanner(DeviceScanner):
 
     def __init__(self) -> None:
         """Initialize the MockScanner."""
-        self.devices_home: list[str] = []
+        self.devices_home: List[str] = []
 
     def come_home(self, device: str) -> None:
         """Make a device come home."""
@@ -95,11 +96,11 @@ class MockScanner(DeviceScanner):
         """Reset which devices are home."""
         self.devices_home = []
 
-    def scan_devices(self) -> list[str]:
+    def scan_devices(self) -> List[str]:
         """Return a list of fake devices."""
         return list(self.devices_home)
 
-    def get_device_name(self, device: str) -> str | None:
+    def get_device_name(self, device: str) -> Optional[str]:
         """Return a name for a mock device.
 
         Return None for dev1 for testing.

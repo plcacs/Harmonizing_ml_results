@@ -8,7 +8,7 @@ from sys import platform
 import logging
 import time
 from threading import Thread
-from typing import Optional, List, IO, Set, Dict, Any, Union, Type, ClassVar
+from typing import Optional, List, IO, Set, Dict, Any, Union, Type, Tuple, NoReturn
 
 class NotOnLinux64Error(EnvironmentError):
     """The embedded OpenSSL server is only available on Linux 64."""
@@ -33,7 +33,7 @@ class _OpenSslServerIOManager:
 
     def _read_and_log_and_reply(self) -> None:
         while True:
-            s_server_out = self._s_server_stdout.readline()
+            s_server_out: bytes = self._s_server_stdout.readline()
             if s_server_out:
                 logging.warning(f's_server output: {s_server_out}')
                 if b'ACCEPT' in s_server_out:
@@ -56,10 +56,10 @@ _DEFAULT_SERVER_KEY_PATH: Path = Path(__file__).parent.absolute() / 'server-rsa-
 
 class _OpenSslServer(ABC):
     """A wrapper around OpenSSL's s_server CLI."""
-    _AVAILABLE_LOCAL_PORTS: ClassVar[Set[int]] = set(range(8110, 8150))
-    _S_SERVER_CMD: ClassVar[str] = '{openssl} s_server -cert {server_cert} -key {server_key} -accept {port} -cipher "{cipher}" {verify_arg} {extra_args}'
-    _CLIENT_CA_PATH: ClassVar[Path] = Path(__file__).parent.absolute() / 'client-ca.pem'
-    HELLO_MSG: ClassVar[bytes] = b'Hello\r\n'
+    _AVAILABLE_LOCAL_PORTS: Set[int] = set(range(8110, 8150))
+    _S_SERVER_CMD: str = '{openssl} s_server -cert {server_cert} -key {server_key} -accept {port} -cipher "{cipher}" {verify_arg} {extra_args}'
+    _CLIENT_CA_PATH: Path = Path(__file__).parent.absolute() / 'client-ca.pem'
+    HELLO_MSG: bytes = b'Hello\r\n'
 
     @classmethod
     def get_client_certificate_path(cls) -> Path:
@@ -113,7 +113,7 @@ class _OpenSslServer(ABC):
 
     def __enter__(self) -> '_OpenSslServer':
         logging.warning(f'Running s_server: "{self._command_line}"')
-        args = shlex.split(self._command_line)
+        args: List[str] = shlex.split(self._command_line)
         try:
             self._process = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             self._server_io_manager = _OpenSslServerIOManager(self._process.stdout, self._process.stdin, self._should_reply_to_http_requests)

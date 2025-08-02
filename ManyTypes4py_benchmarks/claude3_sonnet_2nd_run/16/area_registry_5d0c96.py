@@ -5,7 +5,7 @@ from collections.abc import Iterable
 import dataclasses
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import TYPE_CHECKING, Any, Literal, TypedDict, Dict, Set, List, Optional, cast, Union
+from typing import TYPE_CHECKING, Any, Literal, TypedDict, Optional, Set, Dict, List, cast, Union
 from homeassistant.const import ATTR_DEVICE_CLASS
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.util.dt import utc_from_timestamp, utcnow

@@ -15,7 +15,7 @@ class Normalizer(metaclass=_NormalizerMeta):
     rule_value_classes: ClassVar[Dict[Any, List[Type['Rule']]]]
     rule_type_classes: ClassVar[Dict[Any, List[Type['Rule']]]]
 
-    def __init__(self, grammar: Any, config: 'NormalizerConfig') -> None:
+    def __init__(self, grammar: Any, config: Any) -> None:
         self.grammar = grammar
         self._config = config
         self.issues: List['Issue'] = []

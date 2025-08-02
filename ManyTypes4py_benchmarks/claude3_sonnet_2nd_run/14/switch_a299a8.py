@@ -7,9 +7,14 @@ from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from . import SmappeeConfigEntry
 from .const import DOMAIN
+
 SWITCH_PREFIX: str = 'Switch'
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None:
+async def async_setup_entry(
+    hass: HomeAssistant, 
+    config_entry: ConfigEntry, 
+    async_add_entities: AddEntitiesCallback
+) -> None:
     """Set up the Smappee Comfort Plugs."""
     smappee_base: SmappeeConfigEntry = config_entry.runtime_data
     entities: List[SmappeeActuator] = []
@@ -25,7 +30,16 @@ class SmappeeActuator(SwitchEntity):
     """Representation of a Smappee Comport Plug."""
     _attr_icon: str = 'mdi:toggle-switch'
 
-    def __init__(self, smappee_base: SmappeeConfigEntry, service_location: Any, name: str, actuator_id: str, actuator_type: str, actuator_serialnumber: str, actuator_state_option: Optional[str] = None) -> None:
+    def __init__(
+        self, 
+        smappee_base: SmappeeConfigEntry, 
+        service_location: Any, 
+        name: str, 
+        actuator_id: str, 
+        actuator_type: str, 
+        actuator_serialnumber: str, 
+        actuator_state_option: Optional[str] = None
+    ) -> None:
         """Initialize a new Smappee Comfort Plug."""
         self._smappee_base: SmappeeConfigEntry = smappee_base
         self._service_location: Any = service_location
@@ -36,7 +50,13 @@ class SmappeeActuator(SwitchEntity):
         self._actuator_state_option: Optional[str] = actuator_state_option
         self._state: str = service_location.actuators.get(actuator_id).state
         self._connection_state: str = service_location.actuators.get(actuator_id).connection_state
-        self._attr_device_info: DeviceInfo = DeviceInfo(identifiers={(DOMAIN, service_location.device_serial_number)}, manufacturer='Smappee', model=service_location.device_model, name=service_location.service_location_name, sw_version=service_location.firmware_version)
+        self._attr_device_info: DeviceInfo = DeviceInfo(
+            identifiers={(DOMAIN, service_location.device_serial_number)}, 
+            manufacturer='Smappee', 
+            model=service_location.device_model, 
+            name=service_location.service_location_name, 
+            sw_version=service_location.firmware_version
+        )
 
     @property
     def name(self) -> str:

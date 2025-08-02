@@ -120,7 +120,7 @@ class FreeboxRouter:
         """Update Freebox disks."""
         fbx_disks: List[Dict[str, Any]] = await self._api.storage.get_disks() or []
         for fbx_disk in fbx_disks:
-            disk = {**fbx_disk}
+            disk: Dict[str, Any] = {**fbx_disk}
             disk_part: Dict[str, Dict[str, Any]] = {}
             for fbx_disk_part in fbx_disk['partitions']:
                 disk_part[fbx_disk_part['id']] = fbx_disk_part

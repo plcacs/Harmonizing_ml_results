@@ -143,7 +143,7 @@ def iter_contained_typevars(v: Any) -> Iterator[TypeVar]:
         for arg in args:
             yield from iter_contained_typevars(arg)
 
-def get_args(v: Any) -> Optional[tuple[Any, ...]]:
+def get_args(v: Any) -> tuple[Any, ...]:
     pydantic_generic_metadata = getattr(v, '__pydantic_generic_metadata__', None)
     if pydantic_generic_metadata:
         return pydantic_generic_metadata.get('args')

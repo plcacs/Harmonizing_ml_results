@@ -188,7 +188,7 @@ class HyperionLight(LightEntity):
         if not self._client.effects:
             return
         effect_list: list[str] = []
-        hide_effects: list[str] = self._get_option(CONF_EFFECT_HIDE_LIST)
+        hide_effects = self._get_option(CONF_EFFECT_HIDE_LIST)
         for effect in self._client.effects or []:
             if const.KEY_NAME in effect:
                 effect_name = effect[const.KEY_NAME]

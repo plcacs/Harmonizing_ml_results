@@ -19,7 +19,7 @@ def async_filter_entities(hass: HomeAssistant, entity_ids: List[str]) -> List[st
 
 
 @callback
-def _async_config_entries_for_ids(hass: HomeAssistant, entity_ids: List[str] | None, device_ids: List[str] | None) -> Set[str]:
+def _async_config_entries_for_ids(hass: HomeAssistant, entity_ids: List[str], device_ids: List[str]) -> Set[str]:
     """Find the config entry ids for a set of entities or devices."""
     config_entry_ids: Set[str] = set()
     if entity_ids:
@@ -35,7 +35,7 @@ def _async_config_entries_for_ids(hass: HomeAssistant, entity_ids: List[str] | N
     return config_entry_ids
 
 
-def async_determine_event_types(hass: HomeAssistant, entity_ids: List[str] | None, device_ids: List[str] | None) -> Tuple[str, ...]:
+def async_determine_event_types(hass: HomeAssistant, entity_ids: List[str], device_ids: List[str]) -> Tuple[str, ...]:
     """Reduce the event types based on the entity ids and device ids."""
     logbook_config: LogbookConfig = hass.data[DOMAIN]
     external_events: Mapping[str, Tuple[str, Callable]] = logbook_config.external_events
@@ -62,7 +62,7 @@ def extract_attr(source: Mapping[str, Any], attr: str) -> List[str]:
 
 
 @callback
-def event_forwarder_filtered(target: Callable[[Event], None], entities_filter: Callable[[str], bool] | None, entity_ids: List[str] | None, device_ids: List[str] | None) -> Callable[[Event], None]:
+def event_forwarder_filtered(target: Callable[[Event], None], entities_filter: Callable[[str], bool], entity_ids: List[str], device_ids: List[str]) -> Callable[[Event], None]:
     """Make a callable to filter events."""
     if not entities_filter and (not entity_ids) and (not device_ids):
         return target
@@ -92,7 +92,7 @@ def event_forwarder_filtered(target: Callable[[Event], None], entities_filter: C
 
 
 @callback
-def async_subscribe_events(hass: HomeAssistant, subscriptions: List[CALLBACK_TYPE], target: Callable[[Event], None], event_types: Tuple[str, ...], entities_filter: Callable[[str], bool] | None, entity_ids: List[str] | None, device_ids: List[str] | None) -> None:
+def async_subscribe_events(hass: HomeAssistant, subscriptions: List[CALLBACK_TYPE], target: Callable[[Event], None], event_types: Tuple[str, ...], entities_filter: Callable[[str], bool], entity_ids: List[str], device_ids: List[str]) -> None:
     """Subscribe to events for the entities and devices or all.
 
     These are the events we need to listen for to do

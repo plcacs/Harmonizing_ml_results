@@ -6,7 +6,7 @@ from dbt.events.types import ArtifactWritten, EndOfRunSummary, GenericExceptionO
 from dbt.tests.fixtures.project import TestProjInfo
 from dbt.tests.util import get_artifact, patch_microbatch_end_time, read_file, relation_from_name, run_dbt, run_dbt_and_capture, write_file
 from tests.utils import EventCatcher
-from typing import Any, Callable, Dict, List, Optional, Tuple, Union
+from typing import List, Dict, Any, Optional, Callable, Tuple, Union, Type
 
 input_model_sql: str = "\n{{ config(materialized='table', event_time='event_time') }}\n\nselect 1 as id, TIMESTAMP '2020-01-01 00:00:00-0' as event_time\nunion all\nselect 2 as id, TIMESTAMP '2020-01-02 00:00:00-0' as event_time\nunion all\nselect 3 as id, TIMESTAMP '2020-01-03 00:00:00-0' as event_time\n"
 input_model_invalid_sql: str = "\n{{ config(materialized='table', event_time='event_time') }}\n\nselect invalid as event_time\n"
@@ -97,14 +97,14 @@ class TestMicrobatchCLI(BaseMicrobatchTest):
     CLI_COMMAND_NAME: str = 'run'
 
     def test_run_with_event_time(self, project: TestProjInfo) -> None:
-        model_catcher = EventCatcher(event_to_catch=LogModelResult)
-        batch_catcher = EventCatcher(event_to_catch=LogBatchResult)
+        model_catcher: EventCatcher = EventCatcher(event_to_catch=LogModelResult)
+        batch_catcher: EventCatcher = EventCatcher(event_to_catch=LogBatchResult)
         with patch_microbatch_end_time('2020-01-03 13:57:00'):
             run_dbt([self.CLI_COMMAND_NAME], callbacks=[model_catcher.catch, batch_catcher.catch])
         self.assert_row_count(project, 'microbatch_model', 3)
         assert len(model_catcher.caught_events) == 2
         assert len(batch_catcher.caught_events) == 3
-        batch_creation_events = 0
+        batch_creation_events: int = 0
         for caught_event in batch_catcher.caught_events:
             if 'batch 2020' in caught_event.data.description:
                 batch_creation_events += 1
@@ -120,10 +120,10 @@ class TestMicrobatchCLIRunOutputJSON(BaseMicrobatchTest):
 
     def test_list_output_json(self, project: TestProjInfo) -> None:
         """Test whether the command `dbt list --output json` works"""
-        model_catcher = EventCatcher(event_to_catch=LogModelResult)
-        batch_catcher = EventCatcher(event_to_catch=LogBatchResult)
+        model_catcher: EventCatcher = EventCatcher(event_to_catch=LogModelResult)
+        batch_catcher: EventCatcher = EventCatcher(event_to_catch=LogBatchResult)
         _, microbatch_json = run_dbt(['list', '--output', 'json'], callbacks=[model_catcher.catch, batch_catcher.catch])
-        microbatch_dict = json.loads(microbatch_json)
+        microbatch_dict: Dict[str, Any] = json.loads(microbatch_json)
         assert microbatch_dict['config']['begin'] == '2020-01-01T00:00:00'
 
 class TestMicroBatchBoundsDefault(BaseMicrobatchTest):
@@ -160,7 +160,7 @@ class TestMicrobatchWithSource(BaseMicrobatchTest):
 
     def test_run_with_event_time(self, project: TestProjInfo) -> None:
         run_dbt(['seed'])
-        catcher = EventCatcher(event_to_catch=MicrobatchModelNoEventTimeInputs)
+        catcher: EventCatcher = EventCatcher(event_to_catch=MicrobatchModelNoEventTimeInputs)
         with patch_microbatch_end_time('2020-01-03 13:57:00'):
             run_dbt(['run'], callbacks=[catcher.catch])
         self.assert_row_count(project, 'microbatch_model', 3)
@@ -203,7 +203,7 @@ class TestMicrobatchWithInputWithoutEventTime(BaseMicrobatchTest):
         return {'input_model.sql': input_model_without_event_time_sql, 'microbatch_model.sql': microbatch_model_sql}
 
     def test_run_with_event_time(self, project: TestProjInfo) -> None:
-        catcher = EventCatcher(event_to_catch=MicrobatchModelNoEventTimeInputs)
+        catcher: EventCatcher = EventCatcher(event_to_catch=MicrobatchModelNoEventTimeInputs)
         with patch_microbatch_end_time('2020-01-03 13:57:00'):
             run_dbt(['run'], callbacks=[catcher.catch])
         self.assert_row_count(project, 'microbatch_model', 3)
@@ -276,7 +276,7 @@ class TestMicrobatchIncrementalBatchFailure(BaseMicrobatchTest):
         return {'input_model.sql': input_model_sql, 'microbatch_model.sql': microbatch_model_failing_incremental_partition_sql, 'downstream_model.sql': downstream_model_of_microbatch_sql}
 
     def test_run_with_event_time(self, project: TestProjInfo) -> None:
-        event_catcher = EventCatcher(GenericExceptionOnRun, predicate=lambda event: event.data.node_info is not None)
+        event_catcher: EventCatcher = EventCatcher(GenericExceptionOnRun, predicate=lambda event: event.data.node_info is not None)
         with patch_microbatch_end_time('2020-01-03 13:57:00'):
             run_dbt(['run'], callbacks=[event_catcher.catch], expect_pass=False)
         assert len(event_catcher.caught_events) == 1
@@ -351,8 +351,8 @@ class TestMicrobatchInitialBatchFailure(BaseMicrobatchTest):
         return {'input_model.sql': input_model_sql, 'microbatch_model.sql': microbatch_model_first_partition_failing_sql}
 
     def test_run_with_event_time(self, project: TestProjInfo) -> None:
-        general_exc_catcher = EventCatcher(GenericExceptionOnRun, predicate=lambda event: event.data.node_info is not None)
-        batch_catcher = EventCatcher(event_to_catch=LogBatchResult, predicate=lambda event: event.data.status == 'skipped')
+        general_exc_catcher: EventCatcher = EventCatcher(GenericExceptionOnRun, predicate=lambda event: event.data.node_info is not None)
+        batch_catcher: EventCatcher = EventCatcher(event_to_catch=LogBatchResult, predicate=lambda event: event.data.status == 'skipped')
         with patch_microbatch_end_time('2020-01-03 13:57:00'):
             run_dbt(['run'], expect_pass=False, callbacks=[general_exc_catcher.catch, batch_catcher.catch])
         assert len(general_exc_catcher.caught_events) == 1
@@ -368,7 +368,7 @@ class TestMicrobatchSecondBatchFailure(BaseMicrobatchTest):
         return {'input_model.sql': input_model_sql, 'microbatch_model.sql': microbatch_model_second_batch_failing_sql}
 
     def test_run_with_event_time(self, project: TestProjInfo) -> None:
-        event_catcher = EventCatcher(GenericExceptionOnRun, predicate=lambda event: event.data.node_info is not None)
+        event_catcher: EventCatcher = EventCatcher(GenericExceptionOnRun, predicate=lambda event: event.data.node_info is not None)
         with patch_microbatch_end_time('2020-01-03 13:57:00'):
             run_dbt(['run'], expect_pass=False, callbacks=[event_catcher.catch])
         assert len(event_catcher.caught_events) == 1
@@ -466,7 +466,7 @@ class TestMicrobatchCanRunParallelOrSequential(BaseMicrobatchTest):
         with patch_microbatch_end_time('2020-01-03 13:57:00'):
             _ = run_dbt(['run'], callbacks=[batch_exc_catcher.catch])
         assert len(batch_exc_catcher.caught_events) > 1
-        some_batches_run_concurrently = False
+        some_batches_run_concurrently: bool = False
         for caugh_event in batch_exc_catcher.caught_events:
             if 'is being run concurrently' in caugh_event.data.msg:
                 some_batches_run_concurrently = True

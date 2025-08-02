@@ -3,7 +3,7 @@ import pytest
 import terminaltables
 from faust.utils.terminal import tables
 from mode.utils.mocks import Mock, patch
-from typing import Any, Callable, ContextManager, List, Optional, Tuple, Union
+from typing import Any, Callable, Dict, List, Optional, Tuple, Union, Iterator, TypeVar, cast
 
 TABLE_DATA = [('foo', 1.0, 3.33, 6.66, 9.99), ('bar', 2.0, 2.34, 4.23, 3.33)]
 
@@ -13,13 +13,13 @@ def fh(isatty: bool = True) -> Mock:
     return fh
 
 @contextmanager
-def mock_stdout(isatty: bool = True) -> ContextManager[None]:
+def mock_stdout(isatty: bool = True) -> Iterator[None]:
     with patch('sys.stdout') as stdout:
         stdout.isatty.return_value = isatty
         yield
 
 @contextmanager
-def mock_logging(isatty: bool = True) -> ContextManager[None]:
+def mock_logging(isatty: bool = True) -> Iterator[None]:
     with patch('mode.utils.logging.LOG_ISATTY', isatty):
         yield
 
@@ -35,8 +35,8 @@ def mock_logging(isatty: bool = True) -> ContextManager[None]:
 ])
 def test_table(
     target: Optional[Mock],
-    contexts: List[Callable[[], ContextManager[None]]],
-    kwargs: dict,
+    contexts: List[Callable[[], Iterator[None]]],
+    kwargs: Dict[str, Any],
     expected_tty: bool
 ) -> None:
     with ExitStack() as stack:
@@ -60,7 +60,7 @@ def test_table(
 ])
 def test_logtable(
     tty: Optional[bool],
-    contexts: List[Callable[[], ContextManager[None]]],
+    contexts: List[Callable[[], Iterator[None]]],
     headers: Optional[List[str]],
     expected_tty: bool,
     expected_data: List[Any]

@@ -1,6 +1,7 @@
 import pytest
 import numpy as np
 import sys
+from typing import Any, Callable, List, Optional, Union
 from unittest import SkipTest
 import nevergrad as ng
 import nevergrad.common.typing as tp
@@ -8,26 +9,24 @@ from nevergrad.common import testing
 from . import base
 from .optimizerlib import registry
 
-
 def long_name(s: str) -> bool:
     return len(s.replace('DiscreteOnePlusOne', 'D1+1')) > 10
 
-
 skip_win_perf = pytest.mark.skipif(sys.platform == 'win32', reason='Slow, and no need to test performance on all platforms')
-
 
 def suggestable(name: str) -> bool:
     keywords = ['TBPSA', 'BO', 'EMNA', 'EDA', 'BO', 'Stupid', 'Pymoo', 'GOMEA']
     return not any((x in name for x in keywords))
 
-
-def suggestion_testing(name: str, 
-                      instrumentation: ng.p.Parameter, 
-                      suggestion: np.ndarray, 
-                      budget: int, 
-                      objective_function: tp.Callable[[tp.Any], float], 
-                      optimum: tp.Optional[np.ndarray] = None, 
-                      threshold: tp.Optional[float] = None) -> None:
+def suggestion_testing(
+    name: str, 
+    instrumentation: ng.p.Parameter, 
+    suggestion: np.ndarray, 
+    budget: int, 
+    objective_function: Callable[[Any], Union[float, int]], 
+    optimum: Optional[np.ndarray] = None, 
+    threshold: Optional[float] = None
+) -> None:
     optimizer_cls = registry[name]
     optim = optimizer_cls(instrumentation, budget)
     if optimum is None:
@@ -38,7 +37,6 @@ def suggestion_testing(name: str,
         assert objective_function(optim.recommend().value) < threshold, f'{name} proposes {optim.recommend().value} instead of {optimum} (threshold={threshold})'
         return
     assert np.all(optim.recommend().value == optimum), f'{name} proposes {optim.recommend().value} instead of {optimum}'
-
 
 @skip_win_perf
 @pytest.mark.parametrize('name', [r for r in registry if suggestable(r)])
@@ -54,11 +52,9 @@ def test_suggest_optimizers(name: str) -> None:
     target = lambda x: 0 if np.all(np.asarray(x, dtype=int) == suggestion) else 1
     suggestion_testing(name, instrum, suggestion, 7, target)
 
-
 def good_at_suggest(name: str) -> bool:
     keywords = ['Noisy', 'Optimistic', 'DiscreteDE', 'Multi', 'Anisotropic', 'BSO', 'GOMEA', 'Sparse', 'Adaptive', 'Doerr', 'Recombining', 'SA', 'Lognormal', 'PortfolioDiscreteOne', 'FastGADiscreteOne']
     return not any((k in name for k in keywords))
-
 
 @skip_win_perf
 @pytest.mark.parametrize('name', [r for r in registry if 'iscre' in r and 'Smooth' not in r and good_at_suggest(r) and (r != 'DiscreteOnePlusOne') and ('Lengler' not in r or 'LenglerOne' in r)])
@@ -77,7 +73,6 @@ def test_harder_suggest_optimizers(name: str) -> None:
     suggestion = np.asarray([0] * 17 + [1] * 16 + [0] * 67)
     suggestion_testing(name, instrum, suggestion, 1500 + (1000 if 'Lengler' in name else 0), target, optimum)
 
-
 @skip_win_perf
 def test_harder_continuous_suggest_optimizers() -> None:
     """Checks that somes optimizer can converge when provided with a good suggestion."""
@@ -86,7 +81,6 @@ def test_harder_continuous_suggest_optimizers() -> None:
     target = lambda x: min(2.0, np.sum((x - optimum) ** 2))
     suggestion = np.asarray([0] * 17 + [1] * 16 + [0] * 67)
     suggestion_testing('NGOpt', instrum, suggestion, 1500, target, optimum, threshold=0.9)
-
 
 @testing.suppress_nevergrad_warnings()
 @pytest.mark.parametrize('name', registry)

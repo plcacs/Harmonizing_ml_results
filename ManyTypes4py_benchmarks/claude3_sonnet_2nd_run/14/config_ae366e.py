@@ -614,7 +614,7 @@ def config_per_platform(config: ConfigType, domain: str) -> Iterable[Tuple[Optio
                 platform = None
             yield (platform, item)
 
-def extract_platform_integrations(config: ConfigType, domains: Sequence[str]) -> Dict[str, Set[str]]:
+def extract_platform_integrations(config: ConfigType, domains: Iterable[str]) -> Dict[str, Set[str]]:
     """Find all the platforms in a configuration.
 
     Returns a dictionary with domain as key and a set of platforms as value.

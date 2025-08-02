@@ -124,7 +124,7 @@ class RepetierTempSensor(RepetierSensor):
         """Return sensor state."""
         if self._state is None:
             return None
-        return round(cast(float, self._state), 2)
+        return round(float(self._state), 2)
 
     def update(self) -> None:
         """Update the sensor."""
@@ -145,7 +145,7 @@ class RepetierJobSensor(RepetierSensor):
         """Return sensor state."""
         if self._state is None:
             return None
-        return round(cast(float, self._state), 2)
+        return round(float(self._state), 2)
 
 
 class RepetierJobEndSensor(RepetierSensor):
@@ -157,9 +157,9 @@ class RepetierJobEndSensor(RepetierSensor):
         if (data := self._get_data()) is None:
             return
         job_name = data['job_name']
-        start = data['start']
-        print_time = data['print_time']
-        from_start = data['from_start']
+        start: float = data['start']
+        print_time: float = data['print_time']
+        from_start: float = data['from_start']
         time_end = start + round(print_time, 0)
         self._state = dt_util.utc_from_timestamp(time_end)
         remaining = print_time - from_start
@@ -176,8 +176,8 @@ class RepetierJobStartSensor(RepetierSensor):
         if (data := self._get_data()) is None:
             return
         job_name = data['job_name']
-        start = data['start']
-        from_start = data['from_start']
+        start: float = data['start']
+        from_start: float = data['from_start']
         self._state = dt_util.utc_from_timestamp(start)
         elapsed_secs = int(round(from_start, 0))
         _LOGGER.debug('Job %s elapsed %s', job_name, time.strftime('%H:%M:%S', time.gmtime(elapsed_secs)))

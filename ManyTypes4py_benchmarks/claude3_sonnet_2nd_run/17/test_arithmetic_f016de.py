@@ -64,7 +64,7 @@ class TestPeriodArithmetic:
     @pytest.mark.parametrize('normalize', [True, False])
     @pytest.mark.parametrize('n', [1, 2, 3, 4])
     @pytest.mark.parametrize('offset, kwd_name', [(offsets.YearEnd, 'month'), (offsets.QuarterEnd, 'startingMonth'), (offsets.MonthEnd, None), (offsets.Week, 'weekday')])
-    def test_sub_n_gt_1_offsets(self, offset: Type[offsets.BaseOffset], kwd_name: Optional[str], n: int, normalize: bool) -> None:
+    def test_sub_n_gt_1_offsets(self, offset: Type[offsets.DateOffset], kwd_name: Optional[str], n: int, normalize: bool) -> None:
         kwds = {kwd_name: 3} if kwd_name is not None else {}
         p1_d = '19910905'
         p2_d = '19920406'

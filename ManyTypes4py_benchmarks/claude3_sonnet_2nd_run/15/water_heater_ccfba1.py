@@ -12,7 +12,6 @@ from homeassistant.components.water_heater import WaterHeaterEntity, WaterHeater
 from homeassistant.const import ATTR_TEMPERATURE, PRECISION_TENTHS, UnitOfTemperature
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
-from homeassistant.config_entries import ConfigEntry
 from .entity import ViCareEntity
 from .types import ViCareConfigEntry, ViCareDevice
 from .utils import get_circuits, get_device_serial
@@ -54,10 +53,9 @@ def _build_entities(device_list: List[ViCareDevice]) -> List[ViCareWater]:
             for device in device_list 
             for circuit in get_circuits(device.api)]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None:
+async def async_setup_entry(hass: HomeAssistant, config_entry: ViCareConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None:
     """Set up the ViCare water heater platform."""
-    config_entry_data = cast(ViCareConfigEntry, config_entry)
-    async_add_entities(await hass.async_add_executor_job(_build_entities, config_entry_data.runtime_data.devices))
+    async_add_entities(await hass.async_add_executor_job(_build_entities, config_entry.runtime_data.devices))
 
 class ViCareWater(ViCareEntity, WaterHeaterEntity):
     """Representation of the ViCare domestic hot water device."""
@@ -69,6 +67,8 @@ class ViCareWater(ViCareEntity, WaterHeaterEntity):
     _attr_operation_list: List[str] = list(HA_TO_VICARE_HVAC_DHW)
     _attr_translation_key: str = 'domestic_hot_water'
     _current_mode: Optional[str] = None
+    _attr_current_temperature: Optional[float] = None
+    _attr_target_temperature: Optional[float] = None
 
     def __init__(self, device_serial: str, device_config: PyViCareDeviceConfig, device: PyViCareDevice, circuit: PyViCareHeatingCircuit) -> None:
         """Initialize the DHW water_heater device."""

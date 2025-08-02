@@ -13,7 +13,7 @@ from jedi.inference.base_value import ValueSet, NO_VALUES
 from jedi.inference.references import get_module_contexts_containing_name
 from jedi.inference import recursion
 
-MAX_PARAM_SEARCHES = 20
+MAX_PARAM_SEARCHES: int = 20
 
 T = TypeVar('T')
 
@@ -76,8 +76,8 @@ def _search_function_arguments(module_context: 'ModuleContext', funcdef: Any, st
         if cls.type == 'classdef':
             string_name = cls.name.value
             compare_node = cls
-    found_arguments = False
-    i = 0
+    found_arguments: bool = False
+    i: int = 0
     inference_state = module_context.inference_state
     if settings.dynamic_params_for_other_modules:
         module_contexts = get_module_contexts_containing_name(inference_state, [module_context], string_name, limit_reduction=5)

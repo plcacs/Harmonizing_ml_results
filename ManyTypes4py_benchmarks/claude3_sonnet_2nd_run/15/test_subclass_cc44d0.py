@@ -2,9 +2,11 @@ import numpy as np
 import pytest
 import pandas as pd
 import pandas._testing as tm
-from typing import Any, List, Union, Tuple, Optional, Callable, Dict, Sequence
+from typing import Any, List, Union, Tuple, Optional, Callable, TypeVar, cast
 
 pytestmark = pytest.mark.filterwarnings('ignore:Passing a BlockManager|Passing a SingleBlockManager:DeprecationWarning')
+
+T = TypeVar('T')
 
 class TestSeriesSubclassing:
 

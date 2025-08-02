@@ -57,18 +57,8 @@ def mock_pendulum(monkeypatch: pytest.MonkeyPatch) -> MagicMock:
     monkeypatch.setattr('prefect_docker.deployments.steps.pendulum', mock_pendulum)
     return mock_pendulum
 
-@pytest.mark.parametrize('kwargs, expected_image', [
-    ({'image_name': 'registry/repo'}, f'registry/repo:{FAKE_DEFAULT_TAG}'),
-    ({'image_name': 'registry/repo', 'dockerfile': 'Dockerfile.dev'}, f'registry/repo:{FAKE_DEFAULT_TAG}'),
-    ({'image_name': 'registry/repo', 'tag': 'mytag'}, 'registry/repo:mytag'),
-    ({'image_name': 'registry/repo'}, f'registry/repo:{FAKE_DEFAULT_TAG}'),
-    ({'image_name': 'registry/repo', 'dockerfile': 'auto'}, f'registry/repo:{FAKE_DEFAULT_TAG}'),
-    ({'image_name': 'registry/repo', 'dockerfile': 'auto'}, f'registry/repo:{FAKE_DEFAULT_TAG}'),
-    ({'image_name': 'registry/repo', 'dockerfile': 'auto', 'path': 'path/to/context'}, f'registry/repo:{FAKE_DEFAULT_TAG}'),
-    ({'image_name': 'registry/repo', 'tag': 'mytag', 'additional_tags': FAKE_ADDITIONAL_TAGS}, 'registry/repo:mytag')
-])
-def test_build_docker_image(monkeypatch: pytest.MonkeyPatch, mock_docker_client: MagicMock, mock_pendulum: MagicMock, 
-                           kwargs: Dict[str, Any], expected_image: str) -> None:
+@pytest.mark.parametrize('kwargs, expected_image', [({'image_name': 'registry/repo'}, f'registry/repo:{FAKE_DEFAULT_TAG}'), ({'image_name': 'registry/repo', 'dockerfile': 'Dockerfile.dev'}, f'registry/repo:{FAKE_DEFAULT_TAG}'), ({'image_name': 'registry/repo', 'tag': 'mytag'}, 'registry/repo:mytag'), ({'image_name': 'registry/repo'}, f'registry/repo:{FAKE_DEFAULT_TAG}'), ({'image_name': 'registry/repo', 'dockerfile': 'auto'}, f'registry/repo:{FAKE_DEFAULT_TAG}'), ({'image_name': 'registry/repo', 'dockerfile': 'auto'}, f'registry/repo:{FAKE_DEFAULT_TAG}'), ({'image_name': 'registry/repo', 'dockerfile': 'auto', 'path': 'path/to/context'}, f'registry/repo:{FAKE_DEFAULT_TAG}'), ({'image_name': 'registry/repo', 'tag': 'mytag', 'additional_tags': FAKE_ADDITIONAL_TAGS}, 'registry/repo:mytag')])
+def test_build_docker_image(monkeypatch: pytest.MonkeyPatch, mock_docker_client: MagicMock, mock_pendulum: MagicMock, kwargs: Dict[str, Any], expected_image: str) -> None:
     auto_build: bool = False
     image_name: str = kwargs.get('image_name')
     dockerfile: str = kwargs.get('dockerfile', 'Dockerfile')
@@ -82,20 +72,14 @@ def test_build_docker_image(monkeypatch: pytest.MonkeyPatch, mock_docker_client:
     assert result['image_id'] == FAKE_CONTAINER_ID
     if additional_tags:
         assert result['additional_tags'] == FAKE_ADDITIONAL_TAGS
-        mock_docker_client.images.get.return_value.tag.assert_has_calls([
-            mock.call(repository=image_name, tag=tag),
-            mock.call(repository=image_name, tag=FAKE_ADDITIONAL_TAGS[0]),
-            mock.call(repository=image_name, tag=FAKE_ADDITIONAL_TAGS[1])
-        ])
+        mock_docker_client.images.get.return_value.tag.assert_has_calls([mock.call(repository=image_name, tag=tag), mock.call(repository=image_name, tag=FAKE_ADDITIONAL_TAGS[0]), mock.call(repository=image_name, tag=FAKE_ADDITIONAL_TAGS[1])])
     else:
         assert result['additional_tags'] == []
         mock_docker_client.images.get.return_value.tag.assert_called_once_with(repository=image_name, tag=tag)
     if dockerfile == 'auto':
         auto_build = True
         dockerfile = 'Dockerfile'
-    mock_docker_client.api.build.assert_called_once_with(
-        path=path, dockerfile=dockerfile, decode=True, pull=True, labels=prefect.utilities.dockerutils.IMAGE_LABELS
-    )
+    mock_docker_client.api.build.assert_called_once_with(path=path, dockerfile=dockerfile, decode=True, pull=True, labels=prefect.utilities.dockerutils.IMAGE_LABELS)
     mock_docker_client.images.get.assert_called_once_with(FAKE_CONTAINER_ID)
     if auto_build:
         assert not Path('Dockerfile').exists()
@@ -120,21 +104,11 @@ def test_real_auto_dockerfile_build(docker_client_with_cleanup: docker.DockerCli
         expected_prefect_version: str = prefect.__version__
         expected_prefect_version = expected_prefect_version.replace('.dirty', '')
         expected_prefect_version = expected_prefect_version.split('+')[0]
-        cases: List[Dict[str, str]] = [
-            {'command': 'prefect version', 'expected': expected_prefect_version},
-            {'command': 'ls', 'expected': 'requirements.txt'}
-        ]
+        cases: List[Dict[str, str]] = [{'command': 'prefect version', 'expected': expected_prefect_version}, {'command': 'ls', 'expected': 'requirements.txt'}]
         for case in cases:
-            output: bytes = docker_client_with_cleanup.containers.run(
-                image=result['image'], command=case['command'], labels=['prefect-docker-test'], remove=True
-            )
+            output: bytes = docker_client_with_cleanup.containers.run(image=result['image'], command=case['command'], labels=['prefect-docker-test'], remove=True)
             assert case['expected'] in output.decode()
-        output = docker_client_with_cleanup.containers.run(
-            image=result['image'], 
-            command="python -c 'import pandas; print(pandas.__version__)'", 
-            labels=['prefect-docker-test'], 
-            remove=True
-        )
+        output = docker_client_with_cleanup.containers.run(image=result['image'], command="python -c 'import pandas; print(pandas.__version__)'", labels=['prefect-docker-test'], remove=True)
         assert '2' in output.decode()
     finally:
         docker_client_with_cleanup.containers.prune(filters={'label': 'prefect-docker-test'})
@@ -147,18 +121,12 @@ def test_push_docker_image_with_additional_tags(mock_docker_client: MagicMock, m
     mock_stdout: MagicMock = MagicMock()
     monkeypatch.setattr(sys, 'stdout', mock_stdout)
     mock_docker_client.api.push.side_effect = [(e for e in FAKE_EVENT), (e for e in FAKE_EVENT), (e for e in FAKE_EVENT)]
-    result: Dict[str, Any] = push_docker_image(
-        image_name=FAKE_IMAGE_NAME, tag=FAKE_TAG, credentials=FAKE_CREDENTIALS, additional_tags=FAKE_ADDITIONAL_TAGS
-    )
+    result: Dict[str, Any] = push_docker_image(image_name=FAKE_IMAGE_NAME, tag=FAKE_TAG, credentials=FAKE_CREDENTIALS, additional_tags=FAKE_ADDITIONAL_TAGS)
     assert result['image_name'] == FAKE_IMAGE_NAME
     assert result['tag'] == FAKE_TAG
     assert result['image'] == f'{FAKE_IMAGE_NAME}:{FAKE_TAG}'
     assert result['additional_tags'] == FAKE_ADDITIONAL_TAGS
-    mock_docker_client.api.push.assert_has_calls([
-        mock.call(repository=FAKE_IMAGE_NAME, tag=FAKE_TAG, stream=True, decode=True),
-        mock.call(repository=FAKE_IMAGE_NAME, tag=FAKE_ADDITIONAL_TAGS[0], stream=True, decode=True),
-        mock.call(repository=FAKE_IMAGE_NAME, tag=FAKE_ADDITIONAL_TAGS[1], stream=True, decode=True)
-    ])
+    mock_docker_client.api.push.assert_has_calls([mock.call(repository=FAKE_IMAGE_NAME, tag=FAKE_TAG, stream=True, decode=True), mock.call(repository=FAKE_IMAGE_NAME, tag=FAKE_ADDITIONAL_TAGS[0], stream=True, decode=True), mock.call(repository=FAKE_IMAGE_NAME, tag=FAKE_ADDITIONAL_TAGS[1], stream=True, decode=True)])
     assert mock_stdout.write.call_count == 15
 
 def test_push_docker_image_with_credentials(mock_docker_client: MagicMock, monkeypatch: pytest.MonkeyPatch) -> None:
@@ -169,15 +137,8 @@ def test_push_docker_image_with_credentials(mock_docker_client: MagicMock, monke
     assert result['image_name'] == FAKE_IMAGE_NAME
     assert result['tag'] == FAKE_TAG
     assert result['image'] == f'{FAKE_IMAGE_NAME}:{FAKE_TAG}'
-    mock_docker_client.login.assert_called_once_with(
-        username=FAKE_CREDENTIALS['username'],
-        password=FAKE_CREDENTIALS['password'],
-        registry=FAKE_CREDENTIALS['registry_url'],
-        reauth=FAKE_CREDENTIALS.get('reauth', True)
-    )
-    mock_docker_client.api.push.assert_called_once_with(
-        repository=FAKE_IMAGE_NAME, tag=FAKE_TAG, stream=True, decode=True
-    )
+    mock_docker_client.login.assert_called_once_with(username=FAKE_CREDENTIALS['username'], password=FAKE_CREDENTIALS['password'], registry=FAKE_CREDENTIALS['registry_url'], reauth=FAKE_CREDENTIALS.get('reauth', True))
+    mock_docker_client.api.push.assert_called_once_with(repository=FAKE_IMAGE_NAME, tag=FAKE_TAG, stream=True, decode=True)
     assert mock_stdout.write.call_count == 5
 
 def test_push_docker_image_without_credentials(mock_docker_client: MagicMock, monkeypatch: pytest.MonkeyPatch) -> None:
@@ -189,9 +150,7 @@ def test_push_docker_image_without_credentials(mock_docker_client: MagicMock, mo
     assert result['tag'] == FAKE_TAG
     assert result['image'] == f'{FAKE_IMAGE_NAME}:{FAKE_TAG}'
     mock_docker_client.login.assert_not_called()
-    mock_docker_client.api.push.assert_called_once_with(
-        repository=FAKE_IMAGE_NAME, tag=FAKE_TAG, stream=True, decode=True
-    )
+    mock_docker_client.api.push.assert_called_once_with(repository=FAKE_IMAGE_NAME, tag=FAKE_TAG, stream=True, decode=True)
     assert mock_stdout.write.call_count == 5
 
 def test_push_docker_image_raises_on_event_error(mock_docker_client: MagicMock) -> None:
@@ -207,17 +166,9 @@ class TestCachedSteps:
         dockerfile: str = 'Dockerfile'
         tag: str = 'mytag'
         additional_tags: List[str] = ['tag1', 'tag2']
-        expected_result: Dict[str, Any] = {
-            'image': f'{image_name}:{tag}',
-            'tag': tag,
-            'image_name': image_name,
-            'image_id': FAKE_CONTAINER_ID,
-            'additional_tags': additional_tags
-        }
+        expected_result: Dict[str, Any] = {'image': f'{image_name}:{tag}', 'tag': tag, 'image_name': image_name, 'image_id': FAKE_CONTAINER_ID, 'additional_tags': additional_tags}
         for _ in range(3):
-            result: Dict[str, Any] = build_docker_image(
-                image_name=image_name, dockerfile=dockerfile, tag=tag, additional_tags=additional_tags
-            )
+            result: Dict[str, Any] = build_docker_image(image_name=image_name, dockerfile=dockerfile, tag=tag, additional_tags=additional_tags)
             assert result == expected_result
         mock_docker_client.api.build.assert_called_once()
         mock_docker_client.images.get.assert_called_once_with(FAKE_CONTAINER_ID)
@@ -228,17 +179,9 @@ class TestCachedSteps:
         dockerfile: str = 'Dockerfile'
         tag: str = 'mytag'
         additional_tags: List[str] = ['tag1', 'tag2']
-        expected_result: Dict[str, Any] = {
-            'image': f'{image_name}:{tag}',
-            'tag': tag,
-            'image_name': image_name,
-            'image_id': FAKE_CONTAINER_ID,
-            'additional_tags': additional_tags
-        }
+        expected_result: Dict[str, Any] = {'image': f'{image_name}:{tag}', 'tag': tag, 'image_name': image_name, 'image_id': FAKE_CONTAINER_ID, 'additional_tags': additional_tags}
         for _ in range(3):
-            result: Dict[str, Any] = build_docker_image(
-                image_name=image_name, dockerfile=dockerfile, tag=tag, additional_tags=additional_tags, ignore_cache=True
-            )
+            result: Dict[str, Any] = build_docker_image(image_name=image_name, dockerfile=dockerfile, tag=tag, additional_tags=additional_tags, ignore_cache=True)
             assert result == expected_result
         assert mock_docker_client.api.build.call_count == 3
         assert mock_docker_client.images.get.call_count == 3
@@ -250,16 +193,9 @@ class TestCachedSteps:
         tag: str = FAKE_TAG
         credentials: Dict[str, Union[str, bool]] = FAKE_CREDENTIALS
         additional_tags: List[str] = FAKE_ADDITIONAL_TAGS
-        expected_result: Dict[str, Any] = {
-            'image_name': image_name,
-            'tag': tag,
-            'image': f'{image_name}:{tag}',
-            'additional_tags': additional_tags
-        }
+        expected_result: Dict[str, Any] = {'image_name': image_name, 'tag': tag, 'image': f'{image_name}:{tag}', 'additional_tags': additional_tags}
         for _ in range(2):
-            result: Dict[str, Any] = push_docker_image(
-                image_name=image_name, tag=tag, credentials=credentials, additional_tags=additional_tags
-            )
+            result: Dict[str, Any] = push_docker_image(image_name=image_name, tag=tag, credentials=credentials, additional_tags=additional_tags)
             assert result == expected_result
         mock_docker_client.login.assert_called_once()
         assert mock_docker_client.api.push.call_count == 1 + len(additional_tags)
@@ -269,16 +205,9 @@ class TestCachedSteps:
         tag: str = FAKE_TAG
         credentials: Dict[str, Union[str, bool]] = FAKE_CREDENTIALS
         additional_tags: List[str] = FAKE_ADDITIONAL_TAGS
-        expected_result: Dict[str, Any] = {
-            'image_name': image_name,
-            'tag': tag,
-            'image': f'{image_name}:{tag}',
-            'additional_tags': additional_tags
-        }
+        expected_result: Dict[str, Any] = {'image_name': image_name, 'tag': tag, 'image': f'{image_name}:{tag}', 'additional_tags': additional_tags}
         for _ in range(3):
-            result: Dict[str, Any] = push_docker_image(
-                image_name=image_name, tag=tag, credentials=credentials, additional_tags=additional_tags, ignore_cache=True
-            )
+            result: Dict[str, Any] = push_docker_image(image_name=image_name, tag=tag, credentials=credentials, additional_tags=additional_tags, ignore_cache=True)
             assert result == expected_result
         assert mock_docker_client.login.call_count == 3
         expected_push_calls: int = 1 + len(additional_tags)

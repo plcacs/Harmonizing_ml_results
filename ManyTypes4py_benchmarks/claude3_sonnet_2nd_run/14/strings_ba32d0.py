@@ -129,9 +129,9 @@ def _string_filter_rewrite(self: Union[TextStrategy, 'BytesStrategy'], kind: Typ
             warnings.warn(f'You applied {pretty(condition)} as a filter, but this allows any nonempty string!  Did you mean .search ?', HypothesisWarning, stacklevel=3)
             return self.filter(bool)
     if condition in self._nonempty_and_content_filters and self.max_size >= 1:
-        self = copy.copy(self)
-        self.min_size = max(1, self.min_size)
-        return ListStrategy.filter(self, condition)
+        self_copy = copy.copy(self)
+        self_copy.min_size = max(1, self.min_size)
+        return ListStrategy.filter(self_copy, condition)
     return None
 
 _PROPLIST: str = '\n# ================================================\n\n1885..1886    ; Other_ID_Start # Mn   [2] MONGOLIAN LETTER ALI GALI BALUDA..MONGOLIAN LETTER ALI GALI THREE BALUDA\n2118          ; Other_ID_Start # Sm       SCRIPT CAPITAL P\n212E          ; Other_ID_Start # So       ESTIMATED SYMBOL\n309B..309C    ; Other_ID_Start # Sk   [2] KATAKANA-HIRAGANA VOICED SOUND MARK..KATAKANA-HIRAGANA SEMI-VOICED SOUND MARK\n\n# Total code points: 6\n\n# ================================================\n\n00B7          ; Other_ID_Continue # Po       MIDDLE DOT\n0387          ; Other_ID_Continue # Po       GREEK ANO TELEIA\n1369..1371    ; Other_ID_Continue # No   [9] ETHIOPIC DIGIT ONE..ETHIOPIC DIGIT NINE\n19DA          ; Other_ID_Continue # No       NEW TAI LUE THAM DIGIT ONE\n\n# Total code points: 12\n'

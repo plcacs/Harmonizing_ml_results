@@ -3,16 +3,21 @@ from __future__ import annotations
 from dataclasses import dataclass
 import logging
 from typing import Dict, List, Optional, Set, Union
+
 from zwave_js_server.model.driver import Driver
 from zwave_js_server.model.node import Node
 from zwave_js_server.model.value import Value as ZwaveValue
+
 from homeassistant.const import STATE_UNAVAILABLE, Platform
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers import device_registry as dr, entity_registry as er
+
 from .const import DOMAIN
 from .discovery import ZwaveDiscoveryInfo
 from .helpers import get_unique_id, get_valueless_base_unique_id
+
 _LOGGER = logging.getLogger(__name__)
+
 
 @dataclass
 class ValueID:
@@ -42,14 +47,15 @@ class ValueID:
         """Return whether two value IDs are the same excluding endpoint."""
         return self.command_class == other.command_class and self.property_ == other.property_ and (self.property_key == other.property_key) and (self.endpoint != other.endpoint)
 
+
 @callback
 def async_migrate_old_entity(
-    hass: HomeAssistant, 
-    ent_reg: er.EntityRegistry, 
-    registered_unique_ids: Set[str], 
-    platform: str, 
-    device: dr.DeviceEntry, 
-    unique_id: str
+    hass: HomeAssistant,
+    ent_reg: er.EntityRegistry,
+    registered_unique_ids: Set[str],
+    platform: str,
+    device: dr.DeviceEntry,
+    unique_id: str,
 ) -> None:
     """Migrate existing entity if current one can't be found and an old one exists."""
     if ent_reg.async_get_entity_id(platform, DOMAIN, unique_id):
@@ -74,12 +80,10 @@ def async_migrate_old_entity(
     if not state or state.state == STATE_UNAVAILABLE:
         async_migrate_unique_id(ent_reg, platform, entry.unique_id, unique_id)
 
+
 @callback
 def async_migrate_unique_id(
-    ent_reg: er.EntityRegistry, 
-    platform: str, 
-    old_unique_id: str, 
-    new_unique_id: str
+    ent_reg: er.EntityRegistry, platform: str, old_unique_id: str, new_unique_id: str
 ) -> None:
     """Check if entity with old unique ID exists, and if so migrate it to new ID."""
     if not (entity_id := ent_reg.async_get_entity_id(platform, DOMAIN, old_unique_id)):
@@ -91,14 +95,15 @@ def async_migrate_unique_id(
         _LOGGER.debug("Entity %s can't be migrated because the unique ID is taken; Cleaning it up since it is likely no longer valid", entity_id)
         ent_reg.async_remove(entity_id)
 
+
 @callback
 def async_migrate_discovered_value(
-    hass: HomeAssistant, 
-    ent_reg: er.EntityRegistry, 
-    registered_unique_ids: Set[str], 
-    device: dr.DeviceEntry, 
-    driver: Driver, 
-    disc_info: ZwaveDiscoveryInfo
+    hass: HomeAssistant,
+    ent_reg: er.EntityRegistry,
+    registered_unique_ids: Set[str],
+    device: dr.DeviceEntry,
+    driver: Driver,
+    disc_info: ZwaveDiscoveryInfo,
 ) -> None:
     """Migrate unique ID for entity/entities tied to discovered value."""
     new_unique_id = get_unique_id(driver, disc_info.primary_value.value_id)
@@ -122,12 +127,10 @@ def async_migrate_discovered_value(
     async_migrate_old_entity(hass, ent_reg, registered_unique_ids, disc_info.platform, device, new_unique_id)
     registered_unique_ids.add(new_unique_id)
 
+
 @callback
 def async_migrate_statistics_sensors(
-    hass: HomeAssistant, 
-    driver: Driver, 
-    node: Node, 
-    key_map: Dict[str, str]
+    hass: HomeAssistant, driver: Driver, node: Node, key_map: Dict[str, str]
 ) -> None:
     """Migrate statistics sensors to new unique IDs.
 
@@ -141,6 +144,7 @@ def async_migrate_statistics_sensors(
         old_unique_id = f'{base_unique_id}_{old_key}'
         new_unique_id = f'{base_unique_id}_{new_key}'
         async_migrate_unique_id(ent_reg, Platform.SENSOR, old_unique_id, new_unique_id)
+
 
 @callback
 def get_old_value_ids(value: ZwaveValue) -> List[str]:

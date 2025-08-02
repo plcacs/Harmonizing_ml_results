@@ -72,8 +72,8 @@ class Addressee:
 
     @staticmethod
     def legacy_build(sender: UserProfile, recipient_type_name: str, 
-                     message_to: Sequence[Union[str, int]], 
-                     topic_name: Optional[str], realm: Optional[Realm]=None) -> 'Addressee':
+                     message_to: Sequence[Union[str, int]], topic_name: Optional[str], 
+                     realm: Optional[Realm]=None) -> 'Addressee':
         if realm is None:
             realm = sender.realm
         if recipient_type_name == 'stream':

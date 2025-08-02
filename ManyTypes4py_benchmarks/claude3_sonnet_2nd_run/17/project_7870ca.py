@@ -2,7 +2,7 @@ import os
 from copy import deepcopy
 from dataclasses import dataclass, field
 from itertools import chain
-from typing import Any, Dict, List, Mapping, Optional, TypeVar, Union, Set, Sequence
+from typing import Any, Dict, List, Mapping, Optional, TypeVar, Union, Set
 from typing_extensions import Protocol, runtime_checkable
 from dbt import deprecations
 from dbt.adapters.contracts.connection import QueryComment
@@ -94,7 +94,7 @@ def _parse_versions(versions: Union[str, List[str]]) -> List[VersionSpecifier]:
         versions = versions.split(',')
     return [VersionSpecifier.from_version_string(v) for v in versions]
 
-def _all_source_paths(*args: Sequence[str]) -> List[str]:
+def _all_source_paths(*args: List[str]) -> List[str]:
     paths = chain(*args)
     stripped_paths = map(lambda s: s.rstrip('/'), paths)
     return list(set(stripped_paths))
@@ -145,7 +145,7 @@ def validate_version(dbt_version: List[VersionSpecifier], project_name: str) -> 
         raise DbtProjectError(msg)
 
 def _get_required_version(project_dict: Dict[str, Any], verify_version: bool) -> List[VersionSpecifier]:
-    dbt_raw_version = '>=0.0.0'
+    dbt_raw_version: str = '>=0.0.0'
     required = project_dict.get('require-dbt-version')
     if required is not None:
         dbt_raw_version = required

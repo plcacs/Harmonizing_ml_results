@@ -24,7 +24,7 @@ def async_reload(hass: HomeAssistant) -> None:
 @bind_hass
 def set_group(hass: HomeAssistant, object_id: str, name: Optional[str] = None, 
               entity_ids: Optional[Iterable[str]] = None, icon: Optional[str] = None, 
-              add: Optional[Iterable[str]] = None) -> None:
+              add: Optional[bool] = None) -> None:
     """Create/Update a group."""
     hass.add_job(async_set_group, hass, object_id, name, entity_ids, icon, add)
 
@@ -32,7 +32,7 @@ def set_group(hass: HomeAssistant, object_id: str, name: Optional[str] = None,
 @bind_hass
 def async_set_group(hass: HomeAssistant, object_id: str, name: Optional[str] = None, 
                     entity_ids: Optional[Iterable[str]] = None, icon: Optional[str] = None, 
-                    add: Optional[Iterable[str]] = None) -> None:
+                    add: Optional[bool] = None) -> None:
     """Create/Update a group."""
     data = {key: value for key, value in ((ATTR_OBJECT_ID, object_id), (ATTR_NAME, name), (ATTR_ENTITIES, entity_ids), (ATTR_ICON, icon), (ATTR_ADD_ENTITIES, add)) if value is not None}
     hass.async_create_task(hass.services.async_call(DOMAIN, SERVICE_SET, data))

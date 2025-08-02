@@ -69,7 +69,7 @@ def handler_from_dsn(dsn: Optional[str] = None,
                      include_paths: Optional[List[str]] = None, 
                      loglevel: Optional[int] = None, 
                      qsize: int = 1000, 
-                     **kwargs: Any) -> Optional[logging.Handler]:
+                     **kwargs: Any) -> Optional[_SentryHandler]:
     if raven is None:
         raise ImproperlyConfigured('faust.contrib.sentry requires the `raven` library.')
     if raven_aiohttp is None:

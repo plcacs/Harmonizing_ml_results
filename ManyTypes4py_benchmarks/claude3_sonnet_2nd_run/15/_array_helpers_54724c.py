@@ -1,5 +1,5 @@
 import re
-from typing import Any, Dict, List, NamedTuple, Optional, Tuple, TypeVar, Union, cast, overload
+from typing import Any, Dict, List, NamedTuple, Optional, Tuple, Union, cast
 from hypothesis import assume, strategies as st
 from hypothesis.errors import InvalidArgument
 from hypothesis.internal.conjecture.utils import _calc_p_continue
@@ -29,7 +29,7 @@ def order_check(name: str, floor: int, min_: int, max_: int) -> None:
     if min_ > max_:
         raise InvalidArgument(f'min_{name}={min_} is larger than max_{name}={max_}')
 
-NDIM_MAX: int = 32
+NDIM_MAX = 32
 
 @check_function
 def check_valid_dims(dims: int, name: str) -> None:
@@ -153,11 +153,11 @@ def broadcastable_shapes(shape: Shape, *, min_dims: int = 0, max_dims: Optional[
                 break
     return MutuallyBroadcastableShapesStrategy(num_shapes=1, base_shape=shape, min_dims=min_dims, max_dims=max_dims, min_side=min_side, max_side=max_side).map(lambda x: x.input_shapes[0])
 
-_DIMENSION: str = '\\w+\\??'
-_SHAPE: str = f'\\((?:{_DIMENSION}(?:,{_DIMENSION}){{0,31}})?\\)'
-_ARGUMENT_LIST: str = f'{_SHAPE}(?:,{_SHAPE})*'
-_SIGNATURE: str = f'^{_ARGUMENT_LIST}->{_SHAPE}$'
-_SIGNATURE_MULTIPLE_OUTPUT: str = f'^{_ARGUMENT_LIST}->{_ARGUMENT_LIST}$'
+_DIMENSION = '\\w+\\??'
+_SHAPE = f'\\((?:{_DIMENSION}(?:,{_DIMENSION}){{0,31}})?\\)'
+_ARGUMENT_LIST = f'{_SHAPE}(?:,{_SHAPE})*'
+_SIGNATURE = f'^{_ARGUMENT_LIST}->{_SHAPE}$'
+_SIGNATURE_MULTIPLE_OUTPUT = f'^{_ARGUMENT_LIST}->{_ARGUMENT_LIST}$'
 
 class _GUfuncSig(NamedTuple):
     input_shapes: Tuple[Tuple[str, ...], ...]
@@ -255,7 +255,7 @@ def mutually_broadcastable_shapes(*, num_shapes: Any = not_set, signature: Any =
     check_type(int, max_side, 'max_side')
     order_check('dims', 0, min_dims, max_dims)
     order_check('side', 0, min_side, max_side)
-    if signature is not not_set and max_dims > NDIM_MAX - sig_dims:
+    if signature is not None and max_dims > NDIM_MAX - sig_dims:
         raise InvalidArgument(f'max_dims={signature!r} would exceed the {NDIM_MAX}-dimensionlimit Hypothesis imposes on array shapes, given signature={parsed_signature!r}')
     if strict_check:
         dims = max_dims
@@ -279,17 +279,17 @@ def mutually_broadcastable_shapes(*, num_shapes: Any = not_set, signature: Any =
 
 class MutuallyBroadcastableShapesStrategy(st.SearchStrategy[BroadcastableShapes]):
 
-    def __init__(self, num_shapes: int, signature: Optional[_GUfuncSig] = None, base_shape: Shape = (), min_dims: int = 0, max_dims: int = 0, min_side: int = 1, max_side: int = 0):
+    def __init__(self, num_shapes: int, signature: Optional[_GUfuncSig] = None, base_shape: Shape = (), min_dims: int = 0, max_dims: Optional[int] = None, min_side: int = 1, max_side: Optional[int] = None) -> None:
         super().__init__()
-        self.base_shape: Shape = base_shape
-        self.side_strat: st.SearchStrategy[int] = st.integers(min_side, max_side)
-        self.num_shapes: int = num_shapes
-        self.signature: Optional[_GUfuncSig] = signature
-        self.min_dims: int = min_dims
-        self.max_dims: int = max_dims
-        self.min_side: int = min_side
-        self.max_side: int = max_side
-        self.size_one_allowed: bool = self.min_side <= 1 <= self.max_side
+        self.base_shape = base_shape
+        self.side_strat = st.integers(min_side, max_side)
+        self.num_shapes = num_shapes
+        self.signature = signature
+        self.min_dims = min_dims
+        self.max_dims = max_dims
+        self.min_side = min_side
+        self.max_side = max_side
+        self.size_one_allowed = self.min_side <= 1 <= self.max_side
 
     def do_draw(self, data: Any) -> BroadcastableShapes:
         if self.signature is None:
@@ -362,17 +362,17 @@ class MutuallyBroadcastableShapesStrategy(st.SearchStrategy[BroadcastableShapes]
         assert all((self.min_side <= s <= self.max_side for side in shapes for s in side))
         return BroadcastableShapes(input_shapes=tuple((tuple(reversed(shape)) for shape in shapes)), result_shape=tuple(reversed(result_shape)))
 
-class BasicIndexStrategy(st.SearchStrategy[Union[int, BasicIndex]]):
+class BasicIndexStrategy(st.SearchStrategy[Union[int, slice, BasicIndex]]):
 
-    def __init__(self, shape: Shape, min_dims: int, max_dims: int, allow_ellipsis: bool, allow_newaxis: bool, allow_fewer_indices_than_dims: bool):
-        self.shape: Shape = shape
-        self.min_dims: int = min_dims
-        self.max_dims: int = max_dims
-        self.allow_ellipsis: bool = allow_ellipsis
-        self.allow_newaxis: bool = allow_newaxis
-        self.allow_fewer_indices_than_dims: bool = allow_fewer_indices_than_dims
+    def __init__(self, shape: Shape, min_dims: int, max_dims: int, allow_ellipsis: bool, allow_newaxis: bool, allow_fewer_indices_than_dims: bool) -> None:
+        self.shape = shape
+        self.min_dims = min_dims
+        self.max_dims = max_dims
+        self.allow_ellipsis = allow_ellipsis
+        self.allow_newaxis = allow_newaxis
+        self.allow_fewer_indices_than_dims = allow_fewer_indices_than_dims
 
-    def do_draw(self, data: Any) -> Union[int, BasicIndex]:
+    def do_draw(self, data: Any) -> Union[int, slice, BasicIndex]:
         result: List[Union[int, slice, None, 'ellipsis']] = []
         for dim_size in self.shape:
             if dim_size == 0:
@@ -397,5 +397,5 @@ class BasicIndexStrategy(st.SearchStrategy[Union[int, BasicIndex]]):
             while result[-1:] == [slice(None, None)] and data.draw(st.integers(0, 7)):
                 result.pop()
         if len(result) == 1 and data.draw(st.booleans()):
-            return result[0]
+            return cast(Union[int, slice], result[0])
         return tuple(result)

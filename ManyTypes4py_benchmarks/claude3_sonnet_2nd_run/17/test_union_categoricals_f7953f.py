@@ -8,13 +8,7 @@ from typing import Any, List, Tuple, Union, Optional
 
 class TestUnionCategoricals:
 
-    @pytest.mark.parametrize('a, b, combined', [(list('abc'), list('abd'), list('abcabd')), 
-                                               ([0, 1, 2], [2, 3, 4], [0, 1, 2, 2, 3, 4]), 
-                                               ([0, 1.2, 2], [2, 3.4, 4], [0, 1.2, 2, 2, 3.4, 4]), 
-                                               (['b', 'b', np.nan, 'a'], ['a', np.nan, 'c'], ['b', 'b', np.nan, 'a', 'a', np.nan, 'c']), 
-                                               (pd.date_range('2014-01-01', '2014-01-05'), pd.date_range('2014-01-06', '2014-01-07'), pd.date_range('2014-01-01', '2014-01-07')), 
-                                               (pd.date_range('2014-01-01', '2014-01-05', tz='US/Central'), pd.date_range('2014-01-06', '2014-01-07', tz='US/Central'), pd.date_range('2014-01-01', '2014-01-07', tz='US/Central')), 
-                                               (pd.period_range('2014-01-01', '2014-01-05'), pd.period_range('2014-01-06', '2014-01-07'), pd.period_range('2014-01-01', '2014-01-07'))])
+    @pytest.mark.parametrize('a, b, combined', [(list('abc'), list('abd'), list('abcabd')), ([0, 1, 2], [2, 3, 4], [0, 1, 2, 2, 3, 4]), ([0, 1.2, 2], [2, 3.4, 4], [0, 1.2, 2, 2, 3.4, 4]), (['b', 'b', np.nan, 'a'], ['a', np.nan, 'c'], ['b', 'b', np.nan, 'a', 'a', np.nan, 'c']), (pd.date_range('2014-01-01', '2014-01-05'), pd.date_range('2014-01-06', '2014-01-07'), pd.date_range('2014-01-01', '2014-01-07')), (pd.date_range('2014-01-01', '2014-01-05', tz='US/Central'), pd.date_range('2014-01-06', '2014-01-07', tz='US/Central'), pd.date_range('2014-01-01', '2014-01-07', tz='US/Central')), (pd.period_range('2014-01-01', '2014-01-05'), pd.period_range('2014-01-06', '2014-01-07'), pd.period_range('2014-01-01', '2014-01-07'))])
     @pytest.mark.parametrize('box', [Categorical, CategoricalIndex, Series])
     def test_union_categorical(self, a: List[Any], b: List[Any], combined: List[Any], box: Any) -> None:
         result = union_categoricals([box(Categorical(a)), box(Categorical(b))])

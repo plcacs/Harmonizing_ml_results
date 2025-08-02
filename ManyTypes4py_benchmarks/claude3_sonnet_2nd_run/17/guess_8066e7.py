@@ -1,6 +1,7 @@
 """The module containing the code for GuessAuth."""
 from typing import Any, Dict, Optional, Union
-from requests import auth, cookies, Response, PreparedRequest
+from requests import auth, Response, PreparedRequest
+from requests import cookies
 from . import _digest_auth_compat as auth_compat, http_proxy_digest
 
 class GuessAuth(auth.AuthBase):

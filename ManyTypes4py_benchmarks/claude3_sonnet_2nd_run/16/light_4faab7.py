@@ -1,6 +1,6 @@
 """Support for Z-Wave lights."""
 from __future__ import annotations
-from typing import Any, cast, Dict, List, Optional, Set, Tuple, Union
+from typing import Any, Dict, List, Optional, Set, Tuple, Union, cast
 from zwave_js_server.client import Client as ZwaveClient
 from zwave_js_server.const import TARGET_VALUE_PROPERTY, TRANSITION_DURATION_OPTION, CommandClass
 from zwave_js_server.const.command_class.color_switch import COLOR_SWITCH_COMBINED_AMBER, COLOR_SWITCH_COMBINED_BLUE, COLOR_SWITCH_COMBINED_COLD_WHITE, COLOR_SWITCH_COMBINED_CYAN, COLOR_SWITCH_COMBINED_GREEN, COLOR_SWITCH_COMBINED_PURPLE, COLOR_SWITCH_COMBINED_RED, COLOR_SWITCH_COMBINED_WARM_WHITE, CURRENT_COLOR_PROPERTY, TARGET_COLOR_PROPERTY, ColorComponent
@@ -11,7 +11,7 @@ from homeassistant.components.light import ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELV
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
-from homeassistant.helpers.entity_platform import AddEntitiesCallback, AddConfigEntryEntitiesCallback
+from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.util import color as color_util
 from .const import DATA_CLIENT, DOMAIN
 from .discovery import ZwaveDiscoveryInfo
@@ -21,7 +21,7 @@ MULTI_COLOR_MAP = {ColorComponent.WARM_WHITE: COLOR_SWITCH_COMBINED_WARM_WHITE, 
 MIN_MIREDS = 153
 MAX_MIREDS = 370
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None:
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None:
     """Set up Z-Wave Light from Config Entry."""
     client: ZwaveClient = config_entry.runtime_data[DATA_CLIENT]
 
@@ -261,22 +261,22 @@ class ZwaveLight(ZWaveBaseEntity, LightEntity):
         else:
             self._color_mode = ColorMode.UNKNOWN
         if red_val and green_val and blue_val:
-            red: Optional[int] = multi_color.get(COLOR_SWITCH_COMBINED_RED, red_val.value)
-            green: Optional[int] = multi_color.get(COLOR_SWITCH_COMBINED_GREEN, green_val.value)
-            blue: Optional[int] = multi_color.get(COLOR_SWITCH_COMBINED_BLUE, blue_val.value)
+            red = multi_color.get(COLOR_SWITCH_COMBINED_RED, red_val.value)
+            green = multi_color.get(COLOR_SWITCH_COMBINED_GREEN, green_val.value)
+            blue = multi_color.get(COLOR_SWITCH_COMBINED_BLUE, blue_val.value)
             if None not in (red, green, blue):
                 self._hs_color = color_util.color_RGB_to_hs(red, green, blue)
                 self._color_mode = ColorMode.HS
         if ww_val and cw_val:
-            warm_white: Optional[int] = multi_color.get(COLOR_SWITCH_COMBINED_WARM_WHITE, ww_val.value)
-            cold_white: Optional[int] = multi_color.get(COLOR_SWITCH_COMBINED_COLD_WHITE, cw_val.value)
+            warm_white = multi_color.get(COLOR_SWITCH_COMBINED_WARM_WHITE, ww_val.value)
+            cold_white = multi_color.get(COLOR_SWITCH_COMBINED_COLD_WHITE, cw_val.value)
             if cold_white or warm_white:
                 self._color_temp = color_util.color_temperature_mired_to_kelvin(MAX_MIREDS - cold_white / 255 * (MAX_MIREDS - MIN_MIREDS))
                 self._color_mode = ColorMode.COLOR_TEMP
             else:
                 self._color_temp = None
         elif red_val and green_val and blue_val and ww_val:
-            white: Optional[int] = multi_color.get(COLOR_SWITCH_COMBINED_WARM_WHITE, ww_val.value)
+            white = multi_color.get(COLOR_SWITCH_COMBINED_WARM_WHITE, ww_val.value)
             self._rgbw_color = (red, green, blue, white)
             self._color_mode = ColorMode.RGBW
         elif cw_val:
@@ -332,8 +332,8 @@ class ZwaveColorOnOffLight(ZwaveLight):
             if self.color_mode == ColorMode.HS:
                 scale = brightness / 255
             if self._last_on_color is not None and None not in self._last_on_color.values():
-                old_brightness: int = max(self._last_on_color.values())
-                new_scale: float = brightness / old_brightness
+                old_brightness = max(self._last_on_color.values())
+                new_scale = brightness / old_brightness
                 scale = new_scale
                 new_colors = {}
                 for color, value in self._last_on_color.items():
@@ -341,7 +341,7 @@ class ZwaveColorOnOffLight(ZwaveLight):
             elif hs_color is None and self._color_mode == ColorMode.HS:
                 hs_color = self._hs_color
         elif hs_color is not None and brightness is None:
-            current_brightness: Optional[int] = self.brightness
+            current_brightness = self.brightness
             if current_brightness == 0 and self._last_brightness is not None:
                 scale = self._last_brightness / 255
             elif current_brightness is not None:
@@ -357,9 +357,9 @@ class ZwaveColorOnOffLight(ZwaveLight):
         """Turn the light off."""
         self._last_brightness = self.brightness
         if self._current_color and isinstance(self._current_color.value, dict):
-            red: Optional[int] = self._current_color.value.get(COLOR_SWITCH_COMBINED_RED)
-            green: Optional[int] = self._current_color.value.get(COLOR_SWITCH_COMBINED_GREEN)
-            blue: Optional[int] = self._current_color.value.get(COLOR_SWITCH_COMBINED_BLUE)
+            red = self._current_color.value.get(COLOR_SWITCH_COMBINED_RED)
+            green = self._current_color.value.get(COLOR_SWITCH_COMBINED_GREEN)
+            blue = self._current_color.value.get(COLOR_SWITCH_COMBINED_BLUE)
             last_color: Dict[ColorComponent, int] = {}
             if red is not None:
                 last_color[ColorComponent.RED] = red

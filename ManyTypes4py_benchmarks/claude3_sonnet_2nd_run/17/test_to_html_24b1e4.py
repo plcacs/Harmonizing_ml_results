@@ -9,8 +9,7 @@ import pytest
 import pandas as pd
 from pandas import DataFrame, Index, MultiIndex, get_option, option_context
 import pandas.io.formats.format as fmt
-
-lorem_ipsum: str = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+lorem_ipsum = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
 
 def expected_html(datapath: Callable, name: str) -> str:
     """
@@ -173,7 +172,7 @@ def test_html_invalid_formatters_arg_raises(size: int) -> None:
 def test_to_html_truncate_formatter(datapath: Callable) -> None:
     data = [{'A': 1, 'B': 2, 'C': 3, 'D': 4}, {'A': 5, 'B': 6, 'C': 7, 'D': 8}, {'A': 9, 'B': 10, 'C': 11, 'D': 12}, {'A': 13, 'B': 14, 'C': 15, 'D': 16}]
     df = DataFrame(data)
-    fmt: Callable[[Any], str] = lambda x: str(x) + '_mod'
+    fmt = lambda x: str(x) + '_mod'
     formatters = [fmt, fmt, None, None]
     result = df.to_html(formatters=formatters, max_cols=3)
     expected = expected_html(datapath, 'truncate_formatter')
@@ -191,12 +190,12 @@ def test_to_html_truncate_multi_index(sparsify: bool, expected: str, datapath: C
 def test_to_html_border(option: Optional[int], result: Callable[[DataFrame], str], expected: str) -> None:
     df = DataFrame({'A': [1, 2]})
     if option is None:
-        result_str = result(df)
+        result = result(df)
     else:
         with option_context('display.html.border', option):
-            result_str = result(df)
-    expected_str = f'border="{expected}"'
-    assert expected_str in result_str
+            result = result(df)
+    expected = f'border="{expected}"'
+    assert expected in result
 
 @pytest.mark.parametrize('biggie_df_fixture', ['mixed'], indirect=True)
 def test_to_html(biggie_df_fixture: DataFrame) -> None:
@@ -431,8 +430,8 @@ def test_ignore_display_max_colwidth(method: str, expected: Callable[[int], str]
     df = DataFrame([lorem_ipsum])
     with option_context('display.max_colwidth', max_colwidth):
         result = getattr(df, method)()
-    expected_str = expected(max_colwidth)
-    assert expected_str in result
+    expected = expected(max_colwidth)
+    assert expected in result
 
 @pytest.mark.parametrize('classes', [True, 0])
 def test_to_html_invalid_classes_type(classes: Union[bool, int]) -> None:

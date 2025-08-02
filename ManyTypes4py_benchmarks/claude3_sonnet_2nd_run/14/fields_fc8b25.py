@@ -123,7 +123,7 @@ class RequestField(object):
         parts: List[str] = []
         iterable: Sequence[Tuple[str, Optional[str]]] = header_parts
         if isinstance(header_parts, dict):
-            iterable = cast(Dict[str, Optional[str]], header_parts).items()
+            iterable = cast(Sequence[Tuple[str, Optional[str]]], header_parts.items())
         for name, value in iterable:
             if value is not None:
                 parts.append(self._render_part(name, value))

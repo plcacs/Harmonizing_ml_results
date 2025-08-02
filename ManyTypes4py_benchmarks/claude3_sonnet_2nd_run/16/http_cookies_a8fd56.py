@@ -10,7 +10,7 @@ import copy
 import time
 import calendar
 from collections.abc import MutableMapping
-from typing import Any, Dict, Iterator, List, Optional, Tuple, Union, TypeVar, cast, Set
+from typing import Any, Dict, Iterator, List, Optional, Tuple, Union, TypeVar, Set, Iterable, cast
 from ._internal_utils import to_native_string
 from ._basics import cookielib, urlparse, urlunparse, Morsel
 try:
@@ -87,7 +87,7 @@ class Headers:
     def __init__(self, headers: Any) -> None:
         self._headers = headers
 
-    def get_all(self, key: str, default: Any) -> List[str]:
+    def get_all(self, key: str, default: List[str]) -> List[str]:
         return self._headers.getlist(key, default)
 
 class MockResponse:
@@ -104,7 +104,7 @@ class MockResponse:
         """
         self._headers = headers
 
-    def get_all(self, name: str, default: Any) -> List[str]:
+    def get_all(self, name: str, default: List[str]) -> List[str]:
         return self.getheaders(self, name)
 
     def info(self) -> 'Headers':
@@ -336,7 +336,7 @@ class RequestsCookieJar(cookielib.CookieJar, MutableMapping):
             cookie.value = cookie.value.replace('\\"', '')
         return super(RequestsCookieJar, self).set_cookie(cookie, *args, **kwargs)
 
-    def update(self, other: Union[Dict[str, str], cookielib.CookieJar]) -> None:
+    def update(self, other: Union[cookielib.CookieJar, Dict[str, str]]) -> None:
         """Updates this jar with cookies from another CookieJar or dict-like"""
         if isinstance(other, cookielib.CookieJar):
             for cookie in other:

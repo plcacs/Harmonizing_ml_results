@@ -539,7 +539,7 @@ class AIOKafkaConsumerThread(ConsumerThread):
             ensure_created=ensure_created
         )
 
-    def key_partition(self, topic: str, key: Optional[bytes], partition: Optional[int] = None) -> Optional[int]:
+    def key_partition(self, topic: str, key: bytes, partition: Optional[int] = None) -> Optional[int]:
         """Hash key to determine partition destination."""
         consumer = self._ensure_consumer()
         metadata = consumer._client.cluster

@@ -148,7 +148,7 @@ class TestSetOps:
                 first.union([1, 2, 3])
 
     @pytest.mark.filterwarnings('ignore:PeriodDtype\\[B\\] is deprecated:FutureWarning')
-    def test_difference_base(self, sort: bool, index: Index) -> None:
+    def test_difference_base(self, sort: Optional[bool], index: Index) -> None:
         first = index[2:]
         second = index[:4]
         if index.inferred_type == 'boolean':
@@ -284,7 +284,7 @@ class TestSetOps:
         result = index[:0].intersection(other)
         assert result.name == index.name
 
-    def test_difference_preserves_type_empty(self, index: Index, sort: bool) -> None:
+    def test_difference_preserves_type_empty(self, index: Index, sort: Optional[bool]) -> None:
         if not index.is_unique:
             pytest.skip('Not relevant since index is not unique')
         result = index.difference(index, sort=sort)
@@ -301,7 +301,7 @@ class TestSetOps:
         expected = index[:0].rename(names[2])
         tm.assert_index_equal(result, expected)
 
-    def test_intersection_difference_match_empty(self, index: Index, sort: bool) -> None:
+    def test_intersection_difference_match_empty(self, index: Index, sort: Optional[bool]) -> None:
         if not index.is_unique:
             pytest.skip('Not relevant because index is not unique')
         inter = index.intersection(index[:0])
@@ -311,7 +311,7 @@ class TestSetOps:
 @pytest.mark.filterwarnings('ignore:invalid value encountered in cast:RuntimeWarning')
 @pytest.mark.filterwarnings('ignore:PeriodDtype\\[B\\] is deprecated:FutureWarning')
 @pytest.mark.parametrize('method', ['intersection', 'union', 'difference', 'symmetric_difference'])
-def test_setop_with_categorical(index_flat: Index, sort: bool, method: str) -> None:
+def test_setop_with_categorical(index_flat: Index, sort: Optional[bool], method: str) -> None:
     index = index_flat
     other = index.astype('category')
     exact = 'equiv' if isinstance(index, RangeIndex) else True
@@ -414,7 +414,7 @@ class TestSetOpsUnsorted:
         tm.assert_index_equal(result, expected)
 
     @pytest.mark.parametrize('index', ['string'], indirect=True)
-    def test_intersection(self, index: Index, sort: bool) -> None:
+    def test_intersection(self, index: Index, sort: Optional[bool]) -> None:
         first = index[:20]
         second = index[:10]
         intersect = first.intersection(second, sort=sort)
@@ -426,7 +426,7 @@ class TestSetOpsUnsorted:
         assert inter is first
 
     @pytest.mark.parametrize('index2_name,keeps_name', [('index', True), ('other', False), (None, False)])
-    def test_intersection_name_preservation(self, index2_name: Optional[str], keeps_name: bool, sort: bool) -> None:
+    def test_intersection_name_preservation(self, index2_name: Optional[str], keeps_name: bool, sort: Optional[bool]) -> None:
         index2 = Index([3, 4, 5, 6, 7], name=index2_name)
         index1 = Index([1, 2, 3, 4, 5], name='index')
         expected = Index([3, 4, 5])
@@ -438,7 +438,7 @@ class TestSetOpsUnsorted:
 
     @pytest.mark.parametrize('index', ['string'], indirect=True)
     @pytest.mark.parametrize('first_name,second_name,expected_name', [('A', 'A', 'A'), ('A', 'B', None), (None, 'B', None)])
-    def test_intersection_name_preservation2(self, index: Index, first_name: Optional[str], second_name: Optional[str], expected_name: Optional[str], sort: bool) -> None:
+    def test_intersection_name_preservation2(self, index: Index, first_name: Optional[str], second_name: Optional[str], expected_name: Optional[str], sort: Optional[bool]) -> None:
         first = index[5:20]
         second = index[:10]
         first.name = first_name
@@ -446,7 +446,7 @@ class TestSetOpsUnsorted:
         intersect = first.intersection(second, sort=sort)
         assert intersect.name == expected_name
 
-    def test_chained_union(self, sort: bool) -> None:
+    def test_chained_union(self, sort: Optional[bool]) -> None:
         i1 = Index([1, 2], name='i1')
         i2 = Index([5, 6], name='i2')
         i3 = Index([3, 4], name='i3')
@@ -461,7 +461,7 @@ class TestSetOpsUnsorted:
         tm.assert_index_equal(union, expected)
 
     @pytest.mark.parametrize('index', ['string'], indirect=True)
-    def test_union(self, index: Index, sort: bool) -> None:
+    def test_union(self, index: Index, sort: Optional[bool]) -> None:
         first = index[5:20]
         second = index[:10]
         everything = index[:20]
@@ -473,7 +473,7 @@ class TestSetOpsUnsorted:
 
     @pytest.mark.parametrize('klass', [np.array, Series, list])
     @pytest.mark.parametrize('index', ['string'], indirect=True)
-    def test_union_from_iterables(self, index: Index, klass: Callable, sort: bool) -> None:
+    def test_union_from_iterables(self, index: Index, klass: Callable, sort: Optional[bool]) -> None:
         first = index[5:20]
         second = index[:10]
         everything = index[:20]
@@ -485,7 +485,7 @@ class TestSetOpsUnsorted:
             tm.assert_index_equal(result, everything)
 
     @pytest.mark.parametrize('index', ['string'], indirect=True)
-    def test_union_identity(self, index: Index, sort: bool) -> None:
+    def test_union_identity(self, index: Index, sort: Optional[bool]) -> None:
         first = index[5:20]
         union = first.union(first, sort=sort)
         assert (union is first) is (not sort)
@@ -496,7 +496,7 @@ class TestSetOpsUnsorted:
 
     @pytest.mark.parametrize('index', ['string'], indirect=True)
     @pytest.mark.parametrize('second_name,expected', [(None, None), ('name', 'name')])
-    def test_difference_name_preservation(self, index: Index, second_name: Optional[str], expected: Optional[str], sort: bool) -> None:
+    def test_difference_name_preservation(self, index: Index, second_name: Optional[str], expected: Optional[str], sort: Optional[bool]) -> None:
         first = index[5:20]
         second = index[:10]
         answer = index[10:20]
@@ -513,7 +513,7 @@ class TestSetOpsUnsorted:
         else:
             assert result.name == expected
 
-    def test_difference_empty_arg(self, index: Index, sort: bool) -> None:
+    def test_difference_empty_arg(self, index: Index, sort: Optional[bool]) -> None:
         first = index.copy()
         first = first[5:20]
         first.name = 'name'
@@ -530,7 +530,7 @@ class TestSetOpsUnsorted:
         tm.assert_index_equal(result, expected)
 
     @pytest.mark.parametrize('index', ['string'], indirect=True)
-    def test_difference_identity(self, index: Index, sort: bool) -> None:
+    def test_difference_identity(self, index: Index, sort: Optional[bool]) -> None:
         first = index[5:20]
         first.name = 'name'
         result = first.difference(first, sort)
@@ -538,7 +538,7 @@ class TestSetOpsUnsorted:
         assert result.name == first.name
 
     @pytest.mark.parametrize('index', ['string'], indirect=True)
-    def test_difference_sort(self, index: Index, sort: bool) -> None:
+    def test_difference_sort(self, index: Index, sort: Optional[bool]) -> None:
         first = index[5:20]
         second = index[:10]
         result = first.difference(second, sort)
@@ -571,7 +571,7 @@ class TestSetOpsUnsorted:
         with pytest.raises(TypeError, match=msg):
             op(a)
 
-    def test_symmetric_difference_mi(self, sort: bool) -> None:
+    def test_symmetric_difference_mi(self, sort: Optional[bool]) -> None:
         index1 = MultiIndex.from_tuples(zip(['foo', 'bar', 'baz'], [1, 2, 3]))
         index2 = MultiIndex.from_tuples([('foo', 1), ('bar', 3)])
         result = index1.symmetric_difference(index2, sort=sort)
@@ -581,7 +581,7 @@ class TestSetOpsUnsorted:
         tm.assert_index_equal(result, expected)
 
     @pytest.mark.parametrize('index2,expected', [([0, 1, np.nan], [2.0, 3.0, 0.0]), ([0, 1], [np.nan, 2.0, 3.0, 0.0])])
-    def test_symmetric_difference_missing(self, index2: List[Union[int, float]], expected: List[float], sort: bool) -> None:
+    def test_symmetric_difference_missing(self, index2: List, expected: List, sort: Optional[bool]) -> None:
         index2 = Index(index2)
         expected = Index(expected)
         index1 = Index([1, np.nan, 2, 3])
@@ -590,7 +590,7 @@ class TestSetOpsUnsorted:
             expected = expected.sort_values()
         tm.assert_index_equal(result, expected)
 
-    def test_symmetric_difference_non_index(self, sort: bool) -> None:
+    def test_symmetric_difference_non_index(self, sort: Optional[bool]) -> None:
         index1 = Index([1, 2, 3, 4], name='index1')
         index2 = np.array([2, 3, 4, 5])
         expected = Index([1, 5], name='index1')
