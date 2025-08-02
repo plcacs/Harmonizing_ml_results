@@ -30,9 +30,9 @@ async def async_setup_platform(
     discovery_info: Optional[DiscoveryInfoType] = None
 ) -> None:
     """Set up the Yandex transport sensor."""
-    stop_id = config[CONF_STOP_ID]
-    name = config[CONF_NAME]
-    routes = config[CONF_ROUTE]
+    stop_id: str = config[CONF_STOP_ID]
+    name: str = config[CONF_NAME]
+    routes: List[str] = config[CONF_ROUTE]
     client_session = async_create_clientsession(hass, requote_redirect_url=False)
     ymaps = YandexMapsRequester(user_agent=USER_AGENT, client_session=client_session)
     try:
@@ -74,8 +74,8 @@ class DiscoverYandexTransport(SensorEntity):
             await self.requester.set_new_session()
             await self.async_update(tries=tries + 1)
             return
-        stop_name = data['name']
-        transport_list = data['transports']
+        stop_name: str = data['name']
+        transport_list: List[Dict[str, Any]] = data['transports']
         for transport in transport_list:
             for thread in transport['threads']:
                 if 'Events' not in thread['BriefSchedule']:
@@ -84,7 +84,7 @@ class DiscoverYandexTransport(SensorEntity):
                     continue
                 for event in thread['BriefSchedule']['Events']:
                     if 'railway' in transport['Types']:
-                        route = ' - '.join([x['name'] for x in thread['EssentialStops']])
+                        route: str = ' - '.join([x['name'] for x in thread['EssentialStops']])
                     else:
                         route = transport['name']
                     if self._routes and route not in self._routes:
@@ -92,7 +92,7 @@ class DiscoverYandexTransport(SensorEntity):
                     if 'Estimated' not in event and 'Scheduled' not in event:
                         continue
                     departure = event.get('Estimated') or event['Scheduled']
-                    posix_time_next = int(departure['value'])
+                    posix_time_next: int = int(departure['value'])
                     if closer_time is None or closer_time > posix_time_next:
                         closer_time = posix_time_next
                     if route not in attrs:

@@ -50,7 +50,7 @@ def create_model_field(
     except (RuntimeError, PydanticSchemaGenerationError):
         raise fastapi.exceptions.FastAPIError(f'Invalid args for response field! Hint: check that {type_} is a valid Pydantic field type. If you are using a return type annotation that is not a valid Pydantic field (e.g. Union[Response, dict, None]) you can disable generating the response model from the type annotation with the path operation decorator parameter response_model=None. Read more: https://fastapi.tiangolo.com/tutorial/response-model/') from None
 
-def create_cloned_field(field: ModelField, *, cloned_types: Optional[MutableMapping[Type[BaseModel], Type[BaseModel]]] = None) -> ModelField:
+def create_cloned_field(field: ModelField, *, cloned_types: Optional[WeakKeyDictionary] = None) -> ModelField:
     if PYDANTIC_V2:
         return field
     if cloned_types is None:

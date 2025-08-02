@@ -90,8 +90,7 @@ class GitChangeLog:
         return github_login
 
     def _has_commit_migrations(self, git_sha: str) -> bool:
-        if not self._superset_repo:
-            return False
+        assert self._superset_repo is not None
         commit = self._superset_repo.get_commit(sha=git_sha)
         return any(('superset/migrations/versions/' in file.filename for file in commit.files))
 

@@ -41,13 +41,7 @@ class LocalCalendarEntity(CalendarEntity):
     _attr_has_entity_name: bool = True
     _attr_supported_features: CalendarEntityFeature = CalendarEntityFeature.CREATE_EVENT | CalendarEntityFeature.DELETE_EVENT | CalendarEntityFeature.UPDATE_EVENT
 
-    def __init__(
-        self, 
-        store: LocalCalendarStore, 
-        calendar: Calendar, 
-        name: str, 
-        unique_id: str
-    ) -> None:
+    def __init__(self, store: LocalCalendarStore, calendar: Calendar, name: str, unique_id: str) -> None:
         """Initialize LocalCalendarEntity."""
         self._store: LocalCalendarStore = store
         self._calendar: Calendar = calendar

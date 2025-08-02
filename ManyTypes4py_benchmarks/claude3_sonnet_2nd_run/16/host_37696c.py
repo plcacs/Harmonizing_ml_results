@@ -71,7 +71,7 @@ class ReolinkHost:
         self._cancel_long_poll_check: Optional[CALLBACK_TYPE] = None
         self._poll_job: HassJob = HassJob(self._async_poll_all_motion, cancel_on_shutdown=True)
         self._fast_poll_error: bool = False
-        self._long_poll_task: Optional[asyncio.Task] = None
+        self._long_poll_task: Optional[asyncio.Task[None]] = None
         self._lost_subscription_start: bool = False
         self._lost_subscription: bool = False
         self.cancel_refresh_privacy_mode: Optional[CALLBACK_TYPE] = None

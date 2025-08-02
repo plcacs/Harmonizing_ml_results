@@ -470,7 +470,7 @@ class Thermostat(ClimateEntity):
         elif preset_mode not in self._preset_modes.values():
             if self.preset_modes:
                 raise ServiceValidationError(translation_domain=DOMAIN, translation_key='invalid_preset', translation_placeholders={'options': ', '.join(self._preset_modes.values())})
-        device_registry: DeviceRegistry = dr.async_get(self.hass)
+        device_registry = dr.async_get(self.hass)
         sensor_names: List[str] = []
         sensor_ids: List[str] = []
         for device_id in device_ids:

@@ -68,9 +68,9 @@ class AirMonitorB1(XiaomiMiioEntity, AirQualityEntity):
         return self._icon
 
     @property
-    def available(self) -> bool:
+    def available(self) -> Optional[bool]:
         """Return true when state is known."""
-        return bool(self._available)
+        return self._available
 
     @property
     def air_quality_index(self) -> Optional[int]:
@@ -189,9 +189,9 @@ class AirMonitorCGDN1(XiaomiMiioEntity, AirQualityEntity):
         return self._icon
 
     @property
-    def available(self) -> bool:
+    def available(self) -> Optional[bool]:
         """Return true when state is known."""
-        return bool(self._available)
+        return self._available
 
     @property
     def carbon_dioxide(self) -> Optional[int]:
@@ -230,12 +230,13 @@ DEVICE_MAP: Dict[str, Dict[str, Any]] = {
 
 
 async def async_setup_entry(
-    hass: HomeAssistant, 
-    config_entry: ConfigEntry, 
+    hass: HomeAssistant,
+    config_entry: ConfigEntry,
     async_add_entities: AddConfigEntryEntitiesCallback
 ) -> None:
     """Set up the Xiaomi Air Quality from a config entry."""
-    entities: List[Union[AirMonitorB1, AirMonitorS1, AirMonitorV1, AirMonitorCGDN1]] = []
+    entities: List[Union[AirMonitorB1, AirMonitorCGDN1]] = []
+
     if config_entry.data[CONF_FLOW_TYPE] == CONF_DEVICE:
         host: str = config_entry.data[CONF_HOST]
         token: str = config_entry.data[CONF_TOKEN]
@@ -243,15 +244,19 @@ async def async_setup_entry(
         model: str = config_entry.data[CONF_MODEL]
         unique_id: str = config_entry.unique_id
         _LOGGER.debug('Initializing with host %s (token %s...)', host, token[:5])
+
         if model in DEVICE_MAP:
             device_entry = DEVICE_MAP[model]
             device_class = device_entry['device_class']
             entity_class = device_entry['entity_class']
+            
             if callable(device_class):
                 device = device_class(host, token, model=model)
             else:
                 device = device_class(host, token, model=model)
+                
             entities.append(entity_class(name, device, config_entry, unique_id))
         else:
             _LOGGER.warning("AirQualityMonitor model '%s' is not yet supported", model)
+
     async_add_entities(entities, update_before_add=True)

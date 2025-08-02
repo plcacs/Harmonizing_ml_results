@@ -52,7 +52,7 @@ def test_remove_features_subsets(logs: List[Dict[str, Any]], base_extractor: Cal
     next_subsets = remove_features_subsets(logs, base_extractor, metric_name, num_removed_by_step=1)
     assert sorted(next_subsets) == [('first',), ('second',)]
 
-def test_remove_by_shuffling(train_df: pd.DataFrame, holdout_df: pd.DataFrame, train_fn: Callable[[pd.DataFrame, List[str]], Tuple[Callable[[pd.DataFrame], pd.DataFrame], Dict[str, Any], Dict[str, Any]]], eval_fn: Callable[[pd.DataFrame, str, str, str, Dict[str, Any]], Dict[str, float]], base_extractor: Callable[[List[Dict[str, Any]]], List[float]], metric_name: str, logs: List[Dict[str, Any]]) -> None:
+def test_remove_by_shuffling(train_df: pd.DataFrame, holdout_df: pd.DataFrame, train_fn: Callable, eval_fn: Callable, base_extractor: Callable[[List[Dict[str, Any]]], List[float]], metric_name: str, logs: List[Dict[str, Any]]) -> None:
     features: List[str] = ['x1', 'x2', 'x3', 'x4', 'x5', 'x6']
     predict_fn, _, train_logs = train_fn(train_df, features)
     next_features = remove_by_feature_shuffling(logs[0], predict_fn, eval_fn, holdout_df, base_extractor, metric_name, max_removed_by_step=3, threshold=0.5, speed_up_by_importance=True)

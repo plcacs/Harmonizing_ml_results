@@ -8,8 +8,7 @@ from io import StringIO
 import os
 from pathlib import Path
 import sys
-from typing import Any, Callable, Dict, List, Optional, Tuple, Union
-
+from typing import Any, Dict, List, Optional, Tuple, Union
 import numpy as np
 import pytest
 from pandas._config import using_string_dtype

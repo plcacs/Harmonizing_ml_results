@@ -52,7 +52,7 @@ is ``/user/{user_id}/``.
 Blueprints can be registered to multiple apps at the same time.
 """
 from pathlib import Path
-from typing import List, Mapping, NamedTuple, Optional, Type, Union, Dict, Any, Callable
+from typing import List, Mapping, NamedTuple, Optional, Type, Union, Dict, Any
 from mode.utils.times import Seconds
 from faust.types import AppT
 from faust.types.web import BlueprintT, CacheBackendT, CacheT, PageArg, ResourceOptions, RouteDecoratorRet, View, Web
@@ -63,7 +63,7 @@ class FutureRoute(NamedTuple):
     """Describes web route to be registered later."""
     uri: str
     name: str
-    handler: Union[Type[View], Callable]
+    handler: Any
     base: Type[View]
     cors_options: Dict[str, Any]
 
@@ -100,7 +100,7 @@ class Blueprint(BlueprintT):
               base: Type[View] = View) -> RouteDecoratorRet:
         """Create route by decorating handler or view class."""
 
-        def _inner(handler: Union[Type[View], Callable]) -> Union[Type[View], Callable]:
+        def _inner(handler: Any) -> Any:
             route = FutureRoute(uri=uri, name=name or handler.__name__, handler=handler, base=base, cors_options=cors_options or {})
             self.routes.append(route)
             return handler
@@ -125,10 +125,7 @@ class Blueprint(BlueprintT):
         for static_route in self.static_routes:
             self._apply_static_route(app.web, static_route, url_prefix)
 
-    def _apply_route(self, 
-                     app: AppT, 
-                     route: FutureRoute, 
-                     url_prefix: Optional[str]) -> None:
+    def _apply_route(self, app: AppT, route: FutureRoute, url_prefix: Optional[str]) -> None:
         uri = self._url_with_prefix(route.uri, url_prefix)
         app.page(path=uri[1:] if uri.startswith('//') else uri, name=self._view_name(route.name), cors_options=route.cors_options)(route.handler)
 
@@ -148,10 +145,7 @@ class Blueprint(BlueprintT):
             return prefix.rstrip('/') + '/' + url.lstrip('/')
         return url
 
-    def _apply_static_route(self, 
-                           web: Web, 
-                           route: FutureStaticRoute, 
-                           url_prefix: Optional[str]) -> None:
+    def _apply_static_route(self, web: Web, route: FutureStaticRoute, url_prefix: Optional[str]) -> None:
         uri = self._url_with_prefix(route.uri, url_prefix)
         web.add_static(uri, route.file_or_directory)
 

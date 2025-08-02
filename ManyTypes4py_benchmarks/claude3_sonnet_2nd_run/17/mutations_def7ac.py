@@ -104,7 +104,7 @@ class Mutator:
             boolean_vector = self.random_state.rand(dimension) > 1.0 / dimension
         return [s if b else self.significantly_mutate(s, arity) for b, s in zip(boolean_vector, parent)]
 
-    def crossover(self, parent: tp.ArrayLike, donor: tp.ArrayLike, rotation: bool = False, crossover_type: str = 'none') -> List[float]:
+    def crossover(self, parent: tp.ArrayLike, donor: tp.ArrayLike, rotation: bool = False, crossover_type: str = 'none') -> tp.ArrayLike:
         if rotation:
             dim = len(parent)
             k = self.random_state.randint(1, dim)

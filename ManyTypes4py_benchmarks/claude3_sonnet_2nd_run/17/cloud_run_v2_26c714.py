@@ -112,8 +112,8 @@ class CloudRunWorkerJobV2Configuration(BaseJobConfiguration):
         """
         Populates the job body with environment variables.
         """
-        envs: List[Dict[str, Any]] = [{'name': k, 'value': v} for k, v in self.env.items()]
-        envs_from_secrets: List[Dict[str, Any]] = [{'name': k, 'valueSource': {'secretKeyRef': v.model_dump()}} for k, v in self.env_from_secrets.items()]
+        envs = [{'name': k, 'value': v} for k, v in self.env.items()]
+        envs_from_secrets = [{'name': k, 'valueSource': {'secretKeyRef': v.model_dump()}} for k, v in self.env_from_secrets.items()]
         envs.extend(envs_from_secrets)
         self.job_body['template']['template']['containers'][0]['env'].extend(envs)
 

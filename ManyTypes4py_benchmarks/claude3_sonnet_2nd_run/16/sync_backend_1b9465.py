@@ -7,13 +7,13 @@ from ..util.ssl_ import ssl_wrap_socket
 from ..util import selectors
 from ._common import DEFAULT_SELECTOR, is_readable, LoopAbort
 __all__ = ['SyncBackend']
-BUFSIZE = 65536
+BUFSIZE: int = 65536
 
 class SyncBackend:
 
     def __init__(self, connect_timeout: Optional[float] = None, read_timeout: Optional[float] = None) -> None:
-        self._connect_timeout = connect_timeout
-        self._read_timeout = read_timeout
+        self._connect_timeout: Optional[float] = connect_timeout
+        self._read_timeout: Optional[float] = read_timeout
 
     def connect(self, host: str, port: int, source_address: Optional[Tuple[str, int]] = None, 
                 socket_options: Optional[Any] = None) -> 'SyncSocket':
@@ -23,8 +23,8 @@ class SyncBackend:
 class SyncSocket:
 
     def __init__(self, sock: socket.socket, read_timeout: Optional[float]) -> None:
-        self._sock = sock
-        self._read_timeout = read_timeout
+        self._sock: socket.socket = sock
+        self._read_timeout: Optional[float] = read_timeout
         self._sock.setblocking(False)
 
     def start_tls(self, server_hostname: Optional[str], ssl_context: ssl.SSLContext) -> 'SyncSocket':
@@ -49,7 +49,7 @@ class SyncSocket:
         if not events:
             raise socket.timeout('XX FIXME timeout happened')
         _, event = events[0]
-        return (event & selectors.EVENT_READ, event & selectors.EVENT_WRITE)
+        return (bool(event & selectors.EVENT_READ), bool(event & selectors.EVENT_WRITE))
 
     def receive_some(self) -> bytes:
         while True:
@@ -67,7 +67,7 @@ class SyncSocket:
 
     def send_and_receive_for_a_while(self, produce_bytes: Callable[[], Optional[bytes]], 
                                      consume_bytes: Callable[[bytes], None]) -> None:
-        outgoing_finished = False
+        outgoing_finished: bool = False
         outgoing: Optional[Union[bytes, memoryview]] = b''
         try:
             while True:
@@ -78,8 +78,8 @@ class SyncSocket:
                         outgoing_finished = True
                     else:
                         outgoing = memoryview(b)
-                want_read = False
-                want_write = False
+                want_read: bool = False
+                want_write: bool = False
                 try:
                     incoming = self._sock.recv(BUFSIZE)
                 except ssl.SSLWantReadError:

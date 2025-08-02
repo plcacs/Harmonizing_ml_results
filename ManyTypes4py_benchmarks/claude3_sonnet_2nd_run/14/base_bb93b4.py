@@ -120,7 +120,7 @@ class BaseStringArrayMethods(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def _str_translate(self, table: dict[int, Union[int, str, None]]) -> Self:
+    def _str_translate(self, table: dict) -> Self:
         pass
 
     @abc.abstractmethod

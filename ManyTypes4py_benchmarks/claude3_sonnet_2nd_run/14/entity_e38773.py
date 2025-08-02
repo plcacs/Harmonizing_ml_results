@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 from collections.abc import Callable, Coroutine
 from functools import partial
 import logging
-from typing import TYPE_CHECKING, Any, Protocol, cast, final
+from typing import TYPE_CHECKING, Any, Protocol, cast, final, TypeVar, Literal, overload
 import voluptuous as vol
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import ATTR_CONFIGURATION_URL, ATTR_HW_VERSION, ATTR_MANUFACTURER, ATTR_MODEL, ATTR_MODEL_ID, ATTR_NAME, ATTR_SERIAL_NUMBER, ATTR_SUGGESTED_AREA, ATTR_SW_VERSION, ATTR_VIA_DEVICE, CONF_DEVICE, CONF_ENTITY_CATEGORY, CONF_ICON, CONF_MODEL, CONF_MODEL_ID, CONF_NAME, CONF_UNIQUE_ID, CONF_VALUE_TEMPLATE
@@ -318,7 +318,11 @@ def send_discovery_done(hass: HomeAssistant, discovery_data: dict[str, Any]) -> 
     discovery_hash = get_discovery_hash(discovery_data)
     async_dispatcher_send(hass, MQTT_DISCOVERY_DONE.format(*discovery_hash), None)
 
-def stop_discovery_updates(hass: HomeAssistant, discovery_data: dict[str, Any], remove_discovery_updated: Callable[[], None] | None = None) -> None:
+def stop_discovery_updates(
+    hass: HomeAssistant, 
+    discovery_data: dict[str, Any], 
+    remove_discovery_updated: Callable[[], None] | None = None
+) -> None:
     """Stop discovery updates of being sent."""
     if remove_discovery_updated:
         remove_discovery_updated()
@@ -335,7 +339,9 @@ async def async_remove_discovery_payload(hass: HomeAssistant, discovery_data: di
     discovery_topic = discovery_data[ATTR_DISCOVERY_TOPIC]
     await async_publish(hass, discovery_topic, None, retain=True)
 
-async def async_clear_discovery_topic_if_entity_removed(hass: HomeAssistant, discovery_data: dict[str, Any], event: Event) -> None:
+async def async_clear_discovery_topic_if_entity_removed(
+    hass: HomeAssistant, discovery_data: dict[str, Any], event: Event
+) -> None:
     """Clear the discovery topic if the entity is removed."""
     if event.data['action'] == 'remove':
         await async_remove_discovery_payload(hass, discovery_data)
@@ -343,7 +349,14 @@ async def async_clear_discovery_topic_if_entity_removed(hass: HomeAssistant, dis
 class MqttDiscoveryDeviceUpdateMixin(ABC):
     """Add support for auto discovery for platforms without an entity."""
 
-    def __init__(self, hass: HomeAssistant, discovery_data: dict[str, Any], device_id: str | None, config_entry: ConfigEntry, log_name: str) -> None:
+    def __init__(
+        self, 
+        hass: HomeAssistant, 
+        discovery_data: dict[str, Any], 
+        device_id: str | None, 
+        config_entry: ConfigEntry, 
+        log_name: str
+    ) -> None:
         """Initialize the update service."""
         self.hass = hass
         self.log_name = log_name
@@ -428,7 +441,7 @@ class MqttDiscoveryDeviceUpdateMixin(ABC):
             await cleanup_device_registry(self.hass, self._device_id, self._config_entry_id)
 
     @abstractmethod
-    async def async_update(self, discovery_data: MQTTDiscoveryPayload) -> None:
+    async def async_update(self, discovery_data: Any) -> None:
         """Handle the update of platform specific parts, extend to the platform."""
 
     @abstractmethod
@@ -438,7 +451,12 @@ class MqttDiscoveryDeviceUpdateMixin(ABC):
 class MqttDiscoveryUpdateMixin(Entity):
     """Mixin used to handle updated discovery message for entity based platforms."""
 
-    def __init__(self, hass: HomeAssistant, discovery_data: dict[str, Any] | None, discovery_update: Callable[[MQTTDiscoveryPayload], Coroutine[Any, Any, None]] | None = None) -> None:
+    def __init__(
+        self, 
+        hass: HomeAssistant, 
+        discovery_data: dict[str, Any] | None, 
+        discovery_update: Callable[[Any], Coroutine[Any, Any, None]] | None = None
+    ) -> None:
         """Initialize the discovery update mixin."""
         self._discovery_data = discovery_data
         self._discovery_update = discovery_update
@@ -478,7 +496,9 @@ class MqttDiscoveryUpdateMixin(Entity):
         else:
             await self.async_remove(force_remove=True)
 
-    async def _async_process_discovery_update(self, payload: MQTTDiscoveryPayload, discovery_update: Callable[[MQTTDiscoveryPayload], Coroutine[Any, Any, None]], discovery_data: dict[str, Any]) -> None:
+    async def _async_process_discovery_update(
+        self, payload: Any, discovery_update: Callable[[Any], Coroutine[Any, Any, None]], discovery_data: dict[str, Any]
+    ) -> None:
         """Process discovery update."""
         try:
             await discovery_update(payload)
@@ -648,7 +668,13 @@ class MqttEntity(MqttAttributesMixin, MqttAvailabilityMixin, MqttDiscoveryUpdate
     _attr_should_poll: bool = False
     _entity_id_format: str
 
-    def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: dict[str, Any] | None) -> None:
+    def __init__(
+        self, 
+        hass: HomeAssistant, 
+        config: ConfigType, 
+        config_entry: ConfigEntry, 
+        discovery_data: dict[str, Any] | None
+    ) -> None:
         """Init the MQTT Entity."""
         self.hass = hass
         self._config = config
@@ -685,7 +711,7 @@ class MqttEntity(MqttAttributesMixin, MqttAvailabilityMixin, MqttDiscoveryUpdate
         To be extended by subclasses.
         """
 
-    async def discovery_update(self, discovery_payload: MQTTDiscoveryPayload) -> None:
+    async def discovery_update(self, discovery_payload: Any) -> None:
         """Handle updated discovery message."""
         try:
             config = self.config_schema()(discovery_payload)
@@ -715,7 +741,14 @@ class MqttEntity(MqttAttributesMixin, MqttAvailabilityMixin, MqttDiscoveryUpdate
         await MqttDiscoveryUpdateMixin.async_will_remove_from_hass(self)
         debug_info.remove_entity_data(self.hass, self.entity_id)
 
-    async def async_publish(self, topic: str, payload: PublishPayloadType, qos: int = 0, retain: bool = False, encoding: str = DEFAULT_ENCODING) -> None:
+    async def async_publish(
+        self, 
+        topic: str, 
+        payload: PublishPayloadType, 
+        qos: int = 0, 
+        retain: bool = False, 
+        encoding: str = DEFAULT_ENCODING
+    ) -> None:
         """Publish message to an MQTT topic."""
         log_message(self.hass, self.entity_id, topic, payload, qos, retain)
         await async_publish(self.hass, topic, payload, qos, retain, encoding)
@@ -772,7 +805,12 @@ class MqttEntity(MqttAttributesMixin, MqttAvailabilityMixin, MqttDiscoveryUpdate
         return False
 
     @callback
-    def _message_callback(self, msg_callback: MessageCallbackType, attributes: set[str] | None, msg: ReceiveMessage) -> None:
+    def _message_callback(
+        self, 
+        msg_callback: Callable[[ReceiveMessage], None], 
+        attributes: set[str] | None, 
+        msg: ReceiveMessage
+    ) -> None:
         """Process the message callback."""
         if attributes is not None:
             attrs_snapshot = tuple(((attribute, getattr(self, attribute, UNDEFINED)) for attribute in attributes))
@@ -788,7 +826,13 @@ class MqttEntity(MqttAttributesMixin, MqttAvailabilityMixin, MqttDiscoveryUpdate
         if attributes is not None and self._attrs_have_changed(attrs_snapshot):
             mqtt_data.state_write_requests.write_state_request(self)
 
-    def add_subscription(self, state_topic_config_key: str, msg_callback: MessageCallbackType, tracked_attributes: set[str] | None, disable_encoding: bool = False) -> bool:
+    def add_subscription(
+        self, 
+        state_topic_config_key: str, 
+        msg_callback: Callable[[ReceiveMessage], None], 
+        tracked_attributes: set[str], 
+        disable_encoding: bool = False
+    ) -> bool:
         """Add a subscription."""
         qos = self._config[CONF_QOS]
         encoding = None
@@ -803,7 +847,7 @@ def update_device(hass: HomeAssistant, config_entry: ConfigEntry, config: Config
     """Update device registry."""
     if CONF_DEVICE not in config:
         return None
-    device: DeviceEntry | None = None
+    device = None
     device_registry = dr.async_get(hass)
     config_entry_id = config_entry.entry_id
     device_info = device_info_from_specifications(config[CONF_DEVICE])
@@ -815,7 +859,9 @@ def update_device(hass: HomeAssistant, config_entry: ConfigEntry, config: Config
     return device.id if device else None
 
 @callback
-def async_removed_from_device(hass: HomeAssistant, event: EventDeviceRegistryUpdatedData, mqtt_device_id: str, config_entry_id: str) -> bool:
+def async_removed_from_device(
+    hass: HomeAssistant, event: EventDeviceRegistryUpdatedData, mqtt_device_id: str, config_entry_id: str
+) -> bool:
     """Check if the passed event indicates MQTT was removed from a device."""
     if event.data['action'] == 'update':
         if 'config_entries' not in event.data['changes']:

@@ -220,7 +220,14 @@ async def test_load_unload_entry(hass: HomeAssistant, config_entry: ConfigEntry,
     state = hass.states.get(entity_id)
     assert not state
 
-@pytest.mark.parametrize(('battery_level', 'location_name', 'latitude', 'longitude', 'expected_state', 'expected_attributes'), [(None, None, 1.0, 2.0, STATE_NOT_HOME, {ATTR_SOURCE_TYPE: SourceType.GPS, ATTR_GPS_ACCURACY: 0, ATTR_LATITUDE: 1.0, ATTR_LONGITUDE: 2.0}), (None, None, 50.0, 60.0, STATE_HOME, {ATTR_SOURCE_TYPE: SourceType.GPS, ATTR_GPS_ACCURACY: 0, ATTR_LATITUDE: 50.0, ATTR_LONGITUDE: 60.0}), (None, None, -50.0, -60.0, 'other zone', {ATTR_SOURCE_TYPE: SourceType.GPS, ATTR_GPS_ACCURACY: 0, ATTR_LATITUDE: -50.0, ATTR_LONGITUDE: -60.0}), (None, 'zen_zone', None, None, 'zen_zone', {ATTR_SOURCE_TYPE: SourceType.GPS}), (None, None, None, None, STATE_UNKNOWN, {ATTR_SOURCE_TYPE: SourceType.GPS}), (100, None, None, None, STATE_UNKNOWN, {ATTR_BATTERY_LEVEL: 100, ATTR_SOURCE_TYPE: SourceType.GPS})])
+@pytest.mark.parametrize(('battery_level', 'location_name', 'latitude', 'longitude', 'expected_state', 'expected_attributes'), [
+    (None, None, 1.0, 2.0, STATE_NOT_HOME, {ATTR_SOURCE_TYPE: SourceType.GPS, ATTR_GPS_ACCURACY: 0, ATTR_LATITUDE: 1.0, ATTR_LONGITUDE: 2.0}),
+    (None, None, 50.0, 60.0, STATE_HOME, {ATTR_SOURCE_TYPE: SourceType.GPS, ATTR_GPS_ACCURACY: 0, ATTR_LATITUDE: 50.0, ATTR_LONGITUDE: 60.0}),
+    (None, None, -50.0, -60.0, 'other zone', {ATTR_SOURCE_TYPE: SourceType.GPS, ATTR_GPS_ACCURACY: 0, ATTR_LATITUDE: -50.0, ATTR_LONGITUDE: -60.0}),
+    (None, 'zen_zone', None, None, 'zen_zone', {ATTR_SOURCE_TYPE: SourceType.GPS}),
+    (None, None, None, None, STATE_UNKNOWN, {ATTR_SOURCE_TYPE: SourceType.GPS}),
+    (100, None, None, None, STATE_UNKNOWN, {ATTR_BATTERY_LEVEL: 100, ATTR_SOURCE_TYPE: SourceType.GPS})
+])
 async def test_tracker_entity_state(hass: HomeAssistant, config_entry: ConfigEntry, entity_id: str, tracker_entity: MockTrackerEntity, expected_state: str, expected_attributes: dict[str, Any]) -> None:
     """Test tracker entity state and state attributes."""
     config_entry = await create_mock_platform(hass, config_entry, [tracker_entity])

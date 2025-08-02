@@ -31,12 +31,7 @@ CONF_DESTINATION = 'destination'
 _QUERY_SCHEME = vol.Schema({vol.Required(CONF_MODE): vol.All(cv.ensure_list, [vol.In(['bus', 'train'])]), vol.Required(CONF_ORIGIN): cv.string, vol.Required(CONF_DESTINATION): cv.string})
 PLATFORM_SCHEMA = SENSOR_PLATFORM_SCHEMA.extend({vol.Required(CONF_API_APP_ID): cv.string, vol.Required(CONF_API_APP_KEY): cv.string, vol.Required(CONF_QUERIES): [_QUERY_SCHEME]})
 
-def setup_platform(
-    hass: HomeAssistant, 
-    config: ConfigType, 
-    add_entities: AddEntitiesCallback, 
-    discovery_info: Optional[DiscoveryInfoType] = None
-) -> None:
+def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: Optional[DiscoveryInfoType] = None) -> None:
     """Get the uk_transport sensor."""
     sensors: List[SensorEntity] = []
     number_sensors = len((queries := config[CONF_QUERIES]))
@@ -107,7 +102,7 @@ class UkTransportLiveBusTimeSensor(UkTransportSensor):
         self._stop_atcocode: str = stop_atcocode
         self._bus_direction: str = bus_direction
         self._next_buses: List[Dict[str, Any]] = []
-        self._destination_re = re.compile(f'{bus_direction}', re.IGNORECASE)
+        self._destination_re: re.Pattern = re.compile(f'{bus_direction}', re.IGNORECASE)
         sensor_name = f'Next bus to {bus_direction}'
         stop_url = f'bus/stop/{stop_atcocode}/live.json'
         UkTransportSensor.__init__(self, sensor_name, api_app_id, api_app_key, stop_url)

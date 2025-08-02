@@ -5,7 +5,7 @@ import os
 import signal
 import subprocess
 import threading
-from typing import Any, Callable, List, Optional, Tuple
+from typing import List, Callable, Optional, Tuple, Any
 from . import logger
 from .api import NetEase
 from .config import Config

@@ -2,7 +2,7 @@
 Runner for dbt commands
 """
 import os
-from typing import Any, Callable, Dict, List, Optional, Sequence, Union
+from typing import Any, Callable, Dict, List, Optional, Union
 from dbt.artifacts.resources.types import NodeType
 from dbt.artifacts.schemas.results import FreshnessStatus, RunStatus, TestStatus
 from dbt.artifacts.schemas.run import RunExecutionResult
@@ -186,7 +186,7 @@ class PrefectDbtRunner:
             assert isinstance(res.result, Manifest), 'Expected manifest result from dbt parse'
             self.manifest = res.result
 
-    async def ainvoke(self, args: Sequence[str], **kwargs: Any) -> dbtRunnerResult:
+    async def ainvoke(self, args: List[str], **kwargs: Any) -> dbtRunnerResult:
         """Asynchronously invokes a dbt command.
 
         Args:
@@ -213,7 +213,7 @@ class PrefectDbtRunner:
                 raise ValueError(f"Failures detected during invocation of dbt command '{''.join(args)}':\n{os.linesep.join(failure_results)}")
             return res
 
-    def invoke(self, args: Sequence[str], **kwargs: Any) -> dbtRunnerResult:
+    def invoke(self, args: List[str], **kwargs: Any) -> dbtRunnerResult:
         """Synchronously invokes a dbt command.
 
         Args:

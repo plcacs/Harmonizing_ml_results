@@ -7,19 +7,15 @@ It is used to test the schema migration logic.
 """
 import json
 import logging
-from datetime import datetime
 from typing import Any, Dict, List, Optional, Union, cast
-
 from sqlalchemy import Boolean, Column, DateTime, Float, ForeignKey, Identity, Index, Integer, String, Text, distinct
 from sqlalchemy.dialects import mysql
 from sqlalchemy.orm import declarative_base, relationship
 from sqlalchemy.orm.session import Session
-
 from homeassistant.const import MAX_LENGTH_EVENT_CONTEXT_ID, MAX_LENGTH_EVENT_EVENT_TYPE, MAX_LENGTH_EVENT_ORIGIN, MAX_LENGTH_STATE_DOMAIN, MAX_LENGTH_STATE_ENTITY_ID, MAX_LENGTH_STATE_STATE
 from homeassistant.core import Context, Event, EventOrigin, State, split_entity_id
 from homeassistant.helpers.json import JSONEncoder
 from homeassistant.util import dt as dt_util
-
 Base = declarative_base()
 SCHEMA_VERSION: int = 18
 _LOGGER = logging.getLogger(__name__)
@@ -43,7 +39,7 @@ class Events(Base):
     origin: str = Column(String(MAX_LENGTH_EVENT_ORIGIN))
     time_fired: datetime = Column(DATETIME_TYPE, index=True)
     created: datetime = Column(DATETIME_TYPE, default=dt_util.utcnow)
-    context_id: Optional[str] = Column(String(MAX_LENGTH_EVENT_CONTEXT_ID), index=True)
+    context_id: str = Column(String(MAX_LENGTH_EVENT_CONTEXT_ID), index=True)
     context_user_id: Optional[str] = Column(String(MAX_LENGTH_EVENT_CONTEXT_ID), index=True)
     context_parent_id: Optional[str] = Column(String(MAX_LENGTH_EVENT_CONTEXT_ID), index=True)
 

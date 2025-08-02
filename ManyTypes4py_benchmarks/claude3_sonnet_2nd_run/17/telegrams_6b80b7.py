@@ -75,7 +75,7 @@ class Telegrams:
 
     def _xknx_telegram_cb(self, telegram: Telegram) -> None:
         """Handle incoming and outgoing telegrams from xknx."""
-        telegram_dict: TelegramDict = self.telegram_to_dict(telegram)
+        telegram_dict = self.telegram_to_dict(telegram)
         self.recent_telegrams.append(telegram_dict)
         if telegram_dict['payload'] is not None:
             self.last_ga_telegrams[telegram_dict['destination']] = telegram_dict

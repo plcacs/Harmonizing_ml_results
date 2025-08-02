@@ -89,7 +89,7 @@ class TestIndexConstructorInference:
     ])
     def test_constructor_infer_nat_dt_like(
         self, pos: int, klass: Type, dtype: str, ctor: Union[np.datetime64, np.timedelta64],
-        nulls_fixture: Any, request: Any
+        nulls_fixture: Any, request: pytest.FixtureRequest
     ) -> None:
         if isinstance(nulls_fixture, Decimal):
             pytest.skip(f"We don't cast {type(nulls_fixture).__name__} to datetime64/timedelta64")
@@ -251,7 +251,7 @@ class TestDtypeEnforced:
         np.array([np.datetime64('2011-01-01'), np.datetime64('2011-01-02')]),
         [datetime(2011, 1, 1), datetime(2011, 1, 2)]
     ])
-    def test_constructor_dtypes_to_datetime(self, cast_index: bool, vals: Union[np.ndarray, List[datetime]]) -> None:
+    def test_constructor_dtypes_to_datetime(self, cast_index: bool, vals: Union[List[datetime], np.ndarray]) -> None:
         vals = Index(vals)
         if cast_index:
             index = Index(vals, dtype=object)
@@ -266,7 +266,7 @@ class TestDtypeEnforced:
         np.array([np.timedelta64(1, 'D'), np.timedelta64(1, 'D')]),
         [timedelta(1), timedelta(1)]
     ])
-    def test_constructor_dtypes_to_timedelta(self, cast_index: bool, vals: Union[np.ndarray, List[timedelta]]) -> None:
+    def test_constructor_dtypes_to_timedelta(self, cast_index: bool, vals: Union[List[timedelta], np.ndarray]) -> None:
         if cast_index:
             index = Index(vals, dtype=object)
             assert isinstance(index, Index)
@@ -312,12 +312,12 @@ class TestIndexConstructorUnwrapping:
     def test_constructor_ndarray_like(self, array: np.ndarray) -> None:
 
         class ArrayLike:
+
             def __init__(self, array: np.ndarray) -> None:
                 self.array = array
 
             def __array__(self, dtype: Optional[np.dtype] = None, copy: Optional[bool] = None) -> np.ndarray:
                 return self.array
-
         expected = Index(array)
         result = Index(ArrayLike(array))
         tm.assert_index_equal(result, expected)

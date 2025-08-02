@@ -1,4 +1,4 @@
-from typing import Callable, List, Tuple, TypeVar, Any
+from typing import Any, Callable, List, Tuple, TypeVar
 
 from hypothesis.internal.conjecture.shrinking.common import Shrinker
 from hypothesis.internal.conjecture.shrinking.ordering import Ordering

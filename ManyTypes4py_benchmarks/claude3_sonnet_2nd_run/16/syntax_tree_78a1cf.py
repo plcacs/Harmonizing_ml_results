@@ -2,7 +2,7 @@
 Functions inferring the syntax tree.
 """
 import copy
-from typing import Any, Dict, Iterator, List, Optional, Set, Tuple, Union, cast
+from typing import Any, Callable, Dict, Iterator, List, Optional, Set, Tuple, Union, cast
 
 from parso.python import tree
 from jedi import debug
@@ -31,7 +31,7 @@ from jedi.plugins import plugin_manager
 operator_to_magic_method: Dict[str, str] = {'+': '__add__', '-': '__sub__', '*': '__mul__', '@': '__matmul__', '/': '__truediv__', '//': '__floordiv__', '%': '__mod__', '**': '__pow__', '<<': '__lshift__', '>>': '__rshift__', '&': '__and__', '|': '__or__', '^': '__xor__'}
 reverse_operator_to_magic_method: Dict[str, str] = {k: '__r' + v[2:] for k, v in operator_to_magic_method.items()}
 
-def _limit_value_infers(func: Any) -> Any:
+def _limit_value_infers(func: Callable) -> Callable:
     """
     This is for now the way how we limit type inference going wild. There are
     other ways to ensure recursion limits as well. This is mostly necessary
@@ -351,7 +351,7 @@ def infer_or_test(context: Any, or_test: Any) -> ValueSet:
         if operator.type == 'comp_op':
             operator = ' '.join((c.value for c in operator.children))
         if operator in ('and', 'or'):
-            left_bools: Set[bool] = set((left.py__bool__() for left in types))
+            left_bools = set((left.py__bool__() for left in types))
             if left_bools == {True}:
                 if operator == 'and':
                     types = context.infer_node(right)

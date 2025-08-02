@@ -27,7 +27,7 @@ import string, re
 from codecs import BOM_UTF8, lookup
 from lib2to3.pgen2.token import *
 from . import token
-from typing import List, Dict, Tuple, Callable, Iterator, Optional, Any, Union, Pattern, Match, Generator, cast, TypeVar, Iterable
+from typing import List, Dict, Tuple, Callable, Iterator, Optional, Union, Any, Pattern, Match, Generator, cast, TypeVar, Iterable
 __all__ = [x for x in dir(token) if x[0] != '_'] + ['tokenize', 'generate_tokens', 'untokenize']
 del token
 try:

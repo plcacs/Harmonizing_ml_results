@@ -30,7 +30,7 @@ class Cache(CacheT):
              timeout: Optional[Union[Seconds, float]] = None, 
              include_headers: bool = False, 
              key_prefix: Optional[str] = None, 
-             **kwargs: Any) -> Callable:
+             **kwargs: Any) -> Callable[[Callable], Callable]:
         """Decorate view to be cached."""
 
         def _inner(fun: Callable) -> Callable:
@@ -74,10 +74,10 @@ class Cache(CacheT):
         return cast(CacheBackendT, self.backend or view.app.cache)
 
     async def set_view(self, 
-                       key: str, 
-                       view: View, 
-                       response: Response, 
-                       timeout: Optional[Union[Seconds, float]] = None) -> Any:
+                      key: str, 
+                      view: View, 
+                      response: Response, 
+                      timeout: Optional[Union[Seconds, float]] = None) -> Any:
         """Set cached value for HTTP view request."""
         backend = self._view_backend(view)
         _timeout = timeout if timeout is not None else self.timeout
@@ -93,10 +93,10 @@ class Cache(CacheT):
         return response.status == 200
 
     def key_for_request(self, 
-                        request: Request, 
-                        prefix: Optional[str] = None, 
-                        method: Optional[str] = None, 
-                        include_headers: bool = False) -> str:
+                       request: Request, 
+                       prefix: Optional[str] = None, 
+                       method: Optional[str] = None, 
+                       include_headers: bool = False) -> str:
         """Return a cache key created from web request."""
         actual_method: str = request.method if method is None else method
         headers: Mapping[str, str] = request.headers if include_headers else {}
@@ -105,10 +105,10 @@ class Cache(CacheT):
         return self.build_key(request, actual_method, prefix, headers)
 
     def build_key(self, 
-                  request: Request, 
-                  method: str, 
-                  prefix: str, 
-                  headers: Mapping[str, str]) -> str:
+                 request: Request, 
+                 method: str, 
+                 prefix: str, 
+                 headers: Mapping[str, str]) -> str:
         """Build cache key from web request and environment."""
         context = hashlib.md5(b''.join((want_bytes(k) + want_bytes(v) for k, v in headers.items()))).hexdigest()
         url = hashlib.md5(iri_to_uri(str(request.url)).encode('ascii')).hexdigest()

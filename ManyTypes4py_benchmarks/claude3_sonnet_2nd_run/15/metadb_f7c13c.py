@@ -64,7 +64,7 @@ class SupersetAPSWDialect(APSWDialect):
         super().__init__(**kwargs)
         self.allowed_dbs = allowed_dbs
 
-    def create_connect_args(self, url: URL) -> Tuple[Tuple, Dict[str, Any]]:
+    def create_connect_args(self, url: URL) -> Tuple[Tuple[Any, ...], Dict[str, Any]]:
         """
         A custom Shillelagh SQLAlchemy dialect with a single adapter configured.
         """

@@ -96,7 +96,7 @@ class GSheetsEngineSpec(ShillelaghEngineSpec):
     @classmethod
     def build_sqlalchemy_uri(
         cls, 
-        _: Dict[str, Any], 
+        _: Any, 
         encrypted_extra: Optional[Dict[str, Any]] = None
     ) -> str:
         return 'gsheets://'

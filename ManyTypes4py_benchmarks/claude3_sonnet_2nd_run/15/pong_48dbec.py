@@ -3,7 +3,7 @@ document = window = Math = Date = 0
 __pragma__('noskip')
 __pragma__('noalias', 'clear')
 from com.fabricjs import fabric
-from typing import List, Optional, Callable, Any, Union, cast
+from typing import List, Optional, Callable, Any, Union, Tuple
 
 orthoWidth: int = 1000
 orthoHeight: int = 750

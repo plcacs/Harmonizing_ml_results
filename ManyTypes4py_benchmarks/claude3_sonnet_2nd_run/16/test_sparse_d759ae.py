@@ -1,4 +1,4 @@
-from typing import Any, Callable, Generator, List, Optional, Tuple, Union, cast
+from typing import Any, Callable, Generator, List, Optional, Tuple, Union
 import numpy as np
 import pytest
 import pandas as pd
@@ -38,7 +38,7 @@ def data_missing(request: Any) -> SparseArray:
     return SparseArray([np.nan, 1], fill_value=request.param)
 
 @pytest.fixture(params=[0, np.nan])
-def data_repeated(request: Any) -> Generator[SparseArray, None, None]:
+def data_repeated(request: Any) -> Callable[[int], Generator[SparseArray, None, None]]:
     """Return different versions of data for count times"""
 
     def gen(count: int) -> Generator[SparseArray, None, None]:

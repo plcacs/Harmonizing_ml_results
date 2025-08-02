@@ -1,6 +1,6 @@
 """Web driver using :pypi:`aiohttp`."""
 from pathlib import Path
-from typing import Any, Callable, Dict, Mapping, MutableMapping, Optional, Union, cast, Set, Tuple
+from typing import Any, Callable, Dict, Mapping, MutableMapping, Optional, Union, cast, ClassVar, Set, Type
 import aiohttp_cors
 from aiohttp import __version__ as aiohttp_version
 from aiohttp.web import AppRunner, Application, BaseSite, Request, Response, TCPSite, UnixSite
@@ -58,7 +58,7 @@ class Web(base.Web):
     """Web server and framework implementation using :pypi:`aiohttp`."""
     driver_version: str = f'aiohttp={aiohttp_version}'
     handler_shutdown_timeout: float = 60.0
-    _thread: Optional[Union[ServerThread, Server]] = None
+    _thread: Optional[Service] = None
     _cors: Optional[CorsConfig] = None
 
     def __init__(self, app: AppT, **kwargs: Any) -> None:
@@ -86,7 +86,7 @@ class Web(base.Web):
         cors = self.cors
         assert cors
         self.init_server()
-        server_cls = ServerThread if self.app.conf.web_in_thread else Server
+        server_cls: Type[Service] = ServerThread if self.app.conf.web_in_thread else Server
         self._thread = server_cls(self, loop=self.loop, beacon=self.beacon)
         self.add_dependency(self._thread)
 

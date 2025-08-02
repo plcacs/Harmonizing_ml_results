@@ -94,11 +94,11 @@ from tornado.log import define_logging_options
 from tornado.util import basestring_type, exec_in
 from typing import Any, Iterator, Iterable, Tuple, Set, Dict, Callable, List, TextIO, Optional, Type, Union, TypeVar, cast, overload
 
-T = TypeVar('T')
-
 class Error(Exception):
     """Exception raised by errors in the options module."""
     pass
+
+T = TypeVar('T')
 
 class OptionParser:
     """A collection of options, a dictionary with object-like access.

@@ -20,8 +20,20 @@ async def async_setup_entry(
         DemoCover(hass, 'cover_1', 'Kitchen Window'),
         DemoCover(hass, 'cover_2', 'Hall Window', 10),
         DemoCover(hass, 'cover_3', 'Living Room Window', 70, 50),
-        DemoCover(hass, 'cover_4', 'Garage Door', device_class=CoverDeviceClass.GARAGE, supported_features=CoverEntityFeature.OPEN | CoverEntityFeature.CLOSE),
-        DemoCover(hass, 'cover_5', 'Pergola Roof', tilt_position=60, supported_features=CoverEntityFeature.OPEN_TILT | CoverEntityFeature.STOP_TILT | CoverEntityFeature.CLOSE_TILT | CoverEntityFeature.SET_TILT_POSITION)
+        DemoCover(
+            hass, 
+            'cover_4', 
+            'Garage Door', 
+            device_class=CoverDeviceClass.GARAGE, 
+            supported_features=CoverEntityFeature.OPEN | CoverEntityFeature.CLOSE
+        ),
+        DemoCover(
+            hass, 
+            'cover_5', 
+            'Pergola Roof', 
+            tilt_position=60, 
+            supported_features=CoverEntityFeature.OPEN_TILT | CoverEntityFeature.STOP_TILT | CoverEntityFeature.CLOSE_TILT | CoverEntityFeature.SET_TILT_POSITION
+        )
     ])
 
 class DemoCover(CoverEntity):

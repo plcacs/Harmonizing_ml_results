@@ -7,8 +7,8 @@ EXPRESSION_PARTS = 'or_test and_test not_test comparison expr xor_expr and_expr 
 
 class ChangedFile:
 
-    def __init__(self, inference_state: 'InferenceState', from_path: Optional[Path], to_path: Optional[Path], 
-                 module_node: 'Node', node_to_str_map: Dict['Node', str]) -> None:
+    def __init__(self, inference_state: object, from_path: Optional[Path], to_path: Optional[Path], 
+                 module_node: object, node_to_str_map: Dict[object, str]) -> None:
         self._inference_state = inference_state
         self._from_path = from_path
         self._to_path = to_path
@@ -48,8 +48,7 @@ class ChangedFile:
 
 class Refactoring:
 
-    def __init__(self, inference_state: 'InferenceState', 
-                 file_to_node_changes: Dict[Optional[str], Dict['Node', str]], 
+    def __init__(self, inference_state: object, file_to_node_changes: Dict[Optional[str], Dict[object, str]], 
                  renames: Iterable[Tuple[Path, Path]] = ()) -> None:
         self._inference_state = inference_state
         self._renames = renames
@@ -57,7 +56,7 @@ class Refactoring:
 
     def get_changed_files(self) -> Dict[Optional[str], ChangedFile]:
 
-        def calculate_to_path(p: Optional[str]) -> Optional[Path]:
+        def calculate_to_path(p: Optional[Path]) -> Optional[Path]:
             if p is None:
                 return p
             p = str(p)
@@ -98,9 +97,9 @@ def _calculate_rename(path: Path, new_name: str) -> Tuple[Path, Path]:
         return (dir_, dir_.parent.joinpath(new_name))
     return (path, dir_.joinpath(new_name + path.suffix))
 
-def rename(inference_state: 'InferenceState', definitions: List['Definition'], new_name: str) -> Refactoring:
-    file_renames: Set[Tuple[Optional[Path], Path]] = set()
-    file_tree_name_map: Dict[Optional[str], Dict['TreeName', str]] = {}
+def rename(inference_state: object, definitions: List[object], new_name: str) -> Refactoring:
+    file_renames: Set[Tuple[Path, Path]] = set()
+    file_tree_name_map: Dict[Optional[str], Dict[object, str]] = {}
     if not definitions:
         raise RefactoringError('There is no name under the cursor')
     for d in definitions:
@@ -113,7 +112,7 @@ def rename(inference_state: 'InferenceState', definitions: List['Definition'], n
             fmap[tree_name] = tree_name.prefix + new_name
     return Refactoring(inference_state, file_tree_name_map, file_renames)
 
-def inline(inference_state: 'InferenceState', names: List['Name']) -> Refactoring:
+def inline(inference_state: object, names: List[object]) -> Refactoring:
     if not names:
         raise RefactoringError('There is no name under the cursor')
     if any((n.api_type in ('module', 'namespace') for n in names)):
@@ -145,7 +144,7 @@ def inline(inference_state: 'InferenceState', names: List['Name']) -> Refactorin
     rhs = expr_stmt.get_rhs()
     replace_code = rhs.get_code(include_prefix=False)
     references = [n for n in names if not n.tree_name.is_definition()]
-    file_to_node_changes: Dict[Optional[str], Dict['Node', str]] = {}
+    file_to_node_changes: Dict[Optional[str], Dict[object, str]] = {}
     for name in references:
         tree_name = name.tree_name
         path = name.get_root_context().py__file__()

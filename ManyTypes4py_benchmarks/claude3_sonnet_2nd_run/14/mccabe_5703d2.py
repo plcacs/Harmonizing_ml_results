@@ -8,15 +8,13 @@ import optparse
 import sys
 import tokenize
 from collections import defaultdict
-from typing import Dict, List, Tuple, Any, Optional, Set, Iterator, Union, Callable, Type, TypeVar, cast
+from typing import Any, Dict, List, Optional, Set, Tuple, Union, Iterator, Callable, Type, TypeVar, cast
 try:
     import ast
     from ast import iter_child_nodes
 except ImportError:
     from flake8.util import ast, iter_child_nodes
 __version__ = '0.7.0'
-
-T = TypeVar('T')
 
 class ASTVisitor:
     """Performs a depth-first walk of the AST."""
@@ -169,7 +167,7 @@ class PathGraphingAstVisitor(ASTVisitor):
     def _subgraph(self, node: ast.AST, name: str, extra_blocks: Tuple[ast.AST, ...] = ()) -> None:
         """create the subgraphs representing any `if` and `for` statements"""
         if self.graph is None:
-            self.graph = PathGraph(name, name, getattr(node, 'lineno', 0), getattr(node, 'col_offset', 0))
+            self.graph = PathGraph(name, name, node.lineno, node.col_offset)
             pathnode = PathNode(name)
             self._subgraph_parse(node, pathnode, extra_blocks)
             self.graphs['%s%s' % (self.classname, name)] = self.graph
@@ -194,11 +192,11 @@ class PathGraphingAstVisitor(ASTVisitor):
             loose_ends.append(self.tail)
         else:
             loose_ends.append(pathnode)
-        if pathnode and self.graph:
+        if pathnode:
             bottom = PathNode('', look='point')
             for le in loose_ends:
                 if le:
-                    self.graph.connect(le, bottom)
+                    self.graph.connect(le, bottom)  # type: ignore
             self.tail = bottom
 
     def visitTryExcept(self, node: ast.Try) -> None:
@@ -239,7 +237,7 @@ class McCabeChecker:
     def parse_options(cls, options: optparse.Values) -> None:
         cls.max_complexity = int(options.max_complexity)
 
-    def run(self) -> Iterator[Tuple[int, int, str, Type['McCabeChecker']]]:
+    def run(self) -> Iterator[Tuple[int, int, str, Type]]:
         if self.max_complexity < 0:
             return
         visitor = PathGraphingAstVisitor()

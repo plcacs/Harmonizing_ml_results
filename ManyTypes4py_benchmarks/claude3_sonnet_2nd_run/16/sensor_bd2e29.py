@@ -193,7 +193,7 @@ class SQLSensor(ManualTriggerSensorEntity):
         if not yaml and (unique_id := trigger_entity_config.get(CONF_UNIQUE_ID)):
             self._attr_name = None
             self._attr_has_entity_name = True
-            self._attr_device_info = DeviceInfo(entry_type=DeviceEntryType.SERVICE, identifiers={(DOMAIN, unique_id)}, manufacturer='SQL', name=self._rendered.get(CONF_NAME))
+            self._attr_device_info = DeviceInfo(entry_type=DeviceEntryType.SERVICE, identifiers={(DOMAIN, cast(str, unique_id))}, manufacturer='SQL', name=self._rendered.get(CONF_NAME))
 
     @property
     def name(self) -> Optional[str]:

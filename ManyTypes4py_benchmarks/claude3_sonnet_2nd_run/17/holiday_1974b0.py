@@ -375,7 +375,7 @@ class AbstractHolidayCalendar(metaclass=HolidayCalendarMetaClass):
         start: Optional[Union[datetime, Timestamp, str]] = None, 
         end: Optional[Union[datetime, Timestamp, str]] = None, 
         return_name: bool = False
-    ) -> Union[Series, DatetimeIndex]:
+    ) -> Union[DatetimeIndex, Series]:
         """
         Returns a curve with holidays between start_date and end_date
 

@@ -35,7 +35,7 @@ class DatetimeIndexOpsMixin(NDArrayBackedExtensionIndex, ABC):
     _can_hold_strings: bool = False
 
     @doc(DatetimeLikeArrayMixin.mean)
-    def mean(self, *, skipna: bool = True, axis: int = 0) -> Any:
+    def mean(self, *, skipna: bool = True, axis: int = 0) -> Timedelta:
         return self._data.mean(skipna=skipna, axis=axis)
 
     @property
@@ -148,7 +148,7 @@ class DatetimeIndexOpsMixin(NDArrayBackedExtensionIndex, ABC):
     def _formatter_func(self) -> Any:
         return self._data._formatter()
 
-    def _format_attrs(self) -> list[tuple[str, Optional[str]]]:
+    def _format_attrs(self) -> list[tuple[str, str]]:
         """
         Return a list of tuples of the (attr,formatted_value).
         """
@@ -571,7 +571,7 @@ class DatetimeTimedeltaMixin(DatetimeIndexOpsMixin, ABC):
         return freq
 
     @doc(NDArrayBackedExtensionIndex.delete)
-    def delete(self, loc: Union[int, Sequence[int], slice]) -> Self:
+    def delete(self, loc: Union[int, Sequence[int]]) -> Self:
         result = super().delete(loc)
         result._data._freq = self._get_delete_freq(loc)
         return result

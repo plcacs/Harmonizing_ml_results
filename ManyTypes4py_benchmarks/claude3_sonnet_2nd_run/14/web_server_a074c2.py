@@ -1,7 +1,7 @@
 """Low level HTTP server."""
 import asyncio
 import warnings
-from typing import Any, Awaitable, Callable, Dict, Generic, List, Optional, TypeVar, overload, Union, Set
+from typing import Any, Awaitable, Callable, Dict, Generic, List, Optional, TypeVar, overload, Union
 from .abc import AbstractStreamWriter
 from .http_parser import RawRequestMessage
 from .streams import StreamReader

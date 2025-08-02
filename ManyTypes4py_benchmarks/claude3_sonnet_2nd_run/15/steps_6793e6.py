@@ -10,7 +10,6 @@ from typing_extensions import TypedDict
 from prefect._internal.compatibility.deprecated import deprecated_callable
 from prefect.utilities.filesystem import filter_files, relative_path_to_current_platform
 
-
 class PushToS3Output(TypedDict):
     """
     The output of the `push_to_s3` step.

@@ -8,7 +8,7 @@ import logging
 from pathlib import Path
 import socket
 import time
-from typing import TYPE_CHECKING, Any, Final, Optional, Callable, AsyncGenerator, Dict, List, Set, Tuple, Union, cast
+from typing import TYPE_CHECKING, Any, Final, Optional, Callable, Awaitable, AsyncGenerator, Dict, List, Set, Union, cast
 import wave
 from voip_utils import SIP_PORT, RtpDatagramProtocol
 from voip_utils.sip import SipDatagramProtocol, SipEndpoint, get_sip_endpoint

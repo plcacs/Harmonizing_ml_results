@@ -185,11 +185,12 @@ class MqttClimate(MqttTemperatureControlEntity, ClimateEntity):
     _attr_swing_modes: list[str]
     _attr_target_temperature_step: float
     _attr_target_temperature: float
-    _attr_preset_modes: list[str]
-    _attr_preset_mode: str
-    _attr_hvac_action: HVACAction | None
+    _attr_current_temperature: float | None
     _attr_current_humidity: float | None
     _attr_target_humidity: float | None
+    _attr_hvac_action: HVACAction | None
+    _attr_preset_modes: list[str]
+    _attr_preset_mode: str
     _attr_supported_features: ClimateEntityFeature
     _optimistic_preset_mode: bool
     _config: dict[str, Any]
@@ -201,7 +202,6 @@ class MqttClimate(MqttTemperatureControlEntity, ClimateEntity):
 
     def _setup_from_config(self, config: ConfigType) -> None:
         """(Re)Setup the entity."""
-        self._config = config
         self._attr_hvac_modes = config[CONF_MODE_LIST]
         self._attr_temperature_unit = config.get(CONF_TEMPERATURE_UNIT, self.hass.config.units.temperature_unit)
         if (min_temp := config.get(CONF_TEMP_MIN)) is not None:
@@ -261,6 +261,7 @@ class MqttClimate(MqttTemperatureControlEntity, ClimateEntity):
         if self._feature_preset_mode:
             support |= ClimateEntityFeature.PRESET_MODE
         self._attr_supported_features = support
+        self._config = config
 
     @callback
     def _handle_action_received(self, msg: ReceiveMessage) -> None:

@@ -2,7 +2,7 @@ import re
 import textwrap
 from ast import literal_eval
 from inspect import cleandoc
-from typing import Any, Dict, Generator, List, Optional, Set, Tuple, Union
+from typing import Any, Callable, Dict, Iterator, List, Optional, Set, Tuple, Union
 from weakref import WeakKeyDictionary
 from parso.python import tree
 from parso.cache import parser_cache
@@ -42,7 +42,7 @@ def get_executable_nodes(node: tree.NodeOrLeaf, last_added: bool = False) -> Lis
                 result += get_executable_nodes(child, last_added)
     return result
 
-def get_sync_comp_fors(comp_for: tree.Node) -> Generator[tree.Node, None, None]:
+def get_sync_comp_fors(comp_for: tree.Node) -> Iterator[tree.Node]:
     yield comp_for
     last = comp_for.children[-1]
     while True:
@@ -174,7 +174,7 @@ def is_scope(node: tree.NodeOrLeaf) -> bool:
         return node.children[1].type != 'sync_comp_for'
     return t in ('file_input', 'classdef', 'funcdef', 'lambdef', 'sync_comp_for')
 
-def _get_parent_scope_cache(func: Any) -> Any:
+def _get_parent_scope_cache(func: Callable) -> Callable:
     cache: WeakKeyDictionary = WeakKeyDictionary()
 
     def wrapper(parso_cache_node: Optional[Any], node: tree.NodeOrLeaf, include_flows: bool = False) -> Optional[tree.NodeOrLeaf]:
@@ -264,7 +264,7 @@ def expr_is_dotted(node: tree.NodeOrLeaf) -> bool:
         return all((c.children[0] == '.' for c in children[1:]))
     return node.type == 'name'
 
-def _function_is_x_method(*method_names: str) -> Any:
+def _function_is_x_method(*method_names: str) -> Callable[[tree.Node], bool]:
 
     def wrapper(function_node: tree.Node) -> bool:
         """

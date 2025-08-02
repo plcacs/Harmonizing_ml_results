@@ -533,9 +533,9 @@ class BackupManager:
 
     async def _async_receive_backup(self, *, agent_ids: list[str], contents: AsyncIterator[bytes]) -> str:
         """Receive and store a backup file from upload."""
-        contents.chunk_size = BUF_SIZE  # type: ignore[attr-defined]
+        contents.chunk_size = BUF_SIZE
         self.async_on_backup_event(ReceiveBackupEvent(reason=None, stage=ReceiveBackupStage.RECEIVE_FILE, state=ReceiveBackupState.IN_PROGRESS))
-        written_backup = await self._reader_writer.async_receive_backup(agent_ids=agent_ids, stream=contents, suggested_filename=contents.filename or 'backup.tar')  # type: ignore[attr-defined]
+        written_backup = await self._reader_writer.async_receive_backup(agent_ids=agent_ids, stream=contents, suggested_filename=contents.filename or 'backup.tar')
         self.async_on_backup_event(ReceiveBackupEvent(reason=None, stage=ReceiveBackupStage.UPLOAD_TO_AGENTS, state=ReceiveBackupState.IN_PROGRESS))
         agent_errors = await self._async_upload_backup(backup=written_backup.backup, agent_ids=agent_ids, open_stream=written_backup.open_stream, password=None)
         await written_backup.release_stream()

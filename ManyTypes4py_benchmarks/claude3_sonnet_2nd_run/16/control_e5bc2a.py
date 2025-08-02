@@ -4,7 +4,7 @@ import random
 from collections import defaultdict
 from collections.abc import Sequence
 from contextlib import contextmanager
-from typing import Any, Callable, Dict, List, NoReturn, Optional, Set, Tuple, TypeVar, Union, cast
+from typing import Any, Callable, Dict, Generator, List, NoReturn, Optional, Set, Tuple, TypeVar, Union, cast
 from weakref import WeakKeyDictionary
 from hypothesis import Verbosity, settings
 from hypothesis._settings import note_deprecation
@@ -17,8 +17,6 @@ from hypothesis.internal.validation import check_type
 from hypothesis.reporting import report, verbose_report
 from hypothesis.utils.dynamicvariables import DynamicVariable
 from hypothesis.vendor.pretty import IDKey, PrettyPrintFunction, pretty
-
-T = TypeVar('T')
 
 def _calling_function_location(what: str, frame: inspect.FrameInfo) -> str:
     where = frame.f_back
@@ -50,7 +48,6 @@ def assume(condition: Any) -> bool:
         if not condition:
             raise UnsatisfiedAssumption(f'failed to satisfy {where}')
     return True
-
 _current_build_context = DynamicVariable[Optional['BuildContext']](None)
 
 def currently_in_test_context() -> bool:
@@ -71,6 +68,7 @@ def current_build_context() -> 'BuildContext':
     return context
 
 class RandomSeeder:
+
     def __init__(self, seed: Any) -> None:
         self.seed = seed
 
@@ -78,15 +76,16 @@ class RandomSeeder:
         return f'RandomSeeder({self.seed!r})'
 
 class _Checker:
+
     def __init__(self) -> None:
         self.saw_global_random = False
 
-    def __call__(self, x: T) -> T:
+    def __call__(self, x: Any) -> Any:
         self.saw_global_random |= isinstance(x, RandomSeeder)
         return x
 
 @contextmanager
-def deprecate_random_in_strategy(fmt: str, *args: Any) -> Any:
+def deprecate_random_in_strategy(fmt: str, *args: Any) -> Generator[_Checker, None, None]:
     _global_rand_state = random.getstate()
     checker = _Checker()
     yield checker
@@ -94,6 +93,7 @@ def deprecate_random_in_strategy(fmt: str, *args: Any) -> Any:
         note_deprecation('Do not use the `random` module inside strategies; instead consider  `st.randoms()`, `st.sampled_from()`, etc.  ' + fmt.format(*args), since='2024-02-05', has_codemod=False, stacklevel=1)
 
 class BuildContext:
+
     def __init__(self, data: ConjectureData, *, is_final: bool = False, close_on_capture: bool = True) -> None:
         self.data = data
         self.tasks: List[Callable[[], None]] = []
@@ -177,12 +177,11 @@ def event(value: Any, payload: Any = '') -> None:
         raise InvalidArgument('Cannot make record events outside of a test')
     payload = _event_to_string(payload, (str, int, float))
     context.data.events[_event_to_string(value)] = payload
-
 _events_to_strings: WeakKeyDictionary = WeakKeyDictionary()
 
 def _event_to_string(event: Any, allowed_types: Union[type, Tuple[type, ...]] = str) -> str:
     if isinstance(event, allowed_types):
-        return cast(str, event)
+        return str(event)
     try:
         return _events_to_strings[event]
     except (KeyError, TypeError):

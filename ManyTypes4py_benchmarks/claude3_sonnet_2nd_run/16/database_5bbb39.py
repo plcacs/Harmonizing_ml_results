@@ -22,14 +22,10 @@ from hypothesis.configuration import storage_directory
 from hypothesis.errors import HypothesisException, HypothesisWarning
 from hypothesis.internal.conjecture.choice import ChoiceT
 from hypothesis.utils.conventions import UniqueIdentifier, not_set
-
 __all__ = ['DirectoryBasedExampleDatabase', 'ExampleDatabase', 'GitHubArtifactDatabase', 'InMemoryExampleDatabase', 'MultiplexedDatabase', 'ReadOnlyDatabase']
-
 if TYPE_CHECKING:
     from typing import TypeAlias
-
 StrPathT = Union[str, PathLike[str]]
-T = TypeVar('T')
 
 def _usable_dir(path: StrPathT) -> bool:
     """
@@ -59,11 +55,11 @@ def _db_for_path(path: Any = not_set) -> 'ExampleDatabase':
     return DirectoryBasedExampleDatabase(path)
 
 class _EDMeta(abc.ABCMeta):
-    def __call__(self, *args: Any, **kwargs: Any) -> Any:
+
+    def __call__(self, *args: Any, **kwargs: Any) -> 'ExampleDatabase':
         if self is ExampleDatabase:
             return _db_for_path(*args, **kwargs)
         return super().__call__(*args, **kwargs)
-
 if 'sphinx' in sys.modules:
     try:
         from sphinx.ext.autodoc import _METACLASS_CALL_BLACKLIST
@@ -369,14 +365,7 @@ class GitHubArtifactDatabase(ExampleDatabase):
     For mono-repo support, you can provide a unique ``artifact_name`` (e.g. ``hypofuzz-example-db-frontend``).
     """
 
-    def __init__(
-        self, 
-        owner: str, 
-        repo: str, 
-        artifact_name: str = 'hypothesis-example-db', 
-        cache_timeout: timedelta = timedelta(days=1), 
-        path: Optional[StrPathT] = None
-    ) -> None:
+    def __init__(self, owner: str, repo: str, artifact_name: str = 'hypothesis-example-db', cache_timeout: timedelta = timedelta(days=1), path: Optional[StrPathT] = None) -> None:
         self.owner = owner
         self.repo = repo
         self.artifact_name = artifact_name
@@ -447,8 +436,8 @@ class GitHubArtifactDatabase(ExampleDatabase):
 
     def _get_bytes(self, url: str) -> Optional[bytes]:
         request = Request(url, headers={'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28 ', 'Authorization': f'Bearer {self.token}'})
-        warning_message: Optional[str] = None
-        response_bytes: Optional[bytes] = None
+        warning_message = None
+        response_bytes = None
         try:
             with urlopen(request) as response:
                 response_bytes = response.read()

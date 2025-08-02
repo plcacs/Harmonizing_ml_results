@@ -1,4 +1,5 @@
 from random import Random
+from typing import Callable, Dict, Iterator, List, Optional, Set, Tuple, Union, Any
 from lru import LRU
 from eth2spec.phase0.mainnet import VALIDATOR_REGISTRY_LIMIT
 from eth2spec.test.helpers.forks import is_post_altair, is_post_bellatrix
@@ -6,7 +7,6 @@ from eth2spec.test.helpers.state import next_epoch
 from eth2spec.test.helpers.random import set_some_new_deposits, exit_random_validators, slash_random_validators, randomize_state
 from eth2spec.test.helpers.attestations import cached_prepare_state_with_attestations
 from eth2spec.utils.ssz.ssz_typing import Container, uint64, List
-from typing import Tuple, List, Set, Dict, Any, Iterator, Callable, Optional, Union, TypeVar
 
 class Deltas(Container):
     rewards: List[uint64]
@@ -79,7 +79,7 @@ def deltas_name_to_flag_index(spec: Any, deltas_name: str) -> int:
         return spec.TIMELY_TARGET_FLAG_INDEX
     raise ValueError('Wrong deltas_name %s' % deltas_name)
 
-def run_attestation_component_deltas(spec: Any, state: Any, component_delta_fn: Callable, matching_att_fn: Callable, deltas_name: str) -> Iterator[Tuple[str, Deltas]]:
+def run_attestation_component_deltas(spec: Any, state: Any, component_delta_fn: Callable[[Any], Tuple[List[uint64], List[uint64]]], matching_att_fn: Callable[[Any, int], List[Any]], deltas_name: str) -> Iterator[Tuple[str, Deltas]]:
     """
     Run ``component_delta_fn``, yielding:
       - deltas ('{``deltas_name``}')
@@ -200,12 +200,11 @@ def transition_state_to_leak(spec: Any, state: Any, epochs: Optional[int] = None
     for _ in range(epochs):
         next_epoch(spec, state)
     assert spec.is_in_inactivity_leak(state)
+
 _cache_dict: LRU = LRU(size=10)
 
-def leaking(epochs: Optional[int] = None) -> Callable:
-
+def leaking(epochs: Optional[int] = None) -> Callable[[Callable], Callable]:
     def deco(fn: Callable) -> Callable:
-
         def entry(*args: Any, spec: Any, state: Any, **kw: Any) -> Any:
             key = (state.hash_tree_root(), spec.MIN_EPOCHS_TO_INACTIVITY_PENALTY, spec.SLOTS_PER_EPOCH, epochs)
             global _cache_dict

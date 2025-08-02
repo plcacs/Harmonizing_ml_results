@@ -5,7 +5,7 @@ from cryptography.hazmat.backends.openssl import backend as openssl_backend
 from cryptography.hazmat.backends.openssl.x509 import _Certificate
 from socket import timeout, error as SocketError
 from io import BytesIO
-from typing import Any, Dict, List, Optional, Tuple, Union, Callable, cast, BinaryIO
+from typing import Any, Dict, List, Optional, Tuple, Union, Callable, cast, TypeVar, Set, Iterable
 try:
     from socket import _fileobject
 except ImportError:
@@ -16,22 +16,40 @@ import ssl
 from ..packages import six
 import sys
 from .. import util
-__all__ = ['inject_into_urllib3', 'extract_from_urllib3']
+
+__all__: List[str] = ['inject_into_urllib3', 'extract_from_urllib3']
+
 HAS_SNI: bool = True
-_openssl_versions: Dict[int, int] = {ssl.PROTOCOL_SSLv23: OpenSSL.SSL.SSLv23_METHOD, ssl.PROTOCOL_TLSv1: OpenSSL.SSL.TLSv1_METHOD}
+
+_openssl_versions: Dict[int, int] = {
+    ssl.PROTOCOL_SSLv23: OpenSSL.SSL.SSLv23_METHOD,
+    ssl.PROTOCOL_TLSv1: OpenSSL.SSL.TLSv1_METHOD
+}
+
 if hasattr(ssl, 'PROTOCOL_TLSv1_1') and hasattr(OpenSSL.SSL, 'TLSv1_1_METHOD'):
     _openssl_versions[ssl.PROTOCOL_TLSv1_1] = OpenSSL.SSL.TLSv1_1_METHOD
+
 if hasattr(ssl, 'PROTOCOL_TLSv1_2') and hasattr(OpenSSL.SSL, 'TLSv1_2_METHOD'):
     _openssl_versions[ssl.PROTOCOL_TLSv1_2] = OpenSSL.SSL.TLSv1_2_METHOD
+
 try:
     _openssl_versions.update({ssl.PROTOCOL_SSLv3: OpenSSL.SSL.SSLv3_METHOD})
 except AttributeError:
     pass
-_stdlib_to_openssl_verify: Dict[int, int] = {ssl.CERT_NONE: OpenSSL.SSL.VERIFY_NONE, ssl.CERT_OPTIONAL: OpenSSL.SSL.VERIFY_PEER, ssl.CERT_REQUIRED: OpenSSL.SSL.VERIFY_PEER + OpenSSL.SSL.VERIFY_FAIL_IF_NO_PEER_CERT}
+
+_stdlib_to_openssl_verify: Dict[int, int] = {
+    ssl.CERT_NONE: OpenSSL.SSL.VERIFY_NONE,
+    ssl.CERT_OPTIONAL: OpenSSL.SSL.VERIFY_PEER,
+    ssl.CERT_REQUIRED: OpenSSL.SSL.VERIFY_PEER + OpenSSL.SSL.VERIFY_FAIL_IF_NO_PEER_CERT
+}
+
 _openssl_to_stdlib_verify: Dict[int, int] = dict(((v, k) for k, v in _stdlib_to_openssl_verify.items()))
+
 SSL_WRITE_BLOCKSIZE: int = 16384
+
 orig_util_HAS_SNI: bool = util.HAS_SNI
-orig_util_SSLContext = util.ssl_.SSLContext
+orig_util_SSLContext: Any = util.ssl_.SSLContext
+
 log: logging.Logger = logging.getLogger(__name__)
 
 def inject_into_urllib3() -> None:
@@ -87,7 +105,8 @@ def _dnsname_to_stdlib(name: str) -> str:
                 name = name[len(prefix):]
                 return prefix.encode('ascii') + idna.encode(name)
         return idna.encode(name)
-    name_bytes = idna_encode(name)
+    
+    name_bytes: bytes = idna_encode(name)
     if sys.version_info >= (3, 0):
         name = name_bytes.decode('utf-8')
     return name
@@ -107,7 +126,8 @@ def get_subj_alt_name(peer_cert: Any) -> List[Tuple[str, str]]:
     except (x509.DuplicateExtension, x509.UnsupportedExtension, x509.UnsupportedGeneralNameType, UnicodeError) as e:
         log.warning('A problem was encountered with the certificate that prevented urllib3 from finding the SubjectAlternativeName field. This can affect certificate validation. The error was %s', e)
         return []
-    names = [('DNS', _dnsname_to_stdlib(name)) for name in ext.get_values_for_type(x509.DNSName)]
+    
+    names: List[Tuple[str, str]] = [('DNS', _dnsname_to_stdlib(name)) for name in ext.get_values_for_type(x509.DNSName)]
     names.extend((('IP Address', str(name)) for name in ext.get_values_for_type(x509.IPAddress)))
     return names
 
@@ -195,7 +215,7 @@ class WrappedSocket(object):
         return self._send_until_done(data)
 
     def sendall(self, data: bytes) -> None:
-        total_sent = 0
+        total_sent: int = 0
         while total_sent < len(data):
             sent = self._send_until_done(data[total_sent:total_sent + SSL_WRITE_BLOCKSIZE])
             total_sent += sent
@@ -232,13 +252,14 @@ class WrappedSocket(object):
             self.close()
         else:
             self._makefile_refs -= 1
-if _fileobject:
 
+if _fileobject:
     def makefile(self, mode: str, bufsize: int = -1) -> Any:
         self._makefile_refs += 1
         return _fileobject(self, mode, bufsize, close=True)
 else:
     makefile = backport_makefile
+
 WrappedSocket.makefile = makefile
 
 class PyOpenSSLContext(object):
@@ -294,8 +315,10 @@ class PyOpenSSLContext(object):
             self._ctx.set_passwd_cb(lambda max_length, prompt_twice, userdata: password)
         self._ctx.use_privatekey_file(keyfile or certfile)
 
-    def wrap_socket(self, sock: Any, server_side: bool = False, do_handshake_on_connect: bool = True, 
-                    suppress_ragged_eofs: bool = True, server_hostname: Optional[str] = None) -> WrappedSocket:
+    def wrap_socket(self, sock: Any, server_side: bool = False, 
+                   do_handshake_on_connect: bool = True, 
+                   suppress_ragged_eofs: bool = True, 
+                   server_hostname: Optional[str] = None) -> WrappedSocket:
         cnx = OpenSSL.SSL.Connection(self._ctx, sock)
         if isinstance(server_hostname, six.text_type):
             server_hostname = server_hostname.encode('utf-8')
@@ -315,5 +338,5 @@ class PyOpenSSLContext(object):
             break
         return WrappedSocket(cnx, sock)
 
-def _verify_callback(cnx: OpenSSL.SSL.Connection, x509: Any, err_no: int, err_depth: int, return_code: int) -> bool:
+def _verify_callback(cnx: Any, x509: Any, err_no: int, err_depth: int, return_code: int) -> bool:
     return err_no == 0

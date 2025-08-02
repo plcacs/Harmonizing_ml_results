@@ -3,7 +3,7 @@ from __future__ import annotations
 from datetime import datetime
 from http import HTTPStatus
 import logging
-from typing import TYPE_CHECKING, Any, Callable, Dict, Optional, Union, cast
+from typing import TYPE_CHECKING, Any, Callable, Dict, Optional, Union
 from urllib.parse import urlencode
 from aiohttp import web
 from uiprotect.data import Camera, Event
@@ -129,20 +129,18 @@ class ThumbnailProxyView(ProtectProxyView):
             return data
         width = request.query.get('width')
         height = request.query.get('height')
-        width_int: Optional[int] = None
-        height_int: Optional[int] = None
         if width is not None:
             try:
-                width_int = int(width)
+                width = int(width)
             except ValueError:
                 return _400('Invalid width param')
         if height is not None:
             try:
-                height_int = int(height)
+                height = int(height)
             except ValueError:
                 return _400('Invalid height param')
         try:
-            thumbnail = await data.api.get_event_thumbnail(event_id, width=width_int, height=height_int)
+            thumbnail = await data.api.get_event_thumbnail(event_id, width=width, height=height)
         except ClientError as err:
             return _404(str(err))
         if thumbnail is None:
@@ -166,16 +164,14 @@ class SnapshotProxyView(ProtectProxyView):
             return _403(f'User cannot read media from camera: {camera.id}')
         width = request.query.get('width')
         height = request.query.get('height')
-        width_int: Optional[int] = None
-        height_int: Optional[int] = None
         if width is not None:
             try:
-                width_int = int(width)
+                width = int(width)
             except ValueError:
                 return _400('Invalid width param')
         if height is not None:
             try:
-                height_int = int(height)
+                height = int(height)
             except ValueError:
                 return _400('Invalid height param')
         try:
@@ -183,7 +179,7 @@ class SnapshotProxyView(ProtectProxyView):
         except ValueError:
             return _400('Invalid timestamp')
         try:
-            snapshot = await camera.get_snapshot(width=width_int, height=height_int, dt=timestamp_dt)
+            snapshot = await camera.get_snapshot(width=width, height=height, dt=timestamp_dt)
         except ClientError as err:
             return _404(str(err))
         if snapshot is None:

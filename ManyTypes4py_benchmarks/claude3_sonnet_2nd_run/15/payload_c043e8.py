@@ -8,7 +8,7 @@ import sys
 import warnings
 from abc import ABC, abstractmethod
 from itertools import chain
-from typing import IO, TYPE_CHECKING, Any, Dict, Final, Iterable, Optional, TextIO, Tuple, Type, Union, Callable, List, Protocol, cast, TypeVar, ClassVar
+from typing import IO, TYPE_CHECKING, Any, Dict, Final, Iterable, Optional, TextIO, Tuple, Type, Union, Callable, List, cast, Protocol, TypeVar, overload
 from multidict import CIMultiDict
 from . import hdrs
 from .abc import AbstractStreamWriter
@@ -57,12 +57,12 @@ class PayloadRegistry:
     __slots__ = ('_first', '_normal', '_last', '_normal_lookup')
 
     def __init__(self) -> None:
-        self._first: List[Tuple[Callable[..., 'Payload'], Union[Type[Any], Tuple[Type[Any], ...]]]] = []
-        self._normal: List[Tuple[Callable[..., 'Payload'], Union[Type[Any], Tuple[Type[Any], ...]]]] = []
-        self._last: List[Tuple[Callable[..., 'Payload'], Union[Type[Any], Tuple[Type[Any], ...]]]] = []
+        self._first: List[Tuple[Callable[..., 'Payload'], Any]] = []
+        self._normal: List[Tuple[Callable[..., 'Payload'], Any]] = []
+        self._last: List[Tuple[Callable[..., 'Payload'], Any]] = []
         self._normal_lookup: Dict[Type[Any], Callable[..., 'Payload']] = {}
 
-    def get(self, data: Any, *args: Any, _CHAIN: Callable[..., Iterable] = chain, **kwargs: Any) -> 'Payload':
+    def get(self, data: Any, *args: Any, _CHAIN: Callable[..., Iterable[Any]] = chain, **kwargs: Any) -> 'Payload':
         if self._first:
             for factory, type_ in self._first:
                 if isinstance(data, type_):
@@ -92,15 +92,15 @@ class PayloadRegistry:
             raise ValueError(f'Unsupported order {order!r}')
 
 class Payload(ABC):
-    _default_content_type: ClassVar[str] = 'application/octet-stream'
+    _default_content_type: str = 'application/octet-stream'
     _size: Optional[int] = None
 
     def __init__(self, value: Any, headers: Optional[_CIMultiDict] = None, content_type: Any = sentinel, 
                  filename: Optional[str] = None, encoding: Optional[str] = None, **kwargs: Any) -> None:
-        self._encoding = encoding
-        self._filename = filename
+        self._encoding: Optional[str] = encoding
+        self._filename: Optional[str] = filename
         self._headers: CIMultiDict = CIMultiDict()
-        self._value = value
+        self._value: Any = value
         if content_type is not sentinel and content_type is not None:
             assert isinstance(content_type, str)
             self._headers[hdrs.CONTENT_TYPE] = content_type
@@ -323,7 +323,7 @@ class StreamReaderPayload(AsyncIterablePayload):
     def __init__(self, value: StreamReader, *args: Any, **kwargs: Any) -> None:
         super().__init__(value.iter_any(), *args, **kwargs)
 
-PAYLOAD_REGISTRY: Final[PayloadRegistry] = PayloadRegistry()
+PAYLOAD_REGISTRY: PayloadRegistry = PayloadRegistry()
 PAYLOAD_REGISTRY.register(BytesPayload, (bytes, bytearray, memoryview))
 PAYLOAD_REGISTRY.register(StringPayload, str)
 PAYLOAD_REGISTRY.register(StringIOPayload, io.StringIO)

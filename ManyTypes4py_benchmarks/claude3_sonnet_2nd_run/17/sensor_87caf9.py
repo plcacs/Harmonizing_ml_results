@@ -2,7 +2,7 @@
 from __future__ import annotations
 from collections.abc import Callable, Mapping
 from dataclasses import dataclass
-from typing import Any, cast, Final, Literal, TypeVar, Union, overload
+from typing import Any, cast, Final, Literal, TypeVar, overload
 import voluptuous as vol
 from zwave_js_server.client import Client as ZwaveClient
 from zwave_js_server.const import CommandClass
@@ -21,7 +21,7 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.exceptions import HomeAssistantError
 from homeassistant.helpers import entity_platform
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
-from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import UNDEFINED, StateType
 from .binary_sensor import is_valid_notification_binary_sensor
 from .const import ATTR_METER_TYPE, ATTR_METER_TYPE_NAME, ATTR_VALUE, DATA_CLIENT, DOMAIN, ENTITY_DESC_KEY_BATTERY, ENTITY_DESC_KEY_CO, ENTITY_DESC_KEY_CO2, ENTITY_DESC_KEY_CURRENT, ENTITY_DESC_KEY_ENERGY_MEASUREMENT, ENTITY_DESC_KEY_ENERGY_PRODUCTION_POWER, ENTITY_DESC_KEY_ENERGY_PRODUCTION_TIME, ENTITY_DESC_KEY_ENERGY_PRODUCTION_TODAY, ENTITY_DESC_KEY_ENERGY_PRODUCTION_TOTAL, ENTITY_DESC_KEY_ENERGY_TOTAL_INCREASING, ENTITY_DESC_KEY_HUMIDITY, ENTITY_DESC_KEY_ILLUMINANCE, ENTITY_DESC_KEY_MEASUREMENT, ENTITY_DESC_KEY_POWER, ENTITY_DESC_KEY_POWER_FACTOR, ENTITY_DESC_KEY_PRESSURE, ENTITY_DESC_KEY_SIGNAL_STRENGTH, ENTITY_DESC_KEY_TARGET_TEMPERATURE, ENTITY_DESC_KEY_TEMPERATURE, ENTITY_DESC_KEY_TOTAL_INCREASING, ENTITY_DESC_KEY_UV_INDEX, ENTITY_DESC_KEY_VOLTAGE, LOGGER, SERVICE_RESET_METER
@@ -244,13 +244,11 @@ def convert_nested_attr(statistics: T, key: str) -> Any:
         data = getattr(data, _key)
     return data
 
-
 @dataclass(frozen=True, kw_only=True)
 class ZWaveJSStatisticsSensorEntityDescription(SensorEntityDescription):
     """Class to represent a Z-Wave JS statistics sensor entity description."""
     convert: Callable[[Any, str], Any] = getattr
     entity_registry_enabled_default: bool = False
-
 
 ENTITY_DESCRIPTION_CONTROLLER_STATISTICS_LIST: Final[list[ZWaveJSStatisticsSensorEntityDescription]] = [
     ZWaveJSStatisticsSensorEntityDescription(
@@ -436,7 +434,6 @@ NODE_STATISTICS_KEY_MAP: Final[dict[str, str]] = {
     "last_seen": "lastSeen",
 }
 
-
 def get_entity_description(data: NumericSensorDataTemplateData) -> SensorEntityDescription:
     """Return the entity description for the given data."""
     data_description_key = data.entity_description_key or ""
@@ -451,11 +448,10 @@ def get_entity_description(data: NumericSensorDataTemplateData) -> SensorEntityD
         ),
     )
 
-
 async def async_setup_entry(
     hass: HomeAssistant,
     config_entry: ConfigEntry,
-    async_add_entities: AddEntitiesCallback,
+    async_add_entities: AddConfigEntryEntitiesCallback,
 ) -> None:
     """Set up Z-Wave sensor from config entry."""
     client: ZwaveClient = config_entry.runtime_data[DATA_CLIENT]
@@ -584,7 +580,6 @@ async def async_setup_entry(
         "async_reset_meter",
     )
 
-
 class ZwaveSensor(ZWaveBaseEntity, SensorEntity):
     """Basic Representation of a Z-Wave sensor."""
 
@@ -621,7 +616,6 @@ class ZwaveSensor(ZWaveBaseEntity, SensorEntity):
             return None
         return str(self.info.primary_value.metadata.unit)
 
-
 class ZWaveNumericSensor(ZwaveSensor):
     """Representation of a Z-Wave Numeric sensor."""
 
@@ -653,7 +647,6 @@ class ZWaveNumericSensor(ZwaveSensor):
         if self.info.primary_value.value is None:
             return 0
         return float(self.info.primary_value.value)
-
 
 class ZWaveMeterSensor(ZWaveNumericSensor):
     """Representation of a Z-Wave Meter CC sensor."""
@@ -692,7 +685,6 @@ class ZWaveMeterSensor(ZWaveNumericSensor):
             options,
         )
 
-
 class ZWaveListSensor(ZwaveSensor):
     """Representation of a Z-Wave Numeric sensor with multiple states."""
 
@@ -721,11 +713,9 @@ class ZWaveListSensor(ZwaveSensor):
             return None
         return {ATTR_VALUE: value}
 
-
 class ZWaveConfigParameterSensor(ZWaveListSensor):
     """Representation of a Z-Wave config parameter sensor."""
-
-    _attr_entity_category: EntityCategory = EntityCategory.DIAGNOSTIC
+    _attr_entity_category = EntityCategory.DIAGNOSTIC
 
     def __init__(
         self,
@@ -750,14 +740,12 @@ class ZWaveConfigParameterSensor(ZWaveListSensor):
             return None
         return {ATTR_VALUE: value}
 
-
 class ZWaveNodeStatusSensor(SensorEntity):
     """Representation of a node status sensor."""
-
-    _attr_should_poll: bool = False
-    _attr_entity_category: EntityCategory = EntityCategory.DIAGNOSTIC
-    _attr_has_entity_name: bool = True
-    _attr_translation_key: str = "node_status"
+    _attr_should_poll = False
+    _attr_entity_category = EntityCategory.DIAGNOSTIC
+    _attr_has_entity_name = True
+    _attr_translation_key = "node_status"
 
     def __init__(
         self, config_entry: ConfigEntry, driver: Driver, node: ZwaveNode
@@ -772,8 +760,7 @@ class ZWaveNodeStatusSensor(SensorEntity):
     async def async_poll_value(self, _: bool) -> None:
         """Poll a value."""
         LOGGER.error(
-            "There is no value to refresh for this entity so the zwave_js.refresh_value "
-            "service won't work for it"
+            "There is no value to refresh for this entity so the zwave_js.refresh_value service won't work for it"
         )
 
     @callback
@@ -803,14 +790,12 @@ class ZWaveNodeStatusSensor(SensorEntity):
         self._attr_native_value = self.node.status.name.lower()
         self.async_write_ha_state()
 
-
 class ZWaveControllerStatusSensor(SensorEntity):
     """Representation of a controller status sensor."""
-
-    _attr_should_poll: bool = False
-    _attr_entity_category: EntityCategory = EntityCategory.DIAGNOSTIC
-    _attr_has_entity_name: bool = True
-    _attr_translation_key: str = "controller_status"
+    _attr_should_poll = False
+    _attr_entity_category = EntityCategory.DIAGNOSTIC
+    _attr_has_entity_name = True
+    _attr_translation_key = "controller_status"
 
     def __init__(self, config_entry: ConfigEntry, driver: Driver) -> None:
         """Initialize a generic Z-Wave device entity."""
@@ -825,8 +810,7 @@ class ZWaveControllerStatusSensor(SensorEntity):
     async def async_poll_value(self, _: bool) -> None:
         """Poll a value."""
         LOGGER.error(
-            "There is no value to refresh for this entity so the zwave_js.refresh_value "
-            "service won't work for it"
+            "There is no value to refresh for this entity so the zwave_js.refresh_value service won't work for it"
         )
 
     @callback
@@ -854,13 +838,11 @@ class ZWaveControllerStatusSensor(SensorEntity):
         )
         self._attr_native_value = self.controller.status.name.lower()
 
-
 class ZWaveStatisticsSensor(SensorEntity):
     """Representation of a node/controller statistics sensor."""
-
-    _attr_should_poll: bool = False
-    _attr_entity_category: EntityCategory = EntityCategory.DIAGNOSTIC
-    _attr_has_entity_name: bool = True
+    _attr_should_poll = False
+    _attr_entity_category = EntityCategory.DIAGNOSTIC
+    _attr_has_entity_name = True
 
     def __init__(
         self,
@@ -882,12 +864,11 @@ class ZWaveStatisticsSensor(SensorEntity):
     async def async_poll_value(self, _: bool) -> None:
         """Poll a value."""
         LOGGER.error(
-            "There is no value to refresh for this entity so the zwave_js.refresh_value "
-            "service won't work for it"
+            "There is no value to refresh for this entity so the zwave_js.refresh_value service won't work for it"
         )
 
     @callback
-    def statistics_updated(self, event_data: dict[str, Any]) -> None:
+    def statistics_updated(self, event_data: dict) -> None:
         """Call when statistics updated event is received."""
         self._attr_native_value = self.entity_description.convert(
             event_data["statistics_updated"], self.entity_description.key

@@ -1,10 +1,9 @@
 """Support for the Airzone sensors."""
 from __future__ import annotations
 from dataclasses import dataclass
-from typing import Any, Final, Mapping, Set, cast
+from typing import Any, Final, Mapping, Set, List, Dict, Optional, Callable
 
 from aioairzone.const import AZD_AIR_DEMAND, AZD_BATTERY_LOW, AZD_ERRORS, AZD_FLOOR_DEMAND, AZD_PROBLEMS, AZD_SYSTEMS, AZD_ZONES
-
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass, BinarySensorEntity, BinarySensorEntityDescription
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import EntityCategory
@@ -14,12 +13,10 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from .coordinator import AirzoneConfigEntry, AirzoneUpdateCoordinator
 from .entity import AirzoneEntity, AirzoneSystemEntity, AirzoneZoneEntity
 
-
 @dataclass(frozen=True)
 class AirzoneBinarySensorEntityDescription(BinarySensorEntityDescription):
     """A class that describes airzone binary sensor entities."""
-    attributes: dict[str, str] | None = None
-
+    attributes: Optional[Dict[str, str]] = None
 
 SYSTEM_BINARY_SENSOR_TYPES: tuple[AirzoneBinarySensorEntityDescription, ...] = (
     AirzoneBinarySensorEntityDescription(
@@ -53,7 +50,6 @@ ZONE_BINARY_SENSOR_TYPES: tuple[AirzoneBinarySensorEntityDescription, ...] = (
     ),
 )
 
-
 async def async_setup_entry(
     hass: HomeAssistant,
     entry: ConfigEntry,
@@ -67,8 +63,8 @@ async def async_setup_entry(
     @callback
     def _async_entity_listener() -> None:
         """Handle additions of binary sensors."""
-        entities: list[BinarySensorEntity] = []
-        systems_data: dict[str, dict[str, Any]] = coordinator.data.get(AZD_SYSTEMS, {})
+        entities: List[BinarySensorEntity] = []
+        systems_data: Dict[str, Dict[str, Any]] = coordinator.data.get(AZD_SYSTEMS, {})
         received_systems: Set[str] = set(systems_data)
         new_systems: Set[str] = received_systems - added_systems
         if new_systems:
@@ -86,7 +82,7 @@ async def async_setup_entry(
             )
             added_systems.update(new_systems)
 
-        zones_data: dict[str, dict[str, Any]] = coordinator.data.get(AZD_ZONES, {})
+        zones_data: Dict[str, Dict[str, Any]] = coordinator.data.get(AZD_ZONES, {})
         received_zones: Set[str] = set(zones_data)
         new_zones: Set[str] = received_zones - added_zones
         if new_zones:
@@ -109,10 +105,8 @@ async def async_setup_entry(
     entry.async_on_unload(coordinator.async_add_listener(_async_entity_listener))
     _async_entity_listener()
 
-
 class AirzoneBinarySensor(AirzoneEntity, BinarySensorEntity):
     """Define an Airzone binary sensor."""
-
     entity_description: AirzoneBinarySensorEntityDescription
 
     @callback
@@ -131,7 +125,6 @@ class AirzoneBinarySensor(AirzoneEntity, BinarySensorEntity):
                 for key, val in self.entity_description.attributes.items()
             }
 
-
 class AirzoneSystemBinarySensor(AirzoneSystemEntity, AirzoneBinarySensor):
     """Define an Airzone System binary sensor."""
 
@@ -141,14 +134,13 @@ class AirzoneSystemBinarySensor(AirzoneSystemEntity, AirzoneBinarySensor):
         description: AirzoneBinarySensorEntityDescription,
         entry: ConfigEntry,
         system_id: str,
-        system_data: dict[str, Any],
+        system_data: Dict[str, Any],
     ) -> None:
         """Initialize."""
         super().__init__(coordinator, entry, system_data)
         self._attr_unique_id = f'{self._attr_unique_id}_{system_id}_{description.key}'
         self.entity_description = description
         self._async_update_attrs()
-
 
 class AirzoneZoneBinarySensor(AirzoneZoneEntity, AirzoneBinarySensor):
     """Define an Airzone Zone binary sensor."""
@@ -159,7 +151,7 @@ class AirzoneZoneBinarySensor(AirzoneZoneEntity, AirzoneBinarySensor):
         description: AirzoneBinarySensorEntityDescription,
         entry: ConfigEntry,
         system_zone_id: str,
-        zone_data: dict[str, Any],
+        zone_data: Dict[str, Any],
     ) -> None:
         """Initialize."""
         super().__init__(coordinator, entry, system_zone_id, zone_data)

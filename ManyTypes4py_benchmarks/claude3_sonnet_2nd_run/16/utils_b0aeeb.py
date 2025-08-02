@@ -27,7 +27,7 @@ if TYPE_CHECKING:
     from .entity import InsteonEntity
 _LOGGER = logging.getLogger(__name__)
 
-def _register_event(event: Event, listener: Callable[[str, Address, int, Optional[str]], None]) -> None:
+def _register_event(event: Event, listener: Callable) -> None:
     """Register the events raised by a device."""
     _LOGGER.debug('Registering on/off event for %s %d %s', str(event.address), event.group, event.name)
     event.subscribe(listener, force_strong_ref=True)
@@ -256,13 +256,7 @@ def print_aldb_to_log(aldb: Any) -> None:
         logger.info(log_msg)
 
 @callback
-def async_add_insteon_entities(
-    hass: HomeAssistant, 
-    platform: str, 
-    entity_type: type, 
-    async_add_entities: AddConfigEntryEntitiesCallback, 
-    discovery_info: Dict[str, Any]
-) -> None:
+def async_add_insteon_entities(hass: HomeAssistant, platform: str, entity_type: type, async_add_entities: AddConfigEntryEntitiesCallback, discovery_info: Dict[str, Any]) -> None:
     """Add an Insteon group to a platform."""
     address = discovery_info['address']
     device = devices[address]
@@ -270,12 +264,7 @@ def async_add_insteon_entities(
     async_add_entities(new_entities)
 
 @callback
-def async_add_insteon_devices(
-    hass: HomeAssistant, 
-    platform: str, 
-    entity_type: type, 
-    async_add_entities: AddConfigEntryEntitiesCallback
-) -> None:
+def async_add_insteon_devices(hass: HomeAssistant, platform: str, entity_type: type, async_add_entities: AddConfigEntryEntitiesCallback) -> None:
     """Add all entities to a platform."""
     for address in devices:
         device = devices[address]

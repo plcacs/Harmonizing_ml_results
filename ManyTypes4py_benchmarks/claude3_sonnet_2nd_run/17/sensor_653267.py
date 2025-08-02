@@ -37,7 +37,6 @@ async def async_setup_entry(
     async_add_entities([sensor])
     _LOGGER.debug('Sensor setup done')
 
-
 class GeonetnzQuakesSensor(SensorEntity):
     """Status sensor for the GeoNet NZ Quakes integration."""
     _attr_should_poll = False
@@ -45,15 +44,15 @@ class GeonetnzQuakesSensor(SensorEntity):
     def __init__(
         self, 
         config_entry_id: str, 
-        config_unique_id: Optional[str], 
+        config_unique_id: str, 
         config_title: str, 
         manager: Any
     ) -> None:
         """Initialize entity."""
-        self._config_entry_id = config_entry_id
-        self._config_unique_id = config_unique_id
-        self._config_title = config_title
-        self._manager = manager
+        self._config_entry_id: str = config_entry_id
+        self._config_unique_id: str = config_unique_id
+        self._config_title: str = config_title
+        self._manager: Any = manager
         self._status: Optional[str] = None
         self._last_update: Optional[datetime] = None
         self._last_update_successful: Optional[datetime] = None
@@ -113,7 +112,7 @@ class GeonetnzQuakesSensor(SensorEntity):
         return self._total
 
     @property
-    def unique_id(self) -> Optional[str]:
+    def unique_id(self) -> str:
         """Return a unique ID containing latitude/longitude."""
         return self._config_unique_id
 

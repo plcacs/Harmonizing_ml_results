@@ -4,7 +4,7 @@ from collections import deque
 from io import DEFAULT_BUFFER_SIZE, BytesIO
 import logging
 import os
-from typing import TYPE_CHECKING, Deque, List, Optional, Dict, Union, Any
+from typing import TYPE_CHECKING, Deque, List, Optional, Dict, Union, Any, Callable
 import av
 import av.container
 from homeassistant.core import HomeAssistant, callback

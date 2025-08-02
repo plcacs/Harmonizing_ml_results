@@ -144,7 +144,7 @@ class LengthRatio(pt.nn.Module):
         super().__init__()
         self.num_layers = num_layers
         self.hidden_size = hidden_size
-        modules: List[pt.nn.Module] = []
+        modules = []
         for _ in range(num_layers - 1):
             modules.append(pt.nn.Linear(in_features=hidden_size, out_features=hidden_size, dtype=dtype))
             modules.append(pt.nn.Tanh())
@@ -625,7 +625,7 @@ class SSRU(AutoregressiveLayer):
         Set inference_only.
         """
         self.inference_only = inference_only
-        self.cell_state_transform: Callable = self._inference_cell_state_transform if inference_only else self._training_cell_state_transform
+        self.cell_state_transform = self._inference_cell_state_transform if inference_only else self._training_cell_state_transform
 
     @property
     def num_state_tensors(self) -> int:

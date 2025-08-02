@@ -64,7 +64,7 @@ class ODSWriter(ExcelWriter):
         sheet_name: Optional[str] = None,
         startrow: int = 0,
         startcol: int = 0,
-        freeze_panes: Optional[tuple[int, int]] = None
+        freeze_panes: Optional[Tuple[int, int]] = None
     ) -> None:
         """
         Write the frame cells using odf
@@ -205,7 +205,7 @@ class ODSWriter(ExcelWriter):
         self.book.styles.addElement(odf_style)
         return name
 
-    def _create_freeze_panes(self, sheet_name: str, freeze_panes: tuple[int, int]) -> None:
+    def _create_freeze_panes(self, sheet_name: str, freeze_panes: Tuple[int, int]) -> None:
         """
         Create freeze panes in the sheet.
 

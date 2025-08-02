@@ -2,7 +2,7 @@
 from __future__ import annotations
 from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Any, Final, Literal, Optional, Union, cast
+from typing import Any, Final, cast
 
 from enocean.utils import combine_hex
 import voluptuous as vol
@@ -48,7 +48,7 @@ class EnOceanSensorEntityDescription(SensorEntityDescription):
     unique_id: Callable[[list[int]], str]
 
 
-SENSOR_DESC_TEMPERATURE: Final[EnOceanSensorEntityDescription] = EnOceanSensorEntityDescription(
+SENSOR_DESC_TEMPERATURE: Final = EnOceanSensorEntityDescription(
     key=SENSOR_TYPE_TEMPERATURE,
     name='Temperature',
     native_unit_of_measurement=UnitOfTemperature.CELSIUS,
@@ -57,7 +57,7 @@ SENSOR_DESC_TEMPERATURE: Final[EnOceanSensorEntityDescription] = EnOceanSensorEn
     unique_id=lambda dev_id: f'{combine_hex(dev_id)}-{SENSOR_TYPE_TEMPERATURE}'
 )
 
-SENSOR_DESC_HUMIDITY: Final[EnOceanSensorEntityDescription] = EnOceanSensorEntityDescription(
+SENSOR_DESC_HUMIDITY: Final = EnOceanSensorEntityDescription(
     key=SENSOR_TYPE_HUMIDITY,
     name='Humidity',
     native_unit_of_measurement=PERCENTAGE,
@@ -66,7 +66,7 @@ SENSOR_DESC_HUMIDITY: Final[EnOceanSensorEntityDescription] = EnOceanSensorEntit
     unique_id=lambda dev_id: f'{combine_hex(dev_id)}-{SENSOR_TYPE_HUMIDITY}'
 )
 
-SENSOR_DESC_POWER: Final[EnOceanSensorEntityDescription] = EnOceanSensorEntityDescription(
+SENSOR_DESC_POWER: Final = EnOceanSensorEntityDescription(
     key=SENSOR_TYPE_POWER,
     name='Power',
     native_unit_of_measurement=UnitOfPower.WATT,
@@ -75,7 +75,7 @@ SENSOR_DESC_POWER: Final[EnOceanSensorEntityDescription] = EnOceanSensorEntityDe
     unique_id=lambda dev_id: f'{combine_hex(dev_id)}-{SENSOR_TYPE_POWER}'
 )
 
-SENSOR_DESC_WINDOWHANDLE: Final[EnOceanSensorEntityDescription] = EnOceanSensorEntityDescription(
+SENSOR_DESC_WINDOWHANDLE: Final = EnOceanSensorEntityDescription(
     key=SENSOR_TYPE_WINDOWHANDLE,
     name='WindowHandle',
     translation_key='window_handle',
@@ -135,9 +135,9 @@ class EnOceanSensor(EnOceanEntity, RestoreSensor):
     """Representation of an EnOcean sensor device such as a power meter."""
 
     def __init__(
-        self,
-        dev_id: list[int],
-        dev_name: str,
+        self, 
+        dev_id: list[int], 
+        dev_name: str, 
         description: EnOceanSensorEntityDescription
     ) -> None:
         """Initialize the EnOcean sensor device."""
@@ -196,14 +196,14 @@ class EnOceanTemperatureSensor(EnOceanSensor):
     """
 
     def __init__(
-        self,
-        dev_id: list[int],
-        dev_name: str,
-        description: EnOceanSensorEntityDescription,
-        *,
-        scale_min: int,
-        scale_max: int,
-        range_from: int,
+        self, 
+        dev_id: list[int], 
+        dev_name: str, 
+        description: EnOceanSensorEntityDescription, 
+        *, 
+        scale_min: int, 
+        scale_max: int, 
+        range_from: int, 
         range_to: int
     ) -> None:
         """Initialize the EnOcean temperature sensor device."""

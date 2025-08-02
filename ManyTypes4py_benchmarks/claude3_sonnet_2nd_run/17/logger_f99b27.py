@@ -1,7 +1,7 @@
 import sys
 import logging
 import functools
-from typing import Any, Callable, Dict, List, Optional, Tuple, TypeVar, cast, Union, ClassVar
+from typing import Any, Callable, Dict, List, Optional, Tuple, TypeVar, Union, cast
 import sublime
 from .helpers import get_settings, active_view
 
@@ -30,15 +30,14 @@ def prevent_spam(func: F) -> F:
     return cast(F, wrapper)
 
 class MetaLog(type):
-    _logger: ClassVar[logging.Logger]
 
     def __new__(cls, name: str, bases: Tuple[type, ...], attrs: Dict[str, Any], **kwargs: Any) -> type:
         log_level: str = get_settings(active_view(), 'log_level', 'info')
         if log_level not in ['debug', 'info', 'warning', 'error', 'fatal']:
             log_level = 'warning'
-        cls._logger = logging.getLogger('anacondaST3')
+        cls._logger: logging.Logger = logging.getLogger('anacondaST3')
         cls._logger.setLevel(logging.__getattribute__(log_level.upper()))
-        log_handler = logging.StreamHandler(sys.stdout)
+        log_handler: logging.StreamHandler = logging.StreamHandler(sys.stdout)
         log_handler.setFormatter(logging.Formatter('%(name)s: %(levelname)s - %(message)s'))
         cls._logger.addHandler(log_handler)
         cls._logger.propagate = False
@@ -50,7 +49,7 @@ class MetaLog(type):
 class Log(metaclass=MetaLog):
     """The class is responsible to log errors
     """
-    _logger: ClassVar[logging.Logger]
+    _logger: logging.Logger
 
     @classmethod
     @prevent_spam

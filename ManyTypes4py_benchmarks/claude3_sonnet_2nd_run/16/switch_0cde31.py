@@ -1,7 +1,7 @@
 """Support for Homekit switches."""
 from __future__ import annotations
 from dataclasses import dataclass
-from typing import Any, Callable, Dict, Final, List, Mapping, Optional, Set, Union
+from typing import Any, Callable, Dict, Final, List, Optional, Set, Union
 
 from aiohomekit.model.characteristics import Characteristic, CharacteristicsTypes, InUseValues, IsConfiguredValues
 from aiohomekit.model.services import Service, ServicesTypes
@@ -162,10 +162,10 @@ class DeclarativeCharacteristicSwitch(CharacteristicEntity, SwitchEntity):
     entity_description: DeclarativeSwitchEntityDescription
 
     def __init__(
-        self, 
-        conn: HKDevice, 
-        info: Dict[str, Any], 
-        char: Characteristic, 
+        self,
+        conn: HKDevice,
+        info: Dict[str, Any],
+        char: Characteristic,
         description: DeclarativeSwitchEntityDescription
     ) -> None:
         """Initialise a HomeKit switch."""
@@ -206,8 +206,8 @@ ENTITY_TYPES: Dict[str, type[HomeKitEntity]] = {
 
 
 async def async_setup_entry(
-    hass: HomeAssistant, 
-    config_entry: ConfigEntry, 
+    hass: HomeAssistant,
+    config_entry: ConfigEntry,
     async_add_entities: AddEntitiesCallback
 ) -> None:
     """Set up Homekit switches."""

@@ -62,7 +62,7 @@ def test_construct_keep_order() -> None:
 def test_construct_with_aliases() -> None:
 
     class MyModel(BaseModel):
-        x: int = Field(alias='x_alias')
+        x: Any = Field(alias='x_alias')
     my_model = MyModel.model_construct(x_alias=1)
     assert my_model.x == 1
     assert my_model.model_fields_set == {'x'}
@@ -71,7 +71,7 @@ def test_construct_with_aliases() -> None:
 def test_construct_with_validation_aliases() -> None:
 
     class MyModel(BaseModel):
-        x: int = Field(validation_alias='x_alias')
+        x: Any = Field(validation_alias='x_alias')
     my_model = MyModel.model_construct(x_alias=1)
     assert my_model.x == 1
     assert my_model.model_fields_set == {'x'}
@@ -165,16 +165,16 @@ def test_copy_include_exclude(ModelTwo: Any) -> None:
 def test_copy_advanced_exclude() -> None:
 
     class SubSubModel(BaseModel):
-        a: str
-        b: str
+        a: Optional[str] = None
+        b: Optional[str] = None
 
     class SubModel(BaseModel):
-        c: str
-        d: List[SubSubModel]
+        c: Optional[str] = None
+        d: Optional[List[SubSubModel]] = None
 
     class Model(BaseModel):
-        e: str
-        f: SubModel
+        e: Optional[str] = None
+        f: Optional[SubModel] = None
     m = Model(e='e', f=SubModel(c='foo', d=[SubSubModel(a='a', b='b'), SubSubModel(a='c', b='e')]))
     m2 = deprecated_copy(m, exclude={'f': {'c': ..., 'd': {-1: {'a'}}}})
     assert hasattr(m.f, 'c')
@@ -186,16 +186,16 @@ def test_copy_advanced_exclude() -> None:
 def test_copy_advanced_include() -> None:
 
     class SubSubModel(BaseModel):
-        a: str
-        b: str
+        a: Optional[str] = None
+        b: Optional[str] = None
 
     class SubModel(BaseModel):
-        c: str
-        d: List[SubSubModel]
+        c: Optional[str] = None
+        d: Optional[List[SubSubModel]] = None
 
     class Model(BaseModel):
-        e: str
-        f: SubModel
+        e: Optional[str] = None
+        f: Optional[SubModel] = None
     m = Model(e='e', f=SubModel(c='foo', d=[SubSubModel(a='a', b='b'), SubSubModel(a='c', b='e')]))
     m2 = deprecated_copy(m, include={'f': {'c'}})
     assert hasattr(m.f, 'c')
@@ -207,16 +207,16 @@ def test_copy_advanced_include() -> None:
 def test_copy_advanced_include_exclude() -> None:
 
     class SubSubModel(BaseModel):
-        a: str
-        b: str
+        a: Optional[str] = None
+        b: Optional[str] = None
 
     class SubModel(BaseModel):
-        c: str
-        d: List[SubSubModel]
+        c: Optional[str] = None
+        d: Optional[List[SubSubModel]] = None
 
     class Model(BaseModel):
-        e: str
-        f: SubModel
+        e: Optional[str] = None
+        f: Optional[SubModel] = None
     m = Model(e='e', f=SubModel(c='foo', d=[SubSubModel(a='a', b='b'), SubSubModel(a='c', b='e')]))
     m2 = deprecated_copy(m, include={'e': ..., 'f': {'d'}}, exclude={'e': ..., 'f': {'d': {0}}})
     assert m2.model_dump() == {'f': {'d': [{'a': 'c', 'b': 'e'}]}}
@@ -343,12 +343,12 @@ def test_pickle_preserves_extra() -> None:
 def test_copy_update_exclude() -> None:
 
     class SubModel(BaseModel):
-        a: str
-        b: str
+        a: Optional[str] = None
+        b: Optional[str] = None
 
     class Model(BaseModel):
-        c: str
-        d: Dict[str, str]
+        c: Optional[str] = None
+        d: Optional[Dict[str, str]] = None
     m = Model(c='ex', d=dict(a='ax', b='bx'))
     assert m.model_dump() == {'c': 'ex', 'd': {'a': 'ax', 'b': 'bx'}}
     assert deprecated_copy(m, exclude={'c'}).model_dump() == {'d': {'a': 'ax', 'b': 'bx'}}
@@ -361,8 +361,8 @@ def test_copy_update_exclude() -> None:
 def test_shallow_copy_modify(copy_method: Any) -> None:
 
     class X(BaseModel):
-        val: int
-        deep: Dict[str, List[int]]
+        val: Optional[int] = None
+        deep: Optional[Dict[str, List[int]]] = None
     x = X(val=1, deep={'deep_thing': [1, 2]})
     y = copy_method(x)
     y.val = 2
@@ -384,9 +384,9 @@ def test_construct_default_factory() -> None:
 def test_copy_with_excluded_fields() -> None:
 
     class User(BaseModel):
-        name: str
-        age: int
-        dob: str
+        name: Optional[str] = None
+        age: Optional[int] = None
+        dob: Optional[str] = None
     user = User(name='test_user', age=23, dob='01/01/2000')
     user_copy = deprecated_copy(user, exclude={'dob': ...})
     assert 'dob' in user.model_fields_set
@@ -428,7 +428,7 @@ def test_model_copy(ModelTwo: Any) -> None:
 def test_pydantic_extra() -> None:
 
     class Model(BaseModel):
-        model_config: ClassVar[Dict[str, str]] = dict(extra='allow')
+        model_config: Dict[str, str] = dict(extra='allow')
     m = Model.model_construct(x=1, y=2)
     assert m.__pydantic_extra__ == {'y': 2}
 

@@ -369,7 +369,7 @@ def default_array_ufunc(self: Any, ufunc: np.ufunc, method: str, *inputs: Any, *
     """
     if not any((x is self for x in inputs)):
         raise NotImplementedError
-    new_inputs = [x if x is not self else np.asarray(x) for x in inputs]
+    new_inputs: List[Any] = [x if x is not self else np.asarray(x) for x in inputs]
     return getattr(ufunc, method)(*new_inputs, **kwargs)
 
 def dispatch_reduction_ufunc(self: Any, ufunc: np.ufunc, method: str, *inputs: Any, **kwargs: Any) -> Any:

@@ -15,8 +15,8 @@ import readchar
 from rich.console import Console, Group, RenderableType
 from rich.live import Live
 from rich.progress import Progress, SpinnerColumn, TextColumn
-from rich.prompt import Confirm, InvalidResponse, Prompt, PromptBase
 from rich.table import Table
+from rich.prompt import Confirm, InvalidResponse, Prompt, PromptBase
 from prefect.cli._utilities import exit_with_error
 from prefect.client.collections import get_collections_metadata_client
 from prefect.client.schemas.actions import BlockDocumentCreate, DeploymentScheduleCreate, WorkPoolCreate

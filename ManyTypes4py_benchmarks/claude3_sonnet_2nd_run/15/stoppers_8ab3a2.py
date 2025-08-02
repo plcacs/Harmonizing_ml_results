@@ -2,10 +2,7 @@ from typing import Callable, List, Dict, Any, TypeVar, Union
 from toolz.curried import curry, take, first
 from fklearn.tuning.utils import get_best_performing_log, get_avg_metric_from_extractor, get_used_features
 from fklearn.types import ExtractorFnType, ListLogListType
-
 StopFnType = Callable[[ListLogListType], bool]
-T = TypeVar('T')
-LogType = Dict[str, Any]
 
 def aggregate_stop_funcs(*stop_funcs: StopFnType) -> StopFnType:
     """
@@ -75,8 +72,8 @@ def stop_by_no_improvement(logs: ListLogListType, extractor: ExtractorFnType, me
     """
     if len(logs) < early_stop:
         return False
-    limited_logs: List[List[LogType]] = list(take(early_stop, logs))
-    curr_auc: float = get_avg_metric_from_extractor(limited_logs[-1], extractor, metric_name)
+    limited_logs = list(take(early_stop, logs))
+    curr_auc = get_avg_metric_from_extractor(limited_logs[-1], extractor, metric_name)
     return all([curr_auc - get_avg_metric_from_extractor(log, extractor, metric_name) <= threshold for log in limited_logs[:-1]])
 
 @curry
@@ -108,9 +105,9 @@ def stop_by_no_improvement_parallel(logs: ListLogListType, extractor: ExtractorF
     """
     if len(logs) < early_stop:
         return False
-    log_list: List[List[LogType]] = [get_best_performing_log(log, extractor, metric_name) for log in logs]
-    limited_logs: List[List[LogType]] = list(take(early_stop, log_list))
-    curr_auc: float = get_avg_metric_from_extractor(limited_logs[-1], extractor, metric_name)
+    log_list = [get_best_performing_log(log, extractor, metric_name) for log in logs]
+    limited_logs = list(take(early_stop, log_list))
+    curr_auc = get_avg_metric_from_extractor(limited_logs[-1], extractor, metric_name)
     return all([curr_auc - get_avg_metric_from_extractor(log, extractor, metric_name) <= threshold for log in limited_logs[:-1]])
 
 @curry
@@ -157,5 +154,5 @@ def stop_by_num_features_parallel(logs: ListLogListType, extractor: ExtractorFnT
     stop: bool
         A boolean whether to stop recursion or not
     """
-    best_log: List[LogType] = get_best_performing_log(first(logs), extractor, metric_name)
+    best_log = get_best_performing_log(first(logs), extractor, metric_name)
     return stop_by_num_features([best_log], min_num_features)

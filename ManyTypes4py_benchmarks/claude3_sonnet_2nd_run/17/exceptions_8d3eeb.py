@@ -440,7 +440,8 @@ class InvitationError(JsonableError):
     code: ErrorCode = ErrorCode.INVITATION_FAILED
     data_fields: List[str] = ['errors', 'sent_invitations', 'license_limit_reached', 'daily_limit_reached']
 
-    def __init__(self, msg: str, errors: List[str], sent_invitations: List[str], license_limit_reached: bool = False, daily_limit_reached: bool = False) -> None:
+    def __init__(self, msg: str, errors: List[str], sent_invitations: List[str], 
+                 license_limit_reached: bool = False, daily_limit_reached: bool = False) -> None:
         self._msg: str = msg
         self.errors: List[str] = errors
         self.sent_invitations: List[str] = sent_invitations

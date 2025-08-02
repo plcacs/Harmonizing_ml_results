@@ -2,7 +2,7 @@ import configparser
 import random
 import sys
 import time
-from typing import Any, Callable, Dict, List, Optional, Set, Tuple, Union, cast
+from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 try:
     from importlib.metadata import version
 except ImportError:
@@ -481,7 +481,7 @@ def get_config_as_dict() -> Dict[str, Dict[str, str]]:
 
 def main() -> int:
     try:
-        return cast(int, cli(obj=get_config_as_dict()))
+        return cli(obj=get_config_as_dict())
     except CattUserError as err:
         sys.exit('Error: {}.'.format(str(err)))
 if __name__ == '__main__':

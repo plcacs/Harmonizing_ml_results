@@ -7,7 +7,6 @@ from pyisy.constants import ATTR_ACTION, CMD_BACKLIGHT, DEV_BL_ADDR, DEV_CMD_MEM
 from pyisy.helpers import EventListener, NodeProperty
 from pyisy.nodes import Node, NodeChangedEvent
 from pyisy.variables import Variable
-
 from homeassistant.components.number import NumberEntity, NumberEntityDescription, NumberMode, RestoreNumber
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_VARIABLES, PERCENTAGE, STATE_UNAVAILABLE, STATE_UNKNOWN, EntityCategory, Platform
@@ -15,7 +14,6 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.exceptions import HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback, AddConfigEntryEntitiesCallback
-from homeassistant.helpers.restore_state import RestoreNumberExtraStoredData
 from homeassistant.util.percentage import percentage_to_ranged_value, ranged_value_to_percentage
 
 from .const import CONF_VAR_SENSOR_STRING, DEFAULT_VAR_SENSOR_STRING, DOMAIN, UOM_8_BIT_RANGE
@@ -23,7 +21,7 @@ from .entity import ISYAuxControlEntity
 from .helpers import convert_isy_value_to_hass
 from .models import IsyData
 
-ISY_MAX_SIZE: int = 2 ** 32 // 2
+ISY_MAX_SIZE: float = 2 ** 32 / 2
 ON_RANGE: tuple[int, int] = (1, 255)
 CONTROL_DESC: Dict[str, NumberEntityDescription] = {
     PROP_ON_LEVEL: NumberEntityDescription(
@@ -46,8 +44,8 @@ CONTROL_DESC: Dict[str, NumberEntityDescription] = {
 BACKLIGHT_MEMORY_FILTER: Dict[str, Any] = {'memory': DEV_BL_ADDR, 'cmd1': DEV_CMD_MEMORY_WRITE}
 
 async def async_setup_entry(
-    hass: HomeAssistant,
-    config_entry: ConfigEntry,
+    hass: HomeAssistant, 
+    config_entry: ConfigEntry, 
     async_add_entities: AddConfigEntryEntitiesCallback
 ) -> None:
     """Set up ISY/IoX number entities from config entry."""
@@ -138,11 +136,11 @@ class ISYVariableNumberEntity(NumberEntity):
     _attr_should_poll: bool = False
 
     def __init__(
-        self,
-        node: Variable,
-        unique_id: str,
-        description: NumberEntityDescription,
-        device_info: DeviceInfo,
+        self, 
+        node: Variable, 
+        unique_id: str, 
+        description: NumberEntityDescription, 
+        device_info: DeviceInfo, 
         init_entity: bool = False
     ) -> None:
         """Initialize the ISY variable number."""
@@ -182,11 +180,11 @@ class ISYBacklightNumberEntity(ISYAuxControlEntity, RestoreNumber):
     _assumed_state: bool = True
 
     def __init__(
-        self,
-        node: Node,
-        control: str,
-        unique_id: str,
-        description: NumberEntityDescription,
+        self, 
+        node: Node, 
+        control: str, 
+        unique_id: str, 
+        description: NumberEntityDescription, 
         device_info: DeviceInfo
     ) -> None:
         """Initialize the ISY Backlight number entity."""
@@ -201,8 +199,8 @@ class ISYBacklightNumberEntity(ISYAuxControlEntity, RestoreNumber):
             if last_state.state not in (STATE_UNKNOWN, STATE_UNAVAILABLE):
                 self._attr_native_value = last_number_data.native_value
         self._memory_change_handler = self._node.isy.nodes.status_events.subscribe(
-            self.async_on_memory_write,
-            event_filter={TAG_ADDRESS: self._node.address, ATTR_ACTION: DEV_MEMORY},
+            self.async_on_memory_write, 
+            event_filter={TAG_ADDRESS: self._node.address, ATTR_ACTION: DEV_MEMORY}, 
             key=self.unique_id
         )
 

@@ -113,7 +113,7 @@ class MinioEventThread(threading.Thread):
                     presigned_url = minio_client.presigned_get_object(bucket, key)
                 except Exception as error:
                     _LOGGER.error('Failed to generate presigned url: %s', error)
-                queue_entry = {'event_name': event_name, 'bucket': bucket, 'key': key, 'presigned_url': presigned_url, 'metadata': metadata}
+                queue_entry: Dict[str, Any] = {'event_name': event_name, 'bucket': bucket, 'key': key, 'presigned_url': presigned_url, 'metadata': metadata}
                 _LOGGER.debug('Queue entry, %s', queue_entry)
                 self._queue.put(queue_entry)
 
@@ -133,12 +133,12 @@ def iterate_objects(event: Dict[str, Any]) -> Iterator[Tuple[Optional[str], str,
 
     Most of the time it should still be only one record.
     """
-    records = event.get('Records', [])
+    records: List[Dict[str, Any]] = event.get('Records', [])
     for record in records:
-        event_name = record.get('eventName')
-        bucket = record.get('s3', {}).get('bucket', {}).get('name')
-        key = record.get('s3', {}).get('object', {}).get('key')
-        metadata = normalize_metadata(record.get('s3', {}).get('object', {}).get('userMetadata', {}))
+        event_name: Optional[str] = record.get('eventName')
+        bucket: str = record.get('s3', {}).get('bucket', {}).get('name')
+        key: str = record.get('s3', {}).get('object', {}).get('key')
+        metadata: Dict[str, str] = normalize_metadata(record.get('s3', {}).get('object', {}).get('userMetadata', {}))
         if not bucket or not key:
             _LOGGER.warning('Invalid bucket and/or key, %s, %s', bucket, key)
             continue

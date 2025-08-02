@@ -61,7 +61,7 @@ class bottleneck_switch:
             bn_func = None
 
         @functools.wraps(alt)
-        def f(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: bool = True, **kwds: Any) -> Any:
+        def f(values: ArrayLike, *, axis: Optional[AxisInt] = None, skipna: bool = True, **kwds: Any) -> Any:
             if len(self.kwargs) > 0:
                 for k, v in self.kwargs.items():
                     if k not in kwds:
@@ -111,7 +111,7 @@ def _get_fill_value(dtype: DtypeObj, fill_value: Optional[Any] = None, fill_valu
     else:
         return iNaT
 
-def _maybe_get_mask(values: np.ndarray, skipna: bool, mask: Optional[np.ndarray]) -> Optional[np.ndarray]:
+def _maybe_get_mask(values: ArrayLike, skipna: bool, mask: Optional[npt.NDArray[np.bool_]]) -> Optional[npt.NDArray[np.bool_]]:
     """
     Compute a mask if and only if necessary.
 
@@ -149,7 +149,7 @@ def _maybe_get_mask(values: np.ndarray, skipna: bool, mask: Optional[np.ndarray]
             mask = isna(values)
     return mask
 
-def _get_values(values: np.ndarray, skipna: bool, fill_value: Optional[Any] = None, fill_value_typ: Optional[str] = None, mask: Optional[np.ndarray] = None) -> Tuple[np.ndarray, Optional[np.ndarray]]:
+def _get_values(values: ArrayLike, skipna: bool, fill_value: Optional[Any] = None, fill_value_typ: Optional[str] = None, mask: Optional[npt.NDArray[np.bool_]] = None) -> Tuple[ArrayLike, Optional[npt.NDArray[np.bool_]]]:
     """
     Utility to get the values view, mask, dtype, dtype_max, and fill_value.
 
@@ -249,7 +249,7 @@ def _datetimelike_compat(func: F) -> F:
     """
 
     @functools.wraps(func)
-    def new_func(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: bool = True, mask: Optional[np.ndarray] = None, **kwargs: Any) -> Any:
+    def new_func(values: ArrayLike, *, axis: Optional[AxisInt] = None, skipna: bool = True, mask: Optional[npt.NDArray[np.bool_]] = None, **kwargs: Any) -> Any:
         orig_values = values
         datetimelike = values.dtype.kind in 'mM'
         if datetimelike and mask is None:
@@ -263,7 +263,7 @@ def _datetimelike_compat(func: F) -> F:
         return result
     return cast(F, new_func)
 
-def _na_for_min_count(values: np.ndarray, axis: Optional[AxisInt]) -> Any:
+def _na_for_min_count(values: ArrayLike, axis: Optional[AxisInt]) -> Any:
     """
     Return the missing value for `values`.
 
@@ -298,7 +298,7 @@ def maybe_operate_rowwise(func: F) -> F:
     """
 
     @functools.wraps(func)
-    def newfunc(values: np.ndarray, *, axis: Optional[AxisInt] = None, **kwargs: Any) -> Any:
+    def newfunc(values: ArrayLike, *, axis: Optional[AxisInt] = None, **kwargs: Any) -> Any:
         if axis == 1 and values.ndim == 2 and values.flags['C_CONTIGUOUS'] and (values.shape[1] / 1000 > values.shape[0]) and (values.dtype != object) and (values.dtype != bool):
             arrs = list(values)
             if kwargs.get('mask') is not None:
@@ -310,7 +310,7 @@ def maybe_operate_rowwise(func: F) -> F:
         return func(values, axis=axis, **kwargs)
     return cast(F, newfunc)
 
-def nanany(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: bool = True, mask: Optional[np.ndarray] = None) -> bool:
+def nanany(values: ArrayLike, *, axis: Optional[AxisInt] = None, skipna: bool = True, mask: Optional[npt.NDArray[np.bool_]] = None) -> bool:
     """
     Check if any elements along an axis evaluate to True.
 
@@ -347,7 +347,7 @@ def nanany(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: bool =
         values = values.astype(bool)
     return values.any(axis)
 
-def nanall(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: bool = True, mask: Optional[np.ndarray] = None) -> bool:
+def nanall(values: ArrayLike, *, axis: Optional[AxisInt] = None, skipna: bool = True, mask: Optional[npt.NDArray[np.bool_]] = None) -> bool:
     """
     Check if all elements along an axis evaluate to True.
 
@@ -387,7 +387,7 @@ def nanall(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: bool =
 @disallow('M8')
 @_datetimelike_compat
 @maybe_operate_rowwise
-def nansum(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: bool = True, min_count: int = 0, mask: Optional[np.ndarray] = None) -> Any:
+def nansum(values: ArrayLike, *, axis: Optional[AxisInt] = None, skipna: bool = True, min_count: int = 0, mask: Optional[npt.NDArray[np.bool_]] = None) -> Any:
     """
     Sum the elements along an axis ignoring NaNs
 
@@ -422,7 +422,7 @@ def nansum(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: bool =
     the_sum = _maybe_null_out(the_sum, axis, mask, values.shape, min_count=min_count)
     return the_sum
 
-def _mask_datetimelike_result(result: Any, axis: Optional[AxisInt], mask: np.ndarray, orig_values: np.ndarray) -> Any:
+def _mask_datetimelike_result(result: Any, axis: Optional[AxisInt], mask: npt.NDArray[np.bool_], orig_values: ArrayLike) -> Any:
     if isinstance(result, np.ndarray):
         result = result.astype('i8').view(orig_values.dtype)
         axis_mask = mask.any(axis=axis)
@@ -433,7 +433,7 @@ def _mask_datetimelike_result(result: Any, axis: Optional[AxisInt], mask: np.nda
 
 @bottleneck_switch()
 @_datetimelike_compat
-def nanmean(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: bool = True, mask: Optional[np.ndarray] = None) -> Any:
+def nanmean(values: ArrayLike, *, axis: Optional[AxisInt] = None, skipna: bool = True, mask: Optional[npt.NDArray[np.bool_]] = None) -> Any:
     """
     Compute the mean of the element along an axis ignoring NaNs
 
@@ -484,7 +484,7 @@ def nanmean(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: bool 
     return the_mean
 
 @bottleneck_switch()
-def nanmedian(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: bool = True, mask: Optional[np.ndarray] = None) -> Any:
+def nanmedian(values: ArrayLike, *, axis: Optional[AxisInt] = None, skipna: bool = True, mask: Optional[npt.NDArray[np.bool_]] = None) -> Any:
     """
     Parameters
     ----------
@@ -513,7 +513,7 @@ def nanmedian(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: boo
     """
     using_nan_sentinel = values.dtype.kind == 'f' and mask is None
 
-    def get_median(x: np.ndarray, _mask: Optional[np.ndarray] = None) -> float:
+    def get_median(x: ArrayLike, _mask: Optional[npt.NDArray[np.bool_]] = None) -> float:
         if _mask is None:
             _mask = notna(x)
         else:
@@ -577,7 +577,7 @@ def _get_empty_reduction_result(shape: Tuple[int, ...], axis: int) -> np.ndarray
     ret.fill(np.nan)
     return ret
 
-def _get_counts_nanvar(values_shape: Tuple[int, ...], mask: Optional[np.ndarray], axis: Optional[AxisInt], ddof: int, dtype: DtypeObj = np.dtype(np.float64)) -> Tuple[Union[int, float, np.ndarray], Union[int, float, np.ndarray]]:
+def _get_counts_nanvar(values_shape: Tuple[int, ...], mask: Optional[npt.NDArray[np.bool_]], axis: Optional[AxisInt], ddof: int, dtype: DtypeObj = np.dtype(np.float64)) -> Tuple[Union[int, float, np.ndarray], Union[int, float, np.ndarray]]:
     """
     Get the count of non-null values along an axis, accounting
     for degrees of freedom.
@@ -615,7 +615,7 @@ def _get_counts_nanvar(values_shape: Tuple[int, ...], mask: Optional[np.ndarray]
     return (count, d)
 
 @bottleneck_switch(ddof=1)
-def nanstd(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: bool = True, ddof: int = 1, mask: Optional[np.ndarray] = None) -> Any:
+def nanstd(values: ArrayLike, *, axis: Optional[AxisInt] = None, skipna: bool = True, ddof: int = 1, mask: Optional[npt.NDArray[np.bool_]] = None) -> Any:
     """
     Compute the standard deviation along given axis while ignoring NaNs
 
@@ -652,7 +652,7 @@ def nanstd(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: bool =
 
 @disallow('M8', 'm8')
 @bottleneck_switch(ddof=1)
-def nanvar(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: bool = True, ddof: int = 1, mask: Optional[np.ndarray] = None) -> Any:
+def nanvar(values: ArrayLike, *, axis: Optional[AxisInt] = None, skipna: bool = True, ddof: int = 1, mask: Optional[npt.NDArray[np.bool_]] = None) -> Any:
     """
     Compute the variance along given axis while ignoring NaNs
 
@@ -705,7 +705,7 @@ def nanvar(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: bool =
     return result
 
 @disallow('M8', 'm8')
-def nansem(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: bool = True, ddof: int = 1, mask: Optional[np.ndarray] = None) -> Any:
+def nansem(values: ArrayLike, *, axis: Optional[AxisInt] = None, skipna: bool = True, ddof: int = 1, mask: Optional[npt.NDArray[np.bool_]] = None) -> Any:
     """
     Compute the standard error in the mean along given axis while ignoring NaNs
 
@@ -743,11 +743,11 @@ def nansem(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: bool =
     var = nanvar(values, axis=axis, skipna=skipna, ddof=ddof, mask=mask)
     return np.sqrt(var) / np.sqrt(count)
 
-def _nanminmax(meth: str, fill_value_typ: str) -> Callable[[np.ndarray, Optional[AxisInt], bool, Optional[np.ndarray]], Any]:
+def _nanminmax(meth: str, fill_value_typ: str) -> Callable[[ArrayLike, Optional[AxisInt], bool, Optional[npt.NDArray[np.bool_]]], Any]:
 
     @bottleneck_switch(name=f'nan{meth}')
     @_datetimelike_compat
-    def reduction(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: bool = True, mask: Optional[np.ndarray] = None) -> Any:
+    def reduction(values: ArrayLike, *, axis: Optional[AxisInt] = None, skipna: bool = True, mask: Optional[npt.NDArray[np.bool_]] = None) -> Any:
         if values.size == 0:
             return _na_for_min_count(values, axis)
         dtype = values.dtype
@@ -759,7 +759,7 @@ def _nanminmax(meth: str, fill_value_typ: str) -> Callable[[np.ndarray, Optional
 nanmin = _nanminmax('min', fill_value_typ='+inf')
 nanmax = _nanminmax('max', fill_value_typ='-inf')
 
-def nanargmax(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: bool = True, mask: Optional[np.ndarray] = None) -> Union[int, np.ndarray]:
+def nanargmax(values: ArrayLike, *, axis: Optional[AxisInt] = None, skipna: bool = True, mask: Optional[npt.NDArray[np.bool_]] = None) -> Union[int, np.ndarray]:
     """
     Parameters
     ----------
@@ -796,7 +796,7 @@ def nanargmax(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: boo
     result = _maybe_arg_null_out(result, axis, mask, skipna)
     return result
 
-def nanargmin(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: bool = True, mask: Optional[np.ndarray] = None) -> Union[int, np.ndarray]:
+def nanargmin(values: ArrayLike, *, axis: Optional[AxisInt] = None, skipna: bool = True, mask: Optional[npt.NDArray[np.bool_]] = None) -> Union[int, np.ndarray]:
     """
     Parameters
     ----------
@@ -835,7 +835,7 @@ def nanargmin(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: boo
 
 @disallow('M8', 'm8')
 @maybe_operate_rowwise
-def nanskew(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: bool = True, mask: Optional[np.ndarray] = None) -> Any:
+def nanskew(values: ArrayLike, *, axis: Optional[AxisInt] = None, skipna: bool = True, mask: Optional[npt.NDArray[np.bool_]] = None) -> Any:
     """
     Compute the sample skewness.
 
@@ -904,7 +904,7 @@ def nanskew(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: bool 
 
 @disallow('M8', 'm8')
 @maybe_operate_rowwise
-def nankurt(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: bool = True, mask: Optional[np.ndarray] = None) -> Any:
+def nankurt(values: ArrayLike, *, axis: Optional[AxisInt] = None, skipna: bool = True, mask: Optional[npt.NDArray[np.bool_]] = None) -> Any:
     """
     Compute the sample excess kurtosis
 
@@ -978,7 +978,7 @@ def nankurt(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: bool 
 
 @disallow('M8', 'm8')
 @maybe_operate_rowwise
-def nanprod(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: bool = True, min_count: int = 0, mask: Optional[np.ndarray] = None) -> Any:
+def nanprod(values: ArrayLike, *, axis: Optional[AxisInt] = None, skipna: bool = True, min_count: int = 0, mask: Optional[npt.NDArray[np.bool_]] = None) -> Any:
     """
     Parameters
     ----------
@@ -1008,7 +1008,7 @@ def nanprod(values: np.ndarray, *, axis: Optional[AxisInt] = None, skipna: bool 
     result = values.prod(axis)
     return _maybe_null_out(result, axis, mask, values.shape, min_count=min_count)
 
-def _maybe_arg_null_out(result: Union[int, np.ndarray], axis: Optional[AxisInt], mask: Optional[np.ndarray], skipna: bool) -> Union[int, np.ndarray]:
+def _maybe_arg_null_out(result: Union[int, np.ndarray], axis: Optional[AxisInt], mask: Optional[npt.NDArray[np.bool_]], skipna: bool) -> Union[int, np.ndarray]:
     if mask is None:
         return result
     if axis is None or not getattr(result, 'ndim', False):
@@ -1022,7 +1022,7 @@ def _maybe_arg_null_out(result: Union[int, np.ndarray], axis: Optional[AxisInt],
         raise ValueError('Encountered an NA value with skipna=False')
     return result
 
-def _get_counts(values_shape: Tuple[int, ...], mask: Optional[np.ndarray], axis: Optional[AxisInt], dtype: DtypeObj = np.dtype(np.float64)) -> Union[int, float, np.ndarray]:
+def _get_counts(values_shape: Tuple[int, ...], mask: Optional[npt.NDArray[np.bool_]], axis: Optional[AxisInt], dtype: DtypeObj = np.dtype(np.float64)) -> Union[int, float, np.ndarray]:
     """
     Get the count of non-null values along an axis
 
@@ -1055,7 +1055,7 @@ def _get_counts(values_shape: Tuple[int, ...], mask: Optional[np.ndarray], axis:
         return dtype.type(count)
     return count.astype(dtype, copy=False)
 
-def _maybe_null_out(result: Any, axis: Optional[AxisInt], mask: Optional[np.ndarray], shape: Tuple[int, ...], min_count: int = 1, datetimelike: bool = False) -> Any:
+def _maybe_null_out(result: Any, axis: Optional[AxisInt], mask: Optional[npt.NDArray[np.bool_]], shape: Tuple[int, ...], min_count: int = 1, datetimelike: bool = False) -> Any:
     """
     Returns
     -------
@@ -1091,7 +1091,7 @@ def _maybe_null_out(result: Any, axis: Optional[AxisInt], mask: Optional[np.ndar
                 result = np.nan
     return result
 
-def check_below_min_count(shape: Tuple[int, ...], mask: Optional[np.ndarray], min_count: int) -> bool:
+def check_below_min_count(shape: Tuple[int, ...], mask: Optional[npt.NDArray[np.bool_]], min_count: int) -> bool:
     """
     Check for the `min_count` keyword. Returns True if below `min_count` (when
     missing value should be returned from the reduction).
@@ -1125,7 +1125,7 @@ def _zero_out_fperr(arg: Union[float, np.ndarray]) -> Union[float, np.ndarray]:
         return arg.dtype.type(0) if np.abs(arg) < 1e-14 else arg
 
 @disallow('M8', 'm8')
-def nancorr(a: np.ndarray, b: np.ndarray, *, method: CorrelationMethod = 'pearson', min_periods: Optional[int] = None) -> float:
+def nancorr(a: ArrayLike, b: ArrayLike, *, method: CorrelationMethod = 'pearson', min_periods: Optional[int] = None) -> float:
     """
     a, b: ndarrays
     """
@@ -1144,22 +1144,22 @@ def nancorr(a: np.ndarray, b: np.ndarray, *, method: CorrelationMethod = 'pearso
     f = get_corr_func(method)
     return f(a, b)
 
-def get_corr_func(method: CorrelationMethod) -> Callable[[np.ndarray, np.ndarray], float]:
+def get_corr_func(method: CorrelationMethod) -> Callable[[ArrayLike, ArrayLike], float]:
     if method == 'kendall':
         from scipy.stats import kendalltau
 
-        def func(a: np.ndarray, b: np.ndarray) -> float:
+        def func(a: ArrayLike, b: ArrayLike) -> float:
             return kendalltau(a, b)[0]
         return func
     elif method == 'spearman':
         from scipy.stats import spearmanr
 
-        def func(a: np.ndarray, b: np.ndarray) -> float:
+        def func(a: ArrayLike, b: ArrayLike) -> float:
             return spearmanr(a, b)[0]
         return func
     elif method == 'pearson':
 
-        def func(a: np.ndarray, b: np.ndarray) -> float:
+        def func(a: ArrayLike, b: ArrayLike) -> float:
             return np.corrcoef(a, b)[0, 1]
         return func
     elif callable(method):
@@ -1167,7 +1167,7 @@ def get_corr_func(method: CorrelationMethod) -> Callable[[np.ndarray, np.ndarray
     raise ValueError(f"Unknown method '{method}', expected one of 'kendall', 'spearman', 'pearson', or callable")
 
 @disallow('M8', 'm8')
-def nancov(a: np.ndarray, b: np.ndarray, *, min_periods: Optional[int] = None, ddof: int = 1) -> float:
+def nancov(a: ArrayLike, b: ArrayLike, *, min_periods: Optional[int] = None, ddof: int = 1) -> float:
     if len(a) != len(b):
         raise AssertionError('Operands to nancov must have same size')
     if min_periods is None:
@@ -1212,7 +1212,7 @@ def _ensure_numeric(x: Any) -> Union[float, complex, np.ndarray]:
                 raise TypeError(f'Could not convert {x} to numeric') from err
     return x
 
-def na_accum_func(values: np.ndarray, accum_func: Callable[[np.ndarray, int], np.ndarray], *, skipna: bool) -> np.ndarray:
+def na_accum_func(values: ArrayLike, accum_func: Callable[[ArrayLike, int], ArrayLike], *, skipna: bool) -> ArrayLike:
     """
     Cumulative function with skipna support.
 

@@ -1,7 +1,7 @@
 import logging
 import re
 from email.headerregistry import Address
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any, Dict, List, Optional, Tuple, Union, cast
 import DNS
 from django import forms
 from django.conf import settings

@@ -15,8 +15,8 @@ from tornado.gen import TimeoutError
 from typing import Any, Union, Dict, Tuple, List, Callable, Iterator, Optional, Set, TypeVar, cast
 if typing.TYPE_CHECKING:
     from typing import Set
-
 _INITIAL_CONNECT_TIMEOUT = 0.3
+
 T = TypeVar('T')
 
 class _Connector:

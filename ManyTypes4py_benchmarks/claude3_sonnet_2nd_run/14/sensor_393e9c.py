@@ -24,7 +24,7 @@ class TomorrowioSensorEntityDescription(SensorEntityDescription):
     unit_metric: Optional[str] = None
     multiplication_factor: Optional[Union[float, Callable[[float], float]]] = None
     imperial_conversion: Optional[Union[float, Callable[[float], float]]] = None
-    value_map: Optional[Type[PrecipitationType | PrimaryPollutantType | HealthConcernType | PollenIndex | UVDescription]] = None
+    value_map: Optional[Type[Union[PrecipitationType, PrimaryPollutantType, HealthConcernType, PollenIndex, UVDescription]]] = None
 
     def __post_init__(self) -> None:
         """Handle post init."""
@@ -56,12 +56,11 @@ def handle_conversion(value: float, conversion: Union[float, Callable[[float], f
 class BaseTomorrowioSensorEntity(TomorrowioEntity, SensorEntity):
     """Base Tomorrow.io sensor entity."""
     _attr_entity_registry_enabled_default: bool = False
-    entity_description: TomorrowioSensorEntityDescription
 
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, coordinator: TomorrowioDataUpdateCoordinator, api_version: int, description: TomorrowioSensorEntityDescription) -> None:
         """Initialize Tomorrow.io Sensor Entity."""
         super().__init__(config_entry, coordinator, api_version)
-        self.entity_description = description
+        self.entity_description: TomorrowioSensorEntityDescription = description
         self._attr_unique_id = f'{self._config_entry.unique_id}_{description.key}'
         if self.entity_description.native_unit_of_measurement is None:
             self._attr_native_unit_of_measurement = description.unit_metric

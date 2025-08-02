@@ -150,7 +150,7 @@ class AllenNlpDocstringProcessor(Processor):
             return
         lines: List[str] = []
         state = ProcessorState(parameters=OrderedDict())
-        docstring: str = node.docstring
+        docstring = node.docstring
         docstring = self.UNDERSCORE_HEADER_RE.sub('# \\g<1>', docstring)
         docstring = self.MULTI_LINE_LINK_RE.sub('\\g<1>\\g<2>', docstring)
         for line in docstring.split('\n'):

@@ -8,7 +8,6 @@ from typing import Optional, Union, Any, ByteString
 from .const import SAMPLE_CHANNELS, SAMPLE_RATE, SAMPLE_WIDTH
 _LOGGER = logging.getLogger(__name__)
 
-
 class VadSensitivity(StrEnum):
     """How quickly the end of a voice command is detected."""
     DEFAULT = 'default'
@@ -24,7 +23,6 @@ class VadSensitivity(StrEnum):
         if sensitivity == VadSensitivity.AGGRESSIVE:
             return 0.25
         return 0.7
-
 
 class AudioBuffer:
     """Fixed-sized audio buffer with variable internal length."""
@@ -62,7 +60,6 @@ class AudioBuffer:
     def __bool__(self) -> bool:
         """Return True if there are bytes in the buffer."""
         return self._length > 0
-
 
 @dataclass
 class VoiceCommandSegmenter:
@@ -180,7 +177,6 @@ class VoiceCommandSegmenter:
                 return False
         return True
 
-
 @dataclass
 class VoiceActivityTimeout:
     """Detects silence in audio until a timeout is reached."""
@@ -222,7 +218,6 @@ class VoiceActivityTimeout:
                 return False
             self._reset_seconds_left = min(self.reset_seconds, self._reset_seconds_left + chunk_seconds)
         return True
-
 
 def chunk_samples(samples: bytes, bytes_per_chunk: int, leftover_chunk_buffer: AudioBuffer) -> Iterable[bytes]:
     """Yield fixed-sized chunks from samples, keeping leftover bytes from previous call(s)."""

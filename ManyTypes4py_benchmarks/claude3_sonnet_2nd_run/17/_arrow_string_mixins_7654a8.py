@@ -121,7 +121,7 @@ class ArrowStringArrayMixin:
             raise NotImplementedError('replace is not supported with a re.Pattern, callable repl, case=False, or flags!=0')
         func = pc.replace_substring_regex if regex else pc.replace_substring
         pa_max_replacements = None if n < 0 else n
-        result = func(self._pa_array, pattern=pat, replacement=cast(str, repl), max_replacements=pa_max_replacements)
+        result = func(self._pa_array, pattern=cast(str, pat), replacement=cast(str, repl), max_replacements=pa_max_replacements)
         return type(self)(result)
 
     def _str_capitalize(self) -> Self:

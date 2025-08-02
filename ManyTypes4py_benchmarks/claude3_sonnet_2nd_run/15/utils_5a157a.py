@@ -45,13 +45,13 @@ def check_sample(values: Any, strategy_name: str) -> Union[Tuple[Any, ...], rang
     return tuple(values)
 
 @lru_cache(64)
-def compute_sampler_table(weights: Tuple[Union[int, float], ...]) -> List[Tuple[int, int, Union[int, float]]]:
+def compute_sampler_table(weights: Tuple[float, ...]) -> List[Tuple[int, int, float]]:
     n: int = len(weights)
-    table: List[List[Optional[int]]] = [[i, None, None] for i in range(n)]
-    total: Union[int, float] = sum(weights)
+    table: List[List[Union[int, None, float]]] = [[i, None, None] for i in range(n)]
+    total: float = sum(weights)
     num_type: type = type(total)
-    zero: Union[int, float] = num_type(0)
-    one: Union[int, float] = num_type(1)
+    zero: float = num_type(0)
+    one: float = num_type(1)
     small: List[int] = []
     large: List[int] = []
     probabilities: List[float] = [w / total for w in weights]
@@ -86,17 +86,17 @@ def compute_sampler_table(weights: Tuple[Union[int, float], ...]) -> List[Tuple[
         table[large.pop()][2] = zero
     while small:
         table[small.pop()][2] = zero
-    new_table: List[Tuple[int, int, Union[int, float]]] = []
+    new_table: List[Tuple[int, int, float]] = []
     for base, alternate, alternate_chance in table:
         assert isinstance(base, int)
         assert isinstance(alternate, int) or alternate is None
         assert alternate_chance is not None
         if alternate is None:
-            new_table.append((base, base, alternate_chance))
+            new_table.append((base, base, cast(float, alternate_chance)))
         elif alternate < base:
-            new_table.append((alternate, base, one - alternate_chance))
+            new_table.append((cast(int, alternate), base, one - cast(float, alternate_chance)))
         else:
-            new_table.append((base, alternate, alternate_chance))
+            new_table.append((base, cast(int, alternate), cast(float, alternate_chance)))
     new_table.sort()
     return new_table
 
@@ -118,14 +118,14 @@ class Sampler:
        shrinking the chosen element.
     """
 
-    def __init__(self, weights: Iterable[Union[int, float]], *, observe: bool = True):
+    def __init__(self, weights: Iterable[float], *, observe: bool = True):
         self.observe: bool = observe
-        self.table: List[Tuple[int, int, Union[int, float]]] = compute_sampler_table(tuple(weights))
+        self.table: List[Tuple[int, int, float]] = compute_sampler_table(tuple(weights))
 
-    def sample(self, data: "ConjectureData", *, forced: Optional[int] = None) -> int:
+    def sample(self, data: 'ConjectureData', *, forced: Optional[int] = None) -> int:
         if self.observe:
             data.start_example(SAMPLE_IN_SAMPLER_LABEL)
-        forced_choice: Optional[Tuple[int, int, Union[int, float]]] = None if forced is None else next(((base, alternate, alternate_chance) for base, alternate, alternate_chance in self.table if forced == base or (forced == alternate and alternate_chance > 0)))
+        forced_choice: Optional[Tuple[int, int, float]] = None if forced is None else next(((base, alternate, alternate_chance) for base, alternate, alternate_chance in self.table if forced == base or (forced == alternate and alternate_chance > 0)))
         base, alternate, alternate_chance = data.choice(self.table, forced=forced_choice, observe=self.observe)
         forced_use_alternate: Optional[bool] = None
         if forced is not None:
@@ -155,12 +155,12 @@ class many:
         add_stuff_to_result()
     """
 
-    def __init__(self, data: "ConjectureData", min_size: int, max_size: Union[int, float], average_size: Union[int, float], *, forced: Optional[int] = None, observe: bool = True):
+    def __init__(self, data: 'ConjectureData', min_size: int, max_size: Union[int, float], average_size: float, *, forced: Optional[int] = None, observe: bool = True):
         assert 0 <= min_size <= average_size <= max_size
         assert forced is None or min_size <= forced <= max_size
         self.min_size: int = min_size
         self.max_size: Union[int, float] = max_size
-        self.data: "ConjectureData" = data
+        self.data: 'ConjectureData' = data
         self.forced_size: Optional[int] = forced
         self.p_continue: float = _calc_p_continue(average_size - min_size, max_size - min_size)
         self.count: int = 0
@@ -186,7 +186,7 @@ class many:
         self.rejected = False
         self.start_example(ONE_FROM_MANY_LABEL)
         if self.min_size == self.max_size:
-            should_continue = self.count < self.min_size
+            should_continue: bool = self.count < self.min_size
         else:
             forced_result: Optional[bool] = None
             if self.force_stop:
@@ -221,7 +221,7 @@ class many:
 SMALLEST_POSITIVE_FLOAT: float = next_up(0.0) or sys.float_info.min
 
 @lru_cache
-def _calc_p_continue(desired_avg: Union[int, float], max_size: Union[int, float]) -> float:
+def _calc_p_continue(desired_avg: float, max_size: Union[int, float]) -> float:
     """Return the p_continue which will generate the desired average size."""
     assert desired_avg <= max_size, (desired_avg, max_size)
     if desired_avg == max_size:

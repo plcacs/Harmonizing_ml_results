@@ -3,7 +3,7 @@ from __future__ import annotations
 from collections.abc import Generator
 from http import HTTPStatus
 import json
-from typing import Any, List, Optional, Dict, Union
+from typing import Any, List, Optional
 from unittest.mock import patch
 from pyrainbird import encryption
 import pytest
@@ -34,10 +34,10 @@ RAIN_SENSOR_ON: str = 'BE01'
 RAIN_DELAY: str = 'B60010'
 RAIN_DELAY_OFF: str = 'B60000'
 ACK_ECHO: str = '0106'
-WIFI_PARAMS_RESPONSE: Dict[str, Union[str, int]] = {'macAddress': MAC_ADDRESS, 'localIpAddress': '1.1.1.38', 'localNetmask': '255.255.255.0', 'localGateway': '1.1.1.1', 'rssi': -61, 'wifiSsid': 'wifi-ssid-name', 'wifiPassword': 'wifi-password-name', 'wifiSecurity': 'wpa2-aes', 'apTimeoutNoLan': 20, 'apTimeoutIdle': 20, 'apSecurity': 'unknown', 'stickVersion': 'Rain Bird Stick Rev C/1.63'}
-CONFIG: Dict[str, Dict[str, Any]] = {DOMAIN: {'host': HOST, 'password': PASSWORD, 'trigger_time': {'minutes': 6}}}
-CONFIG_ENTRY_DATA_OLD_FORMAT: Dict[str, Any] = {'host': HOST, 'password': PASSWORD, 'serial_number': SERIAL_NUMBER}
-CONFIG_ENTRY_DATA: Dict[str, Any] = {'host': HOST, 'password': PASSWORD, 'serial_number': SERIAL_NUMBER, 'mac': MAC_ADDRESS}
+WIFI_PARAMS_RESPONSE: dict[str, Any] = {'macAddress': MAC_ADDRESS, 'localIpAddress': '1.1.1.38', 'localNetmask': '255.255.255.0', 'localGateway': '1.1.1.1', 'rssi': -61, 'wifiSsid': 'wifi-ssid-name', 'wifiPassword': 'wifi-password-name', 'wifiSecurity': 'wpa2-aes', 'apTimeoutNoLan': 20, 'apTimeoutIdle': 20, 'apSecurity': 'unknown', 'stickVersion': 'Rain Bird Stick Rev C/1.63'}
+CONFIG: dict[str, Any] = {DOMAIN: {'host': HOST, 'password': PASSWORD, 'trigger_time': {'minutes': 6}}}
+CONFIG_ENTRY_DATA_OLD_FORMAT: dict[str, Any] = {'host': HOST, 'password': PASSWORD, 'serial_number': SERIAL_NUMBER}
+CONFIG_ENTRY_DATA: dict[str, Any] = {'host': HOST, 'password': PASSWORD, 'serial_number': SERIAL_NUMBER, 'mac': MAC_ADDRESS}
 
 @pytest.fixture
 def platforms() -> List[Platform]:
@@ -55,12 +55,12 @@ async def serial_number() -> int:
     return SERIAL_NUMBER
 
 @pytest.fixture
-async def config_entry_data(serial_number: int) -> Dict[str, Any]:
+async def config_entry_data(serial_number: int) -> dict[str, Any]:
     """Fixture for MockConfigEntry data."""
     return {**CONFIG_ENTRY_DATA, 'serial_number': serial_number}
 
 @pytest.fixture
-async def config_entry(config_entry_data: Optional[Dict[str, Any]], config_entry_unique_id: str) -> Optional[MockConfigEntry]:
+async def config_entry(config_entry_data: Optional[dict[str, Any]], config_entry_unique_id: str) -> Optional[MockConfigEntry]:
     """Fixture for MockConfigEntry."""
     if config_entry_data is None:
         return None

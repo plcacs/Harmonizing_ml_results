@@ -1,7 +1,7 @@
 from __future__ import annotations
 import logging
 import uuid
-from typing import Any, Dict, List, Literal, Optional, Tuple, Union, cast
+from typing import Any, Callable, Dict, List, Literal, Optional, Tuple, TypedDict, Union, cast
 import jwt
 from flask import Flask, Request, request, Response, session
 from flask_caching.backends.base import BaseCache
@@ -22,10 +22,19 @@ class UnsupportedCacheBackendError(Exception):
 class AsyncQueryJobException(Exception):
     pass
 
-def build_job_metadata(channel_id: str, job_id: str, user_id: Optional[int], **kwargs: Any) -> Dict[str, Any]:
+class JobMetadata(TypedDict, total=False):
+    channel_id: str
+    job_id: str
+    user_id: Optional[int]
+    status: Optional[str]
+    errors: List[str]
+    result_url: Optional[str]
+    guest_token: Optional[str]
+
+def build_job_metadata(channel_id: str, job_id: str, user_id: Optional[int], **kwargs: Any) -> JobMetadata:
     return {'channel_id': channel_id, 'job_id': job_id, 'user_id': user_id, 'status': kwargs.get('status'), 'errors': kwargs.get('errors', []), 'result_url': kwargs.get('result_url')}
 
-def parse_event(event_data: Tuple[str, Dict[str, Any]]) -> Dict[str, Any]:
+def parse_event(event_data: Tuple[str, Dict[str, str]]) -> Dict[str, Any]:
     event_id = event_data[0]
     event_payload = event_data[1]['data']
     return {'id': event_id, **json.loads(event_payload)}
@@ -64,8 +73,8 @@ class AsyncQueryManager:
         self._jwt_cookie_samesite: Optional[str] = None
         self._jwt_cookie_domain: Optional[str] = None
         self._jwt_secret: str = ''
-        self._load_chart_data_into_cache_job: Any = None
-        self._load_explore_json_into_cache_job: Any = None
+        self._load_chart_data_into_cache_job: Optional[Callable] = None
+        self._load_explore_json_into_cache_job: Optional[Callable] = None
 
     def init_app(self, app: Flask) -> None:
         config = app.config
@@ -116,20 +125,30 @@ class AsyncQueryManager:
             logger.warning('Parse jwt failed', exc_info=True)
             raise AsyncQueryTokenException('Failed to parse token') from ex
 
-    def init_job(self, channel_id: str, user_id: Optional[int]) -> Dict[str, Any]:
+    def init_job(self, channel_id: str, user_id: Optional[int]) -> JobMetadata:
         job_id = str(uuid.uuid4())
         return build_job_metadata(channel_id, job_id, user_id, status=self.STATUS_PENDING)
 
-    def submit_explore_json_job(self, channel_id: str, form_data: Dict[str, Any], response_type: str, force: bool = False, user_id: Optional[int] = None) -> Dict[str, Any]:
+    def submit_explore_json_job(self, channel_id: str, form_data: Dict[str, Any], response_type: str, force: bool = False, user_id: Optional[int] = None) -> JobMetadata:
         from superset import security_manager
         job_metadata = self.init_job(channel_id, user_id)
-        self._load_explore_json_into_cache_job.delay({**job_metadata, 'guest_token': guest_user.guest_token} if (guest_user := security_manager.get_current_guest_user_if_guest()) else job_metadata, form_data, response_type, force)
+        guest_user = security_manager.get_current_guest_user_if_guest()
+        if guest_user:
+            job_metadata_with_token = {**job_metadata, 'guest_token': guest_user.guest_token}
+            self._load_explore_json_into_cache_job.delay(job_metadata_with_token, form_data, response_type, force)
+        else:
+            self._load_explore_json_into_cache_job.delay(job_metadata, form_data, response_type, force)
         return job_metadata
 
-    def submit_chart_data_job(self, channel_id: str, form_data: Dict[str, Any], user_id: Optional[int] = None) -> Dict[str, Any]:
+    def submit_chart_data_job(self, channel_id: str, form_data: Dict[str, Any], user_id: Optional[int] = None) -> JobMetadata:
         from superset import security_manager
         job_metadata = self.init_job(channel_id, user_id)
-        self._load_chart_data_into_cache_job.delay({**job_metadata, 'guest_token': guest_user.guest_token} if (guest_user := security_manager.get_current_guest_user_if_guest()) else job_metadata, form_data)
+        guest_user = security_manager.get_current_guest_user_if_guest()
+        if guest_user:
+            job_metadata_with_token = {**job_metadata, 'guest_token': guest_user.guest_token}
+            self._load_chart_data_into_cache_job.delay(job_metadata_with_token, form_data)
+        else:
+            self._load_chart_data_into_cache_job.delay(job_metadata, form_data)
         return job_metadata
 
     def read_events(self, channel: str, last_id: Optional[str]) -> List[Dict[str, Any]]:
@@ -143,7 +162,7 @@ class AsyncQueryManager:
             return [] if not decoded_results else list(map(parse_event, decoded_results))
         return [] if not results else list(map(parse_event, results))
 
-    def update_job(self, job_metadata: Dict[str, Any], status: str, **kwargs: Any) -> None:
+    def update_job(self, job_metadata: JobMetadata, status: str, **kwargs: Any) -> None:
         if not self._cache:
             raise CacheBackendNotInitialized('Cache backend not initialized')
         if 'channel_id' not in job_metadata:

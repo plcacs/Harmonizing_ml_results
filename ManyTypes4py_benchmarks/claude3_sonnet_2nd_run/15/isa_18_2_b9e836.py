@@ -37,9 +37,16 @@ ACTION_SHELVE: str = 'shelve'
 ACTION_UNSHELVE: str = 'unshelve'
 
 class StateMachine(AlarmModel):
+    Severity: Dict[str, int]
+    Colors: Dict[str, Dict[str, str]]
+    Status: Dict[str, str]
+    DEFAULT_STATUS: str
+    DEFAULT_NORMAL_SEVERITY: str
+    DEFAULT_PREVIOUS_SEVERITY: str
+    name: str
 
     def register(self, app: Any) -> None:
-        self.name: str = 'ANSI/ISA 18.2'
+        self.name = 'ANSI/ISA 18.2'
         StateMachine.Severity = app.config['SEVERITY_MAP'] or SEVERITY_MAP
         StateMachine.Colors = app.config['COLOR_MAP'] or COLOR_MAP
         StateMachine.Status = STATUS_MAP
@@ -48,7 +55,7 @@ class StateMachine(AlarmModel):
         StateMachine.DEFAULT_PREVIOUS_SEVERITY = app.config['DEFAULT_PREVIOUS_SEVERITY'] or DEFAULT_PREVIOUS_SEVERITY
 
     def trend(self, previous: str, current: str) -> str:
-        valid_severities: list = sorted(StateMachine.Severity, key=StateMachine.Severity.get)
+        valid_severities = sorted(StateMachine.Severity, key=StateMachine.Severity.get)
         assert previous in StateMachine.Severity, f'Severity is not one of {', '.join(valid_severities)}'
         assert current in StateMachine.Severity, f'Severity is not one of {', '.join(valid_severities)}'
         if StateMachine.Severity[previous] < StateMachine.Severity[current]:
@@ -59,9 +66,9 @@ class StateMachine(AlarmModel):
             return NO_CHANGE
 
     def transition(self, alert: Any, current_status: Optional[str] = None, previous_status: Optional[str] = None, action: Optional[str] = None, **kwargs: Any) -> Tuple[str, str]:
-        state: str = current_status or StateMachine.DEFAULT_STATUS
-        current_severity: str = alert.severity
-        previous_severity: str = alert.previous_severity or StateMachine.DEFAULT_PREVIOUS_SEVERITY
+        state = current_status or StateMachine.DEFAULT_STATUS
+        current_severity = alert.severity
+        previous_severity = alert.previous_severity or StateMachine.DEFAULT_PREVIOUS_SEVERITY
 
         def next_state(rule: str, severity: str, status: str) -> Tuple[str, str]:
             current_app.logger.info('State Transition: Rule {}: STATE={} => SEVERITY={}, STATUS={}'.format(rule, state, severity, status))

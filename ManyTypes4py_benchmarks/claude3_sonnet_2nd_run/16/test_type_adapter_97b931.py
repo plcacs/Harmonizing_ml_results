@@ -75,9 +75,9 @@ def test_global_namespace_variables(defer_build: bool, method: str, generate_sch
 @pytest.mark.parametrize('method', ['validate', 'serialize', 'json_schema', 'json_schemas'])
 def test_model_global_namespace_variables(defer_build: bool, method: str, generate_schema_calls: Any) -> None:
     class MyModel(BaseModel):
-        x: Dict[str, List[int]]
         model_config = ConfigDict(defer_build=defer_build)
-    
+        x: Dict[str, List[int]]
+
     ta = TypeAdapter(MyModel)
     assert generate_schema_calls.count == (0 if defer_build else 1), 'Should be built deferred'
     if method == 'validate':
@@ -116,9 +116,9 @@ def test_model_local_namespace_variables(defer_build: bool, method: str, generat
     IntList = List[int]
 
     class MyModel(BaseModel):
-        x: Dict[str, List[int]]
         model_config = ConfigDict(defer_build=defer_build)
-    
+        x: Dict[str, List[int]]
+
     ta = TypeAdapter(MyModel)
     assert generate_schema_calls.count == (0 if defer_build else 1), 'Should be built deferred'
     if method == 'validate':
@@ -164,7 +164,7 @@ def test_validate_python_strict() -> None:
 
     class ModelStrict(Model):
         __pydantic_config__ = ConfigDict(strict=True)
-    
+
     lax_validator = TypeAdapter(Model)
     strict_validator = TypeAdapter(ModelStrict)
     assert lax_validator.validate_python({'x': '1'}, strict=None) == Model(x=1)
@@ -187,7 +187,7 @@ def test_validate_json_strict() -> None:
 
     class ModelStrict(Model):
         __pydantic_config__ = ConfigDict(strict=True)
-    
+
     lax_validator = TypeAdapter(Model, config=ConfigDict(strict=False))
     strict_validator = TypeAdapter(ModelStrict)
     assert lax_validator.validate_json(json.dumps({'x': '1'}), strict=None) == Model(x=1)
@@ -213,7 +213,7 @@ def test_validate_python_context() -> None:
         def val_x(cls, v: int, info: ValidationInfo) -> int:
             assert info.context == contexts.pop(0)
             return v
-    
+
     validator = TypeAdapter(Model)
     validator.validate_python({'x': 1})
     validator.validate_python({'x': 1}, context=None)
@@ -230,7 +230,7 @@ def test_validate_json_context() -> None:
         def val_x(cls, v: int, info: ValidationInfo) -> int:
             assert info.context == contexts.pop(0)
             return v
-    
+
     validator = TypeAdapter(Model)
     validator.validate_json(json.dumps({'x': 1}))
     validator.validate_json(json.dumps({'x': 1}), context=None)
@@ -250,7 +250,7 @@ def test_validate_python_from_attributes() -> None:
     @dataclass
     class UnrelatedClass:
         x: int = 1
-    
+
     input = UnrelatedClass(1)
     ta = TypeAdapter(Model)
     for from_attributes in (False, None):
@@ -259,6 +259,7 @@ def test_validate_python_from_attributes() -> None:
         assert exc_info.value.errors(include_url=False) == [{'type': 'model_type', 'loc': (), 'msg': 'Input should be a valid dictionary or instance of Model', 'input': input, 'ctx': {'class_name': 'Model'}}]
     res = ta.validate_python(UnrelatedClass(), from_attributes=True)
     assert res == Model(x=1)
+
     ta = TypeAdapter(ModelFromAttributesTrue)
     with pytest.raises(ValidationError) as exc_info:
         ta.validate_python(UnrelatedClass(), from_attributes=False)
@@ -266,6 +267,7 @@ def test_validate_python_from_attributes() -> None:
     for from_attributes in (True, None):
         res = ta.validate_python(UnrelatedClass(), from_attributes=from_attributes)
         assert res == ModelFromAttributesTrue(x=1)
+
     ta = TypeAdapter(ModelFromAttributesFalse)
     for from_attributes in (False, None):
         with pytest.raises(ValidationError) as exc_info:
@@ -322,7 +324,7 @@ def test_validate_strings_dict(strict: bool) -> None:
 def test_annotated_type_disallows_config() -> None:
     class Model(BaseModel):
         x: int
-    
+
     with pytest.raises(PydanticUserError, match='Cannot use `config`'):
         TypeAdapter(Annotated[Model, ...], config=ConfigDict(strict=False))
 
@@ -330,7 +332,7 @@ def test_ta_config_with_annotated_type() -> None:
     class TestValidator(BaseModel):
         x: str
         model_config = ConfigDict(str_to_lower=True)
-    
+
     assert TestValidator(x='ABC').x == 'abc'
     assert TypeAdapter(TestValidator).validate_python({'x': 'ABC'}).x == 'abc'
     assert TypeAdapter(Annotated[TestValidator, ...]).validate_python({'x': 'ABC'}).x == 'abc'
@@ -338,7 +340,7 @@ def test_ta_config_with_annotated_type() -> None:
     class TestSerializer(BaseModel):
         some_bytes: bytes
         model_config = ConfigDict(ser_json_bytes='base64')
-    
+
     result = TestSerializer(some_bytes=b'\xaa')
     assert result.model_dump(mode='json') == {'some_bytes': 'qg=='}
     assert TypeAdapter(TestSerializer).dump_python(result, mode='json') == {'some_bytes': 'qg=='}
@@ -362,7 +364,7 @@ def test_eval_type_backport() -> None:
 
 def defer_build_test_models(config: ConfigDict) -> List[Any]:
     class Model(BaseModel):
-        x: int = 1
+        x: int
         model_config = config
 
     class SubModel(Model):
@@ -370,7 +372,7 @@ def defer_build_test_models(config: ConfigDict) -> List[Any]:
 
     @pydantic_dataclass(config=config)
     class DataClassModel:
-        x: int = 1
+        x: int
 
     @pydantic_dataclass
     class SubDataClassModel(DataClassModel):
@@ -379,7 +381,7 @@ def defer_build_test_models(config: ConfigDict) -> List[Any]:
     class TypedDictModel(TypedDict):
         x: int
         __pydantic_config__ = config
-    
+
     models = [
         Model, 
         SubModel, 
@@ -413,6 +415,7 @@ def test_core_schema_respects_defer_build(model: Any, config: ConfigDict, method
         assert not isinstance(type_adapter.core_schema, _mock_val_ser.MockCoreSchema), 'Should be initialized before usage'
         assert not isinstance(type_adapter.validator, _mock_val_ser.MockValSer), 'Should be initialized before usage'
         assert not isinstance(type_adapter.validator, _mock_val_ser.MockValSer), 'Should be initialized before usage'
+
     if method == 'schema':
         json_schema = type_adapter.json_schema()
         assert "'type': 'integer'" in str(json_schema)
@@ -425,6 +428,7 @@ def test_core_schema_respects_defer_build(model: Any, config: ConfigDict, method
         raw = type_adapter.dump_json(dumped)
         assert json.loads(raw.decode())['x'] == 1
         assert generate_schema_calls.count < 2, 'Should not build duplicates'
+
     assert not isinstance(type_adapter.core_schema, _mock_val_ser.MockCoreSchema), 'Should be initialized after the usage'
     assert not isinstance(type_adapter.validator, _mock_val_ser.MockValSer), 'Should be initialized after the usage'
     assert not isinstance(type_adapter.validator, _mock_val_ser.MockValSer), 'Should be initialized after the usage'
@@ -436,13 +440,13 @@ def test_defer_build_raise_errors() -> None:
         ta.rebuild(raise_errors=True)
     ta.rebuild(raise_errors=False)
     assert isinstance(ta.core_schema, _mock_val_ser.MockCoreSchema)
-    MyInt = int
+    MyInt = int  # type: ignore
     ta.rebuild(raise_errors=True)
     assert not isinstance(ta.core_schema, _mock_val_ser.MockCoreSchema)
 
 @dataclass
 class SimpleDataclass:
-    x: int = 1
+    x: int
 
 @pytest.mark.parametrize('type_,repr_', [
     (int, 'int'), 
@@ -461,6 +465,6 @@ def test_correct_frame_used_parametrized(create_module: Any) -> None:
         from pydantic import TypeAdapter
         Any = int
         ta = TypeAdapter[int]('Any')
-    
+
     with pytest.raises(ValidationError):
         module_1.ta.validate_python('a')

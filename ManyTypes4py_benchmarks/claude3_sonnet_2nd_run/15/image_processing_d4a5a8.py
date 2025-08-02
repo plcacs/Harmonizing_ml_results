@@ -31,7 +31,7 @@ def setup_platform(
     hass: HomeAssistant,
     config: ConfigType,
     add_entities: AddEntitiesCallback,
-    discovery_info: Optional[DiscoveryInfoType] = None,
+    discovery_info: Optional[DiscoveryInfoType] = None
 ) -> None:
     """Set up the platform."""
     api_key: str = config[CONF_API_KEY]

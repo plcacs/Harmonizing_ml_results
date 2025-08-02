@@ -296,7 +296,7 @@ def test_groupby_agg() -> None:
 
 def test_groupby_agg_ea_method(monkeypatch: Any) -> None:
 
-    def DecimalArray__my_sum(self: DecimalArray) -> Any:
+    def DecimalArray__my_sum(self: DecimalArray) -> decimal.Decimal:
         return np.sum(np.array(self))
     monkeypatch.setattr(DecimalArray, 'my_sum', DecimalArray__my_sum, raising=False)
     data = make_data()[:5]
@@ -311,7 +311,7 @@ def test_groupby_agg_ea_method(monkeypatch: Any) -> None:
 
 def test_indexing_no_materialize(monkeypatch: Any) -> None:
 
-    def DecimalArray__array__(self: DecimalArray, dtype: Optional[Any] = None) -> None:
+    def DecimalArray__array__(self: DecimalArray, dtype: Optional[np.dtype] = None) -> None:
         raise Exception('tried to convert a DecimalArray to a numpy array')
     monkeypatch.setattr(DecimalArray, '__array__', DecimalArray__array__, raising=False)
     data = make_data()

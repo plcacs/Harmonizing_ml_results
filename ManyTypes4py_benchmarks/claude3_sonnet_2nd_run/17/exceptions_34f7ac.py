@@ -1,7 +1,7 @@
 import io
 import json
 import re
-from typing import TYPE_CHECKING, Any, Dict, List, Mapping, Optional, Union, Set, Tuple, Type, TypeVar, Sequence, ClassVar
+from typing import TYPE_CHECKING, Any, Dict, List, Mapping, Optional, Union, Set, Tuple, Type, TypeVar, Sequence
 from dbt.node_types import REFABLE_NODE_TYPES, AccessType, NodeType
 from dbt_common.constants import SECRET_ENV_PREFIX
 from dbt_common.dataclass_schema import ValidationError
@@ -10,10 +10,10 @@ if TYPE_CHECKING:
     import agate
 
 class ContractBreakingChangeError(DbtRuntimeError):
-    CODE: ClassVar[int] = 10016
-    MESSAGE: ClassVar[str] = 'Breaking Change to Contract'
+    CODE = 10016
+    MESSAGE = 'Breaking Change to Contract'
 
-    def __init__(self, breaking_changes: List[str], node: Optional[Any] = None) -> None:
+    def __init__(self, breaking_changes: List[str], node: Optional[Any] = None):
         self.breaking_changes = breaking_changes
         super().__init__(self.message(), node)
 
@@ -26,20 +26,20 @@ class ContractBreakingChangeError(DbtRuntimeError):
         return f'While comparing to previous project state, dbt detected a breaking change to an enforced contract.\n  - {reasons}\nConsider making an additive (non-breaking) change instead, if possible.\nOtherwise, create a new model version: https://docs.getdbt.com/docs/collaborate/govern/model-versions'
 
 class ParsingError(DbtRuntimeError):
-    CODE: ClassVar[int] = 10015
-    MESSAGE: ClassVar[str] = 'Parsing Error'
+    CODE = 10015
+    MESSAGE = 'Parsing Error'
 
     @property
     def type(self) -> str:
         return 'Parsing'
 
 class dbtPluginError(DbtRuntimeError):
-    CODE: ClassVar[int] = 10020
-    MESSAGE: ClassVar[str] = 'Plugin Error'
+    CODE = 10020
+    MESSAGE = 'Plugin Error'
 
 class JSONValidationError(DbtValidationError):
 
-    def __init__(self, typename: str, errors: List[str]) -> None:
+    def __init__(self, typename: str, errors: List[str]):
         self.typename = typename
         self.errors = errors
         self.errors_message = ', '.join(errors)
@@ -53,14 +53,14 @@ class AliasError(DbtValidationError):
     pass
 
 class DependencyError(Exception):
-    CODE: ClassVar[int] = 10006
-    MESSAGE: ClassVar[str] = 'Dependency Error'
+    CODE = 10006
+    MESSAGE = 'Dependency Error'
 
 class FailFastError(DbtRuntimeError):
-    CODE: ClassVar[int] = 10013
-    MESSAGE: ClassVar[str] = 'FailFast Error'
+    CODE = 10013
+    MESSAGE = 'FailFast Error'
 
-    def __init__(self, msg: str, result: Optional[Any] = None, node: Optional[Any] = None) -> None:
+    def __init__(self, msg: str, result: Optional[Any] = None, node: Optional[Any] = None):
         super().__init__(msg=msg, node=node)
         self.result = result
 
@@ -82,7 +82,7 @@ class DbtExclusivePropertyUseError(DbtConfigError):
 
 class InvalidSelectorError(DbtRuntimeError):
 
-    def __init__(self, name: str) -> None:
+    def __init__(self, name: str):
         self.name = name
         super().__init__(name)
 
@@ -91,7 +91,7 @@ class DuplicateYamlKeyError(CompilationError):
 
 class GraphDependencyNotFoundError(CompilationError):
 
-    def __init__(self, node: Any, dependency: str) -> None:
+    def __init__(self, node: Any, dependency: str):
         self.node = node
         self.dependency = dependency
         super().__init__(msg=self.get_message())
@@ -102,7 +102,7 @@ class GraphDependencyNotFoundError(CompilationError):
 
 class ForeignKeyConstraintToSyntaxError(CompilationError):
 
-    def __init__(self, node: Any, expression: str) -> None:
+    def __init__(self, node: Any, expression: str):
         self.expression = expression
         self.node = node
         super().__init__(msg=self.get_message())
@@ -113,21 +113,21 @@ class ForeignKeyConstraintToSyntaxError(CompilationError):
 
 class NoSupportedLanguagesFoundError(CompilationError):
 
-    def __init__(self, node: Any) -> None:
+    def __init__(self, node: Any):
         self.node = node
         self.msg = f'No supported_languages found in materialization macro {self.node.name}'
         super().__init__(msg=self.msg)
 
 class MaterializtionMacroNotUsedError(CompilationError):
 
-    def __init__(self, node: Any) -> None:
+    def __init__(self, node: Any):
         self.node = node
         self.msg = 'Only materialization macros can be used with this function'
         super().__init__(msg=self.msg)
 
 class MacroNamespaceNotStringError(CompilationError):
 
-    def __init__(self, kwarg_type: Type) -> None:
+    def __init__(self, kwarg_type: Type):
         self.kwarg_type = kwarg_type
         super().__init__(msg=self.get_message())
 
@@ -137,7 +137,7 @@ class MacroNamespaceNotStringError(CompilationError):
 
 class UnknownGitCloningProblemError(DbtRuntimeError):
 
-    def __init__(self, repo: str) -> None:
+    def __init__(self, repo: str):
         self.repo = scrub_secrets(repo, env_secrets())
         super().__init__(msg=self.get_message())
 
@@ -147,7 +147,7 @@ class UnknownGitCloningProblemError(DbtRuntimeError):
 
 class NoAdaptersAvailableError(DbtRuntimeError):
 
-    def __init__(self) -> None:
+    def __init__(self):
         super().__init__(msg=self.get_message())
 
     def get_message(self) -> str:
@@ -156,7 +156,7 @@ class NoAdaptersAvailableError(DbtRuntimeError):
 
 class BadSpecError(DbtInternalError):
 
-    def __init__(self, repo: str, revision: str, error: Any) -> None:
+    def __init__(self, repo: str, revision: str, error: Any):
         self.repo = repo
         self.revision = revision
         self.stderr = scrub_secrets(error.stderr.strip(), env_secrets())
@@ -168,7 +168,7 @@ class BadSpecError(DbtInternalError):
 
 class GitCloningError(DbtInternalError):
 
-    def __init__(self, repo: str, revision: str, error: Any) -> None:
+    def __init__(self, repo: str, revision: str, error: Any):
         self.repo = repo
         self.revision = revision
         self.error = error
@@ -189,7 +189,7 @@ class GitCheckoutError(BadSpecError):
 
 class OperationError(CompilationError):
 
-    def __init__(self, operation_name: str) -> None:
+    def __init__(self, operation_name: str):
         self.operation_name = operation_name
         super().__init__(msg=self.get_message())
 
@@ -199,21 +199,21 @@ class OperationError(CompilationError):
 
 class ZipStrictWrongTypeError(CompilationError):
 
-    def __init__(self, exc: Exception) -> None:
+    def __init__(self, exc: Exception):
         self.exc = exc
         msg = str(self.exc)
         super().__init__(msg=msg)
 
 class SetStrictWrongTypeError(CompilationError):
 
-    def __init__(self, exc: Exception) -> None:
+    def __init__(self, exc: Exception):
         self.exc = exc
         msg = str(self.exc)
         super().__init__(msg=msg)
 
 class LoadAgateTableValueError(CompilationError):
 
-    def __init__(self, exc: Exception, node: Any) -> None:
+    def __init__(self, exc: Exception, node: Any):
         self.exc = exc
         self.node = node
         msg = str(self.exc)
@@ -221,7 +221,7 @@ class LoadAgateTableValueError(CompilationError):
 
 class LoadAgateTableNotSeedError(CompilationError):
 
-    def __init__(self, resource_type: str, node: Any) -> None:
+    def __init__(self, resource_type: str, node: Any):
         self.resource_type = resource_type
         self.node = node
         msg = f'can only load_agate_table for seeds (got a {self.resource_type})'
@@ -229,7 +229,7 @@ class LoadAgateTableNotSeedError(CompilationError):
 
 class PackageNotInDepsError(CompilationError):
 
-    def __init__(self, package_name: str, node: Any) -> None:
+    def __init__(self, package_name: str, node: Any):
         self.package_name = package_name
         self.node = node
         msg = f'Node package named {self.package_name} not found!'
@@ -237,7 +237,7 @@ class PackageNotInDepsError(CompilationError):
 
 class OperationsCannotRefEphemeralNodesError(CompilationError):
 
-    def __init__(self, target_name: str, node: Any) -> None:
+    def __init__(self, target_name: str, node: Any):
         self.target_name = target_name
         self.node = node
         msg = f'Operations can not ref() ephemeral nodes, but {target_name} is ephemeral'
@@ -245,21 +245,21 @@ class OperationsCannotRefEphemeralNodesError(CompilationError):
 
 class PersistDocsValueTypeError(CompilationError):
 
-    def __init__(self, persist_docs: Any) -> None:
+    def __init__(self, persist_docs: Any):
         self.persist_docs = persist_docs
         msg = f"Invalid value provided for 'persist_docs'. Expected dict but received {type(self.persist_docs)}"
         super().__init__(msg=msg)
 
 class InlineModelConfigError(CompilationError):
 
-    def __init__(self, node: Any) -> None:
+    def __init__(self, node: Any):
         self.node = node
         msg = 'Invalid inline model config'
         super().__init__(msg=msg)
 
 class ConflictingConfigKeysError(CompilationError):
 
-    def __init__(self, oldkey: str, newkey: str, node: Any) -> None:
+    def __init__(self, oldkey: str, newkey: str, node: Any):
         self.oldkey = oldkey
         self.newkey = newkey
         self.node = node
@@ -268,7 +268,7 @@ class ConflictingConfigKeysError(CompilationError):
 
 class NumberSourceArgsError(CompilationError):
 
-    def __init__(self, args: List[Any], node: Any) -> None:
+    def __init__(self, args: List[Any], node: Any):
         self.args = args
         self.node = node
         msg = f'source() takes exactly two arguments ({len(self.args)} given)'
@@ -276,7 +276,7 @@ class NumberSourceArgsError(CompilationError):
 
 class RequiredVarNotFoundError(CompilationError):
 
-    def __init__(self, var_name: str, merged: Dict[str, str], node: Optional[Any] = None) -> None:
+    def __init__(self, var_name: str, merged: Dict[str, Any], node: Optional[Any] = None):
         self.var_name = var_name
         self.merged = merged
         self.node = node
@@ -297,14 +297,14 @@ class RequiredVarNotFoundError(CompilationError):
 
 class PackageNotFoundForMacroError(CompilationError):
 
-    def __init__(self, package_name: str) -> None:
+    def __init__(self, package_name: str):
         self.package_name = package_name
         msg = f"Could not find package '{self.package_name}'"
         super().__init__(msg=msg)
 
 class SecretEnvVarLocationError(ParsingError):
 
-    def __init__(self, env_var_name: str) -> None:
+    def __init__(self, env_var_name: str):
         self.env_var_name = env_var_name
         super().__init__(msg=self.get_message())
 
@@ -314,7 +314,7 @@ class SecretEnvVarLocationError(ParsingError):
 
 class BooleanError(CompilationError):
 
-    def __init__(self, return_value: Any, macro_name: str) -> None:
+    def __init__(self, return_value: Any, macro_name: str):
         self.return_value = return_value
         self.macro_name = macro_name
         super().__init__(msg=self.get_message())
@@ -325,7 +325,7 @@ class BooleanError(CompilationError):
 
 class RefArgsError(CompilationError):
 
-    def __init__(self, node: Any, args: List[Any]) -> None:
+    def __init__(self, node: Any, args: List[Any]):
         self.node = node
         self.args = args
         super().__init__(msg=self.get_message())
@@ -336,7 +336,7 @@ class RefArgsError(CompilationError):
 
 class MetricArgsError(CompilationError):
 
-    def __init__(self, node: Any, args: List[Any]) -> None:
+    def __init__(self, node: Any, args: List[Any]):
         self.node = node
         self.args = args
         super().__init__(msg=self.get_message())
@@ -347,7 +347,7 @@ class MetricArgsError(CompilationError):
 
 class RefBadContextError(CompilationError):
 
-    def __init__(self, node: Any, args: Any) -> None:
+    def __init__(self, node: Any, args: Any):
         self.node = node
         self.args = args.positional_args
         self.kwargs = args.keyword_args
@@ -369,7 +369,7 @@ class RefBadContextError(CompilationError):
 
 class DocArgsError(CompilationError):
 
-    def __init__(self, node: Any, args: List[Any]) -> None:
+    def __init__(self, node: Any, args: List[Any]):
         self.node = node
         self.args = args
         super().__init__(msg=self.get_message())
@@ -380,7 +380,7 @@ class DocArgsError(CompilationError):
 
 class DocTargetNotFoundError(CompilationError):
 
-    def __init__(self, node: Any, target_doc_name: str, target_doc_package: Optional[str] = None) -> None:
+    def __init__(self, node: Any, target_doc_name: str, target_doc_package: Optional[str] = None):
         self.node = node
         self.target_doc_name = target_doc_name
         self.target_doc_package = target_doc_package
@@ -395,7 +395,7 @@ class DocTargetNotFoundError(CompilationError):
 
 class MacroDispatchArgError(CompilationError):
 
-    def __init__(self, macro_name: str) -> None:
+    def __init__(self, macro_name: str):
         self.macro_name = macro_name
         super().__init__(msg=self.get_message())
 
@@ -405,7 +405,7 @@ class MacroDispatchArgError(CompilationError):
 
 class DuplicateMacroNameError(CompilationError):
 
-    def __init__(self, node_1: Any, node_2: Any, namespace: str) -> None:
+    def __init__(self, node_1: Any, node_2: Any, namespace: str):
         self.node_1 = node_1
         self.node_2 = node_2
         self.namespace = namespace
@@ -422,7 +422,7 @@ class DuplicateMacroNameError(CompilationError):
 
 class MacroResultAlreadyLoadedError(CompilationError):
 
-    def __init__(self, result_name: str) -> None:
+    def __init__(self, result_name: str):
         self.result_name = result_name
         super().__init__(msg=self.get_message())
 
@@ -432,7 +432,7 @@ class MacroResultAlreadyLoadedError(CompilationError):
 
 class DictParseError(ParsingError):
 
-    def __init__(self, exc: Exception, node: Any) -> None:
+    def __init__(self, exc: Exception, node: Any):
         self.exc = exc
         self.node = node
         msg = self.validator_error_message(exc)
@@ -440,7 +440,7 @@ class DictParseError(ParsingError):
 
 class ConfigUpdateError(ParsingError):
 
-    def __init__(self, exc: Exception, node: Any) -> None:
+    def __init__(self, exc: Exception, node: Any):
         self.exc = exc
         self.node = node
         msg = self.validator_error_message(exc)
@@ -448,7 +448,7 @@ class ConfigUpdateError(ParsingError):
 
 class PythonParsingError(ParsingError):
 
-    def __init__(self, exc: Exception, node: Any) -> None:
+    def __init__(self, exc: Exception, node: Any):
         self.exc = exc
         self.node = node
         super().__init__(msg=self.get_message())
@@ -460,7 +460,7 @@ class PythonParsingError(ParsingError):
 
 class PythonLiteralEvalError(ParsingError):
 
-    def __init__(self, exc: Exception, node: Any) -> None:
+    def __init__(self, exc: Exception, node: Any):
         self.exc = exc
         self.node = node
         super().__init__(msg=self.get_message())
@@ -471,14 +471,14 @@ class PythonLiteralEvalError(ParsingError):
 
 class ModelConfigError(ParsingError):
 
-    def __init__(self, exc: Exception, node: Any) -> None:
+    def __init__(self, exc: Exception, node: Any):
         self.msg = self.validator_error_message(exc)
         self.node = node
         super().__init__(msg=self.msg)
 
 class YamlParseListError(ParsingError):
 
-    def __init__(self, path: str, key: str, yaml_data: Any, cause: Union[str, Exception, ValidationError]) -> None:
+    def __init__(self, path: str, key: str, yaml_data: Any, cause: Union[str, Exception]):
         self.path = path
         self.key = key
         self.yaml_data = yaml_data
@@ -497,7 +497,7 @@ class YamlParseListError(ParsingError):
 
 class YamlParseDictError(ParsingError):
 
-    def __init__(self, path: str, key: str, yaml_data: Any, cause: Union[str, Exception, ValidationError]) -> None:
+    def __init__(self, path: str, key: str, yaml_data: Any, cause: Union[str, Exception]):
         self.path = path
         self.key = key
         self.yaml_data = yaml_data
@@ -516,7 +516,7 @@ class YamlParseDictError(ParsingError):
 
 class YamlLoadError(ParsingError):
 
-    def __init__(self, path: str, exc: Exception, project_name: Optional[str] = None) -> None:
+    def __init__(self, path: str, exc: Exception, project_name: Optional[str] = None):
         self.project_name = project_name
         self.path = path
         self.exc = exc
@@ -529,28 +529,28 @@ class YamlLoadError(ParsingError):
 
 class TestConfigError(ParsingError):
 
-    def __init__(self, exc: Exception, node: Any) -> None:
+    def __init__(self, exc: Exception, node: Any):
         self.msg = self.validator_error_message(exc)
         self.node = node
         super().__init__(msg=self.msg)
 
 class SchemaConfigError(ParsingError):
 
-    def __init__(self, exc: Exception, node: Any) -> None:
+    def __init__(self, exc: Exception, node: Any):
         self.msg = self.validator_error_message(exc)
         self.node = node
         super().__init__(msg=self.msg)
 
 class SnapshopConfigError(ParsingError):
 
-    def __init__(self, exc: Exception, node: Any) -> None:
+    def __init__(self, exc: Exception, node: Any):
         self.msg = self.validator_error_message(exc)
         self.node = node
         super().__init__(msg=self.msg)
 
 class DbtReferenceError(ParsingError):
 
-    def __init__(self, unique_id: str, ref_unique_id: str, access: AccessType, scope: str) -> None:
+    def __init__(self, unique_id: str, ref_unique_id: str, access: AccessType, scope: str):
         self.unique_id = unique_id
         self.ref_unique_id = ref_unique_id
         self.access = access
@@ -563,7 +563,7 @@ class DbtReferenceError(ParsingError):
 
 class InvalidAccessTypeError(ParsingError):
 
-    def __init__(self, unique_id: str, field_value: str, materialization: Optional[str] = None) -> None:
+    def __init__(self, unique_id: str, field_value: str, materialization: Optional[str] = None):
         self.unique_id = unique_id
         self.field_value = field_value
         self.materialization = materialization
@@ -573,32 +573,32 @@ class InvalidAccessTypeError(ParsingError):
 
 class InvalidUnitTestGivenInput(ParsingError):
 
-    def __init__(self, input: str) -> None:
+    def __init__(self, input: str):
         msg = f"Unit test given inputs must be either a 'ref', 'source' or 'this' call. Got: '{input}'."
         super().__init__(msg=msg)
 
 class SameKeyNestedError(CompilationError):
 
-    def __init__(self) -> None:
+    def __init__(self):
         msg = 'Test cannot have the same key at the top-level and in config'
         super().__init__(msg=msg)
 
 class TestArgIncludesModelError(CompilationError):
 
-    def __init__(self) -> None:
+    def __init__(self):
         msg = 'Test arguments include "model", which is a reserved argument'
         super().__init__(msg=msg)
 
 class UnexpectedTestNamePatternError(CompilationError):
 
-    def __init__(self, test_name: str) -> None:
+    def __init__(self, test_name: str):
         self.test_name = test_name
         msg = f'Test name string did not match expected pattern: {self.test_name}'
         super().__init__(msg=msg)
 
 class CustomMacroPopulatingConfigValueError(CompilationError):
 
-    def __init__(self, target_name: str, name: str, key: str, err_msg: str, column_name: Optional[str] = None) -> None:
+    def __init__(self, target_name: str, name: str, key: str, err_msg: str, column_name: Optional[str] = None):
         self.target_name = target_name
         self.column_name = column_name
         self.name = name
@@ -612,21 +612,21 @@ class CustomMacroPopulatingConfigValueError(CompilationError):
 
 class TagsNotListOfStringsError(CompilationError):
 
-    def __init__(self, tags: Any) -> None:
+    def __init__(self, tags: Any):
         self.tags = tags
         msg = f'got {self.tags} ({type(self.tags)}) for tags, expected a list of strings'
         super().__init__(msg=msg)
 
 class TagNotStringError(CompilationError):
 
-    def __init__(self, tag: Any) -> None:
+    def __init__(self, tag: Any):
         self.tag = tag
         msg = f'got {self.tag} ({type(self.tag)}) for tag, expected a str'
         super().__init__(msg=msg)
 
 class TestNameNotStringError(ParsingError):
 
-    def __init__(self, test_name: Any) -> None:
+    def __init__(self, test_name: Any):
         self.test_name = test_name
         super().__init__(msg=self.get_message())
 
@@ -636,7 +636,7 @@ class TestNameNotStringError(ParsingError):
 
 class TestArgsNotDictError(ParsingError):
 
-    def __init__(self, test_args: Any) -> None:
+    def __init__(self, test_args: Any):
         self.test_args = test_args
         super().__init__(msg=self.get_message())
 
@@ -646,7 +646,7 @@ class TestArgsNotDictError(ParsingError):
 
 class TestDefinitionDictLengthError(ParsingError):
 
-    def __init__(self, test: Dict[str, Any]) -> None:
+    def __init__(self, test: Dict[str, Any]):
         self.test = test
         super().__init__(msg=self.get_message())
 
@@ -656,7 +656,7 @@ class TestDefinitionDictLengthError(ParsingError):
 
 class TestTypeError(ParsingError):
 
-    def __init__(self, test: Any) -> None:
+    def __init__(self, test: Any):
         self.test = test
         super().__init__(msg=self.get_message())
 
@@ -666,7 +666,7 @@ class TestTypeError(ParsingError):
 
 class EnvVarMissingError(ParsingError):
 
-    def __init__(self, var: str) -> None:
+    def __init__(self, var: str):
         self.var = var
         super().__init__(msg=self.get_message())
 
@@ -676,7 +676,7 @@ class EnvVarMissingError(ParsingError):
 
 class TargetNotFoundError(CompilationError):
 
-    def __init__(self, node: Any, target_name: str, target_kind: str, target_package: Optional[str] = None, target_version: Optional[str] = None, disabled: Optional[bool] = None) -> None:
+    def __init__(self, node: Any, target_name: str, target_kind: str, target_package: Optional[str] = None, target_version: Optional[str] = None, disabled: Optional[bool] = None):
         self.node = node
         self.target_name = target_name
         self.target_kind = target_kind
@@ -706,7 +706,7 @@ class TargetNotFoundError(CompilationError):
 
 class DuplicateSourcePatchNameError(CompilationError):
 
-    def __init__(self, patch_1: Any, patch_2: Any) -> None:
+    def __init__(self, patch_1: Any, patch_2: Any):
         self.patch_1 = patch_1
         self.patch_2 = patch_2
         super().__init__(msg=self.get_message())
@@ -719,7 +719,7 @@ class DuplicateSourcePatchNameError(CompilationError):
 
 class DuplicateMacroPatchNameError(CompilationError):
 
-    def __init__(self, patch_1: Any, existing_patch_path: str) -> None:
+    def __init__(self, patch_1: Any, existing_patch_path: str):
         self.patch_1 = patch_1
         self.existing_patch_path = existing_patch_path
         super().__init__(msg=self.get_message())
@@ -733,7 +733,7 @@ class DuplicateMacroPatchNameError(CompilationError):
 
 class DuplicateAliasError(AliasError):
 
-    def __init__(self, kwargs: Dict[str, Any], aliases: Dict[str, str], canonical_key: str) -> None:
+    def __init__(self, kwargs: Dict[str, Any], aliases: Dict[str, str], canonical_key: str):
         self.kwargs = kwargs
         self.aliases = aliases
         self.canonical_key = canonical_key
@@ -746,7 +746,7 @@ class DuplicateAliasError(AliasError):
 
 class MultipleVersionGitDepsError(DependencyError):
 
-    def __init__(self, git: str, requested: List[str]) -> None:
+    def __init__(self, git: str, requested: List[str]):
         self.git = git
         self.requested = requested
         msg = f'git dependencies should contain exactly one version. {self.git} contains: {self.requested}'
@@ -754,21 +754,21 @@ class MultipleVersionGitDepsError(DependencyError):
 
 class DuplicateProjectDependencyError(DependencyError):
 
-    def __init__(self, project_name: str) -> None:
+    def __init__(self, project_name: str):
         self.project_name = project_name
         msg = f'Found duplicate project "{self.project_name}". This occurs when a dependency has the same project name as some other dependency.'
         super().__init__(msg)
 
 class DuplicateDependencyToRootError(DependencyError):
 
-    def __init__(self, project_name: str) -> None:
+    def __init__(self, project_name: str):
         self.project_name = project_name
         msg = f'Found a dependency with the same name as the root project "{self.project_name}". Package names must be unique in a project. Please rename one of these packages.'
         super().__init__(msg)
 
 class MismatchedDependencyTypeError(DependencyError):
 
-    def __init__(self, new: Any, old: Any) -> None:
+    def __init__(self, new: Any, old: Any):
         self.new = new
         self.old = old
         msg = f'Cannot incorporate {self.new} ({self.new.__class__.__name__}) in {self.old} ({self.old.__class__.__name__}): mismatched types'
@@ -776,7 +776,7 @@ class MismatchedDependencyTypeError(DependencyError):
 
 class PackageVersionNotFoundError(DependencyError):
 
-    def __init__(self, package_name: str, version_range: str, available_versions: List[str], should_version_check: bool) -> None:
+    def __init__(self, package_name: str, version_range: str, available_versions: List[str], should_version_check: bool):
         self.package_name = package_name
         self.version_range = version_range
         self.available_versions = available_versions
@@ -791,42 +791,42 @@ class PackageVersionNotFoundError(DependencyError):
 
 class PackageNotFoundError(DependencyError):
 
-    def __init__(self, package_name: str) -> None:
+    def __init__(self, package_name: str):
         self.package_name = package_name
         msg = f'Package {self.package_name} was not found in the package index'
         super().__init__(msg)
 
 class ProfileConfigError(DbtProfileError):
 
-    def __init__(self, exc: Exception) -> None:
+    def __init__(self, exc: Exception):
         self.exc = exc
         msg = self.validator_error_message(self.exc)
         super().__init__(msg=msg)
 
 class ProjectContractError(DbtProjectError):
 
-    def __init__(self, exc: Exception) -> None:
+    def __init__(self, exc: Exception):
         self.exc = exc
         msg = self.validator_error_message(self.exc)
         super().__init__(msg=msg)
 
 class ProjectContractBrokenError(DbtProjectError):
 
-    def __init__(self, exc: Exception) -> None:
+    def __init__(self, exc: Exception):
         self.exc = exc
         msg = self.validator_error_message(self.exc)
         super().__init__(msg=msg)
 
 class ConfigContractBrokenError(DbtProjectError):
 
-    def __init__(self, exc: Exception) -> None:
+    def __init__(self, exc: Exception):
         self.exc = exc
         msg = self.validator_error_message(self.exc)
         super().__init__(msg=msg)
 
 class NonUniquePackageNameError(CompilationError):
 
-    def __init__(self, project_name: str) -> None:
+    def __init__(self, project_name: str):
         self.project_name = project_name
         super().__init__(msg=self.get_message())
 
@@ -836,7 +836,7 @@ class NonUniquePackageNameError(CompilationError):
 
 class UninstalledPackagesFoundError(CompilationError):
 
-    def __init__(self, count_packages_specified: int, count_packages_installed: int, packages_specified_path: str, packages_install_path: str) -> None:
+    def __init__(self, count_packages_specified: int, count_packages_installed: int, packages_specified_path: str, packages_install_path: str):
         self.count_packages_specified = count_packages_specified
         self.count_packages_installed = count_packages_installed
         self.packages_specified_path = packages_specified_path
@@ -849,7 +849,7 @@ class UninstalledPackagesFoundError(CompilationError):
 
 class OptionNotYamlDictError(CompilationError):
 
-    def __init__(self, var_type: Type, option_name: str) -> None:
+    def __init__(self, var_type: Type, option_name: str):
         self.var_type = var_type
         self.option_name = option_name
         super().__init__(msg=self.get_message())
@@ -861,7 +861,7 @@ class OptionNotYamlDictError(CompilationError):
 
 class UnrecognizedCredentialTypeError(CompilationError):
 
-    def __init__(self, typename: str, supported_types: List[str]) -> None:
+    def __init__(self, typename: str, supported_types: List[str]):
         self.typename = typename
         self.supported_types = supported_types
         super().__init__(msg=self.get_message())
@@ -872,7 +872,7 @@ class UnrecognizedCredentialTypeError(CompilationError):
 
 class PatchTargetNotFoundError(CompilationError):
 
-    def __init__(self, patches: Dict[str, Any]) -> None:
+    def __init__(self, patches: Dict[str, Any]):
         self.patches = patches
         super().__init__(msg=self.get_message())
 
@@ -883,7 +883,7 @@ class PatchTargetNotFoundError(CompilationError):
 
 class MissingRelationError(CompilationError):
 
-    def __init__(self, relation: str, model: Optional[Any] = None) -> None:
+    def __init__(self, relation: Any, model: Optional[Any] = None):
         self.relation = relation
         self.model = model
         msg = f'Relation {self.relation} not found!'
@@ -891,7 +891,7 @@ class MissingRelationError(CompilationError):
 
 class AmbiguousAliasError(CompilationError):
 
-    def __init__(self, node_1: Any, node_2: Any, duped_name: Optional[str] = None) -> None:
+    def __init__(self, node_1: Any, node_2: Any, duped_name: Optional[str] = None):
         self.node_1 = node_1
         self.node_2 = node_2
         if duped_name is None:
@@ -906,7 +906,7 @@ class AmbiguousAliasError(CompilationError):
 
 class AmbiguousResourceNameRefError(CompilationError):
 
-    def __init__(self, duped_name: str, unique_ids: List[str], node: Optional[Any] = None) -> None:
+    def __init__(self, duped_name: str, unique_ids: List[str], node: Optional[Any] = None):
         self.duped_name = duped_name
         self.unique_ids = unique_ids
         self.packages = [unique_id.split('.')[1] for unique_id in unique_ids]
@@ -920,7 +920,7 @@ class AmbiguousResourceNameRefError(CompilationError):
 
 class AmbiguousCatalogMatchError(CompilationError):
 
-    def __init__(self, unique_id: str, match_1: Dict[str, Any], match_2: Dict[str, Any]) -> None:
+    def __init__(self, unique_id: str, match_1: Dict[str, Any], match_2: Dict[str, Any]):
         self.unique_id = unique_id
         self.match_1 = match_1
         self.match_2 = match_2
@@ -937,7 +937,7 @@ class AmbiguousCatalogMatchError(CompilationError):
 
 class DependencyNotFoundError(CompilationError):
 
-    def __init__(self, node: Any, node_description: str, required_pkg: str) -> None:
+    def __init__(self, node: Any, node_description: str, required_pkg: str):
         self.node = node
         self.node_description = node_description
         self.required_pkg = required_pkg
@@ -949,7 +949,7 @@ class DependencyNotFoundError(CompilationError):
 
 class DuplicatePatchPathError(CompilationError):
 
-    def __init__(self, patch_1: Any, existing_patch_path: str) -> None:
+    def __init__(self, patch_1: Any, existing_patch_path: str):
         self.patch_1 = patch_1
         self.existing_patch_path = existing_patch_path
         super().__init__(msg=self.get_message())
@@ -962,7 +962,7 @@ class DuplicatePatchPathError(CompilationError):
 
 class DuplicateResourceNameError(CompilationError):
 
-    def __init__(self, node_1: Any, node_2: Any) -> None:
+    def __init__(self, node_1: Any, node_2: Any):
         self.node_1 = node_1
         self.node_2 = node_2
         super().__init__(msg=self.get_message())
@@ -992,7 +992,7 @@ class DuplicateResourceNameError(CompilationError):
 
 class DuplicateVersionedUnversionedError(ParsingError):
 
-    def __init__(self, versioned_node: Any, unversioned_node: Any) -> None:
+    def __init__(self, versioned_node: Any, unversioned_node: Any):
         self.versioned_node = versioned_node
         self.unversioned_node = unversioned_node
         super().__init__(msg=self.get_message())
@@ -1003,7 +1003,7 @@ class DuplicateVersionedUnversionedError(ParsingError):
 
 class PropertyYMLError(CompilationError):
 
-    def __init__(self, path: str, issue: str) -> None:
+    def __init__(self, path: str, issue: str):
         self.path = path
         self.issue = issue
         super().__init__(msg=self.get_message())
@@ -1014,7 +1014,7 @@ class PropertyYMLError(CompilationError):
 
 class ContractError(CompilationError):
 
-    def __init__(self, yaml_columns: List[Dict[str, str]], sql_columns: List[Dict[str, str]]) -> None:
+    def __init__(self, yaml_columns: List[Dict[str, str]], sql_columns: List[Dict[str, str]]):
         self.yaml_columns = yaml_columns
         self.sql_columns = sql_columns
         super().__init__(msg=self.get_message())
@@ -1055,24 +1055,24 @@ class ContractError(CompilationError):
         return msg
 
 class UnknownAsyncIDException(Exception):
-    CODE: ClassVar[int] = 10012
-    MESSAGE: ClassVar[str] = 'RPC server got an unknown async ID'
+    CODE = 10012
+    MESSAGE = 'RPC server got an unknown async ID'
 
-    def __init__(self, task_id: str) -> None:
+    def __init__(self, task_id: str):
         self.task_id = task_id
 
     def __str__(self) -> str:
         return f'{self.MESSAGE}: {self.task_id}'
 
 class RPCFailureResult(DbtRuntimeError):
-    CODE: ClassVar[int] = 10002
-    MESSAGE: ClassVar[str] = 'RPC execution error'
+    CODE = 10002
+    MESSAGE = 'RPC execution error'
 
 class RPCTimeoutException(DbtRuntimeError):
-    CODE: ClassVar[int] = 10008
-    MESSAGE: ClassVar[str] = 'RPC timeout error'
+    CODE = 10008
+    MESSAGE = 'RPC timeout error'
 
-    def __init__(self, timeout: Optional[int] = None) -> None:
+    def __init__(self, timeout: Optional[int] = None):
         super().__init__(self.MESSAGE)
         self.timeout = timeout
 
@@ -1082,10 +1082,10 @@ class RPCTimeoutException(DbtRuntimeError):
         return result
 
 class RPCKilledException(DbtRuntimeError):
-    CODE: ClassVar[int] = 10009
-    MESSAGE: ClassVar[str] = 'RPC process killed'
+    CODE = 10009
+    MESSAGE = 'RPC process killed'
 
-    def __init__(self, signum: int) -> None:
+    def __init__(self, signum: int):
         self.signum = signum
         self.msg = f'RPC process killed by signal {self.signum}'
         super().__init__(self.msg)
@@ -1094,19 +1094,19 @@ class RPCKilledException(DbtRuntimeError):
         return {'signum': self.signum, 'message': self.msg}
 
 class RPCCompiling(DbtRuntimeError):
-    CODE: ClassVar[int] = 10010
-    MESSAGE: ClassVar[str] = 'RPC server is compiling the project, call the "status" method for compile status'
+    CODE = 10010
+    MESSAGE = 'RPC server is compiling the project, call the "status" method for compile status'
 
-    def __init__(self, msg: Optional[str] = None, node: Optional[Any] = None) -> None:
+    def __init__(self, msg: Optional[str] = None, node: Optional[Any] = None):
         if msg is None:
             msg = 'compile in progress'
         super().__init__(msg, node)
 
 class RPCLoadException(DbtRuntimeError):
-    CODE: ClassVar[int] = 10011
-    MESSAGE: ClassVar[str] = 'RPC server failed to compile project, call the "status" method for compile status'
+    CODE = 10011
+    MESSAGE = 'RPC server failed to compile project, call the "status" method for compile status'
 
-    def __init__(self, cause: Dict[str, str]) -> None:
+    def __init__(self, cause: Dict[str, Any]):
         self.cause = cause
         self.msg = f'{self.MESSAGE}: {self.cause["message"]}'
         super().__init__(self.msg)

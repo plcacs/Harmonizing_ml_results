@@ -44,7 +44,7 @@ def device_fixture(load_device_file: str) -> Device:
     return Device(json_loads(load_device_file))
 
 @pytest.fixture
-def load_systems_jv_file(load_systems_file: str) -> dict[str, Any]:
+def load_systems_jv_file(load_systems_file: str) -> Any:
     """Load fixture file for systems endpoint."""
     return json_loads(load_systems_file)
 
@@ -76,7 +76,7 @@ def device_points_fixture(load_device_points_jv_file: str) -> List[DevicePoint]:
     return [DevicePoint(point_data) for point_data in data]
 
 @pytest.fixture
-def mock_myuplink_client(load_device_file: str, device_fixture: Device, load_device_points_jv_file: str, device_points_fixture: List[DevicePoint], system_fixture: List[System], load_systems_jv_file: dict[str, Any]) -> MagicMock:
+def mock_myuplink_client(load_device_file: str, device_fixture: Device, load_device_points_jv_file: str, device_points_fixture: List[DevicePoint], system_fixture: List[System], load_systems_jv_file: Any) -> MagicMock:
     """Mock a myuplink client."""
     with patch('homeassistant.components.myuplink.MyUplinkAPI', autospec=True) as mock_client:
         client = mock_client.return_value

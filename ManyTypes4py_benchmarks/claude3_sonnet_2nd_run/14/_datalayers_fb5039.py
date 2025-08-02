@@ -178,9 +178,9 @@ class Power(ForwardableOperation):
 class Add(ForwardableOperation):
     """Applies an array as exponent of a floar"""
 
-    def __init__(self, offset: tp.Union[float, np.ndarray]) -> None:
+    def __init__(self, offset: float) -> None:
         super().__init__(offset)
-        self._offset: tp.Union[float, np.ndarray] = offset
+        self._offset: float = offset
 
     def forward(self, value: np.ndarray) -> np.ndarray:
         return self._offset + value
@@ -191,9 +191,9 @@ class Add(ForwardableOperation):
 class Multiply(ForwardableOperation):
     """Applies an array as exponent of a floar"""
 
-    def __init__(self, value: tp.Union[float, np.ndarray]) -> None:
+    def __init__(self, value: float) -> None:
         super().__init__(value)
-        self._mult: tp.Union[float, np.ndarray] = value
+        self._mult: float = value
         self.name: str = f'Mult({value})'
 
     def forward(self, value: np.ndarray) -> np.ndarray:

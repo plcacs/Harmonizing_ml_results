@@ -14,7 +14,6 @@ from homeassistant.core import CALLBACK_TYPE, HomeAssistant, callback
 from homeassistant.helpers.device_registry import DeviceRegistry
 from homeassistant.helpers.dispatcher import async_dispatcher_send
 from homeassistant.helpers.event import async_track_time_interval
-
 from .const import CONF_ALLOW_NAMELESS_UUIDS, CONF_IGNORE_ADDRESSES, CONF_IGNORE_UUIDS, DOMAIN, MAX_IDS, MAX_IDS_PER_UUID, MIN_SEEN_TRANSIENT_NEW, SIGNAL_IBEACON_DEVICE_NEW, SIGNAL_IBEACON_DEVICE_SEEN, SIGNAL_IBEACON_DEVICE_UNAVAILABLE, UNAVAILABLE_TIMEOUT, UPDATE_INTERVAL
 
 _LOGGER = logging.getLogger(__name__)

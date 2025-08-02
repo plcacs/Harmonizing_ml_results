@@ -3,7 +3,7 @@ import pytest
 from pandas.core.dtypes.dtypes import CategoricalDtype
 from pandas import Categorical, CategoricalIndex, Index, IntervalIndex, Series, Timestamp
 import pandas._testing as tm
-from typing import List, Any, Tuple, Optional, Union
+from typing import List, Tuple, Any, Optional
 
 class TestCategoricalDtypes:
 
@@ -57,8 +57,7 @@ class TestCategoricalDtypes:
         (['b', 'a', 'c'], ['a', 'b'], ['b']),
         (['a', 'b', 'c'], ['a', 'b'], ['d', 'e'])
     ])
-    def test_set_dtype_many(self, values: List[str], categories: List[str], 
-                           new_categories: List[str], ordered: bool) -> None:
+    def test_set_dtype_many(self, values: List[str], categories: List[str], new_categories: List[str], ordered: bool) -> None:
         c = Categorical(values, categories)
         expected = Categorical(values, new_categories, ordered)
         result = c._set_dtype(expected.dtype)

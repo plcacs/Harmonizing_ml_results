@@ -14,7 +14,7 @@ from superset.utils.core import get_user_id
 
 logger = logging.getLogger(__name__)
 
-T = TypeVar("T")
+T = TypeVar('T')
 
 class KeyValueDAO(BaseDAO[KeyValueEntry]):
 

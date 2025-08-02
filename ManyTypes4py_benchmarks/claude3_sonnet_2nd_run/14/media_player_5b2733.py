@@ -314,7 +314,7 @@ class AirPlayDevice(MediaPlayerEntity):
         """Initialize the AirPlay device."""
         self._id = device_id
         self.client = client
-        self.device_name = 'AirPlay'
+        self.device_name: str = 'AirPlay'
         self.kind: Optional[str] = None
         self.active: bool = False
         self.selected: bool = False

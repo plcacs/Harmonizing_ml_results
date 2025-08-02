@@ -337,7 +337,7 @@ class RateLimitedRealmMirror(RateLimitedObject):
         return f'{type(self).__name__}:{self.realm.string_id}'
 
     @override
-    def rules(self) -> List[List[int]]:
+    def rules(self) -> List[int]:
         return settings.RATE_LIMITING_MIRROR_REALM_RULES
 
 def rate_limit_mirror_by_realm(recipient_realm: Realm) -> None:
