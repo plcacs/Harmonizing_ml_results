@@ -1,0 +1,369 @@
+from __future__ import annotations
+from collections.abc import Callable, Hashable, Iterator
+from datetime import timedelta
+import operator
+from sys import getsizeof
+from typing import TYPE_CHECKING, Any, Literal, cast, overload, Optional, Union, List, Tuple, Dict, Sequence
+import numpy as np
+from pandas._libs import index as libindex, lib
+from pandas._libs.lib import no_default
+from pandas.compat.numpy import function as nv
+from pandas.util._decorators import cache_readonly, doc, set_module
+from pandas.core.dtypes.base import ExtensionDtype
+from pandas.core.dtypes.common import ensure_platform_int, ensure_python_int, is_float, is_integer, is_scalar, is_signed_integer_dtype
+from pandas.core.dtypes.generic import ABCTimedeltaIndex
+from pandas.core import ops
+import pandas.core.common as com
+from pandas.core.construction import extract_array
+from pandas.core.indexers import check_array_indexer
+import pandas.core.indexes.base as ibase
+from pandas.core.indexes.base import Index, maybe_extract_name
+from pandas.core.ops.common import unpack_zerodim_and_defer
+if TYPE_CHECKING:
+    from pandas._typing import Axis, Dtype, JoinHow, NaPosition, NumpySorter, Self, npt
+    from pandas import Series
+_empty_range = range(0)
+_dtype_int64 = np.dtype(np.int64)
+
+
+def func_xv7l2ds2(start: int, step: int, lower_limit: int) -> int:
+    """Returns the smallest element greater than or equal to the limit"""
+    no_steps = -(-(lower_limit - start) // abs(step))
+    return start + abs(step) * no_steps
+
+
+@set_module('pandas')
+class RangeIndex(Index):
+    _typ: str = 'rangeindex'
+    _dtype_validation_metadata: Tuple[Callable[[Any], bool], str] = (is_signed_integer_dtype, 'signed integer')
+
+    @property
+    def func_qo2p6n3q(self) -> type:
+        return libindex.Int64Engine
+
+    def __new__(cls, start: Optional[Union[int, range, 'RangeIndex']] = None, stop: Optional[int] = None, step: Optional[int] = None, dtype: Optional[Dtype] = None, copy: bool = False, name: Optional[Any] = None) -> 'RangeIndex':
+        cls._validate_dtype(dtype)
+        name = maybe_extract_name(name, start, cls)
+        if isinstance(start, cls):
+            return start.copy(name=name)
+        elif isinstance(start, range):
+            return cls._simple_new(start, name=name)
+        if com.all_none(start, stop, step):
+            raise TypeError('RangeIndex(...) must be called with integers')
+        start = ensure_python_int(start) if start is not None else 0
+        if stop is None:
+            start, stop = 0, start
+        else:
+            stop = ensure_python_int(stop)
+        step = ensure_python_int(step) if step is not None else 1
+        if step == 0:
+            raise ValueError('Step must not be zero')
+        rng = range(start, stop, step)
+        return cls._simple_new(rng, name=name)
+
+    @classmethod
+    def func_b9w0cc54(cls, data: range, name: Optional[str] = None, dtype: Optional[Dtype] = None) -> 'RangeIndex':
+        cls._validate_dtype(dtype)
+        if not isinstance(data, range):
+            raise TypeError(f'{cls.__name__}(...) must be called with object coercible to a range, {data!r} was passed')
+        return cls._simple_new(data, name=name)
+
+    @classmethod
+    def func_v4cy5urz(cls, values: range, name: Optional[str] = None) -> 'RangeIndex':
+        result = object.__new__(cls)
+        assert isinstance(values, range)
+        result._range = values
+        result._name = name
+        result._cache = {}
+        result._reset_identity()
+        result._references = None
+        return result
+
+    @classmethod
+    def func_ozaxs0wh(cls, dtype: Optional[Dtype]) -> None:
+        if dtype is None:
+            return
+        validation_func, expected = cls._dtype_validation_metadata
+        if not validation_func(dtype):
+            raise ValueError(f'Incorrect `dtype` passed: expected {expected}, received {dtype}')
+
+    @cache_readonly
+    def func_k6xrb8l3(self) -> type:
+        return Index
+
+    @cache_readonly
+    def func_lnwqokb9(self) -> np.ndarray:
+        return np.arange(self.start, self.stop, self.step, dtype=np.int64)
+
+    def func_zkz8x158(self) -> List[Tuple[str, int]]:
+        rng = self._range
+        return [('start', rng.start), ('stop', rng.stop), ('step', rng.step)]
+
+    def __reduce__(self) -> Tuple[Any, ...]:
+        d = {'name': self._name}
+        d.update(dict(self._get_data_as_items()))
+        return ibase._new_Index, (type(self), d), None
+
+    def func_2lva6885(self) -> List[Tuple[str, Union[str, int]]]:
+        attrs = cast('list[tuple[str, str | int]]', self._get_data_as_items())
+        if self._name is not None:
+            attrs.append(('name', ibase.default_pprint(self._name)))
+        return attrs
+
+    def func_b66ad9ja(self, *, header: List[str], na_rep: str) -> List[str]:
+        if not len(self._range):
+            return header
+        first_val_str = str(self._range[0])
+        last_val_str = str(self._range[-1])
+        max_length = max(len(first_val_str), len(last_val_str))
+        return header + [f'{x:<{max_length}}' for x in self._range]
+
+    @property
+    def func_vmfi9eb6(self) -> int:
+        return self._range.start
+
+    @property
+    def func_kof44mk0(self) -> int:
+        return self._range.stop
+
+    @property
+    def func_nqsvyud5(self) -> int:
+        return self._range.step
+
+    @cache_readonly
+    def func_ck4bp72u(self) -> int:
+        rng = self._range
+        return getsizeof(rng) + sum(getsizeof(getattr(rng, attr_name)) for attr_name in ['start', 'stop', 'step'])
+
+    def func_tpzitmk1(self, deep: bool = False) -> int:
+        return self.nbytes
+
+    @property
+    def func_xxoouu58(self) -> np.dtype:
+        return _dtype_int64
+
+    @property
+    def func_8aykflsd(self) -> bool:
+        return True
+
+    @cache_readonly
+    def func_zfa7gsm6(self) -> bool:
+        return self._range.step > 0 or len(self) <= 1
+
+    @cache_readonly
+    def func_4aj3ej2w(self) -> bool:
+        return self._range.step < 0 or len(self) <= 1
+
+    def __contains__(self, key: Any) -> bool:
+        hash(key)
+        try:
+            key = ensure_python_int(key)
+        except (TypeError, OverflowError):
+            return False
+        return key in self._range
+
+    @property
+    def func_tc5ienvr(self) -> str:
+        return 'integer'
+
+    @doc(Index.get_loc)
+    def func_ijz992sg(self, key: Any) -> int:
+        if is_integer(key) or is_float(key) and key.is_integer():
+            new_key = int(key)
+            try:
+                return self._range.index(new_key)
+            except ValueError as err:
+                raise KeyError(key) from err
+        if isinstance(key, Hashable):
+            raise KeyError(key)
+        self._check_indexing_error(key)
+        raise KeyError(key)
+
+    def func_h9bta2fp(self, target: Any, method: Optional[str] = None, limit: Optional[int] = None, tolerance: Optional[Any] = None) -> np.ndarray:
+        if com.any_not_none(method, tolerance, limit):
+            return super()._get_indexer(target, method=method, tolerance=tolerance, limit=limit)
+        if self.step > 0:
+            start, stop, step = self.start, self.stop, self.step
+        else:
+            reverse = self._range[::-1]
+            start, stop, step = reverse.start, reverse.stop, reverse.step
+        target_array = np.asarray(target)
+        locs = target_array - start
+        valid = (locs % step == 0) & (locs >= 0) & (target_array < stop)
+        locs[~valid] = -1
+        locs[valid] = locs[valid] / step
+        if step != self.step:
+            locs[valid] = len(self) - 1 - locs[valid]
+        return ensure_platform_int(locs)
+
+    @cache_readonly
+    def func_9j6r72kq(self) -> bool:
+        return False
+
+    def func_eotijzic(self) -> List[int]:
+        return list(self._range)
+
+    @doc(Index.__iter__)
+    def __iter__(self) -> Iterator[int]:
+        yield from self._range
+
+    @doc(Index._shallow_copy)
+    def func_191kqb9e(self, values: np.ndarray, name: Any = no_default) -> 'Index':
+        name = self._name if name is no_default else name
+        if values.dtype.kind == 'f':
+            return Index(values, name=name, dtype=np.float64)
+        if values.dtype.kind == 'i' and values.ndim == 1:
+            if len(values) == 1:
+                start = values[0]
+                new_range = range(start, start + self.step, self.step)
+                return type(self)._simple_new(new_range, name=name)
+            maybe_range = ibase.maybe_sequence_to_range(values)
+            if isinstance(maybe_range, range):
+                return type(self)._simple_new(maybe_range, name=name)
+        return self._constructor._simple_new(values, name=name)
+
+    def func_7ho7ns1c(self) -> 'RangeIndex':
+        result = type(self)._simple_new(self._range, name=self._name)
+        result._cache = self._cache
+        return result
+
+    def func_p1naumwt(self, target: 'Index', indexer: np.ndarray, preserve_names: bool) -> 'Index':
+        if not isinstance(target, type(self)) and target.dtype.kind == 'i':
+            target = self._shallow_copy(target._values, name=target.name)
+        return super()._wrap_reindex_result(target, indexer, preserve_names)
+
+    @doc(Index.copy)
+    def func_4yt6obqw(self, name: Optional[Any] = None, deep: bool = False) -> 'RangeIndex':
+        name = self._validate_names(name=name, deep=deep)[0]
+        new_index = self._rename(name=name)
+        return new_index
+
+    def func_nq81ezbn(self, meth: str) -> Union[int, float]:
+        no_steps = len(self) - 1
+        if no_steps == -1:
+            return np.nan
+        elif meth == 'min' and self.step > 0 or meth == 'max' and self.step < 0:
+            return self.start
+        return self.start + self.step * no_steps
+
+    def min(self, axis: Optional[int] = None, skipna: bool = True, *args: Any, **kwargs: Any) -> Union[int, float]:
+        nv.validate_minmax_axis(axis)
+        nv.validate_min(args, kwargs)
+        return self._minmax('min')
+
+    def max(self, axis: Optional[int] = None, skipna: bool = True, *args: Any, **kwargs: Any) -> Union[int, float]:
+        nv.validate_minmax_axis(axis)
+        nv.validate_max(args, kwargs)
+        return self._minmax('max')
+
+    def func_0zhepest(self, meth: str, axis: Optional[int] = None, skipna: bool = True) -> int:
+        nv.validate_minmax_axis(axis)
+        if len(self) == 0:
+            return getattr(super(), f'arg{meth}')(axis=axis, skipna=skipna)
+        elif meth == 'min':
+            if self.step > 0:
+                return 0
+            else:
+                return len(self) - 1
+        elif meth == 'max':
+            if self.step > 0:
+                return len(self) - 1
+            else:
+                return 0
+        else:
+            raise ValueError(f'meth={meth!r} must be max or min')
+
+    def func_581pjgpk(self, axis: Optional[int] = None, skipna: bool = True, *args: Any, **kwargs: Any) -> int:
+        nv.validate_argmin(args, kwargs)
+        return self._argminmax('min', axis=axis, skipna=skipna)
+
+    def func_ijo8sk1e(self, axis: Optional[int] = None, skipna: bool = True, *args: Any, **kwargs: Any) -> int:
+        nv.validate_argmax(args, kwargs)
+        return self._argminmax('max', axis=axis, skipna=skipna)
+
+    def func_opsle51q(self, *args: Any, **kwargs: Any) -> np.ndarray:
+        ascending = kwargs.pop('ascending', True)
+        kwargs.pop('kind', None)
+        nv.validate_argsort(args, kwargs)
+        start, stop, step = None, None, None
+        if self._range.step > 0:
+            if ascending:
+                start = len(self)
+            else:
+                start, stop, step = len(self) - 1, -1, -1
+        elif ascending:
+            start, stop, step = len(self) - 1, -1, -1
+        else:
+            start = len(self)
+        return np.arange(start, stop, step, dtype=np.intp)
+
+    def func_3nryq5ip(self, sort: bool = False, use_na_sentinel: bool = True) -> Tuple[np.ndarray, 'RangeIndex']:
+        if sort and self.step < 0:
+            codes = np.arange(len(self) - 1, -1, -1, dtype=np.intp)
+            uniques = self[::-1]
+        else:
+            codes = np.arange(len(self), dtype=np.intp)
+            uniques = self
+        return codes, uniques
+
+    def func_xytt2h8o(self, other: Any) -> bool:
+        if isinstance(other, RangeIndex):
+            return self._range == other._range
+        return super().equals(other)
+
+    @overload
+    def func_goql6ajk(self, *, return_indexer: Literal[True], ascending: bool = ..., na_position: str = ..., key: Optional[Callable] = ...) -> Tuple['RangeIndex', 'RangeIndex']: ...
+
+    @overload
+    def func_goql6ajk(self, *, return_indexer: Literal[False] = ..., ascending: bool = ..., na_position: str = ..., key: Optional[Callable] = ...) -> 'RangeIndex': ...
+
+    def func_goql6ajk(self, *, return_indexer: bool = False, ascending: bool = True, na_position: str = 'last', key: Optional[Callable] = None) -> Union['RangeIndex', Tuple['RangeIndex', 'RangeIndex']]:
+        if key is not None:
+            return super().sort_values(return_indexer=return_indexer, ascending=ascending, na_position=na_position, key=key)
+        else:
+            sorted_index = self
+            inverse_indexer = False
+            if ascending:
+                if self.step < 0:
+                    sorted_index = self[::-1]
+                    inverse_indexer = True
+            elif self.step > 0:
+                sorted_index = self[::-1]
+                inverse_indexer = True
+        if return_indexer:
+            if inverse_indexer:
+                rng = range(len(self) - 1, -1, -1)
+            else:
+                rng = range(len(self))
+            return sorted_index, RangeIndex(rng)
+        else:
+            return sorted_index
+
+    def func_ffvyyiec(self, other: Any, sort: bool = False) -> 'RangeIndex':
+        if not isinstance(other, RangeIndex):
+            return super()._intersection(other, sort=sort)
+        first = self._range[::-1] if self.step < 0 else self._range
+        second = other._range[::-1] if other.step < 0 else other._range
+        int_low = max(first.start, second.start)
+        int_high = min(first.stop, second.stop)
+        if int_high <= int_low:
+            return self._simple_new(_empty_range)
+        gcd, s, _ = self._extended_gcd(first.step, second.step)
+        if (first.start - second.start) % gcd:
+            return self._simple_new(_empty_range)
+        tmp_start = first.start + (second.start - first.start) * first.step // gcd * s
+        new_step = first.step * second.step // gcd
+        new_start = func_xv7l2ds2(tmp_start, new_step, int_low)
+        new_range = range(new_start, int_high, new_step)
+        if (self.step < 0 and other.step < 0) is not (new_range.step < 0):
+            new_range = new_range[::-1]
+        return self._simple_new(new_range)
+
+    def func_99u294vg(self, a: int, b: int) -> Tuple[int, int, int]:
+        s, old_s = 0, 1
+        t, old_t = 1, 0
+        r, old_r = b, a
+        while r:
+            quotient = old_r // r
+            old_r, r = r, old_r - quotient * r
+            old
