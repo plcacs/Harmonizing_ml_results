@@ -9,17 +9,17 @@ class AnyTypeAnalyzer:
     def __init__(self):
         self.any_patterns = [
             r"\bAny\b",
-            r"\bList\[Any\]",
-            r"\bDict\[.*?Any.*?\]",
-            r"\bTuple\[.*?Any.*?\]",
-            r"\bUnion\[.*?Any.*?\]",
-            r"\bOptional\[Any\]",
-            r"\bSet\[Any\]",
-            r"\btyping\.Any\b",
-            r"\bList\[List\[Any\]\]",
-            r"\bDict\[Any, Any\]",
-            r"\bDict\[str, Any\]",
-            r"\bDict\[Any, str\]",
+            # r"\bList\[Any\]",
+            # r"\bDict\[.*?Any.*?\]",
+            # r"\bTuple\[.*?Any.*?\]",
+            # r"\bUnion\[.*?Any.*?\]",
+            # r"\bOptional\[Any\]",
+            # r"\bSet\[Any\]",
+            # r"\btyping\.Any\b",
+            # r"\bList\[List\[Any\]\]",
+            # r"\bDict\[Any, Any\]",
+            # r"\bDict\[str, Any\]",
+            # r"\bDict\[Any, str\]",
         ]
         self.any_regex = re.compile("|".join(self.any_patterns), re.IGNORECASE)
 
@@ -215,7 +215,7 @@ class AnyTypeAnalyzer:
         return comparison
 
     def save_coverage_bin_csv(
-        self, comparison: Dict, filename: str = "coverage_bin_comparison.csv"
+        self, comparison: Dict, filename: str = "coverage_bin_comparison_only_any.csv"
     ):
         """Save coverage bin comparison results to CSV file."""
         with open(filename, "w", newline="") as csvfile:
@@ -380,8 +380,8 @@ def main():
         "comparison": comparison,
     }
 
-    with open("any_analysis_results.json", "w") as f:
-        json.dump(results, f, indent=2)
+    # with open("any_analysis_results.json", "w") as f:
+    #    json.dump(results, f, indent=2)
 
     print("\nResults saved to any_analysis_results.json")
 
