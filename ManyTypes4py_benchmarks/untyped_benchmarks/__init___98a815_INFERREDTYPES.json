@@ -1,0 +1,270 @@
+{
+    "add_receipt_to_header@ByzantiumVM": [
+        {
+            "category": "arg",
+            "name": "old_header",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.abc.ReceiptAPI",
+                "eth.rlp.headers.BlockHeader"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "receipt",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.abc.ReceiptAPI",
+                "eth.rlp.headers.BlockHeader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "old_header",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.abc.ReceiptAPI",
+                "eth.rlp.headers.BlockHeader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "receipt",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.abc.ReceiptAPI",
+                "eth.rlp.headers.BlockHeader"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "add_receipt_to_header",
+            "type": []
+        }
+    ],
+    "get_block_reward@ByzantiumVM": [
+        {
+            "category": "return",
+            "name": "get_block_reward",
+            "type": []
+        }
+    ],
+    "get_uncle_reward@global": [
+        {
+            "category": "arg",
+            "name": "block_reward",
+            "type": [
+                "int",
+                "eth.abc.BlockHeaderAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_number",
+            "type": [
+                "int",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "uncle",
+            "type": [
+                "int",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "int",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "uncle",
+            "type": [
+                "int",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number_delta",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_reward",
+            "type": [
+                "int",
+                "eth.abc.BlockHeaderAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_uncle_reward",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "EIP658_STATUS_CODES",
+            "type": [
+                "set",
+                "set[bytes]",
+                "int",
+                "dict[int, str]"
+            ]
+        }
+    ],
+    "make_receipt@ByzantiumVM": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "int",
+                "eth.rlp.transactions.BaseTransaction"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "base_header",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "int",
+                "eth.rlp.transactions.BaseTransaction"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "transaction",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "computation",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "eth.abc.SignedTransactionAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "StateAPI",
+                "BlockHeaderAPI",
+                "ComputationAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "base_header",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "int",
+                "eth.rlp.transactions.BaseTransaction"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cls",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "int",
+                "eth.rlp.transactions.BaseTransaction"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transaction",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "eth.abc.SignedTransactionAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gas_used",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "make_receipt",
+            "type": [
+                "dict",
+                "str",
+                "None"
+            ]
+        }
+    ],
+    "validate_receipt@ByzantiumVM": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "tuple[BlockHeaderAPI]",
+                "eth.chains.base.MiningChain",
+                "SignedTransactionAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "receipt",
+            "type": [
+                "eth.abc.ReceiptAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "receipt",
+            "type": [
+                "eth.abc.ReceiptAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "EIP658_STATUS_CODES",
+            "type": [
+                "set[bytes]",
+                "int",
+                "dict[int, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "validate_receipt",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

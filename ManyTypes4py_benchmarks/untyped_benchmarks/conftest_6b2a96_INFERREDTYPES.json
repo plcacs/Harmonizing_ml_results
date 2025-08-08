@@ -1,0 +1,554 @@
+{
+    "compression_ext@global": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "compression_ext",
+            "type": []
+        }
+    ],
+    "compression_format@global": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "compression_format",
+            "type": []
+        }
+    ],
+    "compression_to_extension@global": [
+        {
+            "category": "return",
+            "name": "compression_to_extension",
+            "type": [
+                "dict"
+            ]
+        }
+    ],
+    "feather_file@global": [
+        {
+            "category": "arg",
+            "name": "datapath",
+            "type": [
+                "bool",
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "feather_file",
+            "type": [
+                "typing.TextIO",
+                "io.BytesIO",
+                "typing.IO"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "_compression_formats_params",
+            "type": [
+                "list[tuple[typing.Optional[typing.Text]]]"
+            ]
+        }
+    ],
+    "jsonl_file@global": [
+        {
+            "category": "arg",
+            "name": "datapath",
+            "type": [
+                "bool",
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "jsonl_file",
+            "type": [
+                "typing.IO",
+                "kata.data.io.file.FileWriter",
+                "io.BytesIO"
+            ]
+        }
+    ],
+    "s3_base@global": [
+        {
+            "category": "arg",
+            "name": "worker_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "monkeypatch",
+            "type": [
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "monkeypatch",
+            "type": [
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "s3_base",
+            "type": [
+                "typing.Generator[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "worker_id",
+            "type": [
+                "str",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "endpoint_port",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "endpoint_uri",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timeout",
+            "type": [
+                "int",
+                "float"
+            ]
+        }
+    ],
+    "s3_private_bucket@global": [
+        {
+            "category": "arg",
+            "name": "s3_resource",
+            "type": [
+                "str",
+                "typing.BinaryIO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s3_resource",
+            "type": [
+                "str",
+                "typing.BinaryIO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket",
+            "type": [
+                "uuid.UUID",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "s3_private_bucket",
+            "type": [
+                "typing.Generator[typing.Union[uuid.UUID,str]]"
+            ]
+        }
+    ],
+    "s3_private_bucket_with_data@global": [
+        {
+            "category": "arg",
+            "name": "s3_private_bucket",
+            "type": [
+                "str",
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tips_file",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "jsonl_file",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "feather_file",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "xml_file",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tips_file",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "jsonl_file",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "feather_file",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "xml_file",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_s3_files",
+            "type": [
+                "list[tuple[typing.Text]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s3_key",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "f",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s3_private_bucket",
+            "type": [
+                "str",
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "s3_private_bucket_with_data",
+            "type": [
+                "str",
+                "int",
+                "bytes"
+            ]
+        }
+    ],
+    "s3_public_bucket@global": [
+        {
+            "category": "arg",
+            "name": "s3_resource",
+            "type": [
+                "str",
+                "None",
+                "tuple[uuid.UUID]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s3_resource",
+            "type": [
+                "str",
+                "None",
+                "tuple[uuid.UUID]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "s3_public_bucket",
+            "type": [
+                "typing.Generator[typing.Optional[str]]"
+            ]
+        }
+    ],
+    "s3_public_bucket_with_data@global": [
+        {
+            "category": "arg",
+            "name": "s3_public_bucket",
+            "type": [
+                "str",
+                "bytes",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tips_file",
+            "type": [
+                "str",
+                "io.StringIO"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "jsonl_file",
+            "type": [
+                "str",
+                "io.StringIO"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "feather_file",
+            "type": [
+                "str",
+                "io.StringIO"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "xml_file",
+            "type": [
+                "str",
+                "io.StringIO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tips_file",
+            "type": [
+                "str",
+                "io.StringIO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "jsonl_file",
+            "type": [
+                "str",
+                "io.StringIO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "feather_file",
+            "type": [
+                "str",
+                "io.StringIO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "xml_file",
+            "type": [
+                "str",
+                "io.StringIO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_s3_files",
+            "type": [
+                "list[tuple[typing.Union[typing.Text,io.StringIO]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s3_key",
+            "type": [
+                "typing.Text",
+                "io.StringIO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_name",
+            "type": [
+                "typing.Text",
+                "io.StringIO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "f",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s3_public_bucket",
+            "type": [
+                "str",
+                "bytes",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "s3_public_bucket_with_data",
+            "type": [
+                "str",
+                "bytes",
+                "None"
+            ]
+        }
+    ],
+    "s3_resource@global": [
+        {
+            "category": "arg",
+            "name": "s3_base",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s3_base",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "s3_resource",
+            "type": []
+        }
+    ],
+    "s3so@global": [
+        {
+            "category": "arg",
+            "name": "s3_base",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s3_base",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "s3so",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, typing.Union[bool,str]]]"
+            ]
+        }
+    ],
+    "salaries_table@global": [
+        {
+            "category": "arg",
+            "name": "datapath",
+            "type": [
+                "str",
+                "typing.Sequence[str]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "salaries_table",
+            "type": [
+                "typing.BinaryIO",
+                "typing.IO"
+            ]
+        }
+    ],
+    "tips_file@global": [
+        {
+            "category": "arg",
+            "name": "datapath",
+            "type": [
+                "bool",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "tips_file",
+            "type": [
+                "typing.TextIO",
+                "typing.IO"
+            ]
+        }
+    ],
+    "xml_file@global": [
+        {
+            "category": "arg",
+            "name": "datapath",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "xml_file",
+            "type": [
+                "typing.IO",
+                "str",
+                "io.BytesIO"
+            ]
+        }
+    ]
+}

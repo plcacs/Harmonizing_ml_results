@@ -1,0 +1,1409 @@
+{
+    "__init__@DisplayNameCache": [
+        {
+            "category": "local",
+            "name": "userid_to_displayname",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@MessageAckTimingKeeper": [
+        {
+            "category": "local",
+            "name": "_seen_messages",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_messages_in_flight",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_durations",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "add_message@MessageAckTimingKeeper": [
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "cbc_casper_simulator.message.Message",
+                "pywirelessmbus.utils.IMSTMessage",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "cbc_casper_simulator.message.Message",
+                "pywirelessmbus.utils.IMSTMessage",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "add_message",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "address_from_userid@global": [
+        {
+            "category": "arg",
+            "name": "user_id",
+            "type": [
+                "list[str]",
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "USERID_RE",
+            "type": [
+                "typing.Pattern"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_id",
+            "type": [
+                "list[str]",
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "match",
+            "type": [
+                "typing.Match",
+                "None",
+                "typing.Pattern"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "address_from_userid",
+            "type": [
+                "None",
+                "Address",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "encoded_address",
+            "type": [
+                "str",
+                "set[str]",
+                "frozenset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "Address",
+                "str"
+            ]
+        }
+    ],
+    "finalize_message@MessageAckTimingKeeper": [
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "bytes",
+                "can.Message",
+                "pywirelessmbus.utils.message.WMbusMessage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "bytes",
+                "can.Message",
+                "pywirelessmbus.utils.message.WMbusMessage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "start_time",
+            "type": [
+                "list",
+                "float",
+                "list[tuple[typing.Union[float,str]]]",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "finalize_message",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "first_login@global": [
+        {
+            "category": "arg",
+            "name": "client",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "signer",
+            "type": [
+                "str",
+                "duniterpy.api.clienClient"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "username",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "capabilities",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "device_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signer",
+            "type": [
+                "str",
+                "duniterpy.api.clienClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "username",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signature_bytes",
+            "type": [
+                "bytes",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signature_hex",
+            "type": [
+                "bytes",
+                "str",
+                "raiden_contracts.utils.type_aliases.PrivateKey"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_display_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ex",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_capabilities",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "capabilities",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cap_str",
+            "type": [
+                "str",
+                "typing.Type",
+                "dict[int, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "first_login",
+            "type": []
+        }
+    ],
+    "generate_report@MessageAckTimingKeeper": [
+        {
+            "category": "return",
+            "name": "generate_report",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "get_user_id_from_metadata@global": [
+        {
+            "category": "arg",
+            "name": "address",
+            "type": [
+                "str",
+                "bytes",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "address_metadata",
+            "type": [
+                "None",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address_metadata",
+            "type": [
+                "None",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_id",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "str",
+                "bytes",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_user_id_from_metadata",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "cached_deserialize",
+            "type": [
+                "str",
+                "dict",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "JOIN_RETRIES",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "USERID_RE",
+            "type": [
+                "typing.Pattern"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DISPLAY_NAME_HEX_RE",
+            "type": [
+                "typing.Pattern"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "MATRIX_MAX_BATCH_SIZE",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "JSONResponse",
+            "type": [
+                "typing.Type",
+                "purplship.core.utils.serializable.Deserializable",
+                "typing.Iterable[bytes]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "capabilities_schema",
+            "type": [
+                "CapabilitiesSchema",
+                "dict[str, typing.Any]",
+                "dict[int, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "EPOCH",
+            "type": [
+                "int",
+                "list",
+                "dict[int, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "UNKNOWN_REACHABILITY_STATE",
+            "type": [
+                "ReachabilityState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "USER_PRESENCE_REACHABLE_STATES",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "USER_PRESENCE_TO_ADDRESS_REACHABILITY",
+            "type": [
+                "dict"
+            ]
+        }
+    ],
+    "is_valid_userid_for_address@global": [
+        {
+            "category": "arg",
+            "name": "user_id",
+            "type": [
+                "str",
+                "UserID",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "address",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_id",
+            "type": [
+                "str",
+                "UserID",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_valid_userid_for_address",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_id_address",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "is_valid_username@global": [
+        {
+            "category": "arg",
+            "name": "username",
+            "type": [
+                "str",
+                "cmk.utils.type_defs.UserId"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "server_name",
+            "type": [
+                "str",
+                "cmk.utils.type_defs.UserId"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_id",
+            "type": [
+                "str",
+                "cmk.utils.type_defs.UserId"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "username",
+            "type": [
+                "str",
+                "cmk.utils.type_defs.UserId"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "server_name",
+            "type": [
+                "str",
+                "cmk.utils.type_defs.UserId"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_id",
+            "type": [
+                "str",
+                "cmk.utils.type_defs.UserId"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_valid_username",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "login@global": [
+        {
+            "category": "arg",
+            "name": "client",
+            "type": [
+                "str",
+                "bytes",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "signer",
+            "type": [
+                "str",
+                "duniterpy.api.clienClient",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "device_id",
+            "type": [
+                "str",
+                "bytes",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prev_auth_data",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "capabilities",
+            "type": [
+                "None",
+                "str",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "capabilities",
+            "type": [
+                "None",
+                "str",
+                "list[dict]",
+                "dict",
+                "dict[str, str]",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signer",
+            "type": [
+                "str",
+                "duniterpy.api.clienClient",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "username",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prev_auth_data",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_id",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "access_token",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client",
+            "type": [
+                "str",
+                "bytes",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user",
+            "type": [
+                "str",
+                "starlette_auth.tables.User",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "login",
+            "type": [
+                "str",
+                "starlette_auth.tables.User",
+                "dict",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "capabilities_schema",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[int, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cap",
+            "type": [
+                "str",
+                "dict[int, int]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device_id",
+            "type": [
+                "str",
+                "bytes",
+                "int"
+            ]
+        }
+    ],
+    "login_with_token@global": [
+        {
+            "category": "arg",
+            "name": "client",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "access_token",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "access_token",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ex",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "login_with_token",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "make_client@global": [
+        {
+            "category": "arg",
+            "name": "handle_messages_callback",
+            "type": [
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "servers",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "servers",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sorted_servers",
+            "type": [
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_ex",
+            "type": [
+                "None",
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "server_url",
+            "type": [
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rtt",
+            "type": [
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "handle_messages_callback",
+            "type": [
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client",
+            "type": [
+                "GMatrixClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "retries",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ex",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "make_client",
+            "type": [
+                "GMatrixClient"
+            ]
+        }
+    ],
+    "make_message_batches@global": [
+        {
+            "category": "arg",
+            "name": "message_texts",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "_max_batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "MATRIX_MAX_BATCH_SIZE",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_batch",
+            "type": [
+                "list",
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_text",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_texts",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_max_batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "make_message_batches",
+            "type": [
+                "typing.Generator[str]"
+            ]
+        }
+    ],
+    "make_user_id@global": [
+        {
+            "category": "arg",
+            "name": "address",
+            "type": [
+                "str",
+                "tuple",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "home_server",
+            "type": [
+                "str",
+                "tuple",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "str",
+                "tuple",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "home_server",
+            "type": [
+                "str",
+                "tuple",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "make_user_id",
+            "type": [
+                "UserID"
+            ]
+        }
+    ],
+    "my_place_or_yours@global": [
+        {
+            "category": "arg",
+            "name": "our_address",
+            "type": [
+                "str",
+                "raiden.utils.Address",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "partner_address",
+            "type": [
+                "str",
+                "raiden.utils.Address",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "our_address",
+            "type": [
+                "str",
+                "raiden.utils.Address",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partner_address",
+            "type": [
+                "str",
+                "raiden.utils.Address",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sorted_addresses",
+            "type": [
+                "list[typing.Union[str,raiden.utils.Address,None]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "my_place_or_yours",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        }
+    ],
+    "sort_servers_closest@global": [
+        {
+            "category": "arg",
+            "name": "servers",
+            "type": [
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_timeout",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "samples_per_server",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sample_delay",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "servers",
+            "type": [
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "server_url",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "samples_per_server",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sample_delay",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rtt_greenlets",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_timeout",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_timeout",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "results",
+            "type": [
+                "list",
+                "list[typing.Union[str,dict]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, None]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "server_url_to_rtt",
+            "type": [
+                "list[str]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "sort_servers_closest",
+            "type": [
+                "list[str]",
+                "dict[str, typing.Any]"
+            ]
+        }
+    ],
+    "validate_and_parse_message@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "str",
+                "Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "peer_address",
+            "type": [
+                "bytes",
+                "str",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "messages",
+            "type": [
+                "list",
+                "list[typing.Union[str,SMSShell.models.message.Message]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "peer_address",
+            "type": [
+                "bytes",
+                "str",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "validate_and_parse_message",
+            "type": [
+                "list",
+                "list[typing.Union[str,SMSShell.models.message.Message]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "line",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "str",
+                "SMSShell.models.message.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ex",
+            "type": [
+                "Exception"
+            ]
+        }
+    ],
+    "validate_user_id_signature@global": [
+        {
+            "category": "arg",
+            "name": "user_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "displayname",
+            "type": [
+                "str",
+                "bytes",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "USERID_RE",
+            "type": [
+                "typing.Pattern"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "match",
+            "type": [
+                "typing.Match",
+                "None",
+                "typing.Pattern"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "validate_user_id_signature",
+            "type": [
+                "None",
+                "Address",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "displayname",
+            "type": [
+                "str",
+                "bytes",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "encoded_address",
+            "type": [
+                "str",
+                "set[str]",
+                "frozenset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "Address",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DISPLAY_NAME_HEX_RE",
+            "type": [
+                "typing.Pattern"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signature_bytes",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recovered",
+            "type": [
+                "str",
+                "int"
+            ]
+        }
+    ],
+    "validate_userid_signature@global": [
+        {
+            "category": "arg",
+            "name": "user",
+            "type": [
+                "tildes.models.user.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user",
+            "type": [
+                "tildes.models.user.User"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "validate_userid_signature",
+            "type": []
+        }
+    ],
+    "warm_users@DisplayNameCache": [
+        {
+            "category": "arg",
+            "name": "users",
+            "type": [
+                "str",
+                "walledomain.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "users",
+            "type": [
+                "str",
+                "walledomain.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_",
+            "type": [
+                "None",
+                "dict",
+                "dict[int, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cached_displayname",
+            "type": [
+                "dict",
+                "dict[int, str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ex",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "warm_users",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

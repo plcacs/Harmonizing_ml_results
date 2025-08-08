@@ -25,6 +25,7 @@ SECONDS_IN_DAY = 86400
 SECONDS_IN_HOUR = 3600
 logger = logging.getLogger(__name__)
 
+
 class FreqaiDataKitchen:
     """
     Class designed to analyze data for a single pair. Employed by the IFreqaiModel class.
@@ -68,16 +69,23 @@ class FreqaiDataKitchen:
         self.pair = pair
         self.keras = self.freqai_config.get('keras', False)
         self.set_all_pairs()
-        self.backtest_live_models = config.get('freqai_backtest_live_models', False)
+        self.backtest_live_models = config.get('freqai_backtest_live_models',
+            False)
         self.feature_pipeline = Pipeline()
         self.label_pipeline = Pipeline()
         self.DI_values = np.array([])
         if not self.live:
             self.full_path = self.get_full_models_path(self.config)
             if not self.backtest_live_models:
-                self.full_timerange = self.create_fulltimerange(self.config['timerange'], self.freqai_config.get('train_period_days', 0))
-                self.training_timeranges, self.backtesting_timeranges = self.split_timerange(self.full_timerange, config['freqai']['train_period_days'], config['freqai']['backtest_period_days'])
-        self.data['extra_returns_per_train'] = self.freqai_config.get('extra_returns_per_train', {})
+                self.full_timerange = self.create_fulltimerange(self.config
+                    ['timerange'], self.freqai_config.get(
+                    'train_period_days', 0))
+                self.training_timeranges, self.backtesting_timeranges = (self
+                    .split_timerange(self.full_timerange, config['freqai'][
+                    'train_period_days'], config['freqai'][
+                    'backtest_period_days']))
+        self.data['extra_returns_per_train'] = self.freqai_config.get(
+            'extra_returns_per_train', {})
         if not self.freqai_config.get('data_kitchen_thread_count', 0):
             self.thread_count = max(int(psutil.cpu_count() * 2 - 2), 1)
         else:
@@ -87,17 +95,18 @@ class FreqaiDataKitchen:
         self.unique_class_list = []
         self.backtest_live_models_data = {}
 
-    def set_paths(self, pair, trained_timestamp=None):
+    def func_zsmu6cv0(self, pair, trained_timestamp=None):
         """
         Set the paths to the data for the present coin/botloop
         :param metadata: dict = strategy furnished pair metadata
         :param trained_timestamp: int = timestamp of most recent training
         """
         self.full_path = self.get_full_models_path(self.config)
-        self.data_path = Path(self.full_path / f'sub-train-{pair.split('/')[0]}_{trained_timestamp}')
+        self.data_path = Path(self.full_path / 'sub-train-{pair.split(' /
+            ')[0]}_{trained_timestamp}')
         return
 
-    def make_train_test_datasets(self, filtered_dataframe, labels):
+    def func_4k5yrwho(self, filtered_dataframe, labels):
         """
         Given the dataframe for the full history for training, split the data into
         training and test data according to user specified parameters in configuration
@@ -107,13 +116,18 @@ class FreqaiDataKitchen:
         """
         feat_dict = self.freqai_config['feature_parameters']
         if 'shuffle' not in self.freqai_config['data_split_parameters']:
-            self.freqai_config['data_split_parameters'].update({'shuffle': False})
+            self.freqai_config['data_split_parameters'].update({'shuffle': 
+                False})
         if feat_dict.get('weight_factor', 0) > 0:
             weights = self.set_weights_higher_recent(len(filtered_dataframe))
         else:
             weights = np.ones(len(filtered_dataframe))
-        if self.freqai_config.get('data_split_parameters', {}).get('test_size', 0.1) != 0:
-            train_features, test_features, train_labels, test_labels, train_weights, test_weights = train_test_split(filtered_dataframe[:filtered_dataframe.shape[0]], labels, weights, **self.config['freqai']['data_split_parameters'])
+        if self.freqai_config.get('data_split_parameters', {}).get('test_size',
+            0.1) != 0:
+            (train_features, test_features, train_labels, test_labels,
+                train_weights, test_weights) = (train_test_split(
+                filtered_dataframe[:filtered_dataframe.shape[0]], labels,
+                weights, **self.config['freqai']['data_split_parameters']))
         else:
             test_labels = np.zeros(2)
             test_features = pd.DataFrame()
@@ -124,18 +138,28 @@ class FreqaiDataKitchen:
         if feat_dict['shuffle_after_split']:
             rint1 = random.randint(0, 100)
             rint2 = random.randint(0, 100)
-            train_features = train_features.sample(frac=1, random_state=rint1).reset_index(drop=True)
-            train_labels = train_labels.sample(frac=1, random_state=rint1).reset_index(drop=True)
-            train_weights = pd.DataFrame(train_weights).sample(frac=1, random_state=rint1).reset_index(drop=True).to_numpy()[:, 0]
-            test_features = test_features.sample(frac=1, random_state=rint2).reset_index(drop=True)
-            test_labels = test_labels.sample(frac=1, random_state=rint2).reset_index(drop=True)
-            test_weights = pd.DataFrame(test_weights).sample(frac=1, random_state=rint2).reset_index(drop=True).to_numpy()[:, 0]
-        if self.freqai_config['feature_parameters'].get('reverse_train_test_order', False):
-            return self.build_data_dictionary(test_features, train_features, test_labels, train_labels, test_weights, train_weights)
+            train_features = train_features.sample(frac=1, random_state=rint1
+                ).reset_index(drop=True)
+            train_labels = train_labels.sample(frac=1, random_state=rint1
+                ).reset_index(drop=True)
+            train_weights = pd.DataFrame(train_weights).sample(frac=1,
+                random_state=rint1).reset_index(drop=True).to_numpy()[:, 0]
+            test_features = test_features.sample(frac=1, random_state=rint2
+                ).reset_index(drop=True)
+            test_labels = test_labels.sample(frac=1, random_state=rint2
+                ).reset_index(drop=True)
+            test_weights = pd.DataFrame(test_weights).sample(frac=1,
+                random_state=rint2).reset_index(drop=True).to_numpy()[:, 0]
+        if self.freqai_config['feature_parameters'].get(
+            'reverse_train_test_order', False):
+            return self.build_data_dictionary(test_features, train_features,
+                test_labels, train_labels, test_weights, train_weights)
         else:
-            return self.build_data_dictionary(train_features, test_features, train_labels, test_labels, train_weights, test_weights)
+            return self.build_data_dictionary(train_features, test_features,
+                train_labels, test_labels, train_weights, test_weights)
 
-    def filter_features(self, unfiltered_df, training_feature_list, label_list=list(), training_filter=True):
+    def func_laxfowo1(self, unfiltered_df, training_feature_list,
+        label_list=list(), training_filter=True):
         """
         Filter the unfiltered dataframe to extract the user requested features/labels and properly
         remove all NaNs. Any row with a NaN is removed from training dataset or replaced with
@@ -157,38 +181,57 @@ class FreqaiDataKitchen:
         filtered_df = unfiltered_df.filter(training_feature_list, axis=1)
         filtered_df = filtered_df.replace([np.inf, -np.inf], np.nan)
         drop_index = pd.isnull(filtered_df).any(axis=1)
-        drop_index = drop_index.replace(True, 1).replace(False, 0).infer_objects(copy=False)
+        drop_index = drop_index.replace(True, 1).replace(False, 0
+            ).infer_objects(copy=False)
         if training_filter:
             labels = unfiltered_df.filter(label_list, axis=1)
             drop_index_labels = pd.isnull(labels).any(axis=1)
-            drop_index_labels = drop_index_labels.replace(True, 1).replace(False, 0).infer_objects(copy=False)
+            drop_index_labels = drop_index_labels.replace(True, 1).replace(
+                False, 0).infer_objects(copy=False)
             dates = unfiltered_df['date']
-            filtered_df = filtered_df[(drop_index == 0) & (drop_index_labels == 0)]
+            filtered_df = filtered_df[(drop_index == 0) & (
+                drop_index_labels == 0)]
             labels = labels[(drop_index == 0) & (drop_index_labels == 0)]
-            self.train_dates = dates[(drop_index == 0) & (drop_index_labels == 0)]
-            logger.info(f'{self.pair}: dropped {len(unfiltered_df) - len(filtered_df)} training points due to NaNs in populated dataset {len(unfiltered_df)}.')
-            if len(filtered_df) == 0 and (not self.live):
-                raise OperationalException(f'{self.pair}: all training data dropped due to NaNs. You likely did not download enough training data prior to your backtest timerange. Hint:\n{DOCS_LINK}/freqai-running/#downloading-data-to-cover-the-full-backtest-period')
+            self.train_dates = dates[(drop_index == 0) & (drop_index_labels ==
+                0)]
+            logger.info(
+                '{self.pair}: dropped {len(unfiltered_df) - len(filtered_df)} training points due to NaNs in populated dataset {len(unfiltered_df)}.'
+                )
+            if len(filtered_df) == 0 and not self.live:
+                raise OperationalException(
+                    """{self.pair}: all training data dropped due to NaNs. You likely did not download enough training data prior to your backtest timerange. Hint:
+{DOCS_LINK}/freqai-running/#downloading-data-to-cover-the-full-backtest-period"""
+                    )
             if 1 - len(filtered_df) / len(unfiltered_df) > 0.1 and self.live:
                 worst_indicator = str(unfiltered_df.count().idxmin())
-                logger.warning(f' {(1 - len(filtered_df) / len(unfiltered_df)) * 100:.0f} percent  of training data dropped due to NaNs, model may perform inconsistent with expectations. Verify {worst_indicator}')
+                logger.warning(
+                    ' {(1 - len(filtered_df) / len(unfiltered_df)) * 100:.0f} percent  of training data dropped due to NaNs, model may perform inconsistent with expectations. Verify {worst_indicator}'
+                    )
             self.data['filter_drop_index_training'] = drop_index
         else:
             drop_index = pd.isnull(filtered_df).any(axis=1)
             self.data['filter_drop_index_prediction'] = drop_index
             filtered_df.fillna(0, inplace=True)
             drop_index = ~drop_index
-            self.do_predict = np.array(drop_index.replace(True, 1).replace(False, 0))
+            self.do_predict = np.array(drop_index.replace(True, 1).replace(
+                False, 0))
             if len(self.do_predict) - self.do_predict.sum() > 0:
-                logger.info('dropped %s of %s prediction data points due to NaNs.', len(self.do_predict) - self.do_predict.sum(), len(filtered_df))
+                logger.info(
+                    'dropped %s of %s prediction data points due to NaNs.',
+                    len(self.do_predict) - self.do_predict.sum(), len(
+                    filtered_df))
             labels = []
-        return (filtered_df, labels)
+        return filtered_df, labels
 
-    def build_data_dictionary(self, train_df, test_df, train_labels, test_labels, train_weights, test_weights):
-        self.data_dictionary = {'train_features': train_df, 'test_features': test_df, 'train_labels': train_labels, 'test_labels': test_labels, 'train_weights': train_weights, 'test_weights': test_weights, 'train_dates': self.train_dates}
+    def func_nrz1zx3m(self, train_df, test_df, train_labels, test_labels,
+        train_weights, test_weights):
+        self.data_dictionary = {'train_features': train_df, 'test_features':
+            test_df, 'train_labels': train_labels, 'test_labels':
+            test_labels, 'train_weights': train_weights, 'test_weights':
+            test_weights, 'train_dates': self.train_dates}
         return self.data_dictionary
 
-    def split_timerange(self, tr, train_split=28, bt_split=7):
+    def func_5au0tulw(self, tr, train_split=28, bt_split=7):
         """
         Function which takes a single time range (tr) and splits it
         into sub timeranges to train and backtest on based on user input
@@ -198,13 +241,16 @@ class FreqaiDataKitchen:
         bt_split: the backtesting length (days). Specified in user configuration file
         """
         if not isinstance(train_split, int) or train_split < 1:
-            raise OperationalException(f'train_period_days must be an integer greater than 0. Got {train_split}.')
+            raise OperationalException(
+                'train_period_days must be an integer greater than 0. Got {train_split}.'
+                )
         train_period_days = train_split * SECONDS_IN_DAY
         bt_period = bt_split * SECONDS_IN_DAY
         full_timerange = TimeRange.parse_timerange(tr)
         config_timerange = TimeRange.parse_timerange(self.config['timerange'])
         if config_timerange.stopts == 0:
-            config_timerange.stopts = int(datetime.now(tz=timezone.utc).timestamp())
+            config_timerange.stopts = int(datetime.now(tz=timezone.utc).
+                timestamp())
         timerange_train = copy.deepcopy(full_timerange)
         timerange_backtest = copy.deepcopy(full_timerange)
         tr_training_list = []
@@ -214,22 +260,26 @@ class FreqaiDataKitchen:
         first = True
         while True:
             if not first:
-                timerange_train.startts = timerange_train.startts + int(bt_period)
-            timerange_train.stopts = timerange_train.startts + train_period_days
+                timerange_train.startts = timerange_train.startts + int(
+                    bt_period)
+            timerange_train.stopts = (timerange_train.startts +
+                train_period_days)
             first = False
             tr_training_list.append(timerange_train.timerange_str)
             tr_training_list_timerange.append(copy.deepcopy(timerange_train))
             timerange_backtest.startts = timerange_train.stopts
-            timerange_backtest.stopts = timerange_backtest.startts + int(bt_period)
+            timerange_backtest.stopts = timerange_backtest.startts + int(
+                bt_period)
             if timerange_backtest.stopts > config_timerange.stopts:
                 timerange_backtest.stopts = config_timerange.stopts
             tr_backtesting_list.append(timerange_backtest.timerange_str)
-            tr_backtesting_list_timerange.append(copy.deepcopy(timerange_backtest))
+            tr_backtesting_list_timerange.append(copy.deepcopy(
+                timerange_backtest))
             if timerange_backtest.stopts == config_timerange.stopts:
                 break
-        return (tr_training_list_timerange, tr_backtesting_list_timerange)
+        return tr_training_list_timerange, tr_backtesting_list_timerange
 
-    def slice_dataframe(self, timerange, df):
+    def func_arhql2n5(self, timerange, df):
         """
         Given a full dataframe, extract the user desired window
         :param tr: timerange string that we wish to extract from df
@@ -237,12 +287,13 @@ class FreqaiDataKitchen:
                    it is sliced down to just the present training period.
         """
         if not self.live:
-            df = df.loc[(df['date'] >= timerange.startdt) & (df['date'] < timerange.stopdt), :]
+            df = df.loc[(df['date'] >= timerange.startdt) & (df['date'] <
+                timerange.stopdt), :]
         else:
             df = df.loc[df['date'] >= timerange.startdt, :]
         return df
 
-    def find_features(self, dataframe):
+    def func_9cevie8g(self, dataframe):
         """
         Find features in the strategy provided dataframe
         :param dataframe: DataFrame = strategy provided dataframe
@@ -255,21 +306,22 @@ class FreqaiDataKitchen:
             raise OperationalException('Could not find any features!')
         self.training_features_list = features
 
-    def find_labels(self, dataframe):
+    def func_w6rclape(self, dataframe):
         column_names = dataframe.columns
         labels = [c for c in column_names if '&' in c]
         self.label_list = labels
 
-    def set_weights_higher_recent(self, num_weights):
+    def func_ttullx9p(self, num_weights):
         """
         Set weights so that recent data is more heavily weighted during
         training than older data.
         """
         wfactor = self.config['freqai']['feature_parameters']['weight_factor']
-        weights = np.exp(-np.arange(num_weights) / (wfactor * num_weights))[::-1]
+        weights = np.exp(-np.arange(num_weights) / (wfactor * num_weights))[:
+            :-1]
         return weights
 
-    def get_predictions_to_append(self, predictions, do_predict, dataframe_backtest):
+    def func_nfjs0ia2(self, predictions, do_predict, dataframe_backtest):
         """
         Get backtest prediction from current backtest period
         """
@@ -279,58 +331,69 @@ class FreqaiDataKitchen:
             if append_df[label].dtype == object:
                 continue
             if 'labels_mean' in self.data:
-                append_df[f'{label}_mean'] = self.data['labels_mean'][label]
+                append_df['{label}_mean'] = self.data['labels_mean'][label]
             if 'labels_std' in self.data:
-                append_df[f'{label}_std'] = self.data['labels_std'][label]
+                append_df['{label}_std'] = self.data['labels_std'][label]
         for extra_col in self.data['extra_returns_per_train']:
-            append_df[f'{extra_col}'] = self.data['extra_returns_per_train'][extra_col]
+            append_df['{extra_col}'] = self.data['extra_returns_per_train'][
+                extra_col]
         append_df['do_predict'] = do_predict
         if self.freqai_config['feature_parameters'].get('DI_threshold', 0) > 0:
             append_df['DI_values'] = self.DI_values
-        user_cols = [col for col in dataframe_backtest.columns if col.startswith('%%')]
+        user_cols = [col for col in dataframe_backtest.columns if col.
+            startswith('%%')]
         cols = ['date']
         cols.extend(user_cols)
         dataframe_backtest.reset_index(drop=True, inplace=True)
         merged_df = pd.concat([dataframe_backtest[cols], append_df], axis=1)
         return merged_df
 
-    def append_predictions(self, append_df):
+    def func_uz7nyiii(self, append_df):
         """
         Append backtest prediction from current backtest period to all previous periods
         """
         if self.full_df.empty:
             self.full_df = append_df
         else:
-            self.full_df = pd.concat([self.full_df, append_df], axis=0, ignore_index=True)
+            self.full_df = pd.concat([self.full_df, append_df], axis=0,
+                ignore_index=True)
 
-    def fill_predictions(self, dataframe):
+    def func_ifge3wnf(self, dataframe):
         """
         Back fill values to before the backtesting range so that the dataframe matches size
         when it goes back to the strategy. These rows are not included in the backtest.
         """
-        to_keep = [col for col in dataframe.columns if not col.startswith('&') and (not col.startswith('%%'))]
-        self.return_dataframe = pd.merge(dataframe[to_keep], self.full_df, how='left', on='date')
-        self.return_dataframe[self.full_df.columns] = self.return_dataframe[self.full_df.columns].fillna(value=0)
+        to_keep = [col for col in dataframe.columns if not col.startswith(
+            '&') and not col.startswith('%%')]
+        self.return_dataframe = pd.merge(dataframe[to_keep], self.full_df,
+            how='left', on='date')
+        self.return_dataframe[self.full_df.columns] = self.return_dataframe[
+            self.full_df.columns].fillna(value=0)
         self.full_df = DataFrame()
         return
 
-    def create_fulltimerange(self, backtest_tr, backtest_period_days):
+    def func_8pjk0l77(self, backtest_tr, backtest_period_days):
         if not isinstance(backtest_period_days, int):
-            raise OperationalException('backtest_period_days must be an integer')
+            raise OperationalException(
+                'backtest_period_days must be an integer')
         if backtest_period_days < 0:
             raise OperationalException('backtest_period_days must be positive')
         backtest_timerange = TimeRange.parse_timerange(backtest_tr)
         if backtest_timerange.stopts == 0:
-            raise OperationalException('FreqAI backtesting does not allow open ended timeranges. Please indicate the end date of your desired backtesting. timerange.')
-        backtest_timerange.startts = backtest_timerange.startts - backtest_period_days * SECONDS_IN_DAY
+            raise OperationalException(
+                'FreqAI backtesting does not allow open ended timeranges. Please indicate the end date of your desired backtesting. timerange.'
+                )
+        backtest_timerange.startts = (backtest_timerange.startts - 
+            backtest_period_days * SECONDS_IN_DAY)
         full_timerange = backtest_timerange.timerange_str
         config_path = Path(self.config['config_files'][0])
         if not self.full_path.is_dir():
             self.full_path.mkdir(parents=True, exist_ok=True)
-            shutil.copy(config_path.resolve(), Path(self.full_path / config_path.parts[-1]))
+            shutil.copy(config_path.resolve(), Path(self.full_path /
+                config_path.parts[-1]))
         return full_timerange
 
-    def check_if_model_expired(self, trained_timestamp):
+    def func_hcjwb100(self, trained_timestamp):
         """
         A model age checker to determine if the model is trustworthy based on user defined
         `expiration_hours` in the configuration file.
@@ -346,11 +409,12 @@ class FreqaiDataKitchen:
         else:
             return False
 
-    def check_if_new_training_required(self, trained_timestamp):
+    def func_20naxam2(self, trained_timestamp):
         time = datetime.now(tz=timezone.utc).timestamp()
         trained_timerange = TimeRange()
         data_load_timerange = TimeRange()
-        timeframes = self.freqai_config['feature_parameters'].get('include_timeframes')
+        timeframes = self.freqai_config['feature_parameters'].get(
+            'include_timeframes')
         max_tf_seconds = 0
         for tf in timeframes:
             secs = timeframe_to_seconds(tf)
@@ -360,32 +424,40 @@ class FreqaiDataKitchen:
         additional_seconds = max_period * max_tf_seconds
         if trained_timestamp != 0:
             elapsed_time = (time - trained_timestamp) / SECONDS_IN_HOUR
-            retrain = elapsed_time > self.freqai_config.get('live_retrain_hours', 0)
+            retrain = elapsed_time > self.freqai_config.get(
+                'live_retrain_hours', 0)
             if retrain:
-                trained_timerange.startts = int(time - self.freqai_config.get('train_period_days', 0) * SECONDS_IN_DAY)
+                trained_timerange.startts = int(time - self.freqai_config.
+                    get('train_period_days', 0) * SECONDS_IN_DAY)
                 trained_timerange.stopts = int(time)
-                data_load_timerange.startts = int(time - self.freqai_config.get('train_period_days', 0) * SECONDS_IN_DAY - additional_seconds)
+                data_load_timerange.startts = int(time - self.freqai_config
+                    .get('train_period_days', 0) * SECONDS_IN_DAY -
+                    additional_seconds)
                 data_load_timerange.stopts = int(time)
         else:
-            trained_timerange.startts = int(time - self.freqai_config.get('train_period_days', 0) * SECONDS_IN_DAY)
+            trained_timerange.startts = int(time - self.freqai_config.get(
+                'train_period_days', 0) * SECONDS_IN_DAY)
             trained_timerange.stopts = int(time)
-            data_load_timerange.startts = int(time - self.freqai_config.get('train_period_days', 0) * SECONDS_IN_DAY - additional_seconds)
+            data_load_timerange.startts = int(time - self.freqai_config.get
+                ('train_period_days', 0) * SECONDS_IN_DAY - additional_seconds)
             data_load_timerange.stopts = int(time)
             retrain = True
-        return (retrain, trained_timerange, data_load_timerange)
+        return retrain, trained_timerange, data_load_timerange
 
-    def set_new_model_names(self, pair, timestamp_id):
+    def func_bpps17gt(self, pair, timestamp_id):
         coin, _ = pair.split('/')
-        self.data_path = Path(self.full_path / f'sub-train-{pair.split('/')[0]}_{timestamp_id}')
-        self.model_filename = f'cb_{coin.lower()}_{timestamp_id}'
+        self.data_path = Path(self.full_path / 'sub-train-{pair.split(' /
+            ')[0]}_{timestamp_id}')
+        self.model_filename = 'cb_{coin.lower()}_{timestamp_id}'
 
-    def set_all_pairs(self):
-        self.all_pairs = copy.deepcopy(self.freqai_config['feature_parameters'].get('include_corr_pairlist', []))
+    def func_tdw3nni1(self):
+        self.all_pairs = copy.deepcopy(self.freqai_config[
+            'feature_parameters'].get('include_corr_pairlist', []))
         for pair in self.config.get('exchange', '').get('pair_whitelist'):
             if pair not in self.all_pairs:
                 self.all_pairs.append(pair)
 
-    def extract_corr_pair_columns_from_populated_indicators(self, dataframe):
+    def func_alf38v0c(self, dataframe):
         """
         Find the columns of the dataframe corresponding to the corr_pairlist, save them
         in a dictionary to be reused and attached to other pairs.
@@ -395,16 +467,18 @@ class FreqaiDataKitchen:
                  to other pairs in same candle.
         """
         corr_dataframes = {}
-        pairs = self.freqai_config['feature_parameters'].get('include_corr_pairlist', [])
+        pairs = self.freqai_config['feature_parameters'].get(
+            'include_corr_pairlist', [])
         for pair in pairs:
             pair = pair.replace(':', '')
-            pair_cols = [col for col in dataframe.columns if col.startswith('%') and f'{pair}_' in col]
+            pair_cols = [col for col in dataframe.columns if col.startswith
+                ('%') and '{pair}_' in col]
             if pair_cols:
                 pair_cols.insert(0, 'date')
                 corr_dataframes[pair] = dataframe.filter(pair_cols, axis=1)
         return corr_dataframes
 
-    def attach_corr_pair_columns(self, dataframe, corr_dataframes, current_pair):
+    def func_psq937a0(self, dataframe, corr_dataframes, current_pair):
         """
         Attach the existing corr_pair dataframes to the current pair dataframe before training
 
@@ -415,15 +489,18 @@ class FreqaiDataKitchen:
         :dataframe: current pair dataframe of populated indicators, concatenated with corr_pairs
                     ready for training
         """
-        pairs = self.freqai_config['feature_parameters'].get('include_corr_pairlist', [])
+        pairs = self.freqai_config['feature_parameters'].get(
+            'include_corr_pairlist', [])
         current_pair = current_pair.replace(':', '')
         for pair in pairs:
             pair = pair.replace(':', '')
             if current_pair != pair:
-                dataframe = dataframe.merge(corr_dataframes[pair], how='left', on='date')
+                dataframe = dataframe.merge(corr_dataframes[pair], how=
+                    'left', on='date')
         return dataframe
 
-    def get_pair_data_for_features(self, pair, tf, strategy, corr_dataframes={}, base_dataframes={}, is_corr_pairs=False):
+    def func_ufxbr0cl(self, pair, tf, strategy, corr_dataframes={},
+        base_dataframes={}, is_corr_pairs=False):
         """
         Get the data for the pair. If it's not in the dictionary, get it from the data provider
         :param pair: str = pair to get data for
@@ -441,17 +518,19 @@ class FreqaiDataKitchen:
             if not dataframe.empty:
                 return dataframe
             else:
-                dataframe = strategy.dp.get_pair_dataframe(pair=pair, timeframe=tf)
+                dataframe = strategy.dp.get_pair_dataframe(pair=pair,
+                    timeframe=tf)
                 return dataframe
         else:
             dataframe = base_dataframes[tf]
             if not dataframe.empty:
                 return dataframe
             else:
-                dataframe = strategy.dp.get_pair_dataframe(pair=pair, timeframe=tf)
+                dataframe = strategy.dp.get_pair_dataframe(pair=pair,
+                    timeframe=tf)
                 return dataframe
 
-    def merge_features(self, df_main, df_to_merge, tf, timeframe_inf, suffix):
+    def func_v9k00qzd(self, df_main, df_to_merge, tf, timeframe_inf, suffix):
         """
         Merge the features of the dataframe and remove HLCV and date added columns
         :param df_main: DataFrame = main dataframe
@@ -461,12 +540,16 @@ class FreqaiDataKitchen:
         :param suffix: str = suffix to add to the columns of the dataframe to merge
         :return: dataframe = merged dataframe
         """
-        dataframe = merge_informative_pair(df_main, df_to_merge, tf, timeframe_inf=timeframe_inf, append_timeframe=False, suffix=suffix, ffill=True)
-        skip_columns = [f'{s}_{suffix}' for s in ['date', 'open', 'high', 'low', 'close', 'volume']]
+        dataframe = merge_informative_pair(df_main, df_to_merge, tf,
+            timeframe_inf=timeframe_inf, append_timeframe=False, suffix=
+            suffix, ffill=True)
+        skip_columns = ['{s}_{suffix}' for s in ['date', 'open', 'high',
+            'low', 'close', 'volume']]
         dataframe = dataframe.drop(columns=skip_columns)
         return dataframe
 
-    def populate_features(self, dataframe, pair, strategy, corr_dataframes, base_dataframes, is_corr_pairs=False):
+    def func_30tumvq2(self, dataframe, pair, strategy, corr_dataframes,
+        base_dataframes, is_corr_pairs=False):
         """
         Use the user defined strategy functions for populating features
         :param dataframe: DataFrame = dataframe to populate
@@ -477,30 +560,40 @@ class FreqaiDataKitchen:
         :param is_corr_pairs: bool = whether the pair is a corr pair or not
         :return: dataframe = populated dataframe
         """
-        tfs = self.freqai_config['feature_parameters'].get('include_timeframes')
+        tfs = self.freqai_config['feature_parameters'].get('include_timeframes'
+            )
         for tf in tfs:
-            metadata = {'pair': pair, 'tf': tf}
-            informative_df = self.get_pair_data_for_features(pair, tf, strategy, corr_dataframes, base_dataframes, is_corr_pairs)
+            metadata = {'pair': pair, 't': tf}
+            informative_df = self.get_pair_data_for_features(pair, tf,
+                strategy, corr_dataframes, base_dataframes, is_corr_pairs)
             informative_copy = informative_df.copy()
-            logger.debug(f'Populating features for {pair} {tf}')
-            for t in self.freqai_config['feature_parameters']['indicator_periods_candles']:
-                df_features = strategy.feature_engineering_expand_all(informative_copy.copy(), t, metadata=metadata)
-                suffix = f'{t}'
-                informative_df = self.merge_features(informative_df, df_features, tf, tf, suffix)
-            generic_df = strategy.feature_engineering_expand_basic(informative_copy.copy(), metadata=metadata)
+            logger.debug('Populating features for {pair} {tf}')
+            for t in self.freqai_config['feature_parameters'][
+                'indicator_periods_candles']:
+                df_features = strategy.feature_engineering_expand_all(
+                    informative_copy.copy(), t, metadata=metadata)
+                suffix = '{t}'
+                informative_df = self.merge_features(informative_df,
+                    df_features, tf, tf, suffix)
+            generic_df = strategy.feature_engineering_expand_basic(
+                informative_copy.copy(), metadata=metadata)
             suffix = 'gen'
-            informative_df = self.merge_features(informative_df, generic_df, tf, tf, suffix)
+            informative_df = self.merge_features(informative_df, generic_df,
+                tf, tf, suffix)
             indicators = [col for col in informative_df if col.startswith('%')]
-            for n in range(self.freqai_config['feature_parameters']['include_shifted_candles'] + 1):
+            for n in range(self.freqai_config['feature_parameters'][
+                'include_shifted_candles'] + 1):
                 if n == 0:
                     continue
                 df_shift = informative_df[indicators].shift(n)
                 df_shift = df_shift.add_suffix('_shift-' + str(n))
                 informative_df = pd.concat((informative_df, df_shift), axis=1)
-            dataframe = self.merge_features(dataframe.copy(), informative_df, self.config['timeframe'], tf, f'{pair}_{tf}')
+            dataframe = self.merge_features(dataframe.copy(),
+                informative_df, self.config['timeframe'], tf, '{pair}_{tf}')
         return dataframe
 
-    def use_strategy_to_populate_indicators(self, strategy, corr_dataframes={}, base_dataframes={}, pair='', prediction_dataframe=pd.DataFrame(), do_corr_pairs=True):
+    def func_j5xkv503(self, strategy, corr_dataframes={}, base_dataframes={
+        }, pair='', prediction_dataframe=pd.DataFrame(), do_corr_pairs=True):
         """
         Use the user defined strategy for populating indicators during retrain
         :param strategy: IStrategy = user defined strategy object
@@ -515,11 +608,19 @@ class FreqaiDataKitchen:
         :return:
         dataframe: DataFrame = dataframe containing populated indicators
         """
-        new_version = inspect.getsource(strategy.populate_any_indicators) == inspect.getsource(IStrategy.populate_any_indicators)
+        new_version = inspect.getsource(strategy.populate_any_indicators
+            ) == inspect.getsource(IStrategy.populate_any_indicators)
         if not new_version:
-            raise OperationalException(f'You are using the `populate_any_indicators()` function which was deprecated on March 1, 2023. Please refer to the strategy migration guide to use the new feature_engineering_* methods: \n{DOCS_LINK}/strategy_migration/#freqai-strategy \nAnd the feature_engineering_* documentation: \n{DOCS_LINK}/freqai-feature-engineering/')
-        tfs = self.freqai_config['feature_parameters'].get('include_timeframes')
-        pairs = self.freqai_config['feature_parameters'].get('include_corr_pairlist', [])
+            raise OperationalException(
+                """You are using the `populate_any_indicators()` function which was deprecated on March 1, 2023. Please refer to the strategy migration guide to use the new feature_engineering_* methods: 
+{DOCS_LINK}/strategy_migration/#freqai-strategy 
+And the feature_engineering_* documentation: 
+{DOCS_LINK}/freqai-feature-engineering/"""
+                )
+        tfs = self.freqai_config['feature_parameters'].get('include_timeframes'
+            )
+        pairs = self.freqai_config['feature_parameters'].get(
+            'include_corr_pairlist', [])
         for tf in tfs:
             if tf not in base_dataframes:
                 base_dataframes[tf] = pd.DataFrame()
@@ -533,47 +634,56 @@ class FreqaiDataKitchen:
             base_dataframes[self.config['timeframe']] = dataframe.copy()
         else:
             dataframe = base_dataframes[self.config['timeframe']].copy()
-        corr_pairs = self.freqai_config['feature_parameters'].get('include_corr_pairlist', [])
-        dataframe = self.populate_features(dataframe.copy(), pair, strategy, corr_dataframes, base_dataframes)
+        corr_pairs = self.freqai_config['feature_parameters'].get(
+            'include_corr_pairlist', [])
+        dataframe = self.populate_features(dataframe.copy(), pair, strategy,
+            corr_dataframes, base_dataframes)
         metadata = {'pair': pair}
-        dataframe = strategy.feature_engineering_standard(dataframe.copy(), metadata=metadata)
+        dataframe = strategy.feature_engineering_standard(dataframe.copy(),
+            metadata=metadata)
         for corr_pair in corr_pairs:
             if pair == corr_pair:
                 continue
             if corr_pairs and do_corr_pairs:
-                dataframe = self.populate_features(dataframe.copy(), corr_pair, strategy, corr_dataframes, base_dataframes, True)
+                dataframe = self.populate_features(dataframe.copy(),
+                    corr_pair, strategy, corr_dataframes, base_dataframes, True
+                    )
         if self.live:
-            dataframe = strategy.set_freqai_targets(dataframe.copy(), metadata=metadata)
+            dataframe = strategy.set_freqai_targets(dataframe.copy(),
+                metadata=metadata)
             dataframe = self.remove_special_chars_from_feature_names(dataframe)
             self.get_unique_classes_from_labels(dataframe)
         if self.config.get('reduce_df_footprint', False):
             dataframe = reduce_dataframe_footprint(dataframe)
         return dataframe
 
-    def fit_labels(self):
+    def func_lkfjli3o(self):
         """
         Fit the labels with a gaussian distribution
         """
         import scipy as spy
-        self.data['labels_mean'], self.data['labels_std'] = ({}, {})
+        self.data['labels_mean'], self.data['labels_std'] = {}, {}
         for label in self.data_dictionary['train_labels'].columns:
             if self.data_dictionary['train_labels'][label].dtype == object:
                 continue
             f = spy.stats.norm.fit(self.data_dictionary['train_labels'][label])
-            self.data['labels_mean'][label], self.data['labels_std'][label] = (f[0], f[1])
+            self.data['labels_mean'][label], self.data['labels_std'][label
+                ] = f[0], f[1]
         for label in self.unique_class_list:
-            self.data['labels_mean'][label], self.data['labels_std'][label] = (0, 0)
+            self.data['labels_mean'][label], self.data['labels_std'][label
+                ] = 0, 0
         return
 
-    def remove_features_from_df(self, dataframe):
+    def func_rlve2pq3(self, dataframe):
         """
         Remove the features from the dataframe before returning it to strategy. This keeps it
         compact for Frequi purposes.
         """
-        to_keep = [col for col in dataframe.columns if not col.startswith('%') or col.startswith('%%')]
+        to_keep = [col for col in dataframe.columns if not col.startswith(
+            '%') or col.startswith('%%')]
         return dataframe[to_keep]
 
-    def get_unique_classes_from_labels(self, dataframe):
+    def func_pczf2gvr(self, dataframe):
         self.find_labels(dataframe)
         for key in self.label_list:
             if dataframe[key].dtype == object:
@@ -582,24 +692,25 @@ class FreqaiDataKitchen:
             for label in self.unique_classes:
                 self.unique_class_list += list(self.unique_classes[label])
 
-    def save_backtesting_prediction(self, append_df):
+    def func_bk0trlb0(self, append_df):
         """
         Save prediction dataframe from backtesting to feather file format
         :param append_df: dataframe for backtesting period
         """
-        full_predictions_folder = Path(self.full_path / self.backtest_predictions_folder)
+        full_predictions_folder = Path(self.full_path / self.
+            backtest_predictions_folder)
         if not full_predictions_folder.is_dir():
             full_predictions_folder.mkdir(parents=True, exist_ok=True)
         append_df.to_feather(self.backtesting_results_path)
 
-    def get_backtesting_prediction(self):
+    def func_td1hdp1e(self):
         """
         Get prediction dataframe from feather file format
         """
         append_df = pd.read_feather(self.backtesting_results_path)
         return append_df
 
-    def check_if_backtest_prediction_is_valid(self, len_backtest_df):
+    def func_zt2twb8b(self, len_backtest_df):
         """
         Check if a backtesting prediction already exists and if the predictions
         to append have the same size as the backtesting dataframe slice
@@ -607,30 +718,39 @@ class FreqaiDataKitchen:
         :return:
         :boolean: whether the prediction file is valid.
         """
-        path_to_predictionfile = Path(self.full_path / self.backtest_predictions_folder / f'{self.model_filename}_prediction.feather')
+        path_to_predictionfile = Path(self.full_path / self.
+            backtest_predictions_folder /
+            '{self.model_filename}_prediction.feather')
         self.backtesting_results_path = path_to_predictionfile
         file_exists = path_to_predictionfile.is_file()
         if file_exists:
             append_df = self.get_backtesting_prediction()
             if len(append_df) == len_backtest_df and 'date' in append_df:
-                logger.info(f'Found backtesting prediction file at {path_to_predictionfile}')
+                logger.info(
+                    'Found backtesting prediction file at {path_to_predictionfile}'
+                    )
                 return True
             else:
-                logger.info('A new backtesting prediction file is required. (Number of predictions is different from dataframe length or old prediction file version).')
+                logger.info(
+                    'A new backtesting prediction file is required. (Number of predictions is different from dataframe length or old prediction file version).'
+                    )
                 return False
         else:
-            logger.info(f'Could not find backtesting prediction file at {path_to_predictionfile}')
+            logger.info(
+                'Could not find backtesting prediction file at {path_to_predictionfile}'
+                )
             return False
 
-    def get_full_models_path(self, config):
+    def func_lh4cgft7(self, config):
         """
         Returns default FreqAI model path
         :param config: Configuration dictionary
         """
         freqai_config = config['freqai']
-        return Path(config['user_data_dir'] / 'models' / str(freqai_config.get('identifier')))
+        return Path(config['user_data_dir'] / 'models' / str(freqai_config.
+            get('identifier')))
 
-    def remove_special_chars_from_feature_names(self, dataframe):
+    def func_6sddamf9(self, dataframe):
         """
         Remove all special characters from feature strings (:)
         :param dataframe: the dataframe that just finished indicator population. (unfiltered)
@@ -641,7 +761,7 @@ class FreqaiDataKitchen:
             dataframe.columns = dataframe.columns.str.replace(c, '')
         return dataframe
 
-    def buffer_timerange(self, timerange):
+    def func_19c2q2h5(self, timerange):
         """
         Buffer the start and end of the timerange. This is used *after* the indicators
         are populated.
@@ -656,23 +776,30 @@ class FreqaiDataKitchen:
         will be NaN and FreqAI will automatically cut those off of the training
         dataset.
         """
-        buffer = self.freqai_config['feature_parameters']['buffer_train_data_candles']
+        buffer = self.freqai_config['feature_parameters'][
+            'buffer_train_data_candles']
         if buffer:
-            timerange.stopts -= buffer * timeframe_to_seconds(self.config['timeframe'])
-            timerange.startts += buffer * timeframe_to_seconds(self.config['timeframe'])
+            timerange.stopts -= buffer * timeframe_to_seconds(self.config[
+                'timeframe'])
+            timerange.startts += buffer * timeframe_to_seconds(self.config[
+                'timeframe'])
         return timerange
 
-    def normalize_data(self, data_dictionary):
+    def func_mcgdphsk(self, data_dictionary):
         """
         Deprecation warning, migration assistance
         """
-        logger.warning(f'Your custom IFreqaiModel relies on the deprecated data pipeline. Please update your model to use the new data pipeline. This can be achieved by following the migration guide at {DOCS_LINK}/strategy_migration/#freqai-new-data-pipeline We added a basic pipeline for you, but this will be removed in a future version.')
+        logger.warning(
+            'Your custom IFreqaiModel relies on the deprecated data pipeline. Please update your model to use the new data pipeline. This can be achieved by following the migration guide at {DOCS_LINK}/strategy_migration/#freqai-new-data-pipeline We added a basic pipeline for you, but this will be removed in a future version.'
+            )
         return data_dictionary
 
-    def denormalize_labels_from_metadata(self, df):
+    def func_d67v4it3(self, df):
         """
         Deprecation warning, migration assistance
         """
-        logger.warning(f'Your custom IFreqaiModel relies on the deprecated data pipeline. Please update your model to use the new data pipeline. This can be achieved by following the migration guide at {DOCS_LINK}/strategy_migration/#freqai-new-data-pipeline We added a basic pipeline for you, but this will be removed in a future version.')
+        logger.warning(
+            'Your custom IFreqaiModel relies on the deprecated data pipeline. Please update your model to use the new data pipeline. This can be achieved by following the migration guide at {DOCS_LINK}/strategy_migration/#freqai-new-data-pipeline We added a basic pipeline for you, but this will be removed in a future version.'
+            )
         pred_df, _, _ = self.label_pipeline.inverse_transform(df)
         return pred_df

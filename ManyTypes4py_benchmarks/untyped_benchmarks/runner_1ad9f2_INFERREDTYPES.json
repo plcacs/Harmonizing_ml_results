@@ -1,0 +1,706 @@
+{
+    "__init__@PrefectDbtRunner": [
+        {
+            "category": "arg",
+            "name": "manifest",
+            "type": [
+                "None",
+                "dict",
+                "typing.Callable",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "settings",
+            "type": [
+                "None",
+                "typing.Callable",
+                "dict[str, typing.Any]",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "raise_on_failure",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "client",
+            "type": [
+                "None",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "settings",
+            "type": [
+                "None",
+                "typing.Callable",
+                "dict[str, typing.Any]",
+                "bool",
+                "PrefectDbtSettings"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "manifest",
+            "type": [
+                "None",
+                "dict",
+                "typing.Callable",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client",
+            "type": [
+                "None",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raise_on_failure",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_create_events_callback@PrefectDbtRunner": [
+        {
+            "category": "arg",
+            "name": "related_prefect_context",
+            "type": [
+                "dict",
+                "types.ContextValue"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_create_events_callback",
+            "type": []
+        }
+    ],
+    "_create_logging_callback@PrefectDbtRunner": [
+        {
+            "category": "arg",
+            "name": "log_level",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_create_logging_callback",
+            "type": []
+        }
+    ],
+    "_emit_lineage_event@PrefectDbtRunner": [
+        {
+            "category": "arg",
+            "name": "manifest_node",
+            "type": [
+                "str",
+                "mypy.nodes.Context",
+                "mypy.nodes.Var",
+                "mypy.nodes.FuncDef",
+                "mypy.nodes.OverloadedFuncDef"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "related_prefect_context",
+            "type": [
+                "ics.types.ContextDict",
+                "mypy.nodes.TypeInfo"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "manifest_node",
+            "type": [
+                "str",
+                "mypy.nodes.Context",
+                "mypy.nodes.Var",
+                "mypy.nodes.FuncDef",
+                "mypy.nodes.OverloadedFuncDef"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "NODE_TYPES_TO_EMIT_LINEAGE",
+            "type": [
+                "dict[int, str]",
+                "int",
+                "dict[str, tuple[str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_emit_lineage_event",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "primary_relation_name",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "related_resources",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "related_prefect_context",
+            "type": [
+                "ics.types.ContextDict",
+                "mypy.nodes.TypeInfo"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upstream_manifest_nodes",
+            "type": [
+                "list",
+                "list[dict[typing.Text, typing.Union[typing.Text,int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "depends_manifest_node",
+            "type": [
+                "str",
+                "dict",
+                "set",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "depends_node_prefect_config",
+            "type": [
+                "dict",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "depends_relation_name",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node_prefect_config",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upstream_config_resources",
+            "type": [
+                "list",
+                "list[dict[typing.Text, bool]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upstream_resources",
+            "type": [
+                "dict[int, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resource_id",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resource_name",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resource",
+            "type": [
+                "dict[typing.Text, bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "primary_resource",
+            "type": [
+                "dict[typing.Text, typing.Text]"
+            ]
+        }
+    ],
+    "_emit_node_event@PrefectDbtRunner": [
+        {
+            "category": "arg",
+            "name": "manifest_node",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "related_prefect_context",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dbt_event",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "related_resources",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resource",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "related_prefect_context",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dbt_event",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_data",
+            "type": [
+                "MessageToDict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node_info",
+            "type": [
+                "dict[str, list[str]]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node_status",
+            "type": [
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "manifest_node",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_emit_node_event",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_get_dbt_event_msg@PrefectDbtRunner": [
+        {
+            "category": "arg",
+            "name": "event",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "raiden_libs.events.Event"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_dbt_event_msg",
+            "type": []
+        }
+    ],
+    "_get_dbt_event_node_id@PrefectDbtRunner": [
+        {
+            "category": "arg",
+            "name": "event",
+            "type": [
+                "dict",
+                "core_lib.core.models.Event"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_dbt_event_node_id",
+            "type": []
+        }
+    ],
+    "_get_manifest_depends_on_nodes@PrefectDbtRunner": [
+        {
+            "category": "arg",
+            "name": "manifest_node",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_get_manifest_depends_on_nodes",
+            "type": []
+        }
+    ],
+    "aemit_lineage_events@PrefectDbtRunner": [
+        {
+            "category": "local",
+            "name": "manifest",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "aemit_lineage_events",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "ainvoke@PrefectDbtRunner": [
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "invoke_kwargs",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "REQUIRES_MANIFEST",
+            "type": [
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "needs_manifest",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "callbacks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "FAILURE_STATUSES",
+            "type": [
+                "str",
+                "list[str]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "FAILURE_MSG",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "failure_results",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "ainvoke",
+            "type": []
+        }
+    ],
+    "emit_lineage_events@PrefectDbtRunner": [
+        {
+            "category": "local",
+            "name": "manifest",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "emit_lineage_events",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "events_callback@PrefectDbtRunner": [
+        {
+            "category": "arg",
+            "name": "event",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "events_callback",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "FAILURE_STATUSES",
+            "type": [
+                "list",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "FAILURE_MSG",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "REQUIRES_MANIFEST",
+            "type": [
+                "list[typing.Text]",
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "NODE_TYPES_TO_EMIT_LINEAGE",
+            "type": [
+                "list",
+                "dict[int, str]",
+                "int",
+                "dict[str, tuple[str]]"
+            ]
+        }
+    ],
+    "invoke@PrefectDbtRunner": [
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "invoke_kwargs",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "REQUIRES_MANIFEST",
+            "type": [
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "needs_manifest",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "callbacks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "FAILURE_STATUSES",
+            "type": [
+                "str",
+                "list[str]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "FAILURE_MSG",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "failure_results",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "invoke",
+            "type": []
+        }
+    ],
+    "logging_callback@PrefectDbtRunner": [
+        {
+            "category": "arg",
+            "name": "event",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "logging_callback",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "parse@PrefectDbtRunner": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "manifest",
+            "type": [
+                "dict[str, typing.Any]",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "invoke_kwargs",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "res",
+            "type": [
+                "dict[str, typing.Any]",
+                "list",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "parse",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

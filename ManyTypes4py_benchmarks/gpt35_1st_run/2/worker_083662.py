@@ -1,0 +1,28 @@
+from typing import Any, Dict, IO, Iterable, Mapping, Optional, Set, Union
+from mode import ServiceT
+from .types import AppT, SensorT, TP, TopicT
+
+class Worker(mode.Worker):
+    def __init__(self, app: AppT, *services: ServiceT, sensors: Optional[Iterable[SensorT]] = None, debug: bool = DEBUG, quiet: bool = False, loglevel: Optional[Union[str, int]] = None, logfile: Optional[Union[str, IO]] = None, stdout: IO = sys.stdout, stderr: IO = sys.stderr, blocking_timeout: Optional[float] = None, workdir: Optional[Union[str, Path]] = None, console_port: int = CONSOLE_PORT, loop: Optional[asyncio.AbstractEventLoop] = None, redirect_stdouts: Optional[bool] = None, redirect_stdouts_level: Optional[int] = None, logging_config: Optional[Dict[str, Any]] = None, **kwargs: Any):
+        ...
+
+    async def on_start(self) -> None:
+        ...
+
+    async def maybe_start_blockdetection(self) -> None:
+        ...
+
+    async def on_startup_finished(self) -> None:
+        ...
+
+    async def on_first_start(self) -> None:
+        ...
+
+    async def on_execute(self) -> None:
+        ...
+
+    def on_worker_shutdown(self) -> None:
+        ...
+
+    def on_setup_root_logger(self, logger: logging.Logger, level: int) -> None:
+        ...

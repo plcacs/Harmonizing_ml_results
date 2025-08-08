@@ -1,0 +1,832 @@
+{
+    "__init__@ConditionalRandomField": [
+        {
+            "category": "arg",
+            "name": "num_tags",
+            "type": [
+                "int",
+                "list[list]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "constraints",
+            "type": [
+                "None",
+                "list[tuple[int]]",
+                "list[typing.Optional[str]]",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_start_end_transitions",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_tags",
+            "type": [
+                "int",
+                "list[list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transitions",
+            "type": [
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "constraints",
+            "type": [
+                "None",
+                "list[tuple[int]]",
+                "list[typing.Optional[str]]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "i",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "j",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_constraint_mask",
+            "type": [
+                "bool",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_start_end_transitions",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "start_transitions",
+            "type": [
+                "int",
+                "list[tuple]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "end_transitions",
+            "type": [
+                "int",
+                "tuple[tuple[typing.Any]]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_input_likelihood@ConditionalRandomField": [
+        {
+            "category": "arg",
+            "name": "logits",
+            "type": [
+                "torch.Tensor",
+                "list[list]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "transitions",
+            "type": [
+                "int",
+                "list[int]",
+                "frozenset"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mask",
+            "type": [
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logits",
+            "type": [
+                "torch.Tensor",
+                "list[list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sequence_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_tags",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mask",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alpha",
+            "type": [
+                "float",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transitions",
+            "type": [
+                "int",
+                "list[int]",
+                "frozenset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transition_scores",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "broadcast_alpha",
+            "type": [
+                "int",
+                "list[int]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stops",
+            "type": [
+                "int",
+                "str",
+                "list[int]",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_input_likelihood",
+            "type": []
+        }
+    ],
+    "_joint_likelihood@ConditionalRandomField": [
+        {
+            "category": "arg",
+            "name": "logits",
+            "type": [
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "transitions",
+            "type": [
+                "torch.Tensor",
+                "torch.FloatTensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tags",
+            "type": [
+                "torch.Tensor",
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mask",
+            "type": [
+                "torch.Tensor",
+                "torch.LongTensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mask",
+            "type": [
+                "property"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tags",
+            "type": [
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "score",
+            "type": [
+                "int",
+                "list[float]",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_tag",
+            "type": [
+                "str",
+                "list",
+                "dict[str, set[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "next_tag",
+            "type": [
+                "str",
+                "typing.Final",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transitions",
+            "type": [
+                "torch.Tensor",
+                "torch.FloatTensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transition_score",
+            "type": [
+                "int",
+                "float",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "emit_score",
+            "type": [
+                "list",
+                "list[float]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_tag_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_tags",
+            "type": [
+                "str",
+                "list[tuple[typing.Union[str,typing.Any]]]",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_transition_score",
+            "type": [
+                "int",
+                "list[tuple[typing.Union[int,typing.Any]]]",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_input_score",
+            "type": [
+                "int",
+                "dict[int, float]",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_joint_likelihood",
+            "type": [
+                "int",
+                "list[float]",
+                "float"
+            ]
+        }
+    ],
+    "allowed_transitions@global": [
+        {
+            "category": "arg",
+            "name": "constraint_type",
+            "type": [
+                "str",
+                "None",
+                "static_frame.core.util.NameType"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "labels",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "num_labels",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "start_tag",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "end_tag",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "labels_with_boundaries",
+            "type": [
+                "list[tuple[typing.Union[int,typing.Text]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "allowed",
+            "type": [
+                "list",
+                "list[tuple[typing.Union[int,typing.Text]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_label_index",
+            "type": [
+                "int",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_label",
+            "type": [
+                "typing.Text",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_tag",
+            "type": [
+                "int",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_entity",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_label_index",
+            "type": [
+                "int",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_label",
+            "type": [
+                "typing.Text",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_tag",
+            "type": [
+                "int",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_entity",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "constraint_type",
+            "type": [
+                "str",
+                "None",
+                "static_frame.core.util.NameType"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "allowed_transitions",
+            "type": [
+                "list[tuple[typing.Union[int,typing.Text]]]"
+            ]
+        }
+    ],
+    "forward@ConditionalRandomField": [
+        {
+            "category": "arg",
+            "name": "inputs",
+            "type": [
+                "torch.Tensor",
+                "torch.ByteTensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tags",
+            "type": [
+                "torch.Tensor",
+                "torch.ByteTensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mask",
+            "type": [
+                "None",
+                "torch.Tensor",
+                "torch.ByteTensor",
+                "torch.BoolTensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mask",
+            "type": [
+                "None",
+                "torch.Tensor",
+                "torch.ByteTensor",
+                "torch.BoolTensor",
+                "int",
+                "list[bool]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tags",
+            "type": [
+                "torch.Tensor",
+                "torch.ByteTensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inputs",
+            "type": [
+                "torch.Tensor",
+                "torch.ByteTensor"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "forward",
+            "type": []
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "VITERBI_DECODING",
+            "type": [
+                "dict",
+                "str",
+                "bool"
+            ]
+        }
+    ],
+    "is_transition_allowed@global": [
+        {
+            "category": "arg",
+            "name": "constraint_type",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "from_tag",
+            "type": [
+                "str",
+                "typing.Container",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "from_entity",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_tag",
+            "type": [
+                "str",
+                "typing.Container",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_entity",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_tag",
+            "type": [
+                "str",
+                "typing.Container",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_tag",
+            "type": [
+                "str",
+                "typing.Container",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_transition_allowed",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "constraint_type",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_entity",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_entity",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "reset_parameters@ConditionalRandomField": [
+        {
+            "category": "return",
+            "name": "reset_parameters",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "viterbi_tags@ConditionalRandomField": [
+        {
+            "category": "arg",
+            "name": "logits",
+            "type": [
+                "float",
+                "torch.Tensor",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mask",
+            "type": [
+                "None",
+                "int",
+                "torch.Tensor",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "top_k",
+            "type": [
+                "None",
+                "torch.Tensor",
+                "typing.Any"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mask",
+            "type": [
+                "None",
+                "int",
+                "torch.Tensor",
+                "float",
+                "list[bool]",
+                "property"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logits",
+            "type": [
+                "float",
+                "torch.Tensor",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "top_k",
+            "type": [
+                "None",
+                "torch.Tensor",
+                "typing.Any",
+                "int",
+                "list",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flatten_output",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_seq_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_tags",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "start_tag",
+            "type": [
+                "int",
+                "float",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "end_tag",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transitions",
+            "type": [
+                "tuple[int]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "constrained_transitions",
+            "type": [
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "best_paths",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tag_sequence",
+            "type": [
+                "list",
+                "list[list[str]]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mask_indices",
+            "type": [
+                "int",
+                "dict[int, tuple[typing.Any]]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "top_k_paths",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "viterbi_tags",
+            "type": []
+        }
+    ]
+}

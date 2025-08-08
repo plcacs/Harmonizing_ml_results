@@ -60,17 +60,50 @@ def rename_functions_in_file(file_path, output_dir):
         with open(file_path, 'r', encoding='utf-8') as f:
             source_code = f.read()
         
-        # Try to parse the source code
+        # Preprocess to handle some common f-string issues
+        def fix_f_strings(code):
+            """Try to fix common f-string parsing issues"""
+            lines = code.split('\n')
+            fixed_lines = []
+            for i, line in enumerate(lines):
+                # Handle problematic f-strings with unmatched parentheses
+                if ('f"' in line or "f'" in line) and line.count('(') != line.count(')'):
+                    # Replace problematic f-strings with regular strings
+                    line = line.replace('f"', '"').replace("f'", "'")
+                    print(f"    - Fixed f-string on line {i+1}: {line.strip()}")
+                fixed_lines.append(line)
+            return '\n'.join(fixed_lines)
+        
+        # Try to parse the source code with different approaches
+        tree = None
         try:
             tree = ast.parse(source_code)
-        except SyntaxError as syntax_error:
-            print(f"  - Syntax error in {file_path.name}: {syntax_error}")
-            print(f"  - Skipping file due to syntax error")
-            # Copy the original file to output directory without changes
-            output_file = os.path.join(output_dir, file_path.name)
-            with open(output_file, 'w', encoding='utf-8') as f:
-                f.write(source_code)
-            return 0
+        except SyntaxError:
+            # Try with fixed f-strings
+            try:
+                fixed_source = fix_f_strings(source_code)
+                tree = ast.parse(fixed_source)
+            except SyntaxError:
+                # Try with a more aggressive f-string fix
+                try:
+                    # Remove all f-string prefixes that might cause issues
+                    aggressive_fixed = source_code.replace('f"', '"').replace("f'", "'")
+                    tree = ast.parse(aggressive_fixed)
+                    print(f"    - Applied aggressive f-string fix")
+                except SyntaxError:
+                    # Try with compile mode to handle some edge cases
+                    try:
+                        compile(source_code, '<string>', 'exec')
+                        # If compile succeeds, try parsing with different mode
+                        tree = ast.parse(source_code, mode='exec')
+                    except SyntaxError as syntax_error:
+                        print(f"  - Syntax error in {file_path.name}: {syntax_error}")
+                        print(f"  - Skipping file due to syntax error")
+                        # Copy the original file to output directory without changes
+                        output_file = os.path.join(output_dir, file_path.name)
+                        with open(output_file, 'w', encoding='utf-8') as f:
+                            f.write(source_code)
+                        return 0
         
         # Create renamer and transform the AST
         renamer = FunctionRenamer()

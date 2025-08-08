@@ -1,0 +1,352 @@
+{
+    "compute_gas_limit@global": [
+        {
+            "category": "arg",
+            "name": "parent_header",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "genesis_gas_limit",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "genesis_gas_limit",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parent_header",
+            "type": [
+                "int",
+                "bytes",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "compute_gas_limit",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "usage_increase",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "compute_gas_limit_bounds@global": [
+        {
+            "category": "arg",
+            "name": "previous_limit",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "previous_limit",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "boundary_range",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upper_bound_inclusive",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lower_bound_inclusive",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "compute_gas_limit_bounds",
+            "type": [
+                "tuple[int]"
+            ]
+        }
+    ],
+    "eth_now@global": [
+        {
+            "category": "return",
+            "name": "eth_now",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "fill_header_params_from_parent@global": [
+        {
+            "category": "arg",
+            "name": "parent",
+            "type": [
+                "bytes",
+                "str",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "gas_limit",
+            "type": [
+                "int",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "difficulty",
+            "type": [
+                "int",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "timestamp",
+            "type": [
+                "int",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "coinbase",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "nonce",
+            "type": [
+                "None",
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "extra_data",
+            "type": [
+                "None",
+                "bytes",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "transaction_root",
+            "type": [
+                "None",
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_root",
+            "type": [
+                "None",
+                "bytes",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mix_hash",
+            "type": [
+                "None",
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "receipt_root",
+            "type": [
+                "None",
+                "bytes",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parent",
+            "type": [
+                "bytes",
+                "str",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_root",
+            "type": [
+                "None",
+                "bytes",
+                "int",
+                "typing.Type",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gas_limit",
+            "type": [
+                "int",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "difficulty",
+            "type": [
+                "int",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timestamp",
+            "type": [
+                "int",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header_kwargs",
+            "type": [
+                "dict[typing.Text, typing.Union[bytes,None,typing.Type,tuple[typing.Any],int,list,str,BlockNumber]]",
+                "dict[typing.Text, typing.Union[bytes,None,typing.Type,tuple[typing.Any],int,list,str,BlockNumber,dict]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nonce",
+            "type": [
+                "None",
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "extra_data",
+            "type": [
+                "None",
+                "bytes",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transaction_root",
+            "type": [
+                "None",
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "receipt_root",
+            "type": [
+                "None",
+                "bytes",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mix_hash",
+            "type": [
+                "None",
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "fill_header_params_from_parent",
+            "type": [
+                "dict[typing.Text, typing.Union[bytes,None,typing.Type,tuple[typing.Any],int,list,str,BlockNumber,dict]]"
+            ]
+        }
+    ],
+    "global@global": [],
+    "new_timestamp_from_parent@global": [
+        {
+            "category": "arg",
+            "name": "parent",
+            "type": [
+                "int",
+                "None",
+                "set[int]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parent",
+            "type": [
+                "int",
+                "None",
+                "set[int]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "new_timestamp_from_parent",
+            "type": [
+                "str",
+                "int",
+                "datetime.time",
+                "None"
+            ]
+        }
+    ]
+}

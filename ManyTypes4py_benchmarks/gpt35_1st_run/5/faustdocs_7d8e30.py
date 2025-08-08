@@ -1,0 +1,78 @@
+def typeify(S: str, type: str) -> str:
+    if type in ('meth', 'func'):
+        return S + '()'
+    return S
+
+def shorten(S: str, newtarget: str, src_dict: dict) -> str:
+    if S.startswith('@-'):
+        return S[2:]
+    elif S.startswith('@'):
+        if src_dict is APPATTRS:
+            return '.'.join(['app', S[1:]])
+        return S[1:]
+    return S
+
+def get_abbr(pre: str, rest: str, type: str, orig: str = None) -> tuple:
+    if pre:
+        for d in (APPATTRS, ABBRS):
+            try:
+                return (d[pre], rest, d)
+            except KeyError:
+                pass
+        raise KeyError('Unknown abbreviation: {0} ({1})'.format('.'.join([pre, rest]) if orig is None else orig, type))
+    else:
+        for d in (APPATTRS, ABBRS):
+            try:
+                return (d[rest], '', d)
+            except KeyError:
+                pass
+    return (ABBR_EMPTY.get(type, DEFAULT_EMPTY), rest, ABBR_EMPTY)
+
+def resolve(S: str, type: str) -> tuple:
+    if '.' not in S:
+        try:
+            getattr(typing, S)
+        except AttributeError:
+            pass
+        else:
+            return ('typing.{0}'.format(S), None)
+    orig = S
+    if S.startswith('@'):
+        S = S.lstrip('@-')
+        try:
+            pre, rest = S.split('.', 1)
+        except ValueError:
+            pre, rest = ('', S)
+        target, rest, src = get_abbr(pre, rest, type, orig)
+        return ('.'.join([target, rest]) if rest else target, src)
+    return (S, None)
+
+def pkg_of(module_fqdn: str) -> str:
+    return module_fqdn.split('.', 1)[0]
+
+def basename(module_fqdn: str) -> str:
+    return module_fqdn.lstrip('@').rsplit('.', -1)[-1]
+
+def modify_textnode(T: str, newtarget: str, node: nodes, src_dict: dict, type: str) -> tuple:
+    src = node.children[0].rawsource
+    return nodes.Text(typeify(basename(T), type) if '~' in src else typeify(shorten(T, newtarget, src_dict), type), src)
+
+def maybe_resolve_abbreviations(app, env, node, contnode):
+    domainname = node.get('refdomain')
+    target = node['reftarget']
+    typ = node['reftype']
+    if target.startswith('@'):
+        newtarget, src_dict = resolve(target, typ)
+        node['reftarget'] = newtarget
+        if len(contnode) and isinstance(contnode[0], nodes.Text):
+            contnode[0] = modify_textnode(target, newtarget, node, src_dict, typ)
+        if domainname:
+            try:
+                domain = env.domains[node.get('refdomain')]
+            except KeyError:
+                raise NoUri
+            return domain.resolve_xref(env, node['refdoc'], app.builder, typ, newtarget, node, contnode)
+
+def setup(app):
+    app.connect('missing-reference', maybe_resolve_abbreviations)
+    app.add_crossref_type(directivename='sig', rolename='sig', indextemplate='pair: %s; sig')

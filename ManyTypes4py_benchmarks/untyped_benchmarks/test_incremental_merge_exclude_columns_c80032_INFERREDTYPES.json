@@ -1,0 +1,298 @@
+{
+    "check_scenario_correctness@BaseMergeExcludeColumns": [
+        {
+            "category": "arg",
+            "name": "expected_fields",
+            "type": [
+                "str",
+                "dict[str, object]",
+                "tuple[dict]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "test_case_fields",
+            "type": [
+                "str",
+                "dict[str, object]",
+                "tuple[dict]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "project",
+            "type": [
+                "str",
+                "typing.Generator[typing.Optional[str]]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "project",
+            "type": [
+                "str",
+                "typing.Generator[typing.Optional[str]]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_fields",
+            "type": [
+                "str",
+                "dict[str, object]",
+                "tuple[dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_case_fields",
+            "type": [
+                "str",
+                "dict[str, object]",
+                "tuple[dict]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_scenario_correctness",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_test_fields@BaseMergeExcludeColumns": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "seed",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "incremental_model",
+            "type": [
+                "bool",
+                "str",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "update_sql_file",
+            "type": [
+                "str",
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "seed",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "seed_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "incremental_model",
+            "type": [
+                "bool",
+                "str",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "relation",
+            "type": [
+                "bool",
+                "str",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "project",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "row_count_query",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "seed_rows",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inc_test_model_count",
+            "type": [
+                "int",
+                "dict",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_test_fields",
+            "type": [
+                "ResultHolder"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "models__merge_exclude_columns_sql",
+            "type": [
+                "typing.Text",
+                "str",
+                "dict[str, str]",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "seeds__expected_merge_exclude_columns_csv",
+            "type": [
+                "typing.Text",
+                "bool",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ResultHolder",
+            "type": [
+                "int",
+                "typing.DefaultDict",
+                "list[int]"
+            ]
+        }
+    ],
+    "models@BaseMergeExcludeColumns": [
+        {
+            "category": "local",
+            "name": "models__merge_exclude_columns_sql",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "models",
+            "type": [
+                "dict[typing.Text, typing.Union[str,dict[str, str],set[str]]]"
+            ]
+        }
+    ],
+    "seeds@BaseMergeExcludeColumns": [
+        {
+            "category": "local",
+            "name": "seeds__expected_merge_exclude_columns_csv",
+            "type": [
+                "bool",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "seeds",
+            "type": [
+                "dict[typing.Text, typing.Union[bool,str,list[str]]]"
+            ]
+        }
+    ],
+    "test__merge_exclude_columns@BaseMergeExcludeColumns": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "expected_fields",
+            "type": [
+                "ResultHolder"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test__merge_exclude_columns",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "update_incremental_model@BaseMergeExcludeColumns": [
+        {
+            "category": "arg",
+            "name": "incremental_model",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "incremental_model",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model_result_set",
+            "type": [
+                "set",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_incremental_model",
+            "type": [
+                "int"
+            ]
+        }
+    ]
+}

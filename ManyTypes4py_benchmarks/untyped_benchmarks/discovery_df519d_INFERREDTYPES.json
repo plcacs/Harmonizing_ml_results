@@ -1,0 +1,566 @@
+{
+    "__init__@ThreadRouterDiscovery": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "router_discovered",
+            "type": [
+                "bool",
+                "str",
+                "annotations.MappingStrStr"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "router_removed",
+            "type": [
+                "bool",
+                "typing.Iterable[object]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_hass",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_aiozc",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "router_discovered",
+            "type": [
+                "bool",
+                "str",
+                "annotations.MappingStrStr"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_router_discovered",
+            "type": [
+                "bool",
+                "str",
+                "annotations.MappingStrStr"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "router_removed",
+            "type": [
+                "bool",
+                "typing.Iterable[object]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_router_removed",
+            "type": [
+                "bool",
+                "typing.Iterable[object]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_service_listener",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@ThreadRouterDiscovery,ThreadServiceListener": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "aiozc",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "router_discovered",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "router_removed",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "_known_routers",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_add_update_service@ThreadRouterDiscovery,ThreadServiceListener": [
+        {
+            "category": "arg",
+            "name": "type_",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "name",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "service",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tries",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_add_update_service",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "xp",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "add_service@ThreadRouterDiscovery,ThreadServiceListener": [
+        {
+            "category": "arg",
+            "name": "zc",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "type_",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "name",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "add_service",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_discovery_data_from_service@global": [
+        {
+            "category": "arg",
+            "name": "service",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ext_addr",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "ext_pan_id",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "service",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "border_agent_id",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unconfigured",
+            "type": [
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "KNOWN_BRANDS",
+            "type": [
+                "list[tuple[str]]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "brand",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_bitmap_b",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_discovery_data_from_service",
+            "type": [
+                "ThreadRouterDiscoveryData"
+            ]
+        }
+    ],
+    "async_read_zeroconf_cache@global": [
+        {
+            "category": "arg",
+            "name": "aiozc",
+            "type": [
+                "collections.abc.Awaitable",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "results",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "THREAD_TYPE",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "None",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TYPE_PTR",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CLASS_IN",
+            "type": [
+                "int",
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "records",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "logging.LogRecord"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "info",
+            "type": [
+                "AsyncServiceInfo"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ex",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "aiozc",
+            "type": [
+                "collections.abc.Awaitable",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "xa",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "xp",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_read_zeroconf_cache",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "async_start@ThreadRouterDiscovery": [
+        {
+            "category": "local",
+            "name": "_service_listener",
+            "type": [
+                "ThreadServiceListener"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "THREAD_TYPE",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_start",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_stop@ThreadRouterDiscovery": [
+        {
+            "category": "local",
+            "name": "_service_listener",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_stop",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "KNOWN_BRANDS",
+            "type": [
+                "dict[typing.Text, typing.Text]",
+                "list[tuple[str]]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "THREAD_TYPE",
+            "type": [
+                "typing.Text",
+                "str",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CLASS_IN",
+            "type": [
+                "int",
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TYPE_PTR",
+            "type": [
+                "int",
+                "str"
+            ]
+        }
+    ],
+    "remove_service@ThreadRouterDiscovery,ThreadServiceListener": [
+        {
+            "category": "arg",
+            "name": "zc",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "type_",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "name",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "remove_service",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "try_decode@global": [
+        {
+            "category": "arg",
+            "name": "value",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "try_decode",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "update_service@ThreadRouterDiscovery,ThreadServiceListener": [
+        {
+            "category": "arg",
+            "name": "zc",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "type_",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "name",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_service",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

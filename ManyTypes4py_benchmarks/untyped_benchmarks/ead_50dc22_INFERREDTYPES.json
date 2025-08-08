@@ -1,0 +1,601 @@
+{
+    "__init__@EADAttack": [
+        {
+            "category": "arg",
+            "name": "binary_search_steps",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "steps",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "initial_stepsize",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "confidence",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "initial_const",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "regularization",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "decision_rule",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "abort_early",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "decision_rule",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "binary_search_steps",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "steps",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "confidence",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initial_stepsize",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "regularization",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initial_const",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "abort_early",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_apply_decision_rule@global": [
+        {
+            "category": "arg",
+            "name": "decision_rule",
+            "type": [
+                "float",
+                "list",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "beta",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "best_advs",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "best_advs_norms",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "x_k",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "x",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "found_advs",
+            "type": [
+                "float",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "decision_rule",
+            "type": [
+                "float",
+                "list",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "beta",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "norms",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "best_advs_norms",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "found_advs",
+            "type": [
+                "float",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "best_advs",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "x_k",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_apply_decision_rule",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "_best_other_classes@global": [
+        {
+            "category": "arg",
+            "name": "logits",
+            "type": [
+                "eagerpy.Tensor",
+                "float",
+                "tuple[bool]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exclude",
+            "type": [
+                "eagerpy.Tensor",
+                "float",
+                "tuple[bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logits",
+            "type": [
+                "eagerpy.Tensor",
+                "float",
+                "tuple[bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exclude",
+            "type": [
+                "eagerpy.Tensor",
+                "float",
+                "tuple[bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "other_logits",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_best_other_classes",
+            "type": [
+                "bool",
+                "set[typing.Match]",
+                "float"
+            ]
+        }
+    ],
+    "_project_shrinkage_thresholding@global": [
+        {
+            "category": "arg",
+            "name": "z",
+            "type": [
+                "float",
+                "eagerpy.Tensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "x0",
+            "type": [
+                "float",
+                "eagerpy.Tensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "regularization",
+            "type": [
+                "float",
+                "eagerpy.Tensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "min_",
+            "type": [
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_",
+            "type": [
+                "float",
+                "eagerpy.Tensor",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "z",
+            "type": [
+                "float",
+                "eagerpy.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "x0",
+            "type": [
+                "float",
+                "eagerpy.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "regularization",
+            "type": [
+                "float",
+                "eagerpy.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upper_mask",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lower_mask",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_",
+            "type": [
+                "float",
+                "eagerpy.Tensor",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_",
+            "type": [
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_project_shrinkage_thresholding",
+            "type": []
+        }
+    ],
+    "global@global": [],
+    "is_adversarial@EADAttack": [
+        {
+            "category": "arg",
+            "name": "perturbed",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "logits",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "is_adversarial",
+            "type": []
+        }
+    ],
+    "loss_fun@EADAttack": [
+        {
+            "category": "arg",
+            "name": "y_k",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "consts",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "loss_fun",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "run@EADAttack": [
+        {
+            "category": "arg",
+            "name": "model",
+            "type": [
+                "models.Model",
+                "criteria.Criterion",
+                "base.T"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "inputs",
+            "type": [
+                "float",
+                "None",
+                "base.T"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "criterion",
+            "type": [
+                "float",
+                "None",
+                "base.T"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "early_stop",
+            "type": [
+                "None",
+                "float",
+                "base.T"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "inputs",
+            "type": [
+                "float",
+                "None",
+                "base.T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "criterion",
+            "type": [
+                "float",
+                "None",
+                "base.T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "criterion_",
+            "type": [
+                "str",
+                "int",
+                "list[str]",
+                "Misclassification",
+                "TargetedMisclassification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "models.Model",
+                "criteria.Criterion",
+                "base.T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "N",
+            "type": [
+                "int",
+                "typing.Callable[None, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "targeted",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rows",
+            "type": [
+                "int",
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "consts",
+            "type": [
+                "int",
+                "list[tuple[typing.Any]]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lower_bounds",
+            "type": [
+                "float",
+                "list",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upper_bounds",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "best_advs_norms",
+            "type": [
+                "float",
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "found_advs",
+            "type": [
+                "str",
+                "int",
+                "typing.Callable[None,None, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stepsize",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "run",
+            "type": []
+        }
+    ]
+}

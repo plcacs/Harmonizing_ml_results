@@ -1,0 +1,17 @@
+def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType = None) -> None:
+    ...
+
+class ArestSensor(SensorEntity):
+    def __init__(self, arest: ArestData, resource: str, location: str, name: str, variable: str = None, pin: str = None, unit_of_measurement: str = None, renderer: callable = None) -> None:
+        ...
+
+    def update(self) -> None:
+        ...
+
+class ArestData:
+    def __init__(self, resource: str, pin: str = None) -> None:
+        ...
+
+    @Throttle(MIN_TIME_BETWEEN_UPDATES)
+    def update(self) -> None:
+        ...

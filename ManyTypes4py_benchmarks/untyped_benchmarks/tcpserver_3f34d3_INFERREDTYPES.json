@@ -1,0 +1,469 @@
+{
+    "__init__@TCPServer": [
+        {
+            "category": "arg",
+            "name": "ssl_options",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "ssl.SSLContext"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_buffer_size",
+            "type": [
+                "None",
+                "int",
+                "typing.Callable[float, None]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "read_chunk_size",
+            "type": [
+                "None",
+                "int",
+                "typing.Callable[float, None]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ssl_options",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "ssl.SSLContext"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_sockets",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_handlers",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_pending_sockets",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_started",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_stopped",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_buffer_size",
+            "type": [
+                "None",
+                "int",
+                "typing.Callable[float, None]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "read_chunk_size",
+            "type": [
+                "None",
+                "int",
+                "typing.Callable[float, None]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_handle_connection@TCPServer": [
+        {
+            "category": "arg",
+            "name": "connection",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "address",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ssl_options",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "err",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_handle_connection",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "SSLIOStream",
+                "IOStream"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "future",
+            "type": [
+                "collections.abc.Awaitable[typing.Any]",
+                "int",
+                "protoactor.actor.process.FutureProcess",
+                "None"
+            ]
+        }
+    ],
+    "add_socket@TCPServer": [
+        {
+            "category": "arg",
+            "name": "socket",
+            "type": [
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "socket",
+            "type": [
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "add_socket",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "add_sockets@TCPServer": [
+        {
+            "category": "arg",
+            "name": "sockets",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "add_sockets",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "bind@TCPServer": [
+        {
+            "category": "arg",
+            "name": "port",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "address",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "family",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "backlog",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "flags",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "reuse_port",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "port",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flags",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reuse_port",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "bind",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [],
+    "handle_stream@TCPServer": [
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": [
+                "tornado.iostream.IOStream",
+                "tuple",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "address",
+            "type": [
+                "tornado.iostream.IOStream",
+                "tuple",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_stream",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "listen@TCPServer": [
+        {
+            "category": "arg",
+            "name": "port",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "address",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "family",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "backlog",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "flags",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "reuse_port",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "port",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flags",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reuse_port",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "listen",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "start@TCPServer": [
+        {
+            "category": "arg",
+            "name": "num_processes",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_restarts",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_started",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_processes",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_restarts",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_pending_sockets",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "start",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "stop@TCPServer": [
+        {
+            "category": "local",
+            "name": "_stopped",
+            "type": [
+                "bool",
+                "list[typing.Optional[bool]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "stop",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

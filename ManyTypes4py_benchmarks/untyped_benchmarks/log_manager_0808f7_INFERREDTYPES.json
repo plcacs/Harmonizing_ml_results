@@ -1,0 +1,286 @@
+{
+    "__init__@LogManager": [
+        {
+            "category": "arg",
+            "name": "n_batches_per_epoch",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "log_writer",
+            "type": [
+                "None",
+                "bool",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "checkpointer",
+            "type": [
+                "None",
+                "int",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "LogManagerConfig"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "n_batches_per_epoch",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log_writer",
+            "type": [
+                "None",
+                "bool",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "checkpointer",
+            "type": [
+                "None",
+                "int",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "point_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "point_total",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_total",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "epoch_count",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "epoch_total",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unit_count",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unit_total",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trigger_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "cleanup@LogManager": [
+        {
+            "category": "arg",
+            "name": "model",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "log_writer",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "checkpointer",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "str",
+                "T",
+                "snorkel.classification.multitask_classifier.MultitaskClassifier"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "cleanup",
+            "type": [
+                "str",
+                "T",
+                "snorkel.classification.multitask_classifier.MultitaskClassifier"
+            ]
+        }
+    ],
+    "global@global": [],
+    "reset@LogManager": [
+        {
+            "category": "local",
+            "name": "point_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "epoch_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unit_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "reset",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "trigger_checkpointing@LogManager": [
+        {
+            "category": "local",
+            "name": "checkpointer",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "trigger_checkpointing",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trigger_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "satisfied",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "trigger_evaluation@LogManager": [
+        {
+            "category": "local",
+            "name": "satisfied",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "trigger_evaluation",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "update@LogManager": [
+        {
+            "category": "arg",
+            "name": "batch_size",
+            "type": [
+                "int",
+                "typing.Deque"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int",
+                "typing.Deque"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

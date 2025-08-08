@@ -1,0 +1,764 @@
+{
+    "__call__@EntityFilter": [
+        {
+            "category": "arg",
+            "name": "entity_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entity_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__call__",
+            "type": [
+                "str",
+                "int",
+                "list[str]"
+            ]
+        }
+    ],
+    "__init__@EntityFilter": [
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "dict",
+                "dict[str, bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "dict",
+                "dict[str, bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "val",
+            "type": [
+                "list[bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "empty_filter",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_INCLUDE_ENTITIES",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_include_e",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_EXCLUDE_ENTITIES",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_exclude_e",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_INCLUDE_DOMAINS",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_include_d",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_EXCLUDE_DOMAINS",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_exclude_d",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_INCLUDE_ENTITY_GLOBS",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_include_eg",
+            "type": [
+                "bool",
+                "set[str]",
+                "frozenset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_EXCLUDE_ENTITY_GLOBS",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_exclude_eg",
+            "type": [
+                "set[str]",
+                "list[str]",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_filter",
+            "type": [
+                "list",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_convert_globs_to_pattern@global": [
+        {
+            "category": "arg",
+            "name": "globs",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "globs",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_convert_globs_to_pattern",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "glob",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "_generate_filter_from_sets_and_pattern_lists@global": [
+        {
+            "category": "arg",
+            "name": "include_d",
+            "type": [
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_e",
+            "type": [
+                "bool",
+                "list",
+                "frozenset"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exclude_d",
+            "type": [
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exclude_e",
+            "type": [
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_eg",
+            "type": [
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exclude_eg",
+            "type": [
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exclude_e",
+            "type": [
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exclude_d",
+            "type": [
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exclude_eg",
+            "type": [
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "have_exclude",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_e",
+            "type": [
+                "bool",
+                "list",
+                "frozenset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_d",
+            "type": [
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_eg",
+            "type": [
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "have_include",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_generate_filter_from_sets_and_pattern_lists",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "convert_filter@global": [
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "convert_filter",
+            "type": [
+                "EntityFilter"
+            ]
+        }
+    ],
+    "convert_include_exclude_filter@global": [
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "dict[str, bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "dict[str, bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include",
+            "type": [
+                "list",
+                "list[str]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exclude",
+            "type": [
+                "list[str]",
+                "dict[str, list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_INCLUDE_DOMAINS",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_INCLUDE_ENTITY_GLOBS",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_INCLUDE_ENTITIES",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_EXCLUDE_DOMAINS",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_EXCLUDE_ENTITY_GLOBS",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_EXCLUDE_ENTITIES",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_ENTITY_GLOBS",
+            "type": [
+                "str",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "convert_include_exclude_filter",
+            "type": [
+                "str",
+                "typing.Iterable[str]"
+            ]
+        }
+    ],
+    "entity_filter_4a@global": [
+        {
+            "category": "arg",
+            "name": "entity_id",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "entity_filter_4a",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "entity_filter_4b@global": [
+        {
+            "category": "arg",
+            "name": "entity_id",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "entity_filter_4b",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "entity_included@global": [
+        {
+            "category": "arg",
+            "name": "entity_id",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "entity_included",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "entity_not_excluded@global": [
+        {
+            "category": "arg",
+            "name": "entity_id",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "entity_not_excluded",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "explicitly_excluded@EntityFilter": [
+        {
+            "category": "arg",
+            "name": "entity_id",
+            "type": [
+                "str",
+                "list[str]",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entity_id",
+            "type": [
+                "str",
+                "list[str]",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "explicitly_excluded",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "explicitly_included@EntityFilter": [
+        {
+            "category": "arg",
+            "name": "entity_id",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entity_id",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "explicitly_included",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "generate_filter@global": [
+        {
+            "category": "arg",
+            "name": "include_domains",
+            "type": [
+                "set[str]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_entities",
+            "type": [
+                "set[str]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exclude_domains",
+            "type": [
+                "set[str]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exclude_entities",
+            "type": [
+                "set[str]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_entity_globs",
+            "type": [
+                "None",
+                "set[str]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exclude_entity_globs",
+            "type": [
+                "None",
+                "set[str]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_domains",
+            "type": [
+                "set[str]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_entities",
+            "type": [
+                "set[str]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exclude_domains",
+            "type": [
+                "set[str]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exclude_entities",
+            "type": [
+                "set[str]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_entity_globs",
+            "type": [
+                "None",
+                "set[str]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exclude_entity_globs",
+            "type": [
+                "None",
+                "set[str]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "generate_filter",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        }
+    ],
+    "get_filter@EntityFilter": [
+        {
+            "category": "return",
+            "name": "get_filter",
+            "type": []
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "CONF_INCLUDE_DOMAINS",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_INCLUDE_ENTITY_GLOBS",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_INCLUDE_ENTITIES",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_EXCLUDE_DOMAINS",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_EXCLUDE_ENTITY_GLOBS",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_EXCLUDE_ENTITIES",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_ENTITY_GLOBS",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "BASE_FILTER_SCHEMA",
+            "type": [
+                "dict[str, str]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "FILTER_SCHEMA",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "INCLUDE_EXCLUDE_FILTER_SCHEMA_INNER",
+            "type": [
+                "bool",
+                "str",
+                "typing.Callable[typing.Any, bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA",
+            "type": [
+                "frozenset",
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "INCLUDE_EXCLUDE_FILTER_SCHEMA",
+            "type": [
+                "list[str]",
+                "bool"
+            ]
+        }
+    ]
+}

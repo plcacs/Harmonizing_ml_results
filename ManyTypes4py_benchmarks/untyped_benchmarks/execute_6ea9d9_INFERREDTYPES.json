@@ -1,0 +1,613 @@
+{
+    "__init__@ExecuteSqlCommand": [
+        {
+            "category": "arg",
+            "name": "execution_context",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "query_dao",
+            "type": [
+                "rotkehlchen.db.settings.DBSettings",
+                "tracim.models.auth.User",
+                "sqlalchemy.orm.Session"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "database_dao",
+            "type": [
+                "db.facade.DBFacade",
+                "sqlalchemy.orm.Session",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "access_validator",
+            "type": [
+                "str",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sql_query_render",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sql_json_executor",
+            "type": [
+                "sqlalchemy.Table",
+                "fastapi.openapi.models.OAuthFlows",
+                "models.LTI1p3Provider"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "execution_context_convertor",
+            "type": [
+                "fastapi.openapi.models.OAuthFlows",
+                "typing.Mapping",
+                "cmk.gui.utils.url_encoder.HTTPVariables"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sqllab_ctas_no_limit_flag",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "log_params",
+            "type": [
+                "None",
+                "typing.Callable",
+                "typing.Mapping",
+                "dict[str, 'LabwareDefinition']"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "execution_context",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_execution_context",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query_dao",
+            "type": [
+                "rotkehlchen.db.settings.DBSettings",
+                "tracim.models.auth.User",
+                "sqlalchemy.orm.Session"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_query_dao",
+            "type": [
+                "rotkehlchen.db.settings.DBSettings",
+                "tracim.models.auth.User",
+                "sqlalchemy.orm.Session"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "database_dao",
+            "type": [
+                "db.facade.DBFacade",
+                "sqlalchemy.orm.Session",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_database_dao",
+            "type": [
+                "db.facade.DBFacade",
+                "sqlalchemy.orm.Session",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "access_validator",
+            "type": [
+                "str",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_access_validator",
+            "type": [
+                "str",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sql_query_render",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_sql_query_render",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sql_json_executor",
+            "type": [
+                "sqlalchemy.Table",
+                "fastapi.openapi.models.OAuthFlows",
+                "models.LTI1p3Provider"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_sql_json_executor",
+            "type": [
+                "sqlalchemy.Table",
+                "fastapi.openapi.models.OAuthFlows",
+                "models.LTI1p3Provider"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "execution_context_convertor",
+            "type": [
+                "fastapi.openapi.models.OAuthFlows",
+                "typing.Mapping",
+                "cmk.gui.utils.url_encoder.HTTPVariables"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_execution_context_convertor",
+            "type": [
+                "fastapi.openapi.models.OAuthFlows",
+                "typing.Mapping",
+                "cmk.gui.utils.url_encoder.HTTPVariables"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sqllab_ctas_no_limit_flag",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_sqllab_ctas_no_limit",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log_params",
+            "type": [
+                "None",
+                "typing.Callable",
+                "typing.Mapping",
+                "dict[str, 'LabwareDefinition']"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_log_params",
+            "type": [
+                "None",
+                "typing.Callable",
+                "typing.Mapping",
+                "dict[str, 'LabwareDefinition']"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_get_the_query_db@ExecuteSqlCommand": [
+        {
+            "category": "local",
+            "name": "mydb",
+            "type": [
+                "int",
+                "list",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_the_query_db",
+            "type": [
+                "int",
+                "list",
+                "dict[str, typing.Any]"
+            ]
+        }
+    ],
+    "_is_required_to_set_limit@ExecuteSqlCommand": [
+        {
+            "category": "return",
+            "name": "_is_required_to_set_limit",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_run_sql_json_exec_from_scratch@ExecuteSqlCommand": [
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "str",
+                "list",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rendered_query",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_run_sql_json_exec_from_scratch",
+            "type": [
+                "str",
+                "int"
+            ]
+        }
+    ],
+    "_save_new_query@ExecuteSqlCommand": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "alerta.database.base.Query",
+                "list['Query']"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "alerta.database.base.Query",
+                "list['Query']"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ex",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_save_new_query",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_set_query_limit@ExecuteSqlCommand": [
+        {
+            "category": "arg",
+            "name": "rendered_query",
+            "type": [
+                "str",
+                "daylighdb.models.User",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rendered_query",
+            "type": [
+                "str",
+                "daylighdb.models.User",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "limits",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_set_query_limit",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_set_query_limit_if_required@ExecuteSqlCommand": [
+        {
+            "category": "arg",
+            "name": "rendered_query",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rendered_query",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_set_query_limit_if_required",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_try_get_existing_query@ExecuteSqlCommand": [
+        {
+            "category": "return",
+            "name": "_try_get_existing_query",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        }
+    ],
+    "_validate_access@ExecuteSqlCommand": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ex",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_validate_access",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_validate_query_db@ExecuteSqlCommand": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "str",
+                "Database",
+                "sqlalchemy.engine.reflection.Inspector"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "database",
+            "type": [
+                "str",
+                "Database",
+                "sqlalchemy.engine.reflection.Inspector"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "database",
+            "type": [
+                "str",
+                "Database",
+                "sqlalchemy.engine.reflection.Inspector"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_validate_query_db",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CommandResult",
+            "type": [
+                "list[tuple[typing.Union[str,typing.Any]]]",
+                "str",
+                "tuple[typing.Union[str,int]]"
+            ]
+        }
+    ],
+    "is_query_handled@ExecuteSqlCommand": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "str",
+                "None",
+                "models.LetterRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "str",
+                "None",
+                "models.LetterRequest"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_query_handled",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "render@SqlQueryRender": [
+        {
+            "category": "arg",
+            "name": "execution_context",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "render",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "run@ExecuteSqlCommand": [
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "str",
+                "dict[str, dict[str, typing.Any]]",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "status",
+            "type": [
+                "str",
+                "int",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "run",
+            "type": [
+                "dict[typing.Text, typing.Union[str,int,tuple[str]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ex",
+            "type": [
+                "Exception"
+            ]
+        }
+    ],
+    "validate@CanAccessQueryValidator": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "list[str]",
+                "str",
+                "triplestore.query.Query"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "validate",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "validate@ExecuteSqlCommand": [
+        {
+            "category": "return",
+            "name": "validate",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

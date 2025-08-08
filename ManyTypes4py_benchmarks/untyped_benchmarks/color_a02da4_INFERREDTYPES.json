@@ -1,0 +1,2581 @@
+{
+    "_clamp@global": [
+        {
+            "category": "arg",
+            "name": "color_component",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "minimum",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "maximum",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "color_component",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "minimum",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "color_component_out",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "maximum",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_clamp",
+            "type": [
+                "int",
+                "float"
+            ]
+        }
+    ],
+    "_get_blue@global": [
+        {
+            "category": "arg",
+            "name": "temperature",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "temperature",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_blue",
+            "type": [
+                "int",
+                "str",
+                "list[int]",
+                "collections.abc.AsyncIterator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blue",
+            "type": [
+                "float"
+            ]
+        }
+    ],
+    "_get_green@global": [
+        {
+            "category": "arg",
+            "name": "temperature",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "temperature",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "green",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_green",
+            "type": [
+                "str",
+                "list[int]",
+                "collections.abc.AsyncIterator"
+            ]
+        }
+    ],
+    "_get_red@global": [
+        {
+            "category": "arg",
+            "name": "temperature",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "temperature",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_red",
+            "type": [
+                "int",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tmp_red",
+            "type": [
+                "float"
+            ]
+        }
+    ],
+    "_white_levels_to_color_temperature@global": [
+        {
+            "category": "arg",
+            "name": "cold",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "warm",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "min_kelvin",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_kelvin",
+            "type": [
+                "float",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_kelvin",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_mireds",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_kelvin",
+            "type": [
+                "float",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_mireds",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "warm",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cold",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "brightness",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_white_levels_to_color_temperature",
+            "type": [
+                "tuple[typing.Union[float,int]]",
+                "tuple[typing.Union[int,int]]"
+            ]
+        }
+    ],
+    "brightness_to_value@global": [
+        {
+            "category": "arg",
+            "name": "low_high_range",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "brightness",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "low_high_range",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "brightness",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "brightness_to_value",
+            "type": [
+                "bool",
+                "str",
+                "tuple[typing.Union[int,float]]"
+            ]
+        }
+    ],
+    "check_point_in_lamps_reach@global": [
+        {
+            "category": "arg",
+            "name": "p",
+            "type": [
+                "tuple[float]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "Gamut",
+            "type": [
+                "tuple[float]",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "v1",
+            "type": [
+                "XYPoint"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "v2",
+            "type": [
+                "XYPoint"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "p",
+            "type": [
+                "tuple[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "q",
+            "type": [
+                "XYPoint"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "t",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_point_in_lamps_reach",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "check_valid_gamut@global": [
+        {
+            "category": "arg",
+            "name": "Gamut",
+            "type": [
+                "int",
+                "tuple[int]",
+                "typing.Callable[int, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "v1",
+            "type": [
+                "XYPoint"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "v2",
+            "type": [
+                "XYPoint"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "not_on_line",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "red_valid",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "green_valid",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blue_valid",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_valid_gamut",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "color_RGB_to_hs@global": [
+        {
+            "category": "arg",
+            "name": "iR",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "iG",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "iB",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iR",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iG",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iB",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "color_RGB_to_hs",
+            "type": [
+                "float",
+                "tuple[float]",
+                "str"
+            ]
+        }
+    ],
+    "color_RGB_to_hsv@global": [
+        {
+            "category": "arg",
+            "name": "iR",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "iG",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "iB",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iR",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iG",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iB",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "color_RGB_to_hsv",
+            "type": [
+                "tuple[float]"
+            ]
+        }
+    ],
+    "color_RGB_to_xy@global": [
+        {
+            "category": "arg",
+            "name": "iR",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "iG",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "iB",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "Gamut",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iR",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iG",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iB",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Gamut",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "color_RGB_to_xy",
+            "type": [
+                "float",
+                "tuple[typing.Union[list[int],int]]",
+                "tuple[int]"
+            ]
+        }
+    ],
+    "color_RGB_to_xy_brightness@global": [
+        {
+            "category": "arg",
+            "name": "iR",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "iG",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "iB",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "Gamut",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iR",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iG",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iB",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "color_RGB_to_xy_brightness",
+            "type": [
+                "tuple[typing.Union[float,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "R",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "B",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "G",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "X",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Y",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Z",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "x",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "y",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "brightness",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Gamut",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "in_reach",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "xy_closest",
+            "type": [
+                "list[int]",
+                "list",
+                "str"
+            ]
+        }
+    ],
+    "color_hs_to_RGB@global": [
+        {
+            "category": "arg",
+            "name": "iH",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "iS",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iH",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iS",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "color_hs_to_RGB",
+            "type": [
+                "list[int]",
+                "float",
+                "tuple[str]"
+            ]
+        }
+    ],
+    "color_hs_to_xy@global": [
+        {
+            "category": "arg",
+            "name": "iH",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "iS",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "Gamut",
+            "type": [
+                "None",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iH",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iS",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Gamut",
+            "type": [
+                "None",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "color_hs_to_xy",
+            "type": [
+                "list[int]",
+                "list[list[float]]"
+            ]
+        }
+    ],
+    "color_hsb_to_RGB@global": [
+        {
+            "category": "arg",
+            "name": "fH",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fS",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fB",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "fS",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fV",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "color_hsb_to_RGB",
+            "type": [
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "g",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "b",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fH",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "f",
+            "type": [
+                "float"
+            ]
+        }
+    ],
+    "color_hsv_to_RGB@global": [
+        {
+            "category": "arg",
+            "name": "iH",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "iS",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "iV",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iH",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iS",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iV",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "color_hsv_to_RGB",
+            "type": [
+                "tuple[int]"
+            ]
+        }
+    ],
+    "color_name_to_rgb@global": [
+        {
+            "category": "arg",
+            "name": "color_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "COLORS",
+            "type": [
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hex_value",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "color_name_to_rgb",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "color_rgb_to_hex@global": [
+        {
+            "category": "arg",
+            "name": "r",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "g",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "b",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "g",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "b",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "color_rgb_to_hex",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "color_rgb_to_rgbw@global": [
+        {
+            "category": "arg",
+            "name": "r",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "g",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "b",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "g",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "b",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "w",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rgbw",
+            "type": [
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "color_rgb_to_rgbw",
+            "type": [
+                "str",
+                "tuple[float]",
+                "int"
+            ]
+        }
+    ],
+    "color_rgb_to_rgbww@global": [
+        {
+            "category": "arg",
+            "name": "r",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "g",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "b",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "min_kelvin",
+            "type": [
+                "float",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_kelvin",
+            "type": [
+                "int",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_kelvin",
+            "type": [
+                "float",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_mireds",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_kelvin",
+            "type": [
+                "int",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_mireds",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mired_range",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mired_midpoint",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "color_temp_kelvin",
+            "type": [
+                "int",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "w_r",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "w_g",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "w_b",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "g",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "b",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "white_level",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rgb",
+            "type": [
+                "tuple[typing.Union[float,float]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rgbww",
+            "type": [
+                "tuple[typing.Union[tuple[typing.Union[float,float]],int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "color_rgb_to_rgbww",
+            "type": [
+                "int",
+                "tuple[float]",
+                "str"
+            ]
+        }
+    ],
+    "color_rgbw_to_rgb@global": [
+        {
+            "category": "arg",
+            "name": "r",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "g",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "b",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "w",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "w",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "g",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "b",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rgb",
+            "type": [
+                "tuple[typing.Union[int,float]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "color_rgbw_to_rgb",
+            "type": [
+                "bool",
+                "str",
+                "float"
+            ]
+        }
+    ],
+    "color_rgbww_to_rgb@global": [
+        {
+            "category": "arg",
+            "name": "r",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "g",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "b",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "cw",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ww",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "min_kelvin",
+            "type": [
+                "int",
+                "float",
+                "typing.Sequence[float]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_kelvin",
+            "type": [
+                "int",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_kelvin",
+            "type": [
+                "int",
+                "float",
+                "typing.Sequence[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_mireds",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_kelvin",
+            "type": [
+                "int",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_mireds",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mired_range",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ww",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cw",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ct_ratio",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "color_temp_mired",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "color_temp_kelvin",
+            "type": [
+                "float",
+                "int",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "w_r",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "w_g",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "w_b",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "white_level",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "g",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "b",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rgb",
+            "type": [
+                "tuple[typing.Union[int,float]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "color_rgbww_to_rgb",
+            "type": [
+                "tuple[float]",
+                "str",
+                "bool"
+            ]
+        }
+    ],
+    "color_temperature_kelvin_to_mired@global": [
+        {
+            "category": "arg",
+            "name": "kelvin_temperature",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "kelvin_temperature",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "color_temperature_kelvin_to_mired",
+            "type": []
+        }
+    ],
+    "color_temperature_mired_to_kelvin@global": [
+        {
+            "category": "arg",
+            "name": "mired_temperature",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mired_temperature",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "color_temperature_mired_to_kelvin",
+            "type": []
+        }
+    ],
+    "color_temperature_to_hs@global": [
+        {
+            "category": "arg",
+            "name": "color_temperature_kelvin",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "color_temperature_kelvin",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "color_temperature_to_hs",
+            "type": [
+                "int",
+                "str",
+                "float"
+            ]
+        }
+    ],
+    "color_temperature_to_rgb@global": [
+        {
+            "category": "arg",
+            "name": "color_temperature_kelvin",
+            "type": [
+                "float",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "color_temperature_kelvin",
+            "type": [
+                "float",
+                "bool",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tmp_internal",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "red",
+            "type": [
+                "tuple[int]",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "green",
+            "type": [
+                "int",
+                "str",
+                "None",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blue",
+            "type": [
+                "tuple[typing.Literal]",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "color_temperature_to_rgb",
+            "type": [
+                "tuple[typing.Union[tuple[int],str,None,int]]"
+            ]
+        }
+    ],
+    "color_temperature_to_rgbww@global": [
+        {
+            "category": "arg",
+            "name": "temperature",
+            "type": [
+                "float",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "brightness",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "min_kelvin",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_kelvin",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_kelvin",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_mireds",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_kelvin",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_mireds",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "temperature",
+            "type": [
+                "float",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mired_range",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "brightness",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cold",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "warm",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "color_temperature_to_rgbww",
+            "type": [
+                "tuple[int]"
+            ]
+        }
+    ],
+    "color_xy_brightness_to_RGB@global": [
+        {
+            "category": "arg",
+            "name": "vX",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "vY",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ibrightness",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "Gamut",
+            "type": [
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Gamut",
+            "type": [
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vX",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vY",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "xy_closest",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ibrightness",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "brightness",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "color_xy_brightness_to_RGB",
+            "type": [
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Y",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "X",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Z",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "g",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "b",
+            "type": [
+                "list[float]",
+                "float",
+                "int"
+            ]
+        }
+    ],
+    "color_xy_to_RGB@global": [
+        {
+            "category": "arg",
+            "name": "vX",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "vY",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "Gamut",
+            "type": [
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vX",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vY",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Gamut",
+            "type": [
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "color_xy_to_RGB",
+            "type": [
+                "int",
+                "str",
+                "list[list[float]]"
+            ]
+        }
+    ],
+    "color_xy_to_hs@global": [
+        {
+            "category": "arg",
+            "name": "vX",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "vY",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "Gamut",
+            "type": [
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vX",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vY",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Gamut",
+            "type": [
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "h",
+            "type": [
+                "float",
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s",
+            "type": [
+                "float",
+                "tuple[typing.Literal]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "float",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "color_xy_to_hs",
+            "type": [
+                "tuple[typing.Union[float,int,list[int],tuple[typing.Literal]]]"
+            ]
+        }
+    ],
+    "color_xy_to_temperature@global": [
+        {
+            "category": "arg",
+            "name": "x",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "y",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "x",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "y",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "n",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "color_xy_to_temperature",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "cross_product@global": [
+        {
+            "category": "arg",
+            "name": "p1",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "p2",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "p1",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "p2",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "cross_product",
+            "type": [
+                "float"
+            ]
+        }
+    ],
+    "get_closest_point_to_line@global": [
+        {
+            "category": "arg",
+            "name": "A",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "B",
+            "type": [
+                "tuple[float]",
+                "pygame.math.Vector2"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "P",
+            "type": [
+                "pygame.math.Vector2"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "P",
+            "type": [
+                "pygame.math.Vector2"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "AP",
+            "type": [
+                "XYPoint"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "B",
+            "type": [
+                "tuple[float]",
+                "pygame.math.Vector2"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "AB",
+            "type": [
+                "XYPoint"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "t",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_closest_point_to_line",
+            "type": [
+                "XYPoint"
+            ]
+        }
+    ],
+    "get_closest_point_to_point@global": [
+        {
+            "category": "arg",
+            "name": "xy_tuple",
+            "type": [
+                "tuple[float]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "Gamut",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "xy_tuple",
+            "type": [
+                "tuple[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "xy_point",
+            "type": [
+                "XYPoint"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Gamut",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_closest_point_to_point",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "get_distance_between_two_points@global": [
+        {
+            "category": "arg",
+            "name": "one",
+            "type": [
+                "float",
+                "typing.Iterable[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "two",
+            "type": [
+                "float",
+                "typing.Iterable[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "one",
+            "type": [
+                "float",
+                "typing.Iterable[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "two",
+            "type": [
+                "float",
+                "typing.Iterable[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_distance_between_two_points",
+            "type": []
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "COLORS",
+            "type": [
+                "dict[typing.Text, RGBColor]",
+                "dict[str, str]"
+            ]
+        }
+    ],
+    "match_max_scale@global": [
+        {
+            "category": "arg",
+            "name": "input_colors",
+            "type": [
+                "tuple",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "output_colors",
+            "type": [
+                "tuple",
+                "list[int]",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "input_colors",
+            "type": [
+                "tuple",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_in",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output_colors",
+            "type": [
+                "tuple",
+                "list[int]",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_out",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factor",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "i",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "match_max_scale",
+            "type": [
+                "tuple[int]"
+            ]
+        }
+    ],
+    "rgb_hex_to_rgb_list@global": [
+        {
+            "category": "arg",
+            "name": "hex_string",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hex_string",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "rgb_hex_to_rgb_list",
+            "type": [
+                "list[int]"
+            ]
+        }
+    ],
+    "rgbww_to_color_temperature@global": [
+        {
+            "category": "arg",
+            "name": "rgbww",
+            "type": [
+                "int",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "min_kelvin",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_kelvin",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rgbww",
+            "type": [
+                "int",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cold",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "warm",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_kelvin",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_kelvin",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "rgbww_to_color_temperature",
+            "type": [
+                "str",
+                "bool"
+            ]
+        }
+    ],
+    "value_to_brightness@global": [
+        {
+            "category": "arg",
+            "name": "low_high_range",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "low_high_range",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "value_to_brightness",
+            "type": [
+                "int"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,640 @@
+{
+    "__init__@Agent": [
+        {
+            "category": "arg",
+            "name": "input_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "output_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "layers",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "layer_width",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "input_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "layer_width",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "layers",
+            "type": [
+                "list",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@PowerSystem": [
+        {
+            "category": "arg",
+            "name": "num_dams",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "depth",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "width",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "year_to_day_ratio",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "constant_to_year_ratio",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "back_to_normal",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "consumption_noise",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_thermal_plants",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_years",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "failure_cost",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_dams",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "losses",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "marginal_costs",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "year_to_day_ratio",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "constant_to_year_ratio",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "back_to_normal",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "consumption_noise",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_thermal_plants",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_years",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "number_of_years",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "failure_cost",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hydro_prod_per_time_step",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "consumption_per_time_step",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "average_consumption",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "thermal_power_capacity",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "thermal_power_prices",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "depth",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "width",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dam_agents",
+            "type": [
+                "list[Agent]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parameter",
+            "type": [
+                "list[tuple[typing.Union[int,typing.Any]]]",
+                "list",
+                "dict[str, float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_simulate_power_system@PowerSystem": [
+        {
+            "category": "arg",
+            "name": "arrays",
+            "type": [
+                "numpy.ndarray",
+                "hypothesis.extra.numpy.Shape",
+                "numpy.random.RandomState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "failure_cost",
+            "type": [
+                "float",
+                "tuple",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dam_agents",
+            "type": [
+                "list",
+                "str",
+                "tuple[typing.Union[typing.Any,typing.Literal]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "arrays",
+            "type": [
+                "numpy.ndarray",
+                "hypothesis.extra.numpy.Shape",
+                "numpy.random.RandomState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "marginal_costs",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_dams",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stocks",
+            "type": [
+                "float",
+                "list[list[int]]",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cost",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_time_steps",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "consumption",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hydro_prod_per_time_step",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "consumption_per_time_step",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "a",
+            "type": [
+                "typing.Text",
+                "typing.Any"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "marginal_cost",
+            "type": [
+                "float",
+                "tuple",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_simulate_power_system",
+            "type": []
+        }
+    ],
+    "block24@PowerSystem": [
+        {
+            "category": "arg",
+            "name": "x",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "block24",
+            "type": [
+                "list[float]"
+            ]
+        }
+    ],
+    "block@PowerSystem": [
+        {
+            "category": "arg",
+            "name": "x",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "step",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "block",
+            "type": [
+                "list[float]"
+            ]
+        }
+    ],
+    "deblock24@PowerSystem": [
+        {
+            "category": "arg",
+            "name": "x",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list[float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "deblock24",
+            "type": [
+                "list[float]"
+            ]
+        }
+    ],
+    "dimension@Agent": [
+        {
+            "category": "return",
+            "name": "dimension",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "get_num_vars@PowerSystem": [
+        {
+            "category": "return",
+            "name": "get_num_vars",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "get_output@Agent": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_output",
+            "type": []
+        }
+    ],
+    "global@global": [],
+    "make_plots@PowerSystem": [
+        {
+            "category": "arg",
+            "name": "filename",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "losses",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_dams",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_hydro_prod_per_ts",
+            "type": [
+                "list[bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "smoothed_losses",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hydro_prod_per_day",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hydro_ts",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hydro_day",
+            "type": [
+                "list[int]",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hydro_hour",
+            "type": [
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "filename",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "make_plots",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "set_parameters@Agent": [
+        {
+            "category": "arg",
+            "name": "weights",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "weights",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "start",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_parameters",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

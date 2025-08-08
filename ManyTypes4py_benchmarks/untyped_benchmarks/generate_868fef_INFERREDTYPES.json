@@ -1,0 +1,907 @@
+{
+    "__init__@Catalog": [
+        {
+            "category": "arg",
+            "name": "columns",
+            "type": [
+                "list[str]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "col",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "columns",
+            "type": [
+                "list[str]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_get_nodes_from_ids@GenerateTask": [
+        {
+            "category": "arg",
+            "name": "manifest",
+            "type": [
+                "str",
+                "bool",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "node_ids",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "selected",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unique_id",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node_ids",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "manifest",
+            "type": [
+                "str",
+                "bool",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_nodes_from_ids",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "_get_selected_source_ids@GenerateTask": [
+        {
+            "category": "local",
+            "name": "source_selector",
+            "type": [
+                "ResourceTypeSelector"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_selected_source_ids",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "add_column@Catalog": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "dict[str, typing.Any]",
+                "typing.Mapping",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[str, typing.Any]",
+                "typing.Mapping",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "table",
+            "type": [
+                "list",
+                "dict[str, str]",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "add_column",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "build_catalog_table@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metadata",
+            "type": [
+                "dict[str, typing.Union[list,str]]",
+                "dict",
+                "typing.MutableMapping"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stats",
+            "type": [
+                "dict",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "build_catalog_table",
+            "type": [
+                "CatalogTable"
+            ]
+        }
+    ],
+    "format_stats@global": [
+        {
+            "category": "arg",
+            "name": "stats",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stats_collector",
+            "type": [
+                "dict",
+                "dict[str, ]",
+                "dict[typing.Text, StatsItem]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stats",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "base_keys",
+            "type": [
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dct",
+            "type": [
+                "dict[typing.Text, str]",
+                "dict[typing.Text, typing.Union[str,typing.Any,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subkey",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "has_stats",
+            "type": [
+                "StatsItem"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "format_stats",
+            "type": [
+                "dict[typing.Text, StatsItem]"
+            ]
+        }
+    ],
+    "get_catalog_results@GenerateTask": [
+        {
+            "category": "arg",
+            "name": "nodes",
+            "type": [
+                "list[str]",
+                "object",
+                "Manifest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sources",
+            "type": [
+                "list[str]",
+                "object",
+                "Manifest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "generated_at",
+            "type": [
+                "list[str]",
+                "object",
+                "Manifest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "compile_results",
+            "type": [
+                "list[str]",
+                "object",
+                "Manifest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "errors",
+            "type": [
+                "list[str]",
+                "object",
+                "Manifest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "generated_at",
+            "type": [
+                "list[str]",
+                "object",
+                "Manifest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nodes",
+            "type": [
+                "list[str]",
+                "object",
+                "Manifest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sources",
+            "type": [
+                "list[str]",
+                "object",
+                "Manifest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "compile_results",
+            "type": [
+                "list[str]",
+                "object",
+                "Manifest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "errors",
+            "type": [
+                "list[str]",
+                "object",
+                "Manifest"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_catalog_results",
+            "type": []
+        }
+    ],
+    "get_node_selector@GenerateTask": [
+        {
+            "category": "return",
+            "name": "get_node_selector",
+            "type": [
+                "ResourceTypeSelector"
+            ]
+        }
+    ],
+    "get_stripped_prefix@global": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prefix",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prefix",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cut",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k",
+            "type": [
+                "tuple[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "v",
+            "type": [
+                "tuple[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_stripped_prefix",
+            "type": [
+                "dict[typing.Union[str,typing.Any], tuple[typing.Union[str,typing.Any]]]"
+            ]
+        }
+    ],
+    "get_table@Catalog": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "dict",
+                "PrimitiveDict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict",
+                "PrimitiveDict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "database",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "dict[str, dict[str, typing.Any]]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dkey",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "CatalogKey"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exc",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "table",
+            "type": [
+                "set",
+                "dict",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "self",
+            "type": [
+                "Catalog"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_table",
+            "type": [
+                "set",
+                "dict",
+                "dict[str, int]"
+            ]
+        }
+    ],
+    "get_unique_id_mapping@global": [
+        {
+            "category": "arg",
+            "name": "manifest",
+            "type": [
+                "dbcontracts.graph.manifesManifest",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node_map",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_map",
+            "type": [
+                "dict",
+                "dict[, set]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_unique_id_mapping",
+            "type": [
+                "tuple[dict[, set]]"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "CATALOG_FILENAME",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        }
+    ],
+    "interpret_results@GenerateTask": [
+        {
+            "category": "arg",
+            "name": "results",
+            "type": [
+                "dict",
+                "bool",
+                "list[tuple[dict]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "results",
+            "type": [
+                "dict",
+                "bool",
+                "list[tuple[dict]]",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "interpret_results",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "compile_results",
+            "type": [
+                "None",
+                "str",
+                "dict[str, list[typing.Any]]",
+                "dict"
+            ]
+        }
+    ],
+    "make_unique_id_map@Catalog": [
+        {
+            "category": "arg",
+            "name": "manifest",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "selected_node_ids",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nodes",
+            "type": [
+                "dict",
+                "dict[typing.Union[str,typing.Any], ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sources",
+            "type": [
+                "dict",
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "manifest",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node_map",
+            "type": [
+                "dict[tuple[int], str]",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_map",
+            "type": [
+                "dict[str, str]",
+                "dict",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unique_id",
+            "type": [
+                "str",
+                "typing.Any",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "selected_node_ids",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unique_ids",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "make_unique_id_map",
+            "type": [
+                "tuple[dict[typing.Union[str,typing.Any], ]]"
+            ]
+        }
+    ],
+    "mapping_key@global": [
+        {
+            "category": "arg",
+            "name": "node",
+            "type": [
+                "mypy.nodes.MypyFile",
+                "dbcontracts.graph.compiled.CompileResultNode",
+                "yaml.nodes.Node"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node",
+            "type": [
+                "mypy.nodes.MypyFile",
+                "dbcontracts.graph.compiled.CompileResultNode",
+                "yaml.nodes.Node"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dkey",
+            "type": [
+                "str",
+                "dict",
+                "system.machines.machine.Machine"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "mapping_key",
+            "type": [
+                "CatalogKey"
+            ]
+        }
+    ],
+    "run@GenerateTask": [
+        {
+            "category": "local",
+            "name": "compile_results",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "run",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "to_asset_path",
+            "type": [
+                "str",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "manifest",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "selected_node_ids",
+            "type": [
+                "None",
+                "set",
+                "set[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exceptions",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "relations",
+            "type": [
+                "None",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "job_queue",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "selected_nodes",
+            "type": [
+                "list[data_platform.datasource.abc.graph.NodeKeyPair]",
+                "list",
+                "list[typing.Union[data_platform.datasource.abc.graph.NodeKeyPair,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "selected_source_ids",
+            "type": [
+                "set[int]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "selected_source_nodes",
+            "type": [
+                "list",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node",
+            "type": [
+                "data_platform.datasource.abc.graph.NodeKeyPair",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "catalogable_nodes",
+            "type": [
+                "typing.Any",
+                "jinja2.nodes.Not"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "used_schemas",
+            "type": [
+                "bool",
+                "dict[str, bool]",
+                "typing.DefaultDict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "catalog_data",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "catalog",
+            "type": [
+                "Catalog"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "errors",
+            "type": [
+                "None",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nodes",
+            "type": [
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sources",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CATALOG_FILENAME",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "catalog_path",
+            "type": [
+                "str",
+                "list[str]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "read_manifest_data",
+            "type": [
+                "dict[str, typing.Union[int,str]]",
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "read_catalog_data",
+            "type": [
+                "list[dict[str, typing.Any]]",
+                "str",
+                "None",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "static_index_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "static_index_file",
+            "type": [
+                "typing.IO"
+            ]
+        }
+    ]
+}

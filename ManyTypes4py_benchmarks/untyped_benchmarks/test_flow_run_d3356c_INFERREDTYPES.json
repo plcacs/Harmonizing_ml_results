@@ -1,0 +1,1160 @@
+{
+    "assert_flow_run_is_deleted@global": [
+        {
+            "category": "arg",
+            "name": "prefect_client",
+            "type": [
+                "str",
+                "dict[str, dict[str, str]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "flow_run_id",
+            "type": [
+                "str",
+                "dict[str, dict[str, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prefect_client",
+            "type": [
+                "str",
+                "dict[str, dict[str, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run_id",
+            "type": [
+                "str",
+                "dict[str, dict[str, str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "assert_flow_run_is_deleted",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "assert_flow_run_is_deleted_sync@global": [
+        {
+            "category": "arg",
+            "name": "prefect_client",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "flow_run_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prefect_client",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "assert_flow_run_is_deleted_sync",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "assert_flow_runs_in_result@global": [
+        {
+            "category": "arg",
+            "name": "result",
+            "type": [
+                "str",
+                "bool",
+                "typing.MutableSequence"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "unexpected",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id_start",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unexpected",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "assert_flow_runs_in_result",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "completed_flow_run@global": [
+        {
+            "category": "arg",
+            "name": "prefect_client",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "completed_flow_run",
+            "type": []
+        }
+    ],
+    "create_flow_run@global": [
+        {
+            "category": "arg",
+            "name": "num_logs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "logs",
+            "type": [
+                "list[LogCreate]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_flow_run",
+            "type": []
+        }
+    ],
+    "flow_run_factory@global": [
+        {
+            "category": "arg",
+            "name": "prefect_client",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "flow_run_factory",
+            "type": []
+        }
+    ],
+    "global@global": [],
+    "goodbye_flow@global": [
+        {
+            "category": "return",
+            "name": "goodbye_flow",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "hello_flow@global": [
+        {
+            "category": "return",
+            "name": "hello_flow",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "late_flow_run@global": [
+        {
+            "category": "arg",
+            "name": "prefect_client",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "late_flow_run",
+            "type": []
+        }
+    ],
+    "running_flow_run@global": [
+        {
+            "category": "arg",
+            "name": "prefect_client",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "running_flow_run",
+            "type": []
+        }
+    ],
+    "scheduled_flow_run@global": [
+        {
+            "category": "arg",
+            "name": "prefect_client",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "scheduled_flow_run",
+            "type": []
+        }
+    ],
+    "test_cancelling_terminal_states_exits_with_error@TestCancelFlowRun": [
+        {
+            "category": "arg",
+            "name": "prefect_client",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "before",
+            "type": [
+                "typing.Iterator",
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_cancelling_terminal_states_exits_with_error",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_default_head_returns_default_num_logs@TestFlowRunLogs": [
+        {
+            "category": "arg",
+            "name": "flow_run_factory",
+            "type": [
+                "typing.Callable",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_default_head_returns_default_num_logs",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_default_tail_returns_default_num_logs@TestFlowRunLogs": [
+        {
+            "category": "arg",
+            "name": "flow_run_factory",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_default_tail_returns_default_num_logs",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_delete_flow_run_fails_correctly@global": [
+        {
+            "category": "local",
+            "name": "missing_flow_run_id",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_delete_flow_run_fails_correctly",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_delete_flow_run_succeeds@global": [
+        {
+            "category": "arg",
+            "name": "sync_prefect_client",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "flow_run",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_delete_flow_run_succeeds",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_execute_flow_run_via_argument@TestFlowRunExecute": [
+        {
+            "category": "arg",
+            "name": "prefect_client",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "deployment_id",
+            "type": [
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_execute_flow_run_via_argument",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_execute_flow_run_via_environment_variable@TestFlowRunExecute": [
+        {
+            "category": "arg",
+            "name": "prefect_client",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "monkeypatch",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_execute_flow_run_via_environment_variable",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_h_and_n_shortcuts_for_head_and_num_logs@TestFlowRunLogs": [
+        {
+            "category": "arg",
+            "name": "flow_run_factory",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_h_and_n_shortcuts_for_head_and_num_logs",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_ls_flow_name_filter@global": [
+        {
+            "category": "arg",
+            "name": "scheduled_flow_run",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "completed_flow_run",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "running_flow_run",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "late_flow_run",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "dict[str, str]",
+                "dict",
+                "click.testing.Result"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "running_flow_run",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "late_flow_run",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scheduled_flow_run",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "completed_flow_run",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_ls_flow_name_filter",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_ls_limit@global": [
+        {
+            "category": "arg",
+            "name": "scheduled_flow_run",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "completed_flow_run",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "running_flow_run",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "late_flow_run",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "found_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scheduled_flow_run",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "completed_flow_run",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "running_flow_run",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "late_flow_run",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id_start",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_ls_limit",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_ls_no_args@global": [
+        {
+            "category": "arg",
+            "name": "scheduled_flow_run",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "completed_flow_run",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "running_flow_run",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "late_flow_run",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "types.R",
+                "click.testing.Result",
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_ls_no_args",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_ls_state_name_filter@global": [
+        {
+            "category": "arg",
+            "name": "scheduled_flow_run",
+            "type": [
+                "dict",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "completed_flow_run",
+            "type": [
+                "dict",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "running_flow_run",
+            "type": [
+                "dict",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "late_flow_run",
+            "type": [
+                "dict",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_name",
+            "type": [
+                "str",
+                "bool",
+                "flask.testing.FlaskClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_name",
+            "type": [
+                "str",
+                "bool",
+                "flask.testing.FlaskClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "str",
+                "typing.Generator[typing.Optional[typing.Any]]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "late_flow_run",
+            "type": [
+                "dict",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "running_flow_run",
+            "type": [
+                "dict",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scheduled_flow_run",
+            "type": [
+                "dict",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "completed_flow_run",
+            "type": [
+                "dict",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_ls_state_name_filter",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_ls_state_name_filter_unofficial_state_warns@global": [
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_ls_state_name_filter_unofficial_state_warns",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_ls_state_type_filter@global": [
+        {
+            "category": "arg",
+            "name": "scheduled_flow_run",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "completed_flow_run",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "running_flow_run",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "late_flow_run",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_type_1",
+            "type": [
+                "bool",
+                "typing.Collection",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_type_2",
+            "type": [
+                "bool",
+                "typing.Collection",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_type_1",
+            "type": [
+                "bool",
+                "typing.Collection",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_type_2",
+            "type": [
+                "bool",
+                "typing.Collection",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list[str]",
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "running_flow_run",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "completed_flow_run",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scheduled_flow_run",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "late_flow_run",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_ls_state_type_filter",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_ls_state_type_filter_invalid_raises@global": [
+        {
+            "category": "return",
+            "name": "test_ls_state_type_filter_invalid_raises",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_non_terminal_states_set_to_cancelling@TestCancelFlowRun": [
+        {
+            "category": "arg",
+            "name": "prefect_client",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "before",
+            "type": [
+                "typing.Iterator",
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_non_terminal_states_set_to_cancelling",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_num_logs_passed_standalone_returns_num_logs@TestFlowRunLogs": [
+        {
+            "category": "arg",
+            "name": "flow_run_factory",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_num_logs_passed_standalone_returns_num_logs",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_passing_head_and_tail_raises@TestFlowRunLogs": [
+        {
+            "category": "arg",
+            "name": "flow_run_factory",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_passing_head_and_tail_raises",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_reverse_tail_returns_default_num_logs@TestFlowRunLogs": [
+        {
+            "category": "arg",
+            "name": "flow_run_factory",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_reverse_tail_returns_default_num_logs",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_reverse_tail_with_num_logs@TestFlowRunLogs": [
+        {
+            "category": "arg",
+            "name": "flow_run_factory",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_reverse_tail_with_num_logs",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_scheduled_states_set_to_cancelled@TestCancelFlowRun": [
+        {
+            "category": "arg",
+            "name": "prefect_client",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "before",
+            "type": [
+                "typing.Iterator",
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_scheduled_states_set_to_cancelled",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_when_flow_run_not_found_then_exit_with_error@TestFlowRunLogs": [
+        {
+            "category": "arg",
+            "name": "flow_run_factory",
+            "type": [
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bad_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_when_flow_run_not_found_then_exit_with_error",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_when_num_logs_greater_than_page_size_then_pagination@TestFlowRunLogs": [
+        {
+            "category": "arg",
+            "name": "flow_run_factory",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_when_num_logs_greater_than_page_size_then_pagination",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_when_num_logs_greater_than_page_size_with_head_outputs_correct_num_logs@TestFlowRunLogs": [
+        {
+            "category": "arg",
+            "name": "flow_run_factory",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_when_num_logs_greater_than_page_size_with_head_outputs_correct_num_logs",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_when_num_logs_greater_than_page_size_with_head_then_pagination@TestFlowRunLogs": [
+        {
+            "category": "arg",
+            "name": "flow_run_factory",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_when_num_logs_greater_than_page_size_with_head_then_pagination",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_when_num_logs_greater_than_page_size_with_tail_outputs_correct_num_logs@TestFlowRunLogs": [
+        {
+            "category": "arg",
+            "name": "flow_run_factory",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_logs",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run",
+            "type": [
+                "typing.Callable[None,None,None,None,None, None]",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_when_num_logs_greater_than_page_size_with_tail_outputs_correct_num_logs",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_when_num_logs_is_smaller_than_one_then_exit_with_error@TestFlowRunLogs": [
+        {
+            "category": "arg",
+            "name": "flow_run_factory",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_when_num_logs_is_smaller_than_one_then_exit_with_error",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_when_num_logs_passed_with_reverse_param_and_num_logs@TestFlowRunLogs": [
+        {
+            "category": "arg",
+            "name": "flow_run_factory",
+            "type": [
+                "bool",
+                "\"GraphLogger\"",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_when_num_logs_passed_with_reverse_param_and_num_logs",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_when_num_logs_smaller_than_page_size_then_no_pagination@TestFlowRunLogs": [
+        {
+            "category": "arg",
+            "name": "flow_run_factory",
+            "type": [
+                "bool",
+                "typing.Callable[pydcop.computations_graph.objects.ComputationNode,str, float]",
+                "pydcop.computations_graph.objects.ComputationGraph"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run",
+            "type": [
+                "int",
+                "set",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_when_num_logs_smaller_than_page_size_then_no_pagination",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_when_num_logs_smaller_than_page_size_with_head_then_no_pagination@TestFlowRunLogs": [
+        {
+            "category": "arg",
+            "name": "flow_run_factory",
+            "type": [
+                "typing.Callable[pydcop.computations_graph.objects.ComputationNode,str, float]",
+                "pydcop.computations_graph.objects.ComputationGraph",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_when_num_logs_smaller_than_page_size_with_head_then_no_pagination",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_wrong_id_exits_with_error@TestCancelFlowRun": [
+        {
+            "category": "local",
+            "name": "bad_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_wrong_id_exits_with_error",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

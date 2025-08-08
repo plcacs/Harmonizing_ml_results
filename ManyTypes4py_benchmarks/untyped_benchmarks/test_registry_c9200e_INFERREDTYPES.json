@@ -1,0 +1,472 @@
+{
+    "global@global": [
+        {
+            "category": "local",
+            "name": "USER1",
+            "type": [
+                "User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ACCOUNT1",
+            "type": [
+                "Account",
+                "dict[str, float]",
+                "dict[str, dict]",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ACCOUNT1_JSON",
+            "type": [
+                "str",
+                "typing.Type",
+                "dict[str, dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ACCOUNT1_UNBLESSED",
+            "type": [
+                "list[str]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ACCOUNT1_UNBLESSED_JSON",
+            "type": [
+                "dict[str, dict]",
+                "dict[str, typing.Union[None,typing.Any,bool]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ACCOUNT1_EXTRA_FIELDS",
+            "type": [
+                "dict[str, str]",
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ACCOUNT1_EXTRA_FIELDS_JSON",
+            "type": [
+                "str",
+                "dict[str, typing.Union[None,typing.Any]]",
+                "dict[str, typing.Union[None,float,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "USER2",
+            "type": [
+                "User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ACCOUNT2",
+            "type": [
+                "Account"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ACCOUNT2_JSON",
+            "type": [
+                "str",
+                "typing.Type",
+                "dict[str, dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "NONFAUST",
+            "type": [
+                "dict[typing.Text, typing.Union[typing.Text,int,float,list[int],dict[typing.Text, int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "A_BYTE_STR",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "A_STR_STR",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VALUE_TESTS",
+            "type": [
+                "list[Case]"
+            ]
+        }
+    ],
+    "test_dumps_value__bytes@global": [
+        {
+            "category": "arg",
+            "name": "app",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_dumps_value__bytes",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_loads_key@global": [
+        {
+            "category": "arg",
+            "name": "payload",
+            "type": [
+                "str",
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "typ",
+            "type": [
+                "str",
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "serializer",
+            "type": [
+                "str",
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected",
+            "type": [
+                "str",
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "app",
+            "type": [
+                "str",
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_loads_key",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_loads_key__expected_model_received_None@global": [
+        {
+            "category": "arg",
+            "name": "app",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_loads_key__expected_model_received_None",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_loads_key__propagates_MemoryError@global": [
+        {
+            "category": "arg",
+            "name": "app",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "app_",
+            "type": [
+                "Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ACCOUNT1_JSON",
+            "type": [
+                "str",
+                "typing.Type",
+                "dict[str, dict]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_loads_key__propagates_MemoryError",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_loads_key_missing_key_raises_error@global": [
+        {
+            "category": "arg",
+            "name": "app",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "ACCOUNT1",
+            "type": [
+                "dict[str, float]",
+                "dict[str, dict]",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "account",
+            "type": [
+                "rotkehlchen.db.utils.BlockchainAccounts"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_loads_key_missing_key_raises_error",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_loads_value@global": [
+        {
+            "category": "arg",
+            "name": "payload",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "typ",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "serializer",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "expected",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "app",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_loads_value",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_loads_value__expected_model_received_None@global": [
+        {
+            "category": "arg",
+            "name": "app",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_loads_value__expected_model_received_None",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_loads_value__propagates_MemoryError@global": [
+        {
+            "category": "arg",
+            "name": "app",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "app_",
+            "type": [
+                "Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ACCOUNT1_JSON",
+            "type": [
+                "str",
+                "typing.Type",
+                "dict[str, dict]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_loads_value__propagates_MemoryError",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_loads_value_missing_key_raises_error@global": [
+        {
+            "category": "arg",
+            "name": "app",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "ACCOUNT1",
+            "type": [
+                "dict[str, float]",
+                "dict[str, dict]",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "account",
+            "type": [
+                "rotkehlchen.db.utils.BlockchainAccounts"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_loads_value_missing_key_raises_error",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_prepare_payload@global": [
+        {
+            "category": "arg",
+            "name": "typ",
+            "type": [
+                "typing.Callable",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "typing.Callable",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_value",
+            "type": [
+                "typing.Callable",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "app",
+            "type": [
+                "typing.Callable",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "typ",
+            "type": [
+                "typing.Callable",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "typing.Callable",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_value",
+            "type": [
+                "typing.Callable",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_prepare_payload",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_serializer_type@global": [
+        {
+            "category": "arg",
+            "name": "typ",
+            "type": [
+                "typing.Callable",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "alt",
+            "type": [
+                "typing.Callable",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected",
+            "type": [
+                "typing.Callable",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "app",
+            "type": [
+                "typing.Callable",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_serializer_type",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,652 @@
+{
+    "__init__@PyTorchModelTrainer": [
+        {
+            "category": "arg",
+            "name": "model",
+            "type": [
+                "typing.Iterable[allennlp.data.instance.Instance]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "optimizer",
+            "type": [
+                "typing.Iterable[allennlp.data.instance.Instance]",
+                "float",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "criterion",
+            "type": [
+                "pandas.DataFrame",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "device",
+            "type": [
+                "typing.Iterable[allennlp.data.instance.Instance]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "data_convertor",
+            "type": [
+                "str",
+                "list[str]",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "model_meta_data",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "window_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tb_logger",
+            "type": [
+                "None",
+                "bool",
+                "str",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "typing.Iterable[allennlp.data.instance.Instance]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "optimizer",
+            "type": [
+                "typing.Iterable[allennlp.data.instance.Instance]",
+                "float",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "criterion",
+            "type": [
+                "pandas.DataFrame",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model_meta_data",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "typing.Iterable[allennlp.data.instance.Instance]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_convertor",
+            "type": [
+                "str",
+                "list[str]",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "window_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tb_logger",
+            "type": [
+                "None",
+                "bool",
+                "str",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_batch_counter",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "calc_n_epochs@PyTorchModelTrainer": [
+        {
+            "category": "arg",
+            "name": "n_obs",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "n_obs",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "n_batches",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "n_epochs",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "calc_n_epochs",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "create_data_loaders_dictionary@PyTorchModelTrainer": [
+        {
+            "category": "arg",
+            "name": "data_dictionary",
+            "type": [
+                "pandas.DataFrame",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "splits",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_loader_dictionary",
+            "type": [
+                "dict",
+                "dict[str, DataLoader]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "split",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "splits",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_dictionary",
+            "type": [
+                "pandas.DataFrame",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "x",
+            "type": [
+                "int",
+                "str",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "y",
+            "type": [
+                "int",
+                "str",
+                "typing.Callable[None, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataset",
+            "type": [
+                "TensorDataset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_loader",
+            "type": [
+                "DataLoader"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_data_loaders_dictionary",
+            "type": [
+                "dict[str, DataLoader]"
+            ]
+        }
+    ],
+    "create_data_loaders_dictionary@PyTorchTransformerTrainer": [
+        {
+            "category": "arg",
+            "name": "data_dictionary",
+            "type": [
+                "pandas.DataFrame",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "splits",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_loader_dictionary",
+            "type": [
+                "dict",
+                "dict[str, DataLoader]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "split",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "splits",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_dictionary",
+            "type": [
+                "pandas.DataFrame",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "x",
+            "type": [
+                "int",
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "y",
+            "type": [
+                "str",
+                "list",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataset",
+            "type": [
+                "WindowDataset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_loader",
+            "type": [
+                "DataLoader"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_data_loaders_dictionary",
+            "type": [
+                "dict[str, DataLoader]"
+            ]
+        }
+    ],
+    "estimate_loss@PyTorchModelTrainer": [
+        {
+            "category": "arg",
+            "name": "data_loader_dictionary",
+            "type": [
+                "pandas.DataFrame",
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "split",
+            "type": [
+                "pandas.DataFrame",
+                "torch.nn.Module",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_data",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_loader_dictionary",
+            "type": [
+                "pandas.DataFrame",
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "split",
+            "type": [
+                "pandas.DataFrame",
+                "torch.nn.Module",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "xb",
+            "type": [
+                "int",
+                "float",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "yb",
+            "type": [
+                "int",
+                "tuple",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "estimate_loss",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "fit@PyTorchModelTrainer": [
+        {
+            "category": "arg",
+            "name": "data_dictionary",
+            "type": [
+                "pandas.DataFrame",
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "splits",
+            "type": [
+                "torch.Tensor",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_dictionary",
+            "type": [
+                "pandas.DataFrame",
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "splits",
+            "type": [
+                "torch.Tensor",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_loaders_dictionary",
+            "type": [
+                "dict",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "n_obs",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "n_epochs",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_counter",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_data",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "xb",
+            "type": [
+                "int",
+                "float",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "yb",
+            "type": [
+                "int",
+                "tuple",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "fit",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "load@PyTorchModelTrainer": [
+        {
+            "category": "arg",
+            "name": "path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load",
+            "type": []
+        }
+    ],
+    "load_from_checkpoint@PyTorchModelTrainer": [
+        {
+            "category": "arg",
+            "name": "checkpoint",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "checkpoint",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model_meta_data",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_from_checkpoint",
+            "type": [
+                "PyTorchModelTrainer"
+            ]
+        }
+    ],
+    "save@PyTorchModelTrainer": [
+        {
+            "category": "arg",
+            "name": "path",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "pandas.Series"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "pandas.Series"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "save",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

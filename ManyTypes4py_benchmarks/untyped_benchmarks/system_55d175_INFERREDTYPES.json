@@ -1,0 +1,899 @@
+{
+    "__call__@Create": [
+        {
+            "category": "arg",
+            "name": "computation",
+            "type": [
+                "eth.abc.ComputationAPI",
+                "eth.vm.computation.BaseComputation"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "eth.abc.ComputationAPI",
+                "eth.vm.computation.BaseComputation"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stack_data",
+            "type": [
+                "dict",
+                "list",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gas_cost",
+            "type": [
+                "int",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation_",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "storage_address_balance",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "insufficient_funds",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stack_too_deep",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nonce_too_high",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__call__",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "create_msg_gas",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_collision",
+            "type": [
+                "bool",
+                "str",
+                "bytes"
+            ]
+        }
+    ],
+    "__call__@CreateByzantium": [
+        {
+            "category": "arg",
+            "name": "computation",
+            "type": [
+                "eth.abc.ComputationAPI",
+                "eth.vm.computation.BaseComputation"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "eth.abc.ComputationAPI",
+                "eth.vm.computation.BaseComputation"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__call__",
+            "type": [
+                "typing.Callable",
+                "tuple[typing.Union[str,int]]",
+                "eth.abc.ComputationAPI"
+            ]
+        }
+    ],
+    "__init__@CreateOpcodeStackData": [
+        {
+            "category": "arg",
+            "name": "endowment",
+            "type": [
+                "str",
+                "bytes",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "memory_start",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "memory_length",
+            "type": [
+                "int",
+                "bytearray"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "salt",
+            "type": [
+                "None",
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "endowment",
+            "type": [
+                "str",
+                "bytes",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "memory_start",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "memory_length",
+            "type": [
+                "int",
+                "bytearray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "salt",
+            "type": [
+                "None",
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_selfdestruct@global": [
+        {
+            "category": "arg",
+            "name": "computation",
+            "type": [
+                "eth.vm.computation.BaseComputation",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "beneficiary",
+            "type": [
+                "eth.vm.computation.BaseComputation",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "local_balance",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "beneficiary",
+            "type": [
+                "eth.vm.computation.BaseComputation",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "beneficiary_balance",
+            "type": [
+                "int",
+                "metrics_backend.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "eth.vm.computation.BaseComputation",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_selfdestruct",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "apply_create_message@Create": [
+        {
+            "category": "arg",
+            "name": "computation",
+            "type": [
+                "eth.abc.MessageAPI",
+                "eth.abc.ComputationAPI",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "child_msg",
+            "type": [
+                "bytes",
+                "dict[str, typing.Any]",
+                "eth.vm.computation.BaseComputation"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "eth.abc.MessageAPI",
+                "eth.abc.ComputationAPI",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "child_msg",
+            "type": [
+                "bytes",
+                "dict[str, typing.Any]",
+                "eth.vm.computation.BaseComputation"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "child_computation",
+            "type": [
+                "int",
+                "eth.abc.ComputationAPI",
+                "typing.Generator[typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "apply_create_message",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "apply_create_message@Create2": [
+        {
+            "category": "arg",
+            "name": "computation",
+            "type": [
+                "eth.abc.MessageAPI",
+                "eth.abc.ComputationAPI",
+                "Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "child_msg",
+            "type": [
+                "eth.abc.ComputationAPI",
+                "bytes",
+                "eth.abc.MessageAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "snapshot",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "child_msg",
+            "type": [
+                "eth.abc.ComputationAPI",
+                "bytes",
+                "eth.abc.MessageAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "eth.abc.MessageAPI",
+                "eth.abc.ComputationAPI",
+                "Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "child_computation",
+            "type": [
+                "int",
+                "eth.abc.ComputationAPI",
+                "typing.Generator[typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "apply_create_message",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "generate_contract_address@Create": [
+        {
+            "category": "arg",
+            "name": "stack_data",
+            "type": [
+                "bytes",
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "call_data",
+            "type": [
+                "bytes",
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "computation",
+            "type": [
+                "bytes",
+                "eth.abc.ComputationAPI",
+                "eth.rlp.blocks.BaseBlock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "creation_nonce",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "generate_contract_address",
+            "type": []
+        }
+    ],
+    "generate_contract_address@Create2": [
+        {
+            "category": "arg",
+            "name": "stack_data",
+            "type": [
+                "bytes",
+                "eth.abc.ComputationAPI",
+                "eth.rlp.blocks.BaseBlock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "call_data",
+            "type": [
+                "bytes",
+                "eth.abc.ComputationAPI",
+                "eth.rlp.blocks.BaseBlock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "computation",
+            "type": [
+                "eth.abc.ComputationAPI",
+                "bytes",
+                "eth.abc.ReceiptAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stack_data",
+            "type": [
+                "bytes",
+                "eth.abc.ComputationAPI",
+                "eth.rlp.blocks.BaseBlock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "call_data",
+            "type": [
+                "bytes",
+                "eth.abc.ComputationAPI",
+                "eth.rlp.blocks.BaseBlock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "generate_contract_address",
+            "type": []
+        }
+    ],
+    "get_gas_cost@Create": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "dict",
+                "None",
+                "list[dict]",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_gas_cost",
+            "type": []
+        }
+    ],
+    "get_gas_cost@Create2": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "bytes",
+                "int",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "bytes",
+                "int",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_gas_cost",
+            "type": []
+        }
+    ],
+    "get_stack_data@Create": [
+        {
+            "category": "arg",
+            "name": "computation",
+            "type": [
+                "eth.abc.ComputationAPI",
+                "eth.vm.computation.BaseComputation"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "eth.abc.ComputationAPI",
+                "eth.vm.computation.BaseComputation"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "endowment",
+            "type": [
+                "int",
+                "list[int]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "memory_start",
+            "type": [
+                "int",
+                "bytes",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "memory_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_stack_data",
+            "type": [
+                "CreateOpcodeStackData"
+            ]
+        }
+    ],
+    "get_stack_data@Create2": [
+        {
+            "category": "arg",
+            "name": "computation",
+            "type": [
+                "eth.abc.ComputationAPI",
+                "eth.vm.computation.BaseComputation"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "eth.abc.ComputationAPI",
+                "eth.vm.computation.BaseComputation"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "endowment",
+            "type": [
+                "int",
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "memory_start",
+            "type": [
+                "bytes",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "memory_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "salt",
+            "type": [
+                "str",
+                "int",
+                "bytes",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_stack_data",
+            "type": [
+                "CreateOpcodeStackData"
+            ]
+        }
+    ],
+    "global@global": [],
+    "max_child_gas_modifier@Create": [
+        {
+            "category": "arg",
+            "name": "gas",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gas",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "max_child_gas_modifier",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "max_child_gas_modifier@CreateEIP150": [
+        {
+            "category": "arg",
+            "name": "gas",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gas",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "max_child_gas_modifier",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "return_op@global": [
+        {
+            "category": "arg",
+            "name": "computation",
+            "type": [
+                "eth.vm.computation.BaseComputation",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "eth.vm.computation.BaseComputation",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "start_position",
+            "type": [
+                "int",
+                "list[float]",
+                "tuple[typing.Union[int,bytes]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "size",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "return_op",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "revert@global": [
+        {
+            "category": "arg",
+            "name": "computation",
+            "type": [
+                "eth.vm.computation.BaseComputation",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "eth.vm.computation.BaseComputation",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "start_position",
+            "type": [
+                "int",
+                "list[float]",
+                "tuple[typing.Union[int,bytes]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "size",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "revert",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "selfdestruct@global": [
+        {
+            "category": "arg",
+            "name": "computation",
+            "type": [
+                "eth.abc.ComputationAPI",
+                "eth.vm.computation.BaseComputation"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "eth.abc.ComputationAPI",
+                "eth.vm.computation.BaseComputation"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "beneficiary",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "selfdestruct",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "selfdestruct_eip150@global": [
+        {
+            "category": "arg",
+            "name": "computation",
+            "type": [
+                "eth.abc.ComputationAPI",
+                "eth.vm.computation.BaseComputation"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "eth.abc.ComputationAPI",
+                "eth.vm.computation.BaseComputation"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "beneficiary",
+            "type": [
+                "int",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "selfdestruct_eip150",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "selfdestruct_eip161@global": [
+        {
+            "category": "arg",
+            "name": "computation",
+            "type": [
+                "eth.vm.computation.BaseComputation",
+                "eth.abc.ComputationAPI",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "eth.vm.computation.BaseComputation",
+                "eth.abc.ComputationAPI",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "beneficiary",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "selfdestruct_eip161",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "selfdestruct_eip161_on_address@global": [
+        {
+            "category": "arg",
+            "name": "computation",
+            "type": [
+                "eth.vm.computation.BaseComputation",
+                "eth.abc.ComputationAPI",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "beneficiary",
+            "type": [
+                "eth.vm.computation.BaseComputation",
+                "raiden.utils.Address",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "beneficiary",
+            "type": [
+                "eth.vm.computation.BaseComputation",
+                "raiden.utils.Address",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_dead",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "eth.vm.computation.BaseComputation",
+                "eth.abc.ComputationAPI",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "selfdestruct_eip161_on_address",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

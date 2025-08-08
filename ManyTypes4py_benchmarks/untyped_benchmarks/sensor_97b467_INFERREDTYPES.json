@@ -1,0 +1,693 @@
+{
+    "__init__@GitLabData": [
+        {
+            "category": "arg",
+            "name": "gitlab_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "priv_token",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "interval",
+            "type": [
+                "str",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "url",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gitlab_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_gitlab_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "priv_token",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_gitlab",
+            "type": [
+                "Gitlab"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "update",
+            "type": [
+                "str",
+                "int",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "available",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "status",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "started_at",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "finished_at",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "duration",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "commit_id",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "commit_date",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "build_id",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "branch",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@GitLabSensor": [
+        {
+            "category": "arg",
+            "name": "gitlab_data",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "name",
+            "type": [
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_available",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gitlab_data",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_gitlab_data",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_name",
+            "type": [
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_update@GitLabData": [
+        {
+            "category": "local",
+            "name": "_projects",
+            "type": [
+                "list",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_last_pipeline",
+            "type": [
+                "json_checker.core.reports.Report"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_last_job",
+            "type": [
+                "str",
+                "tartare.core.models.Job",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "status",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "started_at",
+            "type": [
+                "datetime.datetime",
+                "datetime.datetime.timedelta",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "finished_at",
+            "type": [
+                "datetime.datetime.datetime",
+                "datetime.datetime.timedelta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "duration",
+            "type": [
+                "int",
+                "datetime.timedelta",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_commit",
+            "type": [
+                "datetime.date"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "commit_id",
+            "type": [
+                "str",
+                "set",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "commit_date",
+            "type": [
+                "datetime.date",
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "build_id",
+            "type": [
+                "str",
+                "typing.Callable[None,None,None,None,None,None, typing.Any]",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "branch",
+            "type": [
+                "str",
+                "dict[str, dict[str, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "available",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "erra",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "errg",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_update",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_BUILD_BRANCH",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_BUILD_COMMIT_DATE",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_BUILD_COMMIT_ID",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_BUILD_DURATION",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_BUILD_FINISHED",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_BUILD_ID",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_BUILD_STARTED",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_BUILD_STATUS",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTRIBUTION",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_GITLAB_ID",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DEFAULT_NAME",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DEFAULT_URL",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ICON_HAPPY",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ICON_OTHER",
+            "type": [
+                "typing.Text",
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ICON_SAD",
+            "type": [
+                "typing.Text",
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SCAN_INTERVAL",
+            "type": [
+                "datetime.timedelta",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SENSOR_PLATFORM_SCHEMA",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "PLATFORM_SCHEMA",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "icon@GitLabSensor": [
+        {
+            "category": "local",
+            "name": "ICON_HAPPY",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "icon",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ICON_SAD",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ICON_OTHER",
+            "type": [
+                "str",
+                "typing.Type"
+            ]
+        }
+    ],
+    "setup_platform@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistanhelpers.ConfigType",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "homeassistanhelpers.ConfigType"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "add_entities",
+            "type": [
+                "homeassistanhelpers.ConfigType",
+                "typing.Callable[list, None]",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "discovery_info",
+            "type": [
+                "None",
+                "homeassistanhelpers.ConfigType",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "homeassistanhelpers.ConfigType"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DEFAULT_NAME",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SCAN_INTERVAL",
+            "type": [
+                "datetime.timedelta",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_GITLAB_ID",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_gitlab_data",
+            "type": [
+                "GitLabData"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "setup_platform",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "update@GitLabSensor": [
+        {
+            "category": "local",
+            "name": "ATTR_BUILD_STATUS",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_BUILD_STARTED",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_BUILD_FINISHED",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_BUILD_DURATION",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_BUILD_COMMIT_ID",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_BUILD_COMMIT_DATE",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_BUILD_ID",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_BUILD_BRANCH",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_extra_state_attributes",
+            "type": [
+                "dict[str, ]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

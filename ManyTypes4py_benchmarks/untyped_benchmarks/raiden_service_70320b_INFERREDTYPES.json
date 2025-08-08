@@ -1,0 +1,2636 @@
+{
+    "__init__@RaidenService": [
+        {
+            "category": "arg",
+            "name": "rpc_client",
+            "type": [
+                "web3.Web3",
+                "raiden.constants.RoutingMode",
+                "tonga.services.serializer.avro.AvroSerializer"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "proxy_manager",
+            "type": [
+                "irrd.storage.preload.Preloader",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "query_start_block",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "raiden_bundle",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "services_bundle",
+            "type": [
+                "irrd.storage.preload.Preloader",
+                "rotkehlchen.db.utils.BlockchainAccounts",
+                "raiden.network.rpc.clienJSONRPCClient"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "transport",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "raiden_event_handler",
+            "type": [
+                "raiden.network.transpormatrix.transporMatrixTransport",
+                "raiden.constants.RoutingMode",
+                "ProxyManager"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message_handler",
+            "type": [
+                "raiden.network.transpormatrix.transporMatrixTransport"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "routing_mode",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "api_server",
+            "type": [
+                "None",
+                "tonga.services.coordinator.clienkafka_clienKafkaClient",
+                "\"Client\"",
+                "golem.network.hyperdrive.clienHyperdriveAsyncClient"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pfs_proxy",
+            "type": [
+                "None",
+                "web3.contracContract",
+                "raiden_contracts.contract_manager.ContractManager",
+                "tonga.services.coordinator.transaction.kafka_transaction.KafkaTransactionalManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "settlement_timeout_min",
+            "type": [
+                "int",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "settlement_timeout_max",
+            "type": [
+                "int",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "invalid_settle_timeout",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "targets_to_identifiers_to_statuses",
+            "type": [
+                "dict[typing.Any, typing.Any]",
+                "dict[typing.Any, str]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "one_to_n_address",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "monitoring_service_address",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "service_registry",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_deposit",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "services_bundle",
+            "type": [
+                "irrd.storage.preload.Preloader",
+                "rotkehlchen.db.utils.BlockchainAccounts",
+                "raiden.network.rpc.clienJSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rpc_client",
+            "type": [
+                "web3.Web3",
+                "raiden.constants.RoutingMode",
+                "tonga.services.serializer.avro.AvroSerializer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proxy_manager",
+            "type": [
+                "irrd.storage.preload.Preloader",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_bundle",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query_start_block",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_services_bundle",
+            "type": [
+                "irrd.storage.preload.Preloader",
+                "rotkehlchen.db.utils.BlockchainAccounts",
+                "raiden.network.rpc.clienJSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_one_to_n_address",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_service_registry",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_user_deposit",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_msc_address",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "routing_mode",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "notifications",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signer",
+            "type": [
+                "LocalSigner"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alarm",
+            "type": [
+                "AlarmTask"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_event_handler",
+            "type": [
+                "raiden.network.transpormatrix.transporMatrixTransport",
+                "raiden.constants.RoutingMode",
+                "ProxyManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_handler",
+            "type": [
+                "raiden.network.transpormatrix.transporMatrixTransport"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blockchain_events",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "api_server",
+            "type": [
+                "None",
+                "tonga.services.coordinator.clienkafka_clienKafkaClient",
+                "\"Client\"",
+                "golem.network.hyperdrive.clienHyperdriveAsyncClient",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_api",
+            "type": [
+                "None",
+                "RaidenAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rest_api",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stop_event",
+            "type": [
+                "Event"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "greenlets",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_log_block",
+            "type": [
+                "BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contract_manager",
+            "type": [
+                "ContractManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wal",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db_lock",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pfs_proxy",
+            "type": [
+                "None",
+                "web3.contracContract",
+                "raiden_contracts.contract_manager.ContractManager",
+                "tonga.services.coordinator.transaction.kafka_transaction.KafkaTransactionalManager",
+                "PFSProxy",
+                "dict[str, dict[str, typing.Any]]",
+                "raiden.utils.Any",
+                "typing.Optional"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "database_dir",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_file",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "serialization_file",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payment_identifier_lock",
+            "type": [
+                "int",
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "route_to_feedback_token",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ready_to_process_events",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change_qty_snapshot",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change_qty",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@SyncTimeout": [
+        {
+            "category": "arg",
+            "name": "current_confirmed_head",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "timeout",
+            "type": [
+                "int",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timeout",
+            "type": [
+                "int",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_confirmed_head",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__repr__@RaidenService": [
+        {
+            "category": "return",
+            "name": "__repr__",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "_best_effort_synchronize@RaidenService": [
+        {
+            "category": "arg",
+            "name": "latest_block",
+            "type": [
+                "tuple[list[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "latest_block",
+            "type": [
+                "tuple[list[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "latest_block_number",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_confirmed_head",
+            "type": [
+                "BlockNumber"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_best_effort_synchronize",
+            "type": []
+        }
+    ],
+    "_best_effort_synchronize_with_confirmed_head@RaidenService": [
+        {
+            "category": "arg",
+            "name": "current_confirmed_head",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "timeout",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_changes",
+            "type": [
+                "list",
+                "list[typing.Union[raiden.transfer.mediated_transfer.events.SendSecretRequest,raiden.transfer.mediated_transfer.state.LockedTransferUnsignedState,raiden.transfer.mediated_transfer.events.EventUnexpectedSecretReveal]]",
+                "list[typing.Union[raiden.transfer.mediated_transfer.events.SendSecretRequest,raiden.transfer.mediated_transfer.state.LockedTransferUnsignedState,raiden.transfer.mediated_transfer.events.EventUnexpectedSecretReveal,Block]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_events",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_confirmed_head",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timeout",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "guard",
+            "type": [
+                "SyncTimeout"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "poll_result",
+            "type": [
+                "telegram.utils.AsyncResult",
+                "list",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "maybe_state_change",
+            "type": [
+                "raiden.transfer.mediated_transfer.events.SendSecretRequest",
+                "raiden.transfer.mediated_transfer.state.LockedTransferUnsignedState",
+                "raiden.transfer.mediated_transfer.events.EventUnexpectedSecretReveal",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_state_change",
+            "type": [
+                "Block"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.mediated_transfer.events.SendSecretRequest",
+                "raiden.transfer.mediated_transfer.state.LockedTransferUnsignedState",
+                "raiden.transfer.mediated_transfer.events.EventUnexpectedSecretReveal",
+                "Block"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_synched_block_number",
+            "type": [
+                "int",
+                "raiden.utils.BlockNumber",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_best_effort_synchronize_with_confirmed_head",
+            "type": []
+        }
+    ],
+    "_blockchain_event_listener@RaidenService": [
+        {
+            "category": "arg",
+            "name": "events",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "list[aw_core.models.Event]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_blockchain_event_listener",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "str",
+                "aw_core.models.Event"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "list[aw_core.models.Event]"
+            ]
+        }
+    ],
+    "_handle_events@RaidenService": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.architecture.Event",
+                "list[raiden.transfer.architecture.Event]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "raiden_events",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.architecture.Event",
+                "list[raiden.transfer.architecture.Event]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.architecture.Event",
+                "list[raiden.transfer.architecture.Event]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_events",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.architecture.Event",
+                "list[raiden.transfer.architecture.Event]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log_unrecoverable",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_handle_events",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_initialize_channel_fees@RaidenService": [
+        {
+            "category": "local",
+            "name": "channel_",
+            "type": [
+                "FeeScheduleState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_initialize_channel_fees",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_initialize_messages_queues@RaidenService": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "all_messages",
+            "type": [
+                "list",
+                "list[MessagesQueue]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "queue_messages",
+            "type": [
+                "list",
+                "list[tuple]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_initialize_messages_queues",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_initialize_monitoring_services_queue@RaidenService": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_balance_proofs",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "balance_proof",
+            "type": [
+                "BalanceProofSignedState",
+                "raiden_contracts.tests.test_channel_update_transfer.test_update_invalid_balance_proof_arguments.balance_proof",
+                "raiden.utils.Locksroot"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_initialize_monitoring_services_queue",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_initialize_payment_statuses@RaidenService": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret_hashes",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initiator",
+            "type": [
+                "nucypher.blockchain.eth.actors.Staker",
+                "raiden.transfer.mediated_transfer.state.InitiatorTransferState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_initialize_payment_statuses",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_initialize_ready_to_process_events@RaidenService": [
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ready_to_process_events",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_initialize_ready_to_process_events",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_initialize_transactions_queues@RaidenService": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.blockchain.events.Event",
+                "mythril.laser.ethereum.state.accounAccount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.blockchain.events.Event",
+                "mythril.laser.ethereum.state.accounAccount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_initialize_transactions_queues",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_initialize_wal@RaidenService": [
+        {
+            "category": "local",
+            "name": "database_dir",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ex",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initial_state",
+            "type": [
+                "int",
+                "raiden.transfer.state.ChainState",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wal",
+            "type": [
+                "raiden_contracts.deploy.contract_deployer.ContractDeployer",
+                "raiden.messages.Lock",
+                "nucypher.blockchain.eth.interfaces.BlockchainDeployerInterface",
+                "nucypher.blockchain.eth.interfaces.BlockchainInterface",
+                "WriteAheadLog"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_log_block_number",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "web3.types.Wei",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_initialize_wal",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_log_sync_progress@RaidenService": [
+        {
+            "category": "arg",
+            "name": "polled_block_number",
+            "type": [
+                "int",
+                "raiden.utils.BlockNumber",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_block",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "int",
+                "raiden.utils.BlockExpiration"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_block",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "int",
+                "raiden.utils.BlockExpiration"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "polled_block_number",
+            "type": [
+                "int",
+                "raiden.utils.BlockNumber",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blocks_until_target",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_log_block",
+            "type": [
+                "int",
+                "raiden.utils.BlockNumber",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "polled_block_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_log_time",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "elapsed",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_log_sync_progress",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_make_initial_state@RaidenService": [
+        {
+            "category": "local",
+            "name": "last_log_block_hash",
+            "type": [
+                "bytes",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initial_state",
+            "type": [
+                "ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_registry",
+            "type": [
+                "TokenNetworkRegistryState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_make_initial_state",
+            "type": [
+                "ChainState"
+            ]
+        }
+    ],
+    "_maybe_snapshot@RaidenService": [
+        {
+            "category": "local",
+            "name": "state_change_qty_snapshot",
+            "type": [
+                "int",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_maybe_snapshot",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_run@RaidenService": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_run",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_set_rest_api_service_available@RaidenService": [
+        {
+            "category": "return",
+            "name": "_set_rest_api_service_available",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_start_alarm_task@RaidenService": [
+        {
+            "category": "return",
+            "name": "_start_alarm_task",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_start_transport@RaidenService": [
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_service_registry",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_start_transport",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_synchronize_with_blockchain@RaidenService": [
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blockchain_events",
+            "type": [
+                "BlockchainEvents"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "synchronization_state",
+            "type": [
+                "T",
+                "int",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "latest_block",
+            "type": [
+                "str",
+                "bool",
+                "lightbus.api.Event"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_synchronize_with_blockchain",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_trigger_state_change_effects@RaidenService": [
+        {
+            "category": "arg",
+            "name": "new_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_changes",
+            "type": [
+                "str",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "events",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.architecture.StateChange",
+                "list[raiden.transfer.architecture.StateChange]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "monitoring_updates",
+            "type": [
+                "dict",
+                "dict[, typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pfs_fee_updates",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pfs_capacity_updates",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "typing.Text",
+                "PFS_UPDATE_CAPACITY_STATE_CHANGES",
+                "BalanceProofStateChange",
+                "PFS_UPDATE_FEE_STATE_CHANGES",
+                "Block"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_changes",
+            "type": [
+                "str",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "canonical_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.Address",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "raiden.transfer.architecture.StateChange",
+                "PFS_UPDATE_FEE_EVENTS",
+                "PFS_UPDATE_CAPACITY_EVENTS"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.architecture.StateChange",
+                "list[raiden.transfer.architecture.StateChange]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "monitoring_update",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_trigger_state_change_effects",
+            "type": [
+                "str",
+                "bool",
+                "list[tuple[str]]",
+                "list"
+            ]
+        }
+    ],
+    "add_notification@RaidenService": [
+        {
+            "category": "arg",
+            "name": "notification",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "log_opts",
+            "type": [
+                "None",
+                "logging.Logger",
+                "eth.tools.logging.TraceLogger"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "click_opts",
+            "type": [
+                "None",
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log_opts",
+            "type": [
+                "None",
+                "logging.Logger",
+                "eth.tools.logging.TraceLogger",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "click_opts",
+            "type": [
+                "None",
+                "str",
+                "typing.Callable",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "notification",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "add_notification",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "add_pending_greenlet@RaidenService": [
+        {
+            "category": "arg",
+            "name": "greenlet",
+            "type": [
+                "typing.Callable[str, None]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "greenlet",
+            "type": [
+                "typing.Callable[str, None]",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "add_pending_greenlet",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_handle_events@RaidenService": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "raiden_events",
+            "type": [
+                "raiden.blockchain.events.Event",
+                "web3.contracContract",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_events",
+            "type": [
+                "raiden.blockchain.events.Event",
+                "web3.contracContract",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_wrapper",
+            "type": [
+                "EventWrapper"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parsed_events",
+            "type": [
+                "set",
+                "dict[str, str]",
+                "asyncio.locks.Event"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fast_events",
+            "type": [
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "greenlets",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blocking_events",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "str",
+                "blocking_events"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_handle_events",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "confirmation_blocks@RaidenService": [
+        {
+            "category": "return",
+            "name": "confirmation_blocks",
+            "type": []
+        }
+    ],
+    "get_block_number@RaidenService": [
+        {
+            "category": "return",
+            "name": "get_block_number",
+            "type": [
+                "int",
+                "None",
+                "float"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "StatusesDict",
+            "type": [
+                "dict[str, typing.Any]",
+                "typing.Type",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "PFS_UPDATE_CAPACITY_STATE_CHANGES",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "PFS_UPDATE_CAPACITY_EVENTS",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "PFS_UPDATE_FEE_STATE_CHANGES",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "PFS_UPDATE_FEE_EVENTS",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "handle_and_track_state_changes@RaidenService": [
+        {
+            "category": "arg",
+            "name": "state_changes",
+            "type": [
+                "list[raiden.transfer.architecture.StateChange]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_changes",
+            "type": [
+                "list[raiden.transfer.architecture.StateChange]",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_and_track_state_changes",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "handle_state_changes@RaidenService": [
+        {
+            "category": "arg",
+            "name": "state_changes",
+            "type": [
+                "list[raiden.transfer.architecture.StateChange]",
+                "raiden.transfer.architecture.State.Change",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_changes",
+            "type": [
+                "list[raiden.transfer.architecture.StateChange]",
+                "raiden.transfer.architecture.State.Change",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_events",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_state_changes",
+            "type": []
+        }
+    ],
+    "initiator_init@global": [
+        {
+            "category": "arg",
+            "name": "raiden",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount",
+                "raiden.utils.TargetAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "transfer_identifier",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount",
+                "raiden.utils.TargetAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "transfer_amount",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount",
+                "raiden.utils.TargetAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "transfer_secret",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount",
+                "raiden.utils.TargetAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "transfer_secrethash",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount",
+                "raiden.utils.TargetAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount",
+                "raiden.utils.TargetAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_address",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount",
+                "raiden.utils.TargetAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "lock_timeout",
+            "type": [
+                "None",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount",
+                "raiden.utils.TargetAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "route_states",
+            "type": [
+                "None",
+                "list[raiden.transfer.state.RouteState]",
+                "float",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transfer_identifier",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount",
+                "raiden.utils.TargetAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transfer_amount",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount",
+                "raiden.utils.TargetAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount",
+                "raiden.utils.TargetAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount",
+                "raiden.utils.TargetAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_address",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount",
+                "raiden.utils.TargetAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transfer_secret",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount",
+                "raiden.utils.TargetAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transfer_secrethash",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount",
+                "raiden.utils.TargetAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_timeout",
+            "type": [
+                "None",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount",
+                "raiden.utils.TargetAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transfer_state",
+            "type": [
+                "TransferDescriptionWithSecretState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error_msg",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "route_states",
+            "type": [
+                "None",
+                "list[raiden.transfer.state.RouteState]",
+                "float",
+                "raiden.utils.BlockNumber",
+                "typing.Optional"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "feedback_token",
+            "type": [
+                "str",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "initiator_init",
+            "type": [
+                "tuple[typing.Optional[ActionInitInitiator]]"
+            ]
+        }
+    ],
+    "matches@PaymentStatus": [
+        {
+            "category": "arg",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenNetworkAddress",
+                "nucypher.types.NuNits"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "amount",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenNetworkAddress",
+                "nucypher.types.NuNits"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenNetworkAddress",
+                "nucypher.types.NuNits"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenNetworkAddress",
+                "nucypher.types.NuNits"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "matches",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "maybe_upgrade_db@RaidenService": [
+        {
+            "category": "local",
+            "name": "manager",
+            "type": [
+                "UpgradeManager"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "maybe_upgrade_db",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "mediated_transfer_async@RaidenService": [
+        {
+            "category": "arg",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "amount",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "identifier",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "secret",
+            "type": [
+                "None",
+                "raiden.utils.Address",
+                "raiden.utils.SecreHash",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "secrethash",
+            "type": [
+                "None",
+                "raiden.utils.Address",
+                "list[raiden.transfer.state.RouteState]",
+                "raiden.utils.SecreHash"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "lock_timeout",
+            "type": [
+                "None",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "route_states",
+            "type": [
+                "None",
+                "raiden.utils.Locksroot",
+                "list[raiden.transfer.state.RouteState]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret",
+            "type": [
+                "None",
+                "raiden.utils.Address",
+                "raiden.utils.SecreHash",
+                "str",
+                "appsecrets.api.Secrets",
+                "raiden.utils.Secret",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secrethash",
+            "type": [
+                "None",
+                "raiden.utils.Address",
+                "list[raiden.transfer.state.RouteState]",
+                "raiden.utils.SecreHash",
+                "bytes",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state.LockedTransferUnsignedState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "identifier",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret_registered",
+            "type": [
+                "str",
+                "tuple[typing.Any]",
+                "golem.rpc.session.WebSocketAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payment_status",
+            "type": [
+                "PaymentStatus"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "mediated_transfer_async",
+            "type": [
+                "PaymentStatus"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_timeout",
+            "type": [
+                "None",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "route_states",
+            "type": [
+                "None",
+                "raiden.utils.Locksroot",
+                "list[raiden.transfer.state.RouteState]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error_msg",
+            "type": [
+                "str",
+                "message.Message",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "init_initiator_statechange",
+            "type": [
+                "raiden.transfer.mediated_transfer.state_change.ActionInitInitiator",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "failed",
+            "type": [
+                "EventPaymentSentFailed"
+            ]
+        }
+    ],
+    "on_messages@RaidenService": [
+        {
+            "category": "arg",
+            "name": "messages",
+            "type": [
+                "str",
+                "raiden.messages.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "messages",
+            "type": [
+                "str",
+                "raiden.messages.Message"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_messages",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "privkey@RaidenService": [
+        {
+            "category": "return",
+            "name": "privkey",
+            "type": []
+        }
+    ],
+    "remove@RaidenService": [
+        {
+            "category": "arg",
+            "name": "_",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "remove",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "set_channel_reveal_timeout@RaidenService": [
+        {
+            "category": "arg",
+            "name": "canonical_identifier",
+            "type": [
+                "nucypher.network.middleware.RestMiddleware",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "reveal_timeout",
+            "type": [
+                "nucypher.network.middleware.RestMiddleware",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "canonical_identifier",
+            "type": [
+                "nucypher.network.middleware.RestMiddleware",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reveal_timeout",
+            "type": [
+                "nucypher.network.middleware.RestMiddleware",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "action_set_channel_reveal_timeout",
+            "type": [
+                "ActionChannelSetRevealTimeout"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_channel_reveal_timeout",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "should_continue@SyncTimeout": [
+        {
+            "category": "arg",
+            "name": "last_fetched_block",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "has_time",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_fetched_block",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "has_blocks_unsynched",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "should_continue",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "sign@RaidenService": [
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "raiden.messages.Message",
+                "raiden.messages.abstracMessage",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "raiden.messages.Message",
+                "raiden.messages.abstracMessage",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "sign",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "smart_contract_filters_from_node_state@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.utils.TokenAddress",
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "secret_registry_address",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "service_registry",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_registries",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.network.proxies.token_network.TokenNetwork",
+                "raiden.utils.Any"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_networks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channels_of_token_network",
+            "type": [
+                "dict[, set]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret_registry_address",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "service_registry",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "smart_contract_filters_from_node_state",
+            "type": [
+                "RaidenContractFilter"
+            ]
+        }
+    ],
+    "start@RaidenService": [
+        {
+            "category": "local",
+            "name": "greenlets",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ready_to_process_events",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "api_server",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "start",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "stop@RaidenService": [
+        {
+            "category": "return",
+            "name": "stop",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "api_server",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wal",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db_lock",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "time_elapsed@SyncTimeout": [
+        {
+            "category": "return",
+            "name": "time_elapsed",
+            "type": []
+        }
+    ],
+    "withdraw@RaidenService": [
+        {
+            "category": "arg",
+            "name": "canonical_identifier",
+            "type": [
+                "int",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.BlockExpiration"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "total_withdraw",
+            "type": [
+                "int",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.BlockExpiration"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recipient_metadata",
+            "type": [
+                "None",
+                "int",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.BlockExpiration"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "canonical_identifier",
+            "type": [
+                "int",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.BlockExpiration"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_withdraw",
+            "type": [
+                "int",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.BlockExpiration"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recipient_metadata",
+            "type": [
+                "None",
+                "int",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.BlockExpiration"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "init_withdraw",
+            "type": [
+                "ActionChannelWithdraw"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "withdraw",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

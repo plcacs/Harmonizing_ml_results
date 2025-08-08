@@ -1,0 +1,471 @@
+{
+    "global@global": [],
+    "open_and_wait_for_channels@global": [
+        {
+            "category": "arg",
+            "name": "app_channels",
+            "type": [
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.PaymentNetworkID",
+                "raiden.utils.NetworkTimeout"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "registry_address",
+            "type": [
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.PaymentNetworkID",
+                "raiden.utils.NetworkTimeout"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.BlockTimeout",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deposit",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.BlockTimeout",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "settle_timeout",
+            "type": [
+                "raiden.utils.BlockTimeout",
+                "float",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "greenlets",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app_channels",
+            "type": [
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.PaymentNetworkID",
+                "raiden.utils.NetworkTimeout"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.BlockTimeout",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.BlockTimeout",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "settle_timeout",
+            "type": [
+                "raiden.utils.BlockTimeout",
+                "float",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "registry_address",
+            "type": [
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.PaymentNetworkID",
+                "raiden.utils.NetworkTimeout"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "open_and_wait_for_channels",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_regression_multiple_revealsecret@global": [
+        {
+            "category": "arg",
+            "name": "raiden_network",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "token_addresses",
+            "type": [
+                "list[raiden.utils.TokenAddress]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_addresses",
+            "type": [
+                "list[raiden.utils.TokenAddress]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token",
+            "type": [
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payment_identifier",
+            "type": [
+                "PaymentID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.messages.RevealSecret"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secrethash",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.LockedTransferUnsignedState",
+                "raiden.utils.Locksroot",
+                "raiden.transfer.state.BalanceProofSignedState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expiration",
+            "type": [
+                "BlockExpiration"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_amount",
+            "type": [
+                "PaymentWithFeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock",
+            "type": [
+                "Lock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nonce",
+            "type": [
+                "Nonce"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transferred_amount",
+            "type": [
+                "TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mediated_transfer",
+            "type": [
+                "LockedTransfer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reveal_secret",
+            "type": [
+                "RevealSecret"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unlock",
+            "type": [
+                "Unlock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "messages",
+            "type": [
+                "list[typing.Union[Unlock,RevealSecret]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "Unlock",
+                "RevealSecret"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wait",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_regression_multiple_revealsecret",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_regression_register_secret_once@global": [
+        {
+            "category": "arg",
+            "name": "secret_registry_address",
+            "type": [
+                "typing.Callable",
+                "raiden.constants.EthClient"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "proxy_manager",
+            "type": [
+                "raiden.network.proxies.secret_registry.SecretRegistry",
+                "RaidenService",
+                "list[raiden.utils.TokenAddress]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proxy_manager",
+            "type": [
+                "raiden.network.proxies.secret_registry.SecretRegistry",
+                "RaidenService",
+                "list[raiden.utils.TokenAddress]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret_registry_address",
+            "type": [
+                "typing.Callable",
+                "raiden.constants.EthClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret",
+            "type": [
+                "raiden.utils.Secret"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_regression_register_secret_once",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_regression_revealsecret_after_secret@global": [
+        {
+            "category": "arg",
+            "name": "raiden_network",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "token_addresses",
+            "type": [
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_addresses",
+            "type": [
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token",
+            "type": [
+                "str",
+                "raiden.utils.TokenAddress",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "identifier",
+            "type": [
+                "PaymentID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reveal_secret",
+            "type": [
+                "RevealSecret"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_regression_revealsecret_after_secret",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_regression_unfiltered_routes@global": [
+        {
+            "category": "arg",
+            "name": "raiden_network",
+            "type": [
+                "list[raiden.raiden_service.RaidenService]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_addresses",
+            "type": [
+                "raiden.utils.TargetAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "settle_timeout",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.TokenAddress",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deposit",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.TokenAddress",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_network",
+            "type": [
+                "list[raiden.raiden_service.RaidenService]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app0",
+            "type": [
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app1",
+            "type": [
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app2",
+            "type": [
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app3",
+            "type": [
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app4",
+            "type": [
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_addresses",
+            "type": [
+                "raiden.utils.TargetAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token",
+            "type": [
+                "str",
+                "None",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app_channels",
+            "type": [
+                "list[tuple[raiden.raiden_service.RaidenService]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.TokenAddress",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "settle_timeout",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.TokenAddress",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_regression_unfiltered_routes",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+from typing import List, Tuple
+
+def get_tokens(text: str) -> List[Token]:
+    ...
+
+def assert_tokenizes(text: str, tokens: List[Token]) -> None:
+    ...
+
+def test_simple() -> None:
+    ...
+
+def test_fstring() -> None:
+    ...

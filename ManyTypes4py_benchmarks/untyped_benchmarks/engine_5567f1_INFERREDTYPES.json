@@ -1,0 +1,1038 @@
+{
+    "_is_result_record@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "dict",
+                "T",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict",
+                "T",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_is_result_record",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "add_futures_and_states_to_inputs@global": [
+        {
+            "category": "arg",
+            "name": "obj",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "obj",
+            "type": [
+                "PrefectFuture",
+                "State",
+                "quote"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "add_futures_and_states_to_inputs",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "cancel_flow_run@global": [
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "cancel_flow_run",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "capture_sigterm@global": [
+        {
+            "category": "local",
+            "name": "original_term_handler",
+            "type": [
+                "None",
+                "collections.abc.Awaitable[None]",
+                "typing.Callable[..., typing.Any]",
+                "int",
+                "signal.Handlers"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "capture_sigterm",
+            "type": [
+                "typing.Generator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exc",
+            "type": [
+                "Exception"
+            ]
+        }
+    ],
+    "check_api_reachable@global": [
+        {
+            "category": "arg",
+            "name": "client",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fail_message",
+            "type": [
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "API_HEALTHCHECKS",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expires",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_api_reachable",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "connect_error",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fail_message",
+            "type": [
+                "str",
+                "typing.Callable"
+            ]
+        }
+    ],
+    "collect_futures_and_states@global": [
+        {
+            "category": "arg",
+            "name": "expr",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "context",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "expr",
+            "type": [
+                "PrefectFuture",
+                "State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fut",
+            "type": [
+                "PrefectFuture"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "State"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "collect_futures_and_states",
+            "type": []
+        }
+    ],
+    "collect_task_run_inputs@global": [
+        {
+            "category": "arg",
+            "name": "expr",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_depth",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inputs",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expr",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_depth",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "collect_task_run_inputs",
+            "type": [
+                "set"
+            ]
+        }
+    ],
+    "collect_task_run_inputs_sync@global": [
+        {
+            "category": "arg",
+            "name": "expr",
+            "type": [
+                "int",
+                "list[int]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "future_cls",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "max_depth",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inputs",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expr",
+            "type": [
+                "int",
+                "list[int]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_depth",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "collect_task_run_inputs_sync",
+            "type": [
+                "set"
+            ]
+        }
+    ],
+    "emit_task_run_state_change_event@global": [
+        {
+            "category": "arg",
+            "name": "task_run",
+            "type": [
+                "bool",
+                "\"Outcome\"",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "initial_state",
+            "type": [
+                "bool",
+                "\"Outcome\"",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "validated_state",
+            "type": [
+                "str",
+                "dict[str, object]",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "follows",
+            "type": [
+                "None",
+                "bool",
+                "\"Outcome\""
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_message_truncation_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validated_state",
+            "type": [
+                "str",
+                "dict[str, object]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initial_state",
+            "type": [
+                "bool",
+                "\"Outcome\"",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "task_run",
+            "type": [
+                "bool",
+                "\"Outcome\"",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "follows",
+            "type": [
+                "None",
+                "bool",
+                "\"Outcome\""
+            ]
+        },
+        {
+            "category": "return",
+            "name": "emit_task_run_state_change_event",
+            "type": []
+        }
+    ],
+    "get_state_for_result@global": [
+        {
+            "category": "arg",
+            "name": "obj",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "obj",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_state_for_result",
+            "type": [
+                "str",
+                "int"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "API_HEALTHCHECKS",
+            "type": [
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "UNTRACKABLE_TYPES",
+            "type": [
+                "set[typing.Union[bool,typing.Type]]",
+                "str",
+                "int",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "engine_logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "T",
+            "type": [
+                "TypeVar"
+            ]
+        }
+    ],
+    "link_if_trackable@global": [
+        {
+            "category": "arg",
+            "name": "obj",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "UNTRACKABLE_TYPES",
+            "type": [
+                "str",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "link_if_trackable",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "link_state_to_result@global": [
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "bool",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "result",
+            "type": [
+                "dict[str, typing.Any]",
+                "None",
+                "State",
+                "\"State\""
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "bool",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "linked_state",
+            "type": [
+                "str",
+                "int",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "dict[str, typing.Any]",
+                "None",
+                "State",
+                "\"State\""
+            ]
+        },
+        {
+            "category": "return",
+            "name": "link_state_to_result",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "propose_state@global": [
+        {
+            "category": "arg",
+            "name": "client",
+            "type": [
+                "str",
+                "bool",
+                "asyncio.events.AbstractEventLoop",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "str",
+                "bool",
+                "asyncio.events.AbstractEventLoop",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "force",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "task_run_id",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "flow_run_id",
+            "type": [
+                "None",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "task_run_id",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run_id",
+            "type": [
+                "None",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "str",
+                "bool",
+                "asyncio.events.AbstractEventLoop",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client",
+            "type": [
+                "str",
+                "bool",
+                "asyncio.events.AbstractEventLoop",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "force",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "propose_state",
+            "type": [
+                "str",
+                "bool",
+                "asyncio.events.AbstractEventLoop",
+                "None"
+            ]
+        }
+    ],
+    "propose_state_sync@global": [
+        {
+            "category": "arg",
+            "name": "client",
+            "type": [
+                "asyncio.AbstractEventLoop",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "asyncio.AbstractEventLoop",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "force",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "task_run_id",
+            "type": [
+                "None",
+                "str",
+                "asyncio.AbstractEventLoop",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "flow_run_id",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "asyncio.AbstractEventLoop"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "task_run_id",
+            "type": [
+                "None",
+                "str",
+                "asyncio.AbstractEventLoop",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run_id",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "asyncio.AbstractEventLoop"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "asyncio.AbstractEventLoop",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client",
+            "type": [
+                "asyncio.AbstractEventLoop",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "force",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "propose_state_sync",
+            "type": [
+                "asyncio.AbstractEventLoop",
+                "bool",
+                "str"
+            ]
+        }
+    ],
+    "resolve_input@global": [
+        {
+            "category": "arg",
+            "name": "expr",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "context",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "None",
+                "State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expr",
+            "type": [
+                "PrefectFuture",
+                "State"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "resolve_input",
+            "type": []
+        }
+    ],
+    "resolve_inputs@global": [
+        {
+            "category": "arg",
+            "name": "parameters",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "return_data",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_depth",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "futures",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "states",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result_by_state",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parameters",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "resolve_inputs",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_depth",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "return_data",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "finished_states",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_results",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resolved_parameters",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exc",
+            "type": [
+                "Exception"
+            ]
+        }
+    ],
+    "resolve_inputs_sync@global": [
+        {
+            "category": "arg",
+            "name": "parameters",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "return_data",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_depth",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parameters",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "resolve_inputs_sync",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resolved_parameters",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "return_data",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_depth",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exc",
+            "type": [
+                "Exception"
+            ]
+        }
+    ],
+    "resolve_to_final_result@global": [
+        {
+            "category": "arg",
+            "name": "expr",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "context",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "None",
+                "State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expr",
+            "type": [
+                "PrefectFuture",
+                "State"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "resolve_to_final_result",
+            "type": [
+                "str",
+                "dict[str, list[typing.Any]]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "str",
+                "dict[str, list[typing.Any]]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attributes",
+            "type": [
+                "dict",
+                "dict[typing.Text, ]"
+            ]
+        }
+    ],
+    "set_state_and_handle_waits@global": [
+        {
+            "category": "arg",
+            "name": "set_state_func",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "engine_logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_state_and_handle_waits",
+            "type": []
+        }
+    ],
+    "should_log_prints@global": [
+        {
+            "category": "arg",
+            "name": "flow_or_task",
+            "type": [
+                "asyncio.AbstractEventLoop",
+                "None",
+                "Flow"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_or_task",
+            "type": [
+                "asyncio.AbstractEventLoop",
+                "None",
+                "Flow"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_or_task_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "should_log_prints",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,698 @@
+{
+    "_normalise_json@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "str",
+                "typing.Callable[str, str]",
+                "typing.Mapping",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "key_string",
+            "type": [
+                "str",
+                "dict",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "normalized_dict",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "separator",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "typing.Callable[str, str]",
+                "typing.Mapping",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key_string",
+            "type": [
+                "str",
+                "dict",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "separator",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_key",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_normalise_json",
+            "type": []
+        }
+    ],
+    "_normalise_json_ordered@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "dict[str, dict]",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "separator",
+            "type": [
+                "str",
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[str, dict]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k",
+            "type": [
+                "tuple[typing.Union[str,dict]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "v",
+            "type": [
+                "tuple[typing.Union[str,dict]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "top_dict_",
+            "type": [
+                "dict[tuple[typing.Union[str,dict]], tuple[typing.Union[str,dict]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "separator",
+            "type": [
+                "str",
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nested_dict_",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_normalise_json_ordered",
+            "type": [
+                "dict[dict[tuple[typing.Union[str,dict]], tuple[typing.Union[str,dict]]], typing.Union[dict,dict[str, typing.Any],dict[str, str]]]"
+            ]
+        }
+    ],
+    "_pull_field@global": [
+        {
+            "category": "arg",
+            "name": "js",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "extract_record",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "extract_record",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_pull_field",
+            "type": []
+        }
+    ],
+    "_pull_records@global": [
+        {
+            "category": "arg",
+            "name": "js",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_pull_records",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "_recursive_extract@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "path",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "seen_meta",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "level",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "obj",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "level",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recs",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "records",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_recursive_extract",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_simple_json_normalize@global": [
+        {
+            "category": "arg",
+            "name": "ds",
+            "type": [
+                "dict[str, typing.Any]",
+                "typing.Mapping",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sep",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "normalised_json_object",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ds",
+            "type": [
+                "dict[str, typing.Any]",
+                "typing.Mapping",
+                "dict",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sep",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "normalised_json_list",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_simple_json_normalize",
+            "type": [
+                "list",
+                "dict",
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        }
+    ],
+    "convert_to_line_delimits@global": [
+        {
+            "category": "arg",
+            "name": "s",
+            "type": [
+                "str",
+                "static_frame.Series"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s",
+            "type": [
+                "str",
+                "static_frame.Series"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "convert_to_line_delimits",
+            "type": [
+                "str",
+                "static_frame.Series",
+                "list[str]"
+            ]
+        }
+    ],
+    "global@global": [],
+    "json_normalize@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "str",
+                "None",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_path",
+            "type": [
+                "None",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "meta",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "meta_prefix",
+            "type": [
+                "None",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_prefix",
+            "type": [
+                "None",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "errors",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sep",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_level",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "None",
+                "list[str]",
+                "Series",
+                "dict",
+                "list[dict]",
+                "list",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "index",
+            "type": [
+                "None",
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "json_normalize",
+            "type": [
+                "DataFrame",
+                "list",
+                "dict",
+                "typing.Iterator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_path",
+            "type": [
+                "None",
+                "str",
+                "list[str]",
+                "list",
+                "list[typing.Union[list,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "meta",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "list",
+                "dict[str, str]",
+                "dict[str, int]",
+                "list[typing.Union[dict[str, str],dict[str, int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "meta_prefix",
+            "type": [
+                "None",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_prefix",
+            "type": [
+                "None",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_level",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sep",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "y",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "x",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "m",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "dict[str, int]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_meta",
+            "type": [
+                "list[typing.Union[list,list[typing.Union[str,dict[str, str],dict[str, int]]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "records",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lengths",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "meta_vals",
+            "type": [
+                "dict[str, str]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "val",
+            "type": [
+                "list",
+                "list[typing.Union[str,dict[str, str],dict[str, int]]]",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "meta_keys",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "DataFrame",
+                "list",
+                "dict",
+                "typing.Iterator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "v",
+            "type": [
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "i",
+            "type": [
+                "int",
+                "str"
+            ]
+        }
+    ],
+    "nested_to_record@global": [
+        {
+            "category": "arg",
+            "name": "ds",
+            "type": [
+                "str",
+                "None",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prefix",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sep",
+            "type": [
+                "str",
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "level",
+            "type": [
+                "dict",
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_level",
+            "type": [
+                "dict",
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "nested_to_record",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

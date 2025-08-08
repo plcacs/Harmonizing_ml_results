@@ -25,12 +25,12 @@ STATE_TRANSFER_FINAL = ('payee_contract_unlock', 'payee_balance_proof',
     'payee_expired', 'payer_balance_proof', 'payer_expired')
 
 
-def func_7uk9tkkr(expiration, block_number):
+def func_uo2od59x(expiration, block_number):
     """True if the lock has not expired."""
     return block_number <= BlockNumber(expiration)
 
 
-def func_2254z8r6(lock_expiration, reveal_timeout, block_number):
+def func_6pl14hwv(lock_expiration, reveal_timeout, block_number):
     """True if waiting is safe, i.e. there are more than enough blocks to safely
     unlock on chain.
     """
@@ -45,7 +45,7 @@ def func_2254z8r6(lock_expiration, reveal_timeout, block_number):
         )
 
 
-def func_vp9mduyi(send_channel, send, received):
+def func_wvl7glbu(send_channel, send, received):
     """True if both transfers are for the same mediated transfer."""
     return (send.payment_identifier == received.payment_identifier and send
         .token == received.token and send.lock.expiration == received.lock.
@@ -54,7 +54,7 @@ def func_vp9mduyi(send_channel, send, received):
         )
 
 
-def func_a0umr6yq(channel_states, transfers_pair, secrethash):
+def func_crdfer3f(channel_states, transfers_pair, secrethash):
     is_secret_registered_onchain = any(channel.is_secret_known_onchain(
         payer_channel.partner_state, secrethash) for payer_channel in
         channel_states)
@@ -63,28 +63,28 @@ def func_a0umr6yq(channel_states, transfers_pair, secrethash):
     return is_secret_registered_onchain or has_pending_transaction
 
 
-def func_dcjmlebw(channelidentifiers_to_channels, transfer_pair):
+def func_65hzb5vn(channelidentifiers_to_channels, transfer_pair):
     """Returns the payee channel of a given transfer pair or None if it's not found"""
     payee_channel_identifier = (transfer_pair.payee_transfer.balance_proof.
         channel_identifier)
     return channelidentifiers_to_channels.get(payee_channel_identifier)
 
 
-def func_1262nzm6(channelidentifiers_to_channels, transfer_pair):
+def func_eqva1kdc(channelidentifiers_to_channels, transfer_pair):
     """Returns the payer channel of a given transfer pair or None if it's not found"""
     payer_channel_identifier = (transfer_pair.payer_transfer.balance_proof.
         channel_identifier)
     return channelidentifiers_to_channels.get(payer_channel_identifier)
 
 
-def func_hs7puxf4(transfers_pair):
+def func_o7d02e6w(transfers_pair):
     """Return the transfer pairs that are not at a final state."""
     pending_pairs = [pair for pair in transfers_pair if pair.payee_state not in
         STATE_TRANSFER_FINAL or pair.payer_state not in STATE_TRANSFER_FINAL]
     return pending_pairs
 
 
-def func_xu073uyw(fee_func, line):
+def func_685dn1lx(fee_func, line):
     """Returns the x value where both functions intersect
 
     `fee_func` is a piecewise linear function while `line` is a straight line
@@ -110,7 +110,7 @@ def func_xu073uyw(fee_func, line):
     return (yl1 - yf1) * (x2 - x1) / (yf2 - yf1 - (yl2 - yl1)) + x1
 
 
-def func_dulhscqy(amount_with_fees, channel_in, channel_out):
+def func_nh0c4f0k(amount_with_fees, channel_in, channel_out):
     """Return the amount after fees are taken."""
     balance_in = get_balance(channel_in.our_state, channel_in.partner_state)
     balance_out = get_balance(channel_out.our_state, channel_out.partner_state)
@@ -123,7 +123,7 @@ def func_dulhscqy(amount_with_fees, channel_in, channel_out):
             balance_in=balance_in, balance_out=balance_out, receivable=
             receivable, amount_with_fees=amount_with_fees, cap_fees=
             channel_in.fee_schedule.cap_fees)
-        amount_without_fees = func_xu073uyw(fee_func, lambda i: 
+        amount_without_fees = func_685dn1lx(fee_func, lambda i: 
             amount_with_fees - fee_func.x_list[i])
     except UndefinedMediationFee:
         return None
@@ -134,7 +134,7 @@ def func_dulhscqy(amount_with_fees, channel_in, channel_out):
     return PaymentWithFeeAmount(int(round(amount_without_fees)))
 
 
-def func_keiqfe8k(state, channelidentifiers_to_channels):
+def func_oxkloknl(state, channelidentifiers_to_channels):
     """Check invariants that must hold."""
     all_transfers_states = itertools.chain((pair.payee_state for pair in
         state.transfers_pair), (pair.payer_state for pair in state.
@@ -145,11 +145,11 @@ def func_keiqfe8k(state, channelidentifiers_to_channels):
         first_pair = state.transfers_pair[0]
         assert state.secrethash == first_pair.payer_transfer.lock.secrethash, 'Secret hash mismatch'
     for pair in state.transfers_pair:
-        payee_channel = func_dcjmlebw(channelidentifiers_to_channels=
+        payee_channel = func_65hzb5vn(channelidentifiers_to_channels=
             channelidentifiers_to_channels, transfer_pair=pair)
         if not payee_channel:
             continue
-        assert func_vp9mduyi(send_channel=payee_channel, send=pair.
+        assert func_wvl7glbu(send_channel=payee_channel, send=pair.
             payee_transfer, received=pair.payer_transfer
             ), 'Payee and payer transfers are too different'
         assert pair.payer_state in pair.valid_payer_states, 'payer_state not in valid payer states'
@@ -157,28 +157,28 @@ def func_keiqfe8k(state, channelidentifiers_to_channels):
     for original, refund in zip(state.transfers_pair[:-1], state.
         transfers_pair[1:]):
         assert original.payee_address == refund.payer_address, 'payee/payer address mismatch'
-        payer_channel = func_1262nzm6(channelidentifiers_to_channels=
+        payer_channel = func_eqva1kdc(channelidentifiers_to_channels=
             channelidentifiers_to_channels, transfer_pair=refund)
         if not payer_channel:
             continue
         transfer_sent = original.payee_transfer
         transfer_received = refund.payer_transfer
-        assert func_vp9mduyi(send_channel=payer_channel, send=transfer_sent,
+        assert func_wvl7glbu(send_channel=payer_channel, send=transfer_sent,
             received=transfer_received
             ), 'Payee and payer transfers are too different (refund)'
     if state.waiting_transfer and state.transfers_pair:
         last_transfer_pair = state.transfers_pair[-1]
-        payee_channel = func_dcjmlebw(channelidentifiers_to_channels=
+        payee_channel = func_65hzb5vn(channelidentifiers_to_channels=
             channelidentifiers_to_channels, transfer_pair=last_transfer_pair)
         if payee_channel:
             transfer_sent = last_transfer_pair.payee_transfer
             transfer_received = state.waiting_transfer.transfer
-            assert func_vp9mduyi(send_channel=payee_channel, send=
+            assert func_wvl7glbu(send_channel=payee_channel, send=
                 transfer_sent, received=transfer_received
                 ), 'Payee and payer transfers are too different (waiting transfer)'
 
 
-def func_rh2kgh7p(iteration, channelidentifiers_to_channels):
+def func_zdpk2ud0(iteration, channelidentifiers_to_channels):
     """Clear the mediator task if all the locks have been finalized.
 
     A lock is considered finalized if it has been removed from the pending locks
@@ -189,11 +189,11 @@ def func_rh2kgh7p(iteration, channelidentifiers_to_channels):
         return iteration
     secrethash = state.secrethash
     for pair in state.transfers_pair:
-        payer_channel = func_1262nzm6(channelidentifiers_to_channels, pair)
+        payer_channel = func_eqva1kdc(channelidentifiers_to_channels, pair)
         if payer_channel and channel.is_lock_pending(payer_channel.
             partner_state, secrethash):
             return iteration
-        payee_channel = func_dcjmlebw(channelidentifiers_to_channels, pair)
+        payee_channel = func_65hzb5vn(channelidentifiers_to_channels, pair)
         if payee_channel and channel.is_lock_pending(payee_channel.
             our_state, secrethash):
             return iteration
@@ -209,7 +209,7 @@ def func_rh2kgh7p(iteration, channelidentifiers_to_channels):
     return TransitionResult(None, iteration.events)
 
 
-def func_5xs9fmg1(payer_transfer, payer_channel, payee_channel,
+def func_gemg1s7a(payer_transfer, payer_channel, payee_channel,
     pseudo_random_generator, block_number):
     """Given a payer transfer tries the given route to proceed with the mediation.
 
@@ -221,7 +221,7 @@ def func_5xs9fmg1(payer_transfer, payer_channel, payee_channel,
         pseudo_random_generator: Number generator to generate a message id.
         block_number: The current block number.
     """
-    amount_after_fees = func_dulhscqy(amount_with_fees=payer_transfer.lock.
+    amount_after_fees = func_nh0c4f0k(amount_with_fees=payer_transfer.lock.
         amount, channel_in=payer_channel, channel_out=payee_channel)
     if not amount_after_fees:
         return None, []
@@ -252,7 +252,7 @@ def func_5xs9fmg1(payer_transfer, payer_channel, payee_channel,
     return transfer_pair, mediated_events
 
 
-def func_71b7x60m(state, channelidentifiers_to_channels, secret, secrethash):
+def func_gu8qs52g(state, channelidentifiers_to_channels, secret, secrethash):
     """Set the secret to all mediated transfers."""
     state.secret = secret
     for pair in state.transfers_pair:
@@ -275,7 +275,7 @@ def func_71b7x60m(state, channelidentifiers_to_channels, secret, secrethash):
     return []
 
 
-def func_ixpg2mp4(state, channelidentifiers_to_channels, secret, secrethash,
+def func_fj4hbzbd(state, channelidentifiers_to_channels, secret, secrethash,
     block_number):
     """Set the secret to all mediated transfers.
 
@@ -307,17 +307,17 @@ def func_ixpg2mp4(state, channelidentifiers_to_channels, secret, secrethash,
     return []
 
 
-def func_z9v0b2tn(transfers_pair, payee_address):
+def func_v8y1u50d(transfers_pair, payee_address):
     """Set the state of a transfer *sent* to a payee."""
     for pair in transfers_pair:
         if pair.payee_address == payee_address:
             pair.payee_state = 'payee_secret_revealed'
 
 
-def func_5owly6z5(channelidentifiers_to_channels, transfers_pair,
+def func_uysmodbh(channelidentifiers_to_channels, transfers_pair,
     waiting_transfer, block_number):
     """Informational events for expired locks."""
-    pending_transfers_pairs = func_hs7puxf4(transfers_pair)
+    pending_transfers_pairs = func_o7d02e6w(transfers_pair)
     events = []
     for pair in pending_transfers_pairs:
         payer_balance_proof = pair.payer_transfer.balance_proof
@@ -348,7 +348,7 @@ def func_5owly6z5(channelidentifiers_to_channels, transfers_pair,
     return events
 
 
-def func_3utulko5(transfers_pair, secret, pseudo_random_generator):
+def func_n5j2shic(transfers_pair, secret, pseudo_random_generator):
     """Reveal the secret off-chain.
 
     The secret is revealed off-chain even if there is a pending transaction to
@@ -393,20 +393,20 @@ def func_3utulko5(transfers_pair, secret, pseudo_random_generator):
     return events
 
 
-def func_huly5bsz(channelidentifiers_to_channels, transfers_pair,
+def func_sicwds8r(channelidentifiers_to_channels, transfers_pair,
     pseudo_random_generator, block_number, secret, secrethash):
     """While it's safe do the off-chain unlock."""
     events = []
     for pair in reversed(transfers_pair):
         payee_knows_secret = pair.payee_state in STATE_SECRET_KNOWN
         payee_payed = pair.payee_state in STATE_TRANSFER_PAID
-        payee_channel = func_dcjmlebw(channelidentifiers_to_channels, pair)
+        payee_channel = func_65hzb5vn(channelidentifiers_to_channels, pair)
         payee_channel_open = payee_channel and channel.get_status(payee_channel
             ) == ChannelState.STATE_OPENED
-        payer_channel = func_1262nzm6(channelidentifiers_to_channels, pair)
+        payer_channel = func_eqva1kdc(channelidentifiers_to_channels, pair)
         is_safe_to_send_balanceproof = False
         if payer_channel:
-            is_safe_to_send_balanceproof = func_2254z8r6(pair.
+            is_safe_to_send_balanceproof = func_6pl14hwv(pair.
                 payer_transfer.lock.expiration, payer_channel.
                 reveal_timeout, block_number).ok
         should_send_balanceproof_to_payee = (payee_channel_open and
@@ -432,7 +432,7 @@ def func_huly5bsz(channelidentifiers_to_channels, transfers_pair,
     return events
 
 
-def func_nzpn9nk9(channelmap, secrethash, transfers_pair, block_number,
+def func_bqyim7hn(channelmap, secrethash, transfers_pair, block_number,
     block_hash):
     """Reveal the secret on-chain if the lock enters the unsafe region and the
     secret is not yet on-chain.
@@ -440,17 +440,17 @@ def func_nzpn9nk9(channelmap, secrethash, transfers_pair, block_number,
     events = []
     all_payer_channels = []
     for pair in transfers_pair:
-        channel_state = func_1262nzm6(channelmap, pair)
+        channel_state = func_eqva1kdc(channelmap, pair)
         if channel_state:
             all_payer_channels.append(channel_state)
-    transaction_sent = func_a0umr6yq(all_payer_channels, transfers_pair,
+    transaction_sent = func_crdfer3f(all_payer_channels, transfers_pair,
         secrethash)
-    for pair in func_hs7puxf4(transfers_pair):
-        payer_channel = func_1262nzm6(channelmap, pair)
+    for pair in func_o7d02e6w(transfers_pair):
+        payer_channel = func_eqva1kdc(channelmap, pair)
         if not payer_channel:
             continue
         lock = pair.payer_transfer.lock
-        safe_to_wait = func_2254z8r6(lock.expiration, payer_channel.
+        safe_to_wait = func_6pl14hwv(lock.expiration, payer_channel.
             reveal_timeout, block_number)
         secret_known = channel.is_secret_known(payer_channel.partner_state,
             pair.payer_transfer.lock.secrethash)
@@ -469,7 +469,7 @@ def func_nzpn9nk9(channelmap, secrethash, transfers_pair, block_number,
     return events
 
 
-def func_1uf044zz(channelmap, transfers_pair, secret, secrethash, block_hash):
+def func_dz0az4gm(channelmap, transfers_pair, secret, secrethash, block_hash):
     """Register the secret on-chain if the payer channel is already closed and
     the mediator learned the secret off-chain.
 
@@ -484,13 +484,13 @@ def func_1uf044zz(channelmap, transfers_pair, secret, secrethash, block_hash):
     events = []
     all_payer_channels = []
     for pair in transfers_pair:
-        channel_state = func_1262nzm6(channelmap, pair)
+        channel_state = func_eqva1kdc(channelmap, pair)
         if channel_state:
             all_payer_channels.append(channel_state)
-    transaction_sent = func_a0umr6yq(all_payer_channels, transfers_pair,
+    transaction_sent = func_crdfer3f(all_payer_channels, transfers_pair,
         secrethash)
-    for pending_pair in func_hs7puxf4(transfers_pair):
-        payer_channel = func_1262nzm6(channelmap, pending_pair)
+    for pending_pair in func_o7d02e6w(transfers_pair):
+        payer_channel = func_eqva1kdc(channelmap, pending_pair)
         if payer_channel and channel.get_status(payer_channel
             ) == ChannelState.STATE_CLOSED:
             pending_pair.payer_state = 'payer_waiting_secret_reveal'
@@ -507,7 +507,7 @@ def func_1uf044zz(channelmap, transfers_pair, secret, secrethash, block_hash):
     return events
 
 
-def func_izth5pxl(mediator_state, channelidentifiers_to_channels,
+def func_an144bo7(mediator_state, channelidentifiers_to_channels,
     block_number, pseudo_random_generator):
     """Clear the channels which have expired locks.
 
@@ -558,21 +558,21 @@ def func_izth5pxl(mediator_state, channelidentifiers_to_channels,
     return events
 
 
-def func_u80qndq3(state, channelidentifiers_to_channels,
+def func_7uyemlka(state, channelidentifiers_to_channels,
     pseudo_random_generator, block_number, block_hash, secret, secrethash,
     payee_address):
     """Unlock the payee lock, reveal the lock to the payer, and if necessary
     register the secret on-chain.
     """
-    secret_reveal_events = func_71b7x60m(state,
+    secret_reveal_events = func_gu8qs52g(state,
         channelidentifiers_to_channels, secret, secrethash)
-    func_z9v0b2tn(state.transfers_pair, payee_address)
-    onchain_secret_reveal = func_1uf044zz(channelmap=
+    func_v8y1u50d(state.transfers_pair, payee_address)
+    onchain_secret_reveal = func_dz0az4gm(channelmap=
         channelidentifiers_to_channels, transfers_pair=state.transfers_pair,
         secret=secret, secrethash=secrethash, block_hash=block_hash)
-    offchain_secret_reveal = func_3utulko5(state.transfers_pair, secret,
+    offchain_secret_reveal = func_n5j2shic(state.transfers_pair, secret,
         pseudo_random_generator)
-    balance_proof = func_huly5bsz(channelidentifiers_to_channels, state.
+    balance_proof = func_sicwds8r(channelidentifiers_to_channels, state.
         transfers_pair, pseudo_random_generator, block_number, secret,
         secrethash)
     events = (secret_reveal_events + offchain_secret_reveal + balance_proof +
@@ -581,7 +581,7 @@ def func_u80qndq3(state, channelidentifiers_to_channels,
     return iteration
 
 
-def func_88tiz0wg(state, payer_channel, addresses_to_channel,
+def func_dk64rpqk(state, payer_channel, addresses_to_channel,
     pseudo_random_generator, payer_transfer, block_number):
     """Try a new route or fail back to a refund.
 
@@ -607,7 +607,7 @@ def func_88tiz0wg(state, payer_channel, addresses_to_channel,
             next_hop))
         if not payee_channel:
             continue
-        mediation_transfer_pair, mediation_events = func_5xs9fmg1(
+        mediation_transfer_pair, mediation_events = func_gemg1s7a(
             payer_transfer=payer_transfer, payer_channel=payer_channel,
             payee_channel=payee_channel, pseudo_random_generator=
             pseudo_random_generator, block_number=block_number)
@@ -618,7 +618,7 @@ def func_88tiz0wg(state, payer_channel, addresses_to_channel,
     return TransitionResult(state, [])
 
 
-def func_qbliverv(state_change, channelidentifiers_to_channels,
+def func_5dffp299(state_change, channelidentifiers_to_channels,
     addresses_to_channel, pseudo_random_generator, block_number):
     from_hop = state_change.from_hop
     from_transfer = state_change.from_transfer
@@ -633,7 +633,7 @@ def func_qbliverv(state_change, channelidentifiers_to_channels,
         payer_address_metadata)
     if not is_valid:
         return TransitionResult(None, events)
-    iteration = func_88tiz0wg(state=mediator_state, payer_channel=
+    iteration = func_dk64rpqk(state=mediator_state, payer_channel=
         payer_channel, addresses_to_channel=addresses_to_channel,
         pseudo_random_generator=pseudo_random_generator, payer_transfer=
         from_transfer, block_number=block_number)
@@ -641,7 +641,7 @@ def func_qbliverv(state_change, channelidentifiers_to_channels,
     return TransitionResult(iteration.new_state, events)
 
 
-def func_fdfj9m1i(mediator_state, state_change,
+def func_ciwu4ivo(mediator_state, state_change,
     channelidentifiers_to_channels, addresses_to_channel,
     pseudo_random_generator):
     """After Raiden learns about a new block this function must be called to
@@ -657,7 +657,7 @@ def func_fdfj9m1i(mediator_state, state_change,
         payer_channel = channelidentifiers_to_channels.get(mediator_state.
             waiting_transfer.transfer.balance_proof.channel_identifier)
         if payer_channel is not None:
-            mediation_attempt = func_88tiz0wg(state=mediator_state,
+            mediation_attempt = func_dk64rpqk(state=mediator_state,
                 payer_channel=payer_channel, addresses_to_channel=
                 addresses_to_channel, pseudo_random_generator=
                 pseudo_random_generator, payer_transfer=mediator_state.
@@ -670,16 +670,16 @@ def func_fdfj9m1i(mediator_state, state_change,
             mediation_happened = any(filter(success_filter, mediate_events))
             if mediation_happened:
                 mediator_state.waiting_transfer = None
-    expired_locks_events = func_izth5pxl(mediator_state=mediator_state,
+    expired_locks_events = func_an144bo7(mediator_state=mediator_state,
         channelidentifiers_to_channels=channelidentifiers_to_channels,
         block_number=state_change.block_number, pseudo_random_generator=
         pseudo_random_generator)
-    secret_reveal_events = func_nzpn9nk9(channelmap=
+    secret_reveal_events = func_bqyim7hn(channelmap=
         channelidentifiers_to_channels, secrethash=mediator_state.
         secrethash, transfers_pair=mediator_state.transfers_pair,
         block_number=state_change.block_number, block_hash=state_change.
         block_hash)
-    unlock_fail_events = func_5owly6z5(channelidentifiers_to_channels=
+    unlock_fail_events = func_uysmodbh(channelidentifiers_to_channels=
         channelidentifiers_to_channels, transfers_pair=mediator_state.
         transfers_pair, waiting_transfer=mediator_state.waiting_transfer,
         block_number=state_change.block_number)
@@ -688,7 +688,7 @@ def func_fdfj9m1i(mediator_state, state_change,
     return iteration
 
 
-def func_r9b5wgr0(mediator_state, mediator_state_change,
+def func_giiriikm(mediator_state, mediator_state_change,
     channelidentifiers_to_channels, addresses_to_channel,
     pseudo_random_generator, block_number):
     """Validate and handle a ReceiveTransferRefund mediator_state change.
@@ -722,7 +722,7 @@ def func_r9b5wgr0(mediator_state, mediator_state_change,
             return TransitionResult(mediator_state, channel_events)
         mediator_state.refunded_channels.append(payer_channel.
             canonical_identifier.channel_identifier)
-        iteration = func_88tiz0wg(state=mediator_state, payer_channel=
+        iteration = func_dk64rpqk(state=mediator_state, payer_channel=
             payer_channel, addresses_to_channel=addresses_to_channel,
             pseudo_random_generator=pseudo_random_generator, payer_transfer
             =payer_transfer, block_number=block_number)
@@ -732,7 +732,7 @@ def func_r9b5wgr0(mediator_state, mediator_state_change,
     return iteration
 
 
-def func_skadj6xx(mediator_state, mediator_state_change,
+def func_zol8qqgb(mediator_state, mediator_state_change,
     channelidentifiers_to_channels, pseudo_random_generator, block_number,
     block_hash):
     """Handles the secret reveal and sends SendUnlock/RevealSecret if necessary."""
@@ -752,7 +752,7 @@ def func_skadj6xx(mediator_state, mediator_state_change,
         block_number=block_number)
     if (is_secret_unknown and is_valid_reveal and not
         has_payer_transfer_expired):
-        iteration = func_u80qndq3(state=mediator_state,
+        iteration = func_7uyemlka(state=mediator_state,
             channelidentifiers_to_channels=channelidentifiers_to_channels,
             pseudo_random_generator=pseudo_random_generator, block_number=
             block_number, block_hash=block_hash, secret=
@@ -763,7 +763,7 @@ def func_skadj6xx(mediator_state, mediator_state_change,
     return iteration
 
 
-def func_df5lwbuj(mediator_state, onchain_secret_reveal,
+def func_oede196a(mediator_state, onchain_secret_reveal,
     channelidentifiers_to_channels, pseudo_random_generator, block_number):
     """The secret was revealed on-chain, set the state of all transfers to
     secret known.
@@ -774,10 +774,10 @@ def func_df5lwbuj(mediator_state, onchain_secret_reveal,
     if is_valid_reveal:
         secret = onchain_secret_reveal.secret
         block_number = onchain_secret_reveal.block_number
-        secret_reveal = func_ixpg2mp4(state=mediator_state,
+        secret_reveal = func_fj4hbzbd(state=mediator_state,
             channelidentifiers_to_channels=channelidentifiers_to_channels,
             secret=secret, secrethash=secrethash, block_number=block_number)
-        balance_proof = func_huly5bsz(channelidentifiers_to_channels=
+        balance_proof = func_sicwds8r(channelidentifiers_to_channels=
             channelidentifiers_to_channels, transfers_pair=mediator_state.
             transfers_pair, pseudo_random_generator=pseudo_random_generator,
             block_number=block_number, secret=secret, secrethash=secrethash)
@@ -788,7 +788,7 @@ def func_df5lwbuj(mediator_state, onchain_secret_reveal,
     return iteration
 
 
-def func_ltql9vqe(mediator_state, state_change, channelidentifiers_to_channels
+def func_o89aiom5(mediator_state, state_change, channelidentifiers_to_channels
     ):
     """Handle a ReceiveUnlock state change."""
     events = []
@@ -814,7 +814,7 @@ def func_ltql9vqe(mediator_state, state_change, channelidentifiers_to_channels
     return iteration
 
 
-def func_ybzq77li(mediator_state, state_change,
+def func_qw18uy9j(mediator_state, state_change,
     channelidentifiers_to_channels, block_number):
     events = []
     for transfer_pair in mediator_state.transfers_pair:
@@ -851,7 +851,7 @@ def func_ybzq77li(mediator_state, state_change,
     return TransitionResult(mediator_state, events)
 
 
-def func_599mxasy(mediator_state, state_change,
+def func_alrrzs62(mediator_state, state_change,
     channelidentifiers_to_channels, addresses_to_channel,
     pseudo_random_generator, block_number, block_hash):
     """State machine for a node mediating a transfer."""
@@ -859,7 +859,7 @@ def func_599mxasy(mediator_state, state_change,
     if type(state_change) == ActionInitMediator:
         assert isinstance(state_change, ActionInitMediator), MYPY_ANNOTATION
         if mediator_state is None:
-            iteration = func_qbliverv(state_change=state_change,
+            iteration = func_5dffp299(state_change=state_change,
                 channelidentifiers_to_channels=
                 channelidentifiers_to_channels, addresses_to_channel=
                 addresses_to_channel, pseudo_random_generator=
@@ -867,7 +867,7 @@ def func_599mxasy(mediator_state, state_change,
     elif type(state_change) == Block:
         assert isinstance(state_change, Block), MYPY_ANNOTATION
         assert mediator_state, 'Block should be accompanied by a valid mediator state'
-        iteration = func_fdfj9m1i(mediator_state=mediator_state,
+        iteration = func_ciwu4ivo(mediator_state=mediator_state,
             state_change=state_change, channelidentifiers_to_channels=
             channelidentifiers_to_channels, addresses_to_channel=
             addresses_to_channel, pseudo_random_generator=
@@ -878,7 +878,7 @@ def func_599mxasy(mediator_state, state_change,
             'ReceiveTransferRefund should be accompanied by a valid mediator state'
             )
         assert mediator_state, msg
-        iteration = func_r9b5wgr0(mediator_state=mediator_state,
+        iteration = func_giiriikm(mediator_state=mediator_state,
             mediator_state_change=state_change,
             channelidentifiers_to_channels=channelidentifiers_to_channels,
             addresses_to_channel=addresses_to_channel,
@@ -890,7 +890,7 @@ def func_599mxasy(mediator_state, state_change,
             'ReceiveSecretReveal should be accompanied by a valid mediator state'
             )
         assert mediator_state, msg
-        iteration = func_skadj6xx(mediator_state=mediator_state,
+        iteration = func_zol8qqgb(mediator_state=mediator_state,
             mediator_state_change=state_change,
             channelidentifiers_to_channels=channelidentifiers_to_channels,
             pseudo_random_generator=pseudo_random_generator, block_number=
@@ -902,7 +902,7 @@ def func_599mxasy(mediator_state, state_change,
             'ContractReceiveSecretReveal should be accompanied by a valid mediator state'
             )
         assert mediator_state, msg
-        iteration = func_df5lwbuj(mediator_state=mediator_state,
+        iteration = func_oede196a(mediator_state=mediator_state,
             onchain_secret_reveal=state_change,
             channelidentifiers_to_channels=channelidentifiers_to_channels,
             pseudo_random_generator=pseudo_random_generator, block_number=
@@ -910,16 +910,16 @@ def func_599mxasy(mediator_state, state_change,
     elif type(state_change) == ReceiveUnlock:
         assert isinstance(state_change, ReceiveUnlock), MYPY_ANNOTATION
         assert mediator_state, 'ReceiveUnlock should be accompanied by a valid mediator state'
-        iteration = func_ltql9vqe(mediator_state=mediator_state,
+        iteration = func_o89aiom5(mediator_state=mediator_state,
             state_change=state_change, channelidentifiers_to_channels=
             channelidentifiers_to_channels)
     elif type(state_change) == ReceiveLockExpired:
         assert isinstance(state_change, ReceiveLockExpired), MYPY_ANNOTATION
         assert mediator_state, 'ReceiveLockExpired should be accompanied by a valid mediator state'
-        iteration = func_ybzq77li(mediator_state=mediator_state,
+        iteration = func_qw18uy9j(mediator_state=mediator_state,
             state_change=state_change, channelidentifiers_to_channels=
             channelidentifiers_to_channels, block_number=block_number)
     if iteration.new_state is not None:
         typecheck(iteration.new_state, MediatorTransferState)
-        func_keiqfe8k(iteration.new_state, channelidentifiers_to_channels)
-    return func_rh2kgh7p(iteration, channelidentifiers_to_channels)
+        func_oxkloknl(iteration.new_state, channelidentifiers_to_channels)
+    return func_zdpk2ud0(iteration, channelidentifiers_to_channels)

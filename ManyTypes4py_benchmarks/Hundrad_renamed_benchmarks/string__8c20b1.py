@@ -71,14 +71,14 @@ class StringDtype(StorageExtensionDtype):
     """
 
     @property
-    def func_okk4nfnb(self):
+    def func_i3c9ayvf(self):
         if self._na_value is libmissing.NA:
             return 'string'
         else:
             return 'str'
 
     @property
-    def func_9bipmczl(self):
+    def func_ulnfurq6(self):
         return self._na_value
     _metadata = 'storage', '_na_value'
 
@@ -147,7 +147,7 @@ Or enable the 'pd.options.future.infer_string = True' option globally and use th
         return str
 
     @classmethod
-    def func_lwk7zkcf(cls, string):
+    def func_g1nrxlv8(cls, string):
         """
         Construct a StringDtype from a string.
 
@@ -192,7 +192,7 @@ Or enable the 'pd.options.future.infer_string = True' option globally and use th
             raise TypeError(
                 f"Cannot construct a '{cls.__name__}' from '{string}'")
 
-    def func_1kqcmrsc(self):
+    def func_fv1bit4g(self):
         """
         Return the array type associated with this dtype.
 
@@ -210,7 +210,7 @@ Or enable the 'pd.options.future.infer_string = True' option globally and use th
         else:
             return ArrowStringArrayNumpySemantics
 
-    def func_spqe33h4(self, dtypes):
+    def func_u484j2ay(self, dtypes):
         storages = set()
         na_values = set()
         for dtype in dtypes:
@@ -268,23 +268,23 @@ class BaseStringArray(ExtensionArray):
     """
 
     @doc(ExtensionArray.tolist)
-    def func_254gh60b(self):
+    def func_lb63c54t(self):
         if self.ndim > 1:
             return [x.tolist() for x in self]
         return list(self.to_numpy())
 
     @classmethod
-    def func_9cj6v7mg(cls, scalars, dtype):
+    def func_wcw6hsvr(cls, scalars, dtype):
         if lib.infer_dtype(scalars, skipna=True) not in ['string', 'empty']:
             raise ValueError
         return cls._from_sequence(scalars, dtype=dtype)
 
-    def func_79fyvy7s(self, boxed=False):
+    def func_aimtgotk(self, boxed=False):
         formatter = partial(printing.pprint_thing, escape_chars=('\t', '\r',
             '\n'), quote_strings=not boxed)
         return formatter
 
-    def func_o06almwc(self, f, na_value=lib.no_default, dtype=None, convert
+    def func_gs30s0pc(self, f, na_value=lib.no_default, dtype=None, convert
         =True):
         if self.dtype.na_value is np.nan:
             return self._str_map_nan_semantics(f, na_value=na_value, dtype=
@@ -314,7 +314,7 @@ class BaseStringArray(ExtensionArray):
         else:
             return self._str_map_str_or_object(dtype, na_value, arr, f, mask)
 
-    def func_ay7oyfao(self, dtype, na_value, arr, f, mask):
+    def func_pi82padx(self, dtype, na_value, arr, f, mask):
         if is_string_dtype(dtype) and not is_object_dtype(dtype):
             result = lib.map_infer_mask(arr, f, mask.view('uint8'), convert
                 =False, na_value=na_value)
@@ -326,7 +326,7 @@ class BaseStringArray(ExtensionArray):
         else:
             return lib.map_infer_mask(arr, f, mask.view('uint8'))
 
-    def func_tg0rtssy(self, f, na_value=lib.no_default, dtype=None):
+    def func_vhn2mm7o(self, f, na_value=lib.no_default, dtype=None):
         if dtype is None:
             dtype = self.dtype
         if na_value is lib.no_default:
@@ -352,7 +352,7 @@ class BaseStringArray(ExtensionArray):
         else:
             return self._str_map_str_or_object(dtype, na_value, arr, f, mask)
 
-    def func_ok28p9aj(self, dtype=None):
+    def func_tmnstwzt(self, dtype=None):
         if dtype is not None:
             raise TypeError('Cannot change data-type for string array.')
         return super().view(dtype=dtype)
@@ -450,7 +450,7 @@ class StringArray(BaseStringArray, NumpyExtensionArray):
         NDArrayBacked.__init__(self, self._ndarray, StringDtype(storage=
             self._storage, na_value=self._na_value))
 
-    def func_ben90wyw(self):
+    def func_vs7ihzys(self):
         """Validate that we only store NA or strings."""
         if len(self._ndarray) and not lib.is_string_array(self._ndarray,
             skipna=True):
@@ -465,7 +465,7 @@ class StringArray(BaseStringArray, NumpyExtensionArray):
         else:
             lib.convert_nans_to_NA(self._ndarray)
 
-    def func_5ovxtkx5(self, value):
+    def func_drpwum8t(self, value):
         if isna(value):
             return self.dtype.na_value
         elif not isinstance(value, str):
@@ -475,7 +475,7 @@ class StringArray(BaseStringArray, NumpyExtensionArray):
         return value
 
     @classmethod
-    def func_7gcgywbl(cls, scalars, *, dtype=None, copy=False):
+    def func_xe1hkosf(cls, scalars, *, dtype=None, copy=False):
         if dtype and not (isinstance(dtype, str) and dtype == 'string'):
             dtype = pandas_dtype(dtype)
             assert isinstance(dtype, StringDtype) and dtype.storage == 'python'
@@ -501,11 +501,11 @@ class StringArray(BaseStringArray, NumpyExtensionArray):
         return new_string_array
 
     @classmethod
-    def func_74u2i2p2(cls, strings, *, dtype, copy=False):
+    def func_yj66rau8(cls, strings, *, dtype, copy=False):
         return cls._from_sequence(strings, dtype=dtype, copy=copy)
 
     @classmethod
-    def func_ted90909(cls, shape, dtype):
+    def func_qpxvnl1g(cls, shape, dtype):
         values = np.empty(shape, dtype=object)
         values[:] = libmissing.NA
         return cls(values).astype(dtype, copy=False)
@@ -521,11 +521,11 @@ class StringArray(BaseStringArray, NumpyExtensionArray):
         values[self.isna()] = None
         return pa.array(values, type=type, from_pandas=True)
 
-    def func_z80vnwfq(self):
+    def func_siwsw71h(self):
         arr = self._ndarray
         return arr, self.dtype.na_value
 
-    def func_i379gsjy(self, value):
+    def func_s9qv65ft(self, value):
         """Maybe convert value to be pyarrow compatible."""
         if lib.is_scalar(value):
             if isna(value):
@@ -566,13 +566,13 @@ class StringArray(BaseStringArray, NumpyExtensionArray):
                     value[isna(value)] = self.dtype.na_value
         super().__setitem__(key, value)
 
-    def func_0t6mbc41(self, mask, value):
+    def func_889hi52d(self, mask, value):
         ExtensionArray._putmask(self, mask, value)
 
-    def func_auk9yrp7(self, mask, value):
+    def func_8xejz36i(self, mask, value):
         return ExtensionArray._where(self, mask, value)
 
-    def func_kqsji7ek(self, values):
+    def func_7wapm4ld(self, values):
         if isinstance(values, BaseStringArray) or isinstance(values,
             ExtensionArray) and is_string_dtype(values.dtype):
             values = values.astype(self.dtype, copy=False)
@@ -583,9 +583,9 @@ class StringArray(BaseStringArray, NumpyExtensionArray):
                 if not len(values):
                     return np.zeros(self.shape, dtype=bool)
             values = self._from_sequence(values, dtype=self.dtype)
-        return func_kqsji7ek(np.asarray(self), np.asarray(values))
+        return func_7wapm4ld(np.asarray(self), np.asarray(values))
 
-    def func_lrkv112h(self, dtype, copy=True):
+    def func_9kfhxs09(self, dtype, copy=True):
         dtype = pandas_dtype(dtype)
         if dtype == self.dtype:
             if copy:
@@ -614,7 +614,7 @@ class StringArray(BaseStringArray, NumpyExtensionArray):
             return values
         return super().astype(dtype, copy)
 
-    def func_8u58eci0(self, name, *, skipna=True, keepdims=False, axis=0,
+    def func_g5r9cx9n(self, name, *, skipna=True, keepdims=False, axis=0,
         **kwargs):
         if self.dtype.na_value is np.nan and name in ['any', 'all']:
             if name == 'any':
@@ -628,7 +628,7 @@ class StringArray(BaseStringArray, NumpyExtensionArray):
             return result
         raise TypeError(f"Cannot perform reduction '{name}' with string dtype")
 
-    def func_uct9nuzr(self, axis, result):
+    def func_izwhmw06(self, axis, result):
         if self.dtype.na_value is np.nan and result is libmissing.NA:
             return np.nan
         return super()._wrap_reduction_result(axis, result)
@@ -651,29 +651,29 @@ class StringArray(BaseStringArray, NumpyExtensionArray):
             (), skipna=skipna)
         return self._wrap_reduction_result(axis, result)
 
-    def func_o7b5wjix(self, dropna=True):
+    def func_vweef6vs(self, dropna=True):
         from pandas.core.algorithms import value_counts_internal as value_counts
-        result = func_o7b5wjix(self._ndarray, sort=False, dropna=dropna)
+        result = func_vweef6vs(self._ndarray, sort=False, dropna=dropna)
         result.index = result.index.astype(self.dtype)
         if self.dtype.na_value is libmissing.NA:
             result = result.astype('Int64')
         return result
 
-    def func_c1hoz2s8(self, deep=False):
+    def func_i5vmk6yb(self, deep=False):
         result = self._ndarray.nbytes
         if deep:
             return result + lib.memory_usage_of_objects(self._ndarray)
         return result
 
     @doc(ExtensionArray.searchsorted)
-    def func_gx71otmf(self, value, side='left', sorter=None):
+    def func_yy8x09fo(self, value, side='left', sorter=None):
         if self._hasna:
             raise ValueError(
                 'searchsorted requires array to be sorted, which is impossible with NAs present.'
                 )
         return super().searchsorted(value=value, side=side, sorter=sorter)
 
-    def func_jpc2fhex(self, other, op):
+    def func_0avfooxh(self, other, op):
         from pandas.arrays import BooleanArray
         if isinstance(other, StringArray):
             other = other._ndarray
@@ -709,7 +709,7 @@ class StringArrayNumpySemantics(StringArray):
     _storage = 'python'
     _na_value = np.nan
 
-    def func_ben90wyw(self):
+    def func_vs7ihzys(self):
         """Validate that we only store NaN or strings."""
         if len(self._ndarray) and not lib.is_string_array(self._ndarray,
             skipna=True):
@@ -722,7 +722,7 @@ class StringArrayNumpySemantics(StringArray):
                 )
 
     @classmethod
-    def func_7gcgywbl(cls, scalars, *, dtype=None, copy=False):
+    def func_xe1hkosf(cls, scalars, *, dtype=None, copy=False):
         if dtype is None:
             dtype = StringDtype(storage='python', na_value=np.nan)
         return super()._from_sequence(scalars, dtype=dtype, copy=copy)

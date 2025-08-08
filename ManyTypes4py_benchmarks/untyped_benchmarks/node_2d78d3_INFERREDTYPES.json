@@ -1,0 +1,2472 @@
+{
+    "get_token_network_by_address@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_network_address",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_address",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tn_registry_address",
+            "type": [
+                "tuple[typing.Union[str,int]]",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_token_network_by_address",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tn_registry_state",
+            "type": [
+                "dict[str, typing.Any]",
+                "zproc.state.state.State",
+                "tuple[str]"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "TokenNetworkStateChange",
+            "type": [
+                "str",
+                "typing.Callable",
+                "set[str]"
+            ]
+        }
+    ],
+    "handle_action_init_initiator@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.architecture.Event",
+                "raiden.utils.SecretHash"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.architecture.Event",
+                "raiden.utils.SecretHash"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_action_init_initiator",
+            "type": []
+        }
+    ],
+    "handle_action_init_mediator@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.architecture.Event",
+                "raiden.utils.SecretHash"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.architecture.Event",
+                "raiden.utils.SecretHash"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_action_init_mediator",
+            "type": []
+        }
+    ],
+    "handle_action_init_target@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.state_change.ReceiveUnlock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.architecture.Event",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.architecture.Event",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.state_change.ReceiveUnlock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_action_init_target",
+            "type": []
+        }
+    ],
+    "handle_action_transfer_reroute@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_action_transfer_reroute",
+            "type": []
+        }
+    ],
+    "handle_block@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transfers_result",
+            "type": [
+                "list[dict[str, typing.Any]]",
+                "raiden.transfer.events.EventPaymentSentFailed",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_block",
+            "type": [
+                "TransitionResult"
+            ]
+        }
+    ],
+    "handle_contract_receive_channel_closed@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "canonical_identifier",
+            "type": [
+                "CanonicalIdentifier"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "queue_id",
+            "type": [
+                "QueueIdentifier"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_contract_receive_channel_closed",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState",
+                "raiden.raiden_service.RaidenService",
+                "raiden.constants.EthClient"
+            ]
+        }
+    ],
+    "handle_contract_receive_new_token_network@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.state.NettingChannelState",
+                "raiden.utils.SecretHash"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.state.NettingChannelState",
+                "raiden.utils.SecretHash"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_contract_receive_new_token_network",
+            "type": [
+                "TransitionResult"
+            ]
+        }
+    ],
+    "handle_contract_receive_new_token_network_registry@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "list[raiden.transfer.architecture.Event]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "list[raiden.transfer.architecture.Event]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_registry_address",
+            "type": [
+                "TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_contract_receive_new_token_network_registry",
+            "type": [
+                "TransitionResult"
+            ]
+        }
+    ],
+    "handle_contract_receive_secret_reveal@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_contract_receive_secret_reveal",
+            "type": []
+        }
+    ],
+    "handle_receive_delivered@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "queueid",
+            "type": [
+                "QueueIdentifier"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_receive_delivered",
+            "type": [
+                "TransitionResult"
+            ]
+        }
+    ],
+    "handle_receive_lock_expired@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_receive_lock_expired",
+            "type": []
+        }
+    ],
+    "handle_receive_processed@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_receive_processed",
+            "type": [
+                "TransitionResult"
+            ]
+        }
+    ],
+    "handle_receive_secret_request@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_receive_secret_request",
+            "type": []
+        }
+    ],
+    "handle_receive_secret_reveal@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_receive_secret_reveal",
+            "type": []
+        }
+    ],
+    "handle_receive_transfer_cancel_route@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_receive_transfer_cancel_route",
+            "type": []
+        }
+    ],
+    "handle_receive_transfer_refund@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_receive_transfer_refund",
+            "type": []
+        }
+    ],
+    "handle_receive_unlock@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_receive_unlock",
+            "type": []
+        }
+    ],
+    "handle_receive_withdraw_confirmation@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_receive_withdraw_confirmation",
+            "type": []
+        }
+    ],
+    "handle_receive_withdraw_expired@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_receive_withdraw_expired",
+            "type": []
+        }
+    ],
+    "handle_receive_withdraw_request@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_receive_withdraw_request",
+            "type": []
+        }
+    ],
+    "handle_state_change@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "canonical_identifier",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change_map",
+            "type": [
+                "dict[, list[list[None]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "t_state_change",
+            "type": [
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "func",
+            "type": [
+                "list[None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "args",
+            "type": [
+                "list[None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iteration",
+            "type": [
+                "raiden.transfer.architecture.TransitionResult",
+                "int",
+                "float",
+                "TransitionResult"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_state_change",
+            "type": [
+                "TransitionResult",
+                "int",
+                "float"
+            ]
+        }
+    ],
+    "handle_token_network_action@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.NodeNetworkStateMap",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.NodeNetworkStateMap",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.NodeNetworkStateMap",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.NodeNetworkStateMap",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_token_network_action",
+            "type": [
+                "TransitionResult"
+            ]
+        }
+    ],
+    "handle_update_services_addresses_state_change@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_update_services_addresses_state_change",
+            "type": [
+                "TransitionResult"
+            ]
+        }
+    ],
+    "inplace_delete_message@global": [
+        {
+            "category": "arg",
+            "name": "message_queue",
+            "type": [
+                "list[typing.Union[dict,bytes]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.mediated_transfer.state_change.ActionInitTarget",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "dict",
+                "bytes",
+                "SendWithdrawRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_queue",
+            "type": [
+                "list[typing.Union[dict,bytes]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.mediated_transfer.state_change.ActionInitTarget",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_found",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "inplace_delete_message",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "inplace_delete_message_queue@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.state.NettingChannelState",
+                "raiden.messages.monitoring_service.RequestMonitoring"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "queueid",
+            "type": [
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "queueid",
+            "type": [
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "queue",
+            "type": [
+                "raiden.utils.notifying_queue.NotifyingQueue",
+                "list",
+                "list[tuple[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "inplace_delete_message_queue",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.state.NettingChannelState",
+                "raiden.messages.monitoring_service.RequestMonitoring"
+            ]
+        }
+    ],
+    "is_transaction_effect_satisfied@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.utils.SecretHash"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "transaction",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transaction",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_valid_update_transfer",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_transaction_effect_satisfied",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_valid_close",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_valid_settle",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_valid_secret_reveal",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_batch_unlock",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.utils.SecretHash"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partner_address",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_state",
+            "type": [
+                "None",
+                "raiden.transfer.state.NettingChannelState",
+                "raiden.transfer.state.NettingChannelEndState",
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState"
+            ]
+        }
+    ],
+    "is_transaction_expired@global": [
+        {
+            "category": "arg",
+            "name": "transaction",
+            "type": [
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.Address",
+                "raiden.transfer.identifiers.CanonicalIdentifier"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_number",
+            "type": [
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.Address",
+                "raiden.transfer.identifiers.CanonicalIdentifier"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transaction",
+            "type": [
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.Address",
+                "raiden.transfer.identifiers.CanonicalIdentifier"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.Address",
+                "raiden.transfer.identifiers.CanonicalIdentifier"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_update_expired",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_transaction_expired",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_secret_register_expired",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "is_transaction_invalidated@global": [
+        {
+            "category": "arg",
+            "name": "transaction",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.storage.utils.TimestampedEvent"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.storage.utils.TimestampedEvent"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.storage.utils.TimestampedEvent"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transaction",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.storage.utils.TimestampedEvent"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_our_failed_update_transfer",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_transaction_invalidated",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_our_failed_withdraw",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "is_transaction_pending@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "transaction",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transaction",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveTransferRefund"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_transaction_pending",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "maybe_add_tokennetwork@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "list[raiden.utils.Address]",
+                "pathfinding_service.model.token_network.TokenNetwork",
+                "utils.SimpleReachabilityContainer"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_network_registry_address",
+            "type": [
+                "tests.pathfinding.utils.SimpleReachabilityContainer",
+                "list[raiden.utils.Address]",
+                "raiden.transfer.state.TokenNetworkState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_network_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "list[raiden.utils.Address]",
+                "pathfinding_service.model.token_network.TokenNetwork",
+                "utils.SimpleReachabilityContainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_registry_address",
+            "type": [
+                "tests.pathfinding.utils.SimpleReachabilityContainer",
+                "list[raiden.utils.Address]",
+                "raiden.transfer.state.TokenNetworkState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_registry_state",
+            "type": [
+                "None",
+                "TokenNetworkRegistryState",
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.state.NettingChannelEndState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_state_previous",
+            "type": [
+                "None",
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.utils.TokenAddress",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "maybe_add_tokennetwork",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "state_transition@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.utils.NodeNetworkStateMap"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.utils.NodeNetworkStateMap"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iteration",
+            "type": [
+                "raiden.transfer.architecture.TransitionResult",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "state_transition",
+            "type": [
+                "raiden.transfer.architecture.TransitionResult",
+                "int"
+            ]
+        }
+    ],
+    "subdispatch_by_canonical_id@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.Address",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.ChannelMap",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "canonical_identifier",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.BlockIdentifier",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.Address",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "canonical_identifier",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.BlockIdentifier",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.ChannelMap",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "subdispatch_by_canonical_id",
+            "type": [
+                "TransitionResult"
+            ]
+        }
+    ],
+    "subdispatch_initiatortask@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.BlockNumber",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "secrethash",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_state",
+            "type": [
+                "raiden.transfer.state.NettingChannelEndState",
+                "ChainState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "subdispatch_initiatortask",
+            "type": [
+                "TransitionResult"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secrethash",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sub_task",
+            "type": [
+                "raiden.tests.integration.network.transportest_matrix_transporMessageHandler",
+                "dict",
+                "None",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "manager_state",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.BlockNumber",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        }
+    ],
+    "subdispatch_mediatortask@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.Address",
+                "raiden.utils.ChannelMap"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_network_address",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "secrethash",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.Address",
+                "raiden.utils.ChannelMap"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secrethash",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sub_task",
+            "type": [
+                "dict",
+                "None",
+                "list[dict[str, typing.Any]]",
+                "list",
+                "MediatorTask"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_valid_subtask",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mediator_state",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_address",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_state",
+            "type": [
+                "raiden.transfer.state.NettingChannelEndState",
+                "raiden.constants.EthClient",
+                "None",
+                "ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "subdispatch_mediatortask",
+            "type": [
+                "TransitionResult"
+            ]
+        }
+    ],
+    "subdispatch_targettask@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.MessageID",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.utils.TokenAddress",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.UserDepositAddress",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "channel_identifier",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.InitiatorAddress",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "secrethash",
+            "type": [
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.MessageID",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.MessageID",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secrethash",
+            "type": [
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.MessageID",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sub_task",
+            "type": [
+                "dict",
+                "None",
+                "list[dict[str, typing.Any]]",
+                "list",
+                "TargetTask"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_valid_subtask",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_state",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.UserDepositAddress",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_state",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_identifier",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.InitiatorAddress",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.utils.TokenAddress",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "subdispatch_targettask",
+            "type": [
+                "TransitionResult"
+            ]
+        }
+    ],
+    "subdispatch_to_all_channels@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.TokenNetworkState",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.BlockHash",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_number",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.BlockHash",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_hash",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.BlockHash",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.BlockHash",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.BlockHash",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_hash",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.BlockHash",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.TokenNetworkState",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "subdispatch_to_all_channels",
+            "type": [
+                "TransitionResult"
+            ]
+        }
+    ],
+    "subdispatch_to_all_lockedtransfers@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.storage.utils.TimestampedEvent",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.BlockNumber",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.storage.utils.TimestampedEvent",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.BlockNumber",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "subdispatch_to_all_lockedtransfers",
+            "type": [
+                "TransitionResult"
+            ]
+        }
+    ],
+    "subdispatch_to_paymenttask@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "raiden.transfer.state.TokenNetworkState",
+                "eth.rlp.transactions.BaseTransaction",
+                "eth.utils.spoof.SpoofTransaction"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.TokenNetworkState",
+                "raiden.transfer.state_change.ReceiveUnlock",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "secrethash",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.utils.ChannelMap"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "raiden.transfer.state.TokenNetworkState",
+                "eth.rlp.transactions.BaseTransaction",
+                "eth.utils.spoof.SpoofTransaction"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secrethash",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.SecretHash",
+                "raiden.utils.ChannelMap"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sub_task",
+            "type": [
+                "raiden.tests.integration.network.transportest_matrix_transporMessageHandler",
+                "dict",
+                "None",
+                "list",
+                "InitiatorTask",
+                "MediatorTask",
+                "TargetTask"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.state.TokenNetworkState",
+                "raiden.transfer.state_change.ReceiveUnlock",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sub_iteration_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "subdispatch_to_paymenttask",
+            "type": []
+        }
+    ],
+    "update_queues@global": [
+        {
+            "category": "arg",
+            "name": "iteration",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.ChannelMap",
+                "raiden.utils.NodeNetworkStateMap"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.architecture.StateChange",
+                "raiden.transfer.state_change.Block",
+                "raiden.utils.ChannelMap"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iteration",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.ChannelMap",
+                "raiden.utils.NodeNetworkStateMap"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.architecture.StateChange",
+                "raiden.transfer.state_change.Block",
+                "raiden.utils.ChannelMap",
+                "ContractReceiveStateChange"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state_",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pending_transactions",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "SendMessageEvent",
+                "ContractSendEvent"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "queue",
+            "type": [
+                "raiden.utils.notifying_queue.NotifyingQueue",
+                "list",
+                "list[SendMessageEvent]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_queues",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

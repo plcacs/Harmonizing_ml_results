@@ -1,0 +1,1738 @@
+{
+    "_handle_action_received@MqttClimate": [
+        {
+            "category": "arg",
+            "name": "msg",
+            "type": [
+                "bytes",
+                "typing.Sequence",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "bytes",
+                "typing.Sequence",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_handle_action_received",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_hvac_action",
+            "type": [
+                "None",
+                "HVACAction"
+            ]
+        }
+    ],
+    "_handle_mode_received@MqttClimate": [
+        {
+            "category": "arg",
+            "name": "template_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "attr",
+            "type": [
+                "str",
+                "typing.Any",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mode_list",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "msg",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "template_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payload",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attr",
+            "type": [
+                "str",
+                "typing.Any",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mode_list",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_handle_mode_received",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_handle_preset_mode_received@MqttClimate": [
+        {
+            "category": "arg",
+            "name": "msg",
+            "type": [
+                "bytes",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "bytes",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_PRESET_MODE_VALUE_TEMPLATE",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "preset_mode",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_preset_mode",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_handle_preset_mode_received",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "_prepare_subscribe_topics@MqttClimate": [
+        {
+            "category": "local",
+            "name": "CONF_HUMIDITY_STATE_TOPIC",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_HUMIDITY_STATE_TEMPLATE",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_FAN_MODE_STATE_TOPIC",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_FAN_MODE_STATE_TEMPLATE",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_FAN_MODE_LIST",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_SWING_MODE_STATE_TOPIC",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_SWING_MODE_STATE_TEMPLATE",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_SWING_MODE_LIST",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_PRESET_MODE_STATE_TOPIC",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_prepare_subscribe_topics",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_publish@MqttTemperatureControlEntity": [
+        {
+            "category": "arg",
+            "name": "topic",
+            "type": [
+                "str",
+                "dict",
+                "tuple"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "payload",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "alerta.models.alerAlert"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic",
+            "type": [
+                "str",
+                "dict",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payload",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "alerta.models.alerAlert"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_publish",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_set_climate_attribute@MqttTemperatureControlEntity": [
+        {
+            "category": "arg",
+            "name": "temp",
+            "type": [
+                "int",
+                "None",
+                "dict",
+                "urllib3.util.retry.Retry"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "cmnd_topic",
+            "type": [
+                "str",
+                "eth.abc.BlockHeaderAPI",
+                "aiokatcp.core.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "cmnd_template",
+            "type": [
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_topic",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "attr",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "temp",
+            "type": [
+                "int",
+                "None",
+                "dict",
+                "urllib3.util.retry.Retry"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_set_climate_attribute",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "changed",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_topic",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attr",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payload",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, typing.Literal]",
+                "dict[str, list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cmnd_topic",
+            "type": [
+                "str",
+                "eth.abc.BlockHeaderAPI",
+                "aiokatcp.core.Address"
+            ]
+        }
+    ],
+    "_setup_from_config@MqttClimate": [
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "dict[str, typing.Any]",
+                "homeassistanhelpers.ConfigType",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "dict[str, typing.Any]",
+                "homeassistanhelpers.ConfigType",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_hvac_modes",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_temperature_unit",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_temp",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_min_temp",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_temp",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_max_temp",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_HUMIDITY_MIN",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_min_humidity",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_HUMIDITY_MAX",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_max_humidity",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "precision",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_precision",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_FAN_MODE_LIST",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_fan_modes",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_SWING_MODE_LIST",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_TEMP_STEP",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TOPIC_KEYS",
+            "type": [
+                "str",
+                "dict[int, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "typing.Text",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DEFAULT_INITIAL_TEMPERATURE",
+            "type": [
+                "float",
+                "int",
+                "dict[int, float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_TEMP_LOW_STATE_TOPIC",
+            "type": [
+                "str",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_TEMP_HIGH_STATE_TOPIC",
+            "type": [
+                "str",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_FAN_MODE_STATE_TOPIC",
+            "type": [
+                "str",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_SWING_MODE_STATE_TOPIC",
+            "type": [
+                "str",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_PRESET_MODE_COMMAND_TOPIC",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "presets",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_PRESET_MODES_LIST",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_preset_modes",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_PRESET_MODE_STATE_TOPIC",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VALUE_TEMPLATE_KEYS",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "COMMAND_TEMPLATE_KEYS",
+            "type": [
+                "str",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_TEMP_LOW_COMMAND_TOPIC",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_TEMP_HIGH_COMMAND_TOPIC",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_HUMIDITY_COMMAND_TOPIC",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_FAN_MODE_COMMAND_TOPIC",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_SWING_MODE_COMMAND_TOPIC",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_setup_from_config",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_subscribe_topics@MqttTemperatureControlEntity": [
+        {
+            "category": "return",
+            "name": "_subscribe_topics",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_set_fan_mode@MqttClimate": [
+        {
+            "category": "arg",
+            "name": "fan_mode",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payload",
+            "type": [
+                "str",
+                "dict[str, dict[str, typing.Any]]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_FAN_MODE_COMMAND_TOPIC",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_FAN_MODE_STATE_TOPIC",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fan_mode",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_fan_mode",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_set_fan_mode",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_set_humidity@MqttClimate": [
+        {
+            "category": "arg",
+            "name": "humidity",
+            "type": [
+                "int",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "humidity",
+            "type": [
+                "int",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_HUMIDITY_COMMAND_TOPIC",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_HUMIDITY_COMMAND_TEMPLATE",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_HUMIDITY_STATE_TOPIC",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_set_humidity",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_set_hvac_mode@MqttClimate": [
+        {
+            "category": "arg",
+            "name": "hvac_mode",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payload",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hvac_mode",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_hvac_mode",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_set_hvac_mode",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_set_preset_mode@MqttClimate": [
+        {
+            "category": "arg",
+            "name": "preset_mode",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_payload",
+            "type": [
+                "str",
+                "dict[str, None]",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_PRESET_MODE_COMMAND_TOPIC",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "preset_mode",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_preset_mode",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_set_preset_mode",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_set_swing_mode@MqttClimate": [
+        {
+            "category": "arg",
+            "name": "swing_mode",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payload",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_SWING_MODE_COMMAND_TOPIC",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_SWING_MODE_STATE_TOPIC",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "swing_mode",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_swing_mode",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_set_swing_mode",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_set_temperature@MqttClimate": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "operation_mode",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_set_temperature",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_set_temperature@MqttTemperatureControlEntity": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "CONF_TEMP_LOW_COMMAND_TOPIC",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_TEMP_LOW_COMMAND_TEMPLATE",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_TEMP_LOW_STATE_TOPIC",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_TEMP_HIGH_COMMAND_TOPIC",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_TEMP_HIGH_COMMAND_TEMPLATE",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_TEMP_HIGH_STATE_TOPIC",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_set_temperature",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_setup_entry@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "homeassistanconfig_entries.ConfigEntry",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "config_entry",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "homeassistanconfig_entries.ConfigEntry",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "async_add_entities",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "homeassistanconfig_entries.ConfigEntry",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "homeassistanconfig_entries.ConfigEntry",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config_entry",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "homeassistanconfig_entries.ConfigEntry",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "async_add_entities",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "homeassistanconfig_entries.ConfigEntry",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DISCOVERY_SCHEMA",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "PLATFORM_SCHEMA_MODERN",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_setup_entry",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_turn_off@MqttClimate": [
+        {
+            "category": "local",
+            "name": "mqtt_payload",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_turn_off",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_turn_on@MqttClimate": [
+        {
+            "category": "local",
+            "name": "mqtt_payload",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_turn_on",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "config_schema@MqttClimate": [
+        {
+            "category": "local",
+            "name": "DISCOVERY_SCHEMA",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "config_schema",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "PARALLEL_UPDATES",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DEFAULT_NAME",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_FAN_MODE_COMMAND_TEMPLATE",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_FAN_MODE_COMMAND_TOPIC",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_FAN_MODE_LIST",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_FAN_MODE_STATE_TEMPLATE",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_FAN_MODE_STATE_TOPIC",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_HUMIDITY_COMMAND_TEMPLATE",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_HUMIDITY_COMMAND_TOPIC",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_HUMIDITY_STATE_TEMPLATE",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_HUMIDITY_STATE_TOPIC",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_HUMIDITY_MAX",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_HUMIDITY_MIN",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_PRESET_MODE_STATE_TOPIC",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_PRESET_MODE_COMMAND_TOPIC",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_PRESET_MODE_VALUE_TEMPLATE",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_PRESET_MODE_COMMAND_TEMPLATE",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_PRESET_MODES_LIST",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_SWING_MODE_COMMAND_TEMPLATE",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_SWING_MODE_COMMAND_TOPIC",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_SWING_MODE_LIST",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_SWING_MODE_STATE_TEMPLATE",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_SWING_MODE_STATE_TOPIC",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_TEMP_HIGH_COMMAND_TEMPLATE",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_TEMP_HIGH_COMMAND_TOPIC",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_TEMP_HIGH_STATE_TEMPLATE",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_TEMP_HIGH_STATE_TOPIC",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_TEMP_LOW_COMMAND_TEMPLATE",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_TEMP_LOW_COMMAND_TOPIC",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_TEMP_LOW_STATE_TEMPLATE",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_TEMP_LOW_STATE_TOPIC",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_TEMP_STEP",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DEFAULT_INITIAL_TEMPERATURE",
+            "type": [
+                "float",
+                "int",
+                "dict[int, float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "MQTT_CLIMATE_ATTRIBUTES_BLOCKED",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VALUE_TEMPLATE_KEYS",
+            "type": [
+                "tuple[typing.Text]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "COMMAND_TEMPLATE_KEYS",
+            "type": [
+                "set[typing.Text]",
+                "str",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TOPIC_KEYS",
+            "type": [
+                "tuple[typing.Text]",
+                "str",
+                "dict[int, typing.Any]",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_PLATFORM_SCHEMA_BASE",
+            "type": [
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "PLATFORM_SCHEMA_MODERN",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_DISCOVERY_SCHEMA_BASE",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DISCOVERY_SCHEMA",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        }
+    ],
+    "handle_climate_attribute_received@MqttTemperatureControlEntity": [
+        {
+            "category": "arg",
+            "name": "template_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "attr",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "msg",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "template_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payload",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attr",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_climate_attribute_received",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "prepare_subscribe_topics@MqttTemperatureControlEntity": [
+        {
+            "category": "local",
+            "name": "CONF_TEMP_LOW_STATE_TOPIC",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_TEMP_LOW_STATE_TEMPLATE",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_TEMP_HIGH_STATE_TOPIC",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_TEMP_HIGH_STATE_TEMPLATE",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "prepare_subscribe_topics",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "render_template@MqttTemperatureControlEntity": [
+        {
+            "category": "arg",
+            "name": "msg",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "template_name",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "template_name",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "render_template",
+            "type": []
+        }
+    ],
+    "valid_humidity_range_configuration@global": [
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, str]",
+                "pyramid.config.Configurator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, str]",
+                "pyramid.config.Configurator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_HUMIDITY_MIN",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_HUMIDITY_MAX",
+            "type": [
+                "str",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "valid_humidity_range_configuration",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, str]",
+                "pyramid.config.Configurator"
+            ]
+        }
+    ],
+    "valid_humidity_state_configuration@global": [
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "config.Config"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_HUMIDITY_STATE_TOPIC",
+            "type": [
+                "str",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "config.Config"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_HUMIDITY_COMMAND_TOPIC",
+            "type": [
+                "str",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "valid_humidity_state_configuration",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "config.Config"
+            ]
+        }
+    ],
+    "valid_preset_mode_configuration@global": [
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "dict[str, typing.Any]",
+                "sphinx.config.Config"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "dict[str, typing.Any]",
+                "sphinx.config.Config"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_PRESET_MODES_LIST",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "valid_preset_mode_configuration",
+            "type": [
+                "dict[str, typing.Any]",
+                "sphinx.config.Config"
+            ]
+        }
+    ]
+}

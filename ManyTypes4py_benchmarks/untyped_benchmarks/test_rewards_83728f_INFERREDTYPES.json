@@ -1,0 +1,490 @@
+{
+    "global@global": [],
+    "test_eip1559_txn_rewards@global": [
+        {
+            "category": "arg",
+            "name": "max_total_price",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_priority_price",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_miner_tips",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "funded_address",
+            "type": [
+                "int",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "funded_address_private_key",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "funded_address",
+            "type": [
+                "int",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "dict[str, typing.Any]",
+                "tuple[eth.abc.ReceiptAPI]",
+                "nucypher.blockchain.eth.agents.MinerAgent"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm",
+            "type": [
+                "eth.abc.ChainAPI",
+                "eth.abc.VirtualMachineAPI",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "funded_address_private_key",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_priority_price",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_total_price",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "txn",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "MINER",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "original_balance",
+            "type": [
+                "list[rotkehlchen.chain.ethereum.zerion.DefiProtocolBalances]",
+                "int",
+                "typing.Callable[None, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_balance",
+            "type": [
+                "list",
+                "str",
+                "dict[str, tuple[typing.Union[str,int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "BLOCK_REWARD",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_eip1559_txn_rewards",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_rewards@global": [
+        {
+            "category": "arg",
+            "name": "vm_fn",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "miner_1_balance",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "miner_2_balance",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "OTHER_MINER_ADDRESS",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TOTAL_BLOCKS_CANONICAL_CHAIN",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "eth.chains.base.BaseChain",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fork_chain",
+            "type": [
+                "tuple[eth.abc.ReceiptAPI]",
+                "nucypher.blockchain.eth.agents.MinerAgent",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header",
+            "type": [
+                "bytes",
+                "dict",
+                "dict[bytes, bytes]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm",
+            "type": [
+                "eth.chains.base.MiningChain",
+                "eth.abc.VirtualMachineAPI",
+                "eth.abc.ChainAPI"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_rewards",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_rewards_nephew_uncle_different_vm@global": [
+        {
+            "category": "arg",
+            "name": "vm_fn_uncle",
+            "type": [
+                "typing.Callable",
+                "eth.vm.computation.BaseComputation"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "vm_fn_nephew",
+            "type": [
+                "typing.Callable",
+                "eth.vm.computation.BaseComputation"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "miner_1_balance",
+            "type": [
+                "int",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "miner_2_balance",
+            "type": [
+                "int",
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "OTHER_MINER_ADDRESS",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TOTAL_BLOCKS_CANONICAL_CHAIN",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VM_CHANGE_BLOCK_NUMBER",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "nucypher.blockchain.eth.agents.MinerAgent",
+                "tuple[eth.abc.ReceiptAPI]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fork_chain",
+            "type": [
+                "tuple[eth.abc.ReceiptAPI]",
+                "nucypher.blockchain.eth.agents.MinerAgent",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header",
+            "type": [
+                "bytes",
+                "dict",
+                "dict[bytes, bytes]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm",
+            "type": [
+                "eth.chains.base.MiningChain",
+                "eth.abc.VirtualMachineAPI",
+                "eth.abc.ChainAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "coinbase_balance",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "uncle_vm",
+            "type": [
+                "eth.chains.base.BaseChain",
+                "dict",
+                "eth.abc.ChainAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nephew_vm",
+            "type": [
+                "eth.chains.base.BaseChain",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_rewards_nephew_uncle_different_vm",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_rewards_uncle_created_at_different_generations@global": [
+        {
+            "category": "arg",
+            "name": "vm_fn",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fork_at_block_number",
+            "type": [
+                "int",
+                "bytes",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "miner_1_balance",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "miner_2_balance",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "OTHER_MINER_ADDRESS",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TOTAL_BLOCKS_CANONICAL_CHAIN",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "eth.chains.base.BaseChain",
+                "nucypher.blockchain.eth.agents.MinerAgent",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fork_at_block_number",
+            "type": [
+                "int",
+                "bytes",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fork_chain",
+            "type": [
+                "int",
+                "list[tuple[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header",
+            "type": [
+                "bytes",
+                "dict",
+                "dict[bytes, bytes]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm",
+            "type": [
+                "eth.chains.base.MiningChain",
+                "eth.abc.VirtualMachineAPI",
+                "eth.abc.ChainAPI"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_rewards_uncle_created_at_different_generations",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_uncle_block_inclusion_validity@global": [
+        {
+            "category": "arg",
+            "name": "vm_fn",
+            "type": [
+                "typing.Callable",
+                "typing.Type",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "OTHER_MINER_ADDRESS",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "eth.chains.base.BaseChain",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fork_chain",
+            "type": [
+                "tuple[eth.abc.ReceiptAPI]",
+                "nucypher.blockchain.eth.agents.MinerAgent",
+                "tuple"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_uncle_block_inclusion_validity",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

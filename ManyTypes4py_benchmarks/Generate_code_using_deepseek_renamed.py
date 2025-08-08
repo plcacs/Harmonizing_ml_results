@@ -11,11 +11,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 client = OpenAI(api_key=os.getenv("DEEPSEEK_API_KEY"), base_url="https://api.deepseek.com")
-PROCESSED_FILES_LOG = "Files_not_for_root_directories/processed_files_deepseek_renamed.txt"
+PROCESSED_FILES_LOG = "Files_not_for_root_directories/processed_files_deepseek_renamed_2.txt"
 INPUT_DIR = "Hundrad_renamed_benchmarks"
-OUTPUT_DIR = "deepseek_renamed_output"
-TIMING_LOG = "Files_not_for_root_directories/deepseek_model_timings_renamed.json"
-UNPROCESSED_FILES = "Files_not_for_root_directories/unprocessed_files_deepseek_renamed.txt"
+OUTPUT_DIR = "deepseek_renamed_output_2"
+TIMING_LOG = "Files_not_for_root_directories/deepseek_model_timings_renamed_2.json"
+UNPROCESSED_FILES = "Files_not_for_root_directories/unprocessed_files_deepseek_renamed_2.txt"
 
 def get_token_count(text: str, model: str = "deepseek-reasoner"):
     encoding = tiktoken.get_encoding("cl100k_base")  # Use a known encoding

@@ -1,0 +1,365 @@
+{
+    "__init__@PluginBase": [
+        {
+            "category": "arg",
+            "name": "name",
+            "type": [
+                "None",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "None",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "LOG",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "delete@PluginBase": [
+        {
+            "category": "arg",
+            "name": "alert",
+            "type": [
+                "Alert",
+                "list[tuple[str]]",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "delete",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_config@PluginBase": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "default",
+            "type": [
+                "None",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "type",
+            "type": [
+                "None",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rv",
+            "type": [
+                "typing.Type",
+                "None",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "type",
+            "type": [
+                "None",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_config",
+            "type": [
+                "bool",
+                "typing.Type",
+                "None",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default",
+            "type": [
+                "None",
+                "str",
+                "list[str]"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "LOG",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "FakeApp"
+            ]
+        }
+    ],
+    "init_app@FakeApp": [
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "flask.config.Config",
+                "cli.config.BinaryAlertConfig",
+                "app.config.HealthCheckConfig"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "init_app",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "post_action@PluginBase": [
+        {
+            "category": "arg",
+            "name": "alert",
+            "type": [
+                "str",
+                "typing.Sequence[str]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "action",
+            "type": [
+                "str",
+                "typing.Sequence[str]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "text",
+            "type": [
+                "str",
+                "typing.Sequence[str]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "post_action",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "post_receive@PluginBase": [
+        {
+            "category": "arg",
+            "name": "alert",
+            "type": [
+                "Alert",
+                "list[tuple[str]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "post_receive",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "pre_receive@PluginBase": [
+        {
+            "category": "arg",
+            "name": "alert",
+            "type": [
+                "Alert",
+                "list[tuple[str]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "pre_receive",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "status_change@PluginBase": [
+        {
+            "category": "arg",
+            "name": "alert",
+            "type": [
+                "str",
+                "set[str]",
+                "typing.Sequence[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "status",
+            "type": [
+                "str",
+                "set[str]",
+                "typing.Sequence[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "text",
+            "type": [
+                "str",
+                "set[str]",
+                "typing.Sequence[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "status_change",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "take_action@PluginBase": [
+        {
+            "category": "arg",
+            "name": "alert",
+            "type": [
+                "str",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "action",
+            "type": [
+                "str",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "text",
+            "type": [
+                "str",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "take_action",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "take_note@PluginBase": [
+        {
+            "category": "arg",
+            "name": "alert",
+            "type": [
+                "str",
+                "dict",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "text",
+            "type": [
+                "str",
+                "dict",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "take_note",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,611 @@
+{
+    "__init__@Cache": [
+        {
+            "category": "arg",
+            "name": "timeout",
+            "type": [
+                "None",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_headers",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "key_prefix",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "backend",
+            "type": [
+                "None",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "timeout",
+            "type": [
+                "None",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_headers",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key_prefix",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backend",
+            "type": [
+                "None",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_inner@Cache": [
+        {
+            "category": "arg",
+            "name": "fun",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_inner",
+            "type": []
+        }
+    ],
+    "_view_backend@Cache": [
+        {
+            "category": "arg",
+            "name": "view",
+            "type": [
+                "faustypes.web.View"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_view_backend",
+            "type": []
+        }
+    ],
+    "build_key@Cache": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "str",
+                "falcon.Response",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "method",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prefix",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "headers",
+            "type": [
+                "bytes",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prefix",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "method",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "build_key",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "cached@Cache": [
+        {
+            "category": "arg",
+            "name": "view",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "request",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_head",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "cached",
+            "type": []
+        }
+    ],
+    "can_cache_request@Cache": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "faustypes.web.Request",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "can_cache_request",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "can_cache_response@Cache": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "faustypes.web.Request",
+                "pyramid.response.Response"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "response",
+            "type": [
+                "faustypes.web.Response",
+                "aiohttp.web.Request"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "faustypes.web.Response",
+                "aiohttp.web.Request"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "can_cache_response",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "get_view@Cache": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "view",
+            "type": [
+                "faustypes.web.View",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "view",
+            "type": [
+                "faustypes.web.View",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payload",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "dict[str, None]",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_view",
+            "type": [
+                "str",
+                "None",
+                "cmk.utils.type_defs.UserId"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "IDENT",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "iri_to_uri@global": [
+        {
+            "category": "arg",
+            "name": "iri",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iri",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "iri_to_uri",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "key_for_request@Cache": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "str",
+                "werkzeug.wrappers.Request",
+                "faustypes.web.Web"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prefix",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "method",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "fausweb.Request"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_headers",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "method",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "fausweb.Request"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "str",
+                "werkzeug.wrappers.Request",
+                "faustypes.web.Web"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "actual_method",
+            "type": [
+                "str",
+                "bool",
+                "fausweb.Request"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_headers",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "headers",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prefix",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "key_for_request",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "set_view@Cache": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "mode.utils.times.Seconds",
+                "faustypes.web.Response"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "view",
+            "type": [
+                "faustypes.web.View",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "response",
+            "type": [
+                "str",
+                "mode.utils.times.Seconds",
+                "faustypes.web.Response"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "timeout",
+            "type": [
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "view",
+            "type": [
+                "faustypes.web.View",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backend",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timeout",
+            "type": [
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_timeout",
+            "type": [
+                "float",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "mode.utils.times.Seconds",
+                "faustypes.web.Response"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "str",
+                "mode.utils.times.Seconds",
+                "faustypes.web.Response"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_view",
+            "type": [
+                "bool",
+                "str"
+            ]
+        }
+    ],
+    "view@Cache": [
+        {
+            "category": "arg",
+            "name": "timeout",
+            "type": [
+                "None",
+                "bool",
+                "str",
+                "mode.Seconds"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_headers",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "key_prefix",
+            "type": [
+                "None",
+                "bool",
+                "str",
+                "mode.Seconds"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "view",
+            "type": []
+        }
+    ]
+}

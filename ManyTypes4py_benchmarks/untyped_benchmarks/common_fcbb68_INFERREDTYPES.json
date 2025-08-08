@@ -1,0 +1,548 @@
+{
+    "_translate_output_is_valid@global": [
+        {
+            "category": "arg",
+            "name": "translate_outputs",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "found_valid_output",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bad_tokens",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "json_output",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translate_outputs",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_translate_output_is_valid",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "check_train_translate@global": [
+        {
+            "category": "arg",
+            "name": "train_params",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "translate_params",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "use_prepared_data",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_seq_len",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "compare_output",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "seed",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_params",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translate_params",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "int",
+                "dict[str, typing.Any]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "use_prepared_data",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_seq_len",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "seed",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translate_params_batch",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "compare_output",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_train_translate",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "list"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "test_odd_even_target_factors@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "numpy.ndarray",
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "numpy.ndarray",
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_target_factors",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "json",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factor_keys",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "primary_tokens",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secondary_factor_tokens",
+            "type": [
+                "list[list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factor_tokens",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_odd_even_target_factors",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_scoring@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "train_params",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "translate_params",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "test_similar_scores",
+            "type": [
+                "bool",
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "relevant_params",
+            "type": [
+                "set[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "score_params",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_params",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translate_params",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "params",
+            "type": [
+                "list[str]",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "out_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "out_with_target_prefix_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_factor_paths",
+            "type": [
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_out",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exit_stack",
+            "type": [
+                "ExitStack"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_with_target_prefix_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_with_target_prefix_factor_paths",
+            "type": [
+                "str",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_scoring_with_target_prefix",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, int]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_scoring",
+            "type": [
+                "list",
+                "list[float]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_similar_scores",
+            "type": [
+                "bool",
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_scoring",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_translate_equivalence@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "str",
+                "list[str]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "translate_params_equiv",
+            "type": [
+                "typing.Sequence[str]",
+                "None",
+                "typing.Iterable[str]",
+                "sockeye.inference.Translator"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "compare_output",
+            "type": [
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "list[str]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "out_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "out_with_target_prefix_path",
+            "type": [
+                "str",
+                "typing.Iterator",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translate_params_equiv",
+            "type": [
+                "typing.Sequence[str]",
+                "None",
+                "typing.Iterable[str]",
+                "sockeye.inference.Translator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "params",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translate_outputs_with_target_prefix_equiv",
+            "type": [
+                "str",
+                "set[str]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translate_outputs_equiv",
+            "type": [
+                "str",
+                "typing.Iterator",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "compare_output",
+            "type": [
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ending",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_translate_equivalence",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

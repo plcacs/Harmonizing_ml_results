@@ -1,0 +1,607 @@
+{
+    "get_active_subscriptions_for_stream_id@global": [
+        {
+            "category": "arg",
+            "name": "stream_id",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_deactivated_users",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_id",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "list[typing.Optional[tuple]]",
+                "typing.Type",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_deactivated_users",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_active_subscriptions_for_stream_id",
+            "type": [
+                "list[typing.Optional[tuple]]",
+                "typing.Type",
+                "dict[str, typing.Any]"
+            ]
+        }
+    ],
+    "get_active_subscriptions_for_stream_ids@global": [
+        {
+            "category": "arg",
+            "name": "stream_ids",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_ids",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_active_subscriptions_for_stream_ids",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "zerver.models.CustomProfileField"
+            ]
+        }
+    ],
+    "get_bulk_stream_subscriber_info@global": [
+        {
+            "category": "arg",
+            "name": "users",
+            "type": [
+                "zerver.models.Realm",
+                "zerver.models.UserProfile",
+                "list[zerver.models.UserProfile]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "streams",
+            "type": [
+                "zerver.models.Realm",
+                "zerver.models.UserProfile",
+                "zerver.models.Stream"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "streams",
+            "type": [
+                "zerver.models.Realm",
+                "zerver.models.UserProfile",
+                "zerver.models.Stream"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "zerver.models.Stream",
+                "typing.BinaryIO",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_ids",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subs",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_map",
+            "type": [
+                "dict[, typing.Union[zerver.models.Stream,typing.BinaryIO,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "users",
+            "type": [
+                "zerver.models.Realm",
+                "zerver.models.UserProfile",
+                "list[zerver.models.UserProfile]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user",
+            "type": [
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_map",
+            "type": [
+                "dict[, zerver.models.UserProfile]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "dict[, list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sub_info",
+            "type": [
+                "SubInfo"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_bulk_stream_subscriber_info",
+            "type": [
+                "dict[, list]"
+            ]
+        }
+    ],
+    "get_stream_subscriptions_for_user@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "list[zerver.models.UserProfile]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "list[zerver.models.UserProfile]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_stream_subscriptions_for_user",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.UserGroup",
+                "zerver.models.Stream",
+                "None"
+            ]
+        }
+    ],
+    "get_subscribed_stream_ids_for_user@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "list[zerver.models.UserProfile]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_subscribed_stream_ids_for_user",
+            "type": [
+                "str",
+                "salon.models.ServiceTemplate.Set",
+                "int"
+            ]
+        }
+    ],
+    "get_subscribed_stream_recipient_ids_for_user@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "list[zerver.models.UserProfile]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_subscribed_stream_recipient_ids_for_user",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "int"
+            ]
+        }
+    ],
+    "get_subscriptions_for_send_message@global": [
+        {
+            "category": "arg",
+            "name": "realm_id",
+            "type": [
+                "str",
+                "bool",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream_id",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topic_name",
+            "type": [
+                "str",
+                "bool",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "possible_stream_wildcard_mention",
+            "type": [
+                "bool",
+                "str",
+                "set[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topic_participant_user_ids",
+            "type": [
+                "str",
+                "bool",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "possibly_mentioned_user_ids",
+            "type": [
+                "str",
+                "bool",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_id",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "str",
+                "list[str]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "possible_stream_wildcard_mention",
+            "type": [
+                "bool",
+                "str",
+                "set[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_subscriptions_for_send_message",
+            "type": [
+                "str",
+                "list[str]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "possibly_mentioned_user_ids",
+            "type": [
+                "str",
+                "bool",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_participant_user_ids",
+            "type": [
+                "str",
+                "bool",
+                "zerver.models.UserProfile"
+            ]
+        }
+    ],
+    "get_used_colors_for_user_ids@global": [
+        {
+            "category": "arg",
+            "name": "user_ids",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "str",
+                "list",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "row",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_used_colors_for_user_ids",
+            "type": [
+                "dict"
+            ]
+        }
+    ],
+    "get_user_ids_for_streams@global": [
+        {
+            "category": "arg",
+            "name": "stream_ids",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "all_subs",
+            "type": [
+                "list",
+                "typing.Iterator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "get_stream_id",
+            "type": [
+                "list",
+                "set",
+                "list[bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "dict[str, str]",
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_ids",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_user_ids_for_streams",
+            "type": [
+                "dict[str, str]",
+                "list",
+                "list[str]"
+            ]
+        }
+    ],
+    "get_users_for_streams@global": [
+        {
+            "category": "arg",
+            "name": "stream_ids",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "all_subs",
+            "type": [
+                "dict[str, str]",
+                "list",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "typing.DefaultDict",
+                "dict",
+                "T",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "users",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_users_for_streams",
+            "type": [
+                "T",
+                "typing.DefaultDict",
+                "dict",
+                "None"
+            ]
+        }
+    ],
+    "global@global": [],
+    "handle_stream_notifications_compatibility@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream_dict",
+            "type": [
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "notification_settings_null",
+            "type": [
+                "bool",
+                "zerver.models.Client"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "notification_type",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_dict",
+            "type": [
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_attr",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_stream_notifications_compatibility",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "num_subscribers_for_stream_id@global": [
+        {
+            "category": "arg",
+            "name": "stream_id",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_id",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "num_subscribers_for_stream_id",
+            "type": [
+                "int",
+                "set[int]",
+                "str"
+            ]
+        }
+    ],
+    "subscriber_ids_with_stream_history_access@global": [
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": [
+                "zerver.models.Stream"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "zerver.models.Stream"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "subscriber_ids_with_stream_history_access",
+            "type": [
+                "set"
+            ]
+        }
+    ]
+}

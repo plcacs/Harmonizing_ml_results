@@ -1,0 +1,16 @@
+from typing import Optional, List, Dict, Any
+
+def get_furthest_read_time(user_profile: Optional[UserProfile]) -> Optional[int]:
+    ...
+
+def promote_sponsoring_zulip_in_realm(realm: Realm) -> bool:
+    ...
+
+def get_billing_info(user_profile: Optional[UserProfile]) -> BillingInfo:
+    ...
+
+def get_user_permission_info(user_profile: Optional[UserProfile]) -> UserPermissionInfo:
+    ...
+
+def build_page_params_for_home_page_load(request: HttpRequest, user_profile: Optional[UserProfile], realm: Realm, insecure_desktop_app: bool, narrow: List[NarrowTerm], narrow_stream: Optional[Stream], narrow_topic_name: Optional[str]) -> Tuple[Optional[int], Dict[str, Any]]:
+    ...

@@ -1,0 +1,314 @@
+{
+    "_find_thresholds_with_same_risk@global": [
+        {
+            "category": "arg",
+            "name": "df",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "metric_by_band",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "current_threshold",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fair_thresholds",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_find_thresholds_with_same_risk",
+            "type": [
+                "list[int]"
+            ]
+        }
+    ],
+    "find_thresholds_with_same_risk@global": [
+        {
+            "category": "arg",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sensitive_factor",
+            "type": [
+                "pandas.DataFrame",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "unfair_band_column",
+            "type": [
+                "pandas.DataFrame",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "model_prediction_output",
+            "type": [
+                "pandas.DataFrame",
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_column",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "output_column_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sorted_df",
+            "type": [
+                "pandas.DataFrame",
+                "list[tuple[typing.Union[typing.Any,...]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unfair_band_column",
+            "type": [
+                "pandas.DataFrame",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unfair_bands",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_column",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_by_band",
+            "type": [
+                "str",
+                "typing.Callable[None, typing.Any]",
+                "frozenset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sensitive_factor",
+            "type": [
+                "pandas.DataFrame",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sensitive_groups",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fair_thresholds",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model_prediction_output",
+            "type": [
+                "pandas.DataFrame",
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raw_ecdf_with_target",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output_column_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, typing.Union[typing.Text,pandas.DataFrame,int,None,dict]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "find_thresholds_with_same_risk",
+            "type": [
+                "tuple[dict[typing.Text, dict[typing.Text, typing.Union[typing.Text,pandas.DataFrame,int,None,dict]]]]"
+            ]
+        }
+    ],
+    "global@global": [],
+    "isotonic_calibration_learner@global": [
+        {
+            "category": "arg",
+            "name": "df",
+            "type": [
+                "str",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_column",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prediction_column",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "output_column",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "y_min",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "y_max",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "y_min",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "y_max",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "clf",
+            "type": [
+                "IsotonicRegression"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "str",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prediction_column",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_column",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output_column",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "dict[typing.Text, typing.Union[dict[typing.Text, typing.Union[typing.Text,pandas.DataFrame,int]],IsotonicRegression]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "isotonic_calibration_learner",
+            "type": [
+                "tuple[dict[typing.Text, typing.Union[dict[typing.Text, typing.Union[typing.Text,pandas.DataFrame,int]],IsotonicRegression]]]"
+            ]
+        }
+    ],
+    "p@global": [
+        {
+            "category": "arg",
+            "name": "new_df",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "p",
+            "type": []
+        }
+    ]
+}

@@ -1,0 +1,724 @@
+{
+    "build_get_topic_visibility_policy@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "list[zerver.models.UserProfile]",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rows",
+            "type": [
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "row",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recipient_id",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "visibility_policy",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "build_get_topic_visibility_policy",
+            "type": []
+        }
+    ],
+    "bulk_set_user_topic_visibility_policy_in_database@global": [
+        {
+            "category": "arg",
+            "name": "user_profiles",
+            "type": [
+                "set[int]",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream_id",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topic_name",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "visibility_policy",
+            "type": [
+                "zerver.models.UserProfile",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recipient_id",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "last_updated",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rows",
+            "type": [
+                "list[dict[str, typing.Any]]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "row",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profiles_with_visibility_policy",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profiles",
+            "type": [
+                "set[int]",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profiles_without_visibility_policy",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "visibility_policy",
+            "type": [
+                "zerver.models.UserProfile",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "bulk_set_user_topic_visibility_policy_in_database",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profiles_seeking_user_topic_update_or_create",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile_ids_array",
+            "type": [
+                "list",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_id",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recipient_id",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_name",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_updated",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "str",
+                "list",
+                "int"
+            ]
+        }
+    ],
+    "exclude_stream_and_topic_mutes@global": [
+        {
+            "category": "arg",
+            "name": "conditions",
+            "type": [
+                "list[sqlalchemy.sql.Selectable]",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "Recipient"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream_id",
+            "type": [
+                "int",
+                "None",
+                "str",
+                "typing.Any"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "Recipient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_id",
+            "type": [
+                "int",
+                "None",
+                "str",
+                "typing.Any"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "conditions",
+            "type": [
+                "list[sqlalchemy.sql.Selectable]",
+                "bool",
+                "list[typing.Union[list[sqlalchemy.sql.Selectable],bool]]",
+                "list[typing.Union[list[sqlalchemy.sql.Selectable],bool,list[typing.Union[list[sqlalchemy.sql.Selectable],bool]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rows",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "muted_recipient_ids",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "exclude_stream_and_topic_mutes",
+            "type": [
+                "list[sqlalchemy.sql.Selectable]",
+                "bool",
+                "list[typing.Union[list[sqlalchemy.sql.Selectable],bool]]",
+                "list[typing.Union[list[sqlalchemy.sql.Selectable],bool,list[typing.Union[list[sqlalchemy.sql.Selectable],bool]]]]"
+            ]
+        }
+    ],
+    "get_topic_mutes@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_deactivated",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_deactivated",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_topic_mutes",
+            "type": [
+                "list[tuple]"
+            ]
+        }
+    ],
+    "get_topic_visibility_policy@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "int",
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream_id",
+            "type": [
+                "int",
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topic_name",
+            "type": [
+                "int",
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "int",
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_id",
+            "type": [
+                "int",
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_name",
+            "type": [
+                "int",
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_topic",
+            "type": [
+                "str",
+                "typing.Type",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_topic_visibility_policy",
+            "type": []
+        }
+    ],
+    "get_user_topics@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_deactivated",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_stream_name",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "visibility_policy",
+            "type": [
+                "None",
+                "zerver.models.UserProfile",
+                "bool",
+                "server.models.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "visibility_policy",
+            "type": [
+                "None",
+                "zerver.models.UserProfile",
+                "bool",
+                "server.models.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_deactivated",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rows",
+            "type": [
+                "set[list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "list[dict[typing.Text, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "row",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_topic_dict",
+            "type": [
+                "dict[typing.Text, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_stream_name",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_user_topics",
+            "type": [
+                "list[dict[typing.Text, str]]"
+            ]
+        }
+    ],
+    "get_users_with_user_topic_visibility_policy@global": [
+        {
+            "category": "arg",
+            "name": "stream_id",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topic_name",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_users_with_user_topic_visibility_policy",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "django.http.HttpRequest"
+            ]
+        }
+    ],
+    "global@global": [],
+    "set_topic_visibility_policy@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topics",
+            "type": [
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "visibility_policy",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "tracim.models.auth.User"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "last_updated",
+            "type": [
+                "None",
+                "bool",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_updated",
+            "type": [
+                "None",
+                "bool",
+                "zerver.models.UserProfile",
+                "datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topics",
+            "type": [
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "visibility_policy",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "tracim.models.auth.User"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_topic_visibility_policy",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "topic_cond@global": [
+        {
+            "category": "arg",
+            "name": "row",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "stream_cond",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "topic_cond",
+            "type": []
+        }
+    ],
+    "topic_has_visibility_policy@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "set[int]",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream_id",
+            "type": [
+                "str",
+                "set[int]",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topic_name",
+            "type": [
+                "str",
+                "set[int]",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "visibility_policy",
+            "type": [
+                "int",
+                "set[int]",
+                "django.conf.settings.AUTH_USER_MODEL"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "visibility_policy",
+            "type": [
+                "int",
+                "set[int]",
+                "django.conf.settings.AUTH_USER_MODEL"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "has_user_topic_row",
+            "type": [
+                "bool",
+                "list[bool]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "topic_has_visibility_policy",
+            "type": [
+                "bool",
+                "typing.Type",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "has_visibility_policy",
+            "type": [
+                "bool",
+                "typing.Type",
+                "str"
+            ]
+        }
+    ]
+}

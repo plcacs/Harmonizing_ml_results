@@ -1,0 +1,1621 @@
+{
+    "__init__@RateLimitedRealmMirror": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "None",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "None",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "construct_zulip_body@global": [
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "zerver.models.Message",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "bool",
+                "str",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sender",
+            "type": [
+                "bool",
+                "str",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "show_sender",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_quotes",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_footer",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prefer_text",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "zerver.models.Message",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_quotes",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prefer_text",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "body",
+            "type": [
+                "str",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_footer",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "preamble",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "show_sender",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_address",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "bool",
+                "str",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sender",
+            "type": [
+                "bool",
+                "str",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "postamble",
+            "type": [
+                "str",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "construct_zulip_body",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "create_missed_message_address@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_missed_message_address",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mm_address",
+            "type": [
+                "str",
+                "int",
+                "list"
+            ]
+        }
+    ],
+    "decode_stream_email_address@global": [
+        {
+            "category": "arg",
+            "name": "email",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "email",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "options",
+            "type": [
+                "str",
+                "dict[str, bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_email_address",
+            "type": [
+                "str",
+                "tuple[typing.Literal]",
+                "dict[typing.Any, dict[str, str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "decode_stream_email_address",
+            "type": [
+                "tuple[typing.Union[str,tuple[typing.Literal],dict[typing.Any, dict[str, str]],dict[str, bool]]]"
+            ]
+        }
+    ],
+    "extract_and_upload_attachments@global": [
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "zerver.models.Realm",
+                "dict[str, typing.Any]",
+                "email.message.Message"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "zerver.models.Stream"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sender",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "zerver.models.Stream"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attachment_links",
+            "type": [
+                "list",
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "zerver.models.Realm",
+                "dict[str, typing.Any]",
+                "email.message.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attachment",
+            "type": [
+                "bytes",
+                "dict[str, bytes]",
+                "dict[str, str]",
+                "email.mime.application.MIMEApplication"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sender",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "zerver.models.Stream"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "zerver.models.Stream"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "formatted_link",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "extract_and_upload_attachments",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "extract_body@global": [
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_quotes",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prefer_text",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_quotes",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "plaintext_content",
+            "type": [
+                "bytes",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "html_content",
+            "type": [
+                "str",
+                "None",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prefer_text",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "extract_body",
+            "type": [
+                "bytes",
+                "None",
+                "str"
+            ]
+        }
+    ],
+    "extract_html_body@global": [
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "bool",
+                "typing.Iterable[int]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_quotes",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "talon_initialized",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "bool",
+                "typing.Iterable[int]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "html_content",
+            "type": [
+                "str",
+                "None",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_quotes",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "extract_html_body",
+            "type": [
+                "str",
+                "requests.models.Response",
+                "None"
+            ]
+        }
+    ],
+    "extract_plaintext_body@global": [
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "bool",
+                "str",
+                "typing.Iterable[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_quotes",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "talon_initialized",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "bool",
+                "str",
+                "typing.Iterable[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "plaintext_content",
+            "type": [
+                "str",
+                "bytes",
+                "None",
+                "typing.Collection"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_quotes",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "extract_plaintext_body",
+            "type": [
+                "str",
+                "bytes",
+                "None",
+                "typing.Collection"
+            ]
+        }
+    ],
+    "filter_footer@global": [
+        {
+            "category": "arg",
+            "name": "text",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "text",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "line",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "possible_footers",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "filter_footer",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "find_emailgateway_recipient@global": [
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "pywirelessmbus.utils.IMSTMessage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recipient_headers",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pattern_parts",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header_value",
+            "type": [
+                "AddressHeader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "pywirelessmbus.utils.IMSTMessage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "emails",
+            "type": [
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "email",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "find_emailgateway_recipient",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "generate_missed_message_token@global": [
+        {
+            "category": "return",
+            "name": "generate_missed_message_token",
+            "type": []
+        }
+    ],
+    "get_message_part_by_type@global": [
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "bytes",
+                "list",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content_type",
+            "type": [
+                "str",
+                "None",
+                "email.headerregistry.ContentTypeHeader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "bytes",
+                "list",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "charsets",
+            "type": [
+                "str",
+                "bytes",
+                "typing.Callable[int, bytes]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content_type",
+            "type": [
+                "str",
+                "None",
+                "email.headerregistry.ContentTypeHeader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "charset",
+            "type": [
+                "str",
+                "bytes",
+                "email.charseCharset",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_message_part_by_type",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_missed_message_token_from_address@global": [
+        {
+            "category": "arg",
+            "name": "address",
+            "type": [
+                "str",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "str",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg_string",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_missed_message_token_from_address",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "get_usable_missed_message_address@global": [
+        {
+            "category": "arg",
+            "name": "address",
+            "type": [
+                "str",
+                "Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "str",
+                "Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token",
+            "type": [
+                "str",
+                "raiden.utils.TokenAddress",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mm_address",
+            "type": [
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_usable_missed_message_address",
+            "type": [
+                "str",
+                "list"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "talon_initialized",
+            "type": [
+                "bool",
+                "str"
+            ]
+        }
+    ],
+    "is_forwarded@global": [
+        {
+            "category": "arg",
+            "name": "subject",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subject",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_forwarded",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "is_missed_message_address@global": [
+        {
+            "category": "arg",
+            "name": "address",
+            "type": [
+                "str",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "str",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg_string",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_missed_message_address",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "is_mm_32_format@global": [
+        {
+            "category": "arg",
+            "name": "msg_string",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg_string",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_mm_32_format",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "key@RateLimitedRealmMirror": [
+        {
+            "category": "return",
+            "name": "key",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "log_error@global": [
+        {
+            "category": "arg",
+            "name": "email_message",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "error_message",
+            "type": [
+                "str",
+                "dict",
+                "None",
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to",
+            "type": [
+                "str",
+                "None",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to",
+            "type": [
+                "str",
+                "None",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recipient",
+            "type": [
+                "str",
+                "None",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "email_message",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error_message",
+            "type": [
+                "str",
+                "dict",
+                "None",
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "log_error",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "mirror_email_message@global": [
+        {
+            "category": "arg",
+            "name": "rcpt_to",
+            "type": [
+                "raiden.utils.Address",
+                "None",
+                "golem_messages.message.concents.FileTransferToken",
+                "raiden.tests.fuzz.utils.SendLockedTransferInNode"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "msg_base64",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rcpt_to",
+            "type": [
+                "raiden.utils.Address",
+                "None",
+                "golem_messages.message.concents.FileTransferToken",
+                "raiden.tests.fuzz.utils.SendLockedTransferInNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "mirror_email_message",
+            "type": [
+                "dict[typing.Text, typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg_base64",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        }
+    ],
+    "process_message@global": [
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "starlette.types.Message",
+                "str",
+                "email.mime.multiparMIMEMultipart"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rcpt_to",
+            "type": [
+                "None",
+                "str",
+                "message.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to",
+            "type": [
+                "None",
+                "str",
+                "message.Message",
+                "alerta.models.token.Jwt",
+                "typing.Callable[object, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rcpt_to",
+            "type": [
+                "None",
+                "str",
+                "message.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "starlette.types.Message",
+                "str",
+                "email.mime.multiparMIMEMultipart"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_message",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "process_missed_message@global": [
+        {
+            "category": "arg",
+            "name": "to",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "str",
+                "pymap.parsing.message.AppendMessage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mm_address",
+            "type": [
+                "str",
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_name",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_missed_message",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "str",
+                "pymap.parsing.message.AppendMessage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recipient_str",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "emails",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "process_stream_message@global": [
+        {
+            "category": "arg",
+            "name": "to",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subject_header",
+            "type": [
+                "str",
+                "set[str]",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subject",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "char",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_email_address",
+            "type": [
+                "str",
+                "Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "options",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_stream_message",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "rate_limit_mirror_by_realm@global": [
+        {
+            "category": "arg",
+            "name": "recipient_realm",
+            "type": [
+                "tracim.models.User",
+                "zerver.models.UserProfile",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recipient_realm",
+            "type": [
+                "tracim.models.User",
+                "zerver.models.UserProfile",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ratelimited",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secs_to_freedom",
+            "type": [
+                "int",
+                "dict[str, typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "rate_limit_mirror_by_realm",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "redact@global": [
+        {
+            "category": "arg",
+            "name": "address_match",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "annotation",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "redact",
+            "type": []
+        }
+    ],
+    "redact_email_address@global": [
+        {
+            "category": "arg",
+            "name": "error_message",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "domain",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error_message",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "redact_email_address",
+            "type": []
+        }
+    ],
+    "rules@RateLimitedRealmMirror": [
+        {
+            "category": "return",
+            "name": "rules",
+            "type": []
+        }
+    ],
+    "send_mm_reply_to_stream@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": [
+                "str",
+                "Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topic_name",
+            "type": [
+                "str",
+                "Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "body",
+            "type": [
+                "str",
+                "Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "str",
+                "Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_name",
+            "type": [
+                "str",
+                "Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "body",
+            "type": [
+                "str",
+                "Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error_message",
+            "type": [
+                "str",
+                "dict[str, list[str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "send_mm_reply_to_stream",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "send_zulip@global": [
+        {
+            "category": "arg",
+            "name": "sender",
+            "type": [
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": [
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topic_name",
+            "type": [
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content",
+            "type": [
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sender",
+            "type": [
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_name",
+            "type": [
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content",
+            "type": [
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "send_zulip",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "strip_from_subject@global": [
+        {
+            "category": "arg",
+            "name": "subject",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subject",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "strip_from_subject",
+            "type": []
+        }
+    ],
+    "validate_to_address@global": [
+        {
+            "category": "arg",
+            "name": "rcpt_to",
+            "type": [
+                "int",
+                "list[int]",
+                "bytearray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rcpt_to",
+            "type": [
+                "int",
+                "list[int]",
+                "bytearray"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "validate_to_address",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

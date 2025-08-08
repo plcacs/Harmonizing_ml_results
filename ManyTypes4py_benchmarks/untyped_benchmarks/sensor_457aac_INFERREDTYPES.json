@@ -1,0 +1,605 @@
+{
+    "__init__@AutomowerSensorEntity": [
+        {
+            "category": "arg",
+            "name": "mower_id",
+            "type": [
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "coordinator",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "description",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mower_id",
+            "type": [
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "coordinator",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "description",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entity_description",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_unique_id",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@WorkAreaSensorEntity": [
+        {
+            "category": "arg",
+            "name": "mower_id",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "coordinator",
+            "type": [
+                "str",
+                "None",
+                "\"LocalizedString\""
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "description",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "work_area_id",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mower_id",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "coordinator",
+            "type": [
+                "str",
+                "None",
+                "\"LocalizedString\""
+            ]
+        },
+        {
+            "category": "local",
+            "name": "work_area_id",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "description",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entity_description",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_unique_id",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_translation_placeholders",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_async_add_new_devices@global": [
+        {
+            "category": "arg",
+            "name": "mower_ids",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "MOWER_SENSOR_TYPES",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "dict[str, typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "description",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_async_add_new_devices",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_async_add_new_work_areas@global": [
+        {
+            "category": "arg",
+            "name": "mower_id",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "work_area_ids",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "mower_data_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_async_add_new_work_areas",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "WORK_AREA_SENSOR_TYPES",
+            "type": [
+                "list[tuple[str]]",
+                "dict[str, typing.Any]",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "description",
+            "type": [
+                "tuple[str]",
+                "str"
+            ]
+        }
+    ],
+    "_get_current_work_area_dict@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_WORK_AREA_ID_ASSIGNMENT",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_current_work_area_dict",
+            "type": [
+                "dict[typing.Union[str,list[str]], ]"
+            ]
+        }
+    ],
+    "_get_current_work_area_name@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "STATE_NO_WORK_AREA_ACTIVE",
+            "type": [
+                "int",
+                "list",
+                "list[bool]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_current_work_area_name",
+            "type": [
+                "int",
+                "list",
+                "list[bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "str"
+            ]
+        }
+    ],
+    "_get_error_string@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_error_string",
+            "type": [
+                "dict[str, typing.Any]",
+                "list[typing.Any]",
+                "typing.IO",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ERROR_STATES",
+            "type": [
+                "T",
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        }
+    ],
+    "_get_work_area_names@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "work_area_list",
+            "type": [
+                "list",
+                "list[typing.Union[int,list]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "STATE_NO_WORK_AREA_ACTIVE",
+            "type": [
+                "int",
+                "list",
+                "list[bool]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_work_area_names",
+            "type": [
+                "list[typing.Union[int,list]]"
+            ]
+        }
+    ],
+    "async_setup_entry@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "entry",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "async_add_entities",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "entities",
+            "type": [
+                "list",
+                "list[WorkAreaSensorEntity]",
+                "list[typing.Union[WorkAreaSensorEntity,AutomowerSensorEntity]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_work_areas",
+            "type": [
+                "datetime.date",
+                "datetime.datetime",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "WORK_AREA_SENSOR_TYPES",
+            "type": [
+                "list[tuple[str]]",
+                "dict[str, typing.Any]",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "description",
+            "type": [
+                "tuple[str]",
+                "str",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "MOWER_SENSOR_TYPES",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "dict[str, typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_setup_entry",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "extra_state_attributes@AutomowerSensorEntity": [
+        {
+            "category": "return",
+            "name": "extra_state_attributes",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "bytes"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "PARALLEL_UPDATES",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_WORK_AREA_ID_ASSIGNMENT",
+            "type": [
+                "typing.Text",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ERROR_KEY_LIST",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ERROR_STATES",
+            "type": [
+                "set",
+                "T",
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "RESTRICTED_REASONS",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "STATE_NO_WORK_AREA_ACTIVE",
+            "type": [
+                "typing.Text",
+                "int",
+                "list",
+                "list[bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "MOWER_SENSOR_TYPES",
+            "type": [
+                "tuple[AutomowerSensorEntityDescription]",
+                "str",
+                "dict[str, typing.Any]",
+                "dict[str, typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "WORK_AREA_SENSOR_TYPES",
+            "type": [
+                "tuple[WorkAreaSensorEntityDescription]",
+                "list[tuple[str]]",
+                "dict[str, typing.Any]",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        }
+    ],
+    "native_value@AutomowerSensorEntity": [
+        {
+            "category": "return",
+            "name": "native_value",
+            "type": [
+                "str",
+                "None",
+                "typing.Type"
+            ]
+        }
+    ],
+    "native_value@WorkAreaSensorEntity": [
+        {
+            "category": "return",
+            "name": "native_value",
+            "type": [
+                "str",
+                "dict",
+                "None"
+            ]
+        }
+    ],
+    "options@AutomowerSensorEntity": [
+        {
+            "category": "return",
+            "name": "options",
+            "type": [
+                "dict[str, typing.Any]",
+                "bool",
+                "str"
+            ]
+        }
+    ],
+    "translation_key@WorkAreaSensorEntity": [
+        {
+            "category": "return",
+            "name": "translation_key",
+            "type": [
+                "str"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,497 @@
+{
+    "_write_profiles_yml@global": [
+        {
+            "category": "arg",
+            "name": "profiles_dir",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "dbt_profile_contents",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_write_profiles_yml",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "cleanup@global": [
+        {
+            "category": "return",
+            "name": "cleanup",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "cwd@global": [
+        {
+            "category": "return",
+            "name": "cwd",
+            "type": []
+        }
+    ],
+    "cwd_child@global": [
+        {
+            "category": "return",
+            "name": "cwd_child",
+            "type": [
+                "pathlib.Path"
+            ]
+        }
+    ],
+    "cwd_parent@global": [
+        {
+            "category": "arg",
+            "name": "cwd",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cwd",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "cwd_parent",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "dbt_debug@TestProfiles": [
+        {
+            "category": "arg",
+            "name": "project_dir_cli_arg",
+            "type": [
+                "None",
+                "str",
+                "list[str]",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "profiles_dir_cli_arg",
+            "type": [
+                "None",
+                "str",
+                "pathlib.Path",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "command",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "project_dir_cli_arg",
+            "type": [
+                "None",
+                "str",
+                "list[str]",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "profiles_dir_cli_arg",
+            "type": [
+                "None",
+                "str",
+                "pathlib.Path",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "dbt_debug",
+            "type": [
+                "str",
+                "bool"
+            ]
+        }
+    ],
+    "environ@global": [
+        {
+            "category": "arg",
+            "name": "env",
+            "type": [
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "env",
+            "type": [
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "original_env",
+            "type": [
+                "dict[str, ]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "environ",
+            "type": [
+                "typing.Generator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [],
+    "profiles_env_root@global": [
+        {
+            "category": "arg",
+            "name": "tmpdir_factory",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tmpdir_factory",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "profiles_env_root",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "profiles_flag_root@global": [
+        {
+            "category": "arg",
+            "name": "tmpdir_factory",
+            "type": [
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tmpdir_factory",
+            "type": [
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "profiles_flag_root",
+            "type": []
+        }
+    ],
+    "profiles_home_root@global": [
+        {
+            "category": "return",
+            "name": "profiles_home_root",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "profiles_project_root@global": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "profiles_project_root",
+            "type": []
+        }
+    ],
+    "profiles_yml@global": [
+        {
+            "category": "arg",
+            "name": "profiles_root",
+            "type": [
+                "str",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dbt_profile_data",
+            "type": [
+                "str",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dbt_profile_data",
+            "type": [
+                "str",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "profiles_root",
+            "type": [
+                "str",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "profiles_yml",
+            "type": [
+                "str",
+                "dict",
+                "None"
+            ]
+        }
+    ],
+    "test_debug@TestProfilesMayNotExist": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_debug",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_deps@TestProfilesMayNotExist": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": [
+                "pathlib.Path",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_deps",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_profiles@TestProfiles": [
+        {
+            "category": "arg",
+            "name": "project_dir_cli_arg",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "working_directory",
+            "type": [
+                "str",
+                "path.Path",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "write_profiles_yml",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dbt_profile_data",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "profiles_home_root",
+            "type": [
+                "str",
+                "typing.TextIO",
+                "Path",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "profiles_project_root",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "profiles_flag_root",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "profiles_env_root",
+            "type": [
+                "str",
+                "bool",
+                "typing.Iterable[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "pathlib.Path",
+                "str",
+                "typing.Callable[typing.Any, None]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "project_dir_cli_arg",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "pathlib.Path",
+                "str",
+                "typing.Callable[typing.Any, None]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "working_directory",
+            "type": [
+                "str",
+                "path.Path",
+                "None",
+                "pathlib.Path",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "list[str]",
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stdout",
+            "type": [
+                "typing.TextIO",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "profiles_env_root",
+            "type": [
+                "str",
+                "bool",
+                "typing.Iterable[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "env_vars",
+            "type": [
+                "dict[typing.Text, typing.Union[str,bool,typing.Iterable[str]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "profiles_flag_root",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_profiles",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "write_profiles_yml@global": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "write_profiles_yml",
+            "type": []
+        }
+    ]
+}

@@ -25,7 +25,7 @@ HeadersType = Dict[str, Union[str, List[str]]]
 _ANY_STRING = str, bytes
 
 
-def func_b51am1qp(obj):
+def func_7v8ddinv(obj):
     if isinstance(obj, decimal.Decimal):
         return float(obj)
     if isinstance(obj, MultiDict):
@@ -34,21 +34,21 @@ def func_b51am1qp(obj):
         __class__.__name__)
 
 
-def func_x2u6x5cg(message, error_code, http_status_code, headers=None):
+def func_jbgc6yig(message, error_code, http_status_code, headers=None):
     body = {'Code': error_code, 'Message': message}
     response = Response(body=body, status_code=http_status_code, headers=
         headers)
     return response
 
 
-def func_i6qpvb6g(content_type, valid_content_types):
+def func_cgh0i6nf(content_type, valid_content_types):
     content_type = content_type.lower()
     valid_content_types = [x.lower() for x in valid_content_types]
     return ('*/*' in content_type or '*/*' in valid_content_types or
         _content_type_header_contains(content_type, valid_content_types))
 
 
-def func_a8514pra(content_type_header, valid_content_types):
+def func_8i8y7mih(content_type_header, valid_content_types):
     content_type_header_parts = [p.strip() for p in re.split('[,;]',
         content_type_header)]
     valid_parts = set(valid_content_types).intersection(
@@ -145,7 +145,7 @@ class MultiDict(MutableMapping):
     def __delitem__(self, k):
         del self._dict[k]
 
-    def func_8luclvrw(self, k):
+    def func_1nkp63ev(self, k):
         return list(self._dict[k])
 
     def __len__(self):
@@ -185,10 +185,10 @@ class Authorizer(object):
     name = ''
     scopes = []
 
-    def func_ed8viqid(self):
+    def func_5aepmyjj(self):
         raise NotImplementedError('to_swagger')
 
-    def func_scoker0h(self, scopes):
+    def func_gv635333(self, scopes):
         raise NotImplementedError('with_scopes')
 
 
@@ -199,11 +199,11 @@ class IAMAuthorizer(Authorizer):
         self.name = 'sigv4'
         self.scopes = []
 
-    def func_ed8viqid(self):
+    def func_5aepmyjj(self):
         return {'in': 'header', 'type': 'apiKey', 'name': 'Authorization',
             'x-amazon-apigateway-authtype': 'awsSigv4'}
 
-    def func_scoker0h(self, scopes):
+    def func_gv635333(self, scopes):
         raise NotImplementedError('with_scopes')
 
 
@@ -221,13 +221,13 @@ class CognitoUserPoolAuthorizer(Authorizer):
         self._provider_arns = provider_arns
         self.scopes = scopes or []
 
-    def func_ed8viqid(self):
+    def func_5aepmyjj(self):
         return {'in': 'header', 'type': 'apiKey', 'name': self._header,
             'x-amazon-apigateway-authtype': self._AUTH_TYPE,
             'x-amazon-apigateway-authorizer': {'type': self._AUTH_TYPE,
             'providerARNs': self._provider_arns}}
 
-    def func_scoker0h(self, scopes):
+    def func_gv635333(self, scopes):
         authorizer_with_scopes = copy.deepcopy(self)
         authorizer_with_scopes.scopes = scopes
         return authorizer_with_scopes
@@ -245,7 +245,7 @@ class CustomAuthorizer(Authorizer):
         self._invoke_role_arn = invoke_role_arn
         self.scopes = scopes or []
 
-    def func_ed8viqid(self):
+    def func_5aepmyjj(self):
         swagger = {'in': 'header', 'type': 'apiKey', 'name': self._header,
             'x-amazon-apigateway-authtype': self._AUTH_TYPE,
             'x-amazon-apigateway-authorizer': {'type': 'token',
@@ -256,7 +256,7 @@ class CustomAuthorizer(Authorizer):
                 ] = self._invoke_role_arn
         return swagger
 
-    def func_scoker0h(self, scopes):
+    def func_gv635333(self, scopes):
         authorizer_with_scopes = copy.deepcopy(self)
         authorizer_with_scopes.scopes = scopes
         return authorizer_with_scopes
@@ -282,10 +282,10 @@ class CORSConfig(object):
         self._allow_credentials = allow_credentials
 
     @property
-    def func_mqk3qj1t(self):
+    def func_6rluov3y(self):
         return ','.join(sorted(self._allow_headers))
 
-    def func_buo5f3kr(self):
+    def func_nuiz31or(self):
         headers = {'Access-Control-Allow-Origin': self.allow_origin,
             'Access-Control-Allow-Headers': self.allow_headers}
         if self._expose_headers:
@@ -325,14 +325,14 @@ class Request(object):
         self.lambda_context = lambda_context
         self._event_dict = event_dict
 
-    def func_jbpe448t(self, encoded):
+    def func_jkxty10u(self, encoded):
         if not isinstance(encoded, bytes):
             encoded = encoded.encode('ascii')
         output = base64.b64decode(encoded)
         return output
 
     @property
-    def func_vaeky95c(self):
+    def func_xku2lr0w(self):
         if not self._raw_body and self._body is not None:
             if self._is_base64_encoded:
                 self._raw_body = self._base64decode(self._body)
@@ -343,7 +343,7 @@ class Request(object):
         return self._raw_body
 
     @property
-    def func_da23b6ip(self):
+    def func_o1nc530n(self):
         if self.headers.get('content-type', '').startswith('application/json'):
             if self._json_body is None:
                 try:
@@ -352,7 +352,7 @@ class Request(object):
                     raise BadRequestError('Error Parsing JSON')
             return self._json_body
 
-    def func_n1mm27l7(self):
+    def func_f1xsvgls(self):
         copied = {k: v for k, v in self.__dict__.items() if not k.
             startswith('_') and k not in self._NON_SERIALIZED_ATTRS}
         copied['headers'] = dict(copied['headers'])
@@ -360,7 +360,7 @@ class Request(object):
             copied['query_params'] = dict(copied['query_params'])
         return copied
 
-    def func_r2m92irr(self):
+    def func_7tj7556g(self):
         return self._event_dict
 
 
@@ -373,7 +373,7 @@ class Response(object):
         self.headers = headers
         self.status_code = status_code
 
-    def func_n1mm27l7(self, binary_types=None):
+    def func_f1xsvgls(self, binary_types=None):
         body = self.body
         if not isinstance(body, _ANY_STRING):
             body = json.dumps(body, separators=(',', ':'), default=
@@ -385,7 +385,7 @@ class Response(object):
             self._b64encode_body_if_needed(response, binary_types)
         return response
 
-    def func_8sjdkhe5(self, all_headers):
+    def func_ky8ik2q0(self, all_headers):
         multi_headers = {}
         single_headers = {}
         for name, value in all_headers.items():
@@ -395,12 +395,12 @@ class Response(object):
                 single_headers[name] = value
         return single_headers, multi_headers
 
-    def func_mlayjrmg(self, response_dict, binary_types):
+    def func_36yxykc4(self, response_dict, binary_types):
         response_headers = CaseInsensitiveMapping(response_dict['headers'])
         content_type = response_headers.get('content-type', '')
         body = response_dict['body']
-        if func_i6qpvb6g(content_type, binary_types):
-            if func_i6qpvb6g(content_type, ['application/json']
+        if func_cgh0i6nf(content_type, binary_types):
+            if func_cgh0i6nf(content_type, ['application/json']
                 ) or not content_type:
                 body = body if isinstance(body, bytes) else body.encode('utf-8'
                     )
@@ -408,7 +408,7 @@ class Response(object):
             response_dict['isBase64Encoded'] = True
         response_dict['body'] = body
 
-    def func_gb83cah5(self, data):
+    def func_4fy9phjy(self, data):
         if not isinstance(data, bytes):
             raise ValueError(
                 'Expected bytes type for body with binary Content-Type. Got %s type body instead.'
@@ -436,7 +436,7 @@ class RouteEntry(object):
         self.cors = cors
         self.authorizer = authorizer
 
-    def func_21ritgdi(self):
+    def func_mklydfdc(self):
         if '{' not in self.uri_pattern:
             return []
         results = [r[1:-1] for r in _PARAMS.findall(self.uri_pattern)]
@@ -458,7 +458,7 @@ class APIGateway(object):
         self.cors = False
 
     @property
-    def func_7f09atxd(self):
+    def func_yp4saqq5(self):
         return list(self._DEFAULT_BINARY_TYPES)
 
 
@@ -475,13 +475,13 @@ class WebsocketAPI(object):
         else:
             self._env = env
 
-    def func_p6eqq3ag(self, domain_name, stage):
+    def func_ygcy8a2t(self, domain_name, stage):
         if self._endpoint is not None:
             return
         self._endpoint = self._WEBSOCKET_ENDPOINT_TEMPLATE.format(domain_name
             =domain_name, stage=stage)
 
-    def func_133thze2(self, api_id, stage):
+    def func_wum7cakw(self, api_id, stage):
         if self._endpoint is not None:
             return
         region_name = self._get_region()
@@ -495,7 +495,7 @@ class WebsocketAPI(object):
             region_name)
         self.configure(domain_name, stage)
 
-    def func_z267j74i(self):
+    def func_lwroba3i(self):
         for varname in self._REGION_ENV_VARS:
             if varname in self._env:
                 return self._env[varname]
@@ -507,7 +507,7 @@ class WebsocketAPI(object):
             "Unable to retrieve the region name when configuring the websocket client.  Either set the 'AWS_REGION' environment variable or assign 'app.websocket_api.session' to a boto3 session."
             )
 
-    def func_zq2n7q5h(self):
+    def func_cd1u87kg(self):
         if self.session is None:
             raise ValueError(
                 'Assign app.websocket_api.session to a boto3 session before using the WebsocketAPI'
@@ -521,21 +521,21 @@ class WebsocketAPI(object):
                 endpoint_url=self._endpoint)
         return self._client
 
-    def func_7dgjxts1(self, connection_id, message):
+    def func_t33jlkmk(self, connection_id, message):
         client = self._get_client()
         try:
             client.post_to_connection(ConnectionId=connection_id, Data=message)
         except client.exceptions.GoneException:
             raise WebsocketDisconnectedError(connection_id)
 
-    def func_hfxw03f4(self, connection_id):
+    def func_q2iec03k(self, connection_id):
         client = self._get_client()
         try:
             client.delete_connection(ConnectionId=connection_id)
         except client.exceptions.GoneException:
             raise WebsocketDisconnectedError(connection_id)
 
-    def func_dt4zuxsk(self, connection_id):
+    def func_di4rt02f(self, connection_id):
         client = self._get_client()
         try:
             return client.get_connection(ConnectionId=connection_id)
@@ -546,30 +546,30 @@ class WebsocketAPI(object):
 class DecoratorAPI(object):
     websocket_api = None
 
-    def func_hgzksieg(self, event_type='all'):
+    def func_v0mcmhir(self, event_type='all'):
 
-        def func_xn9xzh7a(func):
+        def func_dqsa6u4x(func):
             self.register_middleware(func, event_type)
             return func
         return _middleware_wrapper
 
-    def func_af0jucmy(self, ttl_seconds=None, execution_role=None, name=
+    def func_k51ag724(self, ttl_seconds=None, execution_role=None, name=
         None, header='Authorization'):
         return self._create_registration_function(handler_type='authorizer',
             name=name, registration_kwargs={'ttl_seconds': ttl_seconds,
             'execution_role': execution_role, 'header': header})
 
-    def func_5bw144ux(self, bucket, events=None, prefix=None, suffix=None,
+    def func_94u5685w(self, bucket, events=None, prefix=None, suffix=None,
         name=None):
         return self._create_registration_function(handler_type=
             'on_s3_event', name=name, registration_kwargs={'bucket': bucket,
             'events': events, 'prefix': prefix, 'suffix': suffix})
 
-    def func_d83kw7jj(self, topic, name=None):
+    def func_m5a0gxbu(self, topic, name=None):
         return self._create_registration_function(handler_type=
             'on_sns_message', name=name, registration_kwargs={'topic': topic})
 
-    def func_waneab29(self, queue=None, batch_size=1, name=None, queue_arn=
+    def func_9n5xc4jh(self, queue=None, batch_size=1, name=None, queue_arn=
         None, maximum_batching_window_in_seconds=0, maximum_concurrency=None):
         return self._create_registration_function(handler_type=
             'on_sqs_message', name=name, registration_kwargs={'queue':
@@ -578,17 +578,17 @@ class DecoratorAPI(object):
             maximum_batching_window_in_seconds, 'maximum_concurrency':
             maximum_concurrency})
 
-    def func_w60ibze7(self, event_pattern, name=None):
+    def func_5o8xm957(self, event_pattern, name=None):
         return self._create_registration_function(handler_type=
             'on_cw_event', name=name, registration_kwargs={'event_pattern':
             event_pattern})
 
-    def func_6zs5q8nn(self, expression, name=None, description=''):
+    def func_z7ioyv1f(self, expression, name=None, description=''):
         return self._create_registration_function(handler_type='schedule',
             name=name, registration_kwargs={'expression': expression,
             'description': description})
 
-    def func_5mp9to0o(self, stream, batch_size=100, starting_position=
+    def func_fyu89xe4(self, stream, batch_size=100, starting_position=
         'LATEST', name=None, maximum_batching_window_in_seconds=0):
         return self._create_registration_function(handler_type=
             'on_kinesis_record', name=name, registration_kwargs={'stream':
@@ -596,7 +596,7 @@ class DecoratorAPI(object):
             starting_position, 'maximum_batching_window_in_seconds':
             maximum_batching_window_in_seconds})
 
-    def func_wnem0my1(self, stream_arn, batch_size=100, starting_position=
+    def func_p5wzreal(self, stream_arn, batch_size=100, starting_position=
         'LATEST', name=None, maximum_batching_window_in_seconds=0):
         return self._create_registration_function(handler_type=
             'on_dynamodb_record', name=name, registration_kwargs={
@@ -605,33 +605,33 @@ class DecoratorAPI(object):
             'maximum_batching_window_in_seconds':
             maximum_batching_window_in_seconds})
 
-    def func_wgxq9hen(self, path, **kwargs):
+    def func_de9i4ols(self, path, **kwargs):
         return self._create_registration_function(handler_type='route',
             name=kwargs.pop('name', None), registration_kwargs={'path':
             path, 'kwargs': kwargs})
 
-    def func_bhs1l1cm(self, name=None):
+    def func_3dg1vmn5(self, name=None):
         return self._create_registration_function(handler_type=
             'lambda_function', name=name)
 
-    def func_w5tg2cpa(self, name=None):
+    def func_4zhmzseu(self, name=None):
         return self._create_registration_function(handler_type=
             'on_ws_connect', name=name, registration_kwargs={'route_key':
             '$connect'})
 
-    def func_r8ry8ztf(self, name=None):
+    def func_jpb5qi5s(self, name=None):
         return self._create_registration_function(handler_type=
             'on_ws_disconnect', name=name, registration_kwargs={'route_key':
             '$disconnect'})
 
-    def func_6r5br1rt(self, name=None):
+    def func_hwymwjgp(self, name=None):
         return self._create_registration_function(handler_type=
             'on_ws_message', name=name, registration_kwargs={'route_key':
             '$default'})
 
-    def func_fy3oy5kh(self, handler_type, name=None, registration_kwargs=None):
+    def func_kza3mkro(self, handler_type, name=None, registration_kwargs=None):
 
-        def func_osv3rkcc(user_handler):
+        def func_d2tyxsl5(user_handler):
             handler_name = name
             if handler_name is None:
                 handler_name = user_handler.__name__
@@ -646,7 +646,7 @@ class DecoratorAPI(object):
             return wrapped
         return _register_handler
 
-    def func_y0adowje(self, handler_type, handler_name, user_handler):
+    def func_4rukmcu9(self, handler_type, handler_name, user_handler):
         if handler_type in _EVENT_CLASSES:
             if handler_type == 'lambda_function':
                 user_handler = PureLambdaWrapper(user_handler)
@@ -664,14 +664,14 @@ class DecoratorAPI(object):
             return ChaliceAuthorizer(handler_name, user_handler)
         return user_handler
 
-    def func_sbqn5ct1(self, event_type):
+    def func_eeikzeqs(self, event_type):
         raise NotImplementedError('_get_middleware_handlers')
 
-    def func_osv3rkcc(self, handler_type, name, user_handler,
+    def func_d2tyxsl5(self, handler_type, name, user_handler,
         wrapped_handler, kwargs, options=None):
         raise NotImplementedError('_register_handler')
 
-    def func_0g9yrwqq(self, func, event_type='all'):
+    def func_460y1b75(self, func, event_type='all'):
         raise NotImplementedError('register_middleware')
 
 
@@ -687,10 +687,10 @@ class _HandlerRegistration(object):
         self.handler_map = {}
         self.middleware_handlers = []
 
-    def func_0g9yrwqq(self, func, event_type='all'):
+    def func_460y1b75(self, func, event_type='all'):
         self.middleware_handlers.append((func, event_type))
 
-    def func_o9czwaly(self, handler_type, name, user_handler,
+    def func_kmma5k71(self, handler_type, name, user_handler,
         wrapped_handler, kwargs, options=None):
         module_name = 'app'
         if options is not None:
@@ -707,7 +707,7 @@ class _HandlerRegistration(object):
             wrapped_handler=wrapped_handler, kwargs=kwargs)
         self.handler_map[name] = wrapped_handler
 
-    def func_5l5o8ye1(self, handler):
+    def func_7jtgy86z(self, handler):
         route_key = handler.route_key_handled
         decorator_name = {'$default': 'on_ws_message', '$connect':
             'on_ws_connect', '$disconnect': 'on_ws_disconnect'}.get(route_key)
@@ -717,13 +717,13 @@ class _HandlerRegistration(object):
                  % decorator_name)
         self.websocket_handlers[route_key] = handler
 
-    def func_8zzr1w0n(self, name, user_handler, handler_string, kwargs, **
+    def func_lx0u0s3m(self, name, user_handler, handler_string, kwargs, **
         unused):
         wrapper = WebsocketConnectConfig(name=name, handler_string=
             handler_string, user_handler=user_handler)
         self._attach_websocket_handler(wrapper)
 
-    def func_6yhoexj9(self, name, user_handler, handler_string, kwargs, **
+    def func_cpn5mr35(self, name, user_handler, handler_string, kwargs, **
         unused):
         route_key = kwargs['route_key']
         wrapper = WebsocketMessageConfig(name=name, route_key_handled=
@@ -732,18 +732,18 @@ class _HandlerRegistration(object):
         self._attach_websocket_handler(wrapper)
         self.websocket_handlers[route_key] = wrapper
 
-    def func_bwx0nvwm(self, name, user_handler, handler_string, kwargs, **
+    def func_d70z3jua(self, name, user_handler, handler_string, kwargs, **
         unused):
         wrapper = WebsocketDisconnectConfig(name=name, handler_string=
             handler_string, user_handler=user_handler)
         self._attach_websocket_handler(wrapper)
 
-    def func_twmxn121(self, name, user_handler, handler_string, **unused):
+    def func_xrr0343w(self, name, user_handler, handler_string, **unused):
         wrapper = LambdaFunction(func=user_handler, name=name,
             handler_string=handler_string)
         self.pure_lambda_functions.append(wrapper)
 
-    def func_71cpq79d(self, name, handler_string, kwargs, **unused):
+    def func_0858ha25(self, name, handler_string, kwargs, **unused):
         events = kwargs['events']
         if events is None:
             events = ['s3:ObjectCreated:*']
@@ -752,12 +752,12 @@ class _HandlerRegistration(object):
             handler_string=handler_string)
         self.event_sources.append(s3_event)
 
-    def func_750gx9xa(self, name, handler_string, kwargs, **unused):
+    def func_tluu7j3j(self, name, handler_string, kwargs, **unused):
         sns_config = SNSEventConfig(name=name, handler_string=
             handler_string, topic=kwargs['topic'])
         self.event_sources.append(sns_config)
 
-    def func_agp2mxul(self, name, handler_string, kwargs, **unused):
+    def func_zzaifary(self, name, handler_string, kwargs, **unused):
         queue = kwargs.get('queue')
         queue_arn = kwargs.get('queue_arn')
         if not queue and not queue_arn:
@@ -771,7 +771,7 @@ class _HandlerRegistration(object):
             kwargs['maximum_concurrency'])
         self.event_sources.append(sqs_config)
 
-    def func_dzmz9mpu(self, name, handler_string, kwargs, **unused):
+    def func_0hith5tm(self, name, handler_string, kwargs, **unused):
         kinesis_config = KinesisEventConfig(name=name, handler_string=
             handler_string, stream=kwargs['stream'], batch_size=kwargs[
             'batch_size'], starting_position=kwargs['starting_position'],
@@ -779,7 +779,7 @@ class _HandlerRegistration(object):
             'maximum_batching_window_in_seconds'])
         self.event_sources.append(kinesis_config)
 
-    def func_5fl5lsx7(self, name, handler_string, kwargs, **unused):
+    def func_676tqwln(self, name, handler_string, kwargs, **unused):
         ddb_config = DynamoDBEventConfig(name=name, handler_string=
             handler_string, stream_arn=kwargs['stream_arn'], batch_size=
             kwargs['batch_size'], starting_position=kwargs[
@@ -787,18 +787,18 @@ class _HandlerRegistration(object):
             ['maximum_batching_window_in_seconds'])
         self.event_sources.append(ddb_config)
 
-    def func_1txdi5s1(self, name, handler_string, kwargs, **unused):
+    def func_jvt68hwp(self, name, handler_string, kwargs, **unused):
         event_source = CloudWatchEventConfig(name=name, event_pattern=
             kwargs['event_pattern'], handler_string=handler_string)
         self.event_sources.append(event_source)
 
-    def func_oyqf52wr(self, name, handler_string, kwargs, **unused):
+    def func_p56f22t1(self, name, handler_string, kwargs, **unused):
         event_source = ScheduledEventConfig(name=name, schedule_expression=
             kwargs['expression'], description=kwargs['description'],
             handler_string=handler_string)
         self.event_sources.append(event_source)
 
-    def func_6reouiib(self, name, handler_string, wrapped_handler, kwargs,
+    def func_smrf0wyr(self, name, handler_string, wrapped_handler, kwargs,
         **unused):
         actual_kwargs = kwargs.copy()
         ttl_seconds = actual_kwargs.pop('ttl_seconds', None)
@@ -814,7 +814,7 @@ class _HandlerRegistration(object):
         wrapped_handler.config = auth_config
         self.builtin_auth_handlers.append(auth_config)
 
-    def func_fyu1m1p4(self, name, user_handler, kwargs, **unused):
+    def func_shx6j18z(self, name, user_handler, kwargs, **unused):
         actual_kwargs = kwargs['kwargs']
         path = kwargs['path']
         url_prefix = kwargs.pop('url_prefix', None)
@@ -866,22 +866,22 @@ class Chalice(_HandlerRegistration, DecoratorAPI):
         self.experimental_feature_flags = set()
         self._features_used = set()
 
-    def func_8yohti9c(self, env):
+    def func_u9x3vnkw(self, env):
         if self.configure_logs:
             self._configure_logging()
         env['AWS_EXECUTION_ENV'] = '%s aws-chalice/%s' % (env.get(
             'AWS_EXECUTION_ENV', 'AWS_Lambda'), __version__)
 
     @property
-    def func_4lv2avkc(self):
+    def func_su0z65dv(self):
         return self._debug
 
     @debug.setter
-    def func_4lv2avkc(self, value):
+    def func_su0z65dv(self, value):
         self._debug = value
         self._configure_log_level()
 
-    def func_zbkkdwoq(self):
+    def func_1jeksm2w(self):
         if self._already_configured(self.log):
             return
         handler = logging.StreamHandler(sys.stdout)
@@ -891,7 +891,7 @@ class Chalice(_HandlerRegistration, DecoratorAPI):
         self._configure_log_level()
         self.log.addHandler(handler)
 
-    def func_vry303ms(self, log):
+    def func_enqqwzme(self, log):
         if not log.handlers:
             return False
         for handler in log.handlers:
@@ -900,41 +900,41 @@ class Chalice(_HandlerRegistration, DecoratorAPI):
                     return True
         return False
 
-    def func_o59unxjx(self):
+    def func_ac4g27rb(self):
         if self._debug:
             level = logging.DEBUG
         else:
             level = logging.ERROR
         self.log.setLevel(level)
 
-    def func_4veb03ya(self, blueprint, name_prefix=None, url_prefix=None):
+    def func_d5ka3h39(self, blueprint, name_prefix=None, url_prefix=None):
         blueprint.register(self, options={'name_prefix': name_prefix,
             'url_prefix': url_prefix})
 
-    def func_osv3rkcc(self, handler_type, name, user_handler,
+    def func_d2tyxsl5(self, handler_type, name, user_handler,
         wrapped_handler, kwargs, options=None):
         self._do_register_handler(handler_type, name, user_handler,
             wrapped_handler, kwargs, options)
 
-    def func_8zzr1w0n(self, name, user_handler, handler_string, kwargs, **
+    def func_lx0u0s3m(self, name, user_handler, handler_string, kwargs, **
         unused):
         self._features_used.add('WEBSOCKETS')
         super(Chalice, self)._register_on_ws_connect(name, user_handler,
             handler_string, kwargs, **unused)
 
-    def func_6yhoexj9(self, name, user_handler, handler_string, kwargs, **
+    def func_cpn5mr35(self, name, user_handler, handler_string, kwargs, **
         unused):
         self._features_used.add('WEBSOCKETS')
         super(Chalice, self)._register_on_ws_message(name, user_handler,
             handler_string, kwargs, **unused)
 
-    def func_bwx0nvwm(self, name, user_handler, handler_string, kwargs, **
+    def func_d70z3jua(self, name, user_handler, handler_string, kwargs, **
         unused):
         self._features_used.add('WEBSOCKETS')
         super(Chalice, self)._register_on_ws_disconnect(name, user_handler,
             handler_string, kwargs, **unused)
 
-    def func_sbqn5ct1(self, event_type):
+    def func_eeikzeqs(self, event_type):
         return (func for func, filter_type in self.middleware_handlers if 
             filter_type in [event_type, 'all'])
 
@@ -972,11 +972,11 @@ class ChaliceAuthorizer(object):
             return result.to_dict(auth_request)
         return result
 
-    def func_lkqrbxo1(self, event):
+    def func_qyiniaas(self, event):
         return AuthRequest(event['type'], event['authorizationToken'],
             event['methodArn'])
 
-    def func_scoker0h(self, scopes):
+    def func_gv635333(self, scopes):
         authorizer_with_scopes = copy.deepcopy(self)
         authorizer_with_scopes.scopes = scopes
         return authorizer_with_scopes
@@ -1001,17 +1001,17 @@ class AuthResponse(object):
             context = {}
         self.context = context
 
-    def func_n1mm27l7(self, request):
+    def func_f1xsvgls(self, request):
         return {'context': self.context, 'principalId': self.principal_id,
             'policyDocument': self._generate_policy(request)}
 
-    def func_t359ebry(self, request):
+    def func_l0r7pq8z(self, request):
         allowed_resources = self._generate_allowed_resources(request)
         return {'Version': '2012-10-17', 'Statement': [{'Action':
             'execute-api:Invoke', 'Effect': 'Allow', 'Resource':
             allowed_resources}]}
 
-    def func_f6nrsksa(self, request):
+    def func_uo81w7wz(self, request):
         allowed_resources = []
         for route in self.routes:
             if isinstance(route, AuthRoute):
@@ -1028,7 +1028,7 @@ class AuthResponse(object):
                     method))
         return allowed_resources
 
-    def func_yuwjih5o(self, route, request, method='*'):
+    def func_ubveyiys(self, route, request, method='*'):
         incoming_arn = request.method_arn
         arn_parts = incoming_arn.split(':', 5)
         allowed_resource = arn_parts[-1].split('/')[:2]
@@ -1083,7 +1083,7 @@ class CloudWatchEventConfig(BaseEventSourceConfig):
 
 class ScheduleExpression(object):
 
-    def func_mbbqnfig(self):
+    def func_zj99nqpf(self):
         raise NotImplementedError('to_string')
 
 
@@ -1096,7 +1096,7 @@ class Rate(ScheduleExpression):
         self.value = value
         self.unit = unit
 
-    def func_mbbqnfig(self):
+    def func_zj99nqpf(self):
         unit = self.unit.lower()
         if self.value == 1:
             unit = unit[:-1]
@@ -1113,7 +1113,7 @@ class Cron(ScheduleExpression):
         self.day_of_week = day_of_week
         self.year = year
 
-    def func_mbbqnfig(self):
+    def func_zj99nqpf(self):
         return 'cron(%s %s %s %s %s %s)' % (self.minutes, self.hours, self.
             day_of_month, self.month, self.day_of_week, self.year)
 
@@ -1222,7 +1222,7 @@ class BaseLambdaHandler(object):
     def __call__(self, event, context):
         pass
 
-    def func_tr8chu6i(self, handlers, original_handler):
+    def func_0awqlgli(self, handlers, original_handler):
         current = original_handler
         for handler in reversed(list(handlers)):
             current = MiddlewareHandler(handler=handler, next_handler=current)
@@ -1240,11 +1240,11 @@ class EventSourceHandler(BaseLambdaHandler):
         self.handler = None
 
     @property
-    def func_cxcrqrhm(self):
+    def func_pp7i98qf(self):
         return self._middleware_handlers
 
     @middleware_handlers.setter
-    def func_cxcrqrhm(self, value):
+    def func_pp7i98qf(self, value):
         self._middleware_handlers = value
 
     def __call__(self, event, context):
@@ -1292,13 +1292,13 @@ class RestAPIEventHandler(BaseLambdaHandler):
             middleware_handlers = []
         self._middleware_handlers = middleware_handlers
 
-    def func_tdqjgel4(self, event, get_response):
+    def func_qrlesjg5(self, event, get_response):
         try:
             return get_response(event)
         except Exception:
             return self._unhandled_exception_to_response()
 
-    def func_o11l9bih(self, event, context):
+    def func_38wk9dni(self, event, context):
         resource_path = event.get('requestContext', {}).get('resourcePath')
         if resource_path is not None:
             self.current_request = Request(event, context)
@@ -1307,7 +1307,7 @@ class RestAPIEventHandler(BaseLambdaHandler):
 
     def __call__(self, event, context):
 
-        def func_5ffe856v(request):
+        def func_k7vj3tie(request):
             return self._main_rest_api_handler(event, context)
         final_handler = self._build_middleware_handlers([self.
             _global_error_handler] + list(self._middleware_handlers),
@@ -1315,15 +1315,15 @@ class RestAPIEventHandler(BaseLambdaHandler):
         response = final_handler(self.current_request)
         return response.to_dict(self.api.binary_types)
 
-    def func_folwefdf(self, event, context):
+    def func_9mfg1rdy(self, event, context):
         resource_path = event.get('requestContext', {}).get('resourcePath')
         if resource_path is None:
-            return func_x2u6x5cg(error_code='InternalServerError', message=
+            return func_jbgc6yig(error_code='InternalServerError', message=
                 'Unknown request.', http_status_code=500)
         http_method = event['requestContext']['httpMethod']
         if http_method not in self.routes[resource_path]:
             allowed_methods = ', '.join(self.routes[resource_path].keys())
-            return func_x2u6x5cg(error_code='MethodNotAllowedError',
+            return func_jbgc6yig(error_code='MethodNotAllowedError',
                 message='Unsupported method: %s' % http_method,
                 http_status_code=405, headers={'Allow': allowed_methods})
         route_entry = self.routes[resource_path][http_method]
@@ -1337,8 +1337,8 @@ class RestAPIEventHandler(BaseLambdaHandler):
         if self.current_request and route_entry.content_types:
             content_type = self.current_request.headers.get('content-type',
                 'application/json')
-            if not func_i6qpvb6g(content_type, route_entry.content_types):
-                return func_x2u6x5cg(error_code='UnsupportedMediaType',
+            if not func_cgh0i6nf(content_type, route_entry.content_types):
+                return func_jbgc6yig(error_code='UnsupportedMediaType',
                     message='Unsupported media type: %s' % content_type,
                     http_status_code=415, headers=cors_headers)
         response = self._get_view_function_response(view_function,
@@ -1349,27 +1349,27 @@ class RestAPIEventHandler(BaseLambdaHandler):
         if self.current_request and not self._validate_binary_response(self
             .current_request.headers, response_headers):
             content_type = response_headers.get('content-type', '')
-            return func_x2u6x5cg(error_code='BadRequest', message=
+            return func_jbgc6yig(error_code='BadRequest', message=
                 'Request did not specify an Accept header with %s, The response has a Content-Type of %s. If a response has a binary Content-Type then the request must specify an Accept header that matches.'
                  % (content_type, content_type), http_status_code=400,
                 headers=cors_headers)
         return response
 
-    def func_ft3j2eeo(self, request_headers, response_headers):
+    def func_f5y772sd(self, request_headers, response_headers):
         request_accept_header = request_headers.get('accept')
         response_content_type = response_headers.get('content-type',
             'application/json')
-        response_is_binary = func_i6qpvb6g(response_content_type, self.api.
+        response_is_binary = func_cgh0i6nf(response_content_type, self.api.
             binary_types)
         expects_binary_response = False
         if request_accept_header is not None:
-            expects_binary_response = func_i6qpvb6g(request_accept_header,
+            expects_binary_response = func_cgh0i6nf(request_accept_header,
                 self.api.binary_types)
         if response_is_binary and not expects_binary_response:
             return False
         return True
 
-    def func_tf11pqmi(self, view_function, function_args):
+    def func_9qwjxudm(self, view_function, function_args):
         try:
             response = view_function(**function_args)
             if not isinstance(response, Response):
@@ -1384,7 +1384,7 @@ class RestAPIEventHandler(BaseLambdaHandler):
             response = self._unhandled_exception_to_response()
         return response
 
-    def func_ar397g9b(self):
+    def func_y3b2zrat(self):
         headers = {}
         path = getattr(self.current_request, 'path', 'unknown')
         self.log.error('Caught exception for path %s', path, exc_info=True)
@@ -1398,19 +1398,19 @@ class RestAPIEventHandler(BaseLambdaHandler):
         response = Response(body=body, headers=headers, status_code=500)
         return response
 
-    def func_sibna2pg(self, response):
+    def func_s8gj6r5j(self, response):
         for header, value in response.headers.items():
             if '\n' in value:
                 raise ChaliceError("Bad value for header '%s': %r" % (
                     header, value))
 
-    def func_tag1dfhc(self, route_entry):
+    def func_dijwoz6v(self, route_entry):
         return route_entry.cors is not None
 
-    def func_p4szpne2(self, cors):
+    def func_1mncc52s(self, cors):
         return cors.get_access_control_headers()
 
-    def func_ryrsnf10(self, response, cors_headers):
+    def func_g142kast(self, response, cors_headers):
         for name, value in cors_headers.items():
             if name not in response.headers:
                 response.headers[name] = value
@@ -1423,10 +1423,10 @@ class BaseLambdaEvent(object):
         self.context = context
         self._extract_attributes(event_dict)
 
-    def func_flo89hin(self, event_dict):
+    def func_wsaqthlu(self, event_dict):
         raise NotImplementedError('_extract_attributes')
 
-    def func_n1mm27l7(self):
+    def func_f1xsvgls(self):
         return self._event_dict
 
 
@@ -1436,16 +1436,16 @@ class LambdaFunctionEvent(BaseLambdaEvent):
         self.event = event_dict
         self.context = context
 
-    def func_flo89hin(self, event_dict):
+    def func_wsaqthlu(self, event_dict):
         pass
 
-    def func_n1mm27l7(self):
+    def func_f1xsvgls(self):
         return self.event
 
 
 class CloudWatchEvent(BaseLambdaEvent):
 
-    def func_flo89hin(self, event_dict):
+    def func_wsaqthlu(self, event_dict):
         self.version = event_dict['version']
         self.account = event_dict['account']
         self.region = event_dict['region']
@@ -1463,7 +1463,7 @@ class WebsocketEvent(BaseLambdaEvent):
         super(WebsocketEvent, self).__init__(event_dict, context)
         self._json_body = None
 
-    def func_flo89hin(self, event_dict):
+    def func_wsaqthlu(self, event_dict):
         request_context = event_dict['requestContext']
         self.domain_name = request_context['domainName']
         self.stage = request_context['stage']
@@ -1471,7 +1471,7 @@ class WebsocketEvent(BaseLambdaEvent):
         self.body = str(event_dict.get('body'))
 
     @property
-    def func_da23b6ip(self):
+    def func_o1nc530n(self):
         if self._json_body is None:
             try:
                 self._json_body = json.loads(self.body)
@@ -1482,7 +1482,7 @@ class WebsocketEvent(BaseLambdaEvent):
 
 class SNSEvent(BaseLambdaEvent):
 
-    def func_flo89hin(self, event_dict):
+    def func_wsaqthlu(self, event_dict):
         first_record = event_dict['Records'][0]
         self.message = first_record['Sns']['Message']
         self.subject = first_record['Sns']['Subject']
@@ -1491,7 +1491,7 @@ class SNSEvent(BaseLambdaEvent):
 
 class S3Event(BaseLambdaEvent):
 
-    def func_flo89hin(self, event_dict):
+    def func_wsaqthlu(self, event_dict):
         s3 = event_dict['Records'][0]['s3']
         self.bucket = s3['bucket']['name']
         self.key = unquote_plus(s3['object']['key'])
@@ -1499,7 +1499,7 @@ class S3Event(BaseLambdaEvent):
 
 class SQSEvent(BaseLambdaEvent):
 
-    def func_flo89hin(self, event_dict):
+    def func_wsaqthlu(self, event_dict):
         pass
 
     def __iter__(self):
@@ -1509,14 +1509,14 @@ class SQSEvent(BaseLambdaEvent):
 
 class SQSRecord(BaseLambdaEvent):
 
-    def func_flo89hin(self, event_dict):
+    def func_wsaqthlu(self, event_dict):
         self.body = event_dict['body']
         self.receipt_handle = event_dict['receiptHandle']
 
 
 class KinesisEvent(BaseLambdaEvent):
 
-    def func_flo89hin(self, event_dict):
+    def func_wsaqthlu(self, event_dict):
         pass
 
     def __iter__(self):
@@ -1526,7 +1526,7 @@ class KinesisEvent(BaseLambdaEvent):
 
 class KinesisRecord(BaseLambdaEvent):
 
-    def func_flo89hin(self, event_dict):
+    def func_wsaqthlu(self, event_dict):
         kinesis = event_dict['kinesis']
         encoded_payload = kinesis['data']
         self.data = base64.b64decode(encoded_payload)
@@ -1539,7 +1539,7 @@ class KinesisRecord(BaseLambdaEvent):
 
 class DynamoDBEvent(BaseLambdaEvent):
 
-    def func_flo89hin(self, event_dict):
+    def func_wsaqthlu(self, event_dict):
         pass
 
     def __iter__(self):
@@ -1549,7 +1549,7 @@ class DynamoDBEvent(BaseLambdaEvent):
 
 class DynamoDBRecord(BaseLambdaEvent):
 
-    def func_flo89hin(self, event_dict):
+    def func_wsaqthlu(self, event_dict):
         dynamodb = event_dict['dynamodb']
         self.timestamp = datetime.datetime.utcfromtimestamp(dynamodb[
             'ApproximateCreationDateTime'])
@@ -1565,7 +1565,7 @@ class DynamoDBRecord(BaseLambdaEvent):
         self.event_source_arn = event_dict['eventSourceARN']
 
     @property
-    def func_x9udokww(self):
+    def func_mb3xm6yi(self):
         parts = self.event_source_arn.split(':', 5)
         if not len(parts) == 6:
             return ''
@@ -1585,14 +1585,14 @@ class Blueprint(DecoratorAPI):
         self._lambda_context = None
 
     @property
-    def func_km25sw25(self):
+    def func_1dnfzrec(self):
         if self._current_app is None:
             raise RuntimeError(
                 "Can only access Blueprint.log if it's registered to an app.")
         return self._current_app.log
 
     @property
-    def func_100y3ws1(self):
+    def func_javv3wei(self):
         if (self._current_app is None or self._current_app.current_request is
             None):
             raise RuntimeError(
@@ -1601,7 +1601,7 @@ class Blueprint(DecoratorAPI):
         return self._current_app.current_request
 
     @property
-    def func_juoqbl2j(self):
+    def func_4zge49ty(self):
         if self._current_app is None:
             raise RuntimeError(
                 "Can only access Blueprint.current_app if it's registered to an app."
@@ -1609,28 +1609,28 @@ class Blueprint(DecoratorAPI):
         return self._current_app
 
     @property
-    def func_4dogjpxq(self):
+    def func_quo3iz0c(self):
         if self._current_app is None:
             raise RuntimeError(
                 "Can only access Blueprint.lambda_context if it's registered to an app."
                 )
         return self._current_app.lambda_context
 
-    def func_ez7kuxuf(self, app, options):
+    def func_jvov7e85(self, app, options):
         self._current_app = app
         all_options = options.copy()
         all_options['module_name'] = self._import_name
         for function in self._deferred_registrations:
             function(app, all_options)
 
-    def func_0g9yrwqq(self, func, event_type='all'):
+    def func_460y1b75(self, func, event_type='all'):
         self._deferred_registrations.append(lambda app, options: app.
             register_middleware(func, event_type))
 
-    def func_osv3rkcc(self, handler_type, name, user_handler,
+    def func_d2tyxsl5(self, handler_type, name, user_handler,
         wrapped_handler, kwargs, options=None):
 
-        def func_owq6cdzs(app, options):
+        def func_g8kh5bnl(app, options):
             if handler_type in _EVENT_CLASSES:
                 wrapped_handler.middleware_handlers = (app.
                     _get_middleware_handlers(_MIDDLEWARE_MAPPING[handler_type])
@@ -1639,7 +1639,7 @@ class Blueprint(DecoratorAPI):
                 wrapped_handler, kwargs, options)
         self._deferred_registrations.append(_register_blueprint_handler)
 
-    def func_sbqn5ct1(self, event_type):
+    def func_eeikzeqs(self, event_type):
         return []
 
 
@@ -1652,11 +1652,11 @@ class ConvertToMiddleware(object):
         original_event, context = self._extract_original_param(event)
 
         @functools.wraps(self._wrapper)
-        def func_jqy06wna(original_event, context):
+        def func_b8wzgn1a(original_event, context):
             return get_response(event)
         return self._wrapper(wrapped)(original_event, context)
 
-    def func_gc2xzsws(self, event):
+    def func_0uw2odw8(self, event):
         if isinstance(event, Request):
             return event.to_original_event(), event.lambda_context
         return event.to_dict(), event.context

@@ -1,0 +1,2243 @@
+{
+    "__init__@FakeDatasetReader": [
+        {
+            "category": "arg",
+            "name": "total_instances",
+            "type": [
+                "int",
+                "typing.Mapping",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_instances",
+            "type": [
+                "int",
+                "typing.Mapping",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@FakeModel": [
+        {
+            "category": "arg",
+            "name": "vocab",
+            "type": [
+                "allennlp.data.vocabulary.Vocabulary",
+                "list[allennlp.common.util.JsonDict]",
+                "allennlp.modules.seq2vec_encoders.Seq2VecEncoder"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vocab",
+            "type": [
+                "allennlp.data.vocabulary.Vocabulary",
+                "list[allennlp.common.util.JsonDict]",
+                "allennlp.modules.seq2vec_encoders.Seq2VecEncoder"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lin",
+            "type": [
+                "float",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "loss_fn",
+            "type": [
+                "float",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@TestTrainer,RecordMetricLearningRateScheduler": [
+        {
+            "category": "arg",
+            "name": "optimizer",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "recordings",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__iter__@TestTrainer,SlowDataLoader": [
+        {
+            "category": "return",
+            "name": "__iter__",
+            "type": []
+        }
+    ],
+    "__len__@TestTrainer,SlowDataLoader": [
+        {
+            "category": "return",
+            "name": "__len__",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "_read@FakeDatasetReader": [
+        {
+            "category": "arg",
+            "name": "file_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_read",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "forward@FakeModel": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "out",
+            "type": [
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "forward",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        }
+    ],
+    "forward@TestTrainer,FakeModel": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "forward",
+            "type": [
+                "dict"
+            ]
+        }
+    ],
+    "global@global": [],
+    "on_backward@TestTrainer,SecondBackwardCallback": [
+        {
+            "category": "arg",
+            "name": "trainer",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "batch_outputs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "backward_called",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "on_backward",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "on_backward@ZeroGradientsBackwardCallback": [
+        {
+            "category": "arg",
+            "name": "trainer",
+            "type": [
+                "torch.optim.Optimizer",
+                "deeplearning.ml4pl.models.batch.Data"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batch_outputs",
+            "type": [
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "backward_called",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "backward_called",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_outputs",
+            "type": [
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_backward",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "on_batch@TestTrainer,FakeOnBatchCallback": [
+        {
+            "category": "arg",
+            "name": "trainer",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "batch_inputs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "batch_outputs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "batch_metrics",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "epoch",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "batch_number",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "is_training",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "is_primary",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batch_grad_norm",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "trainer_",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_batch",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "on_batch@TestTrainer,FakeTrainerCallback": [
+        {
+            "category": "arg",
+            "name": "trainer",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "batch_inputs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "batch_outputs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "batch_metrics",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "epoch",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "batch_number",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "is_training",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "is_primary",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batch_grad_norm",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "trainer_",
+            "type": [
+                "bool",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_batch",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "on_end@TestTrainer,FakeTrainerCallback": [
+        {
+            "category": "arg",
+            "name": "trainer",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "metrics",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "epoch",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "is_primary",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "trainer_",
+            "type": [
+                "bool",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "epoch",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_end",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "on_epoch@TestTrainer,FakeTrainerCallback": [
+        {
+            "category": "arg",
+            "name": "trainer",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "metrics",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "epoch",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "is_primary",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "trainer_",
+            "type": [
+                "bool",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_epoch",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "on_start@TestTrainer,FakeTrainerCallback": [
+        {
+            "category": "arg",
+            "name": "trainer",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "is_primary",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "trainer_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_start",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "set_target_device@TestTrainer,SlowDataLoader": [
+        {
+            "category": "arg",
+            "name": "_",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "set_target_device",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "setup_method@TrainerTestBase": [
+        {
+            "category": "local",
+            "name": "data_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reader",
+            "type": [
+                "SequenceTaggingDatasetReader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_loader",
+            "type": [
+                "MultiProcessDataLoader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_loader_lazy",
+            "type": [
+                "MultiProcessDataLoader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instances",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model_params",
+            "type": [
+                "Params"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "optimizer",
+            "type": [
+                "witchcrafml.optimizers.Optimizer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validation_data_loader",
+            "type": [
+                "MultiProcessDataLoader"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "setup_method",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "step@TestTrainer,RecordMetricLearningRateScheduler": [
+        {
+            "category": "arg",
+            "name": "metric",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "step",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_confidence_check_callback@TestTrainer": [
+        {
+            "category": "local",
+            "name": "model_with_bias",
+            "type": [
+                "FakeModelForTestingNormalizationBiasVerification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inst",
+            "type": [
+                "Instance"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_loader",
+            "type": [
+                "SimpleDataLoader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_confidence_check_callback",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_confidence_check_default@TestTrainer": [
+        {
+            "category": "local",
+            "name": "model_with_bias",
+            "type": [
+                "FakeModelForTestingNormalizationBiasVerification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inst",
+            "type": [
+                "Instance"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_loader",
+            "type": [
+                "SimpleDataLoader"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_confidence_check_default",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_console_log_callback@TestTrainer": [
+        {
+            "category": "local",
+            "name": "total_instances",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reader",
+            "type": [
+                "FakeDatasetReader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instances",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "FakeModel"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "optimizer",
+            "type": [
+                "witchcrafml.optimizers.Optimizer",
+                "str",
+                "allennlp.training.trainer.GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_console_log_callback",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_data_loader_lazy_epoch_size_correct@TestTrainer": [
+        {
+            "category": "local",
+            "name": "num_epochs",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metrics",
+            "type": [
+                "dict[str, typing.Any]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "epoch",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_data_loader_lazy_epoch_size_correct",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_data_loader_lazy_epoch_size_correct_custom_epoch_size@TestTrainer": [
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_epochs",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metrics",
+            "type": [
+                "dict[str, typing.Any]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "epoch",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_data_loader_lazy_epoch_size_correct_custom_epoch_size",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_metric_only_considered_best_so_far_when_strictly_better_than_those_before_it_decreasing_metric@TestTrainer": [
+        {
+            "category": "local",
+            "name": "new_trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "acc",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_metric_only_considered_best_so_far_when_strictly_better_than_those_before_it_decreasing_metric",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_metric_only_considered_best_so_far_when_strictly_better_than_those_before_it_increasing_metric@TestTrainer": [
+        {
+            "category": "local",
+            "name": "new_trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "acc",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_metric_only_considered_best_so_far_when_strictly_better_than_those_before_it_increasing_metric",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_passing_trainer_multiple_gpus_raises_error@TestTrainer": [
+        {
+            "category": "return",
+            "name": "test_passing_trainer_multiple_gpus_raises_error",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_restored_training_returns_best_epoch_metrics_even_if_no_better_epoch_is_found_after_restoring@TestTrainer": [
+        {
+            "category": "local",
+            "name": "original_trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "training_metrics",
+            "type": [
+                "dict[str, typing.Any]",
+                "list[tuple[typing.Union[typing.Any,float]]]",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "restored_trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "restored_metrics",
+            "type": [
+                "dict",
+                "dict[str, bool]",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_restored_training_returns_best_epoch_metrics_even_if_no_better_epoch_is_found_after_restoring",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_should_stop_early_with_decreasing_metric@TestTrainer": [
+        {
+            "category": "local",
+            "name": "new_trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "acc",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_should_stop_early_with_decreasing_metric",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_should_stop_early_with_early_stopping_disabled@TestTrainer": [
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "m",
+            "type": [
+                "dict[typing.Text, float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_should_stop_early_with_early_stopping_disabled",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_should_stop_early_with_flat_lining_metric@TestTrainer": [
+        {
+            "category": "local",
+            "name": "flatline",
+            "type": [
+                "list[dict[typing.Text, float]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "m",
+            "type": [
+                "dict[typing.Text, float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_should_stop_early_with_flat_lining_metric",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_should_stop_early_with_increasing_metric@TestTrainer": [
+        {
+            "category": "local",
+            "name": "new_trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "acc",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_should_stop_early_with_increasing_metric",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_should_stop_early_with_invalid_patience@TestTrainer": [
+        {
+            "category": "local",
+            "name": "patience",
+            "type": [
+                "int",
+                "float",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_should_stop_early_with_invalid_patience",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_should_validate_callback@TestTrainer": [
+        {
+            "category": "local",
+            "name": "total_instances",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reader",
+            "type": [
+                "FakeDatasetReader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instances",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "FakeModel"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "optimizer",
+            "type": [
+                "witchcrafml.optimizers.Optimizer",
+                "str",
+                "allennlp.training.trainer.GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_should_validate_callback",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sparse_clip_grad@TestSparseClipGrad": [
+        {
+            "category": "local",
+            "name": "embedding",
+            "type": [
+                "list",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "float",
+                "list[typing.Callable[None, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "grad",
+            "type": [
+                "list",
+                "torch.Tensor",
+                "list[tuple]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_sparse_clip_grad",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_total_loss_is_average_of_batch_loss@TestTrainer": [
+        {
+            "category": "local",
+            "name": "batches_per_epoch",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metrics",
+            "type": [
+                "dict[int, int]",
+                "dict[str, float]",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_total_loss_is_average_of_batch_loss",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_track_epoch_callback@TestTrainer": [
+        {
+            "category": "local",
+            "name": "num_epochs",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_track_epoch_callback",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_train_zero_gradients@TestTrainer": [
+        {
+            "category": "local",
+            "name": "weights",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_train_zero_gradients",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_trainer_callback_is_called_everywhere@TestTrainer": [
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_train",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_batch_calls",
+            "type": [
+                "list[tuple[bool]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_epoch_calls",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_end_calls",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_trainer_callback_is_called_everywhere",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_trainer_can_log_batch_inputs@TestTrainer": [
+        {
+            "category": "local",
+            "name": "total_instances",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reader",
+            "type": [
+                "FakeDatasetReader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instances",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "FakeModel"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "optimizer",
+            "type": [
+                "witchcrafml.optimizers.Optimizer",
+                "str",
+                "allennlp.training.trainer.GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_trainer_can_log_batch_inputs",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_trainer_can_log_histograms@TestTrainer": [
+        {
+            "category": "local",
+            "name": "module_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_trainer_can_log_histograms",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_trainer_can_log_learning_rates_tensorboard@TestTrainer": [
+        {
+            "category": "local",
+            "name": "data_loader",
+            "type": [
+                "SimpleDataLoader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_trainer_can_log_learning_rates_tensorboard",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_trainer_can_resume_training@TestTrainer": [
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_trainer_can_resume_training",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_trainer_can_resume_training_for_exponential_moving_average@TestTrainer": [
+        {
+            "category": "local",
+            "name": "moving_average",
+            "type": [
+                "ExponentialMovingAverage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_moving_average",
+            "type": [
+                "ExponentialMovingAverage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_trainer_can_resume_training_for_exponential_moving_average",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_trainer_can_resume_with_lr_scheduler@TestTrainer": [
+        {
+            "category": "local",
+            "name": "lr_scheduler",
+            "type": [
+                "CosineWithRestarts"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_lr_scheduler",
+            "type": [
+                "CosineWithRestarts"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_trainer_can_resume_with_lr_scheduler",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_trainer_can_run@TestTrainer": [
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metrics",
+            "type": [
+                "list",
+                "dict[str, typing.Any]",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_trainer_can_run",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_trainer_can_run_amp@TestAmpTrainer": [
+        {
+            "category": "arg",
+            "name": "grad_norm",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_gradient_accumulation_steps",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_gradient_accumulation_steps",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "tuple[typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_trainer_can_run_amp",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_trainer_can_run_and_resume_with_momentum_scheduler@TestTrainer": [
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_trainer_",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_trainer_can_run_and_resume_with_momentum_scheduler",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_trainer_can_run_cuda@TestTrainer": [
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metrics",
+            "type": [
+                "dict[str, typing.Any]",
+                "set[str]",
+                "dict[str, float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_trainer_can_run_cuda",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_trainer_can_run_exponential_moving_average@TestTrainer": [
+        {
+            "category": "local",
+            "name": "moving_average",
+            "type": [
+                "ExponentialMovingAverage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_trainer_can_run_exponential_moving_average",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_trainer_can_run_gradient_accumulation@TestTrainer": [
+        {
+            "category": "local",
+            "name": "instances",
+            "type": [
+                "list",
+                "list[str]",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "steps_to_accumulate",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_trainer_can_run_gradient_accumulation",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_trainer_can_run_with_lr_scheduler@TestTrainer": [
+        {
+            "category": "local",
+            "name": "lr_scheduler",
+            "type": [
+                "ExponentialLearningRateScheduler"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_trainer_can_run_with_lr_scheduler",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_trainer_raises_on_model_with_no_loss_key@TestTrainer": [
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_trainer_raises_on_model_with_no_loss_key",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_trainer_respects_epoch_size_equals_total@TestTrainer": [
+        {
+            "category": "local",
+            "name": "batches_per_epoch",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_epochs",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_loader_equal_epoch",
+            "type": [
+                "SimpleDataLoader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metrics",
+            "type": [
+                "dict[str, typing.Any]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "epoch",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_trainer_respects_epoch_size_equals_total",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_trainer_respects_epoch_size_larger_tnan_total@TestTrainer": [
+        {
+            "category": "local",
+            "name": "batches_per_epoch",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_epochs",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_loader_larger_epoch",
+            "type": [
+                "SimpleDataLoader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metrics",
+            "type": [
+                "dict[str, typing.Any]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "epoch",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_trainer_respects_epoch_size_larger_tnan_total",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_trainer_respects_epoch_size_smaller_tnan_total@TestTrainer": [
+        {
+            "category": "local",
+            "name": "batches_per_epoch",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_epochs",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_loader_smaller_epoch",
+            "type": [
+                "SimpleDataLoader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metrics",
+            "type": [
+                "dict[str, typing.Any]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "epoch",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_trainer_respects_epoch_size_smaller_tnan_total",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_trainer_respects_keep_serialized_model_every_num_seconds@TestTrainer": [
+        {
+            "category": "local",
+            "name": "data_loader",
+            "type": [
+                "SimpleDataLoader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "list[tuple[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_names",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fname",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "epochs",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_trainer_respects_keep_serialized_model_every_num_seconds",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_trainer_respects_num_serialized_models_to_keep@TestTrainer": [
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "list[tuple[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_names",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fname",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "epochs",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_trainer_respects_num_serialized_models_to_keep",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_trainer_restores_and_makes_same_results@TestTrainer": [
+        {
+            "category": "arg",
+            "name": "checkpoint_to_keep",
+            "type": [
+                "bool",
+                "deeplearning.ml4pl.models.log_database.Database",
+                "deeplearning.ml4pl.models.logger.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_loader",
+            "type": [
+                "SimpleDataLoader",
+                "list",
+                "snorkel.classification.training.trainer.Trainer",
+                "digipathos.data.data_loader.DataLoader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_epochs",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_batches",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "original_metrics",
+            "type": [
+                "list[str]",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_names",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fname",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "checkpoints",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "list[tuple]",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "checkpoint_to_keep",
+            "type": [
+                "bool",
+                "deeplearning.ml4pl.models.log_database.Database",
+                "deeplearning.ml4pl.models.logger.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "restored_trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "restored_metrics",
+            "type": [
+                "dict[str, bool]",
+                "dict[str, str]",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_trainer_restores_and_makes_same_results",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_trainer_saves_and_loads_best_validation_metrics_correctly_1@TestTrainer": [
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str",
+                "dict[str, typing.Union[bool,str]]",
+                "dict[int, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "restore_trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_trainer_saves_and_loads_best_validation_metrics_correctly_1",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_trainer_saves_and_loads_best_validation_metrics_correctly_2@TestTrainer": [
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str",
+                "dict[str, typing.Union[bool,str]]",
+                "dict[int, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "restore_trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_trainer_saves_and_loads_best_validation_metrics_correctly_2",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_trainer_saves_metrics_every_epoch@TestTrainer": [
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_trainer_saves_metrics_every_epoch",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_trainer_sends_metric_to_lr_scheduler@TestTrainer": [
+        {
+            "category": "local",
+            "name": "lr_scheduler",
+            "type": [
+                "RecordMetricLearningRateScheduler"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_trainer_sends_metric_to_lr_scheduler",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_two_backward_callbacks@TestTrainer": [
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "GradientDescentTrainer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_two_backward_callbacks",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "text_to_instance@FakeDatasetReader": [
+        {
+            "category": "arg",
+            "name": "index",
+            "type": [
+                "dict",
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "field_type",
+            "type": [
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "index",
+            "type": [
+                "dict",
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "t",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "field",
+            "type": [
+                "TextField"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "text_to_instance",
+            "type": [
+                "Instance"
+            ]
+        }
+    ]
+}

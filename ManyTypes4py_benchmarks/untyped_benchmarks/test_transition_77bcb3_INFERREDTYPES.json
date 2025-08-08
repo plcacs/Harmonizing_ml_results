@@ -1,0 +1,1734 @@
+{
+    "_drop_random_half@global": [
+        {
+            "category": "arg",
+            "name": "_slot",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "_index",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "indices",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "committee_len",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "filter_len",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "participant_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_drop_random_half",
+            "type": []
+        }
+    ],
+    "_drop_random_quarter@global": [
+        {
+            "category": "arg",
+            "name": "_slot",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "_index",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "indices",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "committee_len",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "filter_len",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "participant_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_drop_random_quarter",
+            "type": []
+        }
+    ],
+    "_run_transition_test_with_attestations@global": [
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fork_epoch",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "typing.Sequence[typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "post_spec",
+            "type": [
+                "int",
+                "dict[str, list[bool]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pre_tag",
+            "type": [
+                "typing.Iterable[object]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "post_tag",
+            "type": [
+                "list[str]",
+                "list[typing.Union[\"PipeChain\",str]]",
+                "typing.Sequence[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "participation_fn",
+            "type": [
+                "None",
+                "dict",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expect_finality",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "bool",
+                "dict[str, typing.Any]",
+                "aiocometd.constants.TransportState",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_run_transition_test_with_attestations",
+            "type": [
+                "typing.Generator[tuple[typing.Union[typing.Text,bool]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,list]]]",
+                "typing.Generator[tuple[typing.Text]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "typing.Sequence[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "beacon_chain.state.block.Block",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fill_cur_epoch",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fill_prev_epoch",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blocks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "float",
+                "list[tuple[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "participation_fn",
+            "type": [
+                "None",
+                "dict",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blocks_in_epoch",
+            "type": [
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_spec",
+            "type": [
+                "int",
+                "dict[str, list[bool]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expect_finality",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blocks_without_attestations",
+            "type": [
+                "list[typing.Union[beacon_chain.state.block.Block,int,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "b",
+            "type": [
+                "beacon_chain.state.block.Block",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "slots_without_attestations",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "global@global": [],
+    "test_non_empty_historical_roots@global": [
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "tuple[dict]",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fork_epoch",
+            "type": [
+                "bool",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "bool",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "post_spec",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pre_tag",
+            "type": [
+                "str",
+                "list[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "post_tag",
+            "type": [
+                "dict",
+                "dict[str, dict[str, typing.Any]]",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pre_historical_roots",
+            "type": [
+                "list[bytes]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_",
+            "type": [
+                "list[bytes]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "bool",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "tuple[dict]",
+                "list[dict[str, typing.Any]]",
+                "str",
+                "dict[str, typing.Union[None,typing.Any,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fork_epoch",
+            "type": [
+                "bool",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_non_empty_historical_roots",
+            "type": [
+                "typing.Generator[tuple[typing.Union[typing.Text,tuple[dict],list[dict[str, typing.Any]]]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,list]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,list[dict[str, typing.Any]],dict[str, typing.Union[None,typing.Any,int]]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blocks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_spec",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "tuple",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_tag",
+            "type": [
+                "dict",
+                "dict[str, dict[str, typing.Any]]",
+                "list[dict]"
+            ]
+        }
+    ],
+    "test_normal_transition@global": [
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "typing.Sequence[typing.Any]",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fork_epoch",
+            "type": [
+                "dict[str, object]",
+                "typing.IO",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "typing.Sequence[typing.Any]",
+                "dict",
+                "memoryview"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "post_spec",
+            "type": [
+                "dict",
+                "set[typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pre_tag",
+            "type": [
+                "list",
+                "list[tuple[typing.Union[str,typing.Any]]]",
+                "list[typing.Mapping]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "post_tag",
+            "type": [
+                "list[T]",
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "typing.Sequence[typing.Any]",
+                "bool",
+                "list",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_normal_transition",
+            "type": [
+                "typing.Generator[tuple[typing.Union[typing.Text,typing.Sequence[typing.Any],bool]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,list]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,list,dict,int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fork_epoch",
+            "type": [
+                "dict[str, object]",
+                "typing.IO",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "typing.Sequence[typing.Any]",
+                "dict",
+                "memoryview"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_slot",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blocks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_spec",
+            "type": [
+                "dict",
+                "set[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_tag",
+            "type": [
+                "list[T]",
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "slots_with_blocks",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "test_simple_transition@global": [
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict[str, object]",
+                "typing.IO",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fork_epoch",
+            "type": [
+                "dict[str, object]",
+                "typing.IO",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict[str, object]",
+                "typing.IO",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "post_spec",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pre_tag",
+            "type": [
+                "typing.Sequence[str]",
+                "dict",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "post_tag",
+            "type": [
+                "str",
+                "list[T]",
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict[str, object]",
+                "typing.IO",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict[str, object]",
+                "typing.IO",
+                "None",
+                "bool",
+                "dict[int, bool]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fork_epoch",
+            "type": [
+                "dict[str, object]",
+                "typing.IO",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_simple_transition",
+            "type": [
+                "typing.Generator[tuple[typing.Union[typing.Text,dict[str, object],typing.IO,None]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,list]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,bool,dict[int, bool]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blocks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_spec",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "tuple",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_tag",
+            "type": [
+                "str",
+                "list[T]",
+                "T"
+            ]
+        }
+    ],
+    "test_transition_missing_first_post_block@global": [
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "typing.Sequence[typing.Any]",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fork_epoch",
+            "type": [
+                "dict[str, object]",
+                "typing.IO",
+                "None",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "typing.Sequence[typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "post_spec",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pre_tag",
+            "type": [
+                "list",
+                "list[typing.Mapping]",
+                "list[tuple[typing.Union[str,typing.Any]]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "post_tag",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "typing.Sequence[typing.Any]",
+                "bool",
+                "list",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_transition_missing_first_post_block",
+            "type": [
+                "typing.Generator[tuple[typing.Union[typing.Text,typing.Sequence[typing.Any],bool]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,list]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,list,dict,int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fork_epoch",
+            "type": [
+                "dict[str, object]",
+                "typing.IO",
+                "None",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "typing.Sequence[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_slot",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blocks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_spec",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str",
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_tag",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "slots_with_blocks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_slots",
+            "type": [
+                "set"
+            ]
+        }
+    ],
+    "test_transition_missing_last_pre_fork_block@global": [
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "typing.Sequence[typing.Any]",
+                "list",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fork_epoch",
+            "type": [
+                "bool",
+                "dict[str, object]",
+                "typing.IO",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "list[T]",
+                "str",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "post_spec",
+            "type": [
+                "bool",
+                "set[typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pre_tag",
+            "type": [
+                "list",
+                "list[tuple[typing.Union[str,typing.Any]]]",
+                "list[typing.Mapping]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "post_tag",
+            "type": [
+                "list[str]",
+                "list[T]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "typing.Sequence[typing.Any]",
+                "list",
+                "bool",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_transition_missing_last_pre_fork_block",
+            "type": [
+                "typing.Generator[tuple[typing.Union[typing.Text,typing.Sequence[typing.Any],list,bool]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,list]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,list,dict,int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fork_epoch",
+            "type": [
+                "bool",
+                "dict[str, object]",
+                "typing.IO",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "list[T]",
+                "str",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_slot_of_pre_fork",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_slot",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blocks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_spec",
+            "type": [
+                "bool",
+                "set[typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_tag",
+            "type": [
+                "list[str]",
+                "list[T]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "slots_with_blocks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_slots",
+            "type": [
+                "set"
+            ]
+        }
+    ],
+    "test_transition_only_blocks_post_fork@global": [
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "list",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fork_epoch",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "list[T]",
+                "list[typing.Mapping]",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "post_spec",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pre_tag",
+            "type": [
+                "list",
+                "list[typing.Mapping]",
+                "list[tuple[typing.Union[str,typing.Any]]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "post_tag",
+            "type": [
+                "list",
+                "list[typing.Mapping]",
+                "list[tuple[typing.Union[str,typing.Any]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "list",
+                "bool",
+                "None",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_transition_only_blocks_post_fork",
+            "type": [
+                "typing.Generator[tuple[typing.Union[typing.Text,list,bool,None]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,list]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,list,dict,int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fork_epoch",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "list[T]",
+                "list[typing.Mapping]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_slot_of_pre_fork",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_slot",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blocks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_spec",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str",
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "slots_with_blocks",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "test_transition_randomized_state@global": [
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "bool",
+                "tuple[typing.Union[int,str]]",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fork_epoch",
+            "type": [
+                "dict[str, object]",
+                "typing.IO",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "bool",
+                "tuple[typing.Union[int,str]]",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "post_spec",
+            "type": [
+                "list[typing.Callable]",
+                "list[str]",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pre_tag",
+            "type": [
+                "list[str]",
+                "dict",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "post_tag",
+            "type": [
+                "bool",
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "bool",
+                "tuple[typing.Union[int,str]]",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "bool",
+                "tuple[typing.Union[int,str]]",
+                "dict[str, object]",
+                "list",
+                "dict[str, int]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fork_epoch",
+            "type": [
+                "dict[str, object]",
+                "typing.IO",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_transition_randomized_state",
+            "type": [
+                "typing.Generator[tuple[typing.Union[typing.Text,bool,tuple[typing.Union[int,str]],dict[str, object]]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,list]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,list,dict[str, int],dict]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blocks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_spec",
+            "type": [
+                "list[typing.Callable]",
+                "list[str]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str",
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "slashed_indices",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_tag",
+            "type": [
+                "bool",
+                "list[str]",
+                "str"
+            ]
+        }
+    ],
+    "test_transition_with_finality@global": [
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "bool",
+                "dict[str, object]",
+                "typing.IO",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fork_epoch",
+            "type": [
+                "bool",
+                "dict[str, object]",
+                "typing.IO",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "bool",
+                "dict[str, object]",
+                "typing.IO",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "post_spec",
+            "type": [
+                "bool",
+                "dict[str, object]",
+                "typing.IO",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pre_tag",
+            "type": [
+                "bool",
+                "dict[str, object]",
+                "typing.IO",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "post_tag",
+            "type": [
+                "bool",
+                "dict[str, object]",
+                "typing.IO",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "bool",
+                "dict[str, object]",
+                "typing.IO",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fork_epoch",
+            "type": [
+                "bool",
+                "dict[str, object]",
+                "typing.IO",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "bool",
+                "dict[str, object]",
+                "typing.IO",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_spec",
+            "type": [
+                "bool",
+                "dict[str, object]",
+                "typing.IO",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pre_tag",
+            "type": [
+                "bool",
+                "dict[str, object]",
+                "typing.IO",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_tag",
+            "type": [
+                "bool",
+                "dict[str, object]",
+                "typing.IO",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_transition_with_finality",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_transition_with_no_attestations_until_after_fork@global": [
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "typing.Sequence[typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fork_epoch",
+            "type": [
+                "dict[str, object]",
+                "typing.IO",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "typing.Sequence[typing.Any]",
+                "list",
+                "tuple"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "post_spec",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pre_tag",
+            "type": [
+                "list",
+                "list[typing.Mapping]",
+                "list[tuple[typing.Union[str,typing.Any]]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "post_tag",
+            "type": [
+                "list[str]",
+                "list",
+                "list[typing.Union[\"PipeChain\",str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "typing.Sequence[typing.Any]",
+                "list",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_transition_with_no_attestations_until_after_fork",
+            "type": [
+                "typing.Generator[tuple[typing.Union[typing.Text,typing.Sequence[typing.Any]]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,list]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,list,dict,int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fork_epoch",
+            "type": [
+                "dict[str, object]",
+                "typing.IO",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "typing.Sequence[typing.Any]",
+                "list",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_slot",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blocks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_spec",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "list"
+            ]
+        }
+    ],
+    "test_transition_with_random_half_participation@global": [
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "bool",
+                "list[str]",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fork_epoch",
+            "type": [
+                "bool",
+                "list[str]",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "bool",
+                "list[str]",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "post_spec",
+            "type": [
+                "bool",
+                "list[str]",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pre_tag",
+            "type": [
+                "bool",
+                "list[str]",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "post_tag",
+            "type": [
+                "bool",
+                "list[str]",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "bool",
+                "list[str]",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fork_epoch",
+            "type": [
+                "bool",
+                "list[str]",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "bool",
+                "list[str]",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_spec",
+            "type": [
+                "bool",
+                "list[str]",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pre_tag",
+            "type": [
+                "bool",
+                "list[str]",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_tag",
+            "type": [
+                "bool",
+                "list[str]",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_transition_with_random_half_participation",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_transition_with_random_three_quarters_participation@global": [
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "bool",
+                "str",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fork_epoch",
+            "type": [
+                "bool",
+                "str",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "bool",
+                "str",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "post_spec",
+            "type": [
+                "bool",
+                "str",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pre_tag",
+            "type": [
+                "bool",
+                "str",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "post_tag",
+            "type": [
+                "bool",
+                "str",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "bool",
+                "str",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fork_epoch",
+            "type": [
+                "bool",
+                "str",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "bool",
+                "str",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_spec",
+            "type": [
+                "bool",
+                "str",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pre_tag",
+            "type": [
+                "bool",
+                "str",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_tag",
+            "type": [
+                "bool",
+                "str",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_transition_with_random_three_quarters_participation",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ]
+}

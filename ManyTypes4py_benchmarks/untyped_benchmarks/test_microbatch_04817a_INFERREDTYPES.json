@@ -1,0 +1,558 @@
+{
+    "global@global": [
+        {
+            "category": "local",
+            "name": "MODEL_CONFIG_BEGIN",
+            "type": [
+                "str",
+                "dict[str, dict[str, str]]"
+            ]
+        }
+    ],
+    "microbatch_model@TestMicrobatchBuilder": [
+        {
+            "category": "local",
+            "name": "model_",
+            "type": [
+                "typing.Text",
+                "str",
+                "dict[str, dict[str, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "MODEL_CONFIG_BEGIN",
+            "type": [
+                "str",
+                "dict[str, dict[str, str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "microbatch_model",
+            "type": []
+        }
+    ],
+    "test_build_batches@TestMicrobatchBuilder": [
+        {
+            "category": "arg",
+            "name": "microbatch_model",
+            "type": [
+                "int",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "start",
+            "type": [
+                "int",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "end",
+            "type": [
+                "int",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batch_size",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_batches",
+            "type": [
+                "list[int]",
+                "fklearn.types.LearnerFnType",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model",
+            "type": [
+                "int",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_builder",
+            "type": [
+                "MicrobatchBuilder"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "start",
+            "type": [
+                "int",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "end",
+            "type": [
+                "int",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "actual_batches",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_build_batches",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_build_end_time@TestMicrobatchBuilder": [
+        {
+            "category": "arg",
+            "name": "microbatch_model",
+            "type": [
+                "datetime.date",
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "is_incremental",
+            "type": [
+                "datetime.date",
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "event_time_end",
+            "type": [
+                "datetime.date",
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_end_time",
+            "type": [
+                "datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model",
+            "type": [
+                "datetime.date",
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_incremental",
+            "type": [
+                "datetime.date",
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_time_end",
+            "type": [
+                "datetime.date",
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_builder",
+            "type": [
+                "MicrobatchBuilder"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_build_end_time",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_build_jinja_context_for_incremental_batch@TestMicrobatchBuilder": [
+        {
+            "category": "arg",
+            "name": "microbatch_model",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_builder",
+            "type": [
+                "MicrobatchBuilder"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_build_jinja_context_for_incremental_batch",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_build_jinja_context_for_incremental_batch_false@TestMicrobatchBuilder": [
+        {
+            "category": "arg",
+            "name": "microbatch_model",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_builder",
+            "type": [
+                "MicrobatchBuilder"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_build_jinja_context_for_incremental_batch_false",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_build_start_time@TestMicrobatchBuilder": [
+        {
+            "category": "arg",
+            "name": "microbatch_model",
+            "type": [
+                "bool",
+                "dict[str, float]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "is_incremental",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "event_time_start",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "checkpoint",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "lookback",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_start_time",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_",
+            "type": [
+                "int",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lookback",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model",
+            "type": [
+                "bool",
+                "dict[str, float]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_incremental",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_time_start",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_builder",
+            "type": [
+                "MicrobatchBuilder"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_build_start_time",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_ceiling_timestamp@TestMicrobatchBuilder": [
+        {
+            "category": "arg",
+            "name": "timestamp",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_datetime",
+            "type": [
+                "int",
+                "float",
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timestamp",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_ceiling_timestamp",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_format_batch_start@TestMicrobatchBuilder": [
+        {
+            "category": "arg",
+            "name": "batch_size",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batch_start",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_formatted_batch_start",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_format_batch_start",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_offset_timestamp@TestMicrobatchBuilder": [
+        {
+            "category": "arg",
+            "name": "timestamp",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "offset",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_timestamp",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_offset_timestamp",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_truncate_timestamp@TestMicrobatchBuilder": [
+        {
+            "category": "arg",
+            "name": "timestamp",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_timestamp",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_truncate_timestamp",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

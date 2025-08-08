@@ -1,0 +1,485 @@
+{
+    "__init__@TorqueReceiveDataView": [
+        {
+            "category": "arg",
+            "name": "email",
+            "type": [
+                "str",
+                "None",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "vehicle",
+            "type": [
+                "voluptuous.Schema",
+                "set[str]",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sensors",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "async_add_entities",
+            "type": [
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "email",
+            "type": [
+                "str",
+                "None",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vehicle",
+            "type": [
+                "voluptuous.Schema",
+                "set[str]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "async_add_entities",
+            "type": [
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@TorqueSensor": [
+        {
+            "category": "arg",
+            "name": "name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "unit",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unit",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_unit",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_state",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_on_update@TorqueSensor": [
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "dict",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "dict",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_state",
+            "type": [
+                "dict",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_on_update",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_setup_platform@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistanhelpers.ConfigType",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "homeassistanhelpers.ConfigType"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "async_add_entities",
+            "type": [
+                "homeassistanhelpers.ConfigType",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "discovery_info",
+            "type": [
+                "None",
+                "homeassistanhelpers.ConfigType"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "homeassistanhelpers.ConfigType"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sensors",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "async_add_entities",
+            "type": [
+                "homeassistanhelpers.ConfigType",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_setup_platform",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "convert_pid@global": [
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "convert_pid",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "get@TorqueReceiveDataView": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "aiohttp.web.Request"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "aiohttp.web.Request"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SENSOR_EMAIL_FIELD",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get",
+            "type": [
+                "None",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "names",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "units",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "NAME_KEY",
+            "type": [
+                "typing.Pattern",
+                "typing.Match",
+                "None",
+                "list[tuple[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "UNIT_KEY",
+            "type": [
+                "typing.Pattern",
+                "list[tuple[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VALUE_KEY",
+            "type": [
+                "typing.Pattern",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pid",
+            "type": [
+                "int",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_sensor_entities",
+            "type": [
+                "list",
+                "list[TorqueSensor]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ENTITY_NAME_FORMAT",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "torque_sensor_entity",
+            "type": [
+                "TorqueSensor"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "API_PATH",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DEFAULT_NAME",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DOMAIN",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ENTITY_NAME_FORMAT",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SENSOR_EMAIL_FIELD",
+            "type": [
+                "typing.Text",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SENSOR_NAME_KEY",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SENSOR_UNIT_KEY",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SENSOR_VALUE_KEY",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "NAME_KEY",
+            "type": [
+                "typing.Pattern",
+                "typing.Match",
+                "None",
+                "list[tuple[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "UNIT_KEY",
+            "type": [
+                "typing.Pattern",
+                "list[tuple[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VALUE_KEY",
+            "type": [
+                "typing.Pattern",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SENSOR_PLATFORM_SCHEMA",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "PLATFORM_SCHEMA",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "icon@TorqueSensor": [
+        {
+            "category": "return",
+            "name": "icon",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "name@TorqueSensor": [
+        {
+            "category": "return",
+            "name": "name",
+            "type": []
+        }
+    ],
+    "native_unit_of_measurement@TorqueSensor": [
+        {
+            "category": "return",
+            "name": "native_unit_of_measurement",
+            "type": []
+        }
+    ],
+    "native_value@TorqueSensor": [
+        {
+            "category": "return",
+            "name": "native_value",
+            "type": []
+        }
+    ]
+}

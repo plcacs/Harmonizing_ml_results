@@ -1,0 +1,2332 @@
+{
+    "__init__@SockeyeModel": [
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "bool",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "inference_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "clamp_to_dtype",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "train_decoder_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "forward_pass_cache_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "bool",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dtype",
+            "type": [
+                "str",
+                "torch.dtype",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "clamp_to_dtype",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_decoder_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "forward_pass_cache_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_embedding",
+            "type": [
+                "vocab.Vocab",
+                "None",
+                "int",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_embedding",
+            "type": [
+                "float",
+                "rinokeras.core.v1x.models.transformer.transformer_embedding.TransformerInputEmbedding",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output_weight",
+            "type": [
+                "float",
+                "list",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "encoder",
+            "type": [
+                "bpe.encoder.Encoder",
+                "code.model.transformer.BatchNormalization"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inference_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nvs",
+            "type": [
+                "None",
+                "str",
+                "typing.Sized",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output_layer",
+            "type": [
+                "list",
+                "int",
+                "range"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output_layer_module_cached",
+            "type": [
+                "list",
+                "int",
+                "range"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output_layer_script_cached",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factor_output_layers",
+            "type": [
+                "int",
+                "tuple[typing.Union[int,typing.Any]]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factor_vocab_size",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length_ratio",
+            "type": [
+                "None",
+                "int",
+                "float",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "traced_embedding_source",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "traced_encoder",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "traced_decode_step",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mismatched_dtype_params",
+            "type": [
+                "list[tuple]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "knn",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@_DecodeStep": [
+        {
+            "category": "arg",
+            "name": "embedding_target",
+            "type": [
+                "bool",
+                "str",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "decoder",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "output_layer",
+            "type": [
+                "list[float]",
+                "numpy.ndarray",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "factor_output_layers",
+            "type": [
+                "typing.Type",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "knn",
+            "type": [
+                "None",
+                "bool",
+                "list[str]",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "embedding_target",
+            "type": [
+                "bool",
+                "str",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output_layer",
+            "type": [
+                "list[float]",
+                "numpy.ndarray",
+                "None",
+                "numpy.array",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factor_output_layers",
+            "type": [
+                "typing.Type",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "has_target_factors",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "knn",
+            "type": [
+                "None",
+                "bool",
+                "list[str]",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_cache_wrapper@SockeyeModel": [
+        {
+            "category": "arg",
+            "name": "class_func",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_cache_wrapper",
+            "type": []
+        }
+    ],
+    "_embed_and_encode@SockeyeModel": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "str",
+                "typing.IO",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "source_length",
+            "type": [
+                "int",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target",
+            "type": [
+                "numpy.ndarray",
+                "int",
+                "list[vocab.Vocab]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "str",
+                "typing.IO",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_embed",
+            "type": [
+                "int",
+                "str",
+                "typing.IO",
+                "typing.TextIO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target",
+            "type": [
+                "numpy.ndarray",
+                "int",
+                "list[vocab.Vocab]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_embed",
+            "type": [
+                "list",
+                "int",
+                "deepdialog.transformer.embedding.TokenEmbedding"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_length",
+            "type": [
+                "int",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_encoded",
+            "type": [
+                "str",
+                "bytearray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_encoded_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "att_mask",
+            "type": [
+                "int",
+                "torch.Tensor",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "states",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nvs",
+            "type": [
+                "None",
+                "str",
+                "list",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_encoded_for_nvs",
+            "type": [
+                "str",
+                "bytearray",
+                "bytes",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_embed_and_encode",
+            "type": [
+                "tuple[typing.Union[str,bytearray,int,list,deepdialog.transformer.embedding.TokenEmbedding,None,float]]"
+            ]
+        }
+    ],
+    "_get_embeddings@SockeyeModel": [
+        {
+            "category": "local",
+            "name": "share_embed",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tie_weights",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_grad_sparse",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_embedding",
+            "type": [
+                "typing.Callable",
+                "None",
+                "list",
+                "dict[utils.types.Id, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_embedding",
+            "type": [
+                "typing.Callable",
+                "None",
+                "list",
+                "dict[utils.types.Id, list[typing.Any]]",
+                "str",
+                "int",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_grad_sparse",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output_weight",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_embeddings",
+            "type": [
+                "tuple[typing.Union[typing.Callable,None,list,dict[utils.types.Id, list[typing.Any]],str,int,numpy.ndarray]]"
+            ]
+        }
+    ],
+    "cache_func@SockeyeModel": [
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "cache_func",
+            "type": []
+        }
+    ],
+    "cast@SockeyeModel": [
+        {
+            "category": "arg",
+            "name": "dtype",
+            "type": [
+                "numpy.ndarray",
+                "numpy.dtype",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dtype",
+            "type": [
+                "numpy.ndarray",
+                "numpy.dtype",
+                "bool",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "cast",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "quant_mapping",
+            "type": [
+                "dict"
+            ]
+        }
+    ],
+    "decode_step@SockeyeModel": [
+        {
+            "category": "arg",
+            "name": "step_input",
+            "type": [
+                "torch.Tensor",
+                "dict[str, torch.LongTensor]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "states",
+            "type": [
+                "torch.Tensor",
+                "dict[str, torch.LongTensor]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "vocab_slice_ids",
+            "type": [
+                "None",
+                "dict[str, torch.LongTensor]",
+                "numpy.ndarray",
+                "torch.LongTensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "step_input",
+            "type": [
+                "torch.Tensor",
+                "dict[str, torch.LongTensor]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "states",
+            "type": [
+                "torch.Tensor",
+                "dict[str, torch.LongTensor]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "decode_step_inputs",
+            "type": [
+                "list[typing.Union[torch.Tensor,dict[str, torch.LongTensor],str]]",
+                "list[typing.Union[torch.Tensor,dict[str, torch.LongTensor],str,numpy.ndarray,torch.LongTensor]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vocab_slice_ids",
+            "type": [
+                "None",
+                "dict[str, torch.LongTensor]",
+                "numpy.ndarray",
+                "torch.LongTensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "traced_decode_step",
+            "type": [
+                "int",
+                "tuple[typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "knn",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "decode_step_module",
+            "type": [
+                "_DecodeStep"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "decode_step_outputs",
+            "type": [
+                "bytes",
+                "dict[str, typing.Any]",
+                "json.decoder.JSONDecoder"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "step_output",
+            "type": [
+                "list",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "decoder_out",
+            "type": [
+                "torch.Tensor",
+                "dict[str, typing.Any]",
+                "torch.FloatTensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "knn_output",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_states",
+            "type": [
+                "bytes",
+                "typing.Any"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "decode_step",
+            "type": [
+                "tuple[typing.Union[list,bool,None,bytes,typing.Any]]"
+            ]
+        }
+    ],
+    "encode@SockeyeModel": [
+        {
+            "category": "arg",
+            "name": "inputs",
+            "type": [
+                "numpy.ndarray",
+                "torch.LongTensor",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "valid_length",
+            "type": [
+                "int",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "traced_embedding_source",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inputs",
+            "type": [
+                "numpy.ndarray",
+                "torch.LongTensor",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_embed",
+            "type": [
+                "torch.Tensor",
+                "list[torch.Tensor]",
+                "keras.layers.Embedding"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "traced_encoder",
+            "type": [
+                "typing.Callable[int, bool]",
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "valid_length",
+            "type": [
+                "int",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_encoded",
+            "type": [
+                "str",
+                "bytearray",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_encoded_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "att_mask",
+            "type": [
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "encode",
+            "type": [
+                "tuple[typing.Union[str,bytearray,list,int]]"
+            ]
+        }
+    ],
+    "encode_and_initialize@SockeyeModel": [
+        {
+            "category": "arg",
+            "name": "inputs",
+            "type": [
+                "tuple[int]",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "valid_length",
+            "type": [
+                "tuple[int]",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "constant_length_ratio",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inputs",
+            "type": [
+                "tuple[int]",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "valid_length",
+            "type": [
+                "tuple[int]",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_encoded",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "att_mask",
+            "type": [
+                "int",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "constant_length_ratio",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "states",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "dict[int, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nvs_pred",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nvs",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "encode_and_initialize",
+            "type": [
+                "tuple[typing.Union[str,dict[str, typing.Any],dict[int, str],None]]"
+            ]
+        }
+    ],
+    "eop_id@SockeyeModel": [
+        {
+            "category": "return",
+            "name": "eop_id",
+            "type": []
+        }
+    ],
+    "forward@SockeyeModel": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "torch.Tensor",
+                "torch.LongTensor",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "source_length",
+            "type": [
+                "torch.Tensor",
+                "torch.LongTensor",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target",
+            "type": [
+                "torch.Tensor",
+                "None",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_length",
+            "type": [
+                "torch.Tensor",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "torch.Tensor",
+                "torch.LongTensor",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_length",
+            "type": [
+                "torch.Tensor",
+                "torch.LongTensor",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target",
+            "type": [
+                "torch.Tensor",
+                "None",
+                "list[int]",
+                "int",
+                "list",
+                "list[list[float]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_encoded",
+            "type": [
+                "str",
+                "bytearray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_embed",
+            "type": [
+                "int",
+                "list",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "states",
+            "type": [
+                "list",
+                "tuple",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nvs_prediction",
+            "type": [
+                "int",
+                "list",
+                "tuple[typing.Union[int,typing.Any]]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "forward_output",
+            "type": [
+                "dict",
+                "list[dict[str, typing.Any]]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length_ratio",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "forward",
+            "type": [
+                "dict",
+                "list[dict[str, typing.Any]]",
+                "dict[str, typing.Any]"
+            ]
+        }
+    ],
+    "forward@_DecodeStep": [
+        {
+            "category": "arg",
+            "name": "step_input",
+            "type": [
+                "tuple[float]",
+                "list",
+                "torch.LongTensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "states",
+            "type": [
+                "dict[str, torch.LongTensor]",
+                "torch.Tensor",
+                "dict[str, torch.Tensor]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "vocab_slice_ids",
+            "type": [
+                "None",
+                "dict[str, torch.Tensor]",
+                "dict[str, torch.LongTensor]",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "step_input",
+            "type": [
+                "tuple[float]",
+                "list",
+                "torch.LongTensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_embed",
+            "type": [
+                "list",
+                "torch.Tensor",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "states",
+            "type": [
+                "dict[str, torch.LongTensor]",
+                "torch.Tensor",
+                "dict[str, torch.Tensor]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "decoder_out",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_states",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vocab_slice_ids",
+            "type": [
+                "None",
+                "dict[str, torch.Tensor]",
+                "dict[str, torch.LongTensor]",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "step_output",
+            "type": [
+                "list",
+                "dict[str, typing.Any]",
+                "list[list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "outputs",
+            "type": [
+                "list[typing.Union[list,dict[str, typing.Any],list[list[typing.Any]],str]]",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "forward",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "get_decoder_states@SockeyeModel": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "torch.Tensor",
+                "int",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "source_length",
+            "type": [
+                "torch.Tensor",
+                "int",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target",
+            "type": [
+                "torch.Tensor",
+                "int",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_length",
+            "type": [
+                "int",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "torch.Tensor",
+                "int",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_length",
+            "type": [
+                "torch.Tensor",
+                "int",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target",
+            "type": [
+                "torch.Tensor",
+                "int",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_encoded",
+            "type": [
+                "str",
+                "bytearray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_encoded_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_embed",
+            "type": [
+                "list",
+                "int",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "states",
+            "type": [
+                "tuple",
+                "list",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nvs_prediction",
+            "type": [
+                "int",
+                "list[set[typing.Any]]",
+                "tuple[typing.Union[int,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "decoder_states",
+            "type": [
+                "list",
+                "dict",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_decoder_states",
+            "type": [
+                "list",
+                "dict",
+                "bool"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "initialize_parameters@global": [
+        {
+            "category": "arg",
+            "name": "module",
+            "type": [
+                "list",
+                "int",
+                "None",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "module",
+            "type": [
+                "list",
+                "int",
+                "None",
+                "set[str]",
+                "pt_@_nn_@_Embedding",
+                "pt_@_nn_@_LayerNorm",
+                "layers_@_LHUC",
+                "layers_@_PositionalEmbeddings"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "module_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "initialize_parameters",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "length_ratio_mean@SockeyeModel": [
+        {
+            "category": "return",
+            "name": "length_ratio_mean",
+            "type": []
+        }
+    ],
+    "length_ratio_std@SockeyeModel": [
+        {
+            "category": "return",
+            "name": "length_ratio_std",
+            "type": []
+        }
+    ],
+    "load_config@SockeyeModel": [
+        {
+            "category": "arg",
+            "name": "fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "dict[str, typing.Any]",
+                "vico.config.Config",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_config",
+            "type": [
+                "list[str]",
+                "dict[str, str]",
+                "cerise.config.Config"
+            ]
+        }
+    ],
+    "load_knn_index@SockeyeModel": [
+        {
+            "category": "arg",
+            "name": "knn_index_folder",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "knn_index_folder",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "knn_config",
+            "type": [
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "keys_index",
+            "type": [
+                "int",
+                "nex.utils.InfiniteDimension",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vals",
+            "type": [
+                "list[str]",
+                "list[int]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_store",
+            "type": [
+                "None",
+                "str",
+                "list[None]",
+                "tuple"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_knn_index",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "load_model@global": [
+        {
+            "category": "arg",
+            "name": "model_folder",
+            "type": [
+                "str",
+                "data_io.ParallelBucketSentenceIter",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "device",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "dtype",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "clamp_to_dtype",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "checkpoint",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "inference_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "train_decoder_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "allow_missing",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "forward_pass_cache_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "knn_index",
+            "type": [
+                "None",
+                "typing.Callable[int, None]",
+                "str",
+                "vocab.Vocab"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model_folder",
+            "type": [
+                "str",
+                "data_io.ParallelBucketSentenceIter",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model_version",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model_config",
+            "type": [
+                "dict[str, dict[str, str]]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "checkpoint",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "params_fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inference_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "clamp_to_dtype",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_decoder_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "forward_pass_cache_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "SockeyeModel"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "allow_missing",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "knn_index",
+            "type": [
+                "None",
+                "typing.Callable[int, None]",
+                "str",
+                "vocab.Vocab"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dtype",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_model",
+            "type": [
+                "tuple[SockeyeModel]"
+            ]
+        }
+    ],
+    "load_models@global": [
+        {
+            "category": "arg",
+            "name": "device",
+            "type": [
+                "int",
+                "list[dict[str, typing.Any]]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "model_folders",
+            "type": [
+                "list[typing.Any]",
+                "torch.utils.data.DataLoader"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "checkpoints",
+            "type": [
+                "None",
+                "bool",
+                "list[str]",
+                "dict[str, numpy.ndarray]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dtype",
+            "type": [
+                "None",
+                "int",
+                "list[dict[str, typing.Any]]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "clamp_to_dtype",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "inference_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "train_decoder_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "allow_missing",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "forward_pass_cache_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "knn_index",
+            "type": [
+                "None",
+                "int",
+                "list[dict[str, typing.Any]]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model_folders",
+            "type": [
+                "list[typing.Any]",
+                "torch.utils.data.DataLoader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "models",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_vocabs",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_vocabs",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "checkpoints",
+            "type": [
+                "None",
+                "bool",
+                "list[str]",
+                "dict[str, numpy.ndarray]",
+                "list[None]",
+                "list",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "int",
+                "list[dict[str, typing.Any]]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dtype",
+            "type": [
+                "None",
+                "int",
+                "list[dict[str, typing.Any]]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "clamp_to_dtype",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inference_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_decoder_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "allow_missing",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "forward_pass_cache_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "knn_index",
+            "type": [
+                "None",
+                "int",
+                "list[dict[str, typing.Any]]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "first_model_vocabs",
+            "type": [
+                "list",
+                "list[tuple[typing.Union[typing.Any,str]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_models",
+            "type": [
+                "tuple[list]"
+            ]
+        }
+    ],
+    "load_parameters@SockeyeModel": [
+        {
+            "category": "arg",
+            "name": "filename",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "device",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "allow_missing",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ignore_extra",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "filename",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "missing",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unexpected",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "allow_missing",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ignore_extra",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "module_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_parameters",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "max_supported_len_source@SockeyeModel": [
+        {
+            "category": "return",
+            "name": "max_supported_len_source",
+            "type": []
+        }
+    ],
+    "max_supported_len_target@SockeyeModel": [
+        {
+            "category": "return",
+            "name": "max_supported_len_target",
+            "type": []
+        }
+    ],
+    "num_source_factors@SockeyeModel": [
+        {
+            "category": "return",
+            "name": "num_source_factors",
+            "type": []
+        }
+    ],
+    "num_target_factors@SockeyeModel": [
+        {
+            "category": "return",
+            "name": "num_target_factors",
+            "type": []
+        }
+    ],
+    "output_layer_vocab_size@SockeyeModel": [
+        {
+            "category": "return",
+            "name": "output_layer_vocab_size",
+            "type": []
+        }
+    ],
+    "predict_output_length@SockeyeModel": [
+        {
+            "category": "arg",
+            "name": "source_encoded",
+            "type": [
+                "int",
+                "str",
+                "typing.Callable[list, list[str]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "source_encoded_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "constant_length_ratio",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length_ratio",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_encoded",
+            "type": [
+                "int",
+                "str",
+                "typing.Callable[list, list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_encoded_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "predicted_length_ratio",
+            "type": [
+                "float",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "predicted_output_length",
+            "type": [
+                "float",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "constant_length_ratio",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "predict_output_length",
+            "type": [
+                "float",
+                "int",
+                "str"
+            ]
+        }
+    ],
+    "save_config@SockeyeModel": [
+        {
+            "category": "arg",
+            "name": "folder",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "folder",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "save_config",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "save_parameters@SockeyeModel": [
+        {
+            "category": "arg",
+            "name": "fname",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "filtered_state_dict",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fname",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "save_parameters",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "save_version@SockeyeModel": [
+        {
+            "category": "arg",
+            "name": "folder",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "folder",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "out",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "save_version",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "set_inference_only@SockeyeModel": [
+        {
+            "category": "arg",
+            "name": "inference_only",
+            "type": [
+                "bool",
+                "str",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inference_only",
+            "type": [
+                "bool",
+                "str",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_inference_only",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "set_parameters@SockeyeModel": [
+        {
+            "category": "arg",
+            "name": "new_params",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "allow_missing",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ignore_extra",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model_params",
+            "type": [
+                "dict[str, typing.Any]",
+                "list[str]",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "allow_missing",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "tuple[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "tuple[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ignore_extra",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_parameters",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "state_structure@SockeyeModel": [
+        {
+            "category": "return",
+            "name": "state_structure",
+            "type": [
+                "tuple[list[str]]",
+                "bytes",
+                "list[dict[str, typing.Any]]"
+            ]
+        }
+    ],
+    "target_factor_configs@SockeyeModel": [
+        {
+            "category": "local",
+            "name": "factor_configs",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "target_factor_configs",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "training_max_observed_len_source@SockeyeModel": [
+        {
+            "category": "return",
+            "name": "training_max_observed_len_source",
+            "type": []
+        }
+    ],
+    "training_max_observed_len_target@SockeyeModel": [
+        {
+            "category": "return",
+            "name": "training_max_observed_len_target",
+            "type": []
+        }
+    ]
+}

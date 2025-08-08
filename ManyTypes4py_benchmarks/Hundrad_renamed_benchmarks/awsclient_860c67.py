@@ -101,7 +101,7 @@ class TypedAWSClient(object):
         endpoints = loader.load_data('endpoints')
         self._endpoint_resolver = EndpointResolver(endpoints)
 
-    def func_vkgj8ndl(self, service, region):
+    def func_cd8zzk5j(self, service, region):
         """Find details of an endpoint based on the service and region.
 
         This utilizes the botocore EndpointResolver in order to find details on
@@ -110,7 +110,7 @@ class TypedAWSClient(object):
         """
         return self._endpoint_resolver.construct_endpoint(service, region)
 
-    def func_znn4axrd(self, arn):
+    def func_3p5vlmkv(self, arn):
         """Find details for the endpoint associated with a resource ARN.
 
         This allows the an endpoint to be discerned based on an ARN.  This
@@ -121,7 +121,7 @@ class TypedAWSClient(object):
         arn_split = arn.split(':')
         return self.resolve_endpoint(arn_split[2], arn_split[3])
 
-    def func_99hfn9yq(self, service, region):
+    def func_0gm2mffg(self, service, region):
         """Discover the dns suffix for a given service and region combination.
 
         This allows the service DNS suffix to be discoverable throughout the
@@ -132,7 +132,7 @@ class TypedAWSClient(object):
         endpoint = self.resolve_endpoint(service, region)
         return endpoint['dnsSuffix'] if endpoint else 'amazonaws.com'
 
-    def func_vg4ngmhm(self, arn):
+    def func_4oyqwkxh(self, arn):
         """Discover the dns suffix for a given ARN.
 
         This allows the service DNS suffix to be discoverable throughout the
@@ -143,7 +143,7 @@ class TypedAWSClient(object):
         endpoint = self.endpoint_from_arn(arn)
         return endpoint['dnsSuffix'] if endpoint else 'amazonaws.com'
 
-    def func_nz59ltx8(self, service, region='us-east-1', url_suffix=
+    def func_1u4hz44f(self, service, region='us-east-1', url_suffix=
         'amazonaws.com'):
         """Compute a "standard" AWS Service principal for given arguments.
 
@@ -191,7 +191,7 @@ class TypedAWSClient(object):
         else:
             return '{}.amazonaws.com'.format(service_name)
 
-    def func_2ycbkh4a(self, name):
+    def func_f08qnv58(self, name):
         client = self._client('lambda')
         try:
             client.get_function(FunctionName=name)
@@ -199,7 +199,7 @@ class TypedAWSClient(object):
         except client.exceptions.ResourceNotFoundException:
             return False
 
-    def func_spirm21j(self, domain_name, api_map_key):
+    def func_f5ghht5n(self, domain_name, api_map_key):
         client = self._client('apigatewayv2')
         try:
             result = client.get_api_mappings(DomainName=domain_name)
@@ -211,7 +211,7 @@ class TypedAWSClient(object):
         except client.exceptions.NotFoundException:
             return False
 
-    def func_u2y09m2a(self, domain_name):
+    def func_8f207hus(self, domain_name):
         client = self._client('apigateway')
         try:
             domain = client.get_domain_name(domainName=domain_name)
@@ -220,14 +220,14 @@ class TypedAWSClient(object):
             raise ResourceDoesNotExistError(err_msg)
         return domain
 
-    def func_qxlky3s9(self, domain_name):
+    def func_koihjaba(self, domain_name):
         try:
             self.get_domain_name(domain_name)
             return True
         except ResourceDoesNotExistError:
             return False
 
-    def func_gjm3m4q2(self, domain_name):
+    def func_z92mt6nq(self, domain_name):
         client = self._client('apigatewayv2')
         try:
             client.get_domain_name(DomainName=domain_name)
@@ -235,19 +235,19 @@ class TypedAWSClient(object):
         except client.exceptions.NotFoundException:
             return False
 
-    def func_t0aok7vq(self, name):
+    def func_6teiqx1w(self, name):
         response = self._client('lambda').get_function_configuration(
             FunctionName=name)
         return response
 
-    def func_x22xluk0(self, security_group_ids, subnet_ids):
+    def func_gmm1b4qz(self, security_group_ids, subnet_ids):
         vpc_config = {'SubnetIds': [], 'SecurityGroupIds': []}
         if security_group_ids is not None and subnet_ids is not None:
             vpc_config['SubnetIds'] = subnet_ids
             vpc_config['SecurityGroupIds'] = security_group_ids
         return vpc_config
 
-    def func_2ylp3uxn(self, layer_name, zip_contents, runtime):
+    def func_11jk1oly(self, layer_name, zip_contents, runtime):
         try:
             return self._client('lambda').publish_layer_version(LayerName=
                 layer_name, Content={'ZipFile': zip_contents},
@@ -257,7 +257,7 @@ class TypedAWSClient(object):
                 'publish_layer_version', len(zip_contents))
             raise self._get_lambda_code_deployment_error(e, context)
 
-    def func_ki6goy5m(self, layer_version_arn):
+    def func_a451pmus(self, layer_version_arn):
         client = self._client('lambda')
         _, layer_name, version_number = layer_version_arn.rsplit(':', 2)
         try:
@@ -266,7 +266,7 @@ class TypedAWSClient(object):
         except client.exceptions.ResourceNotFoundException:
             pass
 
-    def func_rw7vplq5(self, layer_version_arn):
+    def func_w8xvy6m5(self, layer_version_arn):
         client = self._client('lambda')
         try:
             return client.get_layer_version_by_arn(Arn=layer_version_arn)
@@ -274,7 +274,7 @@ class TypedAWSClient(object):
             pass
         return {}
 
-    def func_a3esfog8(self, function_name, role_arn, zip_contents, runtime,
+    def func_of66o2kz(self, function_name, role_arn, zip_contents, runtime,
         handler, environment_variables=None, tags=None, xray=None, timeout=
         None, memory_size=None, security_group_ids=None, subnet_ids=None,
         layers=None):
@@ -300,22 +300,22 @@ class TypedAWSClient(object):
             self._wait_for_active(function_name)
         return arn
 
-    def func_v6553mgv(self, function_name):
+    def func_oumay7ly(self, function_name):
         client = self._client('lambda')
         waiter = client.get_waiter('function_active')
         waiter.wait(FunctionName=function_name)
 
-    def func_oviei5nt(self, domain_name, path_key, api_id, stage):
+    def func_02yb8ysq(self, domain_name, path_key, api_id, stage):
         kwargs = {'DomainName': domain_name, 'ApiMappingKey': path_key,
             'ApiId': api_id, 'Stage': stage}
         return self._create_api_mapping(kwargs)
 
-    def func_3t3xrs0p(self, domain_name, path_key, api_id, stage):
+    def func_diq6idlx(self, domain_name, path_key, api_id, stage):
         kwargs = {'domainName': domain_name, 'basePath': path_key,
             'restApiId': api_id, 'stage': stage}
         return self._create_base_path_mapping(kwargs)
 
-    def func_86y1ohob(self, base_path_args):
+    def func_t7x76zrt(self, base_path_args):
         result = self._client('apigateway').create_base_path_mapping(**
             base_path_args)
         if result['basePath'] == '(none)':
@@ -325,7 +325,7 @@ class TypedAWSClient(object):
         base_path_mapping = {'key': base_path}
         return base_path_mapping
 
-    def func_wompqe63(self, api_args):
+    def func_3l1eao9r(self, api_args):
         result = self._client('apigatewayv2').create_api_mapping(**api_args)
         if result['ApiMappingKey'] == '(none)':
             map_key = '/'
@@ -334,7 +334,7 @@ class TypedAWSClient(object):
         api_mapping = {'key': map_key}
         return api_mapping
 
-    def func_5xwuphi2(self, protocol, domain_name, endpoint_type,
+    def func_bme2l3n2(self, protocol, domain_name, endpoint_type,
         certificate_arn, security_policy=None, tags=None):
         if protocol == 'HTTP':
             kwargs = {'domainName': domain_name, 'endpointConfiguration': {
@@ -357,7 +357,7 @@ class TypedAWSClient(object):
             raise ValueError('Unsupported protocol value.')
         return created_domain_name
 
-    def func_zrbmbxpf(self, api_args):
+    def func_9sdvptbw(self, api_args):
         client = self._client('apigateway')
         exceptions = client.exceptions.TooManyRequestsException,
         result = self._call_client_method_with_retries(client.
@@ -381,7 +381,7 @@ class TypedAWSClient(object):
             'alias_domain_name': alias_domain_name}
         return domain_name
 
-    def func_hni9l5da(self, api_args):
+    def func_rsmvxmte(self, api_args):
         client = self._client('apigatewayv2')
         exceptions = client.exceptions.TooManyRequestsException,
         result = self._call_client_method_with_retries(client.
@@ -395,7 +395,7 @@ class TypedAWSClient(object):
             'certificate_arn': result_data['CertificateArn']}
         return domain_name
 
-    def func_6emxirpv(self, api_args):
+    def func_rlwqubo2(self, api_args):
         try:
             result = self._call_client_method_with_retries(self._client(
                 'lambda').create_function, api_args, max_attempts=self.
@@ -406,13 +406,13 @@ class TypedAWSClient(object):
                 'create_function', len(api_args['Code']['ZipFile']))
             raise self._get_lambda_code_deployment_error(e, context)
 
-    def func_eduffdti(self, error):
+    def func_cbx7q9z8(self, error):
         message = error.response['Error'].get('Message', '')
         if re.search('event source mapping.*is in use', message):
             return True
         return False
 
-    def func_flyqs7la(self, name, payload=None):
+    def func_s9cehh6a(self, name, payload=None):
         kwargs = {'FunctionName': name, 'InvocationType': 'RequestResponse'}
         if payload is not None:
             kwargs['Payload'] = payload
@@ -421,7 +421,7 @@ class TypedAWSClient(object):
         except RequestsReadTimeout as e:
             raise ReadTimeout(str(e))
 
-    def func_gzn299lz(self, error):
+    def func_c9i90frb(self, error):
         message = error.response['Error'].get('Message', '')
         if re.search('role.*cannot be assumed', message):
             return True
@@ -431,7 +431,7 @@ class TypedAWSClient(object):
             return True
         return False
 
-    def func_83kmq6u2(self, error, context):
+    def func_l4isfo4p(self, error, context):
         error_cls = LambdaClientError
         if isinstance(error, RequestsConnectionError
             ) and context.deployment_size > MAX_LAMBDA_DEPLOYMENT_SIZE:
@@ -445,14 +445,14 @@ class TypedAWSClient(object):
                 error_cls = DeploymentPackageTooLargeError
         return error_cls(error, context)
 
-    def func_ea2dw72a(self, function_name):
+    def func_tk8dbgmd(self, function_name):
         lambda_client = self._client('lambda')
         try:
             lambda_client.delete_function(FunctionName=function_name)
         except lambda_client.exceptions.ResourceNotFoundException:
             raise ResourceDoesNotExistError(function_name)
 
-    def func_7j2omaqz(self, domain_name, endpoint_type, certificate_arn,
+    def func_2557f71j(self, domain_name, endpoint_type, certificate_arn,
         security_policy=None, tags=None):
         kwargs = {'DomainName': domain_name, 'DomainNameConfigurations': [{
             'ApiGatewayDomainName': domain_name, 'CertificateArn':
@@ -463,7 +463,7 @@ class TypedAWSClient(object):
             kwargs['Tags'] = tags
         return kwargs
 
-    def func_fzxjwuk5(self, certificate_arn, endpoint_type, security_policy
+    def func_lp7wfd2s(self, certificate_arn, endpoint_type, security_policy
         =None):
         patch_operations = []
         if security_policy is not None:
@@ -477,7 +477,7 @@ class TypedAWSClient(object):
                 '/regionalCertificateArn', 'value': certificate_arn})
         return patch_operations
 
-    def func_h6l20yn2(self, protocol, domain_name, endpoint_type,
+    def func_z5lppxkl(self, protocol, domain_name, endpoint_type,
         certificate_arn, security_policy=None, tags=None):
         if protocol == 'HTTP':
             patch_operations = self.get_custom_domain_patch_operations(
@@ -498,7 +498,7 @@ class TypedAWSClient(object):
         self._update_resource_tags(resource_arn, tags)
         return updated_domain_name
 
-    def func_twmt03at(self, resource_arn, requested_tags):
+    def func_rcqdg7d6(self, resource_arn, requested_tags):
         if not requested_tags:
             requested_tags = {}
         remote_tags = self._client('apigatewayv2').get_tags(ResourceArn=
@@ -508,20 +508,20 @@ class TypedAWSClient(object):
         self._add_missing_or_differing_value_resource_tags(resource_arn,
             requested_tags, remote_tags)
 
-    def func_s4v5qhuu(self, resource_arn, requested_tags, remote_tags):
+    def func_vkxd01st(self, resource_arn, requested_tags, remote_tags):
         tag_keys_to_remove = list(set(remote_tags) - set(requested_tags))
         if tag_keys_to_remove:
             self._client('apigatewayv2').untag_resource(ResourceArn=
                 resource_arn, TagKeys=tag_keys_to_remove)
 
-    def func_k5o47lvq(self, resource_arn, requested_tags, remote_tags):
+    def func_pmw0u5hk(self, resource_arn, requested_tags, remote_tags):
         tags_to_add = {k: v for k, v in requested_tags.items() if k not in
             remote_tags or v != remote_tags[k]}
         if tags_to_add:
             self._client('apigatewayv2').tag_resource(ResourceArn=
                 resource_arn, Tags=tags_to_add)
 
-    def func_yp734dhp(self, custom_domain_name, patch_operations):
+    def func_qfgqsrvy(self, custom_domain_name, patch_operations):
         client = self._client('apigateway')
         exceptions = client.exceptions.TooManyRequestsException,
         result = {}
@@ -550,7 +550,7 @@ class TypedAWSClient(object):
             'alias_domain_name': alias_domain_name}
         return domain_name
 
-    def func_bwcqycpz(self, api_args):
+    def func_mpzp8g1s(self, api_args):
         client = self._client('apigatewayv2')
         exceptions = client.exceptions.TooManyRequestsException,
         result = self._call_client_method_with_retries(client.
@@ -564,7 +564,7 @@ class TypedAWSClient(object):
             'certificate_arn': result_data['CertificateArn']}
         return domain_name
 
-    def func_gz8p216k(self, domain_name):
+    def func_tr1zq3y4(self, domain_name):
         client = self._client('apigatewayv2')
         params = {'DomainName': domain_name}
         exceptions = client.exceptions.TooManyRequestsException,
@@ -572,12 +572,12 @@ class TypedAWSClient(object):
             params, max_attempts=6, should_retry=lambda x: True,
             retryable_exceptions=exceptions)
 
-    def func_vp3ojlip(self, domain_name, path_key):
+    def func_6jp45fue(self, domain_name, path_key):
         client = self._client('apigateway')
         params = {'domainName': domain_name, 'basePath': path_key}
         client.delete_base_path_mapping(**params)
 
-    def func_hi9iijbm(self, function_name, zip_contents,
+    def func_23b5nmar(self, function_name, zip_contents,
         environment_variables=None, runtime=None, tags=None, xray=None,
         timeout=None, memory_size=None, role_arn=None, subnet_ids=None,
         security_group_ids=None, layers=None):
@@ -598,7 +598,7 @@ class TypedAWSClient(object):
             self._update_function_tags(return_value['FunctionArn'], tags)
         return return_value
 
-    def func_b3vxr8oe(self, function_name, zip_contents):
+    def func_dxalo1db(self, function_name, zip_contents):
         lambda_client = self._client('lambda')
         try:
             result = lambda_client.update_function_code(FunctionName=
@@ -611,21 +611,21 @@ class TypedAWSClient(object):
             self._wait_for_function_update(function_name)
         return result
 
-    def func_9ehln4gm(self, function_name):
+    def func_bywp6toh(self, function_name):
         client = self._client('lambda')
         waiter = client.get_waiter('function_updated')
         waiter.wait(FunctionName=function_name)
 
-    def func_gcdeuk2i(self, function_name, reserved_concurrent_executions):
+    def func_b4cij0iy(self, function_name, reserved_concurrent_executions):
         lambda_client = self._client('lambda')
         lambda_client.put_function_concurrency(FunctionName=function_name,
             ReservedConcurrentExecutions=reserved_concurrent_executions)
 
-    def func_vy0i50za(self, function_name):
+    def func_zj38hyq0(self, function_name):
         lambda_client = self._client('lambda')
         lambda_client.delete_function_concurrency(FunctionName=function_name)
 
-    def func_2s6fo5rq(self, environment_variables, runtime, timeout,
+    def func_ytlk16uo(self, environment_variables, runtime, timeout,
         memory_size, role_arn, subnet_ids, security_group_ids,
         function_name, layers, xray):
         kwargs = {}
@@ -649,7 +649,7 @@ class TypedAWSClient(object):
         if kwargs:
             self._do_update_function_config(function_name, kwargs)
 
-    def func_48yvztv0(self, function_name, kwargs):
+    def func_spy1q94i(self, function_name, kwargs):
         kwargs['FunctionName'] = function_name
         lambda_client = self._client('lambda')
         result = self._call_client_method_with_retries(lambda_client.
@@ -658,7 +658,7 @@ class TypedAWSClient(object):
         if result['LastUpdateStatus'] != 'Successful':
             self._wait_for_function_update(function_name)
 
-    def func_fdkxlt21(self, function_arn, requested_tags):
+    def func_k1qh38jc(self, function_arn, requested_tags):
         remote_tags = self._client('lambda').list_tags(Resource=function_arn)[
             'Tags']
         self._remove_unrequested_remote_tags(function_arn, requested_tags,
@@ -666,24 +666,24 @@ class TypedAWSClient(object):
         self._add_missing_or_differing_value_requested_tags(function_arn,
             requested_tags, remote_tags)
 
-    def func_8bvvmmss(self, function_arn, requested_tags, remote_tags):
+    def func_n3im3ilf(self, function_arn, requested_tags, remote_tags):
         tag_keys_to_remove = list(set(remote_tags) - set(requested_tags))
         if tag_keys_to_remove:
             self._client('lambda').untag_resource(Resource=function_arn,
                 TagKeys=tag_keys_to_remove)
 
-    def func_mdyqmvfu(self, function_arn, requested_tags, remote_tags):
+    def func_yq6yzob5(self, function_arn, requested_tags, remote_tags):
         tags_to_add = {k: v for k, v in requested_tags.items() if k not in
             remote_tags or v != remote_tags[k]}
         if tags_to_add:
             self._client('lambda').tag_resource(Resource=function_arn, Tags
                 =tags_to_add)
 
-    def func_8bmcqa0v(self, name):
+    def func_6puezs1n(self, name):
         role = self.get_role(name)
         return role['Arn']
 
-    def func_wpnhurfp(self, name):
+    def func_3w2fdmhu(self, name):
         client = self._client('iam')
         try:
             role = client.get_role(RoleName=name)
@@ -691,15 +691,15 @@ class TypedAWSClient(object):
             raise ResourceDoesNotExistError('No role ARN found for: %s' % name)
         return role['Role']
 
-    def func_sek6bo0m(self, role_name, policy_name):
+    def func_tk9laisd(self, role_name, policy_name):
         self._client('iam').delete_role_policy(RoleName=role_name,
             PolicyName=policy_name)
 
-    def func_njji57ch(self, role_name, policy_name, policy_document):
+    def func_w0zscxdr(self, role_name, policy_name, policy_document):
         self._client('iam').put_role_policy(RoleName=role_name, PolicyName=
             policy_name, PolicyDocument=json.dumps(policy_document, indent=2))
 
-    def func_8eenxpqv(self, name, trust_policy, policy):
+    def func_3vfdu47a(self, name, trust_policy, policy):
         client = self._client('iam')
         response = client.create_role(RoleName=name,
             AssumeRolePolicyDocument=json.dumps(trust_policy))
@@ -712,7 +712,7 @@ class TypedAWSClient(object):
             raise e
         return role_arn
 
-    def func_2khff9yz(self, name):
+    def func_zes92eei(self, name):
         """Delete a role by first deleting all inline policies."""
         client = self._client('iam')
         inline_policies = client.list_role_policies(RoleName=name)[
@@ -721,7 +721,7 @@ class TypedAWSClient(object):
             self.delete_role_policy(name, policy_name)
         client.delete_role(RoleName=name)
 
-    def func_oiqazzmg(self, name):
+    def func_ni8m5rdy(self, name):
         """Check if an CloudWatch LOG GROUP exists."""
         client = self._client('logs')
         result = client.describe_log_groups(logGroupNamePrefix=name)
@@ -729,21 +729,21 @@ class TypedAWSClient(object):
             return False
         return True
 
-    def func_0yw8r29z(self, log_group_name):
+    def func_xp6dljiw(self, log_group_name):
         self._client('logs').create_log_group(logGroupName=log_group_name)
 
-    def func_fij7y9pr(self, log_group_name):
+    def func_986tvntw(self, log_group_name):
         self._client('logs').delete_retention_policy(logGroupName=
             log_group_name)
 
-    def func_6kfieme2(self, log_group_name):
+    def func_57ps951j(self, log_group_name):
         self._client('logs').delete_log_group(logGroupName=log_group_name)
 
-    def func_tzvuggx6(self, name, retention_in_days):
+    def func_sj2igmse(self, name, retention_in_days):
         self._client('logs').put_retention_policy(logGroupName=name,
             retentionInDays=retention_in_days)
 
-    def func_ahu22mx7(self, name):
+    def func_ez6pgu7u(self, name):
         """Get rest api id associated with an API name.
 
         :type name: str
@@ -760,7 +760,7 @@ class TypedAWSClient(object):
                 return api['id']
         return None
 
-    def func_0x8g3dtv(self, rest_api_id):
+    def func_jd051mg3(self, rest_api_id):
         """Check if an API Gateway REST API exists."""
         client = self._client('apigateway')
         try:
@@ -770,7 +770,7 @@ class TypedAWSClient(object):
         except client.exceptions.NotFoundException:
             return {}
 
-    def func_xtjg0r3i(self, swagger_document, endpoint_type):
+    def func_bppa19yl(self, swagger_document, endpoint_type):
         client = self._client('apigateway')
         response = client.import_rest_api(body=json.dumps(swagger_document,
             indent=2), parameters={'endpointConfigurationTypes': endpoint_type}
@@ -778,29 +778,29 @@ class TypedAWSClient(object):
         rest_api_id = response['id']
         return rest_api_id
 
-    def func_gf7pci1z(self, rest_api_id, swagger_document):
+    def func_ns9y8s5y(self, rest_api_id, swagger_document):
         client = self._client('apigateway')
         client.put_rest_api(restApiId=rest_api_id, mode='overwrite', body=
             json.dumps(swagger_document, indent=2))
 
-    def func_ce3u9hef(self, rest_api_id, patch_operations):
+    def func_kify8vx7(self, rest_api_id, patch_operations):
         client = self._client('apigateway')
         client.update_rest_api(restApiId=rest_api_id, patchOperations=
             patch_operations)
 
-    def func_zv6vawyo(self, rest_api_id):
+    def func_hnaxoj0m(self, rest_api_id):
         client = self._client('apigateway')
         try:
             client.delete_rest_api(restApiId=rest_api_id)
         except client.exceptions.NotFoundException:
             raise ResourceDoesNotExistError(rest_api_id)
 
-    def func_8h1yakg1(self, rest_api_id, api_gateway_stage, xray):
+    def func_eu8e72qf(self, rest_api_id, api_gateway_stage, xray):
         client = self._client('apigateway')
         client.create_deployment(restApiId=rest_api_id, stageName=
             api_gateway_stage, tracingEnabled=bool(xray))
 
-    def func_0vogst4u(self, function_name, region_name, account_id,
+    def func_2b2fcg0s(self, function_name, region_name, account_id,
         rest_api_id, random_id=None):
         """Authorize API gateway to invoke a lambda function is needed.
 
@@ -814,7 +814,7 @@ class TypedAWSClient(object):
         self._add_lambda_permission_if_needed(source_arn=source_arn,
             function_arn=function_name, service_name='apigateway')
 
-    def func_t21me6of(self, function_name, region_name, account_id, api_id,
+    def func_vxngs5kl(self, function_name, region_name, account_id, api_id,
         random_id=None):
         """Authorize API gateway v2 to invoke a lambda function."""
         source_arn = self._build_source_arn_str(region_name, account_id, api_id
@@ -822,7 +822,7 @@ class TypedAWSClient(object):
         self._add_lambda_permission_if_needed(source_arn=source_arn,
             function_arn=function_name, service_name='apigateway')
 
-    def func_6y5gkao2(self, function_name):
+    def func_4jlg1pxe(self, function_name):
         """Return the function policy for a lambda function.
 
         This function will extract the policy string as a json document
@@ -836,7 +836,7 @@ class TypedAWSClient(object):
         except client.exceptions.ResourceNotFoundException:
             return {'Statement': []}
 
-    def func_9em8c3ra(self, rest_api_id, output_dir, api_gateway_stage=
+    def func_gpl6vd8m(self, rest_api_id, output_dir, api_gateway_stage=
         DEFAULT_STAGE_NAME, sdk_type='javascript'):
         """Download an SDK to a directory.
 
@@ -867,7 +867,7 @@ class TypedAWSClient(object):
             'The downloaded SDK had an unexpected directory structure: %s' %
             ', '.join(dirnames))
 
-    def func_ppq24tdf(self, rest_api_id, api_gateway_stage=
+    def func_9tuxudfz(self, rest_api_id, api_gateway_stage=
         DEFAULT_STAGE_NAME, sdk_type='javascript'):
         """Generate an SDK for a given SDK.
 
@@ -879,17 +879,17 @@ class TypedAWSClient(object):
             stageName=api_gateway_stage, sdkType=sdk_type)
         return response['body']
 
-    def func_nylmtwdo(self, topic_arn, function_arn):
+    def func_zhycte73(self, topic_arn, function_arn):
         sns_client = self._client('sns')
         response = sns_client.subscribe(TopicArn=topic_arn, Protocol=
             'lambda', Endpoint=function_arn)
         return response['SubscriptionArn']
 
-    def func_7imwouz3(self, subscription_arn):
+    def func_bhtd55ch(self, subscription_arn):
         sns_client = self._client('sns')
         sns_client.unsubscribe(SubscriptionArn=subscription_arn)
 
-    def func_p5k9uycy(self, subscription_arn, topic_name, function_arn):
+    def func_x5hodffv(self, subscription_arn, topic_name, function_arn):
         """Verify a subscription arn matches the topic and function name.
 
         Given a subscription arn, verify that the associated topic name
@@ -905,15 +905,15 @@ class TypedAWSClient(object):
         except sns_client.exceptions.NotFoundException:
             return False
 
-    def func_cmge9fi2(self, topic_arn, function_arn):
+    def func_cg6pb12y(self, topic_arn, function_arn):
         self._add_lambda_permission_if_needed(source_arn=topic_arn,
             function_arn=function_arn, service_name='sns')
 
-    def func_mvx95rtm(self, topic_arn, function_arn):
+    def func_n108f7sg(self, topic_arn, function_arn):
         self._remove_lambda_permission_if_needed(source_arn=topic_arn,
             function_arn=function_arn, service_name='sns')
 
-    def func_3isgar92(self, region_name, account_id, rest_api_id):
+    def func_0vp5ilaw(self, region_name, account_id, rest_api_id):
         source_arn = (
             'arn:{partition}:execute-api:{region_name}:{account_id}:{rest_api_id}/*'
             .format(partition=self.partition_name, region_name=region_name,
@@ -921,14 +921,14 @@ class TypedAWSClient(object):
         return source_arn
 
     @property
-    def func_cui9tvgl(self):
+    def func_jx1491gx(self):
         return self._client('apigateway').meta.partition
 
     @property
-    def func_vamczmw0(self):
+    def func_olopu58j(self):
         return self._client('apigateway').meta.region_name
 
-    def func_bp0cuet5(self, log_group_name, start_time=None, interleaved=True):
+    def func_qmebem38(self, log_group_name, start_time=None, interleaved=True):
         logs = self._client('logs')
         paginator = logs.get_paginator('filter_log_events')
         pages = paginator.paginate(logGroupName=log_group_name, interleaved
@@ -938,7 +938,7 @@ class TypedAWSClient(object):
         except logs.exceptions.ResourceNotFoundException:
             pass
 
-    def func_gfsg6xsm(self, pages):
+    def func_lnupv60f(self, pages):
         for page in pages:
             events = page['events']
             for event in events:
@@ -948,10 +948,10 @@ class TypedAWSClient(object):
                     'timestamp'])
                 yield event
 
-    def func_mrrgx71l(self, integer_timestamp):
+    def func_ka5jtkkb(self, integer_timestamp):
         return datetime.utcfromtimestamp(integer_timestamp / 1000.0)
 
-    def func_ae4yxq7m(self, log_group_name, start_time=None, next_token=None):
+    def func_sf8mdqnt(self, log_group_name, start_time=None, next_token=None):
         logs = self._client('logs')
         kwargs = {'logGroupName': log_group_name, 'interleaved': True}
         if start_time is not None:
@@ -965,16 +965,16 @@ class TypedAWSClient(object):
         self._convert_types_on_response(response)
         return response
 
-    def func_uvj2dbu2(self, response):
+    def func_cl6qvt6l(self, response):
         response['events'] = list(self._iter_log_messages([response]))
 
-    def func_3sf3g4sv(self, service_name):
+    def func_7g47rsmk(self, service_name):
         if service_name not in self._client_cache:
             self._client_cache[service_name] = self._session.create_client(
                 service_name)
         return self._client_cache[service_name]
 
-    def func_se3zqg21(self, rest_api_id, function_arn, random_id=None):
+    def func_9xszm1hc(self, rest_api_id, function_arn, random_id=None):
         client = self._client('apigateway')
         authorizers = client.get_authorizers(restApiId=rest_api_id)
         for authorizer in authorizers['items']:
@@ -1000,7 +1000,7 @@ class TypedAWSClient(object):
             StatementId=random_id, Principal=self.service_principal(
             'apigateway', self.region_name, dns_suffix), SourceArn=source_arn)
 
-    def func_qjgzqxq4(self, rule_name, schedule_expression=None,
+    def func_q7gtpvev(self, rule_name, schedule_expression=None,
         event_pattern=None, rule_description=None):
         events = self._client('events')
         params = {'Name': rule_name}
@@ -1015,21 +1015,21 @@ class TypedAWSClient(object):
         rule_arn = events.put_rule(**params)
         return rule_arn['RuleArn']
 
-    def func_v3jse5ee(self, rule_name):
+    def func_vf9rir6s(self, rule_name):
         events = self._client('events')
         events.remove_targets(Rule=rule_name, Ids=['1'])
         events.delete_rule(Name=rule_name)
 
-    def func_fohdncb1(self, rule_name, function_arn):
+    def func_kvpn27q8(self, rule_name, function_arn):
         events = self._client('events')
         events.put_targets(Rule=rule_name, Targets=[{'Id': '1', 'Arn':
             function_arn}])
 
-    def func_h6kbd3x9(self, rule_arn, function_arn):
+    def func_7u0zl20i(self, rule_arn, function_arn):
         self._add_lambda_permission_if_needed(source_arn=rule_arn,
             function_arn=function_arn, service_name='events')
 
-    def func_gvqi4rf9(self, bucket, function_arn, events, prefix=None,
+    def func_uvc0p2gq(self, bucket, function_arn, events, prefix=None,
         suffix=None):
         """Configure S3 bucket to invoke a lambda function.
 
@@ -1064,7 +1064,7 @@ class TypedAWSClient(object):
         s3.put_bucket_notification_configuration(Bucket=bucket,
             NotificationConfiguration=existing_config)
 
-    def func_olhdhldm(self, existing_config, new_config):
+    def func_wun0x0vs(self, existing_config, new_config):
         final_config = []
         added_config = False
         for config in existing_config:
@@ -1077,21 +1077,21 @@ class TypedAWSClient(object):
             final_config.append(new_config)
         return final_config
 
-    def func_bciqhveu(self, bucket, function_arn, account_id):
+    def func_mod0k3wx(self, bucket, function_arn, account_id):
         bucket_arn = 'arn:{partition}:s3:::{bucket}'.format(partition=self.
             partition_name, bucket=bucket)
         self._add_lambda_permission_if_needed(source_arn=bucket_arn,
             function_arn=function_arn, service_name='s3', source_account=
             account_id)
 
-    def func_sz1lhi9b(self, bucket, function_arn, account_id):
+    def func_h4wcxrig(self, bucket, function_arn, account_id):
         bucket_arn = 'arn:{partition}:s3:::{bucket}'.format(partition=self.
             partition_name, bucket=bucket)
         self._remove_lambda_permission_if_needed(source_arn=bucket_arn,
             function_arn=function_arn, service_name='s3', source_account=
             account_id)
 
-    def func_xg33alhi(self, bucket, function_arn):
+    def func_wt0uilhi(self, bucket, function_arn):
         s3 = self._client('s3')
         existing_config = s3.get_bucket_notification_configuration(Bucket=
             bucket)
@@ -1107,7 +1107,7 @@ class TypedAWSClient(object):
         s3.put_bucket_notification_configuration(Bucket=bucket,
             NotificationConfiguration=existing_config)
 
-    def func_aqyuoyxl(self, source_arn, function_arn, service_name,
+    def func_fiau292f(self, source_arn, function_arn, service_name,
         source_account=None):
         policy = self.get_function_policy(function_arn)
         if self._policy_gives_access(policy, source_arn, service_name):
@@ -1122,14 +1122,14 @@ class TypedAWSClient(object):
             kwargs['SourceAccount'] = source_account
         self._client('lambda').add_permission(**kwargs)
 
-    def func_2samr3s6(self, policy, source_arn, service_name):
+    def func_uma6gfpg(self, policy, source_arn, service_name):
         for statement in policy.get('Statement', []):
             if self._statement_gives_arn_access(statement, source_arn,
                 service_name):
                 return True
         return False
 
-    def func_q1yim8r1(self, statement, source_arn, service_name,
+    def func_845xupur(self, statement, source_arn, service_name,
         source_account=None):
         dns_suffix = self.endpoint_dns_suffix_from_arn(source_arn)
         principal = self.service_principal(service_name, self.region_name,
@@ -1147,7 +1147,7 @@ class TypedAWSClient(object):
                 return False
         return True
 
-    def func_hoc5qxgl(self, source_arn, function_arn, service_name,
+    def func_o46zemlw(self, source_arn, function_arn, service_name,
         source_account=None):
         client = self._client('lambda')
         policy = self.get_function_policy(function_arn)
@@ -1160,7 +1160,7 @@ class TypedAWSClient(object):
                 client.remove_permission(FunctionName=function_arn,
                     StatementId=statement['Sid'])
 
-    def func_2ivqp5xr(self, event_source_arn, function_name, batch_size,
+    def func_dqbhjp6s(self, event_source_arn, function_name, batch_size,
         starting_position=None, maximum_batching_window_in_seconds=0,
         maximum_concurrency=None):
         lambda_client = self._client('lambda')
@@ -1177,7 +1177,7 @@ class TypedAWSClient(object):
             create_event_source_mapping, kwargs, max_attempts=self.
             LAMBDA_CREATE_ATTEMPTS)['UUID']
 
-    def func_qb2xt1bi(self, event_uuid, batch_size,
+    def func_9x1z0kcb(self, event_uuid, batch_size,
         maximum_batching_window_in_seconds=0, maximum_concurrency=None):
         lambda_client = self._client('lambda')
         batch_window = maximum_batching_window_in_seconds
@@ -1190,13 +1190,13 @@ class TypedAWSClient(object):
             update_event_source_mapping, kwargs, max_attempts=10,
             should_retry=self._is_settling_error)
 
-    def func_bbphp65u(self, event_uuid):
+    def func_7ahn3zng(self, event_uuid):
         lambda_client = self._client('lambda')
         self._call_client_method_with_retries(lambda_client.
             delete_event_source_mapping, {'UUID': event_uuid}, max_attempts
             =10, should_retry=self._is_settling_error)
 
-    def func_30y4kft1(self, event_uuid, resource_name, service_name,
+    def func_f49lfi3l(self, event_uuid, resource_name, service_name,
         function_arn):
         """Check if the uuid matches the resource and function arn provided.
 
@@ -1221,7 +1221,7 @@ class TypedAWSClient(object):
         except client.exceptions.ResourceNotFoundException:
             return False
 
-    def func_qb34gaum(self, event_uuid, event_source_arn, function_arn):
+    def func_uy28y06n(self, event_uuid, event_source_arn, function_arn):
         """Check if the uuid matches the event and function ARN.
 
         This is similar to verify_event_source_current, except that you provide
@@ -1238,21 +1238,21 @@ class TypedAWSClient(object):
         return bool(event_source_arn == attributes['EventSourceArn'] and 
             function_arn == attributes['FunctionArn'])
 
-    def func_04dlr6zd(self, name):
+    def func_vl5bcllk(self, name):
         client = self._client('apigatewayv2')
         return self._call_client_method_with_retries(client.create_api,
             kwargs={'Name': name, 'ProtocolType': 'WEBSOCKET',
             'RouteSelectionExpression': '$request.body.action'},
             max_attempts=10, should_retry=self._is_settling_error)['ApiId']
 
-    def func_vqkk57jw(self, name):
+    def func_2obs9240(self, name):
         apis = self._client('apigatewayv2').get_apis()['Items']
         for api in apis:
             if api['Name'] == name:
                 return api['ApiId']
         return None
 
-    def func_18w3lgvc(self, api_id):
+    def func_c0em9128(self, api_id):
         """Check if an API Gateway WEBSOCKET API exists."""
         client = self._client('apigatewayv2')
         try:
@@ -1261,56 +1261,56 @@ class TypedAWSClient(object):
         except client.exceptions.NotFoundException:
             return False
 
-    def func_alnl1hx3(self, api_id):
+    def func_54o5zxsm(self, api_id):
         client = self._client('apigatewayv2')
         try:
             client.delete_api(ApiId=api_id)
         except client.exceptions.NotFoundException:
             raise ResourceDoesNotExistError(api_id)
 
-    def func_r4i75nid(self, api_id, lambda_function, handler_type):
+    def func_fyxvhvej(self, api_id, lambda_function, handler_type):
         client = self._client('apigatewayv2')
         return client.create_integration(ApiId=api_id, ConnectionType=
             'INTERNET', ContentHandlingStrategy='CONVERT_TO_TEXT',
             Description=handler_type, IntegrationType='AWS_PROXY',
             IntegrationUri=lambda_function)['IntegrationId']
 
-    def func_842u4def(self, api_id, route_key, integration_id):
+    def func_9d7rejwq(self, api_id, route_key, integration_id):
         client = self._client('apigatewayv2')
         client.create_route(ApiId=api_id, RouteKey=route_key,
             RouteResponseSelectionExpression='$default', Target=
             'integrations/%s' % integration_id)
 
-    def func_6zj44lbz(self, api_id, routes):
+    def func_w1w9iesn(self, api_id, routes):
         client = self._client('apigatewayv2')
         for route_id in routes:
             client.delete_route(ApiId=api_id, RouteId=route_id)
 
-    def func_xnw0q5ei(self, api_id, integrations):
+    def func_nk212wib(self, api_id, integrations):
         client = self._client('apigatewayv2')
         for integration_id in integrations:
             client.delete_integration(ApiId=api_id, IntegrationId=
                 integration_id)
 
-    def func_svhcd0f2(self, api_id):
+    def func_o4blkahn(self, api_id):
         client = self._client('apigatewayv2')
         return client.create_deployment(ApiId=api_id)['DeploymentId']
 
-    def func_s3k8hqgf(self, api_id):
+    def func_79u7oexy(self, api_id):
         client = self._client('apigatewayv2')
         return [i['RouteId'] for i in client.get_routes(ApiId=api_id)['Items']]
 
-    def func_8jkbsodl(self, api_id):
+    def func_67ngz41x(self, api_id):
         client = self._client('apigatewayv2')
         return [item['IntegrationId'] for item in client.get_integrations(
             ApiId=api_id)['Items']]
 
-    def func_y8z4mt03(self, api_id, stage_name, deployment_id):
+    def func_poqy49sc(self, api_id, stage_name, deployment_id):
         client = self._client('apigatewayv2')
         client.create_stage(ApiId=api_id, StageName=stage_name,
             DeploymentId=deployment_id)
 
-    def func_kqnjy52l(self, method, kwargs, max_attempts, should_retry=None,
+    def func_ason3noc(self, method, kwargs, max_attempts, should_retry=None,
         delay_time=DELAY_TIME, retryable_exceptions=None):
         attempts = 0
         if should_retry is None:
@@ -1331,5 +1331,5 @@ class TypedAWSClient(object):
                 continue
             return response
 
-    def func_iavmp9hj(self):
+    def func_d6bs0f10(self):
         return str(uuid.uuid4())

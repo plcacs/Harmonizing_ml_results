@@ -1,0 +1,395 @@
+{
+    "__eq__@ELMoCharacterMapper": [
+        {
+            "category": "arg",
+            "name": "other",
+            "type": [
+                "dict",
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "other",
+            "type": [
+                "dict",
+                "T"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__eq__",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "__init__@ELMoCharacterMapper": [
+        {
+            "category": "arg",
+            "name": "tokens_to_add",
+            "type": [
+                "None",
+                "list[str]",
+                "set[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens_to_add",
+            "type": [
+                "None",
+                "list[str]",
+                "set[str]",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@ELMoTokenCharactersIndexer": [
+        {
+            "category": "arg",
+            "name": "namespace",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tokens_to_add",
+            "type": [
+                "None",
+                "dict[str, int]",
+                "dict[int, int]",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_min_padding_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_min_padding_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "namespace",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_namespace",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens_to_add",
+            "type": [
+                "None",
+                "dict[str, int]",
+                "dict[int, int]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_mapper",
+            "type": [
+                "ELMoCharacterMapper"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_make_bos_eos@global": [
+        {
+            "category": "arg",
+            "name": "character",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "padding_character",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "beginning_of_word_character",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "end_of_word_character",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_word_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "padding_character",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_word_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "char_ids",
+            "type": [
+                "list[int]",
+                "list[typing.Union[int,float]]",
+                "list[typing.Union[int,float,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "beginning_of_word_character",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "character",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "end_of_word_character",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_make_bos_eos",
+            "type": [
+                "list[typing.Union[int,float,str]]"
+            ]
+        }
+    ],
+    "as_padded_tensor_dict@ELMoTokenCharactersIndexer": [
+        {
+            "category": "arg",
+            "name": "tokens",
+            "type": [
+                "dict[str, int]",
+                "dict[str, torch.Tensor]",
+                "dict[str, list[int]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "padding_lengths",
+            "type": [
+                "dict[str, int]",
+                "dict[str, torch.Tensor]",
+                "dict[str, list[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tensor_dict",
+            "type": [
+                "dict",
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "dict[str, int]",
+                "dict[str, torch.Tensor]",
+                "dict[str, list[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "padding_lengths",
+            "type": [
+                "dict[str, int]",
+                "dict[str, torch.Tensor]",
+                "dict[str, list[int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "as_padded_tensor_dict",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        }
+    ],
+    "convert_word_to_char_ids@ELMoCharacterMapper": [
+        {
+            "category": "arg",
+            "name": "word",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "word",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "word_encoded",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chr_id",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "convert_word_to_char_ids",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "count_vocab_items@ELMoTokenCharactersIndexer": [
+        {
+            "category": "arg",
+            "name": "token",
+            "type": [
+                "allennlp.data.tokenizers.token.Token",
+                "dict[str, dict[str, int]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "counter",
+            "type": [
+                "allennlp.data.tokenizers.token.Token",
+                "dict[str, dict[str, int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "count_vocab_items",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_empty_token_list@ELMoTokenCharactersIndexer": [
+        {
+            "category": "return",
+            "name": "get_empty_token_list",
+            "type": [
+                "dict[typing.Text, list]"
+            ]
+        }
+    ],
+    "global@global": [],
+    "padding_token@ELMoTokenCharactersIndexer": [
+        {
+            "category": "return",
+            "name": "padding_token",
+            "type": []
+        }
+    ],
+    "tokens_to_indices@ELMoTokenCharactersIndexer": [
+        {
+            "category": "arg",
+            "name": "tokens",
+            "type": [
+                "allennlp.data.vocabulary.Vocabulary",
+                "allennlp.data.tokenizers.token.Token"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "vocabulary",
+            "type": [
+                "allennlp.data.vocabulary.Vocabulary",
+                "allennlp.data.tokenizers.token.Token",
+                "list[allennlp.data.tokenizers.token.Token]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "allennlp.data.vocabulary.Vocabulary",
+                "allennlp.data.tokenizers.token.Token"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "tokens_to_indices",
+            "type": [
+                "dict[typing.Text, list]"
+            ]
+        }
+    ]
+}

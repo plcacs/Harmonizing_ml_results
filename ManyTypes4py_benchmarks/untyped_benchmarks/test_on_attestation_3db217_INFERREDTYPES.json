@@ -1,0 +1,1037 @@
+{
+    "global@global": [],
+    "run_on_attestation@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int",
+                "mythril.laser.ethereum.state.global_state.GlobalState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "prefecengine.state.State",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "store",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "attestation",
+            "type": [
+                "int",
+                "mythril.laser.ethereum.state.global_state.GlobalState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "valid",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "valid",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "int",
+                "mythril.laser.ethereum.state.global_state.GlobalState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "store",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attestation",
+            "type": [
+                "int",
+                "mythril.laser.ethereum.state.global_state.GlobalState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "run_on_attestation",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "prefecengine.state.State",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indexed_attestation",
+            "type": [
+                "list",
+                "dict[str, typing.Any]",
+                "tuple[typing.Any]"
+            ]
+        }
+    ],
+    "test_on_attestation_beacon_block_not_in_store@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "list",
+                "str",
+                "dict[\"core.Edge\", \"state.State\"]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict",
+                "list",
+                "dict[\"core.Edge\", \"state.State\"]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "list",
+                "str",
+                "dict[\"core.Edge\", \"state.State\"]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict",
+                "list",
+                "dict[\"core.Edge\", \"state.State\"]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "store",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "next_epoch",
+            "type": [
+                "int",
+                "float",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_block",
+            "type": [
+                "pymap.parsing.state.ParsingState",
+                "str",
+                "pyshgp.push.state.PushState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signed_target_block",
+            "type": [
+                "bytes",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "head_block",
+            "type": [
+                "tuple",
+                "beacon_chain.state.chain.Chain",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_attestation_beacon_block_not_in_store",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_attestation_current_epoch@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict",
+                "dict[\"core.Edge\", \"state.State\"]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "bytes",
+                "raiden.transfer.mediated_transfer.state.TransferDescriptionWithSecretState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict",
+                "dict[\"core.Edge\", \"state.State\"]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "bytes",
+                "raiden.transfer.mediated_transfer.state.TransferDescriptionWithSecretState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "store",
+            "type": [
+                "dict",
+                "typing.DefaultDict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "beacon_chain.state.block.Block",
+                "int",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signed_block",
+            "type": [
+                "bytes",
+                "typing.Callable[None,None,None, int]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_attestation_current_epoch",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_attestation_future_block@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "raiden.transfer.mediated_transfer.state.TransferDescriptionWithSecretState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "raiden.transfer.mediated_transfer.state.TransferDescriptionWithSecretState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "store",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "beacon_chain.state.block.Block",
+                "int",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signed_block",
+            "type": [
+                "bytes",
+                "typing.Callable[None,None,None, int]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attestation",
+            "type": [
+                "str",
+                "tuple[typing.Any]",
+                "dict[int, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_attestation_future_block",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_attestation_future_epoch@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict",
+                "dict[\"core.Edge\", \"state.State\"]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict",
+                "dict[\"core.Edge\", \"state.State\"]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "store",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "beacon_chain.state.block.Block"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signed_block",
+            "type": [
+                "bytes",
+                "typing.Callable[None,None,None, int]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_attestation_future_epoch",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_attestation_inconsistent_target_and_head@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "str",
+                "list",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "str",
+                "list",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "store",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_state_1",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_state_2",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "diff_block",
+            "type": [
+                "int",
+                "dict",
+                "list[bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signed_diff_block",
+            "type": [
+                "str",
+                "bytes",
+                "typing.Callable[None,None,None, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "head_block",
+            "type": [
+                "beacon_chain.state.chain.Chain",
+                "beacon_chain.state.block.Block",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signed_head_block",
+            "type": [
+                "str",
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_attestation_inconsistent_target_and_head",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_attestation_invalid_attestation@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "bytes",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "bytes",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "store",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "beacon_chain.state.block.Block",
+                "int",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signed_block",
+            "type": [
+                "bytes",
+                "typing.Callable[None,None,None, int]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_attestation_invalid_attestation",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_attestation_mismatched_target_and_slot@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, bytes]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, bytes]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "store",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "beacon_chain.state.block.Block",
+                "int",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signed_block",
+            "type": [
+                "bytes",
+                "typing.Callable[None,None,None, int]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_attestation_mismatched_target_and_slot",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_attestation_past_epoch@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict",
+                "str",
+                "dict[\"core.Edge\", \"state.State\"]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "bytes",
+                "raiden.transfer.mediated_transfer.state.TransferDescriptionWithSecretState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict",
+                "str",
+                "dict[\"core.Edge\", \"state.State\"]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "bytes",
+                "raiden.transfer.mediated_transfer.state.TransferDescriptionWithSecretState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "store",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "beacon_chain.state.block.Block"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signed_block",
+            "type": [
+                "bytes",
+                "typing.Callable[None,None,None, int]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_attestation_past_epoch",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_attestation_previous_epoch@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "store",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "beacon_chain.state.block.Block",
+                "int",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signed_block",
+            "type": [
+                "bytes",
+                "typing.Callable[None,None,None, int]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_attestation_previous_epoch",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_attestation_same_slot@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict",
+                "raiden.transfer.mediated_transfer.state.TransferDescriptionWithSecretState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict",
+                "raiden.transfer.mediated_transfer.state.TransferDescriptionWithSecretState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "store",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "beacon_chain.state.block.Block",
+                "int",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signed_block",
+            "type": [
+                "bytes",
+                "typing.Callable[None,None,None, int]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_attestation_same_slot",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_attestation_target_block_not_in_store@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "store",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "next_epoch",
+            "type": [
+                "int",
+                "float",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_block",
+            "type": [
+                "pymap.parsing.state.ParsingState",
+                "pyshgp.push.state.PushState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_attestation_target_block_not_in_store",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_attestation_target_checkpoint_not_in_store@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "list",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "list",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "store",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "next_epoch",
+            "type": [
+                "int",
+                "float",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_block",
+            "type": [
+                "pymap.parsing.state.ParsingState",
+                "str",
+                "pyshgp.push.state.PushState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signed_target_block",
+            "type": [
+                "bytes",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_attestation_target_checkpoint_not_in_store",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_attestation_target_checkpoint_not_in_store_diff_slot@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "list",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "list",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "store",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "next_epoch",
+            "type": [
+                "int",
+                "float",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_block",
+            "type": [
+                "str",
+                "bytes",
+                "beacon_chain.state.block.Block"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signed_target_block",
+            "type": [
+                "bytes",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_attestation_target_checkpoint_not_in_store_diff_slot",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

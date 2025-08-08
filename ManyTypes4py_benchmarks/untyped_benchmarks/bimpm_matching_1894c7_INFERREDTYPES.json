@@ -1,0 +1,659 @@
+{
+    "__init__@BiMpmMatching": [
+        {
+            "category": "arg",
+            "name": "hidden_dim",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_perspectives",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "share_weights_between_directions",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "is_forward",
+            "type": [
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "with_full_match",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "with_maxpool_match",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "with_attentive_match",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "with_max_attentive_match",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hidden_dim",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_perspectives",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_forward",
+            "type": [
+                "None",
+                "bool",
+                "typing.Callable[None, bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "with_full_match",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "with_maxpool_match",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "with_attentive_match",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "with_max_attentive_match",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output_dim",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "full_match_weights",
+            "type": [
+                "float",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "full_match_weights_reversed",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "maxpool_match_weights",
+            "type": [
+                "float",
+                "torch.nn.Module",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attentive_match_weights",
+            "type": [
+                "float",
+                "int",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attentive_match_weights_reversed",
+            "type": [
+                "bool",
+                "list",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_attentive_match_weights",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_attentive_match_weights_reversed",
+            "type": [
+                "int",
+                "list[int]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "create_parameter@BiMpmMatching": [
+        {
+            "category": "return",
+            "name": "create_parameter",
+            "type": []
+        }
+    ],
+    "forward@BiMpmMatching": [
+        {
+            "category": "arg",
+            "name": "context_1",
+            "type": [
+                "torch.Tensor",
+                "list[int]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mask_1",
+            "type": [
+                "torch.Tensor",
+                "torch.nn.utils.rnn.PackedSequence"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "context_2",
+            "type": [
+                "torch.Tensor",
+                "list[int]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mask_2",
+            "type": [
+                "torch.Tensor",
+                "torch.nn.utils.rnn.PackedSequence"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mask_1",
+            "type": [
+                "torch.Tensor",
+                "torch.nn.utils.rnn.PackedSequence"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "len_1",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mask_2",
+            "type": [
+                "torch.Tensor",
+                "torch.nn.utils.rnn.PackedSequence"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "len_2",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context_1",
+            "type": [
+                "torch.Tensor",
+                "list[int]",
+                "None",
+                "list",
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context_2",
+            "type": [
+                "torch.Tensor",
+                "list[int]",
+                "None",
+                "list",
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "matching_vector_1",
+            "type": [
+                "list",
+                "list[typing.Union[int,float,list[float]]]",
+                "tuple[typing.Union[typing.Any,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "matching_vector_2",
+            "type": [
+                "list",
+                "tuple[typing.Union[typing.Any,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cosine_sim",
+            "type": [
+                "float",
+                "int",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cosine_max_1",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cosine_mean_1",
+            "type": [
+                "float",
+                "list[float]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cosine_max_2",
+            "type": [
+                "int",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cosine_mean_2",
+            "type": [
+                "float",
+                "list[float]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_position_1",
+            "type": [
+                "list",
+                "int",
+                "range"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_position_2",
+            "type": [
+                "list",
+                "int",
+                "range"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context_1_last",
+            "type": [
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context_2_last",
+            "type": [
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "matching_vector_1_max",
+            "type": [
+                "int",
+                "float",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "matching_vector_1_mean",
+            "type": [
+                "float",
+                "dict",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "matching_vector_2_max",
+            "type": [
+                "int",
+                "float",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "matching_vector_2_mean",
+            "type": [
+                "int",
+                "float",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "att_2",
+            "type": [
+                "int",
+                "tuple",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "att_1",
+            "type": [
+                "float",
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "att_mean_2",
+            "type": [
+                "float",
+                "int",
+                "tuple[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "att_mean_1",
+            "type": [
+                "float",
+                "int",
+                "tuple[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "att_max_2",
+            "type": [
+                "int",
+                "float",
+                "list[tuple[typing.Union[int,typing.Any]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "att_max_1",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "forward",
+            "type": []
+        }
+    ],
+    "get_output_dim@BiMpmMatching": [
+        {
+            "category": "return",
+            "name": "get_output_dim",
+            "type": []
+        }
+    ],
+    "global@global": [],
+    "multi_perspective_match@global": [
+        {
+            "category": "arg",
+            "name": "vector1",
+            "type": [
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "vector2",
+            "type": [
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "weight",
+            "type": [
+                "torch.Tensor",
+                "float",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "similarity_single",
+            "type": [
+                "float",
+                "torch.nn.Module",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "weight",
+            "type": [
+                "int",
+                "float",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vector1",
+            "type": [
+                "torch.Tensor",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vector2",
+            "type": [
+                "torch.Tensor",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "multi_perspective_match",
+            "type": [
+                "tuple[typing.Union[float,torch.nn.Module,list[int]]]"
+            ]
+        }
+    ],
+    "multi_perspective_match_pairwise@global": [
+        {
+            "category": "arg",
+            "name": "vector1",
+            "type": [
+                "torch.Tensor",
+                "tuple[torch.Tensor]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "vector2",
+            "type": [
+                "torch.Tensor",
+                "tuple[torch.Tensor]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "weight",
+            "type": [
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "weight",
+            "type": [
+                "torch.Tensor",
+                "list",
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_perspectives",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vector1",
+            "type": [
+                "list",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vector2",
+            "type": [
+                "list",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vector1_norm",
+            "type": [
+                "int",
+                "float",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vector2_norm",
+            "type": [
+                "int",
+                "float",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mul_result",
+            "type": [
+                "list",
+                "list[list[typing.Any]]",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "norm_value",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "multi_perspective_match_pairwise",
+            "type": []
+        }
+    ],
+    "share_or_create@BiMpmMatching": [
+        {
+            "category": "arg",
+            "name": "weights_to_share",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "share_or_create",
+            "type": []
+        }
+    ]
+}

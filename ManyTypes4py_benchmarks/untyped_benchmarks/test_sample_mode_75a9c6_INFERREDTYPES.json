@@ -1,0 +1,972 @@
+{
+    "assert_row_count@BaseSampleMode": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": [
+                "str",
+                "set[int]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "relation_name",
+            "type": [
+                "str",
+                "set[int]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_row_count",
+            "type": [
+                "int",
+                "set[int]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "project",
+            "type": [
+                "str",
+                "set[int]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "relation_name",
+            "type": [
+                "str",
+                "set[int]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "str",
+                "list",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_row_count",
+            "type": [
+                "int",
+                "set[int]",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "assert_row_count",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "event_catcher@TestBasicSampleMode": [
+        {
+            "category": "return",
+            "name": "event_catcher",
+            "type": [
+                "EventCatcher"
+            ]
+        }
+    ],
+    "event_catcher@TestIncrementalModelSampleModeRelative": [
+        {
+            "category": "return",
+            "name": "event_catcher",
+            "type": [
+                "EventCatcher"
+            ]
+        }
+    ],
+    "event_catcher@TestIncrementalModelSampleModeSpecific": [
+        {
+            "category": "return",
+            "name": "event_catcher",
+            "type": [
+                "EventCatcher"
+            ]
+        }
+    ],
+    "event_time_end_catcher@TestMicrobatchSampleMode": [
+        {
+            "category": "return",
+            "name": "event_time_end_catcher",
+            "type": [
+                "EventCatcher"
+            ]
+        }
+    ],
+    "event_time_start_catcher@TestMicrobatchSampleMode": [
+        {
+            "category": "return",
+            "name": "event_time_start_catcher",
+            "type": [
+                "EventCatcher"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "input_model_sql",
+            "type": [
+                "typing.Text",
+                "str",
+                "routemaster_sdk.types.LabelRef"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "later_input_model_sql",
+            "type": [
+                "typing.Text",
+                "str",
+                "int",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "input_seed_csv",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "seed_properties_yml",
+            "type": [
+                "typing.Text",
+                "str",
+                "list[str]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sample_mode_model_sql",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sample_input_seed_sql",
+            "type": [
+                "typing.Text",
+                "str",
+                "list[str]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sample_microbatch_model_sql",
+            "type": [
+                "typing.Text",
+                "str",
+                "list[str]",
+                "tuple[typing.Literal]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sample_incremental_merge_sql",
+            "type": [
+                "typing.Text",
+                "str",
+                "list[str]",
+                "int"
+            ]
+        }
+    ],
+    "models@TestBasicSampleMode": [
+        {
+            "category": "local",
+            "name": "input_model_sql",
+            "type": [
+                "str",
+                "routemaster_sdk.types.LabelRef"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sample_mode_model_sql",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "models",
+            "type": [
+                "dict[typing.Text, typing.Union[str,routemaster_sdk.types.LabelRef]]"
+            ]
+        }
+    ],
+    "models@TestIncrementalModelSampleModeRelative": [
+        {
+            "category": "local",
+            "name": "input_model_sql",
+            "type": [
+                "str",
+                "routemaster_sdk.types.LabelRef"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sample_incremental_merge_sql",
+            "type": [
+                "str",
+                "list[str]",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "models",
+            "type": [
+                "dict[typing.Text, typing.Union[str,routemaster_sdk.types.LabelRef,list[str],int]]"
+            ]
+        }
+    ],
+    "models@TestIncrementalModelSampleModeSpecific": [
+        {
+            "category": "local",
+            "name": "input_model_sql",
+            "type": [
+                "str",
+                "routemaster_sdk.types.LabelRef"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sample_incremental_merge_sql",
+            "type": [
+                "str",
+                "list[str]",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "models",
+            "type": [
+                "dict[typing.Text, typing.Union[str,routemaster_sdk.types.LabelRef,list[str],int]]"
+            ]
+        }
+    ],
+    "models@TestMicrobatchSampleMode": [
+        {
+            "category": "local",
+            "name": "input_model_sql",
+            "type": [
+                "str",
+                "routemaster_sdk.types.LabelRef"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sample_microbatch_model_sql",
+            "type": [
+                "str",
+                "list[str]",
+                "tuple[typing.Literal]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "models",
+            "type": [
+                "dict[typing.Text, typing.Union[str,routemaster_sdk.types.LabelRef,list[str],tuple[typing.Literal]]]"
+            ]
+        }
+    ],
+    "models@TestSampleSeedRefs": [
+        {
+            "category": "local",
+            "name": "sample_input_seed_sql",
+            "type": [
+                "str",
+                "list[str]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "models",
+            "type": [
+                "dict[typing.Text, typing.Union[str,list[str],bytes]]"
+            ]
+        }
+    ],
+    "seeds@TestSampleSeedRefs": [
+        {
+            "category": "local",
+            "name": "input_seed_csv",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "seed_properties_yml",
+            "type": [
+                "str",
+                "list[str]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "seeds",
+            "type": [
+                "dict[typing.Text, typing.Union[str,list[str],dict[str, str]]]"
+            ]
+        }
+    ],
+    "test_incremental_model_sample@TestIncrementalModelSampleModeRelative": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "list[str]",
+                "dict[str, bool]",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "event_catcher",
+            "type": [
+                "list[str]",
+                "bool",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sample_mode_available",
+            "type": [
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sample",
+            "type": [
+                "list[str]",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_rows",
+            "type": [
+                "bool",
+                "list[str]",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "input_model_sql",
+            "type": [
+                "str",
+                "routemaster_sdk.types.LabelRef"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sample_mode_available",
+            "type": [
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_catcher",
+            "type": [
+                "list[str]",
+                "bool",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "typing.Callable[None,None,None, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "project",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "later_input_model_sql",
+            "type": [
+                "str",
+                "int",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "run_args",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sample",
+            "type": [
+                "list[str]",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_rows",
+            "type": [
+                "bool",
+                "list[str]",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_incremental_model_sample",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_incremental_model_sample@TestIncrementalModelSampleModeSpecific": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "list[str]",
+                "dict[str, bool]",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "event_catcher",
+            "type": [
+                "list[str]",
+                "bool",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sample_mode_available",
+            "type": [
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sample",
+            "type": [
+                "list[str]",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_rows",
+            "type": [
+                "bool",
+                "list[str]",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "input_model_sql",
+            "type": [
+                "str",
+                "routemaster_sdk.types.LabelRef"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sample_mode_available",
+            "type": [
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_catcher",
+            "type": [
+                "list[str]",
+                "bool",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "typing.Callable[None,None,None, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "project",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "later_input_model_sql",
+            "type": [
+                "str",
+                "int",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "run_args",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sample",
+            "type": [
+                "list[str]",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_rows",
+            "type": [
+                "bool",
+                "list[str]",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_incremental_model_sample",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sample_mode@TestBasicSampleMode": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": [
+                "bool",
+                "list[str]",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "dict",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "event_catcher",
+            "type": [
+                "bool",
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sample_mode_available",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "run_sample_mode",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_row_count",
+            "type": [
+                "bool",
+                "list[str]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "run_args",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_sample",
+            "type": [
+                "None",
+                "SampleWindow"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "run_sample_mode",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sample_mode_available",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_catcher",
+            "type": [
+                "bool",
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "project",
+            "type": [
+                "bool",
+                "list[str]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_row_count",
+            "type": [
+                "bool",
+                "list[str]",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_sample_mode",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sample_mode@TestMicrobatchSampleMode": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": [
+                "str",
+                "datetime.datetime",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "datetime.date",
+                "datetime.datetime",
+                "types.ModuleType"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "event_time_end_catcher",
+            "type": [
+                "float",
+                "str",
+                "None",
+                "datetime.date.time.datetime"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "event_time_start_catcher",
+            "type": [
+                "float",
+                "str",
+                "None",
+                "datetime.date.time.datetime"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sample_mode_available",
+            "type": [
+                "str",
+                "datetime.datetime",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_batches",
+            "type": [
+                "set[str]",
+                "dict[str, list[dict]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_filters",
+            "type": [
+                "typing.Iterable[int]",
+                "typing.TextIO",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sample_mode_available",
+            "type": [
+                "str",
+                "datetime.datetime",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_time_end_catcher",
+            "type": [
+                "float",
+                "str",
+                "None",
+                "datetime.date.time.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_time_start_catcher",
+            "type": [
+                "float",
+                "str",
+                "None",
+                "datetime.date.time.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "tuple[typing.Literal]",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_batches",
+            "type": [
+                "set[str]",
+                "dict[str, list[dict]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_file_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "project",
+            "type": [
+                "str",
+                "datetime.datetime",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_sample_mode",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sample_mode@TestSampleSeedRefs": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "bool",
+                "str",
+                "None",
+                "typing.Sequence[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sample_mode_available",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "run_sample_mode",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_row_count",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "run_args",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "run_sample_mode",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sample_mode_available",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "list[str]",
+                "str",
+                "typing.Callable[None,None,None, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "project",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_row_count",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_sample_mode",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

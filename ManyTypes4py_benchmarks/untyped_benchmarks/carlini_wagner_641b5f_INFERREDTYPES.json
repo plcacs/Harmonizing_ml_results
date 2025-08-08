@@ -1,0 +1,515 @@
+{
+    "__init__@L2CarliniWagnerAttack": [
+        {
+            "category": "arg",
+            "name": "binary_search_steps",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "steps",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stepsize",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "confidence",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "initial_const",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "abort_early",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "binary_search_steps",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "steps",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stepsize",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "confidence",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initial_const",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "abort_early",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_to_attack_space@global": [
+        {
+            "category": "arg",
+            "name": "x",
+            "type": [
+                "eagerpy.Tensor",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "bounds",
+            "type": [
+                "types.Bounds",
+                "float",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bounds",
+            "type": [
+                "types.Bounds",
+                "float",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "a",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "b",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "x",
+            "type": [
+                "eagerpy.Tensor",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_to_attack_space",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "_to_model_space@global": [
+        {
+            "category": "arg",
+            "name": "x",
+            "type": [
+                "eagerpy.Tensor",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "bounds",
+            "type": [
+                "types.Bounds",
+                "numpy.array",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bounds",
+            "type": [
+                "types.Bounds",
+                "numpy.array",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "x",
+            "type": [
+                "eagerpy.Tensor",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "a",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "b",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_to_model_space",
+            "type": [
+                "float"
+            ]
+        }
+    ],
+    "best_other_classes@global": [
+        {
+            "category": "arg",
+            "name": "logits",
+            "type": [
+                "eagerpy.Tensor",
+                "float",
+                "tuple[bool]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exclude",
+            "type": [
+                "eagerpy.Tensor",
+                "float",
+                "tuple[bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logits",
+            "type": [
+                "eagerpy.Tensor",
+                "float",
+                "tuple[bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exclude",
+            "type": [
+                "eagerpy.Tensor",
+                "float",
+                "tuple[bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "other_logits",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "best_other_classes",
+            "type": [
+                "bool",
+                "set[typing.Match]",
+                "float"
+            ]
+        }
+    ],
+    "global@global": [],
+    "is_adversarial@L2CarliniWagnerAttack": [
+        {
+            "category": "arg",
+            "name": "perturbed",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "logits",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "is_adversarial",
+            "type": []
+        }
+    ],
+    "loss_fun@L2CarliniWagnerAttack": [
+        {
+            "category": "arg",
+            "name": "delta",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "consts",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "loss_fun",
+            "type": [
+                "tuple[tuple]"
+            ]
+        }
+    ],
+    "run@L2CarliniWagnerAttack": [
+        {
+            "category": "arg",
+            "name": "model",
+            "type": [
+                "float",
+                "None",
+                "base.T"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "inputs",
+            "type": [
+                "float",
+                "None",
+                "base.T"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "criterion",
+            "type": [
+                "float",
+                "None",
+                "base.T"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "early_stop",
+            "type": [
+                "None",
+                "float",
+                "base.T"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "inputs",
+            "type": [
+                "float",
+                "None",
+                "base.T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "criterion",
+            "type": [
+                "float",
+                "None",
+                "base.T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "criterion_",
+            "type": [
+                "str",
+                "types.UUID",
+                "int",
+                "Misclassification",
+                "TargetedMisclassification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "float",
+                "None",
+                "base.T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "N",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "targeted",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rows",
+            "type": [
+                "int",
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "consts",
+            "type": [
+                "int",
+                "float",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lower_bounds",
+            "type": [
+                "float",
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upper_bounds",
+            "type": [
+                "float",
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "best_advs_norms",
+            "type": [
+                "list",
+                "float",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "found_advs",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "norms",
+            "type": [
+                "list",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "closer",
+            "type": [
+                "tuple[tuple[typing.Any]]",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "run",
+            "type": []
+        }
+    ]
+}

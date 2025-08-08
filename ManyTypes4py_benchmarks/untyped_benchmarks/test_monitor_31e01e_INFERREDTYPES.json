@@ -1,0 +1,1814 @@
+{
+    "assert_on_web_request_end@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "time",
+            "type": [
+                "types.CoroutineType",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "app",
+            "type": [
+                "int",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "response",
+            "type": [
+                "int",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_status",
+            "type": [
+                "int",
+                "typing.Callable[..., collections.abc.Coroutine]",
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "view",
+            "type": [
+                "Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "other_time",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict[typing.Text, float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mon",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "int",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "int",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "assert_on_web_request_end",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "create_monitor@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "create_monitor",
+            "type": [
+                "Monitor"
+            ]
+        }
+    ],
+    "create_populated_monitor@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "messages_active",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "messages_received_total",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "messages_sent",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "messages_s",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "messages_received_by_topic",
+            "type": [
+                "dict[typing.Text, int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "events_active",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "events_total",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "events_s",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "events_runtime_avg",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "events_by_task",
+            "type": [
+                "dict[typing.Text, int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "events_by_stream",
+            "type": [
+                "dict[typing.Text, int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "commit_latency",
+            "type": [
+                "list[float]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "send_latency",
+            "type": [
+                "list[float]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topic_buffer_full",
+            "type": [
+                "dict[typing.Text, int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "messages_active",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "messages_received_total",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "messages_sent",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "messages_s",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "messages_received_by_topic",
+            "type": [
+                "dict[typing.Text, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events_active",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events_total",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events_s",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events_runtime_avg",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events_by_task",
+            "type": [
+                "dict[typing.Text, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events_by_stream",
+            "type": [
+                "dict[typing.Text, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "commit_latency",
+            "type": [
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "send_latency",
+            "type": [
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_buffer_full",
+            "type": [
+                "dict[typing.Text, int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_populated_monitor",
+            "type": []
+        }
+    ],
+    "event@test_Monitor": [
+        {
+            "category": "return",
+            "name": "event",
+            "type": [
+                "Mock"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "TP1",
+            "type": [
+                "TP",
+                "raiden_contracts.tests.utils.channel.ChannelValues",
+                "int"
+            ]
+        }
+    ],
+    "message@test_Monitor": [
+        {
+            "category": "return",
+            "name": "message",
+            "type": [
+                "Mock"
+            ]
+        }
+    ],
+    "mon@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "time",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mon",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "time",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mon_",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "mon",
+            "type": [
+                "int",
+                "str"
+            ]
+        }
+    ],
+    "on_sample@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "prev_events",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "prev_messages",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "on_sample",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "stream@test_Monitor": [
+        {
+            "category": "return",
+            "name": "stream",
+            "type": [
+                "Mock"
+            ]
+        }
+    ],
+    "table@test_Monitor": [
+        {
+            "category": "return",
+            "name": "table",
+            "type": [
+                "Mock"
+            ]
+        }
+    ],
+    "test_TableState_asdict@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "table",
+            "type": [
+                "str",
+                "purplship.core.utils.pipeline.Job"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mon",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "table",
+            "type": [
+                "str",
+                "purplship.core.utils.pipeline.Job"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_asdict",
+            "type": [
+                "dict[typing.Text, int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_TableState_asdict",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test__sample@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prev_event_total",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prev_message_total",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mon_",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mon",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test__sample",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_asdict@test_Monitor": [
+        {
+            "category": "local",
+            "name": "mon",
+            "type": [
+                "typing.Generator[typing.Optional[typing.Any]]",
+                "range",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_asdict",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_init_max_assignment_latency_history@test_Monitor": [
+        {
+            "category": "return",
+            "name": "test_init_max_assignment_latency_history",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_init_max_assignment_latency_history__default@test_Monitor": [
+        {
+            "category": "return",
+            "name": "test_init_max_assignment_latency_history__default",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_init_max_avg_history@test_Monitor": [
+        {
+            "category": "return",
+            "name": "test_init_max_avg_history",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_init_max_avg_history__default@test_Monitor": [
+        {
+            "category": "return",
+            "name": "test_init_max_avg_history__default",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_init_max_commit_latency_history@test_Monitor": [
+        {
+            "category": "return",
+            "name": "test_init_max_commit_latency_history",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_init_max_commit_latency_history__default@test_Monitor": [
+        {
+            "category": "return",
+            "name": "test_init_max_commit_latency_history__default",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_init_max_send_latency_history@test_Monitor": [
+        {
+            "category": "return",
+            "name": "test_init_max_send_latency_history",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_init_max_send_latency_history__default@test_Monitor": [
+        {
+            "category": "return",
+            "name": "test_init_max_send_latency_history__default",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_init_rebalances@test_Monitor": [
+        {
+            "category": "return",
+            "name": "test_init_rebalances",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_assignment_completed@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": [
+                "typing.Any",
+                "None",
+                "typing.Callable[..., None]",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "time",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "other_time",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "assignor",
+            "type": [
+                "Mock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_assignment_completed",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_assignment_error@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": [
+                "typing.Any",
+                "None",
+                "typing.Callable[..., None]",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "time",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "other_time",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "assignor",
+            "type": [
+                "Mock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_assignment_error",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_assignment_start@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": [
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "time",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mon",
+            "type": [
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "tuple[typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_assignment_start",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_commit_completed@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": [
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "time",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "other_time",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mon",
+            "type": [
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_commit_completed",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_commit_initiated@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": [
+                "mock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "time",
+            "type": [
+                "mock.Mock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_commit_initiated",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_message_in@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "typing.Any",
+                "None",
+                "float",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": [
+                "float",
+                "raiden.utils.TokenAmount",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "time",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mon",
+            "type": [
+                "float",
+                "raiden.utils.TokenAmount",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TP1",
+            "type": [
+                "raiden_contracts.tests.utils.channel.ChannelValues",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_message_in",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_message_out@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "typing.Any",
+                "None",
+                "typing.Callable[..., None]",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": [
+                "int",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "time",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mon_",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_",
+            "type": [
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mon",
+            "type": [
+                "int",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TP1",
+            "type": [
+                "raiden_contracts.tests.utils.channel.ChannelValues",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_message_out",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_rebalance_end@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": [
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "time",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "app",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "other_time",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict[typing.Text, float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mon",
+            "type": [
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_rebalance_end",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_rebalance_return@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": [
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "time",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "app",
+            "type": [
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "other_time",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict[typing.Text, float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mon",
+            "type": [
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_rebalance_return",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_rebalance_start@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": [
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "time",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "app",
+            "type": [
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app_",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mon",
+            "type": [
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "str",
+                "dict[str, typing.Union[None,typing.Any,int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_rebalance_start",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_send_completed@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": [
+                "float",
+                "raiden.utils.BlockTimeout",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "time",
+            "type": [
+                "typing.Any",
+                "None",
+                "float",
+                "typing.Callable[..., None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "other_time",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mon",
+            "type": [
+                "float",
+                "raiden.utils.BlockTimeout",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_send_completed",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_send_error@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "time",
+            "type": [
+                "int",
+                "typing.Callable[..., None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mon",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_send_error",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_send_initiated@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "time",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mon",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_send_initiated",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_stream_event_in@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "event",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "time",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TP1",
+            "type": [
+                "raiden_contracts.tests.utils.channel.ChannelValues",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_stream_event_in",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_stream_event_out@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "event",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "time",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "other_time",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mon_",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict[typing.Text, typing.Union[float,None]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TP1",
+            "type": [
+                "raiden_contracts.tests.utils.channel.ChannelValues",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_stream_event_out",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_stream_event_out__missing_state@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "event",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "time",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "TP1",
+            "type": [
+                "raiden_contracts.tests.utils.channel.ChannelValues",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_stream_event_out__missing_state",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_table_del@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "table",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mon",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "table",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_table_del",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_table_get@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "table",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mon",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "table",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_table_get",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_table_set@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "table",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mon",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "table",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_table_set",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_topic_buffer_full@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "TP1",
+            "type": [
+                "raiden_contracts.tests.utils.channel.ChannelValues",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_topic_buffer_full",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_tp_commit@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partitions",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tps",
+            "type": [
+                "set[TP]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tp",
+            "type": [
+                "TP"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "commit_offsets",
+            "type": [
+                "dict[TP, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mon",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "offsets_dict",
+            "type": [
+                "dict",
+                "typing.Type",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_tp_commit",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_web_request_end@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": [
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "time",
+            "type": [
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "app",
+            "type": [
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response_",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mon",
+            "type": [
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "time",
+            "type": [
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_web_request_end",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_web_request_end__None_response@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": [
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "time",
+            "type": [
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "app",
+            "type": [
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mon",
+            "type": [
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "time",
+            "type": [
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_web_request_end__None_response",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_web_request_start@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "time",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "app",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "view",
+            "type": [
+                "Mock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_web_request_start",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_service_sampler@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "mon",
+            "type": [
+                "Monitor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "i",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mon_",
+            "type": [
+                "list",
+                "AsyncMock",
+                "Mock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_service_sampler",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_track_tp_end_offsets@test_Monitor": [
+        {
+            "category": "arg",
+            "name": "mon",
+            "type": [
+                "float",
+                "int",
+                "opentrons.types.Location",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tp",
+            "type": [
+                "TP"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mon",
+            "type": [
+                "float",
+                "int",
+                "opentrons.types.Location",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "offsets_dict",
+            "type": [
+                "dict",
+                "dict[str, dict[typing.Any, int]]",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_track_tp_end_offsets",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "time@test_Monitor": [
+        {
+            "category": "local",
+            "name": "timefun",
+            "type": [
+                "Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timefun_",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "time",
+            "type": [
+                "Mock"
+            ]
+        }
+    ],
+    "topic@test_Monitor": [
+        {
+            "category": "return",
+            "name": "topic",
+            "type": [
+                "Mock"
+            ]
+        }
+    ]
+}

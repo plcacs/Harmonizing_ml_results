@@ -1,0 +1,1855 @@
+{
+    "__init__@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "db",
+            "type": [
+                "str",
+                "solo.server.db.types.SQLEngine"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db",
+            "type": [
+                "str",
+                "solo.server.db.types.SQLEngine"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_add_block_number_to_hash_lookup@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "header",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader",
+                "eth.abc.DatabaseAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader",
+                "eth.abc.DatabaseAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_add_block_number_to_hash_lookup",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_canonicalize_header@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "db",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "header",
+            "type": [
+                "bytes",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "genesis_parent_hash",
+            "type": [
+                "bytes",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cls",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header",
+            "type": [
+                "bytes",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "genesis_parent_hash",
+            "type": [
+                "bytes",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_canonical_headers",
+            "type": [
+                "tuple",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "h",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "old_canonical_headers",
+            "type": [
+                "eth.rlp.headers.BlockHeader",
+                "dict",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "checkpoints",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attempted_checkpoint_overrides",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ancestor",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_canonicalize_header",
+            "type": [
+                "tuple[typing.Union[tuple,tuple[str],eth.rlp.headers.BlockHeader,dict,list]]"
+            ]
+        }
+    ],
+    "_decanonicalize_descendant_orphans@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "header",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.abc.DatabaseAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "checkpoints",
+            "type": [
+                "eth.abc.DatabaseAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cls",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_gaps",
+            "type": [
+                "int",
+                "tuple[typing.Any]",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "starting_gaps",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.abc.DatabaseAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "child_number",
+            "type": [
+                "BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "child",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "next_invalid_child",
+            "type": [
+                "None",
+                "int",
+                "eth.abc.BlockHeaderAPI",
+                "dict",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "checkpoints",
+            "type": [
+                "eth.abc.DatabaseAPI"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_decanonicalize_descendant_orphans",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_decanonicalize_single@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "int",
+                "str",
+                "BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.ChainGaps",
+                "eth.abc.BlockAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_num",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "eth.abc.BlockAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "base_gaps",
+            "type": [
+                "eth.ChainGaps",
+                "int",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.ChainGaps",
+                "eth.abc.BlockAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_num",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "eth.abc.BlockAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "base_gaps",
+            "type": [
+                "eth.ChainGaps",
+                "int",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_gaps",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_decanonicalize_single",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        }
+    ],
+    "_decode_block_header@global": [
+        {
+            "category": "arg",
+            "name": "header_rlp",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header_rlp",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_decode_block_header",
+            "type": []
+        }
+    ],
+    "_find_headers_to_decanonicalize@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "numbers_to_decanonicalize",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "numbers_to_decanonicalize",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cls",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "old_canonical_hash",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_find_headers_to_decanonicalize",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "_find_new_ancestors@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "header",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader",
+                "eth.abc.DatabaseAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "genesis_parent_hash",
+            "type": [
+                "eth.abc.DatabaseAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader",
+                "eth.abc.DatabaseAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "h",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader",
+                "eth.abc.DatabaseAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cls",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_find_new_ancestors",
+            "type": [
+                "typing.Generator[typing.Union[eth.abc.BlockHeaderAPI,eth.rlp.headers.BlockHeader,eth.abc.DatabaseAPI]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "genesis_parent_hash",
+            "type": [
+                "eth.abc.DatabaseAPI"
+            ]
+        }
+    ],
+    "_get_block_header_by_hash@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "db",
+            "type": [
+                "str",
+                "bytes",
+                "eth.abc.DatabaseAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_hash",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.rlp.headers.BlockHeader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_hash",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.rlp.headers.BlockHeader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db",
+            "type": [
+                "str",
+                "bytes",
+                "eth.abc.DatabaseAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header_rlp",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_block_header_by_hash",
+            "type": [
+                "bytes",
+                "str",
+                "dict"
+            ]
+        }
+    ],
+    "_get_canonical_block_hash@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "db",
+            "type": [
+                "typing.Iterable[int]",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_number",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db",
+            "type": [
+                "typing.Iterable[int]",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_canonical_block_hash",
+            "type": []
+        }
+    ],
+    "_get_canonical_block_header_by_number@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockAPI",
+                "eth.chains.base.BaseChain"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockAPI",
+                "eth.chains.base.BaseChain"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_number",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cls",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockAPI",
+                "eth.chains.base.BaseChain"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockAPI",
+                "eth.chains.base.BaseChain"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "canonical_block_hash",
+            "type": [
+                "bytes",
+                "eth.chains.base.MiningChain",
+                "beacon_chain.beacon_custom.Hash32"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_canonical_block_header_by_number",
+            "type": [
+                "bool",
+                "str",
+                "tuple[int]"
+            ]
+        }
+    ],
+    "_get_canonical_head@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.AtomicDatabaseAPI",
+                "eth.db.backends.base.BaseDB"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.AtomicDatabaseAPI",
+                "eth.db.backends.base.BaseDB"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cls",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.AtomicDatabaseAPI",
+                "eth.db.backends.base.BaseDB"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.AtomicDatabaseAPI",
+                "eth.db.backends.base.BaseDB"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "canonical_head_hash",
+            "type": [
+                "str",
+                "bytes",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_canonical_head",
+            "type": [
+                "bytes",
+                "bool",
+                "str"
+            ]
+        }
+    ],
+    "_get_canonical_head_hash@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "eth.abc.AtomicDatabaseAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.rlp.headers.BlockHeader",
+                "eth.abc.AtomicDatabaseAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.rlp.headers.BlockHeader",
+                "eth.abc.AtomicDatabaseAPI"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_canonical_head_hash",
+            "type": [
+                "Hash32"
+            ]
+        }
+    ],
+    "_get_checkpoints@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "eth.abc.AtomicDatabaseAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "db",
+            "type": [
+                "id3c.db.session.DatabaseSession"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db",
+            "type": [
+                "id3c.db.session.DatabaseSession"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "concatenated_checkpoints",
+            "type": [
+                "None",
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_checkpoints",
+            "type": [
+                "tuple",
+                "tuple[Hash32]"
+            ]
+        }
+    ],
+    "_get_header_chain_gaps@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "AtomicDatabaseAPI",
+                "eth.rlp.headers.BlockHeader",
+                "BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_header_chain_gaps",
+            "type": []
+        }
+    ],
+    "_get_score@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "db",
+            "type": [
+                "int",
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_hash",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockAPI",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db",
+            "type": [
+                "int",
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_hash",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockAPI",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_score",
+            "type": []
+        }
+    ],
+    "_handle_gap_change@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "gap_info",
+            "type": [
+                "eth.db.chain_gaps.GapInfo",
+                "tuple[bool]",
+                "eth.abc.BlockAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "header",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.db.chain_gaps.GapInfo",
+                "eth.abc.DatabaseAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "genesis_parent_hash",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "typing.Iterable[eth.abc.BlockHeaderAPI]",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gap_info",
+            "type": [
+                "eth.db.chain_gaps.GapInfo",
+                "tuple[bool]",
+                "eth.abc.BlockAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gap_change",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gaps",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_handle_gap_change",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.db.chain_gaps.GapInfo",
+                "eth.abc.DatabaseAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "next_child_number",
+            "type": [
+                "BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cls",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_child",
+            "type": [
+                "list",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "checkpoints",
+            "type": [
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "genesis_parent_hash",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "typing.Iterable[eth.abc.BlockHeaderAPI]",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        }
+    ],
+    "_header_exists@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.rlp.headers.BlockHeader",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_hash",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.rlp.headers.BlockHeader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_hash",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.rlp.headers.BlockHeader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.rlp.headers.BlockHeader",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_header_exists",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_persist_checkpoint_header@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "int",
+                "eth.abc.DatabaseAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "header",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "score",
+            "type": [
+                "int",
+                "eth.db.chain_gaps.GapInfo"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cls",
+            "type": [
+                "int",
+                "eth.abc.DatabaseAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "previous_checkpoints",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_checkpoints",
+            "type": [
+                "list",
+                "set",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "score",
+            "type": [
+                "int",
+                "eth.db.chain_gaps.GapInfo"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "previous_score",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "bytes",
+                "typing.Callable[None, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gaps",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parent_block_num",
+            "type": [
+                "BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parent_hash",
+            "type": [
+                "str",
+                "bytes",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_persist_checkpoint_header",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_persist_header_chain@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "headers",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "genesis_parent_hash",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.ChainGaps",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_persist_header_chain",
+            "type": [
+                "tuple[tuple]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "genesis_parent_hash",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.ChainGaps",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_genesis",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cls",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "score",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "base_gaps",
+            "type": [
+                "int",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "orig_headers_seq",
+            "type": [
+                "bytes",
+                "list[bytes]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "previous_canonical_head",
+            "type": [
+                "dict",
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "head_score",
+            "type": [
+                "int",
+                "dict[int, list[typing.Any]]",
+                "dict[str, int]"
+            ]
+        }
+    ],
+    "_set_as_canonical_chain_head@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "header",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader",
+                "eth.abc.DatabaseAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "genesis_parent_hash",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cls",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_canonical_head",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader",
+                "eth.abc.DatabaseAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_canonical_headers",
+            "type": [
+                "tuple[typing.Union[eth.abc.BlockHeaderAPI,eth.rlp.headers.BlockHeader,eth.abc.DatabaseAPI]]",
+                "eth.rlp.headers.BlockHeader",
+                "tuple",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "old_canonical_headers",
+            "type": [
+                "tuple",
+                "eth.rlp.headers.BlockHeader",
+                "eth.abc.HeaderChainAPI",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "genesis_parent_hash",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_set_as_canonical_chain_head",
+            "type": [
+                "tuple[typing.Union[eth.rlp.headers.BlockHeader,tuple,eth.abc.BlockHeaderAPI,tuple[typing.Union[eth.abc.BlockHeaderAPI,eth.rlp.headers.BlockHeader,eth.abc.DatabaseAPI]],eth.abc.HeaderChainAPI]]"
+            ]
+        }
+    ],
+    "_set_hash_scores_to_db@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "int",
+                "BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "header",
+            "type": [
+                "int",
+                "eth.rlp.transactions.BaseTransaction",
+                "id3c.db.session.DatabaseSession"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "score",
+            "type": [
+                "int",
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header",
+            "type": [
+                "int",
+                "eth.rlp.transactions.BaseTransaction",
+                "id3c.db.session.DatabaseSession"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "score",
+            "type": [
+                "int",
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_set_hash_scores_to_db",
+            "type": []
+        }
+    ],
+    "_update_header_chain_gaps@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.abc.DatabaseAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.ChainGaps",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "persisted_header",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.abc.DatabaseAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "base_gaps",
+            "type": [
+                "None",
+                "eth.ChainGaps",
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "base_gaps",
+            "type": [
+                "None",
+                "eth.ChainGaps",
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "int",
+                "list[tuple[typing.Union[typing.Any,float]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cls",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.abc.DatabaseAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.ChainGaps",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "persisted_header",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.abc.DatabaseAPI",
+                "eth.ChainGaps"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gap_change",
+            "type": [
+                "str",
+                "int",
+                "typing.Iterator",
+                "GapChange_@_NoChange"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_update_header_chain_gaps",
+            "type": [
+                "tuple[typing.Union[GapChange_@_NoChange,str,int,typing.Iterator]]"
+            ]
+        }
+    ],
+    "get_block_header_by_hash@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "block_hash",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "get_block_header_by_hash",
+            "type": []
+        }
+    ],
+    "get_canonical_block_hash@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "block_number",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_canonical_block_hash",
+            "type": []
+        }
+    ],
+    "get_canonical_block_header_by_number@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "block_number",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_canonical_block_header_by_number",
+            "type": []
+        }
+    ],
+    "get_canonical_head@HeaderDB": [
+        {
+            "category": "return",
+            "name": "get_canonical_head",
+            "type": []
+        }
+    ],
+    "get_header_chain_gaps@HeaderDB": [
+        {
+            "category": "return",
+            "name": "get_header_chain_gaps",
+            "type": []
+        }
+    ],
+    "get_score@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "block_hash",
+            "type": [
+                "bytes",
+                "typing.Iterable[eth.abc.BlockHeaderAPI]",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_hash",
+            "type": [
+                "bytes",
+                "typing.Iterable[eth.abc.BlockHeaderAPI]",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_score",
+            "type": []
+        }
+    ],
+    "global@global": [],
+    "header_exists@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "block_hash",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_hash",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "header_exists",
+            "type": []
+        }
+    ],
+    "persist_checkpoint_header@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "header",
+            "type": [
+                "int",
+                "eth.abc.BlockHeaderAPI",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "score",
+            "type": [
+                "int",
+                "eth.abc.BlockHeaderAPI",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header",
+            "type": [
+                "int",
+                "eth.abc.BlockHeaderAPI",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "score",
+            "type": [
+                "int",
+                "eth.abc.BlockHeaderAPI",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "persist_checkpoint_header",
+            "type": []
+        }
+    ],
+    "persist_header@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "header",
+            "type": [
+                "eth.rlp.headers.BlockHeader",
+                "eth.abc.BlockHeaderAPI",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header",
+            "type": [
+                "eth.rlp.headers.BlockHeader",
+                "eth.abc.BlockHeaderAPI",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "persist_header",
+            "type": [
+                "str",
+                "dict"
+            ]
+        }
+    ],
+    "persist_header_chain@HeaderDB": [
+        {
+            "category": "arg",
+            "name": "headers",
+            "type": [
+                "typing.Iterable[eth.abc.BlockHeaderAPI]",
+                "eth.abc.BlockHeaderAPI",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "genesis_parent_hash",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "headers",
+            "type": [
+                "typing.Iterable[eth.abc.BlockHeaderAPI]",
+                "eth.abc.BlockHeaderAPI",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "persist_header_chain",
+            "type": []
+        }
+    ]
+}

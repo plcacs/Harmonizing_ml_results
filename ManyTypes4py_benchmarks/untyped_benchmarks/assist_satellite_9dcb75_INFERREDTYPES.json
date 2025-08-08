@@ -1,0 +1,935 @@
+{
+    "__init__@VoipAssistSatellite": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "typing.Callable",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "voip_device",
+            "type": [
+                "bool",
+                "typing.Iterable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "config_entry",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistancore.HomeAssistant",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tones",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "voip_device",
+            "type": [
+                "bool",
+                "typing.Iterable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config_entry",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistancore.HomeAssistant",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_audio_chunk_timeout",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_run_pipeline_task",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_pipeline_had_error",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_tts_extra_timeout",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_tone_bytes",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_announcement",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_announcment_start_time",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_check_announcement_ended_task",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_last_chunk_time",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_rtp_port",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_run_pipeline_after_announce",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_async_send_audio@VoipAssistSatellite": [
+        {
+            "category": "arg",
+            "name": "audio_bytes",
+            "type": [
+                "bytes",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "audio_bytes",
+            "type": [
+                "bytes",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_async_send_audio",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_check_announcement_ended@VoipAssistSatellite": [
+        {
+            "category": "local",
+            "name": "_announcement",
+            "type": [
+                "int",
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_ANNOUNCEMENT_RING_TIMEOUT",
+            "type": [
+                "int",
+                "str",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_check_announcement_ended_task",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_ANNOUNCEMENT_HANGUP_SEC",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_check_announcement_ended",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_clear_audio_queue@VoipAssistSatellite": [
+        {
+            "category": "return",
+            "name": "_clear_audio_queue",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_do_announce@VoipAssistSatellite": [
+        {
+            "category": "arg",
+            "name": "announcement",
+            "type": [
+                "bool",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "run_pipeline_after",
+            "type": [
+                "bool",
+                "typing.Callable[dict, bool]",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "run_pipeline_after",
+            "type": [
+                "bool",
+                "typing.Callable[dict, bool]",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_run_pipeline_after_announce",
+            "type": [
+                "bool",
+                "typing.Callable[dict, bool]",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_rtp_port",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sip_port",
+            "type": [
+                "int",
+                "set",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sip_user",
+            "type": [
+                "list",
+                "core.models.User",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "destination_endpoint",
+            "type": [
+                "SipEndpoint"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_last_chunk_time",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "announcement",
+            "type": [
+                "bool",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_announcement",
+            "type": [
+                "bool",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_check_announcement_ended_task",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_do_announce",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_load_pcm@VoipAssistSatellite": [
+        {
+            "category": "arg",
+            "name": "file_name",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_name",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_load_pcm",
+            "type": []
+        }
+    ],
+    "_play_announcement@VoipAssistSatellite": [
+        {
+            "category": "arg",
+            "name": "announcement",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_ANNOUNCEMENT_BEFORE_DELAY",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "announcement",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_ANNOUNCEMENT_AFTER_DELAY",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_run_pipeline_task",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_announcement",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_play_announcement",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_play_tone@VoipAssistSatellite": [
+        {
+            "category": "arg",
+            "name": "tone",
+            "type": [
+                "bool",
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "silence_before",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tone",
+            "type": [
+                "bool",
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_play_tone",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_TONE_FILENAMES",
+            "type": [
+                "str",
+                "list[str]",
+                "dict[int, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "silence_before",
+            "type": [
+                "float"
+            ]
+        }
+    ],
+    "_run_pipeline@VoipAssistSatellite": [
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_pipeline_had_error",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_run_pipeline_task",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_run_pipeline",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_send_tts@VoipAssistSatellite": [
+        {
+            "category": "arg",
+            "name": "media_id",
+            "type": [
+                "str",
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "wait_for_tone",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transport",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_send_tts",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "media_id",
+            "type": [
+                "str",
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wait_for_tone",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tts_samples",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tts_seconds",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "async_add_device@global": [
+        {
+            "category": "arg",
+            "name": "device",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "async_add_device",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_added_to_hass@VoipAssistSatellite": [
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "VoipAssistSatellite"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_added_to_hass",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_announce@VoipAssistSatellite": [
+        {
+            "category": "arg",
+            "name": "announcement",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "announcement",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_announce",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_get_configuration@VoipAssistSatellite": [
+        {
+            "category": "return",
+            "name": "async_get_configuration",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_set_configuration@VoipAssistSatellite": [
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "dict[str, str]",
+                "static_frame.core.display_config.DisplayConfig",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_set_configuration",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_setup_entry@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "typing.Callable[list, None]",
+                "homeassistanconfig_entries.ConfigEntry"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "config_entry",
+            "type": [
+                "typing.Callable[list, None]",
+                "homeassistanconfig_entries.ConfigEntry"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "async_add_entities",
+            "type": [
+                "typing.Callable[list, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "typing.Callable[list, None]",
+                "homeassistanconfig_entries.ConfigEntry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config_entry",
+            "type": [
+                "typing.Callable[list, None]",
+                "homeassistanconfig_entries.ConfigEntry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entities",
+            "type": [
+                "list[VoipAssistSatellite]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_setup_entry",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_start_conversation@VoipAssistSatellite": [
+        {
+            "category": "arg",
+            "name": "start_announcement",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "start_announcement",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_start_conversation",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_will_remove_from_hass@VoipAssistSatellite": [
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_will_remove_from_hass",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_PIPELINE_TIMEOUT_SEC",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_ANNOUNCEMENT_BEFORE_DELAY",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_ANNOUNCEMENT_AFTER_DELAY",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_ANNOUNCEMENT_HANGUP_SEC",
+            "type": [
+                "float",
+                "int",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_ANNOUNCEMENT_RING_TIMEOUT",
+            "type": [
+                "int",
+                "str",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_TONE_FILENAMES",
+            "type": [
+                "dict[, typing.Text]",
+                "str",
+                "list[str]",
+                "dict[int, str]"
+            ]
+        }
+    ],
+    "on_chunk@VoipAssistSatellite": [
+        {
+            "category": "arg",
+            "name": "audio_bytes",
+            "type": [
+                "typing.BinaryIO",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_announcement",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_run_pipeline_task",
+            "type": [
+                "asyncio.Task",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "audio_bytes",
+            "type": [
+                "typing.BinaryIO",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_chunk",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "on_pipeline_event@VoipAssistSatellite": [
+        {
+            "category": "arg",
+            "name": "event",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_pipeline_had_error",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_pipeline_event",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "pipeline_entity_id@VoipAssistSatellite": [
+        {
+            "category": "return",
+            "name": "pipeline_entity_id",
+            "type": [
+                "str",
+                "bool",
+                "typing.Callable[typing.Any, None]",
+                "None"
+            ]
+        }
+    ],
+    "stt_stream@VoipAssistSatellite": [
+        {
+            "category": "return",
+            "name": "stt_stream",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "tts_options@VoipAssistSatellite": [
+        {
+            "category": "return",
+            "name": "tts_options",
+            "type": [
+                "dict[, typing.Union[typing.Text,int]]"
+            ]
+        }
+    ],
+    "vad_sensitivity_entity_id@VoipAssistSatellite": [
+        {
+            "category": "return",
+            "name": "vad_sensitivity_entity_id",
+            "type": [
+                "str"
+            ]
+        }
+    ]
+}

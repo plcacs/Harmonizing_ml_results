@@ -1,0 +1,4583 @@
+{
+    "_assert_subscription_order@global": [
+        {
+            "category": "local",
+            "name": "discovery_subscribes",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_discovery_subscribes",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "actual_subscribes",
+            "type": [
+                "list[list[typing.Text]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_assert_subscription_order",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_callback@global": [
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_callback",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_callback_a@global": [
+        {
+            "category": "arg",
+            "name": "msg",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_callback_a",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_callback_b@global": [
+        {
+            "category": "arg",
+            "name": "msg",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_callback_b",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_do_handshake@FakeWebsocket": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_do_handshake",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_mock_ack@global": [
+        {
+            "category": "arg",
+            "name": "topic",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "qos",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_mock_ack",
+            "type": [
+                "tuple[int]"
+            ]
+        }
+    ],
+    "global@global": [],
+    "help_assert_message@global": [
+        {
+            "category": "arg",
+            "name": "msg",
+            "type": [
+                "str",
+                "bool",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topic",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "payload",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "qos",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "retain",
+            "type": [
+                "None",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "match",
+            "type": [
+                "bool",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "str",
+                "bool",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payload",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "qos",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "retain",
+            "type": [
+                "None",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "help_assert_message",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "mock_tls_insecure_set@global": [
+        {
+            "category": "arg",
+            "name": "insecure_param",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "mock_tls_insecure_set",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "mock_tls_set@global": [
+        {
+            "category": "arg",
+            "name": "certificate",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "certfile",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "keyfile",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tls_version",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "certfile",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "keyfile",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tls_version",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "mock_tls_set",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_all_subscriptions_run_when_decode_fails@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_mock_entry",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "recorded_calls",
+            "type": [
+                "unittesmock.Mock",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_all_subscriptions_run_when_decode_fails",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_auto_reconnect@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "tests.async_mock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "tests.e2e.Helper",
+                "str",
+                "tests.setup.SetupTest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exception",
+            "type": [
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "tests.async_mock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_auto_reconnect",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_client_sock_failure_after_connect@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "tests.async_mock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "mock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recorded_calls",
+            "type": [
+                "mock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "mock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "mock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "tests.async_mock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_client_sock_failure_after_connect",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_convert_outgoing_payload@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "tests.async_mock.Mock",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_convert_outgoing_payload",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_custom_birth_message@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_config_entry_data",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_config_entry_options",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_config_entry_data",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_config_entry_options",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entry",
+            "type": [
+                "MockConfigEntry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_custom_birth_message",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_custom_will_message@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_config_entry_data",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_config_entry_options",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_client_mock",
+            "type": [
+                "unittesmock.Mock",
+                "experimental.util.alice.alice_pb2.RunRequest",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_config_entry_data",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_config_entry_options",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entry",
+            "type": [
+                "MockConfigEntry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_custom_will_message",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_default_birth_message@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.setup.SetupTest",
+                "tests.async_mock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.setup.SetupTest",
+                "tests.async_mock.MagicMock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_default_birth_message",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_default_will_message@global": [
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "unittesmock.Mock",
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "unittesmock.Mock",
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "unittesmock.Mock",
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_default_will_message",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_delayed_birth_message@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_config_entry_data",
+            "type": [
+                "typing.Callable[List,bool, None]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_config_entry_options",
+            "type": [
+                "typing.Callable[List,bool, None]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_config_entry_data",
+            "type": [
+                "typing.Callable[List,bool, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_config_entry_options",
+            "type": [
+                "typing.Callable[List,bool, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entry",
+            "type": [
+                "MockConfigEntry"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_delayed_birth_message",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_handle_message_callback@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "callbacks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "ReceiveMessage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_handle_message_callback",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_handle_mqtt_on_callback@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "str",
+                "tests.e2e.Helper",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_handle_mqtt_on_callback",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_handle_mqtt_on_callback_after_cancellation@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_mock_entry",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_mock",
+            "type": [
+                "unittesmock.MagicMock",
+                "typing.Generator[typing.Optional[typing.Any]]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_handle_mqtt_on_callback_after_cancellation",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_handle_mqtt_on_callback_after_timeout@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_mock_entry",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_mock",
+            "type": [
+                "unittesmock.Mock",
+                "dict[str, dict[str, typing.Any]]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_handle_mqtt_on_callback_after_timeout",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_handle_mqtt_timeout_on_callback@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_debouncer",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "tests.async_mock.Mock",
+                "tests.async_mock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mid",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rc",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_client",
+            "type": [
+                "tests.utils.PicklableMock",
+                "unittesmock.MagicMock",
+                "mock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_client_",
+            "type": [
+                "FakeInfo",
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entry",
+            "type": [
+                "MockConfigEntry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_debouncer",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "tests.async_mock.Mock",
+                "tests.async_mock.MagicMock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_handle_mqtt_timeout_on_callback",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_initial_setup_logs_error@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entry",
+            "type": [
+                "MockConfigEntry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock_",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_initial_setup_logs_error",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_logs_error_if_no_connect_broker@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "str",
+                "homeassistancore.HomeAssistant",
+                "tests.e2e.Helper"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_logs_error_if_no_connect_broker",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_loop_write_failure@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "mock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "tests.e2e.Helper",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "mock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "mock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_loop_write_failure",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_mqtt_await_ack_at_disconnect@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "tests.async_mock.Mock",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mid",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rc",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entry",
+            "type": [
+                "MockConfigEntry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "tests.async_mock.Mock",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_mqtt_await_ack_at_disconnect",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_mqtt_connects_on_home_assistant_mqtt_setup@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_mqtt_connects_on_home_assistant_mqtt_setup",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_mqtt_discovery_not_subscribes_when_disabled@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subscribe_calls",
+            "type": [
+                "list",
+                "dict",
+                "dict[str, typing.Union[None,typing.Any,str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_mqtt_discovery_not_subscribes_when_disabled",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_mqtt_does_not_disconnect_on_home_assistant_stop@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "tests.e2e.Helper",
+                "homeassistancore.HomeAssistant",
+                "tests.setup.SetupTest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_mqtt_does_not_disconnect_on_home_assistant_stop",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_mqtt_subscribes_and_unsubscribes_in_chunks@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "experimental.util.alice.alice_pb2.RunRequest",
+                "asyncio.AbstractEventLoop",
+                "experimental.util.alice.alice_pb2_grpc.LedgerStub"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.Mock",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "mock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "experimental.util.alice.alice_pb2.RunRequest",
+                "asyncio.AbstractEventLoop",
+                "experimental.util.alice.alice_pb2_grpc.LedgerStub"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "mock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "mock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unsub_tasks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.Mock",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "experimental.util.alice.alice_pb2.RunRequest",
+                "asyncio.AbstractEventLoop",
+                "experimental.util.alice.alice_pb2_grpc.LedgerStub"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "experimental.util.alice.alice_pb2.RunRequest",
+                "asyncio.AbstractEventLoop",
+                "experimental.util.alice.alice_pb2_grpc.LedgerStub"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_mqtt_subscribes_and_unsubscribes_in_chunks",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_mqtt_subscribes_in_single_call@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.Mock",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.Mock",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_mqtt_subscribes_in_single_call",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_mqtt_subscribes_topics_on_connect@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "tests.setup.SetupTest",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.Mock",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "mock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "tests.setup.SetupTest",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "mock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "mock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.Mock",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "tests.setup.SetupTest",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "tests.setup.SetupTest",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subscribe_calls",
+            "type": [
+                "list",
+                "list[str]",
+                "dict[str, bool]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_mqtt_subscribes_topics_on_connect",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_mqtt_subscribes_wildcard_topics_in_correct_order@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.Mock",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.Mock",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_mqtt_subscribes_wildcard_topics_in_correct_order",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_no_birth_message@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_config_entry_data",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_config_entry_options",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_client_mock",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_config_entry_data",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_config_entry_options",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entry",
+            "type": [
+                "MockConfigEntry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_no_birth_message",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_no_will_message@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_config_entry_data",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_config_entry_options",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_config_entry_data",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_config_entry_options",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entry",
+            "type": [
+                "MockConfigEntry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_no_will_message",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_not_calling_subscribe_when_unsubscribed_within_cooldown@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant",
+                "tests.components.withings.common.ComponentFactory"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_debouncer",
+            "type": [
+                "mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_mock_entry",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant",
+                "tests.components.withings.common.ComponentFactory"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_mock",
+            "type": [
+                "unittesmock.Mock",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_debouncer",
+            "type": [
+                "mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant",
+                "tests.components.withings.common.ComponentFactory"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant",
+                "tests.components.withings.common.ComponentFactory"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_not_calling_subscribe_when_unsubscribed_within_cooldown",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_not_calling_unsubscribe_with_active_subscribers@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "mock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "mock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "mock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_not_calling_unsubscribe_with_active_subscribers",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_publish@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "common.ComponentFactory"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "common.ComponentFactory"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_publish",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_publish_error@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "HomeAssistant",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entry",
+            "type": [
+                "MockConfigEntry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_client()_",
+            "type": [
+                "typing.Callable",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_publish_error",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_replaying_payload_after_resubscribing@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "calls_a",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_replaying_payload_after_resubscribing",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_replaying_payload_same_topic@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "calls_a",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "calls_b",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_replaying_payload_same_topic",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_replaying_payload_wildcard_topic@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_debouncer",
+            "type": [
+                "mock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "calls_a",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "calls_b",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_debouncer",
+            "type": [
+                "mock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_replaying_payload_wildcard_topic",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_restore_all_active_subscriptions_on_reconnect@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_debouncer",
+            "type": [
+                "mock.MagicMock",
+                "mock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "mock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "mock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "mock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_debouncer",
+            "type": [
+                "mock.MagicMock",
+                "mock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_restore_all_active_subscriptions_on_reconnect",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_restore_subscriptions_on_reconnect@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "mock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "mock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "mock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_restore_subscriptions_on_reconnect",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_server_sock_buffer_size@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "mock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "tests.e2e.Helper",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "mock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "mock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_server_sock_buffer_size",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_server_sock_buffer_size_with_websocket@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "tests.e2e.Helper"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wrapped_socket",
+            "type": [
+                "FakeWebsocket"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_server_sock_buffer_size_with_websocket",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_server_sock_connect_and_disconnect@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "mock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recorded_calls",
+            "type": [
+                "experimental.util.alice.alice_pb2.String",
+                "unittesmock.Mock",
+                "experimental.util.alice.alice_pb2.RunRequest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "mock.MagicMock",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "mock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "mock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "mock.MagicMock",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_server_sock_connect_and_disconnect",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_setup_mqtt_client_protocol@global": [
+        {
+            "category": "arg",
+            "name": "mqtt_mock_entry",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "protocol",
+            "type": [
+                "unittesmock.MagicMock",
+                "tests._TestServerFactory",
+                "tests.setup.SetupTest"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_setup_mqtt_client_protocol",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_setup_raises_config_entry_not_ready_if_no_connect_broker@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exception",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "tests.async_mock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entry",
+            "type": [
+                "MockConfigEntry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exception",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "tests.async_mock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_client()_",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_setup_raises_config_entry_not_ready_if_no_connect_broker",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_setup_uses_certificate_on_certificate_set_to_auto_and_insecure@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_mock_entry",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.async_mock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "insecure_param",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "str",
+                "tests.async_mock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "calls",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "insecure_check",
+            "type": [
+                "dict[typing.Text, typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_setup_uses_certificate_on_certificate_set_to_auto_and_insecure",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_subscribe_and_resubscribe@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_debouncer",
+            "type": [
+                "mock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recorded_calls",
+            "type": [
+                "unittesmock.Mock",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_debouncer",
+            "type": [
+                "mock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_subscribe_and_resubscribe",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_subscribe_bad_topic@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_mock_entry",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_subscribe_bad_topic",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_subscribe_error@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "tests.e2e.Helper",
+                "str",
+                "tests.setup.SetupTest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock_",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_subscribe_error",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_subscribe_mqtt_config_entry_disabled@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_mock_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_config_entry",
+            "type": [
+                "str",
+                "dict[str, typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_subscribe_mqtt_config_entry_disabled",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_subscribe_same_topic@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "calls_a",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "calls_b",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_subscribe_same_topic",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_subscribe_special_characters@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_mock_entry",
+            "type": [
+                "tests.async_mock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recorded_calls",
+            "type": [
+                "unittesmock.Mock",
+                "unittesmock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payload",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_subscribe_special_characters",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_subscribe_topic@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_mock_entry",
+            "type": [
+                "tests.async_mock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recorded_calls",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_subscribe_topic",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_subscribe_topic_level_wildcard@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_mock_entry",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recorded_calls",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_subscribe_topic_level_wildcard",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_subscribe_topic_level_wildcard_and_wildcard_level_no_match@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_mock_entry",
+            "type": [
+                "tests.async_mock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recorded_calls",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_subscribe_topic_level_wildcard_and_wildcard_level_no_match",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_subscribe_topic_level_wildcard_and_wildcard_no_match@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_mock_entry",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recorded_calls",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_subscribe_topic_level_wildcard_and_wildcard_no_match",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_subscribe_topic_level_wildcard_and_wildcard_root_topic@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_mock_entry",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recorded_calls",
+            "type": [
+                "unittesmock.Mock",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_subscribe_topic_level_wildcard_and_wildcard_root_topic",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_subscribe_topic_level_wildcard_and_wildcard_subtree_topic@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_mock_entry",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recorded_calls",
+            "type": [
+                "unittesmock.Mock",
+                "unittesmock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_subscribe_topic_level_wildcard_and_wildcard_subtree_topic",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_subscribe_topic_level_wildcard_no_subtree_match@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_mock_entry",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recorded_calls",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_subscribe_topic_level_wildcard_no_subtree_match",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_subscribe_topic_level_wildcard_root_topic_no_subtree_match@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_mock_entry",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recorded_calls",
+            "type": [
+                "unittesmock.MagicMock",
+                "list[unittesmock.MagicMock]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_subscribe_topic_level_wildcard_root_topic_no_subtree_match",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_subscribe_topic_non_async@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.components.withings.common.ComponentFactory"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_mock_entry",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recorded_calls",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "mock.MagicMock",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_debouncer",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.components.withings.common.ComponentFactory"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "mock.MagicMock",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_subscribe_topic_non_async",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_subscribe_topic_not_initialize@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_subscribe_topic_not_initialize",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_subscribe_topic_not_match@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_mock_entry",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recorded_calls",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_subscribe_topic_not_match",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_subscribe_topic_subtree_wildcard_no_match@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_mock_entry",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recorded_calls",
+            "type": [
+                "unittesmock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_subscribe_topic_subtree_wildcard_no_match",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_subscribe_topic_subtree_wildcard_root_topic@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_mock_entry",
+            "type": [
+                "tests.async_mock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recorded_calls",
+            "type": [
+                "unittesmock.Mock",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_subscribe_topic_subtree_wildcard_root_topic",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_subscribe_topic_subtree_wildcard_subtree_topic@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_mock_entry",
+            "type": [
+                "tests.async_mock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recorded_calls",
+            "type": [
+                "unittesmock.Mock",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_subscribe_topic_subtree_wildcard_subtree_topic",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_subscribe_topic_sys_root@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_mock_entry",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recorded_calls",
+            "type": [
+                "unittesmock.Mock",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_subscribe_topic_sys_root",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_subscribe_topic_sys_root_and_wildcard_subtree_topic@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_mock_entry",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recorded_calls",
+            "type": [
+                "unittesmock.Mock",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_subscribe_topic_sys_root_and_wildcard_subtree_topic",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_subscribe_topic_sys_root_and_wildcard_topic@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_mock_entry",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recorded_calls",
+            "type": [
+                "unittesmock.Mock",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_subscribe_topic_sys_root_and_wildcard_topic",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_subscribed_at_highest_qos@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_debouncer",
+            "type": [
+                "mock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record_calls",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_debouncer",
+            "type": [
+                "mock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record_calls",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_subscribed_at_highest_qos",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_subscription_done_when_birth_message_is_sent@global": [
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "unittesmock.Mock",
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "mock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "unittesmock.Mock",
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "mock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "unittesmock.Mock",
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "mock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subscribe_calls",
+            "type": [
+                "list",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_subscription_done_when_birth_message_is_sent",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_tls_version@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_client_mock",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mqtt_mock_entry",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_tls_version",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_triggers_reauth_flow_if_auth_fails@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "common.ComponentFactory"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "mock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "reason_code",
+            "type": [
+                "unittesmock.Mock",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "mock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "mock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reason_code",
+            "type": [
+                "unittesmock.Mock",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "common.ComponentFactory"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flows",
+            "type": [
+                "list",
+                "list[tuple[typing.Union[str,typing.Any]]]",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_triggers_reauth_flow_if_auth_fails",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_unsubscribe_race@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_debouncer",
+            "type": [
+                "mock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup_with_birth_msg_client_mock",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mqtt_client_mock",
+            "type": [
+                "tests.async_mock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "calls_a",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "calls_b",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_debouncer",
+            "type": [
+                "mock.MagicMock",
+                "unittesmock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_calls_1",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_calls_2",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_calls_3",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_unsubscribe_race",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "wait_birth@global": [
+        {
+            "category": "arg",
+            "name": "msg",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "wait_birth",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

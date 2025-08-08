@@ -1,0 +1,828 @@
+{
+    "__init__@Decoder": [
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@TransformerDecoder": [
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "str",
+                "bool",
+                "TransformerConfig"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "inference_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dtype",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "clamp_to_dtype",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "str",
+                "bool",
+                "TransformerConfig"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "layers",
+            "type": [
+                "list",
+                "list[int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dtype",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inference_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "clamp_to_dtype",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "decode_seq@Decoder": [
+        {
+            "category": "arg",
+            "name": "inputs",
+            "type": [
+                "bool",
+                "list",
+                "dict[str, torch.Tensor]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "states",
+            "type": [
+                "bool",
+                "list",
+                "dict[str, torch.Tensor]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "decode_seq",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "decode_seq@TransformerDecoder": [
+        {
+            "category": "arg",
+            "name": "inputs",
+            "type": [
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "states",
+            "type": [
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inputs",
+            "type": [
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "states",
+            "type": [
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "outputs",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "tuple[typing.Union[typing.Literal,typing.Any]]",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "decode_seq",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "list"
+            ]
+        }
+    ],
+    "forward@TransformerDecoder": [
+        {
+            "category": "arg",
+            "name": "step_input",
+            "type": [
+                "torch.Tensor",
+                "torch.nn.utils.rnn.PackedSequence"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "states",
+            "type": [
+                "torch.Tensor",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_mask",
+            "type": [
+                "None",
+                "list[float]",
+                "list[None]",
+                "tuple[typing.Literal]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "states",
+            "type": [
+                "torch.Tensor",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "steps",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_mask",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "other",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_encoded",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "enc_att_kv",
+            "type": [
+                "list[None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "autoregr_states",
+            "type": [
+                "int",
+                "list[list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "step_input",
+            "type": [
+                "torch.Tensor",
+                "torch.nn.utils.rnn.PackedSequence"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "states_iter",
+            "type": [
+                "list",
+                "list[int]",
+                "slice"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch",
+            "type": [
+                "list",
+                "int",
+                "tuple[frozenset]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "heads",
+            "type": [
+                "list",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_max_len",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_max_len",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_mask_view",
+            "type": [
+                "int",
+                "list",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target",
+            "type": [
+                "int",
+                "list[list[float]]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_autoregr_states",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_states",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "forward",
+            "type": [
+                "tuple[typing.Union[int,list[list[float]],list[int],list]]"
+            ]
+        }
+    ],
+    "get_decoder@Decoder": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "typing.Type",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "bool",
+                "dict",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "inference_only",
+            "type": [
+                "bool",
+                "str",
+                "None",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dtype",
+            "type": [
+                "None",
+                "bool",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "clamp_to_dtype",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "bool",
+                "dict",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config_type",
+            "type": [
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cls",
+            "type": [
+                "typing.Type",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inference_only",
+            "type": [
+                "bool",
+                "str",
+                "None",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dtype",
+            "type": [
+                "None",
+                "bool",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "clamp_to_dtype",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_decoder",
+            "type": [
+                "str",
+                "typing.Callable[str, None]",
+                "None"
+            ]
+        }
+    ],
+    "get_decoder@global": [
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "bool",
+                "dict",
+                "typing.Type",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "inference_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dtype",
+            "type": [
+                "None",
+                "bool",
+                "dict",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "clamp_to_dtype",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "bool",
+                "dict",
+                "typing.Type",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inference_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dtype",
+            "type": [
+                "None",
+                "bool",
+                "dict",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "clamp_to_dtype",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_decoder",
+            "type": []
+        }
+    ],
+    "get_num_hidden@Decoder": [
+        {
+            "category": "return",
+            "name": "get_num_hidden",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_num_hidden@TransformerDecoder": [
+        {
+            "category": "return",
+            "name": "get_num_hidden",
+            "type": []
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DecoderConfig",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "dict[str, dict[str, str]]"
+            ]
+        }
+    ],
+    "init_state_from_encoder@Decoder": [
+        {
+            "category": "arg",
+            "name": "encoder_outputs",
+            "type": [
+                "bool",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "encoder_valid_length",
+            "type": [
+                "None",
+                "bool",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_embed",
+            "type": [
+                "None",
+                "bool",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "init_state_from_encoder",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "init_state_from_encoder@TransformerDecoder": [
+        {
+            "category": "arg",
+            "name": "encoder_outputs",
+            "type": [
+                "torch.LongTensor",
+                "torch.Tensor",
+                "torch.nn.modules.rnn.GRUCell"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "encoder_valid_length",
+            "type": [
+                "torch.LongTensor",
+                "torch.nn.modules.rnn.GRUCell",
+                "tuple[float]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_embed",
+            "type": [
+                "None",
+                "torch.Tensor",
+                "list[list[int]]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "encoder_outputs",
+            "type": [
+                "torch.LongTensor",
+                "torch.Tensor",
+                "torch.nn.modules.rnn.GRUCell"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_max_len",
+            "type": [
+                "int",
+                "typing.Sequence[int]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "encoder_valid_length",
+            "type": [
+                "torch.LongTensor",
+                "torch.nn.modules.rnn.GRUCell",
+                "tuple[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_embed",
+            "type": [
+                "None",
+                "torch.Tensor",
+                "list[list[int]]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "steps",
+            "type": [
+                "int",
+                "list[float]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "states",
+            "type": [
+                "list[typing.Union[int,list[float],tuple[int]]]",
+                "list[typing.Union[int,list[float],tuple[int],dict[str, typing.Any]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "encoder_outputs_t",
+            "type": [
+                "str",
+                "list",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "enc_att_kv",
+            "type": [
+                "list",
+                "dict[str, typing.Any]",
+                "list[tuple[typing.Union[int,typing.Any]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dummy_autoregr_states",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "init_state_from_encoder",
+            "type": [
+                "list[typing.Union[int,list[float],tuple[int],dict[str, typing.Any]]]"
+            ]
+        }
+    ],
+    "register@Decoder": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "config_type",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "register",
+            "type": []
+        }
+    ],
+    "set_inference_only@Decoder": [
+        {
+            "category": "arg",
+            "name": "inference_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_inference_only",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "set_inference_only@TransformerDecoder": [
+        {
+            "category": "arg",
+            "name": "inference_only",
+            "type": [
+                "bool",
+                "torch.dtype"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inference_only",
+            "type": [
+                "bool",
+                "torch.dtype"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_inference_only",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "state_structure@Decoder": [
+        {
+            "category": "return",
+            "name": "state_structure",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "state_structure@TransformerDecoder": [
+        {
+            "category": "local",
+            "name": "structure",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_num_states",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "state_structure",
+            "type": []
+        }
+    ],
+    "wrapper@Decoder": [
+        {
+            "category": "arg",
+            "name": "target_cls",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "wrapper",
+            "type": []
+        }
+    ]
+}

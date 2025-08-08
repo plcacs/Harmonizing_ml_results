@@ -1,0 +1,146 @@
+from typing import Callable, Dict, Generic, Iterator, List, Optional, Type, TypeVar, Union, cast, overload
+
+def get_unused_port_socket(host: str, family: int = socket.AF_INET) -> socket.socket:
+    ...
+
+def get_port_socket(host: str, port: int, family: int = socket.AF_INET) -> socket.socket:
+    ...
+
+def unused_port() -> int:
+    ...
+
+class BaseTestServer(ABC, Generic[_Request]):
+    ...
+
+    def __init__(self, *, scheme: str = '', host: str = '127.0.0.1', port: Optional[int] = None, skip_url_asserts: bool = False, socket_factory: Callable = get_port_socket, **kwargs: Dict[str, Any]):
+    ...
+
+    async def start_server(self, **kwargs: Dict[str, Any]):
+    ...
+
+    @abstractmethod
+    async def _make_runner(self, **kwargs: Dict[str, Any]):
+    ...
+
+    def make_url(self, path: str) -> URL:
+    ...
+
+class TestServer(BaseTestServer[Request]):
+    ...
+
+    def __init__(self, app: Application, *, scheme: str = '', host: str = '127.0.0.1', port: Optional[int] = None, **kwargs: Dict[str, Any]):
+    ...
+
+    async def _make_runner(self, **kwargs: Dict[str, Any]):
+    ...
+
+class RawTestServer(BaseTestServer[BaseRequest]):
+    ...
+
+    def __init__(self, handler: Callable, *, scheme: str = '', host: str = '127.0.0.1', port: Optional[int] = None, **kwargs: Dict[str, Any]):
+    ...
+
+    async def _make_runner(self, **kwargs: Dict[str, Any]):
+    ...
+
+class TestClient(Generic[_Request, _ApplicationNone]):
+    ...
+
+    @overload
+    def __init__(self, server: BaseTestServer, *, cookie_jar: Optional[aiohttp.CookieJar] = None, **kwargs: Dict[str, Any]):
+    ...
+
+    @overload
+    def __init__(self, server: BaseTestServer, *, cookie_jar: Optional[aiohttp.CookieJar] = None, **kwargs: Dict[str, Any]):
+    ...
+
+    def __init__(self, server: BaseTestServer, *, cookie_jar: Optional[aiohttp.CookieJar] = None, **kwargs: Dict[str, Any]):
+    ...
+
+    async def start_server(self):
+    ...
+
+    @property
+    def scheme(self) -> str:
+    ...
+
+    @property
+    def host(self) -> str:
+    ...
+
+    @property
+    def port(self) -> int:
+    ...
+
+    @property
+    def server(self) -> BaseTestServer:
+    ...
+
+    @property
+    def app(self) -> Optional[Application]:
+    ...
+
+    @property
+    def session(self) -> aiohttp.ClientSession:
+    ...
+
+    def make_url(self, path: str) -> URL:
+    ...
+
+    async def _request(self, method: str, path: str, **kwargs: Dict[str, Any]) -> ClientResponse:
+    ...
+
+    if sys.version_info >= (3, 11) and TYPE_CHECKING:
+        ...
+
+    else:
+        ...
+
+    def ws_connect(self, path: str, **kwargs: Dict[str, Any]) -> _WSRequestContextManager:
+    ...
+
+    async def _ws_connect(self, path: str, **kwargs: Dict[str, Any]) -> ClientWebSocketResponse:
+    ...
+
+class AioHTTPTestCase(IsolatedAsyncioTestCase, ABC):
+    ...
+
+    @abstractmethod
+    async def get_application(self) -> Application:
+    ...
+
+    async def asyncSetUp(self):
+    ...
+
+    async def asyncTearDown(self):
+    ...
+
+    async def get_server(self, app: Application) -> TestServer:
+    ...
+
+    async def get_client(self, server: BaseTestServer) -> TestClient:
+    ...
+
+_LOOP_FACTORY = Callable[[], asyncio.AbstractEventLoop]
+
+@contextlib.contextmanager
+def loop_context(loop_factory: Callable = asyncio.new_event_loop, fast: bool = False):
+    ...
+
+def setup_test_loop(loop_factory: Callable = asyncio.new_event_loop) -> asyncio.AbstractEventLoop:
+    ...
+
+def teardown_test_loop(loop: asyncio.AbstractEventLoop, fast: bool = False):
+    ...
+
+def _create_app_mock() -> Application:
+    ...
+
+def _create_transport(sslcontext: Optional[SSLContext] = None) -> mock.Mock:
+    ...
+
+def make_mocked_request(method: str, path: str, headers: Optional[Dict[str, str]] = None, *, match_info: Optional[Dict[str, str]] = None, version: HttpVersion = HttpVersion(1, 1), closing: bool = False, app: Optional[Application] = None, writer: Optional[AbstractStreamWriter] = None, protocol: Optional[Protocol] = None, transport: Optional[Transport] = None, payload: bytes = EMPTY_PAYLOAD, sslcontext: Optional[SSLContext] = None, client_max_size: int = 1024 ** 2, loop: asyncio.AbstractEventLoop = ...) -> Request:
+    ...
+
+def make_mocked_coro(return_value: Any = sentinel, raise_exception: Any = sentinel) -> mock.Mock:
+    ...

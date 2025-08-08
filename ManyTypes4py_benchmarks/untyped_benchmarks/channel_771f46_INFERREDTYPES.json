@@ -1,0 +1,449 @@
+{
+    "__aiter__@WebSocketChannel": [
+        {
+            "category": "return",
+            "name": "__aiter__",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "__init__@WebSocketChannel": [
+        {
+            "category": "arg",
+            "name": "websocket",
+            "type": [
+                "asyncio.Transport",
+                "asyncio.AbstractEventLoop",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "channel_id",
+            "type": [
+                "None",
+                "str",
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "serializer_cls",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "send_throttle",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_id",
+            "type": [
+                "None",
+                "str",
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "websocket",
+            "type": [
+                "asyncio.Transport",
+                "asyncio.AbstractEventLoop",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_websocket",
+            "type": [
+                "WebSocketProxy"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_channel_tasks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_send_times",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_send_high_limit",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "send_throttle",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_send_throttle",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_subscriptions",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_wrapped_ws",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__repr__@WebSocketChannel": [
+        {
+            "category": "return",
+            "name": "__repr__",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "_calc_send_limit@WebSocketChannel": [
+        {
+            "category": "local",
+            "name": "_send_high_limit",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_calc_send_limit",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "accept@WebSocketChannel": [
+        {
+            "category": "return",
+            "name": "accept",
+            "type": [
+                "str",
+                "bool",
+                "typing.Callable"
+            ]
+        }
+    ],
+    "avg_send_time@WebSocketChannel": [
+        {
+            "category": "return",
+            "name": "avg_send_time",
+            "type": [
+                "float"
+            ]
+        }
+    ],
+    "cancel_channel_tasks@WebSocketChannel": [
+        {
+            "category": "local",
+            "name": "task",
+            "type": [
+                "int",
+                "typing.Any"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_channel_tasks",
+            "type": [
+                "tuple[typing.Union[int,typing.Any]]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "cancel_channel_tasks",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "close@WebSocketChannel": [
+        {
+            "category": "return",
+            "name": "close",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "create_channel@global": [
+        {
+            "category": "arg",
+            "name": "websocket",
+            "type": [
+                "starlette.websockets.WebSocket",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "websocket",
+            "type": [
+                "starlette.websockets.WebSocket",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel",
+            "type": [
+                "WebSocketChannel"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_channel",
+            "type": [
+                "typing.Generator[WebSocketChannel]"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "is_closed@WebSocketChannel": [
+        {
+            "category": "return",
+            "name": "is_closed",
+            "type": [
+                "bool",
+                "str"
+            ]
+        }
+    ],
+    "ping@WebSocketChannel": [
+        {
+            "category": "return",
+            "name": "ping",
+            "type": [
+                "bool",
+                "typing.Callable",
+                "str"
+            ]
+        }
+    ],
+    "raw_websocket@WebSocketChannel": [
+        {
+            "category": "return",
+            "name": "raw_websocket",
+            "type": []
+        }
+    ],
+    "recv@WebSocketChannel": [
+        {
+            "category": "return",
+            "name": "recv",
+            "type": [
+                "bytes",
+                "str"
+            ]
+        }
+    ],
+    "remote_addr@WebSocketChannel": [
+        {
+            "category": "return",
+            "name": "remote_addr",
+            "type": []
+        }
+    ],
+    "run_channel_tasks@WebSocketChannel": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "tasks",
+            "type": [
+                "asyncio.Task"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tasks",
+            "type": [
+                "asyncio.Task"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "task",
+            "type": [
+                "asyncio_@_Task"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_channel_tasks",
+            "type": [
+                "list[asyncio_@_Task]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "run_channel_tasks",
+            "type": []
+        }
+    ],
+    "send@WebSocketChannel": [
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "float",
+                "None",
+                "asyncio.AbstractEventLoop"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "use_timeout",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "float",
+                "None",
+                "asyncio.AbstractEventLoop"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "use_timeout",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "send",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "set_subscriptions@WebSocketChannel": [
+        {
+            "category": "arg",
+            "name": "subscriptions",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "set_subscriptions",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "subscribed_to@WebSocketChannel": [
+        {
+            "category": "arg",
+            "name": "message_type",
+            "type": [
+                "str",
+                "dict",
+                "list",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_type",
+            "type": [
+                "str",
+                "dict",
+                "list",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "subscribed_to",
+            "type": [
+                "bool"
+            ]
+        }
+    ]
+}

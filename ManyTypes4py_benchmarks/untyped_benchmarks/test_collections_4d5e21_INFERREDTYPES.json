@@ -1,0 +1,269 @@
+{
+    "collection_view_url@TestReadCollectionViews": [
+        {
+            "category": "arg",
+            "name": "view",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "view",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "collection_view_url",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "global@global": [],
+    "mock_block_response@TestReadCollectionViews": [
+        {
+            "category": "return",
+            "name": "mock_block_response",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, dict[typing.Text, dict[typing.Text, typing.Text]]]]"
+            ]
+        }
+    ],
+    "mock_collection_response@TestReadCollectionViews": [
+        {
+            "category": "return",
+            "name": "mock_collection_response",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, typing.Text]]"
+            ]
+        }
+    ],
+    "mock_flow_response@TestReadCollectionViews": [
+        {
+            "category": "return",
+            "name": "mock_flow_response",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, dict[typing.Text, typing.Text]]]"
+            ]
+        }
+    ],
+    "mock_get_missing_view@TestReadCollectionViews": [
+        {
+            "category": "arg",
+            "name": "mock_flow_response",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mock_block_response",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mock_collection_response",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "mock_get_missing_view",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "mock_get_view@TestReadCollectionViews": [
+        {
+            "category": "arg",
+            "name": "respx_mock",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mock_flow_response",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mock_block_response",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mock_worker_response",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "flow_route",
+            "type": [
+                "list",
+                "str",
+                "list[dict[str, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_route",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "mock_get_view",
+            "type": [
+                "typing.Generator[tuple[typing.Union[list,str,list[dict[str, str]],dict[str, dict[str, typing.Any]],dict]]]"
+            ]
+        }
+    ],
+    "mock_worker_response@TestReadCollectionViews": [
+        {
+            "category": "return",
+            "name": "mock_worker_response",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, dict]]"
+            ]
+        }
+    ],
+    "test_collection_view_cached@TestReadCollectionViews": [
+        {
+            "category": "arg",
+            "name": "client",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mock_get_view",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "view",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_collection_view_cached",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_prefect_agent_excluded_from_worker_metadata@TestReadCollectionViews": [
+        {
+            "category": "arg",
+            "name": "client",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mock_get_view",
+            "type": [
+                "str",
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_prefect_agent_excluded_from_worker_metadata",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_read_collection_view_invalid@TestReadCollectionViews": [
+        {
+            "category": "arg",
+            "name": "client",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_read_collection_view_invalid",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_read_collection_view_when_missing@TestReadCollectionViews": [
+        {
+            "category": "arg",
+            "name": "client",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mock_get_missing_view",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_read_collection_view_when_missing",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_read_view@TestReadCollectionViews": [
+        {
+            "category": "arg",
+            "name": "client",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "view",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_get_view",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "view",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_read_view",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_read_worker_view_failed_fetch@TestReadCollectionViews": [
+        {
+            "category": "arg",
+            "name": "client",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mock_get_missing_view",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_read_worker_view_failed_fetch",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

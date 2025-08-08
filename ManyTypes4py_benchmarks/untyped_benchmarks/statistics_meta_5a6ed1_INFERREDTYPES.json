@@ -1,0 +1,1017 @@
+{
+    "__init__@StatisticsMetaManager": [
+        {
+            "category": "arg",
+            "name": "recorder",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "CACHE_SIZE",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_stat_id_to_id_meta",
+            "type": [
+                "LRU"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_add_metadata@StatisticsMetaManager": [
+        {
+            "category": "arg",
+            "name": "session",
+            "type": [
+                "int",
+                "deeplearning.ml4pl.models.log_database.Database.SessionType",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "statistic_id",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "new_metadata",
+            "type": [
+                "int",
+                "None",
+                "sqlalchemy.exdeclarative.DeclarativeMeta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_metadata",
+            "type": [
+                "int",
+                "None",
+                "sqlalchemy.exdeclarative.DeclarativeMeta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "session",
+            "type": [
+                "int",
+                "deeplearning.ml4pl.models.log_database.Database.SessionType",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "statistic_id",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_add_metadata",
+            "type": []
+        }
+    ],
+    "_assert_in_recorder_thread@StatisticsMetaManager": [
+        {
+            "category": "return",
+            "name": "_assert_in_recorder_thread",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_clear_cache@StatisticsMetaManager": [
+        {
+            "category": "arg",
+            "name": "statistic_ids",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "statistic_id",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "statistic_ids",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_clear_cache",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_generate_get_metadata_stmt@global": [
+        {
+            "category": "arg",
+            "name": "statistic_ids",
+            "type": [
+                "None",
+                "str",
+                "int",
+                "sqlalchemy.engine.base.Engine"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "statistic_type",
+            "type": [
+                "None",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "statistic_source",
+            "type": [
+                "None",
+                "str",
+                "typing.TextIO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "statistic_ids",
+            "type": [
+                "None",
+                "str",
+                "int",
+                "sqlalchemy.engine.base.Engine"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "statistic_source",
+            "type": [
+                "None",
+                "str",
+                "typing.TextIO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "statistic_type",
+            "type": [
+                "None",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_generate_get_metadata_stmt",
+            "type": []
+        }
+    ],
+    "_get_from_database@StatisticsMetaManager": [
+        {
+            "category": "arg",
+            "name": "session",
+            "type": [
+                "str",
+                "id3c.db.session.DatabaseSession",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "statistic_ids",
+            "type": [
+                "None",
+                "typing.Type",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "statistic_type",
+            "type": [
+                "None",
+                "typing.Type",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "statistic_source",
+            "type": [
+                "None",
+                "typing.Type",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "session",
+            "type": [
+                "str",
+                "id3c.db.session.DatabaseSession",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "update_cache",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "results",
+            "type": [
+                "dict",
+                "dict[, tuple[dict[typing.Text, ]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "statistic_ids",
+            "type": [
+                "None",
+                "typing.Type",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "statistic_type",
+            "type": [
+                "None",
+                "typing.Type",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "statistic_source",
+            "type": [
+                "None",
+                "typing.Type",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "INDEX_STATISTIC_ID",
+            "type": [
+                "int",
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "INDEX_ID",
+            "type": [
+                "int",
+                "typing.Type",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "INDEX_HAS_MEAN",
+            "type": [
+                "str",
+                "list",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "INDEX_HAS_SUM",
+            "type": [
+                "int",
+                "set[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "INDEX_NAME",
+            "type": [
+                "str",
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "INDEX_SOURCE",
+            "type": [
+                "int",
+                "str",
+                "list[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "INDEX_UNIT_OF_MEASUREMENT",
+            "type": [
+                "int",
+                "dict",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "meta",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id_meta",
+            "type": [
+                "tuple[dict[typing.Text, ]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_from_database",
+            "type": [
+                "dict[, tuple[dict[typing.Text, ]]]"
+            ]
+        }
+    ],
+    "_update_metadata@StatisticsMetaManager": [
+        {
+            "category": "arg",
+            "name": "session",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "statistic_id",
+            "type": [
+                "int",
+                "typing.Type",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "new_metadata",
+            "type": [
+                "dict",
+                "django.db.models.Model",
+                "list[tuple[typing.Union[typing.Any,dict]]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "old_metadata_dict",
+            "type": [
+                "dict[str, str]",
+                "models.CloudConfig"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "old_metadata_dict",
+            "type": [
+                "dict[str, str]",
+                "models.CloudConfig"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "statistic_id",
+            "type": [
+                "int",
+                "typing.Type",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metadata_id",
+            "type": [
+                "str",
+                "None",
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "old_metadata",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_metadata",
+            "type": [
+                "dict",
+                "django.db.models.Model",
+                "list[tuple[typing.Union[typing.Any,dict]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_update_metadata",
+            "type": [
+                "tuple[typing.Union[None,str,int,dict]]",
+                "tuple[typing.Union[int,typing.Type,dict[str, typing.Any],str,None,dict]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "adjust_lru_size@StatisticsMetaManager": [
+        {
+            "category": "arg",
+            "name": "new_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "adjust_lru_size",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "delete@StatisticsMetaManager": [
+        {
+            "category": "arg",
+            "name": "session",
+            "type": [
+                "int",
+                "sqlalchemy.orm.Session",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "statistic_ids",
+            "type": [
+                "sqlalchemy.orm.Session",
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "statistic_ids",
+            "type": [
+                "sqlalchemy.orm.Session",
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "delete",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get@StatisticsMetaManager": [
+        {
+            "category": "arg",
+            "name": "session",
+            "type": [
+                "int",
+                "sqlalchemy.orm.Session",
+                "id3c.db.session.DatabaseSession"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "statistic_id",
+            "type": [
+                "int",
+                "sqlalchemy.orm.Session",
+                "id3c.db.session.DatabaseSession"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "statistic_id",
+            "type": [
+                "int",
+                "sqlalchemy.orm.Session",
+                "id3c.db.session.DatabaseSession"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get",
+            "type": [
+                "str",
+                "int",
+                "list[str]"
+            ]
+        }
+    ],
+    "get_from_cache_threadsafe@StatisticsMetaManager": [
+        {
+            "category": "arg",
+            "name": "statistic_ids",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "statistic_ids",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "statistic_id",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_from_cache_threadsafe",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, str]",
+                "str"
+            ]
+        }
+    ],
+    "get_many@StatisticsMetaManager": [
+        {
+            "category": "arg",
+            "name": "session",
+            "type": [
+                "str",
+                "typing.Type",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "statistic_ids",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "statistic_type",
+            "type": [
+                "None",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "statistic_source",
+            "type": [
+                "None",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "statistic_ids",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "session",
+            "type": [
+                "str",
+                "typing.Type",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "statistic_type",
+            "type": [
+                "None",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "statistic_source",
+            "type": [
+                "None",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_many",
+            "type": [
+                "str",
+                "None",
+                "tracim.models.data.Workspace",
+                "list",
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "results",
+            "type": [
+                "str",
+                "list",
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "missing_statistic_id",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "CACHE_SIZE",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "QUERY_STATISTIC_META",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "INDEX_ID",
+            "type": [
+                "int",
+                "typing.Type",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "INDEX_STATISTIC_ID",
+            "type": [
+                "int",
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "INDEX_SOURCE",
+            "type": [
+                "int",
+                "str",
+                "list[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "INDEX_UNIT_OF_MEASUREMENT",
+            "type": [
+                "int",
+                "dict",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "INDEX_HAS_MEAN",
+            "type": [
+                "int",
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "INDEX_HAS_SUM",
+            "type": [
+                "int",
+                "set[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "INDEX_NAME",
+            "type": [
+                "int",
+                "str",
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_stat_id_to_id_meta",
+            "type": [
+                "LRU"
+            ]
+        }
+    ],
+    "load@StatisticsMetaManager": [
+        {
+            "category": "arg",
+            "name": "session",
+            "type": [
+                "sqlalchemy.orm.session.Session"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "session",
+            "type": [
+                "sqlalchemy.orm.session.Session"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "reset@StatisticsMetaManager": [
+        {
+            "category": "return",
+            "name": "reset",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "update_or_add@StatisticsMetaManager": [
+        {
+            "category": "arg",
+            "name": "session",
+            "type": [
+                "dict[str, typing.Any]",
+                "models.User",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "new_metadata",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "old_metadata_dict",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_metadata",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "statistic_id",
+            "type": [
+                "str",
+                "list",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "old_metadata_dict",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "session",
+            "type": [
+                "dict[str, typing.Any]",
+                "models.User",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_or_add",
+            "type": [
+                "tuple[typing.Union[str,list,dict[str, str]]]",
+                "dict[str, typing.Union[int,str]]",
+                "list[str]"
+            ]
+        }
+    ],
+    "update_statistic_id@StatisticsMetaManager": [
+        {
+            "category": "arg",
+            "name": "session",
+            "type": [
+                "str",
+                "sqlalchemy.orm.session.Session",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "str",
+                "id3c.db.session.DatabaseSession",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "old_statistic_id",
+            "type": [
+                "str",
+                "sqlalchemy.exdeclarative.api.DeclarativeMeta",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "new_statistic_id",
+            "type": [
+                "str",
+                "sqlalchemy.orm.Session"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "session",
+            "type": [
+                "str",
+                "sqlalchemy.orm.session.Session",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_statistic_id",
+            "type": [
+                "str",
+                "sqlalchemy.orm.Session"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "old_statistic_id",
+            "type": [
+                "str",
+                "sqlalchemy.exdeclarative.api.DeclarativeMeta",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_statistic_id",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "update_unit_of_measurement@StatisticsMetaManager": [
+        {
+            "category": "arg",
+            "name": "session",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "statistic_id",
+            "type": [
+                "str",
+                "sqlalchemy.orm.Session"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "new_unit",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_unit",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "statistic_id",
+            "type": [
+                "str",
+                "sqlalchemy.orm.Session"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_unit_of_measurement",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

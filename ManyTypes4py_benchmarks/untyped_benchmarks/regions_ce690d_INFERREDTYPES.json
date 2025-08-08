@@ -1,0 +1,612 @@
+{
+    "__init__@EndpointResolver": [
+        {
+            "category": "arg",
+            "name": "endpoint_data",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "endpoint_data",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_endpoint_data",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_endpoint_for_partition@EndpointResolver": [
+        {
+            "category": "arg",
+            "name": "partition",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "service_name",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "region_name",
+            "type": [
+                "str",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "force_partition",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partition",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "service_name",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DEFAULT_SERVICE_DATA",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "service_data",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "region_name",
+            "type": [
+                "str",
+                "None",
+                "bool",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_endpoint_for_partition",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "dict[str, dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "force_partition",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partition_endpoint",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_regionalized",
+            "type": [
+                "str",
+                "None",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "LOG",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "_expand_template@EndpointResolver": [
+        {
+            "category": "arg",
+            "name": "partition",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "template",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "service_name",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "endpoint_name",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "template",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "service_name",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "endpoint_name",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partition",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_expand_template",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "_merge_keys@EndpointResolver": [
+        {
+            "category": "arg",
+            "name": "from_data",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "result",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_data",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_merge_keys",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_region_match@EndpointResolver": [
+        {
+            "category": "arg",
+            "name": "partition",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "region_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "region_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partition",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_region_match",
+            "type": [
+                "bool",
+                "str"
+            ]
+        }
+    ],
+    "_resolve@EndpointResolver": [
+        {
+            "category": "arg",
+            "name": "partition",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "service_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "service_data",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "endpoint_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "endpoint_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partition",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DEFAULT_URI_TEMPLATE",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "service_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_resolve",
+            "type": []
+        }
+    ],
+    "construct_endpoint@BaseEndpointResolver": [
+        {
+            "category": "arg",
+            "name": "service_name",
+            "type": [
+                "str",
+                "None",
+                "typing.Iterable[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "region_name",
+            "type": [
+                "None",
+                "str",
+                "typing.Iterable[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "construct_endpoint",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "construct_endpoint@EndpointResolver": [
+        {
+            "category": "arg",
+            "name": "service_name",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "region_name",
+            "type": [
+                "None",
+                "str",
+                "dict[str, str]",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "partition_name",
+            "type": [
+                "None",
+                "str",
+                "typing.Sequence[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partition_name",
+            "type": [
+                "None",
+                "str",
+                "typing.Sequence[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "valid_partition",
+            "type": [
+                "None",
+                "list[typing.Any]",
+                "tuple",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "service_name",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "region_name",
+            "type": [
+                "None",
+                "str",
+                "dict[str, str]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "construct_endpoint",
+            "type": [
+                "list",
+                "str",
+                "dict",
+                "None"
+            ]
+        }
+    ],
+    "get_available_endpoints@BaseEndpointResolver": [
+        {
+            "category": "arg",
+            "name": "service_name",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "partition_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "allow_non_regional",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_available_endpoints",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_available_endpoints@EndpointResolver": [
+        {
+            "category": "arg",
+            "name": "service_name",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "partition_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "allow_non_regional",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partition_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "service_name",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "allow_non_regional",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_available_endpoints",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "get_available_partitions@BaseEndpointResolver": [
+        {
+            "category": "return",
+            "name": "get_available_partitions",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_available_partitions@EndpointResolver": [
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_available_partitions",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "LOG",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DEFAULT_URI_TEMPLATE",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DEFAULT_SERVICE_DATA",
+            "type": [
+                "dict[typing.Text, dict]",
+                "str",
+                "dict[str, str]"
+            ]
+        }
+    ]
+}

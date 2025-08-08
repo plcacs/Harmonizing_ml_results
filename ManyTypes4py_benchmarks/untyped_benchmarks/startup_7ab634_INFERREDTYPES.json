@@ -1,0 +1,515 @@
+{
+    "__post_init__@RaidenBundle": [
+        {
+            "category": "local",
+            "name": "secret_registry_address",
+            "type": [
+                "raiden.utils.TokenNetworkAddress",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__post_init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__post_init__@ServicesBundle": [
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.Address",
+                "typing.Type",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "monitoring_service_address",
+            "type": [
+                "Address",
+                "str",
+                "dict[typing.Any, dict[str, str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__post_init__",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "one_to_n_address",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.Address",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "service_registry_address",
+            "type": [
+                "dict[typing.Any, dict[str, str]]",
+                "raiden.utils.Any",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address_matches_monitoring_service",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address_matches_service_registry",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "global@global": [],
+    "load_deployed_contracts_data@global": [
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "dict",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chain_id",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "development_environment",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "chain_id",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "dict",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deployed_contracts_data",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_deployed_contracts_data",
+            "type": [
+                "dict"
+            ]
+        }
+    ],
+    "load_deployment_addresses_from_contracts@global": [
+        {
+            "category": "arg",
+            "name": "contracts",
+            "type": [
+                "dict[str, typing.Any]",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contracts",
+            "type": [
+                "dict[str, typing.Any]",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_deployment_addresses_from_contracts",
+            "type": [
+                "DeploymentAddresses"
+            ]
+        }
+    ],
+    "load_deployment_addresses_from_udc@global": [
+        {
+            "category": "arg",
+            "name": "proxy_manager",
+            "type": [
+                "raiden.raiden_service.RaidenService",
+                "int",
+                "list[raiden.utils.TokenNetworkAddress]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_deposit_address",
+            "type": [
+                "raiden.utils.AddressHex",
+                "raiden.utils.Address",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_identifier",
+            "type": [
+                "raiden.raiden_service.RaidenService",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.BlockTimeout"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proxy_manager",
+            "type": [
+                "raiden.raiden_service.RaidenService",
+                "int",
+                "list[raiden.utils.TokenNetworkAddress]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_deposit_address",
+            "type": [
+                "raiden.utils.AddressHex",
+                "raiden.utils.Address",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_deployment_addresses_from_udc",
+            "type": [
+                "DeploymentAddresses"
+            ]
+        }
+    ],
+    "raiden_bundle_from_contracts_deployment@global": [
+        {
+            "category": "arg",
+            "name": "proxy_manager",
+            "type": [
+                "raiden.utils.SecretRegistryAddress",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_network_registry_address",
+            "type": [
+                "raiden.utils.SecretRegistryAddress",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "secret_registry_address",
+            "type": [
+                "raiden.utils.SecretRegistryAddress",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_registry_address",
+            "type": [
+                "raiden.utils.SecretRegistryAddress",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proxy_manager",
+            "type": [
+                "raiden.utils.SecretRegistryAddress",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret_registry_address",
+            "type": [
+                "raiden.utils.SecretRegistryAddress",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contractname_address",
+            "type": [
+                "list[tuple[typing.Union[typing.Text,raiden.utils.SecretRegistryAddress,raiden.utils.TokenNetworkRegistryAddress]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proxies",
+            "type": [
+                "dict",
+                "dict[typing.Union[typing.Text,raiden.utils.SecretRegistryAddress,raiden.utils.TokenNetworkRegistryAddress], ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contractname",
+            "type": [
+                "typing.Text",
+                "raiden.utils.SecretRegistryAddress",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "typing.Text",
+                "raiden.utils.SecretRegistryAddress",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "constructor",
+            "type": [
+                "typing.Text",
+                "raiden.utils.SecretRegistryAddress",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_registry",
+            "type": [
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret_registry",
+            "type": [
+                "raiden.network.proxies.secret_registry.SecretRegistry",
+                "raiden.utils.Address",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "raiden_bundle_from_contracts_deployment",
+            "type": [
+                "RaidenBundle"
+            ]
+        }
+    ],
+    "services_bundle_from_contracts_deployment@global": [
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "tuple[dict]",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "proxy_manager",
+            "type": [
+                "bacpypes.pdu.Address",
+                "raiden.network.rpc.smartcontract_proxy.ContractProxy",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "routing_mode",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deployed_addresses",
+            "type": [
+                "raiden.utils.ChainID",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pathfinding_service_address",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.SecretRegistryAddress",
+                "raiden.utils.NodeNetworkStateMap"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "enable_monitoring",
+            "type": [
+                "raiden.constants.Environment",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "tuple[dict]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config_",
+            "type": [
+                "PFSConfig",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "environment_type",
+            "type": [
+                "Environment_@_PRODUCTION",
+                "dict[str, typing.Any]",
+                "dict[str, str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deployed_addresses",
+            "type": [
+                "raiden.utils.ChainID",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proxy_manager",
+            "type": [
+                "bacpypes.pdu.Address",
+                "raiden.network.rpc.smartcontract_proxy.ContractProxy",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contractname_address",
+            "type": [
+                "list[tuple[typing.Union[typing.Text,Address]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "routing_mode",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "None",
+                "RoutingMode_@_PFS"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "enable_monitoring",
+            "type": [
+                "raiden.constants.Environment",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proxies",
+            "type": [
+                "dict",
+                "dict[typing.Union[typing.Text,Address], ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contractname",
+            "type": [
+                "typing.Text",
+                "Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "typing.Text",
+                "Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "constructor",
+            "type": [
+                "typing.Text",
+                "Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pathfinding_service_address",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.SecretRegistryAddress",
+                "raiden.utils.NodeNetworkStateMap"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pfs_info",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, dict]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "services_bundle_from_contracts_deployment",
+            "type": [
+                "ServicesBundle"
+            ]
+        }
+    ]
+}

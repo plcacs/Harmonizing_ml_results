@@ -1,0 +1,1106 @@
+{
+    "fetch_available_matrix_servers@global": [
+        {
+            "category": "arg",
+            "name": "transport_config",
+            "type": [
+                "dict",
+                "typing.Callable",
+                "raiden.constants.Environment"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "environment_type",
+            "type": [
+                "raiden.constants.Environment",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "environment_type",
+            "type": [
+                "raiden.constants.Environment",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "fetch_available_matrix_servers",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_account_and_private_key@global": [
+        {
+            "category": "arg",
+            "name": "account_manager",
+            "type": [
+                "raiden.accounts.AccountManager",
+                "typing.TextIO",
+                "None",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "address",
+            "type": [
+                "raiden.utils.Address",
+                "None",
+                "typing.TextIO",
+                "raiden.utils.AddressHex"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "password_file",
+            "type": [
+                "typing.TextIO",
+                "None",
+                "raiden.utils.Address",
+                "raiden.accounts.AccountManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "raiden.utils.Address",
+                "None",
+                "typing.TextIO",
+                "raiden.utils.AddressHex"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "account_manager",
+            "type": [
+                "raiden.accounts.AccountManager",
+                "typing.TextIO",
+                "None",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address_hex",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "password_file",
+            "type": [
+                "typing.TextIO",
+                "None",
+                "raiden.utils.Address",
+                "raiden.accounts.AccountManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "privatekey_bin",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_account_and_private_key",
+            "type": [
+                "tuple[str]"
+            ]
+        }
+    ],
+    "get_min_reveal_timeout@global": [
+        {
+            "category": "arg",
+            "name": "chain_id",
+            "type": [
+                "int",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_id",
+            "type": [
+                "int",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_min_reveal_timeout",
+            "type": []
+        }
+    ],
+    "get_smart_contracts_start_at@global": [
+        {
+            "category": "arg",
+            "name": "chain_id",
+            "type": [
+                "str",
+                "int",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_id",
+            "type": [
+                "str",
+                "int",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_smart_contracts_start_at",
+            "type": []
+        }
+    ],
+    "global@global": [],
+    "rpc_normalized_endpoint@global": [
+        {
+            "category": "arg",
+            "name": "eth_rpc_endpoint",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "eth_rpc_endpoint",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parsed_eth_rpc_endpoint",
+            "type": [
+                "str",
+                "urllib.parse.ParseResult",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "rpc_normalized_endpoint",
+            "type": [
+                "URI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scheme",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "run_raiden_service@global": [
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "raiden_contracts.contract_manager.ContractManager"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "eth_rpc_endpoint",
+            "type": [
+                "dict",
+                "str",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "address",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "keystore_path",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "gas_price",
+            "type": [
+                "int",
+                "eth_utils.ChecksumAddress",
+                "raiden.storage.wal.WriteAheadLog"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_deposit_contract_address",
+            "type": [
+                "str",
+                "None",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sync_check",
+            "type": [
+                "bool",
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "password_file",
+            "type": [
+                "str",
+                "bytes",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "datadir",
+            "type": [
+                "str",
+                "None",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pathfinding_service_address",
+            "type": [
+                "str",
+                "raiden.constants.RoutingMode",
+                "typing.Callable[..., typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "routing_mode",
+            "type": [
+                "str",
+                "raiden.constants.RoutingMode",
+                "typing.Callable[..., typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "raiden_contracts.contract_manager.ContractManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config_",
+            "type": [
+                "Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "datadir",
+            "type": [
+                "str",
+                "None",
+                "pathlib.Path",
+                "list[str]",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "keystore_path",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "account_manager",
+            "type": [
+                "AccountManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "eth_rpc_endpoint",
+            "type": [
+                "dict",
+                "str",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "web3",
+            "type": [
+                "Web3"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "str",
+                "bytes",
+                "raiden.messages.RevealSecret"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "password_file",
+            "type": [
+                "str",
+                "bytes",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "privatekey",
+            "type": [
+                "insteonplm.address.Address",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gas_price",
+            "type": [
+                "int",
+                "eth_utils.ChecksumAddress",
+                "raiden.storage.wal.WriteAheadLog"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rpc_client",
+            "type": [
+                "JSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_registry_deployed_at",
+            "type": [
+                "None",
+                "BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "smart_contracts_start_at",
+            "type": [
+                "BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proxy_manager",
+            "type": [
+                "ProxyManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "api_server",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sync_check",
+            "type": [
+                "bool",
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_deposit_contract_address",
+            "type": [
+                "str",
+                "None",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "routing_mode",
+            "type": [
+                "str",
+                "raiden.constants.RoutingMode",
+                "typing.Callable[..., typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pathfinding_service_address",
+            "type": [
+                "str",
+                "raiden.constants.RoutingMode",
+                "typing.Callable[..., typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "database_path",
+            "type": [
+                "Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "matrix_transport",
+            "type": [
+                "MatrixTransport"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_handler",
+            "type": [
+                "RaidenEventHandler",
+                "PFSFeedbackEventHandler"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "has_default_fees",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_handler",
+            "type": [
+                "MessageHandler"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_service",
+            "type": [
+                "RaidenService"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "run_raiden_service",
+            "type": [
+                "RaidenService"
+            ]
+        }
+    ],
+    "setup_raiden_config@global": [
+        {
+            "category": "arg",
+            "name": "eth_rpc_endpoint",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "api_address",
+            "type": [
+                "str",
+                "dict",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rpc",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rpccorsdomain",
+            "type": [
+                "str",
+                "raiden.constants.RoutingMode"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "console",
+            "type": [
+                "str",
+                "bool",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "web_ui",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "matrix_server",
+            "type": [
+                "str",
+                "None",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chain_id",
+            "type": [
+                "web3.contracContract",
+                "raiden.utils.ChainID",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "environment_type",
+            "type": [
+                "str",
+                "bool",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "development_environment",
+            "type": [
+                "str",
+                "bool",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "unrecoverable_error_should_crash",
+            "type": [
+                "str",
+                "bool",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pathfinding_max_paths",
+            "type": [
+                "str",
+                "raiden.utils.BlockNumber",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "enable_monitoring",
+            "type": [
+                "pathlib.Path",
+                "None",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "resolver_endpoint",
+            "type": [
+                "str",
+                "bool",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "default_reveal_timeout",
+            "type": [
+                "bool",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "default_settle_timeout",
+            "type": [
+                "bool",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "flat_fee",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "proportional_fee",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "proportional_imbalance_fee",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "blockchain_query_interval",
+            "type": [
+                "str",
+                "raiden_contracts.utils.type_aliases.PrivateKey",
+                "raiden.utils.BlockTimeout"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "cap_mediation_fees",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "enable_tracing",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "api_address",
+            "type": [
+                "str",
+                "dict",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "api_host",
+            "type": [
+                "str",
+                "tuple[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "api_port",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "domain_list",
+            "type": [
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rpccorsdomain",
+            "type": [
+                "str",
+                "raiden.constants.RoutingMode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "domain",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flat_fee",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proportional_fee",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proportional_imbalance_fee",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cap_mediation_fees",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee_config",
+            "type": [
+                "raiden.settings.MediationFeeConfig",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rpc",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "web_ui",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "eth_rpc_endpoint",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "enable_tracing",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rest_api_config",
+            "type": [
+                "RestApiConfig"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_id",
+            "type": [
+                "web3.contracContract",
+                "raiden.utils.ChainID",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "minimum_reveal_timeout",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "python_api_config",
+            "type": [
+                "PythonApiConfig"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_reveal_timeout",
+            "type": [
+                "bool",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "network",
+            "type": [
+                "Networks"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_settle_timeout",
+            "type": [
+                "bool",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "environment_type",
+            "type": [
+                "str",
+                "bool",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "development_environment",
+            "type": [
+                "str",
+                "bool",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "console",
+            "type": [
+                "str",
+                "bool",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unrecoverable_error_should_crash",
+            "type": [
+                "str",
+                "bool",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resolver_endpoint",
+            "type": [
+                "str",
+                "bool",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "RaidenConfig"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blockchain_query_interval",
+            "type": [
+                "str",
+                "raiden_contracts.utils.type_aliases.PrivateKey",
+                "raiden.utils.BlockTimeout"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config_",
+            "type": [
+                "str",
+                "raiden_contracts.utils.type_aliases.PrivateKey",
+                "raiden.utils.BlockTimeout",
+                "pathlib.Path",
+                "None",
+                "bool",
+                "raiden.utils.BlockNumber",
+                "raiden.utils.ChainID",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "enable_monitoring",
+            "type": [
+                "pathlib.Path",
+                "None",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pathfinding_max_paths",
+            "type": [
+                "str",
+                "raiden.utils.BlockNumber",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "matrix_server",
+            "type": [
+                "str",
+                "None",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "setup_raiden_config",
+            "type": [
+                "RaidenConfig"
+            ]
+        }
+    ],
+    "start_api_server@global": [
+        {
+            "category": "arg",
+            "name": "rpc_client",
+            "type": [
+                "raiden.network.rpc.clienJSONRPCClient",
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "str",
+                "raiden.network.rpc.clienJSONRPCClient",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "eth_rpc_endpoint",
+            "type": [
+                "str",
+                "raiden.network.rpc.clienJSONRPCClient",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rpc_client",
+            "type": [
+                "raiden.network.rpc.clienJSONRPCClient",
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "api",
+            "type": [
+                "RestAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "str",
+                "raiden.network.rpc.clienJSONRPCClient",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "eth_rpc_endpoint",
+            "type": [
+                "str",
+                "raiden.network.rpc.clienJSONRPCClient",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "api_server",
+            "type": [
+                "APIServer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "start_api_server",
+            "type": [
+                "APIServer"
+            ]
+        }
+    ]
+}

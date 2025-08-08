@@ -1,0 +1,448 @@
+{
+    "check_reorder_linkifiers@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ordered_linkifier_ids",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "acting_user",
+            "type": [
+                "zerver.models.UserProfile",
+                "int",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "linkifier_id_set",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "linkifiers",
+            "type": [
+                "list",
+                "list[int]",
+                "dict[tuple[str], int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "linkifier",
+            "type": [
+                "int",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "linkifier_",
+            "type": [
+                "list",
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_reorder_linkifiers",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "order",
+            "type": [
+                "list",
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id_to_new_order",
+            "type": [
+                "dict[, typing.Union[list,list[str],str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "acting_user",
+            "type": [
+                "zerver.models.UserProfile",
+                "int",
+                "zerver.models.Realm"
+            ]
+        }
+    ],
+    "do_add_linkifier@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pattern",
+            "type": [
+                "str",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "url_template",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "acting_user",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "tracim.models.data.UserRoleInWorkspace"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "str",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url_template",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_order",
+            "type": [
+                "int",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "linkifier",
+            "type": [
+                "RealmFilter"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "acting_user",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "tracim.models.data.UserRoleInWorkspace"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "do_add_linkifier",
+            "type": []
+        }
+    ],
+    "do_remove_linkifier@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "int",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pattern",
+            "type": [
+                "None",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "None",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "acting_user",
+            "type": [
+                "None",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "None",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "int",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm_linkifier",
+            "type": [
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "None",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "acting_user",
+            "type": [
+                "None",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "do_remove_linkifier",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "do_update_linkifier@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.UserProfile",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "zerver.models.UserProfile",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pattern",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "url_template",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "acting_user",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url_template",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.UserProfile",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "zerver.models.UserProfile",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "linkifier",
+            "type": [
+                "str",
+                "None",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "linkifier_",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "acting_user",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "do_update_linkifier",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [],
+    "notify_linkifiers@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "Realm",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "realm_linkifiers",
+            "type": [
+                "zerver.models.UserProfile",
+                "Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm_linkifiers",
+            "type": [
+                "zerver.models.UserProfile",
+                "Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "list[dict[str, typing.Any]]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "Realm",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "notify_linkifiers",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

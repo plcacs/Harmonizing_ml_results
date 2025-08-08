@@ -1,0 +1,39 @@
+from typing import List, Dict
+
+class TestPredict(AllenNlpTestCase):
+
+    def setup_method(self) -> None:
+        ...
+
+    def test_add_predict_subparser(self) -> None:
+        ...
+
+    def test_works_with_known_model(self) -> None:
+        ...
+
+    def test_using_dataset_reader_works_with_known_model(self) -> None:
+        ...
+
+    def test_uses_correct_dataset_reader(self) -> None:
+        ...
+
+    def test_base_predictor(self) -> None:
+        ...
+
+    def test_batch_prediction_works_with_known_model(self) -> None:
+        ...
+
+    def test_fails_without_required_args(self) -> None:
+        ...
+
+    def test_can_specify_predictor(self) -> None:
+        ...
+
+    def test_can_specify_extra_args(self) -> None:
+        ...
+
+    def test_other_modules(self) -> None:
+        ...
+
+    def test_alternative_file_formats(self) -> None:
+        ...

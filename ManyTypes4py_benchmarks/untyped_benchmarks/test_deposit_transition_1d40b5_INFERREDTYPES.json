@@ -1,0 +1,810 @@
+{
+    "global@global": [],
+    "prepare_state_and_block@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int",
+                "raiden.transfer.state.TokenNetworkState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deposit_cnt",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deposit_request_cnt",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "first_deposit_request_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deposit_requests_start_index",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "eth1_data_deposit_count",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposits",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit_requests",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "keypair_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit_data_list",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit_cnt",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "int",
+                "raiden.transfer.state.TokenNetworkState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit_root",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "eth1_data_deposit_count",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit_request_cnt",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "first_deposit_request_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit_requests_start_index",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "beacon_chain.state.block.Block",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "prepare_state_and_block",
+            "type": [
+                "tuple[typing.Union[int,beacon_chain.state.block.Block,str]]"
+            ]
+        }
+    ],
+    "run_deposit_transition_block@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "bool",
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "bool",
+                "list[mythril.laser.ethereum.state.global_state.GlobalState]",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block",
+            "type": [
+                "bytes",
+                "float",
+                "list[mythril.laser.ethereum.state.global_state.GlobalState]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "top_up_keys",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "valid",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "bool",
+                "list[mythril.laser.ethereum.state.global_state.GlobalState]",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "run_deposit_transition_block",
+            "type": [
+                "typing.Generator[tuple[typing.Union[typing.Text,bool,list[mythril.laser.ethereum.state.global_state.GlobalState],float]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,list[typing.Union[bytes,str,tuple[typing.Union[str,int]]]]]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,bool,list[mythril.laser.ethereum.state.global_state.GlobalState],float,None]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pre_pending_deposits_len",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pre_validators_len",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "bool",
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "bytes",
+                "float",
+                "list[mythril.laser.ethereum.state.global_state.GlobalState]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "valid",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signed_block",
+            "type": [
+                "bytes",
+                "str",
+                "tuple[typing.Union[str,int]]"
+            ]
+        }
+    ],
+    "test_deposit_transition__deposit_and_top_up_same_block@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "bytes",
+                "dict",
+                "list[tuple[typing.Union[str,int]]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "prefecengine.state.State",
+                "int",
+                "list[tuple]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "bytes",
+                "dict",
+                "list[tuple[typing.Union[str,int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "prefecengine.state.State",
+                "int",
+                "list[tuple]",
+                "T",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "list",
+                "list[tuple[int]]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "top_up_keys",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pre_pending_deposits",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_deposit_transition__deposit_and_top_up_same_block",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_deposit_transition__deposit_with_same_pubkey_different_withdrawal_credentials@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.state.NettingChannelState",
+                "mythril.laser.ethereum.state.global_state.GlobalState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "pyshgp.push.state.PushState",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit_request_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.state.NettingChannelState",
+                "mythril.laser.ethereum.state.global_state.GlobalState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "pyshgp.push.state.PushState",
+                "raiden.transfer.state.NettingChannelState",
+                "tuple",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "T",
+                "beacon_chain.state.block.Block",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indices_with_same_pubkey",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit_requests",
+            "type": [
+                "set",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_deposit_transition__deposit_with_same_pubkey_different_withdrawal_credentials",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_deposit_transition__invalid_eth1_deposits_overlap_in_protocol_deposits@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.state.NettingChannelState",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.state.NettingChannelState",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.state.NettingChannelState",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.state.NettingChannelState",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_deposit_transition__invalid_eth1_deposits_overlap_in_protocol_deposits",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_deposit_transition__invalid_not_enough_eth1_deposits@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "list[raiden.transfer.state.NettingChannelState]",
+                "raiden.transfer.state.NettingChannelState",
+                "raiden.transfer.state.HopState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "list[raiden.transfer.state.NettingChannelState]",
+                "raiden.transfer.state.NettingChannelState",
+                "raiden.transfer.state.HopState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "list[raiden.transfer.state.NettingChannelState]",
+                "raiden.transfer.state.NettingChannelState",
+                "raiden.transfer.state.HopState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "list[raiden.transfer.state.NettingChannelState]",
+                "raiden.transfer.state.NettingChannelState",
+                "raiden.transfer.state.HopState",
+                "T",
+                "tuple",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "list",
+                "T",
+                "list[tuple[int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_deposit_transition__invalid_not_enough_eth1_deposits",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_deposit_transition__invalid_too_many_eth1_deposits@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "list[raiden.transfer.state.NettingChannelState]",
+                "raiden.transfer.state.HopState",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "list[raiden.transfer.state.NettingChannelState]",
+                "raiden.transfer.state.HopState",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "list[raiden.transfer.state.NettingChannelState]",
+                "raiden.transfer.state.HopState",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "list[raiden.transfer.state.NettingChannelState]",
+                "raiden.transfer.state.HopState",
+                "int",
+                "T",
+                "tuple",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "list",
+                "T",
+                "list[tuple[int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_deposit_transition__invalid_too_many_eth1_deposits",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_deposit_transition__process_eth1_deposits@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "raiden.transfer.state.NettingChannelState",
+                "raiden.transfer.state.ChainState",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "raiden.transfer.state.NettingChannelState",
+                "raiden.transfer.state.ChainState",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "raiden.transfer.state.NettingChannelState",
+                "raiden.transfer.state.ChainState",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "raiden.transfer.state.NettingChannelState",
+                "raiden.transfer.state.ChainState",
+                "int",
+                "tuple",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "T",
+                "tuple",
+                "list[tuple[typing.Union[int,typing.Any]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_deposit_transition__process_eth1_deposits",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_deposit_transition__process_eth1_deposits_up_to_start_index@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.transfer.state.NettingChannelState",
+                "tuple",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "T",
+                "tuple",
+                "list[tuple[typing.Union[int,typing.Any]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_deposit_transition__process_eth1_deposits_up_to_start_index",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_deposit_transition__process_max_eth1_deposits@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "dict",
+                "mythril.laser.ethereum.state.global_state.GlobalState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "dict",
+                "mythril.laser.ethereum.state.global_state.GlobalState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "dict",
+                "mythril.laser.ethereum.state.global_state.GlobalState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "dict",
+                "mythril.laser.ethereum.state.global_state.GlobalState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_deposit_transition__process_max_eth1_deposits",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_deposit_transition__start_index_is_set@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.state.NettingChannelState",
+                "mythril.laser.ethereum.state.global_state.GlobalState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.state.NettingChannelState",
+                "mythril.laser.ethereum.state.global_state.GlobalState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.state.NettingChannelState",
+                "mythril.laser.ethereum.state.global_state.GlobalState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.state.NettingChannelState",
+                "mythril.laser.ethereum.state.global_state.GlobalState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_deposit_transition__start_index_is_set",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ]
+}

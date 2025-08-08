@@ -1,0 +1,661 @@
+{
+    "gen_ws_headers@global": [
+        {
+            "category": "arg",
+            "name": "protocols",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "compress",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "extension_text",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "server_notakeover",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "client_notakeover",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "bytes",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hdrs",
+            "type": [
+                "list[tuple[typing.Union[typing.Text,bytes,int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "protocols",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "compress",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "params",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "server_notakeover",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client_notakeover",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "extension_text",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "gen_ws_headers",
+            "type": [
+                "tuple[typing.Union[list[tuple[typing.Union[typing.Text,bytes,int]]],bytes,int,str]]"
+            ]
+        }
+    ],
+    "global@global": [],
+    "test_handshake_compress@global": [
+        {
+            "category": "local",
+            "name": "hdrs",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sec_key",
+            "type": [
+                "bytes",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "req",
+            "type": [
+                "dict[str, str]",
+                "list[dict[str, str]]",
+                "list[bool]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_handshake_compress",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_handshake_compress_bad_ext@global": [
+        {
+            "category": "local",
+            "name": "hdrs",
+            "type": [
+                "str",
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sec_key",
+            "type": [
+                "bytes",
+                "tuple[typing.Literal]",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "req",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_handshake_compress_bad_ext",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_handshake_compress_client_notakeover@global": [
+        {
+            "category": "local",
+            "name": "hdrs",
+            "type": [
+                "str",
+                "dict[bytes, bytes]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sec_key",
+            "type": [
+                "bytes",
+                "typing.Type",
+                "typing.Callable[object, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "req",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_handshake_compress_client_notakeover",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_handshake_compress_multi_ext_bad@global": [
+        {
+            "category": "local",
+            "name": "hdrs",
+            "type": [
+                "str",
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sec_key",
+            "type": [
+                "bytes",
+                "tuple[typing.Literal]",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "req",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_handshake_compress_multi_ext_bad",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_handshake_compress_multi_ext_wbits@global": [
+        {
+            "category": "local",
+            "name": "hdrs",
+            "type": [
+                "str",
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sec_key",
+            "type": [
+                "bytes",
+                "tuple[typing.Literal]",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "req",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_handshake_compress_multi_ext_wbits",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_handshake_compress_server_notakeover@global": [
+        {
+            "category": "local",
+            "name": "hdrs",
+            "type": [
+                "str",
+                "int",
+                "dict[bytes, bytes]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sec_key",
+            "type": [
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "req",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_handshake_compress_server_notakeover",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_handshake_compress_wbits@global": [
+        {
+            "category": "local",
+            "name": "hdrs",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sec_key",
+            "type": [
+                "bytes",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "req",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_handshake_compress_wbits",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_handshake_compress_wbits_error@global": [
+        {
+            "category": "local",
+            "name": "hdrs",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sec_key",
+            "type": [
+                "bytes",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "req",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_handshake_compress_wbits_error",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_handshake_no_transfer_encoding@global": [
+        {
+            "category": "local",
+            "name": "hdrs",
+            "type": [
+                "str",
+                "list[dict[str, typing.Any]]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sec_key",
+            "type": [
+                "bytes",
+                "typing.Callable[object, int]",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "req",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_handshake_no_transfer_encoding",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_handshake_ok@global": [
+        {
+            "category": "local",
+            "name": "hdrs",
+            "type": [
+                "str",
+                "list[dict[str, typing.Any]]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sec_key",
+            "type": [
+                "bytes",
+                "typing.Callable[object, int]",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "req",
+            "type": [
+                "dict[str, str]",
+                "list[dict[str, str]]",
+                "list[bool]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_handshake_ok",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_handshake_protocol@global": [
+        {
+            "category": "local",
+            "name": "proto",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "req",
+            "type": [
+                "typing.Mapping",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_handshake_protocol",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_handshake_protocol_agreement@global": [
+        {
+            "category": "local",
+            "name": "best_proto",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wanted_protos",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "server_protos",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "req",
+            "type": [
+                "dict[str, str]",
+                "list[dict[str, str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_handshake_protocol_agreement",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_handshake_protocol_unsupported@global": [
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "proto",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "req",
+            "type": [
+                "dict[str, str]",
+                "list[dict[str, str]]",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_handshake_protocol_unsupported",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_no_connection@global": [
+        {
+            "category": "local",
+            "name": "req",
+            "type": [
+                "list[dict[str, str]]",
+                "list[bool]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_no_connection",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_no_upgrade@global": [
+        {
+            "category": "local",
+            "name": "req",
+            "type": [
+                "list[dict[str, str]]",
+                "list[bool]",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_no_upgrade",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_protocol_key_bad_size@global": [
+        {
+            "category": "local",
+            "name": "req",
+            "type": [
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_protocol_key_bad_size",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_protocol_key_invalid@global": [
+        {
+            "category": "local",
+            "name": "req",
+            "type": [
+                "list[dict[str, str]]",
+                "list[bool]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_protocol_key_invalid",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_protocol_key_not_present@global": [
+        {
+            "category": "local",
+            "name": "req",
+            "type": [
+                "list[dict[str, str]]",
+                "list[bool]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_protocol_key_not_present",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_protocol_version_not_supported@global": [
+        {
+            "category": "local",
+            "name": "req",
+            "type": [
+                "list[dict[str, str]]",
+                "list[bool]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_protocol_version_not_supported",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_protocol_version_unset@global": [
+        {
+            "category": "local",
+            "name": "req",
+            "type": [
+                "list[dict[str, str]]",
+                "list[bool]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_protocol_version_unset",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

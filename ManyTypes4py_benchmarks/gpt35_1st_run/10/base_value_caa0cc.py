@@ -1,0 +1,89 @@
+from typing import List, Dict, Union, Optional, Iterable, Iterator
+
+class ValueSet:
+    def __init__(self, iterable: Iterable[Value]):
+        self._set: frozenset[Value] = frozenset(iterable)
+
+    @classmethod
+    def _from_frozen_set(cls, frozenset_: frozenset[Value]) -> 'ValueSet':
+        ...
+
+    @classmethod
+    def from_sets(cls, sets: Iterable[ValueSet]) -> 'ValueSet':
+        ...
+
+    def __or__(self, other: 'ValueSet') -> 'ValueSet':
+        ...
+
+    def __and__(self, other: 'ValueSet') -> 'ValueSet':
+        ...
+
+    def __iter__(self) -> Iterator[Value]:
+        ...
+
+    def __bool__(self) -> bool:
+        ...
+
+    def __len__(self) -> int:
+        ...
+
+    def filter(self, filter_func) -> 'ValueSet':
+        ...
+
+    def py__class__(self) -> 'ValueSet':
+        ...
+
+    def iterate(self, contextualized_node=None, is_async=False) -> Iterator[LazyValue]:
+        ...
+
+    def execute(self, arguments) -> 'ValueSet':
+        ...
+
+    def execute_with_values(self, *args, **kwargs) -> 'ValueSet':
+        ...
+
+    def goto(self, *args, **kwargs) -> List[Value]:
+        ...
+
+    def py__getattribute__(self, *args, **kwargs) -> 'ValueSet':
+        ...
+
+    def get_item(self, *args, **kwargs) -> 'ValueSet':
+        ...
+
+    def try_merge(self, function_name: str) -> 'ValueSet':
+        ...
+
+    def gather_annotation_classes(self) -> 'ValueSet':
+        ...
+
+    def get_signatures(self) -> List[Signature]:
+        ...
+
+    def get_type_hint(self, add_class_info=True) -> Optional[str]:
+        ...
+
+    def infer_type_vars(self, value_set: 'ValueSet') -> Dict[str, ValueSet]:
+        ...
+
+class Value:
+    def py__getitem__(self, index_value_set: ValueSet, contextualized_node) -> 'ValueSet':
+        ...
+
+    def py__simple_getitem__(self, index) -> None:
+        ...
+
+    def py__iter__(self, contextualized_node=None) -> Iterator[Value]:
+        ...
+
+    def py__next__(self, contextualized_node=None) -> Iterator[Value]:
+        ...
+
+    def get_signatures(self) -> List[Signature]:
+        ...
+
+    def get_type_hint(self, add_class_info=True) -> Optional[str]:
+        ...
+
+    def infer_type_vars(self, value_set: ValueSet) -> Dict[str, ValueSet]:
+        ...

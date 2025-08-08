@@ -1,0 +1,726 @@
+{
+    "_assert_coop_settle_state@global": [
+        {
+            "category": "arg",
+            "name": "our_state",
+            "type": [
+                "list[tuple]",
+                "float",
+                "raiden.transfer.architecture.State.Change"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "partner_state",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "list[mythril.laser.ethereum.state.global_state.GlobalState]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "our_initial_model",
+            "type": [
+                "raiden.transfer.architecture.State.Change",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "our_current_nonce",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "coop_settle_expiration",
+            "type": [
+                "str",
+                "typing.Callable",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "initiated_coop_settle",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "our_initial_model",
+            "type": [
+                "raiden.transfer.architecture.State.Change",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "our_current_nonce",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "our_model2",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "list[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "our_state",
+            "type": [
+                "list[tuple]",
+                "float",
+                "raiden.transfer.architecture.State.Change"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partner_state",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "list[mythril.laser.ethereum.state.global_state.GlobalState]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initiated_coop_settle",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_assert_coop_settle_state",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_make_receive_coop_settle_withdraw_confirmation@global": [
+        {
+            "category": "arg",
+            "name": "channel_state",
+            "type": [
+                "random.Random",
+                "raiden.utils.Address",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pseudo_random_generator",
+            "type": [
+                "random.Random",
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "signer",
+            "type": [
+                "bytes",
+                "int",
+                "raiden.utils.Signature"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "nonce",
+            "type": [
+                "random.Random",
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "total_withdraw",
+            "type": [
+                "random.Random",
+                "raiden.utils.Address",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "withdraw_expiration",
+            "type": [
+                "random.Random",
+                "raiden.utils.Address",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_state",
+            "type": [
+                "random.Random",
+                "raiden.utils.Address",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_withdraw",
+            "type": [
+                "random.Random",
+                "raiden.utils.Address",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "withdraw_expiration",
+            "type": [
+                "random.Random",
+                "raiden.utils.Address",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signer",
+            "type": [
+                "bytes",
+                "int",
+                "raiden.utils.Signature"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pseudo_random_generator",
+            "type": [
+                "random.Random",
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nonce",
+            "type": [
+                "random.Random",
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "withdraw_confirmation",
+            "type": [
+                "ReceiveWithdrawConfirmation"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_make_receive_coop_settle_withdraw_confirmation",
+            "type": [
+                "ReceiveWithdrawConfirmation"
+            ]
+        }
+    ],
+    "_make_receive_coop_settle_withdraw_request@global": [
+        {
+            "category": "arg",
+            "name": "channel_state",
+            "type": [
+                "int",
+                "bytes",
+                "random.Random"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pseudo_random_generator",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState",
+                "random.Random",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "signer",
+            "type": [
+                "bytes",
+                "int",
+                "raiden.utils.Signature"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "nonce",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState",
+                "random.Random",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "total_withdraw",
+            "type": [
+                "int",
+                "bytes",
+                "random.Random"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "withdraw_expiration",
+            "type": [
+                "int",
+                "bytes",
+                "random.Random"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_state",
+            "type": [
+                "int",
+                "bytes",
+                "random.Random"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_withdraw",
+            "type": [
+                "int",
+                "bytes",
+                "random.Random"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "withdraw_expiration",
+            "type": [
+                "int",
+                "bytes",
+                "random.Random"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signer",
+            "type": [
+                "bytes",
+                "int",
+                "raiden.utils.Signature"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pseudo_random_generator",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState",
+                "random.Random",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nonce",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState",
+                "random.Random",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "withdraw_request",
+            "type": [
+                "ReceiveWithdrawRequest"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_make_receive_coop_settle_withdraw_request",
+            "type": [
+                "ReceiveWithdrawRequest"
+            ]
+        }
+    ],
+    "global@global": [],
+    "test_clean_state_after_successful_onchain_coop_settle@global": [
+        {
+            "category": "return",
+            "name": "test_clean_state_after_successful_onchain_coop_settle",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_contract_event@global": [
+        {
+            "category": "local",
+            "name": "our_model1",
+            "type": [
+                "list[str]",
+                "typing.Type",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "privkey2",
+            "type": [
+                "raiden.utils.Secret",
+                "bytes",
+                "raiden.utils.PrivateKey"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partner_signer",
+            "type": [
+                "LocalSigner"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_hash",
+            "type": [
+                "bytes",
+                "raiden.utils.BlockHash",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expiration",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_state_",
+            "type": [
+                "CoopSettleState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_contract_event",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_initiate@global": [
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "privkey2",
+            "type": [
+                "bytes",
+                "raiden.utils.Secret",
+                "raiden.utils.TransactionHash"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_hash",
+            "type": [
+                "bytes",
+                "raiden.utils.BlockHash",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "action_coop_settle",
+            "type": [
+                "ActionChannelCoopSettle"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_initiate",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_receive_initiator_confirmation_has_no_effect@global": [
+        {
+            "category": "local",
+            "name": "our_model1",
+            "type": [
+                "list[str]",
+                "typing.Type",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partner_model1",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "privkey2",
+            "type": [
+                "raiden.utils.Secret",
+                "bytes",
+                "raiden.utils.PrivateKey"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partner_signer",
+            "type": [
+                "LocalSigner"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_state",
+            "type": [
+                "raiden.transfer.state.NettingChannelEndState",
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_hash",
+            "type": [
+                "bytes",
+                "raiden.utils.BlockHash",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expiration",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_state_",
+            "type": [
+                "CoopSettleState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_receive_initiator_confirmation_has_no_effect",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_receive_request@global": [
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partner_model1",
+            "type": [
+                "raiden.transfer.state.NettingChannelEndState",
+                "pyshgp.push.state.PushState",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "privkey2",
+            "type": [
+                "bytes",
+                "raiden.utils.Secret",
+                "raiden.utils.PrivateKey"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signer",
+            "type": [
+                "LocalSigner"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_hash",
+            "type": [
+                "bytes",
+                "raiden.utils.BlockHash",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expiration",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_receive_request",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_receive_request_while_pending_transfers@global": [
+        {
+            "category": "local",
+            "name": "our_model1",
+            "type": [
+                "bool",
+                "str",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partner_model1",
+            "type": [
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "privkey2",
+            "type": [
+                "bytes",
+                "raiden.utils.Secret",
+                "raiden.utils.PrivateKey"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signer",
+            "type": [
+                "LocalSigner"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_state",
+            "type": [
+                "str",
+                "typing.Optional",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_hash",
+            "type": [
+                "bytes",
+                "raiden.utils.BlockHash",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expiration",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_receive_request_while_pending_transfers",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

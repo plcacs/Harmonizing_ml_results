@@ -1,0 +1,1419 @@
+{
+    "before_node_run@BeforeNodeRunHook": [
+        {
+            "category": "arg",
+            "name": "node",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "before_node_run",
+            "type": [
+                "dict[typing.Text, MockDatasetReplacement]",
+                "None"
+            ]
+        }
+    ],
+    "broken_node@global": [
+        {
+            "category": "return",
+            "name": "broken_node",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "broken_pipeline@global": [
+        {
+            "category": "return",
+            "name": "broken_pipeline",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "SKIP_ON_WINDOWS_AND_MACOS",
+            "type": [
+                "bool",
+                "typing.Callable",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "hook_manager@global": [
+        {
+            "category": "local",
+            "name": "hook_manager",
+            "type": [
+                "logging.handlers.QueueListener"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "hook_manager",
+            "type": [
+                "logging.handlers.QueueListener"
+            ]
+        }
+    ],
+    "load@LogCatalog": [
+        {
+            "category": "arg",
+            "name": "name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "version",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "version",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataset",
+            "type": [
+                "str",
+                "pandas.DataFrame",
+                "typing.Iterable[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load",
+            "type": [
+                "str",
+                "pandas.DataFrame",
+                "typing.Iterable[str]"
+            ]
+        }
+    ],
+    "memory_catalog@global": [
+        {
+            "category": "local",
+            "name": "ds1",
+            "type": [
+                "MemoryDataset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ds2",
+            "type": [
+                "MemoryDataset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ds3",
+            "type": [
+                "MemoryDataset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ds4",
+            "type": [
+                "MemoryDataset"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "memory_catalog",
+            "type": [
+                "LogCatalog"
+            ]
+        }
+    ],
+    "mock_broken_pipelines@global": [
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "broken_pipeline",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "mock_broken_pipelines",
+            "type": []
+        }
+    ],
+    "mock_get_pipelines_registry_callable@global": [
+        {
+            "category": "return",
+            "name": "mock_get_pipelines_registry_callable",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        }
+    ],
+    "mock_session_with_before_node_run_hooks@global": [
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "project_hooks",
+            "type": [
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_package_name",
+            "type": [
+                "bool",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tmp_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "project_hooks",
+            "type": [
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_HOOKS",
+            "type": [
+                "Validator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tmp_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "mock_session_with_before_node_run_hooks",
+            "type": []
+        }
+    ],
+    "mock_session_with_broken_before_node_run_hooks@global": [
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "project_hooks",
+            "type": [
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_package_name",
+            "type": [
+                "dict",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tmp_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "project_hooks",
+            "type": [
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_HOOKS",
+            "type": [
+                "Validator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tmp_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "mock_session_with_broken_before_node_run_hooks",
+            "type": []
+        }
+    ],
+    "sample_node@global": [
+        {
+            "category": "return",
+            "name": "sample_node",
+            "type": []
+        }
+    ],
+    "sample_node_multiple_outputs@global": [
+        {
+            "category": "return",
+            "name": "sample_node_multiple_outputs",
+            "type": []
+        }
+    ],
+    "test_after_catalog_created_hook@TestCatalogHooks": [
+        {
+            "category": "arg",
+            "name": "mock_session",
+            "type": [
+                "tests.helpers.MockedFetcher"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "mock_session",
+            "type": [
+                "tests.helpers.MockedFetcher"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "dict[str, dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config_loader",
+            "type": [
+                "typing.ChainMap"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "relevant_records",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record",
+            "type": [
+                "dict",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_after_catalog_created_hook",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_after_catalog_created_hook_on_session_run@TestCatalogHooks": [
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mock_session",
+            "type": [
+                "tests.helpers.MockedFetcher"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dummy_dataframe",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_session",
+            "type": [
+                "tests.helpers.MockedFetcher"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config_loader",
+            "type": [
+                "typing.ChainMap"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "caplog",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "relevant_records",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record",
+            "type": [
+                "dict",
+                "list",
+                "logging.LogRecord"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_after_catalog_created_hook_on_session_run",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_after_context_created_hook@TestKedroContextSpecsHook": [
+        {
+            "category": "arg",
+            "name": "mock_session",
+            "type": [
+                "tests.helpers.MockedFetcher"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "mock_session",
+            "type": [
+                "tests.helpers.MockedFetcher"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "typing.DefaultDict",
+                "dict[str, dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "relevant_records",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record",
+            "type": [
+                "list",
+                "tests.core.data.json.test_json_repository.DummyEntity",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_after_context_created_hook",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_after_dataset_load_hook_async@TestAsyncNodeDatasetHooks": [
+        {
+            "category": "arg",
+            "name": "memory_catalog",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mock_session",
+            "type": [
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sample_node",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "logs_listener",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_session",
+            "type": [
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "task",
+            "type": [
+                "Task"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logs_listener",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hooks_log_messages",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_after_dataset_load_hook_async",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_after_dataset_load_hook_async_multiple_outputs@TestAsyncNodeDatasetHooks": [
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "memory_catalog",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "hook_manager",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sample_node_multiple_outputs",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hook_manager",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "after_dataset_saved_mock",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sample_node_multiple_outputs",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "memory_catalog",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "task",
+            "type": [
+                "Task"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_after_dataset_load_hook_async_multiple_outputs",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_before_and_after_dataset_loaded_hooks_parallel_runner@TestDatasetHooks": [
+        {
+            "category": "arg",
+            "name": "mock_session",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "logs_listener",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "dummy_dataframe",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "mock_session",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "typing.DefaultDict",
+                "list[dict[str, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "before_dataset_loaded_log_records",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "after_dataset_loaded_log_records",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_before_and_after_dataset_loaded_hooks_parallel_runner",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_before_and_after_dataset_loaded_hooks_sequential_runner@TestDatasetHooks": [
+        {
+            "category": "arg",
+            "name": "mock_session",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dummy_dataframe",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_session",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "typing.DefaultDict",
+                "list[dict[str, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dummy_dataframe",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "caplog",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "before_dataset_loaded_calls",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "call_record",
+            "type": [
+                "dict",
+                "list",
+                "dict[str, bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "after_dataset_loaded_calls",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_before_and_after_dataset_loaded_hooks_sequential_runner",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_before_and_after_dataset_saved_hooks_parallel_runner@TestDatasetHooks": [
+        {
+            "category": "arg",
+            "name": "mock_session",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "logs_listener",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "dummy_dataframe",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "mock_session",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "typing.DefaultDict",
+                "list[dict[str, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "before_dataset_saved_log_records",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "after_dataset_saved_log_records",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_before_and_after_dataset_saved_hooks_parallel_runner",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_before_and_after_dataset_saved_hooks_sequential_runner@TestDatasetHooks": [
+        {
+            "category": "arg",
+            "name": "mock_session",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "dummy_dataframe",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "mock_session",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context",
+            "type": [
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "before_dataset_saved_calls",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "call_record",
+            "type": [
+                "dict",
+                "list",
+                "typing.Counter"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "after_dataset_saved_calls",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_before_and_after_dataset_saved_hooks_sequential_runner",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_before_and_after_node_run_hooks_parallel_runner@TestNodeHooks": [
+        {
+            "category": "arg",
+            "name": "mock_session",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "logs_listener",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "dummy_dataframe",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "before_node_run_log_records",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "after_node_run_log_records",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_before_and_after_node_run_hooks_parallel_runner",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_before_and_after_node_run_hooks_sequential_runner@TestNodeHooks": [
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mock_session",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dummy_dataframe",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "mock_session",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "typing.DefaultDict",
+                "list[dict[str, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "before_node_run_calls",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "call_record",
+            "type": [
+                "dict",
+                "list",
+                "typing.Counter"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "after_node_run_calls",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_before_and_after_node_run_hooks_sequential_runner",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_before_and_after_pipeline_run_hooks@TestPipelineHooks": [
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mock_session",
+            "type": [
+                "tests.helpers.MockedFetcher"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dummy_dataframe",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "mock_session",
+            "type": [
+                "tests.helpers.MockedFetcher"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "typing.DefaultDict",
+                "list[dict[str, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "before_pipeline_run_calls",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "call_record",
+            "type": [
+                "list",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "after_pipeline_run_calls",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_before_and_after_pipeline_run_hooks",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_broken_input_update@TestBeforeNodeRunHookWithInputUpdates": [
+        {
+            "category": "arg",
+            "name": "mock_session_with_broken_before_node_run_hooks",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dummy_dataframe",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "mock_session_with_broken_before_node_run_hooks",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context",
+            "type": [
+                "str",
+                "dict[typing.Any, str]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_broken_input_update",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_broken_input_update_parallel@TestBeforeNodeRunHookWithInputUpdates": [
+        {
+            "category": "arg",
+            "name": "mock_session_with_broken_before_node_run_hooks",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dummy_dataframe",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "mock_session_with_broken_before_node_run_hooks",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context",
+            "type": [
+                "str",
+                "dict[typing.Any, str]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_broken_input_update_parallel",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_correct_input_update@TestBeforeNodeRunHookWithInputUpdates": [
+        {
+            "category": "arg",
+            "name": "mock_session_with_before_node_run_hooks",
+            "type": [
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dummy_dataframe",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "mock_session_with_before_node_run_hooks",
+            "type": [
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context",
+            "type": [
+                "str",
+                "dict[str, dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "dict",
+                "typing.Generator[typing.Optional[typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_correct_input_update",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_correct_input_update_parallel@TestBeforeNodeRunHookWithInputUpdates": [
+        {
+            "category": "arg",
+            "name": "mock_session_with_before_node_run_hooks",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "dummy_dataframe",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_correct_input_update_parallel",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_node_error_hook_parallel_runner@TestNodeHooks": [
+        {
+            "category": "arg",
+            "name": "mock_session",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "logs_listener",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "on_node_error_records",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_error",
+            "type": [
+                "str",
+                "typing.Type",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_node_error_hook_parallel_runner",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_node_error_hook_sequential_runner@TestPipelineHooks": [
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_session",
+            "type": [
+                "str",
+                "tests.helpers.MockedFetcher"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_session",
+            "type": [
+                "str",
+                "tests.helpers.MockedFetcher"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "caplog",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "on_node_error_calls",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "call_record",
+            "type": [
+                "list",
+                "typing.Counter"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_error",
+            "type": [
+                "str",
+                "typing.Type",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_node_error_hook_sequential_runner",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_on_pipeline_error_hook@TestPipelineHooks": [
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_session",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "caplog",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "on_pipeline_error_calls",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "call_record",
+            "type": [
+                "list",
+                "typing.Counter"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_error",
+            "type": [
+                "str",
+                "typing.Type",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_pipeline_error_hook",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "wait_and_identity@global": [
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "wait_and_identity",
+            "type": []
+        }
+    ]
+}

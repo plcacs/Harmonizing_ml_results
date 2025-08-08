@@ -1,0 +1,287 @@
+{
+    "__init__@StoreT": [
+        {
+            "category": "arg",
+            "name": "url",
+            "type": [
+                "models.ModelArg",
+                "codecs.CodecArg",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "app",
+            "type": [
+                "models.ModelArg",
+                "codecs.CodecArg",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "table",
+            "type": [
+                "models.ModelArg",
+                "codecs.CodecArg",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "table_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "key_type",
+            "type": [
+                "None",
+                "models.ModelArg",
+                "codecs.CodecArg",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "value_type",
+            "type": [
+                "None",
+                "models.ModelArg",
+                "codecs.CodecArg",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "key_serializer",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "value_serializer",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "options",
+            "type": [
+                "None",
+                "models.ModelArg",
+                "codecs.CodecArg",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "apply_changelog_batch@StoreT": [
+        {
+            "category": "arg",
+            "name": "batch",
+            "type": [
+                "typing.Callable",
+                "typing.Iterable[faustypes.EventT]",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_key",
+            "type": [
+                "typing.Callable",
+                "typing.Iterable[faustypes.EventT]",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_value",
+            "type": [
+                "typing.Callable",
+                "typing.Iterable[faustypes.EventT]",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "apply_changelog_batch",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "__all__",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "KT",
+            "type": [
+                "TypeVar"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VT",
+            "type": [
+                "TypeVar"
+            ]
+        }
+    ],
+    "need_active_standby_for@StoreT": [
+        {
+            "category": "arg",
+            "name": "tp",
+            "type": [
+                "tuples.TP",
+                "typing.Type",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "need_active_standby_for",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "on_rebalance@StoreT": [
+        {
+            "category": "arg",
+            "name": "table",
+            "type": [
+                "set[tuples.TP]",
+                "tables.CollectionT"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "assigned",
+            "type": [
+                "set[tuples.TP]",
+                "tables.CollectionT"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "revoked",
+            "type": [
+                "set[tuples.TP]",
+                "tables.CollectionT"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "newly_assigned",
+            "type": [
+                "set[tuples.TP]",
+                "tables.CollectionT"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_rebalance",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "on_recovery_completed@StoreT": [
+        {
+            "category": "arg",
+            "name": "active_tps",
+            "type": [
+                "set[faustypes.TP]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "standby_tps",
+            "type": [
+                "set[faustypes.TP]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_recovery_completed",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "persisted_offset@StoreT": [
+        {
+            "category": "arg",
+            "name": "tp",
+            "type": [
+                "tuples.TP",
+                "typing.Type",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "persisted_offset",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "reset_state@StoreT": [
+        {
+            "category": "return",
+            "name": "reset_state",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "set_persisted_offset@StoreT": [
+        {
+            "category": "arg",
+            "name": "tp",
+            "type": [
+                "int",
+                "tuples.TP"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "offset",
+            "type": [
+                "int",
+                "tuples.TP"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_persisted_offset",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

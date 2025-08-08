@@ -1,0 +1,727 @@
+{
+    "_join_split_log@global": [
+        {
+            "category": "arg",
+            "name": "log_tuple",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "train_log",
+            "type": [
+                "dict",
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_join_split_log",
+            "type": [
+                "tuple[dict[typing.Text, ]]"
+            ]
+        }
+    ],
+    "clean_logs@global": [
+        {
+            "category": "arg",
+            "name": "log_tuple",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "split_log_error",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_validator_logs",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_split_log",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "clean_logs",
+            "type": [
+                "tuple[list]"
+            ]
+        }
+    ],
+    "fold_iter@global": [
+        {
+            "category": "arg",
+            "name": "fold",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "train_fold_is_null",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "fold_iter",
+            "type": [
+                "dict[typing.Text, bool]"
+            ]
+        }
+    ],
+    "get_perturbed_columns@global": [
+        {
+            "category": "arg",
+            "name": "perturbator",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "get_perturbed_columns",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "global@global": [],
+    "kwdissoc@global": [
+        {
+            "category": "arg",
+            "name": "d",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "key",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "kwdissoc",
+            "type": []
+        }
+    ],
+    "parallel_validator@global": [
+        {
+            "category": "arg",
+            "name": "train_data",
+            "type": [
+                "fklearn.types.LearnerFnType",
+                "fklearn.types.SplitterFnType",
+                "fklearn.types.EvalFnType"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "split_fn",
+            "type": [
+                "fklearn.types.LearnerFnType",
+                "fklearn.types.SplitterFnType",
+                "fklearn.types.EvalFnType"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "train_fn",
+            "type": [
+                "fklearn.types.LearnerFnType",
+                "fklearn.types.SplitterFnType",
+                "fklearn.types.EvalFnType"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "eval_fn",
+            "type": [
+                "fklearn.types.LearnerFnType",
+                "fklearn.types.SplitterFnType",
+                "fklearn.types.EvalFnType"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "n_jobs",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "predict_oof",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "return_eval_logs_on_train",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "verbose",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_data",
+            "type": [
+                "fklearn.types.LearnerFnType",
+                "fklearn.types.SplitterFnType",
+                "fklearn.types.EvalFnType"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "folds",
+            "type": [
+                "str",
+                "property",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logs",
+            "type": [
+                "fklearn.types.LearnerLogType",
+                "list",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "list[object]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fold_result",
+            "type": [
+                "object"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_log",
+            "type": [
+                "dict[typing.Text, list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_logs",
+            "type": [
+                "fklearn.types.LearnerLogType",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "parallel_validator",
+            "type": [
+                "bytes",
+                "str"
+            ]
+        }
+    ],
+    "parallel_validator_iteration@global": [
+        {
+            "category": "arg",
+            "name": "train_data",
+            "type": [
+                "fklearn.types.EvalFnType",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fold",
+            "type": [
+                "int",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "train_fn",
+            "type": [
+                "fklearn.types.EvalFnType",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "eval_fn",
+            "type": [
+                "fklearn.types.EvalFnType",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "predict_oof",
+            "type": [
+                "fklearn.types.EvalFnType",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "return_eval_logs_on_train",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "verbose",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fold",
+            "type": [
+                "int",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fold_num",
+            "type": [
+                "int",
+                "float",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_index",
+            "type": [
+                "int",
+                "list[str]",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_indexes",
+            "type": [
+                "int",
+                "list[int]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_data",
+            "type": [
+                "fklearn.types.EvalFnType",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_fn",
+            "type": [
+                "fklearn.types.EvalFnType",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "eval_fn",
+            "type": [
+                "fklearn.types.EvalFnType",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "predict_oof",
+            "type": [
+                "fklearn.types.EvalFnType",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "return_eval_logs_on_train",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "verbose",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "parallel_validator_iteration",
+            "type": [
+                "set[str]",
+                "str",
+                "typing.Deque"
+            ]
+        }
+    ],
+    "validator@global": [
+        {
+            "category": "arg",
+            "name": "train_data",
+            "type": [
+                "fklearn.types.LearnerFnType",
+                "fklearn.types.EvalFnType",
+                "fklearn.types.SplitterFnType"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "split_fn",
+            "type": [
+                "fklearn.types.LearnerFnType",
+                "fklearn.types.EvalFnType",
+                "fklearn.types.SplitterFnType"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "train_fn",
+            "type": [
+                "fklearn.types.LearnerFnType",
+                "fklearn.types.EvalFnType",
+                "fklearn.types.SplitterFnType"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "eval_fn",
+            "type": [
+                "fklearn.types.LearnerFnType",
+                "fklearn.types.EvalFnType",
+                "fklearn.types.SplitterFnType"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "perturb_fn_train",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "perturb_fn_test",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "predict_oof",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "return_eval_logs_on_train",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "return_all_train_logs",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "verbose",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "drop_empty_folds",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_data",
+            "type": [
+                "fklearn.types.LearnerFnType",
+                "fklearn.types.EvalFnType",
+                "fklearn.types.SplitterFnType"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "folds",
+            "type": [
+                "str",
+                "property",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logs",
+            "type": [
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_fn",
+            "type": [
+                "fklearn.types.LearnerFnType",
+                "fklearn.types.EvalFnType",
+                "fklearn.types.SplitterFnType"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "eval_fn",
+            "type": [
+                "fklearn.types.LearnerFnType",
+                "fklearn.types.EvalFnType",
+                "fklearn.types.SplitterFnType"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "drop_empty_folds",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "return_all_train_logs",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_logs",
+            "type": [
+                "dict[typing.Text, list]",
+                "list",
+                "dict[str, dict[str, typing.Any]]",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "perturbator_log",
+            "type": [
+                "dict[typing.Text, list]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "validator",
+            "type": [
+                "typing.Iterable[str]",
+                "bytes",
+                "typing.Callable"
+            ]
+        }
+    ],
+    "validator_iteration@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "bool",
+                "pandas.DataFrame",
+                "pandas.Index"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "train_index",
+            "type": [
+                "int",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "test_indexes",
+            "type": [
+                "int",
+                "None",
+                "pandas.Index"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fold_num",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "train_fn",
+            "type": [
+                "fklearn.types.LearnerFnType",
+                "bool",
+                "pandas.Index"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "eval_fn",
+            "type": [
+                "bool",
+                "pandas.Index"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "predict_oof",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "return_eval_logs_on_train",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "verbose",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "bool",
+                "pandas.DataFrame",
+                "pandas.Index"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_index",
+            "type": [
+                "int",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "empty_set_warn",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "return_eval_logs_on_train",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "eval_results",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "oof_predictions",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "verbose",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fold_num",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_indexes",
+            "type": [
+                "int",
+                "None",
+                "pandas.Index"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "predict_oof",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logs",
+            "type": [
+                "dict[typing.Text, typing.Union[int,list]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "validator_iteration",
+            "type": [
+                "dict[typing.Text, typing.Union[int,list]]"
+            ]
+        }
+    ]
+}

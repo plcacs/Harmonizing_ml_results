@@ -1,0 +1,1448 @@
+{
+    "_check_results@BeamSearchTest": [
+        {
+            "category": "arg",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_top_k",
+            "type": [
+                "None",
+                "numpy.array",
+                "numpy.ndarray",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_log_probs",
+            "type": [
+                "None",
+                "numpy.array",
+                "float",
+                "gluonts.model.common.Tensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "beam_search",
+            "type": [
+                "None",
+                "list[int]",
+                "int",
+                "dict[str, torch.Tensor]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "None",
+                "dict[str, torch.Tensor]",
+                "list[allennlp.data.iterators.data_iterator.TensorDict]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "take_step",
+            "type": [
+                "bool",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "take_step_with_timestep",
+            "type": [
+                "bool",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_top_k",
+            "type": [
+                "None",
+                "numpy.array",
+                "numpy.ndarray",
+                "torch.Tensor",
+                "list",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_log_probs",
+            "type": [
+                "None",
+                "numpy.array",
+                "float",
+                "gluonts.model.common.Tensor",
+                "list",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "None",
+                "dict[str, torch.Tensor]",
+                "list[allennlp.data.iterators.data_iterator.TensorDict]",
+                "list[int]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "beam_search",
+            "type": [
+                "None",
+                "list[int]",
+                "int",
+                "dict[str, torch.Tensor]",
+                "list[list[typing.Any]]",
+                "allennlp.nn.beam_search.BeamSearch",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "take_step",
+            "type": [
+                "bool",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_check_results",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_step_function@global": [
+        {
+            "category": "arg",
+            "name": "last_predictions",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "log_probs_list",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_step_function",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "_step_function_with_timestep@global": [
+        {
+            "category": "arg",
+            "name": "last_predictions",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "timestep",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_step_function_with_timestep",
+            "type": []
+        }
+    ],
+    "get_step_function@global": [
+        {
+            "category": "arg",
+            "name": "transition_matrix",
+            "type": [
+                "bool",
+                "tuple[frozenset]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "with_timestep",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "with_timestep",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_step_function",
+            "type": []
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "transition_probabilities",
+            "type": [
+                "int",
+                "tuple[float]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "short_sequence_transition_probabilities",
+            "type": [
+                "int",
+                "list[float]",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "repeated_ngram_transition_probabilities_0",
+            "type": [
+                "float",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "repeated_ngram_transition_probabilities_1",
+            "type": [
+                "float",
+                "int",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log_probabilities",
+            "type": [
+                "int",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "take_step_no_timestep",
+            "type": [
+                "int",
+                "typing.Callable[None, typing.Any]",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "take_step_with_timestep",
+            "type": [
+                "bool",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "take_short_sequence_step",
+            "type": [
+                "int",
+                "list[numpy.ndarray]"
+            ]
+        }
+    ],
+    "setup_method@BeamSearchTest": [
+        {
+            "category": "local",
+            "name": "transition_probabilities",
+            "type": [
+                "int",
+                "tuple[float]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "end_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "beam_search",
+            "type": [
+                "BeamSearch"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "setup_method",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_batch_size_of_one@BeamSearchTest": [
+        {
+            "category": "return",
+            "name": "test_batch_size_of_one",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_catch_bad_config@BeamSearchTest": [
+        {
+            "category": "local",
+            "name": "beam_search",
+            "type": [
+                "BeamSearch"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_catch_bad_config",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_default_from_params_params@BeamSearchTest": [
+        {
+            "category": "return",
+            "name": "test_default_from_params_params",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_diff_shape_state@BeamSearchTest": [
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict",
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "seq",
+            "type": [
+                "list[list[int]]",
+                "list[list[list[int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_finished_state",
+            "type": [
+                "dict",
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_diff_shape_state",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_different_per_node_beam_size@BeamSearchTest": [
+        {
+            "category": "local",
+            "name": "beam_search",
+            "type": [
+                "BeamSearch"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_different_per_node_beam_size",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_early_stopping@BeamSearchTest": [
+        {
+            "category": "local",
+            "name": "beam_search",
+            "type": [
+                "BeamSearch"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_early_stopping",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_empty_sequences@BeamSearchTest": [
+        {
+            "category": "local",
+            "name": "beam_search",
+            "type": [
+                "BeamSearch"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "take_step_with_timestep",
+            "type": [
+                "bool",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_empty_sequences",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_finished_state@BeamSearchTest": [
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict",
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_finished_state",
+            "type": [
+                "dict",
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_finished_state",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_greedy_search@BeamSearchTest": [
+        {
+            "category": "local",
+            "name": "beam_search",
+            "type": [
+                "BeamSearch"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_greedy_search",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_gumbel_sampler@BeamSearchTest": [
+        {
+            "category": "local",
+            "name": "sampler",
+            "type": [
+                "GumbelSampler"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log_probabilities",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_classes",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sampler_state",
+            "type": [
+                "tuple",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log_probs",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indices",
+            "type": [
+                "list",
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "list",
+                "tuple",
+                "dict[str, tuple[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sorted_indices",
+            "type": [
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_gumbel_sampler",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_k_val@BeamSearchTest": [
+        {
+            "category": "arg",
+            "name": "k_val",
+            "type": [
+                "numpy.ndarray",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "take_step_with_timestep",
+            "type": [
+                "bool",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "take_step",
+            "type": [
+                "bool",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "beam_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k_val",
+            "type": [
+                "numpy.ndarray",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k_sampler",
+            "type": [
+                "TopKSampler"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_k_val",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_length_normalized_sequence_log_prob_scorer@BeamSearchTest": [
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "LengthNormalizedSequenceLogProbabilityScorer",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length_penalty",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_length_normalized_sequence_log_prob_scorer",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_min_steps@BeamSearchTest": [
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "take_short_sequence_step",
+            "type": [
+                "int",
+                "list[numpy.ndarray]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_min_steps",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_multinomial_sampler@BeamSearchTest": [
+        {
+            "category": "local",
+            "name": "sampler",
+            "type": [
+                "MultinomialSampler"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log_probabilities",
+            "type": [
+                "int",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "probabilities",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "classes",
+            "type": [
+                "list",
+                "tuple[typing.Literal]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "list",
+                "tuple",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_multinomial_sampler",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_p_val@BeamSearchTest": [
+        {
+            "category": "arg",
+            "name": "p_val",
+            "type": [
+                "float",
+                "complex",
+                "list[list[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "take_step_with_timestep",
+            "type": [
+                "bool",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "take_step",
+            "type": [
+                "bool",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "beam_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "p_val",
+            "type": [
+                "float",
+                "complex",
+                "list[list[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "p_sampler",
+            "type": [
+                "TopPSampler"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_p_val",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_params_p_sampling@BeamSearchTest": [
+        {
+            "category": "return",
+            "name": "test_params_p_sampling",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_params_sampling@BeamSearchTest": [
+        {
+            "category": "return",
+            "name": "test_params_sampling",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_repeated_ngram_blocking_constraint_apply@BeamSearchTest": [
+        {
+            "category": "local",
+            "name": "ngram_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "beam_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_classes",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "constraint",
+            "type": [
+                "RepeatedNGramBlockingConstraint"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "list[list[dict[typing.Text, typing.Union[list[int],dict[tuple[int], list[int]]]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "disallowed_locations",
+            "type": [
+                "str",
+                "int",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_repeated_ngram_blocking_constraint_apply",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_repeated_ngram_blocking_constraint_init_state@BeamSearchTest": [
+        {
+            "category": "local",
+            "name": "ngram_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "constraint",
+            "type": [
+                "RepeatedNGramBlockingConstraint"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "list",
+                "tuple"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_repeated_ngram_blocking_constraint_init_state",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_repeated_ngram_blocking_constraint_update_state@BeamSearchTest": [
+        {
+            "category": "local",
+            "name": "ngram_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "constraint",
+            "type": [
+                "RepeatedNGramBlockingConstraint"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "list[list[dict[typing.Text, typing.Union[list[int],dict[tuple[int], list[int]]]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_state",
+            "type": [
+                "list[list[dict[typing.Text, typing.Union[list[int],dict[tuple[int], list[int]]]]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_repeated_ngram_blocking_constraint_update_state",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_repeated_ngram_blocking_end_indices@BeamSearchTest": [
+        {
+            "category": "local",
+            "name": "repeated_ngram_transition_probabilities_0",
+            "type": [
+                "float",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "step_function",
+            "type": [
+                "tuple",
+                "str",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "int",
+                "list[RepeatedNGramBlockingConstraint]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_repeated_ngram_blocking_end_indices",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_repeated_ngram_blocking_end_to_end_bigrams@BeamSearchTest": [
+        {
+            "category": "local",
+            "name": "repeated_ngram_transition_probabilities_0",
+            "type": [
+                "float",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "step_function",
+            "type": [
+                "tuple",
+                "str",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "int",
+                "list[RepeatedNGramBlockingConstraint]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_repeated_ngram_blocking_end_to_end_bigrams",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_repeated_ngram_blocking_end_to_end_trigrams@BeamSearchTest": [
+        {
+            "category": "local",
+            "name": "repeated_ngram_transition_probabilities_0",
+            "type": [
+                "float",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "step_function",
+            "type": [
+                "tuple",
+                "str",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "int",
+                "list[RepeatedNGramBlockingConstraint]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_repeated_ngram_blocking_end_to_end_trigrams",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_repeated_ngram_blocking_end_to_end_unigrams@BeamSearchTest": [
+        {
+            "category": "local",
+            "name": "repeated_ngram_transition_probabilities_0",
+            "type": [
+                "float",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "step_function",
+            "type": [
+                "tuple",
+                "str",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "int",
+                "list[RepeatedNGramBlockingConstraint]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "repeated_ngram_transition_probabilities_1",
+            "type": [
+                "float",
+                "int",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_repeated_ngram_blocking_end_to_end_unigrams",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_search@BeamSearchTest": [
+        {
+            "category": "arg",
+            "name": "step_function",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "step_function",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_search",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_single_step@BeamSearchTest": [
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_single_step",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_stochastic_beam_search@BeamSearchTest": [
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "beam_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "take_step_with_timestep",
+            "type": [
+                "bool",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "take_step",
+            "type": [
+                "bool",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gumbel_sampler",
+            "type": [
+                "GumbelSampler"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reached_end",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_stochastic_beam_search",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_take_repeated_ngram_step@BeamSearchTest": [
+        {
+            "category": "local",
+            "name": "repeated_ngram_transition_probabilities_0",
+            "type": [
+                "float",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "step_function",
+            "type": [
+                "tuple",
+                "str",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_take_repeated_ngram_step",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_take_short_sequence_step@BeamSearchTest": [
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "take_short_sequence_step",
+            "type": [
+                "int",
+                "list[numpy.ndarray]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_take_short_sequence_step",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_top_k_sampler@BeamSearchTest": [
+        {
+            "category": "local",
+            "name": "sampler",
+            "type": [
+                "TopKSampler"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log_probabilities",
+            "type": [
+                "int",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "probabilities",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "classes",
+            "type": [
+                "list",
+                "tuple[typing.Literal]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "list",
+                "tuple",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_top_k_sampler",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_top_k_search@BeamSearchTest": [
+        {
+            "category": "local",
+            "name": "beam_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "take_step_with_timestep",
+            "type": [
+                "bool",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "take_step",
+            "type": [
+                "bool",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k_sampler",
+            "type": [
+                "TopKSampler"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_top_k_search",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_top_p_sampler@BeamSearchTest": [
+        {
+            "category": "local",
+            "name": "sampler",
+            "type": [
+                "TopPSampler"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log_probabilities",
+            "type": [
+                "int",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "probabilities",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "classes",
+            "type": [
+                "list",
+                "tuple[typing.Literal]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "tuple",
+                "T",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_top_p_sampler",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_top_p_search@BeamSearchTest": [
+        {
+            "category": "local",
+            "name": "beam_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "take_step_with_timestep",
+            "type": [
+                "bool",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "take_step",
+            "type": [
+                "bool",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "p_sampler",
+            "type": [
+                "TopPSampler"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_top_p_search",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_warn_for_bad_log_probs@BeamSearchTest": [
+        {
+            "category": "local",
+            "name": "take_step_no_timestep",
+            "type": [
+                "int",
+                "typing.Callable[None, typing.Any]",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_warn_for_bad_log_probs",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

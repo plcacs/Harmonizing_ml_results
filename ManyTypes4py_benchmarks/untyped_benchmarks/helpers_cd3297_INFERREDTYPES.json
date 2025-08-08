@@ -1,0 +1,894 @@
+{
+    "__init__@CastStatusListener": [
+        {
+            "category": "arg",
+            "name": "cast_device",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chromecast",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mz_mgr",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mz_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cast_device",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_cast_device",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chromecast",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_valid",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mz_mgr",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_mz_mgr",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mz_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_fetch_playlist@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "url",
+            "type": [
+                "str",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "supported_content_types",
+            "type": [
+                "str",
+                "homeassistancore.HomeAssistant",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "str",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "charset",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "supported_content_types",
+            "type": [
+                "str",
+                "homeassistancore.HomeAssistant",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "playlist_data",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "err",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_fetch_playlist",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "bytes"
+            ]
+        }
+    ],
+    "_is_url@global": [
+        {
+            "category": "arg",
+            "name": "url",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "urllib.parse.ParseResult"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_is_url",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "added_to_multizone@CastStatusListener": [
+        {
+            "category": "arg",
+            "name": "group_uuid",
+            "type": [
+                "str",
+                "typing.Sequence[str]",
+                "jgikbase.idmapping.core.user.Username"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "added_to_multizone",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "fill_out_missing_chromecast_info@ChromecastInfo": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cast_info",
+            "type": [
+                "typing.MutableMapping",
+                "typing.Type",
+                "None",
+                "CastInfo"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "report_issue",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_dynamic_group",
+            "type": [
+                "bool",
+                "list[bool]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "fill_out_missing_chromecast_info",
+            "type": [
+                "ChromecastInfo"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "http_group_status",
+            "type": [
+                "None",
+                "int",
+                "dict[str, typing.Union[None,int,str]]",
+                "tuple[int]"
+            ]
+        }
+    ],
+    "friendly_name@ChromecastInfo": [
+        {
+            "category": "return",
+            "name": "friendly_name",
+            "type": []
+        }
+    ],
+    "get_zeroconf@ChromeCastZeroconf": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cls",
+            "type": [
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_zeroconf",
+            "type": []
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_PLS_SECTION_PLAYLIST",
+            "type": [
+                "typing.Text",
+                "str",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        }
+    ],
+    "invalidate@CastStatusListener": [
+        {
+            "category": "local",
+            "name": "_valid",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "invalidate",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "is_audio_group@ChromecastInfo": [
+        {
+            "category": "return",
+            "name": "is_audio_group",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "load_media_failed@CastStatusListener": [
+        {
+            "category": "arg",
+            "name": "queue_item_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "error_code",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "queue_item_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error_code",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_media_failed",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "multizone_new_cast_status@CastStatusListener": [
+        {
+            "category": "arg",
+            "name": "group_uuid",
+            "type": [
+                "bool",
+                "str",
+                "set[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "cast_status",
+            "type": [
+                "bool",
+                "str",
+                "set[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "multizone_new_cast_status",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "multizone_new_media_status@CastStatusListener": [
+        {
+            "category": "arg",
+            "name": "group_uuid",
+            "type": [
+                "int",
+                "tuple[typing.Union[int,str]]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "media_status",
+            "type": [
+                "int",
+                "tuple[typing.Union[int,str]]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group_uuid",
+            "type": [
+                "int",
+                "tuple[typing.Union[int,str]]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "media_status",
+            "type": [
+                "int",
+                "tuple[typing.Union[int,str]]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "multizone_new_media_status",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "new_cast_status@CastStatusListener": [
+        {
+            "category": "arg",
+            "name": "status",
+            "type": [
+                "str",
+                "bool",
+                "preacher.core.status.Status"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "status",
+            "type": [
+                "str",
+                "bool",
+                "preacher.core.status.Status"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "new_cast_status",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "new_connection_status@CastStatusListener": [
+        {
+            "category": "arg",
+            "name": "status",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "status",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "new_connection_status",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "new_media_status@CastStatusListener": [
+        {
+            "category": "arg",
+            "name": "status",
+            "type": [
+                "str",
+                "bool",
+                "preacher.core.status.Status"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "status",
+            "type": [
+                "str",
+                "bool",
+                "preacher.core.status.Status"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "new_media_status",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "parse_m3u@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "url",
+            "type": [
+                "str",
+                "homeassistancore.HomeAssistant",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hls_content_types",
+            "type": [
+                "tuple[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "str",
+                "homeassistancore.HomeAssistant",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "m3u_data",
+            "type": [
+                "str",
+                "requests.models.Response"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "m3u_lines",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "playlist",
+            "type": [
+                "list",
+                "list[PlaylistItem]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length",
+            "type": [
+                "None",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "title",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "line",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "info",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "parse_m3u",
+            "type": [
+                "list[PlaylistItem]"
+            ]
+        }
+    ],
+    "parse_playlist@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "str",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "url",
+            "type": [
+                "str",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "str",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "str",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "playlist",
+            "type": [
+                "int",
+                "str",
+                "pipwatch_api.datastore.models.Requirement"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "parse_playlist",
+            "type": [
+                "int",
+                "str",
+                "pipwatch_api.datastore.models.Requirement"
+            ]
+        }
+    ],
+    "parse_pls@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "url",
+            "type": [
+                "str",
+                "homeassistancore.HomeAssistant",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "str",
+                "homeassistancore.HomeAssistant",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pls_data",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "err",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_PLS_SECTION_PLAYLIST",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, typing.Any]",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "playlist",
+            "type": [
+                "list",
+                "list[PlaylistItem]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_option",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "parse_pls",
+            "type": [
+                "list[PlaylistItem]"
+            ]
+        }
+    ],
+    "removed_from_multizone@CastStatusListener": [
+        {
+            "category": "arg",
+            "name": "group_uuid",
+            "type": [
+                "str",
+                "jgikbase.idmapping.core.tokens.HashedToken",
+                "jgikbase.idmapping.core.user.Username"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group_uuid",
+            "type": [
+                "str",
+                "jgikbase.idmapping.core.tokens.HashedToken",
+                "jgikbase.idmapping.core.user.Username"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "removed_from_multizone",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "set_zeroconf@ChromeCastZeroconf": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "typing.Type",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "zconf",
+            "type": [
+                "typing.Type",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "zconf",
+            "type": [
+                "typing.Type",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cls_",
+            "type": [
+                "typing.Type",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_zeroconf",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "uuid@ChromecastInfo": [
+        {
+            "category": "return",
+            "name": "uuid",
+            "type": []
+        }
+    ]
+}

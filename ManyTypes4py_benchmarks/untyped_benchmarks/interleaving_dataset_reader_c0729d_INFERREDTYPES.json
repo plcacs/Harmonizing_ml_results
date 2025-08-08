@@ -1,0 +1,325 @@
+{
+    "__init__@InterleavingDatasetReader": [
+        {
+            "category": "arg",
+            "name": "readers",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dataset_field_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "scheme",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "readers",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_readers",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataset_field_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_dataset_field_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scheme",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_VALID_SCHEMES",
+            "type": [
+                "set[str]",
+                "frozenset",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_scheme",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_read@InterleavingDatasetReader": [
+        {
+            "category": "arg",
+            "name": "file_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "datasets",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_read",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "_read_all_at_once@InterleavingDatasetReader": [
+        {
+            "category": "arg",
+            "name": "datasets",
+            "type": [
+                "dict",
+                "dict[str, dict[str, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "tuple[typing.Union[str,dict[str, str]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataset",
+            "type": [
+                "tuple[typing.Union[str,dict[str, str]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "datasets",
+            "type": [
+                "dict",
+                "dict[str, dict[str, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instance",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_read_all_at_once",
+            "type": [
+                "typing.Generator[typing.Union[str,dict[str, str]]]"
+            ]
+        }
+    ],
+    "_read_round_robin@InterleavingDatasetReader": [
+        {
+            "category": "arg",
+            "name": "datasets",
+            "type": [
+                "allennlp.data.Instance",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "datasets",
+            "type": [
+                "allennlp.data.Instance",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "remaining",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataset_iterators",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_read_round_robin",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "_set_distributed_info@InterleavingDatasetReader": [
+        {
+            "category": "arg",
+            "name": "info",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "info",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_set_distributed_info",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_set_worker_info@InterleavingDatasetReader": [
+        {
+            "category": "arg",
+            "name": "info",
+            "type": [
+                "typing.Hashable",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "info",
+            "type": [
+                "typing.Hashable",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_set_worker_info",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "apply_token_indexers@InterleavingDatasetReader": [
+        {
+            "category": "arg",
+            "name": "instance",
+            "type": [
+                "typing.Iterable[allennlp.data.instance.Instance]",
+                "allennlp.data.Instance"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instance",
+            "type": [
+                "typing.Iterable[allennlp.data.instance.Instance]",
+                "allennlp.data.Instance"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "apply_token_indexers",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "_VALID_SCHEMES",
+            "type": [
+                "set[typing.Text]",
+                "set[str]",
+                "frozenset",
+                "list[str]"
+            ]
+        }
+    ],
+    "text_to_instance@InterleavingDatasetReader": [
+        {
+            "category": "arg",
+            "name": "dataset_key",
+            "type": [
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "dataset_key",
+            "type": [
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "text_to_instance",
+            "type": []
+        }
+    ]
+}

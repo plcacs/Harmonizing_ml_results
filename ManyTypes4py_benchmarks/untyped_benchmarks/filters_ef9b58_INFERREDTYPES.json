@@ -1,0 +1,526 @@
+{
+    "__bool__@RaidenContractFilter": [
+        {
+            "category": "return",
+            "name": "__bool__",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "abi_of_contract_address@RaidenContractFilter": [
+        {
+            "category": "arg",
+            "name": "contract_manager",
+            "type": [
+                "raiden.storage.sqlite.SQLiteStorage",
+                "raiden.network.proxies.secret_registry.SecretRegistry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contract_manager",
+            "type": [
+                "raiden.storage.sqlite.SQLiteStorage",
+                "raiden.network.proxies.secret_registry.SecretRegistry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "abis",
+            "type": [
+                "dict[dict[Address, ], dict[Address, ]]",
+                "dict[typing.Union[dict[Address, ],Address], dict[Address, ]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "abi_of_contract_address",
+            "type": [
+                "dict[typing.Union[dict[Address, ],Address], dict[Address, ]]"
+            ]
+        }
+    ],
+    "decode_event@global": [
+        {
+            "category": "arg",
+            "name": "abi",
+            "type": [
+                "raiden.utils.ABI",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "event_log",
+            "type": [
+                "web3.types.LogReceipt",
+                "raiden.utils.ChainID",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_log",
+            "type": [
+                "web3.types.LogReceipt",
+                "raiden.utils.ChainID",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_id",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "abi",
+            "type": [
+                "raiden.utils.ABI",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events",
+            "type": [
+                "list[dict[str, typing.Any]]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_abi",
+            "type": [
+                "dict[str, typing.Any]",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_to_event_abi",
+            "type": [
+                "dict[, typing.Union[dict[str, typing.Any],typing.Text]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ABI_CODEC",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "decode_event",
+            "type": [
+                "str",
+                "dict",
+                "bytes"
+            ]
+        }
+    ],
+    "get_filter_args_for_all_events_from_channel@global": [
+        {
+            "category": "arg",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.ChannelID",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "channel_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.ChannelID",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "contract_manager",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.ChannelID",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "from_block",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "to_block",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.ChannelID",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.ChannelID",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contract_manager",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.ChannelID",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_filter_args_for_all_events_from_channel",
+            "type": []
+        }
+    ],
+    "get_filter_args_for_specific_event_from_channel@global": [
+        {
+            "category": "arg",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "channel_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "event_name",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "str",
+                "raiden.utils.SecretRegistryAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "contract_manager",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "str",
+                "raiden.utils.SecretRegistryAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "from_block",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "to_block",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "contract_manager",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "str",
+                "raiden.utils.SecretRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_name",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "str",
+                "raiden.utils.SecretRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ABI_CODEC",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "tuple[typing.Union[typing.Literal,typing.Any]]",
+                "list",
+                "typing.Callable[None,None, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_filter_params",
+            "type": [
+                "dict[str, str]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_filter_args_for_specific_event_from_channel",
+            "type": [
+                "dict[str, str]",
+                "str"
+            ]
+        }
+    ],
+    "get_topics_of_events@global": [
+        {
+            "category": "arg",
+            "name": "abi",
+            "type": [
+                "dict[str, str]",
+                "str",
+                "typing.Callable[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "abi",
+            "type": [
+                "dict[str, str]",
+                "str",
+                "typing.Callable[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_abis",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ev",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_topics_of_events",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ABI_CODEC",
+            "type": [
+                "ABICodec",
+                "str",
+                "int"
+            ]
+        }
+    ],
+    "to_web3_filters@RaidenContractFilter": [
+        {
+            "category": "arg",
+            "name": "contract_manager",
+            "type": [
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.BlockIdentifier"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "from_block",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_block",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "node_address",
+            "type": [
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contract_manager",
+            "type": [
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.BlockIdentifier"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "filters",
+            "type": [
+                "list",
+                "list[dict[typing.Text, typing.Union[typing.Text,raiden_contracts.contract_manager.ContractManager,raiden.utils.TokenNetworkAddress,raiden.utils.TokenNetworkRegistryAddress,list]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_block",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_block",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node_address",
+            "type": [
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node_topic",
+            "type": [
+                "HexStr"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_topics",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "service_registry",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "to_web3_filters",
+            "type": []
+        }
+    ],
+    "union@RaidenContractFilter": [
+        {
+            "category": "arg",
+            "name": "other",
+            "type": [
+                "raiden.utils.Any",
+                "dict",
+                "collections.abc.AsyncIterator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret_registry_address",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "other",
+            "type": [
+                "raiden.utils.Any",
+                "dict",
+                "collections.abc.AsyncIterator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "non_none_secret_registries",
+            "type": [
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretReveal",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "union",
+            "type": [
+                "RaidenContractFilter"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,1093 @@
+{
+    "get_window_bounds@BadIndexer": [
+        {
+            "category": "return",
+            "name": "get_window_bounds",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_window_bounds@CustomIndexer": [
+        {
+            "category": "arg",
+            "name": "num_values",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "min_periods",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "center",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "closed",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "step",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "get_window_bounds",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "global@global": [],
+    "test_bad_get_window_bounds_signature@global": [
+        {
+            "category": "local",
+            "name": "indexer",
+            "type": [
+                "BadIndexer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_bad_get_window_bounds_signature",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_expanding_indexer@global": [
+        {
+            "category": "local",
+            "name": "s",
+            "type": [
+                "Series"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indexer",
+            "type": [
+                "ExpandingIndexer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "float",
+                "dict",
+                "list[list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "tuple[float]",
+                "list[int]",
+                "list[typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_expanding_indexer",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_fixed_forward_indexer_bounds@global": [
+        {
+            "category": "arg",
+            "name": "window_size",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_values",
+            "type": [
+                "int",
+                "tuple",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_start",
+            "type": [
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_end",
+            "type": [
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "step",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "window_size",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indexer",
+            "type": [
+                "FixedForwardWindowIndexer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_values",
+            "type": [
+                "int",
+                "tuple",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "step",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "start",
+            "type": [
+                "int",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "end",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_start",
+            "type": [
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_end",
+            "type": [
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_fixed_forward_indexer_bounds",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_fixed_forward_indexer_count@global": [
+        {
+            "category": "arg",
+            "name": "step",
+            "type": [
+                "int",
+                "float",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indexer",
+            "type": [
+                "FixedForwardWindowIndexer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "dict",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "step",
+            "type": [
+                "int",
+                "float",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "list",
+                "list[int]",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_fixed_forward_indexer_count",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_indexer_accepts_rolling_args@global": [
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indexer",
+            "type": [
+                "CustomIndexer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "dict",
+                "list[tuple[typing.Union[typing.Any,int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_indexer_accepts_rolling_args",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_indexer_constructor_arg@global": [
+        {
+            "category": "local",
+            "name": "use_expanding",
+            "type": [
+                "list[bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indexer",
+            "type": [
+                "CustomIndexer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "typing.Iterator",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_indexer_constructor_arg",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_indexer_quantile_sum@global": [
+        {
+            "category": "arg",
+            "name": "end_value",
+            "type": [
+                "int",
+                "bytes",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "values",
+            "type": [
+                "int",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "func",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "use_expanding",
+            "type": [
+                "list[bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indexer",
+            "type": [
+                "CustomIndexer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "dict",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "values",
+            "type": [
+                "int",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_indexer_quantile_sum",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_indexers_are_reusable_after_groupby_rolling@global": [
+        {
+            "category": "arg",
+            "name": "indexer_class",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "window_size",
+            "type": [
+                "int",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "df_data",
+            "type": [
+                "pandas.DataFrame",
+                "str",
+                "Series"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df_data",
+            "type": [
+                "pandas.DataFrame",
+                "str",
+                "Series"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_trials",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "window_size",
+            "type": [
+                "int",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indexer",
+            "type": [
+                "list",
+                "list[int]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_indexers_are_reusable_after_groupby_rolling",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_non_fixed_variable_window_indexer@global": [
+        {
+            "category": "arg",
+            "name": "closed",
+            "type": [
+                "tuple[typing.Union[pandas.DataFrame,typing.Any]]",
+                "float",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_data",
+            "type": [
+                "float",
+                "None",
+                "int",
+                "\"ks.Series\""
+            ]
+        },
+        {
+            "category": "local",
+            "name": "index",
+            "type": [
+                "int",
+                "list[str]",
+                "static_frame.core.index_datetime.IndexYear"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "offset",
+            "type": [
+                "BusinessDay"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indexer",
+            "type": [
+                "VariableOffsetWindowIndexer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_data",
+            "type": [
+                "float",
+                "None",
+                "int",
+                "\"ks.Series\""
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_non_fixed_variable_window_indexer",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_rolling_forward_cov_corr@global": [
+        {
+            "category": "arg",
+            "name": "func",
+            "type": [
+                "int",
+                "float",
+                "list",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected",
+            "type": [
+                "list",
+                "numpy.ndarray",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indexer",
+            "type": [
+                "FixedForwardWindowIndexer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rolling",
+            "type": [
+                "list",
+                "list[typing.Union[int,str]]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "list",
+                "numpy.ndarray",
+                "str",
+                "list[list[bool]]",
+                "slice",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_rolling_forward_cov_corr",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_rolling_forward_skewness@global": [
+        {
+            "category": "arg",
+            "name": "frame_or_series",
+            "type": [
+                "dict[str, float]",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "step",
+            "type": [
+                "dict[str, float]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indexer",
+            "type": [
+                "FixedForwardWindowIndexer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "step",
+            "type": [
+                "dict[str, float]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "tuple[float]",
+                "list",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_rolling_forward_skewness",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_rolling_forward_window@global": [
+        {
+            "category": "arg",
+            "name": "frame_or_series",
+            "type": [
+                "starfish.core.imagestack.imagestack.ImageStack",
+                "None",
+                "bool",
+                "typing.Sequence[typing.Iterable[typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "func",
+            "type": [
+                "str",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "np_func",
+            "type": [
+                "starfish.core.imagestack.imagestack.ImageStack",
+                "numpy.ndarray",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected",
+            "type": [
+                "starfish.core.imagestack.imagestack.ImageStack",
+                "None",
+                "typing.Sequence[typing.Iterable[typing.Any]]",
+                "typing.Iterable[typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "np_kwargs",
+            "type": [
+                "starfish.core.imagestack.imagestack.ImageStack",
+                "numpy.ndarray",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "step",
+            "type": [
+                "int",
+                "starfish.core.imagestack.imagestack.ImageStack",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indexer",
+            "type": [
+                "FixedForwardWindowIndexer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "match",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "step",
+            "type": [
+                "int",
+                "starfish.core.imagestack.imagestack.ImageStack",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "dict",
+                "tuple[typing.Any]",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "starfish.core.imagestack.imagestack.ImageStack",
+                "None",
+                "typing.Sequence[typing.Iterable[typing.Any]]",
+                "typing.Iterable[typing.Any]",
+                "int",
+                "float",
+                "tuple[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "func",
+            "type": [
+                "str",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_periods",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result3",
+            "type": [
+                "dict",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_rolling_forward_window",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_rolling_groupby_with_fixed_forward_many@global": [
+        {
+            "category": "arg",
+            "name": "group_keys",
+            "type": [
+                "pandas.DataFrame",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "window_size",
+            "type": [
+                "int",
+                "typing.Collection",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group_keys",
+            "type": [
+                "pandas.DataFrame",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "window_size",
+            "type": [
+                "int",
+                "typing.Collection",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indexer",
+            "type": [
+                "FixedForwardWindowIndexer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "list[int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result_",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "groups",
+            "type": [
+                "list",
+                "list[str]",
+                "tuple[typing.Literal]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "manual",
+            "type": [
+                "int",
+                "str",
+                "frozenset"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_rolling_groupby_with_fixed_forward_many",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_rolling_groupby_with_fixed_forward_specific@global": [
+        {
+            "category": "arg",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "window_size",
+            "type": [
+                "int",
+                "float",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected",
+            "type": [
+                "int",
+                "numpy.array",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "window_size",
+            "type": [
+                "int",
+                "float",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indexer",
+            "type": [
+                "FixedForwardWindowIndexer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "float",
+                "list[tuple[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "int",
+                "numpy.array",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_rolling_groupby_with_fixed_forward_specific",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_unequal_bounds_to_object@global": [
+        {
+            "category": "local",
+            "name": "indexer",
+            "type": [
+                "CustomIndexer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "roll",
+            "type": [
+                "list",
+                "int",
+                "list[src.autoks.core.covariance.Covariance]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "match",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_unequal_bounds_to_object",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_unequal_start_end_bounds@global": [
+        {
+            "category": "local",
+            "name": "indexer",
+            "type": [
+                "CustomIndexer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "roll",
+            "type": [
+                "list",
+                "int",
+                "list[src.autoks.core.covariance.Covariance]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "match",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_unequal_start_end_bounds",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_variableoffsetwindowindexer_not_dti@global": [
+        {
+            "category": "return",
+            "name": "test_variableoffsetwindowindexer_not_dti",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_variableoffsetwindowindexer_not_offset@global": [
+        {
+            "category": "local",
+            "name": "idx",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_variableoffsetwindowindexer_not_offset",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

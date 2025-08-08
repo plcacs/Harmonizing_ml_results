@@ -1,0 +1,29 @@
+def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities_callback: AddEntitiesCallback, discovery_info: DiscoveryInfoType = None) -> None:
+    ...
+
+class KankunSwitch(SwitchEntity):
+    def __init__(self, hass: HomeAssistant, name: str, host: str, port: int, path: str, user: str, passwd: str) -> None:
+        ...
+
+    def _switch(self, newstate: str) -> bool:
+        ...
+
+    def _query_state(self) -> bool:
+        ...
+
+    @property
+    def name(self) -> str:
+        ...
+
+    @property
+    def is_on(self) -> bool:
+        ...
+
+    def update(self) -> None:
+        ...
+
+    def turn_on(self, **kwargs: Any) -> None:
+        ...
+
+    def turn_off(self, **kwargs: Any) -> None:
+        ...

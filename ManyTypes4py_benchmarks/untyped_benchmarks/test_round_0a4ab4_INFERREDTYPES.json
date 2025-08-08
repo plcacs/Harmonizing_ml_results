@@ -1,0 +1,832 @@
+{
+    "checker@TestTimestampRound": [
+        {
+            "category": "arg",
+            "name": "ts",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "nanos",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "unit",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "diff",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "method",
+            "type": [
+                "cls_@_ceil",
+                "cls_@_floor",
+                "cls_@_round"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "checker",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [],
+    "test_ceil@TestTimestampRound": [
+        {
+            "category": "arg",
+            "name": "unit",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unit",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dt",
+            "type": [
+                "float",
+                "str",
+                "cirq.value.timestamp.Timestamp"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "tuple[typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "Timestamp"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_ceil",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_ceil_floor_edge@TestTimestampRound": [
+        {
+            "category": "arg",
+            "name": "test_input",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rounder",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "freq",
+            "type": [
+                "int",
+                "tuple[int]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected",
+            "type": [
+                "str",
+                "float",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_input",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dt",
+            "type": [
+                "Timestamp",
+                "NaT"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rounder",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "func",
+            "type": [
+                "str",
+                "typing.Callable[None,None,None,None, typing.Any]",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "freq",
+            "type": [
+                "int",
+                "tuple[int]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list[object]",
+                "dict",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "str",
+                "float",
+                "pandas.DataFrame",
+                "Timestamp"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_ceil_floor_edge",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_floor@TestTimestampRound": [
+        {
+            "category": "arg",
+            "name": "unit",
+            "type": [
+                "int",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unit",
+            "type": [
+                "int",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dt",
+            "type": [
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "tuple[typing.Any]",
+                "list",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "Timestamp"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_floor",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_round_30min@TestTimestampRound": [
+        {
+            "category": "local",
+            "name": "dt",
+            "type": [
+                "Timestamp"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "tuple[typing.Any]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "Timestamp"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_round_30min",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_round_division_by_zero_raises@TestTimestampRound": [
+        {
+            "category": "local",
+            "name": "ts",
+            "type": [
+                "Timestamp"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_round_division_by_zero_raises",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_round_dst_border_ambiguous@TestTimestampRound": [
+        {
+            "category": "arg",
+            "name": "method",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "unit",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unit",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "str",
+                "list",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "typing.Literal",
+                "dict[str, typing.Any]",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_round_dst_border_ambiguous",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_round_dst_border_nonexistent@TestTimestampRound": [
+        {
+            "category": "arg",
+            "name": "method",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ts_str",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "freq",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "unit",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ts_str",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unit",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "Timestamp"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_round_dst_border_nonexistent",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_round_frequencies@TestTimestampRound": [
+        {
+            "category": "arg",
+            "name": "timestamp",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "freq",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected",
+            "type": [
+                "str",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timestamp",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dt",
+            "type": [
+                "Timestamp"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "freq",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "dict[str, typing.Any]",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "str",
+                "float",
+                "None",
+                "Timestamp"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_round_frequencies",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_round_implementation_bounds@TestTimestampRound": [
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "Timestamp"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_round_implementation_bounds",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_round_int64@TestTimestampRound": [
+        {
+            "category": "arg",
+            "name": "timestamp",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "freq",
+            "type": [
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timestamp",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "freq",
+            "type": [
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_round_int64",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_round_invalid_arg@TestTimestampRound": [
+        {
+            "category": "local",
+            "name": "stamp",
+            "type": [
+                "Timestamp"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_round_invalid_arg",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_round_minute_freq@TestTimestampRound": [
+        {
+            "category": "arg",
+            "name": "test_input",
+            "type": [
+                "str",
+                "int",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "freq",
+            "type": [
+                "int",
+                "list[str]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected",
+            "type": [
+                "str",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rounder",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_input",
+            "type": [
+                "str",
+                "int",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dt",
+            "type": [
+                "Timestamp"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "str",
+                "float",
+                "int",
+                "Timestamp"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rounder",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "func",
+            "type": [
+                "str",
+                "typing.Callable[None,None,None,None, typing.Any]",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "freq",
+            "type": [
+                "int",
+                "list[str]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "list[list[int]]",
+                "T"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_round_minute_freq",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_round_nonstandard_freq@TestTimestampRound": [
+        {
+            "category": "return",
+            "name": "test_round_nonstandard_freq",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_round_sanity@TestTimestampRound": [
+        {
+            "category": "arg",
+            "name": "val",
+            "type": [
+                "str",
+                "typing.Callable",
+                "typing.Sequence[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "method",
+            "type": [
+                "str",
+                "typing.Callable",
+                "typing.Sequence[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "val",
+            "type": [
+                "str",
+                "typing.Callable",
+                "typing.Sequence[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nanos",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_round_sanity",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_round_subsecond@TestTimestampRound": [
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "str",
+                "typing.Match",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "Timestamp"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ts",
+            "type": [
+                "Timestamp"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "freq",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_round_subsecond",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_round_tzaware@TestTimestampRound": [
+        {
+            "category": "local",
+            "name": "dt",
+            "type": [
+                "Timestamp"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "tuple[typing.Any]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "Timestamp"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_round_tzaware",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

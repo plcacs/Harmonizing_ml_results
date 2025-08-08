@@ -1,0 +1,340 @@
+{
+    "global@global": [],
+    "multiple_runs@global": [
+        {
+            "category": "arg",
+            "name": "global_rank",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "world_size",
+            "type": [
+                "int",
+                "tuple[float]",
+                "torch.device"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "gpu_id",
+            "type": [
+                "int",
+                "tuple[float]",
+                "torch.device"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "metric",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[int, typing.Any]",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "metric_kwargs",
+            "type": [
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "desired_values",
+            "type": [
+                "dict[str, typing.Any]",
+                "int",
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exact",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "kwargs",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "argname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_kwargs",
+            "type": [
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "global_rank",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "multiple_runs",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_distributed_accuracy@UnigramRecallTest": [
+        {
+            "category": "local",
+            "name": "gold",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "predictions",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mask",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_kwargs",
+            "type": [
+                "dict[typing.Text, list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "desired_values",
+            "type": [
+                "dict[typing.Text, float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_distributed_accuracy",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_metric_on_new_object_works@UnigramRecallTest": [
+        {
+            "category": "arg",
+            "name": "device",
+            "type": [
+                "str",
+                "typing.Iterable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recall",
+            "type": [
+                "UnigramRecall"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "actual_recall",
+            "type": [
+                "float",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_metric_on_new_object_works",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_multiple_distributed_runs@UnigramRecallTest": [
+        {
+            "category": "local",
+            "name": "gold",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "predictions",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mask",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_kwargs",
+            "type": [
+                "dict[typing.Text, list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "desired_values",
+            "type": [
+                "dict[typing.Text, float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_multiple_distributed_runs",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sequence_recall@UnigramRecallTest": [
+        {
+            "category": "arg",
+            "name": "device",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recall",
+            "type": [
+                "UnigramRecall"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "actual_recall",
+            "type": [
+                "float",
+                "torch.nn.Module",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_sequence_recall",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sequence_recall_accumulates_and_resets_correctly@UnigramRecallTest": [
+        {
+            "category": "arg",
+            "name": "device",
+            "type": [
+                "str",
+                "list[str]",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recall",
+            "type": [
+                "UnigramRecall"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "str",
+                "list[str]",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "actual_recall",
+            "type": [
+                "float",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_sequence_recall_accumulates_and_resets_correctly",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sequence_recall_respects_mask@UnigramRecallTest": [
+        {
+            "category": "arg",
+            "name": "device",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recall",
+            "type": [
+                "UnigramRecall"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "actual_recall",
+            "type": [
+                "float",
+                "torch.nn.Module",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_sequence_recall_respects_mask",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

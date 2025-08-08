@@ -1,0 +1,503 @@
+{
+    "__init__@FolderSensor": [
+        {
+            "category": "arg",
+            "name": "syncthing",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "server_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "folder_id",
+            "type": [
+                "list",
+                "str",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "folder_label",
+            "type": [
+                "str",
+                "typing.Sequence[str]",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "version",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "syncthing",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_syncthing",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "server_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_server_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "folder_id",
+            "type": [
+                "list",
+                "str",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_folder_id",
+            "type": [
+                "list",
+                "str",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "folder_label",
+            "type": [
+                "str",
+                "typing.Sequence[str]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_folder_label",
+            "type": [
+                "str",
+                "typing.Sequence[str]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_state",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_unsub_timer",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_short_server_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_unique_id",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "version",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_device_info",
+            "type": [
+                "DeviceInfo"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_filter_state@FolderSensor": [
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "dict[str, int]",
+                "dict[, typing.Union[tuple[typing.Union[str,typing.Any]],tuple[typing.Union[str,int]]]]",
+                "dict[typing.Text, typing.Union[tuple[typing.Union[str,typing.Any]],tuple[typing.Union[str,int]],typing.Text]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "tuple[typing.Union[str,typing.Any]]",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "tuple[typing.Union[str,typing.Any]]",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_filter_state",
+            "type": [
+                "dict[typing.Text, typing.Union[tuple[typing.Union[str,typing.Any]],tuple[typing.Union[str,int]],typing.Text]]"
+            ]
+        }
+    ],
+    "async_added_to_hass@FolderSensor": [
+        {
+            "category": "return",
+            "name": "async_added_to_hass",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_setup_entry@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "config_entry",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "async_add_entities",
+            "type": [
+                "typing.Callable[list, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config_entry",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "dict",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "version",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exception",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "folder",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entities",
+            "type": [
+                "list[FolderSensor]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_setup_entry",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_update_status@FolderSensor": [
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "bool",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_state",
+            "type": [
+                "None",
+                "dict[str, int]",
+                "T",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_update_status",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "available@FolderSensor": [
+        {
+            "category": "return",
+            "name": "available",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "extra_state_attributes@FolderSensor": [
+        {
+            "category": "return",
+            "name": "extra_state_attributes",
+            "type": []
+        }
+    ],
+    "global@global": [],
+    "handle_folder_paused@FolderSensor": [
+        {
+            "category": "arg",
+            "name": "event",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "_state",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_folder_paused",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "handle_folder_summary@FolderSensor": [
+        {
+            "category": "arg",
+            "name": "event",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "_state",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_folder_summary",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "handle_server_available@FolderSensor": [
+        {
+            "category": "return",
+            "name": "handle_server_available",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "handle_server_unavailable@FolderSensor": [
+        {
+            "category": "local",
+            "name": "_state",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_server_unavailable",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "handle_state_changed@FolderSensor": [
+        {
+            "category": "arg",
+            "name": "event",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "_state",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_state_changed",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "native_value@FolderSensor": [
+        {
+            "category": "return",
+            "name": "native_value",
+            "type": []
+        }
+    ],
+    "refresh@FolderSensor": [
+        {
+            "category": "arg",
+            "name": "event_time",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "refresh",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "subscribe@FolderSensor": [
+        {
+            "category": "local",
+            "name": "_unsub_timer",
+            "type": [
+                "float",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "subscribe",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "unsubscribe@FolderSensor": [
+        {
+            "category": "local",
+            "name": "_unsub_timer",
+            "type": [
+                "float",
+                "int",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "unsubscribe",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

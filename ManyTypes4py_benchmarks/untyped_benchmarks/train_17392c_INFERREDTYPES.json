@@ -1,0 +1,1233 @@
+{
+    "__init__@TrainModel": [
+        {
+            "category": "arg",
+            "name": "serialization_dir",
+            "type": [
+                "str",
+                "None",
+                "data_processing.data_loader.DataLoader",
+                "typing.Callable[str, bool]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "model",
+            "type": [
+                "typing.Iterable[allennlp.data.instance.Instance]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "trainer",
+            "type": [
+                "gluonts.mx.trainer.Trainer",
+                "torch.utils.data.DataLoader"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "evaluation_data_loader",
+            "type": [
+                "None",
+                "typing.Iterable[allennlp.data.instance.Instance]",
+                "model.predictor.ContextualEncoder.Config"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "evaluate_on_test",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batch_weight_key",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "serialization_dir",
+            "type": [
+                "str",
+                "None",
+                "data_processing.data_loader.DataLoader",
+                "typing.Callable[str, bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "typing.Iterable[allennlp.data.instance.Instance]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "gluonts.mx.trainer.Trainer",
+                "torch.utils.data.DataLoader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "evaluation_data_loader",
+            "type": [
+                "None",
+                "typing.Iterable[allennlp.data.instance.Instance]",
+                "model.predictor.ContextualEncoder.Config"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "evaluate_on_test",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_weight_key",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_train_worker@global": [
+        {
+            "category": "arg",
+            "name": "process_rank",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "params",
+            "type": [
+                "allennlp.common.Params",
+                "dict",
+                "dict[str, float]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "serialization_dir",
+            "type": [
+                "str",
+                "os.PathLike",
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_package",
+            "type": [
+                "None",
+                "bool",
+                "str",
+                "typing.Iterable[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dry_run",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "node_rank",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "primary_addr",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "primary_port",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "world_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "distributed_device_ids",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "file_friendly_logging",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_in_archive",
+            "type": [
+                "None",
+                "bool",
+                "set[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "distributed_params",
+            "type": [
+                "dict[str, str]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_friendly_logging",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "common_logging_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "serialization_dir",
+            "type": [
+                "str",
+                "os.PathLike",
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "process_rank",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "world_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "params",
+            "type": [
+                "allennlp.common.Params",
+                "dict",
+                "dict[str, float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "distributed",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "primary",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_package",
+            "type": [
+                "None",
+                "bool",
+                "str",
+                "typing.Iterable[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ddp_accelerator",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "package_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "distributed_device_ids",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_procs_per_node",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node_rank",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "global_rank",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gpu_id",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "primary_addr",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "primary_port",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "distributed_params",
+            "type": [
+                "dict[str, str]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ddp_accelerator_params",
+            "type": [
+                "dict[str, str]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dry_run",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_train_worker",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "best_weights_path",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_in_archive",
+            "type": [
+                "None",
+                "bool",
+                "set[str]",
+                "str"
+            ]
+        }
+    ],
+    "add_subparser@Train": [
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "argparse.ArgumentParser",
+                "argparse._SubParsersAction",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "description",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "argparse.ArgumentParser",
+                "argparse._SubParsersAction",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "add_subparser",
+            "type": []
+        }
+    ],
+    "finish@TrainModel": [
+        {
+            "category": "arg",
+            "name": "metrics",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, float]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "evaluation_data_loader",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metrics",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, float]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "finish",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "from_partial_objects@TrainModel": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "str",
+                "bool",
+                "typing.Callable[dict, dict]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "serialization_dir",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "local_rank",
+            "type": [
+                "allennlp.models.Model",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dataset_reader",
+            "type": [
+                "str",
+                "allennlp.data.DatasetReader",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "train_data_path",
+            "type": [
+                "str",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "model",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "data_loader",
+            "type": [
+                "str",
+                "allennlp.data.DatasetReader",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "trainer",
+            "type": [
+                "allennlp.models.Model",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "vocabulary",
+            "type": [
+                "Lazy"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "datasets_for_vocab_creation",
+            "type": [
+                "allennlp.models.archival.Archive",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "validation_dataset_reader",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "validation_data_path",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "validation_data_loader",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "test_data_path",
+            "type": [
+                "None",
+                "str",
+                "typing.TextIO"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "evaluate_on_test",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batch_weight_key",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ddp_accelerator",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_loader",
+            "type": [
+                "str",
+                "allennlp.data.DatasetReader",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataset_reader",
+            "type": [
+                "str",
+                "allennlp.data.DatasetReader",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_data_path",
+            "type": [
+                "str",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_loaders",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validation_data_path",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validation_dataset_reader",
+            "type": [
+                "None",
+                "str",
+                "allennlp.data.DatasetReader",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validation_data_loader",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_data_path",
+            "type": [
+                "None",
+                "str",
+                "typing.TextIO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_dataset_reader",
+            "type": [
+                "None",
+                "str",
+                "allennlp.data.DatasetReader",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "datasets_for_vocab_creation",
+            "type": [
+                "allennlp.models.archival.Archive",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instance_generator",
+            "type": [
+                "typing.Generator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vocabulary",
+            "type": [
+                "Lazy"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vocabulary_",
+            "type": [
+                "dict[str, list[str]]",
+                "list[list[typing.Any]]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "serialization_dir",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ddp_accelerator",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model_",
+            "type": [
+                "dict",
+                "allennlp.models.model.Model"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "local_rank",
+            "type": [
+                "allennlp.models.Model",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vocabulary_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_loader_",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "allennlp.models.Model",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer_",
+            "type": [
+                "snorkel.classification.training.trainer.Trainer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "evaluate_on_test",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_weight_key",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "from_partial_objects",
+            "type": [
+                "typing.IO",
+                "str",
+                "object"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "run@TrainModel": [
+        {
+            "category": "return",
+            "name": "run",
+            "type": [
+                "str",
+                "dict",
+                "typing.TextIO"
+            ]
+        }
+    ],
+    "train_model@global": [
+        {
+            "category": "arg",
+            "name": "params",
+            "type": [
+                "allennlp.common.Params"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "serialization_dir",
+            "type": [
+                "bool",
+                "allennlp.common.Params",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recover",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "force",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "node_rank",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_package",
+            "type": [
+                "None",
+                "bool",
+                "list[str]",
+                "allennlp.common.Params"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dry_run",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "file_friendly_logging",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "return_model",
+            "type": [
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_friendly_logging",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "common_logging_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "params",
+            "type": [
+                "allennlp.common.Params"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "serialization_dir",
+            "type": [
+                "bool",
+                "allennlp.common.Params",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recover",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "force",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "None",
+                "str",
+                "Model.Model.Model"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "distributed_params",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, str]",
+                "list[typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_package",
+            "type": [
+                "None",
+                "bool",
+                "list[str]",
+                "allennlp.common.Params"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dry_run",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "multi_device",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_procs",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vocab_dir",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node_rank",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "train_model",
+            "type": [
+                "None",
+                "str",
+                "Model.Model.Model"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "return_model",
+            "type": [
+                "None",
+                "bool"
+            ]
+        }
+    ],
+    "train_model_from_args@global": [
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "train_model_from_args",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "train_model_from_file@global": [
+        {
+            "category": "arg",
+            "name": "parameter_filename",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "serialization_dir",
+            "type": [
+                "bool",
+                "list[str]",
+                "str",
+                "os.PathLike"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "overrides",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recover",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "force",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "node_rank",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_package",
+            "type": [
+                "None",
+                "bool",
+                "list[str]",
+                "str",
+                "os.PathLike"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dry_run",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "file_friendly_logging",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "return_model",
+            "type": [
+                "None",
+                "bool",
+                "list[str]",
+                "str",
+                "os.PathLike"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parameter_filename",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "overrides",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "serialization_dir",
+            "type": [
+                "bool",
+                "list[str]",
+                "str",
+                "os.PathLike"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recover",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "force",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node_rank",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_package",
+            "type": [
+                "None",
+                "bool",
+                "list[str]",
+                "str",
+                "os.PathLike"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dry_run",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_friendly_logging",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "return_model",
+            "type": [
+                "None",
+                "bool",
+                "list[str]",
+                "str",
+                "os.PathLike"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "train_model_from_file",
+            "type": []
+        }
+    ]
+}

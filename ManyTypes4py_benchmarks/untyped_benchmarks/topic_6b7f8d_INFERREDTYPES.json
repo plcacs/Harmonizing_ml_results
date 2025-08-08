@@ -1,0 +1,1000 @@
+{
+    "filter_by_topic_name_via_message@global": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "str",
+                "django.db.models.query.Q.uerySet",
+                "db.models.Article"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topic_name",
+            "type": [
+                "str",
+                "django.db.models.query.Q.uerySet",
+                "db.models.Article"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "str",
+                "django.db.models.query.Q.uerySet",
+                "db.models.Article"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_name",
+            "type": [
+                "str",
+                "django.db.models.query.Q.uerySet",
+                "db.models.Article"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "filter_by_topic_name_via_message",
+            "type": [
+                "str",
+                "set[str]",
+                "list[str]"
+            ]
+        }
+    ],
+    "generate_topic_history_from_db_rows@global": [
+        {
+            "category": "arg",
+            "name": "rows",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "allow_empty_topic_name",
+            "type": [
+                "str",
+                "int",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "canonical_topic_names",
+            "type": [
+                "dict",
+                "dict[str, tuple[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rows",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_name",
+            "type": [
+                "str",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_message_id",
+            "type": [
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "canonical_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "history",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "allow_empty_topic_name",
+            "type": [
+                "str",
+                "int",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "generate_topic_history_from_db_rows",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "get_first_message_for_user_in_topic@global": [
+        {
+            "category": "arg",
+            "name": "realm_id",
+            "type": [
+                "int",
+                "set[int]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "int",
+                "zerver.models.UserProfile",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recipient_id",
+            "type": [
+                "int",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topic_name",
+            "type": [
+                "int",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "history_public_to_subscribers",
+            "type": [
+                "bool",
+                "set[int]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "acting_user_has_channel_content_access",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "history_public_to_subscribers",
+            "type": [
+                "bool",
+                "set[int]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_first_message_for_user_in_topic",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "int",
+                "zerver.models.UserProfile",
+                "None"
+            ]
+        }
+    ],
+    "get_topic_display_name@global": [
+        {
+            "category": "arg",
+            "name": "topic_name",
+            "type": [
+                "str",
+                "list[tuple[typing.Union[str,typing.Any]]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "language",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_name",
+            "type": [
+                "str",
+                "list[tuple[typing.Union[str,typing.Any]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "language",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_topic_display_name",
+            "type": [
+                "str",
+                "list[tuple[typing.Union[str,typing.Any]]]"
+            ]
+        }
+    ],
+    "get_topic_from_message_info@global": [
+        {
+            "category": "arg",
+            "name": "message_info",
+            "type": [
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_info",
+            "type": [
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_topic_from_message_info",
+            "type": [
+                "str",
+                "bytes",
+                "dict[str, str]"
+            ]
+        }
+    ],
+    "get_topic_history_for_public_stream@global": [
+        {
+            "category": "arg",
+            "name": "realm_id",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recipient_id",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "allow_empty_topic_name",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm_id",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recipient_id",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "allow_empty_topic_name",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_topic_history_for_public_stream",
+            "type": []
+        }
+    ],
+    "get_topic_history_for_stream@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recipient_id",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "public_history",
+            "type": [
+                "bool",
+                "set[int]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "allow_empty_topic_name",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "public_history",
+            "type": [
+                "bool",
+                "set[int]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recipient_id",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "allow_empty_topic_name",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_topic_history_for_stream",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "get_topic_resolution_and_bare_name@global": [
+        {
+            "category": "arg",
+            "name": "stored_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stored_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "RESOLVED_TOPIC_PREFIX",
+            "type": [
+                "str",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_topic_resolution_and_bare_name",
+            "type": [
+                "tuple[typing.Union[bool,str]]"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "ORIG_TOPIC",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TOPIC_NAME",
+            "type": [
+                "typing.Text",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TOPIC_LINKS",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "MATCH_TOPIC",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "RESOLVED_TOPIC_PREFIX",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "EXPORT_TOPIC_NAME",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DB_TOPIC_NAME",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "MESSAGE__TOPIC",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "maybe_rename_empty_topic_to_general_chat@global": [
+        {
+            "category": "arg",
+            "name": "topic_name",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "is_channel_message",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "allow_empty_topic_name",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_channel_message",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_name",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "allow_empty_topic_name",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "maybe_rename_empty_topic_to_general_chat",
+            "type": [
+                "bool",
+                "str"
+            ]
+        }
+    ],
+    "maybe_rename_general_chat_to_empty_topic@global": [
+        {
+            "category": "arg",
+            "name": "topic_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_name",
+            "type": [
+                "str",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "maybe_rename_general_chat_to_empty_topic",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "messages_for_topic@global": [
+        {
+            "category": "arg",
+            "name": "realm_id",
+            "type": [
+                "int",
+                "str",
+                "cmk.utils.type_defs.UserId",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream_recipient_id",
+            "type": [
+                "int",
+                "str",
+                "cmk.utils.type_defs.UserId",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topic_name",
+            "type": [
+                "int",
+                "str",
+                "cmk.utils.type_defs.UserId",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm_id",
+            "type": [
+                "int",
+                "str",
+                "cmk.utils.type_defs.UserId",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_recipient_id",
+            "type": [
+                "int",
+                "str",
+                "cmk.utils.type_defs.UserId",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_name",
+            "type": [
+                "int",
+                "str",
+                "cmk.utils.type_defs.UserId",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "messages_for_topic",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        }
+    ],
+    "participants_for_topic@global": [
+        {
+            "category": "arg",
+            "name": "realm_id",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recipient_id",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topic_name",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm_id",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recipient_id",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_name",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "messages",
+            "type": [
+                "str",
+                "list[str]",
+                "lowerpines.endpoints.message.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "participants",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "participants_for_topic",
+            "type": [
+                "set"
+            ]
+        }
+    ],
+    "propagate@global": [
+        {
+            "category": "return",
+            "name": "propagate",
+            "type": []
+        }
+    ],
+    "save_message_for_edit_use_case@global": [
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TOPIC_NAME",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "save_message_for_edit_use_case",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "update_edit_history@global": [
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "datetime.datetime.datetime",
+                "datetime.datetime.date.time",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "last_edit_time",
+            "type": [
+                "datetime.datetime.datetime",
+                "datetime.datetime.timedelta"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "edit_history_event",
+            "type": [
+                "models.GithubWebhookEvent"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_edit_time",
+            "type": [
+                "datetime.datetime.datetime",
+                "datetime.datetime.timedelta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_",
+            "type": [
+                "datetime.datetime.datetime",
+                "datetime.datetime.timedelta",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "datetime.datetime.datetime",
+                "datetime.datetime.date.time",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "edit_history",
+            "type": [
+                "list[typing.Union[int,models.GithubWebhookEvent]]",
+                "list[models.GithubWebhookEvent]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "edit_history_event",
+            "type": [
+                "models.GithubWebhookEvent"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_edit_history",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "update_messages_for_topic_edit@global": [
+        {
+            "category": "arg",
+            "name": "acting_user",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.UserProfile",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "edited_message",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.UserProfile",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message_edit_request",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.UserProfile",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "edit_history_event",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.UserProfile",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "last_edit_time",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.UserProfile",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_edit_request",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.UserProfile",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "messages",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "edited_message",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.UserProfile",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "acting_user",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.UserProfile",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_edit_time",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.UserProfile",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "update_fields",
+            "type": [
+                "dict[typing.Text, typing.Union[str,None,zerver.models.UserProfile,zerver.models.Message,Cast]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_ids",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_messages_for_topic_edit",
+            "type": [
+                "tuple[typing.Union[bool,str]]"
+            ]
+        }
+    ],
+    "user_message_exists_for_topic@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "int",
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recipient_id",
+            "type": [
+                "int",
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topic_name",
+            "type": [
+                "int",
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "user_message_exists_for_topic",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "grouper.models.base.session.Session"
+            ]
+        }
+    ]
+}

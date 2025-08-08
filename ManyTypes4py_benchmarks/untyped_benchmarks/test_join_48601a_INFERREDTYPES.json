@@ -1,0 +1,2842 @@
+{
+    "_assert_all_na@global": [
+        {
+            "category": "arg",
+            "name": "join_chunk",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "source_columns",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "join_col",
+            "type": [
+                "list[str]",
+                "bool",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "join_col",
+            "type": [
+                "list[str]",
+                "bool",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_assert_all_na",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_assert_same_contents@global": [
+        {
+            "category": "arg",
+            "name": "join_chunk",
+            "type": [
+                "bytes",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "typing.Sequence[str]",
+                "typing.Mapping",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "NA_SENTINEL",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rows",
+            "type": [
+                "set[tuple]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_assert_same_contents",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_check_diff_index@TestJoin": [
+        {
+            "category": "arg",
+            "name": "df_list",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "result",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "exp_index",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "reindexed",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_check_diff_index",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_check_join@global": [
+        {
+            "category": "arg",
+            "name": "left",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "right",
+            "type": [
+                "str",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "result",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "join_col",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "how",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "lsuffix",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rsuffix",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "join_col",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "left",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "left_grouped",
+            "type": [
+                "set[str]",
+                "dict",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "right",
+            "type": [
+                "str",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "right_grouped",
+            "type": [
+                "frozenset",
+                "list[str]",
+                "list[tuple[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lsuffix",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rsuffix",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "err",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "how",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_check_join",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_join_by_hand@global": [
+        {
+            "category": "arg",
+            "name": "a",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "b",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "how",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "b",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "how",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "join_index",
+            "type": [
+                "int",
+                "list",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "a",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "a_re",
+            "type": [
+                "list",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result_columns",
+            "type": [
+                "list",
+                "list[list[typing.Any]]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_join_by_hand",
+            "type": [
+                "str",
+                "bool",
+                "tuple[str]"
+            ]
+        }
+    ],
+    "_restrict_to_columns@global": [
+        {
+            "category": "arg",
+            "name": "group",
+            "type": [
+                "str",
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "columns",
+            "type": [
+                "str",
+                "list[str]",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "suffix",
+            "type": [
+                "str",
+                "list[str]",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group",
+            "type": [
+                "str",
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "columns",
+            "type": [
+                "str",
+                "list[str]",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "suffix",
+            "type": [
+                "str",
+                "list[str]",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "found",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_restrict_to_columns",
+            "type": []
+        }
+    ],
+    "df2@TestJoin": [
+        {
+            "category": "return",
+            "name": "df2",
+            "type": [
+                "DataFrame"
+            ]
+        }
+    ],
+    "df@TestJoin": [
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame",
+                "pandas.DataFrame",
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame",
+                "int",
+                "list"
+            ]
+        }
+    ],
+    "get_test_data@global": [
+        {
+            "category": "arg",
+            "name": "ngroups",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "n",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ngroups",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unique_groups",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "n",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "arr",
+            "type": [
+                "list[int]",
+                "list[list[int]]",
+                "list[tuple[typing.Union[float,int]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_test_data",
+            "type": [
+                "list[int]",
+                "list[list[int]]",
+                "list[tuple[typing.Union[float,int]]]"
+            ]
+        }
+    ],
+    "global@global": [],
+    "target_source@TestJoin": [
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[typing.Text, typing.Union[list[float],list[typing.Text]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "target_source",
+            "type": [
+                "tuple[DataFrame]"
+            ]
+        }
+    ],
+    "test_full_outer_join@TestJoin": [
+        {
+            "category": "arg",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "df2",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df2",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "joined_key2",
+            "type": [
+                "list[str]",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "joined_both",
+            "type": [
+                "str",
+                "bool",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_full_outer_join",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_handle_overlap@TestJoin": [
+        {
+            "category": "arg",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame",
+                "str",
+                "pandas.Series"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "df2",
+            "type": [
+                "pandas.DataFrame",
+                "str",
+                "pandas.Series"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame",
+                "str",
+                "pandas.Series"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df2",
+            "type": [
+                "pandas.DataFrame",
+                "str",
+                "pandas.Series"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "joined",
+            "type": [
+                "str",
+                "list[dict[str, str]]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_handle_overlap",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_handle_overlap_arbitrary_key@TestJoin": [
+        {
+            "category": "arg",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "df2",
+            "type": [
+                "pandas.DataFrame",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df2",
+            "type": [
+                "pandas.DataFrame",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "joined",
+            "type": [
+                "str",
+                "typing.Callable[None, typing.Any]",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_handle_overlap_arbitrary_key",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_inner_join@TestJoin": [
+        {
+            "category": "arg",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "df2",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df2",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "joined_key2",
+            "type": [
+                "list[str]",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "joined_both",
+            "type": [
+                "str",
+                "bool",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_inner_join",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_cross@global": [
+        {
+            "category": "arg",
+            "name": "input_col",
+            "type": [
+                "typing.Iterable[typing.Union[int,str]]",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "output_cols",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "left",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "input_col",
+            "type": [
+                "typing.Iterable[typing.Union[int,str]]",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "right",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "dict",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output_cols",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_cross",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_datetime_string@TestJoin": [
+        {
+            "category": "local",
+            "name": "dfa",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dfb",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_datetime_string",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_dups@TestJoin": [
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list[tuple[typing.Union[typing.Any,int]]]",
+                "list",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "w",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "x",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "y",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "z",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dta",
+            "type": [
+                "list",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_dups",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_empty@global": [
+        {
+            "category": "arg",
+            "name": "left_empty",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "how",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exp",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "right",
+            "type": [
+                "str",
+                "tuple[int]",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "left_empty",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "how",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exp",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "DataFrame",
+                "list",
+                "list[float]",
+                "list[list]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_empty",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_empty_bug@TestJoin": [
+        {
+            "category": "local",
+            "name": "x",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_empty_bug",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_empty_uncomparable_columns@global": [
+        {
+            "category": "local",
+            "name": "df1",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df2",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df3",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "pandas.DataFrame",
+                "typing.Literal",
+                "None",
+                "dict",
+                "list[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_empty_uncomparable_columns",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_float64_float32@TestJoin": [
+        {
+            "category": "local",
+            "name": "a",
+            "type": [
+                "DataFrame",
+                "list[int]",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "b",
+            "type": [
+                "DataFrame",
+                "list[int]",
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "joined",
+            "type": [
+                "list",
+                "list[complex]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c",
+            "type": [
+                "int",
+                "float",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "xpdf",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rs",
+            "type": [
+                "list[tuple[typing.Any]]",
+                "list[int]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "xp",
+            "type": [
+                "int",
+                "list[int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_float64_float32",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_hierarchical_mixed_raises@TestJoin": [
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_df",
+            "type": [
+                "pandas.DataFrame",
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "other_df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_hierarchical_mixed_raises",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_index_mixed@TestJoin": [
+        {
+            "category": "arg",
+            "name": "join_type",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df1",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df2",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "join_type",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "joined",
+            "type": [
+                "list",
+                "str",
+                "dict[typing.Any, tuple[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "list[tuple[typing.Union[str,typing.Any]]]",
+                "list[str]",
+                "list[bool]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_index_mixed",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_index_mixed_overlap@TestJoin": [
+        {
+            "category": "local",
+            "name": "df1",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df2",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "joined",
+            "type": [
+                "str",
+                "list",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_columns",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df1_",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df2_",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "int",
+                "tuple[float]",
+                "slice"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_index_mixed_overlap",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_inner_multiindex@TestJoin": [
+        {
+            "category": "arg",
+            "name": "lexsorted_two_level_string_multiindex",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key1",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key2",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, typing.Any]",
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lexsorted_two_level_string_multiindex",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "index",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_join",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "joined",
+            "type": [
+                "str",
+                "set[str]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "str",
+                "list[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected2",
+            "type": [
+                "list[str]",
+                "list[int]",
+                "dict[str, typing.Union[typing.Any,int,str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_inner_multiindex",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_inner_multiindex_deterministic_order@global": [
+        {
+            "category": "local",
+            "name": "left",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "right",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "dict",
+                "list[tuple[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_inner_multiindex_deterministic_order",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_many@TestJoin": [
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df_list",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "joined",
+            "type": [
+                "str",
+                "list",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_many",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_many_mixed@TestJoin": [
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_many_mixed",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_many_non_unique_index@TestJoin": [
+        {
+            "category": "local",
+            "name": "df1",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df2",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df3",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "idf2",
+            "type": [
+                "list",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "idf3",
+            "type": [
+                "list",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df_partially_merged",
+            "type": [
+                "pandas.DataFrame",
+                "list[str]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "list[str]",
+                "list",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s",
+            "type": [
+                "Series"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inner",
+            "type": [
+                "list",
+                "list[tuple[typing.Any]]",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "outer",
+            "type": [
+                "list[str]",
+                "list[tuple[typing.Any]]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "left",
+            "type": [
+                "str",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "right",
+            "type": [
+                "str",
+                "list[int]",
+                "tuple[tuple[typing.Literal]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_many_non_unique_index",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_mixed_non_unique_index@TestJoin": [
+        {
+            "category": "local",
+            "name": "df1",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df2",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "dict[str, float]",
+                "list[typing.Optional[float]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df3",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df4",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_mixed_non_unique_index",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_multi_to_multi@TestJoin": [
+        {
+            "category": "arg",
+            "name": "join_type",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "left",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "right",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "join_type",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "tuple",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "typing.Iterator",
+                "dict[tuple[typing.Union[str,int]], tuple[typing.Any]]",
+                "list[tuple[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_multi_to_multi",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_multiindex@TestJoin": [
+        {
+            "category": "local",
+            "name": "df1",
+            "type": [
+                "DataFrame",
+                "pandas.DataFrame",
+                "list",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df2",
+            "type": [
+                "DataFrame",
+                "pandas.DataFrame",
+                "list",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "joined",
+            "type": [
+                "str",
+                "list[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ex_index",
+            "type": [
+                "int",
+                "list[int]",
+                "range"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "list[str]",
+                "list[tuple[typing.Union[str,...]]]",
+                "list[typing.Optional[tuple]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_multiindex",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_multiindex_categorical_output_index_dtype@global": [
+        {
+            "category": "arg",
+            "name": "how",
+            "type": [
+                "pandas.DataFrame",
+                "str",
+                "typing.Iterator"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "values",
+            "type": [
+                "pandas.DataFrame",
+                "typing.Callable",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df1",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df2",
+            "type": [
+                "pandas.DataFrame",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "values",
+            "type": [
+                "pandas.DataFrame",
+                "typing.Callable",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "list",
+                "float",
+                "list[bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "how",
+            "type": [
+                "pandas.DataFrame",
+                "str",
+                "typing.Iterator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list[tuple[typing.Union[typing.Any,int]]]",
+                "None",
+                "dict",
+                "bool",
+                "float",
+                "str",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_multiindex_categorical_output_index_dtype",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_multiindex_not_alphabetical_categorical@global": [
+        {
+            "category": "arg",
+            "name": "categories",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "values",
+            "type": [
+                "str",
+                "numpy.ndarray",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "categories",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "left",
+            "type": [
+                "pandas.io.pytables.IndexCol",
+                "pandas.core.groupby.ops.DataSplitter"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "values",
+            "type": [
+                "str",
+                "numpy.ndarray",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "right",
+            "type": [
+                "str",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "typing.Callable[typing.Iterable, typing.Iterator]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "pandas.DataFrame",
+                "list",
+                "list[tuple[typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_multiindex_not_alphabetical_categorical",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_multiindex_one_level@global": [
+        {
+            "category": "arg",
+            "name": "join_type",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "left",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "right",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "join_type",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "tuple",
+                "str",
+                "list[tuple[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_multiindex_one_level",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_multiindex_with_none_as_label@global": [
+        {
+            "category": "local",
+            "name": "df1",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df2",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result12",
+            "type": [
+                "list",
+                "list[tuple[typing.Any]]",
+                "dict[str, float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected12",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result21",
+            "type": [
+                "list",
+                "list[tuple[typing.Any]]",
+                "dict[str, float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected21",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_multiindex_with_none_as_label",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_non_unique_period_index@TestJoin": [
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df2",
+            "type": [
+                "pandas.DataFrame",
+                "list",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list[tuple[typing.Union[typing.Any,int]]]",
+                "None",
+                "dict",
+                "bool",
+                "float",
+                "str",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_non_unique_period_index",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_on@TestJoin": [
+        {
+            "category": "arg",
+            "name": "target_source",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "infer_string",
+            "type": [
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_source",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df2",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "joined",
+            "type": [
+                "str",
+                "list[dict[str, str]]",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df_a",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df_b",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df_c",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_on",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_on_fails_with_different_column_counts@TestJoin": [
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df2",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_on_fails_with_different_column_counts",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_on_fails_with_different_left_index@TestJoin": [
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df2",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_on_fails_with_different_left_index",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_on_fails_with_different_right_index@TestJoin": [
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df2",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_on_fails_with_different_right_index",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_on_fails_with_wrong_object_type@TestJoin": [
+        {
+            "category": "arg",
+            "name": "wrong_type",
+            "type": [
+                "str",
+                "tuple[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wrong_type",
+            "type": [
+                "str",
+                "tuple[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_on_fails_with_wrong_object_type",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_on_inner@TestJoin": [
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df2",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "joined",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_on_inner",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_on_pass_vector@TestJoin": [
+        {
+            "category": "arg",
+            "name": "target_source",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_source",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_on_pass_vector",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_on_series@TestJoin": [
+        {
+            "category": "arg",
+            "name": "target_source",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_source",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "str",
+                "list[str]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_on_series",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_on_series_buglet@TestJoin": [
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ds",
+            "type": [
+                "Series"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "dict",
+                "list[tuple[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_on_series_buglet",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_on_singlekey_list@TestJoin": [
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df2",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "joined",
+            "type": [
+                "str",
+                "typing.Type",
+                "list[bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "slice",
+                "int",
+                "dict[int, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_on_singlekey_list",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_on_tz_aware_datetimeindex@TestJoin": [
+        {
+            "category": "local",
+            "name": "df1",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df2",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "dict[str, float]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "slice"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_on_tz_aware_datetimeindex",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_sort@TestJoin": [
+        {
+            "category": "arg",
+            "name": "infer_string",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "infer_string",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "left",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "right",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "joined",
+            "type": [
+                "str",
+                "typing.Type",
+                "list[tuple[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_sort",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_unconsolidated@TestJoin": [
+        {
+            "category": "local",
+            "name": "a",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c",
+            "type": [
+                "Series"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "d",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_unconsolidated",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_with_categorical_index@TestJoin": [
+        {
+            "category": "local",
+            "name": "ix",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id2",
+            "type": [
+                "list",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df1",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df2",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "list[tuple[typing.Any]]",
+                "dict[str, float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_join_with_categorical_index",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_join_with_len0@TestJoin": [
+        {
+            "category": "arg",
+            "name": "target_source",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_join_with_len0",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_left_outer_join@TestJoin": [
+        {
+            "category": "arg",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "df2",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df2",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "joined_key2",
+            "type": [
+                "list[str]",
+                "list",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "joined_both",
+            "type": [
+                "str",
+                "dict[int, typing.Union[int,None]]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_left_outer_join",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_mixed_type_join_with_suffix@TestJoin": [
+        {
+            "category": "arg",
+            "name": "using_infer_string",
+            "type": [
+                "bool",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame",
+                "list[typing.Union[int,typing.Text]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "grouped",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "using_infer_string",
+            "type": [
+                "bool",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cn",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_mixed_type_join_with_suffix",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_right_outer_join@TestJoin": [
+        {
+            "category": "arg",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "df2",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df2",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "joined_key2",
+            "type": [
+                "list[str]",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "joined_both",
+            "type": [
+                "str",
+                "bool",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_right_outer_join",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

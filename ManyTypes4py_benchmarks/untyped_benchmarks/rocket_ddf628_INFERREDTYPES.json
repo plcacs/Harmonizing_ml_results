@@ -1,0 +1,596 @@
+{
+    "__init__@Rocket": [
+        {
+            "category": "arg",
+            "name": "symmetry",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "symmetry",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "air_density@global": [
+        {
+            "category": "arg",
+            "name": "alt",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "T",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "p",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "d",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "air_density",
+            "type": [
+                "float"
+            ]
+        }
+    ],
+    "alt@global": [
+        {
+            "category": "arg",
+            "name": "Ex",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "Ey",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "Ez",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "alt",
+            "type": []
+        }
+    ],
+    "drag_force@global": [
+        {
+            "category": "arg",
+            "name": "Ex",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "Ey",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "Ez",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "Evx",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "Evy",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "Evz",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "cd",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "a",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "v_sqrd",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Ex_drag",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Ey_drag",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Ez_drag",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "drag_force",
+            "type": [
+                "tuple[typing.Union[float,int]]"
+            ]
+        }
+    ],
+    "global@global": [],
+    "grav_force@global": [
+        {
+            "category": "arg",
+            "name": "Ex",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "Ey",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "Ez",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "m",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "G",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "M",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "F",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "F_z",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "F_x",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "F_y",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "grav_force",
+            "type": [
+                "tuple[float]"
+            ]
+        }
+    ],
+    "net_force@global": [
+        {
+            "category": "arg",
+            "name": "Ex",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "Ey",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "Ez",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "Evx",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "Evy",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "Evz",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "m",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "net_force",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "rad@global": [
+        {
+            "category": "arg",
+            "name": "ang",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "rad",
+            "type": [
+                "float"
+            ]
+        }
+    ],
+    "rocket@global": [
+        {
+            "category": "arg",
+            "name": "thrust_bias",
+            "type": [
+                "numpy.ndarray",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "altitude",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "latitude",
+            "type": [
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "longitude",
+            "type": [
+                "float",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transformer",
+            "type": [
+                "baseplate.lib.experiments.targeting.base.Targeting",
+                "nevergrad.parametrization.container.Instrumentation"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Ex",
+            "type": [
+                "float",
+                "list",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Ey",
+            "type": [
+                "str",
+                "float",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Ez",
+            "type": [
+                "str",
+                "typing.OrderedDict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Evx",
+            "type": [
+                "int",
+                "list",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Evy",
+            "type": [
+                "int",
+                "list",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Evz",
+            "type": [
+                "int",
+                "list",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r_initial",
+            "type": [
+                "property",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "roc_mass",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "theta",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "phi",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "eng_mass_initial",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "eng_mass_final",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_mass",
+            "type": [
+                "float",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "final_roc_mass",
+            "type": [
+                "float",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "thrust_bias",
+            "type": [
+                "numpy.ndarray",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mass_time",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mass_loss",
+            "type": [
+                "float",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mass_reman",
+            "type": [
+                "float",
+                "int",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Ex_list",
+            "type": [
+                "list",
+                "list[float]",
+                "list[dict[str, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Ey_list",
+            "type": [
+                "list",
+                "list[dict[str, str]]",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Ez_list",
+            "type": [
+                "list",
+                "list[int]",
+                "list[list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Evx_list",
+            "type": [
+                "list",
+                "list[dict[str, str]]",
+                "list[list[float]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Evy_list",
+            "type": [
+                "list",
+                "list[dict[str, str]]",
+                "list[list[float]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Evz_list",
+            "type": [
+                "list",
+                "list[dict[str, str]]",
+                "list[list[float]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r_list",
+            "type": [
+                "list",
+                "list[list[int]]",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "time",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r",
+            "type": [
+                "str",
+                "typing.OrderedDict",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dt",
+            "type": [
+                "float",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "time_step",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "rocket",
+            "type": []
+        }
+    ]
+}

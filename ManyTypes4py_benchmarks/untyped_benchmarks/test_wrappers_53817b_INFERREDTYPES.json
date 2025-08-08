@@ -1,0 +1,791 @@
+{
+    "__init__@BaseFakeBleakClient": [
+        {
+            "category": "arg",
+            "name": "address_or_ble_device",
+            "type": [
+                "str",
+                "typing.TextIO"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "_device_path",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address_or_ble_device",
+            "type": [
+                "str",
+                "typing.TextIO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_device",
+            "type": [
+                "str",
+                "typing.TextIO"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@FakeScanner": [
+        {
+            "category": "arg",
+            "name": "scanner_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "connector",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "connectable",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scanner_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "connector",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "connectable",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_details",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__repr__@FakeScanner": [
+        {
+            "category": "return",
+            "name": "__repr__",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "_allocate_slot_mock@global": [
+        {
+            "category": "arg",
+            "name": "ble_device",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_allocate_slot_mock",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_generate_ble_device_and_adv_data@global": [
+        {
+            "category": "arg",
+            "name": "interface",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mac",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rssi",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mac",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "interface",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rssi",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_generate_ble_device_and_adv_data",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "_generate_scanners_with_fake_devices@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "manager",
+            "type": [
+                "device.controllers.classes.controller.manager.ControllerManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hci0_device_advs",
+            "type": [
+                "dict",
+                "dict[, tuple[typing.Union[dict,list,str,dict[int, typing.Any],dict[str, typing.Any],list[int]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "dict",
+                "list",
+                "str",
+                "tuple[typing.Union[dict,list,str,dict[int, typing.Any],dict[str, typing.Any],list[int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "adv_data",
+            "type": [
+                "dict[int, typing.Any]",
+                "dict[str, typing.Any]",
+                "list[int]",
+                "tuple[typing.Union[dict,list,str,dict[int, typing.Any],dict[str, typing.Any],list[int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hci1_device_advs",
+            "type": [
+                "dict",
+                "dict[, tuple[typing.Union[dict,list,str,dict[int, typing.Any],dict[str, typing.Any],list[int]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scanner_hci0",
+            "type": [
+                "FakeScanner"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scanner_hci1",
+            "type": [
+                "FakeScanner"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cancel_hci0",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cancel_hci1",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_generate_scanners_with_fake_devices",
+            "type": [
+                "tuple[typing.Union[dict[, tuple[typing.Union[dict,list,str,dict[int, typing.Any],dict[str, typing.Any],list[int]]]],str,bool]]"
+            ]
+        }
+    ],
+    "connect@FakeBleakClient": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "connect",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "connect@FakeBleakClientFailsHCI0Only": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "connect",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "connect@FakeBleakClientFailsToConnect": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "connect",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "connect@FakeBleakClientRaisesOnConnect": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "connect",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "disconnect@BaseFakeBleakClient": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "disconnect",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_services@BaseFakeBleakClient": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "get_services",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "global@global": [],
+    "inject_advertisement@FakeScanner": [
+        {
+            "category": "arg",
+            "name": "device",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "advertisement_data",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "advertisement_data",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "inject_advertisement",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "install_bleak_catcher_fixture@global": [
+        {
+            "category": "return",
+            "name": "install_bleak_catcher_fixture",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "mock_platform_client_fixture@global": [
+        {
+            "category": "return",
+            "name": "mock_platform_client_fixture",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "mock_platform_client_that_fails_to_connect_fixture@global": [
+        {
+            "category": "return",
+            "name": "mock_platform_client_that_fails_to_connect_fixture",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "mock_platform_client_that_raises_on_connect_fixture@global": [
+        {
+            "category": "return",
+            "name": "mock_platform_client_that_raises_on_connect_fixture",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "mock_shutdown@global": [
+        {
+            "category": "arg",
+            "name": "manager",
+            "type": [
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "manager_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "mock_shutdown",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_passing_subclassed_str_as_address@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "install_bleak_catcher",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "__slots__",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "SubclassedStr"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_passing_subclassed_str_as_address",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_raise_after_shutdown@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "bool",
+                "typing.Callable[List,bool, None]",
+                "typing.Collection"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "install_bleak_catcher",
+            "type": [
+                "bool",
+                "None",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_platform_client_that_raises_on_connect",
+            "type": [
+                "bool",
+                "None",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "manager",
+            "type": [
+                "device.controllers.classes.controller.manager.ControllerManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "bool",
+                "typing.Callable[List,bool, None]",
+                "typing.Collection"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hci0_device_advs",
+            "type": [
+                "list",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cancel_hci0",
+            "type": [
+                "str",
+                "typing.Callable[None, typing.Any]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cancel_hci1",
+            "type": [
+                "str",
+                "typing.Callable[None, typing.Any]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ble_device",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_raise_after_shutdown",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_release_slot_on_connect_exception@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "bool",
+                "typing.Callable[List,bool, None]",
+                "typing.Collection"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "install_bleak_catcher",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_platform_client_that_raises_on_connect",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "manager",
+            "type": [
+                "device.controllers.classes.controller.manager.ControllerManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "bool",
+                "typing.Callable[List,bool, None]",
+                "typing.Collection"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hci0_device_advs",
+            "type": [
+                "list",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cancel_hci0",
+            "type": [
+                "str",
+                "typing.Callable[None, typing.Any]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cancel_hci1",
+            "type": [
+                "str",
+                "typing.Callable[None, typing.Any]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ble_device",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_release_slot_on_connect_exception",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_release_slot_on_connect_failure@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "install_bleak_catcher",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mock_platform_client_that_fails_to_connect",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "manager",
+            "type": [
+                "device.controllers.classes.controller.manager.ControllerManager"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_release_slot_on_connect_failure",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_test_switch_adapters_when_out_of_slots@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "install_bleak_catcher",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mock_platform_client",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "manager",
+            "type": [
+                "device.controllers.classes.controller.manager.ControllerManager"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_test_switch_adapters_when_out_of_slots",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_we_switch_adapters_on_failure@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "install_bleak_catcher",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_we_switch_adapters_on_failure",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

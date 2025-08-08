@@ -1,0 +1,567 @@
+{
+    "_cleanup_pid_file@global": [
+        {
+            "category": "arg",
+            "name": "path",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_cleanup_pid_file",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_is_process_running@global": [
+        {
+            "category": "arg",
+            "name": "pid",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_is_process_running",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_read_pid_file@global": [
+        {
+            "category": "arg",
+            "name": "path",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_read_pid_file",
+            "type": [
+                "int",
+                "None"
+            ]
+        }
+    ],
+    "_run_in_background@global": [
+        {
+            "category": "arg",
+            "name": "pid_file",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "server_settings",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "host",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "port",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "keep_alive_timeout",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "no_services",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "command",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "env",
+            "type": [
+                "dict[typing.Text, typing.Text]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_run_in_background",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_run_in_foreground@global": [
+        {
+            "category": "arg",
+            "name": "server_settings",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "host",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "port",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "keep_alive_timeout",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "no_services",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_run_in_foreground",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_write_pid_file@global": [
+        {
+            "category": "arg",
+            "name": "path",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "pid",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_write_pid_file",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "downgrade@global": [
+        {
+            "category": "arg",
+            "name": "yes",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "revision",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "dry_run",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "downgrade",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "generate_welcome_blurb@global": [
+        {
+            "category": "arg",
+            "name": "base_url",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "ui_enabled",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "generate_welcome_blurb",
+            "type": []
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "server_app",
+            "type": [
+                "PrefectTyper"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "database_app",
+            "type": [
+                "PrefectTyper"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "services_app",
+            "type": [
+                "PrefectTyper"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SERVER_PID_FILE_NAME",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "list_services@global": [
+        {
+            "category": "local",
+            "name": "table",
+            "type": [
+                "Table"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setting_text",
+            "type": [
+                "Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "doc",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "description",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "list_services",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "prestart_check@global": [
+        {
+            "category": "arg",
+            "name": "base_url",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "api_url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "profiles_with_matching_url",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "prestart_check",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "reset@global": [
+        {
+            "category": "arg",
+            "name": "yes",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "reset",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "revision@global": [
+        {
+            "category": "arg",
+            "name": "message",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "autogenerate",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "autogenerate",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "revision",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "run_manager_process@global": [
+        {
+            "category": "return",
+            "name": "run_manager_process",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "stamp@global": [
+        {
+            "category": "arg",
+            "name": "revision",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "stamp",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "start@global": [
+        {
+            "category": "arg",
+            "name": "host",
+            "type": [
+                "SettingsOption"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "port",
+            "type": [
+                "SettingsOption"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "keep_alive_timeout",
+            "type": [
+                "SettingsOption"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "log_level",
+            "type": [
+                "SettingsOption"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "scheduler",
+            "type": [
+                "SettingsOption"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "analytics",
+            "type": [
+                "SettingsOption"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "late_runs",
+            "type": [
+                "SettingsOption"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ui",
+            "type": [
+                "SettingsOption"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "no_services",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "background",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "host",
+            "type": [
+                "SettingsOption"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "port",
+            "type": [
+                "SettingsOption"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "base_url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scheduler",
+            "type": [
+                "SettingsOption"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "analytics",
+            "type": [
+                "SettingsOption"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "late_runs",
+            "type": [
+                "SettingsOption"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ui",
+            "type": [
+                "SettingsOption"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log_level",
+            "type": [
+                "SettingsOption"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "server_settings",
+            "type": [
+                "dict[typing.Text, typing.Union[str,SettingsOption]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "keep_alive_timeout",
+            "type": [
+                "SettingsOption"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "start",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "start_services@global": [
+        {
+            "category": "arg",
+            "name": "background",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "start_services",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "stop@global": [
+        {
+            "category": "local",
+            "name": "pid",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "stop",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "stop_services@global": [
+        {
+            "category": "local",
+            "name": "pid",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "stop_services",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "upgrade@global": [
+        {
+            "category": "arg",
+            "name": "yes",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "revision",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "dry_run",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "upgrade",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

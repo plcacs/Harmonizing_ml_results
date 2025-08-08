@@ -1,0 +1,522 @@
+{
+    "compile_files_cwd@global": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "compile_wd",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_list",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "compile_files_cwd",
+            "type": []
+        }
+    ],
+    "compile_test_smart_contract@global": [
+        {
+            "category": "arg",
+            "name": "name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contract_path",
+            "type": [
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contracts",
+            "type": [
+                "str",
+                "typing.NamedTuple",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contract_key",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "compile_test_smart_contract",
+            "type": [
+                "tuple[typing.Union[str,typing.NamedTuple,dict]]"
+            ]
+        }
+    ],
+    "deploy_rpc_test_contract@global": [
+        {
+            "category": "arg",
+            "name": "deploy_client",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "name",
+            "type": [
+                "str",
+                "raiden.network.rpc.clienJSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "str",
+                "raiden.network.rpc.clienJSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contracts",
+            "type": [
+                "tfchain.types.AtomicSwap.AtomicSwapContract",
+                "Contract",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deploy_client",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contract_proxy",
+            "type": [
+                "dict",
+                "Contract",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "receipt",
+            "type": [
+                "web3.types.TxReceipt",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "deploy_rpc_test_contract",
+            "type": [
+                "tuple[typing.Union[dict,Contract,str,web3.types.TxReceipt,dict[str, typing.Any]]]"
+            ]
+        }
+    ],
+    "deploy_service_registry_and_set_urls@global": [
+        {
+            "category": "arg",
+            "name": "private_keys",
+            "type": [
+                "web3.Web3",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "web3",
+            "type": [
+                "web3.Web3",
+                "str",
+                "None",
+                "typing.Callable[dict, None]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "contract_manager",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden_contracts.contract_manager.ContractManager"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "service_registry_address",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden_contracts.contract_manager.ContractManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "urls",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "web3",
+            "type": [
+                "web3.Web3",
+                "str",
+                "None",
+                "typing.Callable[dict, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "private_keys",
+            "type": [
+                "web3.Web3",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c1_client",
+            "type": [
+                "JSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "service_registry_address",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden_contracts.contract_manager.ContractManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contract_manager",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden_contracts.contract_manager.ContractManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c1_service_proxy",
+            "type": [
+                "ServiceRegistry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c1_token_proxy",
+            "type": [
+                "CustomToken"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c2_client",
+            "type": [
+                "JSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c2_service_proxy",
+            "type": [
+                "ServiceRegistry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c2_token_proxy",
+            "type": [
+                "CustomToken"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c3_client",
+            "type": [
+                "JSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c3_service_proxy",
+            "type": [
+                "ServiceRegistry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c3_token_proxy",
+            "type": [
+                "CustomToken"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log_details",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transaction_hash",
+            "type": [
+                "bytes",
+                "raiden.utils.Any",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "deploy_service_registry_and_set_urls",
+            "type": [
+                "tuple[typing.Union[ServiceRegistry,list[typing.Text]]]"
+            ]
+        }
+    ],
+    "deploy_token@global": [
+        {
+            "category": "arg",
+            "name": "deploy_client",
+            "type": [
+                "str",
+                "raiden_contracts.contract_manager.ContractManager",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "contract_manager",
+            "type": [
+                "str",
+                "raiden_contracts.contract_manager.ContractManager",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "initial_amount",
+            "type": [
+                "str",
+                "raiden_contracts.contract_manager.ContractManager",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "decimals",
+            "type": [
+                "str",
+                "raiden_contracts.contract_manager.ContractManager",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_name",
+            "type": [
+                "str",
+                "raiden_contracts.contract_manager.ContractManager",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_symbol",
+            "type": [
+                "str",
+                "raiden_contracts.contract_manager.ContractManager",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_contract_name",
+            "type": [
+                "str",
+                "raiden_contracts.contract_manager.ContractManager",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deploy_client",
+            "type": [
+                "str",
+                "raiden_contracts.contract_manager.ContractManager",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_contract_name",
+            "type": [
+                "str",
+                "raiden_contracts.contract_manager.ContractManager",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contract_manager",
+            "type": [
+                "str",
+                "raiden_contracts.contract_manager.ContractManager",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initial_amount",
+            "type": [
+                "str",
+                "raiden_contracts.contract_manager.ContractManager",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "decimals",
+            "type": [
+                "str",
+                "raiden_contracts.contract_manager.ContractManager",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_name",
+            "type": [
+                "str",
+                "raiden_contracts.contract_manager.ContractManager",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_symbol",
+            "type": [
+                "str",
+                "raiden_contracts.contract_manager.ContractManager",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contract_proxy",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "deploy_token",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, str]"
+            ]
+        }
+    ],
+    "get_list_of_block_numbers@global": [
+        {
+            "category": "arg",
+            "name": "item",
+            "type": [
+                "typing.Iterable[T]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "item",
+            "type": [
+                "typing.Iterable[T]",
+                "list",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_list_of_block_numbers",
+            "type": [
+                "list",
+                "list[typing.Union[dict[int, typing.Any],dict[str, int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "dict[int, typing.Any]",
+                "dict[str, int]"
+            ]
+        }
+    ],
+    "global@global": [],
+    "is_tx_hash_bytes@global": [
+        {
+            "category": "arg",
+            "name": "bytes_",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bytes_",
+            "type": [
+                "bytes",
+                "T_TransactionHash"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_tx_hash_bytes",
+            "type": [
+                "bool"
+            ]
+        }
+    ]
+}

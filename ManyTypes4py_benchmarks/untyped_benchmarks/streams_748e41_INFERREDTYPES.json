@@ -1,0 +1,4041 @@
+{
+    "access_default_stream_group_by_id@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "int",
+                "set[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "group_id",
+            "type": [
+                "int",
+                "str",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "int",
+                "set[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group_id",
+            "type": [
+                "int",
+                "str",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "access_default_stream_group_by_id",
+            "type": [
+                "users.models.User",
+                "None",
+                "zerver.models.Realm",
+                "dict[str, typing.Any]"
+            ]
+        }
+    ],
+    "access_stream_by_id@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "str",
+                "zerver.models.UserProfile",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream_id",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "require_active",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "require_content_access",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error",
+            "type": [
+                "str",
+                "typing.DefaultDict",
+                "jsonrpc.exceptions.JSONRPCError"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_id",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "str",
+                "zerver.models.UserProfile",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "require_active",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "require_content_access",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "access_stream_by_id",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "access_stream_by_id_for_message@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream_id",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "require_active",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "require_content_access",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error",
+            "type": [
+                "str",
+                "typing.DefaultDict",
+                "jsonrpc.exceptions.JSONRPCError"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_id",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "require_active",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "require_content_access",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "access_stream_by_id_for_message",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "access_stream_by_name@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream_name",
+            "type": [
+                "str",
+                "zerver.models.Stream",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "require_content_access",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_name",
+            "type": [
+                "str",
+                "zerver.models.Stream",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error",
+            "type": [
+                "str",
+                "list",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "require_content_access",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "access_stream_by_name",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "access_stream_common@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": [
+                "bool",
+                "list[dict[str, typing.Any]]",
+                "zerver.models.UserProfile",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "error",
+            "type": [
+                "str",
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "require_active",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "require_content_access",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "bool",
+                "list[dict[str, typing.Any]]",
+                "zerver.models.UserProfile",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "require_active",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sub",
+            "type": [
+                "frozenset",
+                "tuple[int]",
+                "list[tuple[typing.Any]]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "require_content_access",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "access_stream_common",
+            "type": [
+                "frozenset",
+                "tuple[int]",
+                "list[tuple[typing.Any]]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error",
+            "type": [
+                "str",
+                "bool",
+                "list[str]"
+            ]
+        }
+    ],
+    "access_stream_for_delete_or_update_requiring_metadata_access@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream_id",
+            "type": [
+                "int",
+                "zerver.models.UserProfile",
+                "Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_id",
+            "type": [
+                "int",
+                "zerver.models.UserProfile",
+                "Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sub",
+            "type": [
+                "qutebrowser.utils.objreg.ObjectRegistry",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "access_stream_for_delete_or_update_requiring_metadata_access",
+            "type": [
+                "tuple[typing.Union[list,str,qutebrowser.utils.objreg.ObjectRegistry,dict[str, typing.Any],None]]"
+            ]
+        }
+    ],
+    "access_stream_for_send_message@global": [
+        {
+            "category": "arg",
+            "name": "sender",
+            "type": [
+                "zerver.models.UserProfile",
+                "str",
+                "asgard.models.accounAccount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": [
+                "zerver.models.UserProfile",
+                "str",
+                "zerver.models.Stream"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "forwarder_user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "None",
+                "accounts.models.Account"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "archived_channel_notice",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sender",
+            "type": [
+                "zerver.models.UserProfile",
+                "str",
+                "asgard.models.accounAccount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "zerver.models.UserProfile",
+                "str",
+                "zerver.models.Stream"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "forwarder_user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "None",
+                "accounts.models.Account"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "access_stream_for_send_message",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "archived_channel_notice",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "access_stream_to_remove_visibility_policy_by_id@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "int",
+                "zerver.models.UserProfile",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream_id",
+            "type": [
+                "int",
+                "zerver.models.UserProfile",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "error",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_id",
+            "type": [
+                "int",
+                "zerver.models.UserProfile",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "int",
+                "zerver.models.UserProfile",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "str",
+                "typing.TextIO",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "access_stream_to_remove_visibility_policy_by_id",
+            "type": [
+                "str",
+                "typing.TextIO",
+                "int"
+            ]
+        }
+    ],
+    "access_stream_to_remove_visibility_policy_by_name@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream_name",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "error",
+            "type": [
+                "str",
+                "None",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_name",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error",
+            "type": [
+                "str",
+                "None",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "access_stream_to_remove_visibility_policy_by_name",
+            "type": []
+        }
+    ],
+    "access_web_public_stream@global": [
+        {
+            "category": "arg",
+            "name": "stream_id",
+            "type": [
+                "int",
+                "Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "int",
+                "Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error",
+            "type": [
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_id",
+            "type": [
+                "int",
+                "Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "int",
+                "Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "typing.TextIO",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "access_web_public_stream",
+            "type": [
+                "typing.TextIO",
+                "list",
+                "str"
+            ]
+        }
+    ],
+    "add_filter_option@global": [
+        {
+            "category": "arg",
+            "name": "option",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "query_filter",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "add_filter_option",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "bulk_can_remove_subscribers_from_streams@global": [
+        {
+            "category": "arg",
+            "name": "streams",
+            "type": [
+                "zerver.models.Stream",
+                "zerver.models.Realm",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "list[zerver.models.UserProfile]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "list[zerver.models.UserProfile]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "bulk_can_remove_subscribers_from_streams",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_recursive_group_ids",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "permission_failure_streams",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "streams",
+            "type": [
+                "zerver.models.Stream",
+                "zerver.models.Realm",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "existing_recipient_ids",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sub_recipient_ids",
+            "type": [
+                "list",
+                "list[tuple[typing.Union[str,typing.Any]]]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_subscribed",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "can_access_stream_history@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "can_access_stream_history",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error",
+            "type": [
+                "str",
+                "typing.Type",
+                "None"
+            ]
+        }
+    ],
+    "can_access_stream_history_by_id@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "int",
+                "zerver.models.UserProfile",
+                "Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream_id",
+            "type": [
+                "int",
+                "zerver.models.UserProfile",
+                "Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_id",
+            "type": [
+                "int",
+                "zerver.models.UserProfile",
+                "Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "int",
+                "zerver.models.UserProfile",
+                "Realm"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "can_access_stream_history_by_id",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "can_access_stream_history_by_name@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream_name",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_name",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "Realm"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "can_access_stream_history_by_name",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "can_access_stream_metadata_user_ids@global": [
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": [
+                "zerver.models.Stream",
+                "str",
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "zerver.models.Stream",
+                "str",
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "can_access_stream_metadata_user_ids",
+            "type": [
+                "str",
+                "bytes",
+                "bool"
+            ]
+        }
+    ],
+    "can_administer_accessible_channel@global": [
+        {
+            "category": "arg",
+            "name": "channel",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "zerver.models.UserGroup"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "accounts.models.Account",
+                "django.contrib.auth.models.AbstractUser"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "zerver.models.UserGroup"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "accounts.models.Account",
+                "django.contrib.auth.models.AbstractUser"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "can_administer_accessible_channel",
+            "type": []
+        }
+    ],
+    "check_basic_stream_access@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "str",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": [
+                "bool",
+                "str",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "is_subscribed",
+            "type": [
+                "bool",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "require_content_access",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_group_membership_details",
+            "type": [
+                "UserGroupMembershipDetails"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "str",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "bool",
+                "str",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_subscribed",
+            "type": [
+                "bool",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_basic_stream_access",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "require_content_access",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_group_membership_details_",
+            "type": [
+                "None",
+                "set"
+            ]
+        }
+    ],
+    "check_for_exactly_one_stream_arg@global": [
+        {
+            "category": "arg",
+            "name": "stream_id",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "None",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "None",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_id",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "None",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "None",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error",
+            "type": [
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_for_exactly_one_stream_arg",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "check_stream_access_based_on_can_send_message_group@global": [
+        {
+            "category": "arg",
+            "name": "sender",
+            "type": [
+                "zerver.models.Realm",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": [
+                "zerver.models.Stream",
+                "tracim.models.auth.User",
+                "list[zerver.data_imporimport_util.ZerverFieldsT]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sender",
+            "type": [
+                "zerver.models.Realm",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_stream_access_based_on_can_send_message_group",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "zerver.models.Stream",
+                "tracim.models.auth.User",
+                "list[zerver.data_imporimport_util.ZerverFieldsT]"
+            ]
+        }
+    ],
+    "check_stream_access_for_delete_or_update_requiring_metadata_access@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sub",
+            "type": [
+                "None",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error",
+            "type": [
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_stream_access_for_delete_or_update_requiring_metadata_access",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_group_membership_details",
+            "type": [
+                "UserGroupMembershipDetails"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sub",
+            "type": [
+                "None",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm"
+            ]
+        }
+    ],
+    "check_stream_name_available@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "name",
+            "type": [
+                "str",
+                "zerver.models.Realm",
+                "cmk.utils.type_defs.UserId"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "str",
+                "zerver.models.Realm",
+                "cmk.utils.type_defs.UserId"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_stream_name_available",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "check_update_all_streams_active_status@global": [
+        {
+            "category": "arg",
+            "name": "days",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "date_days_ago",
+            "type": [
+                "datetime.datetime",
+                "datetime.date"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_update_all_streams_active_status",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "create_stream_if_needed@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "bool",
+                "str",
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "invite_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "is_web_public",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "history_public_to_subscribers",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream_description",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message_retention_days",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "can_add_subscribers_group",
+            "type": [
+                "None",
+                "bool",
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "can_administer_channel_group",
+            "type": [
+                "None",
+                "bool",
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "can_send_message_group",
+            "type": [
+                "None",
+                "bool",
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "can_remove_subscribers_group",
+            "type": [
+                "None",
+                "bool",
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "acting_user",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setting_groups_dict",
+            "type": [
+                "None",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "bool",
+                "str",
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "invite_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "history_public_to_subscribers",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "zerver.models.Realm",
+                "notifications.models.Notification",
+                "typing.Type",
+                "set[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group_setting_values",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request_settings_dict",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "system_groups_name_dict",
+            "type": [
+                "None",
+                "dict[typing.Union[str,None], typing.Union[str,None]]",
+                "dict[int, typing.Union[str,None]]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "acting_user",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_description",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_web_public",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_retention_days",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "typing.BinaryIO",
+                "zerver.models.Stream",
+                "dcpquery.db.models.File"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "created",
+            "type": [
+                "datetime.datetime",
+                "datetime.date",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_",
+            "type": [
+                "dict[str, str]",
+                "dict[typing.Any, dict[str, typing.Any]]",
+                "app.models.UserModel"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recipient",
+            "type": [
+                "dict[str, str]",
+                "dict[typing.Any, dict[str, typing.Any]]",
+                "app.models.UserModel"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_time",
+            "type": [
+                "datetime.datetime",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setting_groups_dict",
+            "type": [
+                "None",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "bool",
+                "dict[str, str]",
+                "dict[str, typing.Type]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm_admin_ids",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_stream_if_needed",
+            "type": [
+                "tuple[typing.Union[typing.BinaryIO,zerver.models.Stream,dcpquery.db.models.File,datetime.datetime,datetime.date,str]]"
+            ]
+        }
+    ],
+    "create_streams_if_needed@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.Attachment",
+                "zerver.models.UserProfile",
+                "zilencer.models.RemoteZulipServer",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream_dicts",
+            "type": [
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "acting_user",
+            "type": [
+                "None",
+                "zerver.models.Attachment",
+                "zerver.models.UserProfile",
+                "zilencer.models.RemoteZulipServer",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setting_groups_dict",
+            "type": [
+                "None",
+                "zerver.models.Attachment",
+                "zerver.models.UserProfile",
+                "zilencer.models.RemoteZulipServer",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "added_streams",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "existing_streams",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_dicts",
+            "type": [
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.Attachment",
+                "zerver.models.UserProfile",
+                "zilencer.models.RemoteZulipServer",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "acting_user",
+            "type": [
+                "None",
+                "zerver.models.Attachment",
+                "zerver.models.UserProfile",
+                "zilencer.models.RemoteZulipServer",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setting_groups_dict",
+            "type": [
+                "None",
+                "zerver.models.Attachment",
+                "zerver.models.UserProfile",
+                "zilencer.models.RemoteZulipServer",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_streams_if_needed",
+            "type": [
+                "tuple[list]"
+            ]
+        }
+    ],
+    "do_get_streams@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "typing.Iterable[str]",
+                "None",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_public",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_web_public",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_subscribed",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exclude_archived",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_all_active",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_default",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_owner_subscribed",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "typing.Iterable[str]",
+                "None",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_public",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_web_public",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_subscribed",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exclude_archived",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_all_active",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_owner_subscribed",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "streams",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_ids",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setting_groups_dict",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_dicts",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_default",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "do_get_streams",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "ensure_stream@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "str",
+                "bool",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream_name",
+            "type": [
+                "str",
+                "bool",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "invite_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream_description",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "acting_user",
+            "type": [
+                "str",
+                "bool",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "str",
+                "bool",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_name",
+            "type": [
+                "str",
+                "bool",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "invite_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_description",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "acting_user",
+            "type": [
+                "str",
+                "bool",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "ensure_stream",
+            "type": [
+                "str",
+                "dict",
+                "int"
+            ]
+        }
+    ],
+    "filter_stream_authorization@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "zerver.models.Realm",
+                "None",
+                "django.db.models.query.QuerySet"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "streams",
+            "type": [
+                "django.contrib.admin.ModelAdmin",
+                "list[dict[str, typing.Any]]",
+                "hackathon.utils.utils.ResultsMessage"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "is_subscribing_other_users",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "streams",
+            "type": [
+                "django.contrib.admin.ModelAdmin",
+                "list[dict[str, typing.Any]]",
+                "hackathon.utils.utils.ResultsMessage"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "filter_stream_authorization",
+            "type": [
+                "StreamsCategorizedByPermissions"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "dict[str, typing.Any]",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recipient_ids",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subscribed_recipient_ids",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unauthorized_streams",
+            "type": [
+                "list",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "streams_to_which_user_cannot_add_subscribers",
+            "type": [
+                "list",
+                "str",
+                "typing.Iterable[lms.lmsdb.models.Notification]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_subscribing_other_users",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "zerver.models.Realm",
+                "None",
+                "django.db.models.query.QuerySet"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_recursive_group_ids",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "authorized_streams",
+            "type": [
+                "list[typing.Text]"
+            ]
+        }
+    ],
+    "get_default_value_for_history_public_to_subscribers@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "bool",
+                "grouper.models.base.session.Session"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "invite_only",
+            "type": [
+                "bool",
+                "grouper.models.base.session.Session",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "history_public_to_subscribers",
+            "type": [
+                "bool",
+                "zerver.models.Stream",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "invite_only",
+            "type": [
+                "bool",
+                "grouper.models.base.session.Session",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "history_public_to_subscribers",
+            "type": [
+                "bool",
+                "zerver.models.Stream",
+                "None",
+                "str",
+                "dict[int, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "bool",
+                "grouper.models.base.session.Session"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_default_value_for_history_public_to_subscribers",
+            "type": [
+                "bool",
+                "str",
+                "dict[int, typing.Any]"
+            ]
+        }
+    ],
+    "get_default_values_for_stream_permission_group_settings@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "zerver.models.Subscription",
+                "zerver.models.Stream"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "creator",
+            "type": [
+                "None",
+                "str",
+                "zerver.models.UserProfile",
+                "Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group_setting_values",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "zerver.models.Subscription",
+                "zerver.models.Stream"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "system_groups_name_dict",
+            "type": [
+                "dict",
+                "typing.Type",
+                "dict[str, typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "creator",
+            "type": [
+                "None",
+                "str",
+                "zerver.models.UserProfile",
+                "Realm"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_default_values_for_stream_permission_group_settings",
+            "type": [
+                "dict"
+            ]
+        }
+    ],
+    "get_group_setting_value_dict_for_streams@global": [
+        {
+            "category": "arg",
+            "name": "streams",
+            "type": [
+                "types.streams.StreamT",
+                "typing.IO",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setting_group_ids",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "streams",
+            "type": [
+                "types.streams.StreamT",
+                "typing.IO",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_group_setting_value_dict_for_streams",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        }
+    ],
+    "get_occupied_streams@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exists_expression",
+            "type": [
+                "Exists"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "occupied_streams",
+            "type": [
+                "list[str]",
+                "str",
+                "typing.Callable[None,None,None,None, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_occupied_streams",
+            "type": [
+                "list[str]",
+                "str",
+                "typing.Callable[None,None,None,None, typing.Any]"
+            ]
+        }
+    ],
+    "get_public_streams_queryset@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_public_streams_queryset",
+            "type": [
+                "cmk.utils.type_defs.UserId",
+                "None",
+                "bool",
+                "django.http.HttpRequest"
+            ]
+        }
+    ],
+    "get_setting_values_for_group_settings@global": [
+        {
+            "category": "arg",
+            "name": "group_ids",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_groups",
+            "type": [
+                "list",
+                "django.db.models.Manager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setting_groups_dict",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "anonymous_group_ids",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_setting_values_for_group_settings",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group_subgroups",
+            "type": [
+                "list",
+                "dict[str, typing.Any]",
+                "list[int]"
+            ]
+        }
+    ],
+    "get_stream_by_narrow_operand_access_unchecked@global": [
+        {
+            "category": "arg",
+            "name": "operand",
+            "type": [
+                "str",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "str",
+                "zerver.models.Recipient",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "operand",
+            "type": [
+                "str",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "str",
+                "zerver.models.Recipient",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_stream_by_narrow_operand_access_unchecked",
+            "type": [
+                "str",
+                "bool",
+                "tildes.models.user.User"
+            ]
+        }
+    ],
+    "get_stream_permission_default_group@global": [
+        {
+            "category": "arg",
+            "name": "setting_name",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "system_groups_name_dict",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "creator",
+            "type": [
+                "None",
+                "str",
+                "zerver.models.UserProfile",
+                "users.models.JustfixUser"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setting_name",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "creator",
+            "type": [
+                "None",
+                "str",
+                "zerver.models.UserProfile",
+                "users.models.JustfixUser"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_group",
+            "type": [
+                "UserGroup"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_stream_permission_default_group",
+            "type": [
+                "UserGroup",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "system_groups_name_dict",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "get_stream_permission_policy_name@global": [
+        {
+            "category": "arg",
+            "name": "invite_only",
+            "type": [
+                "None",
+                "bool",
+                "typing.Iterable[str]",
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "history_public_to_subscribers",
+            "type": [
+                "None",
+                "bool",
+                "typing.Iterable[str]",
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "is_web_public",
+            "type": [
+                "None",
+                "bool",
+                "typing.Iterable[str]",
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "policy_name",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "invite_only",
+            "type": [
+                "None",
+                "bool",
+                "typing.Iterable[str]",
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "history_public_to_subscribers",
+            "type": [
+                "None",
+                "bool",
+                "typing.Iterable[str]",
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_web_public",
+            "type": [
+                "None",
+                "bool",
+                "typing.Iterable[str]",
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_stream_permission_policy_name",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_stream_post_policy_value_based_on_group_setting@global": [
+        {
+            "category": "arg",
+            "name": "setting_group",
+            "type": [
+                "models.Organization",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setting_group",
+            "type": [
+                "models.Organization",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_stream_post_policy_value_based_on_group_setting",
+            "type": []
+        }
+    ],
+    "get_streams_for_user@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_public",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_web_public",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_subscribed",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exclude_archived",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_all_active",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_owner_subscribed",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_all_active",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_public",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "list",
+                "str",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exclude_archived",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query_filter",
+            "type": [
+                "None",
+                "list",
+                "dict[int, typing.Union[int,None]]",
+                "dict[typing.Union[str,None], list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_subscribed",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subscribed_stream_ids",
+            "type": [
+                "list",
+                "set[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recipient_check",
+            "type": [
+                "Q"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "invite_only_check",
+            "type": [
+                "Q"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_web_public",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "web_public_check",
+            "type": [
+                "Q"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_owner_subscribed",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "owner_subscribed_check",
+            "type": [
+                "Q"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_streams_for_user",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "get_streams_to_which_user_cannot_add_subscribers@global": [
+        {
+            "category": "arg",
+            "name": "streams",
+            "type": [
+                "zerver.models.Client",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "allow_default_streams",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_streams_to_which_user_cannot_add_subscribers",
+            "type": [
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_recursive_group_ids",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "allow_default_streams",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "streams",
+            "type": [
+                "zerver.models.Client",
+                "set[str]"
+            ]
+        }
+    ],
+    "get_subscribed_private_streams_for_user@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "UserProfile",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "UserProfile",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exists_expression",
+            "type": [
+                "Exists"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subscribed_private_streams",
+            "type": [
+                "list[typing.Any]",
+                "str",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_subscribed_private_streams_for_user",
+            "type": [
+                "list[typing.Any]",
+                "str",
+                "dict[str, int]"
+            ]
+        }
+    ],
+    "get_user_ids_with_metadata_access_via_permission_groups@global": [
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": [
+                "zerver.models.Stream",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_user_ids_with_metadata_access_via_permission_groups",
+            "type": [
+                "set"
+            ]
+        }
+    ],
+    "get_web_public_streams@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "str",
+                "typing.Type",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setting_groups_dict",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_dicts",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_web_public_streams",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "get_web_public_streams_queryset@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_web_public_streams_queryset",
+            "type": [
+                "zerver.models.Realm",
+                "None",
+                "bool",
+                "str"
+            ]
+        }
+    ],
+    "global@global": [],
+    "has_metadata_access_to_channel_via_groups@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "int",
+                "zerver.models.UserProfile",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_recursive_group_ids",
+            "type": [
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "can_administer_channel_group_id",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "can_add_subscribers_group_id",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "int",
+                "zerver.models.UserProfile",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "has_metadata_access_to_channel_via_groups",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "can_administer_channel_group_id",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_recursive_group_ids",
+            "type": [
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "can_add_subscribers_group_id",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "None"
+            ]
+        }
+    ],
+    "is_user_in_can_add_subscribers_group@global": [
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_recursive_group_ids",
+            "type": [
+                "str",
+                "zerver.models.Realm",
+                "daylighdb.models.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_recursive_group_ids",
+            "type": [
+                "str",
+                "zerver.models.Realm",
+                "daylighdb.models.User"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_user_in_can_add_subscribers_group",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "is_user_in_can_administer_channel_group@global": [
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": [
+                "zerver.models.UserProfile",
+                "int",
+                "zerver.models.Recipient"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_recursive_group_ids",
+            "type": [
+                "Realm",
+                "zerver.models.UserProfile",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "zerver.models.UserProfile",
+                "int",
+                "zerver.models.Recipient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_recursive_group_ids",
+            "type": [
+                "Realm",
+                "zerver.models.UserProfile",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_user_in_can_administer_channel_group",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "is_user_in_can_remove_subscribers_group@global": [
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_recursive_group_ids",
+            "type": [
+                "str",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_recursive_group_ids",
+            "type": [
+                "str",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_user_in_can_remove_subscribers_group",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "list_to_streams@global": [
+        {
+            "category": "arg",
+            "name": "streams_raw",
+            "type": [
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "zerver.models.Realm",
+                "None",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "autocreate",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "unsubscribing_others",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "is_default_stream",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setting_groups_dict",
+            "type": [
+                "None",
+                "bool",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "streams_raw",
+            "type": [
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_set",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "existing_streams",
+            "type": [
+                "list",
+                "list[typing.Union[str,list,None]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "missing_stream_dicts",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "zerver.models.Realm",
+                "None",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unsubscribing_others",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_retention_days_not_none",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "web_public_stream_requested",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "None",
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "autocreate",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "created_streams",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_default_stream",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setting_groups_dict",
+            "type": [
+                "None",
+                "bool",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "list_to_streams",
+            "type": [
+                "tuple[list[typing.Union[str,list,None]]]"
+            ]
+        }
+    ],
+    "notify_stream_is_recently_active_update@global": [
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": [
+                "dict",
+                "zerver.models.Stream",
+                "T"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "dict",
+                "zerver.models.Stream",
+                "audiopyle.lib.models.file_meta.CompressedAudioFileMeta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "dict",
+                "zerver.models.Stream",
+                "audiopyle.lib.models.file_meta.CompressedAudioFileMeta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "dict",
+                "zerver.models.Stream",
+                "T"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "notify_stream_is_recently_active_update",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "private_stream_user_ids@global": [
+        {
+            "category": "arg",
+            "name": "stream_id",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_id",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subscriptions",
+            "type": [
+                "notifications.models.Notification",
+                "reader_server.types.subscription.Subscription"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "private_stream_user_ids",
+            "type": [
+                "set"
+            ]
+        }
+    ],
+    "public_stream_user_ids@global": [
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": [
+                "zerver.models.Stream",
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "zerver.models.Stream",
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "guest_subscriptions_ids",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "can_add_subscribers_group_user_ids",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "public_stream_user_ids",
+            "type": [
+                "set",
+                "int"
+            ]
+        }
+    ],
+    "render_stream_description@global": [
+        {
+            "category": "arg",
+            "name": "text",
+            "type": [
+                "zerver.models.Realm",
+                "zerver.models.UserProfile",
+                "zerver.models.RealmEmoji"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "zerver.models.UserProfile",
+                "zerver.models.RealmEmoji"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "acting_user",
+            "type": [
+                "None",
+                "zerver.models.Realm",
+                "zerver.models.UserProfile",
+                "zerver.models.RealmEmoji"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "text",
+            "type": [
+                "zerver.models.Realm",
+                "zerver.models.UserProfile",
+                "zerver.models.RealmEmoji"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "zerver.models.UserProfile",
+                "zerver.models.RealmEmoji"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "acting_user",
+            "type": [
+                "None",
+                "zerver.models.Realm",
+                "zerver.models.UserProfile",
+                "zerver.models.RealmEmoji"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "render_stream_description",
+            "type": []
+        }
+    ],
+    "send_stream_creation_event@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "int",
+                "set[int]",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": [
+                "dict[str, typing.Any]",
+                "bool",
+                "dict[int, zam_repondeur.models.Amendement]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_ids",
+            "type": [
+                "int",
+                "set[int]",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recent_traffic",
+            "type": [
+                "None",
+                "dict[str, typing.Any]",
+                "bool",
+                "dict[int, zam_repondeur.models.Amendement]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setting_groups_dict",
+            "type": [
+                "None",
+                "dict[str, typing.Any]",
+                "bool",
+                "dict[int, zam_repondeur.models.Amendement]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "dict[str, typing.Any]",
+                "bool",
+                "dict[int, zam_repondeur.models.Amendement]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recent_traffic",
+            "type": [
+                "None",
+                "dict[str, typing.Any]",
+                "bool",
+                "dict[int, zam_repondeur.models.Amendement]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setting_groups_dict",
+            "type": [
+                "None",
+                "dict[str, typing.Any]",
+                "bool",
+                "dict[int, zam_repondeur.models.Amendement]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "int",
+                "set[int]",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_ids",
+            "type": [
+                "int",
+                "set[int]",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "send_stream_creation_event",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "send_stream_deletion_event@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "int",
+                "zerver.models.UserProfile",
+                "set[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_ids",
+            "type": [
+                "int",
+                "zerver.models.UserProfile",
+                "set[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "streams",
+            "type": [
+                "set[int]",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "streams",
+            "type": [
+                "set[int]",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_deletion_event",
+            "type": [
+                "int",
+                "set[int]",
+                "list[dict[str, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "int",
+                "zerver.models.UserProfile",
+                "set[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_ids",
+            "type": [
+                "int",
+                "zerver.models.UserProfile",
+                "set[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "send_stream_deletion_event",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "stream_to_dict@global": [
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": [
+                "typing.DefaultDict",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recent_traffic",
+            "type": [
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setting_groups_dict",
+            "type": [
+                "None",
+                "str",
+                "dict",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recent_traffic",
+            "type": [
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "typing.DefaultDict",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_weekly_traffic",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setting_groups_dict",
+            "type": [
+                "None",
+                "str",
+                "dict",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "can_add_subscribers_group",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "can_administer_channel_group",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "can_send_message_group",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "can_remove_subscribers_group",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "stream_to_dict",
+            "type": [
+                "APIStreamDict"
+            ]
+        }
+    ],
+    "subscribed_to_stream@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "int",
+                "Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream_id",
+            "type": [
+                "zerver.models.UserProfile",
+                "int",
+                "Realm"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "subscribed_to_stream",
+            "type": [
+                "bool",
+                "set[str]"
+            ]
+        }
+    ],
+    "update_stream_active_status_for_realm@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "int",
+                "zerver.models.Realm",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "date_days_ago",
+            "type": [
+                "int",
+                "zerver.models.Realm",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "date_days_ago",
+            "type": [
+                "int",
+                "zerver.models.Realm",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "int",
+                "zerver.models.Realm",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recent_messages_subquery",
+            "type": [
+                "list",
+                "list[models.User]",
+                "typing.Literal"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_stream_active_status_for_realm",
+            "type": []
+        }
+    ],
+    "user_has_content_access@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "zerver.models.Stream"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_group_membership_details",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "None",
+                "zerver.models.Stream"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "is_subscribed",
+            "type": [
+                "bool",
+                "list[zerver.models.DefaultStreamGroup]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "zerver.models.Stream"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "user_has_content_access",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_subscribed",
+            "type": [
+                "bool",
+                "list[zerver.models.DefaultStreamGroup]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_group_membership_details",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "None",
+                "zerver.models.Stream"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_group_membership_details_",
+            "type": [
+                "None",
+                "set"
+            ]
+        }
+    ]
+}

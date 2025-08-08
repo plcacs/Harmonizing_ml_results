@@ -1,0 +1,63 @@
+from typing import List, Tuple, Dict
+from jedi.inference.names import Name
+from jedi.inference.context import ModuleContext
+
+_DEFINITION_SCOPES: Tuple[str, str] = ('suite', 'file_input')
+_VARIABLE_EXCTRACTABLE: List[str] = EXPRESSION_PARTS + 'atom testlist_star_expr testlist test lambdef lambdef_nocond keyword name number string fstring'.split()
+
+def extract_variable(inference_state, path, module_node, name, pos, until_pos) -> Refactoring:
+    ...
+
+def _is_expression_with_error(nodes: List) -> Tuple[bool, str]:
+    ...
+
+def _find_nodes(module_node, pos, until_pos) -> List:
+    ...
+
+def _replace(nodes, expression_replacement, extracted, pos, insert_before_leaf=None, remaining_prefix=None) -> Dict:
+    ...
+
+def _expression_nodes_to_string(nodes: List) -> str:
+    ...
+
+def _suite_nodes_to_string(nodes, pos) -> Tuple[str, str]:
+    ...
+
+def _split_prefix_at(leaf, until_line) -> Tuple[str, str]:
+    ...
+
+def _get_indentation(node) -> str:
+    ...
+
+def _get_parent_definition(node) -> Node:
+    ...
+
+def _remove_unwanted_expression_nodes(parent_node, pos, until_pos) -> List:
+    ...
+
+def _is_not_extractable_syntax(node) -> bool:
+    ...
+
+def extract_function(inference_state, path, module_context, name, pos, until_pos) -> Refactoring:
+    ...
+
+def _check_for_non_extractables(nodes) -> None:
+    ...
+
+def _is_name_input(module_context, names, first, last) -> bool:
+    ...
+
+def _find_inputs_and_outputs(module_context, context, nodes) -> Tuple[List[str], List[str]]:
+    ...
+
+def _find_non_global_names(nodes) -> List[Name]:
+    ...
+
+def _get_code_insertion_node(node, is_bound_method) -> Node:
+    ...
+
+def _find_needed_output_variables(context, search_node, at_least_pos, return_variables) -> List[str]:
+    ...
+
+def _is_node_ending_return_stmt(node) -> bool:
+    ...

@@ -1,0 +1,356 @@
+{
+    "chain_state@global": [
+        {
+            "category": "arg",
+            "name": "our_address",
+            "type": [
+                "bytes",
+                "utils.SimpleReachabilityContainer",
+                "raiden.utils.SecreHash"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "our_address",
+            "type": [
+                "bytes",
+                "utils.SimpleReachabilityContainer",
+                "raiden.utils.SecreHash"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "chain_state",
+            "type": [
+                "ChainState"
+            ]
+        }
+    ],
+    "global@global": [],
+    "netting_channel_state@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.raiden_service.RaidenService",
+                "raiden.transfer.mediated_transfer.state_change.ActionInitMediator",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_network_state",
+            "type": [
+                "list[raiden.utils.Address]",
+                "utils.SimpleReachabilityContainer",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_network_registry_state",
+            "type": [
+                "raiden.raiden_service.RaidenService",
+                "raiden.transfer.mediated_transfer.state_change.ActionInitMediator",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "partner",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.network.proxies.token_network_registry.TokenNetworkRegistry",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partner",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.network.proxies.token_network_registry.TokenNetworkRegistry",
+                "raiden.transfer.state.ChainState",
+                "None",
+                "raiden.transfer.state.NettingChannelEndState",
+                "int",
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_state",
+            "type": [
+                "list[raiden.utils.Address]",
+                "utils.SimpleReachabilityContainer",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.raiden_service.RaidenService",
+                "raiden.transfer.mediated_transfer.state_change.ActionInitMediator",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_registry_state",
+            "type": [
+                "raiden.raiden_service.RaidenService",
+                "raiden.transfer.mediated_transfer.state_change.ActionInitMediator",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "netting_channel_state",
+            "type": []
+        }
+    ],
+    "one_to_n_address@global": [
+        {
+            "category": "return",
+            "name": "one_to_n_address",
+            "type": []
+        }
+    ],
+    "our_address@global": [
+        {
+            "category": "arg",
+            "name": "our_signer",
+            "type": [
+                "str",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "our_signer",
+            "type": [
+                "str",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "our_address",
+            "type": []
+        }
+    ],
+    "our_signer@global": [
+        {
+            "category": "return",
+            "name": "our_signer",
+            "type": []
+        }
+    ],
+    "partner@global": [
+        {
+            "category": "return",
+            "name": "partner",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "requests_responses@global": [
+        {
+            "category": "return",
+            "name": "requests_responses",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "token_id@global": [
+        {
+            "category": "return",
+            "name": "token_id",
+            "type": []
+        }
+    ],
+    "token_network_address@global": [
+        {
+            "category": "return",
+            "name": "token_network_address",
+            "type": []
+        }
+    ],
+    "token_network_registry_address@global": [
+        {
+            "category": "return",
+            "name": "token_network_registry_address",
+            "type": []
+        }
+    ],
+    "token_network_registry_state@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_network_registry_address",
+            "type": [
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_registry_address",
+            "type": [
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_registry",
+            "type": [
+                "TokenNetworkRegistryState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "token_network_registry_state",
+            "type": [
+                "TokenNetworkRegistryState"
+            ]
+        }
+    ],
+    "token_network_state@global": [
+        {
+            "category": "arg",
+            "name": "chain_state",
+            "type": [
+                "list[raiden.utils.Address]",
+                "utils.SimpleReachabilityContainer",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_network_registry_state",
+            "type": [
+                "list[raiden.utils.Address]",
+                "utils.SimpleReachabilityContainer",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_network_registry_address",
+            "type": [
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.Address",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.utils.TokenAddress",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_id",
+            "type": [
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.utils.TokenAddress",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_id",
+            "type": [
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network",
+            "type": [
+                "TokenNetworkState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_registry_state",
+            "type": [
+                "list[raiden.utils.Address]",
+                "utils.SimpleReachabilityContainer",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "list[raiden.utils.Address]",
+                "utils.SimpleReachabilityContainer",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_registry_address",
+            "type": [
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.Address",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "token_network_state",
+            "type": [
+                "TokenNetworkState"
+            ]
+        }
+    ]
+}

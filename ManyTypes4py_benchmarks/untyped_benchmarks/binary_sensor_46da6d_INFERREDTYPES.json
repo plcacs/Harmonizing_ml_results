@@ -1,0 +1,364 @@
+{
+    "__init__@TotalConnectAlarmBinarySensor": [
+        {
+            "category": "arg",
+            "name": "coordinator",
+            "type": [
+                "str",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "entity_description",
+            "type": [
+                "str",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "location",
+            "type": [
+                "str",
+                "None",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "coordinator",
+            "type": [
+                "str",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "location",
+            "type": [
+                "str",
+                "None",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entity_description",
+            "type": [
+                "str",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_unique_id",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_extra_state_attributes",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@TotalConnectZoneBinarySensor": [
+        {
+            "category": "arg",
+            "name": "coordinator",
+            "type": [
+                "str",
+                "coordinator.NZBGetDataUpdateCoordinator"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "entity_description",
+            "type": [
+                "str",
+                "coordinator.NZBGetDataUpdateCoordinator"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "zone",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "location_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "coordinator",
+            "type": [
+                "str",
+                "coordinator.NZBGetDataUpdateCoordinator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "zone",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "location_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entity_description",
+            "type": [
+                "str",
+                "coordinator.NZBGetDataUpdateCoordinator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_extra_state_attributes",
+            "type": [
+                "dict[typing.Text, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_setup_entry@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "entry",
+            "type": [
+                "typing.Callable[List,bool, None]",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "async_add_entities",
+            "type": [
+                "typing.Callable[List,bool, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sensors",
+            "type": [
+                "list",
+                "list[TotalConnectAlarmBinarySensor]",
+                "list[typing.Union[TotalConnectAlarmBinarySensor,TotalConnectZoneBinarySensor]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entry",
+            "type": [
+                "typing.Callable[List,bool, None]",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "LOCATION_BINARY_SENSORS",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "description",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SECURITY_BINARY_SENSOR",
+            "type": [
+                "list",
+                "dict[str, str]",
+                "dict[str, dict[str, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "NO_BUTTON_BINARY_SENSORS",
+            "type": [
+                "list",
+                "dict[str, typing.Union[str,None]]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_setup_entry",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "device_class@TotalConnectZoneBinarySensor": [
+        {
+            "category": "return",
+            "name": "device_class",
+            "type": [
+                "str",
+                "None"
+            ]
+        }
+    ],
+    "get_security_zone_device_class@global": [
+        {
+            "category": "arg",
+            "name": "zone",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "zone",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_security_zone_device_class",
+            "type": []
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "LOW_BATTERY",
+            "type": [
+                "typing.Text",
+                "int",
+                "str",
+                "dict[int, dict[int, int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TAMPER",
+            "type": [
+                "typing.Text",
+                "dict[str, str]",
+                "str",
+                "typing.Pattern"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "POWER",
+            "type": [
+                "typing.Text",
+                "str",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ZONE",
+            "type": [
+                "typing.Text",
+                "dict[str, list[typing.Any]]",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SECURITY_BINARY_SENSOR",
+            "type": [
+                "TotalConnectZoneBinarySensorEntityDescription",
+                "list",
+                "dict[str, str]",
+                "dict[str, dict[str, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "NO_BUTTON_BINARY_SENSORS",
+            "type": [
+                "tuple[TotalConnectZoneBinarySensorEntityDescription]",
+                "list",
+                "dict[str, typing.Union[str,None]]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "LOCATION_BINARY_SENSORS",
+            "type": [
+                "tuple[TotalConnectAlarmBinarySensorEntityDescription]",
+                "str",
+                "dict[str, str]"
+            ]
+        }
+    ],
+    "is_on@TotalConnectAlarmBinarySensor": [
+        {
+            "category": "return",
+            "name": "is_on",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "is_on@TotalConnectZoneBinarySensor": [
+        {
+            "category": "return",
+            "name": "is_on",
+            "type": [
+                "bool"
+            ]
+        }
+    ]
+}

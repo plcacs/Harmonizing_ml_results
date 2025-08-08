@@ -1,0 +1,547 @@
+{
+    "as_signed_transaction@FrontierUnsignedTransaction": [
+        {
+            "category": "arg",
+            "name": "private_key",
+            "type": [
+                "eth_keys.datatypes.PrivateKey",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chain_id",
+            "type": [
+                "None",
+                "bytes",
+                "eth_keys.datatypes.PrivateKey",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "private_key",
+            "type": [
+                "eth_keys.datatypes.PrivateKey",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "v",
+            "type": [
+                "str",
+                "bool",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r",
+            "type": [
+                "str",
+                "int",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s",
+            "type": [
+                "list[bytes]",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "as_signed_transaction",
+            "type": [
+                "FrontierTransaction"
+            ]
+        }
+    ],
+    "blob_versioned_hashes@FrontierTransaction": [
+        {
+            "category": "return",
+            "name": "blob_versioned_hashes",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "check_signature_validity@FrontierTransaction": [
+        {
+            "category": "return",
+            "name": "check_signature_validity",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "create_unsigned_transaction@FrontierTransaction": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "nonce",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "gas_price",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "gas",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nonce",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gas_price",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gas",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_unsigned_transaction",
+            "type": [
+                "FrontierUnsignedTransaction"
+            ]
+        }
+    ],
+    "get_intrinsic_gas@FrontierTransaction": [
+        {
+            "category": "return",
+            "name": "get_intrinsic_gas",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "get_intrinsic_gas@FrontierUnsignedTransaction": [
+        {
+            "category": "return",
+            "name": "get_intrinsic_gas",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "get_message_for_signing@FrontierTransaction": [
+        {
+            "category": "return",
+            "name": "get_message_for_signing",
+            "type": []
+        }
+    ],
+    "get_sender@FrontierTransaction": [
+        {
+            "category": "return",
+            "name": "get_sender",
+            "type": [
+                "str",
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "FRONTIER_TX_GAS_SCHEDULE",
+            "type": [
+                "IntrinsicGasSchedule"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "frontier_get_intrinsic_gas",
+            "type": [
+                "int",
+                "typing.Iterator"
+            ]
+        }
+    ],
+    "make_receipt@FrontierTransaction": [
+        {
+            "category": "arg",
+            "name": "status",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "gas_used",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "log_entries",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log_entries",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logs",
+            "type": [
+                "list[Log]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "status",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gas_used",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "make_receipt",
+            "type": [
+                "Receipt"
+            ]
+        }
+    ],
+    "max_fee_per_blob_gas@FrontierTransaction": [
+        {
+            "category": "return",
+            "name": "max_fee_per_blob_gas",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "max_fee_per_gas@FrontierTransaction": [
+        {
+            "category": "return",
+            "name": "max_fee_per_gas",
+            "type": []
+        }
+    ],
+    "max_fee_per_gas@FrontierUnsignedTransaction": [
+        {
+            "category": "return",
+            "name": "max_fee_per_gas",
+            "type": []
+        }
+    ],
+    "max_priority_fee_per_gas@FrontierTransaction": [
+        {
+            "category": "return",
+            "name": "max_priority_fee_per_gas",
+            "type": []
+        }
+    ],
+    "max_priority_fee_per_gas@FrontierUnsignedTransaction": [
+        {
+            "category": "return",
+            "name": "max_priority_fee_per_gas",
+            "type": []
+        }
+    ],
+    "new_transaction@FrontierTransaction": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "nonce",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "gas_price",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "gas",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "v",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "r",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "s",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nonce",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gas_price",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gas",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "v",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "new_transaction",
+            "type": [
+                "int",
+                "typing.Callable",
+                "str"
+            ]
+        }
+    ],
+    "v_max@FrontierTransaction": [
+        {
+            "category": "return",
+            "name": "v_max",
+            "type": []
+        }
+    ],
+    "v_min@FrontierTransaction": [
+        {
+            "category": "return",
+            "name": "v_min",
+            "type": []
+        }
+    ],
+    "validate@FrontierTransaction": [
+        {
+            "category": "return",
+            "name": "validate",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "validate@FrontierUnsignedTransaction": [
+        {
+            "category": "return",
+            "name": "validate",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "y_parity@FrontierTransaction": [
+        {
+            "category": "return",
+            "name": "y_parity",
+            "type": []
+        }
+    ]
+}

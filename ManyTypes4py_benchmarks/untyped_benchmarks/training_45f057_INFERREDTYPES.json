@@ -1,0 +1,2467 @@
+{
+    "__call__@Speedometer": [
+        {
+            "category": "arg",
+            "name": "epoch",
+            "type": [
+                "int",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batches",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "updates",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "samples",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tokens",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "metrics",
+            "type": [
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batches",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "init",
+            "type": [
+                "bool",
+                "int",
+                "None",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "samples",
+            "type": [
+                "int",
+                "list",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "list",
+                "list[tuple[typing.Union[int,typing.Any]]]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tic",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "toc",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "updates",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "update_interval",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "updates_per_sec",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "samples_per_sec",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens_per_sec",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metrics",
+            "type": [
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_values",
+            "type": [
+                "list",
+                "list[tuple]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "epoch",
+            "type": [
+                "int",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__call__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__getstate__@TrainState": [
+        {
+            "category": "return",
+            "name": "__getstate__",
+            "type": [
+                "dict"
+            ]
+        }
+    ],
+    "__init__@EarlyStoppingTrainer": [
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "list[str]",
+                "None",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "optimizer_config",
+            "type": [
+                "bool",
+                "dict[str, typing.Any]",
+                "optimizers.OptimizerConfig"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sockeye_model",
+            "type": [
+                "dict",
+                "optimizers.OptimizerConfig",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "model_object",
+            "type": [
+                "list[typing.Any]",
+                "None",
+                "dict",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "optimizer",
+            "type": [
+                "tensorflow.optimizers.Optimizer"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "lr_scheduler",
+            "type": [
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "zero_grad_kwargs",
+            "type": [
+                "dict[str, numpy.ndarray]",
+                "numpy.ndarray",
+                "None",
+                "model.modules.ema.EMA"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "loss_functions",
+            "type": [
+                "dict[str, numpy.ndarray]",
+                "numpy.ndarray",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "device",
+            "type": [
+                "model.ModelConfig",
+                "data_io.BaseParallelSampleIter",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "using_amp",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "using_apex_amp",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "custom_metrics_logger",
+            "type": [
+                "None",
+                "bool",
+                "optimizers.OptimizerConfig",
+                "yacron.config.JobConfig"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "checkpoint_callback",
+            "type": [
+                "None",
+                "list[str]",
+                "typing.Callable",
+                "optimizers.OptimizerConfig"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "list[str]",
+                "None",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "optimizer_config",
+            "type": [
+                "bool",
+                "dict[str, typing.Any]",
+                "optimizers.OptimizerConfig"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sockeye_model",
+            "type": [
+                "dict",
+                "optimizers.OptimizerConfig",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model_object",
+            "type": [
+                "list[typing.Any]",
+                "None",
+                "dict",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "optimizer",
+            "type": [
+                "tensorflow.optimizers.Optimizer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lr_scheduler",
+            "type": [
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "zero_grad_kwargs",
+            "type": [
+                "dict[str, numpy.ndarray]",
+                "numpy.ndarray",
+                "None",
+                "model.modules.ema.EMA"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "loss_functions",
+            "type": [
+                "dict[str, numpy.ndarray]",
+                "numpy.ndarray",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "model.ModelConfig",
+                "data_io.BaseParallelSampleIter",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "using_amp",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_scaler",
+            "type": [
+                "torch.Tensor",
+                "float",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "using_apex_amp",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_speedometer",
+            "type": [
+                "Speedometer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "custom_metrics_logger",
+            "type": [
+                "None",
+                "bool",
+                "optimizers.OptimizerConfig",
+                "yacron.config.JobConfig"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_custom_metrics_logger",
+            "type": [
+                "None",
+                "bool",
+                "optimizers.OptimizerConfig",
+                "yacron.config.JobConfig"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_tflogger",
+            "type": [
+                "TensorboardLogger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "checkpoint_callback",
+            "type": [
+                "None",
+                "list[str]",
+                "typing.Callable",
+                "optimizers.OptimizerConfig"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@ModelWithLoss": [
+        {
+            "category": "arg",
+            "name": "model",
+            "type": [
+                "allennlp.models.model.Model",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "losses",
+            "type": [
+                "numpy.ndarray",
+                "list[float]",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "allennlp.models.model.Model",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "losses",
+            "type": [
+                "numpy.ndarray",
+                "list[float]",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@Speedometer": [
+        {
+            "category": "arg",
+            "name": "frequency",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "auto_reset",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "frequency",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "init",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tic",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "auto_reset",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "samples",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@TensorboardLogger": [
+        {
+            "category": "arg",
+            "name": "logdir",
+            "type": [
+                "typing.TextIO",
+                "str",
+                "list[vocab.Vocab]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "source_vocab",
+            "type": [
+                "None",
+                "vocab.Vocab",
+                "list[vocab.Vocab]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_vocab",
+            "type": [
+                "None",
+                "vocab.Vocab",
+                "list[vocab.Vocab]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logdir",
+            "type": [
+                "typing.TextIO",
+                "str",
+                "list[vocab.Vocab]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_vocab",
+            "type": [
+                "None",
+                "vocab.Vocab",
+                "list[vocab.Vocab]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_labels",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_vocab",
+            "type": [
+                "None",
+                "vocab.Vocab",
+                "list[vocab.Vocab]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_labels",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_writer",
+            "type": [
+                "SummaryWriter",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@TrainState": [
+        {
+            "category": "arg",
+            "name": "early_stopping_metric",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_not_improved",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "epoch",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "checkpoint",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "best_checkpoint",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batches",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "updates",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "samples",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metrics",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_time_elapsed",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "early_stopping_metric",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "best_metric_history",
+            "type": [
+                "list",
+                "int",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "converged",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "diverged",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__setstate__@TrainState": [
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k",
+            "type": [
+                "tuple[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "v",
+            "type": [
+                "tuple[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__setstate__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_adjust_learning_rate@EarlyStoppingTrainer": [
+        {
+            "category": "arg",
+            "name": "has_improved",
+            "type": [
+                "bool",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lr",
+            "type": [
+                "float",
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lr_scheduler",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "has_improved",
+            "type": [
+                "bool",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lr_adjusted",
+            "type": [
+                "float",
+                "int",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_adjust_learning_rate",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_cleanup@EarlyStoppingTrainer": [
+        {
+            "category": "arg",
+            "name": "keep_training_state",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "keep_training_state",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_cleanup",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_create_checkpoint@EarlyStoppingTrainer": [
+        {
+            "category": "arg",
+            "name": "checkpoint_decoder",
+            "type": [
+                "data_io.BaseParallelSampleIter",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "time_cost",
+            "type": [
+                "float",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "train_iter",
+            "type": [
+                "int",
+                "None",
+                "list[model.SockeyeModel]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "validation_iter",
+            "type": [
+                "data_io.BaseParallelSampleIter",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_metrics",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "time_cost",
+            "type": [
+                "float",
+                "bool",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validation_iter",
+            "type": [
+                "data_io.BaseParallelSampleIter",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "checkpoint_decoder",
+            "type": [
+                "data_io.BaseParallelSampleIter",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_iter",
+            "type": [
+                "int",
+                "None",
+                "list[model.SockeyeModel]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_create_checkpoint",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_determine_convergence@EarlyStoppingTrainer": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_determine_convergence",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "window_improvement",
+            "type": [
+                "float"
+            ]
+        }
+    ],
+    "_determine_divergence@EarlyStoppingTrainer": [
+        {
+            "category": "arg",
+            "name": "val_metrics",
+            "type": [
+                "list[loss.LossMetric]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_ppl",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric",
+            "type": [
+                "loss.LossMetric"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "val_metrics",
+            "type": [
+                "list[loss.LossMetric]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_determine_divergence",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_determine_improvement@EarlyStoppingTrainer": [
+        {
+            "category": "arg",
+            "name": "val_metrics",
+            "type": [
+                "list[loss.LossMetric]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "None",
+                "list",
+                "dict",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value_is_better",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "val_metric",
+            "type": [
+                "loss.LossMetric"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "val_metrics",
+            "type": [
+                "list[loss.LossMetric]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "list",
+                "dict",
+                "list[str]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_determine_improvement",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_evaluate@EarlyStoppingTrainer": [
+        {
+            "category": "arg",
+            "name": "checkpoint",
+            "type": [
+                "str",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "data_iter",
+            "type": [
+                "str",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "checkpoint_decoder",
+            "type": [
+                "checkpoint_decoder.CheckpointDecoder",
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_iter",
+            "type": [
+                "str",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "val_metrics",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "outputs",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "loss_outputs",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "decoder_metrics",
+            "type": [
+                "dict",
+                "dict[str, typing.Union[typing.Any,str]]",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "checkpoint_decoder",
+            "type": [
+                "checkpoint_decoder.CheckpointDecoder",
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "checkpoint",
+            "type": [
+                "str",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output_name",
+            "type": [
+                "str",
+                "list[str]",
+                "dict[int, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_name",
+            "type": [
+                "tuple[typing.Union[str,typing.Any]]",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_value",
+            "type": [
+                "tuple[typing.Union[str,typing.Any]]",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_evaluate",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "_forward_backward@EarlyStoppingTrainer": [
+        {
+            "category": "arg",
+            "name": "batch",
+            "type": [
+                "torch.Tensor",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "is_update_batch",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch",
+            "type": [
+                "torch.Tensor",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sum_losses",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_update_batch",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_forward_backward",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "_load_lr_scheduler@EarlyStoppingTrainer": [
+        {
+            "category": "arg",
+            "name": "fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lr_scheduler",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_load_lr_scheduler",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_load_optimizer_state@EarlyStoppingTrainer": [
+        {
+            "category": "arg",
+            "name": "fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_load_optimizer_state",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_load_training_state@EarlyStoppingTrainer": [
+        {
+            "category": "arg",
+            "name": "train_iter",
+            "type": [
+                "data_io.BaseParallelSampleIter",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str",
+                "list[int]",
+                "tuple[typing.Literal]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "params_fname",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "opt_state_fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lr_scheduler_fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_iter",
+            "type": [
+                "data_io.BaseParallelSampleIter",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fp",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_load_training_state",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_save_lr_scheduler@EarlyStoppingTrainer": [
+        {
+            "category": "arg",
+            "name": "fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lr_scheduler",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_save_lr_scheduler",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_save_optimizer_state@EarlyStoppingTrainer": [
+        {
+            "category": "arg",
+            "name": "fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_save_optimizer_state",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_save_params@EarlyStoppingTrainer": [
+        {
+            "category": "arg",
+            "name": "use_checkpoint",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "use_checkpoint",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_save_params",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_save_training_state@EarlyStoppingTrainer": [
+        {
+            "category": "arg",
+            "name": "train_iter",
+            "type": [
+                "data_io.BaseParallelSampleIter",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "training_state_dirname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "params_file",
+            "type": [
+                "str",
+                "list[str]",
+                "dict[str, dict[str, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "opt_state_fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lr_scheduler_fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_save_training_state",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_iter",
+            "type": [
+                "data_io.BaseParallelSampleIter",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fp",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "delete_training_state_dirname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "_step@EarlyStoppingTrainer": [
+        {
+            "category": "arg",
+            "name": "batch",
+            "type": [
+                "list[torch.Tensor]",
+                "data_io.Batch",
+                "list[numpy.array]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch",
+            "type": [
+                "list[torch.Tensor]",
+                "data_io.Batch",
+                "list[numpy.array]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_update_batch",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "loss_values",
+            "type": [
+                "int",
+                "list[float]",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_samples",
+            "type": [
+                "int",
+                "float",
+                "dict[str, list[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lr_scheduler",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_step",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_update_best_params@EarlyStoppingTrainer": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_update_best_params",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_write_and_log_metrics@EarlyStoppingTrainer": [
+        {
+            "category": "arg",
+            "name": "train_metrics",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "val_metrics",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "lr_scheduler",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_write_and_log_metrics",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "best_lr_scheduler_fname@EarlyStoppingTrainer": [
+        {
+            "category": "return",
+            "name": "best_lr_scheduler_fname",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "best_optimizer_state_fname@EarlyStoppingTrainer": [
+        {
+            "category": "return",
+            "name": "best_optimizer_state_fname",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "best_params_fname@EarlyStoppingTrainer": [
+        {
+            "category": "return",
+            "name": "best_params_fname",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "cleanup_params_files@global": [
+        {
+            "category": "arg",
+            "name": "output_folder",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_to_keep",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "checkpoint",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "best_checkpoint",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "keep_first",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_params_files_to_cache",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "cache_metric",
+            "type": [
+                "str",
+                "bool",
+                "list[tuple[int]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "cache_strategy",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_to_keep",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "cleanup_params_files",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "top_n",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output_folder",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metrics_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_params_files_to_cache",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cache_metric",
+            "type": [
+                "str",
+                "bool",
+                "list[tuple[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cache_strategy",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "existing_files",
+            "type": [
+                "str",
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "params_name_with_dir",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "keep_first",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "checkpoint",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "best_checkpoint",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "param_fname_n",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "current_params_fname@EarlyStoppingTrainer": [
+        {
+            "category": "return",
+            "name": "current_params_fname",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "fit@EarlyStoppingTrainer": [
+        {
+            "category": "arg",
+            "name": "train_iter",
+            "type": [
+                "data_io.BaseParallelSampleIter",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "validation_iter",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "checkpoint_decoder",
+            "type": [
+                "None",
+                "bool",
+                "data_io.BaseParallelSampleIter",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "checkpoint_decoder",
+            "type": [
+                "None",
+                "bool",
+                "data_io.BaseParallelSampleIter",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resume_training",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_iter",
+            "type": [
+                "data_io.BaseParallelSampleIter",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "TrainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "checkpoint_up_to_date",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validation_iter",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "did_grad_step",
+            "type": [
+                "int",
+                "list",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "fit",
+            "type": [
+                "TrainState"
+            ]
+        }
+    ],
+    "forward@ModelWithLoss": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "torch.Tensor",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "source_length",
+            "type": [
+                "torch.Tensor",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target",
+            "type": [
+                "torch.Tensor",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_length",
+            "type": [
+                "torch.Tensor",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "labels",
+            "type": [
+                "torch.LongTensor",
+                "torch.Tensor",
+                "torch.nn.utils.rnn.PackedSequence"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "torch.Tensor",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_length",
+            "type": [
+                "torch.Tensor",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target",
+            "type": [
+                "torch.Tensor",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_length",
+            "type": [
+                "torch.Tensor",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model_outputs",
+            "type": [
+                "dict[typing.Any, list[typing.Any]]",
+                "dict[tuple[typing.Union[typing.Any,list[typing.Any]]], ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output_name",
+            "type": [
+                "tuple[typing.Union[typing.Any,list[typing.Any]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output",
+            "type": [
+                "tuple[typing.Union[typing.Any,list[typing.Any]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "labels",
+            "type": [
+                "torch.LongTensor",
+                "torch.Tensor",
+                "torch.nn.utils.rnn.PackedSequence"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "loss_outputs",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "loss_values",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_samples",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sum_losses",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "forward",
+            "type": [
+                "tuple[typing.Union[bool,list,float]]"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "load@TrainState": [
+        {
+            "category": "arg",
+            "name": "fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fp",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load",
+            "type": []
+        }
+    ],
+    "log_metrics@TensorboardLogger": [
+        {
+            "category": "arg",
+            "name": "metrics",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "checkpoint",
+            "type": [
+                "int",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_writer",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "log_metrics",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "tuple[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "tuple[typing.Union[str,typing.Any]]",
+                "torch_@_Tensor",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metrics",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "checkpoint",
+            "type": [
+                "int",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "metrics_fname@EarlyStoppingTrainer": [
+        {
+            "category": "return",
+            "name": "metrics_fname",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "safe_custom_metrics_logger@global": [
+        {
+            "category": "arg",
+            "name": "logging_function",
+            "type": [
+                "typing.Callable",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "metrics",
+            "type": [
+                "int",
+                "dict",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "global_step",
+            "type": [
+                "None",
+                "int",
+                "dict",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logging_function",
+            "type": [
+                "typing.Callable",
+                "int",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "safe_custom_metrics_logger",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metrics",
+            "type": [
+                "int",
+                "dict",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "global_step",
+            "type": [
+                "None",
+                "int",
+                "dict",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        }
+    ],
+    "save@TrainState": [
+        {
+            "category": "arg",
+            "name": "fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fp",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "save",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "time_elapsed@TrainState": [
+        {
+            "category": "return",
+            "name": "time_elapsed",
+            "type": []
+        }
+    ],
+    "training_state_dirname@EarlyStoppingTrainer": [
+        {
+            "category": "return",
+            "name": "training_state_dirname",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "update_time_elapsed@TrainState": [
+        {
+            "category": "local",
+            "name": "_tic_last_time_elapsed",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_time_elapsed",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

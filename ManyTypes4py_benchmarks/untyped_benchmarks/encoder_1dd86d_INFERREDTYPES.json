@@ -1,0 +1,555 @@
+{
+    "__init__@Embedding": [
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "dict",
+                "str",
+                "typing.Callable[typing.Any, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "embedding",
+            "type": [
+                "None",
+                "dict[str, int]",
+                "bool",
+                "dict[str, dict[str, int]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dtype",
+            "type": [
+                "None",
+                "bool",
+                "dict[str, int]",
+                "dict[str, dict[str, int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "dict",
+                "str",
+                "typing.Callable[typing.Any, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "embedding",
+            "type": [
+                "None",
+                "dict[str, int]",
+                "bool",
+                "dict[str, dict[str, int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dtype",
+            "type": [
+                "None",
+                "bool",
+                "dict[str, int]",
+                "dict[str, dict[str, int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factor_embeds",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factor_combinations",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factor_embed",
+            "type": [
+                "dict[str, int]",
+                "bool",
+                "dict[str, dict[str, int]]",
+                "float",
+                "tuple[int]",
+                "tuple[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dropout",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@TransformerEncoder": [
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "bool",
+                "str",
+                "None",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "inference_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dtype",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "clamp_to_dtype",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "bool",
+                "str",
+                "None",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dropout",
+            "type": [
+                "float",
+                "int",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "layers",
+            "type": [
+                "list",
+                "list[int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dtype",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inference_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "clamp_to_dtype",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__post_init__@EmbeddingConfig": [
+        {
+            "category": "local",
+            "name": "num_factors",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factor_configs",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__post_init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "forward@Embedding": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "dict[str, torch.LongTensor]",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[str, torch.LongTensor]",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "primary_data",
+            "type": [
+                "torch.LongTensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "embedded",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "average_factors_embeds",
+            "type": [
+                "list",
+                "list[typing.Union[int,torch.Tensor,float]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "concat_factors_embeds",
+            "type": [
+                "list",
+                "list[typing.Union[int,torch.Tensor,float]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sum_factors_embeds",
+            "type": [
+                "list",
+                "list[typing.Union[int,torch.Tensor,float]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factor_data",
+            "type": [
+                "torch.LongTensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factor_embedded",
+            "type": [
+                "int",
+                "torch.Tensor",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sum_factor_embed",
+            "type": [
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dropout",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "forward",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "forward@TransformerEncoder": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "torch.Tensor",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "valid_length",
+            "type": [
+                "torch.Tensor",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "torch.Tensor",
+                "int",
+                "bytes",
+                "str",
+                "tuple[list[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dropout",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_len",
+            "type": [
+                "int",
+                "None",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "__",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "valid_length",
+            "type": [
+                "torch.Tensor",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "att_mask",
+            "type": [
+                "int",
+                "list[int]",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "forward",
+            "type": [
+                "tuple[typing.Union[bytes,str,tuple[list[int]],torch.Tensor,int]]"
+            ]
+        }
+    ],
+    "get_encoded_seq_len@Encoder": [
+        {
+            "category": "arg",
+            "name": "seq_len",
+            "type": [
+                "int",
+                "slice",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "seq_len",
+            "type": [
+                "int",
+                "slice",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_encoded_seq_len",
+            "type": [
+                "int",
+                "slice",
+                "list"
+            ]
+        }
+    ],
+    "get_max_seq_len@Encoder": [
+        {
+            "category": "return",
+            "name": "get_max_seq_len",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_num_hidden@Embedding": [
+        {
+            "category": "return",
+            "name": "get_num_hidden",
+            "type": []
+        }
+    ],
+    "get_num_hidden@Encoder": [
+        {
+            "category": "return",
+            "name": "get_num_hidden",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_num_hidden@TransformerEncoder": [
+        {
+            "category": "return",
+            "name": "get_num_hidden",
+            "type": []
+        }
+    ],
+    "get_transformer_encoder@global": [
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "inference_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dtype",
+            "type": [
+                "None",
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "clamp_to_dtype",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inference_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dtype",
+            "type": [
+                "None",
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "clamp_to_dtype",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_transformer_encoder",
+            "type": [
+                "TransformerEncoder"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "get_encoder",
+            "type": [
+                "typing.Type",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "EncoderConfig",
+            "type": [
+                "dict[str, typing.Any]",
+                "yacron.config.JobConfig",
+                "dict"
+            ]
+        }
+    ]
+}

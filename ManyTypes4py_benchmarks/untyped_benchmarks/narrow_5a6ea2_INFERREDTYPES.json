@@ -1,0 +1,1646 @@
+{
+    "__init__@BadNarrowOperatorError": [
+        {
+            "category": "arg",
+            "name": "desc",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@InvalidOperatorCombinationError": [
+        {
+            "category": "arg",
+            "name": "desc",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@NarrowBuilder": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "msg_id_column",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "is_web_public_query",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_web_public_query",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "by_method_map",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_channel_narrow",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_dm_narrow",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_by_search_pgroonga@NarrowBuilder": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "operand",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "maybe_negate",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_by_search_pgroonga",
+            "type": []
+        }
+    ],
+    "_by_search_tsearch@NarrowBuilder": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "operand",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "maybe_negate",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_by_search_tsearch",
+            "type": []
+        }
+    ],
+    "_get_direct_message_group_recipients@NarrowBuilder": [
+        {
+            "category": "arg",
+            "name": "other_user",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "self_recipient_ids",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "narrow_recipient_ids",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_direct_message_group_recipients",
+            "type": [
+                "set",
+                "int"
+            ]
+        }
+    ],
+    "_pg_re_escape@NarrowBuilder": [
+        {
+            "category": "arg",
+            "name": "pattern",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "s",
+            "type": [
+                "list",
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_pg_re_escape",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "add_narrow_conditions@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "inner_msg_id_col",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "query",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "narrow",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "is_web_public_query",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "is_search",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "add_narrow_conditions",
+            "type": [
+                "tuple[bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "builder",
+            "type": [
+                "NarrowBuilder"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "search_operands",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "search_term",
+            "type": [
+                "NarrowParameter"
+            ]
+        }
+    ],
+    "add_term@NarrowBuilder": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "term",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "maybe_negate",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "add_term",
+            "type": []
+        }
+    ],
+    "by_channel@NarrowBuilder": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "operand",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "maybe_negate",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "recipient_ids",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cond",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "by_channel",
+            "type": []
+        }
+    ],
+    "by_channels@NarrowBuilder": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "operand",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "maybe_negate",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "by_channels",
+            "type": []
+        }
+    ],
+    "by_dm@NarrowBuilder": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "operand",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "maybe_negate",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "operand",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "email_list",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "by_dm",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "cond",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "other_participant",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "by_dm_including@NarrowBuilder": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "operand",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "maybe_negate",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "operand",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cond",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "by_dm_including",
+            "type": []
+        }
+    ],
+    "by_group_pm_with@NarrowBuilder": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "operand",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "maybe_negate",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "operand",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "by_group_pm_with",
+            "type": []
+        }
+    ],
+    "by_has@NarrowBuilder": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "operand",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "maybe_negate",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "by_has",
+            "type": []
+        }
+    ],
+    "by_id@NarrowBuilder": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "operand",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "maybe_negate",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "cond",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "by_id",
+            "type": []
+        }
+    ],
+    "by_in@NarrowBuilder": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "operand",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "maybe_negate",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "by_in",
+            "type": []
+        }
+    ],
+    "by_is@NarrowBuilder": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "operand",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "maybe_negate",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "maybe_negate",
+            "type": [
+                "not_"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cond",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "by_is",
+            "type": []
+        }
+    ],
+    "by_near@NarrowBuilder": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "operand",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "maybe_negate",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "by_near",
+            "type": []
+        }
+    ],
+    "by_search@NarrowBuilder": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "operand",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "maybe_negate",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "by_search",
+            "type": []
+        }
+    ],
+    "by_sender@NarrowBuilder": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "operand",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "maybe_negate",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "operand",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cond",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "by_sender",
+            "type": []
+        }
+    ],
+    "by_topic@NarrowBuilder": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "operand",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "maybe_negate",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "by_topic",
+            "type": []
+        }
+    ],
+    "can_narrow_define_conversation@global": [
+        {
+            "category": "arg",
+            "name": "narrow",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "contains_channel_term",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contains_topic_term",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "can_narrow_define_conversation",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "check_not_both_channel_and_dm_narrow@NarrowBuilder": [
+        {
+            "category": "arg",
+            "name": "maybe_negate",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "is_dm_narrow",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "is_channel_narrow",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "maybe_negate",
+            "type": [
+                "not_"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_not_both_channel_and_dm_narrow",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_dm_narrow",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_channel_narrow",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "clean_narrow_for_message_fetch@global": [
+        {
+            "category": "arg",
+            "name": "narrow",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "maybe_user_profile",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "clean_narrow_for_message_fetch",
+            "type": []
+        }
+    ],
+    "convert_term@NarrowParameter": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "elem",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "elem",
+            "type": [
+                "list",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "convert_term",
+            "type": [
+                "dict"
+            ]
+        }
+    ],
+    "exclude_muting_conditions@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "narrow",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "conditions",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_id",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "exclude_muting_conditions",
+            "type": []
+        }
+    ],
+    "fetch_messages@global": [
+        {
+            "category": "arg",
+            "name": "narrow",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "is_web_public_query",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "anchor",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "include_anchor",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "num_before",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "num_after",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "client_requested_message_ids",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "narrow",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "need_message",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "need_user_message",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "anchored_to_left",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "anchored_to_right",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client_requested_message_ids",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "anchor",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "LARGER_THAN_MAX_MESSAGE_ID",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_after",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rows",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "visible_rows",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "fetch_messages",
+            "type": [
+                "FetchedMessages"
+            ]
+        }
+    ],
+    "find_first_unread_anchor@global": [
+        {
+            "category": "arg",
+            "name": "sa_conn",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "narrow",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "LARGER_THAN_MAX_MESSAGE_ID",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "find_first_unread_anchor",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "need_user_message",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "need_message",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "condition",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "first_unread_result",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "anchor",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "get_base_query_for_search@global": [
+        {
+            "category": "arg",
+            "name": "realm_id",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "need_message",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "need_user_message",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "get_base_query_for_search",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "get_channel_from_narrow_access_unchecked@global": [
+        {
+            "category": "arg",
+            "name": "narrow",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "narrow",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_channel_from_narrow_access_unchecked",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "LARGER_THAN_MAX_MESSAGE_ID",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TS_START",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TS_STOP",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "MessageRowT",
+            "type": [
+                "TypeVar"
+            ]
+        }
+    ],
+    "is_spectator_compatible@global": [
+        {
+            "category": "arg",
+            "name": "narrow",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "supported_operators",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_spectator_compatible",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "is_web_public_narrow@global": [
+        {
+            "category": "arg",
+            "name": "narrow",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "is_web_public_narrow",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "limit_query_to_range@global": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "num_before",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "num_after",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "anchor",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "include_anchor",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "anchored_to_left",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "anchored_to_right",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "id_col",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "first_visible_message_id",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "need_before_query",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "need_after_query",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "need_both_sides",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "before_anchor",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "limit_query_to_range",
+            "type": []
+        }
+    ],
+    "msg_format@BadNarrowOperatorError": [
+        {
+            "category": "return",
+            "name": "msg_format",
+            "type": []
+        }
+    ],
+    "msg_format@InvalidOperatorCombinationError": [
+        {
+            "category": "return",
+            "name": "msg_format",
+            "type": []
+        }
+    ],
+    "ok_to_include_history@global": [
+        {
+            "category": "arg",
+            "name": "narrow",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "is_web_public_query",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "ok_to_include_history",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_history",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "narrow",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "operand",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "parse_anchor_value@global": [
+        {
+            "category": "arg",
+            "name": "anchor_val",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "use_first_unread_anchor",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "parse_anchor_value",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "LARGER_THAN_MAX_MESSAGE_ID",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "anchor",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "post_process_limited_query@global": [
+        {
+            "category": "arg",
+            "name": "rows",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "num_before",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "num_after",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "anchor",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "anchored_to_left",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "anchored_to_right",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "first_visible_message_id",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "visible_rows",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rows_limited",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_after",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "before_rows",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "anchor_rows",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "after_rows",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "limited_rows",
+            "type": [
+                "list[list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "found_anchor",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "found_oldest",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "found_newest",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "history_limited",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "post_process_limited_query",
+            "type": [
+                "LimitedMessages"
+            ]
+        }
+    ],
+    "ts_locs_array@global": [
+        {
+            "category": "arg",
+            "name": "config",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "text",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "tsquery",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "TS_START",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TS_STOP",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "options",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "part_len",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "match_len",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "ts_locs_array",
+            "type": []
+        }
+    ],
+    "update_narrow_terms_containing_empty_topic_fallback_name@global": [
+        {
+            "category": "arg",
+            "name": "narrow",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "narrow",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_narrow_terms_containing_empty_topic_fallback_name",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "update_narrow_terms_containing_with_operator@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "maybe_user_profile",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "narrow",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "narrow",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_narrow_terms_containing_with_operator",
+            "type": [
+                "None",
+                "list[NarrowParameter]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "with_operator_terms",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "can_user_access_target_message",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_id",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "filtered_terms",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_conversation_terms",
+            "type": [
+                "list[NarrowParameter]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dm_conversation_terms",
+            "type": [
+                "list[NarrowParameter]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "huddle_user_ids",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "validate_terms@NarrowParameter": [
+        {
+            "category": "local",
+            "name": "operators_supporting_id",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "operators_supporting_ids",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "operators_non_empty_operand",
+            "type": [
+                "set[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "negated",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "validate_terms",
+            "type": [
+                "NarrowParameter"
+            ]
+        }
+    ]
+}

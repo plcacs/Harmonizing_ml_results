@@ -1,0 +1,937 @@
+{
+    "__init__@Audio": [
+        {
+            "category": "arg",
+            "name": "audio_path",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pth",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fire_rota",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "explosion_rota",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "thrust",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fail",
+            "type": [
+                "str",
+                "list[int]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "shoot_ctr",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "explode_ctr",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@Game": [
+        {
+            "category": "arg",
+            "name": "canvas",
+            "type": [
+                "list[list]",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fullscreen",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "keyboard",
+            "type": [
+                "Keyboard"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fullscreen",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "canvas",
+            "type": [
+                "list[list]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "graphics",
+            "type": [
+                "Graphics"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "extents",
+            "type": [
+                "int",
+                "list[tuple[typing.Union[int,typing.Any]]]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ship",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bullets",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "asteroids",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "helptext",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resetter",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_frame",
+            "type": [
+                "float",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "audio",
+            "type": [
+                "Audio"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lives",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "score",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fps_counter",
+            "type": [
+                "FPSCounter"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "v_center",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "title_",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@Graphics": [
+        {
+            "category": "arg",
+            "name": "w",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "h",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "canvas",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "fov",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "w",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "width",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "h",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "height",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fov",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "add@Graphics": [
+        {
+            "category": "arg",
+            "name": "item",
+            "type": [
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "item",
+            "type": [
+                "T"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "add",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "clear_resetter@Game": [
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resetter",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "clear_resetter",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "create_controls@Game": [
+        {
+            "category": "return",
+            "name": "create_controls",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "display_stuff@Game": [
+        {
+            "category": "arg",
+            "name": "t",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lintime",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger",
+                "vimiv.utils.log.LazyLogger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "display_stuff",
+            "type": [
+                "tuple[bool]",
+                "tuple[typing.Union[bool,typing.Text]]"
+            ]
+        }
+    ],
+    "done@Game": [
+        {
+            "category": "local",
+            "name": "document_",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "done",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "done@global": [
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "done",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "explode@Audio": [
+        {
+            "category": "return",
+            "name": "explode",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "extent@Graphics": [
+        {
+            "category": "return",
+            "name": "extent",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "fire@Audio": [
+        {
+            "category": "return",
+            "name": "fire",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "fire@Game": [
+        {
+            "category": "arg",
+            "name": "pos",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "vector",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "momentum",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "t",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "each_bullet_",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pos",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vector",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "fire",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "DEBUG",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger",
+                "vimiv.utils.log.LazyLogger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "game",
+            "type": [
+                "Game"
+            ]
+        }
+    ],
+    "handle_input@Game": [
+        {
+            "category": "arg",
+            "name": "t",
+            "type": [
+                "T",
+                "\"Mountain\""
+            ]
+        },
+        {
+            "category": "local",
+            "name": "t",
+            "type": [
+                "T",
+                "\"Mountain\""
+            ]
+        },
+        {
+            "category": "local",
+            "name": "thrust",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_input",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "help_display@Game": [
+        {
+            "category": "local",
+            "name": "messages",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "repeats",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "elapsed",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "period",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger",
+                "vimiv.utils.log.LazyLogger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "help_display",
+            "type": []
+        }
+    ],
+    "hfov@global": [
+        {
+            "category": "arg",
+            "name": "vfov",
+            "type": [
+                "int",
+                "typing.Iterable[T]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "w",
+            "type": [
+                "int",
+                "typing.Iterable[T]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "h",
+            "type": [
+                "int",
+                "typing.Iterable[T]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "hfov",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "kill@Game": [
+        {
+            "category": "local",
+            "name": "lives",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "can_reappear",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "kill",
+            "type": []
+        }
+    ],
+    "reappear@Game": [
+        {
+            "category": "arg",
+            "name": "t",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "reappear",
+            "type": [
+                "tuple[typing.Union[bool,typing.Text]]"
+            ]
+        }
+    ],
+    "render@Graphics": [
+        {
+            "category": "return",
+            "name": "render",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "rsign@Game": [
+        {
+            "category": "return",
+            "name": "rsign",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "setup@Game": [
+        {
+            "category": "local",
+            "name": "ship",
+            "type": [
+                "Ship"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "x",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "y",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "z",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "asteroid",
+            "type": [
+                "Asteroid"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mx",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "my",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bullet",
+            "type": [
+                "Bullet"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "helptext",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "setup",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "suppress_scroll@Game": [
+        {
+            "category": "arg",
+            "name": "e",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "suppress_scroll",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "tick@Game": [
+        {
+            "category": "local",
+            "name": "document_",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "tick",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_frame",
+            "type": [
+                "int",
+                "dict[str, typing.Any]",
+                "typing.Callable[int, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "t",
+            "type": [
+                "\"Token\"",
+                "str",
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dead",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "d",
+            "type": [
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resetter",
+            "type": [
+                "int",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "d_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_score",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_a",
+            "type": [
+                "Asteroid"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mx",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "my",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "helptext",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "update_score@Game": [
+        {
+            "category": "arg",
+            "name": "score",
+            "type": [
+                "int",
+                "list[int]",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "score",
+            "type": [
+                "int",
+                "list[int]",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_score",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "waiter@global": [
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "waiter",
+            "type": [
+                "tuple[bool]"
+            ]
+        }
+    ]
+}

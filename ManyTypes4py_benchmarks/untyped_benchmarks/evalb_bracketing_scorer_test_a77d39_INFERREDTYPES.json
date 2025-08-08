@@ -1,0 +1,322 @@
+{
+    "global@global": [],
+    "multiple_runs@global": [
+        {
+            "category": "arg",
+            "name": "global_rank",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "world_size",
+            "type": [
+                "int",
+                "tuple[float]",
+                "torch.device"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "gpu_id",
+            "type": [
+                "int",
+                "tuple[float]",
+                "torch.device"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "metric",
+            "type": [
+                "dict[str, typing.Any]",
+                "int",
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "metric_kwargs",
+            "type": [
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "desired_values",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exact",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "kwargs",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "argname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_kwargs",
+            "type": [
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "global_rank",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric",
+            "type": [
+                "dict[str, typing.Any]",
+                "int",
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_values",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, int]",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "desired_values",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "multiple_runs",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "setup_method@EvalbBracketingScorerTest": [
+        {
+            "category": "return",
+            "name": "setup_method",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "tearDown@EvalbBracketingScorerTest": [
+        {
+            "category": "return",
+            "name": "tearDown",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_distributed_evalb@EvalbBracketingScorerTest": [
+        {
+            "category": "local",
+            "name": "predicted_trees",
+            "type": [
+                "list[list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gold_trees",
+            "type": [
+                "list[list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_kwargs",
+            "type": [
+                "dict[typing.Text, list[list]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "desired_values",
+            "type": [
+                "dict[typing.Text, float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_distributed_evalb",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_evalb_correctly_calculates_bracketing_metrics_over_multiple_trees@EvalbBracketingScorerTest": [
+        {
+            "category": "local",
+            "name": "evalb_scorer",
+            "type": [
+                "EvalbBracketingScorer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metrics",
+            "type": [
+                "dict[str, typing.Any]",
+                "set[str]",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_evalb_correctly_calculates_bracketing_metrics_over_multiple_trees",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_evalb_correctly_scores_identical_trees@EvalbBracketingScorerTest": [
+        {
+            "category": "local",
+            "name": "evalb_scorer",
+            "type": [
+                "EvalbBracketingScorer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metrics",
+            "type": [
+                "dict[str, typing.Any]",
+                "set[str]",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_evalb_correctly_scores_identical_trees",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_evalb_correctly_scores_imperfect_trees@EvalbBracketingScorerTest": [
+        {
+            "category": "local",
+            "name": "evalb_scorer",
+            "type": [
+                "EvalbBracketingScorer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metrics",
+            "type": [
+                "dict[str, typing.Any]",
+                "set[str]",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_evalb_correctly_scores_imperfect_trees",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_evalb_with_terrible_trees_handles_nan_f1@EvalbBracketingScorerTest": [
+        {
+            "category": "local",
+            "name": "evalb_scorer",
+            "type": [
+                "EvalbBracketingScorer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metrics",
+            "type": [
+                "dict[str, typing.Any]",
+                "set[str]",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_evalb_with_terrible_trees_handles_nan_f1",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_multiple_distributed_runs@EvalbBracketingScorerTest": [
+        {
+            "category": "local",
+            "name": "predicted_trees",
+            "type": [
+                "list[list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gold_trees",
+            "type": [
+                "list[list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_kwargs",
+            "type": [
+                "dict[typing.Text, list[list]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "desired_values",
+            "type": [
+                "dict[typing.Text, float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_multiple_distributed_runs",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

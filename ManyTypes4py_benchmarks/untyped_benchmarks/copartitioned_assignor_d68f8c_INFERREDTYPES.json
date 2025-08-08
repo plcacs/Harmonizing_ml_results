@@ -1,0 +1,641 @@
+{
+    "__init__@CopartitionedAssignor": [
+        {
+            "category": "arg",
+            "name": "topics",
+            "type": [
+                "set[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "cluster_asgn",
+            "type": [
+                "list[int]",
+                "bytes",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_partitions",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "replicas",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "capacity",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cluster_asgn",
+            "type": [
+                "list[int]",
+                "bytes",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_num_clients",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_partitions",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "replicas",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "capacity",
+            "type": [
+                "None",
+                "int",
+                "float",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topics",
+            "type": [
+                "set[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_client_assignments",
+            "type": [
+                "list[int]",
+                "bytes",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_all_assigned@CopartitionedAssignor": [
+        {
+            "category": "arg",
+            "name": "active",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "active",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "assigned_counts",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_assigns",
+            "type": [
+                "int",
+                "float",
+                "dict[int, float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_all_assigned",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_assign@CopartitionedAssignor": [
+        {
+            "category": "arg",
+            "name": "active",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "active",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unassigned",
+            "type": [
+                "bool",
+                "list[str]",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_assign",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_assign_round_robin@CopartitionedAssignor": [
+        {
+            "category": "arg",
+            "name": "unassigned",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "active",
+            "type": [
+                "bool",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "active",
+            "type": [
+                "bool",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client_limit",
+            "type": [
+                "int",
+                "None",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unassigned",
+            "type": [
+                "list",
+                "list[typing.Union[int,typing.Counter,list[int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partition",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "assign_to",
+            "type": [
+                "None",
+                "typing.Mapping",
+                "typing.Sequence[typing.Any]",
+                "list[typing.Any]",
+                "typing.Final"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unassigned_partition",
+            "type": [
+                "int",
+                "typing.Counter",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_assign_round_robin",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_assigned_partition_counts@CopartitionedAssignor": [
+        {
+            "category": "arg",
+            "name": "active",
+            "type": [
+                "bool",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "active",
+            "type": [
+                "bool",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_assigned_partition_counts",
+            "type": [
+                "Counter"
+            ]
+        }
+    ],
+    "_can_assign@CopartitionedAssignor": [
+        {
+            "category": "arg",
+            "name": "assignment",
+            "type": [
+                "bool",
+                "typing.Iterable[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "partition",
+            "type": [
+                "bool",
+                "typing.Iterable[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "active",
+            "type": [
+                "bool",
+                "typing.Iterable[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "assignment",
+            "type": [
+                "bool",
+                "typing.Iterable[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "active",
+            "type": [
+                "bool",
+                "typing.Iterable[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partition",
+            "type": [
+                "bool",
+                "typing.Iterable[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_can_assign",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_client_exhausted@CopartitionedAssignor": [
+        {
+            "category": "arg",
+            "name": "assignemnt",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "active",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "client_limit",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client_limit",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "raiden.utils.BlockNumber",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "active",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "assignemnt",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_client_exhausted",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_find_promotable_standby@CopartitionedAssignor": [
+        {
+            "category": "arg",
+            "name": "partition",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "candidates",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "partition",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_find_promotable_standby",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_find_round_robin_assignable@CopartitionedAssignor": [
+        {
+            "category": "arg",
+            "name": "partition",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "candidates",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "active",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partition",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "active",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_find_round_robin_assignable",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_get_client_limit@CopartitionedAssignor": [
+        {
+            "category": "arg",
+            "name": "active",
+            "type": [
+                "bool",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "active",
+            "type": [
+                "bool",
+                "tuple"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_client_limit",
+            "type": [
+                "int",
+                "str",
+                "float"
+            ]
+        }
+    ],
+    "_get_unassigned@CopartitionedAssignor": [
+        {
+            "category": "arg",
+            "name": "active",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "active",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partition_counts",
+            "type": [
+                "list[int]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_assigns",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_unassigned",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "_total_assigns_per_partition@CopartitionedAssignor": [
+        {
+            "category": "arg",
+            "name": "active",
+            "type": [
+                "bool",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "active",
+            "type": [
+                "bool",
+                "tuple"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_total_assigns_per_partition",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "_unassign_overassigned@CopartitionedAssignor": [
+        {
+            "category": "arg",
+            "name": "active",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "active",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partition_counts",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_assigns",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "extras",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "assgn",
+            "type": [
+                "int",
+                "typing.Iterator",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_unassign_overassigned",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_assignment@CopartitionedAssignor": [
+        {
+            "category": "return",
+            "name": "get_assignment",
+            "type": []
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "__all__",
+            "type": [
+                "list[typing.Text]"
+            ]
+        }
+    ]
+}

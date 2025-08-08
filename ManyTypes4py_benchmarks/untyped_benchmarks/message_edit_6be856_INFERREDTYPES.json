@@ -1,0 +1,2007 @@
+{
+    "build_message_edit_request@global": [
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "str",
+                "bool",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "int",
+                "set[int]",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "propagate_mode",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream_id",
+            "type": [
+                "None",
+                "str",
+                "list[int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topic_name",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_content_edited",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "str",
+                "bool",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_content",
+            "type": [
+                "str",
+                "list[str]",
+                "email.message.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content",
+            "type": [
+                "None",
+                "str",
+                "int",
+                "bytes",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "build_message_edit_request",
+            "type": [
+                "DirectMessageEditRequest",
+                "StreamMessageEditRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_topic_edited",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_resolved",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_unresolved",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "old_topic_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_topic_name",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_name",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pre_truncation_target_topic_name",
+            "type": [
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resolved_prefix_len",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_stream_edited",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_stream",
+            "type": [
+                "int",
+                "list[str]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_id",
+            "type": [
+                "None",
+                "str",
+                "list[int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "int",
+                "set[int]",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "propagate_mode",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "bool"
+            ]
+        }
+    ],
+    "check_time_limit_for_change_all_propagate_mode@global": [
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "zerver.models.UserProfile",
+                "str",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topic_name",
+            "type": [
+                "None",
+                "str",
+                "list[int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream_id",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "typing.Any"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_move_limit_buffer",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_edit_deadline_seconds",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_name",
+            "type": [
+                "None",
+                "str",
+                "list[int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_edit_deadline_seconds",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_id",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "typing.Any"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_move_deadline_seconds",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_time_limit_for_change_all_propagate_mode",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "accessible_messages_in_topic",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "messages_allowed_to_move",
+            "type": [
+                "list",
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_messages_requested_to_move",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "all_messages_in_topic",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "oldest_allowed_message_date",
+            "type": [
+                "datetime.datetime",
+                "datetime.datetime.timedelta",
+                "datetime.date"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "check_update_message@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "int",
+                "set[int]",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message_id",
+            "type": [
+                "int",
+                "set[int]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream_id",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "list[tuple[typing.Union[str,int]]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topic_name",
+            "type": [
+                "None",
+                "list[int]",
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "propagate_mode",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "send_notification_to_old_thread",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "send_notification_to_new_thread",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content",
+            "type": [
+                "None",
+                "int",
+                "list[int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "int",
+                "set[int]",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_id",
+            "type": [
+                "int",
+                "set[int]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "zerver.models.Message",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "edit_limit_buffer",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content",
+            "type": [
+                "None",
+                "int",
+                "list[int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_name",
+            "type": [
+                "None",
+                "list[int]",
+                "list[str]",
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_id",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "list[tuple[typing.Union[str,int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "propagate_mode",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_edit_request",
+            "type": [
+                "str",
+                "dict[str, list[typing.Any]]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rendering_result",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "links_for_embed",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prior_mention_user_ids",
+            "type": [
+                "set",
+                "list",
+                "dict[str, typing.Any]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mention_data",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mention_backend",
+            "type": [
+                "MentionBackend"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_participant_count",
+            "type": [
+                "int",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "send_notification_to_old_thread",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "send_notification_to_new_thread",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "date_days_ago",
+            "type": [
+                "datetime.datetime",
+                "datetime.date"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_stream_active",
+            "type": [
+                "bool",
+                "str",
+                "typing.Callable[None, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_stream_",
+            "type": [
+                "bool",
+                "str",
+                "typing.Callable[None, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_update_message",
+            "type": []
+        }
+    ],
+    "do_update_embedded_data@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "list[zerver.models.UserProfile]",
+                "zerver.models.UserGroup"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.UserProfile",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rendered_content",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.UserProfile",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.UserProfile",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_",
+            "type": [
+                "str",
+                "None",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ums",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "update_fields",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rendered_content",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.UserProfile",
+                "zerver.models.Message",
+                "MessageRenderingResult",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "dict[typing.Text, typing.Union[typing.Text,None,list,dict[str, str],bool]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "users_to_notify",
+            "type": [
+                "str",
+                "bool",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "um",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "filtered_ums",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "list[zerver.models.UserProfile]",
+                "zerver.models.UserGroup"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "do_update_embedded_data",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "do_update_message@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "None",
+                "django.http.HttpRequest",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_message",
+            "type": [
+                "str",
+                "None",
+                "django.http.HttpRequest",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message_edit_request",
+            "type": [
+                "grouper.settings.Settings",
+                "typing.Iterable[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "send_notification_to_old_thread",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "send_notification_to_new_thread",
+            "type": [
+                "zerver.models.UserProfile",
+                "str",
+                "grouper.models.permission_requesPermissionRequest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rendering_result",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.Realm",
+                "models.Credentials"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prior_mention_user_ids",
+            "type": [
+                "str",
+                "None",
+                "django.http.HttpRequest",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mention_data",
+            "type": [
+                "None",
+                "str",
+                "models.Credentials",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timestamp",
+            "type": [
+                "datetime.datetime",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_message_",
+            "type": [
+                "datetime.datetime",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "None",
+                "django.http.HttpRequest",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_message",
+            "type": [
+                "str",
+                "None",
+                "django.http.HttpRequest",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "dict[typing.Text, typing.Union[typing.Text,bool]]",
+                "list[dict[str, typing.Any]]",
+                "str",
+                "list[aw_core.models.Event]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attachment_reference_change",
+            "type": [
+                "AttachmentChangeResult",
+                "str",
+                "list[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ums",
+            "type": [
+                "list",
+                "int",
+                "tuple[typing.Literal]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_edit_request",
+            "type": [
+                "grouper.settings.Settings",
+                "typing.Iterable[str]",
+                "str",
+                "StreamMessageEditRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_topic",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rendering_result",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.Realm",
+                "models.Credentials"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prior_mention_user_ids",
+            "type": [
+                "str",
+                "None",
+                "django.http.HttpRequest",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mention_data",
+            "type": [
+                "None",
+                "str",
+                "models.Credentials",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "changed_messages_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "do_update_message",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "users_losing_access",
+            "type": [
+                "str",
+                "list",
+                "cards.models.Deck"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_ids_gaining_usermessages",
+            "type": [
+                "list",
+                "str",
+                "int",
+                "annofabapi.models.TaskPhase"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_stream_current_users",
+            "type": [
+                "users.factories.UserFactory",
+                "list",
+                "set[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unmodified_user_messages",
+            "type": [
+                "list[str]",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "changed_messages",
+            "type": [
+                "str",
+                "list[str]",
+                "dict[int, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "save_changes_for_propagation_mode",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subscriptions",
+            "type": [
+                "typing.Type",
+                "reader_server.types.subscription.Subscription"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "old_stream_current_users",
+            "type": [
+                "models.user.UserModel",
+                "zerver.models.UserProfile",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "moved_all_visible_messages",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_inaccessible_to_user_profiles",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "orig_topic_user_profile_to_visibility_policy",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_topic_user_profile_to_visibility_policy",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profiles_for_visibility_policy_pair",
+            "type": [
+                "list",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resolved_topic_message_id",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resolved_topic_message_deleted",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "old_thread_notification_string",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "send_notification_to_old_thread",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_thread_notification_string",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "send_notification_to_new_thread",
+            "type": [
+                "zerver.models.UserProfile",
+                "str",
+                "grouper.models.permission_requesPermissionRequest"
+            ]
+        }
+    ],
+    "get_mentions_for_message_updates@global": [
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "telebotypes.Message",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mentioned_user_ids",
+            "type": [
+                "str",
+                "cmk.utils.type_defs.UserId"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "telebotypes.Message",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_ids_having_message_access",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_mentions_for_message_updates",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "get_visibility_policy_after_merge@global": [
+        {
+            "category": "arg",
+            "name": "orig_topic_visibility_policy",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_topic_visibility_policy",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "orig_topic_visibility_policy",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_topic_visibility_policy",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_visibility_policy_after_merge",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        }
+    ],
+    "global@global": [],
+    "maybe_delete_previous_resolve_topic_notification@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "str",
+                "users.models.JustfixUser"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": [
+                "zerver.models.UserProfile",
+                "None",
+                "server.models.User",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topic",
+            "type": [
+                "daylighdb.models.User",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "zerver.models.UserProfile",
+                "None",
+                "server.models.User",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic",
+            "type": [
+                "daylighdb.models.User",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_message",
+            "type": [
+                "None",
+                "dict",
+                "purplship.providers.purolator.utils.Settings",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "maybe_delete_previous_resolve_topic_notification",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_time",
+            "type": [
+                "datetime.datetime",
+                "datetime.timedelta",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "str",
+                "users.models.JustfixUser"
+            ]
+        }
+    ],
+    "maybe_send_resolve_topic_notifications@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "django.http.HttpRequest",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message_edit_request",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "models.User"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "changed_messages",
+            "type": [
+                "zerver.models.Message",
+                "zerver.models.UserProfile",
+                "filter"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_edit_request",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "models.User"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "maybe_send_resolve_topic_notifications",
+            "type": [
+                "tuple[typing.Optional[bool]]",
+                "tuple[bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "django.http.HttpRequest",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "affected_participant_ids",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_mention",
+            "type": [
+                "dict[str, str]",
+                "str",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "notification_string",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "send_message_moved_breadcrumbs@global": [
+        {
+            "category": "arg",
+            "name": "target_message",
+            "type": [
+                "bool",
+                "zerver.models.Message",
+                "zerver.models.UserProfile",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message_edit_request",
+            "type": [
+                "str",
+                "django.http.HttpRequest",
+                "tracim.models.auth.User"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "old_thread_notification_string",
+            "type": [
+                "str",
+                "models.User"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "new_thread_notification_string",
+            "type": [
+                "str",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "changed_messages_count",
+            "type": [
+                "str",
+                "django.http.HttpRequest",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_edit_request",
+            "type": [
+                "str",
+                "django.http.HttpRequest",
+                "tracim.models.auth.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_mention",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "old_topic_link",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_topic_link",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_message",
+            "type": [
+                "bool",
+                "zerver.models.Message",
+                "zerver.models.UserProfile",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_thread_notification_string",
+            "type": [
+                "str",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "changed_messages_count",
+            "type": [
+                "str",
+                "django.http.HttpRequest",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "old_thread_notification_string",
+            "type": [
+                "str",
+                "models.User",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "send_message_moved_breadcrumbs",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "subscriber_info@global": [
+        {
+            "category": "arg",
+            "name": "user_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "subscriber_info",
+            "type": [
+                "dict[typing.Text, typing.Union[str,int,list[typing.Text]]]"
+            ]
+        }
+    ],
+    "update_flag@global": [
+        {
+            "category": "arg",
+            "name": "um",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "should_set",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "flag",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "update_flag",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "update_message_content@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_message",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content",
+            "type": [
+                "str",
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rendering_result",
+            "type": [
+                "int",
+                "app.models.user.UserCreate",
+                "list[zerver.models.Stream]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prior_mention_user_ids",
+            "type": [
+                "list[str]",
+                "zerver.models.UserProfile",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mention_data",
+            "type": [
+                "zerver.models.UserProfile",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "event",
+            "type": [
+                "bool",
+                "django.http.HttpRequest",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "edit_history_event",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream_topic",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "None",
+                "socialhome.users.models.Profile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_message",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_message_",
+            "type": [
+                "str",
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ums",
+            "type": [
+                "list",
+                "list[int]",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rendering_result",
+            "type": [
+                "int",
+                "app.models.user.UserCreate",
+                "list[zerver.models.Stream]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mention_data",
+            "type": [
+                "zerver.models.UserProfile",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "edit_history_event",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "bool",
+                "django.http.HttpRequest",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content",
+            "type": [
+                "str",
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_topic",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "None",
+                "socialhome.users.models.Profile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "info",
+            "type": [
+                "zerver.lib.actions.RecipientInfoResult",
+                "list[dict[str, typing.Any]]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prior_mention_user_ids",
+            "type": [
+                "list[str]",
+                "zerver.models.UserProfile",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_participant_user_ids",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_message_content",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "update_user_message_flags@global": [
+        {
+            "category": "arg",
+            "name": "rendering_result",
+            "type": [
+                "zerver.models.Realm",
+                "bool",
+                "zerver.models.UserProfile",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ums",
+            "type": [
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topic_participant_user_ids",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rendering_result",
+            "type": [
+                "zerver.models.Realm",
+                "bool",
+                "zerver.models.UserProfile",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "changed_ums",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ums",
+            "type": [
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "has_alert_word",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mentioned",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_participant_user_ids",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_wildcard_mentioned",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_user_message_flags",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "user_info@global": [
+        {
+            "category": "arg",
+            "name": "um",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "user_info",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        }
+    ],
+    "validate_message_edit_payload@global": [
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "str",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream_id",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topic_name",
+            "type": [
+                "str",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "propagate_mode",
+            "type": [
+                "int",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content",
+            "type": [
+                "int",
+                "None",
+                "str",
+                "zulipterminal.helper.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_name",
+            "type": [
+                "str",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content",
+            "type": [
+                "int",
+                "None",
+                "str",
+                "zulipterminal.helper.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_id",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "str",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "propagate_mode",
+            "type": [
+                "int",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "validate_message_edit_payload",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "validate_user_can_edit_message@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "zerver.models.UserProfile",
+                "str",
+                "zerver.models.Client"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "edit_limit_buffer",
+            "type": [
+                "zerver.models.UserProfile",
+                "int",
+                "authentication.session.models.current_user.CurrentUser"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "zerver.models.UserProfile",
+                "str",
+                "zerver.models.Client"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "edit_limit_buffer",
+            "type": [
+                "zerver.models.UserProfile",
+                "int",
+                "authentication.session.models.current_user.CurrentUser"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "validate_user_can_edit_message",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,2280 @@
+{
+    "__aenter__@Runner": [
+        {
+            "category": "local",
+            "name": "_client",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_limiter",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_loop",
+            "type": [
+                "asyncio.events.AbstractEventLoop",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_runs_task_group",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_loops_task_group",
+            "type": [
+                "typing.Generator[typing.Optional[typing.Any]]",
+                "int",
+                "threading.local"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "started",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__aenter__",
+            "type": [
+                "Runner"
+            ]
+        }
+    ],
+    "__aexit__@Runner": [
+        {
+            "category": "arg",
+            "name": "exc_info",
+            "type": [
+                "typing.Type",
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "started",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exc_info",
+            "type": [
+                "typing.Type",
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__aexit__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@Runner": [
+        {
+            "category": "arg",
+            "name": "name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "query_seconds",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prefetch_seconds",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "heartbeat_seconds",
+            "type": [
+                "None",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "limit",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pause_on_shutdown",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "webserver",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "settings",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "rotkehlchen.db.settings.DBSettings"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "str",
+                "None",
+                "bytes",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_logger",
+            "type": [
+                "logging.Logger",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "started",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stopping",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pause_on_shutdown",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "limit",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "webserver",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query_seconds",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prefetch_seconds",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_prefetch_seconds",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "heartbeat_seconds",
+            "type": [
+                "None",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_limiter",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_client",
+            "type": [
+                "\"Client\""
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_submitting_flow_run_ids",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_cancelling_flow_run_ids",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_scheduled_task_scopes",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_deployment_ids",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_flow_run_process_map",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_tmp_dir",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_storage_objs",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_deployment_storage_map",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_loop",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_deployment_cache",
+            "type": [
+                "LRUCache"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_flow_cache",
+            "type": [
+                "LRUCache"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__repr__@Runner": [
+        {
+            "category": "return",
+            "name": "__repr__",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "_acquire_limit_slot@Runner": [
+        {
+            "category": "arg",
+            "name": "flow_run_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_acquire_limit_slot",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exc",
+            "type": [
+                "Exception"
+            ]
+        }
+    ],
+    "_add_storage@Runner": [
+        {
+            "category": "arg",
+            "name": "storage",
+            "type": [
+                "raiden.storage.sqlite.SQLiteStorage",
+                "storage.StorageType",
+                "opwen_email_server.services.storage.AzureObjectStorage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "storage",
+            "type": [
+                "raiden.storage.sqlite.SQLiteStorage",
+                "storage.StorageType",
+                "opwen_email_server.services.storage.AzureObjectStorage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "storage_copy",
+            "type": [
+                "str",
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_add_storage",
+            "type": [
+                "str",
+                "int",
+                "dict",
+                "typing.Callable[bytes, None]",
+                "collections.abc.Awaitable[typing.Any]",
+                "bytes"
+            ]
+        }
+    ],
+    "_cancel_run@Runner": [
+        {
+            "category": "arg",
+            "name": "flow_run",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_msg",
+            "type": [
+                "None",
+                "asyncio.Task",
+                "str",
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "run_logger",
+            "type": [
+                "logging.Logger",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "process_map_entry",
+            "type": [
+                "dict[int, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pid",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_cancel_run",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exc",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_msg",
+            "type": [
+                "None",
+                "asyncio.Task",
+                "str",
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow",
+            "type": [
+                "list[str]",
+                "pathlib.Path",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deployment",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "_check_for_cancelled_flow_runs@Runner": [
+        {
+            "category": "arg",
+            "name": "should_stop",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "on_stop",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_check_for_cancelled_flow_runs",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "named_cancelling_flow_runs",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "typed_cancelling_flow_runs",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cancelling_flow_runs",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "_emit_flow_run_cancelled_event@Runner": [
+        {
+            "category": "arg",
+            "name": "flow_run",
+            "type": [
+                "typing.Callable[str, None]",
+                "mypy.build.State"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "flow",
+            "type": [
+                "typing.Callable[list, None]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deployment",
+            "type": [
+                "typing.Callable[str, None]",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "related",
+            "type": [
+                "list",
+                "list[RelatedResource]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tags",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deployment",
+            "type": [
+                "typing.Callable[str, None]",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow",
+            "type": [
+                "typing.Callable[list, None]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run",
+            "type": [
+                "typing.Callable[str, None]",
+                "mypy.build.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r",
+            "type": [
+                "RelatedResource"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_emit_flow_run_cancelled_event",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_emit_flow_run_heartbeat@Runner": [
+        {
+            "category": "arg",
+            "name": "flow_run",
+            "type": [
+                "Flow"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "related",
+            "type": [
+                "list",
+                "list[RelatedResource]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tags",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run",
+            "type": [
+                "Flow"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow",
+            "type": [
+                "list[str]",
+                "pathlib.Path",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deployment",
+            "type": [
+                "pathlib.Path",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r",
+            "type": [
+                "RelatedResource"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_emit_flow_run_heartbeat",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_emit_flow_run_heartbeats@Runner": [
+        {
+            "category": "local",
+            "name": "coros",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_emit_flow_run_heartbeats",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_event_resource@Runner": [
+        {
+            "category": "return",
+            "name": "_event_resource",
+            "type": [
+                "dict[typing.Text, typing.Text]"
+            ]
+        }
+    ],
+    "_get_and_submit_flow_runs@Runner": [
+        {
+            "category": "return",
+            "name": "_get_and_submit_flow_runs",
+            "type": [
+                "None",
+                "bool",
+                "str",
+                "ulauncher.api.server.GithubExtension.GithubExtension"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "runs_response",
+            "type": [
+                "str",
+                "dict"
+            ]
+        }
+    ],
+    "_get_flow_and_deployment@Runner": [
+        {
+            "category": "arg",
+            "name": "flow_run",
+            "type": [
+                "str",
+                "scenario_player.runner.ScenarioRunner",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run",
+            "type": [
+                "str",
+                "scenario_player.runner.ScenarioRunner",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deployment",
+            "type": [
+                "None",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow",
+            "type": [
+                "tuple[typing.Literal]",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_flow_and_deployment",
+            "type": [
+                "tuple[typing.Union[tuple[typing.Literal],str,None,dict]]"
+            ]
+        }
+    ],
+    "_get_flow_run_logger@Runner": [
+        {
+            "category": "arg",
+            "name": "flow_run",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_flow_run_logger",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "bool"
+            ]
+        }
+    ],
+    "_get_scheduled_flow_runs@Runner": [
+        {
+            "category": "local",
+            "name": "scheduled_before",
+            "type": [
+                "datetime.date",
+                "datetime.datetime.timedelta",
+                "datetime.datetime",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scheduled_flow_runs",
+            "type": [
+                "str",
+                "set[str]",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_scheduled_flow_runs",
+            "type": [
+                "str",
+                "set[str]",
+                "tuple[str]"
+            ]
+        }
+    ],
+    "_kill_process@Runner": [
+        {
+            "category": "arg",
+            "name": "pid",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "grace_seconds",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pid",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "grace_seconds",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "check_interval",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_kill_process",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_mark_flow_run_as_cancelled@Runner": [
+        {
+            "category": "arg",
+            "name": "flow_run",
+            "type": [
+                "typing.Callable",
+                "bool",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_updates",
+            "type": [
+                "None",
+                "dict",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_updates",
+            "type": [
+                "None",
+                "dict",
+                "bool",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run",
+            "type": [
+                "typing.Callable",
+                "bool",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_mark_flow_run_as_cancelled",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_pause_schedules@Runner": [
+        {
+            "category": "return",
+            "name": "_pause_schedules",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_propose_crashed_state@Runner": [
+        {
+            "category": "arg",
+            "name": "flow_run",
+            "type": [
+                "typing.Callable",
+                "asyncio.Future"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run",
+            "type": [
+                "typing.Callable",
+                "asyncio.Future"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "run_logger",
+            "type": [
+                "logging.Logger",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_propose_crashed_state",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_propose_failed_state@Runner": [
+        {
+            "category": "arg",
+            "name": "flow_run",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exc",
+            "type": [
+                "typing.Callable",
+                "BaseException"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "run_logger",
+            "type": [
+                "logging.Logger",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exc",
+            "type": [
+                "typing.Callable",
+                "BaseException"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_propose_failed_state",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_propose_pending_state@Runner": [
+        {
+            "category": "arg",
+            "name": "flow_run",
+            "type": [
+                "Flow",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run",
+            "type": [
+                "Flow",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "run_logger",
+            "type": [
+                "logging.Logger",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exc",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_propose_pending_state",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_release_limit_slot@Runner": [
+        {
+            "category": "arg",
+            "name": "flow_run_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_release_limit_slot",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_run_hooks@global": [
+        {
+            "category": "arg",
+            "name": "hooks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "flow_run",
+            "type": [
+                "faaspact_verifier.types.Faasport",
+                "list[str]",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "flow",
+            "type": [
+                "faaspact_verifier.types.Faasport",
+                "list[str]",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "typing.Callable",
+                "faaspact_verifier.types.Faasport",
+                "typing.Iterable[typing.Callable]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run",
+            "type": [
+                "faaspact_verifier.types.Faasport",
+                "list[str]",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow",
+            "type": [
+                "faaspact_verifier.types.Faasport",
+                "list[str]",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hooks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "typing.Callable",
+                "faaspact_verifier.types.Faasport",
+                "typing.Iterable[typing.Callable]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_run_hooks",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_run_on_cancellation_hooks@Runner": [
+        {
+            "category": "arg",
+            "name": "flow_run",
+            "type": [
+                "Flow",
+                "typing.Callable",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "typing.Iterable[typing.Callable]",
+                "prefeccore.Flow"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "typing.Iterable[typing.Callable]",
+                "prefeccore.Flow"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run",
+            "type": [
+                "Flow",
+                "typing.Callable",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow",
+            "type": [
+                "list[str]",
+                "pathlib.Path",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hooks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "run_logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_run_on_cancellation_hooks",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_run_on_crashed_hooks@Runner": [
+        {
+            "category": "arg",
+            "name": "flow_run",
+            "type": [
+                "telepresence.runner.Runner"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "flow_run",
+            "type": [
+                "telepresence.runner.Runner"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow",
+            "type": [
+                "set[str]",
+                "tuple[str]",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hooks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_run_on_crashed_hooks",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_run_process@Runner": [
+        {
+            "category": "arg",
+            "name": "flow_run",
+            "type": [
+                "list[google.cloud.tasks_v2.types.task_pb2.Task]",
+                "int",
+                "types.Records"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "task_status",
+            "type": [
+                "None",
+                "str",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "entrypoint",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "command",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run",
+            "type": [
+                "list[google.cloud.tasks_v2.types.task_pb2.Task]",
+                "int",
+                "types.Records"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run_logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "kwargs",
+            "type": [
+                "dict",
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "env",
+            "type": [
+                "dict[str, str]",
+                "dict",
+                "dict[dict[typing.Text, str], dict[typing.Text, None]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entrypoint",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "storage",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_adhoc_pull",
+            "type": [
+                "int",
+                "dict[int, dict]",
+                "datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "task_status",
+            "type": [
+                "None",
+                "str",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "process",
+            "type": [
+                "subprocess.Popen",
+                "asyncio.subprocess.Process"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "process_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "help_message",
+            "type": [
+                "None",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_run_process",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_schedule_task@Runner": [
+        {
+            "category": "arg",
+            "name": "__in_seconds",
+            "type": [
+                "typing.Callable[typing.Any, int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fn",
+            "type": [
+                "typing.Callable[typing.Any, int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_schedule_task",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_submit_run@Runner": [
+        {
+            "category": "arg",
+            "name": "flow_run",
+            "type": [
+                "scenario_player.runner.ScenarioRunner",
+                "routemaster.config.State.Machine",
+                "routemaster.config.State"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "entrypoint",
+            "type": [
+                "None",
+                "bool",
+                "typing.Callable",
+                "ignite.engine.Engine"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run",
+            "type": [
+                "scenario_player.runner.ScenarioRunner",
+                "routemaster.config.State.Machine",
+                "routemaster.config.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "run_logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ready_to_submit",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entrypoint",
+            "type": [
+                "None",
+                "bool",
+                "typing.Callable",
+                "ignite.engine.Engine"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "readiness_result",
+            "type": [
+                "list[object]",
+                "list",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "heartbeat_seconds",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_submit_run",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_submit_run_and_capture_errors@Runner": [
+        {
+            "category": "arg",
+            "name": "flow_run",
+            "type": [
+                "dict",
+                "collections.abc.Awaitable",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "task_status",
+            "type": [
+                "suitable.api.Api",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "entrypoint",
+            "type": [
+                "None",
+                "suitable.api.Api",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run",
+            "type": [
+                "dict",
+                "collections.abc.Awaitable",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "run_logger",
+            "type": [
+                "logging.Logger",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "task_status",
+            "type": [
+                "suitable.api.Api",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entrypoint",
+            "type": [
+                "None",
+                "suitable.api.Api",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "status_code",
+            "type": [
+                "int",
+                "str",
+                "list[tuple[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exc",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_submit_run_and_capture_errors",
+            "type": [
+                "Exception",
+                "int",
+                "str",
+                "list[tuple[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "api_flow_run",
+            "type": [
+                "str",
+                "list[bool]",
+                "bool"
+            ]
+        }
+    ],
+    "_submit_scheduled_flow_runs@Runner": [
+        {
+            "category": "arg",
+            "name": "flow_run_response",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "entrypoints",
+            "type": [
+                "dict",
+                "asyncio.AbstractEventLoop"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run_response",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "submittable_flow_runs",
+            "type": [
+                "list[typing.Union[str,dict]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "i",
+            "type": [
+                "int",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run",
+            "type": [
+                "int",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "run_logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entrypoints",
+            "type": [
+                "dict",
+                "asyncio.AbstractEventLoop"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_submit_scheduled_flow_runs",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "add_deployment@Runner": [
+        {
+            "category": "arg",
+            "name": "deployment",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "storage",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "add_deployment",
+            "type": []
+        }
+    ],
+    "add_flow@Runner": [
+        {
+            "category": "arg",
+            "name": "flow",
+            "type": [
+                "typing.Any",
+                "None",
+                "asyncio.AbstractEventLoop",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "name",
+            "type": [
+                "None",
+                "float",
+                "datetime.datetime.datetime",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "interval",
+            "type": [
+                "None",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "cron",
+            "type": [
+                "None",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rrule",
+            "type": [
+                "None",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "paused",
+            "type": [
+                "None",
+                "typing.Any",
+                "asyncio.AbstractEventLoop",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "schedule",
+            "type": [
+                "None",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "schedules",
+            "type": [
+                "None",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "concurrency_limit",
+            "type": [
+                "None",
+                "typing.Any",
+                "asyncio.AbstractEventLoop",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "parameters",
+            "type": [
+                "None",
+                "typing.Any",
+                "asyncio.AbstractEventLoop",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "triggers",
+            "type": [
+                "None",
+                "typing.Any",
+                "asyncio.AbstractEventLoop",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "description",
+            "type": [
+                "None",
+                "typing.Any",
+                "asyncio.AbstractEventLoop",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tags",
+            "type": [
+                "None",
+                "typing.Any",
+                "asyncio.AbstractEventLoop",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "version",
+            "type": [
+                "None",
+                "typing.Any",
+                "asyncio.AbstractEventLoop",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "enforce_parameter_schema",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "entrypoint_type",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "interval",
+            "type": [
+                "None",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cron",
+            "type": [
+                "None",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rrule",
+            "type": [
+                "None",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "schedule",
+            "type": [
+                "None",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "schedules",
+            "type": [
+                "None",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "None",
+                "float",
+                "datetime.datetime.datetime",
+                "typing.Callable",
+                "str",
+                "list[str]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "paused",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "triggers",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parameters",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "description",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tags",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "version",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "enforce_parameter_schema",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "concurrency_limit",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "add_flow",
+            "type": []
+        }
+    ],
+    "cancel_all@Runner": [
+        {
+            "category": "local",
+            "name": "runs_to_cancel",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "cancel_all",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "execute_flow_run@Runner": [
+        {
+            "category": "arg",
+            "name": "flow_run_id",
+            "type": [
+                "str",
+                "None",
+                "types.ServiceT"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "entrypoint",
+            "type": [
+                "None",
+                "str",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pause_on_shutdown",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context",
+            "type": [
+                "Runner"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run_id",
+            "type": [
+                "str",
+                "None",
+                "types.ServiceT"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "execute_flow_run",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flow_run",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entrypoint",
+            "type": [
+                "None",
+                "str",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pid",
+            "type": [
+                "int",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "heartbeat_seconds",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "execute_in_background@Runner": [
+        {
+            "category": "arg",
+            "name": "func",
+            "type": [
+                "typing.Callable",
+                "collections.abc.Awaitable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "execute_in_background",
+            "type": []
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "__all__",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "STATUS_CONTROL_C_EXIT",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "handle_sigterm@Runner": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "handle_sigterm",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "has_slots_available@Runner": [
+        {
+            "category": "return",
+            "name": "has_slots_available",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "start@Runner": [
+        {
+            "category": "arg",
+            "name": "run_once",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "webserver",
+            "type": [
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "webserver",
+            "type": [
+                "None",
+                "bool",
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "runner",
+            "type": [
+                "Runner"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "run_once",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "heartbeat_seconds",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "start",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "stop@Runner": [
+        {
+            "category": "local",
+            "name": "started",
+            "type": [
+                "int",
+                "datetime.date.time.datetime",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stopping",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "stop",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "wrapper@Runner": [
+        {
+            "category": "arg",
+            "name": "task_status",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "wrapper",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

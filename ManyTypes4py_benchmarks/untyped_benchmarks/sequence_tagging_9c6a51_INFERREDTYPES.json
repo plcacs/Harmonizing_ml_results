@@ -1,0 +1,306 @@
+{
+    "__init__@SequenceTaggingDatasetReader": [
+        {
+            "category": "arg",
+            "name": "word_tag_delimiter",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_delimiter",
+            "type": [
+                "None",
+                "str",
+                "set[str]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_indexers",
+            "type": [
+                "None",
+                "dict[str, allennlp.data.token_indexers.TokenIndexer]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "DEFAULT_WORD_TAG_DELIMITER",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_indexers",
+            "type": [
+                "None",
+                "dict[str, allennlp.data.token_indexers.TokenIndexer]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_token_indexers",
+            "type": [
+                "None",
+                "dict[str, allennlp.data.token_indexers.TokenIndexer]",
+                "dict[typing.Text, SingleIdTokenIndexer]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "word_tag_delimiter",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_word_tag_delimiter",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_delimiter",
+            "type": [
+                "None",
+                "str",
+                "set[str]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_token_delimiter",
+            "type": [
+                "None",
+                "str",
+                "set[str]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_params",
+            "type": [
+                "dict[typing.Text, typing.Union[str,None,set[str],list[str],dict[str, allennlp.data.token_indexers.TokenIndexer],dict[typing.Text, SingleIdTokenIndexer]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_read@SequenceTaggingDatasetReader": [
+        {
+            "category": "arg",
+            "name": "file_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_file",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "line",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pair",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens_and_tags",
+            "type": [
+                "list[list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tag",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "list[Token]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tags",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_read",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "_to_params@SequenceTaggingDatasetReader": [
+        {
+            "category": "return",
+            "name": "_to_params",
+            "type": []
+        }
+    ],
+    "apply_token_indexers@SequenceTaggingDatasetReader": [
+        {
+            "category": "arg",
+            "name": "instance",
+            "type": [
+                "allennlp.data.instance.Instance"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instance",
+            "type": [
+                "allennlp.data.instance.Instance"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "apply_token_indexers",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DEFAULT_WORD_TAG_DELIMITER",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        }
+    ],
+    "text_to_instance@SequenceTaggingDatasetReader": [
+        {
+            "category": "arg",
+            "name": "tokens",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tags",
+            "type": [
+                "None",
+                "list[str]",
+                "str",
+                "data.PartialApplication"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fields",
+            "type": [
+                "dict",
+                "dict[typing.Text, TextField]",
+                "dict[typing.Text, typing.Union[TextField,MetadataField]]",
+                "dict[typing.Text, typing.Union[TextField,MetadataField,SequenceLabelField]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sequence",
+            "type": [
+                "TextField"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "x",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tags",
+            "type": [
+                "None",
+                "list[str]",
+                "str",
+                "data.PartialApplication"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "text_to_instance",
+            "type": [
+                "Instance"
+            ]
+        }
+    ]
+}

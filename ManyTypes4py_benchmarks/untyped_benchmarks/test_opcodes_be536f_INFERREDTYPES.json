@@ -1,0 +1,1923 @@
+{
+    "assemble@global": [
+        {
+            "category": "arg",
+            "name": "codes",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "codes",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "assemble",
+            "type": [
+                "bytes"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "NORMALIZED_ADDRESS_A",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "NORMALIZED_ADDRESS_B",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ADDRESS_WITH_CODE",
+            "type": [
+                "tuple[typing.Union[typing.Text,bytes]]",
+                "int",
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "EMPTY_ADDRESS_IN_STATE",
+            "type": [
+                "typing.Text",
+                "str",
+                "bytes",
+                "list[tuple[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ADDRESS_NOT_IN_STATE",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ADDRESS_WITH_JUST_BALANCE",
+            "type": [
+                "typing.Text",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CANONICAL_ADDRESS_A",
+            "type": [
+                "str",
+                "bytes",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CANONICAL_ADDRESS_B",
+            "type": [
+                "bytes",
+                "insteonplm.address.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CANONICAL_ADDRESS_C",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CANONICAL_ZERO_ADDRESS",
+            "type": [
+                "bytes",
+                "tuple[typing.Any]",
+                "tuple[typing.Union[str,int]]"
+            ]
+        }
+    ],
+    "run_computation@global": [
+        {
+            "category": "arg",
+            "name": "vm",
+            "type": [
+                "int",
+                "eth_utils.ChecksumAddress",
+                "rotkehlchen.db.dbhandler.DBHandler"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "create_address",
+            "type": [
+                "int",
+                "raiden.messages.Message"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "code",
+            "type": [
+                "int",
+                "raiden.messages.Message"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "gas",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to",
+            "type": [
+                "str",
+                "bytes",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "transaction_sender",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "access_list",
+            "type": [
+                "None",
+                "bytes",
+                "int",
+                "golem_messages.message.tasks.ReportComputedTask"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CANONICAL_ADDRESS_A",
+            "type": [
+                "str",
+                "bytes",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to",
+            "type": [
+                "str",
+                "bytes",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CANONICAL_ADDRESS_B",
+            "type": [
+                "bytes",
+                "insteonplm.address.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "create_address",
+            "type": [
+                "int",
+                "raiden.messages.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "code",
+            "type": [
+                "int",
+                "raiden.messages.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gas",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "access_list",
+            "type": [
+                "None",
+                "bytes",
+                "int",
+                "golem_messages.message.tasks.ReportComputedTask"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm",
+            "type": [
+                "int",
+                "eth_utils.ChecksumAddress",
+                "rotkehlchen.db.dbhandler.DBHandler"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "txn_builder",
+            "type": [
+                "bytes",
+                "typing.Callable[object, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unsigned_transaction",
+            "type": [
+                "list['Ursula']",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transaction_sender",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transaction",
+            "type": [
+                "SpoofTransaction"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "run_computation",
+            "type": []
+        }
+    ],
+    "run_general_computation@global": [
+        {
+            "category": "arg",
+            "name": "vm_class",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "create_address",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "code",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chain_id",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm_class",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_id",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm",
+            "type": [
+                "interpreter.src.virtual_machine.vm.vm_def.VmState",
+                "eth.chains.base.MiningChain",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "EMPTY_ADDRESS_IN_STATE",
+            "type": [
+                "str",
+                "bytes",
+                "list[tuple[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ADDRESS_WITH_CODE",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ADDRESS_WITH_JUST_BALANCE",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "create_address",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "code",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "run_general_computation",
+            "type": [
+                "str",
+                "typing.Sequence[str]",
+                "nucypher.blockchain.eth.interfaces.BlockchainDeployerInterface"
+            ]
+        }
+    ],
+    "setup_vm@global": [
+        {
+            "category": "arg",
+            "name": "vm_class",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chain_id",
+            "type": [
+                "None",
+                "str",
+                "bytes",
+                "list[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db",
+            "type": [
+                "AtomicDB"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_id",
+            "type": [
+                "None",
+                "str",
+                "bytes",
+                "list[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_context",
+            "type": [
+                "ChainContext"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm_class",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "genesis_header",
+            "type": [
+                "eth.rlp.headers.BlockHeader",
+                "eth.abc.BlockHeaderAPI",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "setup_vm",
+            "type": [
+                "typing.Type",
+                "T",
+                "eth.chains.base.MiningChain"
+            ]
+        }
+    ],
+    "test_access_list_gas_costs@global": [
+        {
+            "category": "arg",
+            "name": "vm_class",
+            "type": [
+                "str",
+                "raiden.constants.RoutingMode"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "code",
+            "type": [
+                "str",
+                "raiden.constants.RoutingMode"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expect_gas_used",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "access_list",
+            "type": [
+                "str",
+                "raiden.constants.RoutingMode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CANONICAL_ZERO_ADDRESS",
+            "type": [
+                "tuple[typing.Any]",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recipient",
+            "type": [
+                "tuple[typing.Any]",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm_class",
+            "type": [
+                "str",
+                "raiden.constants.RoutingMode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "code",
+            "type": [
+                "str",
+                "raiden.constants.RoutingMode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "access_list",
+            "type": [
+                "str",
+                "raiden.constants.RoutingMode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "comp",
+            "type": [
+                "list[str]",
+                "dict",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_access_list_gas_costs",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_add@global": [
+        {
+            "category": "arg",
+            "name": "vm_class",
+            "type": [
+                "int",
+                "constants.ReturnCode"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "val1",
+            "type": [
+                "int",
+                "str",
+                "frozenset"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "val2",
+            "type": [
+                "int",
+                "str",
+                "frozenset"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected",
+            "type": [
+                "int",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm_class",
+            "type": [
+                "int",
+                "constants.ReturnCode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "eth.abc.ComputationAPI",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "val1",
+            "type": [
+                "int",
+                "str",
+                "frozenset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "val2",
+            "type": [
+                "int",
+                "str",
+                "frozenset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "bool",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_add",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_balance@global": [
+        {
+            "category": "arg",
+            "name": "vm_class",
+            "type": [
+                "bool",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "code",
+            "type": [
+                "str",
+                "bool",
+                "nucypher.blockchain.eth.registry.BaseContractRegistry"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expect_exception",
+            "type": [
+                "typing.Callable[dict, None]",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expect_gas_used",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sender_balance",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm_class",
+            "type": [
+                "bool",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm",
+            "type": [
+                "eth.abc.VirtualMachineAPI",
+                "golem.vm.vm.PythonTestVM",
+                "interpreter.src.virtual_machine.vm.vm_def.VmState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CANONICAL_ADDRESS_B",
+            "type": [
+                "bytes",
+                "insteonplm.address.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "code",
+            "type": [
+                "str",
+                "bool",
+                "nucypher.blockchain.eth.registry.BaseContractRegistry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "comp",
+            "type": [
+                "typing.Any",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expect_exception",
+            "type": [
+                "typing.Callable[dict, None]",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_balance",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_base_fee@global": [
+        {
+            "category": "return",
+            "name": "test_base_fee",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_blake2b_f_compression@global": [
+        {
+            "category": "arg",
+            "name": "vm_class",
+            "type": [
+                "bool",
+                "str",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "input_hex",
+            "type": [
+                "bool",
+                "str",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "output_hex",
+            "type": [
+                "bool",
+                "None",
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expect_exception",
+            "type": [
+                "bool",
+                "typing.Callable",
+                "BaseException"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm_class",
+            "type": [
+                "bool",
+                "str",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CANONICAL_ADDRESS_B",
+            "type": [
+                "bytes",
+                "insteonplm.address.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "input_hex",
+            "type": [
+                "bool",
+                "str",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "comp",
+            "type": [
+                "list[tuple[typing.Any]]",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expect_exception",
+            "type": [
+                "bool",
+                "typing.Callable",
+                "BaseException"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_blake2b_f_compression",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_blockhash@global": [
+        {
+            "category": "arg",
+            "name": "VM",
+            "type": [
+                "str",
+                "tuple[typing.Union[str,int]]",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "val1",
+            "type": [
+                "bool",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected",
+            "type": [
+                "int",
+                "typing.Iterable[bytes]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VM",
+            "type": [
+                "str",
+                "tuple[typing.Union[str,int]]",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "val1",
+            "type": [
+                "bool",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_blockhash",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_chainid@global": [
+        {
+            "category": "arg",
+            "name": "vm_class",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chain_id",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_result",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_result",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm_class",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_id",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "list[bytes]",
+                "eth.abc.ComputationAPI",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_chainid",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "float",
+                "bool"
+            ]
+        }
+    ],
+    "test_eip2929_gas_by_cache_warmth@global": [
+        {
+            "category": "arg",
+            "name": "vm_class",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "bytecode_hex",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expect_gas_used",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recipient",
+            "type": [
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm_class",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bytecode_hex",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "comp",
+            "type": [
+                "list[str]",
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_eip2929_gas_by_cache_warmth",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_exp@global": [
+        {
+            "category": "arg",
+            "name": "vm_class",
+            "type": [
+                "int",
+                "frozenset",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "base",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exponent",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected",
+            "type": [
+                "int",
+                "typing.Iterable",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm_class",
+            "type": [
+                "int",
+                "frozenset",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exponent",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "base",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "bool",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_exp",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_extcodehash@global": [
+        {
+            "category": "arg",
+            "name": "vm_class",
+            "type": [
+                "bool",
+                "str",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "address",
+            "type": [
+                "bool",
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected",
+            "type": [
+                "bytes",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm_class",
+            "type": [
+                "bool",
+                "str",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "eth.abc.ComputationAPI",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bool",
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_extcodehash",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_gas_costs@global": [
+        {
+            "category": "arg",
+            "name": "vm_class",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "code",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expect_gas_used",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm_class",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CANONICAL_ADDRESS_B",
+            "type": [
+                "bytes",
+                "insteonplm.address.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "code",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "comp",
+            "type": [
+                "list[str]",
+                "typing.Iterator"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_gas_costs",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_mul@global": [
+        {
+            "category": "arg",
+            "name": "vm_class",
+            "type": [
+                "int",
+                "constants.ReturnCode"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "val1",
+            "type": [
+                "int",
+                "frozenset"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "val2",
+            "type": [
+                "int",
+                "frozenset"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected",
+            "type": [
+                "int",
+                "str",
+                "typing.Sequence[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm_class",
+            "type": [
+                "int",
+                "constants.ReturnCode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "eth.abc.ComputationAPI",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "val1",
+            "type": [
+                "int",
+                "frozenset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "val2",
+            "type": [
+                "int",
+                "frozenset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "bool",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_mul",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_nullary_opcodes@global": [
+        {
+            "category": "arg",
+            "name": "VM",
+            "type": [
+                "bool",
+                "typing.Iterable[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "opcode_value",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected",
+            "type": [
+                "int",
+                "None",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VM",
+            "type": [
+                "bool",
+                "typing.Iterable[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_nullary_opcodes",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sar@global": [
+        {
+            "category": "arg",
+            "name": "vm_class",
+            "type": [
+                "int",
+                "constants.ReturnCode",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "val1",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "val2",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected",
+            "type": [
+                "int",
+                "constants.ReturnCode",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm_class",
+            "type": [
+                "int",
+                "constants.ReturnCode",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "list[bytes]",
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "val1",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "val2",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "str",
+                "dict[str, int]",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_sar",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_selfdestruct_does_not_issue_deprecation_warning_pre_shanghai@global": [
+        {
+            "category": "arg",
+            "name": "vm_class",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "CANONICAL_ADDRESS_B",
+            "type": [
+                "bytes",
+                "insteonplm.address.Address"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_selfdestruct_does_not_issue_deprecation_warning_pre_shanghai",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_selfdestruct_issues_deprecation_warning_for_shanghai_and_later@global": [
+        {
+            "category": "arg",
+            "name": "vm_class",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "vm_opcodes_without_selfdestruct",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "opc",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "code_without_self_destruct",
+            "type": [
+                "str",
+                "list[str]",
+                "dict[str, dict[typing.Any, int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CANONICAL_ADDRESS_B",
+            "type": [
+                "bytes",
+                "insteonplm.address.Address"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_selfdestruct_issues_deprecation_warning_for_shanghai_and_later",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_shl@global": [
+        {
+            "category": "arg",
+            "name": "vm_class",
+            "type": [
+                "int",
+                "constants.ReturnCode",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "val1",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "val2",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected",
+            "type": [
+                "int",
+                "list[int]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm_class",
+            "type": [
+                "int",
+                "constants.ReturnCode",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "list[bytes]",
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "val1",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "val2",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "str",
+                "dict[str, int]",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_shl",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_shr@global": [
+        {
+            "category": "arg",
+            "name": "vm_class",
+            "type": [
+                "int",
+                "constants.ReturnCode",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "val1",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "val2",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm_class",
+            "type": [
+                "int",
+                "constants.ReturnCode",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "list[bytes]",
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "val1",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "val2",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "str",
+                "dict[str, int]",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_shr",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sstore@global": [
+        {
+            "category": "arg",
+            "name": "vm_class",
+            "type": [
+                "bool",
+                "tuple[typing.Union[str,int]]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "code",
+            "type": [
+                "typing.TextIO",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "gas_used",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "refund",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "original",
+            "type": [
+                "str",
+                "tuple[typing.Union[str,int]]",
+                "nucypher.blockchain.eth.registry.BaseContractRegistry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm_class",
+            "type": [
+                "bool",
+                "tuple[typing.Union[str,int]]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm",
+            "type": [
+                "eth.abc.VirtualMachineAPI",
+                "golem.vm.vm.PythonTestVM",
+                "interpreter.src.virtual_machine.vm.vm_def.VmState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CANONICAL_ADDRESS_B",
+            "type": [
+                "bytes",
+                "insteonplm.address.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "original",
+            "type": [
+                "str",
+                "tuple[typing.Union[str,int]]",
+                "nucypher.blockchain.eth.registry.BaseContractRegistry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "code",
+            "type": [
+                "typing.TextIO",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "comp",
+            "type": [
+                "str",
+                "list[tuple[typing.Any]]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_sstore",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sstore_limit_2300@global": [
+        {
+            "category": "arg",
+            "name": "gas_supplied",
+            "type": [
+                "bool",
+                "typing.Callable",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "success",
+            "type": [
+                "bool",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "gas_used",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "refund",
+            "type": [
+                "int",
+                "collections.abc.Coroutine"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hex_code",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "original",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CANONICAL_ADDRESS_B",
+            "type": [
+                "bytes",
+                "insteonplm.address.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gas_supplied",
+            "type": [
+                "bool",
+                "typing.Callable",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "comp",
+            "type": [
+                "int",
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "success",
+            "type": [
+                "bool",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_sstore_limit_2300",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

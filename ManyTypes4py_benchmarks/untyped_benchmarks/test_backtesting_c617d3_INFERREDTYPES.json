@@ -1,0 +1,4890 @@
+{
+    "_always_buy@global": [
+        {
+            "category": "arg",
+            "name": "dataframe",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "metadata",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_always_buy",
+            "type": []
+        }
+    ],
+    "_make_backtest_conf@global": [
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "str",
+                "list[str]",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "datadir",
+            "type": [
+                "str",
+                "list[str]",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "conf",
+            "type": [
+                "None",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pair",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "datadir",
+            "type": [
+                "str",
+                "list[str]",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pair",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "str",
+                "list[str]",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "conf",
+            "type": [
+                "None",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting",
+            "type": [
+                "Backtesting"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "processed",
+            "type": [
+                "dict",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_date",
+            "type": [
+                "int",
+                "datetime.datetime",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_date",
+            "type": [
+                "int",
+                "datetime.datetime",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_make_backtest_conf",
+            "type": [
+                "dict[typing.Text, typing.Union[dict,list,int,datetime.datetime,str]]"
+            ]
+        }
+    ],
+    "_trend@global": [
+        {
+            "category": "arg",
+            "name": "signals",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "buy_value",
+            "type": [
+                "int",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sell_value",
+            "type": [
+                "float",
+                "None",
+                "str",
+                "datetime.timedelta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signals",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "n",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "buy_value",
+            "type": [
+                "int",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sell_value",
+            "type": [
+                "float",
+                "None",
+                "str",
+                "datetime.timedelta"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_trend",
+            "type": []
+        }
+    ],
+    "_trend_alternate@global": [
+        {
+            "category": "arg",
+            "name": "dataframe",
+            "type": [
+                "dict",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "metadata",
+            "type": [
+                "None",
+                "dict",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataframe",
+            "type": [
+                "dict",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signals",
+            "type": [
+                "dict",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "low",
+            "type": [
+                "list[int]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "n",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_trend_alternate",
+            "type": [
+                "dict",
+                "pandas.DataFrame"
+            ]
+        }
+    ],
+    "_trend_alternate_hold@global": [
+        {
+            "category": "arg",
+            "name": "dataframe",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "metadata",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "multi",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataframe",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_trend_alternate_hold",
+            "type": []
+        }
+    ],
+    "adjust_trade_position@global": [
+        {
+            "category": "arg",
+            "name": "trade",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "current_time",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "adjust_trade_position",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "advise_entry@global": [
+        {
+            "category": "arg",
+            "name": "df",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "advise_entry",
+            "type": []
+        }
+    ],
+    "custom_entry_price@global": [
+        {
+            "category": "arg",
+            "name": "proposed_rate",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "custom_entry_price",
+            "type": [
+                "float"
+            ]
+        }
+    ],
+    "custom_exit@global": [
+        {
+            "category": "arg",
+            "name": "trade",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "current_time",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "custom_exit",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "fun@global": [
+        {
+            "category": "arg",
+            "name": "dataframe",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pair",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "buy_value",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sell_value",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataframe",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "fun",
+            "type": []
+        }
+    ],
+    "get_timerange@global": [
+        {
+            "category": "arg",
+            "name": "input1",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "get_timerange",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "ORDER_TYPES",
+            "type": [
+                "list[dict[typing.Text, typing.Union[typing.Text,bool]]]"
+            ]
+        }
+    ],
+    "load_data_test@global": [
+        {
+            "category": "arg",
+            "name": "what",
+            "type": [
+                "list[str]",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "testdatadir",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "testdatadir",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "base",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "what",
+            "type": [
+                "list[str]",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hz",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_data_test",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        }
+    ],
+    "test_backtest_1min_timeframe@global": [
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "fee",
+            "type": [
+                "typing.Mapping",
+                "list[str]",
+                "None",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "testdatadir",
+            "type": [
+                "str",
+                "dict",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee",
+            "type": [
+                "typing.Mapping",
+                "list[str]",
+                "None",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting",
+            "type": [
+                "Backtesting"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "testdatadir",
+            "type": [
+                "str",
+                "dict",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "processed",
+            "type": [
+                "list",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_date",
+            "type": [
+                "int",
+                "datetime.datetime",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_date",
+            "type": [
+                "str",
+                "int",
+                "datetime.datetime.timedelta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "results",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtest_1min_timeframe",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtest__check_trade_exit@global": [
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "tests.setup.SetupTest",
+                "unittesmock.MagicMock",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "tests.setup.SetupTest",
+                "unittesmock.MagicMock",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting",
+            "type": [
+                "Backtesting"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pair",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "row",
+            "type": [
+                "list[typing.Union[int,float,typing.Text]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trade",
+            "type": [
+                "monkq.assets.trade.Trade",
+                "list[rotkehlchen.exchanges.data_structures.Trade]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "row_sell",
+            "type": [
+                "list[typing.Union[int,float,typing.Text]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "res",
+            "type": [
+                "list",
+                "dict",
+                "list[tuple[typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtest__check_trade_exit",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtest__enter_trade@global": [
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "fee",
+            "type": [
+                "list",
+                "dict[bool, str]",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "bool",
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "bool",
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee",
+            "type": [
+                "list",
+                "dict[bool, str]",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting",
+            "type": [
+                "Backtesting"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting_",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pair",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "row",
+            "type": [
+                "list[typing.Union[int,float,typing.Text]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trade",
+            "type": [
+                "rotkehlchen.exchanges.data_structures.Trade"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtest__enter_trade",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtest__enter_trade_futures@global": [
+        {
+            "category": "arg",
+            "name": "default_conf_usdt",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "fee",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "unittesmock.MagicMock",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "unittesmock.MagicMock",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting",
+            "type": [
+                "Backtesting"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting_",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pair",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "row",
+            "type": [
+                "list[typing.Union[float,int,typing.Text]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trade",
+            "type": [
+                "monkq.assets.trade.Trade",
+                "list[rotkehlchen.exchanges.data_structures.Trade]",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtest__enter_trade_futures",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtest_abort@global": [
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": [
+                "tests.utils.CliObjectRunner",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "testdatadir",
+            "type": [
+                "dict",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_conf",
+            "type": [
+                "tests.utils.CliObjectRunner",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting",
+            "type": [
+                "Backtesting"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtest_abort",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtest_alternate_buy_sell@global": [
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "fee",
+            "type": [
+                "list",
+                "list[str]",
+                "None",
+                "dict[bool, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "testdatadir",
+            "type": [
+                "bool",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee",
+            "type": [
+                "list",
+                "list[str]",
+                "None",
+                "dict[bool, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "testdatadir",
+            "type": [
+                "bool",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting",
+            "type": [
+                "Backtesting"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting_",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "analyzed_df",
+            "type": [
+                "pandas.DataFrame",
+                "list[tuple[typing.Any]]",
+                "pandas.core.groupby.DataFrameGroupBy"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_last_candle_date",
+            "type": [
+                "datetime.datetime",
+                "float",
+                "datetime.date"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtest_alternate_buy_sell",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtest_clash_buy_sell@global": [
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "testdatadir",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "testdatadir",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting",
+            "type": [
+                "Backtesting"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtest_clash_buy_sell",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtest_dataprovider_analyzed_df@global": [
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "fee",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "testdatadir",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting",
+            "type": [
+                "Backtesting"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timerange",
+            "type": [
+                "TimeRange"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "testdatadir",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "processed",
+            "type": [
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_date",
+            "type": [
+                "datetime.datetime",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_date",
+            "type": [
+                "datetime.timedelta",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtest_dataprovider_analyzed_df",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtest_multi_pair@global": [
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "fee",
+            "type": [
+                "dict",
+                "bool",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "unittesmock.MagicMock",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tres",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pair",
+            "type": [
+                "list[str]",
+                "set",
+                "tuple"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "testdatadir",
+            "type": [
+                "str",
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "unittesmock.MagicMock",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee",
+            "type": [
+                "dict",
+                "bool",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pairs",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "testdatadir",
+            "type": [
+                "str",
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tres",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pair",
+            "type": [
+                "list[str]",
+                "set",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting",
+            "type": [
+                "Backtesting"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vr_spy",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting_",
+            "type": [
+                "MagicMock",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "processed",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_date",
+            "type": [
+                "int",
+                "str",
+                "None",
+                "datetime.timedelta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_date",
+            "type": [
+                "datetime.timedelta",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtest_conf",
+            "type": [
+                "dict[typing.Text, typing.Union[int,str,None,datetime.timedelta]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "x",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "all_orients",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "distinct_calls",
+            "type": [
+                "list[list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "offset",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "removed_candles",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtest_multi_pair",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtest_multi_pair_detail@global": [
+        {
+            "category": "arg",
+            "name": "default_conf_usdt",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fee",
+            "type": [
+                "dict",
+                "typing.Mapping",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "dict[str, typing.Any]",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tres",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pair",
+            "type": [
+                "bool",
+                "dict",
+                "tuple"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "use_detail",
+            "type": [
+                "bool",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_conf_usdt",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "use_detail",
+            "type": [
+                "bool",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "dict[str, typing.Any]",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee",
+            "type": [
+                "dict",
+                "typing.Mapping",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raw_candles_1m",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raw_candles",
+            "type": [
+                "str",
+                "dict[str, typing.Union[typing.Any,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pairs",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pair",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[typing.Text, typing.Union[str,dict[str, typing.Union[typing.Any,str]]]]",
+                "str",
+                "dict[str, typing.Any]",
+                "dict[typing.Any, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "detail_data",
+            "type": [
+                "dict[typing.Text, typing.Union[int,bytes]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tres",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting",
+            "type": [
+                "Backtesting"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vr_spy",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bl_spy",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting_",
+            "type": [
+                "dict[typing.Text, typing.Union[int,bytes]]",
+                "MagicMock",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "processed",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_date",
+            "type": [
+                "int",
+                "str",
+                "None",
+                "datetime.timedelta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_date",
+            "type": [
+                "datetime.timedelta",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtest_conf",
+            "type": [
+                "dict[typing.Text, typing.Union[int,str,None,datetime.timedelta]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "offset",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "removed_candles",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtest_multi_pair_detail",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtest_multi_pair_detail_simplified@global": [
+        {
+            "category": "arg",
+            "name": "default_conf_usdt",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fee",
+            "type": [
+                "dict",
+                "bool",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "dict[str, typing.Any]",
+                "list[dict[str, typing.Any]]",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tres",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pair",
+            "type": [
+                "str",
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "use_detail",
+            "type": [
+                "bool",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_conf_usdt",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "use_detail",
+            "type": [
+                "bool",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "dict[str, typing.Any]",
+                "list[dict[str, typing.Any]]",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee",
+            "type": [
+                "dict",
+                "bool",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raw_candles_5m",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raw_candles",
+            "type": [
+                "str",
+                "dict[str, typing.Union[typing.Any,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pairs",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pair",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[typing.Text, typing.Union[str,dict[str, typing.Union[typing.Any,str]]]]",
+                "str",
+                "dict[str, typing.Any]",
+                "dict[typing.Any, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "detail_data",
+            "type": [
+                "dict[typing.Text, typing.Union[int,bytes]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tres",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting",
+            "type": [
+                "Backtesting"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vr_spy",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bl_spy",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting_",
+            "type": [
+                "dict[typing.Text, typing.Union[int,bytes]]",
+                "MagicMock",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "processed",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_date",
+            "type": [
+                "int",
+                "str",
+                "None",
+                "datetime.timedelta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_date",
+            "type": [
+                "datetime.timedelta",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtest_conf",
+            "type": [
+                "dict[typing.Text, typing.Union[int,str,None,datetime.timedelta]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "offset",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "removed_candles",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtest_multi_pair_detail_simplified",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtest_multi_pair_long_short_switch@global": [
+        {
+            "category": "arg",
+            "name": "default_conf_usdt",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fee",
+            "type": [
+                "dict",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "dict[str, typing.Any]",
+                "typing.Callable",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "use_detail",
+            "type": [
+                "bool",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_conf_usdt",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "use_detail",
+            "type": [
+                "bool",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "dict[str, typing.Any]",
+                "typing.Callable",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee",
+            "type": [
+                "dict",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raw_candles_1m",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raw_candles",
+            "type": [
+                "str",
+                "dict[str, typing.Union[typing.Any,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pairs",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pair",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[typing.Text, typing.Union[str,dict[str, typing.Union[typing.Any,str]]]]",
+                "list[int]",
+                "dict[str, typing.Union[str,typing.Any]]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "detail_data",
+            "type": [
+                "dict[typing.Text, typing.Union[int,bytes]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting",
+            "type": [
+                "Backtesting"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vr_spy",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bl_spy",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting_",
+            "type": [
+                "dict[typing.Text, typing.Union[int,bytes]]",
+                "int",
+                "dict[typing.Text, ]",
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "processed",
+            "type": [
+                "int",
+                "dict[typing.Any, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_date",
+            "type": [
+                "int",
+                "str",
+                "datetime.timedelta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_date",
+            "type": [
+                "int",
+                "str",
+                "datetime.timedelta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtest_conf",
+            "type": [
+                "dict[typing.Text, typing.Union[int,str,datetime.timedelta]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "results",
+            "type": [
+                "tuple[typing.Optional[typing.Any]]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtest_multi_pair_long_short_switch",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtest_one@global": [
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": [
+                "tests.utils.CliObjectRunner"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "testdatadir",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_conf",
+            "type": [
+                "tests.utils.CliObjectRunner"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting",
+            "type": [
+                "Backtesting"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting_",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pair",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timerange",
+            "type": [
+                "TimeRange"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "testdatadir",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "processed",
+            "type": [
+                "tests.core.test_task_map.AddTask"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_date",
+            "type": [
+                "datetime.timedelta",
+                "datetime.datetime",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_date",
+            "type": [
+                "datetime.timedelta",
+                "str",
+                "datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "results",
+            "type": [
+                "list",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_pair",
+            "type": [
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtest_one",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtest_one_detail@global": [
+        {
+            "category": "arg",
+            "name": "default_conf_usdt",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "dict[str, typing.Any]",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "testdatadir",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "freqtrade.data.history.idatahandler.IDataHandler"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "use_detail",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "dict[str, typing.Any]",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "use_detail",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting",
+            "type": [
+                "Backtesting"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting_",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pair",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "testdatadir",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "freqtrade.data.history.idatahandler.IDataHandler"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "processed",
+            "type": [
+                "tests.core.test_task_map.AddTask"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_date",
+            "type": [
+                "datetime.timedelta",
+                "datetime.datetime",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_date",
+            "type": [
+                "datetime.timedelta",
+                "str",
+                "datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "results",
+            "type": [
+                "list",
+                "list[list[int]]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_pair",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "late_entry",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtest_one_detail",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtest_one_detail_futures@global": [
+        {
+            "category": "arg",
+            "name": "default_conf_usdt",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "dict[str, datetime.datetime]",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "testdatadir",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "use_detail",
+            "type": [
+                "dict[str, float]",
+                "list[str]",
+                "tuple[pandas.DataFrame]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exp_funding_fee",
+            "type": [
+                "dict",
+                "float",
+                "pd.DataFrame"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exp_ff_updates",
+            "type": [
+                "int",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "dict[str, datetime.datetime]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "use_detail",
+            "type": [
+                "dict[str, float]",
+                "list[str]",
+                "tuple[pandas.DataFrame]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting",
+            "type": [
+                "Backtesting"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pair",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "testdatadir",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "processed",
+            "type": [
+                "tests.core.test_task_map.AddTask"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_date",
+            "type": [
+                "datetime.timedelta",
+                "datetime.datetime",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_date",
+            "type": [
+                "datetime.timedelta",
+                "str",
+                "datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "results",
+            "type": [
+                "list",
+                "list[list[int]]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_pair",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "late_entry",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtest_one_detail_futures",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtest_one_detail_futures_funding_fees@global": [
+        {
+            "category": "arg",
+            "name": "default_conf_usdt",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "fee",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "bool",
+                "collections.abc.Awaitable",
+                "typing.Callable[dict, None]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "testdatadir",
+            "type": [
+                "typing.Callable",
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "use_detail",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "entries",
+            "type": [
+                "bool",
+                "dict",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_stake",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ff_updates",
+            "type": [
+                "list[Exception]",
+                "dict[str, typing.Any]",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_ff",
+            "type": [
+                "float",
+                "int",
+                "pd.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "bool",
+                "collections.abc.Awaitable",
+                "typing.Callable[dict, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "use_detail",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting",
+            "type": [
+                "Backtesting"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting_",
+            "type": [
+                "typing.Callable",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pair",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "testdatadir",
+            "type": [
+                "typing.Callable",
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "processed",
+            "type": [
+                "set",
+                "tests.core.test_task_map.AddTask"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_date",
+            "type": [
+                "datetime.timedelta",
+                "datetime.datetime",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_date",
+            "type": [
+                "datetime.timedelta",
+                "str",
+                "datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "results",
+            "type": [
+                "dict[str, int]",
+                "list",
+                "typing.DefaultDict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtest_one_detail_futures_funding_fees",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtest_only_sell@global": [
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "tests.async_mock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "testdatadir",
+            "type": [
+                "tests.async_mock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_conf",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "tests.async_mock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "testdatadir",
+            "type": [
+                "tests.async_mock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtest_conf",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting",
+            "type": [
+                "Backtesting"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtest_only_sell",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtest_pricecontours@global": [
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "str",
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "testdatadir",
+            "type": [
+                "bool",
+                "list[typing.Any]",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "protections",
+            "type": [
+                "bool",
+                "list[str]",
+                "None",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "contour",
+            "type": [
+                "bool",
+                "list[typing.Any]",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "protections",
+            "type": [
+                "bool",
+                "list[str]",
+                "None",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "str",
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting",
+            "type": [
+                "Backtesting"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting_",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contour",
+            "type": [
+                "bool",
+                "list[typing.Any]",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "testdatadir",
+            "type": [
+                "bool",
+                "list[typing.Any]",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[str, str]",
+                "list[int]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "processed",
+            "type": [
+                "typing.Generator[typing.Optional[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_date",
+            "type": [
+                "int",
+                "datetime.datetime",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_date",
+            "type": [
+                "str",
+                "int",
+                "datetime.datetime.timedelta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "results",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtest_pricecontours",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtest_pricecontours_protections@global": [
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "fee",
+            "type": [
+                "dict",
+                "typing.Mapping",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "str",
+                "bool",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "testdatadir",
+            "type": [
+                "typing.Mapping",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "str",
+                "bool",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee",
+            "type": [
+                "dict",
+                "typing.Mapping",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tests",
+            "type": [
+                "list[list[typing.Union[typing.Text,int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting",
+            "type": [
+                "Backtesting"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contour",
+            "type": [
+                "list[typing.Union[typing.Text,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "numres",
+            "type": [
+                "list[typing.Union[typing.Text,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "testdatadir",
+            "type": [
+                "typing.Mapping",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[str, str]",
+                "list[int]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "processed",
+            "type": [
+                "typing.Generator[typing.Optional[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_date",
+            "type": [
+                "int",
+                "datetime.datetime",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_date",
+            "type": [
+                "str",
+                "int",
+                "datetime.datetime.timedelta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "results",
+            "type": [
+                "list",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtest_pricecontours_protections",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtest_start_futures_noliq@global": [
+        {
+            "category": "arg",
+            "name": "default_conf_usdt",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "unittesmock.MagicMock",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "testdatadir",
+            "type": [
+                "pathlib.Path",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "capsys",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "default_conf_usdt",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, typing.Union[typing.Any,typing.Text,bool,float]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "unittesmock.MagicMock",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "testdatadir",
+            "type": [
+                "pathlib.Path",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "args",
+            "type": [
+                "list[typing.Text]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtest_start_futures_noliq",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtest_start_multi_strat@global": [
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "pathlib.Path",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "dict[str, typing.Any]",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "testdatadir",
+            "type": [
+                "pathlib.Path",
+                "tests.e2e.Helper"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "pathlib.Path",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtestmock",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "text_table_mock",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tag_metrics_mock",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "strattable_mock",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "strat_summary",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "testdatadir",
+            "type": [
+                "pathlib.Path",
+                "tests.e2e.Helper"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "args",
+            "type": [
+                "list[typing.Text]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exists",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "line",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtest_start_multi_strat",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtest_start_multi_strat_caching@global": [
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": [
+                "typing.Any",
+                "dict[str, typing.Union[str,None]]",
+                "dict[str, pandas.DataFrame]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "datetime.datetime.timedelta",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "int",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "testdatadir",
+            "type": [
+                "pathlib.Path",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "run_id",
+            "type": [
+                "datetime.date",
+                "dict[str, typing.Any]",
+                "datetime.datetime"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "start_delta",
+            "type": [
+                "datetime.timedelta",
+                "int",
+                "datetime.datetime"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "cache",
+            "type": [
+                "pathlib.Path",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "datetime.datetime.timedelta",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtestmock",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_backtest_date",
+            "type": [
+                "datetime.datetime",
+                "datetime.date"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "start_delta",
+            "type": [
+                "datetime.timedelta",
+                "int",
+                "datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "start_time",
+            "type": [
+                "datetime.datetime",
+                "datetime.time"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cache",
+            "type": [
+                "pathlib.Path",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "run_id",
+            "type": [
+                "datetime.date",
+                "dict[str, typing.Any]",
+                "datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "load_backtest_metadata",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "load_backtest_stats",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "testdatadir",
+            "type": [
+                "pathlib.Path",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "args",
+            "type": [
+                "list[typing.Union[typing.Text,pathlib.Path,bool]]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exists",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "line",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtest_start_multi_strat_caching",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtest_start_multi_strat_nomock@global": [
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "unittesmock.MagicMock",
+                "pathlib.Path",
+                "tests.setup.SetupTest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "dict[str, typing.Any]",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "testdatadir",
+            "type": [
+                "pathlib.Path",
+                "tests.e2e.Helper"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "capsys",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_conf",
+            "type": [
+                "dict",
+                "dict[typing.Text, typing.Union[bool,float]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "unittesmock.MagicMock",
+                "pathlib.Path",
+                "tests.setup.SetupTest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtestmock",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "testdatadir",
+            "type": [
+                "pathlib.Path",
+                "tests.e2e.Helper"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "args",
+            "type": [
+                "list[typing.Text]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exists",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "line",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "capsys",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "captured",
+            "type": [
+                "tests.e2e.conftesSysCap"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtest_start_multi_strat_nomock",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtest_start_multi_strat_nomock_detail@global": [
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "tests.setup.SetupTest",
+                "unittesmock.MagicMock",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "testdatadir",
+            "type": [
+                "tests.e2e.Helper",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "capsys",
+            "type": [
+                "str",
+                "list[str]",
+                "pypi2nix.path.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_conf",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "tests.setup.SetupTest",
+                "unittesmock.MagicMock",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtestmock",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "testdatadir",
+            "type": [
+                "tests.e2e.Helper",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "args",
+            "type": [
+                "list[typing.Text]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exists",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "line",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "capsys",
+            "type": [
+                "str",
+                "list[str]",
+                "pypi2nix.path.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "captured",
+            "type": [
+                "tests.e2e.conftesSysCap",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtest_start_multi_strat_nomock_detail",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtest_start_nomock_futures@global": [
+        {
+            "category": "arg",
+            "name": "default_conf_usdt",
+            "type": [
+                "dict",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "dict",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "testdatadir",
+            "type": [
+                "pathlib.Path",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "capsys",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_conf_usdt",
+            "type": [
+                "dict",
+                "pathlib.Path",
+                "dict[typing.Text, typing.Union[typing.Text,bool,float]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtestmock",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "testdatadir",
+            "type": [
+                "pathlib.Path",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "args",
+            "type": [
+                "list[typing.Text]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exists",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "line",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "capsys",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "captured",
+            "type": [
+                "tests.e2e.conftesSysCap",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtest_start_nomock_futures",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtest_start_timerange@global": [
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": [
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "dict",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "dict[str, typing.Any]",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "testdatadir",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "dict",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_conf",
+            "type": [
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "testdatadir",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "args",
+            "type": [
+                "list[typing.Text]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exists",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "line",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtest_start_timerange",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtest_timedout_entry_orders@global": [
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "fee",
+            "type": [
+                "bool",
+                "list[typing.Any]",
+                "None",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "testdatadir",
+            "type": [
+                "str",
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee",
+            "type": [
+                "bool",
+                "list[typing.Any]",
+                "None",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting",
+            "type": [
+                "Backtesting"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timerange",
+            "type": [
+                "TimeRange"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "testdatadir",
+            "type": [
+                "str",
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtest_timedout_entry_orders",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtest_trim_no_data_left@global": [
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "fee",
+            "type": [
+                "dict",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "float",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "testdatadir",
+            "type": [
+                "str",
+                "typing.Callable",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "float",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee",
+            "type": [
+                "dict",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting",
+            "type": [
+                "Backtesting"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting_",
+            "type": [
+                "int",
+                "TimeRange"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timerange",
+            "type": [
+                "TimeRange"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "testdatadir",
+            "type": [
+                "str",
+                "typing.Callable",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame",
+                "list",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "processed",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_date",
+            "type": [
+                "str",
+                "int",
+                "datetime.timedelta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_date",
+            "type": [
+                "datetime.timedelta",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtest_trim_no_data_left",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtesting_init@global": [
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "order_types",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "order_types",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting",
+            "type": [
+                "Backtesting"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtesting_init",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtesting_init_no_timeframe@global": [
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtesting_init_no_timeframe",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtesting_no_pair_left@global": [
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "pathlib.Path",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "pathlib.Path",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtesting_no_pair_left",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtesting_pairlist_list@global": [
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "unittesmock.MagicMock",
+                "pathlib.Path",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tickers",
+            "type": [
+                "typing.Callable[list, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "unittesmock.MagicMock",
+                "pathlib.Path",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tickers",
+            "type": [
+                "typing.Callable[list, None]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtesting_pairlist_list",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtesting_start@global": [
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting",
+            "type": [
+                "Backtesting"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting_",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exists",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "line",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtesting_start",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_backtesting_start_no_data@global": [
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "testdatadir",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_conf",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting",
+            "type": [
+                "Backtesting"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_backtesting_start_no_data",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_data_to_dataframe_bt@global": [
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "testdatadir",
+            "type": [
+                "dict[str, str]",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "testdatadir",
+            "type": [
+                "dict[str, str]",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_conf",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting",
+            "type": [
+                "Backtesting"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "processed",
+            "type": [
+                "dict[typing.Any, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_data_to_dataframe_bt",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_data_with_fee@global": [
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": [
+                "util.GlobalInfo",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "unittesmock.MagicMock",
+                "list[dict[str, typing.Any]]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "unittesmock.MagicMock",
+                "list[dict[str, typing.Any]]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_conf",
+            "type": [
+                "util.GlobalInfo",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee_mock",
+            "type": [
+                "unittesmock.MagicMock",
+                "tests.conftesConfluentAvroConsumerMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting",
+            "type": [
+                "Backtesting"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_data_with_fee",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_backtest_metadata_filename@global": [
+        {
+            "category": "local",
+            "name": "filename",
+            "type": [
+                "Path",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_backtest_metadata_filename",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_strategy_run_id@global": [
+        {
+            "category": "arg",
+            "name": "default_conf_usdt",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_conf_usdt",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "dict[str, typing.Union[typing.Any,typing.Text,float]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_strategy_run_id",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_processed@global": [
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": [
+                "typing.Callable",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "str",
+                "typing.Callable",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "testdatadir",
+            "type": [
+                "typing.Callable",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "str",
+                "typing.Callable",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_conf",
+            "type": [
+                "typing.Callable",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtesting",
+            "type": [
+                "Backtesting"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "testdatadir",
+            "type": [
+                "typing.Callable",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dict_of_tickerrows",
+            "type": [
+                "dict",
+                "dict[typing.Any, dict]",
+                "dict[str, typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataframes",
+            "type": [
+                "Anaconda3.Lib.site-packages.sklearn.model_selection.tests.test_validation.MockClassifier"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataframe",
+            "type": [
+                "pandas.DataFrame",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "col",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_processed",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_setup_bt_configuration_with_arguments@global": [
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "unittesmock.MagicMock",
+                "pathlib.Path",
+                "backup.util.GlobalInfo"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": [
+                "str",
+                "tests.setup.SetupTest",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "unittesmock.MagicMock",
+                "pathlib.Path",
+                "backup.util.GlobalInfo"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_conf",
+            "type": [
+                "str",
+                "tests.setup.SetupTest",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "args",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "dict",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_setup_bt_configuration_with_arguments",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_setup_optimize_configuration_stake_amount@global": [
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "str",
+                "dict[str, dict[str, typing.Any]]",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": [
+                "str",
+                "dict[str, dict[str, typing.Any]]",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "bool",
+                "set",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "str",
+                "dict[str, dict[str, typing.Any]]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_conf",
+            "type": [
+                "str",
+                "dict[str, dict[str, typing.Any]]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "args",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "conf",
+            "type": [
+                "dict[str, typing.Union[typing.Any,str]]",
+                "typing.Type",
+                "dict[str, typing.Union[str,None]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_setup_optimize_configuration_stake_amount",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_setup_optimize_configuration_without_arguments@global": [
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "tests.setup.SetupTest",
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": [
+                "tests.setup.SetupTest",
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "tests.setup.SetupTest",
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_conf",
+            "type": [
+                "tests.setup.SetupTest",
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "args",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_setup_optimize_configuration_without_arguments",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_start@global": [
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "float",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fee",
+            "type": [
+                "dict",
+                "dict[bool, str]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "default_conf",
+            "type": [
+                "float",
+                "str",
+                "None",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "bool",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "start_mock",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "float",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee",
+            "type": [
+                "dict",
+                "dict[bool, str]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_conf",
+            "type": [
+                "float",
+                "str",
+                "None",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "args",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pargs",
+            "type": [
+                "list[str]",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_start",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "tmp_confirm_entry@global": [
+        {
+            "category": "arg",
+            "name": "pair",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "current_time",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "tmp_confirm_entry",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "trim_dictlist@global": [
+        {
+            "category": "arg",
+            "name": "dict_list",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new",
+            "type": [
+                "dict",
+                "dict[tuple[typing.Union[str,typing.Any]], ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pair",
+            "type": [
+                "tuple[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pair_data",
+            "type": [
+                "tuple[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dict_list",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "trim_dictlist",
+            "type": [
+                "dict[tuple[typing.Union[str,typing.Any]], ]"
+            ]
+        }
+    ]
+}

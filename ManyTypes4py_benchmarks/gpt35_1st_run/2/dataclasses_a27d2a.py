@@ -1,0 +1,16 @@
+from typing import Any, Callable, ClassVar, Dict, Generator, Optional, Type, TypeVar, Union
+
+def dataclass(*, init: bool = True, repr: bool = True, eq: bool = True, order: bool = False, unsafe_hash: bool = False, frozen: bool = False, config: Optional[Dict[str, Any]] = None, validate_on_init: Optional[bool] = None, use_proxy: Optional[bool] = None, kw_only: Any = ...) -> Union[Callable, Type]:
+    ...
+
+def set_validation(cls: Type, value: bool) -> Generator[Type, None, None]:
+    ...
+
+def create_pydantic_model_from_dataclass(dc_cls: Type, config: Type = BaseConfig, dc_cls_doc: Optional[str] = None) -> Type:
+    ...
+
+def is_builtin_dataclass(_cls: Type) -> bool:
+    ...
+
+def make_dataclass_validator(dc_cls: Type, config: Type) -> Generator[Callable, None, None]:
+    ...

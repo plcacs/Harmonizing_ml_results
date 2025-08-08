@@ -1,0 +1,405 @@
+{
+    "__init__@GatedCnnEncoder": [
+        {
+            "category": "arg",
+            "name": "input_dim",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "layers",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dropout",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "return_all_layers",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_forward_residual_blocks",
+            "type": [
+                "int",
+                "float",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_backward_residual_blocks",
+            "type": [
+                "int",
+                "tuple[typing.Any]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "input_dim",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_input_dim",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_output_dim",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "layer",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "layers",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dropout",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "return_all_layers",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_return_all_layers",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@ResidualBlock": [
+        {
+            "category": "arg",
+            "name": "input_dim",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "layers",
+            "type": [
+                "list[float]",
+                "list['ValidatorRecord']"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "direction",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "do_weight_norm",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dropout",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dropout",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_convolutions",
+            "type": [
+                "int",
+                "list",
+                "tuple[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "input_dim",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_dim",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k",
+            "type": [
+                "int",
+                "float",
+                "'ValidatorRecord'"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "layer",
+            "type": [
+                "'ValidatorRecord'"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "layers",
+            "type": [
+                "list[float]",
+                "list['ValidatorRecord']"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "conv",
+            "type": [
+                "float",
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "conv_dropout",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "do_weight_norm",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "direction",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_direction",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "forward@GatedCnnEncoder": [
+        {
+            "category": "arg",
+            "name": "token_embeddings",
+            "type": [
+                "torch.Tensor",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mask",
+            "type": [
+                "torch.Tensor",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_embeddings",
+            "type": [
+                "torch.Tensor",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mask",
+            "type": [
+                "torch.Tensor",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mask_for_fill",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "layer_outputs",
+            "type": [
+                "list[list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "outputs",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "forward",
+            "type": [
+                "list",
+                "torch.Tensor",
+                "dict[str, torch.LongTensor]"
+            ]
+        }
+    ],
+    "forward@ResidualBlock": [
+        {
+            "category": "arg",
+            "name": "x",
+            "type": [
+                "torch.Tensor",
+                "torch.FloatTensor",
+                "torch.LongTensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "x",
+            "type": [
+                "torch.Tensor",
+                "torch.FloatTensor",
+                "torch.LongTensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "out",
+            "type": [
+                "torch.Tensor",
+                "torch.FloatTensor",
+                "torch.LongTensor",
+                "float",
+                "list",
+                "tuple[typing.Union[list[typing.Any],list[int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timesteps",
+            "type": [
+                "int",
+                "list[typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "conv_out",
+            "type": [
+                "list[tuple[typing.Any]]",
+                "list[list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dims_to_remove",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "forward",
+            "type": [
+                "gluonts.model.common.Tensor",
+                "torch.FloatTensor"
+            ]
+        }
+    ],
+    "get_input_dim@GatedCnnEncoder": [
+        {
+            "category": "return",
+            "name": "get_input_dim",
+            "type": []
+        }
+    ],
+    "get_output_dim@GatedCnnEncoder": [
+        {
+            "category": "return",
+            "name": "get_output_dim",
+            "type": []
+        }
+    ],
+    "global@global": [],
+    "is_bidirectional@GatedCnnEncoder": [
+        {
+            "category": "return",
+            "name": "is_bidirectional",
+            "type": [
+                "bool"
+            ]
+        }
+    ]
+}

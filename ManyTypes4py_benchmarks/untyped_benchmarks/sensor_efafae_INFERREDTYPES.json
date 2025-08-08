@@ -1,0 +1,501 @@
+{
+    "__init__@DiscoverYandexTransport": [
+        {
+            "category": "arg",
+            "name": "requester",
+            "type": [
+                "str",
+                "\"StateResourceIdentifier\"",
+                "None",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stop_id",
+            "type": [
+                "typing.Callable",
+                "None",
+                "str",
+                "datetime.datetime"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "routes",
+            "type": [
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "name",
+            "type": [
+                "str",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "requester",
+            "type": [
+                "str",
+                "\"StateResourceIdentifier\"",
+                "None",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stop_id",
+            "type": [
+                "typing.Callable",
+                "None",
+                "str",
+                "datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_stop_id",
+            "type": [
+                "typing.Callable",
+                "None",
+                "str",
+                "datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "routes",
+            "type": [
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_routes",
+            "type": [
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_state",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "str",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_name",
+            "type": [
+                "str",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attrs",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_setup_platform@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "homeassistanhelpers.ConfigType"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "async_add_entities",
+            "type": [
+                "homeassistanhelpers.ConfigType",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "discovery_info",
+            "type": [
+                "None",
+                "homeassistanhelpers.ConfigType"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "homeassistanhelpers.ConfigType"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_STOP_ID",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stop_id",
+            "type": [
+                "str",
+                "int",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_ROUTE",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "routes",
+            "type": [
+                "list",
+                "dict",
+                "None",
+                "dict[typing.Any, dict[str, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "USER_AGENT",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ymaps",
+            "type": [
+                "YandexMapsRequester"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ex",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_setup_platform",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_update@DiscoverYandexTransport": [
+        {
+            "category": "arg",
+            "name": "tries",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attrs",
+            "type": [
+                "dict",
+                "dict[str, list]",
+                "dict[typing.Union[str,dict[str, str],list[str]], typing.Union[list,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "closer_time",
+            "type": [
+                "float",
+                "int",
+                "datetime.timedelta",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "yandex_reply",
+            "type": [
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ex",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_update",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key_error",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tries",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stop_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transport_list",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transport",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "thread",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "x",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "route",
+            "type": [
+                "str",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "departure",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "posix_time_next",
+            "type": [
+                "int",
+                "float",
+                "datetime.timedelta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "STOP_NAME",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_state",
+            "type": [
+                "None",
+                "typing.Literal",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attrs",
+            "type": [
+                "dict[typing.Union[str,dict[str, str],list[str]], typing.Union[list,str]]"
+            ]
+        }
+    ],
+    "device_class@DiscoverYandexTransport": [
+        {
+            "category": "return",
+            "name": "device_class",
+            "type": []
+        }
+    ],
+    "extra_state_attributes@DiscoverYandexTransport": [
+        {
+            "category": "return",
+            "name": "extra_state_attributes",
+            "type": []
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "STOP_NAME",
+            "type": [
+                "typing.Text",
+                "str",
+                "dict[str, str]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "USER_AGENT",
+            "type": [
+                "typing.Text",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_STOP_ID",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_ROUTE",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DEFAULT_NAME",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SCAN_INTERVAL",
+            "type": [
+                "datetime.timedelta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SENSOR_PLATFORM_SCHEMA",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "PLATFORM_SCHEMA",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "name@DiscoverYandexTransport": [
+        {
+            "category": "return",
+            "name": "name",
+            "type": []
+        }
+    ],
+    "native_value@DiscoverYandexTransport": [
+        {
+            "category": "return",
+            "name": "native_value",
+            "type": []
+        }
+    ]
+}

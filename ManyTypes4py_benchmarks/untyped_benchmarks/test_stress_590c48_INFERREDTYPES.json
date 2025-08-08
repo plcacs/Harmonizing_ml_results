@@ -1,0 +1,1033 @@
+{
+    "_url_for@global": [
+        {
+            "category": "arg",
+            "name": "apiserver",
+            "type": [
+                "rotkehlchen.api.server.APIServer",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "endpoint",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "endpoint",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_url_for",
+            "type": []
+        }
+    ],
+    "address_from_apiserver@global": [
+        {
+            "category": "arg",
+            "name": "apiserver",
+            "type": [
+                "list[str]",
+                "raiden.storage.sqlite.SerializedSQLiteStorage",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "address_from_apiserver",
+            "type": []
+        }
+    ],
+    "assert_channels@global": [
+        {
+            "category": "arg",
+            "name": "raiden_network",
+            "type": [
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.TokenAddress",
+                "list[raiden.utils.ChannelID]",
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deposit",
+            "type": [
+                "raiden.utils.TokenAddress",
+                "list[raiden.utils.ChannelID]",
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_network",
+            "type": [
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pairs",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.TokenAddress",
+                "list[raiden.utils.ChannelID]",
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit",
+            "type": [
+                "raiden.utils.TokenAddress",
+                "list[raiden.utils.ChannelID]",
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "assert_channels",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        }
+    ],
+    "iwait_and_get@global": [
+        {
+            "category": "arg",
+            "name": "items",
+            "type": [
+                "typing.Iterable[str]",
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "items",
+            "type": [
+                "typing.Iterable[str]",
+                "T"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "iwait_and_get",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "restart_app@global": [
+        {
+            "category": "arg",
+            "name": "app",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "restart_node",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "new_transport",
+            "type": [
+                "MatrixTransport"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_event_handler",
+            "type": [
+                "RaidenEventHandler"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hold_handler",
+            "type": [
+                "HoldRaidenEventHandler"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "dict",
+                "RaidenService"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "restart_app",
+            "type": [
+                "RaidenService"
+            ]
+        }
+    ],
+    "restart_network@global": [
+        {
+            "category": "arg",
+            "name": "raiden_network",
+            "type": [
+                "raiden.utils.SecretRegistryAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "restart_node",
+            "type": [
+                "typing.Callable",
+                "raiden.utils.SecretRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_network",
+            "type": [
+                "raiden.utils.SecretRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "restart_node",
+            "type": [
+                "typing.Callable",
+                "raiden.utils.SecretRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wait_network",
+            "type": [
+                "typing.Generator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_network",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "restart_network",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "restart_network_and_apiservers@global": [
+        {
+            "category": "arg",
+            "name": "raiden_network",
+            "type": [
+                "typing.Callable",
+                "raiden.storage.sqlite.SQLiteStorage",
+                "nucypher.network.middleware.RestMiddleware"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "restart_node",
+            "type": [
+                "typing.Callable",
+                "raiden.storage.sqlite.SQLiteStorage",
+                "nucypher.network.middleware.RestMiddleware"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "api_servers",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "port_generator",
+            "type": [
+                "int",
+                "raiden.storage.sqlite.SQLiteStorage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_network",
+            "type": [
+                "typing.Callable",
+                "raiden.storage.sqlite.SQLiteStorage",
+                "nucypher.network.middleware.RestMiddleware"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "restart_node",
+            "type": [
+                "typing.Callable",
+                "raiden.storage.sqlite.SQLiteStorage",
+                "nucypher.network.middleware.RestMiddleware"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_network",
+            "type": [
+                "int",
+                "str",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "port_generator",
+            "type": [
+                "int",
+                "raiden.storage.sqlite.SQLiteStorage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_servers",
+            "type": [
+                "network.nodes_hub.NodesHub"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "restart_network_and_apiservers",
+            "type": [
+                "tuple[typing.Union[int,str,tuple[typing.Any],network.nodes_hub.NodesHub]]"
+            ]
+        }
+    ],
+    "sequential_transfers@global": [
+        {
+            "category": "arg",
+            "name": "server_from",
+            "type": [
+                "str",
+                "raiden.utils.Address",
+                "None",
+                "raiden.utils.PrivateKey"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "server_to",
+            "type": [
+                "str",
+                "raiden.utils.Address",
+                "None",
+                "raiden.utils.PrivateKey"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "number_of_transfers",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_address",
+            "type": [
+                "str",
+                "raiden.utils.Address",
+                "None",
+                "raiden.utils.PrivateKey"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "identifier_generator",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.PrivateKey"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "number_of_transfers",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "server_from",
+            "type": [
+                "str",
+                "raiden.utils.Address",
+                "None",
+                "raiden.utils.PrivateKey"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "server_to",
+            "type": [
+                "str",
+                "raiden.utils.Address",
+                "None",
+                "raiden.utils.PrivateKey"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "str",
+                "raiden.utils.Address",
+                "None",
+                "raiden.utils.PrivateKey"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "identifier_generator",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.PrivateKey"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "sequential_transfers",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "start_apiserver@global": [
+        {
+            "category": "arg",
+            "name": "raiden_app",
+            "type": [
+                "raiden.network.rpc.clienJSONRPCClient",
+                "raiden.network.proxies.token_network_registry.TokenNetworkRegistry",
+                "RaidenService"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rest_api_port_number",
+            "type": [
+                "int",
+                "raiden.network.rpc.clienJSONRPCClient",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_app",
+            "type": [
+                "raiden.network.rpc.clienJSONRPCClient",
+                "raiden.network.proxies.token_network_registry.TokenNetworkRegistry",
+                "RaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_api",
+            "type": [
+                "RaidenAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rest_api",
+            "type": [
+                "RestAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rest_api_port_number",
+            "type": [
+                "int",
+                "raiden.network.rpc.clienJSONRPCClient",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "api_server",
+            "type": [
+                "APIServer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "start_apiserver",
+            "type": [
+                "APIServer"
+            ]
+        }
+    ],
+    "start_apiserver_for_network@global": [
+        {
+            "category": "arg",
+            "name": "raiden_network",
+            "type": [
+                "raiden.storage.sqlite.SQLiteStorage"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "port_generator",
+            "type": [
+                "raiden.storage.sqlite.SQLiteStorage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_network",
+            "type": [
+                "raiden.storage.sqlite.SQLiteStorage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "port_generator",
+            "type": [
+                "raiden.storage.sqlite.SQLiteStorage"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "start_apiserver_for_network",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "stress_send_and_receive_parallel_transfers@global": [
+        {
+            "category": "arg",
+            "name": "rest_apis",
+            "type": [
+                "raiden.utils.ChannelID",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_address",
+            "type": [
+                "typing.Callable",
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "identifier_generator",
+            "type": [
+                "typing.Callable",
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deposit",
+            "type": [
+                "typing.Callable",
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rest_apis",
+            "type": [
+                "raiden.utils.ChannelID",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pairs",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit",
+            "type": [
+                "typing.Callable",
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "typing.Callable",
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "identifier_generator",
+            "type": [
+                "typing.Callable",
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "forward_transfers",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backwards_transfers",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "stress_send_and_receive_parallel_transfers",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "stress_send_parallel_transfers@global": [
+        {
+            "category": "arg",
+            "name": "rest_apis",
+            "type": [
+                "raiden.utils.ChannelID",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_address",
+            "type": [
+                "typing.Callable",
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "identifier_generator",
+            "type": [
+                "typing.Callable",
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deposit",
+            "type": [
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rest_apis",
+            "type": [
+                "raiden.utils.ChannelID",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pairs",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit",
+            "type": [
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "typing.Callable",
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "identifier_generator",
+            "type": [
+                "typing.Callable",
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "stress_send_parallel_transfers",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "stress_send_serial_transfers@global": [
+        {
+            "category": "arg",
+            "name": "rest_apis",
+            "type": [
+                "raiden.utils.ChannelID",
+                "list[raiden.raiden_service.RaidenService]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "typing.Callable",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "identifier_generator",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "typing.Callable",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deposit",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rest_apis",
+            "type": [
+                "raiden.utils.ChannelID",
+                "list[raiden.raiden_service.RaidenService]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pairs",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "typing.Callable",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "identifier_generator",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "typing.Callable",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "stress_send_serial_transfers",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_stress@global": [
+        {
+            "category": "arg",
+            "name": "raiden_network",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.network.rpc.clienJSONRPCClient",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "restart_node",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.ChannelID",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deposit",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "typing.Callable",
+                "raiden.utils.SecretRegistryAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_addresses",
+            "type": [
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "port_generator",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.network.rpc.clienJSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_addresses",
+            "type": [
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "list[raiden.utils.TokenAddress]",
+                "list[raiden.transfer.architecture.Event]",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_network",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.network.rpc.clienJSONRPCClient",
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "str",
+                "tests.chain_integration.conftesCurrencyNetworkProxy",
+                "typing.Optional",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "port_generator",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.network.rpc.clienJSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rest_apis",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "dict[int, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.TokenNetworkID",
+                "None",
+                "raiden.utils.PaymentNetworkID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "typing.Callable",
+                "raiden.utils.SecretRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "restart_node",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.ChannelID",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_stress",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "transfer_and_assert@global": [
+        {
+            "category": "arg",
+            "name": "server_from",
+            "type": [
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "server_to",
+            "type": [
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_address",
+            "type": [
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "identifier",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "amount",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "server_from",
+            "type": [
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "server_to",
+            "type": [
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "identifier",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "json",
+            "type": [
+                "dict[typing.Text, typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "transfer_and_assert",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

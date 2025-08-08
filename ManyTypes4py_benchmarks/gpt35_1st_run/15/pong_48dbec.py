@@ -1,0 +1,269 @@
+from typing import List
+
+class Attribute:
+
+    def __init__(self, game: 'Game') -> None:
+        self.game: 'Game' = game
+        self.game.attributes.append(self)
+        self.install()
+        self.reset()
+
+    def reset(self) -> None:
+        self.commit()
+
+    def predict(self) -> None:
+        pass
+
+    def interact(self) -> None:
+        pass
+
+    def commit(self) -> None:
+        pass
+
+class Sprite(Attribute):
+
+    def __init__(self, game: 'Game', width: int, height: int) -> None:
+        self.width: int = width
+        self.height: int = height
+        Attribute.__init__(self, game)
+
+    def install(self) -> None:
+        self.image: 'fabric.Rect' = fabric.Rect({'width': self.game.scaleX(self.width), 'height': self.game.scaleY(self.height), 'originX': 'center', 'originY': 'center', 'fill': 'white'})
+
+    def reset(self, vX: int = 0, vY: int = 0, x: int = 0, y: int = 0) -> None:
+        self.vX: int = vX
+        self.vY: int = vY
+        self.x: int = x
+        self.y: int = y
+        Attribute.reset(self)
+
+    def predict(self) -> None:
+        self.x += self.vX * self.game.deltaT
+        self.y += self.vY * self.game.deltaT
+
+    def commit(self) -> None:
+        self.image.left = self.game.orthoX(self.x)
+        self.image.top = self.game.orthoY(self.y)
+
+    def draw(self) -> None:
+        self.game.canvas.add(self.image)
+
+class Paddle(Sprite):
+    margin: int = 30
+    width: int = 10
+    height: int = 100
+    speed: int = 400
+
+    def __init__(self, game: 'Game', index: int) -> None:
+        self.index: int = index
+        Sprite.__init__(self, game, self.width, self.height)
+
+    def reset(self) -> None:
+        Sprite.reset(self, x=orthoWidth // 2 - self.margin if self.index else -orthoWidth // 2 + self.margin, y=0)
+
+    def predict(self) -> None:
+        self.vY: int = 0
+        if self.index:
+            if self.game.keyCode == ord('K'):
+                self.vY = self.speed
+            elif self.game.keyCode == ord('M'):
+                self.vY = -self.speed
+        elif self.game.keyCode == ord('A'):
+            self.vY = self.speed
+        elif self.game.keyCode == ord('Z'):
+            self.vY = -self.speed
+        Sprite.predict(self)
+
+    def interact(self) -> None:
+        self.y = Math.max(self.height // 2 - fieldHeight // 2, Math.min(self.y, fieldHeight // 2 - self.height // 2))
+        if self.y - self.height // 2 < self.game.ball.y < self.y + self.height // 2 and (self.index == 0 and self.game.ball.x < self.x or (self.index == 1 and self.game.ball.x > self.x)):
+            self.game.ball.x = self.x
+            self.game.ball.vX = -self.game.ball.vX
+            self.game.ball.speedUp(self)
+
+class Ball(Sprite):
+    side: int = 8
+    speed: int = 300
+
+    def __init__(self, game: 'Game') -> None:
+        Sprite.__init__(self, game, self.side, self.side)
+
+    def reset(self) -> None:
+        angle: float = self.game.serviceIndex * Math.PI + (1 if Math.random() > 0.5 else -1) * Math.random() * Math.atan(fieldHeight / orthoWidth)
+        Sprite.reset(self, vX=self.speed * Math.cos(angle), vY=self.speed * Math.sin(angle))
+
+    def predict(self) -> None:
+        Sprite.predict(self)
+        if self.x < -orthoWidth // 2:
+            self.game.scored(1)
+        elif self.x > orthoWidth // 2:
+            self.game.scored(0)
+        if self.y > fieldHeight // 2:
+            self.y = fieldHeight // 2
+            self.vY = -self.vY
+        elif self.y < -fieldHeight // 2:
+            self.y = -fieldHeight // 2
+            self.vY = -self.vY
+
+    def speedUp(self, bat: 'Paddle') -> None:
+        factor: float = 1 + 0.15 * (1 - Math.abs(self.y - bat.y) / (bat.height // 2)) ** 2
+        if Math.abs(self.vX) < 3 * self.speed:
+            self.vX *= factor
+            self.vY *= factor
+
+class Scoreboard(Attribute):
+    nameShift: int = 75
+    hintShift: int = 25
+
+    def install(self) -> None:
+        self.playerLabels: List['fabric.Text'] = [fabric.Text('Player {}'.format(name), {'fill': 'white', 'fontFamily': 'arial', 'fontSize': '{}'.format(self.game.canvas.width / 30), 'left': self.game.orthoX(position * orthoWidth), 'top': self.game.orthoY(fieldHeight // 2 + self.nameShift)}) for name, position in (('AZ keys:', -7 / 16), ('KM keys:', 1 / 16))]
+        self.hintLabel: 'fabric.Text' = fabric.Text('[spacebar] starts game, [enter] resets score', {'fill': 'white', 'fontFamily': 'arial', 'fontSize': '{}'.format(self.game.canvas.width / 70), 'left': self.game.orthoX(-7 / 16 * orthoWidth), 'top': self.game.orthoY(fieldHeight // 2 + self.hintShift)})
+        self.image: 'fabric.Line' = fabric.Line([self.game.orthoX(-orthoWidth // 2), self.game.orthoY(fieldHeight // 2), self.game.orthoX(orthoWidth // 2), self.game.orthoY(fieldHeight // 2)], {'stroke': 'white'})
+
+    def increment(self, playerIndex: int) -> None:
+        self.scores[playerIndex] += 1
+
+    def reset(self) -> None:
+        self.scores: List[int] = [0, 0]
+        Attribute.reset(self)
+
+    def commit(self) -> None:
+        self.scoreLabels: List['fabric.Text'] = [fabric.Text('{}'.format(score), {'fill': 'white', 'fontFamily': 'arial', 'fontSize': '{}'.format(self.game.canvas.width / 30), 'left': self.game.orthoX(position * orthoWidth), 'top': self.game.orthoY(fieldHeight // 2 + self.nameShift)}) for score, position in zip(self.scores, (-2 / 16, 6 / 16))]
+
+    def draw(self) -> None:
+        for playerLabel, scoreLabel in zip(self.playerLabels, self.scoreLabels):
+            self.game.canvas.add(playerLabel)
+            self.game.canvas.add(scoreLabel)
+            self.game.canvas.add(self.hintLabel)
+        self.game.canvas.add(self.image)
+
+class Game:
+
+    def __init__(self) -> None:
+        self.serviceIndex: int = 1 if Math.random() > 0.5 else 0
+        self.pause: bool = True
+        self.keyCode: int = None
+        self.textFrame: 'Element' = document.getElementById('text_frame')
+        self.canvasFrame: 'Element' = document.getElementById('canvas_frame')
+        self.buttonsFrame: 'Element' = document.getElementById('buttons_frame')
+        self.canvas: 'fabric.Canvas' = fabric.Canvas('canvas', {'backgroundColor': 'black', 'originX': 'center', 'originY': 'center'})
+        self.canvas.onWindowDraw = self.draw
+        self.canvas.lineWidth: int = 2
+        self.canvas.clear()
+        self.attributes: List[Attribute] = []
+        self.paddles: List[Paddle] = [Paddle(self, index) for index in range(2)]
+        self.ball: Ball = Ball(self)
+        self.scoreboard: Scoreboard = Scoreboard(self)
+        window.setInterval(self.update, 10)
+        window.setInterval(self.draw, 20)
+        window.addEventListener('keydown', self.keydown)
+        window.addEventListener('keyup', self.keyup)
+        self.buttons: List['Element'] = []
+        for key in ('A', 'Z', 'K', 'M', 'space', 'enter'):
+            button: 'Element' = document.getElementById(key)
+            button.addEventListener('mousedown', (lambda aKey: lambda: self.mouseOrTouch(aKey, True))(key))
+            button.addEventListener('touchstart', (lambda aKey: lambda: self.mouseOrTouch(aKey, True))(key))
+            button.addEventListener('mouseup', (lambda aKey: lambda: self.mouseOrTouch(aKey, False))(key))
+            button.addEventListener('touchend', (lambda aKey: lambda: self.mouseOrTouch(aKey, False))(key))
+            button.style.cursor = 'pointer'
+            button.style.userSelect = 'none'
+            self.buttons.append(button)
+        self.time: 'Date' = +Date()
+        window.onresize = self.resize
+        self.resize()
+
+    def install(self) -> None:
+        for attribute in self.attributes:
+            attribute.install()
+
+    def mouseOrTouch(self, key: str, down: bool) -> None:
+        if down:
+            if key == 'space':
+                self.keyCode = space
+            elif key == 'enter':
+                self.keyCode = enter
+            else:
+                self.keyCode = ord(key)
+        else:
+            self.keyCode = None
+
+    def update(self) -> None:
+        oldTime: 'Date' = self.time
+        self.time = +Date()
+        self.deltaT: float = (self.time - oldTime) / 1000.0
+        if self.pause:
+            if self.keyCode == space:
+                self.pause = False
+            elif self.keyCode == enter:
+                self.scoreboard.reset()
+        else:
+            for attribute in self.attributes:
+                attribute.predict()
+            for attribute in self.attributes:
+                attribute.interact()
+            for attribute in self.attributes:
+                attribute.commit()
+
+    def scored(self, playerIndex: int) -> None:
+        self.scoreboard.increment(playerIndex)
+        self.serviceIndex = 1 - playerIndex
+        for paddle in self.paddles:
+            paddle.reset()
+        self.ball.reset()
+        self.pause = True
+
+    def commit(self) -> None:
+        for attribute in self.attributes:
+            attribute.commit()
+
+    def draw(self) -> None:
+        self.canvas.clear()
+        for attribute in self.attributes:
+            attribute.draw()
+
+    def resize(self) -> None:
+        self.pageWidth: int = window.innerWidth
+        self.pageHeight: int = window.innerHeight
+        self.textTop: int = 0
+        if self.pageHeight > 1.2 * self.pageWidth:
+            self.canvasWidth: int = self.pageWidth
+            self.canvasTop: int = self.textTop + 300
+        else:
+            self.canvasWidth: int = 0.6 * self.pageWidth
+            self.canvasTop: int = self.textTop + 200
+        self.canvasLeft: int = 0.5 * (self.pageWidth - self.canvasWidth)
+        self.canvasHeight: int = 0.6 * self.canvasWidth
+        self.buttonsTop: int = self.canvasTop + self.canvasHeight + 50
+        self.buttonsWidth: int = 500
+        self.textFrame.style.top = self.textTop
+        self.textFrame.style.left = self.canvasLeft + 0.05 * self.canvasWidth
+        self.textFrame.style.width = 0.9 * self.canvasWidth
+        self.canvasFrame.style.top = self.canvasTop
+        self.canvasFrame.style.left = self.canvasLeft
+        self.canvas.setDimensions({'width': self.canvasWidth, 'height': self.canvasHeight})
+        self.buttonsFrame.style.top = self.buttonsTop
+        self.buttonsFrame.style.left = 0.5 * (self.pageWidth - self.buttonsWidth)
+        self.buttonsFrame.style.width = self.canvasWidth
+        self.install()
+        self.commit()
+        self.draw()
+
+    def scaleX(self, x: int) -> int:
+        return x * (self.canvas.width / orthoWidth)
+
+    def scaleY(self, y: int) -> int:
+        return y * (self.canvas.height / orthoHeight)
+
+    def orthoX(self, x: int) -> int:
+        return self.scaleX(x + orthoWidth // 2)
+
+    def orthoY(self, y: int) -> int:
+        return self.scaleY(orthoHeight - fieldHeight // 2 - y)
+
+    def keydown(self, event: 'Event') -> None:
+        self.keyCode = event.keyCode
+
+    def keyup(self, event: 'Event') -> None:
+        self.keyCode = None
+
+game: Game = Game()

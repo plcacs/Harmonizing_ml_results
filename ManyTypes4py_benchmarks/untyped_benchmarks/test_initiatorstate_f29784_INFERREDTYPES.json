@@ -1,0 +1,1563 @@
+{
+    "channels_setup@global": [
+        {
+            "category": "arg",
+            "name": "amount",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.PaymentNetworkID",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "our_address",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.PaymentNetworkID",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "refund_address",
+            "type": [
+                "metrics_backend.utils.ChannelIdentifier",
+                "raiden.utils.ChainID",
+                "raiden.utils.BlockTimeout"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.PaymentNetworkID",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "our_address",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.PaymentNetworkID",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "refund_address",
+            "type": [
+                "metrics_backend.utils.ChannelIdentifier",
+                "raiden.utils.ChainID",
+                "raiden.utils.BlockTimeout"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "properties",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "channels_setup",
+            "type": []
+        }
+    ],
+    "get_transfer_at_index@global": [
+        {
+            "category": "arg",
+            "name": "payment_state",
+            "type": [
+                "int",
+                "raiden.utils.ProportionalFeeAmount",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "index",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "raiden.utils.ProportionalFeeAmount",
+                "raiden.utils.FeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "index",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "raiden.utils.ProportionalFeeAmount",
+                "raiden.utils.FeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "list[str]",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payment_state",
+            "type": [
+                "int",
+                "raiden.utils.ProportionalFeeAmount",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_transfer_at_index",
+            "type": []
+        }
+    ],
+    "global@global": [],
+    "make_initiator_manager_state@global": [
+        {
+            "category": "arg",
+            "name": "channels",
+            "type": [
+                "int",
+                "raiden.utils.Signature",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pseudo_random_generator",
+            "type": [
+                "raiden.transfer.state.TokenNetworkState",
+                "raiden.utils.PaymentID",
+                "raiden.utils.FeeAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "transfer_description",
+            "type": [
+                "None",
+                "int",
+                "raiden.utils.Signature"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_number",
+            "type": [
+                "BlockNumber"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "estimated_fee",
+            "type": [
+                "FeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transfer_description",
+            "type": [
+                "None",
+                "int",
+                "raiden.utils.Signature"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channels",
+            "type": [
+                "int",
+                "raiden.utils.Signature",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "estimated_fee",
+            "type": [
+                "FeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "init",
+            "type": [
+                "ActionInitInitiator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initial_state",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pseudo_random_generator",
+            "type": [
+                "raiden.transfer.state.TokenNetworkState",
+                "raiden.utils.PaymentID",
+                "raiden.utils.FeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iteration",
+            "type": [
+                "raiden.transfer.architecture.TransitionResult",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "make_initiator_manager_state",
+            "type": []
+        }
+    ],
+    "setup_initiator_tests@global": [
+        {
+            "category": "arg",
+            "name": "amount",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "partner_balance",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "our_address",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "partner_address",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "block_number",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "allocated_fee",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "allocated_fee",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup",
+            "type": [
+                "InitiatorSetup"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "setup_initiator_tests",
+            "type": [
+                "InitiatorSetup"
+            ]
+        }
+    ],
+    "test_calculate_safe_amount_with_fee@global": [
+        {
+            "category": "return",
+            "name": "test_calculate_safe_amount_with_fee",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_cancel_transfer@global": [
+        {
+            "category": "local",
+            "name": "setup",
+            "type": [
+                "str",
+                "int",
+                "rotkehlchen.tests.utils.rotkehlchen.BalancesTestSetup"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "ActionCancelPayment"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iteration",
+            "type": [
+                "int",
+                "raiden.transfer.architecture.TransitionResult"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_cancel_transfer",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_cancelpayment@global": [
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "ActionCancelPayment"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iteration",
+            "type": [
+                "int",
+                "raiden.transfer.architecture.TransitionResult"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expiry_block_state_change",
+            "type": [
+                "Block"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_cancelpayment",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_clearing_payment_state_on_lock_expires_with_refunded_transfers@global": [
+        {
+            "category": "local",
+            "name": "properties",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "ReceiveTransferCancelRoute",
+                "ActionTransferReroute"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_expired_state_change",
+            "type": [
+                "ReceiveLockExpired"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initial_transfer_expiry_block_state_change",
+            "type": [
+                "Block"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rerouted_transfer_expiry_block_state_change",
+            "type": [
+                "Block"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_clearing_payment_state_on_lock_expires_with_refunded_transfers",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_handle_offchain_emptyhash_secret@global": [
+        {
+            "category": "local",
+            "name": "setup",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret_reveal",
+            "type": [
+                "ReceiveSecretReveal"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_handle_offchain_emptyhash_secret",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_handle_offchain_secretreveal@global": [
+        {
+            "category": "local",
+            "name": "setup",
+            "type": [
+                "str",
+                "typing.NamedTuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret_reveal",
+            "type": [
+                "ReceiveSecretReveal"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_handle_offchain_secretreveal",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_init_with_fees_more_than_max_limit@global": [
+        {
+            "category": "local",
+            "name": "transfer_amount",
+            "type": [
+                "TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flat_fee",
+            "type": [
+                "FeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_fee_margin",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transfer_description",
+            "type": [
+                "int",
+                "raiden.utils.SecreHash",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "init_state_change",
+            "type": [
+                "ActionInitInitiator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reason_msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_init_with_fees_more_than_max_limit",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_init_with_maximum_pending_transfers_exceeded@global": [
+        {
+            "category": "local",
+            "name": "channel_map",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "addresses_to_channel",
+            "type": [
+                "dict[tuple, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "available_routes",
+            "type": [
+                "list[RouteState]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transitions",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "init_state_change",
+            "type": [
+                "ActionInitInitiator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "failed_transition",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_init_with_maximum_pending_transfers_exceeded",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_init_with_usable_routes@global": [
+        {
+            "category": "local",
+            "name": "transfer_amount",
+            "type": [
+                "TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flat_fee",
+            "type": [
+                "FeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_balance",
+            "type": [
+                "raiden.transfer.architecture.TransitionResult",
+                "bytearray",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transfer_description",
+            "type": [
+                "int",
+                "raiden.utils.SecreHash",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "init_state_change",
+            "type": [
+                "ActionInitInitiator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mediated_transfers",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "send_mediated_transfer",
+            "type": [
+                "raiden.messages.LockedTransfer",
+                "raiden.transfer.mediated_transfer.state.LockedTransferUnsignedState",
+                "list[list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_init_with_usable_routes",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_init_without_routes@global": [
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "routes",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "init_state_change",
+            "type": [
+                "ActionInitInitiator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_map",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_init_without_routes",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_initiator_handle_contract_receive_after_channel_closed@global": [
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_closed",
+            "type": [
+                "ContractReceiveChannelClosed"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "ContractReceiveSecretReveal"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_map",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_initiator_handle_contract_receive_after_channel_closed",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_initiator_handle_contract_receive_emptyhash_secret_reveal@global": [
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "ContractReceiveSecretReveal"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_initiator_handle_contract_receive_emptyhash_secret_reveal",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_initiator_handle_contract_receive_secret_reveal@global": [
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "ContractReceiveSecretReveal"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iteration",
+            "type": [
+                "int",
+                "raiden.transfer.architecture.TransitionResult"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_initiator_handle_contract_receive_secret_reveal",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_initiator_handle_contract_receive_secret_reveal_expired@global": [
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "ContractReceiveSecretReveal"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_initiator_handle_contract_receive_secret_reveal_expired",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_initiator_init@global": [
+        {
+            "category": "local",
+            "name": "service",
+            "type": [
+                "MockRaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "route_states",
+            "type": [
+                "list[RouteState]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_initiator_init",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_initiator_lock_expired@global": [
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "Block"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "Block"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_initiator_lock_expired",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_initiator_lock_expired_must_not_be_sent_if_channel_is_closed@global": [
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_closed",
+            "type": [
+                "ContractReceiveChannelClosed"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "Block"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_map",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iteration",
+            "type": [
+                "raiden.transfer.architecture.TransitionResult",
+                "int",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_initiator_lock_expired_must_not_be_sent_if_channel_is_closed",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_initiator_manager_drops_invalid_state_changes@global": [
+        {
+            "category": "local",
+            "name": "lock_expired",
+            "type": [
+                "ReceiveLockExpired"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "InitiatorPaymentState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initiator_state",
+            "type": [
+                "InitiatorTransferState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cancel_route2",
+            "type": [
+                "ActionTransferReroute"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_initiator_manager_drops_invalid_state_changes",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_invalid_cancelpayment@global": [
+        {
+            "category": "local",
+            "name": "receive_secret_request",
+            "type": [
+                "ReceiveSecretRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret_transition",
+            "type": [
+                "str",
+                "typing.Type",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_invalid_cancelpayment",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_lock_expiry_updates_balance_proof@global": [
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "Block"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_lock_expiry_updates_balance_proof",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_next_route@global": [
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_next_route",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_refund_after_secret_request@global": [
+        {
+            "category": "local",
+            "name": "secret_request",
+            "type": [
+                "ReceiveSecretRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iteration",
+            "type": [
+                "int",
+                "typing.Callable[None, typing.Any]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "ActionTransferReroute"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_refund_after_secret_request",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_refund_transfer_no_more_routes@global": [
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.mediated_transfer.state_change.ActionInitTarget",
+                "ReceiveSecretReveal",
+                "Block"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iteration",
+            "type": [
+                "int",
+                "raiden.transfer.architecture.TransitionResult"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "invalid_lock_expired_state_change",
+            "type": [
+                "ReceiveLockExpired"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_expired_state_change",
+            "type": [
+                "ReceiveLockExpired"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "before_expiry_block",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_refund_transfer_no_more_routes",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_refund_transfer_with_reroute@global": [
+        {
+            "category": "local",
+            "name": "transfer_amount",
+            "type": [
+                "TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transfer_description",
+            "type": [
+                "int",
+                "raiden.utils.MessageID",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee_1",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee_3",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "init",
+            "type": [
+                "ActionInitInitiator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initial_state",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount_with_fee_and_margin1",
+            "type": [
+                "int",
+                "float",
+                "raiden.utils.PaymentWithFeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "ReceiveTransferCancelRoute",
+                "ReceiveSecretReveal",
+                "raiden.transfer.mediated_transfer.state_change.ActionInitTarget",
+                "ReceiveLockExpired"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount_with_fee_and_margin3",
+            "type": [
+                "int",
+                "raiden.utils.PaymentWithFeeAmount",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_refund_transfer_with_reroute",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_regression_payment_unlock_failed_event_must_be_emitted_only_once@global": [
+        {
+            "category": "local",
+            "name": "properties",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "ReceiveTransferCancelRoute",
+                "ActionTransferReroute"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initial_transfer_expiry_block_state_change",
+            "type": [
+                "Block"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "next_block_after_expiry",
+            "type": [
+                "Block"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_regression_payment_unlock_failed_event_must_be_emitted_only_once",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_secret_reveal_cancel_other_transfers@global": [
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "ReceiveTransferCancelRoute",
+                "ActionTransferReroute"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret_reveal",
+            "type": [
+                "ReceiveSecretReveal"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_secret_reveal_cancel_other_transfers",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_state_wait_secretrequest_invalid_amount@global": [
+        {
+            "category": "local",
+            "name": "setup",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "ReceiveSecretRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iteration",
+            "type": [
+                "int",
+                "raiden.transfer.architecture.TransitionResult"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change_2",
+            "type": [
+                "ReceiveSecretRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iteration2",
+            "type": [
+                "int",
+                "raiden.transfer.architecture.TransitionResult"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_state_wait_secretrequest_invalid_amount",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_state_wait_secretrequest_invalid_amount_and_sender@global": [
+        {
+            "category": "local",
+            "name": "setup",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "ReceiveSecretRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iteration",
+            "type": [
+                "int",
+                "raiden.transfer.architecture.TransitionResult"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change_2",
+            "type": [
+                "ReceiveSecretRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iteration2",
+            "type": [
+                "int",
+                "raiden.transfer.architecture.TransitionResult"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_state_wait_secretrequest_invalid_amount_and_sender",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_state_wait_secretrequest_valid@global": [
+        {
+            "category": "local",
+            "name": "setup",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "ReceiveSecretRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iteration",
+            "type": [
+                "int",
+                "raiden.transfer.architecture.TransitionResult"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change_2",
+            "type": [
+                "ReceiveSecretRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iteration2",
+            "type": [
+                "int",
+                "raiden.transfer.architecture.TransitionResult"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_state_wait_secretrequest_valid",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_state_wait_secretrequest_valid_amount_and_fee@global": [
+        {
+            "category": "local",
+            "name": "fee_amount",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setup",
+            "type": [
+                "int",
+                "str",
+                "raiden.storage.utils.TimestampedEvent"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "ReceiveSecretRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iteration",
+            "type": [
+                "int",
+                "raiden.transfer.architecture.TransitionResult"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initiator_state_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change_2",
+            "type": [
+                "ReceiveSecretRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iteration2",
+            "type": [
+                "int",
+                "raiden.transfer.architecture.TransitionResult"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_state_wait_secretrequest_valid_amount_and_fee",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_state_wait_unlock_invalid@global": [
+        {
+            "category": "local",
+            "name": "setup",
+            "type": [
+                "str",
+                "int",
+                "typing.NamedTuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initiator_state_",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "ReceiveSecretReveal"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iteration",
+            "type": [
+                "int",
+                "raiden.transfer.architecture.TransitionResult"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_state_wait_unlock_invalid",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_state_wait_unlock_valid@global": [
+        {
+            "category": "local",
+            "name": "setup",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initiator_state_",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "ReceiveSecretReveal"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iteration",
+            "type": [
+                "int",
+                "raiden.transfer.architecture.TransitionResult"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_state_wait_unlock_valid",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

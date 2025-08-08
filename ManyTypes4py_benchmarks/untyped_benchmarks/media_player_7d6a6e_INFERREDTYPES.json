@@ -1,0 +1,683 @@
+{
+    "__init__@LgTVDevice": [
+        {
+            "category": "arg",
+            "name": "client",
+            "type": [
+                "typing.Any",
+                "None",
+                "list['Request']",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "name",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "typing.Any",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "model",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "typing.Any",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "unique_id",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_muted",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_turn_on",
+            "type": [
+                "PluggableAction"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_volume",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_channel_id",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_channel_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_program_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_sources",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_source_names",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unique_id",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_unique_id",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "typing.Any",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "typing.Any",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_device_info",
+            "type": [
+                "DeviceInfo"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__update_volume@LgTVDevice": [
+        {
+            "category": "local",
+            "name": "volume_info",
+            "type": [
+                "int",
+                "dict[str, dict[str, typing.Any]]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "volume",
+            "type": [
+                "dict[str, int]",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "muted",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_volume",
+            "type": [
+                "dict[str, int]",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_muted",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__update_volume",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_added_to_hass@LgTVDevice": [
+        {
+            "category": "return",
+            "name": "async_added_to_hass",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_setup_entry@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "homeassistanconfig_entries.ConfigEntry"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "config_entry",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistancore.HomeAssistant",
+                "typing.Callable[List,bool, None]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "async_add_entities",
+            "type": [
+                "typing.Callable[List,bool, None]",
+                "homeassistanconfig_entries.ConfigEntry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config_entry",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistancore.HomeAssistant",
+                "typing.Callable[List,bool, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DEFAULT_NAME",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client",
+            "type": [
+                "LgNetCastClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "homeassistanconfig_entries.ConfigEntry"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_setup_entry",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_turn_on@LgTVDevice": [
+        {
+            "category": "return",
+            "name": "async_turn_on",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "DEFAULT_NAME",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_ON_ACTION",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SUPPORT_LGTV",
+            "type": [
+                "int",
+                "tuple[typing.Union[typing.Any,typing.Literal]]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_turn_on",
+            "type": [
+                "PluggableAction"
+            ]
+        }
+    ],
+    "is_volume_muted@LgTVDevice": [
+        {
+            "category": "return",
+            "name": "is_volume_muted",
+            "type": []
+        }
+    ],
+    "media_channel@LgTVDevice": [
+        {
+            "category": "return",
+            "name": "media_channel",
+            "type": []
+        }
+    ],
+    "media_content_id@LgTVDevice": [
+        {
+            "category": "return",
+            "name": "media_content_id",
+            "type": []
+        }
+    ],
+    "media_image_url@LgTVDevice": [
+        {
+            "category": "return",
+            "name": "media_image_url",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "media_next_track@LgTVDevice": [
+        {
+            "category": "return",
+            "name": "media_next_track",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "media_pause@LgTVDevice": [
+        {
+            "category": "return",
+            "name": "media_pause",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "media_play@LgTVDevice": [
+        {
+            "category": "return",
+            "name": "media_play",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "media_previous_track@LgTVDevice": [
+        {
+            "category": "return",
+            "name": "media_previous_track",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "media_stop@LgTVDevice": [
+        {
+            "category": "return",
+            "name": "media_stop",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "media_title@LgTVDevice": [
+        {
+            "category": "return",
+            "name": "media_title",
+            "type": []
+        }
+    ],
+    "mute_volume@LgTVDevice": [
+        {
+            "category": "arg",
+            "name": "mute",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "mute_volume",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "play_media@LgTVDevice": [
+        {
+            "category": "arg",
+            "name": "media_type",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "media_id",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "media_type",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "play_media",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "select_source@LgTVDevice": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "select_source",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "send_command@LgTVDevice": [
+        {
+            "category": "arg",
+            "name": "command",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "command",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "send_command",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "set_volume_level@LgTVDevice": [
+        {
+            "category": "arg",
+            "name": "volume",
+            "type": [
+                "float",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "volume",
+            "type": [
+                "float",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_volume_level",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "source@LgTVDevice": [
+        {
+            "category": "return",
+            "name": "source",
+            "type": []
+        }
+    ],
+    "source_list@LgTVDevice": [
+        {
+            "category": "return",
+            "name": "source_list",
+            "type": []
+        }
+    ],
+    "supported_features@LgTVDevice": [
+        {
+            "category": "local",
+            "name": "SUPPORT_LGTV",
+            "type": [
+                "int",
+                "tuple[typing.Union[typing.Any,typing.Literal]]",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "supported_features",
+            "type": [
+                "int",
+                "tuple[typing.Union[typing.Any,typing.Literal]]",
+                "list"
+            ]
+        }
+    ],
+    "turn_off@LgTVDevice": [
+        {
+            "category": "return",
+            "name": "turn_off",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "update@LgTVDevice": [
+        {
+            "category": "local",
+            "name": "channel_id",
+            "type": [
+                "str",
+                "int",
+                "bytes",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_channel_name",
+            "type": [
+                "None",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_program_name",
+            "type": [
+                "None",
+                "str",
+                "list[str]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_channel_id",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_names",
+            "type": [
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_name",
+            "type": [
+                "str",
+                "list[str]",
+                "list",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_tuples",
+            "type": [
+                "list[tuple]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sorted_sources",
+            "type": [
+                "list[tuple]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_source_names",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "volume_down@LgTVDevice": [
+        {
+            "category": "return",
+            "name": "volume_down",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "volume_level@LgTVDevice": [
+        {
+            "category": "return",
+            "name": "volume_level",
+            "type": [
+                "float"
+            ]
+        }
+    ],
+    "volume_up@LgTVDevice": [
+        {
+            "category": "return",
+            "name": "volume_up",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

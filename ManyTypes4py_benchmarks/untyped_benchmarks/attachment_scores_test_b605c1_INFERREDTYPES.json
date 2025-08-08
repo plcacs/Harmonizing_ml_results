@@ -1,0 +1,439 @@
+{
+    "_send_tensors_to_device@AttachmentScoresTest": [
+        {
+            "category": "arg",
+            "name": "device",
+            "type": [
+                "str",
+                "typing.Iterable[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "str",
+                "typing.Iterable[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "predictions",
+            "type": [
+                "dict[str, typing.Any]",
+                "list[list[float]]",
+                "tuple[tuple[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gold_indices",
+            "type": [
+                "int",
+                "str",
+                "dict[typing.Any, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "label_predictions",
+            "type": [
+                "list[list[float]]",
+                "dict[str, float]",
+                "dict[str, typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gold_labels",
+            "type": [
+                "str",
+                "int",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mask",
+            "type": [
+                "int",
+                "property",
+                "list[bool]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_send_tensors_to_device",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [],
+    "multiple_runs@global": [
+        {
+            "category": "arg",
+            "name": "global_rank",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "world_size",
+            "type": [
+                "int",
+                "tuple[float]",
+                "torch.device"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "gpu_id",
+            "type": [
+                "int",
+                "tuple[float]",
+                "torch.device"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "metric",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[int, typing.Any]",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "metric_kwargs",
+            "type": [
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "desired_values",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exact",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "kwargs",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "argname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_kwargs",
+            "type": [
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "global_rank",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[int, typing.Any]",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metrics",
+            "type": [
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "multiple_runs",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "setup_method@AttachmentScoresTest": [
+        {
+            "category": "local",
+            "name": "scorer",
+            "type": [
+                "AttachmentScores"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "setup_method",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_attachment_scores_can_ignore_labels@AttachmentScoresTest": [
+        {
+            "category": "arg",
+            "name": "device",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scorer",
+            "type": [
+                "AttachmentScores"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_attachment_scores_can_ignore_labels",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_distributed_attachment_scores@AttachmentScoresTest": [
+        {
+            "category": "local",
+            "name": "predictions",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gold_indices",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "label_predictions",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gold_labels",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mask",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_kwargs",
+            "type": [
+                "dict[typing.Text, list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "desired_metrics",
+            "type": [
+                "dict[typing.Text, float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_distributed_attachment_scores",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_labeled_accuracy_is_affected_by_incorrect_heads@AttachmentScoresTest": [
+        {
+            "category": "arg",
+            "name": "device",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metrics",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "dict[str, dict]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_labeled_accuracy_is_affected_by_incorrect_heads",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_multiple_distributed_runs@AttachmentScoresTest": [
+        {
+            "category": "local",
+            "name": "predictions",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gold_indices",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "label_predictions",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gold_labels",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mask",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_kwargs",
+            "type": [
+                "dict[typing.Text, list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "desired_metrics",
+            "type": [
+                "dict[typing.Text, float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_multiple_distributed_runs",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_perfect_scores@AttachmentScoresTest": [
+        {
+            "category": "arg",
+            "name": "device",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_perfect_scores",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_unlabeled_accuracy_ignores_incorrect_labels@AttachmentScoresTest": [
+        {
+            "category": "arg",
+            "name": "device",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metrics",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "dict[str, dict]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_unlabeled_accuracy_ignores_incorrect_labels",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

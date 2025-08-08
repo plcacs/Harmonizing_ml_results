@@ -1,0 +1,3176 @@
+{
+    "__init__@APIServer": [
+        {
+            "category": "arg",
+            "name": "rest_api",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "raiden.constants.Environment",
+                "pika.channel.Channel",
+                "raiden.network.rpc.clienJSONRPCClient"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "eth_rpc_endpoint",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rest_api",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_api_prefix",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flask_app",
+            "type": [
+                "Flask"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "raiden.constants.Environment",
+                "pika.channel.Channel",
+                "raiden.network.rpc.clienJSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "eth_rpc_endpoint",
+            "type": [
+                "str",
+                "typing.Any",
+                "None",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blueprint",
+            "type": [
+                "flask.blueprints.Blueprint"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flask_api_context",
+            "type": [
+                "Api"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "URLS_V1",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stop_event",
+            "type": [
+                "Event"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wsgiserver",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "route",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@RestAPI": [
+        {
+            "category": "arg",
+            "name": "raiden_api",
+            "type": [
+                "None",
+                "raiden.api.python.RaidenAPI",
+                "raiden.raiden_service.RaidenService",
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rpc_client",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rpc_client",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_rpc_client",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_api",
+            "type": [
+                "None",
+                "raiden.api.python.RaidenAPI",
+                "raiden.raiden_service.RaidenService",
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_raiden_api",
+            "type": [
+                "None",
+                "raiden.api.python.RaidenAPI",
+                "raiden.raiden_service.RaidenService",
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_schema",
+            "type": [
+                "ChannelStateSchema"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address_list_schema",
+            "type": [
+                "AddressListSchema"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partner_per_token_list_schema",
+            "type": [
+                "PartnersPerTokenListSchema"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payment_schema",
+            "type": [
+                "PaymentSchema"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sent_success_payment_schema",
+            "type": [
+                "EventPaymentSentSuccessSchema"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "received_success_payment_schema",
+            "type": [
+                "EventPaymentReceivedSuccessSchema"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "failed_payment_schema",
+            "type": [
+                "EventPaymentSentFailedSchema"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "notification_schema",
+            "type": [
+                "NotificationSchema"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_check_shutdown_before_handle_request@APIServer": [
+        {
+            "category": "return",
+            "name": "_check_shutdown_before_handle_request",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_close@RestAPI": [
+        {
+            "category": "arg",
+            "name": "registry_address",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.ABI",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "channel_state",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.ABI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "registry_address",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.ABI",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_state",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.ABI"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_close",
+            "type": [
+                "apistar.http.Response",
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list[dict[str, typing.Any]]",
+                "raiden.utils.Any",
+                "str"
+            ]
+        }
+    ],
+    "_deposit@RestAPI": [
+        {
+            "category": "arg",
+            "name": "registry_address",
+            "type": [
+                "raiden.utils.TargetAddress",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "channel_state",
+            "type": [
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.TokenAmount",
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "total_deposit",
+            "type": [
+                "raiden.utils.TargetAddress",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "registry_address",
+            "type": [
+                "raiden.utils.TargetAddress",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_state",
+            "type": [
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.TokenAmount",
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_deposit",
+            "type": [
+                "raiden.utils.TargetAddress",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_deposit",
+            "type": [
+                "str",
+                "dict",
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list[dict[str, typing.Any]]",
+                "raiden.utils.Any",
+                "str"
+            ]
+        }
+    ],
+    "_deposit_to_udc@RestAPI": [
+        {
+            "category": "arg",
+            "name": "total_deposit",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.PaymentWithFeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_deposit",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.PaymentWithFeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transaction_hash",
+            "type": [
+                "bytes",
+                "raiden.utils.Any",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_deposit_to_udc",
+            "type": [
+                "tuple[typing.Union[str,int]]",
+                "dict[str, typing.Any]",
+                "list"
+            ]
+        }
+    ],
+    "_plan_withdraw_from_udc@RestAPI": [
+        {
+            "category": "arg",
+            "name": "planned_withdraw_amount",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "int",
+                "raiden.utils.FeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "planned_withdraw_amount",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "int",
+                "raiden.utils.FeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transaction_hash",
+            "type": [
+                "bytes",
+                "int",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "planned_withdraw_block_number",
+            "type": [
+                "int",
+                "raiden.transfer.state.NettingChannelState",
+                "raiden.utils.MessageID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_plan_withdraw_from_udc",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "list[list[int]]",
+                "typing.Generator[typing.Optional[typing.Any]]"
+            ]
+        }
+    ],
+    "_run@APIServer": [
+        {
+            "category": "local",
+            "name": "wsgiserver",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_run",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_serve_webui@APIServer": [
+        {
+            "category": "arg",
+            "name": "file_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "web3",
+            "type": [
+                "dict[str, dict[str, str]]",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "environment_type",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "dict[typing.Text, typing.Union[dict[str, dict[str, str]],dict,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "host_header",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "web3_host",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "web3_port",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "host",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "web3_port_str",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "requests.models.Response"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_serve_webui",
+            "type": [
+                "requests.models.Response"
+            ]
+        }
+    ],
+    "_set_channel_reveal_timeout@RestAPI": [
+        {
+            "category": "arg",
+            "name": "registry_address",
+            "type": [
+                "raiden.utils.BlockTimeout",
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "channel_state",
+            "type": [
+                "raiden.utils.BlockTimeout",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.PaymentNetworkID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "reveal_timeout",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.TargetAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_state",
+            "type": [
+                "raiden.utils.BlockTimeout",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.PaymentNetworkID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reveal_timeout",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.TargetAddress"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_set_channel_reveal_timeout",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "registry_address",
+            "type": [
+                "raiden.utils.BlockTimeout",
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list[dict[str, typing.Any]]",
+                "raiden.utils.Any",
+                "str"
+            ]
+        }
+    ],
+    "_updated_channel_state@RestAPI": [
+        {
+            "category": "arg",
+            "name": "registry_address",
+            "type": [
+                "list[raiden.utils.Address]",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.PaymentNetworkID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "channel_state",
+            "type": [
+                "list[raiden.utils.Address]",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.PaymentNetworkID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "registry_address",
+            "type": [
+                "list[raiden.utils.Address]",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.PaymentNetworkID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_state",
+            "type": [
+                "list[raiden.utils.Address]",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.PaymentNetworkID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "raiden.transfer.events.EventPaymentSentFailed",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CHANNEL_NETWORK_STATE",
+            "type": [
+                "raiden.transfer.state.NettingChannelState",
+                "raiden.transfer.state.NettingChannelEndState",
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_updated_channel_state",
+            "type": [
+                "None",
+                "raiden.transfer.events.EventPaymentSentFailed"
+            ]
+        }
+    ],
+    "_updated_channel_state_from_addresses@RestAPI": [
+        {
+            "category": "arg",
+            "name": "registry_address",
+            "type": [
+                "raiden.utils.TokenAddress",
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "partner_address",
+            "type": [
+                "raiden.utils.TokenAddress",
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.TokenAddress",
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "registry_address",
+            "type": [
+                "raiden.utils.TokenAddress",
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.TokenAddress",
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partner_address",
+            "type": [
+                "raiden.utils.TokenAddress",
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "raiden.transfer.events.EventPaymentSentFailed",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CHANNEL_NETWORK_STATE",
+            "type": [
+                "raiden.transfer.state.NettingChannelState",
+                "raiden.transfer.state.NettingChannelEndState",
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_updated_channel_state_from_addresses",
+            "type": [
+                "None",
+                "raiden.transfer.events.EventPaymentSentFailed"
+            ]
+        }
+    ],
+    "_withdraw@RestAPI": [
+        {
+            "category": "arg",
+            "name": "registry_address",
+            "type": [
+                "str",
+                "raiden.utils.Address",
+                "raiden.storage.sqlite.SQLiteStorage"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "channel_state",
+            "type": [
+                "str",
+                "raiden.utils.Address",
+                "raiden.storage.sqlite.SQLiteStorage"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "total_withdraw",
+            "type": [
+                "str",
+                "raiden.utils.Address",
+                "raiden.storage.sqlite.SQLiteStorage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "registry_address",
+            "type": [
+                "str",
+                "raiden.utils.Address",
+                "raiden.storage.sqlite.SQLiteStorage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_state",
+            "type": [
+                "str",
+                "raiden.utils.Address",
+                "raiden.storage.sqlite.SQLiteStorage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_withdraw",
+            "type": [
+                "str",
+                "raiden.utils.Address",
+                "raiden.storage.sqlite.SQLiteStorage"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_withdraw",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list[dict[str, typing.Any]]",
+                "raiden.utils.Any",
+                "str"
+            ]
+        }
+    ],
+    "_withdraw_from_udc@RestAPI": [
+        {
+            "category": "arg",
+            "name": "amount",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transaction_hash",
+            "type": [
+                "bytes",
+                "str",
+                "typing.Callable[object, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_withdraw_from_udc",
+            "type": [
+                "tuple[typing.Union[str,int]]",
+                "dict[str, typing.Any]",
+                "\"request_response\""
+            ]
+        }
+    ],
+    "available@RestAPI": [
+        {
+            "category": "return",
+            "name": "available",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "checksum_address@RestAPI": [
+        {
+            "category": "return",
+            "name": "checksum_address",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "encode_byte_values@global": [
+        {
+            "category": "arg",
+            "name": "map_",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k",
+            "type": [
+                "tuple[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "v",
+            "type": [
+                "tuple[typing.Union[str,typing.Any]]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "map_",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "encode_byte_values",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "encode_object_to_str@global": [
+        {
+            "category": "arg",
+            "name": "map_",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "encode_object_to_str",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "endpoint_not_found@global": [
+        {
+            "category": "arg",
+            "name": "e",
+            "type": [
+                "Exception",
+                "tuple[typing.Any]",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "errors",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception",
+                "tuple[typing.Any]",
+                "None",
+                "dict",
+                "InvalidEndpoint"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "endpoint_not_found",
+            "type": []
+        }
+    ],
+    "get_channel@RestAPI": [
+        {
+            "category": "arg",
+            "name": "registry_address",
+            "type": [
+                "raiden.utils.Address",
+                "str",
+                "raiden.utils.PaymentNetworkID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.Address",
+                "str",
+                "raiden.utils.PaymentNetworkID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "partner_address",
+            "type": [
+                "raiden.utils.Address",
+                "str",
+                "raiden.utils.PaymentNetworkID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "registry_address",
+            "type": [
+                "raiden.utils.Address",
+                "str",
+                "raiden.utils.PaymentNetworkID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.Address",
+                "str",
+                "raiden.utils.PaymentNetworkID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partner_address",
+            "type": [
+                "raiden.utils.Address",
+                "str",
+                "raiden.utils.PaymentNetworkID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list[dict[str, typing.Any]]",
+                "str",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_channel",
+            "type": [
+                "str",
+                "django.http.HttpRequest",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        }
+    ],
+    "get_channel_list@RestAPI": [
+        {
+            "category": "arg",
+            "name": "registry_address",
+            "type": [
+                "str",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.TargetAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_address",
+            "type": [
+                "None",
+                "str",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.TargetAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "partner_address",
+            "type": [
+                "None",
+                "str",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.TargetAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "registry_address",
+            "type": [
+                "str",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.TargetAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "None",
+                "str",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.TargetAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partner_address",
+            "type": [
+                "None",
+                "str",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.TargetAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_service_result",
+            "type": [
+                "str",
+                "set",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channels_result",
+            "type": [
+                "list",
+                "list[list[dict[str, typing.Any]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_state",
+            "type": [
+                "typing.Text",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list[dict[str, typing.Any]]",
+                "list[object]",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_channel_list",
+            "type": [
+                "str",
+                "bool",
+                "werkzeug.wrappers.Response"
+            ]
+        }
+    ],
+    "get_connection_managers_info@RestAPI": [
+        {
+            "category": "arg",
+            "name": "registry_address",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "registry_address",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "connection_managers",
+            "type": [
+                "dict",
+                "dict[, dict[typing.Text, str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_connection_managers_info",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "get_contract_versions@RestAPI": [
+        {
+            "category": "return",
+            "name": "get_contract_versions",
+            "type": []
+        }
+    ],
+    "get_new_notifications@RestAPI": [
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "notifications",
+            "type": [
+                "str",
+                "set",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "dict",
+                "str",
+                "typing.Generator[typing.Optional[typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_new_notifications",
+            "type": [
+                "str",
+                "rotkehlchen.tests.utils.mock.MockResponse",
+                "werkzeug.wrappers.Response"
+            ]
+        }
+    ],
+    "get_node_settings@RestAPI": [
+        {
+            "category": "return",
+            "name": "get_node_settings",
+            "type": []
+        }
+    ],
+    "get_our_address@RestAPI": [
+        {
+            "category": "return",
+            "name": "get_our_address",
+            "type": []
+        }
+    ],
+    "get_partners_by_token@RestAPI": [
+        {
+            "category": "arg",
+            "name": "registry_address",
+            "type": [
+                "raiden.utils.Address",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.Address",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "registry_address",
+            "type": [
+                "raiden.utils.Address",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.Address",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "return_list",
+            "type": [
+                "list",
+                "list[dict[typing.Text, ]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_service_result",
+            "type": [
+                "set",
+                "str",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_partners_by_token",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "typing.Text",
+                "dict[str, typing.Any]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "schema_list",
+            "type": [
+                "PartnersPerTokenList"
+            ]
+        }
+    ],
+    "get_pending_transfers@RestAPI": [
+        {
+            "category": "arg",
+            "name": "token_address",
+            "type": [
+                "None",
+                "raiden.utils.Address",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "partner_address",
+            "type": [
+                "None",
+                "raiden.utils.Address",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "None",
+                "raiden.utils.Address",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partner_address",
+            "type": [
+                "None",
+                "raiden.utils.Address",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_pending_transfers",
+            "type": [
+                "django.http.HttpResponse",
+                "pyatv.suppormdns.Response",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        }
+    ],
+    "get_raiden_events_payment_history_with_timestamps@RestAPI": [
+        {
+            "category": "arg",
+            "name": "registry_address",
+            "type": [
+                "raiden.utils.TokenAddress",
+                "raiden.utils.TargetAddress",
+                "raiden.utils.Secret"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_address",
+            "type": [
+                "None",
+                "raiden.utils.Address",
+                "raiden.utils.ChainID",
+                "raiden.utils.PaymentHashInvoice"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_address",
+            "type": [
+                "None",
+                "raiden.utils.Address",
+                "raiden.utils.ChainID",
+                "raiden.utils.PaymentHashInvoice"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "limit",
+            "type": [
+                "None",
+                "raiden.utils.Address",
+                "raiden.utils.ChainID",
+                "raiden.utils.PaymentHashInvoice"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "offset",
+            "type": [
+                "None",
+                "raiden.utils.Address",
+                "raiden.utils.ChainID",
+                "raiden.utils.PaymentHashInvoice"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "None",
+                "raiden.utils.Address",
+                "raiden.utils.ChainID",
+                "raiden.utils.PaymentHashInvoice"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_address",
+            "type": [
+                "None",
+                "raiden.utils.Address",
+                "raiden.utils.ChainID",
+                "raiden.utils.PaymentHashInvoice"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "limit",
+            "type": [
+                "None",
+                "raiden.utils.Address",
+                "raiden.utils.ChainID",
+                "raiden.utils.PaymentHashInvoice"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "offset",
+            "type": [
+                "None",
+                "raiden.utils.Address",
+                "raiden.utils.ChainID",
+                "raiden.utils.PaymentHashInvoice"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "registry_address",
+            "type": [
+                "raiden.utils.TokenAddress",
+                "raiden.utils.TargetAddress",
+                "raiden.utils.Secret"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "service_result",
+            "type": [
+                "list[dict[str, typing.Any]]",
+                "asyncio.locks.Event",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_raiden_events_payment_history_with_timestamps",
+            "type": [
+                "str",
+                "django.http.HttpRequest",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "list[typing.Union[list,dict]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "dict[str, typing.Any]",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_",
+            "type": [
+                "EventPaymentSentSuccess",
+                "EventPaymentSentFailed",
+                "EventPaymentReceivedSuccess"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "serialized_event",
+            "type": [
+                "list",
+                "dict",
+                "list[dict[str, typing.Any]]"
+            ]
+        }
+    ],
+    "get_raiden_internal_events_with_timestamps@RestAPI": [
+        {
+            "category": "arg",
+            "name": "limit",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "offset",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "limit",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "offset",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_raiden_internal_events_with_timestamps",
+            "type": [
+                "str",
+                "rotkehlchen.tests.utils.mock.MockResponse",
+                "bool"
+            ]
+        }
+    ],
+    "get_raiden_version@RestAPI": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_raiden_version",
+            "type": [
+                "str",
+                "bool",
+                "django.http.HttpResponse"
+            ]
+        }
+    ],
+    "get_status@RestAPI": [
+        {
+            "category": "return",
+            "name": "get_status",
+            "type": [
+                "str",
+                "bool",
+                "Response"
+            ]
+        }
+    ],
+    "get_token_network_for_token@RestAPI": [
+        {
+            "category": "arg",
+            "name": "registry_address",
+            "type": [
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.transfer.state.ChainState",
+                "raiden_libs.types.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "registry_address",
+            "type": [
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.transfer.state.ChainState",
+                "raiden_libs.types.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_address",
+            "type": [
+                "raiden_libs.types.Address",
+                "raiden.utils.PaymentNetworkID",
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_token_network_for_token",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pretty_address",
+            "type": [
+                "str",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "get_tokens_list@RestAPI": [
+        {
+            "category": "arg",
+            "name": "registry_address",
+            "type": [
+                "str",
+                "eth_utils.ChecksumAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "registry_address",
+            "type": [
+                "str",
+                "eth_utils.ChecksumAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_service_result",
+            "type": [
+                "set",
+                "list[dict[str, typing.Any]]",
+                "list[tuple[typing.Union[int,typing.Any]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens_list",
+            "type": [
+                "AddressList"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list[object]",
+                "list",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_tokens_list",
+            "type": [
+                "bool",
+                "werkzeug.wrappers.Response",
+                "rotkehlchen.tests.utils.mock.MockResponse"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CHANNEL_NETWORK_STATE",
+            "type": [
+                "typing.Text",
+                "raiden.transfer.state.NettingChannelState",
+                "raiden.transfer.state.NettingChannelEndState",
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "URLS_V1",
+            "type": [
+                "list[tuple[typing.Text]]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flask_app",
+            "type": [
+                "Flask"
+            ]
+        }
+    ],
+    "hexbytes_to_str@global": [
+        {
+            "category": "arg",
+            "name": "map_",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k",
+            "type": [
+                "tuple[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "v",
+            "type": [
+                "tuple[typing.Union[str,typing.Any]]",
+                "HexBytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "map_",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "hexbytes_to_str",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "initiate_payment@RestAPI": [
+        {
+            "category": "arg",
+            "name": "registry_address",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentHashInvoice",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentHashInvoice",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_address",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentHashInvoice",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "amount",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentHashInvoice",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "identifier",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentHashInvoice",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "secret",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentHashInvoice",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "secret_hash",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentHashInvoice",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "lock_timeout",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentHashInvoice",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "route_states",
+            "type": [
+                "None",
+                "raiden.utils.Address",
+                "raiden.utils.TargetAddress",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "registry_address",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentHashInvoice",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentHashInvoice",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_address",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentHashInvoice",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentHashInvoice",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "identifier",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentHashInvoice",
+                "raiden.utils.ChainID",
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentHashInvoice",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret_hash",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentHashInvoice",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_timeout",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentHashInvoice",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "route_states",
+            "type": [
+                "None",
+                "raiden.utils.Address",
+                "raiden.utils.TargetAddress",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payment_status",
+            "type": [
+                "raiden.raiden_service.PaymentStatus",
+                "tuple[str]",
+                "raiden.transfer.mediated_transfer.state.InitiatorTransferState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "initiate_payment",
+            "type": [
+                "str",
+                "typing.Iterable[bytes]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "str",
+                "list[dict[str, typing.Any]]",
+                "dict",
+                "EventPaymentSentFailed"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payment",
+            "type": [
+                "dict[typing.Text, typing.Union[raiden.utils.PaymentID,raiden.utils.PaymentHashInvoice,raiden.utils.ChainID,str,int]]"
+            ]
+        }
+    ],
+    "leave@RestAPI": [
+        {
+            "category": "arg",
+            "name": "registry_address",
+            "type": [
+                "raiden.utils.Address",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.Address",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "registry_address",
+            "type": [
+                "raiden.utils.Address",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.Address",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "closed_channels",
+            "type": [
+                "str",
+                "raiden_libs.types.Address",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "closed_channels_result",
+            "type": [
+                "list",
+                "list[typing.Union[list[raiden.utils.upgrades.UpgradeRecord],str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_state",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list[raiden.utils.upgrades.UpgradeRecord]",
+                "list[dict[str, typing.Any]]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "leave",
+            "type": [
+                "rotkehlchen.tests.utils.mock.MockResponse",
+                "werkzeug.wrappers.Response"
+            ]
+        }
+    ],
+    "mint_token_for@RestAPI": [
+        {
+            "category": "arg",
+            "name": "token_address",
+            "type": [
+                "str",
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to",
+            "type": [
+                "str",
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "str",
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "mint_token_for",
+            "type": [
+                "str",
+                "tuple[typing.Union[typing.Literal,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "str",
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to",
+            "type": [
+                "str",
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "str",
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transaction_hash",
+            "type": [
+                "str",
+                "bytes",
+                "raiden.utils.Any"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        }
+    ],
+    "open@RestAPI": [
+        {
+            "category": "arg",
+            "name": "registry_address",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "partner_address",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "settle_timeout",
+            "type": [
+                "None",
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "reveal_timeout",
+            "type": [
+                "None",
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "total_deposit",
+            "type": [
+                "None",
+                "raiden.utils.NetworkTimeout",
+                "raiden.utils.Address",
+                "raiden.utils.PaymentNetworkID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "registry_address",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partner_address",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "settle_timeout",
+            "type": [
+                "None",
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reveal_timeout",
+            "type": [
+                "None",
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token",
+            "type": [
+                "staticmethod",
+                "raiden.utils.TokenAddress",
+                "raiden.network.proxies.token.Token"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "open",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "total_deposit",
+            "type": [
+                "None",
+                "raiden.utils.NetworkTimeout",
+                "raiden.utils.Address",
+                "raiden.utils.PaymentNetworkID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error_msg",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_status",
+            "type": [
+                "dict[str, typing.Union[int,str]]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list[dict[str, typing.Any]]",
+                "dict",
+                "typing.Generator[typing.Optional[typing.Any]]"
+            ]
+        }
+    ],
+    "patch_channel@RestAPI": [
+        {
+            "category": "arg",
+            "name": "registry_address",
+            "type": [
+                "raiden.utils.PaymentID",
+                "list[raiden.raiden_service.RaidenService]",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.PaymentID",
+                "list[raiden.raiden_service.RaidenService]",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "partner_address",
+            "type": [
+                "raiden.utils.PaymentID",
+                "list[raiden.raiden_service.RaidenService]",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "total_deposit",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "total_withdraw",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "reveal_timeout",
+            "type": [
+                "None",
+                "raiden.utils.PaymentID",
+                "list[raiden.raiden_service.RaidenService]",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "None",
+                "raiden.utils.PaymentID",
+                "list[raiden.raiden_service.RaidenService]",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "registry_address",
+            "type": [
+                "raiden.utils.PaymentID",
+                "list[raiden.raiden_service.RaidenService]",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.PaymentID",
+                "list[raiden.raiden_service.RaidenService]",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partner_address",
+            "type": [
+                "raiden.utils.PaymentID",
+                "list[raiden.raiden_service.RaidenService]",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_deposit",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentAmount",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reveal_timeout",
+            "type": [
+                "None",
+                "raiden.utils.PaymentID",
+                "list[raiden.raiden_service.RaidenService]",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "None",
+                "raiden.utils.PaymentID",
+                "list[raiden.raiden_service.RaidenService]",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "patch_channel",
+            "type": [
+                "str",
+                "list[tuple[typing.Any]]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_withdraw",
+            "type": [
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "empty_request",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_state",
+            "type": [
+                "typing.Optional",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "str",
+                "list[tuple[typing.Any]]",
+                "dict[str, typing.Any]"
+            ]
+        }
+    ],
+    "raiden_api@RestAPI": [
+        {
+            "category": "local",
+            "name": "_raiden_api",
+            "type": [
+                "raiden.api.python.RaidenAPI",
+                "raiden.api.resRestAPI",
+                "risesdk.api.clienClient"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "raiden_api",
+            "type": [
+                "raiden.api.python.RaidenAPI",
+                "raiden.api.resRestAPI",
+                "risesdk.api.clienClient"
+            ]
+        }
+    ],
+    "register_token@RestAPI": [
+        {
+            "category": "arg",
+            "name": "registry_address",
+            "type": [
+                "raiden.utils.Address",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.Address",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "register_token",
+            "type": [
+                "bool",
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "conflict_exceptions",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "registry_address",
+            "type": [
+                "raiden.utils.Address",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.Address",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.Any",
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        }
+    ],
+    "restapi_setup_type_converters@global": [
+        {
+            "category": "arg",
+            "name": "flask_app",
+            "type": [
+                "dict[str, str]",
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "names_to_converters",
+            "type": [
+                "dict[str, str]",
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "names_to_converters",
+            "type": [
+                "dict[str, str]",
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "restapi_setup_type_converters",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "restapi_setup_urls@global": [
+        {
+            "category": "arg",
+            "name": "flask_api_context",
+            "type": [
+                "flask_restful.Api",
+                "rotkehlchen.api.resRestAPI",
+                "flask.Flask"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rest_api",
+            "type": [
+                "flask_restful.Api",
+                "rotkehlchen.api.resRestAPI",
+                "flask.Flask"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "urls",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url_tuple",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "urls",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "route",
+            "type": [
+                "list[apistar.routing.Route]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resource_cls",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "endpoint",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flask_api_context",
+            "type": [
+                "flask_restful.Api",
+                "rotkehlchen.api.resRestAPI",
+                "flask.Flask"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rest_api",
+            "type": [
+                "flask_restful.Api",
+                "rotkehlchen.api.resRestAPI",
+                "flask.Flask"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "restapi_setup_urls",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "rpc_client@RestAPI": [
+        {
+            "category": "return",
+            "name": "rpc_client",
+            "type": []
+        }
+    ],
+    "send_udc_transaction@RestAPI": [
+        {
+            "category": "arg",
+            "name": "total_deposit",
+            "type": [
+                "None",
+                "raiden.utils.Signature",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.BlockExpiration"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "planned_withdraw_amount",
+            "type": [
+                "None",
+                "raiden.utils.Signature",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.BlockExpiration"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "withdraw_amount",
+            "type": [
+                "None",
+                "raiden.utils.Signature",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.BlockExpiration"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_deposit",
+            "type": [
+                "None",
+                "raiden.utils.Signature",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.BlockExpiration"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "planned_withdraw_amount",
+            "type": [
+                "None",
+                "raiden.utils.Signature",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.BlockExpiration"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "withdraw_amount",
+            "type": [
+                "None",
+                "raiden.utils.Signature",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.BlockExpiration"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "send_udc_transaction",
+            "type": [
+                "list",
+                "list[list[int]]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "empty_request",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "list[list[int]]",
+                "dict"
+            ]
+        }
+    ],
+    "shutdown@RestAPI": [
+        {
+            "category": "return",
+            "name": "shutdown",
+            "type": [
+                "str",
+                "django.http.HttpResponse",
+                "apistar.http.Response"
+            ]
+        }
+    ],
+    "start@APIServer": [
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pool",
+            "type": [
+                "typing.Generator[typing.Optional[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wsgiserver",
+            "type": [
+                "WSGIServer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "start",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "stop@APIServer": [
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wsgiserver",
+            "type": [
+                "dict[int, str]",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "stop",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "unhandled_exception@APIServer": [
+        {
+            "category": "arg",
+            "name": "exception",
+            "type": [
+                "Exception",
+                "BaseException",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exception",
+            "type": [
+                "Exception",
+                "BaseException",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "unhandled_exception",
+            "type": []
+        }
+    ]
+}

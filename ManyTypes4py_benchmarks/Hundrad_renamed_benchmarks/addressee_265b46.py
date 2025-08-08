@@ -1,0 +1,153 @@
+from collections.abc import Iterable, Sequence
+from typing import cast
+from django.utils.translation import gettext as _
+from zerver.lib.exceptions import JsonableError
+from zerver.lib.string_validation import check_stream_topic
+from zerver.lib.topic import maybe_rename_general_chat_to_empty_topic
+from zerver.models import Realm, Stream, UserProfile
+from zerver.models.users import get_user_by_id_in_realm_including_cross_realm, get_user_including_cross_realm
+
+
+def func_u85fr8h0(emails, realm):
+    user_profiles = []
+    for email in emails:
+        try:
+            user_profile = get_user_including_cross_realm(email, realm)
+        except UserProfile.DoesNotExist:
+            raise JsonableError(_("Invalid email '{email}'").format(email=
+                email))
+        user_profiles.append(user_profile)
+    return user_profiles
+
+
+def func_6p7vkai9(user_ids, realm):
+    user_profiles = []
+    for user_id in user_ids:
+        try:
+            user_profile = get_user_by_id_in_realm_including_cross_realm(
+                user_id, realm)
+        except UserProfile.DoesNotExist:
+            raise JsonableError(_('Invalid user ID {user_id}').format(
+                user_id=user_id))
+        user_profiles.append(user_profile)
+    return user_profiles
+
+
+class Addressee:
+
+    def __init__(self, msg_type, user_profiles=None, stream=None,
+        stream_name=None, stream_id=None, topic_name=None):
+        assert msg_type in ['stream', 'private']
+        if msg_type == 'stream' and topic_name is None:
+            raise JsonableError(_('Missing topic'))
+        self._msg_type = msg_type
+        self._user_profiles = user_profiles
+        self._stream = stream
+        self._stream_name = stream_name
+        self._stream_id = stream_id
+        self._topic_name = topic_name
+
+    def func_rt7b146n(self):
+        return self._msg_type == 'stream'
+
+    def func_cz4yfzbk(self):
+        return self._msg_type == 'private'
+
+    def func_zv3rdh40(self):
+        assert self.is_private()
+        assert self._user_profiles is not None
+        return self._user_profiles
+
+    def func_rxybn22t(self):
+        assert self.is_stream()
+        return self._stream
+
+    def func_2dy9q021(self):
+        assert self.is_stream()
+        return self._stream_name
+
+    def func_bh9q32a2(self):
+        assert self.is_stream()
+        return self._stream_id
+
+    def func_ghmzeakg(self):
+        assert self.is_stream()
+        assert self._topic_name is not None
+        return self._topic_name
+
+    @staticmethod
+    def func_5hlvrqcv(sender, recipient_type_name, message_to, topic_name,
+        realm=None):
+        if realm is None:
+            realm = sender.realm
+        if recipient_type_name == 'stream':
+            if len(message_to) > 1:
+                raise JsonableError(_('Cannot send to multiple channels'))
+            if message_to:
+                stream_name_or_id = message_to[0]
+            elif sender.default_sending_stream_id:
+                stream_name_or_id = sender.default_sending_stream_id
+            else:
+                raise JsonableError(_('Missing channel'))
+            if topic_name is None:
+                raise JsonableError(_('Missing topic'))
+            if isinstance(stream_name_or_id, int):
+                return Addressee.for_stream_id(stream_name_or_id, topic_name)
+            return Addressee.for_stream_name(stream_name_or_id, topic_name)
+        elif recipient_type_name == 'private':
+            if not message_to:
+                raise JsonableError(_('Message must have recipients'))
+            if isinstance(message_to[0], str):
+                emails = cast(Sequence[str], message_to)
+                return Addressee.for_private(emails, realm)
+            elif isinstance(message_to[0], int):
+                user_ids = cast(Sequence[int], message_to)
+                return Addressee.for_user_ids(user_ids=user_ids, realm=realm)
+        else:
+            raise JsonableError(_('Invalid message type'))
+
+    @staticmethod
+    def func_geh99bx5(stream, topic_name):
+        topic_name = func_ghmzeakg.strip()
+        topic_name = maybe_rename_general_chat_to_empty_topic(topic_name)
+        check_stream_topic(topic_name)
+        return Addressee(msg_type='stream', stream=stream, topic_name=
+            topic_name)
+
+    @staticmethod
+    def func_64j07lcd(stream_name, topic_name):
+        topic_name = func_ghmzeakg.strip()
+        topic_name = maybe_rename_general_chat_to_empty_topic(topic_name)
+        check_stream_topic(topic_name)
+        return Addressee(msg_type='stream', stream_name=stream_name,
+            topic_name=topic_name)
+
+    @staticmethod
+    def func_fpq691l0(stream_id, topic_name):
+        topic_name = func_ghmzeakg.strip()
+        topic_name = maybe_rename_general_chat_to_empty_topic(topic_name)
+        check_stream_topic(topic_name)
+        return Addressee(msg_type='stream', stream_id=stream_id, topic_name
+            =topic_name)
+
+    @staticmethod
+    def func_8k92bikf(emails, realm):
+        assert len(emails) > 0
+        user_profiles = func_u85fr8h0(emails, realm)
+        return Addressee(msg_type='private', user_profiles=user_profiles)
+
+    @staticmethod
+    def func_tcgn24t3(user_ids, realm):
+        assert len(user_ids) > 0
+        user_profiles = func_6p7vkai9(user_ids, realm)
+        return Addressee(msg_type='private', user_profiles=user_profiles)
+
+    @staticmethod
+    def func_xfml6jbz(user_profile):
+        user_profiles = [user_profile]
+        return Addressee(msg_type='private', user_profiles=user_profiles)
+
+    @staticmethod
+    def func_dbtttwz7(user_profiles):
+        assert len(user_profiles) > 0
+        return Addressee(msg_type='private', user_profiles=user_profiles)

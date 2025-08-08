@@ -1,0 +1,800 @@
+{
+    "generate_dbt_ignore_spec@global": [
+        {
+            "category": "arg",
+            "name": "project_root",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "project_root",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ignore_file_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ignore_spec",
+            "type": [
+                "None",
+                "dict[str, list[str]]",
+                "set[str]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "f",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "generate_dbt_ignore_spec",
+            "type": [
+                "None",
+                "dict[str, list[str]]",
+                "set[str]",
+                "list[str]"
+            ]
+        }
+    ],
+    "get_file_type_lookup@ReadFilesFromDiff": [
+        {
+            "category": "arg",
+            "name": "file_types",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_type_lookup",
+            "type": [
+                "dict[typing.Text, dict]",
+                "dict[typing.Text, dict[, set]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_types",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_file_type_lookup",
+            "type": [
+                "dict[typing.Text, dict[, set]]"
+            ]
+        }
+    ],
+    "get_file_types_for_project@global": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": [
+                "bob_emploi.frontend.api.project_pb2.Project",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "project",
+            "type": [
+                "bob_emploi.frontend.api.project_pb2.Project",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_types",
+            "type": [
+                "dict[, dict[typing.Text, typing.Union[list[typing.Text],typing.Text]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_file_types_for_project",
+            "type": [
+                "dict[, dict[typing.Text, typing.Union[list[typing.Text],typing.Text]]]"
+            ]
+        }
+    ],
+    "get_project_file_types@ReadFilesFromDiff": [
+        {
+            "category": "arg",
+            "name": "project_name",
+            "type": [
+                "str",
+                "None",
+                "projects.project_models.Project"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "project_name",
+            "type": [
+                "str",
+                "None",
+                "projects.project_models.Project"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_project_file_types",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "get_project_name@ReadFilesFromDiff": [
+        {
+            "category": "arg",
+            "name": "path",
+            "type": [
+                "pathlib.PurePosixPath",
+                "set[str]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_project_name",
+            "type": []
+        }
+    ],
+    "get_source_files@global": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": [
+                "str",
+                "None",
+                "typing.Sequence[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "paths",
+            "type": [
+                "list[str]",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "extension",
+            "type": [
+                "list[str]",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "parse_file_type",
+            "type": [
+                "typing.Sequence[str]",
+                "str",
+                "typing.Callable[str, bool]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "saved_files",
+            "type": [
+                "str",
+                "bool",
+                "typing.Callable[str,str, None]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ignore_spec",
+            "type": [
+                "list[str]",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "project",
+            "type": [
+                "str",
+                "None",
+                "typing.Sequence[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "paths",
+            "type": [
+                "list[str]",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "extension",
+            "type": [
+                "list[str]",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ignore_spec",
+            "type": [
+                "list[str]",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fp_list",
+            "type": [
+                "list",
+                "list[str]",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fb_list",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fp",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parse_file_type",
+            "type": [
+                "typing.Sequence[str]",
+                "str",
+                "typing.Callable[str, bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "saved_files",
+            "type": [
+                "str",
+                "bool",
+                "typing.Callable[str,str, None]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_source_files",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "global@global": [],
+    "load_seed_source_file@global": [
+        {
+            "category": "arg",
+            "name": "match",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "project_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "match",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_file",
+            "type": [
+                "SourceFile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_file_",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "project_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_seed_source_file",
+            "type": [
+                "SourceFile"
+            ]
+        }
+    ],
+    "load_source_file@global": [
+        {
+            "category": "arg",
+            "name": "path",
+            "type": [
+                "pathlib.Path",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "parse_file_type",
+            "type": [
+                "str",
+                "None",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "project_name",
+            "type": [
+                "typing.Callable[str,str, None]",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "saved_files",
+            "type": [
+                "str",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parse_file_type",
+            "type": [
+                "str",
+                "None",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path",
+            "type": [
+                "pathlib.Path",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "project_name",
+            "type": [
+                "typing.Callable[str,str, None]",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "skip_loading_schema_file",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "saved_files",
+            "type": [
+                "str",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "old_source_file",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_source_file",
+            "type": []
+        }
+    ],
+    "read_files@ReadFiles": [
+        {
+            "category": "return",
+            "name": "read_files",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "read_files@ReadFilesFromDiff": [
+        {
+            "category": "local",
+            "name": "file_id",
+            "type": [
+                "int",
+                "str",
+                "typing.Type",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_file",
+            "type": [
+                "pathlib.Path",
+                "list[str]",
+                "str",
+                "SchemaSourceFile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "input_file_path",
+            "type": [
+                "FilePath"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "relative_path",
+            "type": [
+                "pathlib.Path",
+                "pathlib.PurePosixPath"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parse_ft_for_extension",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parse_ft_for_path",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parse_ft_set",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parse_ft",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "read_files",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "read_files@ReadFilesFromFileSystem": [
+        {
+            "category": "return",
+            "name": "read_files",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "read_files_for_parser@global": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": [
+                "str",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "files",
+            "type": [
+                "str",
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "parse_ft",
+            "type": [
+                "str",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "file_type_info",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "saved_files",
+            "type": [
+                "str",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ignore_spec",
+            "type": [
+                "str",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_type_info",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dirs",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser_files",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "extension",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "project",
+            "type": [
+                "str",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parse_ft",
+            "type": [
+                "str",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "saved_files",
+            "type": [
+                "str",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ignore_spec",
+            "type": [
+                "str",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_files",
+            "type": [
+                "str",
+                "list[str]",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sf",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "files",
+            "type": [
+                "str",
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "read_files_for_parser",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "read_files_for_project@ReadFilesFromFileSystem": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": [
+                "str",
+                "projects.project_models.Project",
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "file_types",
+            "type": [
+                "ark.types.PrimalDinoStatusComponent",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "project",
+            "type": [
+                "str",
+                "projects.project_models.Project",
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "project_files",
+            "type": [
+                "dict",
+                "dict[str, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parse_ft",
+            "type": [
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_type_info",
+            "type": [
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_types",
+            "type": [
+                "ark.types.PrimalDinoStatusComponent",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "read_files_for_project",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "validate_yaml@global": [
+        {
+            "category": "arg",
+            "name": "file_path",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dct",
+            "type": [
+                "dict",
+                "str",
+                "typing.MutableMapping"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dct",
+            "type": [
+                "dict",
+                "str",
+                "typing.MutableMapping"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_path",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "element",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "validate_yaml",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

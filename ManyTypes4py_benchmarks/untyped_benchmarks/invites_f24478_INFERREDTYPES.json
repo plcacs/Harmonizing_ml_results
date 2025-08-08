@@ -1,0 +1,862 @@
+{
+    "check_invite_limit@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "int",
+                "str",
+                "authentication.session.models.current_user.CurrentUser"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_invitees",
+            "type": [
+                "int",
+                "str",
+                "authentication.session.models.current_user.CurrentUser"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "str",
+                "list[bytes]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_invite_limit",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "int",
+                "str",
+                "authentication.session.models.current_user.CurrentUser"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_invitees",
+            "type": [
+                "int",
+                "str",
+                "authentication.session.models.current_user.CurrentUser"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_realms",
+            "type": [
+                "list",
+                "str",
+                "list[typing.Optional[str]]"
+            ]
+        }
+    ],
+    "do_create_multiuse_invite_link@global": [
+        {
+            "category": "arg",
+            "name": "referred_by",
+            "type": [
+                "tracim.models.auth.User",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "invited_as",
+            "type": [
+                "tracim.models.auth.User",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "invite_expires_in_minutes",
+            "type": [
+                "bool",
+                "str",
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_realm_default_subscriptions",
+            "type": [
+                "bool",
+                "None",
+                "models.Station"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "streams",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_groups",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "referred_by",
+            "type": [
+                "tracim.models.auth.User",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_realm_default_subscriptions",
+            "type": [
+                "bool",
+                "None",
+                "models.Station"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "invite",
+            "type": [
+                "dict[str, str]",
+                "typing.Type",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "streams",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_groups",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "invited_as",
+            "type": [
+                "tracim.models.auth.User",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "invite_",
+            "type": [
+                "tracim.models.auth.User",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "invite_expires_in_minutes",
+            "type": [
+                "bool",
+                "str",
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "do_create_multiuse_invite_link",
+            "type": []
+        }
+    ],
+    "do_get_invites_controlled_by_user@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "list[zerver.models.UserProfile]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "list[zerver.models.UserProfile]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prereg_users",
+            "type": [
+                "dict[str, str]",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "invites",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "invitee",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "multiuse_confirmation_objs",
+            "type": [
+                "str",
+                "dict[str, typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "multiuse_invite_ids",
+            "type": [
+                "int",
+                "list",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "confirmation_obj",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "do_get_invites_controlled_by_user",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "do_invite_users@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "invitee_emails",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "streams",
+            "type": [
+                "zerver.models.UserProfile",
+                "list[zerver.models.UserProfile]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "notify_referrer_on_join",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_groups",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "invite_expires_in_minutes",
+            "type": [
+                "zerver.models.UserProfile",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_realm_default_subscriptions",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "invite_as",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "invitee_emails",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_invites",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "good_emails",
+            "type": [
+                "set",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "errors",
+            "type": [
+                "list",
+                "list[tuple[typing.Union[str,dict[str, tuple[typing.Union[str,typing.Any]]],bool]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validate_email_allowed_in_realm",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "None",
+                "dict[str, bytes]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "email",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "email_error",
+            "type": [
+                "str",
+                "dict[str, tuple[typing.Union[str,typing.Any]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error_dict",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "skipped",
+            "type": [
+                "list",
+                "list[tuple[typing.Union[str,typing.Callable[None, typing.Any],list]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "str",
+                "typing.Callable[None, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deactivated",
+            "type": [
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validated_emails",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_realm_default_subscriptions",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "notify_referrer_on_join",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prereg_user",
+            "type": [
+                "PreregistrationUser"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "streams",
+            "type": [
+                "zerver.models.UserProfile",
+                "list[zerver.models.UserProfile]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_ids",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_groups",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "groups_ids",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "invite_expires_in_minutes",
+            "type": [
+                "zerver.models.UserProfile",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "do_invite_users",
+            "type": [
+                "list[tuple[typing.Union[str,typing.Callable[None, typing.Any],list]]]"
+            ]
+        }
+    ],
+    "do_revoke_multi_use_invite@global": [
+        {
+            "category": "arg",
+            "name": "multiuse_invite",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content_type",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "multiuse_invite",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "do_revoke_multi_use_invite",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "do_revoke_user_invite@global": [
+        {
+            "category": "arg",
+            "name": "prereg_user",
+            "type": [
+                "server.models.User",
+                "authentication.session.models.current_user.CurrentUser",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prereg_user",
+            "type": [
+                "server.models.User",
+                "authentication.session.models.current_user.CurrentUser",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content_type",
+            "type": [
+                "str",
+                "typing.Type",
+                "property"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "do_revoke_user_invite",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "do_send_user_invite_email@global": [
+        {
+            "category": "arg",
+            "name": "prereg_user",
+            "type": [
+                "zerver.models.Client",
+                "ajapaik.ajapaik_face_recognition.models.FaceRecognitionRectangle",
+                "list[zerver.models.UserProfile]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "confirmation",
+            "type": [
+                "None",
+                "str",
+                "datetime.timedelta",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "event_time",
+            "type": [
+                "None",
+                "zerver.models.UserProfile",
+                "zerver.models.Client",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "invite_expires_in_minutes",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.TokenAmount",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prereg_user",
+            "type": [
+                "zerver.models.Client",
+                "ajapaik.ajapaik_face_recognition.models.FaceRecognitionRectangle",
+                "list[zerver.models.UserProfile]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "typing.Type",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_time",
+            "type": [
+                "None",
+                "zerver.models.UserProfile",
+                "zerver.models.Client",
+                "str",
+                "datetime.datetime",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "confirmation",
+            "type": [
+                "None",
+                "str",
+                "datetime.timedelta",
+                "zerver.models.UserProfile",
+                "dict",
+                "alerta.models.alerAlert",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "dict[typing.Text, typing.Union[typing.Text,list,dict[typing.Text, ]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "invite_expires_in_minutes",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.TokenAmount",
+                "zerver.models.UserProfile",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "do_send_user_invite_email",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, str]",
+                "dict[str, dict]"
+            ]
+        }
+    ],
+    "estimate_recent_invites@global": [
+        {
+            "category": "arg",
+            "name": "realms",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "days",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recent_invites",
+            "type": [
+                "datetime.datetime",
+                "corporate.models.Customer.Plan",
+                "list[models.User]",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "estimate_recent_invites",
+            "type": [
+                "int",
+                "datetime.datetime",
+                "corporate.models.Customer.Plan",
+                "list[models.User]",
+                "None"
+            ]
+        }
+    ],
+    "get_invitation_expiry_date@global": [
+        {
+            "category": "arg",
+            "name": "confirmation_obj",
+            "type": [
+                "ddionrails.base.models.News",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "confirmation_obj",
+            "type": [
+                "ddionrails.base.models.News",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expiry_date",
+            "type": [
+                "None",
+                "datetime.date",
+                "datetime.datetime"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_invitation_expiry_date",
+            "type": [
+                "None",
+                "datetime.date",
+                "bool",
+                "str"
+            ]
+        }
+    ],
+    "global@global": [],
+    "too_many_recent_realm_invites@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "int",
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_invitees",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "int",
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recent_invites",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_invitees",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "too_many_recent_realm_invites",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "warning_flags",
+            "type": [
+                "list",
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_user_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "estimated_sent",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "permitted_ratio",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ratio",
+            "type": [
+                "float"
+            ]
+        }
+    ]
+}

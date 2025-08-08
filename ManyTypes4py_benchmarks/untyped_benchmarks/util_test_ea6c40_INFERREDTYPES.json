@@ -1,0 +1,2467 @@
+{
+    "__init__@DistributedFixtureModel": [
+        {
+            "category": "local",
+            "name": "direct_param",
+            "type": [
+                "int",
+                "list[int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "custom_submodule",
+            "type": [
+                "DistributedFixtureSubmodule"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "custom_sharded_submodule",
+            "type": [
+                "ShardedDistributedFixtureSubmodule"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "linear_submodule",
+            "type": [
+                "list",
+                "float",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@DistributedFixtureSubmodule": [
+        {
+            "category": "local",
+            "name": "direct_param",
+            "type": [
+                "int",
+                "list[int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "linear_submodule",
+            "type": [
+                "list",
+                "float",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@TestNnUtil,FakeTensor": [
+        {
+            "category": "local",
+            "name": "_device",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_brute_decode@TestNnUtil": [
+        {
+            "category": "arg",
+            "name": "tag_sequence",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "transition_matrix",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "top_k",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sequences",
+            "type": [
+                "list[list]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_sequences",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sequence",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scored_sequences",
+            "type": [
+                "list",
+                "list[tuple[typing.Union[bool,list]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "emission_score",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transition_score",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "score",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "top_k",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "top_k_sequences",
+            "type": [
+                "tuple[typing.Union[bool,list]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_brute_decode",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "_dist_load_ok@global": [
+        {
+            "category": "arg",
+            "name": "global_rank",
+            "type": [
+                "dict[str, str]",
+                "set[int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "world_size",
+            "type": [
+                "int",
+                "tuple[float]",
+                "list[list[int]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "gpu_id",
+            "type": [
+                "int",
+                "tuple[float]",
+                "list[list[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "DistributedFixtureModel"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "global_rank",
+            "type": [
+                "dict[str, str]",
+                "set[int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_dict",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_dist_load_ok",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_dist_load_with_errors@global": [
+        {
+            "category": "arg",
+            "name": "global_rank",
+            "type": [
+                "int",
+                "dict[str, str]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "world_size",
+            "type": [
+                "list[list[int]]",
+                "int",
+                "typing.Sequence[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "gpu_id",
+            "type": [
+                "list[list[int]]",
+                "int",
+                "typing.Sequence[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "DistributedFixtureModel"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "global_rank",
+            "type": [
+                "int",
+                "dict[str, str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_dict",
+            "type": [
+                "None",
+                "dict",
+                "dict[str, typing.Union[int,str]]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_missing_keys",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_unexpected_keys",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_dist_load_with_errors",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "assert_array_equal_with_mask@TestNnUtil": [
+        {
+            "category": "arg",
+            "name": "a",
+            "type": [
+                "torch.Tensor",
+                "numpy.core.multiarray.ndarray",
+                "torch.ByteTensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "b",
+            "type": [
+                "torch.Tensor",
+                "numpy.core.multiarray.ndarray",
+                "torch.ByteTensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mask",
+            "type": [
+                "torch.Tensor",
+                "numpy.core.multiarray.ndarray",
+                "torch.ByteTensor"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "assert_array_equal_with_mask",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "forward@DistributedFixtureModel": [
+        {
+            "category": "arg",
+            "name": "x",
+            "type": [
+                "torch.Tensor",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "forward",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "forward@DistributedFixtureSubmodule": [
+        {
+            "category": "arg",
+            "name": "x",
+            "type": [
+                "torch.Tensor",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "forward",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_original_module@ShardedDistributedFixtureSubmodule": [
+        {
+            "category": "return",
+            "name": "get_original_module",
+            "type": [
+                "ShardedDistributedFixtureSubmodule"
+            ]
+        }
+    ],
+    "global@global": [],
+    "global_distributed_func@global": [
+        {
+            "category": "arg",
+            "name": "global_rank",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "world_size",
+            "type": [
+                "bool",
+                "typing.Sequence[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "gpu_id",
+            "type": [
+                "bool",
+                "typing.Sequence[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "function",
+            "type": [
+                "str",
+                "'ConvolutionalEmbeddingConfig'",
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "func_kwargs",
+            "type": [
+                "dict",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "desired_values",
+            "type": [
+                "allennlp.common.Params",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "kwargs",
+            "type": [
+                "dict",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "argname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "func_kwargs",
+            "type": [
+                "dict",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "global_rank",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output",
+            "type": [
+                "dict",
+                "dict[str, tuple[str]]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "global_distributed_func",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_add_positional_features@TestNnUtil": [
+        {
+            "category": "return",
+            "name": "test_add_positional_features",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_add_sentence_boundary_token_ids_handles_2D_input@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "mask",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bos",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "eos",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_add_sentence_boundary_token_ids_handles_2D_input",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_add_sentence_boundary_token_ids_handles_3D_input@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "mask",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_add_sentence_boundary_token_ids_handles_3D_input",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_batched_index_select@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "targets",
+            "type": [
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_batched_index_select",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_batched_span_select@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "targets",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "selected",
+            "type": [
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_batched_span_select",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_bucket_values@TestNnUtil": [
+        {
+            "category": "return",
+            "name": "test_bucket_values",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_clamp_tensor@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "tensor",
+            "type": [
+                "list[torch.Tensor]",
+                "list",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "clamped_tensor",
+            "type": [
+                "list",
+                "list[list[str]]",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_clamp_tensor",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_combine_initial_dims@TestNnUtil": [
+        {
+            "category": "return",
+            "name": "test_combine_initial_dims",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_combine_tensors_and_multiply@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "tensors",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "combination",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_combine_tensors_and_multiply",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_combine_tensors_and_multiply_with_batch_size_one@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "seq_len_1",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "seq_len_2",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "embedding_dim",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "combination",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_combine_tensors_and_multiply_with_batch_size_one",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_combine_tensors_and_multiply_with_batch_size_one_and_seq_len_one@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "seq_len_1",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "seq_len_2",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "embedding_dim",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "combination",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_combine_tensors_and_multiply_with_batch_size_one_and_seq_len_one",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_combine_tensors_and_multiply_with_same_batch_size_and_embedding_dim@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "tensors",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "combination",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_combine_tensors_and_multiply_with_same_batch_size_and_embedding_dim",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_dist_reduce_sum@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "func_kwargs",
+            "type": [
+                "dict[typing.Text, list]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_dist_reduce_sum",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_extend_layer@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "lin_layer",
+            "type": [
+                "int",
+                "float",
+                "numpy.array",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_dim",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "old_weights",
+            "type": [
+                "int",
+                "dict[int, float]",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "old_bias",
+            "type": [
+                "list",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_extend_layer",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_flatten_and_batch_shift_indices@TestNnUtil": [
+        {
+            "category": "return",
+            "name": "test_flatten_and_batch_shift_indices",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_flattened_index_select@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "targets",
+            "type": [
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_flattened_index_select",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_final_encoder_states@TestNnUtil": [
+        {
+            "category": "return",
+            "name": "test_get_final_encoder_states",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_mask_from_sequence_lengths@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "mask",
+            "type": [
+                "list[bool]",
+                "property"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_mask_from_sequence_lengths",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_sequence_lengths_converts_to_long_tensor_and_avoids_variable_overflow@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "binary_mask",
+            "type": [
+                "numpy.ndarray",
+                "torch.Tensor",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_sequence_lengths_converts_to_long_tensor_and_avoids_variable_overflow",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_sequence_lengths_from_binary_mask@TestNnUtil": [
+        {
+            "category": "return",
+            "name": "test_get_sequence_lengths_from_binary_mask",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_text_field_mask_returns_a_correct_mask@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "text_field_tensors",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, ]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_text_field_mask_returns_a_correct_mask",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_text_field_mask_returns_a_correct_mask_character_only_input@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "text_field_tensors",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, ]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_text_field_mask_returns_a_correct_mask_character_only_input",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_text_field_mask_returns_a_correct_mask_character_only_input_custom_padding_id@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "text_field_tensors",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, ]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_text_field_mask_returns_a_correct_mask_character_only_input_custom_padding_id",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_text_field_mask_returns_a_correct_mask_custom_padding_id@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "text_field_tensors",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, ]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_text_field_mask_returns_a_correct_mask_custom_padding_id",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_text_field_mask_returns_a_correct_mask_list_field@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "text_field_tensors",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, ]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "actual_mask",
+            "type": [
+                "list[int]",
+                "list",
+                "list[list[bool]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_mask",
+            "type": [
+                "tuple[typing.Any]",
+                "list[int]",
+                "property"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_text_field_mask_returns_a_correct_mask_list_field",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_text_field_mask_returns_mask_key@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "text_field_tensors",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, ]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_text_field_mask_returns_mask_key",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_token_ids_from_text_field_tensors@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "string_tokens",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "x",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "list[Token]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vocab",
+            "type": [
+                "Vocabulary"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "char",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "elmo_indexer",
+            "type": [
+                "ELMoTokenCharactersIndexer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_chars_indexer",
+            "type": [
+                "TokenCharactersIndexer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "single_id_indexer",
+            "type": [
+                "SingleIdTokenIndexer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indexers",
+            "type": [
+                "dict[typing.Text, typing.Union[ELMoTokenCharactersIndexer,TokenCharactersIndexer,SingleIdTokenIndexer]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "text_field",
+            "type": [
+                "TextField"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tensors",
+            "type": [
+                "list",
+                "list[bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_token_ids",
+            "type": [
+                "dict[int, int]",
+                "list[tuple[typing.Union[str,int]]]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_token_ids_from_text_field_tensors",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_info_value_of_dtype@TestNnUtil": [
+        {
+            "category": "return",
+            "name": "test_info_value_of_dtype",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_inspect_model_parameters@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "model_archive",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parameters_inspection",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_inspect_model_parameters",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_load_state_dict_distributed@global": [
+        {
+            "category": "arg",
+            "name": "test_func",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_func",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_load_state_dict_distributed",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_logsumexp@TestNnUtil": [
+        {
+            "category": "return",
+            "name": "test_logsumexp",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_masked_flip@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "solution",
+            "type": [
+                "list[list[list[int]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_masked_flip",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_masked_index_fill@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "mask",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_masked_index_fill",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_masked_index_replace@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "replace_with",
+            "type": [
+                "bool",
+                "str",
+                "typing.Callable[None,None, list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mask",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_masked_index_replace",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_masked_log_softmax_masked@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "vector_1d_softmaxed",
+            "type": [
+                "list[tuple[typing.Union[typing.Any,float]]]",
+                "list",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_masked_log_softmax_masked",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_masked_max@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "vector_1d_maxed",
+            "type": [
+                "list",
+                "float",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mask",
+            "type": [
+                "torch.Tensor",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "matrix_maxed",
+            "type": [
+                "list",
+                "dict",
+                "list[list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_masked_max",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_masked_mean@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "vector_1d_mean",
+            "type": [
+                "float",
+                "dict[tuple[typing.Any], typing.Any]",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mask",
+            "type": [
+                "torch.Tensor",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "matrix_mean",
+            "type": [
+                "float",
+                "dict[tuple[typing.Any], typing.Any]",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_masked_mean",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_masked_softmax_masked@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "vector_1d_softmaxed",
+            "type": [
+                "list[list[int]]",
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "masked_matrix_softmaxed",
+            "type": [
+                "list[bool]",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_masked_softmax_masked",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_masked_softmax_memory_efficient_masked@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "vector_1d_softmaxed",
+            "type": [
+                "float",
+                "list",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "masked_matrix_softmaxed",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_masked_softmax_memory_efficient_masked",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_masked_softmax_no_mask@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "vector_1d_softmaxed",
+            "type": [
+                "dict",
+                "torch.Tensor",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vector_zero_softmaxed",
+            "type": [
+                "float",
+                "int",
+                "SupportsFloat"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "masked_matrix_softmaxed",
+            "type": [
+                "int",
+                "property"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_masked_softmax_no_mask",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_masked_topk_selects_top_scored_items_and_respects_masking@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "correct_scores",
+            "type": [
+                "int",
+                "float",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_masked_topk_selects_top_scored_items_and_respects_masking",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_masked_topk_selects_top_scored_items_and_respects_masking_different_num_items@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "correct_scores",
+            "type": [
+                "int",
+                "float",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_masked_topk_selects_top_scored_items_and_respects_masking_different_num_items",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_masked_topk_works_for_completely_masked_rows@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "correct_scores",
+            "type": [
+                "int",
+                "float",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_masked_topk_works_for_completely_masked_rows",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_masked_topk_works_for_multiple_dimensions@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "items",
+            "type": [
+                "numpy.ndarray",
+                "torch.Tensor",
+                "dict[str, numpy.ndarray]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mask",
+            "type": [
+                "torch.Tensor",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_items",
+            "type": [
+                "numpy.ndarray",
+                "list[list[float]]",
+                "list[torch.Tensor]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_indices",
+            "type": [
+                "int",
+                "torch.Tensor",
+                "pymatgen.util.Vector3Like"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_masked_topk_works_for_multiple_dimensions",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_masked_topk_works_for_row_with_no_items_requested@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "correct_scores",
+            "type": [
+                "int",
+                "float",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_masked_topk_works_for_row_with_no_items_requested",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_move_to_device@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "structured_obj",
+            "type": [
+                "dict[typing.Text, typing.Union[list[A],FakeTensor,tuple[typing.Union[int,FakeTensor]]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_move_to_device",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_remove_sentence_boundaries@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "tensor",
+            "type": [
+                "torch.Tensor",
+                "list[torch.Tensor]",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mask",
+            "type": [
+                "torch.Tensor",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_new_mask",
+            "type": [
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_remove_sentence_boundaries",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_replace_masked_values_replaces_masked_values_with_finite_value@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "replaced",
+            "type": [
+                "list[int]",
+                "list",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_replace_masked_values_replaces_masked_values_with_finite_value",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sequence_cross_entropy_with_logits_alpha_float_correctly@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "batch",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "classes",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alpha",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "targets",
+            "type": [
+                "int",
+                "list",
+                "list[tuple[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "correct_loss",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logp",
+            "type": [
+                "list[tuple[typing.Union[typing.Any,float]]]",
+                "list",
+                "fatf.utils.models.models.KNN"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logpt",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "at",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_sequence_cross_entropy_with_logits_alpha_float_correctly",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sequence_cross_entropy_with_logits_alpha_list_correctly@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "batch",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "classes",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alpha",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "targets",
+            "type": [
+                "int",
+                "list",
+                "list[tuple[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "correct_loss",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logp",
+            "type": [
+                "list[tuple[typing.Union[typing.Any,float]]]",
+                "list",
+                "fatf.utils.models.models.KNN"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logpt",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_sequence_cross_entropy_with_logits_alpha_list_correctly",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sequence_cross_entropy_with_logits_alpha_single_float_correctly@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "batch",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "classes",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alpha",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "targets",
+            "type": [
+                "int",
+                "list",
+                "list[tuple[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "correct_loss",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logp",
+            "type": [
+                "list[tuple[typing.Union[typing.Any,float]]]",
+                "list",
+                "fatf.utils.models.models.KNN"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logpt",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "at",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_sequence_cross_entropy_with_logits_alpha_single_float_correctly",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sequence_cross_entropy_with_logits_averages_batch_correctly@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "weights",
+            "type": [
+                "float",
+                "torch.Tensor",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "targets",
+            "type": [
+                "int",
+                "float",
+                "torch.Tensor",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_sequence_cross_entropy_with_logits_averages_batch_correctly",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sequence_cross_entropy_with_logits_averages_token_correctly@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "weights",
+            "type": [
+                "float",
+                "list[float]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "targets",
+            "type": [
+                "int",
+                "list",
+                "list[tuple[int]]",
+                "float",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_token_loss",
+            "type": [
+                "float",
+                "int",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "average_token_loss",
+            "type": [
+                "list[float]",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_sequence_cross_entropy_with_logits_averages_token_correctly",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sequence_cross_entropy_with_logits_gamma_correctly@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "batch",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "classes",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gamma",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "targets",
+            "type": [
+                "list",
+                "int",
+                "list[tuple[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "correct_loss",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "p",
+            "type": [
+                "int",
+                "float",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pt",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ft",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_sequence_cross_entropy_with_logits_gamma_correctly",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sequence_cross_entropy_with_logits_masks_loss_correctly@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "weights",
+            "type": [
+                "torch.Tensor",
+                "float",
+                "list[list[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "targets",
+            "type": [
+                "int",
+                "float",
+                "torch.Tensor",
+                "list[list[int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_sequence_cross_entropy_with_logits_masks_loss_correctly",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sequence_cross_entropy_with_logits_smooths_labels_correctly@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "targets",
+            "type": [
+                "int",
+                "list",
+                "list[tuple[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "correct_loss",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prediction",
+            "type": [
+                "list[tuple[typing.Union[typing.Any,float]]]",
+                "list",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_sequence_cross_entropy_with_logits_smooths_labels_correctly",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sort_tensor_by_length@TestNnUtil": [
+        {
+            "category": "return",
+            "name": "test_sort_tensor_by_length",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_tensors_equal@TestNnUtil": [
+        {
+            "category": "return",
+            "name": "test_tensors_equal",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_uncombine_initial_dims@TestNnUtil": [
+        {
+            "category": "return",
+            "name": "test_uncombine_initial_dims",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_viterbi_decode@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "sequence_logits",
+            "type": [
+                "float",
+                "torch.Tensor",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "observations",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_viterbi_decode",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_viterbi_decode_top_k@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "sequence_logits",
+            "type": [
+                "list",
+                "int",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_viterbi_decode_top_k",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_weighted_sum_handles_3d_attention_with_3d_matrix@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length_1",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length_2",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "embedding_dim",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence_array",
+            "type": [
+                "dict[str, int]",
+                "pytropos.libs_checking.numpy.NdArray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attention_array",
+            "type": [
+                "list",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence_tensor",
+            "type": [
+                "list",
+                "torch.FloatTensor",
+                "list[torch.Tensor]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attention_tensor",
+            "type": [
+                "torch.Tensor",
+                "numpy.ndarray",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "aggregated_array",
+            "type": [
+                "list",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_array",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_weighted_sum_handles_3d_attention_with_3d_matrix",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_weighted_sum_handles_higher_order_input@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length_1",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length_2",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length_3",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "embedding_dim",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence_array",
+            "type": [
+                "list",
+                "pytropos.libs_checking.numpy.NdArray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attention_array",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence_tensor",
+            "type": [
+                "list",
+                "torch.FloatTensor",
+                "list[torch.Tensor]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attention_tensor",
+            "type": [
+                "torch.Tensor",
+                "numpy.ndarray",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "aggregated_array",
+            "type": [
+                "list",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_array",
+            "type": [
+                "list",
+                "tuple[int]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_weighted_sum_handles_higher_order_input",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_weighted_sum_handles_uneven_higher_order_input@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length_1",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length_2",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length_3",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "embedding_dim",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence_array",
+            "type": [
+                "dict[str, int]",
+                "pytropos.libs_checking.numpy.NdArray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attention_array",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence_tensor",
+            "type": [
+                "list",
+                "torch.FloatTensor",
+                "list[torch.Tensor]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attention_tensor",
+            "type": [
+                "torch.Tensor",
+                "numpy.ndarray",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "aggregated_array",
+            "type": [
+                "list",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_array",
+            "type": [
+                "tuple[typing.Any]",
+                "list[None]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_weighted_sum_handles_uneven_higher_order_input",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_weighted_sum_works_on_simple_input@TestNnUtil": [
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "embedding_dim",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence_array",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence_tensor",
+            "type": [
+                "list",
+                "torch.FloatTensor",
+                "list[torch.Tensor]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "aggregated_array",
+            "type": [
+                "list",
+                "bool",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_array",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_weighted_sum_works_on_simple_input",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "to@TestNnUtil,FakeTensor": [
+        {
+            "category": "arg",
+            "name": "device",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "to",
+            "type": [
+                "FakeTensor"
+            ]
+        }
+    ]
+}

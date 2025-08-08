@@ -1,0 +1,1536 @@
+{
+    "__init__@AccessLoggerWrapper": [
+        {
+            "category": "arg",
+            "name": "access_logger",
+            "type": [
+                "logging.Logger",
+                "Server",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "loop",
+            "type": [
+                "asyncio.AbstractEventLoop",
+                "asyncio.base_events.BaseEventLoop",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "access_logger",
+            "type": [
+                "logging.Logger",
+                "Server",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "loop",
+            "type": [
+                "asyncio.AbstractEventLoop",
+                "asyncio.base_events.BaseEventLoop",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_loop",
+            "type": [
+                "asyncio.AbstractEventLoop",
+                "asyncio.base_events.BaseEventLoop",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@RequestHandler": [
+        {
+            "category": "arg",
+            "name": "manager",
+            "type": [
+                "Server",
+                "int",
+                "asyncio.AbstractServer"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "loop",
+            "type": [
+                "asyncio.AbstractEventLoop",
+                "int",
+                "tuple[typing.Union[str,int]]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "keepalive_timeout",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tcp_keepalive",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "logger",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "access_log_class",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "access_log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "access_log_format",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "max_line_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_field_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "lingering_time",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "read_bufsize",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "auto_decompress",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "timeout_ceil_threshold",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "access_logger",
+            "type": [
+                "logging.Logger",
+                "AccessLoggerWrapper",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "loop",
+            "type": [
+                "asyncio.AbstractEventLoop",
+                "int",
+                "tuple[typing.Union[str,int]]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_request_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_keepalive",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_current_request",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "manager",
+            "type": [
+                "Server",
+                "int",
+                "asyncio.AbstractServer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_manager",
+            "type": [
+                "Server",
+                "int",
+                "asyncio.AbstractServer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tcp_keepalive",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_tcp_keepalive",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_next_keepalive_close_time",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_keepalive_handle",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "keepalive_timeout",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_keepalive_timeout",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lingering_time",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_lingering_time",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_messages",
+            "type": [
+                "classmethod",
+                "str",
+                "typing.Deque"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_message_tail",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_waiter",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_handler_waiter",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_task_handler",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_upgrade",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_payload_parser",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "read_bufsize",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_line_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_field_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "auto_decompress",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_request_parser",
+            "type": [
+                "HttpRequestParser"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_timeout_ceil_threshold",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timeout_ceil_threshold",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "access_log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_close",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_force_close",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_request_in_progress",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__repr__@RequestHandler": [
+        {
+            "category": "local",
+            "name": "transport",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__repr__",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "_handle_request@RequestHandler": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "web_response.StreamResponse",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "start_time",
+            "type": [
+                "float",
+                "web_response.StreamResponse",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "request_handler",
+            "type": [
+                "web_response.StreamResponse",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_request_in_progress",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "web_response.StreamResponse",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_current_request",
+            "type": [
+                "web_response.StreamResponse",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resp",
+            "type": [
+                "aiohttp.web_response.Response",
+                "Response"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exc",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "start_time",
+            "type": [
+                "float",
+                "web_response.StreamResponse",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reset",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_handler_waiter",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_handle_request",
+            "type": [
+                "tuple[typing.Union[aiohttp.web_response.Response,str,int]]"
+            ]
+        }
+    ],
+    "_make_error_handler@RequestHandler": [
+        {
+            "category": "arg",
+            "name": "err_info",
+            "type": [
+                "bool",
+                "eth.abc.BlockAPI",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_make_error_handler",
+            "type": []
+        }
+    ],
+    "_process_keepalive@RequestHandler": [
+        {
+            "category": "local",
+            "name": "_keepalive_handle",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_process_keepalive",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "close@RequestHandler": [
+        {
+            "category": "local",
+            "name": "_close",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "close",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "connection_lost@RequestHandler": [
+        {
+            "category": "arg",
+            "name": "exc",
+            "type": [
+                "BaseException",
+                "typing.Callable",
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_manager",
+            "type": [
+                "list[tuple[str]]",
+                "tuple",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "connection_lost",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exc",
+            "type": [
+                "BaseException",
+                "typing.Callable",
+                "Exception",
+                "None",
+                "ValueError"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_request_factory",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_request_handler",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_request_parser",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_keepalive_handle",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_current_request",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_task_handler",
+            "type": [
+                "logging.handlers.QueueHandler",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_payload_parser",
+            "type": [
+                "dict[str, typing.Union[int,None]]",
+                "web_services.wsdl_with_pysimplesoap.pysimplesoap.helpers.Struct",
+                "None"
+            ]
+        }
+    ],
+    "connection_made@RequestHandler": [
+        {
+            "category": "arg",
+            "name": "transport",
+            "type": [
+                "asyncio.BaseTransport",
+                "asyncio.Transport"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transport",
+            "type": [
+                "asyncio.BaseTransport",
+                "asyncio.Transport"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "connection_made",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "data_received@RequestHandler": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "http.HTTPStatus"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "data_received",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_upgrade",
+            "type": [
+                "bool",
+                "str",
+                "list[tuple[str]]",
+                "bytes",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "http.HTTPStatus"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "messages",
+            "type": [
+                "str",
+                "list[tuple[_ErrInfo]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upgraded",
+            "type": [
+                "bytes",
+                "str",
+                "int",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tail",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exc",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "_ErrInfo"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payload",
+            "type": [
+                "_ErrInfo"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_message_tail",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "eof",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        }
+    ],
+    "enabled@AccessLoggerWrapper": [
+        {
+            "category": "return",
+            "name": "enabled",
+            "type": []
+        }
+    ],
+    "eof_received@RequestHandler": [
+        {
+            "category": "return",
+            "name": "eof_received",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "finish_response@RequestHandler": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "float",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "resp",
+            "type": [
+                "str",
+                "django.http.HttpRequest",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "start_time",
+            "type": [
+                "float",
+                "web_response.StreamResponse"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "float",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_request_parser",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_upgrade",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_message_tail",
+            "type": [
+                "int",
+                "str",
+                "tuple[int]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resp",
+            "type": [
+                "str",
+                "django.http.HttpRequest",
+                "dict[str, typing.Any]",
+                "None",
+                "aiohttp.web_response.Response",
+                "Response"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exc",
+            "type": [
+                "HTTPInternalServerError"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "start_time",
+            "type": [
+                "float",
+                "web_response.StreamResponse"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "finish_response",
+            "type": [
+                "tuple[typing.Union[str,django.http.HttpRequest,dict[str, typing.Any],Response,bool]]"
+            ]
+        }
+    ],
+    "force_close@RequestHandler": [
+        {
+            "category": "local",
+            "name": "_force_close",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transport",
+            "type": [
+                "asyncio.transports.Transport",
+                "None",
+                "asyncio.transports.WriteTransport"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "force_close",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "__all__",
+            "type": [
+                "tuple[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_Request",
+            "type": [
+                "TypeVar"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_RequestFactory",
+            "type": [
+                "typing.Type",
+                "staticmethod"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_RequestHandler",
+            "type": [
+                "typing.Type",
+                "list[typing.Callable]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_AnyAbstractAccessLogger",
+            "type": [
+                "bool",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ERROR",
+            "type": [
+                "RawRequestMessage",
+                "classmethod",
+                "Exception",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_PAYLOAD_ACCESS_ERROR",
+            "type": [
+                "PayloadAccessError",
+                "str",
+                "int",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_MsgType",
+            "type": [
+                "str",
+                "None",
+                "list[str]"
+            ]
+        }
+    ],
+    "handle_error@RequestHandler": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "status",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exc",
+            "type": [
+                "None",
+                "Exception",
+                "typing.Any"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "None",
+                "str",
+                "bytes",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exc",
+            "type": [
+                "None",
+                "Exception",
+                "typing.Any"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ct",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "status",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text",
+                "traceback.StackSummary"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tb",
+            "type": [
+                "traceback.StackSummary"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "str",
+                "None",
+                "bytes",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resp",
+            "type": [
+                "Response"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_error",
+            "type": [
+                "Response"
+            ]
+        }
+    ],
+    "handler@RequestHandler": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "handler",
+            "type": []
+        }
+    ],
+    "keep_alive@RequestHandler": [
+        {
+            "category": "arg",
+            "name": "val",
+            "type": [
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "val",
+            "type": [
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_keepalive",
+            "type": [
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_keepalive_handle",
+            "type": [
+                "int",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "keep_alive",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "keepalive_timeout@RequestHandler": [
+        {
+            "category": "return",
+            "name": "keepalive_timeout",
+            "type": []
+        }
+    ],
+    "log@AccessLoggerWrapper": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "web_response.StreamResponse",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "response",
+            "type": [
+                "web_response.StreamResponse",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "request_start",
+            "type": [
+                "web_response.StreamResponse",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "web_response.StreamResponse",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "web_response.StreamResponse",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request_start",
+            "type": [
+                "web_response.StreamResponse",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "log",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "log_access@RequestHandler": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "web_response.StreamResponse",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "response",
+            "type": [
+                "web_response.StreamResponse",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "request_start",
+            "type": [
+                "web_response.StreamResponse",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "web_response.StreamResponse",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "web_response.StreamResponse",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request_start",
+            "type": [
+                "web_response.StreamResponse",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "log_access",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "log_debug@RequestHandler": [
+        {
+            "category": "arg",
+            "name": "kw",
+            "type": [
+                "int",
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "kw",
+            "type": [
+                "int",
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "log_debug",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "log_exception@RequestHandler": [
+        {
+            "category": "arg",
+            "name": "kw",
+            "type": [
+                "dict[str, typing.Any]",
+                "int",
+                "Exception"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "kw",
+            "type": [
+                "dict[str, typing.Any]",
+                "int",
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "log_exception",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "set_parser@RequestHandler": [
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "_message_tail",
+            "type": [
+                "int",
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_parser",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "shutdown@RequestHandler": [
+        {
+            "category": "arg",
+            "name": "timeout",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_force_close",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_keepalive_handle",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_handler_waiter",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timeout",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "task",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_current_request",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_task_handler",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "shutdown",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "start@RequestHandler": [
+        {
+            "category": "local",
+            "name": "keepalive_timeout",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resp",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_waiter",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "classmethod",
+                "Exception",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payload",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "writer",
+            "type": [
+                "StreamWriter"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ERROR",
+            "type": [
+                "classmethod",
+                "Exception",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_keepalive",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "t",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_PAYLOAD_ACCESS_ERROR",
+            "type": [
+                "str",
+                "int",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exc",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transport",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_keepalive_handle",
+            "type": [
+                "int",
+                "str",
+                "asyncio.events.TimerHandle",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_task_handler",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "start",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

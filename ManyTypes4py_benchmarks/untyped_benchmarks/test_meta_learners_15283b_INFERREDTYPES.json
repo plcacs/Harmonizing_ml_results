@@ -1,0 +1,894 @@
+{
+    "base_input_df@global": [
+        {
+            "category": "return",
+            "name": "base_input_df",
+            "type": [
+                "DataFrame"
+            ]
+        }
+    ],
+    "global@global": [],
+    "mock_learner@global": [
+        {
+            "category": "arg",
+            "name": "df",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "mock_learner",
+            "type": [
+                "tuple[typing.Union[typing.Callable,dict]]"
+            ]
+        }
+    ],
+    "ones_or_zeros_model@global": [
+        {
+            "category": "arg",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "ones_or_zeros_model",
+            "type": [
+                "typing.Callable",
+                "str",
+                "set[str]"
+            ]
+        }
+    ],
+    "p@global": [
+        {
+            "category": "arg",
+            "name": "new_df",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "col_dict",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "p",
+            "type": []
+        }
+    ],
+    "test__append_treatment_feature@global": [
+        {
+            "category": "local",
+            "name": "features",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "treatment_feature",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test__append_treatment_feature",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test__create_treatment_flag@global": [
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "results",
+            "type": [
+                "list",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test__create_treatment_flag",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test__create_treatment_flag_missing_control@global": [
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test__create_treatment_flag_missing_control",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test__create_treatment_flag_missing_treatment@global": [
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test__create_treatment_flag_missing_treatment",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test__create_treatment_flag_multiple_treatments@global": [
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test__create_treatment_flag_multiple_treatments",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test__filter_by_treatment@global": [
+        {
+            "category": "local",
+            "name": "values",
+            "type": [
+                "list[list[typing.Union[float,typing.Text,int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "selected_treatment",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_values",
+            "type": [
+                "list[list[typing.Union[float,typing.Text,int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "results",
+            "type": [
+                "list",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test__filter_by_treatment",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test__fit_by_treatment@global": [
+        {
+            "category": "arg",
+            "name": "base_input_df",
+            "type": [
+                "pandas.DataFrame",
+                "numpy.ndarray",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "learner_binary",
+            "type": [
+                "int",
+                "float",
+                "range"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "treatments",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "base_input_df",
+            "type": [
+                "pandas.DataFrame",
+                "numpy.ndarray",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "learners",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logs",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "list[dict[str, typing.Any]]",
+                "list[list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test__fit_by_treatment",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test__get_unique_treatments@global": [
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "filtered",
+            "type": [
+                "dict[str, typing.Any]",
+                "list",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test__get_unique_treatments",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test__predict_by_treatment_flag_negative@global": [
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test__predict_by_treatment_flag_negative",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test__predict_by_treatment_flag_positive@global": [
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test__predict_by_treatment_flag_positive",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test__simulate_treatment_effect@global": [
+        {
+            "category": "arg",
+            "name": "mock_predict_by_treatment_flag",
+            "type": [
+                "unittesmock.MagicMock",
+                "dict",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "treatments",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "control_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_predict_by_treatment_flag_",
+            "type": [
+                "list[list[float]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "learners",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "results",
+            "type": [
+                "dict",
+                "list",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test__simulate_treatment_effect",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_causal_s_classification_learner@global": [
+        {
+            "category": "arg",
+            "name": "mock_get_learner_features",
+            "type": [
+                "list[typing.Callable]",
+                "mock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_append_treatment_feature",
+            "type": [
+                "unittesmock.MagicMock",
+                "set"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_get_unique_treatments",
+            "type": [
+                "unittesmock.MagicMock",
+                "Exception",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_fit_by_treatment",
+            "type": [
+                "dict",
+                "dict[str, typing.Union[int,str]]",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_simulate_treatment_effect",
+            "type": [
+                "unittesmock.MagicMock",
+                "Exception",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "base_input_df",
+            "type": [
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_fit_by_treatment_",
+            "type": [
+                "list[tuple[dict]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "base_input_df",
+            "type": [
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_get_learner_features",
+            "type": [
+                "list[typing.Callable]",
+                "mock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_append_treatment_feature",
+            "type": [
+                "unittesmock.MagicMock",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_get_unique_treatments",
+            "type": [
+                "unittesmock.MagicMock",
+                "Exception",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_fit_by_treatment",
+            "type": [
+                "dict",
+                "dict[str, typing.Union[int,str]]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_simulate_treatment_effect",
+            "type": [
+                "unittesmock.MagicMock",
+                "Exception",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_causal_s_classification_learner",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_causal_t_classification_learner@global": [
+        {
+            "category": "arg",
+            "name": "mock_get_unique_treatments",
+            "type": [
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_get_learners",
+            "type": [
+                "unittesmock.MagicMock",
+                "Exception",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_simulate_t_learner_treatment_effect",
+            "type": [
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "base_input_df",
+            "type": [
+                "dict",
+                "set[str]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_get_learners_",
+            "type": [
+                "list[tuple[typing.Union[list,dict]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "base_input_df",
+            "type": [
+                "dict",
+                "set[str]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_get_unique_treatments",
+            "type": [
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_get_learners",
+            "type": [
+                "unittesmock.MagicMock",
+                "Exception",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_simulate_t_learner_treatment_effect",
+            "type": [
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_causal_t_classification_learner",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_learners@global": [
+        {
+            "category": "arg",
+            "name": "mock_get_model_fcn",
+            "type": [
+                "typing.Type",
+                "typing.Iterable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unique_treatments",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_get_model_fcn_",
+            "type": [
+                "list[tuple[typing.Optional[typing.Text]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "learners",
+            "type": [
+                "str",
+                "None",
+                "dict[bool, str]",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logs",
+            "type": [
+                "fklearn.types.LearnerLogType",
+                "list",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "calls",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_get_model_fcn",
+            "type": [
+                "typing.Type",
+                "typing.Iterable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_learners",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_model_fcn@global": [
+        {
+            "category": "arg",
+            "name": "base_input_df",
+            "type": [
+                "str",
+                "numpy.ndarray",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fake_prediction_column",
+            "type": [
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df_expected",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "learner",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "base_input_df",
+            "type": [
+                "str",
+                "numpy.ndarray",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_fcn",
+            "type": [
+                "unittesmock.MagicMock",
+                "list",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_p_df",
+            "type": [
+                "list",
+                "typing.Callable[None, float]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_logs",
+            "type": [
+                "list",
+                "unittesmock.MagicMock",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_model_fcn",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_model_fcn_exception@global": [
+        {
+            "category": "arg",
+            "name": "base_input_df",
+            "type": [
+                "pandas.DataFrame",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fake_prediction_column",
+            "type": [
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "learner",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "base_input_df",
+            "type": [
+                "pandas.DataFrame",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str",
+                "tuple[typing.Literal]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_model_fcn_exception",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_simulate_t_learner_treatment_effect@global": [
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "treatments",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "control_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prediction_column",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "control_learner",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "control_learner_",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "treatment_learner",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "treatment_learner_",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "learners",
+            "type": [
+                "dict[typing.Text, MagicMock]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "dict",
+                "dict[typing.Any, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_simulate_t_learner_treatment_effect",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

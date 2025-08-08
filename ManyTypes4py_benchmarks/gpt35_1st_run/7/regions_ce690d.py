@@ -1,0 +1,39 @@
+from typing import Dict, List, Union
+
+class BaseEndpointResolver:
+    def construct_endpoint(self, service_name: str, region_name: str = None) -> Dict:
+        ...
+
+    def get_available_partitions(self) -> List[str]:
+        ...
+
+    def get_available_endpoints(self, service_name: str, partition_name: str = 'aws', allow_non_regional: bool = False) -> List[str]:
+        ...
+
+class EndpointResolver(BaseEndpointResolver):
+    def __init__(self, endpoint_data: Dict):
+        ...
+
+    def get_available_partitions(self) -> List[str]:
+        ...
+
+    def get_available_endpoints(self, service_name: str, partition_name: str = 'aws', allow_non_regional: bool = False) -> List[str]:
+        ...
+
+    def construct_endpoint(self, service_name: str, region_name: str = None, partition_name: str = None) -> Union[Dict, None]:
+        ...
+
+    def _endpoint_for_partition(self, partition: Dict, service_name: str, region_name: str, force_partition: bool = False) -> Union[Dict, None]:
+        ...
+
+    def _region_match(self, partition: Dict, region_name: str) -> bool:
+        ...
+
+    def _resolve(self, partition: Dict, service_name: str, service_data: Dict, endpoint_name: str) -> Dict:
+        ...
+
+    def _merge_keys(self, from_data: Dict, result: Dict):
+        ...
+
+    def _expand_template(self, partition: Dict, template: str, service_name: str, endpoint_name: str) -> str:
+        ...

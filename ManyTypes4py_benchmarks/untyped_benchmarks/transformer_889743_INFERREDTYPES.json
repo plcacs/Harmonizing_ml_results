@@ -1,0 +1,932 @@
+{
+    "__init__@TransformerDecoderBlock": [
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "inference_only",
+            "type": [
+                "bool",
+                "torch.optim.Optimizer"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dtype",
+            "type": [
+                "None",
+                "bool",
+                "torch.optim.Optimizer",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "clamp_to_dtype",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inference_only",
+            "type": [
+                "bool",
+                "torch.optim.Optimizer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "autoregr_layer",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dtype",
+            "type": [
+                "None",
+                "bool",
+                "torch.optim.Optimizer",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "clamp_to_dtype",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pre_autoregr_layer",
+            "type": [
+                "TransformerProcessBlock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_autoregr_layer",
+            "type": [
+                "TransformerProcessBlock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pre_enc_attention",
+            "type": [
+                "TransformerProcessBlock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_enc_attention",
+            "type": [
+                "TransformerProcessBlock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pre_ff",
+            "type": [
+                "TransformerProcessBlock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ff",
+            "type": [
+                "TransformerFeedForward"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_ff",
+            "type": [
+                "TransformerProcessBlock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lhuc",
+            "type": [
+                "None",
+                "sockeye.transformer.TransformerProcessBlock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@TransformerEncoderBlock": [
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "bool",
+                "dict[str, str]",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "inference_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dtype",
+            "type": [
+                "None",
+                "bool",
+                "dict[str, str]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "clamp_to_dtype",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "bool",
+                "dict[str, str]",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dtype",
+            "type": [
+                "None",
+                "bool",
+                "dict[str, str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "clamp_to_dtype",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pre_self_attention",
+            "type": [
+                "TransformerProcessBlock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_self_attention",
+            "type": [
+                "TransformerProcessBlock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pre_ff",
+            "type": [
+                "TransformerProcessBlock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inference_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ff",
+            "type": [
+                "TransformerFeedForward"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_ff",
+            "type": [
+                "TransformerProcessBlock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lhuc",
+            "type": [
+                "None",
+                "sockeye.transformer.TransformerProcessBlock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@TransformerFeedForward": [
+        {
+            "category": "arg",
+            "name": "num_hidden",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_model",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "act_type",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dropout",
+            "type": [
+                "float",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "use_glu",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "inference_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dtype",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "clamp_to_dtype",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "use_glu",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "clamp_to_dtype",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_model",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_hidden",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dtype",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ff1",
+            "type": [
+                "int",
+                "float",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "act_type",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "linear",
+            "type": [
+                "int",
+                "list",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dropout",
+            "type": [
+                "float",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "drop",
+            "type": [
+                "float",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ff2",
+            "type": [
+                "int",
+                "float",
+                "tuple[typing.Literal]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@TransformerProcessBlock": [
+        {
+            "category": "arg",
+            "name": "sequence",
+            "type": [
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dropout",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_hidden",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dtype",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "clamp_to_dtype",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sequence",
+            "type": [
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "clamp_to_dtype",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "layer_norm",
+            "type": [
+                "None",
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_hidden",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dtype",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dropout",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "drop",
+            "type": [
+                "float",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "forward@AutoRegressiveMask": [
+        {
+            "category": "arg",
+            "name": "x",
+            "type": [
+                "torch.Tensor",
+                "torch.FloatTensor",
+                "torch.tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "x",
+            "type": [
+                "torch.Tensor",
+                "torch.FloatTensor",
+                "torch.tensor"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "forward",
+            "type": []
+        }
+    ],
+    "forward@TransformerDecoderBlock": [
+        {
+            "category": "arg",
+            "name": "target",
+            "type": [
+                "torch.Tensor",
+                "torch.nn.utils.rnn.PackedSequence"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_mask",
+            "type": [
+                "torch.Tensor",
+                "None",
+                "torch.nn.utils.rnn.PackedSequence"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "torch.Tensor",
+                "None",
+                "torch.BoolTensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "source_mask",
+            "type": [
+                "torch.Tensor",
+                "None",
+                "torch.BoolTensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "autoregr_states",
+            "type": [
+                "torch.Tensor",
+                "None",
+                "torch.nn.utils.rnn.PackedSequence"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "enc_att_kv",
+            "type": [
+                "None",
+                "torch.Tensor",
+                "torch.BoolTensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target",
+            "type": [
+                "torch.Tensor",
+                "torch.nn.utils.rnn.PackedSequence",
+                "list[list[int]]",
+                "list",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "autoregr_states",
+            "type": [
+                "torch.Tensor",
+                "None",
+                "torch.nn.utils.rnn.PackedSequence"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_mask",
+            "type": [
+                "torch.Tensor",
+                "None",
+                "torch.nn.utils.rnn.PackedSequence"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_autoregr",
+            "type": [
+                "list",
+                "tuple",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "torch.Tensor",
+                "None",
+                "torch.BoolTensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_mask",
+            "type": [
+                "torch.Tensor",
+                "None",
+                "torch.BoolTensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "enc_att_kv",
+            "type": [
+                "None",
+                "torch.Tensor",
+                "torch.BoolTensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_enc_att",
+            "type": [
+                "bytes",
+                "list[tuple[typing.Union[int,typing.Any]]]",
+                "tuple[typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_ff",
+            "type": [
+                "str",
+                "list[list[int]]",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "forward",
+            "type": [
+                "tuple[typing.Union[list[list[int]],list,int]]"
+            ]
+        }
+    ],
+    "forward@TransformerEncoderBlock": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "torch.Tensor",
+                "None",
+                "torch.BoolTensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "att_mask",
+            "type": [
+                "None",
+                "torch.Tensor",
+                "torch.BoolTensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "torch.Tensor",
+                "None",
+                "torch.BoolTensor",
+                "str",
+                "list",
+                "property"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "att_mask",
+            "type": [
+                "None",
+                "torch.Tensor",
+                "torch.BoolTensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_self_att",
+            "type": [
+                "tuple[list[int]]",
+                "bool",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "tuple[typing.Union[typing.Literal,typing.Any]]",
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_ff",
+            "type": [
+                "str",
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lhuc",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "forward",
+            "type": [
+                "str",
+                "list",
+                "property"
+            ]
+        }
+    ],
+    "forward@TransformerFeedForward": [
+        {
+            "category": "arg",
+            "name": "x",
+            "type": [
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "x",
+            "type": [
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "h",
+            "type": [
+                "int",
+                "float",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "y",
+            "type": [
+                "int",
+                "tuple[int]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "forward",
+            "type": [
+                "int",
+                "tuple[int]",
+                "list[int]"
+            ]
+        }
+    ],
+    "forward@TransformerProcessBlock": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prev",
+            "type": [
+                "torch.IntTensor",
+                "torch.LongTensor",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "torch.Tensor",
+                "dict",
+                "list[tuple[int]]",
+                "tuple[list[int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "forward",
+            "type": [
+                "torch.Tensor",
+                "dict",
+                "list[tuple[int]]",
+                "tuple[list[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prev",
+            "type": [
+                "torch.IntTensor",
+                "torch.LongTensor",
+                "torch.Tensor"
+            ]
+        }
+    ],
+    "get_states_shape@TransformerDecoderBlock": [
+        {
+            "category": "arg",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_states_shape",
+            "type": [
+                "int",
+                "str",
+                "list[int]"
+            ]
+        }
+    ],
+    "global@global": [],
+    "needs_mask@TransformerDecoderBlock": [
+        {
+            "category": "return",
+            "name": "needs_mask",
+            "type": []
+        }
+    ],
+    "num_state_tensors@TransformerDecoderBlock": [
+        {
+            "category": "return",
+            "name": "num_state_tensors",
+            "type": []
+        }
+    ],
+    "set_inference_only@TransformerDecoderBlock": [
+        {
+            "category": "arg",
+            "name": "inference_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inference_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_inference_only",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

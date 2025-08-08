@@ -1,0 +1,967 @@
+{
+    "__init__@CurlError": [
+        {
+            "category": "arg",
+            "name": "errno",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "errno",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_curl_create@CurlAsyncHTTPClient": [
+        {
+            "category": "local",
+            "name": "curl_log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_curl_create",
+            "type": []
+        }
+    ],
+    "_curl_debug@CurlAsyncHTTPClient": [
+        {
+            "category": "arg",
+            "name": "debug_type",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "debug_msg",
+            "type": [
+                "str",
+                "typing.Callable[typing.Any, bool]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "debug_types",
+            "type": [
+                "tuple[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "debug_type",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "debug_msg",
+            "type": [
+                "str",
+                "typing.Callable[typing.Any, bool]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "curl_log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "line",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_curl_debug",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_curl_header_callback@CurlAsyncHTTPClient": [
+        {
+            "category": "arg",
+            "name": "headers",
+            "type": [
+                "tornado.httputil.HTTPHeaders"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "header_callback",
+            "type": [
+                "typing.Callable[str, None]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "header_line_bytes",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header_line_bytes",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header_line",
+            "type": [
+                "str",
+                "bytes",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header_callback",
+            "type": [
+                "typing.Callable[str, None]",
+                "bytes",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "headers",
+            "type": [
+                "tornado.httputil.HTTPHeaders"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_curl_header_callback",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_curl_setup_request@CurlAsyncHTTPClient": [
+        {
+            "category": "arg",
+            "name": "curl",
+            "type": [
+                "pycurl.Curl"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "tornado.httpclienHTTPRequest",
+                "str",
+                "\"Response\"",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "buffer",
+            "type": [
+                "io.BytesIO",
+                "tornado.httputil.HTTPHeaders"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "headers",
+            "type": [
+                "io.BytesIO",
+                "tornado.httputil.HTTPHeaders"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "curl",
+            "type": [
+                "pycurl.Curl"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "tornado.httpclienHTTPRequest",
+                "str",
+                "\"Response\"",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "encoded_headers",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CR_OR_LF_RE",
+            "type": [
+                "typing.Pattern"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "headers",
+            "type": [
+                "io.BytesIO",
+                "tornado.httputil.HTTPHeaders"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "buffer",
+            "type": [
+                "io.BytesIO",
+                "tornado.httputil.HTTPHeaders"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "curl_options",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "custom_methods",
+            "type": [
+                "set[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "o",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "curl_log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_curl_setup_request",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_finish@CurlAsyncHTTPClient": [
+        {
+            "category": "arg",
+            "name": "curl",
+            "type": [
+                "pycurl.Curl",
+                "int",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "curl_error",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "Exception"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "curl_message",
+            "type": [
+                "None",
+                "str",
+                "Exception",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "curl",
+            "type": [
+                "pycurl.Curl",
+                "int",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "curl_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "buffer",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "curl_error",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "curl_message",
+            "type": [
+                "None",
+                "str",
+                "Exception",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error",
+            "type": [
+                "CurlError",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "effective_url",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_finish",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_finish_pending_requests@CurlAsyncHTTPClient": [
+        {
+            "category": "local",
+            "name": "num_q",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ok_list",
+            "type": [
+                "list",
+                "list[tuple[typing.Any]]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "err_list",
+            "type": [
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "curl",
+            "type": [
+                "tuple[typing.Any]",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_finish_pending_requests",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_handle_events@CurlAsyncHTTPClient": [
+        {
+            "category": "arg",
+            "name": "fd",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "events",
+            "type": [
+                "int",
+                "typing.Callable[..., None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "action",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events",
+            "type": [
+                "int",
+                "typing.Callable[..., None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fd",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ret",
+            "type": [
+                "str",
+                "typing.Generator[typing.Optional[typing.Any]]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_handles",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_handle_events",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_handle_force_timeout@CurlAsyncHTTPClient": [
+        {
+            "category": "local",
+            "name": "ret",
+            "type": [
+                "str",
+                "int",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_handles",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_handle_force_timeout",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_handle_socket@CurlAsyncHTTPClient": [
+        {
+            "category": "arg",
+            "name": "event",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fd",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "multi",
+            "type": [
+                "bytes",
+                "int",
+                "typing.Iterable[T]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "bytes",
+                "int",
+                "typing.Iterable[T]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_map",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fd",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ioloop_event",
+            "type": [
+                "threading.Event",
+                "list[dict[str, typing.Any]]",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_handle_socket",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_handle_timeout@CurlAsyncHTTPClient": [
+        {
+            "category": "local",
+            "name": "_timeout",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ret",
+            "type": [
+                "list",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_handles",
+            "type": [
+                "int",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_timeout",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_handle_timeout",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_process_queue@CurlAsyncHTTPClient": [
+        {
+            "category": "local",
+            "name": "started",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "curl",
+            "type": [
+                "str",
+                "dict[str, typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "list",
+                "tornado.httpclienHTTPRequest",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "callback",
+            "type": [
+                "str",
+                "dict",
+                "typing.Any"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "queue_start_time",
+            "type": [
+                "int",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "curl_",
+            "type": [
+                "dict[typing.Text, typing.Union[BytesIO,list,tornado.httpclienHTTPRequest,dict,str,typing.Any,int,float]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_process_queue",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_set_timeout@CurlAsyncHTTPClient": [
+        {
+            "category": "arg",
+            "name": "msecs",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_timeout",
+            "type": [
+                "float",
+                "int",
+                "threading.Timer",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msecs",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_set_timeout",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "close@CurlAsyncHTTPClient": [
+        {
+            "category": "local",
+            "name": "_timeout",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_force_timeout_callback",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_multi",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "close",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "fetch_impl@CurlAsyncHTTPClient": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "typing.Iterator",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "callback",
+            "type": [
+                "typing.Iterator",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "typing.Iterator",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "callback",
+            "type": [
+                "typing.Iterator",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "fetch_impl",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "curl_log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CR_OR_LF_RE",
+            "type": [
+                "typing.Pattern"
+            ]
+        }
+    ],
+    "handle_callback_exception@CurlAsyncHTTPClient": [
+        {
+            "category": "arg",
+            "name": "callback",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "callback",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_callback_exception",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "initialize@CurlAsyncHTTPClient": [
+        {
+            "category": "arg",
+            "name": "max_clients",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "defaults",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "defaults",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_clients",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_curls",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_free_list",
+            "type": [
+                "list",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_fds",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_timeout",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "initialize",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "ioctl@CurlAsyncHTTPClient": [
+        {
+            "category": "arg",
+            "name": "cmd",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "ioctl",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "write_function@CurlAsyncHTTPClient": [
+        {
+            "category": "arg",
+            "name": "b",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "write_function",
+            "type": [
+                "int"
+            ]
+        }
+    ]
+}

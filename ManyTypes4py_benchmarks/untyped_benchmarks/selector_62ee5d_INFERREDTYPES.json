@@ -1,0 +1,861 @@
+{
+    "__init__@NodeSelector": [
+        {
+            "category": "arg",
+            "name": "graph",
+            "type": [
+                "Graph"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "manifest",
+            "type": [
+                "dbcontracts.graph.manifesManifest",
+                "dbcontracts.state.PreviousState",
+                "None",
+                "Graph"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "previous_state",
+            "type": [
+                "None",
+                "dbcontracts.graph.manifesManifest",
+                "dbcontracts.state.PreviousState",
+                "Graph"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_empty_nodes",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "manifest",
+            "type": [
+                "dbcontracts.graph.manifesManifest",
+                "dbcontracts.state.PreviousState",
+                "None",
+                "Graph"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "previous_state",
+            "type": [
+                "None",
+                "dbcontracts.graph.manifesManifest",
+                "dbcontracts.state.PreviousState",
+                "Graph"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "graph",
+            "type": [
+                "Graph",
+                "dict",
+                "dict[str, list[str]]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "full_graph",
+            "type": [
+                "Graph"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_empty_nodes",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "graph_members",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@ResourceTypeSelector": [
+        {
+            "category": "arg",
+            "name": "graph",
+            "type": [
+                "dict[str, tuple[int]]",
+                "set",
+                "dbcontracts.graph.manifesManifest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "manifest",
+            "type": [
+                "dict[str, tuple[int]]",
+                "set",
+                "dbcontracts.graph.manifesManifest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "previous_state",
+            "type": [
+                "dict[str, tuple[int]]",
+                "set",
+                "dbcontracts.graph.manifesManifest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "resource_types",
+            "type": [
+                "dict[str, set[str]]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_empty_nodes",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "graph",
+            "type": [
+                "dict[str, tuple[int]]",
+                "set",
+                "dbcontracts.graph.manifesManifest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "manifest",
+            "type": [
+                "dict[str, tuple[int]]",
+                "set",
+                "dbcontracts.graph.manifesManifest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "previous_state",
+            "type": [
+                "dict[str, tuple[int]]",
+                "set",
+                "dbcontracts.graph.manifesManifest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_empty_nodes",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resource_types",
+            "type": [
+                "dict[str, set[str]]",
+                "list[str]",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_is_empty_node@NodeSelector": [
+        {
+            "category": "arg",
+            "name": "unique_id",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unique_id",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_is_empty_node",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_is_graph_member@NodeSelector": [
+        {
+            "category": "arg",
+            "name": "unique_id",
+            "type": [
+                "str",
+                "graph.UniqueId",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unique_id",
+            "type": [
+                "str",
+                "graph.UniqueId",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_is_graph_member",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_is_match@NodeSelector": [
+        {
+            "category": "arg",
+            "name": "unique_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unique_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_is_match",
+            "type": []
+        }
+    ],
+    "can_select_indirectly@global": [
+        {
+            "category": "arg",
+            "name": "node",
+            "type": [
+                "mypy.nodes.NameExpr",
+                "mypy.nodes.FuncBase"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node",
+            "type": [
+                "mypy.nodes.NameExpr",
+                "mypy.nodes.FuncBase"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "can_select_indirectly",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "collect_specified_neighbors@NodeSelector": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "str",
+                "typing.OrderedDict",
+                "list[dict]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "selected",
+            "type": [
+                "set[graph.UniqueId]",
+                "typing.OrderedDict",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "additional",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "str",
+                "typing.OrderedDict",
+                "list[dict]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "selected",
+            "type": [
+                "set[graph.UniqueId]",
+                "typing.OrderedDict",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "collect_specified_neighbors",
+            "type": [
+                "set"
+            ]
+        }
+    ],
+    "expand_selection@NodeSelector": [
+        {
+            "category": "arg",
+            "name": "selected",
+            "type": [
+                "set[UniqueId]",
+                "set[set[T]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "indirect_selection",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "selected",
+            "type": [
+                "set[UniqueId]",
+                "set[set[T]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "direct_nodes",
+            "type": [
+                "set[set[T]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indirect_nodes",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "selected_and_parents",
+            "type": [
+                "set",
+                "range",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "expand_selection",
+            "type": [
+                "tuple[set[set[T]]]"
+            ]
+        }
+    ],
+    "filter_selection@NodeSelector": [
+        {
+            "category": "arg",
+            "name": "selected",
+            "type": [
+                "set[graph.UniqueId]",
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "selected",
+            "type": [
+                "set[graph.UniqueId]",
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unique_id",
+            "type": [
+                "graph.UniqueId"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "filter_selection",
+            "type": [
+                "set[graph.UniqueId]"
+            ]
+        }
+    ],
+    "get_graph_queue@NodeSelector": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "bool",
+                "str",
+                "T"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "preserve_edges",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "bool",
+                "str",
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "selected_nodes",
+            "type": [
+                "dict",
+                "list",
+                "\"PNSqlCursor\""
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_graph",
+            "type": [
+                "list",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "preserve_edges",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_graph_queue",
+            "type": [
+                "GraphQueue"
+            ]
+        }
+    ],
+    "get_nodes_from_criteria@NodeSelector": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "selector_spec.SelectionCriteria",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nodes",
+            "type": [
+                "yaml.nodes.Node",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "selector_spec.SelectionCriteria",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "collected",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "valid_selectors",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_nodes_from_criteria",
+            "type": [
+                "tuple[set]",
+                "tuple"
+            ]
+        }
+    ],
+    "get_package_names@global": [
+        {
+            "category": "arg",
+            "name": "nodes",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "get_package_names",
+            "type": [
+                "set"
+            ]
+        }
+    ],
+    "get_selected@NodeSelector": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "typing.Mapping",
+                "dict",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "typing.Mapping",
+                "dict",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "selected_nodes",
+            "type": [
+                "dict",
+                "set[core.dbgraph.graph.UniqueId]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indirect_only",
+            "type": [
+                "bool",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "filtered_nodes",
+            "type": [
+                "list",
+                "set[str]",
+                "typing.Iterator"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_selected",
+            "type": [
+                "list",
+                "set[str]",
+                "typing.Iterator"
+            ]
+        }
+    ],
+    "global@global": [],
+    "incorporate_indirect_nodes@NodeSelector": [
+        {
+            "category": "arg",
+            "name": "direct_nodes",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "indirect_nodes",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "indirect_selection",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "indirect_nodes",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "incorporate_indirect_nodes",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "selected",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "selected_and_parents",
+            "type": [
+                "set"
+            ]
+        }
+    ],
+    "node_is_match@NodeSelector": [
+        {
+            "category": "arg",
+            "name": "node",
+            "type": [
+                "dbcontracts.graph.compiled.GraphMemberNode",
+                "beagle.nodes.Node",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "node_is_match",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "node_is_match@ResourceTypeSelector": [
+        {
+            "category": "arg",
+            "name": "node",
+            "type": [
+                "mypy.nodes.FuncBase",
+                "mypy.nodes.ClassDef",
+                "wemake_python_styleguide.types.AnyFunctionDef"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node",
+            "type": [
+                "mypy.nodes.FuncBase",
+                "mypy.nodes.ClassDef",
+                "wemake_python_styleguide.types.AnyFunctionDef"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "node_is_match",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "select_included@NodeSelector": [
+        {
+            "category": "arg",
+            "name": "included_nodes",
+            "type": [
+                "set[graph.UniqueId]",
+                "typing.Callable[str, bool]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict[mypy.nodes.Expression, mypy.types.Type]",
+                "tuple[int]",
+                "mypy.nodes.TypeInfo",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict[mypy.nodes.Expression, mypy.types.Type]",
+                "tuple[int]",
+                "mypy.nodes.TypeInfo",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "included_nodes",
+            "type": [
+                "set[graph.UniqueId]",
+                "typing.Callable[str, bool]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "select_included",
+            "type": [
+                "set"
+            ]
+        }
+    ],
+    "select_nodes@NodeSelector": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "T",
+                "selector_spec.SelectionSpec"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "T",
+                "selector_spec.SelectionSpec"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "direct_nodes",
+            "type": [
+                "set",
+                "set[int]",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "select_nodes",
+            "type": [
+                "tuple[typing.Union[set,set[int],int]]"
+            ]
+        }
+    ],
+    "select_nodes_recursively@NodeSelector": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "list[dict[str, typing.Any]]",
+                "T",
+                "selector_spec.SelectionSpec"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "list[dict[str, typing.Any]]",
+                "T",
+                "selector_spec.SelectionSpec",
+                "SelectionCriteria"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "direct_nodes",
+            "type": [
+                "int",
+                "list",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indirect_nodes",
+            "type": [
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "component",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bundles",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "direct_sets",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indirect_sets",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initial_direct",
+            "type": [
+                "int",
+                "str",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "select_nodes_recursively",
+            "type": [
+                "tuple[typing.Union[int,list,set]]"
+            ]
+        }
+    ]
+}

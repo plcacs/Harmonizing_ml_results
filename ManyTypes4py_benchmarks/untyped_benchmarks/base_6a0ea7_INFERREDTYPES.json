@@ -1,0 +1,685 @@
+{
+    "all_message_attachments@ZulipUploadBackend": [
+        {
+            "category": "arg",
+            "name": "include_thumbnails",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prefix",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "all_message_attachments",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "attachment_vips_source@ZulipUploadBackend": [
+        {
+            "category": "arg",
+            "name": "path_id",
+            "type": [
+                "str",
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "attachment_vips_source",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "delete_avatar_image@ZulipUploadBackend": [
+        {
+            "category": "arg",
+            "name": "path_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "delete_avatar_image",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "delete_export_tarball@ZulipUploadBackend": [
+        {
+            "category": "arg",
+            "name": "export_path",
+            "type": [
+                "str",
+                "list[str]",
+                "typing.Collection",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "delete_export_tarball",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "delete_message_attachment@ZulipUploadBackend": [
+        {
+            "category": "arg",
+            "name": "path_id",
+            "type": [
+                "str",
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "delete_message_attachment",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "delete_message_attachments@ZulipUploadBackend": [
+        {
+            "category": "arg",
+            "name": "path_ids",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path_id",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path_ids",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "delete_message_attachments",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "generate_message_upload_path@ZulipUploadBackend": [
+        {
+            "category": "arg",
+            "name": "realm_id",
+            "type": [
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "uploaded_file_name",
+            "type": [
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "generate_message_upload_path",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_avatar_contents@ZulipUploadBackend": [
+        {
+            "category": "arg",
+            "name": "file_path",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_avatar_contents",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_avatar_path@ZulipUploadBackend": [
+        {
+            "category": "arg",
+            "name": "hash_key",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "medium",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "medium",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hash_key",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_avatar_path",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "get_avatar_url@ZulipUploadBackend": [
+        {
+            "category": "arg",
+            "name": "hash_key",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "medium",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_avatar_url",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_emoji_url@ZulipUploadBackend": [
+        {
+            "category": "arg",
+            "name": "emoji_file_name",
+            "type": [
+                "int",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "realm_id",
+            "type": [
+                "int",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "still",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_emoji_url",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_export_tarball_url@ZulipUploadBackend": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "export_path",
+            "type": [
+                "zerver.models.Realm",
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_export_tarball_url",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_public_upload_root_url@ZulipUploadBackend": [
+        {
+            "category": "return",
+            "name": "get_public_upload_root_url",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_realm_icon_url@ZulipUploadBackend": [
+        {
+            "category": "arg",
+            "name": "realm_id",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "version",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_realm_icon_url",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_realm_logo_url@ZulipUploadBackend": [
+        {
+            "category": "arg",
+            "name": "realm_id",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "version",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "night",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_realm_logo_url",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [],
+    "realm_avatar_and_logo_path@ZulipUploadBackend": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "str",
+                "models.Profile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "str",
+                "models.Profile"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "realm_avatar_and_logo_path",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "save_attachment_contents@ZulipUploadBackend": [
+        {
+            "category": "arg",
+            "name": "path_id",
+            "type": [
+                "str",
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "filehandle",
+            "type": [
+                "str",
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "save_attachment_contents",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "upload_export_tarball@ZulipUploadBackend": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "typing.Callable[typing.Any, None]",
+                "None",
+                "str",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tarball_path",
+            "type": [
+                "typing.Callable[typing.Any, None]",
+                "None",
+                "str",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "percent_callback",
+            "type": [
+                "None",
+                "typing.Callable[typing.Any, None]",
+                "str",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_export_tarball",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "upload_message_attachment@ZulipUploadBackend": [
+        {
+            "category": "arg",
+            "name": "path_id",
+            "type": [
+                "zerver.data_imporsequencer.IdMapper",
+                "int",
+                "typing.AbstractSet"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "filename",
+            "type": [
+                "zerver.data_imporsequencer.IdMapper",
+                "int",
+                "typing.AbstractSet"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content_type",
+            "type": [
+                "zerver.data_imporsequencer.IdMapper",
+                "int",
+                "typing.AbstractSet"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "file_data",
+            "type": [
+                "zerver.data_imporsequencer.IdMapper",
+                "int",
+                "typing.AbstractSet"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.data_imporsequencer.IdMapper",
+                "int",
+                "typing.AbstractSet"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_message_attachment",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "upload_realm_icon_image@ZulipUploadBackend": [
+        {
+            "category": "arg",
+            "name": "icon_file",
+            "type": [
+                "str",
+                "zerver.models.Client",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "zerver.models.Client",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content_type",
+            "type": [
+                "str",
+                "zerver.models.Client",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_realm_icon_image",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "upload_realm_logo_image@ZulipUploadBackend": [
+        {
+            "category": "arg",
+            "name": "logo_file",
+            "type": [
+                "bool",
+                "zerver.models.Realm",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "zerver.models.Realm",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "night",
+            "type": [
+                "bool",
+                "zerver.models.Realm",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content_type",
+            "type": [
+                "bool",
+                "zerver.models.Realm",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_realm_logo_image",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "upload_single_avatar_image@ZulipUploadBackend": [
+        {
+            "category": "arg",
+            "name": "file_path",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "image_data",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content_type",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "future",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_single_avatar_image",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "upload_single_emoji_image@ZulipUploadBackend": [
+        {
+            "category": "arg",
+            "name": "path",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content_type",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "image_data",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_single_emoji_image",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,1022 @@
+{
+    "global@global": [],
+    "make_channel_pair@global": [
+        {
+            "category": "arg",
+            "name": "fee_schedule",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.BlockNumber",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "balance1",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "balance2",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "balance1",
+            "type": [
+                "int",
+                "TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "balance2",
+            "type": [
+                "int",
+                "TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee_schedule",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.BlockNumber",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "make_channel_pair",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "running_sum@global": [
+        {
+            "category": "arg",
+            "name": "a",
+            "type": [
+                "list[int]",
+                "set[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "item",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "a",
+            "type": [
+                "list[int]",
+                "set[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "running_sum",
+            "type": [
+                "typing.Generator[int]"
+            ]
+        }
+    ],
+    "test_fee_add_remove_invariant@global": [
+        {
+            "category": "arg",
+            "name": "flat_fee",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.Address",
+                "raiden.utils.FeeAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prop_fee",
+            "type": [
+                "raiden.utils.Signature",
+                "raiden.utils.ChannelID",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "imbalance_fee",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.Address",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "amount",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.Signature",
+                "raiden.utils.BlockExpiration"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "balance1",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.Address",
+                "raiden.utils.Signature"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "balance2",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_balance",
+            "type": [
+                "TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prop_fee",
+            "type": [
+                "raiden.utils.Signature",
+                "raiden.utils.ChannelID",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prop_fee_per_channel",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "imbalance_fee",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.Address",
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.FeeAmount",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flat_fee",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.Address",
+                "raiden.utils.FeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee_schedule",
+            "type": [
+                "FeeScheduleState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "balance1",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.Address",
+                "raiden.utils.Signature"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "balance2",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.Signature",
+                "raiden.utils.BlockExpiration"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount_with_fees",
+            "type": [
+                "str",
+                "raiden.utils.PaymentWithFeeAmount",
+                "raiden.utils.FeeAmount"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_fee_add_remove_invariant",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_fee_capping@global": [
+        {
+            "category": "local",
+            "name": "schedule",
+            "type": [
+                "FeeScheduleState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_fee_capping",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_fee_round_trip@global": [
+        {
+            "category": "arg",
+            "name": "flat_fee",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.FeeAmount",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prop_fee",
+            "type": [
+                "raiden.utils.Signature",
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.FeeAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "imbalance_fee",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.Signature",
+                "raiden.utils.BlockExpiration"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "amount",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.Signature",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "balance1",
+            "type": [
+                "raiden.utils.Signature",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "balance2",
+            "type": [
+                "raiden.utils.Signature",
+                "raiden.utils.ChannelID",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.Signature",
+                "bool",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "balance1",
+            "type": [
+                "raiden.utils.Signature",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "balance2",
+            "type": [
+                "raiden.utils.Signature",
+                "raiden.utils.ChannelID",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_balance",
+            "type": [
+                "TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prop_fee",
+            "type": [
+                "raiden.utils.Signature",
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.FeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prop_fee_per_channel",
+            "type": [
+                "int",
+                "str",
+                "raiden.utils.Dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "imbalance_fee",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.Signature",
+                "raiden.utils.BlockExpiration",
+                "raiden.utils.FeeAmount",
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.ProportionalFeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flat_fee",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.FeeAmount",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee_calculation",
+            "type": [
+                "int",
+                "typing.Type",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_fee_round_trip",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_lock_amount_after_fees@global": [
+        {
+            "category": "arg",
+            "name": "flat_fee",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.FeeAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prop_fee",
+            "type": [
+                "int",
+                "raiden.utils.PaymentWithFeeAmount",
+                "raiden.utils.FeeAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "initial_amount",
+            "type": [
+                "int",
+                "raiden.utils.PaymentWithFeeAmount",
+                "raiden_contracts.utils.type_aliases.TokenAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_amount",
+            "type": [
+                "int",
+                "raiden.utils.PaymentWithFeeAmount",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prop_fee",
+            "type": [
+                "int",
+                "raiden.utils.PaymentWithFeeAmount",
+                "raiden.utils.FeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prop_fee_per_channel",
+            "type": [
+                "int",
+                "raiden.utils.Dict",
+                "raiden.utils.ChannelMap"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initial_amount",
+            "type": [
+                "int",
+                "raiden.utils.PaymentWithFeeAmount",
+                "raiden_contracts.utils.type_aliases.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock",
+            "type": [
+                "raiden.transfer.state.HashTimeLockState",
+                "raiden.messages.Lock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flat_fee",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.FeeAmount"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_lock_amount_after_fees",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_lock_amount_after_fees_imbalanced_channel@global": [
+        {
+            "category": "arg",
+            "name": "cap_fees",
+            "type": [
+                "list[raiden.utils.ChannelID]",
+                "raiden.transfer.mediated_transfer.state.TransferDescriptionWithSecretState",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "flat_fee",
+            "type": [
+                "list[raiden.utils.ChannelID]",
+                "raiden.transfer.mediated_transfer.state.TransferDescriptionWithSecretState",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prop_fee",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.FeeAmount",
+                "raiden.utils.PaymentWithFeeAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "imbalance_fee",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.FeeAmount",
+                "raiden.transfer.mediated_transfer.mediation_fee.FeeScheduleState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "initial_amount",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.FeeAmount",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_amount",
+            "type": [
+                "int",
+                "raiden.utils.PaymentWithFeeAmount",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "balance",
+            "type": [
+                "TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prop_fee",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.FeeAmount",
+                "raiden.utils.PaymentWithFeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prop_fee_per_channel",
+            "type": [
+                "int",
+                "str",
+                "raiden.utils.Dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "imbalance_fee",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.FeeAmount",
+                "raiden.transfer.mediated_transfer.mediation_fee.FeeScheduleState",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initial_amount",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.FeeAmount",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock",
+            "type": [
+                "raiden.transfer.state.HashTimeLockState",
+                "raiden.messages.Lock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cap_fees",
+            "type": [
+                "list[raiden.utils.ChannelID]",
+                "raiden.transfer.mediated_transfer.state.TransferDescriptionWithSecretState",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flat_fee",
+            "type": [
+                "list[raiden.utils.ChannelID]",
+                "raiden.transfer.mediated_transfer.state.TransferDescriptionWithSecretState",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_lock_amount_after_fees_imbalanced_channel",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_imbalance_penalty@global": [
+        {
+            "category": "local",
+            "name": "v_schedule",
+            "type": [
+                "FeeScheduleState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reverse_schedule",
+            "type": [
+                "FeeScheduleState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cap_fees",
+            "type": [
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "x1",
+            "type": [
+                "bool",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_fee_in",
+            "type": [
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_fee_out",
+            "type": [
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "v_schedule_",
+            "type": [
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount_with_fees",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "str",
+                "raiden.utils.FeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reverse_schedule_",
+            "type": [
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_imbalance_penalty",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_interpolation@global": [
+        {
+            "category": "local",
+            "name": "interp",
+            "type": [
+                "Interpolate"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_interpolation",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_linspace@global": [
+        {
+            "category": "return",
+            "name": "test_linspace",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_mfee1@global": [
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flat_fee",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee_schedule",
+            "type": [
+                "FeeScheduleState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channels",
+            "type": [
+                "tests.chain_integration.conftesCurrencyNetworkProxy",
+                "raiden.transfer.state.NettingChannelState",
+                "tests.control.Channel"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee_calculation",
+            "type": [
+                "int",
+                "typing.Type",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_mfee1",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_mfee2@global": [
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prop_fee",
+            "type": [
+                "int",
+                "list[int]",
+                "\"ExternalTaxRateDraft\"",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee_schedule",
+            "type": [
+                "FeeScheduleState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channels",
+            "type": [
+                "tests.chain_integration.conftesCurrencyNetworkProxy",
+                "raiden.transfer.state.NettingChannelState",
+                "tests.control.Channel"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee_calculation",
+            "type": [
+                "int",
+                "typing.Type",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_mfee2",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_mfee3@global": [
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit",
+            "type": [
+                "TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "imbalance_penalty",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee_schedule",
+            "type": [
+                "FeeScheduleState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channels",
+            "type": [
+                "tests.chain_integration.conftesCurrencyNetworkProxy",
+                "raiden.transfer.state.NettingChannelState",
+                "tests.control.Channel"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee_calculation",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "typing.Type",
+                "raiden.utils.FeeAmount"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_mfee3",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_mfee4@global": [
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prop_fee",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "imbalance_penalty",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee_schedule",
+            "type": [
+                "FeeScheduleState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channels",
+            "type": [
+                "raiden.transfer.state.NettingChannelState",
+                "tests.control.Channel",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee_calculation",
+            "type": [
+                "int",
+                "typing.Type",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount_with_margin",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "med_fees",
+            "type": [
+                "list",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "incoming_amount",
+            "type": [
+                "int",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "outgoing_amount",
+            "type": [
+                "int",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_mfee4",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_rebalancing_fee_calculation@global": [
+        {
+            "category": "local",
+            "name": "sample",
+            "type": [
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_rebalancing_fee_calculation",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

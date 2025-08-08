@@ -1,0 +1,846 @@
+{
+    "copy_default_settings@global": [
+        {
+            "category": "arg",
+            "name": "settings_source",
+            "type": [
+                "dict[str, typing.Any]",
+                "zerver.models.Stream",
+                "tuple[typing.Union[str,int]]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_profile",
+            "type": [
+                "dict",
+                "homeassistanauth.models.User",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "settings_source",
+            "type": [
+                "dict[str, typing.Any]",
+                "zerver.models.Stream",
+                "tuple[typing.Union[str,int]]",
+                "None",
+                "RealmUserDefault"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_profile",
+            "type": [
+                "dict",
+                "homeassistanauth.models.User",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "copy_default_settings",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "create_user@global": [
+        {
+            "category": "arg",
+            "name": "email",
+            "type": [
+                "str",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "password",
+            "type": [
+                "str",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "str",
+                "bool",
+                "list[zerver.models.UserProfile]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "full_name",
+            "type": [
+                "str",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "active",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "role",
+            "type": [
+                "None",
+                "str",
+                "zerver.models.Realm",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "bot_type",
+            "type": [
+                "None",
+                "zerver.models.UserProfile",
+                "list[int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "bot_owner",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tos_version",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "timezone",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "avatar_source",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "is_mirror_dummy",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "default_language",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "default_sending_stream",
+            "type": [
+                "None",
+                "str",
+                "int",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "default_events_register_stream",
+            "type": [
+                "None",
+                "str",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "default_all_public_streams",
+            "type": [
+                "None",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "source_profile",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "force_id",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "force_date_joined",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "create_personal_recipient",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "enable_marketing_emails",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "email_address_visibility",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "str",
+                "bool",
+                "list[zerver.models.UserProfile]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm_user_default",
+            "type": [
+                "dict[str, str]",
+                "dict[str, bool]",
+                "dict[str, dict[str, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bot_type",
+            "type": [
+                "None",
+                "zerver.models.UserProfile",
+                "list[int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "email_address_visibility",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_email_address_visibility",
+            "type": [
+                "str",
+                "bool",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_language",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "email",
+            "type": [
+                "str",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "password",
+            "type": [
+                "str",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "active",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "full_name",
+            "type": [
+                "str",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bot_owner",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_mirror_dummy",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tos_version",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timezone",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "force_id",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "force_date_joined",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "models.profiles.Profiles",
+                "zerver.models.UserProfile",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile_",
+            "type": [
+                "typing.Text",
+                "None",
+                "str",
+                "int",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "dict",
+                "list",
+                "bool",
+                "app.models.UserModel",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_sending_stream",
+            "type": [
+                "None",
+                "str",
+                "int",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_events_register_stream",
+            "type": [
+                "None",
+                "str",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "role",
+            "type": [
+                "None",
+                "str",
+                "zerver.models.Realm",
+                "dict[str, typing.Any]",
+                "dict",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_all_public_streams",
+            "type": [
+                "None",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_profile",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "enable_marketing_emails",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "create_personal_recipient",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_user",
+            "type": [
+                "models.profiles.Profiles",
+                "zerver.models.UserProfile",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recipient",
+            "type": [
+                "app.models.UserModel",
+                "list",
+                "typing.Type"
+            ]
+        }
+    ],
+    "create_user_profile@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "email",
+            "type": [
+                "str",
+                "bool",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "password",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "active",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "bot_type",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "full_name",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "bot_owner",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "is_mirror_dummy",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tos_version",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "timezone",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "default_language",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "force_id",
+            "type": [
+                "None",
+                "bool",
+                "list[int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "force_date_joined",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "email_address_visibility",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "force_date_joined",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "date_joined",
+            "type": [
+                "datetime.datetime",
+                "None",
+                "str",
+                "bool",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "email",
+            "type": [
+                "str",
+                "bool",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "extra_kwargs",
+            "type": [
+                "dict",
+                "dict[typing.Text, typing.Union[bool,list[int],list[str]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "force_id",
+            "type": [
+                "None",
+                "bool",
+                "list[int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "active",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "full_name",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bot_type",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bot_owner",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_mirror_dummy",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tos_version",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timezone",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_language",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "email_address_visibility",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "password",
+            "type": [
+                "None",
+                "str",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_user_profile",
+            "type": [
+                "UserProfile"
+            ]
+        }
+    ],
+    "get_display_email_address@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Stream",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Stream",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_display_email_address",
+            "type": []
+        }
+    ],
+    "get_dummy_email_address_for_display_regex@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "str",
+                "zerver.models.Realm",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "str",
+                "zerver.models.Realm",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "regex",
+            "type": [
+                "str",
+                "typing.Pattern"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_dummy_email_address_for_display_regex",
+            "type": [
+                "str",
+                "typing.Pattern"
+            ]
+        }
+    ],
+    "global@global": []
+}

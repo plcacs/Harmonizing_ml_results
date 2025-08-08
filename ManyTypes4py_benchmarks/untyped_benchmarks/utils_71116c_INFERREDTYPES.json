@@ -1,0 +1,585 @@
+{
+    "check_password_hash@global": [
+        {
+            "category": "arg",
+            "name": "pwhash",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "password",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "check_password_hash",
+            "type": []
+        }
+    ],
+    "confirm_email_token@global": [
+        {
+            "category": "arg",
+            "name": "token",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "salt",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expiration",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "serializer",
+            "type": [
+                "URLSafeTimedSerializer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "salt",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expiration",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "email",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "confirm_email_token",
+            "type": [
+                "str",
+                "None"
+            ]
+        }
+    ],
+    "create_token@global": [
+        {
+            "category": "arg",
+            "name": "user_id",
+            "type": [
+                "str",
+                "list[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "name",
+            "type": [
+                "str",
+                "list[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "login",
+            "type": [
+                "str",
+                "list[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "provider",
+            "type": [
+                "str",
+                "list[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "customers",
+            "type": [
+                "str",
+                "list[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "scopes",
+            "type": [
+                "str",
+                "list[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "email",
+            "type": [
+                "None",
+                "str",
+                "list[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "email_verified",
+            "type": [
+                "None",
+                "str",
+                "list[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "picture",
+            "type": [
+                "None",
+                "str",
+                "list[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "user_id",
+            "type": [
+                "str",
+                "list[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "str",
+                "list[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "login",
+            "type": [
+                "str",
+                "list[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "email",
+            "type": [
+                "None",
+                "str",
+                "list[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "email_verified",
+            "type": [
+                "None",
+                "str",
+                "list[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "provider",
+            "type": [
+                "str",
+                "list[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scopes",
+            "type": [
+                "str",
+                "list[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "customers",
+            "type": [
+                "str",
+                "list[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "picture",
+            "type": [
+                "None",
+                "str",
+                "list[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_token",
+            "type": [
+                "Jwt"
+            ]
+        }
+    ],
+    "generate_email_token@global": [
+        {
+            "category": "arg",
+            "name": "email",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "salt",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "serializer",
+            "type": [
+                "URLSafeTimedSerializer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "email",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "salt",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "generate_email_token",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "generate_password_hash@global": [
+        {
+            "category": "arg",
+            "name": "password",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "password",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "generate_password_hash",
+            "type": []
+        }
+    ],
+    "get_customers@global": [
+        {
+            "category": "arg",
+            "name": "login",
+            "type": [
+                "str",
+                "list[str]",
+                "arxiv.submission.User"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "groups",
+            "type": [
+                "str",
+                "list[str]",
+                "arxiv.submission.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "login",
+            "type": [
+                "str",
+                "list[str]",
+                "arxiv.submission.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "groups",
+            "type": [
+                "str",
+                "list[str]",
+                "arxiv.submission.User"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_customers",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        }
+    ],
+    "global@global": [],
+    "link@global": [
+        {
+            "category": "arg",
+            "name": "base_url",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "parts",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "base_url",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "link",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "not_authorized@global": [
+        {
+            "category": "arg",
+            "name": "allowed_setting",
+            "type": [
+                "str",
+                "list[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "groups",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "allowed_setting",
+            "type": [
+                "str",
+                "list[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "groups",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "not_authorized",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "send_confirmation@global": [
+        {
+            "category": "arg",
+            "name": "user",
+            "type": [
+                "str",
+                "arxiv.users.domain.User"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token",
+            "type": [
+                "str",
+                "User",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user",
+            "type": [
+                "str",
+                "arxiv.users.domain.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subject",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token",
+            "type": [
+                "str",
+                "User",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "text",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "send_confirmation",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "send_password_reset@global": [
+        {
+            "category": "arg",
+            "name": "user",
+            "type": [
+                "User",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token",
+            "type": [
+                "str",
+                "User",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subject",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token",
+            "type": [
+                "str",
+                "User",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "text",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user",
+            "type": [
+                "User",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "send_password_reset",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

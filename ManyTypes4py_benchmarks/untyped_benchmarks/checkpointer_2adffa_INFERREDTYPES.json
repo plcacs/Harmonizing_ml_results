@@ -1,0 +1,658 @@
+{
+    "__init__@Checkpointer": [
+        {
+            "category": "arg",
+            "name": "serialization_dir",
+            "type": [
+                "str",
+                "typing.Container",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "save_completed_epochs",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "save_every_num_seconds",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "save_every_num_batches",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "keep_most_recent_by_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "keep_most_recent_by_age",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "serialization_dir",
+            "type": [
+                "str",
+                "typing.Container",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_serialization_dir",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "save_completed_epochs",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_save_completed_epochs",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "save_every_num_seconds",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_save_every_num_seconds",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "save_every_num_batches",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_save_every_num_batches",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "keep_most_recent_by_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_keep_most_recent_by_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "keep_most_recent_by_age",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_keep_most_recent_by_age",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_last_save_num_epochs_completed",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_last_save_num_batches_in_epoch_completed",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_rank",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_is_sharded",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_find_all_checkpoints@Checkpointer": [
+        {
+            "category": "local",
+            "name": "checkpoints",
+            "type": [
+                "set",
+                "set[typing.Union[str,property,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "point_in_time",
+            "type": [
+                "None",
+                "str",
+                "property",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_find_all_checkpoints",
+            "type": [
+                "set[typing.Union[str,property,int]]"
+            ]
+        }
+    ],
+    "_is_primary@Checkpointer": [
+        {
+            "category": "return",
+            "name": "_is_primary",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_model_state_path@Checkpointer": [
+        {
+            "category": "arg",
+            "name": "epochs_completed",
+            "type": [
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batches_in_epoch_completed",
+            "type": [
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "epochs_completed",
+            "type": [
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batches_in_epoch_completed",
+            "type": [
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path",
+            "type": [
+                "str",
+                "list[bytes]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_model_state_path",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "_parse_model_state_path@Checkpointer": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "match",
+            "type": [
+                "typing.Match",
+                "None",
+                "typing.Pattern"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_parse_model_state_path",
+            "type": [
+                "None",
+                "tuple[int]"
+            ]
+        }
+    ],
+    "_parse_training_state_path@Checkpointer": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "match",
+            "type": [
+                "typing.Match",
+                "None",
+                "typing.Pattern"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_parse_training_state_path",
+            "type": [
+                "None",
+                "tuple[int]"
+            ]
+        }
+    ],
+    "_remove_checkpoint@Checkpointer": [
+        {
+            "category": "arg",
+            "name": "epochs_completed",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batches_in_epoch_completed",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "epochs_completed",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batches_in_epoch_completed",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_remove_checkpoint",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_training_state_path@Checkpointer": [
+        {
+            "category": "arg",
+            "name": "epochs_completed",
+            "type": [
+                "bool",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batches_in_epoch_completed",
+            "type": [
+                "bool",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "epochs_completed",
+            "type": [
+                "bool",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batches_in_epoch_completed",
+            "type": [
+                "bool",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path",
+            "type": [
+                "str",
+                "list[bytes]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_training_state_path",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "find_latest_checkpoint@Checkpointer": [
+        {
+            "category": "return",
+            "name": "find_latest_checkpoint",
+            "type": [
+                "None",
+                "tuple"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "load_checkpoint@Checkpointer": [
+        {
+            "category": "local",
+            "name": "latest_checkpoint",
+            "type": [
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_checkpoint",
+            "type": [
+                "None",
+                "TrainerCheckpoint"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "training_state_path",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "maybe_save_checkpoint@Checkpointer": [
+        {
+            "category": "arg",
+            "name": "trainer",
+            "type": [
+                "str",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_epochs_completed",
+            "type": [
+                "int",
+                "typing.Iterable[allennlp.data.instance.Instance]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_batches_in_epoch_completed",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_batches_in_epoch_completed",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "end_of_epoch",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_epochs_completed",
+            "type": [
+                "int",
+                "typing.Iterable[allennlp.data.instance.Instance]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_save_num_batches_in_epoch_completed",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "should_save",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "str",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "maybe_save_checkpoint",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "save_checkpoint@Checkpointer": [
+        {
+            "category": "arg",
+            "name": "trainer",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "_serialization_dir",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "save_checkpoint",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tcps",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_keep_most_recent_by_age",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_keep_most_recent_by_count",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "checkpoints",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "checkpoints_to_keep",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "checkpoint_mtime",
+            "type": [
+                "int",
+                "float"
+            ]
+        }
+    ]
+}

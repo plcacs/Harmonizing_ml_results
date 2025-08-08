@@ -1,0 +1,399 @@
+{
+    "_get_fqdn@global": [
+        {
+            "category": "arg",
+            "name": "record",
+            "type": [
+                "str",
+                "set",
+                "core.types.FBUserID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "domain",
+            "type": [
+                "str",
+                "set",
+                "core.types.FBUserID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record",
+            "type": [
+                "str",
+                "set",
+                "core.types.FBUserID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "domain",
+            "type": [
+                "str",
+                "set",
+                "core.types.FBUserID"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_fqdn",
+            "type": [
+                "str",
+                "set",
+                "core.types.FBUserID",
+                "typing.Text"
+            ]
+        }
+    ],
+    "_update_route53@global": [
+        {
+            "category": "arg",
+            "name": "aws_access_key_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "aws_secret_access_key",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "zone",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "domain",
+            "type": [
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "records",
+            "type": [
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ttl",
+            "type": [
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "zone",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DOMAIN",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "aws_access_key_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "aws_secret_access_key",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_update_route53",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "changes",
+            "type": [
+                "list",
+                "list[dict[typing.Text, typing.Union[typing.Text,dict[typing.Text, typing.Union[typing.Text,int,None,list[dict[typing.Text, ]]]]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "records",
+            "type": [
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "domain",
+            "type": [
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ttl",
+            "type": [
+                "str",
+                "int",
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_ACCESS_KEY_ID",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_SECRET_ACCESS_KEY",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_RECORDS",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DOMAIN",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "INTERVAL",
+            "type": [
+                "datetime.timedelta",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DEFAULT_TTL",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONFIG_SCHEMA",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        }
+    ],
+    "setup@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "dict",
+                "homeassistanhelpers.ConfigType",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "dict",
+                "homeassistanhelpers.ConfigType",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DOMAIN",
+            "type": [
+                "str",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "domain",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_RECORDS",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "records",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "zone",
+            "type": [
+                "str",
+                "list",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_ACCESS_KEY_ID",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "aws_access_key_id",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_SECRET_ACCESS_KEY",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "aws_secret_access_key",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ttl",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "INTERVAL",
+            "type": [
+                "datetime.timedelta",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "setup",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "update_records_interval@global": [
+        {
+            "category": "arg",
+            "name": "now",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "update_records_interval",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "update_records_service@global": [
+        {
+            "category": "arg",
+            "name": "call",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "update_records_service",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

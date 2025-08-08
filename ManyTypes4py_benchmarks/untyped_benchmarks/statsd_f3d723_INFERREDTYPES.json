@@ -1,0 +1,1266 @@
+{
+    "__init__@StatsdMonitor": [
+        {
+            "category": "arg",
+            "name": "host",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "port",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prefix",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rate",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "host",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "port",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prefix",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rate",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "statsd",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_new_statsd_client@StatsdMonitor": [
+        {
+            "category": "local",
+            "name": "statsd",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_new_statsd_client",
+            "type": [
+                "StatsClient"
+            ]
+        }
+    ],
+    "_stream_label@StatsdMonitor": [
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": [
+                "faustypes.StreamT",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_stream_label",
+            "type": [
+                "str",
+                "None"
+            ]
+        }
+    ],
+    "client@StatsdMonitor": [
+        {
+            "category": "return",
+            "name": "client",
+            "type": []
+        }
+    ],
+    "count@StatsdMonitor": [
+        {
+            "category": "arg",
+            "name": "metric_name",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_name",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "count",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "statsd",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "__all__",
+            "type": [
+                "list[typing.Text]"
+            ]
+        }
+    ],
+    "on_assignment_completed@StatsdMonitor": [
+        {
+            "category": "arg",
+            "name": "assignor",
+            "type": [
+                "faustypes.assignor.PartitionAssignorT",
+                "dict",
+                "faustypes.transports.ProducerT"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict",
+                "faustypes.assignor.PartitionAssignorT"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "assignor",
+            "type": [
+                "faustypes.assignor.PartitionAssignorT",
+                "dict",
+                "faustypes.transports.ProducerT"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict",
+                "faustypes.assignor.PartitionAssignorT"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_assignment_completed",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "on_assignment_error@StatsdMonitor": [
+        {
+            "category": "arg",
+            "name": "assignor",
+            "type": [
+                "BaseException",
+                "faustypes.assignor.PartitionAssignorT",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict",
+                "faustypes.assignor.PartitionAssignorT"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exc",
+            "type": [
+                "BaseException",
+                "faustypes.assignor.PartitionAssignorT",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "assignor",
+            "type": [
+                "BaseException",
+                "faustypes.assignor.PartitionAssignorT",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict",
+                "faustypes.assignor.PartitionAssignorT"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exc",
+            "type": [
+                "BaseException",
+                "faustypes.assignor.PartitionAssignorT",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_assignment_error",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "on_commit_completed@StatsdMonitor": [
+        {
+            "category": "arg",
+            "name": "consumer",
+            "type": [
+                "faustypes.transports.ConsumerT",
+                "mode.Service.T",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "consumer",
+            "type": [
+                "faustypes.transports.ConsumerT",
+                "mode.Service.T",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_commit_completed",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "on_message_in@StatsdMonitor": [
+        {
+            "category": "arg",
+            "name": "tp",
+            "type": [
+                "int",
+                "faustypes.TP",
+                "faustypes.Message"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "offset",
+            "type": [
+                "int",
+                "faustypes.Message",
+                "faustypes.TP"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "faustypes.Message",
+                "int",
+                "faustypes.TP"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tp",
+            "type": [
+                "int",
+                "faustypes.TP",
+                "faustypes.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "offset",
+            "type": [
+                "int",
+                "faustypes.Message",
+                "faustypes.TP"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "faustypes.Message",
+                "int",
+                "faustypes.TP"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_message_in",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "on_message_out@StatsdMonitor": [
+        {
+            "category": "arg",
+            "name": "tp",
+            "type": [
+                "faustypes.Message",
+                "int",
+                "faustypes.TP"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "offset",
+            "type": [
+                "faustypes.Message",
+                "int",
+                "faustypes.TP"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "faustypes.Message",
+                "int",
+                "faustypes.TP"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tp",
+            "type": [
+                "faustypes.Message",
+                "int",
+                "faustypes.TP"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "offset",
+            "type": [
+                "faustypes.Message",
+                "int",
+                "faustypes.TP"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "faustypes.Message",
+                "int",
+                "faustypes.TP"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_message_out",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "on_rebalance_end@StatsdMonitor": [
+        {
+            "category": "arg",
+            "name": "app",
+            "type": [
+                "faustypes.AppT",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict",
+                "faustypes.AppT"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "faustypes.AppT",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict",
+                "faustypes.AppT"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_rebalance_end",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "on_rebalance_return@StatsdMonitor": [
+        {
+            "category": "arg",
+            "name": "app",
+            "type": [
+                "faustypes.AppT",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict",
+                "faustypes.AppT"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "faustypes.AppT",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict",
+                "faustypes.AppT"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_rebalance_return",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "on_rebalance_start@StatsdMonitor": [
+        {
+            "category": "arg",
+            "name": "app",
+            "type": [
+                "aiohttp.web.Application",
+                "faustypes.AppT"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "aiohttp.web.Application",
+                "faustypes.AppT"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "tuple[str]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_rebalance_start",
+            "type": [
+                "tuple[str]",
+                "list[str]"
+            ]
+        }
+    ],
+    "on_send_completed@StatsdMonitor": [
+        {
+            "category": "arg",
+            "name": "producer",
+            "type": [
+                "faustypes.transports.ProducerT",
+                "faustypes.RecordMetadata"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "faustypes.transports.ProducerT",
+                "faustypes.RecordMetadata",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "metadata",
+            "type": [
+                "faustypes.transports.ProducerT",
+                "faustypes.RecordMetadata"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "producer",
+            "type": [
+                "faustypes.transports.ProducerT",
+                "faustypes.RecordMetadata"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "faustypes.transports.ProducerT",
+                "faustypes.RecordMetadata",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metadata",
+            "type": [
+                "faustypes.transports.ProducerT",
+                "faustypes.RecordMetadata"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_send_completed",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "on_send_error@StatsdMonitor": [
+        {
+            "category": "arg",
+            "name": "producer",
+            "type": [
+                "BaseException",
+                "faustypes.transports.ProducerT",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exc",
+            "type": [
+                "BaseException",
+                "faustypes.transports.ProducerT",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "BaseException",
+                "faustypes.transports.ProducerT",
+                "typing.Callable[..., None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "producer",
+            "type": [
+                "BaseException",
+                "faustypes.transports.ProducerT",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exc",
+            "type": [
+                "BaseException",
+                "faustypes.transports.ProducerT",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "BaseException",
+                "faustypes.transports.ProducerT",
+                "typing.Callable[..., None]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_send_error",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "on_send_initiated@StatsdMonitor": [
+        {
+            "category": "arg",
+            "name": "producer",
+            "type": [
+                "int",
+                "faustypes.transports.ProducerT",
+                "faustypes.tuples.PendingMessage"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topic",
+            "type": [
+                "str",
+                "int",
+                "faustypes.transports.ProducerT"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "int",
+                "faustypes.transports.ProducerT",
+                "faustypes.tuples.PendingMessage"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "keysize",
+            "type": [
+                "int",
+                "faustypes.transports.ProducerT",
+                "faustypes.tuples.PendingMessage"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "valsize",
+            "type": [
+                "int",
+                "faustypes.transports.ProducerT",
+                "faustypes.tuples.PendingMessage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic",
+            "type": [
+                "str",
+                "int",
+                "faustypes.transports.ProducerT"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "producer",
+            "type": [
+                "int",
+                "faustypes.transports.ProducerT",
+                "faustypes.tuples.PendingMessage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "int",
+                "faustypes.transports.ProducerT",
+                "faustypes.tuples.PendingMessage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "keysize",
+            "type": [
+                "int",
+                "faustypes.transports.ProducerT",
+                "faustypes.tuples.PendingMessage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "valsize",
+            "type": [
+                "int",
+                "faustypes.transports.ProducerT",
+                "faustypes.tuples.PendingMessage"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_send_initiated",
+            "type": [
+                "aiohttp.web.Request",
+                "bool"
+            ]
+        }
+    ],
+    "on_stream_event_in@StatsdMonitor": [
+        {
+            "category": "arg",
+            "name": "tp",
+            "type": [
+                "int",
+                "faustypes.EventT",
+                "faustypes.tuples.TP"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "offset",
+            "type": [
+                "int",
+                "faustypes.EventT",
+                "faustypes.tuples.TP"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": [
+                "int",
+                "faustypes.EventT",
+                "faustypes.tuples.TP"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "event",
+            "type": [
+                "int",
+                "faustypes.EventT",
+                "faustypes.tuples.TP"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tp",
+            "type": [
+                "int",
+                "faustypes.EventT",
+                "faustypes.tuples.TP"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "offset",
+            "type": [
+                "int",
+                "faustypes.EventT",
+                "faustypes.tuples.TP"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "int",
+                "faustypes.EventT",
+                "faustypes.tuples.TP"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "int",
+                "faustypes.EventT",
+                "faustypes.tuples.TP"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_stream_event_in",
+            "type": []
+        }
+    ],
+    "on_stream_event_out@StatsdMonitor": [
+        {
+            "category": "arg",
+            "name": "tp",
+            "type": [
+                "int",
+                "dict",
+                "faustypes.EventT"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "offset",
+            "type": [
+                "int",
+                "dict",
+                "faustypes.EventT"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": [
+                "int",
+                "dict",
+                "faustypes.EventT"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "event",
+            "type": [
+                "int",
+                "dict",
+                "faustypes.EventT"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "None",
+                "int",
+                "dict",
+                "faustypes.EventT"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tp",
+            "type": [
+                "int",
+                "dict",
+                "faustypes.EventT"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "offset",
+            "type": [
+                "int",
+                "dict",
+                "faustypes.EventT"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "int",
+                "dict",
+                "faustypes.EventT"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "int",
+                "dict",
+                "faustypes.EventT"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "None",
+                "int",
+                "dict",
+                "faustypes.EventT"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_stream_event_out",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "on_table_del@StatsdMonitor": [
+        {
+            "category": "arg",
+            "name": "table",
+            "type": [
+                "faustypes.CollectionT"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "faustypes.CollectionT"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "table",
+            "type": [
+                "faustypes.CollectionT"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "faustypes.CollectionT"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_table_del",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "on_table_get@StatsdMonitor": [
+        {
+            "category": "arg",
+            "name": "table",
+            "type": [
+                "faustypes.CollectionT"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "faustypes.CollectionT"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "table",
+            "type": [
+                "faustypes.CollectionT"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "faustypes.CollectionT"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_table_get",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "on_table_set@StatsdMonitor": [
+        {
+            "category": "arg",
+            "name": "table",
+            "type": [
+                "faustypes.CollectionT"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "faustypes.CollectionT",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "faustypes.CollectionT",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "table",
+            "type": [
+                "faustypes.CollectionT"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "faustypes.CollectionT",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "faustypes.CollectionT",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_table_set",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "on_tp_commit@StatsdMonitor": [
+        {
+            "category": "arg",
+            "name": "tp_offsets",
+            "type": [
+                "faustypes.TP",
+                "TPOffsetMapping"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tp_offsets",
+            "type": [
+                "faustypes.TP",
+                "TPOffsetMapping"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_tp_commit",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "on_web_request_end@StatsdMonitor": [
+        {
+            "category": "arg",
+            "name": "app",
+            "type": [
+                "faustypes.AppT",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "faustypes.AppT",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "response",
+            "type": [
+                "faustypes.AppT",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "faustypes.AppT",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "view",
+            "type": [
+                "None",
+                "faustypes.AppT",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "faustypes.AppT",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "faustypes.AppT",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "faustypes.AppT",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "faustypes.AppT",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "view",
+            "type": [
+                "None",
+                "faustypes.AppT",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "status_code",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_web_request_end",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "track_tp_end_offset@StatsdMonitor": [
+        {
+            "category": "arg",
+            "name": "tp",
+            "type": [
+                "int",
+                "faustypes.TP",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "offset",
+            "type": [
+                "int",
+                "faustypes.TP"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tp",
+            "type": [
+                "int",
+                "faustypes.TP",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "offset",
+            "type": [
+                "int",
+                "faustypes.TP"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "track_tp_end_offset",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

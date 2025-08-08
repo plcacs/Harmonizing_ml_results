@@ -1,0 +1,15 @@
+from typing import Any, Dict, List, Optional, Union
+
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
+async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
+async def async_remove_entry(hass: HomeAssistant, entry: ConfigEntry) -> None:
+async def async_connect_mqtt(hass: HomeAssistant, component: str) -> bool:
+async def handle_webhook(hass: HomeAssistant, webhook_id: str, request: Any) -> Any:
+
+class OwnTracksContext:
+    def __init__(self, hass: HomeAssistant, secret: Optional[str], max_gps_accuracy: Optional[float], import_waypoints: bool, waypoint_whitelist: Optional[List[str]], region_mapping: Dict[str, str], events_only: bool, mqtt_topic: str) -> None:
+    def async_valid_accuracy(self, message: Dict[str, Any]) -> bool:
+    def set_async_see(self, func: Any) -> None:
+    def async_see(self, **data: Any) -> None:
+    def async_see_beacons(self, hass: HomeAssistant, dev_id: str, kwargs_param: Dict[str, Any]) -> None:

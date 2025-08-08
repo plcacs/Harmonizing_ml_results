@@ -1,0 +1,968 @@
+{
+    "__init__@InfluenceInterpreter": [
+        {
+            "category": "arg",
+            "name": "model",
+            "type": [
+                "allennlp.data.DataLoader",
+                "allennlp.models.Model",
+                "tensorflow.data.Dataset"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "train_data_path",
+            "type": [
+                "str",
+                "int",
+                "torch.utils.data.Dataset"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "train_dataset_reader",
+            "type": [
+                "str",
+                "tensorflow.data.Dataset",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "test_dataset_reader",
+            "type": [
+                "None",
+                "int",
+                "tensorflow.data.Dataset"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "train_data_loader",
+            "type": [
+                "Lazy"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "test_data_loader",
+            "type": [
+                "Lazy"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "params_to_freeze",
+            "type": [
+                "str",
+                "None",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "cuda_device",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "allennlp.data.DataLoader",
+                "allennlp.models.Model",
+                "tensorflow.data.Dataset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cuda_device",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "dict[str, typing.Any]",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_data_path",
+            "type": [
+                "str",
+                "int",
+                "torch.utils.data.Dataset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_train_data_path",
+            "type": [
+                "str",
+                "int",
+                "torch.utils.data.Dataset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_data_loader",
+            "type": [
+                "Lazy"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_dataset_reader",
+            "type": [
+                "str",
+                "tensorflow.data.Dataset",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_train_loader",
+            "type": [
+                "digipathos.data.data_loader.DataLoader",
+                "squawkbox.data.MidiDataset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_dataset_reader",
+            "type": [
+                "None",
+                "int",
+                "tensorflow.data.Dataset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_test_dataset_reader",
+            "type": [
+                "None",
+                "int",
+                "tensorflow.data.Dataset",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_data_loader",
+            "type": [
+                "Lazy"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_lazy_test_data_loader",
+            "type": [
+                "Lazy"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "params_to_freeze",
+            "type": [
+                "str",
+                "None",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "param_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_used_params",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_used_param_names",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_train_instances",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_calculate_influence_scores@InfluenceInterpreter": [
+        {
+            "category": "arg",
+            "name": "test_instance",
+            "type": [
+                "bool",
+                "T",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "test_loss",
+            "type": [
+                "bool",
+                "T",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "test_grads",
+            "type": [
+                "bool",
+                "T",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_calculate_influence_scores",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_gather_instances@InfluenceInterpreter": [
+        {
+            "category": "arg",
+            "name": "scores",
+            "type": [
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "indices",
+            "type": [
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "outputs",
+            "type": [
+                "list",
+                "list[InstanceInfluence]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scores",
+            "type": [
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indices",
+            "type": [
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_gather_instances",
+            "type": [
+                "list[InstanceInfluence]"
+            ]
+        }
+    ],
+    "_gather_train_instances_and_compute_gradients@InfluenceInterpreter": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_train_instances",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch",
+            "type": [
+                "Batch"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tensor_dict",
+            "type": [
+                "dict",
+                "dict[int, str]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output_dict",
+            "type": [
+                "dict",
+                "dict[int, str]",
+                "dict[tuple[str], typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "loss",
+            "type": [
+                "str",
+                "typing.Any"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_used_params",
+            "type": [
+                "dict",
+                "bool",
+                "dict[str, dict[str, str]]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_used_param_names",
+            "type": [
+                "str",
+                "bool",
+                "None",
+                "list[tuple[str]]",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_gather_train_instances_and_compute_gradients",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "from_archive@InfluenceInterpreter": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "list[str]",
+                "None",
+                "str",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "archive",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "interpreter_name",
+            "type": [
+                "None",
+                "list[str]",
+                "str",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "train_data_path",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "train_data_loader",
+            "type": [
+                "Lazy"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "test_data_loader",
+            "type": [
+                "Lazy"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "params_to_freeze",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "cuda_device",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "extras",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cls",
+            "type": [
+                "list[str]",
+                "None",
+                "str",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "interpreter_name",
+            "type": [
+                "None",
+                "list[str]",
+                "str",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "interpreter_cls",
+            "type": [
+                "str",
+                "None",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "archive",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_data_path",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_data_loader",
+            "type": [
+                "Lazy"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_data_loader",
+            "type": [
+                "Lazy"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "params_to_freeze",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cuda_device",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "extras",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "from_archive",
+            "type": []
+        }
+    ],
+    "from_path@InfluenceInterpreter": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "archive_path",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "interpreter_name",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "train_data_path",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "train_data_loader",
+            "type": [
+                "Lazy"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "test_data_loader",
+            "type": [
+                "Lazy"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "params_to_freeze",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "cuda_device",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "import_plugins",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "overrides",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "extras",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "import_plugins",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cls",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "archive_path",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cuda_device",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "overrides",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "interpreter_name",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_data_path",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_data_loader",
+            "type": [
+                "Lazy"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_data_loader",
+            "type": [
+                "Lazy"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "params_to_freeze",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "extras",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "from_path",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "interpret@InfluenceInterpreter": [
+        {
+            "category": "arg",
+            "name": "test_instance",
+            "type": [
+                "int",
+                "list",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "k",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_instance",
+            "type": [
+                "int",
+                "list",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "interpret",
+            "type": [
+                "str",
+                "typing.Callable",
+                "None"
+            ]
+        }
+    ],
+    "interpret_from_file@InfluenceInterpreter": [
+        {
+            "category": "arg",
+            "name": "test_data_path",
+            "type": [
+                "str",
+                "typing.TextIO",
+                "allennlp.data.dataset_readers.dataset_utils.Ontonotes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "k",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_data_path",
+            "type": [
+                "str",
+                "typing.TextIO",
+                "allennlp.data.dataset_readers.dataset_utils.Ontonotes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_data_loader",
+            "type": [
+                "list[list[typing.Any]]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instances",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "interpret_from_file",
+            "type": [
+                "\"Machine\""
+            ]
+        }
+    ],
+    "interpret_instances@InfluenceInterpreter": [
+        {
+            "category": "arg",
+            "name": "test_instances",
+            "type": [
+                "list[str]",
+                "set[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "k",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "outputs",
+            "type": [
+                "list",
+                "list[InterpretOutput]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_instances",
+            "type": [
+                "list[str]",
+                "set[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_batch",
+            "type": [
+                "Batch"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_tensor_dict",
+            "type": [
+                "dict",
+                "dict[int, str]",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_output_dict",
+            "type": [
+                "dict[str, str]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_loss",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_loss_float",
+            "type": [
+                "float",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "interpret_instances",
+            "type": [
+                "list[InterpretOutput]"
+            ]
+        }
+    ],
+    "train_instances@InfluenceInterpreter": [
+        {
+            "category": "local",
+            "name": "_train_instances",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "train_instances",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "used_param_names@InfluenceInterpreter": [
+        {
+            "category": "local",
+            "name": "_used_param_names",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "used_param_names",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "used_params@InfluenceInterpreter": [
+        {
+            "category": "local",
+            "name": "_used_params",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "used_params",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,1327 @@
+{
+    "__init__@AbstractRunner": [
+        {
+            "category": "arg",
+            "name": "is_async",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "extra_dataset_patterns",
+            "type": [
+                "None",
+                "bool",
+                "list[str]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_async",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_is_async",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "extra_dataset_patterns",
+            "type": [
+                "None",
+                "bool",
+                "list[str]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_extra_dataset_patterns",
+            "type": [
+                "None",
+                "bool",
+                "list[str]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_enumerate_nodes_with_outputs@global": [
+        {
+            "category": "arg",
+            "name": "pipeline",
+            "type": [
+                "typing.TextIO",
+                "None",
+                "str",
+                "\"Machine\""
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "outputs",
+            "type": [
+                "typing.TextIO",
+                "None",
+                "str",
+                "\"Machine\""
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pipeline",
+            "type": [
+                "typing.TextIO",
+                "None",
+                "str",
+                "\"Machine\""
+            ]
+        },
+        {
+            "category": "local",
+            "name": "outputs",
+            "type": [
+                "typing.TextIO",
+                "None",
+                "str",
+                "\"Machine\""
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parent_pipeline",
+            "type": [
+                "dict",
+                "list",
+                "dict[str, typing.Union[typing.Any,str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_enumerate_nodes_with_outputs",
+            "type": []
+        }
+    ],
+    "_enumerate_non_persistent_inputs@global": [
+        {
+            "category": "arg",
+            "name": "node",
+            "type": [
+                "contextshell.backends.node.NodeTreeRoot",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "catalog",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "catalog",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "non_persistent_inputs",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node",
+            "type": [
+                "contextshell.backends.node.NodeTreeRoot",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_enumerate_non_persistent_inputs",
+            "type": [
+                "set"
+            ]
+        }
+    ],
+    "_find_all_nodes_for_resumed_pipeline@global": [
+        {
+            "category": "arg",
+            "name": "pipeline",
+            "type": [
+                "Pipeline"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "unfinished_nodes",
+            "type": [
+                "Pipeline",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "catalog",
+            "type": [
+                "str",
+                "bool",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unfinished_nodes",
+            "type": [
+                "Pipeline",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nodes_to_run",
+            "type": [
+                "set[str]",
+                "set[typing.Union[str,stack.Node,list[Node]]]",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initial_nodes",
+            "type": [
+                "set",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "queue",
+            "type": [
+                "set[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "visited",
+            "type": [
+                "set[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_node",
+            "type": [
+                "stack.Node",
+                "list[Node]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "catalog",
+            "type": [
+                "str",
+                "bool",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "non_persistent_inputs",
+            "type": [
+                "list",
+                "str",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pipeline",
+            "type": [
+                "Pipeline"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_find_all_nodes_for_resumed_pipeline",
+            "type": [
+                "set"
+            ]
+        }
+    ],
+    "_find_initial_node_group@global": [
+        {
+            "category": "arg",
+            "name": "pipeline",
+            "type": [
+                "yatiml.Node",
+                "\"TreeNode\"",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "nodes",
+            "type": [
+                "Node"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nodes",
+            "type": [
+                "Node"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node_names",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_find_initial_node_group",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pipeline",
+            "type": [
+                "yatiml.Node",
+                "\"TreeNode\"",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sub_pipeline",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, dict]"
+            ]
+        }
+    ],
+    "_find_nodes_to_resume_from@global": [
+        {
+            "category": "arg",
+            "name": "pipeline",
+            "type": [
+                "typing.Container",
+                "kedro.pipeline.Pipeline",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "unfinished_nodes",
+            "type": [
+                "typing.Container",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "catalog",
+            "type": [
+                "typing.Container",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pipeline",
+            "type": [
+                "typing.Container",
+                "kedro.pipeline.Pipeline",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unfinished_nodes",
+            "type": [
+                "typing.Container",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "catalog",
+            "type": [
+                "typing.Container",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nodes_to_be_run",
+            "type": [
+                "dict",
+                "list",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "persistent_ancestors",
+            "type": [
+                "list",
+                "set[str]",
+                "set[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "n",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_find_nodes_to_resume_from",
+            "type": [
+                "set"
+            ]
+        }
+    ],
+    "_get_executor@AbstractRunner": [
+        {
+            "category": "arg",
+            "name": "max_workers",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_executor",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_get_required_workers_count@AbstractRunner": [
+        {
+            "category": "arg",
+            "name": "pipeline",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_required_workers_count",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "_logger@AbstractRunner": [
+        {
+            "category": "return",
+            "name": "_logger",
+            "type": []
+        }
+    ],
+    "_nodes_with_external_inputs@global": [
+        {
+            "category": "arg",
+            "name": "nodes_of_interest",
+            "type": [
+                "int",
+                "dict[int, typing.Any]",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nodes_of_interest",
+            "type": [
+                "int",
+                "dict[int, typing.Any]",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "p_nodes_of_interest",
+            "type": [
+                "Pipeline"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "p_nodes_with_external_inputs",
+            "type": [
+                "set[str]",
+                "str",
+                "typing.Final"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_nodes_with_external_inputs",
+            "type": [
+                "set"
+            ]
+        }
+    ],
+    "_raise_runtime_error@AbstractRunner": [
+        {
+            "category": "arg",
+            "name": "todo_nodes",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "done_nodes",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ready",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "done",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "todo_nodes",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "done_nodes",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ready",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "done",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "debug_data",
+            "type": [
+                "dict[typing.Text, bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k",
+            "type": [
+                "tuple[typing.Union[typing.Text,bool]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "v",
+            "type": [
+                "tuple[typing.Union[typing.Text,bool]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "debug_data_str",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_raise_runtime_error",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_release_datasets@AbstractRunner": [
+        {
+            "category": "arg",
+            "name": "node",
+            "type": [
+                "tuple[int]",
+                "dict[str, typing.Any]",
+                "kedro.io.DataCatalog"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "catalog",
+            "type": [
+                "dict",
+                "dict[str, str]",
+                "dict[str, list[str]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "load_counts",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pipeline",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node",
+            "type": [
+                "tuple[int]",
+                "dict[str, typing.Any]",
+                "kedro.io.DataCatalog"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "load_counts",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pipeline",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "catalog",
+            "type": [
+                "dict",
+                "dict[str, str]",
+                "dict[str, list[str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_release_datasets",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_run@AbstractRunner": [
+        {
+            "category": "arg",
+            "name": "pipeline",
+            "type": [
+                "str",
+                "None",
+                "dict",
+                "\"PNSqlCursor\""
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "catalog",
+            "type": [
+                "kedro.io.DataCatalog",
+                "str",
+                "None",
+                "eth.abc.AtomicDatabaseAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "hook_manager",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "session_id",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pipeline",
+            "type": [
+                "str",
+                "None",
+                "dict",
+                "\"PNSqlCursor\""
+            ]
+        },
+        {
+            "category": "local",
+            "name": "catalog",
+            "type": [
+                "kedro.io.DataCatalog",
+                "str",
+                "None",
+                "eth.abc.AtomicDatabaseAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "load_counts",
+            "type": [
+                "Counter"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "done_nodes",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "futures",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "done",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_workers",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pool",
+            "type": [
+                "ProcessPoolExecutor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node",
+            "type": [
+                "dict",
+                "list[list[typing.Any]]",
+                "cypher_query_builder.cypher_query_builder.Node"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hook_manager",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "session_id",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "task",
+            "type": [
+                "Task"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "task_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_run",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_set_manager_datasets@AbstractRunner": [
+        {
+            "category": "arg",
+            "name": "catalog",
+            "type": [
+                "typing.Container"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pipeline",
+            "type": [
+                "typing.Container"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_set_manager_datasets",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_suggest_resume_scenario@AbstractRunner": [
+        {
+            "category": "arg",
+            "name": "pipeline",
+            "type": [
+                "bool",
+                "str",
+                "kedro.io.DataCatalog"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "done_nodes",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "catalog",
+            "type": [
+                "kedro.io.DataCatalog",
+                "str",
+                "kedro.pipeline.node.Node"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pipeline",
+            "type": [
+                "bool",
+                "str",
+                "kedro.io.DataCatalog"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "done_nodes",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "remaining_nodes",
+            "type": [
+                "list",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "postfix",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "catalog",
+            "type": [
+                "kedro.io.DataCatalog",
+                "str",
+                "kedro.pipeline.node.Node"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "start_node_names",
+            "type": [
+                "str",
+                "list[str]",
+                "frozenset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "start_nodes_str",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_suggest_resume_scenario",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_validate_catalog@AbstractRunner": [
+        {
+            "category": "arg",
+            "name": "catalog",
+            "type": [
+                "typing.Sequence[str]",
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pipeline",
+            "type": [
+                "typing.Sequence[str]",
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_validate_catalog",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_validate_max_workers@AbstractRunner": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_workers",
+            "type": [
+                "int",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_workers",
+            "type": [
+                "int",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_MAX_WINDOWS_WORKERS",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_validate_max_workers",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "_validate_nodes@AbstractRunner": [
+        {
+            "category": "arg",
+            "name": "node",
+            "type": [
+                "list",
+                "list[Node]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_validate_nodes",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "_MAX_WINDOWS_WORKERS",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "run@AbstractRunner": [
+        {
+            "category": "arg",
+            "name": "pipeline",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "catalog",
+            "type": [
+                "str",
+                "kedro.io.DataCatalog",
+                "kedro.pipeline.Pipeline"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "hook_manager",
+            "type": [
+                "None",
+                "\"IConnection\""
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "session_id",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "warmed_up_ds",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "catalog",
+            "type": [
+                "str",
+                "kedro.io.DataCatalog",
+                "kedro.pipeline.Pipeline"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hook_manager",
+            "type": [
+                "None",
+                "\"IConnection\""
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hook_or_null_manager",
+            "type": [
+                "None",
+                "\"IConnection\"",
+                "_NullPluginManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "registered_ds",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "session_id",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "run_output",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "run",
+            "type": [
+                "dict"
+            ]
+        }
+    ],
+    "run_node@global": [
+        {
+            "category": "arg",
+            "name": "node",
+            "type": [
+                "bool",
+                "Exception",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "catalog",
+            "type": [
+                "str",
+                "None",
+                "tuple[prefeccore.task.Task]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "hook_manager",
+            "type": [
+                "str",
+                "None",
+                "tuple[prefeccore.task.Task]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "is_async",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "session_id",
+            "type": [
+                "None",
+                "str",
+                "tuple[prefeccore.task.Task]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_async",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node",
+            "type": [
+                "bool",
+                "Exception",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "catalog",
+            "type": [
+                "str",
+                "None",
+                "tuple[prefeccore.task.Task]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hook_manager",
+            "type": [
+                "str",
+                "None",
+                "tuple[prefeccore.task.Task]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "session_id",
+            "type": [
+                "None",
+                "str",
+                "tuple[prefeccore.task.Task]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "task",
+            "type": [
+                "Task"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "run_node",
+            "type": []
+        }
+    ],
+    "run_only_missing@AbstractRunner": [
+        {
+            "category": "arg",
+            "name": "pipeline",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "catalog",
+            "type": [
+                "\"CollectionList\"",
+                "typing.Collection",
+                "typing.Container"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "hook_manager",
+            "type": [
+                "pluggy.PluginManager",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pipeline",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "catalog",
+            "type": [
+                "\"CollectionList\"",
+                "typing.Collection",
+                "typing.Container"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "free_outputs",
+            "type": [
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "missing",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_build",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_rerun",
+            "type": [
+                "list",
+                "dict[str, typing.Any]",
+                "list[typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unregistered_ds",
+            "type": [
+                "dict[str, list[typing.Any]]",
+                "tuple[tuple[typing.Literal]]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output_to_unregistered",
+            "type": [
+                "str",
+                "list",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "input_from_unregistered",
+            "type": [
+                "str",
+                "list",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hook_manager",
+            "type": [
+                "pluggy.PluginManager",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "run_only_missing",
+            "type": [
+                "bool"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,467 @@
+{
+    "_send_email@MockSMTP": [
+        {
+            "category": "arg",
+            "name": "msg",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recipients",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recipients",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_send_email",
+            "type": [
+                "tuple[typing.Union[str,dict]]"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "HTML",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "EMAIL_DATA",
+            "type": [
+                "list[tuple[typing.Union[typing.Text,dict[typing.Text, typing.Union[typing.Text,list[typing.Text]]]]]]"
+            ]
+        }
+    ],
+    "message@global": [
+        {
+            "category": "return",
+            "name": "message",
+            "type": [
+                "MockSMTP"
+            ]
+        }
+    ],
+    "test_reload_notify@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "yaml_path",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_reload_notify",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_send_message@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "str",
+                "bool",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message_data",
+            "type": [
+                "bytes",
+                "dict",
+                "allennlp.common.util.JsonDict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "bytes",
+                "dict",
+                "allennlp.common.util.JsonDict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content_type",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sample_email",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "str",
+                "bool",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_",
+            "type": [
+                "str",
+                "bool",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_data",
+            "type": [
+                "bytes",
+                "dict",
+                "allennlp.common.util.JsonDict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "bytes",
+                "dict",
+                "allennlp.common.util.JsonDict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list[dict[str, typing.Any]]",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str",
+                "bytes",
+                "typing.Callable[None,None, None]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_send_message",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_send_target_message@global": [
+        {
+            "category": "arg",
+            "name": "target",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "tests.async_mock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sample_email",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_data",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_recipient",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_send_target_message",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_send_text_message@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "tests.async_mock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "dict",
+                "homeassistancore.HomeAssistant",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sample_email",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_data",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "dict",
+                "homeassistancore.HomeAssistant",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "bytes",
+                "list",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "str",
+                "typing.Callable[None,None, None]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_send_text_message",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sending_insecure_files_fails@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message_data",
+            "type": [
+                "str",
+                "allennlp.common.util.JsonDict",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "str",
+                "allennlp.common.util.JsonDict",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content_type",
+            "type": [
+                "str",
+                "list[pathlib.Path]",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sample_email",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_data",
+            "type": [
+                "str",
+                "allennlp.common.util.JsonDict",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "allennlp.common.util.JsonDict",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "bytes",
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str",
+                "bytes",
+                "typing.Callable[None,None, None]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_sending_insecure_files_fails",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

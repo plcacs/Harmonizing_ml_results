@@ -1,0 +1,618 @@
+{
+    "__init__@PaymentChannel": [
+        {
+            "category": "arg",
+            "name": "token_network",
+            "type": [
+                "raiden.network.proxies.proxy_manager.ProxyManager",
+                "nucypher.blockchain.eth.registry.BaseContractRegistry"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "channel_state",
+            "type": [
+                "raiden.utils.Address",
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "contract_manager",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.network.proxies.proxy_manager.ProxyManager",
+                "nucypher.blockchain.eth.registry.BaseContractRegistry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network",
+            "type": [
+                "raiden.network.proxies.proxy_manager.ProxyManager",
+                "nucypher.blockchain.eth.registry.BaseContractRegistry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contract_manager",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.network.proxies.proxy_manager.ProxyManager",
+                "nucypher.blockchain.eth.registry.BaseContractRegistry"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "approve_and_set_total_deposit@PaymentChannel": [
+        {
+            "category": "arg",
+            "name": "total_deposit",
+            "type": [
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.TokenAmount",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.TokenAmount",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.TokenAmount",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_deposit",
+            "type": [
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.TokenAmount",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "approve_and_set_total_deposit",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "can_transfer@PaymentChannel": [
+        {
+            "category": "arg",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "can_transfer",
+            "type": [
+                "str",
+                "bool",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        }
+    ],
+    "close@PaymentChannel": [
+        {
+            "category": "arg",
+            "name": "nonce",
+            "type": [
+                "bytes",
+                "raiden.utils.Signature",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "balance_hash",
+            "type": [
+                "bytes",
+                "raiden.utils.Signature",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "additional_hash",
+            "type": [
+                "bytes",
+                "raiden.utils.Signature",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "non_closing_signature",
+            "type": [
+                "bytes",
+                "raiden.utils.Signature",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "closing_signature",
+            "type": [
+                "bytes",
+                "raiden.utils.Signature",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_identifier",
+            "type": [
+                "bytes",
+                "raiden.utils.Signature",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "balance_hash",
+            "type": [
+                "bytes",
+                "raiden.utils.Signature",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nonce",
+            "type": [
+                "bytes",
+                "raiden.utils.Signature",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "additional_hash",
+            "type": [
+                "bytes",
+                "raiden.utils.Signature",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "non_closing_signature",
+            "type": [
+                "bytes",
+                "raiden.utils.Signature",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "closing_signature",
+            "type": [
+                "bytes",
+                "raiden.utils.Signature",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_identifier",
+            "type": [
+                "bytes",
+                "raiden.utils.Signature",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "close",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "closed@PaymentChannel": [
+        {
+            "category": "arg",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.BlockIdentifier"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.BlockIdentifier"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "closed",
+            "type": [
+                "bool",
+                "str"
+            ]
+        }
+    ],
+    "detail@PaymentChannel": [
+        {
+            "category": "arg",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockSpecification",
+                "list[raiden.transfer.architecture.Event]",
+                "raiden.utils.TokenNetworkID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockSpecification",
+                "list[raiden.transfer.architecture.Event]",
+                "raiden.utils.TokenNetworkID"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "detail",
+            "type": [
+                "str",
+                "int",
+                "nucypher.blockchain.eth.registry.BaseContractRegistry"
+            ]
+        }
+    ],
+    "global@global": [],
+    "opened@PaymentChannel": [
+        {
+            "category": "arg",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.BlockIdentifier",
+                "raiden.transfer.identifiers.CanonicalIdentifier"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.BlockIdentifier",
+                "raiden.transfer.identifiers.CanonicalIdentifier"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "opened",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "set_total_withdraw@PaymentChannel": [
+        {
+            "category": "arg",
+            "name": "total_withdraw",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "participant_signature",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "partner_signature",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expiration_block",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_withdraw",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "participant_signature",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partner_signature",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expiration_block",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "withdraw_input",
+            "type": [
+                "WithdrawInput"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_total_withdraw",
+            "type": [
+                "bool",
+                "tuple[str]"
+            ]
+        }
+    ],
+    "settle_timeout@PaymentChannel": [
+        {
+            "category": "local",
+            "name": "events",
+            "type": [
+                "list[raiden.transfer.architecture.Event]",
+                "list[dict[str, typing.Any]]",
+                "list[raiden.utils.upgrades.UpgradeRecord]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "list[dict[str, typing.Any]]",
+                "list[raiden.transfer.architecture.Event]",
+                "raiden.transfer.events.EventPaymentSentFailed"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "settle_timeout",
+            "type": [
+                "bool",
+                "str"
+            ]
+        }
+    ],
+    "settled@PaymentChannel": [
+        {
+            "category": "arg",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "settled",
+            "type": [
+                "bool",
+                "str"
+            ]
+        }
+    ],
+    "token_address@PaymentChannel": [
+        {
+            "category": "return",
+            "name": "token_address",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        }
+    ],
+    "update_transfer@PaymentChannel": [
+        {
+            "category": "arg",
+            "name": "nonce",
+            "type": [
+                "raiden.utils.Signature",
+                "int",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "balance_hash",
+            "type": [
+                "raiden.utils.Signature",
+                "int",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "additional_hash",
+            "type": [
+                "raiden.utils.Signature",
+                "int",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "partner_signature",
+            "type": [
+                "raiden.utils.Signature",
+                "int",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "signature",
+            "type": [
+                "raiden.utils.Signature",
+                "int",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.Signature",
+                "int",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "balance_hash",
+            "type": [
+                "raiden.utils.Signature",
+                "int",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nonce",
+            "type": [
+                "raiden.utils.Signature",
+                "int",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "additional_hash",
+            "type": [
+                "raiden.utils.Signature",
+                "int",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partner_signature",
+            "type": [
+                "raiden.utils.Signature",
+                "int",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signature",
+            "type": [
+                "raiden.utils.Signature",
+                "int",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.Signature",
+                "int",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_transfer",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

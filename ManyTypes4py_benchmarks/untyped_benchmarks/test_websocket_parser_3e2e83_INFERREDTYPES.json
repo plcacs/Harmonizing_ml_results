@@ -1,0 +1,2346 @@
+{
+    "build_close_frame@global": [
+        {
+            "category": "arg",
+            "name": "code",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "noheader",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "code",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "noheader",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "build_close_frame",
+            "type": []
+        }
+    ],
+    "build_frame@global": [
+        {
+            "category": "arg",
+            "name": "message",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "opcode",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "noheader",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "is_fin",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "compress",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "compress",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_fin",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "opcode",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header_first_byte",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header",
+            "type": [
+                "PACK_LEN1",
+                "PACK_LEN2"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "noheader",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "build_frame",
+            "type": []
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "websocket_mask_data",
+            "type": [
+                "bytes",
+                "bytearray",
+                "memoryview"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "websocket_mask_mask",
+            "type": [
+                "bytes",
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "websocket_mask_masked",
+            "type": [
+                "bytes"
+            ]
+        }
+    ],
+    "out@global": [
+        {
+            "category": "arg",
+            "name": "loop",
+            "type": [
+                "collections.abc.Awaitable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "loop",
+            "type": [
+                "collections.abc.Awaitable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "out",
+            "type": [
+                "WebSocketDataQueue"
+            ]
+        }
+    ],
+    "out_low_limit@global": [
+        {
+            "category": "arg",
+            "name": "loop",
+            "type": [
+                "asyncio.AbstractEventLoop",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "protocol",
+            "type": [
+                "asyncio.AbstractEventLoop",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "protocol",
+            "type": [
+                "asyncio.AbstractEventLoop",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "loop",
+            "type": [
+                "asyncio.AbstractEventLoop",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "out_low_limit",
+            "type": [
+                "WebSocketDataQueue"
+            ]
+        }
+    ],
+    "parser@global": [
+        {
+            "category": "arg",
+            "name": "out",
+            "type": [
+                "typing.TextIO",
+                "typing.Callable",
+                "typing.BinaryIO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "out",
+            "type": [
+                "typing.TextIO",
+                "typing.Callable",
+                "typing.BinaryIO"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "parser",
+            "type": [
+                "PatchableWebSocketReader"
+            ]
+        }
+    ],
+    "parser_low_limit@global": [
+        {
+            "category": "arg",
+            "name": "out_low_limit",
+            "type": [
+                "int",
+                "float",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "out_low_limit",
+            "type": [
+                "int",
+                "float",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "parser_low_limit",
+            "type": [
+                "PatchableWebSocketReader"
+            ]
+        }
+    ],
+    "protocol@global": [
+        {
+            "category": "arg",
+            "name": "loop",
+            "type": [
+                "asyncio.AbstractEventLoop",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "loop",
+            "type": [
+                "asyncio.AbstractEventLoop",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "protocol",
+            "type": [
+                "BaseProtocol"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "protocol",
+            "type": [
+                "BaseProtocol"
+            ]
+        }
+    ],
+    "test_close_frame@global": [
+        {
+            "category": "arg",
+            "name": "out",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "asyncworker.http.wrapper.RequestWrapper"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "asyncworker.http.wrapper.RequestWrapper"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "m_",
+            "type": [
+                "list[tuple[typing.Union[int,bytes]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "out",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_close_frame",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_close_frame_info@global": [
+        {
+            "category": "arg",
+            "name": "out",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "str",
+                "tests.basilisp.helpers.CompileFn"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "str",
+                "tests.basilisp.helpers.CompileFn"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "m_",
+            "type": [
+                "list[tuple[typing.Union[int,bytes]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_close_frame_info",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_close_frame_invalid@global": [
+        {
+            "category": "arg",
+            "name": "out",
+            "type": [
+                "typing.Callable[typing.Callable, typing.Callable[..., typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "m_",
+            "type": [
+                "list[tuple[typing.Union[int,bytes]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "out",
+            "type": [
+                "typing.Callable[typing.Callable, typing.Callable[..., typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exc",
+            "type": [
+                "KeyError",
+                "Exception",
+                "AttributeError"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_close_frame_invalid",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_close_frame_invalid_2@global": [
+        {
+            "category": "arg",
+            "name": "out",
+            "type": [
+                "set[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "typing.Callable",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "dict[str, typing.Callable[..., typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "typing.Callable",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_close_frame_invalid_2",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_close_frame_unicode_err@global": [
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "dict[str, typing.Callable[..., typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_close_frame_unicode_err",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_compressed_msg_too_large@global": [
+        {
+            "category": "arg",
+            "name": "out",
+            "type": [
+                "bytes",
+                "typing.Iterator",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "out",
+            "type": [
+                "bytes",
+                "typing.Iterator",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "WebSocketReader"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_compressed_msg_too_large",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_continuation@global": [
+        {
+            "category": "arg",
+            "name": "out",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "dict[str, typing.Any]",
+                "asyncworker.http.wrapper.RequestWrapper"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "dict[str, typing.Any]",
+                "asyncworker.http.wrapper.RequestWrapper"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_continuation",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_continuation_err@global": [
+        {
+            "category": "arg",
+            "name": "out",
+            "type": [
+                "set[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "str",
+                "mitmproxy.http.HTTPFlow"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "str",
+                "mitmproxy.http.HTTPFlow"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "m_",
+            "type": [
+                "list[tuple[typing.Union[int,bytes]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_continuation_err",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_continuation_with_close@global": [
+        {
+            "category": "arg",
+            "name": "out",
+            "type": [
+                "typing.Callable",
+                "int",
+                "tests.basilisp.helpers.CompileFn"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "m_",
+            "type": [
+                "list[tuple[typing.Union[int,bytes]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "out",
+            "type": [
+                "typing.Callable",
+                "int",
+                "tests.basilisp.helpers.CompileFn"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_continuation_with_close",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_continuation_with_close_bad_code@global": [
+        {
+            "category": "arg",
+            "name": "out",
+            "type": [
+                "set[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "m_",
+            "type": [
+                "list[tuple[typing.Union[int,bytes]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_continuation_with_close_bad_code",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_continuation_with_close_bad_payload@global": [
+        {
+            "category": "arg",
+            "name": "out",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "mitmproxy.http.HTTPFlow"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "mitmproxy.http.HTTPFlow"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "m_",
+            "type": [
+                "list[tuple[typing.Union[int,bytes]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_continuation_with_close_bad_payload",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_continuation_with_close_empty@global": [
+        {
+            "category": "arg",
+            "name": "out",
+            "type": [
+                "typing.Callable",
+                "tests.basilisp.helpers.CompileFn"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "m_",
+            "type": [
+                "list[tuple[typing.Union[int,bytes]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "out",
+            "type": [
+                "typing.Callable",
+                "tests.basilisp.helpers.CompileFn"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_continuation_with_close_empty",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_continuation_with_close_unicode_err@global": [
+        {
+            "category": "arg",
+            "name": "out",
+            "type": [
+                "set[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "m_",
+            "type": [
+                "list[tuple[typing.Union[int,bytes]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_continuation_with_close_unicode_err",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_continuation_with_ping@global": [
+        {
+            "category": "arg",
+            "name": "out",
+            "type": [
+                "typing.Callable",
+                "mitmproxy.http.HTTPFlow"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "mitmproxy.http.HTTPFlow",
+                "asyncworker.http.wrapper.RequestWrapper"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "mitmproxy.http.HTTPFlow",
+                "asyncworker.http.wrapper.RequestWrapper"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "m_",
+            "type": [
+                "list[tuple[typing.Union[int,bytes]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "out",
+            "type": [
+                "typing.Callable",
+                "mitmproxy.http.HTTPFlow"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_continuation_with_ping",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_ctor@TestWebSocketError": [
+        {
+            "category": "local",
+            "name": "err",
+            "type": [
+                "WebSocketError"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_ctor",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_feed_data_remembers_exception@global": [
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "typing.Callable",
+                "str",
+                "tests.basilisp.helpers.CompileFn"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "typing.Callable",
+                "str",
+                "tests.basilisp.helpers.CompileFn"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "bytes",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_feed_data_remembers_exception",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_flow_control_binary@global": [
+        {
+            "category": "arg",
+            "name": "protocol",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "out_low_limit",
+            "type": [
+                "int",
+                "collections.abc.Coroutine"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "parser_low_limit",
+            "type": [
+                "int",
+                "list[bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "large_payload",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "large_payload_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser_low_limit",
+            "type": [
+                "int",
+                "list[bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "m_",
+            "type": [
+                "list[tuple[typing.Union[int,bytes]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "out_low_limit",
+            "type": [
+                "int",
+                "collections.abc.Coroutine"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_flow_control_binary",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_flow_control_multi_byte_text@global": [
+        {
+            "category": "arg",
+            "name": "protocol",
+            "type": [
+                "int",
+                "str",
+                "typing.Iterable[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "out_low_limit",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "parser_low_limit",
+            "type": [
+                "int",
+                "list[bool]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "large_payload_text",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "large_payload",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "large_payload_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser_low_limit",
+            "type": [
+                "int",
+                "list[bool]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "m_",
+            "type": [
+                "list[tuple[typing.Union[int,bytes]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "out_low_limit",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_flow_control_multi_byte_text",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_fragmentation_header@global": [
+        {
+            "category": "arg",
+            "name": "out",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "dict[str, typing.Any]",
+                "tests.basilisp.helpers.CompileFn"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "dict[str, typing.Any]",
+                "tests.basilisp.helpers.CompileFn"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "out",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_fragmentation_header",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_msg_too_large@global": [
+        {
+            "category": "arg",
+            "name": "out",
+            "type": [
+                "str",
+                "list[dict[str, typing.Any]]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "out",
+            "type": [
+                "str",
+                "list[dict[str, typing.Any]]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "WebSocketReader"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_msg_too_large",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_msg_too_large_not_fin@global": [
+        {
+            "category": "arg",
+            "name": "out",
+            "type": [
+                "str",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "out",
+            "type": [
+                "str",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "WebSocketReader"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_msg_too_large_not_fin",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_parse_compress_error_frame@global": [
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_parse_compress_error_frame",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_parse_compress_frame_multi@global": [
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "res",
+            "type": [
+                "bytes",
+                "requests.models.Response",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fin",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "opcode",
+            "type": [
+                "int",
+                "bytes",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payload",
+            "type": [
+                "bytes",
+                "list[dict]",
+                "dict[bytes, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "compress",
+            "type": [
+                "zlib._Compress",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_parse_compress_frame_multi",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_parse_compress_frame_single@global": [
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "res",
+            "type": [
+                "bytes",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fin",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "opcode",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payload",
+            "type": [
+                "list[dict]",
+                "dict[bytes, int]",
+                "bytearray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "compress",
+            "type": [
+                "zlib._Compress",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_parse_compress_frame_single",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_parse_frame@global": [
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "res",
+            "type": [
+                "bytes",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fin",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "opcode",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payload",
+            "type": [
+                "list[dict]",
+                "dict[bytes, int]",
+                "bytearray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "compress",
+            "type": [
+                "zlib._Compress",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_parse_frame",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_parse_frame_header_control_frame@global": [
+        {
+            "category": "arg",
+            "name": "out",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "typing.Callable[typing.Callable, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "typing.Callable[typing.Callable, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_parse_frame_header_control_frame",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_parse_frame_header_new_data_err@global": [
+        {
+            "category": "arg",
+            "name": "out",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "typing.Callable[list, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "typing.Callable[list, None]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_parse_frame_header_new_data_err",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_parse_frame_header_payload_size@global": [
+        {
+            "category": "arg",
+            "name": "out",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "asyncworker.http.wrapper.RequestWrapper"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "asyncworker.http.wrapper.RequestWrapper"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_parse_frame_header_payload_size",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_parse_frame_header_reversed_bits@global": [
+        {
+            "category": "arg",
+            "name": "out",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_parse_frame_header_reversed_bits",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_parse_frame_length0@global": [
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_parse_frame_length0",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_parse_frame_length2@global": [
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "typing.Callable",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "typing.Callable",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "res",
+            "type": [
+                "bytes",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fin",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "opcode",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payload",
+            "type": [
+                "list[dict]",
+                "dict[bytes, int]",
+                "bytearray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "compress",
+            "type": [
+                "zlib._Compress",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_parse_frame_length2",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_parse_frame_length2_multi_byte@global": [
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_payload",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "res",
+            "type": [
+                "bytes",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fin",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "opcode",
+            "type": [
+                "bytes",
+                "int",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payload",
+            "type": [
+                "list[dict]",
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "compress",
+            "type": [
+                "zlib._Compress",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_parse_frame_length2_multi_byte",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_parse_frame_length2_multi_byte_multi_packet@global": [
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "int",
+                "Exception",
+                "tests.basilisp.helpers.CompileFn"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_payload",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "int",
+                "Exception",
+                "tests.basilisp.helpers.CompileFn"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "res",
+            "type": [
+                "bytes",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fin",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "opcode",
+            "type": [
+                "bytes",
+                "int",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payload",
+            "type": [
+                "bytes",
+                "list[dict]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "compress",
+            "type": [
+                "zlib._Compress",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_parse_frame_length2_multi_byte_multi_packet",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_parse_frame_length4@global": [
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fin",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "opcode",
+            "type": [
+                "int",
+                "bytes",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payload",
+            "type": [
+                "bytes",
+                "list[dict]",
+                "bytearray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "compress",
+            "type": [
+                "zlib._Compress",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_parse_frame_length4",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_parse_frame_mask@global": [
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fin",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "opcode",
+            "type": [
+                "int",
+                "bytes",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payload",
+            "type": [
+                "bytes",
+                "list[dict]",
+                "bytearray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "compress",
+            "type": [
+                "zlib._Compress",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_parse_frame_mask",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_parse_no_compress_frame_single@global": [
+        {
+            "category": "arg",
+            "name": "out",
+            "type": [
+                "typing.BinaryIO",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "out",
+            "type": [
+                "typing.BinaryIO",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser_no_compress",
+            "type": [
+                "WebSocketReader"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_parse_no_compress_frame_single",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_pickle@TestWebSocketError": [
+        {
+            "category": "local",
+            "name": "err",
+            "type": [
+                "WebSocketError"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "err_",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_pickle",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_ping_frame@global": [
+        {
+            "category": "arg",
+            "name": "out",
+            "type": [
+                "typing.IO",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "dict",
+                "Exception",
+                "tartare.core.models.Job"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "dict",
+                "typing.Callable",
+                "mitmproxy.http.HTTPFlow"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "dict",
+                "Exception",
+                "tartare.core.models.Job"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "m_",
+            "type": [
+                "list[tuple[typing.Union[int,bytes]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict",
+                "typing.Callable",
+                "mitmproxy.http.HTTPFlow"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "out",
+            "type": [
+                "typing.IO",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_ping_frame",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_pong_frame@global": [
+        {
+            "category": "arg",
+            "name": "out",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "asyncworker.http.wrapper.RequestWrapper",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "asyncworker.http.wrapper.RequestWrapper",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "m_",
+            "type": [
+                "list[tuple[typing.Union[int,bytes]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "out",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_pong_frame",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_simple_binary@global": [
+        {
+            "category": "arg",
+            "name": "out",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "str",
+                "mitmproxy.http.HTTPFlow"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "str",
+                "mitmproxy.http.HTTPFlow"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "m_",
+            "type": [
+                "list[tuple[typing.Union[int,bytes]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "out",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_simple_binary",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_simple_text@global": [
+        {
+            "category": "arg",
+            "name": "out",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "out",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_simple_text",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_simple_text_unicode_err@global": [
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "str",
+                "tests.basilisp.helpers.CompileFn",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "str",
+                "tests.basilisp.helpers.CompileFn",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_simple_text_unicode_err",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_unknown_frame@global": [
+        {
+            "category": "arg",
+            "name": "out",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "tests.basilisp.helpers.CompileFn",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "m_",
+            "type": [
+                "list[tuple[typing.Union[int,bytes]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_unknown_frame",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_websocket_mask_cython@global": [
+        {
+            "category": "local",
+            "name": "websocket_mask_data",
+            "type": [
+                "bytearray",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "bytearray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "websocket_mask_mask",
+            "type": [
+                "int",
+                "bytes",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_websocket_mask_cython",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_websocket_mask_cython_empty@global": [
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "bytearray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "websocket_mask_mask",
+            "type": [
+                "int",
+                "bytes",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_websocket_mask_cython_empty",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_websocket_mask_python@global": [
+        {
+            "category": "local",
+            "name": "websocket_mask_data",
+            "type": [
+                "bytearray",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "bytearray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "websocket_mask_mask",
+            "type": [
+                "int",
+                "bytes",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_websocket_mask_python",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_websocket_mask_python_empty@global": [
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "bytearray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "websocket_mask_mask",
+            "type": [
+                "int",
+                "bytes",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_websocket_mask_python_empty",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

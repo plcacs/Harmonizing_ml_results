@@ -1,0 +1,1818 @@
+{
+    "_check_values_indices_shape_match@global": [
+        {
+            "category": "arg",
+            "name": "values",
+            "type": [
+                "int",
+                "static_frame.core.util.IndexInitializer",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "index",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "columns",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "values",
+            "type": [
+                "int",
+                "static_frame.core.util.IndexInitializer",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "columns",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "implied",
+            "type": [
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_check_values_indices_shape_match",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_ensure_2d@global": [
+        {
+            "category": "arg",
+            "name": "values",
+            "type": [
+                "float",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "values",
+            "type": [
+                "float",
+                "int",
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_ensure_2d",
+            "type": [
+                "float",
+                "int",
+                "str",
+                "list"
+            ]
+        }
+    ],
+    "_extract_index@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "bytes",
+                "list",
+                "list[typing.Union[int,float]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "bytes",
+                "list",
+                "list[typing.Union[int,float]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_extract_index",
+            "type": [
+                "tuple[int]",
+                "slice",
+                "list[slice]",
+                "list[int]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raw_lengths",
+            "type": [
+                "set",
+                "set[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indexes",
+            "type": [
+                "list",
+                "list[list[list]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "have_raw_arrays",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "have_series",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "have_dicts",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "val",
+            "type": [
+                "int",
+                "float",
+                "ABCSeries",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "index",
+            "type": [
+                "list",
+                "set",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raw_length",
+            "type": [
+                "set[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "_finalize_columns_and_data@global": [
+        {
+            "category": "arg",
+            "name": "content",
+            "type": [
+                "list[str]",
+                "str",
+                "None",
+                "typing.Sequence[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "columns",
+            "type": [
+                "str",
+                "None",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dtype",
+            "type": [
+                "typing.Iterator",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content",
+            "type": [
+                "list[str]",
+                "str",
+                "None",
+                "typing.Sequence[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contents",
+            "type": [
+                "list",
+                "set",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "columns",
+            "type": [
+                "str",
+                "None",
+                "dict[str, str]",
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "err",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dtype",
+            "type": [
+                "typing.Iterator",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_finalize_columns_and_data",
+            "type": [
+                "tuple[typing.Union[list,set,list[str],str]]"
+            ]
+        }
+    ],
+    "_get_axes@global": [
+        {
+            "category": "arg",
+            "name": "N",
+            "type": [
+                "int",
+                "slice"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "K",
+            "type": [
+                "int",
+                "None",
+                "str",
+                "dict[str, list[float]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "index",
+            "type": [
+                "int",
+                "None",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "columns",
+            "type": [
+                "int",
+                "None",
+                "typing.Hashable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "index",
+            "type": [
+                "int",
+                "None",
+                "list[int]",
+                "dict[str, typing.Union[str,None]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "N",
+            "type": [
+                "int",
+                "slice"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "columns",
+            "type": [
+                "int",
+                "None",
+                "typing.Hashable",
+                "list",
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "K",
+            "type": [
+                "int",
+                "None",
+                "str",
+                "dict[str, list[float]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_axes",
+            "type": [
+                "tuple[typing.Union[int,dict[str, typing.Union[str,None]],list[int],list,list[str],str,None]]"
+            ]
+        }
+    ],
+    "_get_names_from_index@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "has_some_name",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_names_from_index",
+            "type": [
+                "int",
+                "str",
+                "float",
+                "Index"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "index",
+            "type": [
+                "list",
+                "list[typing.Union[int,str,tuple[typing.Any]]]",
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "n",
+            "type": [
+                "int",
+                "str",
+                "tuple[typing.Any]",
+                "None"
+            ]
+        }
+    ],
+    "_homogenize@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "starfish.core.imagestack.imagestack.ImageStack"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "index",
+            "type": [
+                "numpy.dtype",
+                "None",
+                "typing.Iterable[typing.Hashable]",
+                "typing.Callable[..., static_frame.core.index_base.IndexBase]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dtype",
+            "type": [
+                "numpy.ndarray",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "oindex",
+            "type": [
+                "None",
+                "dict[str, tuple[typing.Union[typing.Any,str]]]",
+                "list",
+                "dict[str, typing.Union[None,bool,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "homogenized",
+            "type": [
+                "list",
+                "list[typing.Union[list,pytropos.internals.values.abstract_value.AbstractValue,pytropos.internals.values.python_values.python_values.PT,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "refs",
+            "type": [
+                "list",
+                "list[None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "val",
+            "type": [
+                "list",
+                "pytropos.internals.values.abstract_value.AbstractValue",
+                "pytropos.internals.values.python_values.python_values.PT",
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "starfish.core.imagestack.imagestack.ImageStack"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dtype",
+            "type": [
+                "numpy.ndarray",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "index",
+            "type": [
+                "numpy.dtype",
+                "None",
+                "typing.Iterable[typing.Hashable]",
+                "typing.Callable[..., static_frame.core.index_base.IndexBase]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_homogenize",
+            "type": [
+                "tuple[typing.Union[list[typing.Union[list,pytropos.internals.values.abstract_value.AbstractValue,pytropos.internals.values.python_values.python_values.PT,int]],list[None]]]"
+            ]
+        }
+    ],
+    "_list_of_dict_to_arrays@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "list",
+                "allennlp.common.JsonDict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "columns",
+            "type": [
+                "pandas.DataFrame",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "columns",
+            "type": [
+                "pandas.DataFrame",
+                "list[str]",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "list",
+                "allennlp.common.JsonDict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gen",
+            "type": [
+                "typing.Generator[list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sort",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_list_of_dict_to_arrays",
+            "type": [
+                "tuple[typing.Union[list[str],str]]"
+            ]
+        }
+    ],
+    "_list_of_series_to_arrays@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "pandas.DataFrame",
+                "str",
+                "dict[str, pandas.DataFrame]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "columns",
+            "type": [
+                "list[str]",
+                "None",
+                "str",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "columns",
+            "type": [
+                "list[str]",
+                "None",
+                "str",
+                "pandas.DataFrame",
+                "list",
+                "typing.Sequence[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "pandas.DataFrame",
+                "str",
+                "dict[str, pandas.DataFrame]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "x",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pass_data",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indexer_cache",
+            "type": [
+                "dict",
+                "dict[int, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "aligned_values",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "index",
+            "type": [
+                "int",
+                "list[int]",
+                "list",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indexer",
+            "type": [
+                "list[int]",
+                "list",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "values",
+            "type": [
+                "list",
+                "list[list[int]]",
+                "property"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_list_of_series_to_arrays",
+            "type": [
+                "tuple[typing.Union[list,typing.Sequence[typing.Any],None,str]]"
+            ]
+        }
+    ],
+    "_list_to_arrays@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "T",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "T",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_list_to_arrays",
+            "type": []
+        }
+    ],
+    "_prep_ndarraylike@global": [
+        {
+            "category": "arg",
+            "name": "values",
+            "type": [
+                "numpy.ndarray",
+                "tuple[typing.Union[int,...]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "copy",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "values",
+            "type": [
+                "numpy.ndarray",
+                "tuple[typing.Union[int,...]]",
+                "list",
+                "list[float]",
+                "property"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_prep_ndarraylike",
+            "type": [
+                "str",
+                "numpy.ndarray",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "arr",
+            "type": [
+                "dict[str, str]",
+                "pyndata.array.array"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "v",
+            "type": [
+                "float",
+                "int",
+                "..."
+            ]
+        }
+    ],
+    "_validate_or_indexify_columns@global": [
+        {
+            "category": "arg",
+            "name": "content",
+            "type": [
+                "list[list]",
+                "list",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "columns",
+            "type": [
+                "pandas.DataFrame",
+                "list[typing.Optional[str]]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "columns",
+            "type": [
+                "pandas.DataFrame",
+                "list[typing.Optional[str]]",
+                "list",
+                "None",
+                "list[str]",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content",
+            "type": [
+                "list[list]",
+                "list",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "col",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_mi_list",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_validate_or_indexify_columns",
+            "type": [
+                "list",
+                "list[str]",
+                "tuple[str]"
+            ]
+        }
+    ],
+    "arrays_to_mgr@global": [
+        {
+            "category": "arg",
+            "name": "arrays",
+            "type": [
+                "numpy.dtype",
+                "static_frame.core.util.NameType"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "columns",
+            "type": [
+                "bool",
+                "typing.Sequence[int]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "index",
+            "type": [
+                "typing.Any",
+                "None",
+                "int",
+                "static_frame.core.util.IndexInitializer"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dtype",
+            "type": [
+                "None",
+                "bool",
+                "static_frame.core.util.DtypeSpecifier",
+                "static_frame.core.util.NameType"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "verify_integrity",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "consolidate",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "verify_integrity",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "index",
+            "type": [
+                "list",
+                "list[int]",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "arrays",
+            "type": [
+                "numpy.dtype",
+                "static_frame.core.util.NameType",
+                "dict[str, int]",
+                "set",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dtype",
+            "type": [
+                "None",
+                "bool",
+                "static_frame.core.util.DtypeSpecifier",
+                "static_frame.core.util.NameType"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "refs",
+            "type": [
+                "int",
+                "list[list[int]]",
+                "list[None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "columns",
+            "type": [
+                "bool",
+                "typing.Sequence[int]",
+                "str",
+                "list[str]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "axes",
+            "type": [
+                "list[typing.Union[int,list[str],list[int],list]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "consolidate",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "arrays_to_mgr",
+            "type": [
+                "typing.Iterable[T]",
+                "typing.Callable"
+            ]
+        }
+    ],
+    "convert@global": [
+        {
+            "category": "arg",
+            "name": "v",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "convert",
+            "type": []
+        }
+    ],
+    "convert_object_array@global": [
+        {
+            "category": "arg",
+            "name": "content",
+            "type": [
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dtype",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dtype_backend",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "coerce_float",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content",
+            "type": [
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "arrays",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "convert_object_array",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "dataclasses_to_dicts@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "bytes",
+                "pandas.DataFrame",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "bytes",
+                "pandas.DataFrame",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "dataclasses_to_dicts",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "dict_to_mgr@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "index",
+            "type": [
+                "slice",
+                "int",
+                "None",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "columns",
+            "type": [
+                "bool",
+                "static_frame.core.util.IndexConstructor",
+                "slice"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dtype",
+            "type": [
+                "None",
+                "bool",
+                "static_frame.core.util.DtypeSpecifier",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "copy",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "columns",
+            "type": [
+                "bool",
+                "static_frame.core.util.IndexConstructor",
+                "slice",
+                "list[str]",
+                "list",
+                "static_frame.core.index_hierarchy.IndexHierarchy",
+                "None",
+                "Index"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "arrays",
+            "type": [
+                "list",
+                "list[str]",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "midxs",
+            "type": [
+                "set",
+                "set[typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_values",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "i",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "column",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "array",
+            "type": [
+                "list[int]",
+                "float",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "index",
+            "type": [
+                "slice",
+                "int",
+                "None",
+                "numpy.ndarray",
+                "list",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dtype",
+            "type": [
+                "None",
+                "bool",
+                "static_frame.core.util.DtypeSpecifier",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "arr",
+            "type": [
+                "list[int]",
+                "array.array.array",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "keys",
+            "type": [
+                "list",
+                "list[tuple[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k",
+            "type": [
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "copy",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "dict_to_mgr",
+            "type": [
+                "str",
+                "bool"
+            ]
+        }
+    ],
+    "global@global": [],
+    "ndarray_to_mgr@global": [
+        {
+            "category": "arg",
+            "name": "values",
+            "type": [
+                "static_frame.core.util.IndexConstructor",
+                "static_frame.core.util.IndexInitializer",
+                "numpy.dtype"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "index",
+            "type": [
+                "typing.Any",
+                "None",
+                "static_frame.core.util.IndexConstructor",
+                "static_frame.core.util.GetItemKeyType"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "columns",
+            "type": [
+                "numpy.ndarray",
+                "None",
+                "static_frame.core.util.IndexInitializer",
+                "typing.Any"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dtype",
+            "type": [
+                "numpy.dtype",
+                "bool",
+                "typing.Iterable[tuple[typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "copy",
+            "type": [
+                "bool",
+                "static_frame.core.util.DtypeSpecifier",
+                "typing.Hashable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "values",
+            "type": [
+                "static_frame.core.util.IndexConstructor",
+                "static_frame.core.util.IndexInitializer",
+                "numpy.dtype",
+                "ABCSeries",
+                "bytearray",
+                "bytes",
+                "T",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "infer_object",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "columns",
+            "type": [
+                "numpy.ndarray",
+                "None",
+                "static_frame.core.util.IndexInitializer",
+                "typing.Any",
+                "list",
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "index",
+            "type": [
+                "int",
+                "list[int]",
+                "list",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vdtype",
+            "type": [
+                "typing.Type",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "refs",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dtype",
+            "type": [
+                "numpy.dtype",
+                "bool",
+                "typing.Iterable[tuple[typing.Any]]",
+                "StringDtype"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "ndarray_to_mgr",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "copy",
+            "type": [
+                "bool",
+                "static_frame.core.util.DtypeSpecifier",
+                "typing.Hashable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_values",
+            "type": [
+                "list",
+                "str",
+                "set"
+            ]
+        }
+    ],
+    "nested_data_to_arrays@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "numpy.ndarray",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "columns",
+            "type": [
+                "numpy.ndarray",
+                "list[typing.Any]",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "index",
+            "type": [
+                "str",
+                "None",
+                "typing.Sequence[numpy.ndarray]",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dtype",
+            "type": [
+                "typing.Sequence",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "numpy.ndarray",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "columns",
+            "type": [
+                "numpy.ndarray",
+                "list[typing.Any]",
+                "None",
+                "str",
+                "list[str]",
+                "list",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dtype",
+            "type": [
+                "typing.Sequence",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "arrays",
+            "type": [
+                "list",
+                "dict[str, int]",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "index",
+            "type": [
+                "str",
+                "None",
+                "typing.Sequence[numpy.ndarray]",
+                "numpy.ndarray",
+                "int",
+                "list[int]",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "nested_data_to_arrays",
+            "type": [
+                "tuple[typing.Union[list,dict[str, int],float,list[str],int,list[int]]]"
+            ]
+        }
+    ],
+    "rec_array_to_mgr@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "bool",
+                "static_frame.core.frame.Frame"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "index",
+            "type": [
+                "slice",
+                "static_frame.core.util.DtypeSpecifier",
+                "numpy.ndarray",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "columns",
+            "type": [
+                "slice",
+                "list[str]",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dtype",
+            "type": [
+                "bool",
+                "typing.Sequence",
+                "static_frame.core.util.DtypeSpecifier"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "copy",
+            "type": [
+                "bool",
+                "dict",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "bool",
+                "static_frame.core.frame.Frame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "index",
+            "type": [
+                "slice",
+                "static_frame.core.util.DtypeSpecifier",
+                "numpy.ndarray",
+                "None",
+                "list",
+                "list[int]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "columns",
+            "type": [
+                "slice",
+                "list[str]",
+                "numpy.ndarray",
+                "list",
+                "typing.Sequence[typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dtype",
+            "type": [
+                "bool",
+                "typing.Sequence",
+                "static_frame.core.util.DtypeSpecifier"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "copy",
+            "type": [
+                "bool",
+                "dict",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "rec_array_to_mgr",
+            "type": []
+        }
+    ],
+    "reorder_arrays@global": [
+        {
+            "category": "arg",
+            "name": "arrays",
+            "type": [
+                "list[float]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "arr_columns",
+            "type": [
+                "int",
+                "list[numpy.ndarray]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "columns",
+            "type": [
+                "typing.Sequence[pandas._Label]",
+                "None",
+                "typing.Any",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "length",
+            "type": [
+                "int",
+                "list[float]",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "columns",
+            "type": [
+                "typing.Sequence[pandas._Label]",
+                "None",
+                "typing.Any",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "arr_columns",
+            "type": [
+                "int",
+                "list[numpy.ndarray]",
+                "typing.Sequence[pandas._Label]",
+                "typing.Any",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_arrays",
+            "type": [
+                "list",
+                "list[typing.Union[float,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indexer",
+            "type": [
+                "list[int]",
+                "list",
+                "slice"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "i",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length",
+            "type": [
+                "int",
+                "list[float]",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "arr",
+            "type": [
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "arrays",
+            "type": [
+                "list[float]",
+                "str",
+                "list[typing.Union[float,str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "reorder_arrays",
+            "type": [
+                "tuple[typing.Union[list[float],str,list[typing.Union[float,str]],int,list[numpy.ndarray],typing.Sequence[pandas._Label],typing.Any]]"
+            ]
+        }
+    ],
+    "to_arrays@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "columns",
+            "type": [
+                "pandas.DataFrame",
+                "str",
+                "typing.Sequence[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dtype",
+            "type": [
+                "None",
+                "static_frame.core.util.DtypeSpecifier",
+                "numpy.dtype",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "np_@_ndarray",
+                "list[tuple]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "columns",
+            "type": [
+                "pandas.DataFrame",
+                "str",
+                "typing.Sequence[str]",
+                "None",
+                "Index",
+                "list",
+                "list[str]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "arrays",
+            "type": [
+                "list",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "arr",
+            "type": [
+                "list[int]",
+                "array.array.array",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "to_arrays",
+            "type": [
+                "tuple[list[int]]",
+                "tuple[list]",
+                "tuple[typing.Union[list,list[str],Index]]",
+                "tuple[typing.Union[str,typing.Final,set,int,list,list[str]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dtype",
+            "type": [
+                "None",
+                "static_frame.core.util.DtypeSpecifier",
+                "numpy.dtype",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content",
+            "type": [
+                "str",
+                "typing.Final",
+                "set"
+            ]
+        }
+    ],
+    "treat_as_nested@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "bytes",
+                "numpy.ndarray",
+                "list['PlotInfo']"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "bytes",
+                "numpy.ndarray",
+                "list['PlotInfo']"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "treat_as_nested",
+            "type": [
+                "bool"
+            ]
+        }
+    ]
+}

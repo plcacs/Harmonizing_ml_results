@@ -1,0 +1,510 @@
+{
+    "_append_treatment_feature@global": [
+        {
+            "category": "arg",
+            "name": "features",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "treatment_feature",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_append_treatment_feature",
+            "type": []
+        }
+    ],
+    "_create_treatment_flag@global": [
+        {
+            "category": "arg",
+            "name": "df",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "treatment_col",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "treatment_name",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "control_name",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "TREATMENT_FEATURE",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_create_treatment_flag",
+            "type": []
+        }
+    ],
+    "_filter_by_treatment@global": [
+        {
+            "category": "arg",
+            "name": "df",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "treatment_col",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "treatment_name",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "control_name",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_filter_by_treatment",
+            "type": []
+        }
+    ],
+    "_fit_by_treatment@global": [
+        {
+            "category": "arg",
+            "name": "df",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "learner",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "treatment_col",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "control_name",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "treatments",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "fitted_learners",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "learners_logs",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_fit_by_treatment",
+            "type": [
+                "tuple[dict]"
+            ]
+        }
+    ],
+    "_get_learner_features@global": [
+        {
+            "category": "arg",
+            "name": "learner",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_get_learner_features",
+            "type": []
+        }
+    ],
+    "_get_learners@global": [
+        {
+            "category": "arg",
+            "name": "df",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "control_learner",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "treatment_learner",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "unique_treatments",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "control_name",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "treatment_col",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "learners",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logs",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_learners",
+            "type": [
+                "tuple[dict]"
+            ]
+        }
+    ],
+    "_get_model_fcn@global": [
+        {
+            "category": "arg",
+            "name": "df",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "treatment_col",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "treatment_name",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "learner",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_get_model_fcn",
+            "type": []
+        }
+    ],
+    "_get_unique_treatments@global": [
+        {
+            "category": "arg",
+            "name": "df",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "treatment_col",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "control_name",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_get_unique_treatments",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "_predict_by_treatment_flag@global": [
+        {
+            "category": "arg",
+            "name": "df",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "learner_fcn",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "is_treatment",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "prediction_column",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "TREATMENT_FEATURE",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_predict_by_treatment_flag",
+            "type": []
+        }
+    ],
+    "_simulate_t_learner_treatment_effect@global": [
+        {
+            "category": "arg",
+            "name": "df",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "learners",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "treatments",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "control_name",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "prediction_column",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "uplift_cols",
+            "type": [
+                "list",
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_simulate_t_learner_treatment_effect",
+            "type": []
+        }
+    ],
+    "_simulate_treatment_effect@global": [
+        {
+            "category": "arg",
+            "name": "df",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "treatments",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "control_name",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "learners",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "prediction_column",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "uplift_cols",
+            "type": [
+                "list",
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_simulate_treatment_effect",
+            "type": []
+        }
+    ],
+    "causal_s_classification_learner@global": [
+        {
+            "category": "arg",
+            "name": "df",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "treatment_col",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "control_name",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "prediction_column",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "learner",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "learner_transformers",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TREATMENT_FEATURE",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "learner_transformers",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, ]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "causal_s_classification_learner",
+            "type": [
+                "tuple[dict[typing.Text, dict[typing.Text, ]]]"
+            ]
+        }
+    ],
+    "causal_t_classification_learner@global": [
+        {
+            "category": "arg",
+            "name": "df",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "treatment_col",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "control_name",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "prediction_column",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "learner",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "treatment_learner",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "learner_transformers",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "treatment_learner",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "learner_transformers",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "dict[typing.Text, dict]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "causal_t_classification_learner",
+            "type": [
+                "tuple[dict[typing.Text, dict]]"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "TREATMENT_FEATURE",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "p@global": [
+        {
+            "category": "arg",
+            "name": "new_df",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "p",
+            "type": []
+        }
+    ]
+}

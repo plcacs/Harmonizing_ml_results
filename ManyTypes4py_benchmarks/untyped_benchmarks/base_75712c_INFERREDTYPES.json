@@ -1,0 +1,905 @@
+{
+    "__init__@EnvironmentRunner": [
+        {
+            "category": "arg",
+            "name": "env",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_repetitions",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_step",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "env",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_repetitions",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_step",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@PartialMultiAgentEnv": [
+        {
+            "category": "arg",
+            "name": "env",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "agents",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "agents",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unknown",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "agent_names",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_agents_outcome",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@SingleAgentEnv": [
+        {
+            "category": "arg",
+            "name": "env",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "env",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@StepOutcome": [
+        {
+            "category": "arg",
+            "name": "observation",
+            "type": [
+                "bool",
+                "typing.Sequence[typing.Type]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "reward",
+            "type": [
+                "None",
+                "float",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "done",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "info",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Any"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "observation",
+            "type": [
+                "bool",
+                "typing.Sequence[typing.Type]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reward",
+            "type": [
+                "None",
+                "float",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "done",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "info",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Any",
+                "tuple[int]",
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__iter__@StepOutcome": [
+        {
+            "category": "return",
+            "name": "__iter__",
+            "type": [
+                "tuple",
+                "list"
+            ]
+        }
+    ],
+    "__repr__@StepOutcome": [
+        {
+            "category": "return",
+            "name": "__repr__",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "_run_once@EnvironmentRunner": [
+        {
+            "category": "arg",
+            "name": "agents",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "single_agent",
+            "type": [
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "san",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "single_agent",
+            "type": [
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "agents",
+            "type": [
+                "dict",
+                "dict[typing.Text, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "agent",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "env",
+            "type": [
+                "gym_@_Env"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "outcomes",
+            "type": [
+                "dict[typing.Text, StepOutcome]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "done",
+            "type": [
+                "dict[typing.Text, StepOutcome]",
+                "bool",
+                "int",
+                "str",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "step",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "actions",
+            "type": [
+                "dict",
+                "dict[tuple[typing.Union[typing.Text,StepOutcome]], ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "tuple[typing.Union[typing.Text,StepOutcome]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "outcome",
+            "type": [
+                "tuple[typing.Union[typing.Text,StepOutcome]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_run_once",
+            "type": []
+        }
+    ],
+    "act@Agent": [
+        {
+            "category": "arg",
+            "name": "observation",
+            "type": [
+                "bool",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "reward",
+            "type": [
+                "bool",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "done",
+            "type": [
+                "bool",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "info",
+            "type": [
+                "None",
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "act",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "as_single_agent@PartialMultiAgentEnv": [
+        {
+            "category": "return",
+            "name": "as_single_agent",
+            "type": [
+                "SingleAgentEnv"
+            ]
+        }
+    ],
+    "copy@Agent": [
+        {
+            "category": "return",
+            "name": "copy",
+            "type": [
+                "str",
+                "bool",
+                "\"Wheel\""
+            ]
+        }
+    ],
+    "copy@EnvironmentRunner": [
+        {
+            "category": "return",
+            "name": "copy",
+            "type": [
+                "EnvironmentRunner"
+            ]
+        }
+    ],
+    "copy@MultiAgentEnv": [
+        {
+            "category": "return",
+            "name": "copy",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "copy@PartialMultiAgentEnv": [
+        {
+            "category": "return",
+            "name": "copy",
+            "type": []
+        }
+    ],
+    "copy@SingleAgentEnv": [
+        {
+            "category": "return",
+            "name": "copy",
+            "type": [
+                "str",
+                "typing.Type"
+            ]
+        }
+    ],
+    "from_multiagent_step@StepOutcome": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "dict[str, typing.Any]",
+                "None",
+                "typing.Mapping",
+                "dict[str, float]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "obs",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, float]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "reward",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, float]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "done",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "info",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "obs",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "agent",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reward",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "done",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "info",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "outcomes",
+            "type": [
+                "dict[str, ]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "from_multiagent_step",
+            "type": [
+                "tuple[typing.Union[dict[str, ],typing.Any]]"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "StepReturn",
+            "type": [
+                "bool",
+                "list[str]"
+            ]
+        }
+    ],
+    "reset@Agent": [
+        {
+            "category": "return",
+            "name": "reset",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "reset@MultiAgentEnv": [
+        {
+            "category": "return",
+            "name": "reset",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "reset@PartialMultiAgentEnv": [
+        {
+            "category": "local",
+            "name": "outcomes",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "list[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "str",
+                "typing.Any"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_agents_outcome",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "reset",
+            "type": [
+                "dict[typing.Union[str,typing.Any], ]"
+            ]
+        }
+    ],
+    "reset@SingleAgentEnv": [
+        {
+            "category": "return",
+            "name": "reset",
+            "type": [
+                "str",
+                "bool"
+            ]
+        }
+    ],
+    "run@EnvironmentRunner": [
+        {
+            "category": "arg",
+            "name": "agents",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "agent",
+            "type": [
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "san",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "tuple[typing.Union[typing.Text,float]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sum_rewards",
+            "type": [
+                "dict[typing.Text, float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "agent",
+            "type": [
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "tuple[typing.Union[typing.Text,float]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mean_rewards",
+            "type": [
+                "dict[tuple[typing.Union[typing.Text,float]], float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "env",
+            "type": [
+                "gym_@_Env"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "run",
+            "type": [
+                "float",
+                "dict[tuple[typing.Union[typing.Text,float]], float]"
+            ]
+        }
+    ],
+    "step@MultiAgentEnv": [
+        {
+            "category": "arg",
+            "name": "action_dict",
+            "type": [
+                "dict",
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "step",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "step@PartialMultiAgentEnv": [
+        {
+            "category": "arg",
+            "name": "action_dict",
+            "type": [
+                "dict",
+                "str",
+                "dict[tuple[typing.Union[int,...]], float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "full_action_dict",
+            "type": [
+                "dict",
+                "dict[typing.Union[str,tuple[typing.Union[int,...]]], float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "action_dict",
+            "type": [
+                "dict",
+                "str",
+                "dict[tuple[typing.Union[int,...]], float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "outcomes",
+            "type": [
+                "list",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "done",
+            "type": [
+                "set",
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_agents_outcome",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "step",
+            "type": [
+                "int",
+                "str",
+                "typing.Callable[int, str]"
+            ]
+        }
+    ],
+    "step@SingleAgentEnv": [
+        {
+            "category": "arg",
+            "name": "action",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "action",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "obs",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reward",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "done",
+            "type": [
+                "str",
+                "dict",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "info",
+            "type": [
+                "list",
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "step",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "to_multiagent_step@StepOutcome": [
+        {
+            "category": "arg",
+            "name": "outcomes",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "done",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "names",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "obs",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reward",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "done_dict",
+            "type": [
+                "dict",
+                "dict[typing.Text, bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "info",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "done",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "to_multiagent_step",
+            "type": [
+                "tuple[dict[typing.Text, bool]]"
+            ]
+        }
+    ],
+    "with_agent@MultiAgentEnv": [
+        {
+            "category": "arg",
+            "name": "agents",
+            "type": [
+                "str",
+                "typing.Iterable[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "agents",
+            "type": [
+                "str",
+                "typing.Iterable[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "with_agent",
+            "type": [
+                "PartialMultiAgentEnv"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,267 @@
+{
+    "f1@RougeTest": [
+        {
+            "category": "arg",
+            "name": "r",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "p",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "p",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "f1",
+            "type": [
+                "int",
+                "float"
+            ]
+        }
+    ],
+    "global@global": [],
+    "global_distributed_rouge@global": [
+        {
+            "category": "arg",
+            "name": "global_rank",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "world_size",
+            "type": [
+                "int",
+                "tuple[float]",
+                "torch.device"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "gpu_id",
+            "type": [
+                "int",
+                "tuple[float]",
+                "torch.device"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "metric",
+            "type": [
+                "int",
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "metric_kwargs",
+            "type": [
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "desired_values",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "kwargs",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "argname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_kwargs",
+            "type": [
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "global_rank",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric",
+            "type": [
+                "int",
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metrics",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "desired_values",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "global_distributed_rouge",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "setup_method@RougeTest": [
+        {
+            "category": "local",
+            "name": "metric",
+            "type": [
+                "ROUGE"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "setup_method",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_distributed_rouge@RougeTest": [
+        {
+            "category": "local",
+            "name": "predictions",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "targets",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_kwargs",
+            "type": [
+                "dict[typing.Text, list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "desired_values",
+            "type": [
+                "dict",
+                "dict[typing.Text, float]",
+                "dict[typing.Text, typing.Union[float,int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_distributed_rouge",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_rouge@RougeTest": [
+        {
+            "category": "arg",
+            "name": "device",
+            "type": [
+                "str",
+                "gluonts.model.common.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "str",
+                "gluonts.model.common.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metrics",
+            "type": [
+                "dict",
+                "dict[str, float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_rouge",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_rouge_with_zero_counts@RougeTest": [
+        {
+            "category": "local",
+            "name": "metrics",
+            "type": [
+                "dict[str, typing.Union[dict,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "score",
+            "type": [
+                "list[typing.Union[dict,typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_rouge_with_zero_counts",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

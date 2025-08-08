@@ -1,0 +1,842 @@
+{
+    "__init__@Sampler": [
+        {
+            "category": "arg",
+            "name": "weights",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "observe",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "observe",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "table",
+            "type": [
+                "list[list[str]]",
+                "set",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@many": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "typing.Callable",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "min_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "average_size",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "forced",
+            "type": [
+                "None",
+                "bool",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "observe",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "typing.Callable",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "forced",
+            "type": [
+                "None",
+                "bool",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "forced_size",
+            "type": [
+                "None",
+                "bool",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "average_size",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "p_continue",
+            "type": [
+                "int",
+                "float",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rejections",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "drawn",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "force_stop",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rejected",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "observe",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_calc_p_continue@global": [
+        {
+            "category": "arg",
+            "name": "desired_avg",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "desired_avg",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_calc_p_continue",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "p_continue",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SMALLEST_POSITIVE_FLOAT",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hi",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mid",
+            "type": [
+                "float"
+            ]
+        }
+    ],
+    "_p_continue_to_avg@global": [
+        {
+            "category": "arg",
+            "name": "p_continue",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "p_continue",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_p_continue_to_avg",
+            "type": [
+                "int",
+                "float"
+            ]
+        }
+    ],
+    "calc_label_from_cls@global": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cls",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "calc_label_from_cls",
+            "type": []
+        }
+    ],
+    "calc_label_from_name@global": [
+        {
+            "category": "arg",
+            "name": "name",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hashed",
+            "type": [
+                "hashlib._Hash",
+                "hashlib._BlakeHash"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "calc_label_from_name",
+            "type": [
+                "int",
+                "str",
+                "bytes"
+            ]
+        }
+    ],
+    "check_sample@global": [
+        {
+            "category": "arg",
+            "name": "values",
+            "type": [
+                "list",
+                "typing.Sequence[T]",
+                "None",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "strategy_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "values",
+            "type": [
+                "list",
+                "typing.Sequence[T]",
+                "None",
+                "list[str]",
+                "range"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "strategy_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_sample",
+            "type": [
+                "range",
+                "tuple"
+            ]
+        }
+    ],
+    "combine_labels@global": [
+        {
+            "category": "arg",
+            "name": "labels",
+            "type": [
+                "list[int]",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "label",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "l",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "labels",
+            "type": [
+                "list[int]",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "LABEL_MASK",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "combine_labels",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "compute_sampler_table@global": [
+        {
+            "category": "arg",
+            "name": "weights",
+            "type": [
+                "list[str]",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "weights",
+            "type": [
+                "list[str]",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "n",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "table",
+            "type": [
+                "list[list[None]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total",
+            "type": [
+                "bool",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_type",
+            "type": [
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "zero",
+            "type": [
+                "int",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "one",
+            "type": [
+                "int",
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "small",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "large",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "probabilities",
+            "type": [
+                "list[int]",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scaled_probabilities",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_table",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "compute_sampler_table",
+            "type": []
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "LABEL_MASK",
+            "type": [
+                "int",
+                "typing.Callable[None, typing.Any]",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SAMPLE_IN_SAMPLER_LABEL",
+            "type": [
+                "int",
+                "dict[str, float]",
+                "tuple[typing.Literal]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ONE_FROM_MANY_LABEL",
+            "type": [
+                "str",
+                "list[tuple[typing.Union[str,typing.Any]]]",
+                "dict[str, list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "T",
+            "type": [
+                "TypeVar"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "INT_SIZES",
+            "type": [
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "INT_SIZES_SAMPLER",
+            "type": [
+                "Sampler"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SMALLEST_POSITIVE_FLOAT",
+            "type": [
+                "float",
+                "int",
+                "str"
+            ]
+        }
+    ],
+    "identity@global": [
+        {
+            "category": "arg",
+            "name": "v",
+            "type": [
+                "str",
+                "float",
+                "list[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "v",
+            "type": [
+                "str",
+                "float",
+                "list[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "identity",
+            "type": [
+                "str",
+                "float",
+                "list[typing.Union[str,int]]"
+            ]
+        }
+    ],
+    "more@many": [
+        {
+            "category": "local",
+            "name": "drawn",
+            "type": [
+                "str",
+                "int",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rejected",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ONE_FROM_MANY_LABEL",
+            "type": [
+                "str",
+                "list[tuple[typing.Union[str,typing.Any]]]",
+                "dict[str, list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "should_continue",
+            "type": [
+                "bool",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "forced_result",
+            "type": [
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "forced_size",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "more",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "reject@many": [
+        {
+            "category": "arg",
+            "name": "why",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rejected",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "why",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "force_stop",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "reject",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "sample@Sampler": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "bool",
+                "dict[str, bool]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "forced",
+            "type": [
+                "None",
+                "dict[str, typing.Any]",
+                "bool",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "bool",
+                "dict[str, bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SAMPLE_IN_SAMPLER_LABEL",
+            "type": [
+                "int",
+                "dict[str, float]",
+                "tuple[typing.Literal]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "forced",
+            "type": [
+                "None",
+                "dict[str, typing.Any]",
+                "bool",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "forced_choice",
+            "type": [
+                "None",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "forced_use_alternate",
+            "type": [
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "sample",
+            "type": []
+        }
+    ],
+    "start_example@many": [
+        {
+            "category": "arg",
+            "name": "label",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "label",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "start_example",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "stop_example@many": [
+        {
+            "category": "return",
+            "name": "stop_example",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

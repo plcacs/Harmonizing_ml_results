@@ -1,0 +1,26 @@
+from typing import Generator
+from aiohttp.client import ClientSession
+
+def disable_security_filter() -> Generator:
+    ...
+
+def hassio_env(supervisor_is_connected) -> Generator:
+    ...
+
+def hassio_stubs(hassio_env, hass, hass_client, aioclient_mock, supervisor_client) -> dict:
+    ...
+
+def hassio_client(hassio_stubs, hass, hass_client) -> ClientSession:
+    ...
+
+def hassio_noauth_client(hassio_stubs, hass, aiohttp_client) -> ClientSession:
+    ...
+
+async def hassio_client_supervisor(hass, aiohttp_client, hassio_stubs) -> ClientSession:
+    ...
+
+def hassio_handler(hass, aioclient_mock) -> HassIO:
+    ...
+
+def all_setup_requests(aioclient_mock, request, addon_installed, store_info, addon_changelog, addon_stats) -> None:
+    ...

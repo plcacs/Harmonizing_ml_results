@@ -1,0 +1,696 @@
+{
+    "__init__@WriteAheadLog": [
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "device.utilities.state.main.State",
+                "raiden.storage.sqlite.SerializedSQLiteStorage"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "storage",
+            "type": [
+                "raiden.storage.sqlite.SerializedSQLiteStorage",
+                "raiden.transfer.state.RouteState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_transition",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "storage",
+            "type": [
+                "raiden.storage.sqlite.SerializedSQLiteStorage",
+                "raiden.transfer.state.RouteState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "device.utilities.state.main.State",
+                "raiden.storage.sqlite.SerializedSQLiteStorage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_transition",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@WriteAheadLog,_AtomicStateChangeDispatcher": [
+        {
+            "category": "arg",
+            "name": "state",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "storage",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "state_transition",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "last_state_change_id",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "clone_state@global": [
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "T",
+                "dict",
+                "homeassistancore.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "T",
+                "dict",
+                "homeassistancore.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "copy_state",
+            "type": [
+                "dict",
+                "dict[str, str]",
+                "dict[typing.Union[str,None], str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "clone_state",
+            "type": [
+                "dict",
+                "dict[str, str]",
+                "dict[typing.Union[str,None], str]"
+            ]
+        }
+    ],
+    "dispatch@AtomicStateChangeDispatcher": [
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.architecture.State.Change",
+                "kingsburg.State"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "dispatch",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "dispatch@WriteAheadLog,_AtomicStateChangeDispatcher": [
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "dispatch",
+            "type": []
+        }
+    ],
+    "dispatch@global": [
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "raiden.transfer.architecture.State.Change",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_transition",
+            "type": [
+                "raiden.transfer.architecture.State.Change",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.architecture.State.Change",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "raiden.transfer.architecture.State.Change",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.architecture.State.Change",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iteration",
+            "type": [
+                "int",
+                "raiden.transfer.architecture.TransitionResult",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "dispatch",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "get_current_state@WriteAheadLog": [
+        {
+            "category": "return",
+            "name": "get_current_state",
+            "type": []
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ST",
+            "type": [
+                "TypeVar"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ST2",
+            "type": [
+                "TypeVar"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "T",
+            "type": [
+                "TypeVar"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "saved_state",
+            "type": [
+                "SavedState"
+            ]
+        }
+    ],
+    "latest_state@AtomicStateChangeDispatcher": [
+        {
+            "category": "return",
+            "name": "latest_state",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "latest_state@WriteAheadLog,_AtomicStateChangeDispatcher": [
+        {
+            "category": "return",
+            "name": "latest_state",
+            "type": []
+        }
+    ],
+    "process_state_change_atomically@WriteAheadLog": [
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "T",
+                "pytch.parser.State",
+                "list",
+                "State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cloned_state",
+            "type": [
+                "T",
+                "list",
+                "State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dispatcher",
+            "type": [
+                "_AtomicStateChangeDispatcher"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_state_change_atomically",
+            "type": [
+                "typing.Generator[_AtomicStateChangeDispatcher]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dispatcher_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "saved_state",
+            "type": [
+                "SavedState"
+            ]
+        }
+    ],
+    "replay_state_changes@global": [
+        {
+            "category": "arg",
+            "name": "node_address",
+            "type": [
+                "raiden.utils.Address",
+                "str",
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "raiden.utils.Callable",
+                "raiden.transfer.mediated_transfer.state.InitiatorTransferState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change_range",
+            "type": [
+                "raiden.storage.sqlite.SerializedSQLiteStorage",
+                "raiden.utils.BlockNumber",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "storage",
+            "type": [
+                "raiden.storage.sqlite.SerializedSQLiteStorage",
+                "raiden.utils.BlockNumber",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "transition_function",
+            "type": [
+                "raiden.utils.Callable",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "storage",
+            "type": [
+                "raiden.storage.sqlite.SerializedSQLiteStorage",
+                "raiden.utils.BlockNumber",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change_range",
+            "type": [
+                "raiden.storage.sqlite.SerializedSQLiteStorage",
+                "raiden.utils.BlockNumber",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unapplied_state_changes",
+            "type": [
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretReveal",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node_address",
+            "type": [
+                "raiden.utils.Address",
+                "str",
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "raiden.utils.Callable",
+                "raiden.transfer.mediated_transfer.state.InitiatorTransferState",
+                "list",
+                "T",
+                "State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transition_function",
+            "type": [
+                "raiden.utils.Callable",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "replay_state_changes",
+            "type": [
+                "tuple[typing.Union[list,T,State,raiden.utils.Callable,raiden.transfer.mediated_transfer.state.InitiatorTransferState,int]]"
+            ]
+        }
+    ],
+    "restore_or_init_snapshot@global": [
+        {
+            "category": "arg",
+            "name": "storage",
+            "type": [
+                "raiden.storage.sqlite.SerializedSQLiteStorage",
+                "raiden.utils.Address",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "node_address",
+            "type": [
+                "raiden.utils.Address",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "initial_state",
+            "type": [
+                "raiden.storage.sqlite.SerializedSQLiteStorage",
+                "int",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "storage",
+            "type": [
+                "raiden.storage.sqlite.SerializedSQLiteStorage",
+                "raiden.utils.Address",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "snapshot",
+            "type": [
+                "raiden.storage.sqlite.EventRecord",
+                "lta.transfer.service.TransferService",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node_address",
+            "type": [
+                "raiden.utils.Address",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "restore_or_init_snapshot",
+            "type": [
+                "tuple",
+                "tuple[typing.Union[raiden.storage.sqlite.SerializedSQLiteStorage,int,typing.Type]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initial_state",
+            "type": [
+                "raiden.storage.sqlite.SerializedSQLiteStorage",
+                "int",
+                "typing.Type"
+            ]
+        }
+    ],
+    "restore_state@global": [
+        {
+            "category": "arg",
+            "name": "transition_function",
+            "type": [
+                "raiden.utils.Callable",
+                "raiden.utils.Address",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "storage",
+            "type": [
+                "raiden.storage.sqlite.SerializedSQLiteStorage",
+                "raiden.storage.sqlite.StateChangeID",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change_identifier",
+            "type": [
+                "raiden.storage.sqlite.StateChangeID",
+                "raiden.storage.sqlite.SerializedSQLiteStorage",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "node_address",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.Callable",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "storage",
+            "type": [
+                "raiden.storage.sqlite.SerializedSQLiteStorage",
+                "raiden.storage.sqlite.StateChangeID",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change_identifier",
+            "type": [
+                "raiden.storage.sqlite.StateChangeID",
+                "raiden.storage.sqlite.SerializedSQLiteStorage",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "snapshot",
+            "type": [
+                "raiden.storage.sqlite.EventRecord",
+                "lta.transfer.service.TransferService",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "restore_state",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node_address",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.Callable",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transition_function",
+            "type": [
+                "raiden.utils.Callable",
+                "raiden.utils.Address",
+                "str"
+            ]
+        }
+    ],
+    "snapshot@WriteAheadLog": [
+        {
+            "category": "arg",
+            "name": "statechange_qty",
+            "type": [
+                "int",
+                "float",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "statechange_qty",
+            "type": [
+                "int",
+                "float",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "snapshot",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "version@WriteAheadLog": [
+        {
+            "category": "return",
+            "name": "version",
+            "type": [
+                "str",
+                "None",
+                "int"
+            ]
+        }
+    ],
+    "write_state_change_and_events@WriteAheadLog,_AtomicStateChangeDispatcher": [
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "events",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "event_data",
+            "type": [
+                "list",
+                "list[tuple]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "write_state_change_and_events",
+            "type": []
+        }
+    ]
+}

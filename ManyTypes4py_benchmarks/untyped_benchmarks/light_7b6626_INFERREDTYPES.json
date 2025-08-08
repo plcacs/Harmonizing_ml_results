@@ -1,0 +1,559 @@
+{
+    "__init__@Control4Light": [
+        {
+            "category": "arg",
+            "name": "runtime_data",
+            "type": [
+                "str",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "coordinator",
+            "type": [
+                "str",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "name",
+            "type": [
+                "str",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "idx",
+            "type": [
+                "str",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "device_name",
+            "type": [
+                "str",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "device_manufacturer",
+            "type": [
+                "str",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "device_model",
+            "type": [
+                "str",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "device_id",
+            "type": [
+                "str",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "is_dimmer",
+            "type": [
+                "bool",
+                "list",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "runtime_data",
+            "type": [
+                "str",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "coordinator",
+            "type": [
+                "str",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "str",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "idx",
+            "type": [
+                "str",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device_name",
+            "type": [
+                "str",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device_manufacturer",
+            "type": [
+                "str",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device_model",
+            "type": [
+                "str",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device_id",
+            "type": [
+                "str",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_dimmer",
+            "type": [
+                "bool",
+                "list",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_is_dimmer",
+            "type": [
+                "bool",
+                "list",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_supported_color_modes",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_create_api_object@Control4Light": [
+        {
+            "category": "return",
+            "name": "_create_api_object",
+            "type": [
+                "C4Light"
+            ]
+        }
+    ],
+    "async_setup_entry@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "entry",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "async_add_entities",
+            "type": [
+                "typing.Callable[List,bool, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entry",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "non_dimmer_coordinator",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dimmer_coordinator",
+            "type": [
+                "str",
+                "dict[int, str]",
+                "dict[int, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONTROL4_CATEGORY",
+            "type": [
+                "dict[str, str]",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entity_list",
+            "type": [
+                "list",
+                "list[Control4Light]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "item_manufacturer",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "item_device_name",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "item_model",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "item_is_dimmer",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "item_coordinator",
+            "type": [
+                "str",
+                "dict[int, str]",
+                "dict[int, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_setup_entry",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_turn_off@Control4Light": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "c4_light",
+            "type": [
+                "int",
+                "str",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transition_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "delay_time",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_turn_off",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_turn_on@Control4Light": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "c4_light",
+            "type": [
+                "int",
+                "tuple[int]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transition_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "brightness",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "delay_time",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_turn_on",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_update_data_dimmer@global": [
+        {
+            "category": "local",
+            "name": "CONTROL4_DIMMER_VARS",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_update_data_dimmer",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "err",
+            "type": [
+                "Exception"
+            ]
+        }
+    ],
+    "async_update_data_non_dimmer@global": [
+        {
+            "category": "local",
+            "name": "CONTROL4_NON_DIMMER_VAR",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_update_data_non_dimmer",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "err",
+            "type": [
+                "Exception"
+            ]
+        }
+    ],
+    "brightness@Control4Light": [
+        {
+            "category": "local",
+            "name": "var",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONTROL4_DIMMER_VARS",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "brightness",
+            "type": [
+                "int",
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONTROL4_CATEGORY",
+            "type": [
+                "typing.Text",
+                "dict[str, str]",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONTROL4_NON_DIMMER_VAR",
+            "type": [
+                "typing.Text",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONTROL4_DIMMER_VARS",
+            "type": [
+                "list[typing.Text]",
+                "str",
+                "dict[str, typing.Any]",
+                "list[str]"
+            ]
+        }
+    ],
+    "is_on@Control4Light": [
+        {
+            "category": "local",
+            "name": "var",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONTROL4_DIMMER_VARS",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_on",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONTROL4_NON_DIMMER_VAR",
+            "type": [
+                "str",
+                "bool"
+            ]
+        }
+    ],
+    "supported_features@Control4Light": [
+        {
+            "category": "return",
+            "name": "supported_features",
+            "type": [
+                "LightEntityFeature"
+            ]
+        }
+    ]
+}

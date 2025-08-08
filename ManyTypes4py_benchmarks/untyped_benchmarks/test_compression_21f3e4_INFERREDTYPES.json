@@ -1,0 +1,383 @@
+{
+    "buffer@global": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "buffer",
+            "type": []
+        }
+    ],
+    "global@global": [],
+    "parser_and_data@global": [
+        {
+            "category": "arg",
+            "name": "all_parsers",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "csv1",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "f",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "parser_and_data",
+            "type": [
+                "tuple[str]"
+            ]
+        }
+    ],
+    "test_compression@global": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "parser_and_data",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "compression_only",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "buffer",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "filename",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "compression_to_extension",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "filename",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "compression",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "f",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_compression",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_compression_tar_archive@global": [
+        {
+            "category": "arg",
+            "name": "all_parsers",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "csv_dir_path",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_compression_tar_archive",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_compression_utf_encoding@global": [
+        {
+            "category": "arg",
+            "name": "all_parsers",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "csv_dir_path",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "utf_value",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "encoding_fmt",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_compression_utf_encoding",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_ignore_compression_extension@global": [
+        {
+            "category": "arg",
+            "name": "all_parsers",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_ignore_compression_extension",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_infer_compression@global": [
+        {
+            "category": "arg",
+            "name": "all_parsers",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "csv1",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "buffer",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "ext",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "kwargs",
+            "type": [
+                "dict[typing.Text, int]",
+                "dict[typing.Text, typing.Union[int,typing.Text]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "f",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ext",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_infer_compression",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_invalid_compression@global": [
+        {
+            "category": "arg",
+            "name": "all_parsers",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "invalid_compression",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "compress_kwargs",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_invalid_compression",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_writes_tar_gz@global": [
+        {
+            "category": "arg",
+            "name": "all_parsers",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_writes_tar_gz",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_zip@global": [
+        {
+            "category": "arg",
+            "name": "parser_and_data",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "compression",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "f",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_zip",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_zip_error_invalid_zip@global": [
+        {
+            "category": "arg",
+            "name": "parser_and_data",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "f",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_zip_error_invalid_zip",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_zip_error_multiple_files@global": [
+        {
+            "category": "arg",
+            "name": "parser_and_data",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "compression",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "inner_file_names",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_zip_error_multiple_files",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_zip_error_no_files@global": [
+        {
+            "category": "arg",
+            "name": "parser_and_data",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_zip_error_no_files",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

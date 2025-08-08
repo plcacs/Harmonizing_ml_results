@@ -1,0 +1,1611 @@
+{
+    "__init__@SmokeTestApplication": [
+        {
+            "category": "arg",
+            "name": "deployed_values",
+            "type": [
+                "str",
+                "dict[str, int]",
+                "None",
+                "cmk.utils.type_defs.HostAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stage_name",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "None",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "app_name",
+            "type": [
+                "str",
+                "None",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "app_dir",
+            "type": [
+                "str",
+                "None",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "region",
+            "type": [
+                "dict[str, str]",
+                "None",
+                "list[cmk.utils.type_defs.HostKey]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deployed_values",
+            "type": [
+                "str",
+                "dict[str, int]",
+                "None",
+                "cmk.utils.type_defs.HostAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_deployed_resources",
+            "type": [
+                "DeployedResources"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stage_name",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "None",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app_name",
+            "type": [
+                "str",
+                "None",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app_dir",
+            "type": [
+                "str",
+                "None",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_has_redeployed",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "region",
+            "type": [
+                "dict[str, str]",
+                "None",
+                "list[cmk.utils.type_defs.HostKey]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_region",
+            "type": [
+                "dict[str, str]",
+                "None",
+                "list[cmk.utils.type_defs.HostKey]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_assert_contains_access_control_allow_methods@global": [
+        {
+            "category": "arg",
+            "name": "headers",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "methods",
+            "type": [
+                "list[str]",
+                "list[tuple[str]]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "headers",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "actual_methods",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_assert_contains_access_control_allow_methods",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_create_wrapped_retry_function@global": [
+        {
+            "category": "arg",
+            "name": "function",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_create_wrapped_retry_function",
+            "type": []
+        }
+    ],
+    "_delete_app@global": [
+        {
+            "category": "arg",
+            "name": "application",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "temp_dirname",
+            "type": [
+                "str",
+                "config.Config"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "temp_dirname",
+            "type": [
+                "str",
+                "config.Config"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factory",
+            "type": [
+                "CLIFactory"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "data_platform.config.ConfigManager",
+                "cerise.config.Config"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_delete_app",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_deploy_app@global": [
+        {
+            "category": "arg",
+            "name": "temp_dirname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "temp_dirname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factory",
+            "type": [
+                "CLIFactory"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "cli.config.BinaryAlertConfig",
+                "flask.config.Config"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "RANDOM_APP_NAME",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "application",
+            "type": [
+                "SmokeTestApplication"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_deploy_app",
+            "type": [
+                "SmokeTestApplication"
+            ]
+        }
+    ],
+    "_deploy_with_retries@global": [
+        {
+            "category": "arg",
+            "name": "deployer",
+            "type": [
+                "nucypher.cli.config.GroupGeneralConfig",
+                "pricemonitor.config.Config",
+                "app.config.MQConfig"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "nucypher.cli.config.GroupGeneralConfig",
+                "pricemonitor.config.Config",
+                "app.config.MQConfig"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deployer",
+            "type": [
+                "nucypher.cli.config.GroupGeneralConfig",
+                "pricemonitor.config.Config",
+                "app.config.MQConfig"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "nucypher.cli.config.GroupGeneralConfig",
+                "pricemonitor.config.Config",
+                "app.config.MQConfig"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deployed_stages",
+            "type": [
+                "list",
+                "str",
+                "frozenset"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_deploy_with_retries",
+            "type": [
+                "list",
+                "str",
+                "frozenset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error_code",
+            "type": [
+                "int",
+                "str"
+            ]
+        }
+    ],
+    "_get_error_code_from_exception@global": [
+        {
+            "category": "arg",
+            "name": "exception",
+            "type": [
+                "Exception",
+                "BaseException"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exception",
+            "type": [
+                "Exception",
+                "BaseException"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error_response",
+            "type": [
+                "None",
+                "dict[str, typing.Any]",
+                "typing.Type",
+                "dict[str, typing.Union[bool,None]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_error_code_from_exception",
+            "type": [
+                "None",
+                "str",
+                "typing.Iterable[typing.Any]"
+            ]
+        }
+    ],
+    "_get_json@SmokeTestApplication": [
+        {
+            "category": "arg",
+            "name": "url",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "str",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_json",
+            "type": []
+        }
+    ],
+    "_get_resource_id@global": [
+        {
+            "category": "arg",
+            "name": "apig_client",
+            "type": [
+                "str",
+                "None",
+                "dss.config.Replica"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rest_api_id",
+            "type": [
+                "str",
+                "None",
+                "dss.config.Replica"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "path",
+            "type": [
+                "str",
+                "None",
+                "dss.config.Replica"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "apig_client",
+            "type": [
+                "str",
+                "None",
+                "dss.config.Replica"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rest_api_id",
+            "type": [
+                "str",
+                "None",
+                "dss.config.Replica"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path",
+            "type": [
+                "str",
+                "None",
+                "dss.config.Replica"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "matches",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_resource_id",
+            "type": [
+                "str",
+                "None"
+            ]
+        }
+    ],
+    "_inject_app_name@global": [
+        {
+            "category": "arg",
+            "name": "dirname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dirname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config_filename",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "f",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "RANDOM_APP_NAME",
+            "type": [
+                "str",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_inject_app_name",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_send_request@SmokeTestApplication": [
+        {
+            "category": "arg",
+            "name": "http_method",
+            "type": [
+                "str",
+                "dict",
+                "typing.Any",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "url",
+            "type": [
+                "str",
+                "dict",
+                "typing.Any",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "headers",
+            "type": [
+                "None",
+                "dict[str, str]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "None",
+                "dict[str, str]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "kwargs",
+            "type": [
+                "dict",
+                "dict[typing.Text, typing.Union[dict[str, str],str]]",
+                "dict[typing.Text, typing.Union[dict[str, str],str,dict]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "headers",
+            "type": [
+                "None",
+                "dict[str, str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "None",
+                "dict[str, str]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "http_method",
+            "type": [
+                "str",
+                "dict",
+                "typing.Any",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "str",
+                "dict",
+                "typing.Any",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_send_request",
+            "type": []
+        }
+    ],
+    "_wait_for_stablize@SmokeTestApplication": [
+        {
+            "category": "return",
+            "name": "_wait_for_stablize",
+            "type": [
+                "str",
+                "dict",
+                "list[str]"
+            ]
+        }
+    ],
+    "_wrapped_with_retry@global": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_wrapped_with_retry",
+            "type": []
+        }
+    ],
+    "apig_client@global": [
+        {
+            "category": "local",
+            "name": "s",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "apig_client",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "get_json@SmokeTestApplication": [
+        {
+            "category": "arg",
+            "name": "url",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_json",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "typing.Mapping"
+            ]
+        }
+    ],
+    "get_response@SmokeTestApplication": [
+        {
+            "category": "arg",
+            "name": "url",
+            "type": [
+                "str",
+                "dict",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "headers",
+            "type": [
+                "None",
+                "str",
+                "dict",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "str",
+                "dict",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "headers",
+            "type": [
+                "None",
+                "str",
+                "dict",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_response",
+            "type": [
+                "requests.Response",
+                "dict[str, typing.Any]"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "CURRENT_DIR",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "PROJECT_DIR",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "APP_FILE",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "RANDOM_APP_NAME",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        }
+    ],
+    "options_response@SmokeTestApplication": [
+        {
+            "category": "arg",
+            "name": "url",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "options_response",
+            "type": [
+                "str",
+                "typing.Iterable[str]"
+            ]
+        }
+    ],
+    "post_response@SmokeTestApplication": [
+        {
+            "category": "arg",
+            "name": "url",
+            "type": [
+                "dict",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "headers",
+            "type": [
+                "None",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "None",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "dict",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "headers",
+            "type": [
+                "None",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "None",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "post_response",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "requests.Response"
+            ]
+        }
+    ],
+    "put_response@SmokeTestApplication": [
+        {
+            "category": "arg",
+            "name": "url",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "put_response",
+            "type": [
+                "requests.Response",
+                "dict[str, typing.Any]"
+            ]
+        }
+    ],
+    "redeploy_once@SmokeTestApplication": [
+        {
+            "category": "local",
+            "name": "_has_redeployed",
+            "type": [
+                "classmethod",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "redeploy_once",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_file",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "original_app_py",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "rest_api_id@SmokeTestApplication": [
+        {
+            "category": "return",
+            "name": "rest_api_id",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "retry@global": [
+        {
+            "category": "arg",
+            "name": "max_attempts",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "delay",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "retry",
+            "type": []
+        }
+    ],
+    "smoke_test_app@global": [
+        {
+            "category": "arg",
+            "name": "tmpdir_factory",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "RANDOM_APP_NAME",
+            "type": [
+                "str",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tmpdir_factory",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tmpdir",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "PROJECT_DIR",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "application",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "smoke_test_app",
+            "type": [
+                "typing.Generator[str]"
+            ]
+        }
+    ],
+    "test_api_key_required_fails_with_no_key@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_api_key_required_fails_with_no_key",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_can_handle_charset@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_can_handle_charset",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_can_have_nested_routes@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_can_have_nested_routes",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_can_raise_bad_request@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_can_raise_bad_request",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_can_raise_not_found@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_can_raise_not_found",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_can_read_json_body_on_post@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_can_read_json_body_on_post",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_can_return_default_binary_data_to_a_browser@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "base64encoded_response",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "accept",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_can_return_default_binary_data_to_a_browser",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_can_round_trip_binary@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "bin_data",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_can_round_trip_binary",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_can_round_trip_binary_custom_content_type@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "bin_data",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_can_round_trip_binary_custom_content_type",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_can_route_multiple_methods_in_one_view@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_can_route_multiple_methods_in_one_view",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_can_support_cors@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_can_support_cors",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_can_support_custom_cors@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "expected_allow_origin",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_can_support_custom_cors",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_can_use_builtin_custom_auth@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_can_use_builtin_custom_auth",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_can_use_shared_auth@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_can_use_shared_auth",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_custom_response@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_custom_response",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_empty_raw_body@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_empty_raw_body",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_form_encoded_content_type@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_form_encoded_content_type",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_multi_doc_mapped_in_api@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": [
+                "str",
+                "app.utils.models.ModelManager"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "apig_client",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "smoke_test_app",
+            "type": [
+                "str",
+                "app.utils.models.ModelManager"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_multi_doc_mapped_in_api",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_multifile_support@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_multifile_support",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_path_params_mapped_in_api@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "apig_client",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "apig_client",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_path_params_mapped_in_api",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_redeploy_change_route_info@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_redeploy_change_route_info",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_redeploy_changed_function@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_redeploy_changed_function",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_redeploy_new_function@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_redeploy_new_function",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_redeploy_no_change_view@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_redeploy_no_change_view",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_redeploy_view_deleted@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": [
+                "app.utils.models.ModelManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "smoke_test_app",
+            "type": [
+                "app.utils.models.ModelManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "requests.Response"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_redeploy_view_deleted",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_returns_simple_response@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_returns_simple_response",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_single_doc_mapped_in_api@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "apig_client",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_single_doc_mapped_in_api",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_supports_path_params@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": [
+                "app.utils.models.ModelManager"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_supports_path_params",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_supports_post@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_supports_post",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_supports_put@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_supports_put",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_supports_shared_routes@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_supports_shared_routes",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_to_dict_is_also_json_serializable@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_to_dict_is_also_json_serializable",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_unexpected_error_raises_500_in_prod_mode@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_unexpected_error_raises_500_in_prod_mode",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_websocket_lifecycle@global": [
+        {
+            "category": "arg",
+            "name": "smoke_test_app",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "expected_second_response",
+            "type": [
+                "list[list[typing.Text]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_websocket_lifecycle",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "url@SmokeTestApplication": [
+        {
+            "category": "return",
+            "name": "url",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "websocket_api_id@SmokeTestApplication": [
+        {
+            "category": "return",
+            "name": "websocket_api_id",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        }
+    ],
+    "websocket_connect_url@SmokeTestApplication": [
+        {
+            "category": "return",
+            "name": "websocket_connect_url",
+            "type": [
+                "str"
+            ]
+        }
+    ]
+}

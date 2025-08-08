@@ -1,0 +1,952 @@
+{
+    "__init__@SchemaCommonFlowHandler": [
+        {
+            "category": "arg",
+            "name": "handler",
+            "type": [
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "flow",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "options",
+            "type": [
+                "typing.Callable[..., None]",
+                "bool",
+                "starlette.types.ASGIApp"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "handler",
+            "type": [
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_handler",
+            "type": [
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "options",
+            "type": [
+                "typing.Callable[..., None]",
+                "bool",
+                "starlette.types.ASGIApp",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_options",
+            "type": [
+                "typing.Callable[..., None]",
+                "bool",
+                "starlette.types.ASGIApp",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_flow_state",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@SchemaConfigFlowHandler": [
+        {
+            "category": "local",
+            "name": "_common_handler",
+            "type": [
+                "SchemaCommonFlowHandler"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@SchemaOptionsFlowHandler": [
+        {
+            "category": "arg",
+            "name": "config_entry",
+            "type": [
+                "dict",
+                "bool",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "options_flow",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "async_options_flow_finished",
+            "type": [
+                "None",
+                "bool",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "async_setup_preview",
+            "type": [
+                "None",
+                "dict",
+                "bool",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config_entry",
+            "type": [
+                "dict",
+                "bool",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_common_handler",
+            "type": [
+                "SchemaCommonFlowHandler"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "async_options_flow_finished",
+            "type": [
+                "None",
+                "bool",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_async_options_flow_finished",
+            "type": [
+                "None",
+                "bool",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "async_setup_preview",
+            "type": [
+                "None",
+                "dict",
+                "bool",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init_subclass__@SchemaConfigFlowHandler": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "typing.Type",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "cls",
+            "type": [
+                "typing.Type",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init_subclass__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_async_form_step@SchemaCommonFlowHandler": [
+        {
+            "category": "arg",
+            "name": "step_id",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, dict[str, typing.Any]]",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_input",
+            "type": [
+                "None",
+                "dict[str, typing.Any]",
+                "typing.Any",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "step_id",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, dict[str, typing.Any]]",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_input",
+            "type": [
+                "None",
+                "dict[str, typing.Any]",
+                "typing.Any",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_schema",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exc",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_async_form_step",
+            "type": [
+                "typing.Generator[typing.Union[typing.Any,None,int]]",
+                "typing.Callable",
+                "bool"
+            ]
+        }
+    ],
+    "_async_get_options_flow@SchemaConfigFlowHandler": [
+        {
+            "category": "arg",
+            "name": "config_entry",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "cls_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_async_get_options_flow",
+            "type": [
+                "SchemaOptionsFlowHandler"
+            ]
+        }
+    ],
+    "_async_menu_step@SchemaCommonFlowHandler": [
+        {
+            "category": "arg",
+            "name": "step_id",
+            "type": [
+                "typing.Callable",
+                "dict",
+                "\"User\""
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_input",
+            "type": [
+                "None",
+                "str",
+                "tuple[str]",
+                "set[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "step_id",
+            "type": [
+                "typing.Callable",
+                "dict",
+                "\"User\""
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_async_menu_step",
+            "type": [
+                "click.core.Context",
+                "str",
+                "list[str]"
+            ]
+        }
+    ],
+    "_async_step@SchemaConfigFlowHandler": [
+        {
+            "category": "arg",
+            "name": "step_id",
+            "type": [
+                "utils.types.Id",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_async_step",
+            "type": []
+        }
+    ],
+    "_async_step@SchemaOptionsFlowHandler": [
+        {
+            "category": "arg",
+            "name": "step_id",
+            "type": [
+                "utils.types.Id",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_async_step",
+            "type": []
+        }
+    ],
+    "_get_schema@SchemaCommonFlowHandler": [
+        {
+            "category": "arg",
+            "name": "form_step",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "None",
+                "\"libkol.Item\""
+            ]
+        },
+        {
+            "category": "local",
+            "name": "form_step",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "None",
+                "\"libkol.Item\""
+            ]
+        },
+        {
+            "category": "local",
+            "name": "form_step_",
+            "type": [
+                "None",
+                "vol_@_Schema"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_schema",
+            "type": [
+                "None",
+                "vol_@_Schema",
+                "mypy.types.Type.dDictType",
+                "dict[str, typing.Any]",
+                "typing.Callable[..., typing.Any]"
+            ]
+        }
+    ],
+    "_show_next_step@SchemaCommonFlowHandler": [
+        {
+            "category": "arg",
+            "name": "next_step_id",
+            "type": [
+                "dict",
+                "str",
+                "None",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "error",
+            "type": [
+                "None",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_input",
+            "type": [
+                "None",
+                "str",
+                "dict[str, typing.Any]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "next_step_id",
+            "type": [
+                "dict",
+                "str",
+                "None",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_show_next_step",
+            "type": [
+                "str",
+                "bytes",
+                "itsim.types.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_schema",
+            "type": [
+                "bool",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "suggested_values",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "form_step_",
+            "type": [
+                "UNDEFINED"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_input",
+            "type": [
+                "None",
+                "str",
+                "dict[str, typing.Any]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error",
+            "type": [
+                "None",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "errors",
+            "type": [
+                "dict[typing.Text, str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_step",
+            "type": [
+                "None",
+                "bool"
+            ]
+        }
+    ],
+    "_show_next_step_or_create_entry@SchemaCommonFlowHandler": [
+        {
+            "category": "arg",
+            "name": "form_step",
+            "type": [
+                "dict[str, object]",
+                "typing.IO",
+                "None",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "form_step",
+            "type": [
+                "dict[str, object]",
+                "typing.IO",
+                "None",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "next_step_id_or_end_flow",
+            "type": [
+                "None",
+                "str",
+                "list[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_show_next_step_or_create_entry",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "boucanpy.core.api_token.ApiTokenRepo"
+            ]
+        }
+    ],
+    "_update_and_remove_omitted_optional_keys@SchemaCommonFlowHandler": [
+        {
+            "category": "arg",
+            "name": "values",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_input",
+            "type": [
+                "dict[str, typing.Any]",
+                "types.DataType"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "data_schema",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "values",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_input",
+            "type": [
+                "dict[str, typing.Any]",
+                "types.DataType"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_schema",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_update_and_remove_omitted_optional_keys",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_config_entry_title@SchemaConfigFlowHandler": [
+        {
+            "category": "arg",
+            "name": "options",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_config_entry_title",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_config_flow_finished@SchemaConfigFlowHandler": [
+        {
+            "category": "arg",
+            "name": "options",
+            "type": [
+                "str",
+                "T",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_config_flow_finished",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_create_entry@SchemaConfigFlowHandler": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "typing.MutableMapping"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "typing.MutableMapping"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_create_entry",
+            "type": [
+                "bool",
+                "types.Config",
+                "dict"
+            ]
+        }
+    ],
+    "async_create_entry@SchemaOptionsFlowHandler": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_create_entry",
+            "type": []
+        }
+    ],
+    "async_options_flow_finished@SchemaConfigFlowHandler": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "options",
+            "type": [
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_options_flow_finished",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_setup_preview@SchemaConfigFlowHandler": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_setup_preview",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_step@SchemaCommonFlowHandler": [
+        {
+            "category": "arg",
+            "name": "step_id",
+            "type": [
+                "int",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_input",
+            "type": [
+                "None",
+                "str",
+                "fklearn.types.ListLogListType",
+                "fklearn.types.ExtractorFnType"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "step_id",
+            "type": [
+                "int",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_input",
+            "type": [
+                "None",
+                "str",
+                "fklearn.types.ListLogListType",
+                "fklearn.types.ExtractorFnType"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_step",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        }
+    ],
+    "async_supports_options_flow@SchemaConfigFlowHandler": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "bool",
+                "dict",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "config_entry",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "list[typing.Any]",
+                "None",
+                "routemaster.state_machine.types.LabelRef"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cls",
+            "type": [
+                "bool",
+                "dict",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_supports_options_flow",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "entity_selector_without_own_entities@global": [
+        {
+            "category": "arg",
+            "name": "handler",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "entity_selector_config",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "handler",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entity_ids",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "entity_selector_without_own_entities",
+            "type": []
+        }
+    ],
+    "flow_state@SchemaCommonFlowHandler": [
+        {
+            "category": "return",
+            "name": "flow_state",
+            "type": []
+        }
+    ],
+    "global@global": [],
+    "options@SchemaCommonFlowHandler": [
+        {
+            "category": "return",
+            "name": "options",
+            "type": []
+        }
+    ],
+    "options@SchemaOptionsFlowHandler": [
+        {
+            "category": "return",
+            "name": "options",
+            "type": []
+        }
+    ],
+    "parent_handler@SchemaCommonFlowHandler": [
+        {
+            "category": "return",
+            "name": "parent_handler",
+            "type": []
+        }
+    ],
+    "wrapped_entity_config_entry_title@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "entity_id_or_uuid",
+            "type": [
+                "str",
+                "None",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entity_id_or_uuid",
+            "type": [
+                "str",
+                "None",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "wrapped_entity_config_entry_title",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "str"
+            ]
+        }
+    ]
+}

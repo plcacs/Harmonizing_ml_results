@@ -1,0 +1,35 @@
+from homeassistant.helpers import entity
+from homeassistant.helpers.device_registry import DeviceInfo
+from ..const import CONF_ALLOW_UNREACHABLE, DEFAULT_ALLOW_UNREACHABLE, DOMAIN as HUE_DOMAIN
+
+class GenericHueDevice(entity.Entity):
+    def __init__(self, sensor: Any, name: str, bridge: Any, primary_sensor: Optional[Any] = None) -> None:
+        self.sensor = sensor
+        self._name = name
+        self._primary_sensor = primary_sensor
+        self.bridge = bridge
+        self.allow_unreachable = bridge.config_entry.options.get(CONF_ALLOW_UNREACHABLE, DEFAULT_ALLOW_UNREACHABLE)
+
+    @property
+    def primary_sensor(self) -> Any:
+        return self._primary_sensor or self.sensor
+
+    @property
+    def device_id(self) -> str:
+        return self.unique_id[:23]
+
+    @property
+    def unique_id(self) -> str:
+        return self.sensor.uniqueid
+
+    @property
+    def name(self) -> str:
+        return self._name
+
+    @property
+    def swupdatestate(self) -> Optional[str]:
+        return self.primary_sensor.raw.get('swupdate', {}).get('state')
+
+    @property
+    def device_info(self) -> DeviceInfo:
+        return DeviceInfo(identifiers={(HUE_DOMAIN, self.device_id)}, manufacturer=self.primary_sensor.manufacturername, model=self.primary_sensor.productname or self.primary_sensor.modelid, name=self.primary_sensor.name, sw_version=self.primary_sensor.swversion, via_device=(HUE_DOMAIN, self.bridge.api.config.bridgeid))

@@ -1,0 +1,374 @@
+{
+    "global@global": [],
+    "multiple_runs@global": [
+        {
+            "category": "arg",
+            "name": "global_rank",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "world_size",
+            "type": [
+                "int",
+                "tuple[float]",
+                "torch.device"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "gpu_id",
+            "type": [
+                "int",
+                "tuple[float]",
+                "torch.device"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "metric",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[int, typing.Any]",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "metric_kwargs",
+            "type": [
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "desired_values",
+            "type": [
+                "dict[str, typing.Any]",
+                "int",
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exact",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "kwargs",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "argname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_kwargs",
+            "type": [
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "global_rank",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "multiple_runs",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_accuracy_computation@BooleanAccuracyTest": [
+        {
+            "category": "arg",
+            "name": "device",
+            "type": [
+                "str",
+                "gluonts.model.common.Tensor",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "accuracy",
+            "type": [
+                "BooleanAccuracy"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "str",
+                "gluonts.model.common.Tensor",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mask",
+            "type": [
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_accuracy_computation",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_distributed_accuracy@BooleanAccuracyTest": [
+        {
+            "category": "local",
+            "name": "predictions",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "targets",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_kwargs",
+            "type": [
+                "dict[typing.Text, list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "desired_values",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_distributed_accuracy",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_distributed_accuracy_unequal_batches@BooleanAccuracyTest": [
+        {
+            "category": "local",
+            "name": "predictions",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "targets",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_kwargs",
+            "type": [
+                "dict[typing.Text, list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "desired_values",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_distributed_accuracy_unequal_batches",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_does_not_divide_by_zero_with_no_count@BooleanAccuracyTest": [
+        {
+            "category": "arg",
+            "name": "device",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "accuracy",
+            "type": [
+                "BooleanAccuracy"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_does_not_divide_by_zero_with_no_count",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_incorrect_gold_labels_shape_catches_exceptions@BooleanAccuracyTest": [
+        {
+            "category": "arg",
+            "name": "device",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "accuracy",
+            "type": [
+                "BooleanAccuracy"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_incorrect_gold_labels_shape_catches_exceptions",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_incorrect_mask_shape_catches_exceptions@BooleanAccuracyTest": [
+        {
+            "category": "arg",
+            "name": "device",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "accuracy",
+            "type": [
+                "BooleanAccuracy"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "incorrect_shape_mask",
+            "type": [
+                "dict[str, typing.Any]",
+                "tuple[typing.Union[typing.Any,int]]",
+                "property"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_incorrect_mask_shape_catches_exceptions",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_multiple_distributed_runs@BooleanAccuracyTest": [
+        {
+            "category": "local",
+            "name": "predictions",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "targets",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_kwargs",
+            "type": [
+                "dict[typing.Text, list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "desired_values",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_multiple_distributed_runs",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_skips_completely_masked_instances@BooleanAccuracyTest": [
+        {
+            "category": "arg",
+            "name": "device",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "accuracy",
+            "type": [
+                "BooleanAccuracy"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_skips_completely_masked_instances",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

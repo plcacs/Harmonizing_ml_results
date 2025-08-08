@@ -1,0 +1,1591 @@
+{
+    "__init__@S3UploadBackend": [
+        {
+            "category": "local",
+            "name": "export_bucket",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "public_upload_url_base",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "all_message_attachments@S3UploadBackend": [
+        {
+            "category": "arg",
+            "name": "include_thumbnails",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prefix",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prefix",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_thumbnails",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "all_message_attachments",
+            "type": [
+                "typing.Generator[tuple]"
+            ]
+        }
+    ],
+    "attachment_vips_source@S3UploadBackend": [
+        {
+            "category": "arg",
+            "name": "path_id",
+            "type": [
+                "str",
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metadata",
+            "type": [
+                "dict[str, typing.Any]",
+                "list[str]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "attachment_vips_source",
+            "type": [
+                "StreamingSourceWithSize"
+            ]
+        }
+    ],
+    "construct_public_upload_url_base@S3UploadBackend": [
+        {
+            "category": "local",
+            "name": "settings_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "construct_public_upload_url_base",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DUMMY_KEY",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "delete_avatar_image@S3UploadBackend": [
+        {
+            "category": "arg",
+            "name": "path_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "delete_avatar_image",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "delete_export_tarball@S3UploadBackend": [
+        {
+            "category": "arg",
+            "name": "export_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "export_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "delete_export_tarball",
+            "type": [
+                "str",
+                "None"
+            ]
+        }
+    ],
+    "delete_file_from_s3@S3UploadBackend": [
+        {
+            "category": "arg",
+            "name": "path_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "bucket",
+            "type": [
+                "str",
+                "boto3.resources.base.ServiceResource",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket",
+            "type": [
+                "str",
+                "boto3.resources.base.ServiceResource",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "Object"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "delete_file_from_s3",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "delete_message_attachment@S3UploadBackend": [
+        {
+            "category": "arg",
+            "name": "path_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "delete_message_attachment",
+            "type": []
+        }
+    ],
+    "delete_message_attachments@S3UploadBackend": [
+        {
+            "category": "arg",
+            "name": "path_ids",
+            "type": [
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path_ids",
+            "type": [
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path_id",
+            "type": [
+                "typing.Text",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "delete_message_attachments",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "export_object@S3UploadBackend": [
+        {
+            "category": "arg",
+            "name": "tarball_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tarball_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "export_object",
+            "type": [
+                "str",
+                "tuple[str]"
+            ]
+        }
+    ],
+    "generate_message_upload_path@S3UploadBackend": [
+        {
+            "category": "arg",
+            "name": "realm_id",
+            "type": [
+                "str",
+                "int",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sanitized_file_name",
+            "type": [
+                "str",
+                "int",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm_id",
+            "type": [
+                "str",
+                "int",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sanitized_file_name",
+            "type": [
+                "str",
+                "int",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "generate_message_upload_path",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "get_avatar_contents@S3UploadBackend": [
+        {
+            "category": "arg",
+            "name": "file_path",
+            "type": [
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_path",
+            "type": [
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_avatar_contents",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "get_avatar_url@S3UploadBackend": [
+        {
+            "category": "arg",
+            "name": "hash_key",
+            "type": [
+                "str",
+                "bytes",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "medium",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hash_key",
+            "type": [
+                "str",
+                "bytes",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "medium",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_avatar_url",
+            "type": [
+                "str",
+                "None"
+            ]
+        }
+    ],
+    "get_boto_client@global": [
+        {
+            "category": "local",
+            "name": "BOTO_CLIENT",
+            "type": [
+                "None",
+                "list",
+                "set"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_boto_client",
+            "type": [
+                "list",
+                "set"
+            ]
+        }
+    ],
+    "get_bucket@global": [
+        {
+            "category": "arg",
+            "name": "bucket_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "authed",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_bucket",
+            "type": [
+                "bool",
+                "str",
+                "dict"
+            ]
+        }
+    ],
+    "get_emoji_url@S3UploadBackend": [
+        {
+            "category": "arg",
+            "name": "emoji_file_name",
+            "type": [
+                "int",
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "realm_id",
+            "type": [
+                "int",
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "still",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "still",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm_id",
+            "type": [
+                "int",
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "emoji_file_name",
+            "type": [
+                "int",
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "emoji_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_emoji_url",
+            "type": [
+                "str",
+                "typing.BinaryIO",
+                "None"
+            ]
+        }
+    ],
+    "get_export_tarball_url@S3UploadBackend": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "export_path",
+            "type": [
+                "str",
+                "zerver.models.Realm",
+                "abilian.core.models.subjects.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "export_path",
+            "type": [
+                "str",
+                "zerver.models.Realm",
+                "abilian.core.models.subjects.User",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_export_tarball_url",
+            "type": [
+                "str",
+                "int",
+                "None"
+            ]
+        }
+    ],
+    "get_public_upload_root_url@S3UploadBackend": [
+        {
+            "category": "return",
+            "name": "get_public_upload_root_url",
+            "type": []
+        }
+    ],
+    "get_public_upload_url@S3UploadBackend": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_public_upload_url",
+            "type": []
+        }
+    ],
+    "get_realm_icon_url@S3UploadBackend": [
+        {
+            "category": "arg",
+            "name": "realm_id",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "version",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm_id",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "public_url",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "version",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_realm_icon_url",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "get_realm_logo_url@S3UploadBackend": [
+        {
+            "category": "arg",
+            "name": "realm_id",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "version",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "night",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "night",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm_id",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "public_url",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "version",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_realm_logo_url",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "get_signed_upload_url@global": [
+        {
+            "category": "arg",
+            "name": "path",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "filename",
+            "type": [
+                "bool",
+                "str",
+                "typing.BinaryIO"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "force_download",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "params",
+            "type": [
+                "dict[typing.Text, typing.Union[str,bool]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "force_download",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "filename",
+            "type": [
+                "bool",
+                "str",
+                "typing.BinaryIO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SIGNED_UPLOAD_URL_DURATION",
+            "type": [
+                "int",
+                "str",
+                "datetime.timedelta"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_signed_upload_url",
+            "type": [
+                "str",
+                "dict"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "SIGNED_UPLOAD_URL_DURATION",
+            "type": [
+                "int",
+                "str",
+                "datetime.timedelta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "settings_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "botocore_",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "BOTO_CLIENT",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "s3_read@S3UploadBackend": [
+        {
+            "category": "arg",
+            "name": "streamingbody",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "size",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "s3_read",
+            "type": []
+        }
+    ],
+    "save_attachment_contents@S3UploadBackend": [
+        {
+            "category": "arg",
+            "name": "path_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "filehandle",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "filehandle",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "save_attachment_contents",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "upload_content_to_s3@global": [
+        {
+            "category": "arg",
+            "name": "bucket",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "path",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content_type",
+            "type": [
+                "str",
+                "typing.Any",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "contents",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "typing.Any",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "storage_class",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "cache_control",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "extra_metadata",
+            "type": [
+                "str",
+                "None",
+                "dict[str, typing.Any]",
+                "list[annofabapi.models.LabelV1]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "filename",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "Object"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metadata",
+            "type": [
+                "dict",
+                "dict[typing.Text, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "extra_metadata",
+            "type": [
+                "str",
+                "None",
+                "dict[str, typing.Any]",
+                "list[annofabapi.models.LabelV1]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "extras",
+            "type": [
+                "dict",
+                "dict[typing.Text, ]",
+                "dict[typing.Text, typing.Text]",
+                "dict[typing.Text, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content_type",
+            "type": [
+                "str",
+                "typing.Any",
+                "None",
+                "typing.Text",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_attachment",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "filename",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cache_control",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contents",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "typing.Any",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "storage_class",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_content_to_s3",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "upload_export_tarball@S3UploadBackend": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "str",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tarball_path",
+            "type": [
+                "typing.Callable[typing.Any, None]",
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "percent_callback",
+            "type": [
+                "None",
+                "typing.Callable[typing.Any, None]",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tarball_path",
+            "type": [
+                "typing.Callable[typing.Any, None]",
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "percent_callback",
+            "type": [
+                "None",
+                "typing.Callable[typing.Any, None]",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "str",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_export_tarball",
+            "type": []
+        }
+    ],
+    "upload_message_attachment@S3UploadBackend": [
+        {
+            "category": "arg",
+            "name": "path_id",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "filename",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content_type",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "file_data",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path_id",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content_type",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_data",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "filename",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_message_attachment",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "upload_realm_icon_image@S3UploadBackend": [
+        {
+            "category": "arg",
+            "name": "icon_file",
+            "type": [
+                "django.core.files.File"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "str",
+                "zerver.models.Stream"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content_type",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "zerver.models.Stream"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "str",
+                "zerver.models.Stream"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s3_file_name",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "icon_file",
+            "type": [
+                "django.core.files.File"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "image_data",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "list[tuple[typing.Union[int,...]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content_type",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "zerver.models.Stream"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resized_data",
+            "type": [
+                "list[typing.Any]",
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_realm_icon_image",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "upload_realm_logo_image@S3UploadBackend": [
+        {
+            "category": "arg",
+            "name": "logo_file",
+            "type": [
+                "django.core.files.File"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "night",
+            "type": [
+                "bool",
+                "zerver.models.Realm",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content_type",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "night",
+            "type": [
+                "bool",
+                "zerver.models.Realm",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "basename",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s3_file_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logo_file",
+            "type": [
+                "django.core.files.File"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "image_data",
+            "type": [
+                "str",
+                "list[tuple[typing.Union[int,...]]]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content_type",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resized_data",
+            "type": [
+                "bytes",
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_realm_logo_image",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "upload_single_avatar_image@S3UploadBackend": [
+        {
+            "category": "arg",
+            "name": "file_path",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "image_data",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content_type",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "future",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "future",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "extra_metadata",
+            "type": [
+                "dict[typing.Text, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_path",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content_type",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "image_data",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_single_avatar_image",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "upload_single_emoji_image@S3UploadBackend": [
+        {
+            "category": "arg",
+            "name": "path",
+            "type": [
+                "str",
+                "bytes",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content_type",
+            "type": [
+                "str",
+                "bytes",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "bytes",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "image_data",
+            "type": [
+                "str",
+                "bytes",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path",
+            "type": [
+                "str",
+                "bytes",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content_type",
+            "type": [
+                "str",
+                "bytes",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "bytes",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "image_data",
+            "type": [
+                "str",
+                "bytes",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_single_emoji_image",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

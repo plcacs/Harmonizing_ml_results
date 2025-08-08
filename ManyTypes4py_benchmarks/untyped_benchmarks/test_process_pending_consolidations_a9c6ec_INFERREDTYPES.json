@@ -1,0 +1,1264 @@
+{
+    "global@global": [],
+    "prepare_consolidation_and_state@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "list[mythril.laser.ethereum.state.global_state.GlobalState]",
+                "list",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "list[mythril.laser.ethereum.state.global_state.GlobalState]",
+                "list",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "source_index",
+            "type": [
+                "list[list[str]]",
+                "list[\"libkol.types.ItemQuantity\"]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_index",
+            "type": [
+                "T",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "creds_type",
+            "type": [
+                "int",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "balance_to_eb",
+            "type": [
+                "int",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "eb_to_min_ab",
+            "type": [
+                "tuple[int]",
+                "collections.abc.Awaitable[None]",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "eb_to_max_eb",
+            "type": [
+                "tuple[int]",
+                "collections.abc.Awaitable[None]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "creds_type",
+            "type": [
+                "int",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "list[mythril.laser.ethereum.state.global_state.GlobalState]",
+                "list",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "list[mythril.laser.ethereum.state.global_state.GlobalState]",
+                "list",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_index",
+            "type": [
+                "list[list[str]]",
+                "list[\"libkol.types.ItemQuantity\"]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_index",
+            "type": [
+                "T",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "eb_to_min_ab",
+            "type": [
+                "tuple[int]",
+                "collections.abc.Awaitable[None]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "eb_to_max_eb",
+            "type": [
+                "tuple[int]",
+                "collections.abc.Awaitable[None]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "balance_to_eb",
+            "type": [
+                "int",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "prepare_consolidation_and_state",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "run_balance_computation_test@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int",
+                "state.State",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "prefecengine.state.State",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "instance_tuples",
+            "type": [
+                "zproc.state.state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instance_tuples",
+            "type": [
+                "zproc.state.state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "int",
+                "state.State",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "prefecengine.state.State",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pre_state",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "run_balance_computation_test",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_all_consolidation_cases_together@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "tuple[int]",
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "tuple[int]",
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "tuple[int]",
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "tuple[int]",
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]",
+                "dict[int, float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "i",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_index",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_index",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_",
+            "type": [
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pre_balances",
+            "type": [
+                "str",
+                "list",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pre_pending_consolidations",
+            "type": [
+                "str",
+                "dict",
+                "property"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_all_consolidation_cases_together",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_basic_pending_consolidation@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "str",
+                "typing.Callable",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "str",
+                "typing.Callable",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "str",
+                "typing.Callable",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "str",
+                "typing.Callable",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_index",
+            "type": [
+                "int",
+                "tuple[typing.Optional[typing.Any]]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_index",
+            "type": [
+                "int",
+                "tuple[typing.Optional[typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_basic_pending_consolidation",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_consolidation_not_yet_withdrawable_validator@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "str",
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "str",
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "str",
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "str",
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_index",
+            "type": [
+                "int",
+                "tuple[typing.Optional[typing.Any]]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_index",
+            "type": [
+                "int",
+                "tuple[typing.Optional[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pre_pending_consolidations",
+            "type": [
+                "str",
+                "dict",
+                "property"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pre_balances",
+            "type": [
+                "int",
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_consolidation_not_yet_withdrawable_validator",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_pending_consolidation_balance_computation_compounding@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "raiden.transfer.state.ChainState",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "raiden.transfer.state.ChainState",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instances",
+            "type": [
+                "list",
+                "list[tuple[typing.Text]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "balance_to_eb",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "eb_to_min_ab",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "eb_to_max_eb",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "raiden.transfer.state.ChainState",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "raiden.transfer.state.ChainState",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_pending_consolidation_balance_computation_compounding",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_pending_consolidation_balance_computation_eth1@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instances",
+            "type": [
+                "list",
+                "list[tuple[typing.Text]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "balance_to_eb",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "eb_to_min_ab",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "eb_to_max_eb",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_pending_consolidation_balance_computation_eth1",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_pending_consolidation_compounding_creds@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_index",
+            "type": [
+                "int",
+                "tuple[typing.Optional[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_index",
+            "type": [
+                "int",
+                "tuple[typing.Optional[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_epoch",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_before_consolidation",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_pending_consolidation_compounding_creds",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_pending_consolidation_future_epoch@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "tuple[int]",
+                "list",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "tuple[int]",
+                "list",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_index",
+            "type": [
+                "int",
+                "tuple[typing.Optional[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_index",
+            "type": [
+                "int",
+                "tuple[typing.Optional[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_epoch",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_before_consolidation",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_pending_consolidation_future_epoch",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_pending_consolidation_source_balance_greater_than_max_effective@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_index",
+            "type": [
+                "int",
+                "tuple[typing.Optional[typing.Any]]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_index",
+            "type": [
+                "int",
+                "tuple[typing.Optional[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "excess_source_balance",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_pending_consolidation_source_balance_greater_than_max_effective",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_pending_consolidation_source_balance_greater_than_max_effective_compounding@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_index",
+            "type": [
+                "int",
+                "tuple[typing.Optional[typing.Any]]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_index",
+            "type": [
+                "int",
+                "tuple[typing.Optional[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "excess_source_balance",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_pending_consolidation_source_balance_greater_than_max_effective_compounding",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_pending_consolidation_source_balance_less_than_max_effective@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "str",
+                "int",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "str",
+                "int",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "str",
+                "int",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "str",
+                "int",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_index",
+            "type": [
+                "int",
+                "tuple[typing.Optional[typing.Any]]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_index",
+            "type": [
+                "int",
+                "tuple[typing.Optional[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pre_balance_source",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_pending_consolidation_source_balance_less_than_max_effective",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_pending_consolidation_source_balance_less_than_max_effective_compounding@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "str",
+                "int",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "str",
+                "int",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "str",
+                "int",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "str",
+                "int",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_index",
+            "type": [
+                "int",
+                "tuple[typing.Optional[typing.Any]]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_index",
+            "type": [
+                "int",
+                "tuple[typing.Optional[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pre_balance_source",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_pending_consolidation_source_balance_less_than_max_effective_compounding",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_pending_consolidation_with_pending_deposit@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int",
+                "str",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "int",
+                "str",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_index",
+            "type": [
+                "int",
+                "tuple[typing.Optional[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_epoch",
+            "type": [
+                "int",
+                "float",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_before_consolidation",
+            "type": [
+                "set[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_pending_consolidation_with_pending_deposit",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_skip_consolidation_when_source_slashed@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source0_index",
+            "type": [
+                "int",
+                "tuple[typing.Optional[typing.Any]]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target0_index",
+            "type": [
+                "int",
+                "tuple[typing.Optional[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source1_index",
+            "type": [
+                "int",
+                "tuple[typing.Optional[typing.Any]]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target1_index",
+            "type": [
+                "int",
+                "tuple[typing.Optional[typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_skip_consolidation_when_source_slashed",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ]
+}

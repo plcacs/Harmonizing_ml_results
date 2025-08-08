@@ -1,0 +1,616 @@
+{
+    "__eq__@PretrainedTransformerIndexer": [
+        {
+            "category": "arg",
+            "name": "other",
+            "type": [
+                "dict",
+                "typing.Callable",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "other",
+            "type": [
+                "dict",
+                "typing.Callable",
+                "typing.Type",
+                "PretrainedTransformerIndexer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__eq__",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "__init__@PretrainedTransformerIndexer": [
+        {
+            "category": "arg",
+            "name": "model_name",
+            "type": [
+                "str",
+                "None",
+                "allennlp.common.params.Params"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "namespace",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_length",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tokenizer_kwargs",
+            "type": [
+                "None",
+                "str",
+                "allennlp.common.params.Params"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "namespace",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_namespace",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model_name",
+            "type": [
+                "str",
+                "None",
+                "allennlp.common.params.Params"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokenizer_kwargs",
+            "type": [
+                "None",
+                "str",
+                "allennlp.common.params.Params"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_allennlp_tokenizer",
+            "type": [
+                "PretrainedTransformerTokenizer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_added_to_vocabulary",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_num_added_start_tokens",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_num_added_end_tokens",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_length",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_max_length",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_added_tokens",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_effective_max_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_add_encoding_to_vocabulary_if_needed@PretrainedTransformerIndexer": [
+        {
+            "category": "arg",
+            "name": "vocab",
+            "type": [
+                "allennlp.data.vocabulary.Vocabulary",
+                "deeplearning.ncc.vocabulary.VocabularyZipFile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_added_to_vocabulary",
+            "type": [
+                "str",
+                "typing.ClassVar",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_add_encoding_to_vocabulary_if_needed",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vocab",
+            "type": [
+                "allennlp.data.vocabulary.Vocabulary",
+                "deeplearning.ncc.vocabulary.VocabularyZipFile"
+            ]
+        }
+    ],
+    "_extract_token_and_type_ids@PretrainedTransformerIndexer": [
+        {
+            "category": "arg",
+            "name": "tokens",
+            "type": [
+                "list[allennlp.data.tokenizers.token.Token]",
+                "typing.Iterator",
+                "models.Token"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indices",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "type_ids",
+            "type": [
+                "list",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token",
+            "type": [
+                "allennlp.data.tokenizers.token.Token",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "list[allennlp.data.tokenizers.token.Token]",
+                "typing.Iterator",
+                "models.Token"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_extract_token_and_type_ids",
+            "type": [
+                "tuple[list[int]]"
+            ]
+        }
+    ],
+    "_postprocess_output@PretrainedTransformerIndexer": [
+        {
+            "category": "arg",
+            "name": "output",
+            "type": [
+                "allennlp.common.util.JsonDict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_max_length",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output",
+            "type": [
+                "allennlp.common.util.JsonDict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indices",
+            "type": [
+                "str",
+                "dict",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "type_ids",
+            "type": [
+                "dict",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "folded_indices",
+            "type": [
+                "list[str]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "folded_type_ids",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "segment",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "single_sequence_start_type_ids",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "single_sequence_end_type_ids",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_postprocess_output",
+            "type": [
+                "allennlp.common.util.JsonDict"
+            ]
+        }
+    ],
+    "as_padded_tensor_dict@PretrainedTransformerIndexer": [
+        {
+            "category": "arg",
+            "name": "tokens",
+            "type": [
+                "IndexedTokenList",
+                "dict[str, list[int]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "padding_lengths",
+            "type": [
+                "dict[str, int]",
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tensor_dict",
+            "type": [
+                "dict",
+                "dict[tuple[typing.Union[str,list[int]]], typing.Union[dict[str, int],str,dict[str, float]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "tuple[typing.Union[str,list[int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "val",
+            "type": [
+                "tuple[typing.Union[str,list[int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "IndexedTokenList",
+                "dict[str, list[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "padding_value",
+            "type": [
+                "int",
+                "bool",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "padding_lengths",
+            "type": [
+                "dict[str, int]",
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tensor",
+            "type": [
+                "dict[str, int]",
+                "str",
+                "dict[str, float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "as_padded_tensor_dict",
+            "type": [
+                "dict[tuple[typing.Union[str,list[int]]], typing.Union[dict[str, int],str,dict[str, float]]]"
+            ]
+        }
+    ],
+    "count_vocab_items@PretrainedTransformerIndexer": [
+        {
+            "category": "arg",
+            "name": "token",
+            "type": [
+                "allennlp.data.tokenizers.token.Token",
+                "dict[str, dict[str, int]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "counter",
+            "type": [
+                "allennlp.data.tokenizers.token.Token",
+                "dict[str, dict[str, int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "count_vocab_items",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_empty_token_list@PretrainedTransformerIndexer": [
+        {
+            "category": "local",
+            "name": "output",
+            "type": [
+                "dict[typing.Text, list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_max_length",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_empty_token_list",
+            "type": [
+                "dict[typing.Text, list]"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "indices_to_tokens@PretrainedTransformerIndexer": [
+        {
+            "category": "arg",
+            "name": "indexed_tokens",
+            "type": [
+                "dict[str, torch.Tensor]",
+                "allennlp.data.vocabulary.Vocabulary",
+                "dict[str, list[int]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "vocabulary",
+            "type": [
+                "allennlp.data.vocabulary.Vocabulary",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vocabulary",
+            "type": [
+                "allennlp.data.vocabulary.Vocabulary",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indexed_tokens",
+            "type": [
+                "dict[str, torch.Tensor]",
+                "allennlp.data.vocabulary.Vocabulary",
+                "dict[str, list[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_ids",
+            "type": [
+                "torch.Tensor",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "type_ids",
+            "type": [
+                "torch.Tensor",
+                "list[int]",
+                "int",
+                "str",
+                "range",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "indices_to_tokens",
+            "type": [
+                "list[Token]"
+            ]
+        }
+    ],
+    "tokens_to_indices@PretrainedTransformerIndexer": [
+        {
+            "category": "arg",
+            "name": "tokens",
+            "type": [
+                "allennlp.data.vocabulary.Vocabulary",
+                "allennlp.data.tokenizers.token.Token",
+                "list[allennlp.data.tokenizers.token.Token]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "vocabulary",
+            "type": [
+                "allennlp.data.vocabulary.Vocabulary",
+                "tuple[typing.Union[str,'LabelAligner']]",
+                "tuple[typing.Union[list[str],'LabelAligner']]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vocabulary",
+            "type": [
+                "allennlp.data.vocabulary.Vocabulary",
+                "tuple[typing.Union[str,'LabelAligner']]",
+                "tuple[typing.Union[list[str],'LabelAligner']]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "allennlp.data.vocabulary.Vocabulary",
+                "allennlp.data.tokenizers.token.Token",
+                "list[allennlp.data.tokenizers.token.Token]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indices",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "type_ids",
+            "type": [
+                "int",
+                "list[int]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output",
+            "type": [
+                "dict[typing.Text, typing.Union[int,list,list[bool],str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "tokens_to_indices",
+            "type": [
+                "str",
+                "int",
+                "tuple[int]"
+            ]
+        }
+    ]
+}

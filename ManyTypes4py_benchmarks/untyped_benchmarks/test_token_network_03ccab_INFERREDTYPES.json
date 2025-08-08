@@ -1,0 +1,868 @@
+{
+    "global@global": [
+        {
+            "category": "local",
+            "name": "SIGNATURE_SIZE_IN_BITS",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        }
+    ],
+    "open_channel@global": [
+        {
+            "category": "local",
+            "name": "settle_timeout",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "open_channel",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_concurrent_set_total_deposit@global": [
+        {
+            "category": "arg",
+            "name": "token_network_proxy",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "CHANNEL_COUNT",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DEPOSIT_COUNT",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channels",
+            "type": [
+                "Queue"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_grenlets",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit_greenlets",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_identifier",
+            "type": [
+                "raiden.utils.TokenNetworkID",
+                "raiden.utils.BlockIdentifier",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_hash",
+            "type": [
+                "bytes",
+                "raiden.utils.SecretHash",
+                "raiden.utils.Any"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partner",
+            "type": [
+                "raiden.constants.EthClient",
+                "None",
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.mediated_transfer.state.InitiatorTransferState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "given_block_identifier",
+            "type": [
+                "bytes",
+                "raiden.utils.SecretHash",
+                "raiden.utils.Any"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "all_greenlets",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_concurrent_set_total_deposit",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_query_pruned_state@global": [
+        {
+            "category": "arg",
+            "name": "token_network_proxy",
+            "type": [
+                "raiden.utils.BlockSpecification",
+                "list[raiden.utils.TokenAddress]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "private_keys",
+            "type": [
+                "nucypher.network.middleware.RestMiddleware"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "web3",
+            "type": [
+                "raiden.network.proxies.secret_registry.SecretRegistry",
+                "list[raiden.raiden_service.RaidenService]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "contract_manager",
+            "type": [
+                "list[raiden.raiden_service.RaidenService]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "web3",
+            "type": [
+                "raiden.network.proxies.secret_registry.SecretRegistry",
+                "list[raiden.raiden_service.RaidenService]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "private_keys",
+            "type": [
+                "nucypher.network.middleware.RestMiddleware"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c1_client",
+            "type": [
+                "JSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contract_manager",
+            "type": [
+                "list[raiden.raiden_service.RaidenService]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c1_proxy_manager",
+            "type": [
+                "ProxyManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c2_client",
+            "type": [
+                "JSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "raiden.transfer.state_change.Block"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_hash",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_query_pruned_state",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_token_network_actions_at_pruned_blocks@global": [
+        {
+            "category": "arg",
+            "name": "token_network_proxy",
+            "type": [
+                "raiden.network.proxies.secret_registry.SecretRegistry",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "private_keys",
+            "type": [
+                "multiprocessing.Queue",
+                "raiden.network.proxies.secret_registry.SecretRegistry",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_proxy",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState",
+                "gevenqueue.Queue"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "web3",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "bytes",
+                "typing.TextIO"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chain_id",
+            "type": [
+                "raiden.network.proxies.secret_registry.SecretRegistry",
+                "typing.Callable",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "contract_manager",
+            "type": [
+                "raiden.network.proxies.secret_registry.SecretRegistry",
+                "raiden_contracts.contract_manager.ContractManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "web3",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "bytes",
+                "typing.TextIO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "private_keys",
+            "type": [
+                "multiprocessing.Queue",
+                "raiden.network.proxies.secret_registry.SecretRegistry",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c1_client",
+            "type": [
+                "JSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contract_manager",
+            "type": [
+                "raiden.network.proxies.secret_registry.SecretRegistry",
+                "raiden_contracts.contract_manager.ContractManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c1_proxy_manager",
+            "type": [
+                "ProxyManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c2_client",
+            "type": [
+                "JSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c2_proxy_manager",
+            "type": [
+                "ProxyManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initial_token_balance",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_proxy",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState",
+                "gevenqueue.Queue"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pruned_number",
+            "type": [
+                "int",
+                "typing.Iterator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transferred_amount_c1",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_id",
+            "type": [
+                "raiden.network.proxies.secret_registry.SecretRegistry",
+                "typing.Callable",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "balance_proof_c1",
+            "type": [
+                "BalanceProof"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "empty_balance_proof",
+            "type": [
+                "BalanceProof"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "close_pruned_number",
+            "type": [
+                "int",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_token_network_actions_at_pruned_blocks",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_token_network_deposit_race@global": [
+        {
+            "category": "arg",
+            "name": "token_network_proxy",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "private_keys",
+            "type": [
+                "list[raiden.raiden_service.RaidenService]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_proxy",
+            "type": [
+                "list[raiden.utils.TokenAddress]",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "web3",
+            "type": [
+                "typing.Callable",
+                "list[raiden.raiden_service.RaidenService]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "contract_manager",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.network.rpc.clienJSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "web3",
+            "type": [
+                "typing.Callable",
+                "list[raiden.raiden_service.RaidenService]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "private_keys",
+            "type": [
+                "list[raiden.raiden_service.RaidenService]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c1_client",
+            "type": [
+                "JSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c2_client",
+            "type": [
+                "JSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contract_manager",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.network.rpc.clienJSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proxy_manager",
+            "type": [
+                "ProxyManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_proxy",
+            "type": [
+                "list[raiden.utils.TokenAddress]",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_token_network_deposit_race",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_token_network_proxy@global": [
+        {
+            "category": "arg",
+            "name": "token_network_proxy",
+            "type": [
+                "typing.Callable",
+                "int",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "private_keys",
+            "type": [
+                "multiprocessing.Queue",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_proxy",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState",
+                "raiden.messages.transfers.LockedTransfer"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chain_id",
+            "type": [
+                "typing.Callable",
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "web3",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.constants.RoutingMode",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "contract_manager",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "private_keys",
+            "type": [
+                "multiprocessing.Queue",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c1_signer",
+            "type": [
+                "LocalSigner"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "web3",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.constants.RoutingMode",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c1_client",
+            "type": [
+                "JSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contract_manager",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c1_proxy_manager",
+            "type": [
+                "ProxyManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c2_client",
+            "type": [
+                "JSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c2_proxy_manager",
+            "type": [
+                "ProxyManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c2_signer",
+            "type": [
+                "LocalSigner"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initial_token_balance",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_proxy",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState",
+                "raiden.messages.transfers.LockedTransfer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_details",
+            "type": [
+                "raiden.raiden_service.PaymentStatus",
+                "raiden.transfer.state.RouteState",
+                "raiden.network.proxies.token_network.TokenNetwork"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_id",
+            "type": [
+                "typing.Callable",
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "match",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transferred_amount",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SIGNATURE_SIZE_IN_BITS",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blocknumber_prior_to_close",
+            "type": [
+                "raiden_contracts.tests.utils.channel.ChannelValues",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "invalid_transferred_amount",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_token_network_proxy",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_token_network_proxy_update_transfer@global": [
+        {
+            "category": "arg",
+            "name": "token_network_proxy",
+            "type": [
+                "typing.Callable",
+                "raiden.network.proxies.secret_registry.SecretRegistry"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "private_keys",
+            "type": [
+                "multiprocessing.Queue"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_proxy",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.network.proxies.secret_registry.SecretRegistry",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chain_id",
+            "type": [
+                "typing.Callable",
+                "raiden.utils.TokenAmount",
+                "raiden.network.proxies.secret_registry.SecretRegistry"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "web3",
+            "type": [
+                "raiden.api.resAPIServer",
+                "bool",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "contract_manager",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "web3",
+            "type": [
+                "raiden.api.resAPIServer",
+                "bool",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "private_keys",
+            "type": [
+                "multiprocessing.Queue"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c1_client",
+            "type": [
+                "JSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contract_manager",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c1_proxy_manager",
+            "type": [
+                "ProxyManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c1_signer",
+            "type": [
+                "LocalSigner"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c2_client",
+            "type": [
+                "JSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c2_proxy_manager",
+            "type": [
+                "ProxyManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initial_balance",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_proxy",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.network.proxies.secret_registry.SecretRegistry",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transferred_amount_c1",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transferred_amount_c2",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_id",
+            "type": [
+                "typing.Callable",
+                "raiden.utils.TokenAmount",
+                "raiden.network.proxies.secret_registry.SecretRegistry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "balance_proof_c1",
+            "type": [
+                "BalanceProof"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "balance_proof_c2",
+            "type": [
+                "BalanceProof"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_token_network_proxy_update_transfer",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

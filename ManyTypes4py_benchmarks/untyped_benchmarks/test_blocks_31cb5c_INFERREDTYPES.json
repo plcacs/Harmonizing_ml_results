@@ -1,0 +1,591 @@
+{
+    "global@global": [],
+    "run_block_with_blobs@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "float",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "blob_count",
+            "type": [
+                "int",
+                "str",
+                "bytes",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tx_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "blob_gas_used",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "excess_blob_gas",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "non_blob_tx_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rng",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "valid",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "float",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "run_block_with_blobs",
+            "type": [
+                "typing.Generator[tuple[typing.Union[typing.Text,float,int]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,list[typing.Union[beacon_chain.state.chain.Chain,int,pyshgp.push.state.PushState]]]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,float,int,None]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "beacon_chain.state.block.Block",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "txs",
+            "type": [
+                "list",
+                "list[typing.Union[bytes,str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blob_kzg_commitments",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "dict[str, typing.Any]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tx_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blob_count",
+            "type": [
+                "int",
+                "str",
+                "bytes",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "opaque_tx",
+            "type": [
+                "bytes",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "non_blob_tx_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_",
+            "type": [
+                "list",
+                "list[typing.Union[bytes,str,int]]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blob_gas_used",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "excess_blob_gas",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "valid",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signed_block",
+            "type": [
+                "beacon_chain.state.chain.Chain",
+                "int",
+                "pyshgp.push.state.PushState"
+            ]
+        }
+    ],
+    "test_invalid_exceed_max_blobs_per_block@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "str",
+                "typing.Counter",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "str",
+                "typing.Counter",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "str",
+                "typing.Counter",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "str",
+                "typing.Counter",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_invalid_exceed_max_blobs_per_block",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_invalid_max_blobs_per_block_two_txs@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int",
+                "dict",
+                "state.State"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "int",
+                "dict",
+                "state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "int",
+                "dict",
+                "state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "int",
+                "dict",
+                "state.State"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_invalid_max_blobs_per_block_two_txs",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_invalid_one_blob_max_plus_one_txs@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "str",
+                "int",
+                "state.State"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "str",
+                "int",
+                "state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "str",
+                "int",
+                "state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "str",
+                "int",
+                "state.State"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_invalid_one_blob_max_plus_one_txs",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_max_blobs_per_block@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_max_blobs_per_block",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_mix_blob_tx_and_non_blob_tx@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int",
+                "state.State"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "int",
+                "state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "int",
+                "state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "int",
+                "state.State"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_mix_blob_tx_and_non_blob_tx",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_one_blob@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_one_blob",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_one_blob_max_txs@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int",
+                "state.State"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "int",
+                "state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "int",
+                "state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "int",
+                "state.State"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_one_blob_max_txs",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_one_blob_two_txs@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "str",
+                "int",
+                "state.State"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "str",
+                "int",
+                "state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "str",
+                "int",
+                "state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "str",
+                "int",
+                "state.State"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_one_blob_two_txs",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_zero_blob@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "str",
+                "int",
+                "typing.Counter"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "str",
+                "int",
+                "typing.Counter"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "str",
+                "int",
+                "typing.Counter"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "str",
+                "int",
+                "typing.Counter"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_zero_blob",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ]
+}

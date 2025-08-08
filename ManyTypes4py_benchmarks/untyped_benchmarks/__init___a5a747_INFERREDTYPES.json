@@ -1,0 +1,946 @@
+{
+    "__init__@MinioListener": [
+        {
+            "category": "arg",
+            "name": "queue",
+            "type": [
+                "queue.Queue",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "endpoint",
+            "type": [
+                "str",
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "access_key",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "secret_key",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "secure",
+            "type": [
+                "str",
+                "bool",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "bucket_name",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prefix",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "suffix",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "events",
+            "type": [
+                "str",
+                "None",
+                "typing.Iterable[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "queue",
+            "type": [
+                "queue.Queue",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_queue",
+            "type": [
+                "queue.Queue",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "endpoint",
+            "type": [
+                "str",
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_endpoint",
+            "type": [
+                "str",
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "access_key",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_access_key",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret_key",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_secret_key",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secure",
+            "type": [
+                "str",
+                "bool",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_secure",
+            "type": [
+                "str",
+                "bool",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_name",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_bucket_name",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prefix",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_prefix",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "suffix",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_suffix",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events",
+            "type": [
+                "str",
+                "None",
+                "typing.Iterable[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_events",
+            "type": [
+                "str",
+                "None",
+                "typing.Iterable[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_minio_event_thread",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@QueueListener": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_queue",
+            "type": [
+                "Queue"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_setup_listener@global": [
+        {
+            "category": "arg",
+            "name": "listener_conf",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "CONF_LISTEN_BUCKET",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_LISTEN_PREFIX",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_LISTEN_SUFFIX",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_LISTEN_EVENTS",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "minio_listener",
+            "type": [
+                "MinioListener"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_setup_listener",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_file@global": [
+        {
+            "category": "arg",
+            "name": "service",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "ATTR_BUCKET",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_KEY",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_FILE_PATH",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_file",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_minio_endpoint@global": [
+        {
+            "category": "arg",
+            "name": "host",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "port",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "host",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "port",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_minio_endpoint",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DOMAIN",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_HOST",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_PORT",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_ACCESS_KEY",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_SECRET_KEY",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_SECURE",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_LISTEN",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_LISTEN_BUCKET",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_LISTEN_PREFIX",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_LISTEN_SUFFIX",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_LISTEN_EVENTS",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_BUCKET",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_KEY",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_FILE_PATH",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DEFAULT_LISTEN_PREFIX",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DEFAULT_LISTEN_SUFFIX",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DEFAULT_LISTEN_EVENTS",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONFIG_SCHEMA",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "BUCKET_KEY_SCHEMA",
+            "type": [
+                "list",
+                "dict",
+                "dict[str, str]",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "BUCKET_KEY_FILE_SCHEMA",
+            "type": [
+                "list",
+                "dict[str, str]",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_minio_event_thread",
+            "type": [
+                "MinioEventThread"
+            ]
+        }
+    ],
+    "put_file@global": [
+        {
+            "category": "arg",
+            "name": "service",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "ATTR_BUCKET",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_KEY",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_FILE_PATH",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "put_file",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "queue@QueueListener": [
+        {
+            "category": "return",
+            "name": "queue",
+            "type": []
+        }
+    ],
+    "remove_file@global": [
+        {
+            "category": "arg",
+            "name": "service",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "ATTR_BUCKET",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_KEY",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "remove_file",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "run@QueueListener": [
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_KEY",
+            "type": [
+                "str",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_BUCKET",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DOMAIN",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "run",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "setup@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "dict",
+                "homeassistanhelpers.ConfigType",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "dict",
+                "homeassistanhelpers.ConfigType",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DOMAIN",
+            "type": [
+                "str",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "conf",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "host",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "port",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "access_key",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret_key",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secure",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "queue_listener",
+            "type": [
+                "QueueListener"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "listen_conf",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "minio_client",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "BUCKET_KEY_FILE_SCHEMA",
+            "type": [
+                "dict[str, str]",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "BUCKET_KEY_SCHEMA",
+            "type": [
+                "dict",
+                "dict[str, str]",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "setup",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "start_handler@MinioListener": [
+        {
+            "category": "arg",
+            "name": "_",
+            "type": [
+                "int",
+                "Exception",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_minio_event_thread",
+            "type": [
+                "MinioEventThread"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "start_handler",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "start_handler@QueueListener": [
+        {
+            "category": "arg",
+            "name": "_",
+            "type": [
+                "int",
+                "Exception",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "start_handler",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "stop@QueueListener": [
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "stop",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "stop_handler@MinioListener": [
+        {
+            "category": "arg",
+            "name": "_",
+            "type": [
+                "Exception",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_minio_event_thread",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "stop_handler",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "stop_handler@QueueListener": [
+        {
+            "category": "arg",
+            "name": "_",
+            "type": [
+                "Exception",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "stop_handler",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

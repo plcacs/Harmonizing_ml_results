@@ -1,0 +1,1587 @@
+{
+    "__init__@Importer": [
+        {
+            "category": "arg",
+            "name": "inference_state",
+            "type": [
+                "str",
+                "dict[str, list[bool]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "import_path",
+            "type": [
+                "list",
+                "list[typing.Union[int,str]]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "module_context",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "level",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "import_path",
+            "type": [
+                "list",
+                "list[typing.Union[int,str]]",
+                "str",
+                "tuple[typing.Union[typing.Type,int,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "module_context",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inference_state",
+            "type": [
+                "str",
+                "dict[str, list[bool]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_inference_state",
+            "type": [
+                "str",
+                "dict[str, list[bool]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "level",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_module_context",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_fixed_sys_path",
+            "type": [
+                "None",
+                "list[typing.Union[str,dict,pathlib.Path]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_infer_possible",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "base",
+            "type": [
+                "tuple",
+                "tuple[typing.Type]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path",
+            "type": [
+                "pathlib.Path",
+                "str",
+                "typing.Generator[typing.Optional[str]]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "directory",
+            "type": [
+                "pathlib.Path",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "base_import_path",
+            "type": [
+                "None",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "base_directory",
+            "type": [
+                "None",
+                "str",
+                "dict",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@ModuleCache": [
+        {
+            "category": "local",
+            "name": "_name_cache",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_add_error@global": [
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "name",
+            "type": [
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_add_error",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_get_module_names@Importer": [
+        {
+            "category": "arg",
+            "name": "search_path",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "in_module",
+            "type": [
+                "None",
+                "paradigm.catalog.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "search_path",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sys_path",
+            "type": [
+                "list",
+                "list[int]",
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "in_module",
+            "type": [
+                "None",
+                "paradigm.catalog.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_module_names",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "_level_to_base_import_path@global": [
+        {
+            "category": "arg",
+            "name": "project_path",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "directory",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "level",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "level",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "directory",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "old",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_level_to_base_import_path",
+            "type": [
+                "tuple[None]",
+                "tuple[typing.Union[list,str,list[str],pathlib.Path]]",
+                "tuple[typing.Union[None,str,list[str],pathlib.Path]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "d",
+            "type": [
+                "str",
+                "list[str]",
+                "pathlib.Path",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "level_import_paths",
+            "type": [
+                "list",
+                "list[typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "project_path",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dir_name",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "_load_builtin_module@global": [
+        {
+            "category": "arg",
+            "name": "inference_state",
+            "type": [
+                "str",
+                "Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "import_names",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sys_path",
+            "type": [
+                "None",
+                "int",
+                "typing.Sequence[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inference_state",
+            "type": [
+                "str",
+                "Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sys_path",
+            "type": [
+                "None",
+                "int",
+                "typing.Sequence[str]",
+                "list",
+                "list[str]",
+                "ide.pathx.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "p",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "import_names",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dotted_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "module",
+            "type": [
+                "None",
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_load_builtin_module",
+            "type": [
+                "None",
+                "str",
+                "list"
+            ]
+        }
+    ],
+    "_load_python_module@global": [
+        {
+            "category": "arg",
+            "name": "inference_state",
+            "type": [
+                "bool",
+                "cerulean.path.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "file_io",
+            "type": [
+                "bool",
+                "cerulean.path.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "import_names",
+            "type": [
+                "None",
+                "bool",
+                "str",
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "is_package",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inference_state",
+            "type": [
+                "bool",
+                "cerulean.path.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_io",
+            "type": [
+                "bool",
+                "cerulean.path.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "import_names",
+            "type": [
+                "None",
+                "bool",
+                "str",
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_package",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_load_python_module",
+            "type": [
+                "ModuleValue"
+            ]
+        }
+    ],
+    "_prepare_infer_import@global": [
+        {
+            "category": "arg",
+            "name": "module_context",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "tree_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tree_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "import_node",
+            "type": [
+                "set[str]",
+                "set",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "import_path",
+            "type": [
+                "list[str]",
+                "str",
+                "pathlib.Path",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_import_name",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_names",
+            "type": [
+                "str",
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "importer",
+            "type": [
+                "Importer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_prepare_infer_import",
+            "type": [
+                "tuple[typing.Union[None,str,tuple]]"
+            ]
+        }
+    ],
+    "_str_import_path@Importer": [
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "tree_@_Name"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_str_import_path",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "_sys_path_with_modifications@Importer": [
+        {
+            "category": "arg",
+            "name": "is_completion",
+            "type": [
+                "bool",
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_fixed_sys_path",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_sys_path_with_modifications",
+            "type": [
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_completion",
+            "type": [
+                "bool",
+                "str",
+                "typing.Callable"
+            ]
+        }
+    ],
+    "add@ModuleCache": [
+        {
+            "category": "arg",
+            "name": "string_names",
+            "type": [
+                "str",
+                "None",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "value_set",
+            "type": [
+                "str",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "string_names",
+            "type": [
+                "str",
+                "None",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value_set",
+            "type": [
+                "str",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "add",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "completion_names@Importer": [
+        {
+            "category": "arg",
+            "name": "inference_state",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "only_modules",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "completion_names",
+            "type": [
+                "list",
+                "str",
+                "list[str]",
+                "list[ImportName]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "names",
+            "type": [
+                "list",
+                "list[ImportName]",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flaskext",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "values",
+            "type": [
+                "str",
+                "list",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "only_modules",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "both_values",
+            "type": [
+                "property",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "follow@Importer": [
+        {
+            "category": "local",
+            "name": "import_path",
+            "type": [
+                "str",
+                "list[str]",
+                "pathlib.Path",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ns",
+            "type": [
+                "ImplicitNamespaceValue"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "follow",
+            "type": [
+                "ValueSet",
+                "dict",
+                "typing.DefaultDict",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_cache",
+            "type": [
+                "dict",
+                "typing.DefaultDict",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sys_path",
+            "type": [
+                "list",
+                "list[str]",
+                "str"
+            ]
+        }
+    ],
+    "follow_error_node_imports_if_possible@global": [
+        {
+            "category": "arg",
+            "name": "context",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error_node",
+            "type": [
+                "list",
+                "typing.Type",
+                "dict[int, list[int]]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "start_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_import_from",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "follow_error_node_imports_if_possible",
+            "type": [
+                "str",
+                "None"
+            ]
+        }
+    ],
+    "get@ModuleCache": [
+        {
+            "category": "arg",
+            "name": "string_names",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "string_names",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get",
+            "type": [
+                "str",
+                "None",
+                "bytes"
+            ]
+        }
+    ],
+    "global@global": [],
+    "goto_import@global": [
+        {
+            "category": "arg",
+            "name": "context",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "tree_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tree_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_import_name",
+            "type": [
+                "str",
+                "int",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "values",
+            "type": [
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "goto_import",
+            "type": [
+                "list",
+                "str",
+                "list[str]",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "names",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "n",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "importer",
+            "type": [
+                "Importer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "import_module@global": [
+        {
+            "category": "arg",
+            "name": "inference_state",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "utils.CWLObjectType"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "import_names",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "parent_module_value",
+            "type": [
+                "str",
+                "None",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sys_path",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "utils.CWLObjectType"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "import_names",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inference_state",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "utils.CWLObjectType"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sys_path",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "utils.CWLObjectType"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "module",
+            "type": [
+                "dict",
+                "str",
+                "None",
+                "ImplicitNamespaceValue"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "import_module",
+            "type": [
+                "ValueSet"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "module_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parent_module_value",
+            "type": [
+                "str",
+                "None",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_io_or_ns",
+            "type": [
+                "str",
+                "typing.IO",
+                "dict[str, str]",
+                "ImplicitNSInfo",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_pkg",
+            "type": [
+                "bool",
+                "set[str]",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "paths",
+            "type": [
+                "list[pathlib.Path]",
+                "pathlib.Path",
+                "list",
+                "None"
+            ]
+        }
+    ],
+    "import_module_by_names@global": [
+        {
+            "category": "arg",
+            "name": "inference_state",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "import_names",
+            "type": [
+                "list",
+                "list[tuple[typing.Union[int,typing.Any]]]",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sys_path",
+            "type": [
+                "None",
+                "str",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "module_context",
+            "type": [
+                "None",
+                "dbcontracts.graph.compiled.ManifestNode",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prefer_stubs",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sys_path",
+            "type": [
+                "None",
+                "str",
+                "dict[str, dict[str, typing.Any]]",
+                "list[str]",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inference_state",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "import_names",
+            "type": [
+                "list",
+                "list[tuple[typing.Union[int,typing.Any]]]",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "i",
+            "type": [
+                "tuple[typing.Union[int,typing.Any]]",
+                "str",
+                "tree_@_Name",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "str_import_names",
+            "type": [
+                "tuple[typing.Union[tuple[typing.Union[int,typing.Any]],str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value_set",
+            "type": [
+                "list[None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "int",
+                "tuple[typing.Union[int,typing.Any]]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parent_module_value",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prefer_stubs",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "module_context",
+            "type": [
+                "None",
+                "dbcontracts.graph.compiled.ManifestNode",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "import_module_by_names",
+            "type": [
+                "list[None]"
+            ]
+        }
+    ],
+    "infer_import@global": [
+        {
+            "category": "arg",
+            "name": "context",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "tree_name",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tree_name",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_import_name",
+            "type": [
+                "str",
+                "list[str]",
+                "dict[int, str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "values",
+            "type": [
+                "dict",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "importer",
+            "type": [
+                "Importer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "infer_import",
+            "type": [
+                "dict",
+                "str",
+                "float"
+            ]
+        }
+    ],
+    "iter_module_names@global": [
+        {
+            "category": "arg",
+            "name": "inference_state",
+            "type": [
+                "str",
+                "None",
+                "typing.Iterable[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "module_context",
+            "type": [
+                "typing.Type",
+                "dict[str, str]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "search_path",
+            "type": [
+                "tuple[int]",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "module_cls",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "add_builtin_modules",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "add_builtin_modules",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "module_context",
+            "type": [
+                "typing.Type",
+                "dict[str, str]",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "iter_module_names",
+            "type": [
+                "typing.Generator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "search_path",
+            "type": [
+                "tuple[int]",
+                "str",
+                "None"
+            ]
+        }
+    ],
+    "load_module_from_path@global": [
+        {
+            "category": "arg",
+            "name": "inference_state",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "file_io",
+            "type": [
+                "bool",
+                "pathlib.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "import_names",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.TextIO"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "is_package",
+            "type": [
+                "None",
+                "bool",
+                "pathlib.Path",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_io",
+            "type": [
+                "bool",
+                "pathlib.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path",
+            "type": [
+                "Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "import_names",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.TextIO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inference_state",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e_sys_path",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_package",
+            "type": [
+                "None",
+                "bool",
+                "pathlib.Path",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_stub",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "folder_io",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "typing.TextIO",
+                "FolderIO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "python_file_io",
+            "type": [
+                "typing.TextIO",
+                "str",
+                "None",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "v",
+            "type": [
+                "str",
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "values",
+            "type": [
+                "ValueSet"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_module_from_path",
+            "type": [
+                "pathlib.Path",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "module",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "load_namespace_from_path@global": [
+        {
+            "category": "arg",
+            "name": "inference_state",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "folder_io",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inference_state",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "folder_io",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "import_names",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_package",
+            "type": [
+                "bool",
+                "str",
+                "typing.ClassVar"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_namespace_from_path",
+            "type": [
+                "ImplicitNamespaceValue"
+            ]
+        }
+    ]
+}

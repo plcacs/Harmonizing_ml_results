@@ -1,0 +1,1370 @@
+{
+    "deploy_monitoring_service@global": [
+        {
+            "category": "arg",
+            "name": "token_deploy_result",
+            "type": [
+                "typing.Callable",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_deposit_deploy_result",
+            "type": [
+                "bool",
+                "typing.Any",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "service_registry_deploy_result",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_network_registry_deploy_result",
+            "type": [
+                "web3.contracContract",
+                "typing.Callable",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deploy_client",
+            "type": [
+                "web3.contracContract",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "contract_manager",
+            "type": [
+                "web3.contracContract",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "proxy_manager",
+            "type": [
+                "web3.contracContract",
+                "typing.Callable",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_contract",
+            "type": [
+                "raiden.transfer.state.NettingChannelState",
+                "Contract",
+                "raiden.network.proxies.token_network.TokenNetwork"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_registry_proxy",
+            "type": [
+                "raiden.raiden_service.RaidenService",
+                "raiden.network.proxies.token_network.TokenNetwork",
+                "list[raiden.blockchain.events.SmartContractEvents]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_deposit_proxy",
+            "type": [
+                "raiden.transfer.state.NettingChannelState",
+                "str",
+                "raiden.transfer.state.TransactionChannelNewBalance"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "service_registry_proxy",
+            "type": [
+                "raiden_contracts.contract_manager.DeployedContract",
+                "tuple[str]",
+                "raiden_contracts.contract_manager.DeployedContracts"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deploy_client",
+            "type": [
+                "web3.contracContract",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contract_manager",
+            "type": [
+                "web3.contracContract",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proxy_manager",
+            "type": [
+                "web3.contracContract",
+                "typing.Callable",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "deploy_monitoring_service",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "deploy_one_to_n@global": [
+        {
+            "category": "arg",
+            "name": "user_deposit_deploy_result",
+            "type": [
+                "int",
+                "str",
+                "raiden.storage.sqlite.SQLiteStorage"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "service_registry_deploy_result",
+            "type": [
+                "str",
+                "dict",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deploy_client",
+            "type": [
+                "web3.contracContract",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "contract_manager",
+            "type": [
+                "web3.contracContract",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "proxy_manager",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.BlockIdentifier"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chain_id",
+            "type": [
+                "web3.contracContract",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_deposit_proxy",
+            "type": [
+                "raiden.transfer.state.TransactionChannelNewBalance",
+                "str",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "service_registry_proxy",
+            "type": [
+                "str",
+                "raiden_contracts.contract_manager.DeployedContract",
+                "raiden_contracts.contract_manager.DeployedContracts"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deploy_client",
+            "type": [
+                "web3.contracContract",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contract_manager",
+            "type": [
+                "web3.contracContract",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_id",
+            "type": [
+                "web3.contracContract",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proxy_manager",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.BlockIdentifier"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "deploy_one_to_n",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "deploy_secret_registry@global": [
+        {
+            "category": "arg",
+            "name": "deploy_client",
+            "type": [
+                "web3.contracContract",
+                "web3.Web3",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "contract_manager",
+            "type": [
+                "web3.contracContract",
+                "web3.Web3",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "proxy_manager",
+            "type": [
+                "web3.Web3",
+                "web3.eth.Contract",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deploy_client",
+            "type": [
+                "web3.contracContract",
+                "web3.Web3",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contract_manager",
+            "type": [
+                "web3.contracContract",
+                "web3.Web3",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proxy_manager",
+            "type": [
+                "web3.Web3",
+                "web3.eth.Contract",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "deploy_secret_registry",
+            "type": [
+                "str",
+                "None",
+                "typing.Callable"
+            ]
+        }
+    ],
+    "deploy_service_registry@global": [
+        {
+            "category": "arg",
+            "name": "token_deploy_result",
+            "type": [
+                "typing.Callable",
+                "dict",
+                "web3.contracContract"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deploy_client",
+            "type": [
+                "web3.contracContract",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "contract_manager",
+            "type": [
+                "web3.contracContract",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "proxy_manager",
+            "type": [
+                "typing.Callable",
+                "web3.contracContract"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_contract",
+            "type": [
+                "Contract",
+                "raiden.network.proxies.token_network.TokenNetwork",
+                "web3.contracContract"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deploy_client",
+            "type": [
+                "web3.contracContract",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contract_manager",
+            "type": [
+                "web3.contracContract",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proxy_manager",
+            "type": [
+                "typing.Callable",
+                "web3.contracContract"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "deploy_service_registry",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        }
+    ],
+    "deploy_smart_contract_bundle_concurrently@global": [
+        {
+            "category": "arg",
+            "name": "deploy_client",
+            "type": [
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "contract_manager",
+            "type": [
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "proxy_manager",
+            "type": [
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chain_id",
+            "type": [
+                "list[raiden.blockchain.events.SmartContractEvents]",
+                "raiden_contracts.contract_manager.ContractManager"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "environment_type",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "list[str]",
+                "raiden_contracts.contract_manager.DeployedContracts"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_token_networks",
+            "type": [
+                "web3.contracContractFunction",
+                "list[raiden.blockchain.events.SmartContractEvents]",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "number_of_tokens",
+            "type": [
+                "int",
+                "typing.Callable",
+                "raiden.tests.integration.fixtures.raiden_network.RestartNode"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "private_keys",
+            "type": [
+                "str",
+                "raiden.utils.AddressHex"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "register_tokens",
+            "type": [
+                "bool",
+                "negmas.situated.Contract"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "settle_timeout_max",
+            "type": [
+                "web3.contracContractFunction",
+                "list[raiden.blockchain.events.SmartContractEvents]",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "settle_timeout_min",
+            "type": [
+                "web3.contracContractFunction",
+                "list[raiden.blockchain.events.SmartContractEvents]",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_amount",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden_contracts.contract_manager.ContractManager"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_contract_name",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden_contracts.contract_manager.ContractManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "greenlets",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "private_keys",
+            "type": [
+                "str",
+                "raiden.utils.AddressHex"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "participants",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deploy_client",
+            "type": [
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contract_manager",
+            "type": [
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proxy_manager",
+            "type": [
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "settle_timeout_min",
+            "type": [
+                "web3.contracContractFunction",
+                "list[raiden.blockchain.events.SmartContractEvents]",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "settle_timeout_max",
+            "type": [
+                "web3.contracContractFunction",
+                "list[raiden.blockchain.events.SmartContractEvents]",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_token_networks",
+            "type": [
+                "web3.contracContractFunction",
+                "list[raiden.blockchain.events.SmartContractEvents]",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_contracts_greenlets",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "number_of_tokens",
+            "type": [
+                "int",
+                "typing.Callable",
+                "raiden.tests.integration.fixtures.raiden_network.RestartNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_amount",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden_contracts.contract_manager.ContractManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_contract_name",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden_contracts.contract_manager.ContractManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_deploy_greenlet",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "register_tokens",
+            "type": [
+                "bool",
+                "negmas.situated.Contract"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "environment_type",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "list[str]",
+                "raiden_contracts.contract_manager.DeployedContracts"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_id",
+            "type": [
+                "list[raiden.blockchain.events.SmartContractEvents]",
+                "raiden_contracts.contract_manager.ContractManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_contracts",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "services_smart_contracts",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "utility_token_network_proxy",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "deploy_smart_contract_bundle_concurrently",
+            "type": []
+        }
+    ],
+    "deploy_token_network_registry@global": [
+        {
+            "category": "arg",
+            "name": "secret_registry_deploy_result",
+            "type": [
+                "raiden.utils.BlockSpecification",
+                "raiden.network.proxies.secret_registry.SecretRegistry"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deploy_client",
+            "type": [
+                "web3.contracContract",
+                "typing.Callable",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "contract_manager",
+            "type": [
+                "web3.contracContract",
+                "typing.Callable",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "proxy_manager",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.SecretRegistryAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "settle_timeout_min",
+            "type": [
+                "web3.contracContract",
+                "typing.Callable",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "settle_timeout_max",
+            "type": [
+                "web3.contracContract",
+                "typing.Callable",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_token_networks",
+            "type": [
+                "web3.contracContract",
+                "typing.Callable",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret_registry_proxy",
+            "type": [
+                "Contract",
+                "raiden.network.proxies.secret_registry.SecretRegistry",
+                "raiden_contracts.deploy.contract_deployer.ContractDeployer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deploy_client",
+            "type": [
+                "web3.contracContract",
+                "typing.Callable",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contract_manager",
+            "type": [
+                "web3.contracContract",
+                "typing.Callable",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "settle_timeout_min",
+            "type": [
+                "web3.contracContract",
+                "typing.Callable",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "settle_timeout_max",
+            "type": [
+                "web3.contracContract",
+                "typing.Callable",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_token_networks",
+            "type": [
+                "web3.contracContract",
+                "typing.Callable",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proxy_manager",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.SecretRegistryAddress"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "deploy_token_network_registry",
+            "type": [
+                "dict[str, typing.Any]",
+                "bytes"
+            ]
+        }
+    ],
+    "deploy_user_deposit@global": [
+        {
+            "category": "arg",
+            "name": "token_deploy_result",
+            "type": [
+                "typing.Callable",
+                "dict",
+                "web3.contracContract"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deploy_client",
+            "type": [
+                "web3.contracContract",
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "contract_manager",
+            "type": [
+                "web3.contracContract",
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "proxy_manager",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_contract",
+            "type": [
+                "raiden.transfer.state.NettingChannelState",
+                "Contract",
+                "raiden.network.proxies.token_network.TokenNetwork"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deploy_client",
+            "type": [
+                "web3.contracContract",
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contract_manager",
+            "type": [
+                "web3.contracContract",
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proxy_manager",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "deploy_user_deposit",
+            "type": [
+                "str",
+                "tuple[typing.Union[str,int]]",
+                "typing.Callable"
+            ]
+        }
+    ],
+    "fund_node@global": [
+        {
+            "category": "arg",
+            "name": "token_result",
+            "type": [
+                "bytes",
+                "raiden.messages.monitoring_service.RequestMonitoring",
+                "web3.contracContract"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "proxy_manager",
+            "type": [
+                "raiden.utils.SecretRegistryAddress",
+                "raiden.network.rpc.clienJSONRPCClient",
+                "raiden_contracts.contract_manager.ContractManager"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_address",
+            "type": [
+                "raiden.utils.TokenNetworkID",
+                "raiden.utils.Address",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "amount",
+            "type": [
+                "raiden.utils.TokenNetworkID",
+                "raiden.utils.Address",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_contract",
+            "type": [
+                "Contract",
+                "str",
+                "dict[typing.Any, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proxy_manager",
+            "type": [
+                "raiden.utils.SecretRegistryAddress",
+                "raiden.network.rpc.clienJSONRPCClient",
+                "raiden_contracts.contract_manager.ContractManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_address",
+            "type": [
+                "raiden.utils.TokenNetworkID",
+                "raiden.utils.Address",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "raiden.utils.TokenNetworkID",
+                "raiden.utils.Address",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "fund_node",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "RED_EYES_PER_CHANNEL_PARTICIPANT_LIMIT",
+            "type": [
+                "TokenAmount",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "RED_EYES_PER_TOKEN_NETWORK_LIMIT",
+            "type": [
+                "TokenAmount",
+                "int"
+            ]
+        }
+    ],
+    "max_token_networks_fixture@global": [
+        {
+            "category": "return",
+            "name": "max_token_networks_fixture",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "monitoring_service_address_fixture@global": [
+        {
+            "category": "arg",
+            "name": "deploy_smart_contract_bundle_concurrently",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deploy_smart_contract_bundle_concurrently",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "monitoring_service_address_fixture",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "one_to_n_address_fixture@global": [
+        {
+            "category": "arg",
+            "name": "deploy_smart_contract_bundle_concurrently",
+            "type": [
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deploy_smart_contract_bundle_concurrently",
+            "type": [
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "one_to_n_address_fixture",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "register_token@global": [
+        {
+            "category": "arg",
+            "name": "token_network_registry_deploy_result",
+            "type": [
+                "raiden.network.proxies.secret_registry.SecretRegistry",
+                "raiden.utils.SecretHash",
+                "raiden.messages.transfers.LockedTransfer"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_deploy_result",
+            "type": [
+                "nucypher.network.middleware.RestMiddleware",
+                "dict[str, typing.Any]",
+                "pathfinding_service.model.token_network.TokenNetwork"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_registry_proxy",
+            "type": [
+                "list[raiden.blockchain.events.SmartContractEvents]",
+                "raiden_contracts.deploy.contract_deployer.ContractDeployer",
+                "Contract"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_contract",
+            "type": [
+                "Contract",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "RED_EYES_PER_CHANNEL_PARTICIPANT_LIMIT",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "RED_EYES_PER_TOKEN_NETWORK_LIMIT",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "register_token",
+            "type": []
+        }
+    ],
+    "secret_registry_address_fixture@global": [
+        {
+            "category": "arg",
+            "name": "deploy_smart_contract_bundle_concurrently",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "secret_registry_address_fixture",
+            "type": []
+        }
+    ],
+    "secret_registry_proxy_fixture@global": [
+        {
+            "category": "arg",
+            "name": "deploy_client",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.SecretRegistryAddress",
+                "raiden.utils.PaymentNetworkID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "secret_registry_address",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.SecretRegistryAddress",
+                "raiden.utils.PaymentNetworkID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "contract_manager",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.SecretRegistryAddress",
+                "raiden.utils.PaymentNetworkID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deploy_client",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.SecretRegistryAddress",
+                "raiden.utils.PaymentNetworkID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret_registry_address",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.SecretRegistryAddress",
+                "raiden.utils.PaymentNetworkID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contract_manager",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.SecretRegistryAddress",
+                "raiden.utils.PaymentNetworkID"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "secret_registry_proxy_fixture",
+            "type": [
+                "SecretRegistry"
+            ]
+        }
+    ],
+    "service_registry_address_fixture@global": [
+        {
+            "category": "arg",
+            "name": "deploy_smart_contract_bundle_concurrently",
+            "type": [
+                "str",
+                "web3.contracContract",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deploy_smart_contract_bundle_concurrently",
+            "type": [
+                "str",
+                "web3.contracContract",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "service_registry_address_fixture",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "token_addresses_fixture@global": [
+        {
+            "category": "arg",
+            "name": "deploy_smart_contract_bundle_concurrently",
+            "type": [
+                "web3.contracContract",
+                "web3.eth.Contract"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deploy_smart_contract_bundle_concurrently",
+            "type": [
+                "web3.contracContract",
+                "web3.eth.Contract"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "token_addresses_fixture",
+            "type": [
+                "list[TokenAddress]"
+            ]
+        }
+    ],
+    "token_contract_name_fixture@global": [
+        {
+            "category": "return",
+            "name": "token_contract_name_fixture",
+            "type": []
+        }
+    ],
+    "token_network_proxy_fixture@global": [
+        {
+            "category": "arg",
+            "name": "deploy_smart_contract_bundle_concurrently",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deploy_smart_contract_bundle_concurrently",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "token_network_proxy_fixture",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "token_network_registry_address_fixture@global": [
+        {
+            "category": "arg",
+            "name": "deploy_smart_contract_bundle_concurrently",
+            "type": [
+                "web3.contracContract",
+                "raiden_contracts.contract_manager.ContractManager"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "token_network_registry_address_fixture",
+            "type": []
+        }
+    ],
+    "token_proxy_fixture@global": [
+        {
+            "category": "arg",
+            "name": "deploy_smart_contract_bundle_concurrently",
+            "type": [
+                "str",
+                "web3.contracContract",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "environment_type",
+            "type": [
+                "dict",
+                "str",
+                "raiden.constants.Environment"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deploy_smart_contract_bundle_concurrently",
+            "type": [
+                "str",
+                "web3.contracContract",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "token_proxy_fixture",
+            "type": []
+        }
+    ],
+    "transfer_user_deposit_tokens@global": [
+        {
+            "category": "arg",
+            "name": "user_deposit_deploy_result",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.ChannelMap",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "transfer_to",
+            "type": [
+                "raiden.storage.sqlite.SQLiteStorage",
+                "raiden.transfer.state.BalanceProofSignedState",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_deposit_proxy",
+            "type": [
+                "str",
+                "int",
+                "raiden.network.transpormatrix.clienRoom"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transfer_to",
+            "type": [
+                "raiden.storage.sqlite.SQLiteStorage",
+                "raiden.transfer.state.BalanceProofSignedState",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "transfer_user_deposit_tokens",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "user_deposit_address_fixture@global": [
+        {
+            "category": "arg",
+            "name": "deploy_smart_contract_bundle_concurrently",
+            "type": [
+                "str",
+                "web3.contracContract",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deploy_smart_contract_bundle_concurrently",
+            "type": [
+                "str",
+                "web3.contracContract",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "user_deposit_address_fixture",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

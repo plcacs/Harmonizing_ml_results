@@ -1,0 +1,878 @@
+{
+    "global@global": [],
+    "hook_node@TestRunTask": [
+        {
+            "category": "return",
+            "name": "hook_node",
+            "type": [
+                "HookNode"
+            ]
+        }
+    ],
+    "log_model_result_catcher@TestModelRunner": [
+        {
+            "category": "local",
+            "name": "catcher",
+            "type": [
+                "EventCatcher"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "log_model_result_catcher",
+            "type": [
+                "EventCatcher"
+            ]
+        }
+    ],
+    "mock_run_queue@global": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "mock_run_queue",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "model_runner@TestMicrobatchModelRunner": [
+        {
+            "category": "arg",
+            "name": "postgres_adapter",
+            "type": [
+                "config.Config",
+                "dict[str, 'LabwareDefinition']",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "table_model",
+            "type": [
+                "config.Config",
+                "dict[str, 'LabwareDefinition']",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "runtime_config",
+            "type": [
+                "config.Config",
+                "dict[str, 'LabwareDefinition']",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "runtime_config",
+            "type": [
+                "config.Config",
+                "dict[str, 'LabwareDefinition']",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "postgres_adapter",
+            "type": [
+                "config.Config",
+                "dict[str, 'LabwareDefinition']",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "table_model",
+            "type": [
+                "config.Config",
+                "dict[str, 'LabwareDefinition']",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "model_runner",
+            "type": [
+                "MicrobatchModelRunner"
+            ]
+        }
+    ],
+    "model_runner@TestModelRunner": [
+        {
+            "category": "arg",
+            "name": "postgres_adapter",
+            "type": [
+                "config.Config",
+                "dict[str, 'LabwareDefinition']",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "table_model",
+            "type": [
+                "config.Config",
+                "dict[str, 'LabwareDefinition']",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "runtime_config",
+            "type": [
+                "config.Config",
+                "dict[str, 'LabwareDefinition']",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "runtime_config",
+            "type": [
+                "config.Config",
+                "dict[str, 'LabwareDefinition']",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "postgres_adapter",
+            "type": [
+                "config.Config",
+                "dict[str, 'LabwareDefinition']",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "table_model",
+            "type": [
+                "config.Config",
+                "dict[str, 'LabwareDefinition']",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "model_runner",
+            "type": [
+                "ModelRunner"
+            ]
+        }
+    ],
+    "run_result@TestModelRunner": [
+        {
+            "category": "arg",
+            "name": "table_model",
+            "type": [
+                "dict",
+                "typing.Iterator",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "table_model",
+            "type": [
+                "dict",
+                "typing.Iterator",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "run_result",
+            "type": [
+                "RunResult"
+            ]
+        }
+    ],
+    "test__is_incremental@TestMicrobatchModelRunner": [
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "bool",
+                "pytest_mock.MockFixture",
+                "Exception",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "model_runner",
+            "type": [
+                "unittesmock.MagicMock",
+                "Exception",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "has_relation",
+            "type": [
+                "bool",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "relation_type",
+            "type": [
+                "bool",
+                "tortoise.backends.base.clienBaseDBAsyncClient",
+                "None",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "materialized",
+            "type": [
+                "bool",
+                "dbconfig.RuntimeConfig"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "full_refresh_config",
+            "type": [
+                "bool",
+                "dbconfig.RuntimeConfig"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "full_refresh_flag",
+            "type": [
+                "bool",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expectation",
+            "type": [
+                "bool",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "database",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "schema",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "bool",
+                "pytest_mock.MockFixture",
+                "Exception",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model_runner_",
+            "type": [
+                "RelationInfo",
+                "Relation",
+                "None",
+                "Namespace"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "has_relation",
+            "type": [
+                "bool",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "relation_type",
+            "type": [
+                "bool",
+                "tortoise.backends.base.clienBaseDBAsyncClient",
+                "None",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "full_refresh_flag",
+            "type": [
+                "bool",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model_runner",
+            "type": [
+                "unittesmock.MagicMock",
+                "Exception",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "materialized",
+            "type": [
+                "bool",
+                "dbconfig.RuntimeConfig"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "full_refresh_config",
+            "type": [
+                "bool",
+                "dbconfig.RuntimeConfig"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model_",
+            "type": [
+                "ModelConfig"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test__is_incremental",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_adapter_info_tracking@global": [
+        {
+            "category": "local",
+            "name": "mock_run_result",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_run_result_",
+            "type": [
+                "MagicMock",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_adapter_info_tracking",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_execute@TestModelRunner": [
+        {
+            "category": "arg",
+            "name": "table_model",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "manifest",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "model_runner",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model_runner",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "table_model",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "manifest",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_execute",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_print_result_line@TestModelRunner": [
+        {
+            "category": "arg",
+            "name": "log_model_result_catcher",
+            "type": [
+                "list[T]",
+                "list[dict]",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "model_runner",
+            "type": [
+                "str",
+                "typing.Iterator"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "run_result",
+            "type": [
+                "dict[str, typing.Any]",
+                "sideeye.config.Configuration",
+                "dbcontracts.graph.manifesManifest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model_runner",
+            "type": [
+                "str",
+                "typing.Iterator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "run_result",
+            "type": [
+                "dict[str, typing.Any]",
+                "sideeye.config.Configuration",
+                "dbcontracts.graph.manifesManifest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log_model_result_catcher",
+            "type": [
+                "list[T]",
+                "list[dict]",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_print_result_line",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_run_task_cancel_connections@global": [
+        {
+            "category": "arg",
+            "name": "exception_to_raise",
+            "type": [
+                "typing.Callable",
+                "typing.Any",
+                "\"Task\""
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_cancel_connections",
+            "type": [
+                "typing.Callable",
+                "starlette.types.Send"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "runtime_config",
+            "type": [
+                "dict",
+                "typing.Callable",
+                "\"Task\""
+            ]
+        },
+        {
+            "category": "local",
+            "name": "runtime_config",
+            "type": [
+                "dict",
+                "typing.Callable",
+                "\"Task\""
+            ]
+        },
+        {
+            "category": "local",
+            "name": "task",
+            "type": [
+                "RunTask"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exception_to_raise",
+            "type": [
+                "typing.Callable",
+                "typing.Any",
+                "\"Task\""
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_run_task_cancel_connections",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_run_task_preserve_edges@global": [
+        {
+            "category": "local",
+            "name": "mock_node_selector",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_spec",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "task",
+            "type": [
+                "RunTask"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_run_task_preserve_edges",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_safe_run_hooks@TestRunTask": [
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "dict[str, model.Integration]",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "runtime_config",
+            "type": [
+                "model.Config",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "manifest",
+            "type": [
+                "model.Config",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "hook_node",
+            "type": [
+                "dict[str, model.Integration]",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "error_to_raise",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "expected_result",
+            "type": [
+                "dict[str, typing.Any]",
+                "argparse.Namespace",
+                "sphinx.config.Config"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hook_node",
+            "type": [
+                "dict[str, model.Integration]",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker_",
+            "type": [
+                "list[typing.Union[dict[str, model.Integration],list[dict[str, typing.Any]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flags_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "runtime_config",
+            "type": [
+                "model.Config",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "manifest",
+            "type": [
+                "model.Config",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "run_task",
+            "type": [
+                "RunTask"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "adapter_execute_",
+            "type": [
+                "tuple[typing.Optional[AdapterResponse]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_safe_run_hooks",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_should_run_in_parallel@TestMicrobatchModelRunner": [
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "bool",
+                "unittesmock.MagicMock",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "model_runner",
+            "type": [
+                "utils.OutputCallbackType",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "adapter_microbatch_concurrency",
+            "type": [
+                "Exception",
+                "None",
+                "unittesmock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "has_relation",
+            "type": [
+                "bool",
+                "str",
+                "None",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "concurrent_batches",
+            "type": [
+                "bool",
+                "torch.utils.data.DataLoader"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "has_this",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expectation",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "has_this",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model_runner_",
+            "type": [
+                "bool",
+                "str",
+                "ModelConfig"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "concurrent_batches",
+            "type": [
+                "bool",
+                "torch.utils.data.DataLoader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model_runner",
+            "type": [
+                "utils.OutputCallbackType",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "has_relation",
+            "type": [
+                "bool",
+                "str",
+                "None",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocked_supports",
+            "type": [
+                "str",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "adapter_microbatch_concurrency",
+            "type": [
+                "Exception",
+                "None",
+                "unittesmock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocked_supports_",
+            "type": [
+                "Exception",
+                "None",
+                "unittesmock.MagicMock",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_should_run_in_parallel",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_tracking_fails_safely_for_missing_adapter@global": [
+        {
+            "category": "return",
+            "name": "test_tracking_fails_safely_for_missing_adapter",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

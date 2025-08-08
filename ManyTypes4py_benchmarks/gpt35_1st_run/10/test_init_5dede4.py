@@ -1,0 +1,46 @@
+from homeassistant.core import HomeAssistant
+from homeassistant.helpers.entity import ToggleEntity
+from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from typing import Any, List, Tuple
+
+def call_service(hass: HomeAssistant, service: str, ent: ToggleEntity, position: Any = None) -> None:
+    ...
+
+def set_valve_position(ent: ToggleEntity, position: Any) -> None:
+    ...
+
+def is_open(hass: HomeAssistant, ent: ToggleEntity) -> bool:
+    ...
+
+def is_opening(hass: HomeAssistant, ent: ToggleEntity) -> bool:
+    ...
+
+def is_closed(hass: HomeAssistant, ent: ToggleEntity) -> bool:
+    ...
+
+def is_closing(hass: HomeAssistant, ent: ToggleEntity) -> bool:
+    ...
+
+def config_flow_fixture(hass: HomeAssistant) -> None:
+    ...
+
+def mock_config_entry(hass: HomeAssistant) -> Tuple[MockConfigEntry, List[ValveEntity]]:
+    ...
+
+async def test_valve_setup(hass: HomeAssistant, mock_config_entry: Tuple[MockConfigEntry, List[ValveEntity]], snapshot: SnapshotAssertion) -> None:
+    ...
+
+async def test_services(hass: HomeAssistant, mock_config_entry: Tuple[MockConfigEntry, List[ValveEntity]]) -> None:
+    ...
+
+async def test_valve_device_class(hass: HomeAssistant) -> None:
+    ...
+
+async def test_valve_report_position(hass: HomeAssistant) -> None:
+    ...
+
+async def test_none_state(hass: HomeAssistant) -> None:
+    ...
+
+async def test_supported_features(hass: HomeAssistant) -> None:
+    ...

@@ -1,0 +1,2183 @@
+{
+    "compute_amount_to_withdraw@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int",
+                "list[float]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "int",
+                "list[float]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "index",
+            "type": [
+                "int",
+                "list[float]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "amount",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "int",
+                "list[float]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "int",
+                "list[float]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "index",
+            "type": [
+                "int",
+                "list[float]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pending_balance_to_withdraw",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "compute_amount_to_withdraw",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "global@global": [],
+    "run_withdrawal_request_processing@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "typing.Mapping",
+                "None",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "withdrawal_request",
+            "type": [
+                "dict",
+                "typing.Callable[..., dict[str, typing.Any]]",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "valid",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "success",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "run_withdrawal_request_processing",
+            "type": [
+                "typing.Generator[tuple[typing.Union[typing.Text,dict]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,dict,typing.Callable[..., dict[str, typing.Any]],int]]]",
+                "typing.Generator[tuple[typing.Optional[typing.Text]]]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "withdrawal_request",
+            "type": [
+                "dict",
+                "typing.Callable[..., dict[str, typing.Any]]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "valid",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pre_state",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "typing.Mapping",
+                "None",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "success",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pre_pending_partial_withdrawals",
+            "type": [
+                "str",
+                "bool"
+            ]
+        }
+    ],
+    "test_activation_epoch_less_than_shard_committee_period@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "list[mythril.laser.ethereum.state.global_state.GlobalState]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "list[mythril.laser.ethereum.state.global_state.GlobalState]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_activation_epoch_less_than_shard_committee_period",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_basic_partial_withdrawal_request@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_basic_partial_withdrawal_request",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_basic_partial_withdrawal_request_higher_excess_balance@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_basic_partial_withdrawal_request_higher_excess_balance",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_basic_partial_withdrawal_request_lower_than_excess_balance@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "prefecengine.state.State",
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "prefecengine.state.State",
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "prefecengine.state.State",
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "prefecengine.state.State",
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_basic_partial_withdrawal_request_lower_than_excess_balance",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_basic_withdrawal_request@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int",
+                "typing.Callable[typing.Sized, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_basic_withdrawal_request",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_basic_withdrawal_request_with_compounding_credentials@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_basic_withdrawal_request_with_compounding_credentials",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_basic_withdrawal_request_with_first_validator@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int",
+                "typing.Iterator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_basic_withdrawal_request_with_first_validator",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_basic_withdrawal_request_with_full_partial_withdrawal_queue@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int",
+                "typing.Callable[typing.Sized, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partial_withdrawal",
+            "type": [
+                "bool",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_basic_withdrawal_request_with_full_partial_withdrawal_queue",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_full_exit_request_has_partial_withdrawal@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "int",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "int",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "int",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int",
+                "typing.Callable[typing.Sized, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_full_exit_request_has_partial_withdrawal",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_incorrect_inactive_validator@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "float",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int",
+                "typing.Callable[typing.Sized, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_incorrect_inactive_validator",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_incorrect_source_address@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int",
+                "typing.Callable[typing.Sized, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "incorrect_address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_incorrect_source_address",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_incorrect_withdrawal_credential_prefix@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict",
+                "bool",
+                "T"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict",
+                "bool",
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict",
+                "bool",
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict",
+                "bool",
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int",
+                "typing.Callable[typing.Sized, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_incorrect_withdrawal_credential_prefix",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_insufficient_balance@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_insufficient_balance",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_insufficient_effective_balance@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_insufficient_effective_balance",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_no_compounding_credentials@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_no_compounding_credentials",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_no_excess_balance@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_no_excess_balance",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_on_withdrawal_request_initiated_exit_validator@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int",
+                "typing.Callable[typing.Sized, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_on_withdrawal_request_initiated_exit_validator",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_partial_withdrawal_activation_epoch_less_than_shard_committee_period@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "str",
+                "None",
+                "typing.Callable[str, bool]",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "str",
+                "None",
+                "typing.Callable[str, bool]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_partial_withdrawal_activation_epoch_less_than_shard_committee_period",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_partial_withdrawal_incorrect_source_address@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "incorrect_address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_partial_withdrawal_incorrect_source_address",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_partial_withdrawal_incorrect_withdrawal_credential_prefix@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_partial_withdrawal_incorrect_withdrawal_credential_prefix",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_partial_withdrawal_on_exit_initiated_validator@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_partial_withdrawal_on_exit_initiated_validator",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_partial_withdrawal_queue_full@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partial_withdrawal",
+            "type": [
+                "bool",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_partial_withdrawal_queue_full",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_partial_withdrawal_request_with_high_amount@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_partial_withdrawal_request_with_high_amount",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_partial_withdrawal_request_with_high_balance@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "churn_limit",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_partial_withdrawal_request_with_high_balance",
+            "type": [
+                "typing.Generator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exit_epoch",
+            "type": [
+                "int",
+                "float"
+            ]
+        }
+    ],
+    "test_partial_withdrawal_request_with_low_amount@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_partial_withdrawal_request_with_low_amount",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_partial_withdrawal_request_with_pending_withdrawals@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_partial_withdrawal_request_with_pending_withdrawals",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_partial_withdrawal_request_with_pending_withdrawals_and_high_amount@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_partial_withdrawal_request_with_pending_withdrawals_and_high_amount",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_pending_withdrawals_consume_all_excess_balance@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "str",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "str",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "str",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "str",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_pending_withdrawals_consume_all_excess_balance",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "test_unknown_pubkey@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pubkey",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_unknown_pubkey",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ]
+}

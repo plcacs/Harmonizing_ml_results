@@ -1,0 +1,636 @@
+{
+    "__init__@RedisLockManager": [
+        {
+            "category": "arg",
+            "name": "host",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "port",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "db",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "username",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "password",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ssl",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "host",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "port",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "username",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "password",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ssl",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client",
+            "type": [
+                "Redis"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "async_client",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_locks",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_lock_name_for_key@RedisLockManager": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "list",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "list",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_lock_name_for_key",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "aacquire_lock@RedisLockManager": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "holder",
+            "type": [
+                "int",
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "acquire_timeout",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "hold_timeout",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock",
+            "type": [
+                "dict",
+                "matomo_dl.distribution.lock.MatomoLock",
+                "asyncio.locks.Event"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "holder",
+            "type": [
+                "int",
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "aacquire_lock",
+            "type": [
+                "bool",
+                "threading.Lock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hold_timeout",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "acquire_timeout",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_acquired",
+            "type": [
+                "threading.Lock"
+            ]
+        }
+    ],
+    "acquire_lock@RedisLockManager": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "holder",
+            "type": [
+                "int",
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "acquire_timeout",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "hold_timeout",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock",
+            "type": [
+                "threading.Lock",
+                "None",
+                "Lock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "holder",
+            "type": [
+                "int",
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "acquire_lock",
+            "type": [
+                "bool",
+                "threading.Lock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hold_timeout",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "acquire_timeout",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_acquired",
+            "type": [
+                "threading.Lock"
+            ]
+        }
+    ],
+    "await_for_lock@RedisLockManager": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "timeout",
+            "type": [
+                "None",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timeout",
+            "type": [
+                "None",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "await_for_lock",
+            "type": []
+        }
+    ],
+    "global@global": [],
+    "is_lock_holder@RedisLockManager": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "dict[str, bool]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "holder",
+            "type": [
+                "str",
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "dict[str, bool]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_name",
+            "type": [
+                "str",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock",
+            "type": [
+                "threading.Lock",
+                "str",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_lock_holder",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "holder",
+            "type": [
+                "str",
+                "int",
+                "bytes"
+            ]
+        }
+    ],
+    "is_locked@RedisLockManager": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "KT"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "KT"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock",
+            "type": [
+                "Lock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_locked",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        }
+    ],
+    "release_lock@RedisLockManager": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "holder",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock",
+            "type": [
+                "threading.Lock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "holder",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "release_lock",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "wait_for_lock@RedisLockManager": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "timeout",
+            "type": [
+                "None",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock",
+            "type": [
+                "Lock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timeout",
+            "type": [
+                "None",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_freed",
+            "type": [
+                "threading.Lock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "wait_for_lock",
+            "type": [
+                "threading.Lock"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,1231 @@
+{
+    "__init__@BaseERC20Benchmark": [
+        {
+            "category": "arg",
+            "name": "num_blocks",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_tx",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_blocks",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_tx",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONTRACT_FILE",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONTRACT_NAME",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "w3",
+            "type": [
+                "Web3"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@ERC20ApproveBenchmark": [
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@ERC20DeployBenchmark": [
+        {
+            "category": "local",
+            "name": "num_tx",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@ERC20TransferBenchmark": [
+        {
+            "category": "local",
+            "name": "_next_nonce",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@ERC20TransferFromBenchmark": [
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_deploy_simple_token@BaseERC20Benchmark": [
+        {
+            "category": "arg",
+            "name": "chain",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "nonce",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SimpleToken",
+            "type": [
+                "dict[str, str]",
+                "str",
+                "list[tuple[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "W3_TX_DEFAULTS",
+            "type": [
+                "web3.types.TxReceipt",
+                "dict[str, int]",
+                "eth.rlp.headers.BlockHeader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "w3_tx",
+            "type": [
+                "nevergrad.optimization.base.ConfiguredOptimizer",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "FIRST_TX_GAS_LIMIT",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nonce",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tx",
+            "type": [
+                "int",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_deploy_simple_token",
+            "type": [
+                "tuple[typing.Union[int,str,float]]"
+            ]
+        }
+    ],
+    "_erc_approve@BaseERC20Benchmark": [
+        {
+            "category": "arg",
+            "name": "addr2",
+            "type": [
+                "int",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chain",
+            "type": [
+                "int",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "nonce",
+            "type": [
+                "None",
+                "int",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "W3_TX_DEFAULTS",
+            "type": [
+                "web3.types.TxReceipt",
+                "dict[str, int]",
+                "eth.rlp.headers.BlockHeader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "w3_tx",
+            "type": [
+                "nevergrad.optimization.base.ConfiguredOptimizer",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "int",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SECOND_TX_GAS_LIMIT",
+            "type": [
+                "int",
+                "typing.Iterator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nonce",
+            "type": [
+                "None",
+                "int",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tx",
+            "type": [
+                "int",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_erc_approve",
+            "type": [
+                "tuple[typing.Union[int,str,float]]"
+            ]
+        }
+    ],
+    "_erc_transfer@BaseERC20Benchmark": [
+        {
+            "category": "arg",
+            "name": "addr",
+            "type": [
+                "int",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chain",
+            "type": [
+                "int",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "nonce",
+            "type": [
+                "None",
+                "int",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "W3_TX_DEFAULTS",
+            "type": [
+                "web3.types.TxReceipt",
+                "dict[str, int]",
+                "eth.rlp.headers.BlockHeader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "w3_tx",
+            "type": [
+                "nevergrad.optimization.base.ConfiguredOptimizer",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "int",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SECOND_TX_GAS_LIMIT",
+            "type": [
+                "int",
+                "typing.Iterator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nonce",
+            "type": [
+                "None",
+                "int",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tx",
+            "type": [
+                "int",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_erc_transfer",
+            "type": [
+                "tuple[typing.Union[int,str,float]]"
+            ]
+        }
+    ],
+    "_erc_transfer_from@BaseERC20Benchmark": [
+        {
+            "category": "arg",
+            "name": "addr1",
+            "type": [
+                "int",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "addr2",
+            "type": [
+                "int",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chain",
+            "type": [
+                "int",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "nonce",
+            "type": [
+                "None",
+                "int",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "W3_TX_DEFAULTS",
+            "type": [
+                "web3.types.TxReceipt",
+                "dict[str, int]",
+                "eth.rlp.headers.BlockHeader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "w3_tx",
+            "type": [
+                "nevergrad.optimization.base.ConfiguredOptimizer",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "int",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SECOND_TX_GAS_LIMIT",
+            "type": [
+                "int",
+                "typing.Iterator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nonce",
+            "type": [
+                "None",
+                "int",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tx",
+            "type": [
+                "int",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_erc_transfer_from",
+            "type": [
+                "tuple[typing.Union[int,str,float]]"
+            ]
+        }
+    ],
+    "_next_transaction@BaseERC20Benchmark": [
+        {
+            "category": "arg",
+            "name": "chain",
+            "type": [
+                "eth.chains.base.MiningChain"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_next_transaction",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_next_transaction@ERC20ApproveBenchmark": [
+        {
+            "category": "arg",
+            "name": "chain",
+            "type": [
+                "eth.chains.base.MiningChain"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "eth.chains.base.MiningChain"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_next_nonce",
+            "type": [
+                "int",
+                "bytes",
+                "blockchain.transaction.CoinStakeTransaction"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_next_transaction",
+            "type": []
+        }
+    ],
+    "_next_transaction@ERC20DeployBenchmark": [
+        {
+            "category": "arg",
+            "name": "chain",
+            "type": [
+                "eth.chains.base.MiningChain",
+                "eth.rlp.blocks.BaseBlock",
+                "eth.abc.ChainAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "eth.chains.base.MiningChain",
+                "eth.rlp.blocks.BaseBlock",
+                "eth.abc.ChainAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_next_nonce",
+            "type": [
+                "int",
+                "tuple",
+                "dict[str, list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "txn_info",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "txn",
+            "type": [
+                "web3.types.TxReceipt",
+                "bytes",
+                "list[tuple[typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_next_transaction",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "dict[str, str]"
+            ]
+        }
+    ],
+    "_next_transaction@ERC20TransferBenchmark": [
+        {
+            "category": "arg",
+            "name": "chain",
+            "type": [
+                "eth.chains.base.MiningChain",
+                "eth.rlp.blocks.BaseBlock",
+                "eth.abc.ChainAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "eth.chains.base.MiningChain",
+                "eth.rlp.blocks.BaseBlock",
+                "eth.abc.ChainAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_next_nonce",
+            "type": [
+                "bytes",
+                "dict[int, str]",
+                "blockchain.transaction.CoinStakeTransaction"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_next_transaction",
+            "type": []
+        }
+    ],
+    "_next_transaction@ERC20TransferFromBenchmark": [
+        {
+            "category": "arg",
+            "name": "chain",
+            "type": [
+                "eth.chains.base.MiningChain",
+                "eth.rlp.blocks.BaseBlock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "eth.chains.base.MiningChain",
+                "eth.rlp.blocks.BaseBlock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_next_nonce",
+            "type": [
+                "bytes",
+                "int",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_next_transaction",
+            "type": []
+        }
+    ],
+    "_setup_benchmark@BaseERC20Benchmark": [
+        {
+            "category": "arg",
+            "name": "chain",
+            "type": [
+                "eth.chains.base.MiningChain"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_setup_benchmark",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_setup_benchmark@ERC20ApproveBenchmark": [
+        {
+            "category": "arg",
+            "name": "chain",
+            "type": [
+                "eth.chains.base.MiningChain",
+                "eth.abc.ChainAPI",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_next_nonce",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "eth.chains.base.MiningChain",
+                "eth.abc.ChainAPI",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "txn",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "callback",
+            "type": [
+                "dict",
+                "typing.Type",
+                "list[typing.Callable[..., typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "str",
+                "typing.Callable[int, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "receipts",
+            "type": [
+                "web3.types.TxReceipt",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computations",
+            "type": [
+                "eth.abc.ComputationAPI",
+                "list[tuple[typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_setup_benchmark",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_setup_benchmark@ERC20DeployBenchmark": [
+        {
+            "category": "arg",
+            "name": "chain",
+            "type": [
+                "eth.chains.base.MiningChain"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_next_nonce",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_setup_benchmark",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_setup_benchmark@ERC20TransferBenchmark": [
+        {
+            "category": "arg",
+            "name": "chain",
+            "type": [
+                "eth.chains.base.MiningChain",
+                "eth.abc.ChainAPI",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_next_nonce",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "eth.chains.base.MiningChain",
+                "eth.abc.ChainAPI",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "txn",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "callback",
+            "type": [
+                "dict",
+                "typing.Type",
+                "list[typing.Callable[..., typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "str",
+                "typing.Callable[int, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "receipts",
+            "type": [
+                "web3.types.TxReceipt",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computations",
+            "type": [
+                "eth.abc.ComputationAPI",
+                "list[tuple[typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_setup_benchmark",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_setup_benchmark@ERC20TransferFromBenchmark": [
+        {
+            "category": "arg",
+            "name": "chain",
+            "type": [
+                "eth.chains.base.MiningChain",
+                "eth.rlp.blocks.BaseBlock",
+                "eth.abc.BlockAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_next_nonce",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "eth.chains.base.MiningChain",
+                "eth.rlp.blocks.BaseBlock",
+                "eth.abc.BlockAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "txn",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "callback",
+            "type": [
+                "dict[str, typing.Callable]",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "tuple[int]",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computations",
+            "type": [
+                "tuple[typing.Union[str,int]]",
+                "eth.abc.ComputationAPI",
+                "list[tuple[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "actions",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transactions",
+            "type": [
+                "list",
+                "typing.Iterator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "callbacks",
+            "type": [
+                "list",
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_setup_benchmark",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "callback@BaseERC20Benchmark": [
+        {
+            "category": "arg",
+            "name": "receipt",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "computation",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "callback",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "execute@BaseERC20Benchmark": [
+        {
+            "category": "local",
+            "name": "total_stat",
+            "type": [
+                "DefaultStat",
+                "int",
+                "dict",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "str",
+                "property",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stat",
+            "type": [
+                "DefaultStat"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "execute",
+            "type": [
+                "int",
+                "dict",
+                "list[int]",
+                "DefaultStat"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "FIRST_TX_GAS_LIMIT",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SECOND_TX_GAS_LIMIT",
+            "type": [
+                "int",
+                "typing.Iterator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TRANSFER_AMOUNT",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TRANSER_FROM_AMOUNT",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONTRACT_FILE",
+            "type": [
+                "typing.Text",
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONTRACT_NAME",
+            "type": [
+                "typing.Text",
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "W3_TX_DEFAULTS",
+            "type": [
+                "dict[typing.Text, int]",
+                "web3.types.TxReceipt",
+                "dict[str, int]",
+                "eth.rlp.headers.BlockHeader"
+            ]
+        }
+    ],
+    "mine_block@BaseERC20Benchmark": [
+        {
+            "category": "arg",
+            "name": "chain",
+            "type": [
+                "int",
+                "tuple",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_number",
+            "type": [
+                "int",
+                "tuple[eth.rlp.headers.BlockHeader]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_tx",
+            "type": [
+                "int",
+                "bytes",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_tx",
+            "type": [
+                "int",
+                "bytes",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "int",
+                "tuple",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transactions",
+            "type": [
+                "list",
+                "list[list]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "callbacks",
+            "type": [
+                "list",
+                "list[object]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mining_result",
+            "type": [
+                "list",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "receipts",
+            "type": [
+                "list[list[typing.Any]]",
+                "list[str]",
+                "tuple[eth.abc.BlockHeaderAPI]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computations",
+            "type": [
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "mine_block",
+            "type": [
+                "list",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        }
+    ],
+    "mine_blocks@BaseERC20Benchmark": [
+        {
+            "category": "arg",
+            "name": "chain",
+            "type": [
+                "int",
+                "bytes",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_blocks",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_tx",
+            "type": [
+                "int",
+                "bytes",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_gas_used",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_num_tx",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_blocks",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "int",
+                "bytes",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_tx",
+            "type": [
+                "int",
+                "bytes",
+                "eth.abc.ComputationAPI"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "mine_blocks",
+            "type": [
+                "tuple[int]"
+            ]
+        }
+    ],
+    "name@ERC20ApproveBenchmark": [
+        {
+            "category": "return",
+            "name": "name",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "name@ERC20DeployBenchmark": [
+        {
+            "category": "return",
+            "name": "name",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "name@ERC20TransferBenchmark": [
+        {
+            "category": "return",
+            "name": "name",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "name@ERC20TransferFromBenchmark": [
+        {
+            "category": "return",
+            "name": "name",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ]
+}

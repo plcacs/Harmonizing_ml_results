@@ -1,0 +1,1008 @@
+{
+    "_get_expected_subnets_by_pubkey@global": [
+        {
+            "category": "arg",
+            "name": "sync_committee_members",
+            "type": [
+                "str",
+                "list[tuple[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_subnets_by_pubkey",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subnet",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pubkey",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sync_committee_members",
+            "type": [
+                "str",
+                "list[tuple[str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_expected_subnets_by_pubkey",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        }
+    ],
+    "_get_sync_committee_signature@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "bytes",
+                "umbral.keys.UmbralPublicKey"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "int",
+                "random.Random",
+                "apps.monero.signing.state.State"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_slot",
+            "type": [
+                "random.Random",
+                "apps.monero.signing.state.State",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_block_root",
+            "type": [
+                "random.Random",
+                "apps.monero.signing.state.State",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "subcommittee_index",
+            "type": [
+                "int",
+                "bytes",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "index_in_subcommittee",
+            "type": [
+                "int",
+                "bytes",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "bytes",
+                "umbral.keys.UmbralPublicKey"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subcommittee_index",
+            "type": [
+                "int",
+                "bytes",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "index_in_subcommittee",
+            "type": [
+                "int",
+                "bytes",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "int",
+                "random.Random",
+                "apps.monero.signing.state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_slot",
+            "type": [
+                "random.Random",
+                "apps.monero.signing.state.State",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_block_root",
+            "type": [
+                "random.Random",
+                "apps.monero.signing.state.State",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_sync_committee_signature",
+            "type": []
+        }
+    ],
+    "_subnet_for_sync_committee_index@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "i",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "i",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_subnet_for_sync_committee_index",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "_validator_index_for_pubkey@global": [
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "bytes",
+                "bytearray",
+                "typing.Callable",
+                "collections.abc.Coroutine"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pubkey",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "bytes",
+                "bytearray",
+                "typing.Callable",
+                "collections.abc.Coroutine"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_validator_index_for_pubkey",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "ensure_assignments_in_sync_committee@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "epoch",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sync_committee",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "active_pubkeys",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rng",
+            "type": [
+                "random.Random",
+                "random.SystemRandom"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sync_committee",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "active_pubkeys",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "ensure_assignments_in_sync_committee",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "rng",
+            "type": [
+                "random.Random",
+                "random.SystemRandom"
+            ]
+        }
+    ],
+    "test_compute_subnets_for_sync_committee@global": [
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "mythril.laser.ethereum.state.constraints.Constraints",
+                "dict[str, float]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "mythril.laser.ethereum.state.constraints.Constraints",
+                "dict[str, float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "mythril.laser.ethereum.state.constraints.Constraints",
+                "dict[str, float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "mythril.laser.ethereum.state.constraints.Constraints",
+                "dict[str, float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "some_sync_committee_members",
+            "type": [
+                "list[tuple]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_subnets_by_pubkey",
+            "type": [
+                "bytes",
+                "str",
+                "typing.Callable[None,None,None, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_subnets",
+            "type": [
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_compute_subnets_for_sync_committee",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_compute_subnets_for_sync_committee_slot_period_boundary@global": [
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "mythril.laser.ethereum.state.constraints.Constraints",
+                "dict[str, float]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "mythril.laser.ethereum.state.constraints.Constraints",
+                "dict[str, float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "mythril.laser.ethereum.state.constraints.Constraints",
+                "dict[str, float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "mythril.laser.ethereum.state.constraints.Constraints",
+                "dict[str, float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "some_sync_committee_members",
+            "type": [
+                "list[tuple]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_subnets_by_pubkey",
+            "type": [
+                "bytes",
+                "str",
+                "typing.Callable[None,None,None, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_subnets",
+            "type": [
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_compute_subnets_for_sync_committee_slot_period_boundary",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_contribution_and_proof@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "raiden.utils.Any",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "raiden.transfer.state.NettingChannelState",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "aggregator_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "raiden.utils.Any",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contribution",
+            "type": [
+                "list[tuple[typing.Any]]",
+                "list",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "raiden.transfer.state.NettingChannelState",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_contribution_and_proof",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_contribution_and_proof_signature@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int",
+                "raiden.utils.Dict",
+                "list[raiden.utils.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "hackathon.utils.utils.DataMessage",
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "int",
+                "raiden.utils.Dict",
+                "list[raiden.utils.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contribution_and_proof",
+            "type": [
+                "list",
+                "dict[str, typing.Union[int,str]]",
+                "beacon_chain.state.chain.Chain"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "hackathon.utils.utils.DataMessage",
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_contribution_and_proof_signature",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_sync_committee_message@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "typing.TextIO"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "typing.TextIO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_root",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "epoch",
+            "type": [
+                "int",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_sync_committee_message",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_sync_committee_selection_proof@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "slot",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subcommittee_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "domain",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signing_data",
+            "type": [
+                "dict[bytes, int]",
+                "list[dict]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signing_root",
+            "type": [
+                "umbral.keys.UmbralPublicKey",
+                "str",
+                "umbral.keys.UmbralPrivateKey"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_sync_committee_selection_proof",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_is_assigned_to_sync_committee@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "set[str]",
+                "raiden.transfer.state.ChainState",
+                "T"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "random.Random",
+                "int",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "set[str]",
+                "raiden.transfer.state.ChainState",
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "random.Random",
+                "int",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "epoch",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_indices",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query_epoch",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "index",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "active_pubkeys",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sync_committee_pubkeys",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "disqualified_pubkeys",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sample_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rng",
+            "type": [
+                "random.Random",
+                "random.SystemRandom"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "some_pubkeys",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_current",
+            "type": [
+                "bool",
+                "set",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_current_or_next",
+            "type": [
+                "bool",
+                "set",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_is_assigned_to_sync_committee",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_is_sync_committee_aggregator@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "bytes",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "typing.Iterable",
+                "zproc.state.state.State",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "bytes",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sample_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_aggregator_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_is_sync_committee_aggregator",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_process_sync_committee_contributions@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict[\"core.Edge\", \"state.State\"]",
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict[\"core.Edge\", \"state.State\"]",
+                "prefecengine.state.State",
+                "mythril.laser.ethereum.state.global_state.GlobalState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict[\"core.Edge\", \"state.State\"]",
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict[\"core.Edge\", \"state.State\"]",
+                "prefecengine.state.State",
+                "mythril.laser.ethereum.state.global_state.GlobalState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "tuple",
+                "beacon_chain.state.block.Block",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "previous_slot",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_block_root",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "aggregation_bits",
+            "type": [
+                "qcodes.utils.validators.Ints"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "aggregation_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contributions",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "empty_sync_aggregate",
+            "type": [
+                "typing.DefaultDict",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_process_sync_committee_contributions",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

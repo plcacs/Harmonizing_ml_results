@@ -1,0 +1,13 @@
+from typing import Any
+
+def setup(hass: HomeAssistant, config: ConfigType) -> bool:
+    ...
+
+def discover_scripts(hass: HomeAssistant) -> None:
+    ...
+
+def execute_script(hass: HomeAssistant, name: str, data: Any = None, return_response: bool = False) -> Any:
+    ...
+
+def execute(hass: HomeAssistant, filename: str, source: str, data: Any = None, return_response: bool = False) -> Any:
+    ...

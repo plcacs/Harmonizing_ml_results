@@ -1,0 +1,1883 @@
+{
+    "all_message_attachments@global": [
+        {
+            "category": "arg",
+            "name": "include_thumbnails",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prefix",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upload_backend",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_thumbnails",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prefix",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "all_message_attachments",
+            "type": [
+                "str",
+                "bool"
+            ]
+        }
+    ],
+    "attachment_vips_source@global": [
+        {
+            "category": "arg",
+            "name": "path_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upload_backend",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "attachment_vips_source",
+            "type": [
+                "str",
+                "dbcontracts.files.SourceFile",
+                "typing.IO"
+            ]
+        }
+    ],
+    "check_upload_within_quota@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "uploaded_file_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upload_quota",
+            "type": [
+                "int",
+                "str",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_upload_within_quota",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "used_space",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "uploaded_file_size",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "claim_attachment@global": [
+        {
+            "category": "arg",
+            "name": "path_id",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "str",
+                "None",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "is_message_realm_public",
+            "type": [
+                "bool",
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "is_message_web_public",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path_id",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attachment",
+            "type": [
+                "list[tikki.db.tables.Base]",
+                "viewer.models.Gallery",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "str",
+                "None",
+                "bytes",
+                "ScheduledMessage"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "claim_attachment",
+            "type": [
+                "list[tikki.db.tables.Base]",
+                "viewer.models.Gallery",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attachment_",
+            "type": [
+                "bool",
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_message_web_public",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_message_realm_public",
+            "type": [
+                "bool",
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        }
+    ],
+    "copy_avatar@global": [
+        {
+            "category": "arg",
+            "name": "source_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "str",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "django.core.files.File",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "str",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_file_path",
+            "type": [
+                "str",
+                "None",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "django.core.files.File",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_file_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upload_backend",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "image_data",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "list[tuple[typing.Union[int,...]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content_type",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "copy_avatar",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "create_attachment@global": [
+        {
+            "category": "arg",
+            "name": "file_name",
+            "type": [
+                "int",
+                "authentication.session.models.current_user.CurrentUser",
+                "transfer.models.TopicID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "path_id",
+            "type": [
+                "int",
+                "authentication.session.models.current_user.CurrentUser",
+                "transfer.models.TopicID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content_type",
+            "type": [
+                "int",
+                "authentication.session.models.current_user.CurrentUser",
+                "transfer.models.TopicID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "file_data",
+            "type": [
+                "int",
+                "bytes",
+                "trezor.io.HID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "int",
+                "authentication.session.models.current_user.CurrentUser",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "int",
+                "authentication.session.models.current_user.CurrentUser",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_data",
+            "type": [
+                "int",
+                "bytes",
+                "trezor.io.HID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_real_data",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_name",
+            "type": [
+                "int",
+                "authentication.session.models.current_user.CurrentUser",
+                "transfer.models.TopicID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path_id",
+            "type": [
+                "int",
+                "authentication.session.models.current_user.CurrentUser",
+                "transfer.models.TopicID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "int",
+                "authentication.session.models.current_user.CurrentUser",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "int",
+                "authentication.session.models.current_user.CurrentUser",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content_type",
+            "type": [
+                "int",
+                "authentication.session.models.current_user.CurrentUser",
+                "transfer.models.TopicID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attachment",
+            "type": [
+                "Packages.ImagePaste.lib.PIL.ImageCms.ImageCmsProfile",
+                "viewer.models.Gallery",
+                "app.models.FileModel"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_attachment",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "delete_avatar_image@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "int",
+                "str",
+                "authentication.session.models.current_user.CurrentUser"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "avatar_version",
+            "type": [
+                "int",
+                "str",
+                "authentication.session.models.current_user.CurrentUser"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "int",
+                "str",
+                "authentication.session.models.current_user.CurrentUser"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "avatar_version",
+            "type": [
+                "int",
+                "str",
+                "authentication.session.models.current_user.CurrentUser"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upload_backend",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "delete_avatar_image",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "delete_export_tarball@global": [
+        {
+            "category": "arg",
+            "name": "export_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upload_backend",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "export_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "delete_export_tarball",
+            "type": [
+                "str",
+                "bool"
+            ]
+        }
+    ],
+    "delete_message_attachment@global": [
+        {
+            "category": "arg",
+            "name": "path_id",
+            "type": [
+                "str",
+                "int",
+                "lib.model.file.file.FileID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upload_backend",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path_id",
+            "type": [
+                "str",
+                "int",
+                "lib.model.file.file.FileID"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "delete_message_attachment",
+            "type": [
+                "bool",
+                "str",
+                "list[str]",
+                "None"
+            ]
+        }
+    ],
+    "delete_message_attachments@global": [
+        {
+            "category": "arg",
+            "name": "path_ids",
+            "type": [
+                "str",
+                "int",
+                "lib.model.file.file.FileID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upload_backend",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path_ids",
+            "type": [
+                "str",
+                "int",
+                "lib.model.file.file.FileID"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "delete_message_attachments",
+            "type": [
+                "bool",
+                "str",
+                "list[str]",
+                "None"
+            ]
+        }
+    ],
+    "ensure_avatar_image@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "medium",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_path",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upload_backend",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "medium",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "final_file_path",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "settings_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "ensure_avatar_image",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "image_data",
+            "type": [
+                "str",
+                "list[tuple[typing.Union[int,...]]]",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str",
+                "bytes",
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resized_avatar",
+            "type": [
+                "str",
+                "int",
+                "tuple[list[typing.Any]]"
+            ]
+        }
+    ],
+    "get_avatar_url@global": [
+        {
+            "category": "arg",
+            "name": "hash_key",
+            "type": [
+                "str",
+                "bytes",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "medium",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upload_backend",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hash_key",
+            "type": [
+                "str",
+                "bytes",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "medium",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_avatar_url",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "get_emoji_file_content@global": [
+        {
+            "category": "arg",
+            "name": "session",
+            "type": [
+                "django.http.HttpRequest",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "emoji_url",
+            "type": [
+                "str",
+                "boucanpy.core.http_server.HttpServerRepo",
+                "boucanpy.core.dns_requesDnsRequestRepo"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "emoji_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "logger",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "emoji_url",
+            "type": [
+                "str",
+                "boucanpy.core.http_server.HttpServerRepo",
+                "boucanpy.core.dns_requesDnsRequestRepo"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "original_emoji_url",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "session",
+            "type": [
+                "django.http.HttpRequest",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_emoji_file_content",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "emoji_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        }
+    ],
+    "get_file_info@global": [
+        {
+            "category": "arg",
+            "name": "user_file",
+            "type": [
+                "str",
+                "core.models.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_file",
+            "type": [
+                "str",
+                "core.models.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content_type",
+            "type": [
+                "tuple[typing.Literal]",
+                "str",
+                "typing.Type",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "guessed_type",
+            "type": [
+                "tuple[typing.Literal]",
+                "str",
+                "typing.Type",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_file_info",
+            "type": [
+                "tuple[typing.Union[typing.Text,tuple[typing.Literal],typing.Type]]"
+            ]
+        }
+    ],
+    "get_public_upload_root_url@global": [
+        {
+            "category": "local",
+            "name": "upload_backend",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_public_upload_root_url",
+            "type": [
+                "str",
+                "py.path.local",
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "settings_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upload_backend",
+            "type": [
+                "LocalUploadBackend",
+                "S3UploadBackend",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        }
+    ],
+    "handle_reupload_emojis_event@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "logging.Logger",
+                "str",
+                "pipwatch_worker.core.data_models.Project"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "logger",
+            "type": [
+                "logging.Logger",
+                "deeplearning.ml4pl.models.classifier_base.ClassifierBase",
+                "pipwatch_worker.core.data_models.Project"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "session",
+            "type": [
+                "OutgoingSession"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm_emoji",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger",
+                "deeplearning.ml4pl.models.classifier_base.ClassifierBase",
+                "pipwatch_worker.core.data_models.Project"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_reupload_emojis_event",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "sanitize_name@global": [
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "str",
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "strict",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "strict",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "str",
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "sanitize_name",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "save_attachment_contents@global": [
+        {
+            "category": "arg",
+            "name": "path_id",
+            "type": [
+                "str",
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "filehandle",
+            "type": [
+                "str",
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upload_backend",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path_id",
+            "type": [
+                "str",
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "filehandle",
+            "type": [
+                "str",
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "save_attachment_contents",
+            "type": [
+                "str",
+                "waterbutler.core.streams.BaseStream",
+                "waterbutler.core.path.WaterButlerPath"
+            ]
+        }
+    ],
+    "upload_avatar_image@global": [
+        {
+            "category": "arg",
+            "name": "user_file",
+            "type": [
+                "django.core.files.File"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "zerver.models.Client"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content_type",
+            "type": [
+                "None",
+                "typing.Iterable[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "backend",
+            "type": [
+                "None",
+                "str",
+                "typing.TextIO",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "future",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content_type",
+            "type": [
+                "None",
+                "typing.Iterable[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_file",
+            "type": [
+                "django.core.files.File"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "zerver.models.Client"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "future",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_path",
+            "type": [
+                "str",
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "image_data",
+            "type": [
+                "bytes",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backend",
+            "type": [
+                "None",
+                "str",
+                "typing.TextIO",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_avatar_image",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "upload_emoji_image@global": [
+        {
+            "category": "arg",
+            "name": "emoji_file",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "emoji_file_name",
+            "type": [
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content_type",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "backend",
+            "type": [
+                "None",
+                "bool",
+                "tracim.lib.core.contenContentApi",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backend",
+            "type": [
+                "None",
+                "bool",
+                "tracim.lib.core.contenContentApi",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upload_backend",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content_type",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "emoji_file_name",
+            "type": [
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "emoji_path",
+            "type": [
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "still_image_data",
+            "type": [
+                "dict[str, typing.Any]",
+                "list[typing.Any]",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_emoji_image",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "still_path",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "upload_export_tarball@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "str",
+                "zerver.models.Realm",
+                "typing.Callable[typing.Any, None]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tarball_path",
+            "type": [
+                "str",
+                "zerver.models.Realm",
+                "typing.Callable[typing.Any, None]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "percent_callback",
+            "type": [
+                "None",
+                "str",
+                "zerver.models.Realm",
+                "typing.Callable[typing.Any, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upload_backend",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "str",
+                "zerver.models.Realm",
+                "typing.Callable[typing.Any, None]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tarball_path",
+            "type": [
+                "str",
+                "zerver.models.Realm",
+                "typing.Callable[typing.Any, None]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "percent_callback",
+            "type": [
+                "None",
+                "str",
+                "zerver.models.Realm",
+                "typing.Callable[typing.Any, None]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_export_tarball",
+            "type": [
+                "str",
+                "azure.datalake.store.core.AzureDLFileSystem"
+            ]
+        }
+    ],
+    "upload_icon_image@global": [
+        {
+            "category": "arg",
+            "name": "user_file",
+            "type": [
+                "str",
+                "django.contrib.auth.models.User",
+                "zerver.models.UserGroup"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "django.contrib.auth.models.User",
+                "zerver.models.UserGroup"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content_type",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "zerver.models.UserGroup"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content_type",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "zerver.models.UserGroup"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upload_backend",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_file",
+            "type": [
+                "str",
+                "django.contrib.auth.models.User",
+                "zerver.models.UserGroup"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "str",
+                "django.contrib.auth.models.User",
+                "zerver.models.UserGroup"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_icon_image",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "upload_logo_image@global": [
+        {
+            "category": "arg",
+            "name": "user_file",
+            "type": [
+                "zerver.models.UserProfile",
+                "django.core.files.File",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "django.core.files.File",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "night",
+            "type": [
+                "zerver.models.UserProfile",
+                "django.core.files.File",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content_type",
+            "type": [
+                "zerver.models.UserProfile",
+                "django.core.files.File",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content_type",
+            "type": [
+                "zerver.models.UserProfile",
+                "django.core.files.File",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upload_backend",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_file",
+            "type": [
+                "zerver.models.UserProfile",
+                "django.core.files.File",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "django.core.files.File",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "night",
+            "type": [
+                "zerver.models.UserProfile",
+                "django.core.files.File",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_logo_image",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "upload_message_attachment@global": [
+        {
+            "category": "arg",
+            "name": "uploaded_file_name",
+            "type": [
+                "zerver.models.UserProfile",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content_type",
+            "type": [
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "file_data",
+            "type": [
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "str",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_realm",
+            "type": [
+                "None",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_realm",
+            "type": [
+                "None",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "Packages.ImagePaste.lib.PIL.ImageCms.ImageCmsProfile",
+                "core.arxiv.submission.domain.preview.Preview"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "str",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upload_backend",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "uploaded_file_name",
+            "type": [
+                "zerver.models.UserProfile",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path_id",
+            "type": [
+                "str",
+                "int",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content_type",
+            "type": [
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_data",
+            "type": [
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_message_attachment",
+            "type": [
+                "tuple[typing.Union[typing.Text,zerver.models.UserProfile,None]]"
+            ]
+        }
+    ],
+    "upload_message_attachment_from_request@global": [
+        {
+            "category": "arg",
+            "name": "user_file",
+            "type": [
+                "zerver.models.UserProfile",
+                "tracim.models.auth.User",
+                "django.core.files.File"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "django.core.files.File",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_file",
+            "type": [
+                "zerver.models.UserProfile",
+                "tracim.models.auth.User",
+                "django.core.files.File"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "uploaded_file_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content_type",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "django.core.files.File",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_message_attachment_from_request",
+            "type": [
+                "str",
+                "django.core.handlers.wsgi.WSGIRequest",
+                "django.http.HttpResponse"
+            ]
+        }
+    ],
+    "write_avatar_images@global": [
+        {
+            "category": "arg",
+            "name": "file_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "image_data",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content_type",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "backend",
+            "type": [
+                "None",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "future",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backend",
+            "type": [
+                "None",
+                "bool",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upload_backend",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "image_data",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content_type",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "future",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "write_avatar_images",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

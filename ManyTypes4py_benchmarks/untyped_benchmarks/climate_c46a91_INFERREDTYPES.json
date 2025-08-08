@@ -1,0 +1,708 @@
+{
+    "__init__@ViCareClimate": [
+        {
+            "category": "arg",
+            "name": "device_serial",
+            "type": [
+                "int",
+                "float",
+                "cmk.utils.type_defs.ConfigSerial"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "device_config",
+            "type": [
+                "int",
+                "float",
+                "cmk.utils.type_defs.ConfigSerial"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "device",
+            "type": [
+                "int",
+                "float",
+                "cmk.utils.type_defs.ConfigSerial"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "circuit",
+            "type": [
+                "int",
+                "float",
+                "cmk.utils.type_defs.ConfigSerial"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device_serial",
+            "type": [
+                "int",
+                "float",
+                "cmk.utils.type_defs.ConfigSerial"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device_config",
+            "type": [
+                "int",
+                "float",
+                "cmk.utils.type_defs.ConfigSerial"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "int",
+                "float",
+                "cmk.utils.type_defs.ConfigSerial"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "circuit",
+            "type": [
+                "int",
+                "float",
+                "cmk.utils.type_defs.ConfigSerial"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_device",
+            "type": [
+                "int",
+                "float",
+                "cmk.utils.type_defs.ConfigSerial"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attributes",
+            "type": [
+                "dict",
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "preset",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_preset_modes",
+            "type": [
+                "list[bool]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_build_entities@global": [
+        {
+            "category": "arg",
+            "name": "device_list",
+            "type": [
+                "list",
+                "list[dict[str, typing.Any]]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device_list",
+            "type": [
+                "list",
+                "list[dict[str, typing.Any]]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_build_entities",
+            "type": [
+                "list[ViCareClimate]"
+            ]
+        }
+    ],
+    "async_setup_entry@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "typing.Callable[List,bool, None]",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "config_entry",
+            "type": [
+                "typing.Callable[List,bool, None]",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "async_add_entities",
+            "type": [
+                "typing.Callable[List,bool, None]",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SERVICE_SET_VICARE_MODE",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SERVICE_SET_VICARE_MODE_ATTR_MODE",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "typing.Callable[List,bool, None]",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_setup_entry",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "extra_state_attributes@ViCareClimate": [
+        {
+            "category": "return",
+            "name": "extra_state_attributes",
+            "type": []
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SERVICE_SET_VICARE_MODE",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SERVICE_SET_VICARE_MODE_ATTR_MODE",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VICARE_MODE_DHW",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VICARE_MODE_HEATING",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VICARE_MODE_HEATINGCOOLING",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VICARE_MODE_DHWANDHEATING",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VICARE_MODE_DHWANDHEATINGCOOLING",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VICARE_MODE_FORCEDREDUCED",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VICARE_MODE_FORCEDNORMAL",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VICARE_MODE_OFF",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VICARE_HOLD_MODE_AWAY",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VICARE_HOLD_MODE_HOME",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VICARE_HOLD_MODE_OFF",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VICARE_TEMP_HEATING_MIN",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VICARE_TEMP_HEATING_MAX",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VICARE_TO_HA_HVAC_HEATING",
+            "type": [
+                "dict[typing.Text, ]",
+                "dict[str, typing.Any]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CHANGABLE_HEATING_PROGRAMS",
+            "type": [
+                "list",
+                "int",
+                "list[str]",
+                "str"
+            ]
+        }
+    ],
+    "hvac_action@ViCareClimate": [
+        {
+            "category": "return",
+            "name": "hvac_action",
+            "type": []
+        }
+    ],
+    "hvac_mode@ViCareClimate": [
+        {
+            "category": "local",
+            "name": "_current_mode",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "hvac_mode",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VICARE_TO_HA_HVAC_HEATING",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, str]"
+            ]
+        }
+    ],
+    "hvac_modes@ViCareClimate": [
+        {
+            "category": "return",
+            "name": "hvac_modes",
+            "type": [
+                "list",
+                "list[tuple[typing.Union[str,typing.Any]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hvac_modes",
+            "type": [
+                "list",
+                "list[tuple[typing.Union[str,typing.Any]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "tuple[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "tuple[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VICARE_TO_HA_HVAC_HEATING",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, str]"
+            ]
+        }
+    ],
+    "preset_mode@ViCareClimate": [
+        {
+            "category": "return",
+            "name": "preset_mode",
+            "type": []
+        }
+    ],
+    "set_hvac_mode@ViCareClimate": [
+        {
+            "category": "arg",
+            "name": "hvac_mode",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hvac_mode",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vicare_mode",
+            "type": [
+                "str",
+                "int",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_hvac_mode",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "set_preset_mode@ViCareClimate": [
+        {
+            "category": "arg",
+            "name": "preset_mode",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "preset_mode",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_program",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CHANGABLE_HEATING_PROGRAMS",
+            "type": [
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "err",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_preset_mode",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "set_temperature@ViCareClimate": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "temp",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_target_temperature",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_temperature",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "set_vicare_mode@ViCareClimate": [
+        {
+            "category": "arg",
+            "name": "vicare_mode",
+            "type": [
+                "str",
+                "qutebrowser.utils.usertypes.KeyMode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vicare_mode",
+            "type": [
+                "str",
+                "qutebrowser.utils.usertypes.KeyMode"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_vicare_mode",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "update@ViCareClimate": [
+        {
+            "category": "local",
+            "name": "_room_temperature",
+            "type": [
+                "None",
+                "int",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_supply_temperature",
+            "type": [
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_current_temperature",
+            "type": [
+                "int",
+                "float",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_current_program",
+            "type": [
+                "str",
+                "bool",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_target_temperature",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_current_mode",
+            "type": [
+                "str",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_current_action",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "limit_exception",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "invalid_data_exception",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "vicare_mode_from_hvac_mode@ViCareClimate": [
+        {
+            "category": "arg",
+            "name": "hvac_mode",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "vicare_mode_from_hvac_mode",
+            "type": [
+                "None",
+                "tuple[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "tuple[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "tuple[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VICARE_TO_HA_HVAC_HEATING",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hvac_mode",
+            "type": [
+                "str",
+                "int"
+            ]
+        }
+    ]
+}

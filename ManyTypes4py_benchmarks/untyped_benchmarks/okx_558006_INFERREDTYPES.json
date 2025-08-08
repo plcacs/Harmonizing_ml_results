@@ -1,0 +1,926 @@
+{
+    "__fetch_leverage_already_set@Okx": [
+        {
+            "category": "arg",
+            "name": "pair",
+            "type": [
+                "str",
+                "list[str]",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "leverage",
+            "type": [
+                "list",
+                "str",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "side",
+            "type": [
+                "str",
+                "list[str]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pair",
+            "type": [
+                "str",
+                "list[str]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "side",
+            "type": [
+                "str",
+                "list[str]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "res_lev",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "x",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "leverage",
+            "type": [
+                "list",
+                "str",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "already_set",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__fetch_leverage_already_set",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_convert_stop_order@Okx": [
+        {
+            "category": "arg",
+            "name": "pair",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "order_id",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "order",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "order",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "real_order_id",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pair",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "order_id",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_convert_stop_order",
+            "type": []
+        }
+    ],
+    "_fetch_orders_emulate@Okx": [
+        {
+            "category": "arg",
+            "name": "pair",
+            "type": [
+                "str",
+                "int",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "since_ms",
+            "type": [
+                "datetime.datetime",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "orders",
+            "type": [
+                "list",
+                "list[str]",
+                "list[typing.Union[str,list[int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pair",
+            "type": [
+                "str",
+                "int",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "since_ms",
+            "type": [
+                "datetime.datetime",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "params",
+            "type": [
+                "dict[typing.Text, typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "orders_hist",
+            "type": [
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "orders_open",
+            "type": [
+                "str",
+                "list",
+                "list[list[int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_fetch_orders_emulate",
+            "type": [
+                "list[typing.Union[str,list[int]]]"
+            ]
+        }
+    ],
+    "_fetch_stop_order_fallback@Okx": [
+        {
+            "category": "arg",
+            "name": "order_id",
+            "type": [
+                "str",
+                "dict",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pair",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "params2",
+            "type": [
+                "dict[typing.Text, typing.Union[bool,typing.Text]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pair",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "orders",
+            "type": [
+                "list",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "order",
+            "type": [
+                "str",
+                "list[str]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "order_id",
+            "type": [
+                "str",
+                "dict",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "orders_f",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_fetch_stop_order_fallback",
+            "type": [
+                "str",
+                "typing.TextIO",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        }
+    ],
+    "_get_params@Okx": [
+        {
+            "category": "arg",
+            "name": "side",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ordertype",
+            "type": [
+                "float",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "leverage",
+            "type": [
+                "float",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "reduceOnly",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "time_in_force",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "side",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ordertype",
+            "type": [
+                "float",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "leverage",
+            "type": [
+                "float",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reduceOnly",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "time_in_force",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "params",
+            "type": [
+                "dict",
+                "list",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_params",
+            "type": [
+                "dict",
+                "list",
+                "set[str]"
+            ]
+        }
+    ],
+    "_get_posSide@Okx": [
+        {
+            "category": "arg",
+            "name": "side",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "reduceOnly",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_posSide",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reduceOnly",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "side",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_get_stop_params@Okx": [
+        {
+            "category": "arg",
+            "name": "side",
+            "type": [
+                "float",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ordertype",
+            "type": [
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stop_price",
+            "type": [
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "side",
+            "type": [
+                "float",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ordertype",
+            "type": [
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stop_price",
+            "type": [
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "params",
+            "type": [
+                "dict[str, str]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_stop_params",
+            "type": [
+                "dict[str, str]",
+                "str"
+            ]
+        }
+    ],
+    "_lev_prep@Okx": [
+        {
+            "category": "arg",
+            "name": "pair",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "leverage",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "side",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "accept_fail",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "leverage",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pair",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "side",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "res",
+            "type": [
+                "str",
+                "list",
+                "tuple[typing.Union[tuple[float],tuple[bool]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "already_set",
+            "type": [
+                "str",
+                "set[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_lev_prep",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "additional_exchange_init@Okx": [
+        {
+            "category": "local",
+            "name": "accounts",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "net_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "additional_exchange_init",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "cancel_stoploss_order@Okx": [
+        {
+            "category": "arg",
+            "name": "order_id",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "\"Event\""
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pair",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "\"Event\""
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "params",
+            "type": [
+                "None",
+                "dict",
+                "dict[str, typing.Any]",
+                "\"Event\""
+            ]
+        },
+        {
+            "category": "local",
+            "name": "params1",
+            "type": [
+                "dict[typing.Text, bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "order_id",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "\"Event\""
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pair",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "\"Event\""
+            ]
+        },
+        {
+            "category": "return",
+            "name": "cancel_stoploss_order",
+            "type": [
+                "dict",
+                "bool",
+                "str"
+            ]
+        }
+    ],
+    "fetch_stoploss_order@Okx": [
+        {
+            "category": "arg",
+            "name": "order_id",
+            "type": [
+                "dict[str, typing.Any]",
+                "allennlp.common.util.JsonDict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pair",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "params",
+            "type": [
+                "None",
+                "dict",
+                "dict[str, typing.Any]",
+                "dict[str, list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "order_id",
+            "type": [
+                "dict[str, typing.Any]",
+                "allennlp.common.util.JsonDict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "fetch_stoploss_order",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "params1",
+            "type": [
+                "dict[typing.Text, bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pair",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "order_reg",
+            "type": [
+                "dict",
+                "typing.Match",
+                "None",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        }
+    ],
+    "get_max_pair_stake_amount@Okx": [
+        {
+            "category": "arg",
+            "name": "pair",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "price",
+            "type": [
+                "float",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "leverage",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_max_pair_stake_amount",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pair",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "leverage",
+            "type": [
+                "float"
+            ]
+        }
+    ],
+    "get_order_id_conditional@Okx": [
+        {
+            "category": "arg",
+            "name": "order",
+            "type": [
+                "relay.exchange.order.Order"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "order",
+            "type": [
+                "relay.exchange.order.Order"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_order_id_conditional",
+            "type": [
+                "str",
+                "datetime.datetime.date.time",
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "ohlcv_candle_limit@Okx": [
+        {
+            "category": "arg",
+            "name": "timeframe",
+            "type": [
+                "datetime.date",
+                "int",
+                "None",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "candle_type",
+            "type": [
+                "datetime.date",
+                "int",
+                "None",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "since_ms",
+            "type": [
+                "None",
+                "datetime.date",
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "candle_type",
+            "type": [
+                "datetime.date",
+                "int",
+                "None",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "since_ms",
+            "type": [
+                "None",
+                "datetime.date",
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timeframe",
+            "type": [
+                "datetime.date",
+                "int",
+                "None",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "ohlcv_candle_limit",
+            "type": [
+                "int",
+                "str",
+                "None"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,1492 @@
+{
+    "archive_direct_messages@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "str",
+                "int",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chunk_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "MESSAGE_BATCH_SIZE",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "str",
+                "int",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chunk_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "archive_direct_messages",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "archive_messages@global": [
+        {
+            "category": "arg",
+            "name": "chunk_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "MESSAGE_BATCH_SIZE",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chunk_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "STREAM_MESSAGE_BATCH_SIZE",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "archive_messages",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "archive_messages_by_recipient@global": [
+        {
+            "category": "arg",
+            "name": "recipient",
+            "type": [
+                "int",
+                "authentication.session.models.current_user.CurrentUser",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message_retention_days",
+            "type": [
+                "int",
+                "authentication.session.models.current_user.CurrentUser",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "int",
+                "authentication.session.models.current_user.CurrentUser",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chunk_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "MESSAGE_BATCH_SIZE",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recipient",
+            "type": [
+                "int",
+                "authentication.session.models.current_user.CurrentUser",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_retention_days",
+            "type": [
+                "int",
+                "authentication.session.models.current_user.CurrentUser",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "int",
+                "authentication.session.models.current_user.CurrentUser",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chunk_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "archive_messages_by_recipient",
+            "type": [
+                "str",
+                "zerver.models.Realm",
+                "bool"
+            ]
+        }
+    ],
+    "archive_stream_messages@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "lowerpines.endpoints.message.Message",
+                "bool",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "streams",
+            "type": [
+                "zerver.models.Stream",
+                "list[zerver.models.Stream]",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chunk_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "STREAM_MESSAGE_BATCH_SIZE",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "streams",
+            "type": [
+                "zerver.models.Stream",
+                "list[zerver.models.Stream]",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "archive_stream_messages",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "lowerpines.endpoints.message.Message",
+                "bool",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "retention_policy_dict",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "zerver.models.Stream",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recipients",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chunk_size",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "clean_archived_data@global": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "check_date",
+            "type": [
+                "datetime.datetime",
+                "datetime.date",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transaction_ids",
+            "type": [
+                "list",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TRANSACTION_DELETION_BATCH_SIZE",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transaction_block",
+            "type": [
+                "tuple",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "clean_archived_data",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "delete_expired_attachments@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "zerver.models.UserGroup"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_deleted",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ignored",
+            "type": [
+                "list[str]",
+                "list",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "zerver.models.UserGroup"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "delete_expired_attachments",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "delete_messages@global": [
+        {
+            "category": "arg",
+            "name": "msg_ids",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "delete_messages",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_realms_and_streams_for_archiving@global": [
+        {
+            "category": "local",
+            "name": "realm_id_to_realm",
+            "type": [
+                "dict",
+                "dict[, typing.Union[zerver.models.Realm,zerver.models.UserProfile]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm_id_to_streams_list",
+            "type": [
+                "dict",
+                "dict[, list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query_one",
+            "type": [
+                "app.models.Journey"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query_two",
+            "type": [
+                "dict[str, dict[str, str]]",
+                "list[str]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_realms_and_streams_for_archiving",
+            "type": [
+                "list[tuple[typing.Union[zerver.models.Realm,zerver.models.UserProfile,list]]]"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "MESSAGE_BATCH_SIZE",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "STREAM_MESSAGE_BATCH_SIZE",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TRANSACTION_DELETION_BATCH_SIZE",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "models_with_message_key",
+            "type": [
+                "list[dict[typing.Text, typing.Text]]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "EXCLUDE_FIELDS",
+            "type": [
+                "set",
+                "tuple[str]",
+                "set[str]",
+                "list[str]"
+            ]
+        }
+    ],
+    "move_attachment_messages_to_archive@global": [
+        {
+            "category": "arg",
+            "name": "msg_ids",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "SQL"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg_ids",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "move_attachment_messages_to_archive",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "move_attachments_to_archive@global": [
+        {
+            "category": "arg",
+            "name": "msg_ids",
+            "type": [
+                "list[int]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "SQL"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg_ids",
+            "type": [
+                "list[int]",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "move_attachments_to_archive",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "move_expired_direct_messages_to_archive@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.UserProfile",
+                "int",
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chunk_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "MESSAGE_BATCH_SIZE",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.UserProfile",
+                "int",
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "check_date",
+            "type": [
+                "datetime.datetime",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recipient_types",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "SQL"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chunk_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "move_expired_direct_messages_to_archive",
+            "type": []
+        }
+    ],
+    "move_expired_messages_to_archive_by_recipient@global": [
+        {
+            "category": "arg",
+            "name": "recipient",
+            "type": [
+                "int",
+                "contests.models.User",
+                "Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message_retention_days",
+            "type": [
+                "int",
+                "float",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "int",
+                "contests.models.User",
+                "Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chunk_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "MESSAGE_BATCH_SIZE",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "SQL"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_retention_days",
+            "type": [
+                "int",
+                "float",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "check_date",
+            "type": [
+                "datetime.datetime",
+                "datetime.date"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "int",
+                "contests.models.User",
+                "Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recipient",
+            "type": [
+                "int",
+                "contests.models.User",
+                "Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chunk_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "move_expired_messages_to_archive_by_recipient",
+            "type": []
+        }
+    ],
+    "move_messages_to_archive@global": [
+        {
+            "category": "arg",
+            "name": "message_ids",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "None",
+                "int",
+                "set[int]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chunk_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "MESSAGE_BATCH_SIZE",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_ids",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_ids_head",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chunk_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_ids_chunk",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "SQL"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "None",
+                "int",
+                "set[int]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "archived_attachments",
+            "type": [
+                "list[dict[str, typing.Any]]",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "move_messages_to_archive",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "move_models_with_message_key_to_archive@global": [
+        {
+            "category": "arg",
+            "name": "msg_ids",
+            "type": [
+                "list",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "models_with_message_key",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "SQL"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg_ids",
+            "type": [
+                "list",
+                "set"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "move_models_with_message_key_to_archive",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "move_related_objects_to_archive@global": [
+        {
+            "category": "arg",
+            "name": "msg_ids",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg_ids",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "move_related_objects_to_archive",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "move_rows@global": [
+        {
+            "category": "arg",
+            "name": "base_model",
+            "type": [
+                "int",
+                "None",
+                "django.http.QueryDict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "raw_query",
+            "type": [
+                "str",
+                "int",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "src_db_table",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "returning_id",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "src_db_table",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "EXCLUDE_FIELDS",
+            "type": [
+                "tuple[str]",
+                "set[str]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fields",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "src_fields",
+            "type": [
+                "list[Identifier]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dst_fields",
+            "type": [
+                "list[Identifier]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raw_query",
+            "type": [
+                "str",
+                "int",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "returning_id",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "move_rows",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "parse_message_retention_days@global": [
+        {
+            "category": "arg",
+            "name": "value",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "special_values_map",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "special_values_map",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "parse_message_retention_days",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "restore_all_data_from_archive@global": [
+        {
+            "category": "arg",
+            "name": "restore_manual_transactions",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "restore_manual_transactions",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "restore_all_data_from_archive",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "restore_attachment_messages_from_archive@global": [
+        {
+            "category": "arg",
+            "name": "archive_transaction_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "SQL"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "archive_transaction_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "restore_attachment_messages_from_archive",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "restore_attachments_from_archive@global": [
+        {
+            "category": "arg",
+            "name": "archive_transaction_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "SQL"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "archive_transaction_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "restore_attachments_from_archive",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "restore_data_from_archive@global": [
+        {
+            "category": "arg",
+            "name": "archive_transaction",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "archive_transaction",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "archive_transaction_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "restore_data_from_archive",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "restore_data_from_archive_by_realm@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transactions",
+            "type": [
+                "str",
+                "app.models.notification.Notification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "restore_data_from_archive_by_realm",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "restore_data_from_archive_by_transactions@global": [
+        {
+            "category": "arg",
+            "name": "archive_transactions",
+            "type": [
+                "dict[str, str]",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_count",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "archive_transaction",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "archive_transactions",
+            "type": [
+                "dict[str, str]",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "restore_data_from_archive_by_transactions",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        }
+    ],
+    "restore_messages_from_archive@global": [
+        {
+            "category": "arg",
+            "name": "archive_transaction_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "SQL"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "archive_transaction_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "restore_messages_from_archive",
+            "type": []
+        }
+    ],
+    "restore_models_with_message_key_from_archive@global": [
+        {
+            "category": "arg",
+            "name": "archive_transaction_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "models_with_message_key",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "SQL"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "archive_transaction_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "restore_models_with_message_key_from_archive",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "restore_retention_policy_deletions_for_stream@global": [
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": [
+                "zerver.models.Stream",
+                "list[zerver.models.Stream]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "relevant_transactions",
+            "type": [
+                "dict",
+                "list[dict[str, typing.Any]]",
+                "grpy.core.models.UserPreferences"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "restore_retention_policy_deletions_for_stream",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "run_archiving@global": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "int",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "type",
+            "type": [
+                "str",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "None",
+                "str",
+                "zerver.models.Message",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chunk_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "MESSAGE_BATCH_SIZE",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chunk_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "type",
+            "type": [
+                "str",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "None",
+                "str",
+                "zerver.models.Message",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "archive_transaction",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "dict",
+                "dict[str, typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "int",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "run_archiving",
+            "type": [
+                "int"
+            ]
+        }
+    ]
+}

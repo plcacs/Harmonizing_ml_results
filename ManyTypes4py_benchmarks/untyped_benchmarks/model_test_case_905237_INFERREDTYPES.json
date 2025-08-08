@@ -1,0 +1,778 @@
+{
+    "assert_fields_equal@ModelTestCase": [
+        {
+            "category": "arg",
+            "name": "field1",
+            "type": [
+                "numpy.ndarray",
+                "tuple[int]",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "field2",
+            "type": [
+                "float",
+                "str",
+                "list[T]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "name",
+            "type": [
+                "str",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tolerance",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "field1",
+            "type": [
+                "numpy.ndarray",
+                "tuple[int]",
+                "typing.Type",
+                "torch_@_Tensor",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tolerance",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "str",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "field2",
+            "type": [
+                "float",
+                "str",
+                "list[T]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "assert_fields_equal",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "check_model_computes_gradients_correctly@ModelTestCase": [
+        {
+            "category": "arg",
+            "name": "model",
+            "type": [
+                "tensorflow.keras.Model",
+                "base.data_loader.DataLoader",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "model_batch",
+            "type": [
+                "tensorflow.keras.Model",
+                "typing.Iterable[allennlp.data.instance.Instance]",
+                "allennlp.data.dataseDataset"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "params_to_ignore",
+            "type": [
+                "None",
+                "bool",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "disable_dropout",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "which_loss",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "tensorflow.keras.Model",
+                "base.data_loader.DataLoader",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "p_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "original_dropouts",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "disable_dropout",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "module",
+            "type": [
+                "torch_@_nn_@_Dropout"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model_batch",
+            "type": [
+                "tensorflow.keras.Model",
+                "typing.Iterable[allennlp.data.instance.Instance]",
+                "allennlp.data.dataseDataset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "which_loss",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "has_zero_or_none_grads",
+            "type": [
+                "dict",
+                "dict[, typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "params_to_ignore",
+            "type": [
+                "None",
+                "bool",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parameter_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "grad",
+            "type": [
+                "list",
+                "tuple[typing.Union[bool,float]]",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_model_computes_gradients_correctly",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "ensure_batch_predictions_are_consistent@ModelTestCase": [
+        {
+            "category": "arg",
+            "name": "keys_to_ignore",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "single_predictions",
+            "type": [
+                "list",
+                "list[typing.Union[float,dict]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "i",
+            "type": [
+                "int",
+                "float",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataset",
+            "type": [
+                "Batch"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tensors",
+            "type": [
+                "list",
+                "list[list[str]]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "float",
+                "dict",
+                "dict[typing.Any, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "full_dataset",
+            "type": [
+                "Batch"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_tensors",
+            "type": [
+                "list",
+                "str",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_predictions",
+            "type": [
+                "list",
+                "list[list[float]]",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instance_predictions",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "single_predicted",
+            "type": [
+                "torch.Tensor",
+                "int",
+                "torch_@_Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tolerance",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "keys_to_ignore",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_predicted",
+            "type": [
+                "list",
+                "list[list[str]]",
+                "list[list[typing.Any]]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "slices",
+            "type": [
+                "slice"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "ensure_batch_predictions_are_consistent",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "ensure_model_can_train@ModelTestCase": [
+        {
+            "category": "arg",
+            "name": "trainer",
+            "type": [
+                "bool",
+                "torch.nn.Module"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "gradients_to_ignore",
+            "type": [
+                "None",
+                "bool",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "metric_to_check",
+            "type": [
+                "None",
+                "dict",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "metric_terminal_value",
+            "type": [
+                "None",
+                "float",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "metric_tolerance",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "disable_dropout",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "bool",
+                "torch.nn.Module"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metrics",
+            "type": [
+                "dict[str, typing.Union[dict,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_to_check",
+            "type": [
+                "None",
+                "dict",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_value",
+            "type": [
+                "dict",
+                "typing.Any"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gradients_to_ignore",
+            "type": [
+                "None",
+                "bool",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "disable_dropout",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "ensure_model_can_train",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "ensure_model_can_train_save_and_load@ModelTestCase": [
+        {
+            "category": "arg",
+            "name": "param_file",
+            "type": [
+                "str",
+                "allennlp.common.params.Params"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tolerance",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "cuda_device",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "gradients_to_ignore",
+            "type": [
+                "None",
+                "list",
+                "numpy.ndarray",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "overrides",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "metric_to_check",
+            "type": [
+                "None",
+                "allennlp.common.Params",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "metric_terminal_value",
+            "type": [
+                "None",
+                "float",
+                "int",
+                "allennlp.common.Params"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "metric_tolerance",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "disable_dropout",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "which_loss",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "seed",
+            "type": [
+                "None",
+                "int",
+                "tensorflow.keras.Model",
+                "Batch"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "param_file",
+            "type": [
+                "str",
+                "allennlp.common.params.Params"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "overrides",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_to_check",
+            "type": [
+                "None",
+                "allennlp.common.Params",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cuda_device",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_keys",
+            "type": [
+                "str",
+                "dict[int, typing.Any]",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "loaded_state_keys",
+            "type": [
+                "str",
+                "dict[int, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "typing.Text",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_loader_params2",
+            "type": [
+                "Params"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "seed",
+            "type": [
+                "None",
+                "int",
+                "tensorflow.keras.Model",
+                "Batch"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gradients_to_ignore",
+            "type": [
+                "None",
+                "list",
+                "numpy.ndarray",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "disable_dropout",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "which_loss",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tolerance",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "ensure_model_can_train_save_and_load",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "global@global": [],
+    "set_up_model@ModelTestCase": [
+        {
+            "category": "arg",
+            "name": "param_file",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dataset_file",
+            "type": [
+                "str",
+                "typing.IO",
+                "os.PathLike"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "serialization_dir",
+            "type": [
+                "None",
+                "str",
+                "os.PathLike"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "seed",
+            "type": [
+                "None",
+                "bytes",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "seed",
+            "type": [
+                "None",
+                "bytes",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "param_file",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "serialization_dir",
+            "type": [
+                "None",
+                "str",
+                "os.PathLike"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataset_file",
+            "type": [
+                "str",
+                "typing.IO",
+                "os.PathLike"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instances",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataset",
+            "type": [
+                "Batch"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_up_model",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_model_batch_norm_verification@ModelTestCase": [
+        {
+            "category": "local",
+            "name": "verification",
+            "type": [
+                "NormalizationBiasVerification"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_model_batch_norm_verification",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

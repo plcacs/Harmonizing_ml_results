@@ -12,11 +12,11 @@ load_dotenv()
 
 # Initialize OpenAI client with API key from environment
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-PROCESSED_FILES_LOG = "Files_not_for_root_directories/processed_files_o1_mini_renamed.txt"
+PROCESSED_FILES_LOG = "Files_not_for_root_directories/processed_files_o1_mini_renamed_2.txt"
 INPUT_DIR = "Hundrad_renamed_benchmarks"
-OUTPUT_DIR = "o1_mini_renamed_output"
-TIMING_LOG = "Files_not_for_root_directories/o1_mini_model_timings_renamed.json"
-UNPROCESSED_FILES = "Files_not_for_root_directories/unprocessed_files_o1_mini_renamed.txt"
+OUTPUT_DIR = "o1_mini_renamed_output_2"
+TIMING_LOG = "Files_not_for_root_directories/o1_mini_model_timings_renamed_2.json"
+UNPROCESSED_FILES = "Files_not_for_root_directories/unprocessed_files_o1_mini_renamed_2.txt"
 
 def get_token_count(text: str, model: str = "o1-mini") -> int:
     try:

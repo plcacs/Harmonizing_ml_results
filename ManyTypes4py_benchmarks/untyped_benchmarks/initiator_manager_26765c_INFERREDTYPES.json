@@ -1,0 +1,1505 @@
+{
+    "can_cancel@global": [
+        {
+            "category": "arg",
+            "name": "initiator",
+            "type": [
+                "raiden.messages.LockedTransfer",
+                "raiden.transfer.mediated_transfer.state_change.TransferDescriptionWithSecretState",
+                "raiden.transfer.state.RouteState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initiator",
+            "type": [
+                "raiden.messages.LockedTransfer",
+                "raiden.transfer.mediated_transfer.state_change.TransferDescriptionWithSecretState",
+                "raiden.transfer.state.RouteState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "can_cancel",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "cancel_current_route@global": [
+        {
+            "category": "arg",
+            "name": "payment_state",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.state.NettingChannelState",
+                "raiden.transfer.mediated_transfer.state.InitiatorTransferState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "initiator_state",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.mediated_transfer.state.InitiatorTransferState",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initiator_state",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.mediated_transfer.state.InitiatorTransferState",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "cancel_current_route",
+            "type": []
+        }
+    ],
+    "cancel_other_transfers@global": [
+        {
+            "category": "arg",
+            "name": "payment_state",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.state.NettingChannelState",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initiator_state_",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "cancel_other_transfers",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "clear_if_finalized@global": [
+        {
+            "category": "arg",
+            "name": "iteration",
+            "type": [
+                "raiden.transfer.architecture.TransitionResult",
+                "int",
+                "raiden.utils.Any"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iteration",
+            "type": [
+                "raiden.transfer.architecture.TransitionResult",
+                "int",
+                "raiden.utils.Any"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "None",
+                "int",
+                "pyshgp.push.state.PushState",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "clear_if_finalized",
+            "type": [
+                "raiden.transfer.architecture.TransitionResult",
+                "int",
+                "raiden.utils.Any",
+                "TransitionResult"
+            ]
+        }
+    ],
+    "events_for_cancel_current_route@global": [
+        {
+            "category": "arg",
+            "name": "route_state",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.SecreHash",
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "transfer_description",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.SecreHash",
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transfer_description",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.SecreHash",
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "route_state",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.SecreHash",
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "events_for_cancel_current_route",
+            "type": [
+                "list[typing.Union[EventUnlockFailed,EventRouteFailed]]"
+            ]
+        }
+    ],
+    "global@global": [],
+    "handle_block@global": [
+        {
+            "category": "arg",
+            "name": "payment_state",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "channelidentifiers_to_channels",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pseudo_random_generator",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_number",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payment_state",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channelidentifiers_to_channels",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pseudo_random_generator",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_block",
+            "type": [
+                "dict",
+                "str"
+            ]
+        }
+    ],
+    "handle_cancelpayment@global": [
+        {
+            "category": "arg",
+            "name": "payment_state",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.utils.FeeAmount",
+                "raiden.transfer.mediated_transfer.state.TransferDescriptionWithSecretState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "channelidentifiers_to_channels",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "raiden.utils.FeeAmount",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initiator_state_",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channelidentifiers_to_channels",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "raiden.utils.FeeAmount",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payment_state",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.utils.FeeAmount",
+                "raiden.transfer.mediated_transfer.state.TransferDescriptionWithSecretState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cancel",
+            "type": [
+                "EventPaymentSentFailed"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_cancelpayment",
+            "type": [
+                "TransitionResult"
+            ]
+        }
+    ],
+    "handle_failroute@global": [
+        {
+            "category": "arg",
+            "name": "payment_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.utils.Any"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.mediated_transfer.state.InitiatorTransferState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events",
+            "type": [
+                "list",
+                "list[typing.Type]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initiator_state",
+            "type": [
+                "raiden.transfer.state.NettingChannelEndState",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payment_state",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.utils.Any"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cancel_events",
+            "type": [
+                "threading.Event",
+                "list[typing.Type]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_failroute",
+            "type": [
+                "TransitionResult"
+            ]
+        }
+    ],
+    "handle_init@global": [
+        {
+            "category": "arg",
+            "name": "payment_state",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.utils.InitiatorAddress",
+                "raiden.utils.PaymentID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.utils.MessageID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "addresses_to_channel",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.utils.MessageID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pseudo_random_generator",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.utils.MessageID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_number",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.utils.MessageID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payment_state",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.utils.InitiatorAddress",
+                "raiden.utils.PaymentID",
+                "None",
+                "InitiatorPaymentState",
+                "raiden.transfer.state.NettingChannelEndState",
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "addresses_to_channel",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.utils.MessageID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.utils.MessageID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pseudo_random_generator",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.utils.MessageID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.utils.MessageID"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_init",
+            "type": [
+                "TransitionResult"
+            ]
+        }
+    ],
+    "handle_lock_expired@global": [
+        {
+            "category": "arg",
+            "name": "payment_state",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveLockExpired",
+                "raiden.utils.ChannelMap"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.mediated_transfer.state_change.ReceiveLockExpired",
+                "raiden.utils.Address",
+                "raiden.utils.MessageID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "channelidentifiers_to_channels",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_number",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.mediated_transfer.state_change.ReceiveLockExpired",
+                "raiden.utils.Address",
+                "raiden.utils.MessageID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initiator_state",
+            "type": [
+                "TransferDescriptionWithSecretState",
+                "raiden.transfer.state.NettingChannelEndState",
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payment_state",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveLockExpired",
+                "raiden.utils.ChannelMap"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_lock_expired",
+            "type": [
+                "TransitionResult"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channelidentifiers_to_channels",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unlock_failed",
+            "type": [
+                "EventUnlockClaimFailed"
+            ]
+        }
+    ],
+    "handle_offchain_secretreveal@global": [
+        {
+            "category": "arg",
+            "name": "payment_state",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretReveal",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretRequest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretRequest",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretReveal"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "channelidentifiers_to_channels",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pseudo_random_generator",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_number",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretRequest",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretReveal"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initiator_state",
+            "type": [
+                "raiden.transfer.state.NettingChannelEndState",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payment_state",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretReveal",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretRequest"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_offchain_secretreveal",
+            "type": [
+                "TransitionResult"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channelidentifiers_to_channels",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pseudo_random_generator",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sub_iteration",
+            "type": [
+                "str",
+                "list"
+            ]
+        }
+    ],
+    "handle_onchain_secretreveal@global": [
+        {
+            "category": "arg",
+            "name": "payment_state",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretReveal",
+                "raiden.transfer.state_change.ContractReceiveSecretReveal"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretReveal",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretRequest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "channelidentifiers_to_channels",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pseudo_random_generator",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_number",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretReveal",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initiator_state",
+            "type": [
+                "raiden.transfer.state.NettingChannelEndState",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payment_state",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretReveal",
+                "raiden.transfer.state_change.ContractReceiveSecretReveal"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_onchain_secretreveal",
+            "type": [
+                "TransitionResult"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channelidentifiers_to_channels",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pseudo_random_generator",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sub_iteration",
+            "type": [
+                "str",
+                "list"
+            ]
+        }
+    ],
+    "handle_secretrequest@global": [
+        {
+            "category": "arg",
+            "name": "payment_state",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretRequest",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretReveal"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretRequest",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretReveal"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "channelidentifiers_to_channels",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pseudo_random_generator",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_number",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretRequest",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretReveal"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initiator_state",
+            "type": [
+                "raiden.transfer.state.NettingChannelEndState",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payment_state",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretRequest",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretReveal"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_secretrequest",
+            "type": [
+                "TransitionResult"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channelidentifiers_to_channels",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pseudo_random_generator",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sub_iteration",
+            "type": [
+                "str",
+                "list"
+            ]
+        }
+    ],
+    "handle_transferreroute@global": [
+        {
+            "category": "arg",
+            "name": "payment_state",
+            "type": [
+                "random.Random",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.utils.Address",
+                "random.Random",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "channelidentifiers_to_channels",
+            "type": [
+                "raiden.utils.NodeNetworkStateMap",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "addresses_to_channel",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.transfer.mediated_transfer.state.TransferDescriptionWithSecretState",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pseudo_random_generator",
+            "type": [
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_number",
+            "type": [
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payment_state",
+            "type": [
+                "random.Random",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channelidentifiers_to_channels",
+            "type": [
+                "raiden.utils.NodeNetworkStateMap",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_transferreroute",
+            "type": [
+                "TransitionResult"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.utils.Address",
+                "random.Random",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_valid_lock",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "addresses_to_channel",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.transfer.mediated_transfer.state.TransferDescriptionWithSecretState",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transfer_description",
+            "type": [
+                "TransferDescriptionWithSecretState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pseudo_random_generator",
+            "type": [
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sub_iteration_",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "state_transition@global": [
+        {
+            "category": "arg",
+            "name": "payment_state",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "random.Random",
+                "raiden.utils.NodeNetworkStateMap"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.utils.NodeNetworkStateMap",
+                "raiden.utils.InitiatorAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "channelidentifiers_to_channels",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "random.Random",
+                "raiden.utils.NodeNetworkStateMap"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "addresses_to_channel",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "random.Random",
+                "raiden.utils.NodeNetworkStateMap"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pseudo_random_generator",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "random.Random",
+                "raiden.utils.NodeNetworkStateMap"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_number",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "random.Random",
+                "raiden.utils.NodeNetworkStateMap"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.utils.NodeNetworkStateMap",
+                "raiden.utils.InitiatorAddress",
+                "Block",
+                "ActionInitInitiator",
+                "ReceiveTransferCancelRoute",
+                "ActionTransferReroute",
+                "ReceiveSecretRequest",
+                "ActionCancelPayment",
+                "ReceiveSecretReveal",
+                "ReceiveLockExpired",
+                "ContractReceiveSecretReveal"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payment_state",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "random.Random",
+                "raiden.utils.NodeNetworkStateMap"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channelidentifiers_to_channels",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "random.Random",
+                "raiden.utils.NodeNetworkStateMap"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pseudo_random_generator",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "random.Random",
+                "raiden.utils.NodeNetworkStateMap"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "random.Random",
+                "raiden.utils.NodeNetworkStateMap"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iteration",
+            "type": [
+                "raiden.transfer.architecture.TransitionResult",
+                "int",
+                "TransitionResult"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "addresses_to_channel",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "random.Random",
+                "raiden.utils.NodeNetworkStateMap"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "state_transition",
+            "type": [
+                "bool",
+                "list[bool]"
+            ]
+        }
+    ],
+    "subdispatch_to_all_initiatortransfer@global": [
+        {
+            "category": "arg",
+            "name": "payment_state",
+            "type": [
+                "random.Random",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "channelidentifiers_to_channels",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pseudo_random_generator",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_number",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payment_state",
+            "type": [
+                "random.Random",
+                "raiden.transfer.mediated_transfer.state.MediatorTransferState",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channelidentifiers_to_channels",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pseudo_random_generator",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "random.Random",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "subdispatch_to_all_initiatortransfer",
+            "type": [
+                "TransitionResult"
+            ]
+        }
+    ],
+    "subdispatch_to_initiatortransfer@global": [
+        {
+            "category": "arg",
+            "name": "payment_state",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.architecture.StateChange",
+                "random.Random"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "initiator_state",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.mediated_transfer.state.InitiatorTransferState",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.state.NettingChannelState",
+                "random.Random"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "channelidentifiers_to_channels",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "raiden.transfer.mediated_transfer.state.InitiatorTransferState",
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pseudo_random_generator",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.state.NettingChannelState",
+                "random.Random"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_number",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.state.NettingChannelState",
+                "random.Random"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initiator_state",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.mediated_transfer.state.InitiatorTransferState",
+                "raiden.transfer.architecture.StateChange"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channelidentifiers_to_channels",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "raiden.transfer.mediated_transfer.state.InitiatorTransferState",
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "subdispatch_to_initiatortransfer",
+            "type": [
+                "TransitionResult"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_change",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.state.NettingChannelState",
+                "random.Random"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pseudo_random_generator",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.state.NettingChannelState",
+                "random.Random"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.transfer.state.NettingChannelState",
+                "random.Random"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sub_iteration_",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "transfer_exists@global": [
+        {
+            "category": "arg",
+            "name": "payment_state",
+            "type": [
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.network.proxies.payment_channel.PaymentChannel"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "secrethash",
+            "type": [
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.network.proxies.payment_channel.PaymentChannel"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secrethash",
+            "type": [
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.network.proxies.payment_channel.PaymentChannel"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payment_state",
+            "type": [
+                "raiden.utils.SecretHash",
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.network.proxies.payment_channel.PaymentChannel"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "transfer_exists",
+            "type": [
+                "bool"
+            ]
+        }
+    ]
+}

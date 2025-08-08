@@ -1,0 +1,500 @@
+{
+    "__init__@ServiceRegistry": [
+        {
+            "category": "arg",
+            "name": "jsonrpc_client",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.BlockIdentifier",
+                "raiden.network.rpc.clienJSONRPCClient"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "service_registry_address",
+            "type": [
+                "raiden.utils.MonitoringServiceAddress",
+                "raiden.utils.OneToNAddress",
+                "raiden.network.rpc.clienJSONRPCClient"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "contract_manager",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_identifier",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.BlockIdentifier",
+                "raiden.network.rpc.clienJSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "service_registry_address",
+            "type": [
+                "raiden.utils.MonitoringServiceAddress",
+                "raiden.utils.OneToNAddress",
+                "raiden.network.rpc.clienJSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contract_manager",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "jsonrpc_client",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.BlockIdentifier",
+                "raiden.network.rpc.clienJSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_identifier",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.BlockIdentifier",
+                "raiden.network.rpc.clienJSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proxy",
+            "type": [
+                "web3.contracContract",
+                "tuple",
+                "raiden.utils.Any"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "raiden.utils.MonitoringServiceAddress",
+                "raiden.utils.OneToNAddress",
+                "raiden.network.rpc.clienJSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.BlockIdentifier",
+                "raiden.network.rpc.clienJSONRPCClient"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "current_price@ServiceRegistry": [
+        {
+            "category": "arg",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "current_price",
+            "type": [
+                "int",
+                "str"
+            ]
+        }
+    ],
+    "deposit@ServiceRegistry": [
+        {
+            "category": "arg",
+            "name": "block_identifier",
+            "type": [
+                "int",
+                "raiden.utils.BlockNumber",
+                "raiden.storage.wal.WriteAheadLog"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "limit_amount",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "int",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_identifier",
+            "type": [
+                "int",
+                "raiden.utils.BlockNumber",
+                "raiden.storage.wal.WriteAheadLog"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "extra_log_details",
+            "type": [
+                "dict[typing.Text, typing.Union[int,raiden.utils.BlockNumber,raiden.storage.wal.WriteAheadLog]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "limit_amount",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "int",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "estimated_transaction",
+            "type": [
+                "list",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.ChannelMap",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transaction_sent",
+            "type": [
+                "set",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transaction_mined",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "deposit",
+            "type": []
+        }
+    ],
+    "ever_made_deposits@ServiceRegistry": [
+        {
+            "category": "arg",
+            "name": "block_identifier",
+            "type": [
+                "int",
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.BlockIdentifier"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "index",
+            "type": [
+                "int",
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.BlockIdentifier"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_identifier",
+            "type": [
+                "int",
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.BlockIdentifier"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ret",
+            "type": [
+                "Address"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "ever_made_deposits",
+            "type": [
+                "Address",
+                "None"
+            ]
+        }
+    ],
+    "ever_made_deposits_len@ServiceRegistry": [
+        {
+            "category": "arg",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "int",
+                "tuple[str]",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "ever_made_deposits_len",
+            "type": [
+                "int",
+                "tuple[str]",
+                "dict"
+            ]
+        }
+    ],
+    "get_service_url@ServiceRegistry": [
+        {
+            "category": "arg",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.Address",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "service_address",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.Address",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.Address",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "dict[str, typing.Any]",
+                "list[dict[str, typing.Any]]",
+                "raiden.utils.Any"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_service_url",
+            "type": [
+                "None",
+                "dict[str, typing.Any]",
+                "list[dict[str, typing.Any]]",
+                "raiden.utils.Any"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "str",
+                "list"
+            ]
+        }
+    ],
+    "has_valid_registration@ServiceRegistry": [
+        {
+            "category": "arg",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "service_address",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "dict[str, typing.Any]",
+                "raiden.utils.Any",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "has_valid_registration",
+            "type": [
+                "dict[str, typing.Any]",
+                "raiden.utils.Any",
+                "str",
+                "None"
+            ]
+        }
+    ],
+    "set_url@ServiceRegistry": [
+        {
+            "category": "arg",
+            "name": "url",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parsed_url",
+            "type": [
+                "urllib.parse.ParseResult",
+                "urllib.parse.SplitResult"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "extra_log_details",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "estimated_transaction",
+            "type": [
+                "raiden.utils.Signature",
+                "raiden.utils.ChannelMap",
+                "list",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transaction_sent",
+            "type": [
+                "set",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transaction_mined",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_url",
+            "type": []
+        }
+    ],
+    "token_address@ServiceRegistry": [
+        {
+            "category": "arg",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "token_address",
+            "type": [
+                "TokenAddress"
+            ]
+        }
+    ]
+}

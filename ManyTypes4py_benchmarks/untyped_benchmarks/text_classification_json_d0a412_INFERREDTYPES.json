@@ -1,0 +1,413 @@
+{
+    "__init__@TextClassificationJsonReader": [
+        {
+            "category": "arg",
+            "name": "token_indexers",
+            "type": [
+                "None",
+                "dict[str, allennlp.data.token_indexers.TokenIndexer]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tokenizer",
+            "type": [
+                "None",
+                "allennlp.data.tokenizers.Tokenizer",
+                "allennlp.data.tokenizers.Token.izer"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "segment_sentences",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_sequence_length",
+            "type": [
+                "None",
+                "int",
+                "dict[str, int]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "skip_label_indexing",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "text_key",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "label_key",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "tokenizer",
+            "type": [
+                "None",
+                "allennlp.data.tokenizers.Tokenizer",
+                "allennlp.data.tokenizers.Token.izer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_tokenizer",
+            "type": [
+                "None",
+                "allennlp.data.tokenizers.Tokenizer",
+                "allennlp.data.tokenizers.Token.izer",
+                "SpacyTokenizer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "segment_sentences",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_segment_sentences",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_sequence_length",
+            "type": [
+                "None",
+                "int",
+                "dict[str, int]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_max_sequence_length",
+            "type": [
+                "None",
+                "int",
+                "dict[str, int]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "skip_label_indexing",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_skip_label_indexing",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_indexers",
+            "type": [
+                "None",
+                "dict[str, allennlp.data.token_indexers.TokenIndexer]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_token_indexers",
+            "type": [
+                "None",
+                "dict[str, allennlp.data.token_indexers.TokenIndexer]",
+                "dict[typing.Text, SingleIdTokenIndexer]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "text_key",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_text_key",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "label_key",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_label_key",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_sentence_segmenter",
+            "type": [
+                "SpacySentenceSplitter"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_read@TextClassificationJsonReader": [
+        {
+            "category": "arg",
+            "name": "file_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_file",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "label",
+            "type": [
+                "int",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_read",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "_truncate@TextClassificationJsonReader": [
+        {
+            "category": "arg",
+            "name": "tokens",
+            "type": [
+                "list[allennlp.data.tokenizers.token.Token]",
+                "list[list[str]]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "list[allennlp.data.tokenizers.token.Token]",
+                "list[list[str]]",
+                "bytes",
+                "allennlp.data.tokenizers.token.Token",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_truncate",
+            "type": [
+                "list[allennlp.data.tokenizers.token.Token]",
+                "list[list[str]]",
+                "bytes",
+                "allennlp.data.tokenizers.token.Token",
+                "list[str]"
+            ]
+        }
+    ],
+    "apply_token_indexers@TextClassificationJsonReader": [
+        {
+            "category": "arg",
+            "name": "instance",
+            "type": [
+                "allennlp.data.instance.Instance"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instance",
+            "type": [
+                "allennlp.data.instance.Instance"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_token_indexers",
+            "type": [
+                "list[tuple[int]]",
+                "allennlp.data.token_indexers.pretrained_transformer_indexer.PretrainedTransformerIndexer",
+                "allennlp.data.token_indexers.pretrained_transformer_mismatched_indexer.PretrainedTransformerMismatchedIndexer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "text_field_",
+            "type": [
+                "list[tuple[int]]",
+                "allennlp.data.token_indexers.pretrained_transformer_indexer.PretrainedTransformerIndexer",
+                "allennlp.data.token_indexers.pretrained_transformer_mismatched_indexer.PretrainedTransformerMismatchedIndexer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "apply_token_indexers",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "text_to_instance@TextClassificationJsonReader": [
+        {
+            "category": "arg",
+            "name": "text",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "label",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fields",
+            "type": [
+                "dict",
+                "dict[typing.Text, ListField]",
+                "dict[typing.Text, TextField]",
+                "dict[typing.Text, typing.Union[TextField,LabelField]]",
+                "dict[typing.Text, typing.Union[ListField,LabelField]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentences",
+            "type": [
+                "list",
+                "list[TextField]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "text",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence_splits",
+            "type": [
+                "list[str]",
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "word_tokens",
+            "type": [
+                "str",
+                "list[str]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_max_sequence_length",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "set[int]",
+                "typing.Type",
+                "typing.Pattern"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "label",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "text_to_instance",
+            "type": [
+                "Instance"
+            ]
+        }
+    ]
+}

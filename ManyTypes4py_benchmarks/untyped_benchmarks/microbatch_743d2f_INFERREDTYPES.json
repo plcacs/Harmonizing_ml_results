@@ -1,0 +1,487 @@
+{
+    "__init__@MicrobatchBuilder": [
+        {
+            "category": "arg",
+            "name": "model",
+            "type": [
+                "dict",
+                "datetime.date",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "is_incremental",
+            "type": [
+                "str",
+                "None",
+                "list",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "event_time_start",
+            "type": [
+                "bool",
+                "datetime.datetime",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "event_time_end",
+            "type": [
+                "bool",
+                "datetime.datetime",
+                "datetime.date"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "default_end_time",
+            "type": [
+                "None",
+                "datetime.datetime",
+                "float",
+                "datetime.date"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "dict",
+                "datetime.date",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_incremental",
+            "type": [
+                "str",
+                "None",
+                "list",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_time_start",
+            "type": [
+                "bool",
+                "datetime.datetime",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_time_end",
+            "type": [
+                "bool",
+                "datetime.datetime",
+                "datetime.date",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_end_time",
+            "type": [
+                "None",
+                "datetime.datetime",
+                "float",
+                "datetime.date"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "batch_id@MicrobatchBuilder": [
+        {
+            "category": "arg",
+            "name": "start_time",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batch_size",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "batch_id",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "build_batches@MicrobatchBuilder": [
+        {
+            "category": "arg",
+            "name": "start",
+            "type": [
+                "int",
+                "datetime.datetime.datetime",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "end",
+            "type": [
+                "int",
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "start",
+            "type": [
+                "int",
+                "datetime.datetime.datetime",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "curr_batch_start",
+            "type": [
+                "int",
+                "datetime.datetime.datetime",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batches",
+            "type": [
+                "list[tuple[typing.Union[int,datetime.datetime.datetime,str]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "end",
+            "type": [
+                "int",
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "build_batches",
+            "type": [
+                "list[tuple[typing.Union[int,datetime.datetime.datetime,str]]]"
+            ]
+        }
+    ],
+    "build_end_time@MicrobatchBuilder": [
+        {
+            "category": "return",
+            "name": "build_end_time",
+            "type": []
+        }
+    ],
+    "build_jinja_context_for_batch@MicrobatchBuilder": [
+        {
+            "category": "arg",
+            "name": "incremental_batch",
+            "type": [
+                "list[bytes]",
+                "types.Preprocessing"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "jinja_context",
+            "type": [
+                "dict",
+                "dict[typing.Text, ]",
+                "dict[typing.Text, typing.Callable]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "incremental_batch",
+            "type": [
+                "list[bytes]",
+                "types.Preprocessing"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "build_jinja_context_for_batch",
+            "type": [
+                "dict[typing.Text, typing.Callable]"
+            ]
+        }
+    ],
+    "build_start_time@MicrobatchBuilder": [
+        {
+            "category": "arg",
+            "name": "checkpoint",
+            "type": [
+                "typing.Iterable",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "build_start_time",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "checkpoint",
+            "type": [
+                "typing.Iterable",
+                "int",
+                "str"
+            ]
+        }
+    ],
+    "ceiling_timestamp@MicrobatchBuilder": [
+        {
+            "category": "arg",
+            "name": "timestamp",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batch_size",
+            "type": [
+                "int",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timestamp",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ceiling",
+            "type": [
+                "bytes",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "truncated",
+            "type": [
+                "str",
+                "bytes",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "ceiling_timestamp",
+            "type": [
+                "bytes",
+                "str",
+                "int"
+            ]
+        }
+    ],
+    "format_batch_start@MicrobatchBuilder": [
+        {
+            "category": "arg",
+            "name": "batch_start",
+            "type": [
+                "int",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batch_size",
+            "type": [
+                "int",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_start",
+            "type": [
+                "int",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "format_batch_start",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "global@global": [],
+    "offset_timestamp@MicrobatchBuilder": [
+        {
+            "category": "arg",
+            "name": "timestamp",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batch_size",
+            "type": [
+                "int",
+                "None",
+                "fklearn.types.ListLogListType"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "offset",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timestamp",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int",
+                "None",
+                "fklearn.types.ListLogListType"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "truncated",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "offset",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "offset_timestamp",
+            "type": [
+                "datetime.timedelta",
+                "float",
+                "str",
+                "bool",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "offset_timestamp",
+            "type": [
+                "str",
+                "datetime.timedelta",
+                "float",
+                "bool"
+            ]
+        }
+    ],
+    "truncate_timestamp@MicrobatchBuilder": [
+        {
+            "category": "arg",
+            "name": "timestamp",
+            "type": [
+                "int",
+                "datetime.datetime"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batch_size",
+            "type": [
+                "int",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timestamp",
+            "type": [
+                "int",
+                "datetime.datetime"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "truncate_timestamp",
+            "type": []
+        }
+    ]
+}

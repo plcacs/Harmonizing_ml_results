@@ -1,0 +1,2675 @@
+{
+    "__init__@BadTranslatorInput": [
+        {
+            "category": "arg",
+            "name": "sentence_id",
+            "type": [
+                "str",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tokens",
+            "type": [
+                "str",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence_id",
+            "type": [
+                "str",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "str",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@Translator": [
+        {
+            "category": "arg",
+            "name": "device",
+            "type": [
+                "int",
+                "typing.Mapping",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ensemble_mode",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "scorer",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batch_size",
+            "type": [
+                "int",
+                "float",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "beam_search_stop",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "models",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "source_vocabs",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_vocabs",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "beam_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "nbest_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "restrict_lexicon",
+            "type": [
+                "None",
+                "bool",
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "strip_unknown_words",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sample",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "output_scores",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "constant_length_ratio",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "knn_lambda",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "max_output_length_num_stds",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "max_input_length",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_output_length",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prevent_unk",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "greedy",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "skip_nvs",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "nvs_thresh",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "int",
+                "typing.Mapping",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scorer",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_scorer",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int",
+                "float",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "beam_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "beam_search_stop",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_vocabs",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_vocabs",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vocab_targets",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "v",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vocab_targets_inv",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "restrict_lexicon",
+            "type": [
+                "None",
+                "bool",
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stop_ids",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "strip_ids",
+            "type": [
+                "str",
+                "typing.Pattern"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "strip_unknown_words",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_input_length",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_output_length",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nbest_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output_scores",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sample",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ensemble_mode",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "constant_length_ratio",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prevent_unk",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "greedy",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "skip_nvs",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nvs_thresh",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_search",
+            "type": [
+                "GreedySearch",
+                "str",
+                "typing.Callable[None, typing.Any]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_concat_translations",
+            "type": [
+                "list",
+                "int",
+                "list[list[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__len__@TranslatorInput": [
+        {
+            "category": "return",
+            "name": "__len__",
+            "type": []
+        }
+    ],
+    "__str__@TranslatorInput": [
+        {
+            "category": "return",
+            "name": "__str__",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "_assemble_translation@Translator": [
+        {
+            "category": "arg",
+            "name": "sequence",
+            "type": [
+                "torch.Tensor",
+                "numpy.ndarray",
+                "torch.LongTensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "length",
+            "type": [
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "seq_scores",
+            "type": [
+                "numpy.ndarray",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "estimated_reference_length",
+            "type": [
+                "numpy.ndarray",
+                "tuple[float]",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "unshift_target_factors",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unshift_target_factors",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sequence",
+            "type": [
+                "torch.Tensor",
+                "numpy.ndarray",
+                "torch.LongTensor",
+                "list[int]",
+                "list",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length",
+            "type": [
+                "numpy.ndarray",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "seq_scores",
+            "type": [
+                "numpy.ndarray",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scores",
+            "type": [
+                "int",
+                "str",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "estimated_reference_length",
+            "type": [
+                "numpy.ndarray",
+                "tuple[float]",
+                "int",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_assemble_translation",
+            "type": [
+                "Translation"
+            ]
+        }
+    ],
+    "_bad_input@global": [
+        {
+            "category": "arg",
+            "name": "sentence_id",
+            "type": [
+                "str",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "reason",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence_id",
+            "type": [
+                "str",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reason",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_bad_input",
+            "type": [
+                "BadTranslatorInput"
+            ]
+        }
+    ],
+    "_concat_nbest_translations@global": [
+        {
+            "category": "arg",
+            "name": "translations",
+            "type": [
+                "list[int]",
+                "torch.LongTensor",
+                "list[list[str]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stop_ids",
+            "type": [
+                "beam_search.CandidateScorer",
+                "set[int]",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "scorer",
+            "type": [
+                "beam_search.CandidateScorer",
+                "set[int]",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translations",
+            "type": [
+                "list[int]",
+                "torch.LongTensor",
+                "list[list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translation",
+            "type": [
+                "int",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expanded_translations",
+            "type": [
+                "typing.Generator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "concatenated_translations",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stop_ids",
+            "type": [
+                "beam_search.CandidateScorer",
+                "set[int]",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scorer",
+            "type": [
+                "beam_search.CandidateScorer",
+                "set[int]",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_concat_nbest_translations",
+            "type": [
+                "numpy.ndarray",
+                "torch.Tensor"
+            ]
+        }
+    ],
+    "_concat_translations@global": [
+        {
+            "category": "arg",
+            "name": "translations",
+            "type": [
+                "beam_search.CandidateScorer",
+                "tuple[torch.Tensor]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stop_ids",
+            "type": [
+                "set[int]",
+                "torch.Tensor",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "scorer",
+            "type": [
+                "beam_search.CandidateScorer",
+                "set[int]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translations",
+            "type": [
+                "beam_search.CandidateScorer",
+                "tuple[torch.Tensor]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_concat_translations",
+            "type": [
+                "torch.Tensor",
+                "Translation"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_ids",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "estimated_reference_length",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scores",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "idx",
+            "type": [
+                "int",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translation",
+            "type": [
+                "int",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translation_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stop_ids",
+            "type": [
+                "set[int]",
+                "torch.Tensor",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scorer",
+            "type": [
+                "beam_search.CandidateScorer",
+                "set[int]",
+                "list[int]"
+            ]
+        }
+    ],
+    "_expand_nbest_translation@global": [
+        {
+            "category": "arg",
+            "name": "translation",
+            "type": [
+                "list",
+                "numpy.ndarray",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nbest_list",
+            "type": [
+                "list",
+                "list[Translation]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translation",
+            "type": [
+                "list",
+                "numpy.ndarray",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_expand_nbest_translation",
+            "type": [
+                "list[Translation]"
+            ]
+        }
+    ],
+    "_get_best_translations@Translator": [
+        {
+            "category": "arg",
+            "name": "result",
+            "type": [
+                "dict[str, float]",
+                "numpy.ndarray",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "best_hyp_indices",
+            "type": [
+                "int",
+                "list",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "best_word_indices",
+            "type": [
+                "list",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result_accumulated_scores_cpu",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "accumulated_scores",
+            "type": [
+                "int",
+                "list[float]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lengths",
+            "type": [
+                "int",
+                "list[int]",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "estimated_reference_lengths",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "dict[str, float]",
+                "numpy.ndarray",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nbest_translations",
+            "type": [
+                "list",
+                "list[list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reference_lengths",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reduced_translations",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_best_translations",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "_get_best_word_indices_for_kth_hypotheses@Translator": [
+        {
+            "category": "arg",
+            "name": "ks",
+            "type": [
+                "int",
+                "list[list]",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "all_hyp_indices",
+            "type": [
+                "numpy.ndarray",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ks",
+            "type": [
+                "int",
+                "list[list]",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "all_hyp_indices",
+            "type": [
+                "numpy.ndarray",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pointer",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_best_word_indices_for_kth_hypotheses",
+            "type": []
+        }
+    ],
+    "_get_inference_input@Translator": [
+        {
+            "category": "arg",
+            "name": "trans_inputs",
+            "type": [
+                "str",
+                "list[int]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trans_inputs",
+            "type": [
+                "str",
+                "list[int]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inp",
+            "type": [
+                "typing.Text",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_length",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_prefix_np",
+            "type": [
+                "float",
+                "range",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_prefix_factors_np",
+            "type": [
+                "float",
+                "int",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "restrict_lexicon",
+            "type": [
+                "None",
+                "set[str]",
+                "str",
+                "list[str]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_output_lengths",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_inference_input",
+            "type": []
+        }
+    ],
+    "_get_translation_tokens_and_factors@Translator": [
+        {
+            "category": "arg",
+            "name": "target_ids",
+            "type": [
+                "str",
+                "domain.constants.LinkSourceEnum"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "all_target_tokens",
+            "type": [
+                "list",
+                "list[list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "all_target_strings",
+            "type": [
+                "list",
+                "list[typing.Union[str,tuple[str]]]",
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_ids",
+            "type": [
+                "str",
+                "domain.constants.LinkSourceEnum"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "typing.Text",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pruned_target_ids",
+            "type": [
+                "typing.Generator[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_tokens",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_string",
+            "type": [
+                "str",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factor_tokens",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translation",
+            "type": [
+                "str",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factor_translations",
+            "type": [
+                "str",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_translation_tokens_and_factors",
+            "type": [
+                "tuple[typing.Union[list,str,tuple[str]]]"
+            ]
+        }
+    ],
+    "_make_result@Translator": [
+        {
+            "category": "arg",
+            "name": "trans_input",
+            "type": [
+                "list[int]",
+                "\"ks.Series\"",
+                "allennlp.models.model.Model"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "translation",
+            "type": [
+                "list[list[str]]",
+                "typing.Sequence[T]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translation",
+            "type": [
+                "list[list[str]]",
+                "typing.Sequence[T]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translation_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nbest_translations",
+            "type": [
+                "None",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nbest_tokens",
+            "type": [
+                "None",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nbest_scores",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nbest_factor_translations",
+            "type": [
+                "None",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nbest_factor_tokens",
+            "type": [
+                "None",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trans_input",
+            "type": [
+                "list[int]",
+                "\"ks.Series\"",
+                "allennlp.models.model.Model"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_make_result",
+            "type": [
+                "TranslatorOutput"
+            ]
+        }
+    ],
+    "_reduce_nbest_translations@global": [
+        {
+            "category": "arg",
+            "name": "nbest_translations_list",
+            "type": [
+                "numpy.array",
+                "list",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nbest_translations_list",
+            "type": [
+                "numpy.array",
+                "list",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "best_translation",
+            "type": [
+                "int",
+                "dict[str, typing.Any]",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sequences",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scores",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nbest_translations",
+            "type": [
+                "NBestTranslations"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_reduce_nbest_translations",
+            "type": [
+                "Translation"
+            ]
+        }
+    ],
+    "_remove_target_prefix_tokens@global": [
+        {
+            "category": "arg",
+            "name": "target_ids",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_target_prefix_tokens",
+            "type": [
+                "int",
+                "tuple",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_ids",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_target_prefix_tokens",
+            "type": [
+                "int",
+                "tuple",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "starting_idx",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_remove_target_prefix_tokens",
+            "type": [
+                "str",
+                "None"
+            ]
+        }
+    ],
+    "_translate_batch@Translator": [
+        {
+            "category": "arg",
+            "name": "translator_inputs",
+            "type": [
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translator_inputs",
+            "type": [
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_translate_batch",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_translate_np@Translator": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "source_length",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "restrict_lexicon",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_output_lengths",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_prefix",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_prefix_factors",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_length",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "restrict_lexicon",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_output_lengths",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_prefix",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_prefix_factors",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_translate_np",
+            "type": [
+                "str",
+                "None"
+            ]
+        }
+    ],
+    "_unshift_target_factors@global": [
+        {
+            "category": "arg",
+            "name": "sequence",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "fill_last_with",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "sequence",
+            "type": [
+                "list[tuple]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_unshift_target_factors",
+            "type": [
+                "list[tuple]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_factors_to_shift",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_fillvalue",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "chunks@TranslatorInput": [
+        {
+            "category": "arg",
+            "name": "chunk_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chunk_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "constraints",
+            "type": [
+                "list",
+                "list[list[int]]",
+                "list[int]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factors",
+            "type": [
+                "int",
+                "float",
+                "typing.Sequence[int]",
+                "None",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_prefix_tokens",
+            "type": [
+                "str",
+                "list[str]",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_prefix_factors",
+            "type": [
+                "int",
+                "float",
+                "list[int]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pass_through_dict",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "dict[tuple[str], typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "chunks",
+            "type": [
+                "typing.Generator[TranslatorInput]"
+            ]
+        }
+    ],
+    "empty_translation@global": [
+        {
+            "category": "arg",
+            "name": "add_nbest",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "add_nbest",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "empty_translation",
+            "type": [
+                "Translation"
+            ]
+        }
+    ],
+    "eop_id@Translator": [
+        {
+            "category": "return",
+            "name": "eop_id",
+            "type": []
+        }
+    ],
+    "get_max_input_output_length@global": [
+        {
+            "category": "arg",
+            "name": "supported_max_seq_len_source",
+            "type": [
+                "int",
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "supported_max_seq_len_target",
+            "type": [
+                "int",
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "length_ratio_mean",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "length_ratio_std",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_stds",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "forced_max_input_len",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "forced_max_output_len",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_stds",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factor",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length_ratio_mean",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length_ratio_std",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "forced_max_input_len",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "supported_max_seq_len_source",
+            "type": [
+                "int",
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_input_len",
+            "type": [
+                "int",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_max_input_output_length",
+            "type": [
+                "tuple[typing.Union[int,None,float,int,float]]"
+            ]
+        }
+    ],
+    "get_max_output_length@global": [
+        {
+            "category": "arg",
+            "name": "input_length",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "forced_max_output_len",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_max_output_length",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "get_source_prefix_tokens@TranslatorInput": [
+        {
+            "category": "local",
+            "name": "source_prefix_tokens",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_source_prefix_tokens",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "get_target_prefix_factors@TranslatorInput": [
+        {
+            "category": "local",
+            "name": "target_prefix_factors",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_target_prefix_factors",
+            "type": [
+                "list[list]"
+            ]
+        }
+    ],
+    "get_target_prefix_tokens@TranslatorInput": [
+        {
+            "category": "local",
+            "name": "target_prefix_tokens",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_target_prefix_tokens",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Tokens",
+            "type": [
+                "str",
+                "float",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TokenIds",
+            "type": [
+                "typing.Type",
+                "raiden.utils.TokenAddress",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SentenceId",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        }
+    ],
+    "json@TranslatorOutput": [
+        {
+            "category": "local",
+            "name": "pass_through_dict",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_d",
+            "type": [
+                "dict",
+                "dict[typing.Text, ]",
+                "dict[typing.Text, list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factor_translations",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factor_scores",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "json",
+            "type": [
+                "dict[typing.Text, list]"
+            ]
+        }
+    ],
+    "make_input_from_dict@global": [
+        {
+            "category": "arg",
+            "name": "sentence_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "input_dict",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, float]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "translator",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "input_dict",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "str",
+                "float",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factors",
+            "type": [
+                "float",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_prefix_tokens",
+            "type": [
+                "float",
+                "str",
+                "list[str]",
+                "tuple[typing.Literal]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_prefix_factors",
+            "type": [
+                "float",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "make_input_from_dict",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, typing.Any]",
+                "list[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_prefix_tokens",
+            "type": [
+                "list[str]",
+                "str",
+                "dict[str, typing.Type]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_prefix_factors",
+            "type": [
+                "float",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translator",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "restrict_lexicon",
+            "type": [
+                "None",
+                "dict[str, typing.Union[str,None]]",
+                "dict[str, str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "avoid_list",
+            "type": [
+                "list",
+                "list[int]",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "constraints",
+            "type": [
+                "list",
+                "list[frozenset]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        }
+    ],
+    "make_input_from_factored_string@global": [
+        {
+            "category": "arg",
+            "name": "sentence_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "factored_string",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "translator",
+            "type": [
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "delimiter",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "translator",
+            "type": [
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factored_string",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "make_input_from_factored_string",
+            "type": [
+                "bytes",
+                "str",
+                "typing.IO",
+                "TranslatorInput"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factors",
+            "type": [
+                "list[list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "i",
+            "type": [
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factor",
+            "type": [
+                "int",
+                "list"
+            ]
+        }
+    ],
+    "make_input_from_json_string@global": [
+        {
+            "category": "arg",
+            "name": "sentence_id",
+            "type": [
+                "str",
+                "typing.Iterable[str]",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "json_string",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "translator",
+            "type": [
+                "str",
+                "dict[int, tuple[str]]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "json_string",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence_id",
+            "type": [
+                "str",
+                "typing.Iterable[str]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translator",
+            "type": [
+                "str",
+                "dict[int, tuple[str]]",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "make_input_from_json_string",
+            "type": [
+                "numpy.ndarray",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "make_input_from_multiple_strings@global": [
+        {
+            "category": "arg",
+            "name": "sentence_id",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "strings",
+            "type": [
+                "str",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "strings",
+            "type": [
+                "str",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence_id",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "make_input_from_multiple_strings",
+            "type": [
+                "TranslatorInput",
+                "str",
+                "list[int]",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factor",
+            "type": [
+                "typing.Text",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factors",
+            "type": [
+                "list[list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "make_input_from_plain_string@global": [
+        {
+            "category": "arg",
+            "name": "sentence_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "string",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "string",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "make_input_from_plain_string",
+            "type": [
+                "TranslatorInput"
+            ]
+        }
+    ],
+    "max_batch_size@Translator": [
+        {
+            "category": "return",
+            "name": "max_batch_size",
+            "type": []
+        }
+    ],
+    "max_input_length@Translator": [
+        {
+            "category": "return",
+            "name": "max_input_length",
+            "type": []
+        }
+    ],
+    "models_max_input_output_length@global": [
+        {
+            "category": "arg",
+            "name": "models",
+            "type": [
+                "torch.utils.data.DataLoader"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_stds",
+            "type": [
+                "int",
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "forced_max_input_length",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "forced_max_output_length",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "models",
+            "type": [
+                "torch.utils.data.DataLoader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_mean",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_std",
+            "type": [
+                "int",
+                "dict[str, float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "supported_max_seq_len_source",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "supported_max_seq_len_target",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_stds",
+            "type": [
+                "int",
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "forced_max_input_length",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "forced_max_output_length",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "models_max_input_output_length",
+            "type": [
+                "int",
+                "float"
+            ]
+        }
+    ],
+    "num_factors@TranslatorInput": [
+        {
+            "category": "return",
+            "name": "num_factors",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "num_source_factors@Translator": [
+        {
+            "category": "return",
+            "name": "num_source_factors",
+            "type": []
+        }
+    ],
+    "num_source_prefix_tokens@TranslatorInput": [
+        {
+            "category": "return",
+            "name": "num_source_prefix_tokens",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "num_target_factors@Translator": [
+        {
+            "category": "return",
+            "name": "num_target_factors",
+            "type": []
+        }
+    ],
+    "num_target_prefix_factors@TranslatorInput": [
+        {
+            "category": "return",
+            "name": "num_target_prefix_factors",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "num_target_prefix_tokens@TranslatorInput": [
+        {
+            "category": "return",
+            "name": "num_target_prefix_tokens",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "translate@Translator": [
+        {
+            "category": "arg",
+            "name": "trans_inputs",
+            "type": [
+                "str",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fill_up_batches",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trans_inputs",
+            "type": [
+                "str",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_inputs",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translated_chunks",
+            "type": [
+                "list",
+                "list[IndexedTranslation]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "input_chunks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trans_input_idx",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trans_input",
+            "type": [
+                "int",
+                "str",
+                "BadTranslatorInput"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_bad_empty",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fill_up_batches",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_batches",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "results",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "translate",
+            "type": []
+        }
+    ],
+    "with_eos@TranslatorInput": [
+        {
+            "category": "local",
+            "name": "factors",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "with_eos",
+            "type": [
+                "TranslatorInput"
+            ]
+        }
+    ]
+}

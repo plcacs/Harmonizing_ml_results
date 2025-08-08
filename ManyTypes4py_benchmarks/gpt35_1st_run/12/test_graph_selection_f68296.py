@@ -1,0 +1,19 @@
+from typing import List, Tuple, Set, Union
+
+def _get_graph() -> nx.DiGraph:
+    ...
+
+def _get_manifest(graph: nx.DiGraph) -> mock.MagicMock:
+    ...
+
+def id_macro(arg: Union[str, Tuple]) -> str:
+    ...
+
+def test_run_specs(include: List[str], exclude: List[str], expected: Set[str], graph: nx.DiGraph, manifest: mock.MagicMock) -> None:
+    ...
+
+def test_parse_specs(spec: str, parents: bool, parents_depth: Union[None, int], children: bool, children_depth: Union[None, int], filter_type: str, filter_value: str, childrens_parents: bool) -> None:
+    ...
+
+def test_invalid_specs(invalid: str) -> None:
+    ...

@@ -1,0 +1,474 @@
+{
+    "__init__@GraphQueue": [
+        {
+            "category": "arg",
+            "name": "graph",
+            "type": [
+                "bool",
+                "networkx.DiGraph",
+                "\"GraphLogger\"",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "manifest",
+            "type": [
+                "bool",
+                "typing.Callable",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "selected",
+            "type": [
+                "bool",
+                "T",
+                "typing.Iterable[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "preserve_edges",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "preserve_edges",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "graph",
+            "type": [
+                "bool",
+                "networkx.DiGraph",
+                "\"GraphLogger\"",
+                "None",
+                "spacegraphcats.catlas.graph.Graph",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "manifest",
+            "type": [
+                "bool",
+                "typing.Callable",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "selected",
+            "type": [
+                "bool",
+                "T",
+                "typing.Iterable[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_selected",
+            "type": [
+                "bool",
+                "T",
+                "typing.Iterable[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inner",
+            "type": [
+                "PriorityQueue"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "in_progress",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "queued",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_scores",
+            "type": [
+                "int",
+                "float",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__len__@GraphQueue": [
+        {
+            "category": "return",
+            "name": "__len__",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "_already_known@GraphQueue": [
+        {
+            "category": "arg",
+            "name": "node",
+            "type": [
+                "graph.UniqueId",
+                "docutils.nodes.Node"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node",
+            "type": [
+                "graph.UniqueId",
+                "docutils.nodes.Node"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_already_known",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_find_new_additions@GraphQueue": [
+        {
+            "category": "arg",
+            "name": "candidates",
+            "type": [
+                "list[str]",
+                "list[mypy.nodes.Expression]",
+                "list[\"Name\"]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node",
+            "type": [
+                "str",
+                "mypy.nodes.Expression",
+                "\"Name\""
+            ]
+        },
+        {
+            "category": "local",
+            "name": "candidates",
+            "type": [
+                "list[str]",
+                "list[mypy.nodes.Expression]",
+                "list[\"Name\"]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_find_new_additions",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_get_scores@GraphQueue": [
+        {
+            "category": "arg",
+            "name": "graph",
+            "type": [
+                "networkx.Graph",
+                "networkx.MultiDiGraph"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "graph",
+            "type": [
+                "networkx.Graph",
+                "networkx.MultiDiGraph"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subgraphs",
+            "type": [
+                "typing.Generator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scores",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_scores",
+            "type": [
+                "dict"
+            ]
+        }
+    ],
+    "_grouped_topological_sort@GraphQueue": [
+        {
+            "category": "arg",
+            "name": "graph",
+            "type": [
+                "graph.Graph",
+                "typing.Hashable",
+                "dict[str, set[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "graph",
+            "type": [
+                "graph.Graph",
+                "typing.Hashable",
+                "dict[str, set[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indegree_map",
+            "type": [
+                "dict",
+                "dict[, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "zero_indegree",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_grouped_topological_sort",
+            "type": [
+                "typing.Generator[list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_zero_indegree",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "_include_in_cost@GraphQueue": [
+        {
+            "category": "arg",
+            "name": "node_id",
+            "type": [
+                "str",
+                "graph.UniqueId",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node_id",
+            "type": [
+                "str",
+                "graph.UniqueId",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node",
+            "type": [
+                "yaml.nodes.Node",
+                "yaml.nodes.MappingNode"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_include_in_cost",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_mark_in_progress@GraphQueue": [
+        {
+            "category": "arg",
+            "name": "node_id",
+            "type": [
+                "int",
+                "str",
+                "graph.UniqueId"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node_id",
+            "type": [
+                "int",
+                "str",
+                "graph.UniqueId"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_mark_in_progress",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "empty@GraphQueue": [
+        {
+            "category": "return",
+            "name": "empty",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "get@GraphQueue": [
+        {
+            "category": "arg",
+            "name": "block",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "timeout",
+            "type": [
+                "None",
+                "float",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timeout",
+            "type": [
+                "None",
+                "float",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "tuple[int]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node_id",
+            "type": [
+                "int",
+                "list[int]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get",
+            "type": [
+                "str",
+                "typing.IO",
+                "bool"
+            ]
+        }
+    ],
+    "get_selected_nodes@GraphQueue": [
+        {
+            "category": "return",
+            "name": "get_selected_nodes",
+            "type": [
+                "str",
+                "docutils.nodes.document",
+                "int"
+            ]
+        }
+    ],
+    "global@global": [],
+    "join@GraphQueue": [
+        {
+            "category": "return",
+            "name": "join",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "mark_done@GraphQueue": [
+        {
+            "category": "arg",
+            "name": "node_id",
+            "type": [
+                "int",
+                "graph.UniqueId",
+                "beagle.nodes.Node"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node_id",
+            "type": [
+                "int",
+                "graph.UniqueId",
+                "beagle.nodes.Node"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "successors",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "mark_done",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "wait_until_something_was_done@GraphQueue": [
+        {
+            "category": "return",
+            "name": "wait_until_something_was_done",
+            "type": []
+        }
+    ]
+}

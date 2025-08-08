@@ -1,0 +1,432 @@
+{
+    "assign_customer@global": [
+        {
+            "category": "arg",
+            "name": "wanted",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "permission",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "wanted",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "assign_customer",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        }
+    ],
+    "global@global": [],
+    "process_action@global": [
+        {
+            "category": "arg",
+            "name": "alert",
+            "type": [
+                "str",
+                "None",
+                "alerta.models.alerAlert"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "action",
+            "type": [
+                "str",
+                "list[str]",
+                "float",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "text",
+            "type": [
+                "str",
+                "list[str]",
+                "float",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "timeout",
+            "type": [
+                "None",
+                "str",
+                "list[str]",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "post_action",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert",
+            "type": [
+                "str",
+                "None",
+                "alerta.models.alerAlert",
+                "list",
+                "koel.alerts.Alert"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "updated",
+            "type": [
+                "None",
+                "Alert",
+                "tuple[typing.Union[Alert,str,list[str],float,None,int]]",
+                "str",
+                "dict",
+                "dict[str, dict[str, str]]",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert_was_updated",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_action",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "action",
+            "type": [
+                "str",
+                "list[str]",
+                "float",
+                "None",
+                "int",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "text",
+            "type": [
+                "str",
+                "list[str]",
+                "float",
+                "None",
+                "int",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timeout",
+            "type": [
+                "None",
+                "str",
+                "list[str]",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_action",
+            "type": [
+                "tuple[typing.Union[str,None,alerta.models.alerAlert,list,koel.alerts.Alert,list[str],float,int,dict[str, typing.Any],dict[str, str]]]"
+            ]
+        }
+    ],
+    "process_alert@global": [
+        {
+            "category": "arg",
+            "name": "alert",
+            "type": [
+                "alerta.models.alerAlert",
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert",
+            "type": [
+                "alerta.models.alerAlert",
+                "dict[str, typing.Any]",
+                "dict",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "skip_plugins",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_duplicate",
+            "type": [
+                "bool",
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_correlated",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert_was_updated",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_alert",
+            "type": [
+                "alerta.models.alerAlert",
+                "list",
+                "str",
+                "dict"
+            ]
+        }
+    ],
+    "process_delete@global": [
+        {
+            "category": "arg",
+            "name": "alert",
+            "type": [
+                "alerta.models.alerAlert",
+                "typing.Mapping",
+                "salon.models.Stylist"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert",
+            "type": [
+                "alerta.models.alerAlert",
+                "typing.Mapping",
+                "salon.models.Stylist"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "delete",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_delete",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "process_note@global": [
+        {
+            "category": "arg",
+            "name": "alert",
+            "type": [
+                "str",
+                "alerta.models.alerAlert"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "text",
+            "type": [
+                "str",
+                "db.models.Cowboy"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert",
+            "type": [
+                "str",
+                "alerta.models.alerAlert",
+                "Alert",
+                "db.models.Cowboy"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "updated",
+            "type": [
+                "None",
+                "Alert",
+                "tuple[typing.Union[Alert,str,db.models.Cowboy]]",
+                "alerta.models.alerAlert",
+                "object",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert_was_updated",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "text",
+            "type": [
+                "str",
+                "db.models.Cowboy",
+                "Alert"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_note",
+            "type": [
+                "tuple[typing.Union[str,alerta.models.alerAlert,Alert,db.models.Cowboy]]"
+            ]
+        }
+    ],
+    "process_status@global": [
+        {
+            "category": "arg",
+            "name": "alert",
+            "type": [
+                "alerta.models.alerAlert",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "status",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "text",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert",
+            "type": [
+                "alerta.models.alerAlert",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "updated",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert_was_updated",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "status",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "text",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_status",
+            "type": [
+                "tuple[typing.Union[alerta.models.alerAlert,str,dict]]"
+            ]
+        }
+    ]
+}

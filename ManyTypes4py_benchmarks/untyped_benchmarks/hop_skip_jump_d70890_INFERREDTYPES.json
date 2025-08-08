@@ -1,0 +1,690 @@
+{
+    "__init__@HopSkipJumpAttack": [
+        {
+            "category": "arg",
+            "name": "init_attack",
+            "type": [
+                "None",
+                "base.MinimizationAttack",
+                "bool",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "steps",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "initial_gradient_eval_steps",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_gradient_eval_steps",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stepsize_search",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "gamma",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tensorboard",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "constraint",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "init_attack",
+            "type": [
+                "None",
+                "base.MinimizationAttack",
+                "bool",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "steps",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initial_gradient_eval_steps",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initial_num_evals",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_gradient_eval_steps",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_num_evals",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stepsize_search",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gamma",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tensorboard",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "constraint",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_binary_search@HopSkipJumpAttack": [
+        {
+            "category": "arg",
+            "name": "is_adversarial",
+            "type": [
+                "typing.Callable[eagerpy.Tensor, eagerpy.Tensor]",
+                "eagerpy.Tensor",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "originals",
+            "type": [
+                "eagerpy.Tensor",
+                "typing.Callable[eagerpy.Tensor, eagerpy.Tensor]",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "perturbed",
+            "type": [
+                "eagerpy.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "perturbed",
+            "type": [
+                "eagerpy.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "d",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "originals",
+            "type": [
+                "eagerpy.Tensor",
+                "typing.Callable[eagerpy.Tensor, eagerpy.Tensor]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "highs",
+            "type": [
+                "int",
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "thresholds",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "old_mids",
+            "type": [
+                "int",
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mids",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mids_perturbed",
+            "type": [
+                "float",
+                "tuple[tuple[typing.Literal]]",
+                "typing.Callable[None,None, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_adversarial_",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reached_numerical_precision",
+            "type": [
+                "float",
+                "set[int]",
+                "list[tuple[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "res",
+            "type": [
+                "dict",
+                "list",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_binary_search",
+            "type": [
+                "dict",
+                "list",
+                "int"
+            ]
+        }
+    ],
+    "_project@HopSkipJumpAttack": [
+        {
+            "category": "arg",
+            "name": "originals",
+            "type": [
+                "eagerpy.Tensor",
+                "float",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "perturbed",
+            "type": [
+                "eagerpy.Tensor",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "epsilons",
+            "type": [
+                "eagerpy.Tensor",
+                "float",
+                "tuple[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "epsilons",
+            "type": [
+                "eagerpy.Tensor",
+                "float",
+                "tuple[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "originals",
+            "type": [
+                "eagerpy.Tensor",
+                "float",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "perturbed",
+            "type": [
+                "eagerpy.Tensor",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "perturbation",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_project",
+            "type": []
+        }
+    ],
+    "approximate_gradients@HopSkipJumpAttack": [
+        {
+            "category": "arg",
+            "name": "is_adversarial",
+            "type": [
+                "typing.Callable[eagerpy.Tensor, eagerpy.Tensor]",
+                "bool",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "x_advs",
+            "type": [
+                "eagerpy.Tensor",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "steps",
+            "type": [
+                "int",
+                "numpy.ndarray",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "delta",
+            "type": [
+                "eagerpy.Tensor",
+                "numpy.ndarray",
+                "tuple[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "steps",
+            "type": [
+                "int",
+                "numpy.ndarray",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "x_advs",
+            "type": [
+                "eagerpy.Tensor",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "noise_shape",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rv",
+            "type": [
+                "list",
+                "float",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "delta",
+            "type": [
+                "eagerpy.Tensor",
+                "numpy.ndarray",
+                "tuple[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scaled_rv",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "multipliers_list",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "grad",
+            "type": [
+                "list",
+                "list[None]",
+                "list[tuple]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "approximate_gradients",
+            "type": [
+                "list",
+                "list[None]",
+                "list[tuple]"
+            ]
+        }
+    ],
+    "global@global": [],
+    "run@HopSkipJumpAttack": [
+        {
+            "category": "arg",
+            "name": "model",
+            "type": [
+                "models.Model",
+                "criteria.Criterion",
+                "base.T"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "inputs",
+            "type": [
+                "base.T"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "criterion",
+            "type": [
+                "criteria.Criterion",
+                "base.T",
+                "models.Model",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "early_stop",
+            "type": [
+                "None",
+                "float",
+                "models.Model",
+                "criteria.Criterion",
+                "base.T"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "starting_points",
+            "type": [
+                "None",
+                "base.T",
+                "models.Model",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "inputs",
+            "type": [
+                "base.T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "models.Model",
+                "criteria.Criterion",
+                "base.T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "criterion",
+            "type": [
+                "criteria.Criterion",
+                "base.T",
+                "models.Model",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_adversarial",
+            "type": [
+                "str",
+                "bool",
+                "typing.Callable[None, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "starting_points",
+            "type": [
+                "None",
+                "base.T",
+                "models.Model",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "init_attack",
+            "type": [
+                "float",
+                "int",
+                "None",
+                "LinearSearchBlendedUniformNoiseAttack"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "early_stop",
+            "type": [
+                "None",
+                "float",
+                "models.Model",
+                "criteria.Criterion",
+                "base.T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "failed",
+            "type": [
+                "int",
+                "typing.Callable[None, typing.Any]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tb",
+            "type": [
+                "TensorBoard"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_gradient_estimation_steps",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proposals_list",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "run",
+            "type": []
+        }
+    ],
+    "select_delta@HopSkipJumpAttack": [
+        {
+            "category": "arg",
+            "name": "originals",
+            "type": [
+                "int",
+                "eagerpy.Tensor",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "distances",
+            "type": [
+                "eagerpy.Tensor",
+                "float",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "step",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "step",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "distances",
+            "type": [
+                "eagerpy.Tensor",
+                "float",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "float",
+                "eagerpy.Tensor",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "originals",
+            "type": [
+                "int",
+                "eagerpy.Tensor",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "d",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "theta",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "select_delta",
+            "type": [
+                "float",
+                "eagerpy.Tensor",
+                "numpy.ndarray"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,741 @@
+{
+    "__init__@TokenNetworkRegistry": [
+        {
+            "category": "arg",
+            "name": "rpc_client",
+            "type": [
+                "raiden.network.rpc.clienJSONRPCClient",
+                "raiden.utils.Address",
+                "raiden.utils.SecretHash"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "metadata",
+            "type": [
+                "raiden.network.rpc.clienJSONRPCClient",
+                "raiden.utils.Address",
+                "raiden.utils.SecretHash"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "proxy_manager",
+            "type": [
+                "ProxyManager",
+                "raiden_contracts.contract_manager.ContractManager",
+                "nucypher.network.middleware.RestMiddleware"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_identifier",
+            "type": [
+                "raiden.network.rpc.clienJSONRPCClient",
+                "raiden.utils.Address",
+                "raiden.utils.SecretHash"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rpc_client",
+            "type": [
+                "raiden.network.rpc.clienJSONRPCClient",
+                "raiden.utils.Address",
+                "raiden.utils.SecretHash"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metadata",
+            "type": [
+                "raiden.network.rpc.clienJSONRPCClient",
+                "raiden.utils.Address",
+                "raiden.utils.SecretHash"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_identifier",
+            "type": [
+                "raiden.network.rpc.clienJSONRPCClient",
+                "raiden.utils.Address",
+                "raiden.utils.SecretHash"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proxy_manager",
+            "type": [
+                "ProxyManager",
+                "raiden_contracts.contract_manager.ContractManager",
+                "nucypher.network.middleware.RestMiddleware"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_add_token@TokenNetworkRegistry": [
+        {
+            "category": "arg",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.BlockIdentifier"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "channel_participant_deposit_limit",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.TokenAddress",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_network_deposit_limit",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.TokenAddress",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "log_details",
+            "type": [
+                "raiden.utils.ChannelID",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_address",
+            "type": [
+                "None",
+                "raiden.utils.TokenNetworkID",
+                "raiden.utils.TokenNetworkAddress",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.BlockIdentifier"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_participant_deposit_limit",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.TokenAddress",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_deposit_limit",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.TokenAddress",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "kwargs",
+            "type": [
+                "dict[typing.Text, typing.Union[raiden.utils.TokenAmount,raiden.utils.TokenAddress,raiden.utils.BlockIdentifier,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log_details",
+            "type": [
+                "raiden.utils.ChannelID",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "estimated_transaction",
+            "type": [
+                "raiden.utils.ChannelMap",
+                "raiden.utils.TokenAmount",
+                "list",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transaction_sent",
+            "type": [
+                "raiden.transfer.mediated_transfer.events.EventUnexpectedSecretReveal",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transaction_mined",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.ChannelMap",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "failed_at_blocknumber",
+            "type": [
+                "str",
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_token_networks",
+            "type": [
+                "nucypher.blockchain.eth.token.NU",
+                "raiden.utils.Any"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_networks_created",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "already_registered",
+            "type": [
+                "str",
+                "int",
+                "raiden.transfer.mediated_transfer.state.TargetTransferState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "controller",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "settlement_timeout_min",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "settlement_timeout_max",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_id",
+            "type": [
+                "int",
+                "str",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret_registry_address",
+            "type": [
+                "golem.rpc.session.WebSocketAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "failed_at_block",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "failed_at_blockhash",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_add_token",
+            "type": [
+                "str",
+                "bytes",
+                "collections.abc.Awaitable[typing.Any]"
+            ]
+        }
+    ],
+    "add_token@TokenNetworkRegistry": [
+        {
+            "category": "arg",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.TokenAddress",
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.BlockTimeout"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "channel_participant_deposit_limit",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_network_deposit_limit",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.TokenAddress",
+                "nucypher.network.middleware.RestMiddleware"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "given_block_identifier",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.BlockIdentifier"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "given_block_identifier",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.BlockIdentifier"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.TokenAddress",
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.BlockTimeout"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_deposit_limit",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.TokenAddress",
+                "nucypher.network.middleware.RestMiddleware"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_participant_deposit_limit",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_proxy",
+            "type": [
+                "web3.contracContract",
+                "rotkehlchen.constants.ethereum.EthereumContract",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_supply",
+            "type": [
+                "int",
+                "typing.Type",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "already_registered",
+            "type": [
+                "int",
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "controller",
+            "type": [
+                "list",
+                "int",
+                "raiden.storage.sqlite.StateChangeRecord"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "settlement_timeout_min",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "settlement_timeout_max",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_id",
+            "type": [
+                "int",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret_registry_address",
+            "type": [
+                "golem.rpc.session.WebSocketAddress",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_token_networks",
+            "type": [
+                "raiden.utils.Any",
+                "nucypher.blockchain.eth.token.NU"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_networks_created",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log_details",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "add_token",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        }
+    ],
+    "filter_token_added_events@TokenNetworkRegistry": [
+        {
+            "category": "local",
+            "name": "filter_",
+            "type": [
+                "list",
+                "str",
+                "list[list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events",
+            "type": [
+                "list[dict[str, typing.Any]]",
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "filter_token_added_events",
+            "type": [
+                "list[dict[str, typing.Any]]",
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        }
+    ],
+    "get_chain_id@TokenNetworkRegistry": [
+        {
+            "category": "return",
+            "name": "get_chain_id",
+            "type": []
+        }
+    ],
+    "get_controller@TokenNetworkRegistry": [
+        {
+            "category": "arg",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_controller",
+            "type": [
+                "Address"
+            ]
+        }
+    ],
+    "get_max_token_networks@TokenNetworkRegistry": [
+        {
+            "category": "arg",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.BlockSpecification",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.BlockSpecification",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_max_token_networks",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "get_secret_registry_address@TokenNetworkRegistry": [
+        {
+            "category": "arg",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_secret_registry_address",
+            "type": [
+                "SecretRegistryAddress"
+            ]
+        }
+    ],
+    "get_token_network@TokenNetworkRegistry": [
+        {
+            "category": "arg",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "Address",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_token_network",
+            "type": [
+                "None",
+                "Address",
+                "bytes"
+            ]
+        }
+    ],
+    "get_token_network_created@TokenNetworkRegistry": [
+        {
+            "category": "arg",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_token_network_created",
+            "type": [
+                "web3.contracContract",
+                "str",
+                "int"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "str",
+                "list"
+            ]
+        }
+    ],
+    "settlement_timeout_max@TokenNetworkRegistry": [
+        {
+            "category": "arg",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "settlement_timeout_max",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "settlement_timeout_min@TokenNetworkRegistry": [
+        {
+            "category": "arg",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "settlement_timeout_min",
+            "type": [
+                "int",
+                "list[int]",
+                "float"
+            ]
+        }
+    ]
+}

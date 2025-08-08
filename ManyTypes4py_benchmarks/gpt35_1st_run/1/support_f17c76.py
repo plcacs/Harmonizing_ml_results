@@ -1,0 +1,13 @@
+from typing import List
+
+def get_confirmations(types: List[str], object_ids: List[int], hostname: str = None) -> List[dict]:
+    ...
+
+def get_remote_servers_for_support(email_to_search: str, uuid_to_search: str, hostname_to_search: str) -> List[RemoteZulipServer]:
+    ...
+
+def get_remote_server_billing_user_emails_as_string(remote_server: RemoteZulipServer) -> str:
+    ...
+
+def get_remote_realm_billing_user_emails_as_string(remote_realm: RemoteRealm) -> str:
+    ...

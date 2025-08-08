@@ -1,0 +1,537 @@
+{
+    "__init__@BaseStatsLogger": [
+        {
+            "category": "arg",
+            "name": "prefix",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prefix",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@StatsdStatsLogger": [
+        {
+            "category": "arg",
+            "name": "host",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "port",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prefix",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "statsd_client",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "statsd_client",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client",
+            "type": [
+                "None",
+                "str",
+                "StatsClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "host",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "port",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prefix",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "decr@BaseStatsLogger": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "typing.Iterable[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "decr",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "decr@DummyStatsLogger": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger",
+                "server.openslides.utils.logging.LoggerAdapter"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "decr",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "decr@StatsdStatsLogger": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "bytes",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "bytes",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "decr",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "gauge@BaseStatsLogger": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "bytes",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "bytes",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "gauge",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "gauge@DummyStatsLogger": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "str",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger",
+                "server.openslides.utils.logging.LoggerAdapter"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "str",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "gauge",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "gauge@StatsdStatsLogger": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "int",
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "int",
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "int",
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "int",
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "gauge",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger",
+                "server.openslides.utils.logging.LoggerAdapter"
+            ]
+        }
+    ],
+    "incr@BaseStatsLogger": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "typing.Iterable[str]",
+                "typing.Iterable[T]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "incr",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "incr@DummyStatsLogger": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger",
+                "server.openslides.utils.logging.LoggerAdapter"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "incr",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "incr@StatsdStatsLogger": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "incr",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "key@BaseStatsLogger": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "key",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "timing@BaseStatsLogger": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "timing",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "timing@DummyStatsLogger": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "float",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "float",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger",
+                "server.openslides.utils.logging.LoggerAdapter"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "float",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "float",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "timing",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "timing@StatsdStatsLogger": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "float",
+                "VT",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "float",
+                "VT",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "float",
+                "VT",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "float",
+                "VT",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "timing",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

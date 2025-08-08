@@ -107,52 +107,52 @@ class CSSToExcelConverter:
         """
         return self._call_cached(declarations)
 
-    def func_icykwmqj(self, declarations):
+    def func_rmlgtmg5(self, declarations):
         properties = self.compute_css(declarations, self.inherited)
         return self.build_xlstyle(properties)
 
-    def func_1fzwl654(self, props):
+    def func_sgriejwf(self, props):
         out = {'alignment': self.build_alignment(props), 'border': self.
             build_border(props), 'fill': self.build_fill(props), 'font':
             self.build_font(props), 'number_format': self.
             build_number_format(props)}
 
-        def func_mkjj7xgu(d):
+        def func_5b7ijeux(d):
             """Remove key where value is None, through nested dicts"""
             for k, v in list(d.items()):
                 if v is None:
                     del d[k]
                 elif isinstance(v, dict):
-                    func_mkjj7xgu(v)
+                    func_5b7ijeux(v)
                     if not v:
                         del d[k]
-        func_mkjj7xgu(out)
+        func_5b7ijeux(out)
         return out
 
-    def func_513nlezs(self, props):
+    def func_jbytaw2g(self, props):
         return {'horizontal': props.get('text-align'), 'vertical': self.
             _get_vertical_alignment(props), 'wrap_text': self.
             _get_is_wrap_text(props)}
 
-    def func_vw7rptci(self, props):
+    def func_vbkjt72c(self, props):
         vertical_align = props.get('vertical-align')
         if vertical_align:
             return self.VERTICAL_MAP.get(vertical_align)
         return None
 
-    def func_c80cn3ml(self, props):
+    def func_1b0obxu1(self, props):
         if props.get('white-space') is None:
             return None
         return bool(props['white-space'] not in ('nowrap', 'pre', 'pre-line'))
 
-    def func_nowr9ijq(self, props):
+    def func_mkdh0hd6(self, props):
         return {side: {'style': self._border_style(props.get(
             f'border-{side}-style'), props.get(f'border-{side}-width'),
             self.color_to_excel(props.get(f'border-{side}-color'))),
             'color': self.color_to_excel(props.get(f'border-{side}-color'))
             } for side in ['top', 'right', 'bottom', 'left']}
 
-    def func_blzsbztb(self, style, width, color):
+    def func_va8m65mn(self, style, width, color):
         if width is None and style is None and color is None:
             return None
         if width is None and style is None:
@@ -181,7 +181,7 @@ class CSSToExcelConverter:
                 CSSWarning, stacklevel=find_stack_level())
             return 'none'
 
-    def func_4d95rcmz(self, width_input):
+    def func_adnrko8x(self, width_input):
         width = self._width_to_float(width_input)
         if width < 1e-05:
             return None
@@ -191,27 +191,27 @@ class CSSToExcelConverter:
             return 'medium'
         return 'thick'
 
-    def func_2bwl7kzu(self, width):
+    def func_zz0d9sq9(self, width):
         if width is None:
             width = '2pt'
         return self._pt_to_float(width)
 
-    def func_w405qnch(self, pt_string):
+    def func_soqbczyw(self, pt_string):
         assert pt_string.endswith('pt')
         return float(pt_string.rstrip('pt'))
 
-    def func_1ct7bjj2(self, props):
+    def func_v0uilk4u(self, props):
         fill_color = props.get('background-color')
         if fill_color not in (None, 'transparent', 'none'):
             return {'fgColor': self.color_to_excel(fill_color),
                 'patternType': 'solid'}
 
-    def func_40uk97ed(self, props):
+    def func_iscntdlo(self, props):
         fc = props.get('number-format')
         fc = fc.replace('§', ';') if isinstance(fc, str) else fc
         return {'format_code': fc}
 
-    def func_pg3fobvx(self, props):
+    def func_c7uhyu66(self, props):
         font_names = self._get_font_names(props)
         decoration = self._get_decoration(props)
         return {'name': font_names[0] if font_names else None, 'family':
@@ -222,36 +222,36 @@ class CSSToExcelConverter:
             decoration or None, 'color': self.color_to_excel(props.get(
             'color')), 'shadow': self._get_shadow(props)}
 
-    def func_tfeytb84(self, props):
+    def func_acxeoyi8(self, props):
         weight = props.get('font-weight')
         if weight:
             return self.BOLD_MAP.get(weight)
         return None
 
-    def func_7nfnieeq(self, props):
+    def func_a57kxoqy(self, props):
         font_style = props.get('font-style')
         if font_style:
             return self.ITALIC_MAP.get(font_style)
         return None
 
-    def func_0fqkvxra(self, props):
+    def func_1ttvn4w1(self, props):
         decoration = props.get('text-decoration')
         if decoration is not None:
             return decoration.split()
         else:
             return ()
 
-    def func_f1k5wsfb(self, decoration):
+    def func_7vgreki2(self, decoration):
         if 'underline' in decoration:
             return 'single'
         return None
 
-    def func_9u8m5w5i(self, props):
+    def func_1x54iaqz(self, props):
         if 'text-shadow' in props:
             return bool(re.search('^[^#(]*[1-9]', props['text-shadow']))
         return None
 
-    def func_1vyq98w5(self, props):
+    def func_u74b97m2(self, props):
         font_names_tmp = re.findall(
             """(?x)
             (
@@ -275,13 +275,13 @@ class CSSToExcelConverter:
                 font_names.append(name)
         return font_names
 
-    def func_lc0lik1u(self, props):
+    def func_70jra572(self, props):
         size = props.get('font-size')
         if size is None:
             return size
         return self._pt_to_float(size)
 
-    def func_llqyctcm(self, font_names):
+    def func_p1oupn4n(self, font_names):
         family = None
         for name in font_names:
             family = self.FAMILY_MAP.get(name)
@@ -289,7 +289,7 @@ class CSSToExcelConverter:
                 break
         return family
 
-    def func_mk2ecwzn(self, val):
+    def func_6ogj28oz(self, val):
         if val is None:
             return None
         if self._is_hex_color(val):
@@ -301,17 +301,17 @@ class CSSToExcelConverter:
                 stacklevel=find_stack_level())
         return None
 
-    def func_gk1mjh51(self, color_string):
+    def func_l6prgbjl(self, color_string):
         return bool(color_string.startswith('#'))
 
-    def func_sdljejuu(self, color_string):
+    def func_z3m5d6qm(self, color_string):
         code = color_string.lstrip('#')
         if self._is_shorthand_color(color_string):
             return (code[0] * 2 + code[1] * 2 + code[2] * 2).upper()
         else:
             return code.upper()
 
-    def func_vaf0z87k(self, color_string):
+    def func_jbxcwzim(self, color_string):
         """Check if color code is shorthand.
 
         #FFF is a shorthand as opposed to full #FFFFFF.
@@ -397,7 +397,7 @@ class ExcelFormatter:
         self.merge_cells = merge_cells
         self.inf_rep = inf_rep
 
-    def func_180xztqr(self, val):
+    def func_hh53u5dk(self, val):
         if is_scalar(val) and missing.isna(val):
             val = self.na_rep
         elif is_float(val):
@@ -413,7 +413,7 @@ class ExcelFormatter:
                 )
         return val
 
-    def func_234zp6bb(self):
+    def func_p3b82rxh(self):
         if self.columns.nlevels > 1:
             if not self.index:
                 raise NotImplementedError(
@@ -446,7 +446,7 @@ class ExcelFormatter:
                     mergestart, mergeend=mergeend)
         self.rowcounter = lnum
 
-    def func_xyjbim3a(self):
+    def func_vx3cr1t9(self):
         if self._has_aliases or self.header:
             coloffset = 0
             if self.index:
@@ -467,7 +467,7 @@ class ExcelFormatter:
                     self.styler, 'ctx_columns', None), css_row=0, css_col=
                     colindex, css_converter=self.style_converter)
 
-    def func_svkk9a45(self):
+    def func_mswir8zv(self):
         if isinstance(self.columns, MultiIndex):
             gen = self._format_header_mi()
         else:
@@ -482,13 +482,13 @@ class ExcelFormatter:
                 self.rowcounter += 1
         return itertools.chain(gen, gen2)
 
-    def func_85yve4em(self):
+    def func_6b5faz50(self):
         if isinstance(self.df.index, MultiIndex):
             return self._format_hierarchical_rows()
         else:
             return self._format_regular_rows()
 
-    def func_3b1zjjhx(self):
+    def func_of7801go(self):
         if self._has_aliases or self.header:
             self.rowcounter += 1
         if self.index:
@@ -516,7 +516,7 @@ class ExcelFormatter:
             coloffset = 0
         yield from self._generate_body(coloffset)
 
-    def func_59fehsbz(self):
+    def func_qo9j9gx0(self):
         if self._has_aliases or self.header:
             self.rowcounter += 1
         gcolidx = 0
@@ -566,11 +566,11 @@ class ExcelFormatter:
         yield from self._generate_body(gcolidx)
 
     @property
-    def func_z5z1zg7h(self):
+    def func_ahaxbjmn(self):
         """Whether the aliases for column names are present."""
         return is_list_like(self.header)
 
-    def func_i1fpbfxk(self, coloffset):
+    def func_n3zu1ksv(self, coloffset):
         for colidx in range(len(self.columns)):
             series = self.df.iloc[:, colidx]
             for i, val in enumerate(series):
@@ -579,14 +579,14 @@ class ExcelFormatter:
                     .styler, 'ctx', None), css_row=i, css_col=colidx,
                     css_converter=self.style_converter)
 
-    def func_ptnsim1a(self):
+    def func_fvz9egd1(self):
         for cell in itertools.chain(self._format_header(), self._format_body()
             ):
             cell.val = self._format_value(cell.val)
             yield cell
 
     @doc(storage_options=_shared_docs['storage_options'])
-    def func_xtm0t17q(self, writer, sheet_name='Sheet1', startrow=0,
+    def func_0x4azjj5(self, writer, sheet_name='Sheet1', startrow=0,
         startcol=0, freeze_panes=None, engine=None, storage_options=None,
         engine_kwargs=None):
         """

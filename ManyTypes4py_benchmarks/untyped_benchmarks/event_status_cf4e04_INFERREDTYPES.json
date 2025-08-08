@@ -1,0 +1,541 @@
+{
+    "event_status@global": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "str",
+                "django.http.HttpRequest",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user",
+            "type": [
+                "zerver.models.UserProfile",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stripe_session_id",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stripe_invoice_id",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stripe_session_id",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stripe_invoice_id",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_status_request",
+            "type": [
+                "EventStatusRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user",
+            "type": [
+                "zerver.models.UserProfile",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "billing_session",
+            "type": [
+                "RealmBillingSession"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[str, typing.Any]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "str",
+                "django.http.HttpRequest",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "event_status",
+            "type": [
+                "str",
+                "bool",
+                "django.http.response.HttpResponseRedirect"
+            ]
+        }
+    ],
+    "event_status_page@global": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "django.http.HttpRequest",
+                "django.core.handlers.wsgi.WSGIRequest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stripe_session_id",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stripe_invoice_id",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stripe_session_id",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stripe_invoice_id",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context",
+            "type": [
+                "dict[typing.Text, typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "django.http.HttpRequest",
+                "django.core.handlers.wsgi.WSGIRequest"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "event_status_page",
+            "type": [
+                "django.http.HttpResponse",
+                "str",
+                "django.http.response.HttpResponseRedirect"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "billing_logger",
+            "type": [
+                "logging.Logger",
+                "str"
+            ]
+        }
+    ],
+    "remote_realm_event_status@global": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "str",
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "billing_session",
+            "type": [
+                "str",
+                "None",
+                "grouper.models.service_accounServiceAccount",
+                "grouper.models.permission.Permission"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stripe_session_id",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stripe_invoice_id",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stripe_session_id",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stripe_invoice_id",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_status_request",
+            "type": [
+                "EventStatusRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "billing_session",
+            "type": [
+                "str",
+                "None",
+                "grouper.models.service_accounServiceAccount",
+                "grouper.models.permission.Permission"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[str, typing.Any]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "str",
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "remote_realm_event_status",
+            "type": [
+                "http.MITMRequest",
+                "jumeaux.models.Request",
+                "boucanpy.db.models.http_server.HttpServer"
+            ]
+        }
+    ],
+    "remote_realm_event_status_page@global": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "realm_uuid",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "server_uuid",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stripe_session_id",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stripe_invoice_id",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stripe_session_id",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stripe_invoice_id",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm_uuid",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context",
+            "type": [
+                "dict[typing.Text, typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "remote_realm_event_status_page",
+            "type": [
+                "django.http.HttpResponse",
+                "str"
+            ]
+        }
+    ],
+    "remote_server_event_status@global": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "str",
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "billing_session",
+            "type": [
+                "str",
+                "grouper.models.service_accounServiceAccount",
+                "grouper.models.permission.Permission"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stripe_session_id",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stripe_invoice_id",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stripe_session_id",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stripe_invoice_id",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_status_request",
+            "type": [
+                "EventStatusRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "billing_session",
+            "type": [
+                "str",
+                "grouper.models.service_accounServiceAccount",
+                "grouper.models.permission.Permission"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[str, typing.Any]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "str",
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "remote_server_event_status",
+            "type": [
+                "str",
+                "bool",
+                "django.http.response.HttpResponseRedirect"
+            ]
+        }
+    ],
+    "remote_server_event_status_page@global": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "django.http.HttpRequest",
+                "django.core.handlers.wsgi.WSGIRequest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "realm_uuid",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "server_uuid",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stripe_session_id",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stripe_invoice_id",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stripe_session_id",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stripe_invoice_id",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "server_uuid",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context",
+            "type": [
+                "dict[typing.Text, typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "django.http.HttpRequest",
+                "django.core.handlers.wsgi.WSGIRequest"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "remote_server_event_status_page",
+            "type": [
+                "django.http.HttpResponse",
+                "str"
+            ]
+        }
+    ]
+}

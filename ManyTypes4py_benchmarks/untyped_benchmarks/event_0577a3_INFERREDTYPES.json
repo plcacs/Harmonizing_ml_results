@@ -1,0 +1,1208 @@
+{
+    "__init__@EventManager": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "str",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "device",
+            "type": [
+                "aiohttp.ClientSession",
+                "homeassistanconfig_entries.ConfigEntry",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "config_entry",
+            "type": [
+                "str",
+                "homeassistancore.HomeAssistant",
+                "homeassistanconfig_entries.ConfigEntry"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "name",
+            "type": [
+                "str",
+                "None",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "str",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "aiohttp.ClientSession",
+                "homeassistanconfig_entries.ConfigEntry",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config_entry",
+            "type": [
+                "str",
+                "homeassistancore.HomeAssistant",
+                "homeassistanconfig_entries.ConfigEntry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "str",
+                "None",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "webhook_manager",
+            "type": [
+                "WebHookManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pullpoint_manager",
+            "type": [
+                "PullPointManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_uid_by_platform",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_events",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_listeners",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@PullPointManager": [
+        {
+            "category": "arg",
+            "name": "event_manager",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "_pullpoint_manager",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_cancel_pull_messages",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_pull_messages_job",
+            "type": [
+                "HassJob"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_pull_messages_task",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@WebHookManager": [
+        {
+            "category": "arg",
+            "name": "event_manager",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_manager",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_event_manager",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_old_webhook_unique_id",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "webhook_id",
+            "type": [
+                "str",
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_webhook_unique_id",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_webhook_url",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_notification_manager",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_async_background_pull_messages_or_reschedule@PullPointManager": [
+        {
+            "category": "arg",
+            "name": "_now",
+            "type": [
+                "None",
+                "datetime",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_pull_messages_task",
+            "type": [
+                "list",
+                "dict[str, dict]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_async_background_pull_messages_or_reschedule",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_async_cancel_and_unsubscribe@PullPointManager": [
+        {
+            "category": "return",
+            "name": "_async_cancel_and_unsubscribe",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_async_create_pullpoint_subscription@PullPointManager": [
+        {
+            "category": "local",
+            "name": "SUBSCRIPTION_TIME",
+            "type": [
+                "int",
+                "datetime.datetime.timedelta",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_pullpoint_manager",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_async_create_pullpoint_subscription",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_async_create_webhook_subscription@WebHookManager": [
+        {
+            "category": "local",
+            "name": "SUBSCRIPTION_TIME",
+            "type": [
+                "int",
+                "datetime.datetime.timedelta",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_notification_manager",
+            "type": [
+                "asyncio.events.AbstractServer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "err",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_async_create_webhook_subscription",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_async_handle_webhook@WebHookManager": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "webhook_id",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "aiohttp.web.Request"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content",
+            "type": [
+                "None",
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "aiohttp.web.Request"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ex",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_async_handle_webhook",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "webhook_id",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "str"
+            ]
+        }
+    ],
+    "_async_process_webhook@WebHookManager": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "str",
+                "typing.Iterable[str]",
+                "typing.Callable[homeassistancore.Event, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "webhook_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content",
+            "type": [
+                "str",
+                "None",
+                "aiohttp.ClientSession"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content",
+            "type": [
+                "str",
+                "None",
+                "aiohttp.ClientSession"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_async_process_webhook",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "webhook_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        }
+    ],
+    "_async_pull_messages@PullPointManager": [
+        {
+            "category": "local",
+            "name": "_pullpoint_manager",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_async_pull_messages",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "service",
+            "type": [
+                "str",
+                "salon.models.StylistService",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "PULLPOINT_POLL_TIME",
+            "type": [
+                "int",
+                "float",
+                "datetime.timedelta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "PULLPOINT_MESSAGE_LIMIT",
+            "type": [
+                "int",
+                "datetime.timedelta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "next_pull_delay",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "None",
+                "requests.models.Response",
+                "dict[str, typing.Any]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "err",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SUBSCRIPTION_RESTART_INTERVAL_ON_ERROR",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "_async_register_webhook@WebHookManager": [
+        {
+            "category": "return",
+            "name": "_async_register_webhook",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_webhook_url",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "_async_start_pullpoint@PullPointManager": [
+        {
+            "category": "local",
+            "name": "err",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_async_start_pullpoint",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_async_start_webhook@WebHookManager": [
+        {
+            "category": "local",
+            "name": "err",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_async_start_webhook",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_async_unregister_webhook@WebHookManager": [
+        {
+            "category": "local",
+            "name": "_webhook_url",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_async_unregister_webhook",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_async_unsubscribe_pullpoint@PullPointManager": [
+        {
+            "category": "local",
+            "name": "_pullpoint_manager",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_async_unsubscribe_pullpoint",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "err",
+            "type": [
+                "Exception"
+            ]
+        }
+    ],
+    "_async_unsubscribe_webhook@WebHookManager": [
+        {
+            "category": "local",
+            "name": "_notification_manager",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_async_unsubscribe_webhook",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "err",
+            "type": [
+                "Exception"
+            ]
+        }
+    ],
+    "async_add_listener@EventManager": [
+        {
+            "category": "arg",
+            "name": "update_callback",
+            "type": [
+                "homeassistancore.CALLBACK_TYPE",
+                "bool",
+                "asyncio.AbstractEventLoop"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "update_callback",
+            "type": [
+                "homeassistancore.CALLBACK_TYPE",
+                "bool",
+                "asyncio.AbstractEventLoop"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_add_listener",
+            "type": []
+        }
+    ],
+    "async_callback_listeners@EventManager": [
+        {
+            "category": "return",
+            "name": "async_callback_listeners",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_cancel_pull_messages@PullPointManager": [
+        {
+            "category": "local",
+            "name": "_cancel_pull_messages",
+            "type": [
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_cancel_pull_messages",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_mark_events_stale@EventManager": [
+        {
+            "category": "return",
+            "name": "async_mark_events_stale",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_parse_messages@EventManager": [
+        {
+            "category": "arg",
+            "name": "messages",
+            "type": [
+                "list[str]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unique_id",
+            "type": [
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "messages",
+            "type": [
+                "list[str]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic",
+            "type": [
+                "str",
+                "int",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "UNHANDLED_TOPICS",
+            "type": [
+                "set",
+                "set[str]",
+                "set[typing.Text]",
+                "set[typing.Union[str,int,dict[str, str]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "list[dict[str, typing.Any]]",
+                "str",
+                "asyncio.locks.Event"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_parse_messages",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_pause@PullPointManager": [
+        {
+            "category": "return",
+            "name": "async_pause",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_remove_listener@EventManager": [
+        {
+            "category": "arg",
+            "name": "update_callback",
+            "type": [
+                "homeassistancore.CALLBACK_TYPE",
+                "typing.Type",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "update_callback",
+            "type": [
+                "homeassistancore.CALLBACK_TYPE",
+                "typing.Type",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_remove_listener",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_resume@PullPointManager": [
+        {
+            "category": "return",
+            "name": "async_resume",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_schedule_pull_messages@PullPointManager": [
+        {
+            "category": "arg",
+            "name": "delay",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_schedule_pull_messages",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "delay",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "PULLPOINT_COOLDOWN_TIME",
+            "type": [
+                "int",
+                "list[typing.Optional[float]]",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "when",
+            "type": [
+                "int",
+                "list[typing.Optional[float]]",
+                "float"
+            ]
+        }
+    ],
+    "async_start@EventManager": [
+        {
+            "category": "arg",
+            "name": "try_pullpoint",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "try_webhook",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "try_pullpoint",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_via_pull_point",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "try_webhook",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events_via_webhook",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_start",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "tuple[typing.Any]",
+                "int"
+            ]
+        }
+    ],
+    "async_start@PullPointManager": [
+        {
+            "category": "return",
+            "name": "async_start",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "async_start@WebHookManager": [
+        {
+            "category": "return",
+            "name": "async_start",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "async_stop@EventManager": [
+        {
+            "category": "local",
+            "name": "_listeners",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_stop",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_stop@PullPointManager": [
+        {
+            "category": "return",
+            "name": "async_stop",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_stop@WebHookManager": [
+        {
+            "category": "return",
+            "name": "async_stop",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_webhook_failed@EventManager": [
+        {
+            "category": "return",
+            "name": "async_webhook_failed",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_webhook_working@EventManager": [
+        {
+            "category": "return",
+            "name": "async_webhook_working",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_platform@EventManager": [
+        {
+            "category": "arg",
+            "name": "platform",
+            "type": [
+                "str",
+                "set[str]",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "platform",
+            "type": [
+                "str",
+                "set[str]",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_platform",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "get_uid@EventManager": [
+        {
+            "category": "arg",
+            "name": "uid",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "uid",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_uid",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "get_uids_by_platform@EventManager": [
+        {
+            "category": "arg",
+            "name": "platform",
+            "type": [
+                "str",
+                "None",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "possible_uids",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "platform",
+            "type": [
+                "str",
+                "None",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "uids",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_uids_by_platform",
+            "type": [
+                "set",
+                "bool"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "UNHANDLED_TOPICS",
+            "type": [
+                "set[typing.Text]",
+                "set",
+                "set[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SUBSCRIPTION_ERRORS",
+            "type": [
+                "tuple[TimeoutError]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CREATE_ERRORS",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SET_SYNCHRONIZATION_POINT_ERRORS",
+            "type": [
+                "tuple[typing.Union[tuple[TimeoutError],TypeError]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "UNSUBSCRIBE_ERRORS",
+            "type": [
+                "tuple[tuple[TimeoutError]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "RENEW_ERRORS",
+            "type": [
+                "tuple[tuple[TimeoutError]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SUBSCRIPTION_TIME",
+            "type": [
+                "int",
+                "datetime.datetime.timedelta",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SUBSCRIPTION_RENEW_INTERVAL",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SUBSCRIPTION_ATTEMPTS",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SUBSCRIPTION_RESTART_INTERVAL_ON_ERROR",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "PULLPOINT_POLL_TIME",
+            "type": [
+                "int",
+                "float",
+                "datetime.timedelta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "PULLPOINT_MESSAGE_LIMIT",
+            "type": [
+                "int",
+                "datetime.timedelta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "PULLPOINT_COOLDOWN_TIME",
+            "type": [
+                "float",
+                "int",
+                "list[typing.Optional[float]]"
+            ]
+        }
+    ],
+    "remove_listener@EventManager": [
+        {
+            "category": "return",
+            "name": "remove_listener",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "started@EventManager": [
+        {
+            "category": "return",
+            "name": "started",
+            "type": [
+                "bool"
+            ]
+        }
+    ]
+}

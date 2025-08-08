@@ -1,0 +1,1457 @@
+{
+    "__call__@App": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "headers",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__call__",
+            "type": []
+        }
+    ],
+    "__call__@DigestApp": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "__call__",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        }
+    ],
+    "__init__@App": [
+        {
+            "category": "arg",
+            "name": "auth_header",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "status_code",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "auth_header",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "status_code",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@DigestApp": [
+        {
+            "category": "arg",
+            "name": "algorithm",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "send_response_after_attempt",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "qop",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "regenerate_nonce",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "algorithm",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "send_response_after_attempt",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "qop",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "regenerate_nonce",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_regenerate_nonce",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_response_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@RepeatAuth": [
+        {
+            "category": "arg",
+            "name": "repeat",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "repeat",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@ResponseBodyAuth": [
+        {
+            "category": "arg",
+            "name": "token",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@SyncOrAsyncAuth": [
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_auth_flow@SyncOrAsyncAuth": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "httpx.Request",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "httpx.Request",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_auth_flow",
+            "type": [
+                "typing.Generator[typing.Union[httpx.Request,dict]]"
+            ]
+        }
+    ],
+    "auth@global": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "auth",
+            "type": []
+        }
+    ],
+    "auth_flow@RepeatAuth": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "dict",
+                "list",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nonces",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "dict",
+                "list",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "typing.Generator[typing.Union[dict,list,dict[str, typing.Any]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "auth_flow",
+            "type": [
+                "typing.Generator[typing.Union[dict,list,dict[str, typing.Any]]]"
+            ]
+        }
+    ],
+    "auth_flow@ResponseBodyAuth": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "typing.Generator"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "auth_flow",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "challenge_send@DigestApp": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "httpx.Request",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nonce",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "challenge_data",
+            "type": [
+                "dict[typing.Text, typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "tuple[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "tuple[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "challenge_str",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "headers",
+            "type": [
+                "dict[typing.Text, typing.Text]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "challenge_send",
+            "type": []
+        }
+    ],
+    "global@global": [],
+    "handle_async_request@ConsumeBodyTransport": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "handle_async_request",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "streaming_body@global": [
+        {
+            "category": "return",
+            "name": "streaming_body",
+            "type": [
+                "typing.Generator[bytes]"
+            ]
+        }
+    ],
+    "sync_auth_flow@SyncOrAsyncAuth": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "httpx.Request",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "httpx.Request",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "sync_auth_flow",
+            "type": [
+                "typing.Generator[typing.Union[httpx.Request,dict]]"
+            ]
+        }
+    ],
+    "test_async_auth@global": [
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "auth",
+            "type": [
+                "SyncOrAsyncAuth"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "App"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_async_auth",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_async_auth_history@global": [
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "auth",
+            "type": [
+                "RepeatAuth"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "App"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_async_auth_history",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_async_auth_reads_response_body@global": [
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "auth",
+            "type": [
+                "ResponseBodyAuth"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "App"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_async_auth_reads_response_body",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_async_digest_auth_raises_protocol_error_on_malformed_header@global": [
+        {
+            "category": "arg",
+            "name": "auth_header",
+            "type": [
+                "str",
+                "typing.Mapping",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "auth_header",
+            "type": [
+                "str",
+                "typing.Mapping",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "App"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_async_digest_auth_raises_protocol_error_on_malformed_header",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_auth_disable_per_request@global": [
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "auth",
+            "type": [
+                "tuple[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "App"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_auth_disable_per_request",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_auth_hidden_header@global": [
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "auth",
+            "type": [
+                "tuple[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "App"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_auth_hidden_header",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_auth_hidden_url@global": [
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_auth_hidden_url",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_auth_invalid_type@global": [
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "App"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client_",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_auth_invalid_type",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_auth_property@global": [
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "App"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client_",
+            "type": [
+                "tuple[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_auth_property",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_basic_auth@global": [
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "auth",
+            "type": [
+                "tuple[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "App"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_basic_auth",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_basic_auth_in_url@global": [
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "App"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_basic_auth_in_url",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_basic_auth_on_session@global": [
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "auth",
+            "type": [
+                "tuple[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "App"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_basic_auth_on_session",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_basic_auth_with_stream@global": [
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "auth",
+            "type": [
+                "tuple[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "App"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_basic_auth_with_stream",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_custom_auth@global": [
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "App"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_custom_auth",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_digest_auth@global": [
+        {
+            "category": "arg",
+            "name": "algorithm",
+            "type": [
+                "int",
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_hash_length",
+            "type": [
+                "int",
+                "bytes",
+                "bytearray",
+                "memoryview"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_response_length",
+            "type": [
+                "int",
+                "bytes",
+                "bytearray",
+                "memoryview"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "algorithm",
+            "type": [
+                "int",
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "DigestApp"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response_fields",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "digest_data",
+            "type": [
+                "bytes",
+                "dict",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_digest_auth",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_digest_auth_200_response_including_digest_auth_header@global": [
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "auth_header",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "App"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_digest_auth_200_response_including_digest_auth_header",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_digest_auth_401_response_without_digest_auth_header@global": [
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "App"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_digest_auth_401_response_without_digest_auth_header",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_digest_auth_incorrect_credentials@global": [
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "DigestApp"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_digest_auth_incorrect_credentials",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_digest_auth_no_specified_qop@global": [
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "DigestApp"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response_fields",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "digest_data",
+            "type": [
+                "dict",
+                "tuple[tuple[typing.Union[str,int]]]",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_digest_auth_no_specified_qop",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_digest_auth_qop_auth_int_not_implemented@global": [
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "DigestApp"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_digest_auth_qop_auth_int_not_implemented",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_digest_auth_qop_including_spaces_and_auth_returns_auth@global": [
+        {
+            "category": "arg",
+            "name": "qop",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "qop",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "DigestApp"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_digest_auth_qop_including_spaces_and_auth_returns_auth",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_digest_auth_qop_must_be_auth_or_auth_int@global": [
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "DigestApp"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_digest_auth_qop_must_be_auth_or_auth_int",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_digest_auth_resets_nonce_count_after_401@global": [
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "DigestApp"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app_",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_digest_auth_resets_nonce_count_after_401",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_digest_auth_returns_no_auth_if_alternate_auth_scheme@global": [
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "auth_header",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "App"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_digest_auth_returns_no_auth_if_alternate_auth_scheme",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_digest_auth_returns_no_auth_if_no_digest_header_in_response@global": [
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "App"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_digest_auth_returns_no_auth_if_no_digest_header_in_response",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_digest_auth_reuses_challenge@global": [
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "DigestApp"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_digest_auth_reuses_challenge",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_digest_auth_unavailable_streaming_body@global": [
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "DigestApp"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_digest_auth_unavailable_streaming_body",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_netrc_auth_credentials_do_not_exist@global": [
+        {
+            "category": "local",
+            "name": "netrc_file",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "App"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_netrc_auth_credentials_do_not_exist",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_netrc_auth_credentials_exist@global": [
+        {
+            "category": "local",
+            "name": "netrc_file",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "App"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_netrc_auth_credentials_exist",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_netrc_auth_nopassword_parse_error@global": [
+        {
+            "category": "local",
+            "name": "netrc_file",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_netrc_auth_nopassword_parse_error",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sync_auth@global": [
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "auth",
+            "type": [
+                "SyncOrAsyncAuth"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "App"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_sync_auth",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sync_auth_history@global": [
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "auth",
+            "type": [
+                "RepeatAuth"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "App"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_sync_auth_history",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sync_auth_reads_response_body@global": [
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "auth",
+            "type": [
+                "ResponseBodyAuth"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "App"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_sync_auth_reads_response_body",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sync_digest_auth_raises_protocol_error_on_malformed_header@global": [
+        {
+            "category": "arg",
+            "name": "auth_header",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "auth_header",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "App"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_sync_digest_auth_raises_protocol_error_on_malformed_header",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,817 @@
+{
+    "compute_whisk_initial_k_commitment_cached@global": [
+        {
+            "category": "arg",
+            "name": "i",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "i",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "whisk_initial_k_commitment_cache_by_index",
+            "type": [
+                "dict",
+                "dict[int, typing.Union[list,list[tuple[typing.Union[int,typing.Any]]],list[str]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "compute_whisk_initial_k_commitment_cached",
+            "type": [
+                "dict",
+                "int",
+                "None",
+                "set",
+                "list",
+                "list[tuple[typing.Union[int,typing.Any]]]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "commitment",
+            "type": [
+                "list",
+                "list[tuple[typing.Union[int,typing.Any]]]",
+                "list[str]"
+            ]
+        }
+    ],
+    "compute_whisk_initial_tracker_cached@global": [
+        {
+            "category": "arg",
+            "name": "i",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "i",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "whisk_initial_tracker_cache_by_index",
+            "type": [
+                "dict",
+                "dict[int, typing.Union[list[str],list[tuple[typing.Union[int,float]]],dict[typing.Any, dict[str, str]]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "compute_whisk_initial_tracker_cached",
+            "type": [
+                "dict",
+                "str",
+                "bytes",
+                "list[str]",
+                "list[tuple[typing.Union[int,float]]]",
+                "dict[typing.Any, dict[str, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "INITIAL_R",
+            "type": [
+                "frozenset",
+                "int",
+                "list[list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tracker",
+            "type": [
+                "list[str]",
+                "list[tuple[typing.Union[int,float]]]",
+                "dict[typing.Any, dict[str, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "whisk_initial_tracker_cache_by_k_r_G",
+            "type": [
+                "dict[int, float]",
+                "dict",
+                "int"
+            ]
+        }
+    ],
+    "compute_whisk_k_commitment@global": [
+        {
+            "category": "arg",
+            "name": "k",
+            "type": [
+                "int",
+                "float",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "G1",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k",
+            "type": [
+                "int",
+                "float",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "compute_whisk_k_commitment",
+            "type": [
+                "bytes",
+                "int"
+            ]
+        }
+    ],
+    "compute_whisk_tracker@global": [
+        {
+            "category": "arg",
+            "name": "k",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "r",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "G1",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r_G",
+            "type": [
+                "float",
+                "Scalar"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k_r_G",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "compute_whisk_tracker",
+            "type": [
+                "WhiskTracker"
+            ]
+        }
+    ],
+    "compute_whisk_tracker_and_commitment@global": [
+        {
+            "category": "arg",
+            "name": "k",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "r",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "G1",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k_G",
+            "type": [
+                "float",
+                "Scalar"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r_G",
+            "type": [
+                "float",
+                "Scalar"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k_r_G",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tracker",
+            "type": [
+                "WhiskTracker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "commitment",
+            "type": [
+                "int",
+                "str",
+                "tuple"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "compute_whisk_tracker_and_commitment",
+            "type": [
+                "tuple[typing.Union[WhiskTracker,int,str,tuple]]"
+            ]
+        }
+    ],
+    "g1point_to_bytes@global": [
+        {
+            "category": "arg",
+            "name": "point",
+            "type": [
+                "bytes",
+                "float",
+                "list[bytes]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "point",
+            "type": [
+                "bytes",
+                "float",
+                "list[bytes]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "g1point_to_bytes",
+            "type": [
+                "bytes"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "whisk_initial_tracker_cache_by_index",
+            "type": [
+                "dict",
+                "int",
+                "tuple[str]",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "whisk_initial_k_commitment_cache_by_index",
+            "type": [
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "whisk_initial_tracker_cache_by_k_r_G",
+            "type": [
+                "dict",
+                "dict[int, float]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "INITIAL_R",
+            "type": [
+                "int",
+                "frozenset",
+                "list[list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "G1",
+            "type": [
+                "G1Point",
+                "int",
+                "float"
+            ]
+        }
+    ],
+    "is_first_proposal@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int",
+                "list[int]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "int",
+                "list[int]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "proposer_index",
+            "type": [
+                "int",
+                "list[int]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "int",
+                "list[int]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proposer_index",
+            "type": [
+                "int",
+                "list[int]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "int",
+                "list[int]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_first_proposal",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "register_tracker@global": [
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "int",
+                "typing.Iterable[T]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "proposer_index",
+            "type": [
+                "int",
+                "typing.Iterable[T]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "k",
+            "type": [
+                "int",
+                "typing.Iterable[T]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "r",
+            "type": [
+                "int",
+                "typing.Iterable[T]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k",
+            "type": [
+                "int",
+                "typing.Iterable[T]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r",
+            "type": [
+                "int",
+                "typing.Iterable[T]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tracker",
+            "type": [
+                "list",
+                "typing.Deque",
+                "list[tuple[typing.Union[int,float]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k_commitment",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "int",
+                "typing.Iterable[T]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proposer_index",
+            "type": [
+                "int",
+                "typing.Iterable[T]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "register_tracker",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "resolve_known_tracker@global": [
+        {
+            "category": "arg",
+            "name": "tracker",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tracker",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "whisk_initial_tracker_cache_by_k_r_G",
+            "type": [
+                "dict[int, float]",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "resolve_known_tracker",
+            "type": [
+                "float",
+                "None"
+            ]
+        }
+    ],
+    "set_as_first_proposal@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "proposer_index",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proposer_index",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_as_first_proposal",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "set_opening_proof@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "str",
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "list[int]",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "proposer_index",
+            "type": [
+                "int",
+                "typing.Sequence[typing.Sequence[str]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "k",
+            "type": [
+                "bytes",
+                "dict",
+                "bytearray"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "r",
+            "type": [
+                "bytes",
+                "int",
+                "bytearray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k",
+            "type": [
+                "bytes",
+                "dict",
+                "bytearray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r",
+            "type": [
+                "bytes",
+                "int",
+                "bytearray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tracker",
+            "type": [
+                "typing.Any",
+                "list",
+                "typing.Generator[typing.Optional[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k_commitment",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "list[int]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "str",
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proposer_index",
+            "type": [
+                "int",
+                "typing.Sequence[typing.Sequence[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_",
+            "type": [
+                "int",
+                "typing.Sequence[typing.Sequence[str]]",
+                "GenerateWhiskTrackerProof"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_opening_proof",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "set_registration@global": [
+        {
+            "category": "arg",
+            "name": "body",
+            "type": [
+                "int",
+                "bytes",
+                "list[int]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "k",
+            "type": [
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "r",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k",
+            "type": [
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tracker",
+            "type": [
+                "typing.Any",
+                "typing.Deque",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k_commitment",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "body_",
+            "type": [
+                "GenerateWhiskTrackerProof",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_registration",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

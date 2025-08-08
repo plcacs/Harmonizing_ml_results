@@ -1,0 +1,1924 @@
+{
+    "__init__@PFSProxy": [
+        {
+            "category": "arg",
+            "name": "pfs_config",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pfs_config",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_pfs_config",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_query_address_metadata@global": [
+        {
+            "category": "arg",
+            "name": "pfs_config",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_address",
+            "type": [
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "session",
+            "type": [
+                "requests.sessions.Session"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_address",
+            "type": [
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "requests.models.Response",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response_json",
+            "type": [
+                "str",
+                "None",
+                "dict[str, typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "route_metadata",
+            "type": [
+                "RouteMetadata"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_query_address_metadata",
+            "type": [
+                "str",
+                "None",
+                "dict[str, typing.Union[int,str]]"
+            ]
+        }
+    ],
+    "_query_paths@global": [
+        {
+            "category": "arg",
+            "name": "pfs_config",
+            "type": [
+                "raiden.utils.InitiatorAddress",
+                "raiden.utils.TargetAddress",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "our_address",
+            "type": [
+                "raiden.utils.ChainID",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "privkey",
+            "type": [
+                "raiden.utils.ChainID",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "current_block_number",
+            "type": [
+                "raiden.utils.ChainID",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.ChainID",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "one_to_n_address",
+            "type": [
+                "raiden.utils.ChainID",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chain_id",
+            "type": [
+                "raiden.utils.ChainID",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "route_from",
+            "type": [
+                "raiden.utils.TargetAddress",
+                "raiden.utils.InitiatorAddress",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "route_to",
+            "type": [
+                "raiden.utils.TargetAddress",
+                "raiden.utils.InitiatorAddress",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TargetAddress",
+                "raiden.utils.InitiatorAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pfs_wait_for_block",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.Signature",
+                "web3.types.Wei",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "route_from",
+            "type": [
+                "raiden.utils.TargetAddress",
+                "raiden.utils.InitiatorAddress",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "route_to",
+            "type": [
+                "raiden.utils.TargetAddress",
+                "raiden.utils.InitiatorAddress",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TargetAddress",
+                "raiden.utils.InitiatorAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pfs_config",
+            "type": [
+                "raiden.utils.InitiatorAddress",
+                "raiden.utils.TargetAddress",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payload",
+            "type": [
+                "dict[typing.Text, typing.Union[raiden.utils.PaymentAmount,raiden.utils.TargetAddress,raiden.utils.InitiatorAddress]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scrap_existing_iou",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pfs_wait_for_block",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.Signature",
+                "web3.types.Wei",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "MAX_PATHS_QUERY_ATTEMPTS",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iou_semaphore",
+            "type": [
+                "int",
+                "list[raiden.raiden_service.RaidenService]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.ChainID",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "one_to_n_address",
+            "type": [
+                "raiden.utils.ChainID",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "our_address",
+            "type": [
+                "raiden.utils.ChainID",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "privkey",
+            "type": [
+                "raiden.utils.ChainID",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_id",
+            "type": [
+                "raiden.utils.ChainID",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_block_number",
+            "type": [
+                "raiden.utils.ChainID",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_query_paths",
+            "type": [
+                "tuple[typing.Optional[list]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error",
+            "type": [
+                "Exception"
+            ]
+        }
+    ],
+    "as_json@IOU": [
+        {
+            "category": "local",
+            "name": "signature",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "as_json",
+            "type": []
+        }
+    ],
+    "check_pfs_for_production@global": [
+        {
+            "category": "arg",
+            "name": "service_registry",
+            "type": [
+                "raiden.network.proxies.service_registry.ServiceRegistry",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pfs_info",
+            "type": [
+                "web3.contracContract",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "service_registry",
+            "type": [
+                "raiden.network.proxies.service_registry.ServiceRegistry",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pfs_info",
+            "type": [
+                "web3.contracContract",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pfs_registered",
+            "type": [
+                "str",
+                "raiden_contracts.contract_manager.DeployedContract",
+                "raiden_contracts.deploy.contract_deployer.ContractDeployer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "registered_pfs_url",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pfs_url_matches",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_pfs_for_production",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "configure_pfs_or_exit@global": [
+        {
+            "category": "arg",
+            "name": "pfs_url",
+            "type": [
+                "str",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "routing_mode",
+            "type": [
+                "raiden.constants.RoutingMode",
+                "str",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "service_registry",
+            "type": [
+                "raiden.network.proxies.service_registry.ServiceRegistry",
+                "None",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "node_chain_id",
+            "type": [
+                "raiden.utils.ChainID",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_network_registry_address",
+            "type": [
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pathfinding_max_fee",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "str",
+                "raiden.utils.BlockTimeout"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pfs_url",
+            "type": [
+                "str",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "service_registry",
+            "type": [
+                "raiden.network.proxies.service_registry.ServiceRegistry",
+                "None",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_hash",
+            "type": [
+                "bytes",
+                "raiden.utils.BlockHash",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pathfinding_max_fee",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "str",
+                "raiden.utils.BlockTimeout"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "maybe_pfs_url",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pathfinding_service_info",
+            "type": [
+                "dict[str, str]",
+                "dict",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node_chain_id",
+            "type": [
+                "raiden.utils.ChainID",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_registry_address",
+            "type": [
+                "raiden.utils.TokenNetworkRegistryAddress",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "configure_pfs_or_exit",
+            "type": [
+                "dict[str, str]",
+                "dict",
+                "set"
+            ]
+        }
+    ],
+    "create_current_iou@global": [
+        {
+            "category": "arg",
+            "name": "pfs_config",
+            "type": [
+                "raiden.utils.PrivateKey",
+                "raiden.utils.Address",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.PrivateKey",
+                "raiden.utils.Address",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "one_to_n_address",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.OneToNAddress",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "our_address",
+            "type": [
+                "raiden.utils.PrivateKey",
+                "raiden.utils.Address",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "privkey",
+            "type": [
+                "raiden.utils.PrivateKey",
+                "raiden.utils.Address",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_number",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.OneToNAddress",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chain_id",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.OneToNAddress",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "offered_fee",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.OneToNAddress",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "scrap_existing_iou",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "latest_iou",
+            "type": [
+                "None",
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scrap_existing_iou",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.PrivateKey",
+                "raiden.utils.Address",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "our_address",
+            "type": [
+                "raiden.utils.PrivateKey",
+                "raiden.utils.Address",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "privkey",
+            "type": [
+                "raiden.utils.PrivateKey",
+                "raiden.utils.Address",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pfs_config",
+            "type": [
+                "raiden.utils.PrivateKey",
+                "raiden.utils.Address",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.OneToNAddress",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_id",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.OneToNAddress",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "offered_fee",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.OneToNAddress",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "one_to_n_address",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.OneToNAddress",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_current_iou",
+            "type": [
+                "str",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "added_amount",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.OneToNAddress",
+                "raiden.utils.ChainID"
+            ]
+        }
+    ],
+    "get_last_iou@global": [
+        {
+            "category": "arg",
+            "name": "url",
+            "type": [
+                "str",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_network_address",
+            "type": [
+                "str",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sender",
+            "type": [
+                "raiden.utils.Address",
+                "bytes",
+                "raiden.utils.PrivateKey"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "receiver",
+            "type": [
+                "raiden.utils.Address",
+                "bytes",
+                "raiden.utils.PrivateKey"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "privkey",
+            "type": [
+                "bytes",
+                "raiden.utils.Address",
+                "raiden.utils.PrivateKey"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timestamp",
+            "type": [
+                "datetime.datetime",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sender",
+            "type": [
+                "raiden.utils.Address",
+                "bytes",
+                "raiden.utils.PrivateKey"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "receiver",
+            "type": [
+                "raiden.utils.Address",
+                "bytes",
+                "raiden.utils.PrivateKey"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "privkey",
+            "type": [
+                "bytes",
+                "raiden.utils.Address",
+                "raiden.utils.PrivateKey"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "session",
+            "type": [
+                "requests.sessions.Session"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "str",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_address",
+            "type": [
+                "str",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "typing.Type",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_last_iou",
+            "type": [
+                "None",
+                "IOU"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        }
+    ],
+    "get_pfs_info@global": [
+        {
+            "category": "arg",
+            "name": "url",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "session",
+            "type": [
+                "requests.sessions.Session"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "requests.models.Response"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "infos",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "matrix_server_info",
+            "type": [
+                "list[list[str]]",
+                "dict[str, typing.Any]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_pfs_info",
+            "type": [
+                "PFSInfo"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "get_random_pfs@global": [
+        {
+            "category": "arg",
+            "name": "service_registry",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.network.proxies.service_registry.ServiceRegistry",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.network.proxies.service_registry.ServiceRegistry",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pathfinding_max_fee",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "int",
+                "raiden.utils.BlockTimeout"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "service_registry",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.network.proxies.service_registry.ServiceRegistry",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.network.proxies.service_registry.ServiceRegistry",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "number_of_addresses",
+            "type": [
+                "int",
+                "typing.Type",
+                "web3.types.Wei"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indices_to_try",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "index",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pathfinding_max_fee",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "int",
+                "raiden.utils.BlockTimeout"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_random_pfs",
+            "type": [
+                "str",
+                "None"
+            ]
+        }
+    ],
+    "get_valid_pfs_url@global": [
+        {
+            "category": "arg",
+            "name": "service_registry",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.network.proxies.service_registry.ServiceRegistry",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "index_in_service_registry",
+            "type": [
+                "int",
+                "raiden.utils.BlockIdentifier",
+                "raiden.network.proxies.service_registry.ServiceRegistry"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.network.proxies.service_registry.ServiceRegistry",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pathfinding_max_fee",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "int",
+                "raiden.utils.PaymentWithFeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "service_registry",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.network.proxies.service_registry.ServiceRegistry",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden.network.proxies.service_registry.ServiceRegistry",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "index_in_service_registry",
+            "type": [
+                "int",
+                "raiden.utils.BlockIdentifier",
+                "raiden.network.proxies.service_registry.ServiceRegistry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "raiden.utils.Address",
+                "str",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_valid_pfs_url",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pfs_info",
+            "type": [
+                "dict[str, typing.Any]",
+                "typing.Mapping",
+                "dict[str, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pathfinding_max_fee",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "int",
+                "raiden.utils.PaymentWithFeeAmount"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "iou_semaphore",
+            "type": [
+                "int",
+                "list[raiden.raiden_service.RaidenService]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "USER_AGENT_STR",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "session",
+            "type": [
+                "Session",
+                "requests.sessions.Session"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timeout_adapter",
+            "type": [
+                "TimeoutHTTPAdapter"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "MAX_PATHS_QUERY_ATTEMPTS",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "make_iou@global": [
+        {
+            "category": "arg",
+            "name": "pfs_config",
+            "type": [
+                "raiden.utils.ChainID",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.OneToNAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "our_address",
+            "type": [
+                "raiden.utils.OneToNAddress",
+                "raiden.utils.Address",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "one_to_n_address",
+            "type": [
+                "raiden.utils.OneToNAddress",
+                "raiden.utils.Address",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "privkey",
+            "type": [
+                "raiden.utils.PrivateKey",
+                "raiden.utils.BlockHash",
+                "raiden.utils.Nonce"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_number",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chain_id",
+            "type": [
+                "raiden.utils.OneToNAddress",
+                "raiden.utils.Address",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "offered_fee",
+            "type": [
+                "raiden.utils.OneToNAddress",
+                "raiden.utils.Address",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "raiden.utils.BlockNumber",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pfs_config",
+            "type": [
+                "raiden.utils.ChainID",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.OneToNAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expiration",
+            "type": [
+                "BlockExpiration"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "our_address",
+            "type": [
+                "raiden.utils.OneToNAddress",
+                "raiden.utils.Address",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "one_to_n_address",
+            "type": [
+                "raiden.utils.OneToNAddress",
+                "raiden.utils.Address",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "offered_fee",
+            "type": [
+                "raiden.utils.OneToNAddress",
+                "raiden.utils.Address",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_id",
+            "type": [
+                "raiden.utils.OneToNAddress",
+                "raiden.utils.Address",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iou",
+            "type": [
+                "IOU"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "privkey",
+            "type": [
+                "raiden.utils.PrivateKey",
+                "raiden.utils.BlockHash",
+                "raiden.utils.Nonce"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "make_iou",
+            "type": [
+                "IOU"
+            ]
+        }
+    ],
+    "post_pfs_feedback@global": [
+        {
+            "category": "arg",
+            "name": "routing_mode",
+            "type": [
+                "raiden.constants.RoutingMode",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pfs_config",
+            "type": [
+                "raiden.constants.RoutingMode",
+                "str",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.TokenNetworkAddress",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "route",
+            "type": [
+                "raiden.utils.AddressHex",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token",
+            "type": [
+                "uuid.UUID",
+                "bool",
+                "raiden_contracts.utils.type_aliases.PrivateKey"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "successful",
+            "type": [
+                "uuid.UUID",
+                "bool",
+                "raiden_contracts.utils.type_aliases.PrivateKey"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "routing_mode",
+            "type": [
+                "raiden.constants.RoutingMode",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pfs_config",
+            "type": [
+                "raiden.constants.RoutingMode",
+                "str",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "feedback_disabled",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "post_pfs_feedback",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "route",
+            "type": [
+                "raiden.utils.AddressHex",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hex_route",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token",
+            "type": [
+                "uuid.UUID",
+                "bool",
+                "raiden_contracts.utils.type_aliases.PrivateKey"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "successful",
+            "type": [
+                "uuid.UUID",
+                "bool",
+                "raiden_contracts.utils.type_aliases.PrivateKey"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.TokenNetworkAddress",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "session",
+            "type": [
+                "requests.sessions.Session"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        }
+    ],
+    "post_pfs_paths@global": [
+        {
+            "category": "arg",
+            "name": "url",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_network_address",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "payload",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "session",
+            "type": [
+                "requests.sessions.Session"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_address",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payload",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "post_pfs_paths",
+            "type": [
+                "tuple[UUID]"
+            ]
+        }
+    ],
+    "query_address_metadata@PFSProxy": [
+        {
+            "category": "arg",
+            "name": "address",
+            "type": [
+                "str",
+                "int",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "str",
+                "int",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "query_address_metadata",
+            "type": []
+        }
+    ],
+    "query_paths@PFSProxy": [
+        {
+            "category": "arg",
+            "name": "our_address",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.utils.Locksroot",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "privkey",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.utils.Locksroot",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "current_block_number",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.utils.Locksroot",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.utils.Locksroot",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "one_to_n_address",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.utils.Locksroot",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chain_id",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.utils.Locksroot",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "route_from",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.utils.Locksroot",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "route_to",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.utils.Locksroot",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.utils.Locksroot",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pfs_wait_for_block",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.utils.Locksroot",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "our_address",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.utils.Locksroot",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "privkey",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.utils.Locksroot",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_block_number",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.utils.Locksroot",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.utils.Locksroot",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "one_to_n_address",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.utils.Locksroot",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_id",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.utils.Locksroot",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "route_from",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.utils.Locksroot",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "route_to",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.utils.Locksroot",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.utils.Locksroot",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pfs_wait_for_block",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.utils.Locksroot",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "query_paths",
+            "type": []
+        }
+    ],
+    "sign@IOU": [
+        {
+            "category": "arg",
+            "name": "privkey",
+            "type": [
+                "bytes",
+                "eth_keys.datatypes.PrivateKey",
+                "raiden.utils.signer.Signer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "privkey",
+            "type": [
+                "bytes",
+                "eth_keys.datatypes.PrivateKey",
+                "raiden.utils.signer.Signer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signature",
+            "type": [
+                "Signature"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "sign",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "update_iou@global": [
+        {
+            "category": "arg",
+            "name": "iou",
+            "type": [
+                "raiden.utils.PrivateKey",
+                "bytes",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "privkey",
+            "type": [
+                "raiden.utils.PrivateKey",
+                "bytes",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "added_amount",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "expiration_block",
+            "type": [
+                "None",
+                "raiden.utils.PrivateKey",
+                "bytes",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "privkey",
+            "type": [
+                "raiden.utils.PrivateKey",
+                "bytes",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iou",
+            "type": [
+                "raiden.utils.PrivateKey",
+                "bytes",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "iou_",
+            "type": [
+                "TokenAmount",
+                "None",
+                "raiden.utils.PrivateKey",
+                "bytes",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_signature",
+            "type": [
+                "Signature"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expiration_block",
+            "type": [
+                "None",
+                "raiden.utils.PrivateKey",
+                "bytes",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_iou",
+            "type": [
+                "raiden.utils.PrivateKey",
+                "bytes",
+                "raiden.utils.BlockSpecification"
+            ]
+        }
+    ]
+}

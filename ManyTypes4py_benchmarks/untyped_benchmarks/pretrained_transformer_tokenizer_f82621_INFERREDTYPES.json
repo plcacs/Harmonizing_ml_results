@@ -1,0 +1,504 @@
+{
+    "__init__@PretrainedTransformerTokenizer": [
+        {
+            "category": "arg",
+            "name": "model_name",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "add_special_tokens",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_length",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tokenizer_kwargs",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "verification_tokens",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokenizer_kwargs",
+            "type": [
+                "None",
+                "dict",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_tokenizer_kwargs",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "add_special_tokens",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_add_special_tokens",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_length",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_max_length",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "verification_tokens",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_estimate_character_indices@PretrainedTransformerTokenizer": [
+        {
+            "category": "arg",
+            "name": "text",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "token_ids",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "token_texts",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_offsets",
+            "type": [
+                "list[None]",
+                "list[typing.Optional[tuple]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_allowed_skipped_whitespace",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "allowed_skipped_whitespace",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "text_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "non_whitespace_chars_skipped",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_estimate_character_indices",
+            "type": [
+                "list[typing.Optional[tuple]]"
+            ]
+        }
+    ],
+    "_increment_offsets@PretrainedTransformerTokenizer": [
+        {
+            "category": "arg",
+            "name": "offsets",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "increment",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "offset",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_increment_offsets",
+            "type": [
+                "list[typing.Optional[tuple]]"
+            ]
+        }
+    ],
+    "_intra_word_tokenize@PretrainedTransformerTokenizer": [
+        {
+            "category": "arg",
+            "name": "string_tokens",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "list",
+                "list[Token]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "offsets",
+            "type": [
+                "list",
+                "list[tuple[int]]",
+                "list[None]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_intra_word_tokenize",
+            "type": [
+                "tuple[typing.Union[list[Token],list[None],list[tuple[int]]]]"
+            ]
+        }
+    ],
+    "_reverse_engineer_special_tokens@PretrainedTransformerTokenizer": [
+        {
+            "category": "arg",
+            "name": "token_a",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "token_b",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "model_name",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "tokenizer_kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "sequence_pair_start_tokens",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sequence_pair_mid_tokens",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sequence_pair_end_tokens",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sequence_pair_first_token_type_id",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sequence_pair_second_token_type_id",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "single_sequence_start_tokens",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "single_sequence_end_tokens",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "single_sequence_token_type_id",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "seen_dummy_a",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "seen_dummy_b",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token",
+            "type": [
+                "Token"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_reverse_engineer_special_tokens",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_to_params@PretrainedTransformerTokenizer": [
+        {
+            "category": "return",
+            "name": "_to_params",
+            "type": [
+                "dict[typing.Text, typing.Text]"
+            ]
+        }
+    ],
+    "add_special_tokens@PretrainedTransformerTokenizer": [
+        {
+            "category": "arg",
+            "name": "tokens1",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "tokens2",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens2",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "add_special_tokens",
+            "type": []
+        }
+    ],
+    "global@global": [],
+    "intra_word_tokenize@PretrainedTransformerTokenizer": [
+        {
+            "category": "arg",
+            "name": "string_tokens",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "intra_word_tokenize",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "intra_word_tokenize_sentence_pair@PretrainedTransformerTokenizer": [
+        {
+            "category": "arg",
+            "name": "string_tokens_a",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "string_tokens_b",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "intra_word_tokenize_sentence_pair",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "num_special_tokens_for_pair@PretrainedTransformerTokenizer": [
+        {
+            "category": "return",
+            "name": "num_special_tokens_for_pair",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "num_special_tokens_for_sequence@PretrainedTransformerTokenizer": [
+        {
+            "category": "return",
+            "name": "num_special_tokens_for_sequence",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "tokenize@PretrainedTransformerTokenizer": [
+        {
+            "category": "arg",
+            "name": "text",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "max_length",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_offsets",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "list",
+                "list[Token]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "start",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "end",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "tokenize",
+            "type": [
+                "list[Token]"
+            ]
+        }
+    ],
+    "tokenizer_lowercases@PretrainedTransformerTokenizer": [
+        {
+            "category": "arg",
+            "name": "tokenizer",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "detokenized",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "tokenizer_lowercases",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "with_new_type_id@PretrainedTransformerTokenizer": [
+        {
+            "category": "arg",
+            "name": "tokens",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "type_id",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "with_new_type_id",
+            "type": [
+                "list"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,1676 @@
+{
+    "check_update_max_invites@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "new_max",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "default_max",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_max",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_max",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_update_max_invites",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "demo_request@global": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "dict",
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "dict",
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_data",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "form",
+            "type": [
+                "DemoRequestForm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "email_context",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "demo_request",
+            "type": []
+        }
+    ],
+    "get_confirmations@global": [
+        {
+            "category": "arg",
+            "name": "types",
+            "type": [
+                "str",
+                "int",
+                "transfer.models.CategoryID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "object_ids",
+            "type": [
+                "str",
+                "int",
+                "transfer.models.CategoryID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "hostname",
+            "type": [
+                "None",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lowest_datetime",
+            "type": [
+                "datetime.datetime",
+                "datetime.date",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "types",
+            "type": [
+                "str",
+                "int",
+                "transfer.models.CategoryID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "object_ids",
+            "type": [
+                "str",
+                "int",
+                "transfer.models.CategoryID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "confirmations",
+            "type": [
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "confirmation_dicts",
+            "type": [
+                "list",
+                "list[dict[typing.Text, typing.Union[typing.Text,datetime.date,typing.Type,datetime.datetime]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expiry_date",
+            "type": [
+                "None",
+                "datetime.datetime",
+                "datetime.date"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "link_status",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "now",
+            "type": [
+                "datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expires_in",
+            "type": [
+                "typing.Text",
+                "datetime.date",
+                "typing.Type",
+                "datetime.datetime"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_confirmations",
+            "type": [
+                "list[dict[typing.Text, typing.Union[typing.Text,datetime.date,typing.Type,datetime.datetime]]]"
+            ]
+        }
+    ],
+    "get_default_max_invites_for_plan_type@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_max",
+            "type": [
+                "None",
+                "int",
+                "datetime.datetime",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_default_max_invites_for_plan_type",
+            "type": [
+                "int",
+                "datetime.datetime",
+                "list[int]",
+                "None"
+            ]
+        }
+    ],
+    "get_plan_type_string@global": [
+        {
+            "category": "arg",
+            "name": "plan_type",
+            "type": [
+                "str",
+                "models.Location",
+                "typing.Sequence[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "plan_type",
+            "type": [
+                "str",
+                "models.Location",
+                "typing.Sequence[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_plan_type_string",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "get_realm_admin_emails_as_string@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "get_realm_admin_emails_as_string",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "get_realm_owner_emails_as_string@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "get_realm_owner_emails_as_string",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "get_realm_plan_type_options@global": [
+        {
+            "category": "local",
+            "name": "plan_types",
+            "type": [
+                "list[SupportSelectOption]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_realm_plan_type_options",
+            "type": [
+                "list[SupportSelectOption]"
+            ]
+        }
+    ],
+    "get_realm_plan_type_options_for_discount@global": [
+        {
+            "category": "local",
+            "name": "plan_types",
+            "type": [
+                "list[SupportSelectOption]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_realm_plan_type_options_for_discount",
+            "type": [
+                "list[SupportSelectOption]"
+            ]
+        }
+    ],
+    "get_remote_plan_tier_options@global": [
+        {
+            "category": "local",
+            "name": "remote_plan_tiers",
+            "type": [
+                "list[SupportSelectOption]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_remote_plan_tier_options",
+            "type": [
+                "list[SupportSelectOption]"
+            ]
+        }
+    ],
+    "get_remote_realm_billing_user_emails_as_string@global": [
+        {
+            "category": "arg",
+            "name": "remote_realm",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "get_remote_realm_billing_user_emails_as_string",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "get_remote_server_billing_user_emails_as_string@global": [
+        {
+            "category": "arg",
+            "name": "remote_server",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "get_remote_server_billing_user_emails_as_string",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "get_remote_servers_for_support@global": [
+        {
+            "category": "arg",
+            "name": "email_to_search",
+            "type": [
+                "str",
+                "core.models.UserKey"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "uuid_to_search",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "hostname_to_search",
+            "type": [
+                "str",
+                "int",
+                "core.models.UserKey"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "remote_servers_query",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "email_to_search",
+            "type": [
+                "str",
+                "core.models.UserKey"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "remote_servers_set",
+            "type": [
+                "set[typing.Generator]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_remote_servers_for_support",
+            "type": [
+                "list[typing.Generator]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "uuid_to_search",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hostname_to_search",
+            "type": [
+                "str",
+                "int",
+                "core.models.UserKey"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "ModifyPlan",
+            "type": [
+                "datetime.timezone",
+                "typing.Type",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "RemoteServerStatus",
+            "type": [
+                "str",
+                "int",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        }
+    ],
+    "remote_servers_support@global": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "django.http.HttpRequest",
+                "django.http.requesHttpRequest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "remote_server_id",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "remote_realm_id",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "monthly_discounted_price",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "annual_discounted_price",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "minimum_licenses",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "required_plan_tier",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fixed_price",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sent_invoice_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sponsorship_pending",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "approve_sponsorship",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "billing_modality",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "plan_end_date",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "modify_plan",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "delete_fixed_price_next_plan",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "remote_server_status",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "complimentary_access_plan",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "django.http.HttpRequest",
+                "django.http.requesHttpRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "keys",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "remote_realm_id",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "remote_realm_support_request",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "remote_realm",
+            "type": [
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "remote_server_id",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "remote_server",
+            "type": [
+                "str",
+                "dict[str, typing.Literal]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "support_view_request",
+            "type": [
+                "None",
+                "SupportViewRequest",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "approve_sponsorship",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sponsorship_pending",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "monthly_discounted_price",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "annual_discounted_price",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "minimum_licenses",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "required_plan_tier",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fixed_price",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sent_invoice_id",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "complimentary_access_plan",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "billing_modality",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "plan_end_date",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "modify_plan",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "delete_fixed_price_next_plan",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "remote_server_status",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "typing.Callable[str, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "remote_server_status_billing_session",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "email_to_search",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "uuid_to_search",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "list[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hostname_to_search",
+            "type": [
+                "None",
+                "str",
+                "list",
+                "typing.Final"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "search_text",
+            "type": [
+                "str",
+                "typing.Type",
+                "property"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "remote_servers",
+            "type": [
+                "str",
+                "list[str]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "remote_server_to_max_monthly_messages",
+            "type": [
+                "dict",
+                "str",
+                "int",
+                "dict[str, typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "server_support_data",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "dict[str, dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm_support_data",
+            "type": [
+                "dict",
+                "dict[str, int]",
+                "list[dict[str, typing.Any]]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "remote_realms",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "remote_realms_for_server",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm_billing_session",
+            "type": [
+                "typing.Type",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "remote_realm_data",
+            "type": [
+                "str",
+                "None",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "server_billing_session",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "remote_server_data",
+            "type": [
+                "str",
+                "dict[str, typing.Union[typing.Any,str]]",
+                "dict[str, dict[str, str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "remote_servers_support",
+            "type": []
+        }
+    ],
+    "sales_support_request@global": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "sales_support_request",
+            "type": [
+                "django.http.HttpResponse",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_data",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, str]",
+                "dict[str, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "form",
+            "type": [
+                "SalesRequestForm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "email_context",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        }
+    ],
+    "shared_support_context@global": [
+        {
+            "category": "return",
+            "name": "shared_support_context",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        }
+    ],
+    "support@global": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "realm_id",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "plan_type",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "monthly_discounted_price",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "annual_discounted_price",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "minimum_licenses",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "required_plan_tier",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "new_subdomain",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "status",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "billing_modality",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sponsorship_pending",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "approve_sponsorship",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "modify_plan",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "scrub_realm",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "delete_user_by_id",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "org_type",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_invites",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "plan_end_date",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fixed_price",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sent_invoice_id",
+            "type": [
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "delete_fixed_price_next_plan",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context",
+            "type": [
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "keys",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm_id",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "None",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "support_view_request",
+            "type": [
+                "None",
+                "SupportViewRequest",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "approve_sponsorship",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sponsorship_pending",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "monthly_discounted_price",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "annual_discounted_price",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "minimum_licenses",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "required_plan_tier",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "billing_modality",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "modify_plan",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "plan_end_date",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fixed_price",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sent_invoice_id",
+            "type": [
+                "datetime.tzinfo",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "delete_fixed_price_next_plan",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "plan_type",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "org_type",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_invites",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_max",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "update_text",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_subdomain",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "support",
+            "type": [
+                "cmk.gui.utils.html.HTML",
+                "str",
+                "rotkehlchen.tests.utils.mock.MockResponse"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "status",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scrub_realm",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "delete_user_by_id",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile_for_deletion",
+            "type": [
+                "bool",
+                "typing.Generator[typing.Optional[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "bool",
+                "datetime.tzinfo",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key_words",
+            "type": [
+                "typing.Type",
+                "frozenset",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "case_insensitive_users_q",
+            "type": [
+                "Q"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "users",
+            "type": [
+                "list[tuple[typing.Union[int,str]]]",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realms",
+            "type": [
+                "zerver.models.Realm",
+                "None",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "confirmations",
+            "type": [
+                "list",
+                "eNMS.forms.fields.StringField",
+                "str",
+                "django.db.models.ForeignKey"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm_reactivation_status_objects",
+            "type": [
+                "str",
+                "int",
+                "dict[str, list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm_support_data",
+            "type": [
+                "dict"
+            ]
+        }
+    ],
+    "support_request@global": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "post_data",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, None]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "form",
+            "type": [
+                "SupportRequestForm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "email_context",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "support_request",
+            "type": []
+        }
+    ]
+}

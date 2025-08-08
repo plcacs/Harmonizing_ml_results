@@ -1,0 +1,2216 @@
+{
+    "__init__@ProducerThread": [
+        {
+            "category": "arg",
+            "name": "producer",
+            "type": [
+                "tonga.services.producer.base.BaseProducer",
+                "asyncio.AbstractEventLoop",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "producer",
+            "type": [
+                "tonga.services.producer.base.BaseProducer",
+                "asyncio.AbstractEventLoop",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__post_init__@Producer": [
+        {
+            "category": "local",
+            "name": "_producer_thread",
+            "type": [
+                "ProducerThread"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__post_init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_background_flush@ProducerThread": [
+        {
+            "category": "local",
+            "name": "_flush_soon",
+            "type": [
+                "str",
+                "bool",
+                "typing.Callable[None, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flush_soon",
+            "type": [
+                "str",
+                "bool",
+                "typing.Callable[None, typing.Any]",
+                "None",
+                "asyncio.locks.Event"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stopped",
+            "type": [
+                "bool",
+                "int",
+                "asyncio.locks.Event"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_background_flush",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_committed_offsets@ConfluentConsumerThread": [
+        {
+            "category": "arg",
+            "name": "partitions",
+            "type": [
+                "list[faustypes.TP]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "consumer",
+            "type": [
+                "pynamodb.connection.base.Connection",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partitions",
+            "type": [
+                "list[faustypes.TP]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tp",
+            "type": [
+                "faustypes.TP",
+                "typing.Text",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "committed",
+            "type": [
+                "\"PNSqlCursor\"",
+                "str",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_committed_offsets",
+            "type": [
+                "dict[TP, ]"
+            ]
+        }
+    ],
+    "_create_client_consumer@ConfluentConsumerThread": [
+        {
+            "category": "arg",
+            "name": "transport",
+            "type": [
+                "asyncio.AbstractEventLoop",
+                "typing.Callable",
+                "asyncio.StreamReader"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "loop",
+            "type": [
+                "asyncio.AbstractEventLoop",
+                "None",
+                "collections.abc.Coroutine"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transport",
+            "type": [
+                "asyncio.AbstractEventLoop",
+                "typing.Callable",
+                "asyncio.StreamReader"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_create_client_consumer",
+            "type": [
+                "Consumer"
+            ]
+        }
+    ],
+    "_create_consumer@ConfluentConsumerThread": [
+        {
+            "category": "arg",
+            "name": "loop",
+            "type": [
+                "asyncio.AbstractEventLoop",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transport",
+            "type": [
+                "faustranspordrivers.aiokafka.Consumer",
+                "faustypes.transports.ConsumerT"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "loop",
+            "type": [
+                "asyncio.AbstractEventLoop",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_create_consumer",
+            "type": []
+        }
+    ],
+    "_create_worker_consumer@ConfluentConsumerThread": [
+        {
+            "category": "arg",
+            "name": "transport",
+            "type": [
+                "asyncio.Transport"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "loop",
+            "type": [
+                "asyncio.AbstractEventLoop",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transport",
+            "type": [
+                "asyncio.Transport"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_create_worker_consumer",
+            "type": [
+                "Consumer"
+            ]
+        }
+    ],
+    "_earliest_offsets@ConfluentConsumerThread": [
+        {
+            "category": "arg",
+            "name": "partitions",
+            "type": [
+                "list[faustypes.TP]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "consumer",
+            "type": [
+                "dict[int, typing.Any]",
+                "int",
+                "asyncio.events.AbstractEventLoop"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partitions",
+            "type": [
+                "list[faustypes.TP]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tp",
+            "type": [
+                "faustypes.TP"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_earliest_offsets",
+            "type": [
+                "dict[faustypes.TP, ]"
+            ]
+        }
+    ],
+    "_ensure_consumer@ConfluentConsumerThread": [
+        {
+            "category": "local",
+            "name": "_consumer",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_ensure_consumer",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_highwaters@ConfluentConsumerThread": [
+        {
+            "category": "arg",
+            "name": "partitions",
+            "type": [
+                "list[faustypes.TP]",
+                "faustypes.TP"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "consumer",
+            "type": [
+                "dict[int, typing.Any]",
+                "int",
+                "asyncio.events.AbstractEventLoop"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partitions",
+            "type": [
+                "list[faustypes.TP]",
+                "faustypes.TP"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tp",
+            "type": [
+                "faustypes.TP"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_highwaters",
+            "type": [
+                "dict[faustypes.TP, ]"
+            ]
+        }
+    ],
+    "_new_consumer_thread@Consumer": [
+        {
+            "category": "return",
+            "name": "_new_consumer_thread",
+            "type": [
+                "ConfluentConsumerThread"
+            ]
+        }
+    ],
+    "_new_topicpartition@Consumer": [
+        {
+            "category": "arg",
+            "name": "topic",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "partition",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partition",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_new_topicpartition",
+            "type": [
+                "bool",
+                "str"
+            ]
+        }
+    ],
+    "_on_assign@ConfluentConsumerThread": [
+        {
+            "category": "arg",
+            "name": "consumer",
+            "type": [
+                "confluent_kafka.Consumer",
+                "bool",
+                "typing.Callable",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "assigned",
+            "type": [
+                "list[confluent_kafka.TopicPartition]",
+                "asyncio.Lock",
+                "asyncio.AbstractEventLoop"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_assigned",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "assigned",
+            "type": [
+                "list[confluent_kafka.TopicPartition]",
+                "asyncio.Lock",
+                "asyncio.AbstractEventLoop"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tp",
+            "type": [
+                "confluent_kafka.TopicPartition"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_on_assign",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_on_irrecoverable_error@Producer": [
+        {
+            "category": "arg",
+            "name": "exc",
+            "type": [
+                "BaseException",
+                "Exception",
+                "botocore.exceptions.ClientError"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "consumer",
+            "type": [
+                "asyncio.transports.Transport",
+                "aiodine.consumers.Consumer",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exc",
+            "type": [
+                "BaseException",
+                "Exception",
+                "botocore.exceptions.ClientError"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_on_irrecoverable_error",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_on_revoke@ConfluentConsumerThread": [
+        {
+            "category": "arg",
+            "name": "consumer",
+            "type": [
+                "confluent_kafka.Consumer",
+                "typing.Callable",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "revoked",
+            "type": [
+                "list[confluent_kafka.TopicPartition]",
+                "faustypes.transports.ConsumerT",
+                "faustypes.transports.ProducerT"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "revoked",
+            "type": [
+                "list[confluent_kafka.TopicPartition]",
+                "faustypes.transports.ConsumerT",
+                "faustypes.transports.ProducerT"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tp",
+            "type": [
+                "confluent_kafka.TopicPartition"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_on_revoke",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_seek_to_committed@ConfluentConsumerThread": [
+        {
+            "category": "return",
+            "name": "_seek_to_committed",
+            "type": [
+                "dict[ensure_TP, ]"
+            ]
+        }
+    ],
+    "_seek_wait@ConfluentConsumerThread": [
+        {
+            "category": "arg",
+            "name": "consumer",
+            "type": [
+                "Consumer",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "partitions",
+            "type": [
+                "asyncio.AbstractEventLoop"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partitions",
+            "type": [
+                "asyncio.AbstractEventLoop"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "consumer",
+            "type": [
+                "Consumer",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_seek_wait",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_to_message@Consumer": [
+        {
+            "category": "arg",
+            "name": "tp",
+            "type": [
+                "faustypes.TP",
+                "types.EventT",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "record",
+            "type": [
+                "faustypes.TP"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "record",
+            "type": [
+                "faustypes.TP"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timestamp_type",
+            "type": [
+                "str",
+                "dict[int, str]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timestamp",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timestamp_s",
+            "type": [
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "list",
+                "list[int]",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "str",
+                "list",
+                "list[dict]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tp",
+            "type": [
+                "faustypes.TP",
+                "types.EventT",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_to_message",
+            "type": [
+                "ConsumerMessage"
+            ]
+        }
+    ],
+    "_topic_config@Transport": [
+        {
+            "category": "arg",
+            "name": "retention",
+            "type": [
+                "None",
+                "int",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "compacting",
+            "type": [
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deleting",
+            "type": [
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "dict",
+                "dict[typing.Text, str]",
+                "dict[typing.Text, typing.Union[str,None,int,tuple[int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cleanup_flags",
+            "type": [
+                "set",
+                "set[str]",
+                "frozenset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "compacting",
+            "type": [
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deleting",
+            "type": [
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "retention",
+            "type": [
+                "None",
+                "int",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_topic_config",
+            "type": [
+                "dict[typing.Text, typing.Union[str,None,int,tuple[int]]]"
+            ]
+        }
+    ],
+    "assignment@ConfluentConsumerThread": [
+        {
+            "category": "return",
+            "name": "assignment",
+            "type": [
+                "ensure_TPset"
+            ]
+        }
+    ],
+    "close@ConfluentConsumerThread": [
+        {
+            "category": "return",
+            "name": "close",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "commit@ConfluentConsumerThread": [
+        {
+            "category": "arg",
+            "name": "tps",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "commit",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "create_topic@ConfluentConsumerThread": [
+        {
+            "category": "arg",
+            "name": "topic",
+            "type": [
+                "bool",
+                "mode.Seconds"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "partitions",
+            "type": [
+                "bool",
+                "mode.Seconds"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "replication",
+            "type": [
+                "bool",
+                "mode.Seconds"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "None",
+                "bool",
+                "mode.Seconds"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "timeout",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "retention",
+            "type": [
+                "None",
+                "bool",
+                "mode.Seconds"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "compacting",
+            "type": [
+                "None",
+                "bool",
+                "mode.Seconds"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deleting",
+            "type": [
+                "None",
+                "bool",
+                "mode.Seconds"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ensure_created",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_topic",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "create_topic@Consumer": [
+        {
+            "category": "arg",
+            "name": "topic",
+            "type": [
+                "bool",
+                "mode.utils.times.Seconds"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "partitions",
+            "type": [
+                "bool",
+                "mode.utils.times.Seconds"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "replication",
+            "type": [
+                "bool",
+                "mode.utils.times.Seconds"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "None",
+                "bool",
+                "mode.utils.times.Seconds"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "timeout",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "retention",
+            "type": [
+                "None",
+                "bool",
+                "mode.utils.times.Seconds"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "compacting",
+            "type": [
+                "None",
+                "bool",
+                "mode.utils.times.Seconds"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deleting",
+            "type": [
+                "None",
+                "bool",
+                "mode.utils.times.Seconds"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ensure_created",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_topic",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic",
+            "type": [
+                "bool",
+                "mode.utils.times.Seconds"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partitions",
+            "type": [
+                "bool",
+                "mode.utils.times.Seconds"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "replication",
+            "type": [
+                "bool",
+                "mode.utils.times.Seconds"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "None",
+                "bool",
+                "mode.utils.times.Seconds"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timeout",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "retention",
+            "type": [
+                "None",
+                "bool",
+                "mode.utils.times.Seconds"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "compacting",
+            "type": [
+                "None",
+                "bool",
+                "mode.utils.times.Seconds"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deleting",
+            "type": [
+                "None",
+                "bool",
+                "mode.utils.times.Seconds"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ensure_created",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "create_topic@Producer": [
+        {
+            "category": "arg",
+            "name": "topic",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "partitions",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "replication",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "None",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "timeout",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "retention",
+            "type": [
+                "None",
+                "mode.utils.times.Seconds",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "compacting",
+            "type": [
+                "None",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deleting",
+            "type": [
+                "None",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ensure_created",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_topic",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "retention",
+            "type": [
+                "None",
+                "mode.utils.times.Seconds",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_retention",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partitions",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "replication",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "None",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timeout",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "compacting",
+            "type": [
+                "None",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deleting",
+            "type": [
+                "None",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ensure_created",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "earliest_offsets@ConfluentConsumerThread": [
+        {
+            "category": "arg",
+            "name": "partitions",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partitions",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "earliest_offsets",
+            "type": [
+                "dict"
+            ]
+        }
+    ],
+    "flush@Producer": [
+        {
+            "category": "return",
+            "name": "flush",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "flush@ProducerThread": [
+        {
+            "category": "local",
+            "name": "_producer",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "flush",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "getmany@ConfluentConsumerThread": [
+        {
+            "category": "arg",
+            "name": "active_partitions",
+            "type": [
+                "set[faustypes.TP]",
+                "bool",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "timeout",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_consumer",
+            "type": [
+                "asyncio.events.AbstractEventLoop"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timeout",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "records",
+            "type": [
+                "list",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tp",
+            "type": [
+                "TP"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "getmany",
+            "type": [
+                "list",
+                "dict"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "__all__",
+            "type": [
+                "list[typing.Text]"
+            ]
+        }
+    ],
+    "highwater@ConfluentConsumerThread": [
+        {
+            "category": "arg",
+            "name": "tp",
+            "type": [
+                "faustypes.TP",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tp",
+            "type": [
+                "faustypes.TP",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str",
+                "dict[int, typing.Any]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hw",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "highwater",
+            "type": [
+                "str",
+                "int"
+            ]
+        }
+    ],
+    "highwaters@ConfluentConsumerThread": [
+        {
+            "category": "arg",
+            "name": "partitions",
+            "type": [
+                "typing.Mapping",
+                "faustypes.TP",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partitions",
+            "type": [
+                "typing.Mapping",
+                "faustypes.TP",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "highwaters",
+            "type": [
+                "dict"
+            ]
+        }
+    ],
+    "key_partition@ConfluentConsumerThread": [
+        {
+            "category": "arg",
+            "name": "topic",
+            "type": [
+                "int",
+                "str",
+                "bytes",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "int",
+                "str",
+                "bytes",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "partition",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "key_partition",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "key_partition@Producer": [
+        {
+            "category": "arg",
+            "name": "topic",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "key_partition",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "message_to_metadata@ProducerProduceFuture": [
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "confluent_kafka.Message",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "confluent_kafka.Message",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic",
+            "type": [
+                "str",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partition",
+            "type": [
+                "int",
+                "list",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tp",
+            "type": [
+                "TP"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "message_to_metadata",
+            "type": [
+                "RecordMetadata"
+            ]
+        }
+    ],
+    "on_restart@Producer": [
+        {
+            "category": "return",
+            "name": "on_restart",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "on_start@ConfluentConsumerThread": [
+        {
+            "category": "return",
+            "name": "on_start",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "on_start@Producer": [
+        {
+            "category": "return",
+            "name": "on_start",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "on_start@ProducerThread": [
+        {
+            "category": "local",
+            "name": "_producer",
+            "type": [
+                "Producer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_start",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "on_stop@Producer": [
+        {
+            "category": "return",
+            "name": "on_stop",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "on_thread_stop@ProducerThread": [
+        {
+            "category": "local",
+            "name": "_producer",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "on_thread_stop",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "position@ConfluentConsumerThread": [
+        {
+            "category": "arg",
+            "name": "tp",
+            "type": [
+                "faustypes.TP",
+                "int",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tp",
+            "type": [
+                "faustypes.TP",
+                "int",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "position",
+            "type": []
+        }
+    ],
+    "produce@ProducerThread": [
+        {
+            "category": "arg",
+            "name": "topic",
+            "type": [
+                "bytes",
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "bytes",
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "bytes",
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "partition",
+            "type": [
+                "int",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "on_delivery",
+            "type": [
+                "bytes",
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_producer",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partition",
+            "type": [
+                "int",
+                "str",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic",
+            "type": [
+                "bytes",
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "bytes",
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "bytes",
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "on_delivery",
+            "type": [
+                "bytes",
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "produce",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "seek@ConfluentConsumerThread": [
+        {
+            "category": "arg",
+            "name": "partition",
+            "type": [
+                "int",
+                "faustypes.TP",
+                "types.TopicPartition"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "offset",
+            "type": [
+                "int",
+                "faustypes.TP",
+                "types.TopicPartition"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partition",
+            "type": [
+                "int",
+                "faustypes.TP",
+                "types.TopicPartition"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "offset",
+            "type": [
+                "int",
+                "faustypes.TP",
+                "types.TopicPartition"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "seek",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "seek_to_beginning@ConfluentConsumerThread": [
+        {
+            "category": "arg",
+            "name": "partitions",
+            "type": [
+                "typing.Mapping",
+                "list[faustypes.TP]",
+                "faustypes.TP"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partitions",
+            "type": [
+                "typing.Mapping",
+                "list[faustypes.TP]",
+                "faustypes.TP"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "seek_to_beginning",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "seek_to_committed@ConfluentConsumerThread": [
+        {
+            "category": "return",
+            "name": "seek_to_committed",
+            "type": []
+        }
+    ],
+    "seek_wait@ConfluentConsumerThread": [
+        {
+            "category": "arg",
+            "name": "partitions",
+            "type": [
+                "typing.Mapping",
+                "faustypes.TP",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "consumer",
+            "type": [
+                "asyncio.events.AbstractEventLoop",
+                "asyncio.transports.Transport"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partitions",
+            "type": [
+                "typing.Mapping",
+                "faustypes.TP",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "seek_wait",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "send@Producer": [
+        {
+            "category": "arg",
+            "name": "topic",
+            "type": [
+                "bytes",
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "bytes",
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "bytes",
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "partition",
+            "type": [
+                "bytes",
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "timestamp",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "headers",
+            "type": [
+                "bytes",
+                "None",
+                "str",
+                "faustypes.HeadersArg"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "transactional_id",
+            "type": [
+                "None",
+                "bytes",
+                "str",
+                "faustypes.HeadersArg"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fut",
+            "type": [
+                "ProducerProduceFuture"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic",
+            "type": [
+                "bytes",
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "bytes",
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "bytes",
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partition",
+            "type": [
+                "bytes",
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "send",
+            "type": [
+                "typing.Callable",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exc",
+            "type": [
+                "Exception"
+            ]
+        }
+    ],
+    "send_and_wait@Producer": [
+        {
+            "category": "arg",
+            "name": "topic",
+            "type": [
+                "str",
+                "bytes",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "bytes",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "str",
+                "bytes",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "partition",
+            "type": [
+                "str",
+                "bytes",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "timestamp",
+            "type": [
+                "str",
+                "bytes",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "headers",
+            "type": [
+                "str",
+                "bytes",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "transactional_id",
+            "type": [
+                "None",
+                "str",
+                "bytes",
+                "faustypes.HeadersArg"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic",
+            "type": [
+                "str",
+                "bytes",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "bytes",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "str",
+                "bytes",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partition",
+            "type": [
+                "str",
+                "bytes",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timestamp",
+            "type": [
+                "str",
+                "bytes",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "headers",
+            "type": [
+                "str",
+                "bytes",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fut",
+            "type": [
+                "collections.abc.Coroutine",
+                "asyncio.Future"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "send_and_wait",
+            "type": [
+                "collections.abc.Coroutine",
+                "asyncio.Future"
+            ]
+        }
+    ],
+    "server_list@global": [
+        {
+            "category": "arg",
+            "name": "urls",
+            "type": [
+                "list[yarl.URL]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "default_port",
+            "type": [
+                "int",
+                "list[yarl.URL]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_host",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "urls",
+            "type": [
+                "list[yarl.URL]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "u",
+            "type": [
+                "yarl.URL",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_port",
+            "type": [
+                "int",
+                "list[yarl.URL]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "server_list",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "set_from_on_delivery@ProducerProduceFuture": [
+        {
+            "category": "arg",
+            "name": "err",
+            "type": [
+                "str",
+                "bool",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "msg",
+            "type": [
+                "str",
+                "bytes",
+                "Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "err",
+            "type": [
+                "str",
+                "bool",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "str",
+                "bytes",
+                "Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metadata",
+            "type": [
+                "dict[typing.Any, str]",
+                "dict[str, int]",
+                "dict[int, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_from_on_delivery",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "subscribe@ConfluentConsumerThread": [
+        {
+            "category": "arg",
+            "name": "topics",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topics",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "subscribe",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "topic_partitions@ConfluentConsumerThread": [
+        {
+            "category": "arg",
+            "name": "topic",
+            "type": [
+                "str",
+                "typing.Iterable[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "topic_partitions",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

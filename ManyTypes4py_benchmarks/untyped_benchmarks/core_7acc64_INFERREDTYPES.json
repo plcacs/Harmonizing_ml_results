@@ -1,0 +1,302 @@
+{
+    "__init__@CausalDiscovery": [
+        {
+            "category": "arg",
+            "name": "generator",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "causal_mechanism",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "noise",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "noise_coeff",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "npoints",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "nodes",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "parents_max",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_degree",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_dataset",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "generator",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_data",
+            "type": [
+                "list",
+                "list[tuple[int]]",
+                "list[list[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "causal_mechanism",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "noise",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "noise_coeff",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "npoints",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nodes",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parents_max",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_degree",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_nodes_list",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "param_links",
+            "type": [
+                "list",
+                "list[int]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instru",
+            "type": [
+                "typing.Callable[None,None,None,None,None,None, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "add_missing_nodes@CausalDiscovery": [
+        {
+            "category": "arg",
+            "name": "graph",
+            "type": [
+                "dict[str, set[str]]",
+                "networkx.DiGraph",
+                "set[typing.Hashable]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "graph",
+            "type": [
+                "dict[str, set[str]]",
+                "networkx.DiGraph",
+                "set[typing.Hashable]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "add_missing_nodes",
+            "type": [
+                "dict[str, set[str]]",
+                "networkx.DiGraph",
+                "set[typing.Hashable]"
+            ]
+        }
+    ],
+    "choices_to_graph@CausalDiscovery": [
+        {
+            "category": "arg",
+            "name": "network_links",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "network_links",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "choices_to_graph",
+            "type": []
+        }
+    ],
+    "global@global": [],
+    "graph_score@CausalDiscovery": [
+        {
+            "category": "arg",
+            "name": "test_graph",
+            "type": [
+                "int",
+                "list[dict]",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_graph",
+            "type": [
+                "int",
+                "list[dict]",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "shd_score",
+            "type": [
+                "SHD"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "graph_score",
+            "type": [
+                "float"
+            ]
+        }
+    ],
+    "objective@CausalDiscovery": [
+        {
+            "category": "arg",
+            "name": "network_links",
+            "type": [
+                "dict",
+                "list[str]",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "network_links",
+            "type": [
+                "dict",
+                "list[str]",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output_graph",
+            "type": [
+                "dict",
+                "list[list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "score",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "objective",
+            "type": [
+                "int",
+                "float"
+            ]
+        }
+    ]
+}

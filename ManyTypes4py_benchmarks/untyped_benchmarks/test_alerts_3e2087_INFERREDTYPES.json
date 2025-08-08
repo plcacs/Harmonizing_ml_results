@@ -1,0 +1,841 @@
+{
+    "global@global": [],
+    "post_receive@DummyRemoteIPPlugin": [
+        {
+            "category": "arg",
+            "name": "alert",
+            "type": [
+                "Alert",
+                "list[tuple[str]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "alert",
+            "type": [
+                "Alert",
+                "list[tuple[str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "post_receive",
+            "type": [
+                "Alert",
+                "list[tuple[str]]"
+            ]
+        }
+    ],
+    "pre_receive@DummyRemoteIPPlugin": [
+        {
+            "category": "arg",
+            "name": "alert",
+            "type": [
+                "Alert",
+                "list[tuple[str]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "alert",
+            "type": [
+                "Alert",
+                "list[tuple[str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "pre_receive",
+            "type": [
+                "Alert",
+                "list[tuple[str]]"
+            ]
+        }
+    ],
+    "setUp@AlertsTestCase": [
+        {
+            "category": "local",
+            "name": "test_config",
+            "type": [
+                "dict[typing.Text, bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app",
+            "type": [
+                "flask.app.Flask"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client",
+            "type": [
+                "\"Client\"",
+                "app.clienClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resource",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fatal_alert",
+            "type": [
+                "dict[typing.Text, typing.Union[typing.Text,list[typing.Text],dict[typing.Text, typing.Union[typing.Text,int]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fatal_alert_no_attributes",
+            "type": [
+                "dict[typing.Text, typing.Union[typing.Text,list[typing.Text]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "critical_alert",
+            "type": [
+                "dict[typing.Text, typing.Union[typing.Text,list[typing.Text],int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "major_alert",
+            "type": [
+                "dict[typing.Text, typing.Union[typing.Text,list[typing.Text],int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "warn_alert",
+            "type": [
+                "dict[typing.Text, typing.Union[typing.Text,list[typing.Text],int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "normal_alert",
+            "type": [
+                "dict[typing.Text, typing.Union[typing.Text,list[typing.Text],int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ok_alert",
+            "type": [
+                "dict[typing.Text, typing.Union[typing.Text,list[typing.Text]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cleared_alert",
+            "type": [
+                "dict[typing.Text, typing.Union[typing.Text,list[typing.Text]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ok2_alert",
+            "type": [
+                "dict[typing.Text, typing.Union[typing.Text,list[typing.Text]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "headers",
+            "type": [
+                "dict[typing.Text, typing.Text]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "setUp",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "status_change@DummyRemoteIPPlugin": [
+        {
+            "category": "arg",
+            "name": "alert",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "status",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "text",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "alert",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "status",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "text",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "status_change",
+            "type": [
+                "tuple[str]"
+            ]
+        }
+    ],
+    "tearDown@AlertsTestCase": [
+        {
+            "category": "return",
+            "name": "tearDown",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_alert@AlertsTestCase": [
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "requests.models.Response",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "bytes",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert_id",
+            "type": [
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "update_time",
+            "type": [
+                "float",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_alert",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_alert_attributes@AlertsTestCase": [
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "requests.models.Response",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_alert_attributes",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_alert_no_attributes@AlertsTestCase": [
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "requests.models.Response"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "dict[str, list[typing.Any]]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_alert_no_attributes",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_alert_not_found@AlertsTestCase": [
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "requests.models.Response",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_alert_not_found",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_alert_status@AlertsTestCase": [
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "requests.models.Response"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "update_time",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_alert_status",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_alert_tagging@AlertsTestCase": [
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "requests.models.Response",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_alert_tagging",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_alerts_show_fields@AlertsTestCase": [
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "requests.models.Response"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "bytes",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_alerts_show_fields",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_closed_alerts@AlertsTestCase": [
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "requests.models.Response",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_closed_alerts",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_duplicate_status@AlertsTestCase": [
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "requests.models.Response",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_duplicate_status",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_duplicate_value@AlertsTestCase": [
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "requests.models.Response",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "h",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_duplicate_value",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_expired_alerts@AlertsTestCase": [
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "requests.models.Response"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_expired_alerts",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_filter_and_query_params@AlertsTestCase": [
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "requests.models.Response",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "bytes",
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_filter_and_query_params",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_filter_params@AlertsTestCase": [
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "requests.models.Response",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "dict[str, typing.Union[typing.Any,str]]",
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert_id",
+            "type": [
+                "str",
+                "typing.Any",
+                "list[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attributes",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, typing.Text]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_filter_params",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_alerts@AlertsTestCase": [
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "requests.models.Response",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "bytes",
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_alerts",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_body@AlertsTestCase": [
+        {
+            "category": "local",
+            "name": "g_",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert_in",
+            "type": [
+                "Alert"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "body",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert_out",
+            "type": [
+                "str",
+                "employees.models.Report",
+                "app.util.events.resources.EventResource"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_body",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_history_limit@AlertsTestCase": [
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "requests.models.Response",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "dict[str, typing.Union[typing.Any,str]]",
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "h",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_history_limit",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_query_param@AlertsTestCase": [
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "requests.models.Response",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "bytes",
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_query_param",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_reopen_alerts@AlertsTestCase": [
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "requests.models.Response"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_reopen_alerts",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_timeout@AlertsTestCase": [
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "requests.models.Response",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_timeout",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,438 @@
+{
+    "get_channel_state@global": [
+        {
+            "category": "arg",
+            "name": "app",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "get_channel_state",
+            "type": []
+        }
+    ],
+    "global@global": [],
+    "num_matching_queued_messages@global": [
+        {
+            "category": "arg",
+            "name": "room",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "message_type",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "num_matching_queued_messages",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "start_transport@global": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "queued_messages",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "start_transport",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_alarm_task_first_run_syncs_blockchain_events@global": [
+        {
+            "category": "arg",
+            "name": "raiden_network",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "blockchain_services",
+            "type": [
+                "raiden.blockchain.events.Event",
+                "RaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_block_num",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_alarm_task_first_run_syncs_blockchain_events",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_blockchain_event_processed_interleaved@global": [
+        {
+            "category": "arg",
+            "name": "raiden_network",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_addresses",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "restart_node",
+            "type": [
+                "raiden.tests.integration.fixtures.raiden_network.RestartNode",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_network",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "api0",
+            "type": [
+                "RaidenAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app1_state_changes",
+            "type": [
+                "str",
+                "rotkehlchen.db.settings.ModifiableDBSettings",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_blockchain_event_processed_interleaved",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_broadcast_messages_must_be_sent_before_protocol_messages_on_restarts@global": [
+        {
+            "category": "arg",
+            "name": "raiden_network",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "restart_node",
+            "type": [
+                "typing.Callable",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "number_of_nodes",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_addresses",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "network_wait",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_network",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app0_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_addresses",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payment_id",
+            "type": [
+                "PaymentID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "network_wait",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "number_of_nodes",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transport",
+            "type": [
+                "MatrixTransport"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transport_",
+            "type": [
+                "Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app0_restart",
+            "type": [
+                "RaidenService"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_broadcast_messages_must_be_sent_before_protocol_messages_on_restarts",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_fees_are_updated_during_startup@global": [
+        {
+            "category": "arg",
+            "name": "raiden_network",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "restart_node",
+            "type": [
+                "raiden.tests.integration.fixtures.raiden_network.RestartNode",
+                "list[raiden.raiden_service.RaidenService]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_addresses",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "deposit",
+            "type": [
+                "float",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "retry_timeout",
+            "type": [
+                "float",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit",
+            "type": [
+                "float",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "retry_timeout",
+            "type": [
+                "float",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_imbalance_penalty",
+            "type": [
+                "list[tuple[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flat_fee",
+            "type": [
+                "FeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prop_fee",
+            "type": [
+                "ProportionalFeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "full_imbalance_penalty",
+            "type": [
+                "list[tuple[int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_fees_are_updated_during_startup",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_initialize_wal_throws_when_lock_is_taken@global": [
+        {
+            "category": "arg",
+            "name": "raiden_network",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "app0_2",
+            "type": [
+                "RaidenService"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_initialize_wal_throws_when_lock_is_taken",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_regression_filters_must_be_installed_from_confirmed_block@global": [
+        {
+            "category": "arg",
+            "name": "raiden_network",
+            "type": [
+                "list[raiden.raiden_service.RaidenService]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_network",
+            "type": [
+                "list[raiden.raiden_service.RaidenService]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app0",
+            "type": [
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_block_num",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "latest_block",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app0_state_changes",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_regression_filters_must_be_installed_from_confirmed_block",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

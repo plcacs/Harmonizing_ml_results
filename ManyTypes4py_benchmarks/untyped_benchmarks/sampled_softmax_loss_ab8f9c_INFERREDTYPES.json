@@ -1,0 +1,681 @@
+{
+    "__init__@SampledSoftmaxLoss": [
+        {
+            "category": "arg",
+            "name": "num_words",
+            "type": [
+                "int",
+                "None",
+                "list[tuple[typing.Union[numpy.ndarray,float,bool]]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "embedding_dim",
+            "type": [
+                "int",
+                "None",
+                "util.ArrayLike",
+                "numbers.Number"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_samples",
+            "type": [
+                "int",
+                "list[int]",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sparse",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "unk_id",
+            "type": [
+                "None",
+                "dict[str, int]",
+                "int",
+                "tuple[typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "use_character_inputs",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "use_fast_sampler",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tie_embeddings",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "use_fast_sampler",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sparse",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_words",
+            "type": [
+                "int",
+                "None",
+                "list[tuple[typing.Union[numpy.ndarray,float,bool]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "embedding_dim",
+            "type": [
+                "int",
+                "None",
+                "util.ArrayLike",
+                "numbers.Number"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "softmax_w",
+            "type": [
+                "int",
+                "numpy.ndarray",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "softmax_b",
+            "type": [
+                "int",
+                "float",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "use_character_inputs",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unk_id",
+            "type": [
+                "None",
+                "dict[str, int]",
+                "int",
+                "tuple[typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_unk_id",
+            "type": [
+                "None",
+                "dict[str, int]",
+                "int",
+                "tuple[typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_samples",
+            "type": [
+                "int",
+                "list[int]",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_num_samples",
+            "type": [
+                "int",
+                "list[int]",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_embedding_dim",
+            "type": [
+                "int",
+                "None",
+                "util.ArrayLike",
+                "numbers.Number"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_num_words",
+            "type": [
+                "int",
+                "None",
+                "list[tuple[typing.Union[numpy.ndarray,float,bool]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_choice@global": [
+        {
+            "category": "arg",
+            "name": "num_words",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_samples",
+            "type": [
+                "int",
+                "static_frame.core.util.DepthLevelSpecifier"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_tries",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_chosen",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sample_buffer",
+            "type": [
+                "bytes",
+                "list[int]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "buffer_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "samples",
+            "type": [
+                "set",
+                "set[typing.Union[bytes,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_samples",
+            "type": [
+                "int",
+                "static_frame.core.util.DepthLevelSpecifier"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sample_id",
+            "type": [
+                "bytes",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_choice",
+            "type": [
+                "tuple[int]"
+            ]
+        }
+    ],
+    "_forward_eval@SampledSoftmaxLoss": [
+        {
+            "category": "arg",
+            "name": "embeddings",
+            "type": [
+                "torch.Tensor",
+                "torch.LongTensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "targets",
+            "type": [
+                "torch.Tensor",
+                "torch.LongTensor",
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "b",
+            "type": [
+                "float",
+                "list[float]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "embeddings",
+            "type": [
+                "torch.Tensor",
+                "torch.LongTensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log_softmax",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "targets",
+            "type": [
+                "torch.Tensor",
+                "torch.LongTensor",
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "targets_",
+            "type": [
+                "list",
+                "list[float]",
+                "tuple[float]",
+                "torch.Tensor",
+                "torch.LongTensor",
+                "T"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_forward_eval",
+            "type": [
+                "torch.Tensor",
+                "numpy.ndarray"
+            ]
+        }
+    ],
+    "_forward_train@SampledSoftmaxLoss": [
+        {
+            "category": "arg",
+            "name": "embeddings",
+            "type": [
+                "torch.Tensor",
+                "torch.LongTensor",
+                "torch.BoolTensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "targets",
+            "type": [
+                "torch.Tensor",
+                "list[list[allennlp.semparse.domain_languages.NlvrLanguage]]",
+                "list[list[str]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_token_embedding",
+            "type": [
+                "torch.Tensor",
+                "None",
+                "torch.FloatTensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "targets",
+            "type": [
+                "torch.Tensor",
+                "list[list[allennlp.semparse.domain_languages.NlvrLanguage]]",
+                "list[list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "long_targets",
+            "type": [
+                "int",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "all_w",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "all_b",
+            "type": [
+                "list",
+                "dict[str, typing.Any]",
+                "list[None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int",
+                "tuple[typing.Literal]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "true_w",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sampled_w",
+            "type": [
+                "int",
+                "tuple[int]",
+                "dict[typing.Any, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "true_b",
+            "type": [
+                "int",
+                "list",
+                "list[tuple[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sampled_b",
+            "type": [
+                "bytes",
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "embeddings",
+            "type": [
+                "torch.Tensor",
+                "torch.LongTensor",
+                "torch.BoolTensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "true_logits",
+            "type": [
+                "int",
+                "numpy.array",
+                "None",
+                "list[tuple[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sampled_logits",
+            "type": [
+                "int",
+                "numpy.ndarray",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "true_in_sample_mask",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "masked_sampled_logits",
+            "type": [
+                "torch.Tensor",
+                "float",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log_softmax",
+            "type": [
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nll_loss",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_forward_train",
+            "type": [
+                "float"
+            ]
+        }
+    ],
+    "forward@SampledSoftmaxLoss": [
+        {
+            "category": "arg",
+            "name": "embeddings",
+            "type": [
+                "torch.Tensor",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "targets",
+            "type": [
+                "torch.Tensor",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_token_embedding",
+            "type": [
+                "None",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "embeddings",
+            "type": [
+                "torch.Tensor",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "forward",
+            "type": [
+                "gluonts.model.common.Tensor",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "targets",
+            "type": [
+                "torch.Tensor",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_token_embedding",
+            "type": [
+                "None",
+                "torch.Tensor"
+            ]
+        }
+    ],
+    "get_buffer@global": [
+        {
+            "category": "local",
+            "name": "samples",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_buffer",
+            "type": []
+        }
+    ],
+    "global@global": [],
+    "initialize_num_words@SampledSoftmaxLoss": [
+        {
+            "category": "local",
+            "name": "num_words",
+            "type": [
+                "int",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_num_words",
+            "type": [
+                "int",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "initialize_num_words",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "log_uniform_candidate_sampler@SampledSoftmaxLoss": [
+        {
+            "category": "arg",
+            "name": "targets",
+            "type": [
+                "typing.Iterable[typing.Any]",
+                "numpy.ndarray",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "choice_func",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "targets",
+            "type": [
+                "typing.Iterable[typing.Any]",
+                "numpy.ndarray",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sampled_ids",
+            "type": [
+                "numpy.ndarray",
+                "torch.LongTensor",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_probs",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_expected_count",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sampled_probs",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sampled_expected_count",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "log_uniform_candidate_sampler",
+            "type": [
+                "tuple[typing.Union[numpy.ndarray,torch.LongTensor,tuple,float]]"
+            ]
+        }
+    ]
+}

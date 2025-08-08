@@ -1,0 +1,53 @@
+from typing import Any, Generic, Optional, TypeVar
+import pytest
+from pydantic import BaseModel, ConfigDict, Field, create_model
+
+def _equals(a: Any, b: Any) -> bool:
+    ...
+
+def test_model_signature() -> None:
+    ...
+
+def test_generic_model_signature() -> None:
+    ...
+
+def test_custom_init_signature() -> None:
+    ...
+
+def test_custom_init_signature_with_no_var_kw() -> None:
+    ...
+
+def test_invalid_identifiers_signature() -> None:
+    ...
+
+def test_use_field_name() -> None:
+    ...
+
+def test_does_not_use_reserved_word() -> None:
+    ...
+
+def test_extra_allow_no_conflict() -> None:
+    ...
+
+def test_extra_allow_conflict() -> None:
+    ...
+
+def test_extra_allow_conflict_twice() -> None:
+    ...
+
+def test_extra_allow_conflict_custom_signature() -> None:
+    ...
+
+def test_signature_is_class_only() -> None:
+    ...
+
+def test_optional_field() -> None:
+    ...
+
+@pytest.mark.skipif(sys.version_info < (3, 12), reason='repr different on older versions')
+def test_annotated_field() -> None:
+    ...
+
+@pytest.mark.skipif(sys.version_info < (3, 10), reason='repr different on older versions')
+def test_annotated_optional_field() -> None:
+    ...

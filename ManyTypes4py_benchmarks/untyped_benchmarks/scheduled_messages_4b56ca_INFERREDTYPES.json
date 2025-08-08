@@ -1,0 +1,914 @@
+{
+    "check_schedule_message@global": [
+        {
+            "category": "arg",
+            "name": "sender",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "client",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recipient_type_name",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message_to",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topic_name",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message_content",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deliver_at",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "None",
+                "str",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "forwarder_user_profile",
+            "type": [
+                "None",
+                "str",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "read_by_sender",
+            "type": [
+                "None",
+                "str",
+                "raiden_contracts.utils.type_aliases.ChainID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sender",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recipient_type_name",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_to",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_name",
+            "type": [
+                "str",
+                "None",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_content",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "None",
+                "str",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "forwarder_user_profile",
+            "type": [
+                "None",
+                "str",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deliver_at",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "send_request_",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "read_by_sender",
+            "type": [
+                "None",
+                "str",
+                "raiden_contracts.utils.type_aliases.ChainID",
+                "bool",
+                "re.quests.models.Response"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_schedule_message",
+            "type": [
+                "str",
+                "typing.Callable[str, None]",
+                "typing.IO"
+            ]
+        }
+    ],
+    "delete_scheduled_message@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "scheduled_message_id",
+            "type": [
+                "int",
+                "zerver.models.UserProfile",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scheduled_message_id",
+            "type": [
+                "int",
+                "zerver.models.UserProfile",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scheduled_message_object",
+            "type": [
+                "dict[str, str]",
+                "grouper.models.user.User",
+                "None",
+                "models.user.UserModel"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "delete_scheduled_message",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "do_schedule_messages@global": [
+        {
+            "category": "arg",
+            "name": "send_message_requests",
+            "type": [
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sender",
+            "type": [
+                "str",
+                "None",
+                "typing.Callable[..., None]",
+                "zerver.models.UserProfile",
+                "zilencer.models.RemoteZulipServer"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "read_by_sender",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scheduled_messages",
+            "type": [
+                "list",
+                "list[tuple[ScheduledMessage]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "send_request",
+            "type": [
+                "ScheduledMessage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "send_message_requests",
+            "type": [
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scheduled_message",
+            "type": [
+                "ScheduledMessage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scheduled_message_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "read_by_sender",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ignored",
+            "type": [
+                "ScheduledMessage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "dict[typing.Text, typing.Union[typing.Text,list]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sender",
+            "type": [
+                "str",
+                "None",
+                "typing.Callable[..., None]",
+                "zerver.models.UserProfile",
+                "zilencer.models.RemoteZulipServer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "do_schedule_messages",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "edit_scheduled_message@global": [
+        {
+            "category": "arg",
+            "name": "sender",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "client",
+            "type": [
+                "str",
+                "core.models.Registration",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "scheduled_message_id",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recipient_type_name",
+            "type": [
+                "str",
+                "None",
+                "typing.Any",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message_to",
+            "type": [
+                "str",
+                "None",
+                "object"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topic_name",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message_content",
+            "type": [
+                "str",
+                "None",
+                "list[int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deliver_at",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "str",
+                "core.models.Registration",
+                "None",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sender",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scheduled_message_id",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scheduled_message_object",
+            "type": [
+                "dict[str, str]",
+                "grouper.models.user.User",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scheduled_message_object_",
+            "type": [
+                "bool",
+                "str",
+                "core.models.Registration",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deliver_at",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recipient_type_name",
+            "type": [
+                "str",
+                "None",
+                "typing.Any",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_to",
+            "type": [
+                "str",
+                "None",
+                "object"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_content",
+            "type": [
+                "str",
+                "None",
+                "list[int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "updated_recipient_type_name",
+            "type": [
+                "str",
+                "typing.Any",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_id",
+            "type": [
+                "int",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "updated_recipient",
+            "type": [
+                "list[typing.Union[int,list,str]]",
+                "dict[tuple[typing.Any], typing.Any]",
+                "dict[int, str]",
+                "db.Stock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_name",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "updated_topic_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "updated_content",
+            "type": [
+                "str",
+                "list[int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client",
+            "type": [
+                "str",
+                "core.models.Registration",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "str",
+                "core.models.Registration",
+                "None",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_topic_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "edit_scheduled_message",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "SCHEDULED_MESSAGE_LATE_CUTOFF_MINUTES",
+            "type": [
+                "int",
+                "datetime.timedelta"
+            ]
+        }
+    ],
+    "notify_remove_scheduled_message@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "scheduled_message_id",
+            "type": [
+                "int",
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scheduled_message_id",
+            "type": [
+                "int",
+                "str",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "dict[typing.Text, typing.Union[typing.Text,int,zerver.models.UserProfile]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "notify_remove_scheduled_message",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "notify_update_scheduled_message@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Message",
+                "accounts.models.Account"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "scheduled_message",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "zerver.models.Stream"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scheduled_message",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "zerver.models.Stream"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "dict[typing.Text, typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Message",
+                "accounts.models.Account"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "notify_update_scheduled_message",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "send_failed_scheduled_message_notification@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "int",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "scheduled_message_id",
+            "type": [
+                "int",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "int",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scheduled_message_id",
+            "type": [
+                "int",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scheduled_message",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "delivery_datetime_string",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "delivery_time_markdown",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "send_failed_scheduled_message_notification",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "send_scheduled_message@global": [
+        {
+            "category": "arg",
+            "name": "scheduled_message",
+            "type": [
+                "str",
+                "\"Response\"",
+                "None",
+                "typing.MutableMapping"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scheduled_message_",
+            "type": [
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scheduled_message",
+            "type": [
+                "str",
+                "\"Response\"",
+                "None",
+                "typing.MutableMapping"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SCHEDULED_MESSAGE_LATE_CUTOFF_MINUTES",
+            "type": [
+                "int",
+                "datetime.timedelta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "latest_send_time",
+            "type": [
+                "datetime.datetime",
+                "datetime.date",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "addressee",
+            "type": [
+                "list",
+                "list[tuple[typing.Union[str,typing.Any]]]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subscriber_ids",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sent_message_result",
+            "type": [
+                "set",
+                "dict",
+                "tuple[typing.Union[dict[str, typing.Any],int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "send_scheduled_message",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "try_deliver_one_scheduled_message@global": [
+        {
+            "category": "local",
+            "name": "scheduled_message",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "try_deliver_one_scheduled_message",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scheduled_message_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception",
+                "JsonableError"
+            ]
+        }
+    ]
+}

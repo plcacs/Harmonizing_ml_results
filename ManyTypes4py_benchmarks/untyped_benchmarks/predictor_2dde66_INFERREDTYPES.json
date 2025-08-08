@@ -1,0 +1,1021 @@
+{
+    "__init__@Predictor": [
+        {
+            "category": "arg",
+            "name": "model",
+            "type": [
+                "allennlp.models.Model",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dataset_reader",
+            "type": [
+                "typing.Iterable[allennlp.data.instance.Instance]",
+                "allennlp.predictors.predictor.Predictor",
+                "allennlp.data.DatasetReader"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "frozen",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "frozen",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "allennlp.models.Model",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_model",
+            "type": [
+                "allennlp.models.Model",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataset_reader",
+            "type": [
+                "typing.Iterable[allennlp.data.instance.Instance]",
+                "allennlp.predictors.predictor.Predictor",
+                "allennlp.data.DatasetReader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_dataset_reader",
+            "type": [
+                "typing.Iterable[allennlp.data.instance.Instance]",
+                "allennlp.predictors.predictor.Predictor",
+                "allennlp.data.DatasetReader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cuda_device",
+            "type": [
+                "typing.MutableMapping",
+                "openslides.utils.projector.ProjectorAllDataProvider",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_token_offsets",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_add_output@Predictor": [
+        {
+            "category": "arg",
+            "name": "mod",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "_",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "outputs",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_add_output",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_batch_json_to_instances@Predictor": [
+        {
+            "category": "arg",
+            "name": "json_dicts",
+            "type": [
+                "list[allennlp.common.util.JsonDict]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instances",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "json_dict",
+            "type": [
+                "allennlp.common.util.JsonDict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "json_dicts",
+            "type": [
+                "list[allennlp.common.util.JsonDict]",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_batch_json_to_instances",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "_json_to_instance@Predictor": [
+        {
+            "category": "arg",
+            "name": "json_dict",
+            "type": [
+                "allennlp.common.util.JsonDict",
+                "dict",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_json_to_instance",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_register_embedding_gradient_hooks@Predictor": [
+        {
+            "category": "arg",
+            "name": "embedding_gradients",
+            "type": [
+                "bool",
+                "typing.Sequence[dict]",
+                "tensorflow.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hooks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "text_field_embedder",
+            "type": [
+                "list[str]",
+                "dict[str, str]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "embedding_layer",
+            "type": [
+                "list",
+                "dict",
+                "list[bytes]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_register_embedding_gradient_hooks",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "add_output@Predictor": [
+        {
+            "category": "arg",
+            "name": "idx",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "add_output",
+            "type": []
+        }
+    ],
+    "capture_model_internals@Predictor": [
+        {
+            "category": "arg",
+            "name": "module_regex",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "results",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hooks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "module_regex",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hook",
+            "type": [
+                "list[str]",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "capture_model_internals",
+            "type": [
+                "typing.Generator[dict]"
+            ]
+        }
+    ],
+    "dump_line@Predictor": [
+        {
+            "category": "arg",
+            "name": "outputs",
+            "type": [
+                "allennlp.common.util.JsonDict",
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "outputs",
+            "type": [
+                "allennlp.common.util.JsonDict",
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "dump_line",
+            "type": []
+        }
+    ],
+    "from_archive@Predictor": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "list[str]",
+                "None",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "archive",
+            "type": [
+                "str",
+                "allennlp.models.archival.Archive"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "predictor_name",
+            "type": [
+                "None",
+                "bool",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dataset_reader_to_load",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "frozen",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "extra_args",
+            "type": [
+                "None",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "predictor_name",
+            "type": [
+                "None",
+                "bool",
+                "str",
+                "list[str]",
+                "dict",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model_type",
+            "type": [
+                "str",
+                "None",
+                "typing.OrderedDict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cls",
+            "type": [
+                "list[str]",
+                "None",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "predictor_class",
+            "type": [
+                "list[str]",
+                "None",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataset_reader_to_load",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "archive",
+            "type": [
+                "str",
+                "allennlp.models.archival.Archive"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "frozen",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "extra_args",
+            "type": [
+                "None",
+                "str",
+                "list[str]",
+                "dict",
+                "dict[str, typing.Union[str,None]]",
+                "dict[str, typing.Union[bool,None]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "from_archive",
+            "type": []
+        }
+    ],
+    "from_path@Predictor": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "archive_path",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "predictor_name",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "cuda_device",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dataset_reader_to_load",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "frozen",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "import_plugins",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "overrides",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "import_plugins",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "archive_path",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cuda_device",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "overrides",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "predictor_name",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataset_reader_to_load",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "frozen",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "from_path",
+            "type": []
+        }
+    ],
+    "get_gradients@Predictor": [
+        {
+            "category": "arg",
+            "name": "instances",
+            "type": [
+                "list[allennlp.data.Instance]",
+                "allennlp.data.Instance"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "original_param_name_to_requires_grad_dict",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "param_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "embedding_gradients",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hooks",
+            "type": [
+                "list[str]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instance",
+            "type": [
+                "allennlp.data.Instance"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instances",
+            "type": [
+                "list[allennlp.data.Instance]",
+                "allennlp.data.Instance"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataset",
+            "type": [
+                "Batch"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataset_tensor_dict",
+            "type": [
+                "typing.DefaultDict",
+                "dict",
+                "dict[str, typing.Union[dict,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "outputs",
+            "type": [
+                "list",
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "loss",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "p_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "grad_dict",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "dict[int, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "grad",
+            "type": [
+                "list",
+                "float",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_gradients",
+            "type": [
+                "tuple[typing.Union[dict,dict[str, typing.Any],dict[int, str],list,str]]"
+            ]
+        }
+    ],
+    "get_interpretable_layer@Predictor": [
+        {
+            "category": "return",
+            "name": "get_interpretable_layer",
+            "type": []
+        }
+    ],
+    "get_interpretable_text_field_embedder@Predictor": [
+        {
+            "category": "return",
+            "name": "get_interpretable_text_field_embedder",
+            "type": []
+        }
+    ],
+    "get_token_offsets@Predictor": [
+        {
+            "category": "arg",
+            "name": "module",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "inputs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "outputs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "offsets",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_token_offsets",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "hook_layers@Predictor": [
+        {
+            "category": "arg",
+            "name": "module",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "grad_in",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "grad_out",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "hook_layers",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "json_to_labeled_instances@Predictor": [
+        {
+            "category": "arg",
+            "name": "inputs",
+            "type": [
+                "allennlp.common.util.JsonDict",
+                "dict",
+                "dict[str, numpy.ndarray]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inputs",
+            "type": [
+                "allennlp.common.util.JsonDict",
+                "dict",
+                "dict[str, numpy.ndarray]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instance",
+            "type": [
+                "dict[str, list[str]]",
+                "tuple[str]",
+                "dict[int, numpy.ndarray]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "outputs",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_instances",
+            "type": [
+                "list",
+                "str",
+                "dict[str, list[str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "json_to_labeled_instances",
+            "type": [
+                "list",
+                "str",
+                "dict[str, list[str]]"
+            ]
+        }
+    ],
+    "load_line@Predictor": [
+        {
+            "category": "arg",
+            "name": "line",
+            "type": [
+                "str",
+                "bytes",
+                "typing.Iterator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "line",
+            "type": [
+                "str",
+                "bytes",
+                "typing.Iterator"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_line",
+            "type": []
+        }
+    ],
+    "predict_batch_instance@Predictor": [
+        {
+            "category": "arg",
+            "name": "instances",
+            "type": [
+                "list[allennlp.data.Instance]",
+                "allennlp.data.Instance"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instance",
+            "type": [
+                "allennlp.data.Instance"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instances",
+            "type": [
+                "list[allennlp.data.Instance]",
+                "allennlp.data.Instance"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "outputs",
+            "type": [
+                "typing.Type",
+                "dict[str, typing.Any]",
+                "dict[str, list[dict]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "predict_batch_instance",
+            "type": [
+                "str",
+                "dict"
+            ]
+        }
+    ],
+    "predict_batch_json@Predictor": [
+        {
+            "category": "arg",
+            "name": "inputs",
+            "type": [
+                "allennlp.common.util.JsonDict",
+                "list[allennlp.common.util.JsonDict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inputs",
+            "type": [
+                "allennlp.common.util.JsonDict",
+                "list[allennlp.common.util.JsonDict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instances",
+            "type": [
+                "list",
+                "deeplearning.clgen.clgen.Instance",
+                "list[deeplearning.clgen.clgen.Instance]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "predict_batch_json",
+            "type": [
+                "allennlp.models.model.Model",
+                "audio_profiling.models.AudioFile",
+                "typing.IO"
+            ]
+        }
+    ],
+    "predict_instance@Predictor": [
+        {
+            "category": "arg",
+            "name": "instance",
+            "type": [
+                "list[allennlp.data.Instance]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instance",
+            "type": [
+                "list[allennlp.data.Instance]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "outputs",
+            "type": [
+                "typing.Type",
+                "dict[str, typing.Any]",
+                "dict[str, list[dict]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "predict_instance",
+            "type": [
+                "str",
+                "int",
+                "allennlp.data.tokenizers.Tokenizer"
+            ]
+        }
+    ],
+    "predict_json@Predictor": [
+        {
+            "category": "arg",
+            "name": "inputs",
+            "type": [
+                "allennlp.common.util.JsonDict",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inputs",
+            "type": [
+                "allennlp.common.util.JsonDict",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instance",
+            "type": [
+                "float",
+                "list",
+                "deeplearning.clgen.clgen.Instance"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "predict_json",
+            "type": [
+                "torch.utils.data.Dataset",
+                "\"Predictor\"",
+                "allennlp.models.model.Model"
+            ]
+        }
+    ],
+    "predictions_to_labeled_instances@Predictor": [
+        {
+            "category": "arg",
+            "name": "instance",
+            "type": [
+                "allennlp.data.Instance",
+                "dict[str, numpy.ndarray]",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "outputs",
+            "type": [
+                "allennlp.data.Instance",
+                "dict[str, numpy.ndarray]",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "predictions_to_labeled_instances",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,635 @@
+{
+    "__init__@InputReduction": [
+        {
+            "category": "arg",
+            "name": "predictor",
+            "type": [
+                "allennlp.predictors.Predictor",
+                "int",
+                "torch.optim.Optimizer"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "beam_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "predictor",
+            "type": [
+                "allennlp.predictors.Predictor",
+                "int",
+                "torch.optim.Optimizer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "beam_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_attack_instance@InputReduction": [
+        {
+            "category": "arg",
+            "name": "inputs",
+            "type": [
+                "allennlp.data.Instance",
+                "allennlp.common.util.JsonDict",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "instance",
+            "type": [
+                "allennlp.data.Instance",
+                "allennlp.common.util.JsonDict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "input_field_to_attack",
+            "type": [
+                "bool",
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "grad_input_field",
+            "type": [
+                "bool",
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ignore_tokens",
+            "type": [
+                "bool",
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inputs",
+            "type": [
+                "allennlp.data.Instance",
+                "allennlp.common.util.JsonDict",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instance",
+            "type": [
+                "allennlp.data.Instance",
+                "allennlp.common.util.JsonDict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "input_field_to_attack",
+            "type": [
+                "bool",
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_ignore_tokens",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tag_mask",
+            "type": [
+                "None",
+                "int",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ignore_tokens",
+            "type": [
+                "bool",
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "original_tags",
+            "type": [
+                "str",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "text_field",
+            "type": [
+                "allennlp.data.fields.TextField",
+                "tuple[typing.Literal]",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "candidates",
+            "type": [
+                "list[tuple[typing.Union[allennlp.data.Instance,allennlp.common.util.JsonDict,int,dict[str, int],None]]]",
+                "list",
+                "list[tuple]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "beam_instance",
+            "type": [
+                "dict[str, typing.Any]",
+                "int",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "grads",
+            "type": [
+                "list",
+                "dict",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "outputs",
+            "type": [
+                "list",
+                "dict[str, typing.Any]",
+                "list[torch.Tensor]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output",
+            "type": [
+                "str",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "grad_input_field",
+            "type": [
+                "bool",
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reduced_instances_and_smallest",
+            "type": [
+                "float",
+                "list",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_attack_instance",
+            "type": []
+        }
+    ],
+    "_get_ner_tags_and_mask@global": [
+        {
+            "category": "arg",
+            "name": "instance",
+            "type": [
+                "dict[str, str]",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "input_field_to_attack",
+            "type": [
+                "str",
+                "list[str]",
+                "tuple[typing.Union[list[int],list[str]]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ignore_tokens",
+            "type": [
+                "list[str]",
+                "tuple[tuple[typing.Union[typing.Any,typing.Literal]]]",
+                "tuple[typing.Literal]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_ignore_tokens",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instance",
+            "type": [
+                "dict[str, str]",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "input_field_to_attack",
+            "type": [
+                "str",
+                "list[str]",
+                "tuple[typing.Union[list[int],list[str]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "input_field",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ignore_tokens",
+            "type": [
+                "list[str]",
+                "tuple[tuple[typing.Union[typing.Any,typing.Literal]]]",
+                "tuple[typing.Literal]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tag_mask",
+            "type": [
+                "list",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "original_tags",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tag_field",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_ner_tags_and_mask",
+            "type": [
+                "tuple[typing.Union[int,list[int]]]"
+            ]
+        }
+    ],
+    "_remove_one_token@global": [
+        {
+            "category": "arg",
+            "name": "instance",
+            "type": [
+                "dict[str, int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "input_field_to_attack",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "grads",
+            "type": [
+                "torch.Tensor",
+                "numpy.array",
+                "pymatgen.util.Vector3Like"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ignore_tokens",
+            "type": [
+                "list[str]",
+                "typing.Sequence[tuple[typing.Union[str,int]]]",
+                "set[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "beam_size",
+            "type": [
+                "int",
+                "str",
+                "typing.Sequence[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tag_mask",
+            "type": [
+                "list[int]",
+                "gluonts.model.common.Tensor",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "grads",
+            "type": [
+                "torch.Tensor",
+                "numpy.array",
+                "pymatgen.util.Vector3Like"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "grads_mag",
+            "type": [
+                "list",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instance",
+            "type": [
+                "dict[str, int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "text_field",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ignore_tokens",
+            "type": [
+                "list[str]",
+                "typing.Sequence[tuple[typing.Union[str,int]]]",
+                "set[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tag_field",
+            "type": [
+                "int",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tag_field_",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reduced_instances_and_smallest",
+            "type": [
+                "list",
+                "list[tuple[typing.Union[list,list[dict[str, typing.Any]],list[int],gluonts.model.common.Tensor,bool]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "beam_size",
+            "type": [
+                "int",
+                "str",
+                "typing.Sequence[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "copied_instance",
+            "type": [
+                "list",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "copied_text_field",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "copied_instance_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tag_mask",
+            "type": [
+                "list[int]",
+                "gluonts.model.common.Tensor",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_remove_one_token",
+            "type": [
+                "list[tuple[typing.Union[list,list[dict[str, typing.Any]],list[int],gluonts.model.common.Tensor,bool]]]"
+            ]
+        }
+    ],
+    "attack_from_json@InputReduction": [
+        {
+            "category": "arg",
+            "name": "inputs",
+            "type": [
+                "torch.Tensor",
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "input_field_to_attack",
+            "type": [
+                "allennlp.common.util.JsonDict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "grad_input_field",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ignore_tokens",
+            "type": [
+                "None",
+                "list[int]",
+                "list[torch.Tensor]",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target",
+            "type": [
+                "None",
+                "allennlp.common.util.JsonDict",
+                "str",
+                "rastervision.data.label.object_detection_labels.ObjectDetectionLabels"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target",
+            "type": [
+                "None",
+                "allennlp.common.util.JsonDict",
+                "str",
+                "rastervision.data.label.object_detection_labels.ObjectDetectionLabels"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ignore_tokens",
+            "type": [
+                "None",
+                "list[int]",
+                "list[torch.Tensor]",
+                "list[dict[str, typing.Any]]",
+                "list[str]",
+                "set[str]",
+                "list",
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inputs",
+            "type": [
+                "torch.Tensor",
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "original_instances",
+            "type": [
+                "dict",
+                "dict[str, list[int]]",
+                "dict[str, list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "input_field_to_attack",
+            "type": [
+                "allennlp.common.util.JsonDict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "original_text_field",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "final_tokens",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instance",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "grad_input_field",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "attack_from_json",
+            "type": [
+                "str",
+                "denite.util.Candidates",
+                "bool"
+            ]
+        }
+    ],
+    "get_length@InputReduction": [
+        {
+            "category": "arg",
+            "name": "input_instance",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "get_length",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "global@global": []
+}

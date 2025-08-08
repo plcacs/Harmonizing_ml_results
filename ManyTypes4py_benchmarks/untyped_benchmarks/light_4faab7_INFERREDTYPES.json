@@ -1,0 +1,1096 @@
+{
+    "__init__@ZwaveColorOnOffLight": [
+        {
+            "category": "arg",
+            "name": "config_entry",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "driver",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "info",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config_entry",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "driver",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "info",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_last_on_color",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_last_brightness",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@ZwaveLight": [
+        {
+            "category": "arg",
+            "name": "config_entry",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "driver",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "info",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "config_entry",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "driver",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_supports_color",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_supports_rgbw",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_supports_color_temp",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_supports_dimming",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_color_mode",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_hs_color",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_rgbw_color",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_color_temp",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_supported_color_modes",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_target_brightness",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "supports_brightness_transition",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "supports_color_transition",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_set_optimistic_state",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_async_set_brightness@ZwaveLight": [
+        {
+            "category": "arg",
+            "name": "brightness",
+            "type": [
+                "float",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "transition",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_async_set_brightness",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "brightness",
+            "type": [
+                "float",
+                "int",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "zwave_brightness",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "zwave_transition",
+            "type": [
+                "None",
+                "dict[, typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transition",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_set_optimistic_state",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_async_set_colors@ZwaveLight": [
+        {
+            "category": "arg",
+            "name": "colors",
+            "type": [
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "transition",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "zwave_transition",
+            "type": [
+                "None",
+                "dict[, typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transition",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "colors_dict",
+            "type": [
+                "dict",
+                "dict[typing.Union[tuple[typing.Any],typing.Any,str], tuple[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "color",
+            "type": [
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "colors",
+            "type": [
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "MULTI_COLOR_MAP",
+            "type": [
+                "dict[typing.Union[str,None], tuple[typing.Any]]",
+                "dict[str, typing.Any]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "color_name",
+            "type": [
+                "tuple[typing.Any]",
+                "typing.Any",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_async_set_colors",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_calculate_color_support@ZwaveLight": [
+        {
+            "category": "local",
+            "name": "red",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "green",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blue",
+            "type": [
+                "str",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "warm_white",
+            "type": [
+                "str",
+                "int",
+                "tuple[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cool_white",
+            "type": [
+                "str",
+                "int",
+                "tuple[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_supports_color",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_supports_color_temp",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_supports_rgbw",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_calculate_color_support",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_calculate_color_values@ZwaveLight": [
+        {
+            "category": "local",
+            "name": "red_val",
+            "type": [
+                "int",
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "green_val",
+            "type": [
+                "str",
+                "int",
+                "tuple[typing.Union[list[str],tuple[typing.Literal]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blue_val",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ww_val",
+            "type": [
+                "str",
+                "int",
+                "dict[str, tuple[float]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cw_val",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "multi_color",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "MAX_MIREDS",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "MIN_MIREDS",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_color_temp",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_rgbw_color",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_supports_rgbw",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_calculate_color_values",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_get_color_values@ZwaveLight": [
+        {
+            "category": "return",
+            "name": "_get_color_values",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "_get_new_colors@ZwaveLight": [
+        {
+            "category": "arg",
+            "name": "hs_color",
+            "type": [
+                "int",
+                "tuple[float]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "color_temp_k",
+            "type": [
+                "int",
+                "list[int]",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rgbw",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "brightness_scale",
+            "type": [
+                "None",
+                "float",
+                "int",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hs_color",
+            "type": [
+                "int",
+                "tuple[float]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "red",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "green",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blue",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "brightness_scale",
+            "type": [
+                "None",
+                "float",
+                "int",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "colors",
+            "type": [
+                "dict[, int]",
+                "dict[, typing.Union[int,int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_new_colors",
+            "type": [
+                "dict[, int]",
+                "dict[, typing.Union[int,int]]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "color_temp_k",
+            "type": [
+                "int",
+                "list[int]",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "MAX_MIREDS",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "MIN_MIREDS",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cold",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "warm",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rgbw",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rgbw_channels",
+            "type": [
+                "dict[, int]"
+            ]
+        }
+    ],
+    "async_add_light@global": [
+        {
+            "category": "arg",
+            "name": "info",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "async_add_light",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_setup_entry@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistancore.HomeAssistant",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "config_entry",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistancore.HomeAssistant",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "async_add_entities",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "typing.Callable[List,bool, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config_entry",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistancore.HomeAssistant",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistancore.HomeAssistant",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_setup_entry",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_turn_off@ZwaveColorOnOffLight": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "red",
+            "type": [
+                "str",
+                "tuple[int]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "green",
+            "type": [
+                "int",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blue",
+            "type": [
+                "int",
+                "str",
+                "tuple[int]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_color",
+            "type": [
+                "dict",
+                "dict[, typing.Union[str,tuple[int]]]",
+                "dict[, typing.Union[str,tuple[int],int]]",
+                "dict[, typing.Union[int,str,tuple[int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_last_on_color",
+            "type": [
+                "dict[, typing.Union[str,tuple[int],int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "colors",
+            "type": [
+                "dict[, int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_turn_off",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_turn_off@ZwaveLight": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "async_turn_off",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_turn_on@ZwaveColorOnOffLight": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "async_turn_on",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "brightness",
+            "type": [
+                "float",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_colors",
+            "type": [
+                "None",
+                "str",
+                "dict[, int]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scale",
+            "type": [
+                "None",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_last_on_color",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "old_brightness",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_scale",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_brightness",
+            "type": [
+                "float",
+                "int",
+                "None"
+            ]
+        }
+    ],
+    "async_turn_on@ZwaveLight": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "new_colors",
+            "type": [
+                "str",
+                "int",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_turn_on",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "brightness@ZwaveColorOnOffLight": [
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "brightness",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "color_values",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "brightness@ZwaveLight": [
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "brightness",
+            "type": [
+                "None",
+                "int"
+            ]
+        }
+    ],
+    "byte_to_zwave_brightness@global": [
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "byte_to_zwave_brightness",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "color_mode@ZwaveLight": [
+        {
+            "category": "return",
+            "name": "color_mode",
+            "type": []
+        }
+    ],
+    "color_temp_kelvin@ZwaveLight": [
+        {
+            "category": "return",
+            "name": "color_temp_kelvin",
+            "type": []
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "PARALLEL_UPDATES",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "MULTI_COLOR_MAP",
+            "type": [
+                "dict",
+                "dict[typing.Union[str,None], tuple[typing.Any]]",
+                "dict[str, typing.Any]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "MIN_MIREDS",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "MAX_MIREDS",
+            "type": [
+                "int",
+                "float"
+            ]
+        }
+    ],
+    "hs_color@ZwaveLight": [
+        {
+            "category": "return",
+            "name": "hs_color",
+            "type": []
+        }
+    ],
+    "is_on@ZwaveLight": [
+        {
+            "category": "local",
+            "name": "_set_optimistic_state",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_on",
+            "type": [
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "brightness",
+            "type": [
+                "int",
+                "float",
+                "None"
+            ]
+        }
+    ],
+    "on_value_update@ZwaveLight": [
+        {
+            "category": "return",
+            "name": "on_value_update",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "rgbw_color@ZwaveLight": [
+        {
+            "category": "return",
+            "name": "rgbw_color",
+            "type": []
+        }
+    ],
+    "supported_color_modes@ZwaveLight": [
+        {
+            "category": "return",
+            "name": "supported_color_modes",
+            "type": []
+        }
+    ]
+}

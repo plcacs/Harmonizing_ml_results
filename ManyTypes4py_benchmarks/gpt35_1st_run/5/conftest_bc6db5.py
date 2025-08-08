@@ -1,0 +1,43 @@
+from typing import Any, Generator
+from homeassistant.core import HomeAssistant
+from pydrawise.schema import Controller, ControllerHardware, ControllerWaterUseSummary, CustomSensorTypeEnum, LocalizedValueType, ScheduledZoneRun, ScheduledZoneRuns, Sensor, SensorModel, SensorStatus, UnitsSummary, User, Zone
+from unittest.mock import AsyncMock
+
+def mock_setup_entry() -> Generator[Any, Any, Any]:
+    ...
+
+def mock_legacy_pydrawise(user: User, controller: Controller, zones: Any) -> Generator[Any, Any, Any]:
+    ...
+
+def mock_pydrawise(user: User, controller: Controller, zones: Any, sensors: Any, controller_water_use_summary: ControllerWaterUseSummary) -> Generator[Any, Any, Any]:
+    ...
+
+def mock_auth() -> Generator[Any, Any, Any]:
+    ...
+
+def user() -> User:
+    ...
+
+def controller() -> Controller:
+    ...
+
+def sensors() -> Any:
+    ...
+
+def zones() -> Any:
+    ...
+
+def controller_water_use_summary() -> ControllerWaterUseSummary:
+    ...
+
+def mock_config_entry_legacy() -> Any:
+    ...
+
+def mock_config_entry() -> Any:
+    ...
+
+async def mock_added_config_entry(mock_add_config_entry: Any) -> Any:
+    ...
+
+def mock_add_config_entry(hass: HomeAssistant, mock_config_entry: Any, mock_pydrawise: Any) -> Any:
+    ...

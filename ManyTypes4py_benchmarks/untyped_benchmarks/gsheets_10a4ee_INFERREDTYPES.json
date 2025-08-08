@@ -1,0 +1,639 @@
+{
+    "_do_post@GSheetsEngineSpec": [
+        {
+            "category": "arg",
+            "name": "session",
+            "type": [
+                "str",
+                "dict",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "url",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "body",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "_logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "body",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "session",
+            "type": [
+                "str",
+                "dict",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_do_post",
+            "type": []
+        }
+    ],
+    "build_sqlalchemy_uri@GSheetsEngineSpec": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "str",
+                "bytes",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "_",
+            "type": [
+                "str",
+                "bytes",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "encrypted_extra",
+            "type": [
+                "None",
+                "str",
+                "bytes",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "build_sqlalchemy_uri",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "df_to_sql@GSheetsEngineSpec": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "list[superseutils.core.DatasourceName]",
+                "sqlalchemy.orm.state.InstanceState",
+                "sqlalchemy.Table"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "database",
+            "type": [
+                "str",
+                "list[str]",
+                "sqlalchemy.engine.Engine",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "table",
+            "type": [
+                "flask_appbuilder.models.sqla.Model",
+                "typing.Sequence[typing.Any]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_sql_kwargs",
+            "type": [
+                "list[str]",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "database",
+            "type": [
+                "str",
+                "list[str]",
+                "sqlalchemy.engine.Engine",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "extra",
+            "type": [
+                "dict[str, str]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "engine_params",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "catalog",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "table",
+            "type": [
+                "flask_appbuilder.models.sqla.Model",
+                "typing.Sequence[typing.Any]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_sql_kwargs",
+            "type": [
+                "list[str]",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cls",
+            "type": [
+                "list[superseutils.core.DatasourceName]",
+                "sqlalchemy.orm.state.InstanceState",
+                "sqlalchemy.Table"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "EXAMPLE_GSHEETS_URL",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "list",
+                "dict[str, typing.Any]",
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "body",
+            "type": [
+                "dict[typing.Text, typing.Union[typing.Text,list[int]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "df_to_sql",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_extra_table_metadata@GSheetsEngineSpec": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "str",
+                "None",
+                "sqlalchemy.orm.scoping.scoped_session"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "database",
+            "type": [
+                "str",
+                "supersemodels.core.Database"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "table",
+            "type": [
+                "str",
+                "sqlalchemy.engine.reflection.Inspector",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "database",
+            "type": [
+                "str",
+                "supersemodels.core.Database"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "table",
+            "type": [
+                "str",
+                "sqlalchemy.engine.reflection.Inspector",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metadata",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_extra_table_metadata",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        }
+    ],
+    "get_parameters_from_uri@GSheetsEngineSpec": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "str",
+                "bool",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "uri",
+            "type": [
+                "str",
+                "bool",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "encrypted_extra",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "encrypted_extra",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_parameters_from_uri",
+            "type": [
+                "dict[, typing.Union[None,str,bool,zerver.models.Realm]]"
+            ]
+        }
+    ],
+    "get_url_for_impersonation@GSheetsEngineSpec": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "str",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "url",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "impersonate_user",
+            "type": [
+                "str",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "username",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "access_token",
+            "type": [
+                "str",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "impersonate_user",
+            "type": [
+                "str",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "str",
+                "None",
+                "list",
+                "starlette.datastructures.URL"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_url_for_impersonation",
+            "type": [
+                "str",
+                "None",
+                "list",
+                "starlette.datastructures.URL"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "username",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "access_token",
+            "type": [
+                "str",
+                "None",
+                "bool"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "_logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "EXAMPLE_GSHEETS_URL",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SYNTAX_ERROR_REGEX",
+            "type": [
+                "str",
+                "typing.Pattern"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ma_plugin",
+            "type": [
+                "MarshmallowPlugin",
+                "str",
+                "dict[str, str]",
+                "list[str]"
+            ]
+        }
+    ],
+    "parameters_json_schema@GSheetsEngineSpec": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "typing.Type",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cls",
+            "type": [
+                "typing.Type",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "parameters_json_schema",
+            "type": [
+                "None",
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ma_plugin",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "APISpec"
+            ]
+        }
+    ],
+    "validate_parameters@GSheetsEngineSpec": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "dict",
+                "typesystem.schemas.SchemaDefinitions",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "properties",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "errors",
+            "type": [
+                "list",
+                "list[SupersetError]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "properties",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parameters",
+            "type": [
+                "dict",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "table_catalog",
+            "type": [
+                "dict[str, str]",
+                "dict[str, dict[str, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "encrypted_credentials",
+            "type": [
+                "typing.Text",
+                "str",
+                "bytes",
+                "None",
+                "typing.ByteString"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "validate_parameters",
+            "type": [
+                "list[SupersetError]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subject",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "engine",
+            "type": [
+                "str",
+                "aiopg.sa.engine.Engine",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "idx",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "tuple[typing.Union[str,dict[str, str]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "tuple[typing.Union[str,dict[str, str]]]"
+            ]
+        }
+    ]
+}

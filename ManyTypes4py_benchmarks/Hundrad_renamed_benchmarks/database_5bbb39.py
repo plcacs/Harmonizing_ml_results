@@ -30,7 +30,7 @@ if TYPE_CHECKING:
 StrPathT = Union[str, PathLike[str]]
 
 
-def func_unz6xnao(path):
+def func_xndsnuji(path):
     """
     Returns True if the desired path can be used as database path because
     either the directory exists and can be used, or its root directory can
@@ -45,7 +45,7 @@ def func_unz6xnao(path):
         return False
 
 
-def func_i35ipbt6(path=None):
+def func_ek79ubjq(path=None):
     if path is not_set:
         if os.getenv('HYPOTHESIS_DATABASE_FILE') is not None:
             raise HypothesisException(
@@ -53,7 +53,7 @@ def func_i35ipbt6(path=None):
 https://hypothesis.readthedocs.io/en/latest/settings.html#settings-profiles"""
                 )
         path = storage_directory('examples', intent_to_write=False)
-        if not func_unz6xnao(path):
+        if not func_xndsnuji(path):
             warnings.warn(
                 f'The database setting is not configured, and the default location is unusable - falling back to an in-memory database for this session.  path={path!r}'
                 , HypothesisWarning, stacklevel=3)
@@ -68,7 +68,7 @@ class _EDMeta(abc.ABCMeta):
 
     def __call__(self, *args, **kwargs):
         if self is ExampleDatabase:
-            return func_i35ipbt6(*args, **kwargs)
+            return func_ek79ubjq(*args, **kwargs)
         return super().__call__(*args, **kwargs)
 
 
@@ -89,7 +89,7 @@ class ExampleDatabase(metaclass=_EDMeta):
     """
 
     @abc.abstractmethod
-    def func_8o3r4li3(self, key, value):
+    def func_gg0c3wyf(self, key, value):
         """Save ``value`` under ``key``.
 
         If this value is already present for this key, silently do nothing.
@@ -97,19 +97,19 @@ class ExampleDatabase(metaclass=_EDMeta):
         raise NotImplementedError(f'{type(self).__name__}.save')
 
     @abc.abstractmethod
-    def func_pj97zdr0(self, key):
+    def func_rmsthu24(self, key):
         """Return an iterable over all values matching this key."""
         raise NotImplementedError(f'{type(self).__name__}.fetch')
 
     @abc.abstractmethod
-    def func_pkr5zmvw(self, key, value):
+    def func_kuhh5i2k(self, key, value):
         """Remove this value from this key.
 
         If this value is not present, silently do nothing.
         """
         raise NotImplementedError(f'{type(self).__name__}.delete')
 
-    def func_l8j0d4k7(self, src, dest, value):
+    def func_s8vcjllv(self, src, dest, value):
         """Move ``value`` from key ``src`` to key ``dest``. Equivalent to
         ``delete(src, value)`` followed by ``save(src, value)``, but may
         have a more efficient implementation.
@@ -138,17 +138,17 @@ class InMemoryExampleDatabase(ExampleDatabase):
     def __repr__(self):
         return f'InMemoryExampleDatabase({self.data!r})'
 
-    def func_pj97zdr0(self, key):
+    def func_rmsthu24(self, key):
         yield from self.data.get(key, ())
 
-    def func_8o3r4li3(self, key, value):
+    def func_gg0c3wyf(self, key, value):
         self.data.setdefault(key, set()).add(bytes(value))
 
-    def func_pkr5zmvw(self, key, value):
+    def func_kuhh5i2k(self, key, value):
         self.data.get(key, set()).discard(bytes(value))
 
 
-def func_p8xr1uxy(key):
+def func_ecn9w2xg(key):
     return sha384(key).hexdigest()[:16]
 
 
@@ -178,18 +178,18 @@ class DirectoryBasedExampleDatabase(ExampleDatabase):
     def __repr__(self):
         return f'DirectoryBasedExampleDatabase({self.path!r})'
 
-    def func_b29f7kcc(self, key):
+    def func_o6udvg2g(self, key):
         try:
             return self.keypaths[key]
         except KeyError:
             pass
-        self.keypaths[key] = self.path / func_p8xr1uxy(key)
+        self.keypaths[key] = self.path / func_ecn9w2xg(key)
         return self.keypaths[key]
 
-    def func_0uzuukcs(self, key, value):
-        return self._key_path(key) / func_p8xr1uxy(value)
+    def func_gxv73a6h(self, key, value):
+        return self._key_path(key) / func_ecn9w2xg(value)
 
-    def func_pj97zdr0(self, key):
+    def func_rmsthu24(self, key):
         kp = self._key_path(key)
         if not kp.is_dir():
             return
@@ -199,7 +199,7 @@ class DirectoryBasedExampleDatabase(ExampleDatabase):
             except OSError:
                 pass
 
-    def func_8o3r4li3(self, key, value):
+    def func_gg0c3wyf(self, key, value):
         try:
             self._key_path(key).mkdir(exist_ok=True, parents=True)
             path = self._value_path(key, value)
@@ -216,7 +216,7 @@ class DirectoryBasedExampleDatabase(ExampleDatabase):
         except OSError:
             pass
 
-    def func_l8j0d4k7(self, src, dest, value):
+    def func_s8vcjllv(self, src, dest, value):
         if src == dest:
             self.save(src, value)
             return
@@ -227,7 +227,7 @@ class DirectoryBasedExampleDatabase(ExampleDatabase):
             self.delete(src, value)
             self.save(dest, value)
 
-    def func_pkr5zmvw(self, key, value):
+    def func_kuhh5i2k(self, key, value):
         try:
             self._value_path(key, value).unlink()
         except OSError:
@@ -252,13 +252,13 @@ class ReadOnlyDatabase(ExampleDatabase):
     def __repr__(self):
         return f'ReadOnlyDatabase({self._wrapped!r})'
 
-    def func_pj97zdr0(self, key):
+    def func_rmsthu24(self, key):
         yield from self._wrapped.fetch(key)
 
-    def func_8o3r4li3(self, key, value):
+    def func_gg0c3wyf(self, key, value):
         pass
 
-    def func_pkr5zmvw(self, key, value):
+    def func_kuhh5i2k(self, key, value):
         pass
 
 
@@ -296,7 +296,7 @@ class MultiplexedDatabase(ExampleDatabase):
         return 'MultiplexedDatabase({})'.format(', '.join(map(repr, self.
             _wrapped)))
 
-    def func_pj97zdr0(self, key):
+    def func_rmsthu24(self, key):
         seen = set()
         for db in self._wrapped:
             for value in db.fetch(key):
@@ -304,15 +304,15 @@ class MultiplexedDatabase(ExampleDatabase):
                     yield value
                     seen.add(value)
 
-    def func_8o3r4li3(self, key, value):
+    def func_gg0c3wyf(self, key, value):
         for db in self._wrapped:
             db.save(key, value)
 
-    def func_pkr5zmvw(self, key, value):
+    def func_kuhh5i2k(self, key, value):
         for db in self._wrapped:
             db.delete(key, value)
 
-    def func_l8j0d4k7(self, src, dest, value):
+    def func_s8vcjllv(self, src, dest, value):
         for db in self._wrapped:
             db.move(src, dest, value)
 
@@ -412,7 +412,7 @@ class GitHubArtifactDatabase(ExampleDatabase):
             f'GitHubArtifactDatabase(owner={self.owner!r}, repo={self.repo!r}, artifact_name={self.artifact_name!r})'
             )
 
-    def func_ewo67cga(self):
+    def func_9igmxhv7(self):
         assert self._artifact is not None, 'Artifact not loaded.'
         if self._initialized:
             return
@@ -437,7 +437,7 @@ class GitHubArtifactDatabase(ExampleDatabase):
             self._disabled = True
         self._initialized = True
 
-    def func_d61k3fkr(self):
+    def func_tuegi5hl(self):
         storage_directory(self.path.name)
         self.path.mkdir(exist_ok=True, parents=True)
         cached_artifacts = sorted(self.path.glob('*.zip'), key=lambda a:
@@ -471,7 +471,7 @@ class GitHubArtifactDatabase(ExampleDatabase):
                 return
         self._prepare_for_io()
 
-    def func_bpwak7s2(self, url):
+    def func_ot1tektm(self, url):
         request = Request(url, headers={'Accept':
             'application/vnd.github+json', 'X-GitHub-Api-Version':
             '2022-11-28 ', 'Authorization': f'Bearer {self.token}'})
@@ -501,7 +501,7 @@ class GitHubArtifactDatabase(ExampleDatabase):
             return None
         return response_bytes
 
-    def func_fodxrtol(self):
+    def func_1yo4492r(self):
         url = (
             f'https://api.github.com/repos/{self.owner}/{self.repo}/actions/artifacts'
             )
@@ -529,10 +529,10 @@ class GitHubArtifactDatabase(ExampleDatabase):
 
     @staticmethod
     @lru_cache
-    def func_b29f7kcc(key):
-        return PurePath(func_p8xr1uxy(key) + '/')
+    def func_o6udvg2g(key):
+        return PurePath(func_ecn9w2xg(key) + '/')
 
-    def func_pj97zdr0(self, key):
+    def func_rmsthu24(self, key):
         if self._disabled:
             return
         if not self._initialized:
@@ -548,13 +548,13 @@ class GitHubArtifactDatabase(ExampleDatabase):
                 with zf.open(filename.as_posix()) as f:
                     yield f.read()
 
-    def func_8o3r4li3(self, key, value):
+    def func_gg0c3wyf(self, key, value):
         raise RuntimeError(self._read_only_message)
 
-    def func_l8j0d4k7(self, src, dest, value):
+    def func_s8vcjllv(self, src, dest, value):
         raise RuntimeError(self._read_only_message)
 
-    def func_pkr5zmvw(self, key, value):
+    def func_kuhh5i2k(self, key, value):
         raise RuntimeError(self._read_only_message)
 
 
@@ -575,32 +575,32 @@ class BackgroundWriteDatabase(ExampleDatabase):
     def __repr__(self):
         return f'BackgroundWriteDatabase({self._db!r})'
 
-    def func_os6lni1x(self):
+    def func_ie59ses4(self):
         while True:
             method, args = self._queue.get()
             getattr(self._db, method)(*args)
             self._queue.task_done()
 
-    def func_ynz3w8mk(self, timeout=None):
+    def func_houcl3xv(self, timeout=None):
         with self._queue.all_tasks_done:
             while self._queue.unfinished_tasks:
                 self._queue.all_tasks_done.wait(timeout)
 
-    def func_pj97zdr0(self, key):
+    def func_rmsthu24(self, key):
         self._join()
         return self._db.fetch(key)
 
-    def func_8o3r4li3(self, key, value):
+    def func_gg0c3wyf(self, key, value):
         self._queue.put(('save', (key, value)))
 
-    def func_pkr5zmvw(self, key, value):
+    def func_kuhh5i2k(self, key, value):
         self._queue.put(('delete', (key, value)))
 
-    def func_l8j0d4k7(self, src, dest, value):
+    def func_s8vcjllv(self, src, dest, value):
         self._queue.put(('move', (src, dest, value)))
 
 
-def func_izlwhlau(value):
+def func_633sps4w(value):
     """
     Serialize an integer into variable-length bytes. For each byte, the first 7
     bits represent (part of) the integer, while the last bit indicates whether the
@@ -621,7 +621,7 @@ def func_izlwhlau(value):
     return bytes(parts)
 
 
-def func_rzu6ypwx(buffer):
+def func_y58xa0sn(buffer):
     """
     Inverts _pack_uleb128, and also returns the index at which at which we stopped
     reading.
@@ -635,7 +635,7 @@ def func_rzu6ypwx(buffer):
     return i + 1, value
 
 
-def func_hs9smt6x(ir, /):
+def func_nc4unxx3(ir, /):
     """Serialize a list of IR elements to a bytestring.  Inverts choices_from_bytes."""
     parts = []
     for elem in ir:
@@ -660,12 +660,12 @@ def func_hs9smt6x(ir, /):
             parts.append((tag | size).to_bytes(1, 'big'))
         else:
             parts.append((tag | 31).to_bytes(1, 'big'))
-            parts.append(func_izlwhlau(size))
+            parts.append(func_633sps4w(size))
         parts.append(elem)
     return b''.join(parts)
 
 
-def func_sv4sspsh(buffer, /):
+def func_ju1zc4li(buffer, /):
     parts = []
     idx = 0
     while idx < len(buffer):
@@ -676,7 +676,7 @@ def func_sv4sspsh(buffer, /):
             parts.append(bool(size))
             continue
         if size == 31:
-            offset, size = func_rzu6ypwx(buffer[idx:])
+            offset, size = func_y58xa0sn(buffer[idx:])
             idx += offset
         chunk = buffer[idx:idx + size]
         idx += size
@@ -693,7 +693,7 @@ def func_sv4sspsh(buffer, /):
     return tuple(parts)
 
 
-def func_ivnd9f7y(buffer, /):
+def func_uaplokbv(buffer, /):
     """
     Deserialize a bytestring to a tuple of choices. Inverts choices_to_bytes.
 
@@ -701,6 +701,6 @@ def func_ivnd9f7y(buffer, /):
     sequences.
     """
     try:
-        return func_sv4sspsh(buffer)
+        return func_ju1zc4li(buffer)
     except Exception:
         return None

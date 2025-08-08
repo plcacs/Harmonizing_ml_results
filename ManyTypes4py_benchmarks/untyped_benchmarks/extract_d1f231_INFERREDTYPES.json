@@ -1,0 +1,1156 @@
+{
+    "_check_for_non_extractables@global": [
+        {
+            "category": "arg",
+            "name": "nodes",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_check_for_non_extractables",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_expression_nodes_to_string@global": [
+        {
+            "category": "arg",
+            "name": "nodes",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_expression_nodes_to_string",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "_find_inputs_and_outputs@global": [
+        {
+            "category": "arg",
+            "name": "module_context",
+            "type": [
+                "typing.Sequence",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "context",
+            "type": [
+                "typing.Sequence",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "nodes",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nodes",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "first",
+            "type": [
+                "typing.Type",
+                "typing.Final"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last",
+            "type": [
+                "dict",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inputs",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "outputs",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "context",
+            "type": [
+                "typing.Sequence",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "module_context",
+            "type": [
+                "typing.Sequence",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_find_inputs_and_outputs",
+            "type": [
+                "tuple[list]"
+            ]
+        }
+    ],
+    "_find_needed_output_variables@global": [
+        {
+            "category": "arg",
+            "name": "context",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "search_node",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "at_least_pos",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "return_variables",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "search_node",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "at_least_pos",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "return_variables",
+            "type": [
+                "dict[str, typing.Any]",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_find_needed_output_variables",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "_find_nodes@global": [
+        {
+            "category": "arg",
+            "name": "module_node",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pos",
+            "type": [
+                "int",
+                "typing.Iterable[int]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "until_pos",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "module_node",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pos",
+            "type": [
+                "int",
+                "typing.Iterable[int]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "start_node",
+            "type": [
+                "int",
+                "common.linkedlisListNode",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "until_pos",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "next_leaf",
+            "type": [
+                "int",
+                "common.linkedlisListNode",
+                "typing.Type",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nodes",
+            "type": [
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "end_leaf",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parent_node",
+            "type": [
+                "int",
+                "common.linkedlisListNode",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_find_nodes",
+            "type": [
+                "list",
+                "str"
+            ]
+        }
+    ],
+    "_find_non_global_names@global": [
+        {
+            "category": "arg",
+            "name": "nodes",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_find_non_global_names",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "_get_code_insertion_node@global": [
+        {
+            "category": "arg",
+            "name": "node",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "is_bound_method",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_bound_method",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_code_insertion_node",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_get_indentation@global": [
+        {
+            "category": "arg",
+            "name": "node",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_indentation",
+            "type": []
+        }
+    ],
+    "_get_parent_definition@global": [
+        {
+            "category": "arg",
+            "name": "node",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "_DEFINITION_SCOPES",
+            "type": [
+                "list[tuple[typing.Union[str,typing.Any]]]",
+                "dict",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_parent_definition",
+            "type": []
+        }
+    ],
+    "_is_expression_with_error@global": [
+        {
+            "category": "arg",
+            "name": "nodes",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_is_expression_with_error",
+            "type": [
+                "tuple[typing.Union[bool,typing.Text]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_VARIABLE_EXCTRACTABLE",
+            "type": [
+                "typing.Iterator",
+                "dict[str, typing.Union[int,str]]",
+                "list[tuple[str]]"
+            ]
+        }
+    ],
+    "_is_name_input@global": [
+        {
+            "category": "arg",
+            "name": "module_context",
+            "type": [
+                "str",
+                "bool",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "names",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "first",
+            "type": [
+                "str",
+                "None",
+                "dict[str, typing.Any]",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "last",
+            "type": [
+                "str",
+                "None",
+                "dict[str, typing.Any]",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "names",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "module_context",
+            "type": [
+                "str",
+                "bool",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_is_name_input",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "first",
+            "type": [
+                "str",
+                "None",
+                "dict[str, typing.Any]",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last",
+            "type": [
+                "str",
+                "None",
+                "dict[str, typing.Any]",
+                "set[str]"
+            ]
+        }
+    ],
+    "_is_node_ending_return_stmt@global": [
+        {
+            "category": "arg",
+            "name": "node",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_is_node_ending_return_stmt",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_is_not_extractable_syntax@global": [
+        {
+            "category": "arg",
+            "name": "node",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_is_not_extractable_syntax",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_remove_unwanted_expression_nodes@global": [
+        {
+            "category": "arg",
+            "name": "parent_node",
+            "type": [
+                "common.linkedlisListNode"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pos",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "until_pos",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parent_node",
+            "type": [
+                "common.linkedlisListNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_suite_part",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pos",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "start_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "until_pos",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_remove_unwanted_expression_nodes",
+            "type": [
+                "list[common.linkedlisListNode]"
+            ]
+        }
+    ],
+    "_replace@global": [
+        {
+            "category": "arg",
+            "name": "nodes",
+            "type": [
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expression_replacement",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "extracted",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pos",
+            "type": [
+                "str",
+                "list[str]",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "insert_before_leaf",
+            "type": [
+                "None",
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "remaining_prefix",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nodes",
+            "type": [
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "definition",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "insert_before_leaf",
+            "type": [
+                "None",
+                "list[str]",
+                "str",
+                "dict",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "first_node_leaf",
+            "type": [
+                "int",
+                "insert_before_leaf"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "remaining_prefix",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "extracted",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "extracted_prefix",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "replacement_dct",
+            "type": [
+                "dict",
+                "dict[int, str]",
+                "dict[typing.Union[int,dict,typing.Type], str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expression_replacement",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "p",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_replace",
+            "type": [
+                "dict[typing.Union[int,dict,typing.Type], str]"
+            ]
+        }
+    ],
+    "_split_prefix_at@global": [
+        {
+            "category": "arg",
+            "name": "leaf",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "until_line",
+            "type": [
+                "int",
+                "tuple[float]",
+                "typing.Iterator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "leaf",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "until_line",
+            "type": [
+                "int",
+                "tuple[float]",
+                "typing.Iterator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "second_line_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_split_prefix_at",
+            "type": [
+                "tuple[str]"
+            ]
+        }
+    ],
+    "_suite_nodes_to_string@global": [
+        {
+            "category": "arg",
+            "name": "nodes",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pos",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nodes",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "n",
+            "type": [
+                "int",
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pos",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prefix",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "part_of_code",
+            "type": [
+                "int",
+                "str",
+                "list[list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "code",
+            "type": [
+                "str",
+                "int",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_suite_nodes_to_string",
+            "type": [
+                "tuple[typing.Union[str,int,dict[str, int]]]"
+            ]
+        }
+    ],
+    "extract_function@global": [
+        {
+            "category": "arg",
+            "name": "inference_state",
+            "type": [
+                "int",
+                "typing.Callable[Any,Any, typing.Any]",
+                "None",
+                "typing.Sequence[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "path",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "module_context",
+            "type": [
+                "typing.Callable[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "name",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "pos",
+            "type": [
+                "int",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "until_pos",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "module_context",
+            "type": [
+                "typing.Callable[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pos",
+            "type": [
+                "int",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "until_pos",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "params",
+            "type": [
+                "list",
+                "dict",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "return_variables",
+            "type": [
+                "list",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "insert_before_leaf",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "code_block",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "remaining_prefix",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "has_ending_return_stmt",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output_var_str",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "decorator",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "self_param",
+            "type": [
+                "None",
+                "str",
+                "tuple[typing.Literal]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "function_param_names",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "function_call",
+            "type": [
+                "str",
+                "typing.Callable[None,None, str]",
+                "dict[int, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "replacement",
+            "type": [
+                "str",
+                "typing.Deque",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inference_state",
+            "type": [
+                "int",
+                "typing.Callable[Any,Any, typing.Any]",
+                "None",
+                "typing.Sequence[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "extract_function",
+            "type": []
+        }
+    ],
+    "extract_variable@global": [
+        {
+            "category": "arg",
+            "name": "inference_state",
+            "type": [
+                "int",
+                "typing.Sequence[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "path",
+            "type": [
+                "str",
+                "int",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "module_node",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pos",
+            "type": [
+                "int",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "until_pos",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "module_node",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pos",
+            "type": [
+                "int",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "until_pos",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path",
+            "type": [
+                "str",
+                "int",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_to_node_changes",
+            "type": [
+                "dict[typing.Union[str,int,dict[str, str]], ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inference_state",
+            "type": [
+                "int",
+                "typing.Sequence[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "extract_variable",
+            "type": [
+                "Refactoring"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "_DEFINITION_SCOPES",
+            "type": [
+                "tuple[typing.Text]",
+                "list[tuple[typing.Union[str,typing.Any]]]",
+                "dict",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_VARIABLE_EXCTRACTABLE",
+            "type": [
+                "typing.Iterator",
+                "dict[str, typing.Union[int,str]]",
+                "list[tuple[str]]"
+            ]
+        }
+    ]
+}

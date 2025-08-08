@@ -1,0 +1,952 @@
+{
+    "__init__@CloudClient": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "str",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prefs",
+            "type": [
+                "list[\"StateResourceIdentifier\"]",
+                "None",
+                "set",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "websession",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "alexa_user_config",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "google_user_config",
+            "type": [
+                "str",
+                "typing.Iterable[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "str",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_hass",
+            "type": [
+                "str",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prefs",
+            "type": [
+                "list[\"StateResourceIdentifier\"]",
+                "None",
+                "set",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_prefs",
+            "type": [
+                "list[\"StateResourceIdentifier\"]",
+                "None",
+                "set",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "websession",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_websession",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "google_user_config",
+            "type": [
+                "str",
+                "typing.Iterable[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alexa_user_config",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_alexa_config",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_google_config",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_relayer_region",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_cloud_ice_servers_listener",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "aiohttp_runner@CloudClient": [
+        {
+            "category": "return",
+            "name": "aiohttp_runner",
+            "type": []
+        }
+    ],
+    "async_alexa_message@CloudClient": [
+        {
+            "category": "arg",
+            "name": "payload",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cloud_user",
+            "type": [
+                "str",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "aconfig",
+            "type": [
+                "str",
+                "typing.Callable[None, typing.Any]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payload",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_alexa_message",
+            "type": []
+        }
+    ],
+    "async_cloud_connect_update@CloudClient": [
+        {
+            "category": "arg",
+            "name": "connect",
+            "type": [
+                "bool",
+                "asyncio.Lock",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "connect",
+            "type": [
+                "bool",
+                "asyncio.Lock",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_cloud_connect_update",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_cloud_connection_info@CloudClient": [
+        {
+            "category": "arg",
+            "name": "payload",
+            "type": [
+                "dict[str, typing.Any]",
+                "bytes",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_cloud_connection_info",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, ]]"
+            ]
+        }
+    ],
+    "async_cloudhooks_update@CloudClient": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "dict",
+                "helpers.JSONType",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict",
+                "helpers.JSONType",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_cloudhooks_update",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_create_repair_issue@CloudClient": [
+        {
+            "category": "arg",
+            "name": "identifier",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "translation_key",
+            "type": [
+                "str",
+                "topicdb.core.models.language.Language",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "placeholders",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "severity",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translation_key",
+            "type": [
+                "str",
+                "topicdb.core.models.language.Language",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VALID_REPAIR_TRANSLATION_KEYS",
+            "type": [
+                "set[str]",
+                "list[str]",
+                "frozenset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "identifier",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "placeholders",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "severity",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_create_repair_issue",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_google_message@CloudClient": [
+        {
+            "category": "arg",
+            "name": "payload",
+            "type": [
+                "typing.Mapping",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gconf",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, str]",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msgid",
+            "type": [
+                "typing.Text",
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payload",
+            "type": [
+                "typing.Mapping",
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_google_message",
+            "type": []
+        }
+    ],
+    "async_prefs_updated@CloudClient": [
+        {
+            "category": "arg",
+            "name": "prefs",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "async_prefs_updated",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_register_cloud_ice_servers_listener@CloudClient": [
+        {
+            "category": "arg",
+            "name": "prefs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "is_cloud_ice_servers_enabled",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_cloud_ice_servers_listener",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_register_cloud_ice_servers_listener",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_system_message@CloudClient": [
+        {
+            "category": "arg",
+            "name": "payload",
+            "type": [
+                "dict[str, typing.Any]",
+                "purplship.core.models.RateRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payload",
+            "type": [
+                "dict[str, typing.Any]",
+                "purplship.core.models.RateRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "region",
+            "type": [
+                "typing.Mapping",
+                "dict[str, typing.Any]",
+                "purplship.core.models.RateRequest",
+                "typing.Any"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_relayer_region",
+            "type": [
+                "typing.Mapping",
+                "dict[str, typing.Any]",
+                "purplship.core.models.RateRequest",
+                "typing.Any"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_system_message",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_webhook_message@CloudClient": [
+        {
+            "category": "arg",
+            "name": "payload",
+            "type": [
+                "purplship.core.models.ShipmentRequest",
+                "purplship.core.models.RateRequest",
+                "purplship.core.models.TrackingRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payload",
+            "type": [
+                "purplship.core.models.ShipmentRequest",
+                "purplship.core.models.RateRequest",
+                "purplship.core.models.TrackingRequest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cloudhook_id",
+            "type": [
+                "str",
+                "typing.Type",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "found",
+            "type": [
+                "str",
+                "bool",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_webhook_message",
+            "type": [
+                "dict[typing.Text, ]",
+                "dict[typing.Text, dict[typing.Text, ]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "MockRequest"
+            ]
+        }
+    ],
+    "base_path@CloudClient": [
+        {
+            "category": "return",
+            "name": "base_path",
+            "type": [
+                "Path"
+            ]
+        }
+    ],
+    "client_name@CloudClient": [
+        {
+            "category": "return",
+            "name": "client_name",
+            "type": []
+        }
+    ],
+    "cloud_connected@CloudClient": [
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_new_user",
+            "type": [
+                "bool",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "enable_alexa_job",
+            "type": [
+                "HassJob"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tasks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "cloud_connected",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "cloud_disconnected@CloudClient": [
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "cloud_disconnected",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "cloud_started@CloudClient": [
+        {
+            "category": "return",
+            "name": "cloud_started",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "cloud_stopped@CloudClient": [
+        {
+            "category": "return",
+            "name": "cloud_stopped",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "cloudhooks@CloudClient": [
+        {
+            "category": "return",
+            "name": "cloudhooks",
+            "type": []
+        }
+    ],
+    "dispatcher_message@CloudClient": [
+        {
+            "category": "arg",
+            "name": "identifier",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "None",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "identifier",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "None",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "dispatcher_message",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "enable_alexa@CloudClient": [
+        {
+            "category": "arg",
+            "name": "_",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "err",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "enable_alexa",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "enable_google@CloudClient": [
+        {
+            "category": "arg",
+            "name": "_",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "enable_google",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_alexa_config@CloudClient": [
+        {
+            "category": "local",
+            "name": "_alexa_config",
+            "type": [
+                "dict",
+                "dict[str, str]",
+                "None",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_alexa_config",
+            "type": [
+                "dict",
+                "dict[str, str]",
+                "None",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cloud_user",
+            "type": [
+                "str",
+                "dict"
+            ]
+        }
+    ],
+    "get_google_config@CloudClient": [
+        {
+            "category": "local",
+            "name": "_google_config",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, dict[str, typing.Any]]",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_google_config",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, dict[str, typing.Any]]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cloud_user",
+            "type": [
+                "str",
+                "dict"
+            ]
+        }
+    ],
+    "get_ice_servers@CloudClient": [
+        {
+            "category": "return",
+            "name": "get_ice_servers",
+            "type": []
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VALID_REPAIR_TRANSLATION_KEYS",
+            "type": [
+                "set[typing.Text]",
+                "set[str]",
+                "list[str]",
+                "frozenset"
+            ]
+        }
+    ],
+    "logout_cleanups@CloudClient": [
+        {
+            "category": "local",
+            "name": "_alexa_config",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "dict[str, dict[str, typing.Any]]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_google_config",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "dict[str, typing.Union[float,str]]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_cloud_ice_servers_listener",
+            "type": [
+                "str",
+                "list",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "logout_cleanups",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "loop@CloudClient": [
+        {
+            "category": "return",
+            "name": "loop",
+            "type": []
+        }
+    ],
+    "prefs@CloudClient": [
+        {
+            "category": "return",
+            "name": "prefs",
+            "type": []
+        }
+    ],
+    "register_cloud_ice_server@CloudClient": [
+        {
+            "category": "arg",
+            "name": "ice_servers",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "register_cloud_ice_server",
+            "type": []
+        }
+    ],
+    "relayer_region@CloudClient": [
+        {
+            "category": "return",
+            "name": "relayer_region",
+            "type": []
+        }
+    ],
+    "remote_autostart@CloudClient": [
+        {
+            "category": "return",
+            "name": "remote_autostart",
+            "type": []
+        }
+    ],
+    "setup_cloud_ice_servers@CloudClient": [
+        {
+            "category": "arg",
+            "name": "_",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "setup_cloud_ice_servers",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "user_message@CloudClient": [
+        {
+            "category": "arg",
+            "name": "identifier",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "title",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "title",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "identifier",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "user_message",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "websession@CloudClient": [
+        {
+            "category": "return",
+            "name": "websession",
+            "type": []
+        }
+    ]
+}

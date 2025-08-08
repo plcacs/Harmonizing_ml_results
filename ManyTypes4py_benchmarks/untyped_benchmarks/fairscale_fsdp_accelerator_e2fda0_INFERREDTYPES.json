@@ -1,0 +1,373 @@
+{
+    "__init__@FairScaleFsdpAccelerator": [
+        {
+            "category": "arg",
+            "name": "mixed_precision",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "reshard_after_forward",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "flatten_parameters",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "local_rank",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "typing.Iterable[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "world_size",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "typing.Iterable[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "cuda_device",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "local_rank",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "typing.Iterable[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "world_size",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "typing.Iterable[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cuda_device",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mixed_precision",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reshard_after_forward",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flatten_parameters",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_fsdp_kwargs",
+            "type": [
+                "dict[typing.Text, bool]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "clip_grad_norm_@FairScaleFsdpWrappedModel": [
+        {
+            "category": "arg",
+            "name": "max_norm",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_norm",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "clip_grad_norm_",
+            "type": [
+                "float",
+                "int",
+                "tuple[int]"
+            ]
+        }
+    ],
+    "consolidate_sharded_state@FairScaleFsdpWrappedModel": [
+        {
+            "category": "arg",
+            "name": "sharded_state_files",
+            "type": [
+                "str",
+                "list[str]",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "shard_weights",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "shard_metadata",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path",
+            "type": [
+                "typing.Text",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sharded_state_files",
+            "type": [
+                "str",
+                "list[str]",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "consolidate_sharded_state",
+            "type": [
+                "int",
+                "bytes",
+                "list[torch.nn.utils.rnn.PackedSequence]"
+            ]
+        }
+    ],
+    "get_original_module@_FSDP": [
+        {
+            "category": "local",
+            "name": "module",
+            "type": [
+                "list",
+                "FlattenParamsWrapper"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_original_module",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "global@global": [],
+    "init_grad_scaler@FairScaleFsdpWrappedModel": [
+        {
+            "category": "return",
+            "name": "init_grad_scaler",
+            "type": [
+                "GradScaler"
+            ]
+        }
+    ],
+    "load_state_dict@FairScaleFsdpWrappedModel": [
+        {
+            "category": "arg",
+            "name": "state_dict",
+            "type": [
+                "dict[str, str]",
+                "dict[str, dict[str, int]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "strict",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_dict",
+            "type": [
+                "dict[str, str]",
+                "dict[str, dict[str, int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "strict",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_state_dict",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        }
+    ],
+    "state_dict@FairScaleFsdpWrappedModel": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "weights",
+            "type": [
+                "int",
+                "str",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metadata",
+            "type": [
+                "dict",
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "state_dict",
+            "type": [
+                "dict[typing.Text, typing.Union[int,str,tuple[int],dict,typing.Type]]"
+            ]
+        }
+    ],
+    "wrap_model@FairScaleFsdpAccelerator": [
+        {
+            "category": "arg",
+            "name": "model",
+            "type": [
+                "tensorflow.keras.Model",
+                "torch.nn.Module"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "tensorflow.keras.Model",
+                "torch.nn.Module"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wrapped_model",
+            "type": [
+                "_FSDP",
+                "dict",
+                "typing.Type",
+                "typing.Callable[..., typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "module",
+            "type": [
+                "_FSDP"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "wrap_model",
+            "type": [
+                "tuple[typing.Union[tensorflow.keras.Model,torch.nn.Module,FairScaleFsdpWrappedModel]]"
+            ]
+        }
+    ],
+    "wrap_module@FairScaleFsdpAccelerator": [
+        {
+            "category": "arg",
+            "name": "module",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "module",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wrapped_module",
+            "type": [
+                "list[str]",
+                "str",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "wrap_module",
+            "type": [
+                "list[str]",
+                "str",
+                "set[str]"
+            ]
+        }
+    ]
+}

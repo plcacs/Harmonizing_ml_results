@@ -1,0 +1,572 @@
+{
+    "__init__@BatchScorer": [
+        {
+            "category": "arg",
+            "name": "scorer",
+            "type": [
+                "float",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "score_type",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "constant_length_ratio",
+            "type": [
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "softmax_temperature",
+            "type": [
+                "None",
+                "float",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scorer",
+            "type": [
+                "float",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "constant_length_ratio",
+            "type": [
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@Scorer": [
+        {
+            "category": "arg",
+            "name": "model",
+            "type": [
+                "int",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batch_scorer",
+            "type": [
+                "int",
+                "list[list]",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "source_vocabs",
+            "type": [
+                "vocab.Vocab",
+                "list[vocab.Vocab]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_vocabs",
+            "type": [
+                "vocab.Vocab",
+                "list[vocab.Vocab]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "device",
+            "type": [
+                "allennlp.models.model.Model"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_vocabs",
+            "type": [
+                "vocab.Vocab",
+                "list[vocab.Vocab]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_vocabs",
+            "type": [
+                "vocab.Vocab",
+                "list[vocab.Vocab]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "int",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "traced_model",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_scorer",
+            "type": [
+                "int",
+                "list[list]",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "traced_batch_scorer",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "allennlp.models.model.Model"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exclude_list",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "forward@BatchScorer": [
+        {
+            "category": "arg",
+            "name": "logits",
+            "type": [
+                "torch.Tensor",
+                "torch.LongTensor",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "labels",
+            "type": [
+                "torch.Tensor",
+                "torch.LongTensor",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "length_ratio",
+            "type": [
+                "int",
+                "torch.FloatTensor",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "source_length",
+            "type": [
+                "int",
+                "float",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_length",
+            "type": [
+                "torch.FloatTensor",
+                "numpy.ndarray",
+                "torch.LongTensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "factor_logits_and_labels",
+            "type": [
+                "torch.LongTensor",
+                "torch.Tensor",
+                "None",
+                "torch.BoolTensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logits",
+            "type": [
+                "torch.Tensor",
+                "torch.LongTensor",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logprobs",
+            "type": [
+                "dict",
+                "list[int]",
+                "tuple[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_scores",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scores",
+            "type": [
+                "int",
+                "str",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_length",
+            "type": [
+                "int",
+                "float",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "predicted_output_length",
+            "type": [
+                "float",
+                "int",
+                "torch.FloatTensor",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length_ratio",
+            "type": [
+                "int",
+                "torch.FloatTensor",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_length",
+            "type": [
+                "torch.FloatTensor",
+                "numpy.ndarray",
+                "torch.LongTensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factor_logits_and_labels",
+            "type": [
+                "torch.LongTensor",
+                "torch.Tensor",
+                "None",
+                "torch.BoolTensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factor_scores",
+            "type": [
+                "list",
+                "list[typing.Union[int,float,list[int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factor_token_scores",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fs",
+            "type": [
+                "int",
+                "float",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "forward",
+            "type": [
+                "int",
+                "str",
+                "list[float]"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "score@Scorer": [
+        {
+            "category": "arg",
+            "name": "score_iter",
+            "type": [
+                "data_io.BaseParallelSampleIter",
+                "list[list]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "output_handler",
+            "type": [
+                "numpy.ndarray",
+                "gluonts.model.common.Tensor",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_time",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence_no",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_no",
+            "type": [
+                "int",
+                "staticmethod"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch",
+            "type": [
+                "int",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "score_iter",
+            "type": [
+                "data_io.BaseParallelSampleIter",
+                "list[list]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_scores",
+            "type": [
+                "list[int]",
+                "list",
+                "list[list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_tokens",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_tokens",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_string",
+            "type": [
+                "str",
+                "property"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output_handler",
+            "type": [
+                "numpy.ndarray",
+                "gluonts.model.common.Tensor",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "score",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "score_batch@Scorer": [
+        {
+            "category": "arg",
+            "name": "batch",
+            "type": [
+                "list[list[str]]",
+                "str",
+                "data_io.Batch"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch",
+            "type": [
+                "list[list[str]]",
+                "str",
+                "data_io.Batch"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model_inputs",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "traced_model",
+            "type": [
+                "dict[str, typing.Any]",
+                "None",
+                "typing.Type",
+                "dict[int, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "outputs",
+            "type": [
+                "str",
+                "list[str]",
+                "dict[str, list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scorer_inputs",
+            "type": [
+                "list[typing.Union[str,list[str]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factor_logits_and_labels",
+            "type": [
+                "list[tuple[typing.Union[str,list[str]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "traced_batch_scorer",
+            "type": [
+                "float",
+                "int",
+                "SupportsFloat",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scores",
+            "type": [
+                "int",
+                "list[float]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scores_cpu",
+            "type": [
+                "float",
+                "list[float]",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "score_batch",
+            "type": [
+                "int",
+                "numpy.ndarray",
+                "list[int]"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,2090 @@
+{
+    "conflicting_feed_dict@global": [
+        {
+            "category": "return",
+            "name": "conflicting_feed_dict",
+            "type": [
+                "dict[typing.Text, int]"
+            ]
+        }
+    ],
+    "data_catalog@global": [
+        {
+            "category": "arg",
+            "name": "dataset",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataset",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "data_catalog",
+            "type": [
+                "KedroDataCatalog"
+            ]
+        }
+    ],
+    "data_catalog_from_config@global": [
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": [
+                "dict[str, typing.Any]",
+                "typing.MutableMapping",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "correct_config",
+            "type": [
+                "dict[str, typing.Any]",
+                "typing.MutableMapping",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "data_catalog_from_config",
+            "type": []
+        }
+    ],
+    "dummy_load@TestKedroDataCatalog,TestKedroDataCatalogFromConfig": [
+        {
+            "category": "arg",
+            "name": "obj_path",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "dummy_load",
+            "type": [
+                "list[typing.Text]"
+            ]
+        }
+    ],
+    "global@global": [],
+    "memory_catalog@global": [
+        {
+            "category": "local",
+            "name": "ds1",
+            "type": [
+                "MemoryDataset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ds2",
+            "type": [
+                "MemoryDataset"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "memory_catalog",
+            "type": [
+                "KedroDataCatalog"
+            ]
+        }
+    ],
+    "multi_catalog@global": [
+        {
+            "category": "local",
+            "name": "csv_1",
+            "type": [
+                "CSVDataset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "csv_2",
+            "type": [
+                "CSVDataset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parq",
+            "type": [
+                "ParquetDataset"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "multi_catalog",
+            "type": [
+                "KedroDataCatalog"
+            ]
+        }
+    ],
+    "test_add_dataset_twice@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "data_catalog",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "dataset",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataset",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_add_dataset_twice",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_add_save_and_load@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "dataset",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dummy_dataframe",
+            "type": [
+                "str",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "catalog",
+            "type": [
+                "KedroDataCatalog",
+                "kedro.io.data_catalog.DataCatalog",
+                "str",
+                "dict[str, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataset",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dummy_dataframe",
+            "type": [
+                "str",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reloaded_df",
+            "type": [
+                "list",
+                "dict",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_add_save_and_load",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_adding_datasets_not_allowed@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "data_catalog_from_config",
+            "type": [
+                "kedro.versioning.Journal"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_catalog_from_config_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_adding_datasets_not_allowed",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_bad_confirm@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "data_catalog",
+            "type": [
+                "str",
+                "tartare.core.models.PlatformOptions",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dataset_name",
+            "type": [
+                "str",
+                "tartare.core.models.PlatformOptions",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "error_pattern",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error_pattern",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_catalog",
+            "type": [
+                "str",
+                "tartare.core.models.PlatformOptions",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataset_name",
+            "type": [
+                "str",
+                "tartare.core.models.PlatformOptions",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_bad_confirm",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_bad_confirm@TestKedroDataCatalog,TestKedroDataCatalogFromConfig": [
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "dataset_name",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "pattern",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_bad_confirm",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_catalog_filter_regex@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "multi_catalog",
+            "type": [
+                "str",
+                "typing.Container",
+                "typing.Sequence[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "name_regex",
+            "type": [
+                "str",
+                "typing.Container",
+                "typing.Sequence[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "type_regex",
+            "type": [
+                "str",
+                "typing.Container",
+                "typing.Sequence[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected",
+            "type": [
+                "str",
+                "typing.Container",
+                "typing.Sequence[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_catalog_filter_regex",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_compare_tracking_and_other_dataset_versioned@TestKedroDataCatalog,TestDataCatalogVersioned": [
+        {
+            "category": "arg",
+            "name": "correct_config_with_tracking_ds",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "dummy_dataframe",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "dummy_data",
+            "type": [
+                "dict[typing.Text, int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_compare_tracking_and_other_dataset_versioned",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_config_import_kedro_datasets@TestKedroDataCatalog,TestKedroDataCatalogFromConfig": [
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_config_import_kedro_datasets",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_config_invalid_arguments@TestKedroDataCatalog,TestKedroDataCatalogFromConfig": [
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_config_invalid_arguments",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_config_invalid_dataset@TestKedroDataCatalog,TestKedroDataCatalogFromConfig": [
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_config_invalid_dataset",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_config_invalid_dataset_config@TestKedroDataCatalog,TestKedroDataCatalogFromConfig": [
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_config_invalid_dataset_config",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_config_invalid_module@TestKedroDataCatalog,TestKedroDataCatalogFromConfig": [
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "error_msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_config_invalid_module",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_config_missing_class@TestKedroDataCatalog,TestKedroDataCatalogFromConfig": [
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_config_missing_class",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_config_missing_type@TestKedroDataCatalog,TestKedroDataCatalogFromConfig": [
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_config_missing_type",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_config_relative_import@TestKedroDataCatalog,TestKedroDataCatalogFromConfig": [
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_config_relative_import",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_confirm@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "data_catalog",
+            "type": [
+                "KedroDataCatalog"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_confirm",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_confirm@TestKedroDataCatalog,TestKedroDataCatalogFromConfig": [
+        {
+            "category": "arg",
+            "name": "tmp_path",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "catalog",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, typing.Text]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_confirm",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_dataset_property@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "data_catalog_from_config",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_catalog_from_config",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str",
+                "dict",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_dataset_property",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_datasets_on_add@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "data_catalog_from_config",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_datasets_on_add",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_datasets_on_init@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "data_catalog_from_config",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_datasets_on_init",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_empty_config@TestKedroDataCatalog,TestKedroDataCatalogFromConfig": [
+        {
+            "category": "return",
+            "name": "test_empty_config",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_eq@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "multi_catalog",
+            "type": [
+                "dict",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "data_catalog",
+            "type": [
+                "dict",
+                "str",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_eq",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_error_dataset_init@TestKedroDataCatalog,TestKedroDataCatalogFromConfig": [
+        {
+            "category": "arg",
+            "name": "bad_config",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_error_dataset_init",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_exists@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "data_catalog",
+            "type": [
+                "pathlib.Path",
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dummy_dataframe",
+            "type": [
+                "pandas.DataFrame",
+                "list",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_catalog",
+            "type": [
+                "pathlib.Path",
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dummy_dataframe",
+            "type": [
+                "pandas.DataFrame",
+                "list",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_exists",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_exists_invalid@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "data_catalog",
+            "type": [
+                "dict",
+                "str",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_exists_invalid",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_exists_not_implemented@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "catalog",
+            "type": [
+                "KedroDataCatalog"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "pathlib.Path",
+                "dict[pathlib.Path, pathlib.Path]",
+                "pathlib.PurePosixPath"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "caplog",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_exists_not_implemented",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_feed_dict@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "memory_catalog",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "conflicting_feed_dict",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "memory_catalog",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "conflicting_feed_dict",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_feed_dict",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_from_config_catalog_filter_regex@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "data_catalog_from_config",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "name_regex",
+            "type": [
+                "str",
+                "None",
+                "typing.Mapping",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "type_regex",
+            "type": [
+                "str",
+                "None",
+                "typing.Mapping",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "by_type",
+            "type": [
+                "str",
+                "None",
+                "typing.Mapping",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected",
+            "type": [
+                "str",
+                "None",
+                "typing.Mapping",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_from_config_catalog_filter_regex",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_from_correct_config@TestKedroDataCatalog,TestKedroDataCatalogFromConfig": [
+        {
+            "category": "arg",
+            "name": "data_catalog_from_config",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "dummy_dataframe",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_from_correct_config",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_from_correct_config_load_versions_warn@TestKedroDataCatalog,TestDataCatalogVersioned": [
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "load_version",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_from_correct_config_load_versions_warn",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_from_correct_config_versioned@TestKedroDataCatalog,TestDataCatalogVersioned": [
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "dummy_dataframe",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "fmt",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "version",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path",
+            "type": [
+                "Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_from_correct_config_versioned",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_from_correct_config_versioned_warn@TestKedroDataCatalog,TestDataCatalogVersioned": [
+        {
+            "category": "arg",
+            "name": "caplog",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "versioned",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "expected_log_message",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_from_correct_config_versioned_warn",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_dataset_matching_pattern@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "data_catalog",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "kedro.io.DataCatalog"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "match_pattern_ds",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_catalog",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "kedro.io.DataCatalog"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ds",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_dataset_matching_pattern",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_getitem_setitem@TestKedroDataCatalog,TestKedroDataCatalogFromConfig": [
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_getitem_setitem",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_idempotent_catalog@TestKedroDataCatalog,TestKedroDataCatalogFromConfig": [
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_idempotent_catalog",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_init_with_raw_data@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "dummy_dataframe",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "dataset",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "catalog",
+            "type": [
+                "KedroDataCatalog"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_init_with_raw_data",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_ipython_key_completions@TestKedroDataCatalog,TestKedroDataCatalogFromConfig": [
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_ipython_key_completions",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_iteration@TestKedroDataCatalog,TestKedroDataCatalogFromConfig": [
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_iteration",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_link_credentials@TestKedroDataCatalog,TestKedroDataCatalogFromConfig": [
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_link_credentials",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_load_error@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "data_catalog",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_catalog",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_load_error",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_load_from_unregistered@TestKedroDataCatalog": [
+        {
+            "category": "local",
+            "name": "catalog",
+            "type": [
+                "KedroDataCatalog"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_load_from_unregistered",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_load_version@TestKedroDataCatalog,TestDataCatalogVersioned": [
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "dummy_dataframe",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_load_version",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_load_version_on_unversioned_dataset@TestKedroDataCatalog,TestDataCatalogVersioned": [
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "dummy_dataframe",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_load_version_on_unversioned_dataset",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_missing_credentials@TestKedroDataCatalog,TestKedroDataCatalogFromConfig": [
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_missing_credentials",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_missing_dependency@TestKedroDataCatalog,TestKedroDataCatalogFromConfig": [
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_missing_dependency",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_missing_keys_from_load_versions@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": [
+                "dict[str, typing.Any]",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "correct_config",
+            "type": [
+                "dict[str, typing.Any]",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_missing_keys_from_load_versions",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_missing_nested_credentials@TestKedroDataCatalog,TestKedroDataCatalogFromConfig": [
+        {
+            "category": "arg",
+            "name": "correct_config_with_nested_creds",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_missing_nested_credentials",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_multi_catalog_list@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "multi_catalog",
+            "type": [
+                "list[tuple[typing.Union[int,typing.Any]]]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "multi_catalog",
+            "type": [
+                "list[tuple[typing.Union[int,typing.Any]]]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entries",
+            "type": [
+                "list",
+                "list[str]",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_multi_catalog_list",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_multi_catalog_list_bad_regex@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "multi_catalog",
+            "type": [
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "escaped_regex",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "multi_catalog",
+            "type": [
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_multi_catalog_list_bad_regex",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_multi_catalog_list_regex@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "multi_catalog",
+            "type": [
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pattern",
+            "type": [
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected",
+            "type": [
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_multi_catalog_list_regex",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_nested_credentials@TestKedroDataCatalog,TestKedroDataCatalogFromConfig": [
+        {
+            "category": "arg",
+            "name": "correct_config_with_nested_creds",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "expected_client_kwargs",
+            "type": [
+                "dict[typing.Text, typing.Union[dict[typing.Text, dict[typing.Text, dict[typing.Text, typing.Text]]],typing.Text]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_nested_credentials",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_redefine_load_version@TestKedroDataCatalog,TestDataCatalogVersioned": [
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "dataset_versioned",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "catalog",
+            "type": [
+                "KedroDataCatalog"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataset_versioned_",
+            "type": [
+                "Version"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_redefine_load_version",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_redefine_save_version@TestKedroDataCatalog,TestDataCatalogVersioned": [
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "dataset_versioned",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "catalog",
+            "type": [
+                "KedroDataCatalog"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataset_versioned_",
+            "type": [
+                "Version"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_redefine_save_version",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_redefine_save_version_via_catalog@TestKedroDataCatalog,TestDataCatalogVersioned": [
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "dataset_versioned",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_redefine_save_version_via_catalog",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_redefine_save_version_with_cached_dataset@TestKedroDataCatalog,TestDataCatalogVersioned": [
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "cached_dataset_versioned",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "cached_dataset_versioned_",
+            "type": [
+                "Version"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_redefine_save_version_with_cached_dataset",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_release@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "data_catalog",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_release",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_release_unregistered@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "data_catalog",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_release_unregistered",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_release_unregistered_typo@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "data_catalog",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_release_unregistered_typo",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_remove_runtime_pattern@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "data_catalog",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "runtime_pattern",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, typing.Text]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "match_pattern_ds",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_remove_runtime_pattern",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_repr@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "data_catalog_from_config",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_repr",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_repr_no_type_found@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "data_catalog_from_config",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_catalog_from_config",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_repr_no_type_found",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_save_and_load@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "data_catalog",
+            "type": [
+                "pandas.DataFrame",
+                "dict",
+                "tartare.core.models.DataSet"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dummy_dataframe",
+            "type": [
+                "pandas.DataFrame",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_catalog",
+            "type": [
+                "pandas.DataFrame",
+                "dict",
+                "tartare.core.models.DataSet"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dummy_dataframe",
+            "type": [
+                "pandas.DataFrame",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reloaded_df",
+            "type": [
+                "bool",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_save_and_load",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_save_to_unregistered@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "dummy_dataframe",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "catalog",
+            "type": [
+                "KedroDataCatalog"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_save_to_unregistered",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_set_load_and_save_versions@TestKedroDataCatalog,TestDataCatalogVersioned": [
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "dataset_versioned",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "catalog",
+            "type": [
+                "KedroDataCatalog"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_set_load_and_save_versions",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_set_same_versions@TestKedroDataCatalog,TestDataCatalogVersioned": [
+        {
+            "category": "arg",
+            "name": "correct_config",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "dataset_versioned",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "catalog",
+            "type": [
+                "KedroDataCatalog"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_set_same_versions",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_shallow_copy_adds_patterns@TestKedroDataCatalog": [
+        {
+            "category": "arg",
+            "name": "data_catalog",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "runtime_patterns",
+            "type": [
+                "str",
+                "typing.Sequence[str]",
+                "None",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sorted_keys_expected",
+            "type": [
+                "str",
+                "bool",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_catalog",
+            "type": [
+                "dict",
+                "dict[str, str]",
+                "set",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "runtime_patterns",
+            "type": [
+                "str",
+                "typing.Sequence[str]",
+                "None",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_shallow_copy_adds_patterns",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_shallow_copy_returns_correct_class_type@TestKedroDataCatalog": [
+        {
+            "category": "local",
+            "name": "data_catalog",
+            "type": [
+                "MyDataCatalog"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "copy",
+            "type": [
+                "io.BufferedRandom",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_shallow_copy_returns_correct_class_type",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_to_config@TestKedroDataCatalog,TestKedroDataCatalogToConfig": [
+        {
+            "category": "arg",
+            "name": "correct_config_versioned",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "dataset",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "filepath",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "version",
+            "type": [
+                "Version"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "versioned_dataset",
+            "type": [
+                "CSVDataset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cached_versioned_dataset",
+            "type": [
+                "CachedDataset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_config",
+            "type": [
+                "dict[typing.Text, typing.Union[dict[typing.Text, typing.Union[typing.Text,dict[typing.Text, bool],None]],dict[typing.Text, typing.Union[typing.Text,None,bool,dict[typing.Text, typing.Union[typing.Text,None]]]]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_to_config",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_validate_dataset_config@TestKedroDataCatalog,TestKedroDataCatalogFromConfig": [
+        {
+            "category": "local",
+            "name": "pattern",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_validate_dataset_config",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

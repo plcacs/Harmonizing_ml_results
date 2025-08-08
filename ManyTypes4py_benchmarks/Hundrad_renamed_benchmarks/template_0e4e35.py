@@ -204,7 +204,7 @@ class _UnsetMarker:
 _UNSET = _UnsetMarker()
 
 
-def func_xcgceukj(mode, text):
+def func_78jh8ctz(mode, text):
     """Transform whitespace in ``text`` according to ``mode``.
 
     Available modes are:
@@ -270,7 +270,7 @@ class Template:
             else:
                 whitespace = 'all'
         assert whitespace is not None
-        func_xcgceukj(whitespace, '')
+        func_78jh8ctz(whitespace, '')
         if not isinstance(autoescape, _UnsetMarker):
             self.autoescape = autoescape
         elif loader:
@@ -292,7 +292,7 @@ class Template:
             app_log.error('%s code:\n%s', self.name, formatted_code)
             raise
 
-    def func_g3eba5p2(self, **kwargs):
+    def func_pv6yt3bs(self, **kwargs):
         """Generate this template with the given arguments."""
         namespace = {'escape': escape.xhtml_escape, 'xhtml_escape': escape.
             xhtml_escape, 'url_escape': escape.url_escape, 'json_encode':
@@ -308,7 +308,7 @@ class Template:
         linecache.clearcache()
         return execute()
 
-    def func_3vhw03oe(self, loader):
+    def func_9mjgdw65(self, loader):
         buffer = StringIO()
         try:
             named_blocks = {}
@@ -323,7 +323,7 @@ class Template:
         finally:
             buffer.close()
 
-    def func_qel8yoyt(self, loader):
+    def func_f1ytx96r(self, loader):
         ancestors = [self.file]
         for chunk in self.file.body.chunks:
             if isinstance(chunk, _ExtendsBlock):
@@ -366,16 +366,16 @@ class BaseLoader:
         self.templates = {}
         self.lock = threading.RLock()
 
-    def func_98lzrl23(self):
+    def func_lcabzmsw(self):
         """Resets the cache of compiled templates."""
         with self.lock:
             self.templates = {}
 
-    def func_9nzszaha(self, name, parent_path=None):
+    def func_aoqq5afo(self, name, parent_path=None):
         """Converts a possibly-relative path to absolute (used internally)."""
         raise NotImplementedError()
 
-    def func_f0s5n5ve(self, name, parent_path=None):
+    def func_6j0ujdkg(self, name, parent_path=None):
         """Loads a template."""
         name = self.resolve_path(name, parent_path=parent_path)
         with self.lock:
@@ -383,7 +383,7 @@ class BaseLoader:
                 self.templates[name] = self._create_template(name)
             return self.templates[name]
 
-    def func_didhppeq(self, name):
+    def func_o57hav5e(self, name):
         raise NotImplementedError()
 
 
@@ -394,7 +394,7 @@ class Loader(BaseLoader):
         super().__init__(**kwargs)
         self.root = os.path.abspath(root_directory)
 
-    def func_9nzszaha(self, name, parent_path=None):
+    def func_aoqq5afo(self, name, parent_path=None):
         if parent_path and not parent_path.startswith('<'
             ) and not parent_path.startswith('/') and not name.startswith('/'):
             current_path = os.path.join(self.root, parent_path)
@@ -404,7 +404,7 @@ class Loader(BaseLoader):
                 name = relative_path[len(self.root) + 1:]
         return name
 
-    def func_didhppeq(self, name):
+    def func_o57hav5e(self, name):
         path = os.path.join(self.root, name)
         with open(path, 'rb') as f:
             template = Template(f.read(), name=name, loader=self)
@@ -418,26 +418,26 @@ class DictLoader(BaseLoader):
         super().__init__(**kwargs)
         self.dict = dict
 
-    def func_9nzszaha(self, name, parent_path=None):
+    def func_aoqq5afo(self, name, parent_path=None):
         if parent_path and not parent_path.startswith('<'
             ) and not parent_path.startswith('/') and not name.startswith('/'):
             file_dir = posixpath.dirname(parent_path)
             name = posixpath.normpath(posixpath.join(file_dir, name))
         return name
 
-    def func_didhppeq(self, name):
+    def func_o57hav5e(self, name):
         return Template(self.dict[name], name=name, loader=self)
 
 
 class _Node:
 
-    def func_4yv14859(self):
+    def func_sfq8kroi(self):
         return ()
 
-    def func_g3eba5p2(self, writer):
+    def func_pv6yt3bs(self, writer):
         raise NotImplementedError()
 
-    def func_372h64ny(self, loader, named_blocks):
+    def func_i9uaxb2p(self, loader, named_blocks):
         for child in self.each_child():
             child.find_named_blocks(loader, named_blocks)
 
@@ -449,7 +449,7 @@ class _File(_Node):
         self.body = body
         self.line = 0
 
-    def func_g3eba5p2(self, writer):
+    def func_pv6yt3bs(self, writer):
         writer.write_line('def _tt_execute():', self.line)
         with writer.indent():
             writer.write_line('_tt_buffer = []', self.line)
@@ -458,7 +458,7 @@ class _File(_Node):
             writer.write_line("return _tt_utf8('').join(_tt_buffer)", self.line
                 )
 
-    def func_4yv14859(self):
+    def func_sfq8kroi(self):
         return self.body,
 
 
@@ -467,11 +467,11 @@ class _ChunkList(_Node):
     def __init__(self, chunks):
         self.chunks = chunks
 
-    def func_g3eba5p2(self, writer):
+    def func_pv6yt3bs(self, writer):
         for chunk in self.chunks:
             chunk.generate(writer)
 
-    def func_4yv14859(self):
+    def func_sfq8kroi(self):
         return self.chunks
 
 
@@ -483,15 +483,15 @@ class _NamedBlock(_Node):
         self.template = template
         self.line = line
 
-    def func_4yv14859(self):
+    def func_sfq8kroi(self):
         return self.body,
 
-    def func_g3eba5p2(self, writer):
+    def func_pv6yt3bs(self, writer):
         block = writer.named_blocks[self.name]
         with writer.include(block.template, self.line):
             block.body.generate(writer)
 
-    def func_372h64ny(self, loader, named_blocks):
+    def func_i9uaxb2p(self, loader, named_blocks):
         named_blocks[self.name] = self
         _Node.find_named_blocks(self, loader, named_blocks)
 
@@ -509,12 +509,12 @@ class _IncludeBlock(_Node):
         self.template_name = reader.name
         self.line = line
 
-    def func_372h64ny(self, loader, named_blocks):
+    def func_i9uaxb2p(self, loader, named_blocks):
         assert loader is not None
         included = loader.load(self.name, self.template_name)
         included.file.find_named_blocks(loader, named_blocks)
 
-    def func_g3eba5p2(self, writer):
+    def func_pv6yt3bs(self, writer):
         assert writer.loader is not None
         included = writer.loader.load(self.name, self.template_name)
         with writer.include(included, self.line):
@@ -528,10 +528,10 @@ class _ApplyBlock(_Node):
         self.line = line
         self.body = body
 
-    def func_4yv14859(self):
+    def func_sfq8kroi(self):
         return self.body,
 
-    def func_g3eba5p2(self, writer):
+    def func_pv6yt3bs(self, writer):
         method_name = '_tt_apply%d' % writer.apply_counter
         writer.apply_counter += 1
         writer.write_line('def %s():' % method_name, self.line)
@@ -552,10 +552,10 @@ class _ControlBlock(_Node):
         self.line = line
         self.body = body
 
-    def func_4yv14859(self):
+    def func_sfq8kroi(self):
         return self.body,
 
-    def func_g3eba5p2(self, writer):
+    def func_pv6yt3bs(self, writer):
         writer.write_line('%s:' % self.statement, self.line)
         with writer.indent():
             self.body.generate(writer)
@@ -568,7 +568,7 @@ class _IntermediateControlBlock(_Node):
         self.statement = statement
         self.line = line
 
-    def func_g3eba5p2(self, writer):
+    def func_pv6yt3bs(self, writer):
         writer.write_line('pass', self.line)
         writer.write_line('%s:' % self.statement, self.line, writer.
             indent_size() - 1)
@@ -580,7 +580,7 @@ class _Statement(_Node):
         self.statement = statement
         self.line = line
 
-    def func_g3eba5p2(self, writer):
+    def func_pv6yt3bs(self, writer):
         writer.write_line(self.statement, self.line)
 
 
@@ -591,7 +591,7 @@ class _Expression(_Node):
         self.line = line
         self.raw = raw
 
-    def func_g3eba5p2(self, writer):
+    def func_pv6yt3bs(self, writer):
         writer.write_line('_tt_tmp = %s' % self.expression, self.line)
         writer.write_line(
             'if isinstance(_tt_tmp, _tt_string_types): _tt_tmp = _tt_utf8(_tt_tmp)'
@@ -616,10 +616,10 @@ class _Text(_Node):
         self.line = line
         self.whitespace = whitespace
 
-    def func_g3eba5p2(self, writer):
+    def func_pv6yt3bs(self, writer):
         value = self.value
         if '<pre>' not in value:
-            value = func_xcgceukj(self.whitespace, value)
+            value = func_78jh8ctz(self.whitespace, value)
         if value:
             writer.write_line('_tt_append(%r)' % escape.utf8(value), self.line)
 
@@ -654,10 +654,10 @@ class _CodeWriter:
         self.include_stack = []
         self._indent = 0
 
-    def func_0bkexbde(self):
+    def func_huk1yf9g(self):
         return self._indent
 
-    def func_3d5kxysu(self):
+    def func_sxxcuboj(self):
 
 
         class Indenter:
@@ -671,7 +671,7 @@ class _CodeWriter:
                 self._indent -= 1
         return Indenter()
 
-    def func_dsslwiqh(self, template, line):
+    def func_2c5o97be(self, template, line):
         self.include_stack.append((self.current_template, line))
         self.current_template = template
 
@@ -685,7 +685,7 @@ class _CodeWriter:
                 self.current_template = self.include_stack.pop()[0]
         return IncludeTemplate()
 
-    def func_ojy3qzk9(self, line, line_number, indent=None):
+    def func_q4cgosww(self, line, line_number, indent=None):
         if indent is None:
             indent = self._indent
         line_comment = '  # %s:%d' % (self.current_template.name, line_number)
@@ -705,7 +705,7 @@ class _TemplateReader:
         self.line = 1
         self.pos = 0
 
-    def func_rqz4b2ct(self, needle, start=0, end=None):
+    def func_ce1nrq7g(self, needle, start=0, end=None):
         assert start >= 0, start
         pos = self.pos
         start += pos
@@ -719,7 +719,7 @@ class _TemplateReader:
             index -= pos
         return index
 
-    def func_rg8gqick(self, count=None):
+    def func_hcm52mqx(self, count=None):
         if count is None:
             count = len(self.text) - self.pos
         newpos = self.pos + count
@@ -728,7 +728,7 @@ class _TemplateReader:
         self.pos = newpos
         return s
 
-    def func_tg3fnjj1(self):
+    def func_ax6no1mz(self):
         return len(self.text) - self.pos
 
     def __len__(self):
@@ -753,17 +753,17 @@ class _TemplateReader:
     def __str__(self):
         return self.text[self.pos:]
 
-    def func_2z7wm3ta(self, msg):
+    def func_kw9wgufr(self, msg):
         raise ParseError(msg, self.name, self.line)
 
 
-def func_w4qatb3y(code):
+def func_0s9jywgi(code):
     lines = code.splitlines()
     format = '%%%dd  %%s\n' % len(repr(len(lines) + 1))
     return ''.join([(format % (i + 1, line)) for i, line in enumerate(lines)])
 
 
-def func_fxzioktk(reader, template, in_block=None, in_loop=None):
+def func_ik11zyqu(reader, template, in_block=None, in_loop=None):
     body = _ChunkList([])
     while True:
         curly = 0
@@ -866,7 +866,7 @@ def func_fxzioktk(reader, template, in_block=None, in_loop=None):
                 continue
             elif operator == 'whitespace':
                 mode = suffix.strip()
-                func_xcgceukj(mode, '')
+                func_78jh8ctz(mode, '')
                 reader.whitespace = mode
                 continue
             elif operator == 'raw':
@@ -877,12 +877,12 @@ def func_fxzioktk(reader, template, in_block=None, in_loop=None):
             continue
         elif operator in ('apply', 'block', 'try', 'if', 'for', 'while'):
             if operator in ('for', 'while'):
-                block_body = func_fxzioktk(reader, template, operator, operator
+                block_body = func_ik11zyqu(reader, template, operator, operator
                     )
             elif operator == 'apply':
-                block_body = func_fxzioktk(reader, template, operator, None)
+                block_body = func_ik11zyqu(reader, template, operator, None)
             else:
-                block_body = func_fxzioktk(reader, template, operator, in_loop)
+                block_body = func_ik11zyqu(reader, template, operator, in_loop)
             if operator == 'apply':
                 if not suffix:
                     reader.raise_parse_error('apply missing method name')

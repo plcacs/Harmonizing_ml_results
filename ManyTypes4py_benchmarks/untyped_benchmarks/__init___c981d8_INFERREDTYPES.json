@@ -1,0 +1,831 @@
+{
+    "__init__@DeviceBroker": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "entry",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token",
+            "type": [
+                "str",
+                "homeassistanconfig_entries.ConfigEntry",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "smart_app",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "typing.Iterable",
+                "homeassistanconfig_entries.ConfigEntry"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "devices",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "scenes",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entry",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_entry",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "smart_app",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "typing.Iterable",
+                "homeassistanconfig_entries.ConfigEntry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_smart_app",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "typing.Iterable",
+                "homeassistanconfig_entries.ConfigEntry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token",
+            "type": [
+                "str",
+                "homeassistanconfig_entries.ConfigEntry",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_token",
+            "type": [
+                "str",
+                "homeassistanconfig_entries.ConfigEntry",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_event_disconnect",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_regenerate_token_remove",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "devices",
+            "type": [
+                "str",
+                "dict[, typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_assignments",
+            "type": [
+                "typing.OrderedDict",
+                "dict",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scenes",
+            "type": [
+                "logging.Logger",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_assign_capabilities@DeviceBroker": [
+        {
+            "category": "arg",
+            "name": "devices",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "assignments",
+            "type": [
+                "dict",
+                "dict[, dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "devices",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "capabilities",
+            "type": [
+                "list",
+                "dict[str, str]",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "slots",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_assign_capabilities",
+            "type": [
+                "dict[, dict]"
+            ]
+        }
+    ],
+    "_event_handler@DeviceBroker": [
+        {
+            "category": "arg",
+            "name": "req",
+            "type": [
+                "aiohttp.web.Request",
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "resp",
+            "type": [
+                "aiohttp.web.Request",
+                "aiohttp.ClientSession"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "app",
+            "type": [
+                "aiohttp.web.Request",
+                "aiohttp.ClientSession"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "req",
+            "type": [
+                "aiohttp.web.Request",
+                "django.http.HttpRequest"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_event_handler",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "updated_devices",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "any_assigned@DeviceBroker": [
+        {
+            "category": "arg",
+            "name": "device_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "platform",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "platform",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "any_assigned",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "async_get_entry_scenes@global": [
+        {
+            "category": "arg",
+            "name": "entry",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "api",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "api",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entry",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_get_entry_scenes",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ex",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "async_migrate_entry@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistanhelpers.ConfigType"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "entry",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistancore.HomeAssistant",
+                "homeassistanhelpers.ConfigType"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistanhelpers.ConfigType"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entry",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistancore.HomeAssistant",
+                "homeassistanhelpers.ConfigType"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_migrate_entry",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "async_remove_entry@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "homeassistanconfig_entries.ConfigEntry"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "entry",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "homeassistanconfig_entries.ConfigEntry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entry",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistancore.HomeAssistant",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "api",
+            "type": [
+                "SmartThings"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ex",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "all_entries",
+            "type": [
+                "dict",
+                "list",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_remove_entry",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_setup@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "dict",
+                "homeassistancore.HomeAssistant",
+                "homeassistanhelpers.ConfigType"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "homeassistanhelpers.ConfigType",
+                "dict",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "dict",
+                "homeassistancore.HomeAssistant",
+                "homeassistanhelpers.ConfigType"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_setup",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "async_setup_entry@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "typing.Callable[List,bool, None]",
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "entry",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entry",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entry_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "typing.Callable[List,bool, None]",
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_setup_entry",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "api",
+            "type": [
+                "SmartThings"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "smart_app",
+            "type": [
+                "dict[str, str]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scenes",
+            "type": [
+                "dict[int, dict[str, typing.Any]]",
+                "dict",
+                "dict[str, typing.Type]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "devices",
+            "type": [
+                "list",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ex",
+            "type": [
+                "Exception"
+            ]
+        }
+    ],
+    "async_unload_entry@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "entry",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entry",
+            "type": [
+                "homeassistanconfig_entries.ConfigEntry",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_unload_entry",
+            "type": [
+                "aiohttp.ClientSession",
+                "asyncworker.http.wrapper.RequestWrapper"
+            ]
+        }
+    ],
+    "connect@DeviceBroker": [
+        {
+            "category": "local",
+            "name": "_event_disconnect",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "connect",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "disconnect@DeviceBroker": [
+        {
+            "category": "return",
+            "name": "disconnect",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_assigned@DeviceBroker": [
+        {
+            "category": "arg",
+            "name": "device_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "platform",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "slots",
+            "type": [
+                "dict[str, list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "tuple[typing.Union[str,list[str]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "tuple[typing.Union[str,list[str]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "platform",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_assigned",
+            "type": [
+                "list[tuple[typing.Union[str,list[str]]]]"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONFIG_SCHEMA",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        }
+    ],
+    "regenerate_refresh_token@DeviceBroker": [
+        {
+            "category": "arg",
+            "name": "now",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "regenerate_refresh_token",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "retrieve_device_status@global": [
+        {
+            "category": "arg",
+            "name": "device",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "retrieve_device_status",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,726 @@
+{
+    "__init__@Hotflip": [
+        {
+            "category": "arg",
+            "name": "predictor",
+            "type": [
+                "allennlp.data.vocabulary.Vocabulary",
+                "list[int]",
+                "torch.utils.data.DataLoader"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "vocab_namespace",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_tokens",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "predictor",
+            "type": [
+                "allennlp.data.vocabulary.Vocabulary",
+                "list[int]",
+                "torch.utils.data.DataLoader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vocab_namespace",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "namespace",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_tokens",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "invalid_replacement_indices",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "embedding_matrix",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "embedding_layer",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_construct_embedding_matrix@Hotflip": [
+        {
+            "category": "local",
+            "name": "embedding_layer",
+            "type": [
+                "list[list[typing.Any]]",
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_construct_embedding_matrix",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "max_index",
+            "type": [
+                "int",
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "invalid_replacement_indices",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "_first_order_taylor@Hotflip": [
+        {
+            "category": "arg",
+            "name": "grad",
+            "type": [
+                "torch.Tensor",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_idx",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sign",
+            "type": [
+                "torch.Tensor",
+                "tuple[int]",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "grad",
+            "type": [
+                "torch.Tensor",
+                "int",
+                "numpy.ndarray",
+                "typing.Any",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_idx",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inputs",
+            "type": [
+                "list",
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "word_embedding",
+            "type": [
+                "list[int]",
+                "typing.DefaultDict",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prev_embed_dot_grad",
+            "type": [
+                "numpy.ndarray",
+                "torch.Tensor",
+                "typing.Any",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sign",
+            "type": [
+                "torch.Tensor",
+                "tuple[int]",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "neg_dir_dot_grad",
+            "type": [
+                "bool",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_first_order_taylor",
+            "type": []
+        }
+    ],
+    "_make_embedder_input@Hotflip": [
+        {
+            "category": "arg",
+            "name": "all_tokens",
+            "type": [
+                "dict[tuple[int], str]",
+                "torch.Tensor",
+                "list[allennlp.data.tokenizers.Token]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inputs",
+            "type": [
+                "dict",
+                "dict[, dict[typing.Text, ]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_indexer",
+            "type": [
+                "SingleIdTokenIndexer",
+                "TokenCharactersIndexer",
+                "ELMoTokenCharactersIndexer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "all_tokens",
+            "type": [
+                "dict[tuple[int], str]",
+                "torch.Tensor",
+                "list[allennlp.data.tokenizers.Token]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token",
+            "type": [
+                "tuple[int]",
+                "allennlp.data.tokenizers.Token"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "all_indices",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "x",
+            "type": [
+                "tuple[int]",
+                "allennlp.data.tokenizers.Token"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "list[Token]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_token_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "elmo_tokens",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_make_embedder_input",
+            "type": []
+        }
+    ],
+    "attack_from_json@Hotflip": [
+        {
+            "category": "arg",
+            "name": "inputs",
+            "type": [
+                "float",
+                "dict[int, str]",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "input_field_to_attack",
+            "type": [
+                "allennlp.common.util.JsonDict",
+                "allennlp.data.vocabulary.Vocabulary"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "grad_input_field",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ignore_tokens",
+            "type": [
+                "None",
+                "torch.Size",
+                "bool",
+                "tuple"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target",
+            "type": [
+                "None",
+                "allennlp.common.util.JsonDict",
+                "str",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inputs",
+            "type": [
+                "float",
+                "dict[int, str]",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instance",
+            "type": [
+                "list",
+                "list[deeplearning.clgen.clgen.Instance]",
+                "deeplearning.clgen.clgen.Instance",
+                "tuple[int]",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target",
+            "type": [
+                "None",
+                "allennlp.common.util.JsonDict",
+                "str",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output_dict",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "dict[str, typing.Union[float,str]]",
+                "allennlp.common.util.JsonDict",
+                "str",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "original_instances",
+            "type": [
+                "dict",
+                "list[tuple[int]]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "input_field_to_attack",
+            "type": [
+                "allennlp.common.util.JsonDict",
+                "allennlp.data.vocabulary.Vocabulary"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "original_text_field",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "final_tokens",
+            "type": [
+                "list",
+                "list[typing.Union[as3.scanner.Token,list]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "final_outputs",
+            "type": [
+                "list",
+                "list[typing.Union[list,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "grad_input_field",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ignore_tokens",
+            "type": [
+                "None",
+                "torch.Size",
+                "bool",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "as3.scanner.Token",
+                "list",
+                "list[tuple[typing.Union[int,typing.Any]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "outputs",
+            "type": [
+                "list",
+                "str",
+                "list[list[str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "attack_from_json",
+            "type": [
+                "str",
+                "denite.util.Candidates",
+                "bool"
+            ]
+        }
+    ],
+    "attack_instance@Hotflip": [
+        {
+            "category": "arg",
+            "name": "instance",
+            "type": [
+                "torch.nn.Module",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "inputs",
+            "type": [
+                "list[typing.Callable]",
+                "typing.Callable",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "input_field_to_attack",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "grad_input_field",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ignore_tokens",
+            "type": [
+                "None",
+                "typing.Iterable[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target",
+            "type": [
+                "None",
+                "set[str]",
+                "tuple[numpy.ndarray]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "embedding_matrix",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ignore_tokens",
+            "type": [
+                "None",
+                "typing.Iterable[str]",
+                "frozenset",
+                "str",
+                "list[str]",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DEFAULT_IGNORE_TOKENS",
+            "type": [
+                "str",
+                "list[str]",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target",
+            "type": [
+                "None",
+                "set[str]",
+                "tuple[numpy.ndarray]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sign",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inputs",
+            "type": [
+                "list[typing.Callable]",
+                "typing.Callable",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instance",
+            "type": [
+                "torch.nn.Module",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "text_field",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "grads",
+            "type": [
+                "list",
+                "torch.Tensor",
+                "list[tuple]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "outputs",
+            "type": [
+                "list",
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "flipped",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cluster",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mention",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "grad_input_field",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "grad",
+            "type": [
+                "list",
+                "torch.Tensor",
+                "list[tuple]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "g",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "grads_magnitude",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "text_field_tensors",
+            "type": [
+                "list",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instance_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "labeled_instance",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, tuple[str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "attack_instance",
+            "type": []
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "DEFAULT_IGNORE_TOKENS",
+            "type": [
+                "list[typing.Text]",
+                "str",
+                "list[str]",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "invalid_replacement_indices",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "initialize@Hotflip": [
+        {
+            "category": "local",
+            "name": "embedding_matrix",
+            "type": [
+                "list[int]",
+                "list",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "initialize",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

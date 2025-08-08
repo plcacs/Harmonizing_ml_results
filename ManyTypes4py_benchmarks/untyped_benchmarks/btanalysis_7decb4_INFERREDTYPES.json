@@ -1,0 +1,1365 @@
+{
+    "_extract_backtest_result@global": [
+        {
+            "category": "arg",
+            "name": "filename",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "filename",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metadata",
+            "type": [
+                "dict[typing.Any, str]",
+                "dict[str, typing.Any]",
+                "dict[str, typing.Union[list,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s",
+            "type": [
+                "tuple[typing.Union[typing.Any,str]]",
+                "tuple[typing.Union[str,list]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_extract_backtest_result",
+            "type": [
+                "list[dict[typing.Text, typing.Union[tuple[typing.Union[typing.Any,str]],tuple[typing.Union[str,list]],typing.Any,str,list]]]"
+            ]
+        }
+    ],
+    "_get_backtest_files@global": [
+        {
+            "category": "arg",
+            "name": "dirname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dirname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "json_files",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "zip_files",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_backtest_files",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "_load_backtest_data_df_compatibility@global": [
+        {
+            "category": "arg",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_load_backtest_data_df_compatibility",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        }
+    ],
+    "analyze_trade_parallelism@global": [
+        {
+            "category": "arg",
+            "name": "results",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "timeframe",
+            "type": [
+                "pandas.DataFrame",
+                "pandas.Series",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timeframe",
+            "type": [
+                "pandas.DataFrame",
+                "pandas.Series",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timeframe_freq",
+            "type": [
+                "int",
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "results",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dates",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deltas",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "analyze_trade_parallelism",
+            "type": []
+        }
+    ],
+    "delete_backtest_result@global": [
+        {
+            "category": "arg",
+            "name": "file_abs",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_abs",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "delete_backtest_result",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "evaluate_result_multi@global": [
+        {
+            "category": "arg",
+            "name": "results",
+            "type": [
+                "pandas.DataFrame",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "timeframe",
+            "type": [
+                "pandas.DataFrame",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_open_trades",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "results",
+            "type": [
+                "pandas.DataFrame",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timeframe",
+            "type": [
+                "pandas.DataFrame",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df_final",
+            "type": [
+                "pandas.Series",
+                "pandas.DataFrame",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_open_trades",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "evaluate_result_multi",
+            "type": [
+                "pandas.DataFrame",
+                "str",
+                "numpy.ndarray"
+            ]
+        }
+    ],
+    "extract_trades_of_period@global": [
+        {
+            "category": "arg",
+            "name": "dataframe",
+            "type": [
+                "pandas.DataFrame",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "trades",
+            "type": [
+                "pandas.DataFrame",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "date_index",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "date_index",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataframe",
+            "type": [
+                "pandas.DataFrame",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trades",
+            "type": [
+                "pandas.DataFrame",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "extract_trades_of_period",
+            "type": []
+        }
+    ],
+    "find_existing_backtest_stats@global": [
+        {
+            "category": "arg",
+            "name": "dirname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "run_ids",
+            "type": [
+                "list",
+                "str",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "min_backtest_date",
+            "type": [
+                "None",
+                "datetime.datetime",
+                "datetime.date",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "run_ids",
+            "type": [
+                "list",
+                "str",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dirname",
+            "type": [
+                "str",
+                "Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "results",
+            "type": [
+                "dict[typing.Text, typing.Union[dict,list]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_backtest_date",
+            "type": [
+                "None",
+                "datetime.datetime",
+                "datetime.date",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "find_existing_backtest_stats",
+            "type": [
+                "dict[typing.Text, typing.Union[dict,list]]"
+            ]
+        }
+    ],
+    "get_backtest_market_change@global": [
+        {
+            "category": "arg",
+            "name": "filename",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_ts",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "filename",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "bytes",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_ts",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_backtest_market_change",
+            "type": []
+        }
+    ],
+    "get_backtest_result@global": [
+        {
+            "category": "arg",
+            "name": "filename",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "filename",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_backtest_result",
+            "type": [
+                "tuple",
+                "dict[str, str]"
+            ]
+        }
+    ],
+    "get_backtest_resultlist@global": [
+        {
+            "category": "arg",
+            "name": "dirname",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dirname",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_backtest_resultlist",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "get_latest_backtest_filename@global": [
+        {
+            "category": "arg",
+            "name": "directory",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "directory",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_latest_backtest_filename",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        }
+    ],
+    "get_latest_hyperopt_file@global": [
+        {
+            "category": "arg",
+            "name": "directory",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "predef_filename",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "directory",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "predef_filename",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_latest_hyperopt_file",
+            "type": [
+                "pathlib.Path",
+                "None"
+            ]
+        }
+    ],
+    "get_latest_hyperopt_filename@global": [
+        {
+            "category": "arg",
+            "name": "directory",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "directory",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_latest_hyperopt_filename",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "typing.Text"
+            ]
+        }
+    ],
+    "get_latest_optimize_filename@global": [
+        {
+            "category": "arg",
+            "name": "directory",
+            "type": [
+                "pathlib.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "variant",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "directory",
+            "type": [
+                "pathlib.Path",
+                "str",
+                "Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "variant",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_latest_optimize_filename",
+            "type": []
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "BT_DATA_COLUMNS",
+            "type": [
+                "list[typing.Text]",
+                "list[str]",
+                "list[tuple[typing.Union[str,typing.Any]]]",
+                "list"
+            ]
+        }
+    ],
+    "load_and_merge_backtest_result@global": [
+        {
+            "category": "arg",
+            "name": "strategy_name",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "filename",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "results",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "filename",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bt_data",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "str",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "results",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "comparison",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_and_merge_backtest_result",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "load_backtest_analysis_data@global": [
+        {
+            "category": "arg",
+            "name": "backtest_dir",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "name",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtest_dir",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lbf",
+            "type": [
+                "Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "zip_path",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "analysis_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "bytes",
+                "list[dict[str, str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_backtest_analysis_data",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scpf",
+            "type": [
+                "Path"
+            ]
+        }
+    ],
+    "load_backtest_data@global": [
+        {
+            "category": "arg",
+            "name": "filename",
+            "type": [
+                "pathlib.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "strategy",
+            "type": [
+                "None",
+                "str",
+                "list[str]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "filename",
+            "type": [
+                "pathlib.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "list",
+                "list[int]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "strategy",
+            "type": [
+                "None",
+                "str",
+                "list[str]",
+                "dict",
+                "list",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame",
+                "list",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_backtest_data",
+            "type": [
+                "pandas.DataFrame",
+                "list",
+                "float"
+            ]
+        }
+    ],
+    "load_backtest_metadata@global": [
+        {
+            "category": "arg",
+            "name": "filename",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "filename",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_backtest_metadata",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        }
+    ],
+    "load_backtest_stats@global": [
+        {
+            "category": "arg",
+            "name": "filename",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "filename",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "None",
+                "Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "None",
+                "dict",
+                "list[typing.Any]",
+                "bool",
+                "bytes",
+                "datetime.datetime",
+                "float",
+                "xmlrpc.clienBinary",
+                "xmlrpc.clienDateTime",
+                "tuple"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_backtest_stats",
+            "type": [
+                "str",
+                "None",
+                "dict",
+                "list[typing.Any]",
+                "bool",
+                "bytes",
+                "datetime.datetime",
+                "float",
+                "xmlrpc.clienBinary",
+                "xmlrpc.clienDateTime",
+                "tuple"
+            ]
+        }
+    ],
+    "load_exit_signal_candles@global": [
+        {
+            "category": "arg",
+            "name": "backtest_dir",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtest_dir",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_exit_signal_candles",
+            "type": [
+                "int",
+                "str"
+            ]
+        }
+    ],
+    "load_file_from_zip@global": [
+        {
+            "category": "arg",
+            "name": "zip_path",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "typing.BinaryIO"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "filename",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "zip_path",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "typing.BinaryIO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "filename",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_file_from_zip",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "load_rejected_signals@global": [
+        {
+            "category": "arg",
+            "name": "backtest_dir",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtest_dir",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_rejected_signals",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        }
+    ],
+    "load_signal_candles@global": [
+        {
+            "category": "arg",
+            "name": "backtest_dir",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backtest_dir",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_signal_candles",
+            "type": [
+                "dict",
+                "dict[str, str]"
+            ]
+        }
+    ],
+    "load_trades@global": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "db_url",
+            "type": [
+                "str",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exportfilename",
+            "type": [
+                "str",
+                "None",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "no_trades",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "strategy",
+            "type": [
+                "None",
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "no_trades",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "BT_DATA_COLUMNS",
+            "type": [
+                "list[str]",
+                "list[tuple[typing.Union[str,typing.Any]]]",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_trades",
+            "type": [
+                "str",
+                "None",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db_url",
+            "type": [
+                "str",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exportfilename",
+            "type": [
+                "str",
+                "None",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "strategy",
+            "type": [
+                "None",
+                "str",
+                "pathlib.Path"
+            ]
+        }
+    ],
+    "load_trades_from_db@global": [
+        {
+            "category": "arg",
+            "name": "db_url",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "strategy",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db_url",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "filters",
+            "type": [
+                "list",
+                "list[bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "strategy",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trades",
+            "type": [
+                "list[rotkehlchen.exchanges.data_structures.Trade]",
+                "rotkehlchen.exchanges.data_structures.Trade",
+                "list[dict[str, int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_trades_from_db",
+            "type": [
+                "list[rotkehlchen.exchanges.data_structures.Trade]",
+                "rotkehlchen.exchanges.data_structures.Trade",
+                "list[dict[str, int]]"
+            ]
+        }
+    ],
+    "trade_list_to_dataframe@global": [
+        {
+            "category": "arg",
+            "name": "trades",
+            "type": [
+                "pandas.DataFrame",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trades",
+            "type": [
+                "pandas.DataFrame",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "BT_DATA_COLUMNS",
+            "type": [
+                "list[str]",
+                "list[tuple[typing.Union[str,typing.Any]]]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "trade_list_to_dataframe",
+            "type": [
+                "pandas.DataFrame",
+                "list"
+            ]
+        }
+    ],
+    "update_backtest_metadata@global": [
+        {
+            "category": "arg",
+            "name": "filename",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "strategy",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, typing.Any]",
+                "list[typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content",
+            "type": [
+                "str",
+                "typing.Mapping",
+                "dict[str, list[bytes]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "filename",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metadata",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "strategy",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, typing.Any]",
+                "list[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content",
+            "type": [
+                "str",
+                "typing.Mapping",
+                "dict[str, list[bytes]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_backtest_metadata",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

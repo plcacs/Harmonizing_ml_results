@@ -1,0 +1,23 @@
+def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType = None) -> None:
+    ...
+
+class AdsLight(AdsEntity, LightEntity):
+    def __init__(self, ads_hub: AdsHub, ads_var_enable: str, ads_var_brightness: str, name: str) -> None:
+        ...
+
+    async def async_added_to_hass(self) -> None:
+        ...
+
+    @property
+    def brightness(self) -> Any:
+        ...
+
+    @property
+    def is_on(self) -> bool:
+        ...
+
+    def turn_on(self, **kwargs: Any) -> None:
+        ...
+
+    def turn_off(self, **kwargs: Any) -> None:
+        ...

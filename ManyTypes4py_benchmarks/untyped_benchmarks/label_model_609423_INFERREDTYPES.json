@@ -1,0 +1,1138 @@
+{
+    "__init__@LabelModel": [
+        {
+            "category": "arg",
+            "name": "cardinality",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "LabelModelConfig"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cardinality",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_break_col_permutation_symmetry@LabelModel": [
+        {
+            "category": "local",
+            "name": "mu",
+            "type": [
+                "list[list[typing.Any]]",
+                "float",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "P",
+            "type": [
+                "list[complex]",
+                "tuple[typing.Any]",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "probs_sum",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "munkres_solver",
+            "type": [
+                "Munkres"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "probs_proj",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_break_col_permutation_symmetry",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_build_mask@LabelModel": [
+        {
+            "category": "local",
+            "name": "mask",
+            "type": [
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sj",
+            "type": [
+                "int",
+                "list",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ej",
+            "type": [
+                "tuple[typing.Literal]",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_build_mask",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_clamp_params@LabelModel": [
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mu_eps",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_clamp_params",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_create_L_ind@LabelModel": [
+        {
+            "category": "arg",
+            "name": "L",
+            "type": [
+                "numpy.ndarray",
+                "list[int]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "L",
+            "type": [
+                "numpy.ndarray",
+                "list[int]",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_create_L_ind",
+            "type": []
+        }
+    ],
+    "_create_tree@LabelModel": [
+        {
+            "category": "local",
+            "name": "nodes",
+            "type": [
+                "range"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c_tree",
+            "type": [
+                "dict",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_create_tree",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_execute_logging@LabelModel": [
+        {
+            "category": "arg",
+            "name": "loss",
+            "type": [
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "running_loss",
+            "type": [
+                "float",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "loss",
+            "type": [
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "running_examples",
+            "type": [
+                "bool",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metrics_dict",
+            "type": [
+                "dict[typing.Text, float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_execute_logging",
+            "type": [
+                "dict[typing.Text, float]"
+            ]
+        }
+    ],
+    "_generate_O@LabelModel": [
+        {
+            "category": "arg",
+            "name": "L",
+            "type": [
+                "bool",
+                "numpy.ndarray",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "higher_order",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "L",
+            "type": [
+                "bool",
+                "numpy.ndarray",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "higher_order",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "L_aug",
+            "type": [
+                "list",
+                "list[bool]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "O",
+            "type": [
+                "numpy.ndarray",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_generate_O",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_get_augmented_label_matrix@LabelModel": [
+        {
+            "category": "arg",
+            "name": "L",
+            "type": [
+                "numpy.ndarray",
+                "numpy.random.RandomState",
+                "typing.Iterable[typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "higher_order",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "c_data",
+            "type": [
+                "dict",
+                "dict[, _CliqueData]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "L",
+            "type": [
+                "numpy.ndarray",
+                "numpy.random.RandomState",
+                "typing.Iterable[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "L_ind",
+            "type": [
+                "list",
+                "set",
+                "list[bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "higher_order",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "item",
+            "type": [
+                "int",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "C",
+            "type": [
+                "str",
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "members",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_augmented_label_matrix",
+            "type": [
+                "list",
+                "set",
+                "list[bool]"
+            ]
+        }
+    ],
+    "_get_conditional_probs@LabelModel": [
+        {
+            "category": "arg",
+            "name": "mu",
+            "type": [
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mu",
+            "type": [
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mu_i",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_conditional_probs",
+            "type": []
+        }
+    ],
+    "_init_params@LabelModel": [
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "np_@_ndarray",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lps",
+            "type": [
+                "torch.Tensor",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mu",
+            "type": [
+                "float",
+                "None",
+                "complex",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_init_params",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_loss_l2@LabelModel": [
+        {
+            "category": "arg",
+            "name": "l2",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "l2",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "D",
+            "type": [
+                "torch.Tensor",
+                "float",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_loss_l2",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "_loss_mu@LabelModel": [
+        {
+            "category": "arg",
+            "name": "l2",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "loss_1",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "loss_2",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "l2",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_loss_mu",
+            "type": [
+                "\"ndarray\"",
+                "tuple[\"ndarray\"]",
+                "list[dict[str, int]]"
+            ]
+        }
+    ],
+    "_set_class_balance@LabelModel": [
+        {
+            "category": "arg",
+            "name": "class_balance",
+            "type": [
+                "list[float]",
+                "None",
+                "list[list[str]]",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "Y_dev",
+            "type": [
+                "None",
+                "typing.Type",
+                "int",
+                "list[typing.Mapping]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "class_balance",
+            "type": [
+                "list[float]",
+                "None",
+                "list[list[str]]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Y_dev",
+            "type": [
+                "None",
+                "typing.Type",
+                "int",
+                "list[typing.Mapping]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "class_counts",
+            "type": [
+                "Counter"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "P",
+            "type": [
+                "torch.Tensor",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_set_class_balance",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_set_constants@LabelModel": [
+        {
+            "category": "arg",
+            "name": "L",
+            "type": [
+                "numpy.ndarray",
+                "tuple",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "L",
+            "type": [
+                "numpy.ndarray",
+                "tuple",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "t",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_set_constants",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_set_logger@LabelModel": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_set_logger",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_set_lr_scheduler@LabelModel": [
+        {
+            "category": "local",
+            "name": "lr_scheduler",
+            "type": [
+                "None",
+                "str",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "linear_decay_func",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_set_lr_scheduler",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_set_optimizer@LabelModel": [
+        {
+            "category": "local",
+            "name": "parameters",
+            "type": [
+                "list",
+                "dict[str, typing.Any]",
+                "dict[str, typing.Union[float,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "optimizer",
+            "type": [
+                "float",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_set_optimizer",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_set_warmup_scheduler@LabelModel": [
+        {
+            "category": "local",
+            "name": "warmup_steps",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "linear_warmup_func",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "warmup_scheduler",
+            "type": [
+                "float",
+                "list",
+                "typing.DefaultDict",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_set_warmup_scheduler",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_update_lr_scheduler@LabelModel": [
+        {
+            "category": "arg",
+            "name": "step",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "step",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lr_scheduler",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_update_lr_scheduler",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "fit@LabelModel": [
+        {
+            "category": "arg",
+            "name": "L_train",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "Y_dev",
+            "type": [
+                "None",
+                "int",
+                "tuple"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "class_balance",
+            "type": [
+                "None",
+                "int",
+                "tuple"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "progress_bar",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "L_train",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "L_shift",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "class_balance",
+            "type": [
+                "None",
+                "int",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Y_dev",
+            "type": [
+                "None",
+                "int",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lf_analysis",
+            "type": [
+                "LFAnalysis"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "coverage",
+            "type": [
+                "int",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mu_init",
+            "type": [
+                "float",
+                "list[int]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "start_iteration",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metrics_hist",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "progress_bar",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "running_loss",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "running_examples",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "fit",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_conditional_probs@LabelModel": [
+        {
+            "category": "return",
+            "name": "get_conditional_probs",
+            "type": [
+                "float",
+                "int",
+                "numpy.ndarray"
+            ]
+        }
+    ],
+    "get_weights@LabelModel": [
+        {
+            "category": "local",
+            "name": "accs",
+            "type": [
+                "int",
+                "list[int]",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cprobs",
+            "type": [
+                "int",
+                "float",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_weights",
+            "type": []
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "Metrics",
+            "type": [
+                "list",
+                "str",
+                "None"
+            ]
+        }
+    ],
+    "predict@LabelModel": [
+        {
+            "category": "arg",
+            "name": "L",
+            "type": [
+                "str",
+                "numpy.ndarray",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "return_probs",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tie_break_policy",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "L",
+            "type": [
+                "str",
+                "numpy.ndarray",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "return_probs",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tie_break_policy",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "predict",
+            "type": [
+                "numpy.ndarray",
+                "bool",
+                "snorkel.labeling.LabelingFunction"
+            ]
+        }
+    ],
+    "predict_proba@LabelModel": [
+        {
+            "category": "arg",
+            "name": "L",
+            "type": [
+                "numpy.ndarray",
+                "list[int]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "L",
+            "type": [
+                "numpy.ndarray",
+                "list[int]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "L_shift",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "L_aug",
+            "type": [
+                "list",
+                "typing.Sequence[list[int]]",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mu",
+            "type": [
+                "float",
+                "list[float]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Z",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "predict_proba",
+            "type": [
+                "float"
+            ]
+        }
+    ],
+    "score@LabelModel": [
+        {
+            "category": "arg",
+            "name": "L",
+            "type": [
+                "numpy.ndarray",
+                "str",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "Y",
+            "type": [
+                "numpy.ndarray",
+                "str",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "metrics",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tie_break_policy",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "L",
+            "type": [
+                "numpy.ndarray",
+                "str",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Y",
+            "type": [
+                "numpy.ndarray",
+                "str",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metrics",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tie_break_policy",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "score",
+            "type": [
+                "tuple[float]",
+                "float",
+                "tuple[typing.Union[int,float]]"
+            ]
+        }
+    ]
+}

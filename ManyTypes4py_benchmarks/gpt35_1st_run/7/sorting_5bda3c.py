@@ -1,0 +1,19 @@
+from typing import Any, Callable, Iterable, List, Optional
+
+def module_key(module_name: str, config: Any, sub_imports: bool = False, ignore_case: bool = False, section_name: Optional[str] = None, straight_import: bool = False) -> str:
+    ...
+
+def section_key(line: str, config: Any) -> str:
+    ...
+
+def sort(config: Any, to_sort: List[str], key: Optional[Callable] = None, reverse: bool = False) -> List[str]:
+    ...
+
+def naturally(to_sort: List[str], key: Optional[Callable] = None, reverse: bool = False) -> List[str]:
+    ...
+
+def _atoi(text: str) -> Any:
+    ...
+
+def _natural_keys(text: str) -> List[Any]:
+    ...

@@ -1,0 +1,519 @@
+{
+    "__init__@DdpAccelerator": [
+        {
+            "category": "arg",
+            "name": "local_rank",
+            "type": [
+                "None",
+                "int",
+                "typing.Mapping",
+                "torch.optim.Optimizer"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "world_size",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "cuda_device",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "local_rank",
+            "type": [
+                "None",
+                "int",
+                "typing.Mapping",
+                "torch.optim.Optimizer",
+                "os.terminal_size",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "world_size",
+            "type": [
+                "None",
+                "int",
+                "tuple[typing.Literal]",
+                "list[tuple]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_primary",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cuda_device",
+            "type": [
+                "int",
+                "set",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@DdpWrappedModel": [
+        {
+            "category": "arg",
+            "name": "model",
+            "type": [
+                "list[str]",
+                "torch.optim.Optimizer",
+                "dict[str, allennlp.data.token_indexers.TokenIndexer]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "local_rank",
+            "type": [
+                "None",
+                "int",
+                "list[list]",
+                "allennlp.data.iterators.data_iterator.DataIterator"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "world_size",
+            "type": [
+                "None",
+                "int",
+                "typing.Sequence[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "list[str]",
+                "torch.optim.Optimizer",
+                "dict[str, allennlp.data.token_indexers.TokenIndexer]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "local_rank",
+            "type": [
+                "None",
+                "int",
+                "list[list]",
+                "allennlp.data.iterators.data_iterator.DataIterator",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "world_size",
+            "type": [
+                "None",
+                "int",
+                "typing.Sequence[int]",
+                "tuple[typing.Literal]",
+                "list[tuple]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_primary",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@TorchDdpAccelerator": [
+        {
+            "category": "arg",
+            "name": "find_unused_parameters",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "local_rank",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "world_size",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "cuda_device",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "local_rank",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "world_size",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cuda_device",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "find_unused_parameters",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_ddp_kwargs",
+            "type": [
+                "dict[typing.Text, bool]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_add_torch_ddp_prefix@TorchDdpAccelerator": [
+        {
+            "category": "arg",
+            "name": "state_dict",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prefix",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_dict",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_add_torch_ddp_prefix",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_remove_torch_ddp_prefix@TorchDdpAccelerator": [
+        {
+            "category": "arg",
+            "name": "module",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state_dict",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "prefix",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "prefix",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_remove_torch_ddp_prefix",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "clip_grad_norm_@DdpWrappedModel": [
+        {
+            "category": "arg",
+            "name": "max_norm",
+            "type": [
+                "float",
+                "int",
+                "gluonts.model.common.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_norm",
+            "type": [
+                "float",
+                "int",
+                "gluonts.model.common.Tensor"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "clip_grad_norm_",
+            "type": [
+                "dict[str, dict[typing.Any, float]]",
+                "list[float]",
+                "float"
+            ]
+        }
+    ],
+    "consolidate_sharded_state@DdpWrappedModel": [
+        {
+            "category": "arg",
+            "name": "sharded_state_files",
+            "type": [
+                "str",
+                "list[str]",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "consolidate_sharded_state",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "StateDictType",
+            "type": [
+                "str",
+                "dict[str, int]"
+            ]
+        }
+    ],
+    "init_grad_scaler@DdpWrappedModel": [
+        {
+            "category": "return",
+            "name": "init_grad_scaler",
+            "type": []
+        }
+    ],
+    "is_sharded@DdpWrappedModel": [
+        {
+            "category": "return",
+            "name": "is_sharded",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "load_state_dict@DdpWrappedModel": [
+        {
+            "category": "arg",
+            "name": "state_dict",
+            "type": [
+                "dict",
+                "dict[str, str]",
+                "dict[str, dict[str, int]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "strict",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_dict",
+            "type": [
+                "dict",
+                "dict[str, str]",
+                "dict[str, dict[str, int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "strict",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_state_dict",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "typing.OrderedDict"
+            ]
+        }
+    ],
+    "state_dict@DdpWrappedModel": [
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "state_dict",
+            "type": [
+                "dict",
+                "T",
+                "str"
+            ]
+        }
+    ],
+    "wrap_model@DdpAccelerator": [
+        {
+            "category": "arg",
+            "name": "model",
+            "type": [
+                "list[str]",
+                "allennlp.models.model.Model"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "wrap_model",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "wrap_model@TorchDdpAccelerator": [
+        {
+            "category": "arg",
+            "name": "model",
+            "type": [
+                "keanu.Model"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "keanu.Model"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wrapped_model",
+            "type": [
+                "dict[str, typing.Union[typing.Any,int]]",
+                "str",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "wrap_model",
+            "type": [
+                "tuple[typing.Union[keanu.Model,DdpWrappedModel]]"
+            ]
+        }
+    ],
+    "wrap_module@DdpAccelerator": [
+        {
+            "category": "arg",
+            "name": "module",
+            "type": [
+                "list[tuple[str]]",
+                "dep_check.models.ModuleWildcard"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "module",
+            "type": [
+                "list[tuple[str]]",
+                "dep_check.models.ModuleWildcard"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "wrap_module",
+            "type": [
+                "list[tuple[str]]",
+                "dep_check.models.ModuleWildcard"
+            ]
+        }
+    ]
+}

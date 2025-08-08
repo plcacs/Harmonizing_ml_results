@@ -1,0 +1,445 @@
+{
+    "amount_without_fees@FeesCalculation": [
+        {
+            "category": "return",
+            "name": "amount_without_fees",
+            "type": [
+                "PaymentAmount"
+            ]
+        }
+    ],
+    "get_amount_for_sending_before_and_after_fees@global": [
+        {
+            "category": "arg",
+            "name": "amount_to_leave_initiator",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.FeeAmount",
+                "raiden.utils.PaymentWithFeeAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "channels",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenAmount",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount_to_leave_initiator",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.FeeAmount",
+                "raiden.utils.PaymentWithFeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount_at_target",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.FeeAmount",
+                "raiden.utils.PaymentWithFeeAmount",
+                "PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channels",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenAmount",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "calculation",
+            "type": [
+                "int",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mediation_fees",
+            "type": [
+                "bool",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "estimated_fee",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "estimated_total_amount_at_initiator",
+            "type": [
+                "int",
+                "raiden.utils.PaymentWithFeeAmount",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "send_amount",
+            "type": [
+                "list[int]",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_amount_for_sending_before_and_after_fees",
+            "type": [
+                "PaymentAmountCalculation",
+                "None"
+            ]
+        }
+    ],
+    "get_amount_with_fees@global": [
+        {
+            "category": "arg",
+            "name": "amount_without_fees",
+            "type": [
+                "raiden.utils.Balance",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.PaymentWithFeeAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "balance_in",
+            "type": [
+                "raiden.utils.Balance",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.PaymentWithFeeAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "balance_out",
+            "type": [
+                "raiden.utils.Balance",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.PaymentWithFeeAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "schedule_in",
+            "type": [
+                "raiden.transfer.mediated_transfer.mediation_fee.FeeScheduleState",
+                "raiden.utils.Balance",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "schedule_out",
+            "type": [
+                "raiden.transfer.mediated_transfer.mediation_fee.FeeScheduleState",
+                "raiden.utils.Balance",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "receivable_amount",
+            "type": [
+                "raiden.utils.Balance",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.PaymentWithFeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "schedule_in",
+            "type": [
+                "raiden.transfer.mediated_transfer.mediation_fee.FeeScheduleState",
+                "raiden.utils.Balance",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "schedule_out",
+            "type": [
+                "raiden.transfer.mediated_transfer.mediation_fee.FeeScheduleState",
+                "raiden.utils.Balance",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "balance_in",
+            "type": [
+                "raiden.utils.Balance",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.PaymentWithFeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "balance_out",
+            "type": [
+                "raiden.utils.Balance",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.PaymentWithFeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "receivable_amount",
+            "type": [
+                "raiden.utils.Balance",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.PaymentWithFeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount_without_fees",
+            "type": [
+                "raiden.utils.Balance",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.PaymentWithFeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount_with_fees",
+            "type": [
+                "int",
+                "raiden.utils.PaymentWithFeeAmount"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_amount_with_fees",
+            "type": [
+                "None",
+                "PaymentWithFeeAmount"
+            ]
+        }
+    ],
+    "get_initial_amount_for_amount_after_fees@global": [
+        {
+            "category": "arg",
+            "name": "amount_after_fees",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.FeeAmount",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "channels",
+            "type": [
+                "int",
+                "raiden.transfer.architecture.TransitionResult",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount_after_fees",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.FeeAmount",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total",
+            "type": [
+                "PaymentWithFeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fees",
+            "type": [
+                "list",
+                "list[FeeAmount]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channels",
+            "type": [
+                "int",
+                "raiden.transfer.architecture.TransitionResult",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "receivable_amount",
+            "type": [
+                "TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "before_fees",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.FeeAmount",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_initial_amount_for_amount_after_fees",
+            "type": [
+                "None",
+                "FeesCalculation"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee",
+            "type": [
+                "FeeAmount"
+            ]
+        }
+    ],
+    "global@global": [],
+    "imbalance_fee_receiver@global": [
+        {
+            "category": "arg",
+            "name": "fee_schedule",
+            "type": [
+                "raiden.transfer.mediated_transfer.mediation_fee.FeeScheduleState",
+                "raiden.utils.PaymentWithFeeAmount",
+                "raiden.utils.Balance"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "amount",
+            "type": [
+                "raiden.utils.PaymentWithFeeAmount",
+                "raiden.utils.Balance",
+                "raiden.transfer.mediated_transfer.mediation_fee.FeeScheduleState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "balance",
+            "type": [
+                "raiden.utils.Balance",
+                "raiden.transfer.mediated_transfer.mediation_fee.FeeScheduleState",
+                "raiden.utils.PaymentWithFeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee_schedule",
+            "type": [
+                "raiden.transfer.mediated_transfer.mediation_fee.FeeScheduleState",
+                "raiden.utils.PaymentWithFeeAmount",
+                "raiden.utils.Balance"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "imbalance_fee_receiver",
+            "type": [
+                "FeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "balance",
+            "type": [
+                "raiden.utils.Balance",
+                "raiden.transfer.mediated_transfer.mediation_fee.FeeScheduleState",
+                "raiden.utils.PaymentWithFeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "raiden.utils.PaymentWithFeeAmount",
+                "raiden.utils.Balance",
+                "raiden.transfer.mediated_transfer.mediation_fee.FeeScheduleState"
+            ]
+        }
+    ],
+    "imbalance_fee_sender@global": [
+        {
+            "category": "arg",
+            "name": "fee_schedule",
+            "type": [
+                "raiden.transfer.mediated_transfer.mediation_fee.FeeScheduleState",
+                "raiden.utils.PaymentWithFeeAmount",
+                "raiden.utils.Balance"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "amount",
+            "type": [
+                "raiden.utils.PaymentWithFeeAmount",
+                "raiden.utils.Balance",
+                "raiden.transfer.mediated_transfer.mediation_fee.FeeScheduleState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "balance",
+            "type": [
+                "raiden.utils.PaymentWithFeeAmount",
+                "raiden.utils.Balance",
+                "raiden.transfer.mediated_transfer.mediation_fee.FeeScheduleState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee_schedule",
+            "type": [
+                "raiden.transfer.mediated_transfer.mediation_fee.FeeScheduleState",
+                "raiden.utils.PaymentWithFeeAmount",
+                "raiden.utils.Balance"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "imbalance_fee_sender",
+            "type": [
+                "FeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "balance",
+            "type": [
+                "raiden.utils.PaymentWithFeeAmount",
+                "raiden.utils.Balance",
+                "raiden.transfer.mediated_transfer.mediation_fee.FeeScheduleState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "raiden.utils.PaymentWithFeeAmount",
+                "raiden.utils.Balance",
+                "raiden.transfer.mediated_transfer.mediation_fee.FeeScheduleState"
+            ]
+        }
+    ]
+}

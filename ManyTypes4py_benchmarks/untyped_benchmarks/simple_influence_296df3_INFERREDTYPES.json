@@ -1,0 +1,569 @@
+{
+    "__init__@SimpleInfluence": [
+        {
+            "category": "arg",
+            "name": "model",
+            "type": [
+                "str",
+                "torch.utils.data.Dataset"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "train_data_path",
+            "type": [
+                "str",
+                "torch.utils.data.Dataset"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "train_dataset_reader",
+            "type": [
+                "str",
+                "torch.utils.data.Dataset"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "test_dataset_reader",
+            "type": [
+                "None",
+                "str",
+                "torch.utils.data.Dataset"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "train_data_loader",
+            "type": [
+                "Lazy"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "test_data_loader",
+            "type": [
+                "Lazy"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "params_to_freeze",
+            "type": [
+                "None",
+                "str",
+                "torch.utils.data.Dataset"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "cuda_device",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "lissa_batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "damping",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_samples",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recursion_depth",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "scale",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "str",
+                "torch.utils.data.Dataset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_data_path",
+            "type": [
+                "str",
+                "torch.utils.data.Dataset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_dataset_reader",
+            "type": [
+                "str",
+                "torch.utils.data.Dataset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_dataset_reader",
+            "type": [
+                "None",
+                "str",
+                "torch.utils.data.Dataset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_data_loader",
+            "type": [
+                "Lazy"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_data_loader",
+            "type": [
+                "Lazy"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "params_to_freeze",
+            "type": [
+                "None",
+                "str",
+                "torch.utils.data.Dataset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cuda_device",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lissa_batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_lissa_dataloader",
+            "type": [
+                "SimpleDataLoader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recursion_depth",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "damping",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_damping",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_samples",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_num_samples",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_recursion_depth",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scale",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_scale",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_calculate_influence_scores@SimpleInfluence": [
+        {
+            "category": "arg",
+            "name": "test_instance",
+            "type": [
+                "bool",
+                "T",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "test_loss",
+            "type": [
+                "bool",
+                "T",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "test_grads",
+            "type": [
+                "numpy.ndarray",
+                "float",
+                "list[numpy.array]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_grads",
+            "type": [
+                "numpy.ndarray",
+                "float",
+                "list[numpy.array]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_calculate_influence_scores",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "_flatten_tensors@global": [
+        {
+            "category": "arg",
+            "name": "tensors",
+            "type": [
+                "torch.Tensor",
+                "list[dict[str, typing.Any]]",
+                "torch.autograd.Variable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "views",
+            "type": [
+                "list",
+                "list[typing.Union[list,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "p",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tensors",
+            "type": [
+                "torch.Tensor",
+                "list[dict[str, typing.Any]]",
+                "torch.autograd.Variable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "view",
+            "type": [
+                "list",
+                "list[int]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_flatten_tensors",
+            "type": []
+        }
+    ],
+    "get_hvp@global": [
+        {
+            "category": "arg",
+            "name": "loss",
+            "type": [
+                "torch.Tensor",
+                "bool",
+                "torch.dtype"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "params",
+            "type": [
+                "numpy.ndarray",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "vectors",
+            "type": [
+                "list",
+                "float",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "loss",
+            "type": [
+                "torch.Tensor",
+                "bool",
+                "torch.dtype"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "params",
+            "type": [
+                "numpy.ndarray",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vectors",
+            "type": [
+                "list",
+                "float",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_hvp",
+            "type": []
+        }
+    ],
+    "get_inverse_hvp_lissa@global": [
+        {
+            "category": "arg",
+            "name": "vs",
+            "type": [
+                "torch.Tensor",
+                "dict[str, torch.Tensor]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "model",
+            "type": [
+                "int",
+                "torch.utils.data.DataLoader"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "used_params",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "lissa_data_loader",
+            "type": [
+                "torch.utils.data.DataLoader",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "damping",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_samples",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "scale",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vs",
+            "type": [
+                "torch.Tensor",
+                "dict[str, torch.Tensor]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inverse_hvps",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_samples",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cur_estimates",
+            "type": [
+                "torch.Tensor",
+                "dict[str, torch.Tensor]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lissa_data_loader",
+            "type": [
+                "torch.utils.data.DataLoader",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "int",
+                "torch.utils.data.DataLoader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "used_params",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "damping",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scale",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "norm",
+            "type": [
+                "float",
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "return_ihvp",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_inverse_hvp_lissa",
+            "type": [
+                "float"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ]
+}

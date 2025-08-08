@@ -1,0 +1,2201 @@
+{
+    "access_user_group_for_deactivation@global": [
+        {
+            "category": "arg",
+            "name": "user_group_id",
+            "type": [
+                "zerver.models.UserProfile",
+                "int",
+                "app.models.User"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "int",
+                "app.models.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_group_id",
+            "type": [
+                "zerver.models.UserProfile",
+                "int",
+                "app.models.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "int",
+                "app.models.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_group",
+            "type": [
+                "app.models.group.Group",
+                "list",
+                "django.db.models.Manager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "objections",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "supergroup_ids",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "anonymous_supergroup_ids",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setting_group_ids_using_deactivating_user_group",
+            "type": [
+                "set[set[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream_setting_query",
+            "type": [
+                "Q",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "objection_settings",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group_setting_query",
+            "type": [
+                "Q",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "access_user_group_for_deactivation",
+            "type": [
+                "app.models.group.Group",
+                "list",
+                "django.db.models.Manager"
+            ]
+        }
+    ],
+    "access_user_group_for_setting@global": [
+        {
+            "category": "arg",
+            "name": "setting_user_group",
+            "type": [
+                "bool",
+                "server.models.User"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setting_name",
+            "type": [
+                "str",
+                "bool",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "permission_configuration",
+            "type": [
+                "bool",
+                "zerver.models.Realm",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "current_setting_value",
+            "type": [
+                "None",
+                "bool",
+                "abilian.core.models.Model",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setting_user_group",
+            "type": [
+                "bool",
+                "server.models.User",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setting_name",
+            "type": [
+                "str",
+                "bool",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "permission_configuration",
+            "type": [
+                "bool",
+                "zerver.models.Realm",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "access_user_group_for_setting",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "current_setting_value",
+            "type": [
+                "None",
+                "bool",
+                "abilian.core.models.Model",
+                "zerver.models.UserProfile"
+            ]
+        }
+    ],
+    "access_user_group_for_update@global": [
+        {
+            "category": "arg",
+            "name": "user_group_id",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "permission_setting",
+            "type": [
+                "bool",
+                "socialhome.users.models.Profile",
+                "models.Station"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "allow_deactivated",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_group_id",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "allow_deactivated",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "access_user_group_for_update",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "permission_setting",
+            "type": [
+                "bool",
+                "socialhome.users.models.Profile",
+                "models.Station"
+            ]
+        }
+    ],
+    "access_user_group_to_read_membership@global": [
+        {
+            "category": "arg",
+            "name": "user_group_id",
+            "type": [
+                "int",
+                "zerver.models.UserProfile",
+                "app.models.User"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "int",
+                "zerver.models.UserProfile",
+                "app.models.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_group_id",
+            "type": [
+                "int",
+                "zerver.models.UserProfile",
+                "app.models.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "int",
+                "zerver.models.UserProfile",
+                "app.models.User"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "access_user_group_to_read_membership",
+            "type": [
+                "zerver.models.UserProfile",
+                "typing.Iterable[str]",
+                "lib.model.category.category.CommonCategory"
+            ]
+        }
+    ],
+    "are_both_group_setting_values_equal@global": [
+        {
+            "category": "arg",
+            "name": "first_setting_value",
+            "type": [
+                "int",
+                "T",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "second_setting_value",
+            "type": [
+                "int",
+                "T",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "first_setting_value",
+            "type": [
+                "int",
+                "T",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "second_setting_value",
+            "type": [
+                "int",
+                "T",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "are_both_group_setting_values_equal",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "bulk_create_system_user_groups@global": [
+        {
+            "category": "arg",
+            "name": "groups",
+            "type": [
+                "daylighdb.models.User",
+                "str",
+                "zerver.models.RealmEmoji"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "daylighdb.models.User",
+                "str",
+                "zerver.models.RealmEmoji"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initial_group_setting_value",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "daylighdb.models.User",
+                "str",
+                "zerver.models.RealmEmoji"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "groups",
+            "type": [
+                "daylighdb.models.User",
+                "str",
+                "zerver.models.RealmEmoji"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rows",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_group_ids",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "idx",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "bulk_create_system_user_groups",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "check_setting_configuration_for_system_groups@global": [
+        {
+            "category": "arg",
+            "name": "setting_group",
+            "type": [
+                "bool",
+                "str",
+                "set"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setting_name",
+            "type": [
+                "str",
+                "topicdb.core.models.language.Language"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "permission_configuration",
+            "type": [
+                "bool",
+                "str",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "permission_configuration",
+            "type": [
+                "bool",
+                "str",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setting_group",
+            "type": [
+                "bool",
+                "str",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setting_name",
+            "type": [
+                "str",
+                "topicdb.core.models.language.Language"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_setting_configuration_for_system_groups",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "check_user_group_name@global": [
+        {
+            "category": "arg",
+            "name": "group_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_user_group_name",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "create_system_user_groups_for_realm@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "system_groups_info_list",
+            "type": [
+                "list",
+                "list[dict[typing.Text, typing.Text]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nobody_group_info",
+            "type": [
+                "dict[typing.Text, typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "full_members_group_info",
+            "type": [
+                "dict[typing.Text, typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "everyone_on_internet_group_info",
+            "type": [
+                "dict[typing.Text, typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "system_groups_name_dict",
+            "type": [
+                "dict[str, typing.Any]",
+                "list[list[str]]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "system_user_groups_list",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "creation_time",
+            "type": [
+                "dict[str, dict[int, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_group",
+            "type": [
+                "app.models.group.Group",
+                "list",
+                "django.db.models.Manager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realmauditlog_objects",
+            "type": [
+                "list[RealmAuditLog]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "groups_with_updated_settings",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subgroup_objects",
+            "type": [
+                "list",
+                "list[GroupGroupMembership]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subgroup",
+            "type": [
+                "list",
+                "int",
+                "dict",
+                "list[typing.Any]",
+                "tuple[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "remaining_groups",
+            "type": [
+                "list",
+                "list[list[typing.Any]]",
+                "list[tuple[typing.Union[str,typing.Any]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "supergroup",
+            "type": [
+                "list[typing.Any]",
+                "tuple[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_system_user_groups_for_realm",
+            "type": [
+                "dict[str, typing.Any]",
+                "list[list[str]]",
+                "dict[str, str]"
+            ]
+        }
+    ],
+    "get_direct_memberships_of_users@global": [
+        {
+            "category": "arg",
+            "name": "user_group",
+            "type": [
+                "list[zerver.models.UserProfile]",
+                "zerver.models.UserGroup",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "members",
+            "type": [
+                "list[zerver.models.UserProfile]",
+                "zerver.models.UserGroup",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_direct_memberships_of_users",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "get_direct_user_groups@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.UserGroup",
+                "list[zerver.models.UserProfile]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_direct_user_groups",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "get_group_setting_value_for_api@global": [
+        {
+            "category": "arg",
+            "name": "setting_value_group",
+            "type": [
+                "str",
+                "typing.ClassVar",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setting_value_group",
+            "type": [
+                "str",
+                "typing.ClassVar",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_group_setting_value_for_api",
+            "type": [
+                "AnonymousSettingGroupDict"
+            ]
+        }
+    ],
+    "get_group_setting_value_for_audit_log_data@global": [
+        {
+            "category": "arg",
+            "name": "setting_value",
+            "type": [
+                "int",
+                "str",
+                "cmk.utils.type_defs.Seconds"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setting_value",
+            "type": [
+                "int",
+                "str",
+                "cmk.utils.type_defs.Seconds"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_group_setting_value_for_audit_log_data",
+            "type": [
+                "int",
+                "bool",
+                "str",
+                "set[str]",
+                "None"
+            ]
+        }
+    ],
+    "get_recursive_group_members@global": [
+        {
+            "category": "arg",
+            "name": "user_group_id",
+            "type": [
+                "int",
+                "django.contrib.auth.models.AbstractUser",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_group_id",
+            "type": [
+                "int",
+                "django.contrib.auth.models.AbstractUser",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_recursive_group_members",
+            "type": [
+                "str",
+                "list",
+                "set"
+            ]
+        }
+    ],
+    "get_recursive_group_members_union_for_groups@global": [
+        {
+            "category": "arg",
+            "name": "user_group_ids",
+            "type": [
+                "int",
+                "list[zerver.models.UserProfile]",
+                "django.conf.settings.AUTH_USER_MODEL"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_group_ids",
+            "type": [
+                "int",
+                "list[zerver.models.UserProfile]",
+                "django.conf.settings.AUTH_USER_MODEL"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_recursive_group_members_union_for_groups",
+            "type": [
+                "bool",
+                "str"
+            ]
+        }
+    ],
+    "get_recursive_membership_groups@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_recursive_membership_groups",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "get_recursive_strict_subgroups@global": [
+        {
+            "category": "arg",
+            "name": "user_group",
+            "type": [
+                "typing.Iterable[str]",
+                "Realm",
+                "daylighdb.models.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "direct_subgroup_ids",
+            "type": [
+                "int",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_recursive_strict_subgroups",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "get_recursive_subgroups@global": [
+        {
+            "category": "arg",
+            "name": "user_group_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_group_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_recursive_subgroups",
+            "type": [
+                "list[str]",
+                "list[dict]",
+                "list[tuple[str]]"
+            ]
+        }
+    ],
+    "get_recursive_subgroups_for_groups@global": [
+        {
+            "category": "arg",
+            "name": "user_group_ids",
+            "type": [
+                "int",
+                "zerver.models.UserProfile",
+                "Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "int",
+                "zerver.models.UserProfile",
+                "Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recursive_subgroups",
+            "type": [
+                "list[str]",
+                "str",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_recursive_subgroups_for_groups",
+            "type": [
+                "list[str]",
+                "str",
+                "list[float]"
+            ]
+        }
+    ],
+    "get_recursive_subgroups_union_for_groups@global": [
+        {
+            "category": "arg",
+            "name": "user_group_ids",
+            "type": [
+                "int",
+                "django.conf.settings.AUTH_USER_MODEL",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_recursive_subgroups_union_for_groups",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "get_role_based_system_groups_dict@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "system_groups",
+            "type": [
+                "app.models.group.Group",
+                "dict",
+                "grouper.models.permission.Permission"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "system_groups_name_dict",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_role_based_system_groups_dict",
+            "type": [
+                "dict"
+            ]
+        }
+    ],
+    "get_root_id_annotated_recursive_subgroups_for_groups@global": [
+        {
+            "category": "arg",
+            "name": "user_group_ids",
+            "type": [
+                "int",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "realm_id",
+            "type": [
+                "int",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recursive_subgroups",
+            "type": [
+                "list",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_root_id_annotated_recursive_subgroups_for_groups",
+            "type": [
+                "list",
+                "int",
+                "str"
+            ]
+        }
+    ],
+    "get_server_supported_permission_settings@global": [
+        {
+            "category": "return",
+            "name": "get_server_supported_permission_settings",
+            "type": [
+                "ServerSupportedPermissionSettings"
+            ]
+        }
+    ],
+    "get_setting_value_for_user_group_object@global": [
+        {
+            "category": "arg",
+            "name": "setting_value_group",
+            "type": [
+                "database.types.BlacklistItem",
+                "typing.Callable",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "direct_members_dict",
+            "type": [
+                "bool",
+                "dict[str, bool]",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "direct_subgroups_dict",
+            "type": [
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setting_value_group",
+            "type": [
+                "database.types.BlacklistItem",
+                "typing.Callable",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_setting_value_for_user_group_object",
+            "type": [
+                "AnonymousSettingGroupDict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "direct_members",
+            "type": [
+                "list",
+                "bool",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "direct_members_dict",
+            "type": [
+                "bool",
+                "dict[str, bool]",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "direct_subgroups",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "direct_subgroups_dict",
+            "type": [
+                "int",
+                "dict"
+            ]
+        }
+    ],
+    "get_subgroup_ids@global": [
+        {
+            "category": "arg",
+            "name": "user_group",
+            "type": [
+                "bool",
+                "Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "direct_subgroup_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "direct_subgroup_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subgroup_ids",
+            "type": [
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_group",
+            "type": [
+                "bool",
+                "Realm"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_subgroup_ids",
+            "type": [
+                "list[str]"
+            ]
+        }
+    ],
+    "get_system_user_group_for_user@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "system_user_group",
+            "type": [
+                "set[int]",
+                "list",
+                "grouper.models.permission.Permission"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_system_user_group_for_user",
+            "type": [
+                "set[int]",
+                "list",
+                "grouper.models.permission.Permission"
+            ]
+        }
+    ],
+    "get_user_group_by_id_in_realm@global": [
+        {
+            "category": "arg",
+            "name": "user_group_id",
+            "type": [
+                "zerver.models.UserProfile",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.UserProfile",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "for_read",
+            "type": [
+                "bool",
+                "set[int]",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "for_setting",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "allow_deactivated",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "for_read",
+            "type": [
+                "bool",
+                "set[int]",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_group_id",
+            "type": [
+                "zerver.models.UserProfile",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.UserProfile",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_group",
+            "type": [
+                "app.models.group.Group",
+                "list",
+                "app.models.UserModel"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "allow_deactivated",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_user_group_by_id_in_realm",
+            "type": [
+                "app.models.group.Group",
+                "list",
+                "app.models.UserModel"
+            ]
+        }
+    ],
+    "get_user_group_direct_member_ids@global": [
+        {
+            "category": "arg",
+            "name": "user_group",
+            "type": [
+                "zerver.models.UserGroup",
+                "typing.Iterable[str]",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_user_group_direct_member_ids",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "zerver.models.Message"
+            ]
+        }
+    ],
+    "get_user_group_direct_members@global": [
+        {
+            "category": "arg",
+            "name": "user_group",
+            "type": [
+                "services.user.transfer.models.User",
+                "app.models.user.UserInDB"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_user_group_direct_members",
+            "type": [
+                "bool",
+                "str"
+            ]
+        }
+    ],
+    "get_user_group_member_ids@global": [
+        {
+            "category": "arg",
+            "name": "user_group",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "direct_member_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "direct_member_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_group",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "member_ids",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_user_group_member_ids",
+            "type": [
+                "list[str]"
+            ]
+        }
+    ],
+    "global@global": [],
+    "has_user_group_access_for_subgroup@global": [
+        {
+            "category": "arg",
+            "name": "user_group",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "cmk.utils.type_defs.UserId",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "cmk.utils.type_defs.UserId",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "allow_deactivated",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_group",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "cmk.utils.type_defs.UserId",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "cmk.utils.type_defs.UserId",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "has_user_group_access_for_subgroup",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "allow_deactivated",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "is_any_user_in_group@global": [
+        {
+            "category": "arg",
+            "name": "user_group",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_ids",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "direct_member_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "direct_member_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_any_user_in_group",
+            "type": [
+                "zerver.models.Realm",
+                "multinedb.models.workspace.Workspace",
+                "str"
+            ]
+        }
+    ],
+    "is_user_in_group@global": [
+        {
+            "category": "arg",
+            "name": "user_group",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "direct_member_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "direct_member_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_user_in_group",
+            "type": [
+                "zerver.models.Realm",
+                "zerver.models.UserProfile",
+                "str"
+            ]
+        }
+    ],
+    "lock_subgroups_with_respect_to_supergroup@global": [
+        {
+            "category": "arg",
+            "name": "potential_subgroup_ids",
+            "type": [
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "potential_supergroup_id",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "acting_user",
+            "type": [
+                "list[str]",
+                "int",
+                "set[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "permission_setting",
+            "type": [
+                "int",
+                "None",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "creating_group",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "potential_subgroup_ids",
+            "type": [
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "acting_user",
+            "type": [
+                "list[str]",
+                "int",
+                "set[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recursive_subgroups",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "creating_group",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "potential_supergroup_id",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "potential_supergroup",
+            "type": [
+                "bool",
+                "typing.Callable[None, typing.Any]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "permission_setting",
+            "type": [
+                "int",
+                "None",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "potential_subgroups",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group_ids_found",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group_id",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group_ids_not_found",
+            "type": [
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "lock_subgroups_with_respect_to_supergroup",
+            "type": [
+                "typing.Generator[LockedUserGroupContext]"
+            ]
+        }
+    ],
+    "parse_group_setting_value@global": [
+        {
+            "category": "arg",
+            "name": "setting_value",
+            "type": [
+                "int",
+                "str",
+                "typing.Any",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setting_value",
+            "type": [
+                "int",
+                "str",
+                "typing.Any",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "parse_group_setting_value",
+            "type": [
+                "int",
+                "str",
+                "typing.Any",
+                "None"
+            ]
+        }
+    ],
+    "set_defaults_for_group_settings@global": [
+        {
+            "category": "arg",
+            "name": "user_group",
+            "type": [
+                "zerver.models.UserProfile",
+                "list[str]",
+                "zerver.models.Recipient"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "group_settings_map",
+            "type": [
+                "str",
+                "list[str]",
+                "dict[str, dict[str, str]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "system_groups_name_dict",
+            "type": [
+                "dict[str, str]",
+                "str",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group_settings_map",
+            "type": [
+                "str",
+                "list[str]",
+                "dict[str, dict[str, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_group",
+            "type": [
+                "zerver.models.UserProfile",
+                "list[str]",
+                "zerver.models.Recipient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_group",
+            "type": [
+                "UserGroup",
+                "int",
+                "str",
+                "list[zerver.models.UserProfile]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "system_groups_name_dict",
+            "type": [
+                "dict[str, str]",
+                "str",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_defaults_for_group_settings",
+            "type": [
+                "zerver.models.UserProfile",
+                "list[str]",
+                "zerver.models.Recipient"
+            ]
+        }
+    ],
+    "update_or_create_user_group_for_setting@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "direct_members",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "direct_subgroups",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "current_setting_value",
+            "type": [
+                "str",
+                "None",
+                "bool",
+                "server.models.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_setting_value",
+            "type": [
+                "str",
+                "None",
+                "bool",
+                "server.models.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_group",
+            "type": [
+                "str",
+                "None",
+                "bool",
+                "server.models.User",
+                "app.models.group.Group",
+                "list",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "direct_members",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "direct_subgroups",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "potential_subgroups",
+            "type": [
+                "list",
+                "set",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group_ids_found",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group_ids_not_found",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subgroup",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_or_create_user_group_for_setting",
+            "type": [
+                "app.models.group.Group",
+                "list",
+                "typing.Type",
+                "str",
+                "None",
+                "bool",
+                "server.models.User"
+            ]
+        }
+    ],
+    "user_groups_in_realm_serialized@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_deactivated_groups",
+            "type": [
+                "bool",
+                "zerver.models.Client",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.UserProfile",
+                "bool",
+                "Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm_groups",
+            "type": [
+                "list",
+                "list[zerver.models.UserProfile]",
+                "app.models.UserModel"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_deactivated_groups",
+            "type": [
+                "bool",
+                "zerver.models.Client",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "membership",
+            "type": [
+                "list[models.User]",
+                "legistar.models.Person",
+                "tests.models.Customer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group_membership",
+            "type": [
+                "list[models.User]",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group_members",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group_subgroups",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group_dicts",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_group",
+            "type": [
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "direct_member_ids",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_group_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "direct_subgroup_ids",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "date_created",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group_dict",
+            "type": [
+                "list",
+                "list[list]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "user_groups_in_realm_serialized",
+            "type": [
+                "list[list]"
+            ]
+        }
+    ],
+    "user_has_permission_for_group_setting@global": [
+        {
+            "category": "arg",
+            "name": "user_group",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "socialhome.users.models.Profile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user",
+            "type": [
+                "bool",
+                "None",
+                "server.models.User"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "setting_config",
+            "type": [
+                "abilian.core.models.subjects.Principal",
+                "bool",
+                "dict[typing.Union[str,None], set[abilian.services.security.models.Role]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "direct_member_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "setting_config",
+            "type": [
+                "abilian.core.models.subjects.Principal",
+                "bool",
+                "dict[typing.Union[str,None], set[abilian.services.security.models.Role]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user",
+            "type": [
+                "bool",
+                "None",
+                "server.models.User"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "user_has_permission_for_group_setting",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_group",
+            "type": [
+                "bool",
+                "zerver.models.UserProfile",
+                "socialhome.users.models.Profile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "direct_member_only",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "validate_group_setting_value_change@global": [
+        {
+            "category": "arg",
+            "name": "current_setting_api_value",
+            "type": [
+                "dict",
+                "None",
+                "str",
+                "dict[typing.Any, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "new_setting_value",
+            "type": [
+                "bool",
+                "list[typing.Any]",
+                "typing.OrderedDict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_current_setting_value",
+            "type": [
+                "dict[str, typing.Any]",
+                "None",
+                "typing.Optional",
+                "list[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_current_setting_value",
+            "type": [
+                "dict[str, typing.Any]",
+                "None",
+                "typing.Optional",
+                "list[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_setting_api_value",
+            "type": [
+                "dict",
+                "None",
+                "str",
+                "dict[typing.Any, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_setting_value",
+            "type": [
+                "bool",
+                "list[typing.Any]",
+                "typing.OrderedDict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "validate_group_setting_value_change",
+            "type": [
+                "bool"
+            ]
+        }
+    ]
+}

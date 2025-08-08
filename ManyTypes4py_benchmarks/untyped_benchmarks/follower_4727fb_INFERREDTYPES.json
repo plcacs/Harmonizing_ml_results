@@ -1,0 +1,1023 @@
+{
+    "__init__@BaseFollower": [
+        {
+            "category": "local",
+            "name": "expired_cmds",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "slippage",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_calculate_price_by_slippage@BaseFollower": [
+        {
+            "category": "arg",
+            "name": "action",
+            "type": [
+                "\"Money\"",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "price",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "action",
+            "type": [
+                "\"Money\"",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "price",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_calculate_price_by_slippage",
+            "type": [
+                "float",
+                "int"
+            ]
+        }
+    ],
+    "_execute_trade_cmd@BaseFollower": [
+        {
+            "category": "arg",
+            "name": "trade_cmd",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "users",
+            "type": [
+                "typing.Any",
+                "None",
+                "bool",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expire_seconds",
+            "type": [
+                "int",
+                "float",
+                "datetime.datetime"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "entrust_prop",
+            "type": [
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "send_interval",
+            "type": [
+                "typing.Any",
+                "None",
+                "bool",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "now",
+            "type": [
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trade_cmd",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expire",
+            "type": [
+                "int",
+                "datetime.timedelta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expire_seconds",
+            "type": [
+                "int",
+                "float",
+                "datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "price",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "actual_price",
+            "type": [
+                "int",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entrust_prop",
+            "type": [
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "args",
+            "type": [
+                "dict[typing.Text, typing.Union[str,int,float]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "str",
+                "requests.models.Response"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "err_msg",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_execute_trade_cmd",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_generate_headers@BaseFollower": [
+        {
+            "category": "local",
+            "name": "headers",
+            "type": [
+                "dict[typing.Text, typing.Text]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_generate_headers",
+            "type": [
+                "dict[typing.Text, typing.Text]"
+            ]
+        }
+    ],
+    "_is_number@BaseFollower": [
+        {
+            "category": "arg",
+            "name": "s",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_is_number",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "add_cmd_to_expired_cmds@BaseFollower": [
+        {
+            "category": "arg",
+            "name": "cmd",
+            "type": [
+                "str",
+                "list[str]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cmd",
+            "type": [
+                "str",
+                "list[str]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "int",
+                "tuple[typing.Literal]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "f",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "add_cmd_to_expired_cmds",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "check_login_success@BaseFollower": [
+        {
+            "category": "arg",
+            "name": "rep",
+            "type": [
+                "list",
+                "dict",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_login_success",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "create_login_params@BaseFollower": [
+        {
+            "category": "arg",
+            "name": "user",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "password",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "create_login_params",
+            "type": [
+                "dict"
+            ]
+        }
+    ],
+    "create_query_transaction_params@BaseFollower": [
+        {
+            "category": "arg",
+            "name": "strategy",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "create_query_transaction_params",
+            "type": [
+                "dict"
+            ]
+        }
+    ],
+    "extract_strategy_id@BaseFollower": [
+        {
+            "category": "arg",
+            "name": "strategy_url",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "extract_strategy_id",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "extract_strategy_name@BaseFollower": [
+        {
+            "category": "arg",
+            "name": "strategy_url",
+            "type": [
+                "str",
+                "list[str]",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "extract_strategy_name",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "extract_transactions@BaseFollower": [
+        {
+            "category": "arg",
+            "name": "history",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "extract_transactions",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "follow@BaseFollower": [
+        {
+            "category": "arg",
+            "name": "users",
+            "type": [
+                "bool",
+                "str",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "strategies",
+            "type": [
+                "bool",
+                "str",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "track_interval",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "trade_cmd_expire_seconds",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "cmd_cache",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "slippage",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "slippage",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "follow",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "generate_expired_cmd_key@BaseFollower": [
+        {
+            "category": "arg",
+            "name": "cmd",
+            "type": [
+                "str",
+                "bytes",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cmd",
+            "type": [
+                "str",
+                "bytes",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "generate_expired_cmd_key",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "global@global": [],
+    "is_cmd_expired@BaseFollower": [
+        {
+            "category": "arg",
+            "name": "cmd",
+            "type": [
+                "str",
+                "list[str]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cmd",
+            "type": [
+                "str",
+                "list[str]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_cmd_expired",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "load_expired_cmd_cache@BaseFollower": [
+        {
+            "category": "local",
+            "name": "f",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "load_expired_cmd_cache",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "login@BaseFollower": [
+        {
+            "category": "arg",
+            "name": "user",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "password",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "headers",
+            "type": [
+                "dict[str, str]",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "password",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rep",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "login",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "order_transactions_sell_first@BaseFollower": [
+        {
+            "category": "arg",
+            "name": "transactions",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "sell_first_transactions",
+            "type": [
+                "list",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "order_transactions_sell_first",
+            "type": [
+                "list[int]"
+            ]
+        }
+    ],
+    "project_transactions@BaseFollower": [
+        {
+            "category": "arg",
+            "name": "transactions",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "project_transactions",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "query_strategy_transaction@BaseFollower": [
+        {
+            "category": "arg",
+            "name": "strategy",
+            "type": [
+                "list[str]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "strategy",
+            "type": [
+                "list[str]",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "params",
+            "type": [
+                "dict[str, str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rep",
+            "type": [
+                "str",
+                "list",
+                "dict[int, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "history",
+            "type": [
+                "list",
+                "set",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "query_strategy_transaction",
+            "type": []
+        }
+    ],
+    "re_find@BaseFollower": [
+        {
+            "category": "arg",
+            "name": "pattern",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "string",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "dtype",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "re_find",
+            "type": []
+        }
+    ],
+    "re_search@BaseFollower": [
+        {
+            "category": "arg",
+            "name": "pattern",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "string",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "dtype",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "re_search",
+            "type": []
+        }
+    ],
+    "start_trader_thread@BaseFollower": [
+        {
+            "category": "arg",
+            "name": "users",
+            "type": [
+                "float",
+                "int",
+                "requests.Response"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "trade_cmd_expire_seconds",
+            "type": [
+                "float",
+                "int",
+                "requests.Response"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "entrust_prop",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "send_interval",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "users",
+            "type": [
+                "float",
+                "int",
+                "requests.Response"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trade_cmd_expire_seconds",
+            "type": [
+                "float",
+                "int",
+                "requests.Response"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entrust_prop",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "send_interval",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "start_trader_thread",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "track_strategy_worker@BaseFollower": [
+        {
+            "category": "arg",
+            "name": "strategy",
+            "type": [
+                "str",
+                "tuple[dict]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "name",
+            "type": [
+                "str",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "interval",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "strategy",
+            "type": [
+                "str",
+                "tuple[dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "str",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trade_cmd",
+            "type": [
+                "dict[typing.Text, typing.Union[str,tuple[dict],int,float]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "interval",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "track_strategy_worker",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "trade_worker@BaseFollower": [
+        {
+            "category": "arg",
+            "name": "users",
+            "type": [
+                "int",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expire_seconds",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "entrust_prop",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "send_interval",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trade_cmd",
+            "type": [
+                "str",
+                "bool",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "users",
+            "type": [
+                "int",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expire_seconds",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entrust_prop",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "send_interval",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "trade_worker",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "warp_list@BaseFollower": [
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "list",
+                "set[str]",
+                "typing.Sequence[T]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "list",
+                "set[str]",
+                "typing.Sequence[T]",
+                "None",
+                "list[typing.Union[list,set[str],typing.Sequence[T],None]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "warp_list",
+            "type": [
+                "list",
+                "set[str]",
+                "typing.Sequence[T]",
+                "None",
+                "list[typing.Union[list,set[str],typing.Sequence[T],None]]"
+            ]
+        }
+    ]
+}

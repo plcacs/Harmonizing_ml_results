@@ -1,0 +1,537 @@
+{
+    "__init__@QNAPSensor": [
+        {
+            "category": "arg",
+            "name": "coordinator",
+            "type": [
+                "str",
+                "homeassistanhelpers.update_coordinator.DataUpdateCoordinator",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "description",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "unique_id",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "monitor_device",
+            "type": [
+                "None",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "coordinator",
+            "type": [
+                "str",
+                "homeassistanhelpers.update_coordinator.DataUpdateCoordinator",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "description",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entity_description",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "monitor_device",
+            "type": [
+                "None",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unique_id",
+            "type": [
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_unique_id",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_translation_placeholders",
+            "type": [
+                "dict[typing.Text, typing.Union[None,str,dict[str, typing.Any]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_device_info",
+            "type": [
+                "DeviceInfo"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_setup_entry@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "config_entry",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "async_add_entities",
+            "type": [
+                "typing.Callable[List,bool, None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistancore.HomeAssistant",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config_entry",
+            "type": [
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "coordinator",
+            "type": [
+                "QnapCoordinator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sensors",
+            "type": [
+                "list",
+                "list[QNAPSystemSensor]",
+                "list[typing.Union[QNAPSystemSensor,QNAPCPUSensor]]",
+                "list[typing.Union[QNAPSystemSensor,QNAPCPUSensor,QNAPMemorySensor]]",
+                "list[typing.Union[QNAPSystemSensor,QNAPCPUSensor,QNAPMemorySensor,QNAPNetworkSensor]]",
+                "list[typing.Union[QNAPSystemSensor,QNAPCPUSensor,QNAPMemorySensor,QNAPNetworkSensor,QNAPDriveSensor]]",
+                "list[typing.Union[QNAPSystemSensor,QNAPCPUSensor,QNAPMemorySensor,QNAPNetworkSensor,QNAPDriveSensor,QNAPVolumeSensor]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_SYSTEM_MON_COND",
+            "type": [
+                "list[str]",
+                "list[list[int]]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "description",
+            "type": [
+                "str",
+                "list[int]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_CPU_MON_COND",
+            "type": [
+                "list",
+                "list[int]",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_MEMORY_MON_COND",
+            "type": [
+                "list",
+                "dict[int, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_NETWORK_MON_COND",
+            "type": [
+                "dict[str, int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_DRIVE_MON_COND",
+            "type": [
+                "list[str]",
+                "dict[str, bool]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_VOLUME_MON_COND",
+            "type": [
+                "list[str]",
+                "list",
+                "tuple[typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_setup_entry",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "extra_state_attributes@QNAPDriveSensor": [
+        {
+            "category": "local",
+            "name": "ATTR_DRIVE",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_MODEL",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_SERIAL",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_TYPE",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "extra_state_attributes",
+            "type": [
+                "dict[str, ]",
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "ATTR_DRIVE",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_IP",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_MAC",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_MASK",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_MAX_SPEED",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_MEMORY_SIZE",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_MODEL",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_PACKETS_ERR",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_SERIAL",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_TYPE",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_UPTIME",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_VOLUME_SIZE",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_SYSTEM_MON_COND",
+            "type": [
+                "tuple[SensorEntityDescription]",
+                "list[str]",
+                "list[list[int]]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_CPU_MON_COND",
+            "type": [
+                "tuple[SensorEntityDescription]",
+                "list",
+                "list[int]",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_MEMORY_MON_COND",
+            "type": [
+                "tuple[SensorEntityDescription]",
+                "list",
+                "typing.Callable[None, typing.Any]",
+                "dict[int, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_NETWORK_MON_COND",
+            "type": [
+                "tuple[SensorEntityDescription]",
+                "dict[str, int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_DRIVE_MON_COND",
+            "type": [
+                "tuple[SensorEntityDescription]",
+                "list[str]",
+                "dict[str, bool]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_VOLUME_MON_COND",
+            "type": [
+                "tuple[SensorEntityDescription]",
+                "list[str]",
+                "list",
+                "tuple[typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "desc",
+            "type": [
+                "tuple[SensorEntityDescription]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SENSOR_KEYS",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "native_value@QNAPCPUSensor": [
+        {
+            "category": "return",
+            "name": "native_value",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "native_value@QNAPDriveSensor": [
+        {
+            "category": "return",
+            "name": "native_value",
+            "type": [
+                "int",
+                "None"
+            ]
+        }
+    ],
+    "native_value@QNAPMemorySensor": [
+        {
+            "category": "local",
+            "name": "free",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "native_value",
+            "type": [
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "used",
+            "type": [
+                "float"
+            ]
+        }
+    ],
+    "native_value@QNAPNetworkSensor": [
+        {
+            "category": "return",
+            "name": "native_value",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "native_value@QNAPSystemSensor": [
+        {
+            "category": "return",
+            "name": "native_value",
+            "type": [
+                "int",
+                "None"
+            ]
+        }
+    ],
+    "native_value@QNAPVolumeSensor": [
+        {
+            "category": "local",
+            "name": "free_gb",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "native_value",
+            "type": [
+                "int",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_gb",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "used_gb",
+            "type": [
+                "int"
+            ]
+        }
+    ]
+}

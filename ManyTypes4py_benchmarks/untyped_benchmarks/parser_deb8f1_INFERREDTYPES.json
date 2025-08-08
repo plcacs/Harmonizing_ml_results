@@ -1,0 +1,435 @@
+{
+    "__init__@Parser": [
+        {
+            "category": "arg",
+            "name": "pgen_grammar",
+            "type": [
+                "bool",
+                "str",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "error_recovery",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "start_nonterminal",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pgen_grammar",
+            "type": [
+                "bool",
+                "str",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "start_nonterminal",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error_recovery",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "syntax_errors",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_omit_dedent_list",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_indent_counter",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_recovery_tokenize@Parser": [
+        {
+            "category": "arg",
+            "name": "tokens",
+            "type": [
+                "str",
+                "typing.Iterator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "str",
+                "typing.Iterator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "typ",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DEDENT",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_indent_counter",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "INDENT",
+            "type": [
+                "int",
+                "dict[str, int]",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_recovery_tokenize",
+            "type": [
+                "typing.Generator[typing.Text]"
+            ]
+        }
+    ],
+    "_stack_removal@Parser": [
+        {
+            "category": "arg",
+            "name": "start_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "start_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "all_nodes",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_stack_removal",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "convert_leaf@Parser": [
+        {
+            "category": "arg",
+            "name": "type",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "typing.Callable[str,T, None]",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prefix",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "start_pos",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "type",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "NAME",
+            "type": [
+                "str",
+                "dict",
+                "property"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "typing.Callable[str,T, None]",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "convert_leaf",
+            "type": [
+                "str",
+                "None"
+            ]
+        }
+    ],
+    "convert_node@Parser": [
+        {
+            "category": "arg",
+            "name": "nonterminal",
+            "type": [
+                "\"TreeNode\"",
+                "None",
+                "typing.Callable[None, bool]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "children",
+            "type": [
+                "\"TreeNode\""
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node",
+            "type": [
+                "str",
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nonterminal",
+            "type": [
+                "\"TreeNode\"",
+                "None",
+                "typing.Callable[None, bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "children",
+            "type": [
+                "\"TreeNode\"",
+                "dict[int, list[int]]",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "convert_node",
+            "type": [
+                "str",
+                "int",
+                "list"
+            ]
+        }
+    ],
+    "current_suite@Parser": [
+        {
+            "category": "arg",
+            "name": "stack",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "current_suite",
+            "type": []
+        }
+    ],
+    "error_recovery@Parser": [
+        {
+            "category": "arg",
+            "name": "token",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_leaf",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DEDENT",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "error_recovery",
+            "type": [
+                "None",
+                "typing.Callable",
+                "object",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "typ",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "str",
+                "dict",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "start_pos",
+            "type": [
+                "tuple[int]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prefix",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "INDENT",
+            "type": [
+                "int",
+                "dict[str, int]",
+                "list"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "NAME",
+            "type": [
+                "str",
+                "dict",
+                "property"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "INDENT",
+            "type": [
+                "int",
+                "dict[str, int]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DEDENT",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "parse@Parser": [
+        {
+            "category": "arg",
+            "name": "tokens",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "list[str]",
+                "dict[str, str]",
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "parse",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        }
+    ]
+}

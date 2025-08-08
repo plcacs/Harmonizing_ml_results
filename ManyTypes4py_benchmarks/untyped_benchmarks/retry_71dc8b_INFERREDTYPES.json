@@ -1,0 +1,893 @@
+{
+    "__init__@Retry": [
+        {
+            "category": "arg",
+            "name": "total",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "connect",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "read",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "redirect",
+            "type": [
+                "None",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "status",
+            "type": [
+                "None",
+                "str",
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "method_whitelist",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "status_forcelist",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "backoff_factor",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "raise_on_redirect",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "raise_on_status",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "history",
+            "type": [
+                "None",
+                "list[dict[str, typing.Any]]",
+                "typing.Type",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "respect_retry_after_header",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "connect",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "read",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "status",
+            "type": [
+                "None",
+                "str",
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "redirect",
+            "type": [
+                "None",
+                "bool",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raise_on_redirect",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "status_forcelist",
+            "type": [
+                "None",
+                "int",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "backoff_factor",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raise_on_status",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "history",
+            "type": [
+                "None",
+                "list[dict[str, typing.Any]]",
+                "typing.Type",
+                "tuple[typing.Union[str,int]]",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "respect_retry_after_header",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__repr__@Retry": [
+        {
+            "category": "return",
+            "name": "__repr__",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "_is_connection_error@Retry": [
+        {
+            "category": "arg",
+            "name": "err",
+            "type": [
+                "typing.Callable",
+                "int",
+                "typing.Type",
+                "BaseException"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "err",
+            "type": [
+                "typing.Callable",
+                "int",
+                "typing.Type",
+                "BaseException"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_is_connection_error",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_is_method_retryable@Retry": [
+        {
+            "category": "arg",
+            "name": "method",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "method",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_is_method_retryable",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_is_read_error@Retry": [
+        {
+            "category": "arg",
+            "name": "err",
+            "type": [
+                "BaseException",
+                "None",
+                "typing.Callable",
+                "typing.Any"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "err",
+            "type": [
+                "BaseException",
+                "None",
+                "typing.Callable",
+                "typing.Any"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_is_read_error",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_sleep_backoff@Retry": [
+        {
+            "category": "local",
+            "name": "backoff",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_sleep_backoff",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "from_int@Retry": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "int",
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "retries",
+            "type": [
+                "bool",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "redirect",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "default",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "typing.Any"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "retries",
+            "type": [
+                "bool",
+                "float",
+                "None",
+                "int",
+                "str",
+                "typing.Any",
+                "Retry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "typing.Any"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cls",
+            "type": [
+                "int",
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "from_int",
+            "type": [
+                "Retry",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "redirect",
+            "type": [
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_retries",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "get_backoff_time@Retry": [
+        {
+            "category": "local",
+            "name": "consecutive_errors_len",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_backoff_time",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "get_retry_after@Retry": [
+        {
+            "category": "arg",
+            "name": "response",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "retry_after",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_retry_after",
+            "type": [
+                "None",
+                "bool",
+                "str"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "RequestHistory",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "Retry_",
+            "type": [
+                "Retry"
+            ]
+        }
+    ],
+    "increment@Retry": [
+        {
+            "category": "arg",
+            "name": "method",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "url",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "response",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "error",
+            "type": [
+                "None",
+                "bool",
+                "typing.Any",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "_pool",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "_stacktrace",
+            "type": [
+                "None",
+                "str",
+                "typing.Callable",
+                "dict[tuple[str], Exception]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error",
+            "type": [
+                "None",
+                "bool",
+                "typing.Any",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_stacktrace",
+            "type": [
+                "None",
+                "str",
+                "typing.Callable",
+                "dict[tuple[str], Exception]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "connect",
+            "type": [
+                "bytes",
+                "typing.Callable[None,None, None]",
+                "bool",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "read",
+            "type": [
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "redirect",
+            "type": [
+                "str",
+                "list",
+                "dict[str, str]",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "status",
+            "type": [
+                "str",
+                "int",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "status_count",
+            "type": [
+                "str",
+                "int",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cause",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "redirect_location",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "method",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "history",
+            "type": [
+                "list[str]",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_retry",
+            "type": [
+                "int",
+                "float",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_pool",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "increment",
+            "type": [
+                "int",
+                "float",
+                "dict[str, typing.Any]"
+            ]
+        }
+    ],
+    "is_exhausted@Retry": [
+        {
+            "category": "local",
+            "name": "retry_counts",
+            "type": [
+                "tuple",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_exhausted",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "is_retry@Retry": [
+        {
+            "category": "arg",
+            "name": "method",
+            "type": [
+                "str",
+                "bool",
+                "bytes",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "status_code",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "has_retry_after",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "method",
+            "type": [
+                "str",
+                "bool",
+                "bytes",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_retry",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "status_code",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "has_retry_after",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "new@Retry": [
+        {
+            "category": "arg",
+            "name": "kw",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "kw",
+            "type": [
+                "dict",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "new",
+            "type": [
+                "str",
+                "None",
+                "dict"
+            ]
+        }
+    ],
+    "parse_retry_after@Retry": [
+        {
+            "category": "arg",
+            "name": "retry_after",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "seconds",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "retry_date_tuple",
+            "type": [
+                "float",
+                "time.struct_time",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "parse_retry_after",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "sleep@Retry": [
+        {
+            "category": "arg",
+            "name": "response",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "slept",
+            "type": [
+                "str",
+                "tuple[typing.Literal]",
+                "dict[str, typing.Union[str,None]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "sleep",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "sleep_for_retry@Retry": [
+        {
+            "category": "arg",
+            "name": "response",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "retry_after",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "sleep_for_retry",
+            "type": [
+                "bool"
+            ]
+        }
+    ]
+}

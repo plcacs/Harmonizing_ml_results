@@ -1,0 +1,1444 @@
+{
+    "global@global": [
+        {
+            "category": "local",
+            "name": "_BOS",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_EOS",
+            "type": [
+                "int",
+                "numpy.ndarray",
+                "float"
+            ]
+        }
+    ],
+    "mock_model@global": [
+        {
+            "category": "local",
+            "name": "t_mock",
+            "type": [
+                "Mock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "mock_model",
+            "type": [
+                "Mock"
+            ]
+        }
+    ],
+    "mock_translator@global": [
+        {
+            "category": "arg",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "beam_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "nbest_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_source_factors",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dtype",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "translator",
+            "type": [
+                "list",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translator_",
+            "type": [
+                "int",
+                "list",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "beam_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nbest_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "mock_translator",
+            "type": [
+                "list",
+                "str",
+                "list[str]"
+            ]
+        }
+    ],
+    "test_concat_translations@global": [
+        {
+            "category": "arg",
+            "name": "lp_alpha",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "lp_beta",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "bp_weight",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_target_ids",
+            "type": [
+                "list[list[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lp_alpha",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lp_beta",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bp_weight",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raw_score",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reference_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_score",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translations",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_EOS",
+            "type": [
+                "int",
+                "numpy.ndarray",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_concat_translations",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_factor_parsing@global": [
+        {
+            "category": "arg",
+            "name": "sentence",
+            "type": [
+                "str",
+                "int",
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_expected_factors",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "delimiter",
+            "type": [
+                "str",
+                "int",
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence_id",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_expected_factors",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translator",
+            "type": [
+                "dict[str, int]",
+                "list",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence",
+            "type": [
+                "str",
+                "int",
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "delimiter",
+            "type": [
+                "str",
+                "int",
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inp",
+            "type": [
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_factor_parsing",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_failed_make_input_from_valid_dict@global": [
+        {
+            "category": "arg",
+            "name": "text",
+            "type": [
+                "str",
+                "numpy.array",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "text_key",
+            "type": [
+                "str",
+                "numpy.array",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "factors",
+            "type": [
+                "str",
+                "numpy.array",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "factors_key",
+            "type": [
+                "str",
+                "numpy.array",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence_id",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translator",
+            "type": [
+                "float",
+                "tuple[str]",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "text_key",
+            "type": [
+                "str",
+                "numpy.array",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factors_key",
+            "type": [
+                "str",
+                "numpy.array",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "text",
+            "type": [
+                "str",
+                "numpy.array",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factors",
+            "type": [
+                "str",
+                "numpy.array",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inp",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_failed_make_input_from_valid_dict",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_failed_make_input_from_valid_json_string@global": [
+        {
+            "category": "arg",
+            "name": "text",
+            "type": [
+                "str",
+                "bytes",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "text_key",
+            "type": [
+                "str",
+                "bytes",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "factors",
+            "type": [
+                "str",
+                "bytes",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "factors_key",
+            "type": [
+                "str",
+                "bytes",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence_id",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translator",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "text_key",
+            "type": [
+                "str",
+                "bytes",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factors_key",
+            "type": [
+                "str",
+                "bytes",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "text",
+            "type": [
+                "str",
+                "bytes",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factors",
+            "type": [
+                "str",
+                "bytes",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inp",
+            "type": [
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_failed_make_input_from_valid_json_string",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_best_translations@global": [
+        {
+            "category": "arg",
+            "name": "expected_best_ids",
+            "type": [
+                "int",
+                "torch.Tensor",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_best_indices",
+            "type": [
+                "int",
+                "torch.Tensor",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translator",
+            "type": [
+                "list",
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_best_indices",
+            "type": [
+                "int",
+                "torch.Tensor",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_best_ids",
+            "type": [
+                "int",
+                "torch.Tensor",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_result",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "actual_result",
+            "type": [
+                "dict[typing.Any, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_best_translations",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_best_word_indices_for_kth_hypotheses@global": [
+        {
+            "category": "local",
+            "name": "ks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_indices",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_best_word_indices_for_kth_hypotheses",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_max_input_output_length@global": [
+        {
+            "category": "arg",
+            "name": "supported_max_seq_len_source",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "supported_max_seq_len_target",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "forced_max_input_len",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "forced_max_output_len",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "length_ratio_mean",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "length_ratio_std",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_max_input_len",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_max_output_len",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "supported_max_seq_len_source",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "supported_max_seq_len_target",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "forced_max_input_len",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "forced_max_output_len",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length_ratio_mean",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length_ratio_std",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_input_len",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "get_max_output_len",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_output_len",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_max_input_output_length",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_make_input_from_factored_string@global": [
+        {
+            "category": "arg",
+            "name": "sentence",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_expected_factors",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "delimiter",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_tokens",
+            "type": [
+                "list[str]",
+                "typing.Sequence[tuple[typing.Union[str,int]]]",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_factors",
+            "type": [
+                "float",
+                "int",
+                "typing.Sequence[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence_id",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_expected_factors",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translator",
+            "type": [
+                "dict[str, int]",
+                "list",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "delimiter",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inp",
+            "type": [
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_make_input_from_factored_string",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_make_input_from_multiple_strings@global": [
+        {
+            "category": "arg",
+            "name": "strings",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "strings",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_tokens",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "f",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_factors",
+            "type": [
+                "list[list]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_make_input_from_multiple_strings",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_make_input_from_valid_dict@global": [
+        {
+            "category": "arg",
+            "name": "text",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "factors",
+            "type": [
+                "int",
+                "str",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence_id",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translator",
+            "type": [
+                "dict[str, int]",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "text",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_tokens",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factors",
+            "type": [
+                "int",
+                "str",
+                "numpy.ndarray",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inp",
+            "type": [
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_make_input_from_valid_dict",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_make_input_from_valid_json_string@global": [
+        {
+            "category": "arg",
+            "name": "text",
+            "type": [
+                "str",
+                "int",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "factors",
+            "type": [
+                "int",
+                "str",
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence_id",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translator",
+            "type": [
+                "dict",
+                "dict[str, int]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "text",
+            "type": [
+                "str",
+                "int",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_tokens",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factors",
+            "type": [
+                "int",
+                "str",
+                "typing.IO",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inp",
+            "type": [
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_make_input_from_valid_json_string",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_make_input_from_valid_json_string_restrict_lexicon@global": [
+        {
+            "category": "local",
+            "name": "sentence_id",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "text",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lexicon1",
+            "type": [
+                "Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lexicon2",
+            "type": [
+                "Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translator_",
+            "type": [
+                "dict[typing.Text, Mock]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "restrict_lexicon1",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inp1",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "restrict_lexicon2",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inp2",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_make_input_from_valid_json_string_restrict_lexicon",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_make_input_whitespace_delimiter@global": [
+        {
+            "category": "arg",
+            "name": "delimiter",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence_id",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "translator",
+            "type": [
+                "dict[str, int]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "delimiter",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_make_input_whitespace_delimiter",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_translator_input@global": [
+        {
+            "category": "arg",
+            "name": "sentence_id",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sentence",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "factors",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chunk_size",
+            "type": [
+                "int",
+                "typing.Sequence[int]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence_id",
+            "type": [
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factors",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trans_input",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chunk_size",
+            "type": [
+                "int",
+                "typing.Sequence[int]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chunked_inputs",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_translator_input",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_translator_input_with_source_prefix@global": [
+        {
+            "category": "arg",
+            "name": "sentence_id",
+            "type": [
+                "str",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sentence",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "factors",
+            "type": [
+                "str",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chunk_size",
+            "type": [
+                "int",
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "source_prefix",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "source_prefix_factors",
+            "type": [
+                "str",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_prefix",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_prefix_tokens",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sentence_id",
+            "type": [
+                "str",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "factors",
+            "type": [
+                "str",
+                "int",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_prefix_factors",
+            "type": [
+                "str",
+                "int",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trans_input",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trans_input_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chunk_size",
+            "type": [
+                "int",
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chunked_inputs",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_translator_input_with_source_prefix",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_unshift_target_factors@global": [
+        {
+            "category": "arg",
+            "name": "sequence",
+            "type": [
+                "torch.Tensor",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fill_with",
+            "type": [
+                "bool",
+                "str",
+                "torch.dtype"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_sequence",
+            "type": [
+                "tuple[int]",
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sequence",
+            "type": [
+                "torch.Tensor",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fill_with",
+            "type": [
+                "bool",
+                "str",
+                "torch.dtype"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_unshift_target_factors",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

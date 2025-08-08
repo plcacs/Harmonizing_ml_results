@@ -1,0 +1,1822 @@
+{
+    "assert_row_count@BaseMicrobatchTest": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": [
+                "str",
+                "set[int]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "relation_name",
+            "type": [
+                "str",
+                "set[int]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_row_count",
+            "type": [
+                "int",
+                "set[int]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "project",
+            "type": [
+                "str",
+                "set[int]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "relation_name",
+            "type": [
+                "str",
+                "set[int]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "str",
+                "list",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_row_count",
+            "type": [
+                "int",
+                "set[int]",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "assert_row_count",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "batch_exc_catcher@TestFirstAndLastBatchAlwaysSequential": [
+        {
+            "category": "return",
+            "name": "batch_exc_catcher",
+            "type": [
+                "EventCatcher"
+            ]
+        }
+    ],
+    "batch_exc_catcher@TestMicrobatchCanRunParallelOrSequential": [
+        {
+            "category": "return",
+            "name": "batch_exc_catcher",
+            "type": [
+                "EventCatcher"
+            ]
+        }
+    ],
+    "batch_log_catcher@TestFirstBatchRunsPreHookLastBatchRunsPostHook": [
+        {
+            "category": "return",
+            "name": "batch_log_catcher",
+            "type": [
+                "EventCatcher"
+            ]
+        }
+    ],
+    "batch_log_catcher@TestWhenOnlyOneBatchRunBothPostAndPreHooks": [
+        {
+            "category": "return",
+            "name": "batch_log_catcher",
+            "type": [
+                "EventCatcher"
+            ]
+        }
+    ],
+    "catch_aw@TestMicrobatchModelStoppedByKeyboardInterrupt": [
+        {
+            "category": "return",
+            "name": "catch_aw",
+            "type": [
+                "EventCatcher"
+            ]
+        }
+    ],
+    "catch_eors@TestMicrobatchModelStoppedByKeyboardInterrupt": [
+        {
+            "category": "return",
+            "name": "catch_eors",
+            "type": [
+                "EventCatcher"
+            ]
+        }
+    ],
+    "deprecation_catcher@BaseMicrobatchCustomUserStrategy": [
+        {
+            "category": "return",
+            "name": "deprecation_catcher",
+            "type": [
+                "EventCatcher"
+            ]
+        }
+    ],
+    "event_catcher@TestCanSilenceInvalidConcurrentBatchesConfigWarning": [
+        {
+            "category": "return",
+            "name": "event_catcher",
+            "type": [
+                "EventCatcher"
+            ]
+        }
+    ],
+    "generic_exception_catcher@TestWhenOnlyOneBatchRunBothPostAndPreHooks": [
+        {
+            "category": "return",
+            "name": "generic_exception_catcher",
+            "type": [
+                "EventCatcher"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "input_model_sql",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "input_model_invalid_sql",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "input_model_without_event_time_sql",
+            "type": [
+                "typing.Text",
+                "str",
+                "None",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_sql",
+            "type": [
+                "typing.Text",
+                "str",
+                "utils.types.JSON"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_with_pre_and_post_sql",
+            "type": [
+                "typing.Text",
+                "str",
+                "list",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_force_concurrent_batches_sql",
+            "type": [
+                "typing.Text",
+                "str",
+                "fklearn.types.ExtractorFnType",
+                "fklearn.types.LogType"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_yearly_model_sql",
+            "type": [
+                "typing.Text",
+                "str",
+                "bool",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_yearly_model_downstream_sql",
+            "type": [
+                "typing.Text",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "invalid_batch_jinja_context_macro_sql",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_with_context_checks_sql",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_downstream_sql",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_ref_render_sql",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "seed_csv",
+            "type": [
+                "typing.Text",
+                "list[str]",
+                "tuple[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "seeds_yaml",
+            "type": [
+                "typing.Text",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sources_yaml",
+            "type": [
+                "typing.Text",
+                "str",
+                "list[tuple[typing.Union[str,typing.Any]]]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_calling_source_sql",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "custom_microbatch_strategy",
+            "type": [
+                "typing.Text",
+                "list[str]",
+                "str",
+                "list[typing.Callable[None, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "downstream_model_of_microbatch_sql",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_full_refresh_false_sql",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_context_vars",
+            "type": [
+                "typing.Text",
+                "list[tuple[typing.Union[str,typing.Any]]]",
+                "list[str]",
+                "dict[typing.Any, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_failing_incremental_partition_sql",
+            "type": [
+                "typing.Text",
+                "str",
+                "list[str]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_first_partition_failing_sql",
+            "type": [
+                "typing.Text",
+                "str",
+                "typing.Iterable[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_second_batch_failing_sql",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        }
+    ],
+    "macros@BaseMicrobatchCustomUserStrategy": [
+        {
+            "category": "local",
+            "name": "custom_microbatch_strategy",
+            "type": [
+                "list[str]",
+                "str",
+                "list[typing.Callable[None, typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "macros",
+            "type": [
+                "dict[typing.Text, typing.Union[list[str],str,list[typing.Callable[None, typing.Any]]]]"
+            ]
+        }
+    ],
+    "macros@TestMicrobatchJinjaContext": [
+        {
+            "category": "local",
+            "name": "invalid_batch_jinja_context_macro_sql",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "macros",
+            "type": [
+                "dict[typing.Text, str]"
+            ]
+        }
+    ],
+    "models@BaseMicrobatchCustomUserStrategy": [
+        {
+            "category": "local",
+            "name": "input_model_sql",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_sql",
+            "type": [
+                "str",
+                "utils.types.JSON"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "models",
+            "type": [
+                "dict[typing.Text, typing.Union[str,utils.types.JSON]]"
+            ]
+        }
+    ],
+    "models@BaseMicrobatchTest": [
+        {
+            "category": "local",
+            "name": "input_model_sql",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_sql",
+            "type": [
+                "str",
+                "utils.types.JSON"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "models",
+            "type": [
+                "dict[typing.Text, typing.Union[str,utils.types.JSON]]"
+            ]
+        }
+    ],
+    "models@TestCanSilenceInvalidConcurrentBatchesConfigWarning": [
+        {
+            "category": "local",
+            "name": "input_model_sql",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_force_concurrent_batches_sql",
+            "type": [
+                "str",
+                "fklearn.types.ExtractorFnType",
+                "fklearn.types.LogType"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "models",
+            "type": [
+                "dict[typing.Text, typing.Union[str,fklearn.types.ExtractorFnType,fklearn.types.LogType]]"
+            ]
+        }
+    ],
+    "models@TestFirstBatchRunsPreHookLastBatchRunsPostHook": [
+        {
+            "category": "local",
+            "name": "input_model_sql",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_with_pre_and_post_sql",
+            "type": [
+                "str",
+                "list",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "models",
+            "type": [
+                "dict[typing.Text, typing.Union[str,list,None]]"
+            ]
+        }
+    ],
+    "models@TestMicrbobatchModelsRunWithSameCurrentTime": [
+        {
+            "category": "local",
+            "name": "input_model_sql",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_yearly_model_sql",
+            "type": [
+                "str",
+                "bool",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_yearly_model_downstream_sql",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "models",
+            "type": [
+                "dict[typing.Text, typing.Union[str,bool,set[str]]]"
+            ]
+        }
+    ],
+    "models@TestMicrobatchFullRefreshConfigFalse": [
+        {
+            "category": "local",
+            "name": "input_model_sql",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_full_refresh_false_sql",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "downstream_model_of_microbatch_sql",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "models",
+            "type": [
+                "dict[typing.Text, str]"
+            ]
+        }
+    ],
+    "models@TestMicrobatchIncrementalBatchFailure": [
+        {
+            "category": "local",
+            "name": "input_model_sql",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_failing_incremental_partition_sql",
+            "type": [
+                "str",
+                "list[str]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "downstream_model_of_microbatch_sql",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "models",
+            "type": [
+                "dict[typing.Text, typing.Union[str,list[str],int]]"
+            ]
+        }
+    ],
+    "models@TestMicrobatchInitialBatchFailure": [
+        {
+            "category": "local",
+            "name": "input_model_sql",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_first_partition_failing_sql",
+            "type": [
+                "str",
+                "typing.Iterable[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "models",
+            "type": [
+                "dict[typing.Text, typing.Union[str,typing.Iterable[str]]]"
+            ]
+        }
+    ],
+    "models@TestMicrobatchJinjaContext": [
+        {
+            "category": "local",
+            "name": "input_model_sql",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_with_context_checks_sql",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "models",
+            "type": [
+                "dict[typing.Text, str]"
+            ]
+        }
+    ],
+    "models@TestMicrobatchJinjaContextVarsAvailable": [
+        {
+            "category": "local",
+            "name": "input_model_sql",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_context_vars",
+            "type": [
+                "list[tuple[typing.Union[str,typing.Any]]]",
+                "list[str]",
+                "dict[typing.Any, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "models",
+            "type": [
+                "dict[typing.Text, typing.Union[str,list[tuple[typing.Union[str,typing.Any]]],list[str],dict[typing.Any, str]]]"
+            ]
+        }
+    ],
+    "models@TestMicrobatchModelSkipped": [
+        {
+            "category": "local",
+            "name": "input_model_invalid_sql",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_sql",
+            "type": [
+                "str",
+                "utils.types.JSON"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "models",
+            "type": [
+                "dict[typing.Text, typing.Union[str,utils.types.JSON]]"
+            ]
+        }
+    ],
+    "models@TestMicrobatchMultipleRetries": [
+        {
+            "category": "local",
+            "name": "input_model_sql",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_failing_incremental_partition_sql",
+            "type": [
+                "str",
+                "list[str]",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "models",
+            "type": [
+                "dict[typing.Text, typing.Union[str,list[str],int]]"
+            ]
+        }
+    ],
+    "models@TestMicrobatchRetriesPartialSuccesses": [
+        {
+            "category": "local",
+            "name": "input_model_sql",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_failing_incremental_partition_sql",
+            "type": [
+                "str",
+                "list[str]",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "models",
+            "type": [
+                "dict[typing.Text, typing.Union[str,list[str],int]]"
+            ]
+        }
+    ],
+    "models@TestMicrobatchSecondBatchFailure": [
+        {
+            "category": "local",
+            "name": "input_model_sql",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_second_batch_failing_sql",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "models",
+            "type": [
+                "dict[typing.Text, str]"
+            ]
+        }
+    ],
+    "models@TestMicrobatchWithInputWithoutEventTime": [
+        {
+            "category": "local",
+            "name": "input_model_without_event_time_sql",
+            "type": [
+                "str",
+                "None",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_sql",
+            "type": [
+                "str",
+                "utils.types.JSON"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "models",
+            "type": [
+                "dict[typing.Text, typing.Union[str,None,list,utils.types.JSON]]"
+            ]
+        }
+    ],
+    "models@TestMicrobatchWithSource": [
+        {
+            "category": "local",
+            "name": "microbatch_model_calling_source_sql",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sources_yaml",
+            "type": [
+                "str",
+                "list[tuple[typing.Union[str,typing.Any]]]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "seeds_yaml",
+            "type": [
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "models",
+            "type": [
+                "dict[typing.Text, typing.Union[str,list[tuple[typing.Union[str,typing.Any]]],list,dict]]"
+            ]
+        }
+    ],
+    "models@TestWhenOnlyOneBatchRunBothPostAndPreHooks": [
+        {
+            "category": "local",
+            "name": "input_model_sql",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_with_pre_and_post_sql",
+            "type": [
+                "str",
+                "list",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "models",
+            "type": [
+                "dict[typing.Text, typing.Union[str,list,None]]"
+            ]
+        }
+    ],
+    "pre_or_post_hook@TestFirstBatchRunsPreHookLastBatchRunsPostHook": [
+        {
+            "category": "arg",
+            "name": "event",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "pre_or_post_hook",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "pre_or_post_hook@TestWhenOnlyOneBatchRunBothPostAndPreHooks": [
+        {
+            "category": "arg",
+            "name": "event",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "pre_or_post_hook",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "project_config_update@BaseMicrobatchCustomUserStrategy": [
+        {
+            "category": "return",
+            "name": "project_config_update",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, bool]]"
+            ]
+        }
+    ],
+    "project_config_update@TestMicrobatchCustomUserStrategyDefault": [
+        {
+            "category": "return",
+            "name": "project_config_update",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, bool]]"
+            ]
+        }
+    ],
+    "seeds@TestMicrobatchWithSource": [
+        {
+            "category": "local",
+            "name": "seed_csv",
+            "type": [
+                "list[str]",
+                "tuple[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "seeds",
+            "type": [
+                "dict[typing.Text, typing.Union[list[str],tuple[str],str]]"
+            ]
+        }
+    ],
+    "test_list_output_json@TestMicrobatchCLIRunOutputJSON": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "model_catcher",
+            "type": [
+                "EventCatcher"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_catcher",
+            "type": [
+                "EventCatcher"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_json",
+            "type": [
+                "dict[str, str]",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_list_output_json",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_microbatch@TestCanSilenceInvalidConcurrentBatchesConfigWarning": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": [
+                "bool",
+                "typing.Callable[..., None]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "event_catcher",
+            "type": [
+                "str",
+                "list[str]",
+                "list[typing.Type]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_catcher",
+            "type": [
+                "str",
+                "list[str]",
+                "list[typing.Type]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_catcher_",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str",
+                "dict",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_microbatch",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_microbatch@TestFirstAndLastBatchAlwaysSequential": [
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "mock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "project",
+            "type": [
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batch_exc_catcher",
+            "type": [
+                "typing.Callable",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "mock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocked_srip",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocked_srip_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_exc_catcher",
+            "type": [
+                "typing.Callable",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_microbatch",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_microbatch@TestFirstBatchRunsPreHookLastBatchRunsPostHook": [
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "project",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batch_log_catcher",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str",
+                "mode.utils.locks.Event",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_microbatch",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_microbatch@TestMicrbobatchModelsRunWithSameCurrentTime": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": [
+                "taskiinfrastructure.data.json.repositories.project_repository.JsonProjectRepository"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "project",
+            "type": [
+                "taskiinfrastructure.data.json.repositories.project_repository.JsonProjectRepository"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_microbatch",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_microbatch@TestMicrobatchCanRunParallelOrSequential": [
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "mock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "project",
+            "type": [
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batch_exc_catcher",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "mock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocked_srip",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocked_srip_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_exc_catcher_",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str",
+                "dict[int, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "some_batches_run_concurrently",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_microbatch",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_microbatch@TestMicrobatchModelStoppedByKeyboardInterrupt": [
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "project",
+            "type": [
+                "pytest_mock.plugin.MockFixture",
+                "tests._TestServerFactory",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "catch_eors",
+            "type": [
+                "pytest_mock.MockFixture"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "catch_aw",
+            "type": [
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocked_fbs_",
+            "type": [
+                "KeyboardInterrupt"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "catch_eors",
+            "type": [
+                "pytest_mock.MockFixture"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "catch_aw",
+            "type": [
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_microbatch",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_microbatch@TestWhenOnlyOneBatchRunBothPostAndPreHooks": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": [
+                "bool",
+                "None",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batch_log_catcher",
+            "type": [
+                "bool",
+                "qutebrowser.utils.usertypes.ClickTarget"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "generic_exception_catcher",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_log_catcher",
+            "type": [
+                "bool",
+                "qutebrowser.utils.usertypes.ClickTarget"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "generic_exception_catcher",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_microbatch",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_microbatch_model_skipped@TestMicrobatchModelSkipped": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_microbatch_model_skipped",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_run_with_event_time@TestMicroBatchBoundsDefault": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "test_schema_relation",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_run_with_event_time",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_run_with_event_time@TestMicrobatchCLI": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "model_catcher",
+            "type": [
+                "EventCatcher"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_catcher",
+            "type": [
+                "EventCatcher"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_creation_events",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_run_with_event_time",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_run_with_event_time@TestMicrobatchCompiledRunPaths": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": [
+                "taskiinfrastructure.data.json.repositories.project_repository.JsonProjectRepository"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_run_with_event_time",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_run_with_event_time@TestMicrobatchFullRefreshConfigFalse": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_sql",
+            "type": [
+                "str",
+                "utils.types.JSON"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_run_with_event_time",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_run_with_event_time@TestMicrobatchIncrementalBatchFailure": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "event_catcher",
+            "type": [
+                "EventCatcher"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_run_with_event_time",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_run_with_event_time@TestMicrobatchInitialBatchFailure": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "general_exc_catcher",
+            "type": [
+                "EventCatcher"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_catcher",
+            "type": [
+                "EventCatcher"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_run_with_event_time",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_run_with_event_time@TestMicrobatchJinjaContext": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_run_with_event_time",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_run_with_event_time@TestMicrobatchMultipleRetries": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "console_output",
+            "type": [
+                "str",
+                "typing.IO",
+                "dict[typing.Union[str,None], str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_run_with_event_time",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_run_with_event_time@TestMicrobatchRetriesPartialSuccesses": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "console_output",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_sql",
+            "type": [
+                "str",
+                "utils.types.JSON"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_run_with_event_time",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_run_with_event_time@TestMicrobatchSecondBatchFailure": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "event_catcher",
+            "type": [
+                "EventCatcher"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_run_with_event_time",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_run_with_event_time@TestMicrobatchUsingRefRenderSkipsFilter": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "test_schema_relation",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "microbatch_model_ref_render_sql",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_run_with_event_time",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_run_with_event_time@TestMicrobatchWithInputWithoutEventTime": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "catcher",
+            "type": [
+                "EventCatcher"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "catcher_",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_schema_relation",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_run_with_event_time",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_run_with_event_time@TestMicrobatchWithSource": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "catcher",
+            "type": [
+                "EventCatcher"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_schema_relation",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_run_with_event_time",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_run_with_event_time_logs@TestMicrobatchJinjaContextVarsAvailable": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": [
+                "util.photolib.workspace.Workspace",
+                "cli_ui.tests.MessageRecorder",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_run_with_event_time_logs",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_use_custom_microbatch_strategy_by_default@TestMicrobatchCustomUserStrategyDefault": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": [
+                "typing.Callable",
+                "bool",
+                "utils.OutputCallbackType",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deprecation_catcher",
+            "type": [
+                "utils.OutputCallbackType",
+                "None",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deprecation_catcher",
+            "type": [
+                "utils.OutputCallbackType",
+                "None",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_use_custom_microbatch_strategy_by_default",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_use_custom_microbatch_strategy_project_flag_true_invalid_incremental_strategy@TestMicrobatchCustomUserStrategyProjectFlagTrueNoValidBuiltin": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": [
+                "taskiinfrastructure.data.json.repositories.project_repository.JsonProjectRepository"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "project",
+            "type": [
+                "taskiinfrastructure.data.json.repositories.project_repository.JsonProjectRepository"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str",
+                "list",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_use_custom_microbatch_strategy_project_flag_true_invalid_incremental_strategy",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_use_custom_microbatch_strategy_project_flag_true_invalid_incremental_strategy@TestMicrobatchCustomUserStrategyProjectFlagTrueValid": [
+        {
+            "category": "arg",
+            "name": "project",
+            "type": [
+                "tests.setup.SetupTest"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deprecation_catcher",
+            "type": [
+                "utils.CWLObjectType",
+                "utils.OutputCallbackType",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "project",
+            "type": [
+                "tests.setup.SetupTest"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deprecation_catcher",
+            "type": [
+                "utils.CWLObjectType",
+                "utils.OutputCallbackType",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str",
+                "list",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_use_custom_microbatch_strategy_project_flag_true_invalid_incremental_strategy",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

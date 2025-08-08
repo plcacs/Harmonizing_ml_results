@@ -1,0 +1,523 @@
+{
+    "__init__@ImageProcessingAlprEntity": [
+        {
+            "category": "local",
+            "name": "plates",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vehicles",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@OpenAlprCloudEntity": [
+        {
+            "category": "arg",
+            "name": "camera_entity",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "homeassistanhelpers.ConfigType",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "params",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "None",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "confidence",
+            "type": [
+                "float",
+                "int",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "name",
+            "type": [
+                "None",
+                "str",
+                "list[str]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "params",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "None",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_params",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "None",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "camera_entity",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "homeassistanhelpers.ConfigType",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_camera",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "homeassistanhelpers.ConfigType",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "confidence",
+            "type": [
+                "float",
+                "int",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_confidence",
+            "type": [
+                "float",
+                "int",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "None",
+                "str",
+                "list[str]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_name",
+            "type": [
+                "None",
+                "str",
+                "list[str]",
+                "list",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_process_image@OpenAlprCloudEntity": [
+        {
+            "category": "arg",
+            "name": "image",
+            "type": [
+                "str",
+                "bytes",
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "params",
+            "type": [
+                "dict[str, str]",
+                "dict[str, list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "image",
+            "type": [
+                "str",
+                "bytes",
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "body",
+            "type": [
+                "dict[typing.Text, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "OPENALPR_API_URL",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_process_image",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vehicles",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "dict",
+                "dict[, float]"
+            ]
+        }
+    ],
+    "async_process_plates@ImageProcessingAlprEntity": [
+        {
+            "category": "arg",
+            "name": "plates",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "vehicles",
+            "type": [
+                "list[str]",
+                "dict",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "plates",
+            "type": [
+                "dict",
+                "tuple[int]",
+                "list[str]",
+                "list[typing.Callable[None, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_plates",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "EVENT_FOUND_PLATE",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_PLATE",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vehicles",
+            "type": [
+                "list[str]",
+                "dict",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_process_plates",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_setup_platform@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistanhelpers.ConfigType"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "homeassistanhelpers.ConfigType",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "async_add_entities",
+            "type": [
+                "homeassistanhelpers.ConfigType",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "discovery_info",
+            "type": [
+                "None",
+                "homeassistanhelpers.ConfigType"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "homeassistanhelpers.ConfigType",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "params",
+            "type": [
+                "dict[typing.Text, typing.Union[typing.Text,int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_setup_platform",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "camera_entity@OpenAlprCloudEntity": [
+        {
+            "category": "return",
+            "name": "camera_entity",
+            "type": []
+        }
+    ],
+    "confidence@OpenAlprCloudEntity": [
+        {
+            "category": "return",
+            "name": "confidence",
+            "type": []
+        }
+    ],
+    "extra_state_attributes@ImageProcessingAlprEntity": [
+        {
+            "category": "local",
+            "name": "ATTR_PLATES",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_VEHICLES",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "extra_state_attributes",
+            "type": [
+                "dict[str, ]"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_PLATE",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_PLATES",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_VEHICLES",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "EVENT_FOUND_PLATE",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "OPENALPR_API_URL",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "OPENALPR_REGIONS",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "IMAGE_PROCESSING_PLATFORM_SCHEMA",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "PLATFORM_SCHEMA",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "name@OpenAlprCloudEntity": [
+        {
+            "category": "return",
+            "name": "name",
+            "type": []
+        }
+    ],
+    "process_plates@ImageProcessingAlprEntity": [
+        {
+            "category": "arg",
+            "name": "plates",
+            "type": [
+                "str",
+                "bool",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "vehicles",
+            "type": [
+                "str",
+                "bool",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "plates",
+            "type": [
+                "str",
+                "bool",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vehicles",
+            "type": [
+                "str",
+                "bool",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_plates",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "state@ImageProcessingAlprEntity": [
+        {
+            "category": "local",
+            "name": "confidence",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "plate",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "state",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

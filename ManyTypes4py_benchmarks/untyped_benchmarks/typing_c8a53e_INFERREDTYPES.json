@@ -1,0 +1,511 @@
+{
+    "check_send_typing_notification@global": [
+        {
+            "category": "arg",
+            "name": "sender",
+            "type": [
+                "str",
+                "users.models.JustfixUser",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_ids",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "operator",
+            "type": [
+                "str",
+                "contests.models.User",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sender",
+            "type": [
+                "str",
+                "users.models.JustfixUser",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_ids",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profiles",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_id",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "operator",
+            "type": [
+                "str",
+                "contests.models.User",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_send_typing_notification",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "do_send_direct_message_edit_typing_notification@global": [
+        {
+            "category": "arg",
+            "name": "sender",
+            "type": [
+                "str",
+                "int",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user_ids",
+            "type": [
+                "str",
+                "KT"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message_id",
+            "type": [
+                "str",
+                "KT",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "operator",
+            "type": [
+                "str",
+                "KT",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recipient_user_profiles",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_id",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_ids",
+            "type": [
+                "str",
+                "KT"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sender",
+            "type": [
+                "str",
+                "int",
+                "zerver.models.Message"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_ids_to_notify",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "operator",
+            "type": [
+                "str",
+                "KT",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_id",
+            "type": [
+                "str",
+                "KT",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "do_send_direct_message_edit_typing_notification",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "do_send_stream_message_edit_typing_notification@global": [
+        {
+            "category": "arg",
+            "name": "sender",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "channel_id",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "message_id",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "operator",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topic_name",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "operator",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sender",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_id",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_id",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_name",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "dict",
+                "typing.Any",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subscriptions_query",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_subscriptions",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "do_send_stream_message_edit_typing_notification",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_ids_to_notify",
+            "type": [
+                "set"
+            ]
+        }
+    ],
+    "do_send_stream_typing_notification@global": [
+        {
+            "category": "arg",
+            "name": "sender",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "operator",
+            "type": [
+                "str",
+                "dict[str, object]",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stream",
+            "type": [
+                "str",
+                "dict[str, object]",
+                "tuple[typing.Type]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topic_name",
+            "type": [
+                "str",
+                "dict[str, object]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sender",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "dict[str, object]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sender_dict",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "operator",
+            "type": [
+                "str",
+                "dict[str, object]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stream",
+            "type": [
+                "str",
+                "dict[str, object]",
+                "tuple[typing.Type]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topic_name",
+            "type": [
+                "str",
+                "dict[str, object]",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "do_send_stream_typing_notification",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_ids_to_notify",
+            "type": [
+                "set"
+            ]
+        }
+    ],
+    "do_send_typing_notification@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "str",
+                "Realm",
+                "lms.lmsdb.models.User"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sender",
+            "type": [
+                "dict",
+                "django.contrib.auth.models.User"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "recipient_user_profiles",
+            "type": [
+                "models.Course",
+                "models.User"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "operator",
+            "type": [
+                "str",
+                "dict",
+                "core.models.Grouping.Key"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sender",
+            "type": [
+                "dict",
+                "django.contrib.auth.models.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sender_dict",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recipient_user_profiles",
+            "type": [
+                "models.Course",
+                "models.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "recipient_dicts",
+            "type": [
+                "list[dict[typing.Text, ]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "operator",
+            "type": [
+                "str",
+                "dict",
+                "core.models.Grouping.Key"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_ids_to_notify",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "str",
+                "Realm",
+                "lms.lmsdb.models.User"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "do_send_typing_notification",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": []
+}

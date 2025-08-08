@@ -32,7 +32,7 @@ DEFAULT_PASSWORD = 'general'
 test_client = app.test_client()
 
 
-def func_0its0gtm(client, url, data=None, follow_redirects=True,
+def func_qrp8xmme(client, url, data=None, follow_redirects=True,
     raise_on_error=True, json_=None):
     """Shortcut to get the parsed results while following redirects"""
     if data:
@@ -46,7 +46,7 @@ def func_0its0gtm(client, url, data=None, follow_redirects=True,
     return resp.data.decode('utf-8')
 
 
-def func_1gu7jtpu(client, uri, data, func_name):
+def func_gfm8qvdk(client, uri, data, func_name):
     """
     Simple client post with an extra assertion for statsd metrics
 
@@ -74,22 +74,22 @@ class SupersetTestCase(TestCase):
         'postgresql': 'public', 'presto': 'default', 'hive': 'default'}
     maxDiff = -1
 
-    def func_7s7dybqc(self):
+    def func_lgjvq24n(self):
         self.logout()
 
-    def func_rtxqpc18(self):
+    def func_pxv76r6a(self):
         return app
 
     @staticmethod
-    def func_dby2nley(model):
+    def func_va3hpslk(model):
         return (db.session.query(func.max(model.id)).scalar() or 0) + 1
 
     @staticmethod
-    def func_vg4523oe():
+    def func_n3syhojf():
         return SupersetTestCase.get_table(name='birth_names')
 
     @staticmethod
-    def func_4imhh44z(username, roles, should_create_roles=False):
+    def func_486x0ydg(username, roles, should_create_roles=False):
         user_to_create = security_manager.find_user(username)
         if not user_to_create:
             security_manager.add_user(username, username, username,
@@ -109,7 +109,7 @@ class SupersetTestCase(TestCase):
         return user_to_create
 
     @contextmanager
-    def func_guj8arrp(self, clone_user=None, username=None, extra_roles=
+    def func_63euqupl(self, clone_user=None, username=None, extra_roles=
         None, extra_pvms=None, login=False):
         """
         Create a temporary user for testing and delete it after the test
@@ -166,37 +166,37 @@ class SupersetTestCase(TestCase):
             g.user = previous_g_user
 
     @staticmethod
-    def func_yfi7vdtu(username, password, role_name, first_name='admin',
+    def func_j7rm3vgo(username, password, role_name, first_name='admin',
         last_name='user', email='admin@fab.org'):
         role_admin = security_manager.find_role(role_name)
         return security_manager.add_user(username, first_name, last_name,
             email, role_admin, password)
 
     @staticmethod
-    def func_t0oz1ulp(username):
+    def func_zakrh315(username):
         user = db.session.query(security_manager.user_model).filter_by(username
             =username).one_or_none()
         return user
 
     @staticmethod
-    def func_4o8bk0qd(name):
+    def func_03orbu2d(name):
         user = db.session.query(security_manager.role_model).filter_by(name
             =name).one_or_none()
         return user
 
     @staticmethod
-    def func_kpt5vlaf(table_id):
+    def func_dy7rdlhx(table_id):
         return db.session.query(SqlaTable).filter_by(id=table_id).one()
 
     @staticmethod
-    def func_wpu00utr(module_name):
+    def func_2857aktd(module_name):
         try:
             spec = find_spec(module_name)
             return spec is not None
         except (ModuleNotFoundError, ValueError, TypeError, ImportError):
             return False
 
-    def func_bxfizvec(self, cls, criteria, **kwargs):
+    def func_39ta3sz1(self, cls, criteria, **kwargs):
         obj = db.session.query(cls).filter_by(**criteria).first()
         if not obj:
             obj = cls(**criteria)
@@ -205,32 +205,32 @@ class SupersetTestCase(TestCase):
         db.session.commit()
         return obj
 
-    def func_irddn4kj(self, username, password=DEFAULT_PASSWORD):
-        return func_irddn4kj(self.client, username, password)
+    def func_qs4bu81t(self, username, password=DEFAULT_PASSWORD):
+        return func_qs4bu81t(self.client, username, password)
 
-    def func_sccc1q3o(self, slice_name):
+    def func_v2k7o352(self, slice_name):
         return db.session.query(Slice).filter_by(slice_name=slice_name).one()
 
     @staticmethod
-    def func_zgdwik8y(name, database_id=None, schema=None):
+    def func_p5bynajn(name, database_id=None, schema=None):
         schema = schema or get_example_default_schema()
         return db.session.query(SqlaTable).filter_by(database_id=
             database_id or SupersetTestCase.get_database_by_name('examples'
             ).id, schema=schema, table_name=name).one()
 
     @staticmethod
-    def func_53x0v761(db_id):
+    def func_ev36683v(db_id):
         return db.session.query(Database).filter_by(id=db_id).one()
 
     @staticmethod
-    def func_mocrxrqg(database_name='main'):
+    def func_ohireov9(database_name='main'):
         if database_name == 'examples':
             return get_example_database()
         else:
             raise ValueError("Database doesn't exist")
 
     @staticmethod
-    def func_nj10nopu():
+    def func_p5ubh5f8():
         datasource = MagicMock()
         results = Mock()
         results.query = Mock()
@@ -254,26 +254,26 @@ class SupersetTestCase(TestCase):
         datasource.id = 99999
         return datasource
 
-    def func_0its0gtm(self, url, data=None, follow_redirects=True,
+    def func_qrp8xmme(self, url, data=None, follow_redirects=True,
         raise_on_error=True, json_=None):
-        return func_0its0gtm(self.client, url, data, follow_redirects,
+        return func_qrp8xmme(self.client, url, data, follow_redirects,
             raise_on_error, json_)
 
-    def func_fde09oos(self, url, data=None, follow_redirects=True,
+    def func_x5fs9be7(self, url, data=None, follow_redirects=True,
         raise_on_error=True, json_=None):
         """Shortcut to get the parsed results while following redirects"""
         resp = self.get_resp(url, data, follow_redirects, raise_on_error, json_
             )
         return json.loads(resp)
 
-    def func_qi6q1isq(self):
+    def func_4od4wikk(self):
         self.client.get('/logout/', follow_redirects=True)
 
-    def func_h0yef5fz(self, table):
+    def func_zo6qbf9q(self, table):
         role_name = 'Public'
         self.grant_role_access_to_table(table, role_name)
 
-    def func_dtd8epor(self, table, role_name):
+    def func_m3gdupz5(self, table, role_name):
         role = security_manager.find_role(role_name)
         perms = db.session.query(ab_models.PermissionView).all()
         for perm in perms:
@@ -281,11 +281,11 @@ class SupersetTestCase(TestCase):
                 view_menu and table.perm in perm.view_menu.name):
                 security_manager.add_permission_role(role, perm)
 
-    def func_8s5l8j7o(self, table):
+    def func_k91dafsv(self, table):
         role_name = 'Public'
         self.revoke_role_access_to_table(role_name, table)
 
-    def func_aw8bc8x7(self, role_name, table):
+    def func_0khkt52r(self, role_name, table):
         public_role = security_manager.find_role(role_name)
         perms = db.session.query(ab_models.PermissionView).all()
         for perm in perms:
@@ -293,7 +293,7 @@ class SupersetTestCase(TestCase):
                 view_menu and table.perm in perm.view_menu.name):
                 security_manager.del_permission_role(public_role, perm)
 
-    def func_2ivulk1w(self, sql, client_id=None, username=None,
+    def func_kmzo0kny(self, sql, client_id=None, username=None,
         raise_on_error=False, query_limit=None, database_name='examples',
         sql_editor_id=None, select_as_cta=False, tmp_table_name=None,
         schema=None, ctas_method=CtasMethod.TABLE, template_params='{}'):
@@ -319,7 +319,7 @@ class SupersetTestCase(TestCase):
             raise Exception('run_sql failed')
         return resp
 
-    def func_1vbtmn6g(self):
+    def func_0vbfv4pi(self):
         database_name = FAKE_DB_NAME
         db_id = 100
         extra = """{
@@ -330,37 +330,37 @@ class SupersetTestCase(TestCase):
             'database_name': database_name}, sqlalchemy_uri=
             'sqlite:///:memory:', id=db_id, extra=extra)
 
-    def func_349tpcw9(self):
+    def func_nizqqm93(self):
         database = db.session.query(Database).filter(Database.database_name ==
             FAKE_DB_NAME).scalar()
         if database:
             db.session.delete(database)
             db.session.commit()
 
-    def func_7z4509ez(self):
+    def func_doixdm6w(self):
         database_name = 'db_for_macros_testing'
         db_id = 200
         database = self.get_or_create(cls=models.Database, criteria={
             'database_name': database_name}, sqlalchemy_uri=
             'db_for_macros_testing://user@host:8080/hive', id=db_id)
 
-        def func_txd9lnr3():
+        def func_tx9y4q8p():
             return dialect()
         database.get_dialect = mock_get_dialect
         return database
 
     @staticmethod
-    def func_g1hz6x29():
+    def func_7p24xdks():
         database = db.session.query(Database).filter(Database.database_name ==
             'db_for_macros_testing').scalar()
         if database:
             db.session.delete(database)
             db.session.commit()
 
-    def func_0povkt3i(self, dash_slug):
+    def func_lqp7mraq(self, dash_slug):
         return db.session.query(Dashboard).filter_by(slug=dash_slug).first()
 
-    def func_5driq7mp(self, uri, func_name):
+    def func_s6ikmvl1(self, uri, func_name):
         """
         Simple client get with an extra assertion for statsd metrics
 
@@ -380,7 +380,7 @@ class SupersetTestCase(TestCase):
             mock_method.assert_called_once_with('error', func_name)
         return rv
 
-    def func_eihi3fx1(self, uri, func_name):
+    def func_4xmbrt4d(self, uri, func_name):
         """
         Simple client delete with an extra assertion for statsd metrics
 
@@ -400,10 +400,10 @@ class SupersetTestCase(TestCase):
             mock_method.assert_called_once_with('error', func_name)
         return rv
 
-    def func_1gu7jtpu(self, uri, data, func_name):
-        return func_1gu7jtpu(self.client, uri, data, func_name)
+    def func_gfm8qvdk(self, uri, data, func_name):
+        return func_gfm8qvdk(self.client, uri, data, func_name)
 
-    def func_d64c7c9s(self, uri, data, func_name):
+    def func_ilm01yje(self, uri, data, func_name):
         """
         Simple client put with an extra assertion for statsd metrics
 
@@ -425,11 +425,11 @@ class SupersetTestCase(TestCase):
         return rv
 
     @classmethod
-    def func_i3v8tjg8(cls):
+    def func_oky6pfho(cls):
         return datetime.strptime('2019-01-02 03:04:05.678900',
             '%Y-%m-%d %H:%M:%S.%f')
 
-    def func_rzzxcm6k(self, dashboard_title, slug, owners, roles=[],
+    def func_nqdedmpx(self, dashboard_title, slug, owners, roles=[],
         created_by=None, slices=None, position_json='', css='',
         json_metadata='', published=False, certified_by=None,
         certification_details=None):
@@ -451,7 +451,7 @@ class SupersetTestCase(TestCase):
         db.session.commit()
         return dashboard
 
-    def func_ci97gz8q(self, asset_type, filter={}, username=ADMIN_USERNAME):
+    def func_ko4t9kyg(self, asset_type, filter={}, username=ADMIN_USERNAME):
         """
         Get list of assets, by default using admin account. Can be filtered.
         """
@@ -462,7 +462,7 @@ class SupersetTestCase(TestCase):
 
 
 @contextmanager
-def func_11a54i8x(obj):
+def func_rq1rceii(obj):
     """Insert a temporary object in database; delete when done."""
     try:
         db.session.add(obj)

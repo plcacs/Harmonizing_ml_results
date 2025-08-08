@@ -1,0 +1,831 @@
+{
+    "__init__@BlockchainEvents": [
+        {
+            "category": "arg",
+            "name": "web3",
+            "type": [
+                "web3.Web3",
+                "raiden.utils.UserDepositAddress",
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chain_id",
+            "type": [
+                "raiden.utils.NodeNetworkStateMap",
+                "raiden.utils.ChannelMap"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "contract_manager",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.BlockIdentifier",
+                "raiden.network.rpc.clienJSONRPCClient"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "last_fetched_block",
+            "type": [
+                "int",
+                "raiden.utils.BlockNumber",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "event_filter",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "web3.types.Wei",
+                "None",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_batch_size_config",
+            "type": [
+                "collections.abc.Awaitable[None]",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "node_address",
+            "type": [
+                "raiden.utils.ChainID",
+                "int",
+                "raiden.utils.NodeNetworkStateMap"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "web3",
+            "type": [
+                "web3.Web3",
+                "raiden.utils.UserDepositAddress",
+                "raiden.network.proxies.proxy_manager.ProxyManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_id",
+            "type": [
+                "raiden.utils.NodeNetworkStateMap",
+                "raiden.utils.ChannelMap"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_fetched_block",
+            "type": [
+                "int",
+                "raiden.utils.BlockNumber",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contract_manager",
+            "type": [
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.BlockIdentifier",
+                "raiden.network.rpc.clienJSONRPCClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_filter",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "web3.types.Wei",
+                "None",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_batch_size_config",
+            "type": [
+                "collections.abc.Awaitable[None]",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_batch_size_adjuster",
+            "type": [
+                "BlockBatchSizeAdjuster"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node_address",
+            "type": [
+                "raiden.utils.ChainID",
+                "int",
+                "raiden.utils.NodeNetworkStateMap"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_filters_lock",
+            "type": [
+                "Semaphore"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_address_to_abi",
+            "type": [
+                "dict[str, typing.Any]",
+                "raiden.transfer.state.NettingChannelEndState",
+                "nucypher.blockchain.eth.interfaces.BlockchainInterface"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_listeners",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_query_and_track@BlockchainEvents": [
+        {
+            "category": "arg",
+            "name": "from_block",
+            "type": [
+                "int",
+                "raiden.utils.BlockNumber",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_block",
+            "type": [
+                "int",
+                "raiden.utils.BlockNumber",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_request_duration",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_filter",
+            "type": [
+                "list[dict[str, typing.Any]]",
+                "str",
+                "list",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "i",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blockchain_events",
+            "type": [
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_block",
+            "type": [
+                "int",
+                "raiden.utils.BlockNumber",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_block",
+            "type": [
+                "int",
+                "raiden.utils.BlockNumber",
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_events",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ex",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "decoded_events",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_query_and_track",
+            "type": [
+                "tuple[typing.Union[list,int,int]]"
+            ]
+        }
+    ],
+    "decode_raiden_event_to_internal@global": [
+        {
+            "category": "arg",
+            "name": "abi",
+            "type": [
+                "raiden.utils.ABI",
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.utils.ChannelMap"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chain_id",
+            "type": [
+                "raiden.utils.ChainID",
+                "raiden.utils.ABI",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "log_event",
+            "type": [
+                "web3.types.LogReceipt",
+                "bytes",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "abi",
+            "type": [
+                "raiden.utils.ABI",
+                "raiden.transfer.mediated_transfer.state.InitiatorPaymentState",
+                "raiden.utils.ChannelMap"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "log_event",
+            "type": [
+                "web3.types.LogReceipt",
+                "bytes",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "decoded_event",
+            "type": [
+                "dict[str, str]",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "typing.Type",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_id",
+            "type": [
+                "raiden.utils.ChainID",
+                "raiden.utils.ABI",
+                "web3.Web3"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "decode_raiden_event_to_internal",
+            "type": [
+                "DecodedEvent"
+            ]
+        }
+    ],
+    "fetch_logs_in_batch@BlockchainEvents": [
+        {
+            "category": "arg",
+            "name": "target_block_number",
+            "type": [
+                "int",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_block_number",
+            "type": [
+                "int",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "last_fetched_block",
+            "type": [
+                "int",
+                "BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_block",
+            "type": [
+                "BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_block",
+            "type": [
+                "BlockNumber"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "decoded_result",
+            "type": [
+                "dict",
+                "list",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_request_duration",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "fetch_logs_in_batch",
+            "type": [
+                "None",
+                "PollResult"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "can_use_bigger_batches",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "latest_confirmed_block",
+            "type": [
+                "str",
+                "raiden.messages.Delivered"
+            ]
+        }
+    ],
+    "get_all_netting_channel_events@global": [
+        {
+            "category": "arg",
+            "name": "proxy_manager",
+            "type": [
+                "raiden.network.proxies.proxy_manager.ProxyManager",
+                "raiden.utils.BlockIdentifier"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "netting_channel_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "contract_manager",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "from_block",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "to_block",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "token_network_address",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "netting_channel_identifier",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contract_manager",
+            "type": [
+                "raiden.utils.BlockIdentifier",
+                "raiden_contracts.contract_manager.ContractManager",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proxy_manager",
+            "type": [
+                "raiden.network.proxies.proxy_manager.ProxyManager",
+                "raiden.utils.BlockIdentifier"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_all_netting_channel_events",
+            "type": []
+        }
+    ],
+    "get_contract_events@global": [
+        {
+            "category": "arg",
+            "name": "proxy_manager",
+            "type": [
+                "raiden.network.proxies.proxy_manager.ProxyManager",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "abi",
+            "type": [
+                "raiden.utils.ABI",
+                "raiden.utils.BlockNumber",
+                "list[raiden.utils.Address]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "contract_address",
+            "type": [
+                "raiden.network.proxies.proxy_manager.ProxyManager",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topics",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "from_block",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "to_block",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "ALL_EVENTS",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contract_address",
+            "type": [
+                "raiden.network.proxies.proxy_manager.ProxyManager",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topics",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events",
+            "type": [
+                "list[dict[str, typing.Any]]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result",
+            "type": [
+                "list",
+                "list[mode.utils.locks.Event]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "abi",
+            "type": [
+                "raiden.utils.ABI",
+                "raiden.utils.BlockNumber",
+                "list[raiden.utils.Address]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "decoded_event",
+            "type": [
+                "mode.utils.locks.Event"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_contract_events",
+            "type": [
+                "list[mode.utils.locks.Event]"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "ALL_EVENTS",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        }
+    ],
+    "new_filters_from_events@global": [
+        {
+            "category": "arg",
+            "name": "events",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "raiden.blockchain.events.DecodedEvent"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]",
+                "raiden.blockchain.events.DecodedEvent"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entry",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_filter",
+            "type": [
+                "RaidenContractFilter"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_filter_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "new_filters_from_events",
+            "type": [
+                "RaidenContractFilter"
+            ]
+        }
+    ],
+    "register_listener@BlockchainEvents": [
+        {
+            "category": "arg",
+            "name": "listener",
+            "type": [
+                "typing.Callable[str, None]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "listener",
+            "type": [
+                "typing.Callable[str, None]",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "register_listener",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "sort_events@global": [
+        {
+            "category": "arg",
+            "name": "events",
+            "type": [
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events",
+            "type": [
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "sort_events",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "stop@BlockchainEvents": [
+        {
+            "category": "local",
+            "name": "_address_to_abi",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "stop",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "unregister_listener@BlockchainEvents": [
+        {
+            "category": "arg",
+            "name": "listener",
+            "type": [
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "listener",
+            "type": [
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "unregister_listener",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "verify_block_number@global": [
+        {
+            "category": "arg",
+            "name": "number",
+            "type": [
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.BlockIdentifier",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "argname",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "number",
+            "type": [
+                "raiden.utils.BlockSpecification",
+                "raiden.utils.BlockIdentifier",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "argname",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "verify_block_number",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,1797 @@
+{
+    "_data_batches_equal@global": [
+        {
+            "category": "arg",
+            "name": "db1",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "db2",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "equal",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db1",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db2",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_data_batches_equal",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_get_random_bucketed_data@global": [
+        {
+            "category": "arg",
+            "name": "buckets",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "min_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "bucket_counts",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "include_prepended_source_length",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_counts",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "list[None]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "buckets",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "given_count",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "min_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_prepended_source_length",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prepended_source_length",
+            "type": [
+                "list",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_random_bucketed_data",
+            "type": [
+                "tuple[typing.Optional[list]]"
+            ]
+        }
+    ],
+    "check_equal@global": [
+        {
+            "category": "arg",
+            "name": "tensors1",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "tensors2",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "check_equal",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "define_bucket_tests",
+            "type": [
+                "list[tuple[typing.Union[int,list[int]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "define_parallel_bucket_tests",
+            "type": [
+                "list[tuple[typing.Union[int,float,list[tuple[int]]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "get_bucket_tests",
+            "type": [
+                "list[tuple[typing.Union[list[int],int,None]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens2ids_tests",
+            "type": [
+                "list[tuple[typing.Union[list[typing.Text],dict[typing.Text, int],list[int]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sequence_reader_tests",
+            "type": [
+                "list[tuple[typing.Union[list[typing.Text],bool]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "get_parallel_bucket_tests",
+            "type": [
+                "list[typing.Union[tuple[typing.Union[list[tuple[int]],int,tuple[int]]],tuple[typing.Union[list[tuple[int]],int,None]]]]"
+            ]
+        }
+    ],
+    "test_calculate_length_statistics@global": [
+        {
+            "category": "arg",
+            "name": "sources",
+            "type": [
+                "int",
+                "str",
+                "dict[str, torch.LongTensor]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "targets",
+            "type": [
+                "int",
+                "str",
+                "dict[str, torch.LongTensor]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_num_sents",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_mean",
+            "type": [
+                "float",
+                "bool",
+                "tuple[float]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_std",
+            "type": [
+                "float",
+                "list[float]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sources",
+            "type": [
+                "int",
+                "str",
+                "dict[str, torch.LongTensor]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "targets",
+            "type": [
+                "int",
+                "str",
+                "dict[str, torch.LongTensor]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_calculate_length_statistics",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_create_target_and_shifted_label_sequences@global": [
+        {
+            "category": "local",
+            "name": "expected_label",
+            "type": [
+                "torch.Tensor",
+                "torch.FloatTensor",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_target",
+            "type": [
+                "torch.Tensor",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lengths",
+            "type": [
+                "int",
+                "list[int]",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_create_target_and_shifted_label_sequences",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_define_buckets@global": [
+        {
+            "category": "arg",
+            "name": "max_seq_len",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "step",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_buckets",
+            "type": [
+                "int",
+                "None",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_seq_len",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "step",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_define_buckets",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_define_parallel_buckets@global": [
+        {
+            "category": "arg",
+            "name": "max_seq_len_source",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_seq_len_target",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "bucket_width",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "bucket_scaling",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "length_ratio",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_buckets",
+            "type": [
+                "int",
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_seq_len_source",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_seq_len_target",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_width",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_scaling",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length_ratio",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_define_parallel_buckets",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_batch_indices@global": [
+        {
+            "category": "local",
+            "name": "max_bucket_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "all_bucket_indices",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computed_bucket_indices",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_batch_indices",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_bucket@global": [
+        {
+            "category": "arg",
+            "name": "buckets",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "length",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_bucket",
+            "type": [
+                "str",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "buckets",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_bucket",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_parallel_bucket@global": [
+        {
+            "category": "arg",
+            "name": "buckets",
+            "type": [
+                "str",
+                "typing.IO",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "source_length",
+            "type": [
+                "str",
+                "typing.IO",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_length",
+            "type": [
+                "str",
+                "typing.IO",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_bucket_index",
+            "type": [
+                "int",
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_bucket",
+            "type": [
+                "int",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "buckets",
+            "type": [
+                "str",
+                "typing.IO",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_length",
+            "type": [
+                "str",
+                "typing.IO",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_length",
+            "type": [
+                "str",
+                "typing.IO",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_parallel_bucket",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_permutations@global": [
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "list[list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "d",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_counts",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "p_set",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pi_set",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_permutations",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_training_data_iters@global": [
+        {
+            "category": "arg",
+            "name": "end_of_prepending_tag",
+            "type": [
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "end_of_prepending_tag",
+            "type": [
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_text_prefix_token",
+            "type": [
+                "str",
+                "float",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_mean",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_std",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_line_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_line_count_empty",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "train_max_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dev_line_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dev_max_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_line_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_line_count_empty",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "test_max_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_source_factors",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_target_factors",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_training_data_iters",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_max_word_based_define_bucket_batch_sizes@global": [
+        {
+            "category": "arg",
+            "name": "length_ratio",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batch_sentences_multiple_of",
+            "type": [
+                "int",
+                "numpy.array",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_batch_sizes",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_seq_len",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length_ratio",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_sentences_multiple_of",
+            "type": [
+                "int",
+                "numpy.array",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_batch_sizes",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_max_word_based_define_bucket_batch_sizes",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_non_parallel_calculate_length_statistics@global": [
+        {
+            "category": "arg",
+            "name": "sources",
+            "type": [
+                "str",
+                "typing.TextIO",
+                "T"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "targets",
+            "type": [
+                "str",
+                "typing.TextIO",
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sources",
+            "type": [
+                "str",
+                "typing.TextIO",
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "targets",
+            "type": [
+                "str",
+                "typing.TextIO",
+                "T"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_non_parallel_calculate_length_statistics",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_nonparallel_iter@global": [
+        {
+            "category": "arg",
+            "name": "source_iterables",
+            "type": [
+                "int",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_iterables",
+            "type": [
+                "int",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_iterables",
+            "type": [
+                "int",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_iterables",
+            "type": [
+                "int",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_nonparallel_iter",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_not_source_token_parallel_iter@global": [
+        {
+            "category": "arg",
+            "name": "source_iterables",
+            "type": [
+                "bool",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_iterables",
+            "type": [
+                "bool",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_iterables",
+            "type": [
+                "bool",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_iterables",
+            "type": [
+                "bool",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_not_source_token_parallel_iter",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_not_target_token_parallel_iter@global": [
+        {
+            "category": "arg",
+            "name": "source_iterables",
+            "type": [
+                "int",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_iterables",
+            "type": [
+                "int",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_iterables",
+            "type": [
+                "int",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_iterables",
+            "type": [
+                "int",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_not_target_token_parallel_iter",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_parallel_data_set@global": [
+        {
+            "category": "arg",
+            "name": "include_prepended_source_length",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_prepended_source_length",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "work_dir",
+            "type": [
+                "TemporaryDirectory"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataset_loaded",
+            "type": [
+                "str",
+                "None",
+                "typing.Callable[typing.IO, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_parallel_data_set",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_parallel_data_set_fill_up@global": [
+        {
+            "category": "arg",
+            "name": "include_prepended_source_length",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_prepended_source_length",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_parallel_data_set_fill_up",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_parallel_data_set_permute@global": [
+        {
+            "category": "arg",
+            "name": "include_prepended_source_length",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataset",
+            "type": [
+                "list[str]",
+                "list[tuple[typing.Union[typing.Any,int]]]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "permutations",
+            "type": [
+                "int",
+                "tuple[float]",
+                "typing.Callable[None,None, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inverse_permutations",
+            "type": [
+                "list",
+                "typing.Callable[None, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dataset_restored",
+            "type": [
+                "list",
+                "typing.Callable[None,None,None,None,None,None,None,None, typing.Any]",
+                "list[list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "include_prepended_source_length",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_parallel_data_set_permute",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_parallel_iter@global": [
+        {
+            "category": "arg",
+            "name": "source_iterables",
+            "type": [
+                "numpy.ndarray",
+                "typing.Callable",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_iterables",
+            "type": [
+                "numpy.ndarray",
+                "typing.Callable",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected",
+            "type": [
+                "numpy.ndarray",
+                "typing.Callable",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_parallel_iter",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_parallel_sample_iter@global": [
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_counts",
+            "type": [
+                "list[typing.Optional[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "work_dir",
+            "type": [
+                "TemporaryDirectory"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_parallel_sample_iter",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sample_based_define_bucket_batch_sizes@global": [
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_seq_len",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_sample_based_define_bucket_batch_sizes",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sequence_reader@global": [
+        {
+            "category": "arg",
+            "name": "sequences",
+            "type": [
+                "vocab.Vocab",
+                "torch.device"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "use_vocab",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "add_bos",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "add_eos",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "work_dir",
+            "type": [
+                "TemporaryDirectory"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "f",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sequences",
+            "type": [
+                "vocab.Vocab",
+                "torch.device"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "use_vocab",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vocabulary",
+            "type": [
+                "None",
+                "sockeye.data_io.SentenceReader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "add_bos",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "add_eos",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "read_sequences",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_sequences",
+            "type": [
+                "list[None]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_sequence_reader",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sharded_and_parallel_iter_same_num_batches@global": [
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_batches_per_bucket",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_counts",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_batches",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "work_dir",
+            "type": [
+                "TemporaryDirectory"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "shard_fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "shard_fnames",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_batches_seen",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_sharded_and_parallel_iter_same_num_batches",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sharded_parallel_sample_iter@global": [
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_counts",
+            "type": [
+                "list[typing.Optional[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "work_dir",
+            "type": [
+                "TemporaryDirectory"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "shard1_fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "shard2_fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "shard_fnames",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_sharded_parallel_sample_iter",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_sharded_parallel_sample_iter_num_batches@global": [
+        {
+            "category": "local",
+            "name": "num_shards",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_batches_per_bucket",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_counts",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_batches_per_shard",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_batches",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "work_dir",
+            "type": [
+                "TemporaryDirectory"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "shard1_fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "shard2_fname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "shard_fnames",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_batches_seen",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_sharded_parallel_sample_iter_num_batches",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_strids2ids@global": [
+        {
+            "category": "arg",
+            "name": "tokens",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_ids",
+            "type": [
+                "str",
+                "numpy.array",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_strids2ids",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_tokens2ids@global": [
+        {
+            "category": "arg",
+            "name": "tokens",
+            "type": [
+                "int",
+                "list[int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "vocab",
+            "type": [
+                "int",
+                "list[int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_ids",
+            "type": [
+                "bool",
+                "set[int]",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "int",
+                "list[int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vocab",
+            "type": [
+                "int",
+                "list[int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_tokens2ids",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_word_based_define_bucket_batch_sizes@global": [
+        {
+            "category": "arg",
+            "name": "length_ratio",
+            "type": [
+                "int",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "batch_sentences_multiple_of",
+            "type": [
+                "int",
+                "torch.Tensor",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_batch_sizes",
+            "type": [
+                "list[int]",
+                "list[list[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_seq_len",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length_ratio",
+            "type": [
+                "int",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_sentences_multiple_of",
+            "type": [
+                "int",
+                "torch.Tensor",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_batch_sizes",
+            "type": [
+                "list[int]",
+                "list[list[int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_word_based_define_bucket_batch_sizes",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

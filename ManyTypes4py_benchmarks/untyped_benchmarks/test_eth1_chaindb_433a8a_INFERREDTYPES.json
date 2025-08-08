@@ -1,0 +1,1358 @@
+{
+    "block@global": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "dict[str, str]",
+                "list[dict]",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "header",
+            "type": [
+                "dict[str, str]",
+                "list[dict]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "dict[str, str]",
+                "list[dict]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header",
+            "type": [
+                "dict[str, str]",
+                "list[dict]",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "block",
+            "type": [
+                "dict",
+                "str",
+                "int"
+            ]
+        }
+    ],
+    "chain@global": [
+        {
+            "category": "arg",
+            "name": "chain_without_block_validation",
+            "type": [
+                "eth.chains.base.BaseChain",
+                "bool",
+                "bytearray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_without_block_validation",
+            "type": [
+                "eth.chains.base.BaseChain",
+                "bool",
+                "bytearray"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "chain",
+            "type": [
+                "eth.chains.base.BaseChain",
+                "bool",
+                "bytearray"
+            ]
+        }
+    ],
+    "chaindb@global": [
+        {
+            "category": "arg",
+            "name": "base_db",
+            "type": [
+                "eth.abc.AtomicDatabaseAPI",
+                "typing.Protocol"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "base_db",
+            "type": [
+                "eth.abc.AtomicDatabaseAPI",
+                "typing.Protocol"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "chaindb",
+            "type": [
+                "ChainDB"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "A_ADDRESS",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "B_ADDRESS",
+            "type": [
+                "bytes"
+            ]
+        }
+    ],
+    "header@global": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "difficulty",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gas_limit",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "header",
+            "type": [
+                "BlockHeader"
+            ]
+        }
+    ],
+    "mine_blocks_with_access_list_receipts@global": [
+        {
+            "category": "arg",
+            "name": "chain",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_blocks",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_tx_per_block",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "funded_address",
+            "type": [
+                "bytes",
+                "eth.chains.base.MiningChain",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "funded_address_private_key",
+            "type": [
+                "bytes",
+                "eth.chains.base.MiningChain",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_vm",
+            "type": [
+                "eth.abc.ComputationAPI",
+                "nucypher.blockchain.eth.registry.AllocationRegistry",
+                "eth.chains.base.MiningChain"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_blocks",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_receipts",
+            "type": [
+                "list",
+                "list[eth.rlp.headers.BlockHeader]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_tx_per_block",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "funded_address",
+            "type": [
+                "bytes",
+                "eth.chains.base.MiningChain",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "funded_address_private_key",
+            "type": [
+                "bytes",
+                "eth.chains.base.MiningChain",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tx",
+            "type": [
+                "list[bytes]",
+                "bytes",
+                "duniterpy.documents.transaction.Transaction"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_block",
+            "type": [
+                "int",
+                "eth.rlp.blocks.BaseBlock",
+                "eth.rlp.headers.BlockHeader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tx_receipt",
+            "type": [
+                "eth.rlp.headers.BlockHeader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "eth.abc.ComputationAPI",
+                "list[bytes]",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "mine_blocks_with_access_list_receipts",
+            "type": [
+                "typing.Generator[tuple[list[eth.rlp.headers.BlockHeader]]]"
+            ]
+        }
+    ],
+    "mine_blocks_with_receipts@global": [
+        {
+            "category": "arg",
+            "name": "chain",
+            "type": [
+                "eth.chains.base.MiningChain",
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_blocks",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_tx_per_block",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "funded_address",
+            "type": [
+                "str",
+                "eth.chains.base.MiningChain"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "funded_address_private_key",
+            "type": [
+                "str",
+                "eth.chains.base.MiningChain"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_blocks",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_receipts",
+            "type": [
+                "list",
+                "list[eth.rlp.headers.BlockHeader]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_tx_per_block",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "eth.chains.base.MiningChain",
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "funded_address",
+            "type": [
+                "str",
+                "eth.chains.base.MiningChain"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "funded_address_private_key",
+            "type": [
+                "str",
+                "eth.chains.base.MiningChain"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tx",
+            "type": [
+                "list[bytes]",
+                "duniterpy.documents.transaction.Transaction",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_block",
+            "type": [
+                "int",
+                "eth.rlp.blocks.BaseBlock",
+                "eth.rlp.headers.BlockHeader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tx_receipt",
+            "type": [
+                "eth.rlp.headers.BlockHeader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "eth.abc.ComputationAPI",
+                "list[bytes]",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "mine_blocks_with_receipts",
+            "type": [
+                "typing.Generator[tuple[list[eth.rlp.headers.BlockHeader]]]"
+            ]
+        }
+    ],
+    "set_empty_root@global": [
+        {
+            "category": "arg",
+            "name": "chaindb",
+            "type": [
+                "eth.rlp.headers.BlockHeader"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "header",
+            "type": [
+                "eth.rlp.headers.BlockHeader",
+                "eth.abc.BlockHeaderAPI",
+                "typing.Iterable[eth.abc.BlockHeaderAPI]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header",
+            "type": [
+                "eth.rlp.headers.BlockHeader",
+                "eth.abc.BlockHeaderAPI",
+                "typing.Iterable[eth.abc.BlockHeaderAPI]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_empty_root",
+            "type": []
+        }
+    ],
+    "test_block_gap_tracking@global": [
+        {
+            "category": "arg",
+            "name": "chain",
+            "type": [
+                "typing.Callable",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "funded_address",
+            "type": [
+                "bool",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "funded_address_private_key",
+            "type": [
+                "bool",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "has_uncle",
+            "type": [
+                "int",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "has_transaction",
+            "type": [
+                "bool",
+                "tuple[typing.Union[str,int]]",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "can_fetch_block",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "typing.Callable",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "funded_address",
+            "type": [
+                "bool",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "funded_address_private_key",
+            "type": [
+                "bool",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "uncle",
+            "type": [
+                "dict",
+                "list[risesdk.api.delegates.DelegateInfo]",
+                "typing.Callable[None, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "has_uncle",
+            "type": [
+                "int",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "uncles",
+            "type": [
+                "list[typing.Union[dict,list[risesdk.api.delegates.DelegateInfo],typing.Callable[None, typing.Any]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "has_transaction",
+            "type": [
+                "bool",
+                "tuple[typing.Union[str,int]]",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transactions",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "main_header_6",
+            "type": [
+                "str",
+                "list",
+                "dict[str, dict]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "main_header_6_score",
+            "type": [
+                "int",
+                "dict[str, int]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "actual_headers",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "can_fetch_block",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_block_gap_tracking",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_chaindb_add_block_number_to_hash_lookup@global": [
+        {
+            "category": "arg",
+            "name": "chaindb",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "block",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_chaindb_add_block_number_to_hash_lookup",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_chaindb_get_access_list_receipt_and_tx_by_index@global": [
+        {
+            "category": "arg",
+            "name": "chain",
+            "type": [
+                "raiden.constants.EthClient"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "funded_address",
+            "type": [
+                "eth.rlp.blocks.BaseBlock",
+                "eth.abc.BlockHeaderAPI",
+                "bytearray"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "funded_address_private_key",
+            "type": [
+                "eth.rlp.blocks.BaseBlock",
+                "eth.abc.BlockHeaderAPI",
+                "bytearray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "NUMBER_BLOCKS_IN_CHAIN",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TRANSACTIONS_IN_BLOCK",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "REQUIRED_BLOCK_NUMBER",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "REQUIRED_RECEIPT_INDEX",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "raiden.constants.EthClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "funded_address",
+            "type": [
+                "eth.rlp.blocks.BaseBlock",
+                "eth.abc.BlockHeaderAPI",
+                "bytearray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "funded_address_private_key",
+            "type": [
+                "eth.rlp.blocks.BaseBlock",
+                "eth.abc.BlockHeaderAPI",
+                "bytearray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "receipt_builder",
+            "type": [
+                "dict[str, typing.Any]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chaindb_retrieved_receipt",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chaindb_retrieved_tx",
+            "type": [
+                "str",
+                "int",
+                "enum.auto"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_chaindb_get_access_list_receipt_and_tx_by_index",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_chaindb_get_block_header_by_hash@global": [
+        {
+            "category": "arg",
+            "name": "chaindb",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "bytes",
+                "typing.Sequence"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.abc.SignedTransactionAPI",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "header",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "typing.Callable",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.abc.SignedTransactionAPI",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chaindb",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "bytes",
+                "typing.Sequence"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "typing.Callable",
+                "typing.Type",
+                "str",
+                "dict",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_chaindb_get_block_header_by_hash",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_chaindb_get_canonical_block_hash@global": [
+        {
+            "category": "arg",
+            "name": "chaindb",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "block",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "test_chaindb_get_canonical_block_hash",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_chaindb_get_receipt_and_tx_by_index@global": [
+        {
+            "category": "arg",
+            "name": "chain",
+            "type": [
+                "raiden.constants.EthClient",
+                "eth.vm.computation.BaseComputation"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "funded_address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "funded_address_private_key",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "NUMBER_BLOCKS_IN_CHAIN",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TRANSACTIONS_IN_BLOCK",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "REQUIRED_BLOCK_NUMBER",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "REQUIRED_RECEIPT_INDEX",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "raiden.constants.EthClient",
+                "eth.vm.computation.BaseComputation"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "funded_address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "funded_address_private_key",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "receipt_builder",
+            "type": [
+                "dict[str, typing.Any]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chaindb_retrieved_receipt",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chaindb_retrieved_tx",
+            "type": [
+                "str",
+                "int",
+                "enum.auto"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_chaindb_get_receipt_and_tx_by_index",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_chaindb_get_score@global": [
+        {
+            "category": "arg",
+            "name": "chaindb",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "genesis",
+            "type": [
+                "BlockHeader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "genesis_score",
+            "type": [
+                "bytes",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block1",
+            "type": [
+                "BlockHeader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block1_score",
+            "type": [
+                "bytes",
+                "int",
+                "bytearray"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_chaindb_get_score",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_chaindb_persist_block@global": [
+        {
+            "category": "arg",
+            "name": "chaindb",
+            "type": [
+                "typing.Callable",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "chaindb",
+            "type": [
+                "typing.Callable",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_chaindb_persist_block",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_chaindb_persist_header@global": [
+        {
+            "category": "arg",
+            "name": "chaindb",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader",
+                "eth.abc.DatabaseAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "header",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader",
+                "eth.abc.DatabaseAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chaindb",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader",
+                "eth.abc.DatabaseAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader",
+                "eth.abc.DatabaseAPI"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_chaindb_persist_header",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_chaindb_persist_header_unknown_parent@global": [
+        {
+            "category": "arg",
+            "name": "chaindb",
+            "type": [
+                "eth.HeaderParams",
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "header",
+            "type": [
+                "bytes",
+                "typing.Deque",
+                "eth.abc.DatabaseAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "seed",
+            "type": [
+                "bytes",
+                "typing.Deque",
+                "eth.abc.DatabaseAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header",
+            "type": [
+                "bytes",
+                "typing.Deque",
+                "eth.abc.DatabaseAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "seed",
+            "type": [
+                "bytes",
+                "typing.Deque",
+                "eth.abc.DatabaseAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "n_header",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chaindb",
+            "type": [
+                "eth.HeaderParams",
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_chaindb_persist_header_unknown_parent",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_chaindb_persist_unexecuted_block@global": [
+        {
+            "category": "arg",
+            "name": "chain",
+            "type": [
+                "dict",
+                "eth.abc.ChainAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chain_without_block_validation_factory",
+            "type": [
+                "eth.abc.MiningChainAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "funded_address",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "funded_address_private_key",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "use_persist_unexecuted_block",
+            "type": [
+                "bool",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "NUMBER_BLOCKS_IN_CHAIN",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TRANSACTIONS_IN_BLOCK",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "REQUIRED_BLOCK_NUMBER",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "REQUIRED_RECEIPT_INDEX",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "dict",
+                "eth.abc.ChainAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "use_persist_unexecuted_block",
+            "type": [
+                "bool",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chaindb_retrieved_tx",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "receipt_builder",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chaindb_retrieved_receipt",
+            "type": [
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_chaindb_persist_unexecuted_block",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_chaindb_raises_blocknotfound_on_missing_transactions@global": [
+        {
+            "category": "arg",
+            "name": "VM",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chaindb",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader",
+                "eth.abc.SignedTransactionAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "header",
+            "type": [
+                "dict",
+                "eth.abc.HeaderChainAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header",
+            "type": [
+                "dict",
+                "eth.abc.HeaderChainAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bad_header",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chaindb",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader",
+                "eth.abc.SignedTransactionAPI"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_chaindb_raises_blocknotfound_on_missing_transactions",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_chaindb_raises_blocknotfound_on_missing_uncles@global": [
+        {
+            "category": "arg",
+            "name": "VM",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chaindb",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader",
+                "eth.abc.DatabaseAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "header",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader",
+                "rotkehlchen.db.settings.ModifiableDBSettings"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader",
+                "rotkehlchen.db.settings.ModifiableDBSettings"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bad_header",
+            "type": [
+                "dict[bytes, bytes]",
+                "dict",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chaindb",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader",
+                "eth.abc.DatabaseAPI"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_chaindb_raises_blocknotfound_on_missing_uncles",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

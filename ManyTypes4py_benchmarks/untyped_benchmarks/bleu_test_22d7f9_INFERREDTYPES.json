@@ -1,0 +1,326 @@
+{
+    "global@global": [],
+    "multiple_runs@global": [
+        {
+            "category": "arg",
+            "name": "global_rank",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "world_size",
+            "type": [
+                "int",
+                "tuple[float]",
+                "torch.device"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "gpu_id",
+            "type": [
+                "int",
+                "tuple[float]",
+                "torch.device"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "metric",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "metric_kwargs",
+            "type": [
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "desired_values",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exact",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "kwargs",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "argname",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_kwargs",
+            "type": [
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "global_rank",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "desired_values",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "multiple_runs",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "setup_method@BleuTest": [
+        {
+            "category": "local",
+            "name": "metric",
+            "type": [
+                "BLEU"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "setup_method",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_bleu_computed_correctly@BleuTest": [
+        {
+            "category": "arg",
+            "name": "device",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bleu",
+            "type": [
+                "float",
+                "set",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_bleu_computed_correctly",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_bleu_computed_with_zero_counts@BleuTest": [
+        {
+            "category": "arg",
+            "name": "device",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_bleu_computed_with_zero_counts",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_distributed_bleu@BleuTest": [
+        {
+            "category": "local",
+            "name": "predictions",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gold_targets",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_kwargs",
+            "type": [
+                "dict[typing.Text, list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "desired_values",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_distributed_bleu",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_valid_tokens_mask@BleuTest": [
+        {
+            "category": "arg",
+            "name": "device",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_valid_tokens_mask",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_multiple_distributed_runs@BleuTest": [
+        {
+            "category": "local",
+            "name": "predictions",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gold_targets",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "metric_kwargs",
+            "type": [
+                "dict[typing.Text, list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "desired_values",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_multiple_distributed_runs",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_ngrams@BleuTest": [
+        {
+            "category": "arg",
+            "name": "device",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "device",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "counts",
+            "type": [
+                "Counter"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unigram_check",
+            "type": [
+                "dict[tuple[int], int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bigram_check",
+            "type": [
+                "dict[tuple[int], int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trigram_check",
+            "type": [
+                "dict[tuple[int], int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_ngrams",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

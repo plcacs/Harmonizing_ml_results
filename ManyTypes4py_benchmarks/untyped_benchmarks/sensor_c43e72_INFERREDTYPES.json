@@ -1,0 +1,270 @@
+{
+    "__init__@EDL21": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "config",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "async_add_entities",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "_registered_obis",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_proto",
+            "type": [
+                "SmlProtocol"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@EDL21Entity": [
+        {
+            "category": "arg",
+            "name": "electricity_id",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "obis",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "entity_description",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "telegram",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "_async_remove_dispatcher",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_unique_id",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_attr_device_info",
+            "type": [
+                "DeviceInfo"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_added_to_hass@EDL21Entity": [
+        {
+            "category": "return",
+            "name": "async_added_to_hass",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_setup_entry@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "config_entry",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "async_add_entities",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "api",
+            "type": [
+                "EDL21"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "async_setup_entry",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "async_will_remove_from_hass@EDL21Entity": [
+        {
+            "category": "return",
+            "name": "async_will_remove_from_hass",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "connect@EDL21": [
+        {
+            "category": "return",
+            "name": "connect",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "event@EDL21": [
+        {
+            "category": "arg",
+            "name": "message_body",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "event",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_entities",
+            "type": [
+                "list",
+                "list[EDL21Entity]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "obis",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SENSORS",
+            "type": [
+                "dict[, SensorEntityDescription]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entity_description",
+            "type": [
+                "SensorEntityDescription"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "SENSOR_TYPES",
+            "type": [
+                "tuple[SensorEntityDescription]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "desc",
+            "type": [
+                "SensorEntityDescription"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SENSORS",
+            "type": [
+                "dict[, SensorEntityDescription]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SENSOR_UNIT_MAPPING",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        }
+    ],
+    "handle_telegram@EDL21Entity": [
+        {
+            "category": "arg",
+            "name": "electricity_id",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "telegram",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "handle_telegram",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "native_unit_of_measurement@EDL21Entity": [
+        {
+            "category": "local",
+            "name": "unit",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "native_unit_of_measurement",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "SENSOR_UNIT_MAPPING",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        }
+    ],
+    "native_value@EDL21Entity": [
+        {
+            "category": "return",
+            "name": "native_value",
+            "type": []
+        }
+    ]
+}

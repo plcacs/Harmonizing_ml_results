@@ -1,0 +1,405 @@
+{
+    "check_finality@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "bool",
+                "typing.Sequence[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "int",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prev_state",
+            "type": [
+                "int",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "current_justified_changed",
+            "type": [
+                "bool",
+                "typing.Sequence[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "previous_justified_changed",
+            "type": [
+                "bool",
+                "typing.Sequence[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "finalized_changed",
+            "type": [
+                "bool",
+                "typing.Sequence[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_justified_changed",
+            "type": [
+                "bool",
+                "typing.Sequence[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "previous_justified_changed",
+            "type": [
+                "bool",
+                "typing.Sequence[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "finalized_changed",
+            "type": [
+                "bool",
+                "typing.Sequence[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_finality",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [],
+    "test_finality_no_updates_at_genesis@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "str",
+                "prefecengine.state.State",
+                "dict[\"core.Edge\", \"state.State\"]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "str",
+                "prefecengine.state.State",
+                "dict[\"core.Edge\", \"state.State\"]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "str",
+                "prefecengine.state.State",
+                "dict[\"core.Edge\", \"state.State\"]",
+                "int",
+                "dict[str, int]",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_finality_no_updates_at_genesis",
+            "type": [
+                "typing.Generator[tuple[typing.Union[typing.Text,prefecengine.state.State,dict[\"core.Edge\", \"state.State\"]]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,list]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,int,dict[str, int],list,prefecengine.state.State,dict[\"core.Edge\", \"state.State\"]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blocks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "str",
+                "prefecengine.state.State",
+                "dict[\"core.Edge\", \"state.State\"]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prev_state",
+            "type": [
+                "list[str]",
+                "dict[str, int]",
+                "str"
+            ]
+        }
+    ],
+    "test_finality_rule_1@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "dict[\"core.Edge\", \"state.State\"]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "dict[\"core.Edge\", \"state.State\"]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "dict[\"core.Edge\", \"state.State\"]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "dict[\"core.Edge\", \"state.State\"]",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_finality_rule_1",
+            "type": [
+                "typing.Generator[tuple[typing.Union[typing.Text,mythril.laser.ethereum.state.global_state.GlobalState,dict[\"core.Edge\", \"state.State\"]]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,list]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,list,mythril.laser.ethereum.state.global_state.GlobalState,dict[\"core.Edge\", \"state.State\"]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blocks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prev_state",
+            "type": [
+                "list[str]",
+                "dict[str, int]",
+                "str"
+            ]
+        }
+    ],
+    "test_finality_rule_2@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "dict[\"core.Edge\", \"state.State\"]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "dict[\"core.Edge\", \"state.State\"]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "dict[\"core.Edge\", \"state.State\"]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "dict[\"core.Edge\", \"state.State\"]",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_finality_rule_2",
+            "type": [
+                "typing.Generator[tuple[typing.Union[typing.Text,mythril.laser.ethereum.state.global_state.GlobalState,dict[\"core.Edge\", \"state.State\"]]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,list]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,mythril.laser.ethereum.state.global_state.GlobalState,dict[\"core.Edge\", \"state.State\"],list]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blocks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prev_state",
+            "type": [
+                "list[str]",
+                "str",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_blocks",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "test_finality_rule_3@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "dict[\"core.Edge\", \"state.State\"]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "dict[\"core.Edge\", \"state.State\"]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "dict[\"core.Edge\", \"state.State\"]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "dict[\"core.Edge\", \"state.State\"]",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_finality_rule_3",
+            "type": [
+                "typing.Generator[tuple[typing.Union[typing.Text,mythril.laser.ethereum.state.global_state.GlobalState,dict[\"core.Edge\", \"state.State\"]]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,list]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blocks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prev_state",
+            "type": [
+                "list[str]",
+                "str",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_blocks",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "test_finality_rule_4@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "dict[\"core.Edge\", \"state.State\"]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "dict[\"core.Edge\", \"state.State\"]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "dict[\"core.Edge\", \"state.State\"]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "dict[\"core.Edge\", \"state.State\"]",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_finality_rule_4",
+            "type": [
+                "typing.Generator[tuple[typing.Union[typing.Text,mythril.laser.ethereum.state.global_state.GlobalState,dict[\"core.Edge\", \"state.State\"]]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,list]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,list,mythril.laser.ethereum.state.global_state.GlobalState,dict[\"core.Edge\", \"state.State\"]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blocks",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prev_state",
+            "type": [
+                "list[str]",
+                "str",
+                "dict[str, int]"
+            ]
+        }
+    ]
+}

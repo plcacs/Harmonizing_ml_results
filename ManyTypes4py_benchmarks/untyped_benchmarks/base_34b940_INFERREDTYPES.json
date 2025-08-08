@@ -1,0 +1,1152 @@
+{
+    "__init__@BlueprintManager": [
+        {
+            "category": "arg",
+            "name": "initial",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "applied",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initial",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_enabled",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_active",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@Web": [
+        {
+            "category": "arg",
+            "name": "app",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "views",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reverse_names",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blueprints",
+            "type": [
+                "list",
+                "BlueprintManager"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_apply_blueprint@BlueprintManager": [
+        {
+            "category": "arg",
+            "name": "web",
+            "type": [
+                "faustypes.AppT",
+                "str",
+                "aiohttp.web.Application"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prefix",
+            "type": [
+                "str",
+                "faustypes.web.Web",
+                "faustypes.AppT"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "bp",
+            "type": [
+                "str",
+                "faustypes.AppT",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bp",
+            "type": [
+                "str",
+                "faustypes.AppT",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "web",
+            "type": [
+                "faustypes.AppT",
+                "str",
+                "aiohttp.web.Application"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prefix",
+            "type": [
+                "str",
+                "faustypes.web.Web",
+                "faustypes.AppT"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_apply_blueprint",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_bytes_to_response@Web": [
+        {
+            "category": "arg",
+            "name": "s",
+            "type": [
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s",
+            "type": [
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payload",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "headers",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "body",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "h",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_bytes_to_response",
+            "type": [
+                "tuple[typing.Union[HTTPStatus,str]]"
+            ]
+        }
+    ],
+    "_headers_serialize@Web": [
+        {
+            "category": "arg",
+            "name": "headers",
+            "type": [
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "headers",
+            "type": [
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k",
+            "type": [
+                "_bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "v",
+            "type": [
+                "_bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_headers_serialize",
+            "type": [
+                "str",
+                "bytes",
+                "None"
+            ]
+        }
+    ],
+    "_quote_for_url@Web": [
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_quote_for_url",
+            "type": [
+                "str",
+                "None",
+                "set[str]"
+            ]
+        }
+    ],
+    "_response_to_bytes@Web": [
+        {
+            "category": "arg",
+            "name": "status",
+            "type": [
+                "int",
+                "typing.Mapping",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "headers",
+            "type": [
+                "int",
+                "typing.Mapping",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "body",
+            "type": [
+                "int",
+                "typing.Mapping",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "status",
+            "type": [
+                "int",
+                "typing.Mapping",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "headers",
+            "type": [
+                "int",
+                "typing.Mapping",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "body",
+            "type": [
+                "int",
+                "typing.Mapping",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_response_to_bytes",
+            "type": [
+                "bytes",
+                "str"
+            ]
+        }
+    ],
+    "_splitheader@Web": [
+        {
+            "category": "arg",
+            "name": "header",
+            "type": [
+                "str",
+                "bytes",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header",
+            "type": [
+                "str",
+                "bytes",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_splitheader",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "add@BlueprintManager": [
+        {
+            "category": "arg",
+            "name": "prefix",
+            "type": [
+                "str",
+                "typing.Sequence[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "blueprint",
+            "type": [
+                "str",
+                "typing.Sequence[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prefix",
+            "type": [
+                "str",
+                "typing.Sequence[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blueprint",
+            "type": [
+                "str",
+                "typing.Sequence[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "add",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "add_static@Web": [
+        {
+            "category": "arg",
+            "name": "prefix",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "path",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "add_static",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "add_view@Web": [
+        {
+            "category": "arg",
+            "name": "view_cls",
+            "type": [
+                "str",
+                "typing.Callable",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prefix",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "cors_options",
+            "type": [
+                "None",
+                "typing.Callable",
+                "str",
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prefix",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cors_options",
+            "type": [
+                "None",
+                "typing.Callable",
+                "str",
+                "T"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "add_view",
+            "type": []
+        }
+    ],
+    "apply@BlueprintManager": [
+        {
+            "category": "arg",
+            "name": "web",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "applied",
+            "type": [
+                "typing.Type",
+                "str",
+                "list[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "web",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "apply",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "body@Response": [
+        {
+            "category": "return",
+            "name": "body",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "body_length@Response": [
+        {
+            "category": "return",
+            "name": "body_length",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "bytes@Web": [
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "str",
+                "int",
+                "typing.MutableMapping"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content_type",
+            "type": [
+                "None",
+                "str",
+                "int",
+                "typing.MutableMapping"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "status",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "reason",
+            "type": [
+                "None",
+                "str",
+                "int",
+                "typing.MutableMapping"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "headers",
+            "type": [
+                "None",
+                "str",
+                "int",
+                "typing.MutableMapping"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "bytes",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "bytes_to_response@Web": [
+        {
+            "category": "arg",
+            "name": "s",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "bytes_to_response",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "can_read_body@Request": [
+        {
+            "category": "return",
+            "name": "can_read_body",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "charset@Response": [
+        {
+            "category": "return",
+            "name": "charset",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "chunked@Response": [
+        {
+            "category": "return",
+            "name": "chunked",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "compression@Response": [
+        {
+            "category": "return",
+            "name": "compression",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "content_length@Response": [
+        {
+            "category": "return",
+            "name": "content_length",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "content_type@Response": [
+        {
+            "category": "return",
+            "name": "content_type",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "cookies@Request": [
+        {
+            "category": "return",
+            "name": "cookies",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "__all__",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_bytes",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_BPArg",
+            "type": [
+                "str",
+                "list",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_BPList",
+            "type": [
+                "list[str]",
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DEFAULT_BLUEPRINTS",
+            "type": [
+                "list[tuple[typing.Text]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "PRODUCTION_BLUEPRINTS",
+            "type": [
+                "list[tuple[typing.Text]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "DEBUG_BLUEPRINTS",
+            "type": [
+                "list[tuple[typing.Text]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONTENT_SEPARATOR",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "HEADER_SEPARATOR",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "HEADER_KEY_VALUE_SEPARATOR",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blueprints",
+            "type": [
+                "BlueprintManager"
+            ]
+        }
+    ],
+    "headers@Response": [
+        {
+            "category": "return",
+            "name": "headers",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "html@Web": [
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "str",
+                "int",
+                "typing.MutableMapping"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content_type",
+            "type": [
+                "None",
+                "str",
+                "int",
+                "typing.MutableMapping"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "status",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "reason",
+            "type": [
+                "None",
+                "str",
+                "int",
+                "typing.MutableMapping"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "headers",
+            "type": [
+                "None",
+                "str",
+                "int",
+                "typing.MutableMapping"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "html",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "init_server@Web": [
+        {
+            "category": "return",
+            "name": "init_server",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "json@Request": [
+        {
+            "category": "return",
+            "name": "json",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "json@Web": [
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "str",
+                "typing.MutableMapping",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content_type",
+            "type": [
+                "None",
+                "str",
+                "typing.MutableMapping",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "status",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "reason",
+            "type": [
+                "None",
+                "str",
+                "typing.MutableMapping",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "headers",
+            "type": [
+                "None",
+                "str",
+                "typing.MutableMapping",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "json",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "keep_alive@Response": [
+        {
+            "category": "return",
+            "name": "keep_alive",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "match_info@Request": [
+        {
+            "category": "return",
+            "name": "match_info",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "post@Request": [
+        {
+            "category": "return",
+            "name": "post",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "query@Request": [
+        {
+            "category": "return",
+            "name": "query",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "read@Request": [
+        {
+            "category": "return",
+            "name": "read",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "read_request_content@Web": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "aiohttp.web.Request",
+                "dict",
+                "django.http.requesHttpRequest"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "read_request_content",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "response_to_bytes@Web": [
+        {
+            "category": "arg",
+            "name": "response",
+            "type": [
+                "bytes",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "response_to_bytes",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "route@Web": [
+        {
+            "category": "arg",
+            "name": "pattern",
+            "type": [
+                "str",
+                "typing.Callable",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "handler",
+            "type": [
+                "str",
+                "typing.Callable",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "cors_options",
+            "type": [
+                "None",
+                "str",
+                "typing.Callable",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "route",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "status@Response": [
+        {
+            "category": "return",
+            "name": "status",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "text@Request": [
+        {
+            "category": "return",
+            "name": "text",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "text@Web": [
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "str",
+                "int",
+                "typing.MutableMapping"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content_type",
+            "type": [
+                "None",
+                "str",
+                "int",
+                "typing.MutableMapping"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "status",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "reason",
+            "type": [
+                "None",
+                "str",
+                "int",
+                "typing.MutableMapping"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "headers",
+            "type": [
+                "None",
+                "str",
+                "int",
+                "typing.MutableMapping"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "text",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "url@Web": [
+        {
+            "category": "return",
+            "name": "url",
+            "type": [
+                "URL"
+            ]
+        }
+    ],
+    "url_for@Web": [
+        {
+            "category": "arg",
+            "name": "view_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "view_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "url_for",
+            "type": []
+        }
+    ],
+    "wsgi@Web": [
+        {
+            "category": "return",
+            "name": "wsgi",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

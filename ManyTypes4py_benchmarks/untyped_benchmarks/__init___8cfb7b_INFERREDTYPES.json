@@ -1,0 +1,489 @@
+{
+    "add_receipt_to_header@FrontierVM": [
+        {
+            "category": "arg",
+            "name": "old_header",
+            "type": [
+                "eth.abc.ReceiptAPI",
+                "eth.abc.BlockHeaderAPI",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "receipt",
+            "type": [
+                "eth.abc.ReceiptAPI",
+                "eth.abc.BlockHeaderAPI",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "old_header",
+            "type": [
+                "eth.abc.ReceiptAPI",
+                "eth.abc.BlockHeaderAPI",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "receipt",
+            "type": [
+                "eth.abc.ReceiptAPI",
+                "eth.abc.BlockHeaderAPI",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "add_receipt_to_header",
+            "type": [
+                "bytes",
+                "str"
+            ]
+        }
+    ],
+    "calculate_net_gas_refund@FrontierVM": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "int",
+                "bytes",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "consumed_gas",
+            "type": [
+                "int",
+                "eth.ChainGaps",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "gross_refund",
+            "type": [
+                "int",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "consumed_gas",
+            "type": [
+                "int",
+                "eth.ChainGaps",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_refund",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gross_refund",
+            "type": [
+                "int",
+                "float",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "calculate_net_gas_refund",
+            "type": [
+                "str",
+                "int",
+                "float"
+            ]
+        }
+    ],
+    "finalize_gas_used@FrontierVM": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "tuple[int]",
+                "eth.abc.ComputationAPI",
+                "eth.abc.MiningChainAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "transaction",
+            "type": [
+                "eth.abc.DatabaseAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "computation",
+            "type": [
+                "eth.abc.ComputationAPI",
+                "eth.abc.SignedTransactionAPI",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "eth.abc.ComputationAPI",
+                "eth.abc.SignedTransactionAPI",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gas_remaining",
+            "type": [
+                "int",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transaction",
+            "type": [
+                "eth.abc.DatabaseAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "consumed_gas",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gross_refund",
+            "type": [
+                "int",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cls",
+            "type": [
+                "tuple[int]",
+                "eth.abc.ComputationAPI",
+                "eth.abc.MiningChainAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "net_refund",
+            "type": [
+                "nucypher.blockchain.eth.token.Stake",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "finalize_gas_used",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "get_block_reward@FrontierVM": [
+        {
+            "category": "return",
+            "name": "get_block_reward",
+            "type": []
+        }
+    ],
+    "get_nephew_reward@FrontierVM": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "T",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cls",
+            "type": [
+                "T",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_nephew_reward",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "get_uncle_reward@FrontierVM": [
+        {
+            "category": "arg",
+            "name": "block_number",
+            "type": [
+                "int",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "uncle",
+            "type": [
+                "int",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "uncle",
+            "type": [
+                "int",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "int",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_uncle_reward",
+            "type": []
+        }
+    ],
+    "global@global": [],
+    "increment_blob_gas_used@FrontierVM": [
+        {
+            "category": "arg",
+            "name": "old_header",
+            "type": [
+                "BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader",
+                "SignedTransactionAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "transaction",
+            "type": [
+                "BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader",
+                "SignedTransactionAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "old_header",
+            "type": [
+                "BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader",
+                "SignedTransactionAPI"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "increment_blob_gas_used",
+            "type": [
+                "BlockHeaderAPI",
+                "eth.rlp.headers.BlockHeader",
+                "SignedTransactionAPI"
+            ]
+        }
+    ],
+    "make_frontier_receipt@global": [
+        {
+            "category": "arg",
+            "name": "computation",
+            "type": [
+                "typing.Callable",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "new_cumulative_gas_used",
+            "type": [
+                "bool",
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "typing.Callable",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logs",
+            "type": [
+                "list[Log]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_cumulative_gas_used",
+            "type": [
+                "bool",
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "receipt",
+            "type": [
+                "Receipt"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "make_frontier_receipt",
+            "type": [
+                "Receipt"
+            ]
+        }
+    ],
+    "make_receipt@FrontierVM": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "int",
+                "eth.rlp.transactions.BaseTransaction"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "base_header",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "int",
+                "eth.rlp.transactions.BaseTransaction"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "transaction",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "int",
+                "eth.rlp.transactions.BaseTransaction"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "computation",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "bool",
+                "nucypher.blockchain.eth.interfaces.BlockchainDeployerInterface",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "base_header",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "int",
+                "eth.rlp.transactions.BaseTransaction"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cls",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "int",
+                "eth.rlp.transactions.BaseTransaction"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transaction",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "int",
+                "eth.rlp.transactions.BaseTransaction"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "eth.abc.DatabaseAPI",
+                "eth.abc.BlockHeaderAPI",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gas_used",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "receipt_without_state_root",
+            "type": [
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "bool",
+                "nucypher.blockchain.eth.interfaces.BlockchainDeployerInterface",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "make_receipt",
+            "type": [
+                "eth.abc.ChainAPI",
+                "str",
+                "dict[str, str]"
+            ]
+        }
+    ]
+}

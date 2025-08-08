@@ -1,0 +1,862 @@
+{
+    "event_catcher@TestCheckForcingConcurrentBatches": [
+        {
+            "category": "return",
+            "name": "event_catcher",
+            "type": [
+                "EventCatcher"
+            ]
+        }
+    ],
+    "global@global": [],
+    "manifest_loader@TestCheckForcingConcurrentBatches": [
+        {
+            "category": "arg",
+            "name": "patched_open",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "patched_os_exist",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "patched_state_check",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_project",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_project_",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "manifest_loader",
+            "type": [
+                "ManifestLoader"
+            ]
+        }
+    ],
+    "set_required_mocks@TestGetFullManifest": [
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "pytest_mock.MockFixture"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "manifest",
+            "type": [
+                "pytest_mock.MockFixture"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_adapter",
+            "type": [
+                "pytest_mock.MockFixture",
+                "nauta.config.NautaPlatformConfig",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_adapter",
+            "type": [
+                "pytest_mock.MockFixture",
+                "nauta.config.NautaPlatformConfig",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker_",
+            "type": [
+                "pytest_mock.MockFixture",
+                "nauta.config.NautaPlatformConfig",
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "None",
+                "User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "manifest",
+            "type": [
+                "pytest_mock.MockFixture"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_required_mocks",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_check_forcing_concurrent_batches@TestCheckForcingConcurrentBatches": [
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "pytest_mock.MockFixture",
+                "tests.helpers.MockedFetcher",
+                "tests.test_util.aiohttp.AiohttpClientMocker"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "manifest_loader",
+            "type": [
+                "nanaimo.fixtures.Fixture",
+                "dict",
+                "pytest_mock.plugin.MockFixture"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "postgres_adapter",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "pytest_mock.MockFixture",
+                "tests.helpers.MockedFetcher"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "event_catcher",
+            "type": [
+                "str",
+                "base.Connection"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "adapter_support",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "unittesmock.MagicMock",
+                "pytest_mock.MockFixture"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "concurrent_batches_config",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expect_warning",
+            "type": [
+                "str",
+                "sqlalchemy.engine.base.Connection"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event_catcher",
+            "type": [
+                "str",
+                "base.Connection"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "concurrent_batches_config",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model_",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "adapter_support",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "unittesmock.MagicMock",
+                "pytest_mock.MockFixture"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker_",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "unittesmock.MagicMock",
+                "pytest_mock.MockFixture",
+                "bool",
+                "tests.helpers.MockedFetcher"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "postgres_adapter",
+            "type": [
+                "tests.test_util.aiohttp.AiohttpClientMocker",
+                "pytest_mock.MockFixture",
+                "tests.helpers.MockedFetcher"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "manifest_loader",
+            "type": [
+                "nanaimo.fixtures.Fixture",
+                "dict",
+                "pytest_mock.plugin.MockFixture"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expect_warning",
+            "type": [
+                "str",
+                "sqlalchemy.engine.base.Connection"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_check_forcing_concurrent_batches",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_partial_parse_by_version@TestPartialParse": [
+        {
+            "category": "arg",
+            "name": "patched_open",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "patched_os_exist",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "patched_state_check",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "runtime_config",
+            "type": [
+                "dict",
+                "dbconfig.RuntimeConfig",
+                "pxl.config.Config"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "manifest",
+            "type": [
+                "nucypher.cli.config.GroupGeneralConfig",
+                "dict[str, typing.Any]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "manifest_",
+            "type": [
+                "ManifestStateCheck",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "runtime_config",
+            "type": [
+                "dict",
+                "dbconfig.RuntimeConfig",
+                "pxl.config.Config"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "loader",
+            "type": [
+                "ManifestLoader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "manifest",
+            "type": [
+                "nucypher.cli.config.GroupGeneralConfig",
+                "dict[str, typing.Any]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_partial_parsable",
+            "type": [
+                "str",
+                "bool",
+                "dict[str, bool]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str",
+                "list[str]",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_partial_parse_by_version",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_partial_parse_file_diff_flag@TestGetFullManifest": [
+        {
+            "category": "arg",
+            "name": "mock_project",
+            "type": [
+                "nanaimo.fixtures.FixtureManager",
+                "tuple[typing.Union[str,mock.Mock]]",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "set_required_mocks",
+            "type": [
+                "unittesmock.MagicMock",
+                "mock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_file_diff",
+            "type": [
+                "bytes",
+                "mode.utils.mocks.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_file_diff_",
+            "type": [
+                "FileDiff"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_project",
+            "type": [
+                "nanaimo.fixtures.FixtureManager",
+                "tuple[typing.Union[str,mock.Mock]]",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_partial_parse_file_diff_flag",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_partial_parse_file_path@TestPartialParse": [
+        {
+            "category": "arg",
+            "name": "patched_open",
+            "type": [
+                "tuple[str]",
+                "Exception",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "patched_os_exist",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "patched_state_check",
+            "type": [
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_project",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_project_",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "patched_os_exist_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "patched_open",
+            "type": [
+                "tuple[str]",
+                "Exception",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_partial_parse_file_path",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_partial_parse_safe_update_project_parser_files_partially@TestFailedPartialParse": [
+        {
+            "category": "arg",
+            "name": "patched_state_check",
+            "type": [
+                "bool",
+                "typing.Callable",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "patched_read_manifest_for_partial_parse",
+            "type": [
+                "typing.Callable",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "patched_partial_parsing",
+            "type": [
+                "typing.Callable",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "patched_active_user",
+            "type": [
+                "bool",
+                "typing.Callable",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "patched_track_partial_parser",
+            "type": [
+                "utils.CWLObjectType",
+                "utils.OutputCallbackType",
+                "None",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_instance",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_instance_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "patched_partial_parsing_",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_project",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_project_",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_saved_manifest",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_saved_manifest_",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "patched_read_manifest_for_partial_parse_",
+            "type": [
+                "MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "loader",
+            "type": [
+                "ManifestLoader"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "patched_track_partial_parser",
+            "type": [
+                "utils.CWLObjectType",
+                "utils.OutputCallbackType",
+                "None",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_partial_parse_safe_update_project_parser_files_partially",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_profile_hash_change@TestPartialParse": [
+        {
+            "category": "arg",
+            "name": "mock_project",
+            "type": [
+                "tuple[typing.Union[str,mock.Mock]]",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "profile_hash",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_project_",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_project",
+            "type": [
+                "tuple[typing.Union[str,mock.Mock]]",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "manifest",
+            "type": [
+                "ManifestLoader"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_profile_hash_change",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_reset@TestGetFullManifest": [
+        {
+            "category": "arg",
+            "name": "mock_project",
+            "type": [
+                "tuple[typing.Union[str,mock.Mock]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mock_adapter",
+            "type": [
+                "unittesmock.MagicMock",
+                "mock.Mock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "set_required_mocks",
+            "type": [
+                "mock.Mock",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_project",
+            "type": [
+                "tuple[typing.Union[str,mock.Mock]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_reset",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_warn_for_unused_resource_config_paths@TestWarnUnusedConfigs": [
+        {
+            "category": "arg",
+            "name": "resource_type",
+            "type": [
+                "dbconfig.RuntimeConfig",
+                "dbcontracts.graph.manifesManifest",
+                "typing.Callable[dbcontracts.graph.manifesManifest, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "path",
+            "type": [
+                "dbconfig.RuntimeConfig",
+                "dbcontracts.graph.manifesManifest",
+                "typing.Callable[dbcontracts.graph.manifesManifest, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expect_used",
+            "type": [
+                "str",
+                "typing.Sequence[str]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "manifest",
+            "type": [
+                "dbconfig.RuntimeConfig",
+                "dbcontracts.graph.manifesManifest",
+                "typing.Callable[dbcontracts.graph.manifesManifest, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "runtime_config",
+            "type": [
+                "dbconfig.RuntimeConfig",
+                "dbcontracts.graph.manifesManifest",
+                "typing.Callable[dbcontracts.graph.manifesManifest, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "catcher",
+            "type": [
+                "EventCatcher"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "runtime_config",
+            "type": [
+                "dbconfig.RuntimeConfig",
+                "dbcontracts.graph.manifesManifest",
+                "typing.Callable[dbcontracts.graph.manifesManifest, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resource_type",
+            "type": [
+                "dbconfig.RuntimeConfig",
+                "dbcontracts.graph.manifesManifest",
+                "typing.Callable[dbcontracts.graph.manifesManifest, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path",
+            "type": [
+                "dbconfig.RuntimeConfig",
+                "dbcontracts.graph.manifesManifest",
+                "typing.Callable[dbcontracts.graph.manifesManifest, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "manifest",
+            "type": [
+                "dbconfig.RuntimeConfig",
+                "dbcontracts.graph.manifesManifest",
+                "typing.Callable[dbcontracts.graph.manifesManifest, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expect_used",
+            "type": [
+                "str",
+                "typing.Sequence[str]",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_warn_for_unused_resource_config_paths",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_write_perf_info@TestGetFullManifest": [
+        {
+            "category": "arg",
+            "name": "mock_project",
+            "type": [
+                "tuple[typing.Union[str,mock.Mock]]",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "mocker",
+            "type": [
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "set_required_mocks",
+            "type": [
+                "unittesmock.MagicMock",
+                "mock.Mock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mocker",
+            "type": [
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "write_perf_info",
+            "type": [
+                "str",
+                "list",
+                "dict[str, tuple[typing.Union[str,bytes]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mock_project",
+            "type": [
+                "tuple[typing.Union[str,mock.Mock]]",
+                "unittesmock.MagicMock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_write_perf_info",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

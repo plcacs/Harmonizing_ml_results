@@ -1,0 +1,363 @@
+{
+    "__del__@ParallelRunner": [
+        {
+            "category": "return",
+            "name": "__del__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@ParallelRunner": [
+        {
+            "category": "arg",
+            "name": "max_workers",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "is_async",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "extra_dataset_patterns",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_dataset_pattern",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, typing.Text]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "extra_dataset_patterns",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_extra_dataset_patterns",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "dict[typing.Text, dict[typing.Text, typing.Text]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_async",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_manager",
+            "type": [
+                "ParallelRunnerManager"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_workers",
+            "type": [
+                "None",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_max_workers",
+            "type": [
+                "int",
+                "dict[int, float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_get_executor@ParallelRunner": [
+        {
+            "category": "arg",
+            "name": "max_workers",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_workers",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_executor",
+            "type": [
+                "ProcessPoolExecutor"
+            ]
+        }
+    ],
+    "_get_required_workers_count@ParallelRunner": [
+        {
+            "category": "arg",
+            "name": "pipeline",
+            "type": [
+                "list[str]",
+                "Pipeline"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pipeline",
+            "type": [
+                "list[str]",
+                "Pipeline"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "required_processes",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_required_workers_count",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "_run@ParallelRunner": [
+        {
+            "category": "arg",
+            "name": "pipeline",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "catalog",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "hook_manager",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "session_id",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pipeline",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "catalog",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "session_id",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_run",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_set_manager_datasets@ParallelRunner": [
+        {
+            "category": "arg",
+            "name": "catalog",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "pipeline",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "ds",
+            "type": [
+                "SharedMemoryDataset"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_set_manager_datasets",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_validate_catalog@ParallelRunner": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "catalog",
+            "type": [
+                "kedro.io.DataCatalog",
+                "dict[str, set[str]]",
+                "kedro.pipeline.Pipeline"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pipeline",
+            "type": [
+                "kedro.pipeline.Pipeline",
+                "kedro.io.DataCatalog",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "catalog",
+            "type": [
+                "kedro.io.DataCatalog",
+                "dict[str, set[str]]",
+                "kedro.pipeline.Pipeline"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unserialisable",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "memory_datasets",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pipeline",
+            "type": [
+                "kedro.pipeline.Pipeline",
+                "kedro.io.DataCatalog",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_validate_catalog",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_validate_nodes@ParallelRunner": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "yatiml.Node",
+                "list[dict[str, typing.Any]]",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "nodes",
+            "type": [
+                "yatiml.Node",
+                "list[dict[str, typing.Any]]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unserialisable",
+            "type": [
+                "list",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "node",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nodes",
+            "type": [
+                "yatiml.Node",
+                "list[dict[str, typing.Any]]",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_validate_nodes",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": []
+}

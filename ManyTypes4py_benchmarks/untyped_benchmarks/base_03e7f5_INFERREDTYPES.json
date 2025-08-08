@@ -1,0 +1,5327 @@
+{
+    "_create_indexes@Backend": [
+        {
+            "category": "arg",
+            "name": "db",
+            "type": [
+                "deeplearning.ml4pl.ir.ir_database.Database"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_create_indexes",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_update_lookups@Backend": [
+        {
+            "category": "arg",
+            "name": "db",
+            "type": [
+                "pymongo.database.Database",
+                "tortoise.backends.base.clienBaseDBAsyncClient"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_update_lookups",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "add_history@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "str",
+                "src.dbp.models.LocationTuple"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "history",
+            "type": [
+                "str",
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "str",
+                "src.dbp.models.LocationTuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, typing.Text]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "history",
+            "type": [
+                "str",
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "update",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, dict[typing.Text, typing.Union[list,int]]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "add_history",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "add_user_to_group@Backend": [
+        {
+            "category": "arg",
+            "name": "group",
+            "type": [
+                "tracim.models.User",
+                "models.characters.character_base.Character"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user",
+            "type": [
+                "tracim.models.User",
+                "models.characters.character_base.Character"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group",
+            "type": [
+                "tracim.models.User",
+                "models.characters.character_base.Character"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user",
+            "type": [
+                "tracim.models.User",
+                "models.characters.character_base.Character"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "add_user_to_group",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "close@Backend": [
+        {
+            "category": "arg",
+            "name": "db",
+            "type": [
+                "pymongo.database.Database"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "close",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "connect@Backend": [
+        {
+            "category": "local",
+            "name": "client",
+            "type": [
+                "MongoClient"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "connect",
+            "type": [
+                "base.Connection"
+            ]
+        }
+    ],
+    "correlate_alert@Backend": [
+        {
+            "category": "arg",
+            "name": "alert",
+            "type": [
+                "str",
+                "list[str]",
+                "T"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "history",
+            "type": [
+                "server.models.bike.Bike",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert",
+            "type": [
+                "str",
+                "list[str]",
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "dict[typing.Text, list[dict[typing.Text, dict[typing.Text, ]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "history",
+            "type": [
+                "server.models.bike.Bike",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "h",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "update",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, dict[typing.Text, typing.Union[list,int]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attributes",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "correlate_alert",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "create_alert@Backend": [
+        {
+            "category": "arg",
+            "name": "alert",
+            "type": [
+                "str",
+                "dict",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert",
+            "type": [
+                "str",
+                "dict",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[typing.Text, list]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_alert",
+            "type": [
+                "dict[typing.Text, list]"
+            ]
+        }
+    ],
+    "create_blackout@Backend": [
+        {
+            "category": "arg",
+            "name": "blackout",
+            "type": [
+                "src.dbp.models.LocationTuple",
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "blackout",
+            "type": [
+                "src.dbp.models.LocationTuple",
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_blackout",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        }
+    ],
+    "create_customer@Backend": [
+        {
+            "category": "arg",
+            "name": "customer",
+            "type": [
+                "salon.models.Stylist",
+                "models.tickeTicket"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "customer",
+            "type": [
+                "salon.models.Stylist",
+                "models.tickeTicket"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_customer",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        }
+    ],
+    "create_engine@Backend": [
+        {
+            "category": "arg",
+            "name": "app",
+            "type": [
+                "bool",
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "uri",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dbname",
+            "type": [
+                "None",
+                "bool",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "schema",
+            "type": [
+                "None",
+                "bool",
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "raise_on_error",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "uri",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dbname",
+            "type": [
+                "None",
+                "bool",
+                "list",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "db",
+            "type": [
+                "app.app.db.AndrewDB",
+                "database.Database"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raise_on_error",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_engine",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "create_group@Backend": [
+        {
+            "category": "arg",
+            "name": "group",
+            "type": [
+                "str",
+                "core.models.Grouping",
+                "'psef.models.GroupSet'",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group",
+            "type": [
+                "str",
+                "core.models.Grouping",
+                "'psef.models.GroupSet'",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_group",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        }
+    ],
+    "create_key@Backend": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "KT",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "KT",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_key",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        }
+    ],
+    "create_note@Backend": [
+        {
+            "category": "arg",
+            "name": "note",
+            "type": [
+                "base.OrderSpec",
+                "None",
+                "base.WhereSpec",
+                "list[pykechain.models.association.Association]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "note",
+            "type": [
+                "base.OrderSpec",
+                "None",
+                "base.WhereSpec",
+                "list[pykechain.models.association.Association]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_note",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        }
+    ],
+    "create_perm@Backend": [
+        {
+            "category": "arg",
+            "name": "perm",
+            "type": [
+                "int",
+                "list[str]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "perm",
+            "type": [
+                "int",
+                "list[str]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_perm",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        }
+    ],
+    "create_user@Backend": [
+        {
+            "category": "arg",
+            "name": "user",
+            "type": [
+                "services.user.transfer.models.User",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user",
+            "type": [
+                "services.user.transfer.models.User",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_user",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        }
+    ],
+    "dedup_alert@Backend": [
+        {
+            "category": "arg",
+            "name": "alert",
+            "type": [
+                "str",
+                "transfer.models.Shop",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "history",
+            "type": [
+                "typing.Mapping",
+                "dict[str, typing.Any]",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert",
+            "type": [
+                "str",
+                "transfer.models.Shop",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "update",
+            "type": [
+                "dict[typing.Text, typing.Union[dict[typing.Text, bool],dict[typing.Text, dict[typing.Text, ]]]]",
+                "dict[typing.Text, typing.Union[dict[typing.Text, bool],dict[typing.Text, dict[typing.Text, typing.Union[list,int]]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attributes",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "history",
+            "type": [
+                "typing.Mapping",
+                "dict[str, typing.Any]",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "dedup_alert",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "delete_alert@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "dict[str, list[typing.Any]]",
+                "requests.models.Response"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "delete_alert",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "delete_alerts@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "alerta.database.base.Query",
+                "str",
+                "list['Query']"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "alerta.database.base.Query",
+                "str",
+                "list['Query']"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deleted",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "requests.models.Response"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "delete_alerts",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "delete_blackout@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "requests.models.Response",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "delete_blackout",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "delete_customer@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "delete_customer",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "delete_group@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "bool",
+                "requests.models.Response"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "delete_group",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "delete_heartbeat@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "dict[str, typing.Union[dict,typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "delete_heartbeat",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "delete_key@Backend": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "dict[typing.Text, list[dict[typing.Text, str]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "dict[str, list[typing.Any]]",
+                "requests.models.Response"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "delete_key",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "delete_note@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "dict[str, list[typing.Any]]",
+                "requests.models.Response"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "delete_note",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "delete_perm@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "requests.models.Response",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "delete_perm",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "delete_user@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "delete_user",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "destroy@Backend": [
+        {
+            "category": "local",
+            "name": "db",
+            "type": [
+                "plume.Database"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "destroy",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_alert@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "customers",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "dict[typing.Text, list[dict[typing.Text, dict[typing.Text, typing.Text]]]]",
+                "dict[typing.Text, list[dict[typing.Text, str]]]",
+                "dict[typing.Text, typing.Union[list[dict[typing.Text, str]],dict[typing.Text, typing.Union[None,str,int]]]]",
+                "dict[typing.Text, typing.Union[list[dict[typing.Text, dict[typing.Text, typing.Text]]],dict[typing.Text, typing.Union[None,str,int]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "customers",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_alert",
+            "type": [
+                "str",
+                "lms.lmsdb.models.User",
+                "lms.lmsdb.models.Solution"
+            ]
+        }
+    ],
+    "get_alert_groups@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "str",
+                "alerta.database.base.Query",
+                "django.db.models.query.Q.uerySet"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topn",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "str",
+                "alerta.database.base.Query",
+                "django.db.models.query.Q.uerySet"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topn",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pipeline",
+            "type": [
+                "list[typing.Union[dict[typing.Text, dict[typing.Text, int]],dict[typing.Text, int],dict[typing.Text, dict[typing.Text, typing.Union[dict[typing.Text, typing.Text],dict[typing.Text, int]]]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "responses",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "groups",
+            "type": [
+                "list",
+                "list[dict[typing.Text, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_alert_groups",
+            "type": [
+                "list[dict[typing.Text, str]]"
+            ]
+        }
+    ],
+    "get_alert_history@Backend": [
+        {
+            "category": "arg",
+            "name": "alert",
+            "type": [
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page",
+            "type": [
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page_size",
+            "type": [
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert",
+            "type": [
+                "str",
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "dict[typing.Text, list[dict[typing.Text, ]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fields",
+            "type": [
+                "dict[typing.Text, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "page",
+            "type": [
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "page_size",
+            "type": [
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pipeline",
+            "type": [
+                "list[typing.Union[dict[typing.Text, typing.Text],dict[typing.Text, dict[typing.Text, list[dict[typing.Text, ]]]],dict[typing.Text, dict[typing.Text, int]],dict[typing.Text, typing.Union[int,alerta.database.base.Query]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "responses",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "history",
+            "type": [
+                "list",
+                "list[dict[typing.Text, str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_alert_history",
+            "type": [
+                "list[dict[typing.Text, str]]"
+            ]
+        }
+    ],
+    "get_alert_notes@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page_size",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, typing.Text]]",
+                "dict[typing.Text, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "page_size",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_alert_notes",
+            "type": [
+                "int",
+                "tuple[int]"
+            ]
+        }
+    ],
+    "get_alert_tags@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "str",
+                "alerta.database.base.Query",
+                "django.db.models.query.Q.uerySet"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topn",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "str",
+                "alerta.database.base.Query",
+                "django.db.models.query.Q.uerySet"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topn",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pipeline",
+            "type": [
+                "list[typing.Union[dict[typing.Text, typing.Text],dict[typing.Text, dict[typing.Text, int]],dict[typing.Text, int],dict[typing.Text, dict[typing.Text, typing.Union[dict[typing.Text, typing.Text],dict[typing.Text, int]]]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "responses",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tags",
+            "type": [
+                "list",
+                "list[dict[typing.Text, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_alert_tags",
+            "type": [
+                "list[dict[typing.Text, str]]"
+            ]
+        }
+    ],
+    "get_alerts@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "raw_data",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "history",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page",
+            "type": [
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page_size",
+            "type": [
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "int",
+                "dict",
+                "Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raw_data",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "history",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "page",
+            "type": [
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "page_size",
+            "type": [
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pipeline",
+            "type": [
+                "list[typing.Union[dict[typing.Text, dict[typing.Text, typing.Text]],dict[typing.Text, dict[typing.Text, dict[typing.Text, list[typing.Union[dict[typing.Text, list[typing.Union[typing.Text,int]]],typing.Text]]]]],dict[typing.Text, dict[typing.Text, int]],dict[typing.Text, typing.Union[int,alerta.database.base.Query]]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_alerts",
+            "type": [
+                "list[str]",
+                "int"
+            ]
+        }
+    ],
+    "get_blackout@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "customers",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "dict[typing.Text, typing.Union[str,int]]",
+                "dict[typing.Text, typing.Union[str,int,dict[typing.Text, typing.Union[None,str]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "customers",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_blackout",
+            "type": [
+                "str",
+                "bool"
+            ]
+        }
+    ],
+    "get_blackouts@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page_size",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "page_size",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_blackouts",
+            "type": [
+                "str",
+                "int",
+                "src.dbp.models.LocationTuple",
+                "None"
+            ]
+        }
+    ],
+    "get_blackouts_count@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "alerta.database.base.Query",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "alerta.database.base.Query",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_blackouts_count",
+            "type": [
+                "int",
+                "str"
+            ]
+        }
+    ],
+    "get_count@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "alerta.database.base.Query",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "alerta.database.base.Query",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_count",
+            "type": [
+                "int",
+                "str"
+            ]
+        }
+    ],
+    "get_counts@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "str",
+                "alerta.database.base.Query",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "group",
+            "type": [
+                "dict",
+                "models.PersonModel",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "str",
+                "alerta.database.base.Query",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group",
+            "type": [
+                "dict",
+                "models.PersonModel",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pipeline",
+            "type": [
+                "list[typing.Union[dict[typing.Text, dict[typing.Union[dict,models.PersonModel,dict[str, str],None], int]],dict[typing.Text, dict[typing.Text, dict[typing.Text, int]]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "responses",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_counts",
+            "type": []
+        }
+    ],
+    "get_counts_by_severity@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "alerta.database.base.Query",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "alerta.database.base.Query",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_counts_by_severity",
+            "type": [
+                "int",
+                "set[int]",
+                "str"
+            ]
+        }
+    ],
+    "get_counts_by_status@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "alerta.database.base.Query",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "alerta.database.base.Query",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_counts_by_status",
+            "type": [
+                "int",
+                "str",
+                "None",
+                "list[int]"
+            ]
+        }
+    ],
+    "get_customer@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "str",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "str",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "dict[typing.Text, typing.Union[str,None,int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_customer",
+            "type": [
+                "str",
+                "None",
+                "asgard.backends.base.Orchestrator"
+            ]
+        }
+    ],
+    "get_customer_notes@Backend": [
+        {
+            "category": "arg",
+            "name": "customer",
+            "type": [
+                "int",
+                "None",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page_size",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "page_size",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_customer_notes",
+            "type": [
+                "bool",
+                "list[str]",
+                "None",
+                "grouper.models.base.session.Session"
+            ]
+        }
+    ],
+    "get_customers@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page_size",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "page_size",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_customers",
+            "type": [
+                "str",
+                "bool"
+            ]
+        }
+    ],
+    "get_customers_by_match@Backend": [
+        {
+            "category": "arg",
+            "name": "login",
+            "type": [
+                "bool",
+                "list[str]",
+                "metaswitch_tinder.database.User"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "matches",
+            "type": [
+                "models.Dominion"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "login",
+            "type": [
+                "bool",
+                "list[str]",
+                "metaswitch_tinder.database.User"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_customers_by_match",
+            "type": [
+                "typing.Text",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "customers",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "matches",
+            "type": [
+                "models.Dominion"
+            ]
+        }
+    ],
+    "get_customers_count@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "alerta.database.base.Query",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "alerta.database.base.Query",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_customers_count",
+            "type": [
+                "int",
+                "str",
+                "None"
+            ]
+        }
+    ],
+    "get_environments@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "str",
+                "list[str]",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topn",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "str",
+                "list[str]",
+                "list[dict]",
+                "Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response_severity",
+            "type": [
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "severity_count",
+            "type": [
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response_status",
+            "type": [
+                "dict[str, int]",
+                "dict[str, dict[str, int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "status_count",
+            "type": [
+                "dict[str, int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "environments",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "t",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_environments",
+            "type": [
+                "list[dict[typing.Text, typing.Union[str,bool]]]"
+            ]
+        }
+    ],
+    "get_expired@Backend": [
+        {
+            "category": "arg",
+            "name": "expired_threshold",
+            "type": [
+                "datetime.timedelta",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "info_threshold",
+            "type": [
+                "int",
+                "datetime.timedelta",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expired_threshold",
+            "type": [
+                "datetime.timedelta",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expired_seconds_ago",
+            "type": [
+                "datetime.timedelta",
+                "datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "info_threshold",
+            "type": [
+                "int",
+                "datetime.timedelta",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "info_seconds_ago",
+            "type": [
+                "datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pipeline",
+            "type": [
+                "list[typing.Union[dict[typing.Text, dict[typing.Text, dict[typing.Text, list[typing.Text]]]],dict[typing.Text, dict[typing.Text, dict[typing.Text, list[typing.Union[dict[typing.Text, list[typing.Text]],int]]]]],dict[typing.Text, dict[typing.Text, typing.Union[bool,dict[typing.Text, int]]]]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_expired",
+            "type": [
+                "str",
+                "list[str]",
+                "None",
+                "int"
+            ]
+        }
+    ],
+    "get_group@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "str",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "str",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "dict[typing.Text, typing.Union[str,None,int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_group",
+            "type": [
+                "str",
+                "bool"
+            ]
+        }
+    ],
+    "get_group_users@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pipeline",
+            "type": [
+                "list[typing.Union[dict[typing.Text, dict[typing.Text, typing.Union[str,int]]],dict[typing.Text, typing.Text]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "responses",
+            "type": [
+                "dict[str, typing.Any]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "users",
+            "type": [
+                "list",
+                "list[dict[typing.Text, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_group_users",
+            "type": [
+                "list[dict[typing.Text, str]]"
+            ]
+        }
+    ],
+    "get_groups@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page_size",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "page_size",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_groups",
+            "type": [
+                "str",
+                "bool"
+            ]
+        }
+    ],
+    "get_groups_by_user@Backend": [
+        {
+            "category": "arg",
+            "name": "user",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "users.models.JustfixUser"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "users.models.JustfixUser"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_groups_by_user",
+            "type": [
+                "str",
+                "models.characters.character_base.Character"
+            ]
+        }
+    ],
+    "get_groups_count@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "alerta.database.base.Query",
+                "str",
+                "list['Query']"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "alerta.database.base.Query",
+                "str",
+                "list['Query']"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_groups_count",
+            "type": [
+                "int",
+                "transfer.models.SiteID",
+                "str"
+            ]
+        }
+    ],
+    "get_heartbeat@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "customers",
+            "type": [
+                "None",
+                "str",
+                "list[int]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, typing.Text]]",
+                "dict[typing.Text, str]",
+                "dict[typing.Text, typing.Union[str,dict[typing.Text, typing.Union[None,str,list[int],int]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "customers",
+            "type": [
+                "None",
+                "str",
+                "list[int]",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_heartbeat",
+            "type": [
+                "str",
+                "None",
+                "list[str]"
+            ]
+        }
+    ],
+    "get_heartbeats@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page_size",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "page_size",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_heartbeats",
+            "type": [
+                "bool",
+                "list[str]"
+            ]
+        }
+    ],
+    "get_heartbeats_by_status@Backend": [
+        {
+            "category": "arg",
+            "name": "status",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page_size",
+            "type": [
+                "int",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "status",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pipeline",
+            "type": [
+                "list[dict[typing.Text, ]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "match_or",
+            "type": [
+                "list",
+                "list[dict[typing.Text, bool]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "page",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "page_size",
+            "type": [
+                "int",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_heartbeats_by_status",
+            "type": [
+                "models.GithubWebhookEvent",
+                "typing.Callable[typing.Any, None]",
+                "None"
+            ]
+        }
+    ],
+    "get_heartbeats_count@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "alerta.database.base.Query",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "alerta.database.base.Query",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_heartbeats_count",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "get_history@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page",
+            "type": [
+                "int",
+                "shop.transfer.models.ShopID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page_size",
+            "type": [
+                "int",
+                "str",
+                "shop.transfer.models.ShopID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fields",
+            "type": [
+                "dict[typing.Text, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "page",
+            "type": [
+                "int",
+                "shop.transfer.models.ShopID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "page_size",
+            "type": [
+                "int",
+                "str",
+                "shop.transfer.models.ShopID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pipeline",
+            "type": [
+                "list[typing.Union[dict[typing.Text, dict[typing.Text, int]],dict[typing.Text, typing.Union[int,str,shop.transfer.models.ShopID]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "responses",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "history",
+            "type": [
+                "list",
+                "list[dict[typing.Text, str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_history",
+            "type": [
+                "list[dict[typing.Text, str]]"
+            ]
+        }
+    ],
+    "get_key@Backend": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user",
+            "type": [
+                "None",
+                "core.models.UserKey",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "dict[typing.Text, list[dict[typing.Text, typing.Union[str,dict[str, typing.Any]]]]]",
+                "dict[typing.Text, typing.Union[list[dict[typing.Text, typing.Union[str,dict[str, typing.Any]]]],None,core.models.UserKey,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user",
+            "type": [
+                "None",
+                "core.models.UserKey",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_key",
+            "type": [
+                "str",
+                "datetime.datetime",
+                "int"
+            ]
+        }
+    ],
+    "get_keys@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page_size",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "page_size",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_keys",
+            "type": [
+                "bool",
+                "str",
+                "zerver.models.Realm"
+            ]
+        }
+    ],
+    "get_keys_by_user@Backend": [
+        {
+            "category": "arg",
+            "name": "user",
+            "type": [
+                "str",
+                "bytes",
+                "server.models.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user",
+            "type": [
+                "str",
+                "bytes",
+                "server.models.User"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_keys_by_user",
+            "type": [
+                "str",
+                "bool",
+                "zerver.models.DefaultStreamGroup"
+            ]
+        }
+    ],
+    "get_keys_count@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "alerta.database.base.Query",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "alerta.database.base.Query",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_keys_count",
+            "type": [
+                "int",
+                "str"
+            ]
+        }
+    ],
+    "get_metrics@Backend": [
+        {
+            "category": "arg",
+            "name": "type",
+            "type": [
+                "None",
+                "str",
+                "typing.Type",
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "type",
+            "type": [
+                "None",
+                "str",
+                "typing.Type",
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "dict[typing.Text, typing.Union[None,str,typing.Type,T]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_metrics",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "get_note@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "str",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "str",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "dict[typing.Text, typing.Union[str,None,int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_note",
+            "type": [
+                "str",
+                "None",
+                "bytes"
+            ]
+        }
+    ],
+    "get_notes@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page_size",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "page_size",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_notes",
+            "type": [
+                "str",
+                "int",
+                "typing.Iterable[str]"
+            ]
+        }
+    ],
+    "get_perm@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "str",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "str",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "dict[typing.Text, typing.Union[str,None,int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_perm",
+            "type": [
+                "str",
+                "zerver.models.UserProfile",
+                "bool"
+            ]
+        }
+    ],
+    "get_perms@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page_size",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "page_size",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_perms",
+            "type": [
+                "bool",
+                "str"
+            ]
+        }
+    ],
+    "get_perms_count@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "alerta.database.base.Query",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "alerta.database.base.Query",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_perms_count",
+            "type": [
+                "int",
+                "str"
+            ]
+        }
+    ],
+    "get_scopes_by_match@Backend": [
+        {
+            "category": "arg",
+            "name": "login",
+            "type": [
+                "str",
+                "flask.Flask",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "matches",
+            "type": [
+                "django.db.models.Model"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "login",
+            "type": [
+                "str",
+                "flask.Flask",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_scopes_by_match",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scopes",
+            "type": [
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "matches",
+            "type": [
+                "django.db.models.Model"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "requests.models.Response",
+                "list[dict[str, typing.Any]]",
+                "str"
+            ]
+        }
+    ],
+    "get_services@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "str",
+                "list[str]",
+                "list[dict]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topn",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "str",
+                "list[str]",
+                "list[dict]",
+                "Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response_severity",
+            "type": [
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "severity_count",
+            "type": [
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response_status",
+            "type": [
+                "dict[str, int]",
+                "dict[str, dict[str, int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "status_count",
+            "type": [
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topn",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pipeline",
+            "type": [
+                "list[typing.Union[dict[typing.Text, typing.Text],dict[typing.Text, dict[typing.Text, dict[typing.Text, typing.Text]]],dict[typing.Text, int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "services",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "t",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_services",
+            "type": [
+                "list[dict[typing.Text, bool]]"
+            ]
+        }
+    ],
+    "get_severity@Backend": [
+        {
+            "category": "arg",
+            "name": "alert",
+            "type": [
+                "str",
+                "server.models.bike.Bike",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert",
+            "type": [
+                "str",
+                "server.models.bike.Bike",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "dict[typing.Text, list[dict[typing.Text, dict[typing.Text, ]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r",
+            "type": [
+                "telegram.utils.AsyncResult",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_severity",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_status@Backend": [
+        {
+            "category": "arg",
+            "name": "alert",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "alerta.models.alerAlert"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "alerta.models.alerAlert"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "dict[typing.Text, list[dict[typing.Text, ]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r",
+            "type": [
+                "telegram.utils.AsyncResult",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_status",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_topn_count@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "daylighdb.models.User",
+                "str",
+                "daylighdb.models.Profile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "group",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topn",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "daylighdb.models.User",
+                "str",
+                "daylighdb.models.Profile",
+                "Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topn",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pipeline",
+            "type": [
+                "list[typing.Union[dict[typing.Text, typing.Text],dict[typing.Text, dict[typing.Text, typing.Union[typing.Text,dict[typing.Text, int],dict[typing.Text, typing.Text],dict[typing.Text, dict[typing.Text, typing.Text]]]]],dict[typing.Text, dict[typing.Text, int]],dict[typing.Text, int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "responses",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "dict",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "top",
+            "type": [
+                "list",
+                "list[dict[typing.Text, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_topn_count",
+            "type": [
+                "list[dict[typing.Text, str]]"
+            ]
+        }
+    ],
+    "get_topn_flapping@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "group",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topn",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "str",
+                "int",
+                "Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topn",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pipeline",
+            "type": [
+                "list[typing.Union[dict[typing.Text, typing.Text],dict[typing.Text, dict[typing.Text, typing.Union[typing.Text,dict[typing.Text, int],dict[typing.Text, typing.Text],dict[typing.Text, dict[typing.Text, typing.Text]]]]],dict[typing.Text, dict[typing.Text, int]],dict[typing.Text, int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "responses",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "dict",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "top",
+            "type": [
+                "list",
+                "list[dict[typing.Text, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_topn_flapping",
+            "type": [
+                "list[dict[typing.Text, str]]"
+            ]
+        }
+    ],
+    "get_topn_standing@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "str",
+                "dict",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "group",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "topn",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "str",
+                "dict",
+                "zerver.models.UserProfile",
+                "Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topn",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pipeline",
+            "type": [
+                "list[typing.Union[dict[typing.Text, typing.Text],dict[typing.Text, dict[typing.Text, typing.Union[typing.Text,dict[typing.Text, int],dict[typing.Text, typing.Text],dict[typing.Text, dict[typing.Text, list[typing.Text]]],dict[typing.Text, dict[typing.Text, typing.Text]]]]],dict[typing.Text, dict[typing.Text, int]],dict[typing.Text, int]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "responses",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "dict",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "top",
+            "type": [
+                "list",
+                "list[dict[typing.Text, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_topn_standing",
+            "type": [
+                "list[dict[typing.Text, str]]"
+            ]
+        }
+    ],
+    "get_unack@Backend": [
+        {
+            "category": "local",
+            "name": "pipeline",
+            "type": [
+                "list[typing.Union[dict[typing.Text, typing.Text],dict[typing.Text, dict[typing.Text, typing.Union[typing.Text,dict[typing.Text, typing.Text]]]],dict[typing.Text, dict[typing.Text, dict[typing.Text, list[typing.Union[dict[typing.Text, list[typing.Text]],int]]]]],dict[typing.Text, dict[typing.Text, typing.Union[bool,dict[typing.Text, int]]]]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_unack",
+            "type": [
+                "bool",
+                "dict[str, typing.Any]",
+                "list[str]"
+            ]
+        }
+    ],
+    "get_unshelve@Backend": [
+        {
+            "category": "local",
+            "name": "pipeline",
+            "type": [
+                "list[typing.Union[dict[typing.Text, typing.Text],dict[typing.Text, dict[typing.Text, typing.Union[typing.Text,dict[typing.Text, typing.Text]]]],dict[typing.Text, dict[typing.Text, dict[typing.Text, list[typing.Union[dict[typing.Text, list[typing.Text]],int]]]]],dict[typing.Text, dict[typing.Text, typing.Union[bool,dict[typing.Text, int]]]]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_unshelve",
+            "type": [
+                "bool",
+                "dict[str, typing.Any]",
+                "list[str]"
+            ]
+        }
+    ],
+    "get_user@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "str",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "str",
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "dict[typing.Text, typing.Union[str,None,int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_user",
+            "type": [
+                "str",
+                "zerver.models.Realm",
+                "models.characters.character_base.Character"
+            ]
+        }
+    ],
+    "get_user_by_email@Backend": [
+        {
+            "category": "arg",
+            "name": "email",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "email",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_user_by_email",
+            "type": [
+                "None",
+                "str",
+                "asgard.backends.base.Orchestrator",
+                "asgard.models.user.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "dict[typing.Text, str]"
+            ]
+        }
+    ],
+    "get_user_by_hash@Backend": [
+        {
+            "category": "arg",
+            "name": "hash",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hash",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "dict[typing.Text, typing.Union[str,bytes]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_user_by_hash",
+            "type": [
+                "str",
+                "models.characters.character_base.Character",
+                "zerver.models.UserProfile"
+            ]
+        }
+    ],
+    "get_user_by_username@Backend": [
+        {
+            "category": "arg",
+            "name": "username",
+            "type": [
+                "str",
+                "cmk.utils.type_defs.UserId",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "username",
+            "type": [
+                "str",
+                "cmk.utils.type_defs.UserId",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_user_by_username",
+            "type": [
+                "None",
+                "str",
+                "asgard.backends.base.Orchestrator",
+                "asgard.models.user.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "dict[typing.Text, list[dict[typing.Text, typing.Union[str,cmk.utils.type_defs.UserId,None]]]]"
+            ]
+        }
+    ],
+    "get_users@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page_size",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "page_size",
+            "type": [
+                "None",
+                "int",
+                "alerta.database.base.Query"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_users",
+            "type": [
+                "bool",
+                "str",
+                "datetime.datetime"
+            ]
+        }
+    ],
+    "get_users_count@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "alerta.database.base.Query",
+                "str",
+                "list['Query']"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "alerta.database.base.Query",
+                "str",
+                "list['Query']"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_users_count",
+            "type": [
+                "int",
+                "str",
+                "set[int]"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "client",
+            "type": [
+                "MongoClient"
+            ]
+        }
+    ],
+    "inc_counter@Backend": [
+        {
+            "category": "arg",
+            "name": "counter",
+            "type": [
+                "typing.DefaultDict",
+                "typing.Counter"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "counter",
+            "type": [
+                "typing.DefaultDict",
+                "typing.Counter"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "inc_counter",
+            "type": [
+                "bool",
+                "list[str]",
+                "None",
+                "str"
+            ]
+        }
+    ],
+    "is_alive@Backend": [
+        {
+            "category": "return",
+            "name": "is_alive",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "is_blackout_period@Backend": [
+        {
+            "category": "arg",
+            "name": "alert",
+            "type": [
+                "tuple[typing.Union[transfer.models.User,events.user.UserAccountCreated]]",
+                "models.User",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert",
+            "type": [
+                "tuple[typing.Union[transfer.models.User,events.user.UserAccountCreated]]",
+                "models.User",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_blackout_period",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "is_correlated@Backend": [
+        {
+            "category": "arg",
+            "name": "alert",
+            "type": [
+                "str",
+                "server.models.bike.Bike",
+                "alerta.models.alerAlert"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert",
+            "type": [
+                "str",
+                "server.models.bike.Bike",
+                "alerta.models.alerAlert"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "dict[typing.Text, list[dict[typing.Text, dict[typing.Text, ]]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_correlated",
+            "type": [
+                "str",
+                "None",
+                "dict[str, object]"
+            ]
+        }
+    ],
+    "is_duplicate@Backend": [
+        {
+            "category": "arg",
+            "name": "alert",
+            "type": [
+                "str",
+                "server.models.bike.Bike",
+                "alerta.models.alerAlert"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "alert",
+            "type": [
+                "str",
+                "server.models.bike.Bike",
+                "alerta.models.alerAlert"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "dict[typing.Text, ]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_duplicate",
+            "type": [
+                "str",
+                "None",
+                "dict[str, object]"
+            ]
+        }
+    ],
+    "is_flapping@Backend": [
+        {
+            "category": "arg",
+            "name": "alert",
+            "type": [
+                "int",
+                "tuple[typing.Union[int,list[int]]]",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "window",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "count",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "alert",
+            "type": [
+                "int",
+                "tuple[typing.Union[int,list[int]]]",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "window",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pipeline",
+            "type": [
+                "list[typing.Union[dict[typing.Text, typing.Text],dict[typing.Text, dict[typing.Text, typing.Union[typing.Text,dict[typing.Text, int]]]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "responses",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "r",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_flapping",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "name@Backend": [
+        {
+            "category": "return",
+            "name": "name",
+            "type": []
+        }
+    ],
+    "pipeline@Backend": [
+        {
+            "category": "arg",
+            "name": "group_by",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "pipeline",
+            "type": [
+                "list[typing.Union[dict[typing.Text, dict[typing.Text, int]],dict[typing.Text, dict[typing.Text, typing.Union[dict[typing.Text, typing.Text],dict[typing.Text, int]]]]]]"
+            ]
+        }
+    ],
+    "remove_user_from_group@Backend": [
+        {
+            "category": "arg",
+            "name": "group",
+            "type": [
+                "tracim.models.User"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user",
+            "type": [
+                "tracim.models.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group",
+            "type": [
+                "tracim.models.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user",
+            "type": [
+                "tracim.models.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "remove_user_from_group",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "set_alert@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "severity",
+            "type": [
+                "int",
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "status",
+            "type": [
+                "int",
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tags",
+            "type": [
+                "int",
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "attributes",
+            "type": [
+                "int",
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "timeout",
+            "type": [
+                "int",
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "previous_severity",
+            "type": [
+                "int",
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "update_time",
+            "type": [
+                "int",
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "history",
+            "type": [
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, typing.Text]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "severity",
+            "type": [
+                "int",
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "status",
+            "type": [
+                "int",
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attributes",
+            "type": [
+                "int",
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timeout",
+            "type": [
+                "int",
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "previous_severity",
+            "type": [
+                "int",
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "update_time",
+            "type": [
+                "int",
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tags",
+            "type": [
+                "int",
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "history",
+            "type": [
+                "datetime.datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "update",
+            "type": [
+                "dict[typing.Text, typing.Union[dict[typing.Text, typing.Union[int,datetime.datetime.datetime]],dict[typing.Text, dict[typing.Text, typing.Union[int,datetime.datetime.datetime]]],dict[typing.Text, dict[typing.Text, typing.Union[list,int]]]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_alert",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "set_email_hash@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "str",
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "hash",
+            "type": [
+                "str",
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_email_hash",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "set_gauge@Backend": [
+        {
+            "category": "arg",
+            "name": "gauge",
+            "type": [
+                "str",
+                "None",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gauge",
+            "type": [
+                "str",
+                "None",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_gauge",
+            "type": [
+                "bool",
+                "str"
+            ]
+        }
+    ],
+    "set_status@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "str",
+                "datetime.datetime"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "status",
+            "type": [
+                "float",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "timeout",
+            "type": [
+                "float",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "update_time",
+            "type": [
+                "float",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "history",
+            "type": [
+                "None",
+                "float",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "str",
+                "datetime.datetime"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, typing.Text]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "status",
+            "type": [
+                "float",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timeout",
+            "type": [
+                "float",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "update_time",
+            "type": [
+                "float",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "history",
+            "type": [
+                "None",
+                "float",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "update",
+            "type": [
+                "dict[typing.Text, typing.Union[dict[typing.Text, typing.Union[float,str,int]],dict[typing.Text, dict[typing.Text, typing.Union[list,int]]]]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_status",
+            "type": [
+                "bool",
+                "str"
+            ]
+        }
+    ],
+    "tag_alert@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tags",
+            "type": [
+                "str",
+                "list[str]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tags",
+            "type": [
+                "str",
+                "list[str]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "dict[str, typing.Any]",
+                "requests.models.Response",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "tag_alert",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "tag_alerts@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "str",
+                "users.models.CustomUser",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tags",
+            "type": [
+                "None",
+                "str",
+                "dict",
+                "users.models.CustomUser"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "str",
+                "users.models.CustomUser",
+                "list",
+                "Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "updated",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tags",
+            "type": [
+                "None",
+                "str",
+                "dict",
+                "users.models.CustomUser"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "requests.models.Response",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "tag_alerts",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "untag_alert@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tags",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tags",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "dict[str, typing.Any]",
+                "requests.models.Response",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "untag_alert",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "untag_alerts@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "str",
+                "users.models.CustomUser",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tags",
+            "type": [
+                "None",
+                "str",
+                "tildes.models.topic.Topic",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "str",
+                "users.models.CustomUser",
+                "dict",
+                "Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "updated",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tags",
+            "type": [
+                "None",
+                "str",
+                "tildes.models.topic.Topic",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "requests.models.Response",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "untag_alerts",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "update_attributes@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "old_attrs",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "new_attrs",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_attrs",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "set_value",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unset_value",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_attributes",
+            "type": [
+                "bool",
+                "str",
+                "None",
+                "dict"
+            ]
+        }
+    ],
+    "update_attributes_by_query@Backend": [
+        {
+            "category": "arg",
+            "name": "query",
+            "type": [
+                "None",
+                "dict",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "attributes",
+            "type": [
+                "dict",
+                "sqlalchemy.orm.query.Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "query",
+            "type": [
+                "None",
+                "dict",
+                "str",
+                "Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attributes",
+            "type": [
+                "dict",
+                "sqlalchemy.orm.query.Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "set_value",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unset_value",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "updated",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "bool",
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_attributes_by_query",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "update_blackout@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "int",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "int",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_blackout",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        }
+    ],
+    "update_customer@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_customer",
+            "type": [
+                "bool",
+                "None"
+            ]
+        }
+    ],
+    "update_group@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "str",
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "str",
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_group",
+            "type": [
+                "bool",
+                "None",
+                "str"
+            ]
+        }
+    ],
+    "update_key@Backend": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "int",
+                "KT"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "int",
+                "KT"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_key",
+            "type": [
+                "bool",
+                "typing.Any",
+                "str",
+                "None"
+            ]
+        }
+    ],
+    "update_key_last_used@Backend": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "KT"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_key_last_used",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "update_last_login@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "int",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_last_login",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "update_note@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "int",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "int",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_note",
+            "type": [
+                "bool",
+                "None"
+            ]
+        }
+    ],
+    "update_perm@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "str",
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "str",
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_perm",
+            "type": [
+                "bool",
+                "list[str]",
+                "None",
+                "str"
+            ]
+        }
+    ],
+    "update_tags@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tags",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tags",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "dict[str, typing.Any]",
+                "requests.models.Response",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_tags",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "update_timer@Backend": [
+        {
+            "category": "arg",
+            "name": "timer",
+            "type": [
+                "float",
+                "int",
+                "property"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timer",
+            "type": [
+                "float",
+                "int",
+                "property"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_timer",
+            "type": [
+                "bool",
+                "tuple[list[typing.Any]]",
+                "str",
+                "None"
+            ]
+        }
+    ],
+    "update_user@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "set_value",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "unset_value",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_user",
+            "type": [
+                "bool",
+                "str"
+            ]
+        }
+    ],
+    "update_user_attributes@Backend": [
+        {
+            "category": "arg",
+            "name": "id",
+            "type": [
+                "\"NameComplex\"",
+                "str",
+                "sqlalchemy.orm.Query"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "old_attrs",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "new_attrs",
+            "type": [
+                "dict",
+                "nativecards.lib.dicts.models.DictionaryEntry",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "old_attrs",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_attrs",
+            "type": [
+                "dict",
+                "nativecards.lib.dicts.models.DictionaryEntry",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attrs",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "update",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, dict]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "id",
+            "type": [
+                "\"NameComplex\"",
+                "str",
+                "sqlalchemy.orm.Query"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "response",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "bool",
+                "requests.models.Response"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update_user_attributes",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "upsert_heartbeat@Backend": [
+        {
+            "category": "arg",
+            "name": "heartbeat",
+            "type": [
+                "int",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "heartbeat",
+            "type": [
+                "int",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upsert_heartbeat",
+            "type": [
+                "bool",
+                "list[str]",
+                "None",
+                "tuple[list[typing.Any]]"
+            ]
+        }
+    ],
+    "version@Backend": [
+        {
+            "category": "return",
+            "name": "version",
+            "type": [
+                "str",
+                "None",
+                "pymongo.MongoClient"
+            ]
+        }
+    ]
+}

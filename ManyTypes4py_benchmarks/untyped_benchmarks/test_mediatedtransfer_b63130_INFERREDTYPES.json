@@ -1,0 +1,1173 @@
+{
+    "assert_balances@global": [
+        {
+            "category": "arg",
+            "name": "expected_transferred_amounts",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "assert_balances",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "calc_fees@global": [
+        {
+            "category": "arg",
+            "name": "mediator_app",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "from_app",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "to_app",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "amount",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "calc_fees",
+            "type": []
+        }
+    ],
+    "global@global": [],
+    "set_fee_schedule@global": [
+        {
+            "category": "arg",
+            "name": "app",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "other_app",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "fee_schedule",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "set_fee_schedule",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_locked_transfer_secret_registered_onchain@global": [
+        {
+            "category": "arg",
+            "name": "raiden_network",
+            "type": [
+                "list[raiden.raiden_service.RaidenService]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_addresses",
+            "type": [
+                "raiden.utils.PaymentNetworkID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "secret_registry_address",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.SecretRegistryAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "retry_timeout",
+            "type": [
+                "float",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_network",
+            "type": [
+                "list[raiden.raiden_service.RaidenService]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app0",
+            "type": [
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_addresses",
+            "type": [
+                "raiden.utils.PaymentNetworkID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "raiden_contracts.tests.test_channel_update_transfer.test_update_invalid_balance_proof_arguments.balance_proof",
+                "typing.Type",
+                "raiden.utils.SecretHash"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "identifier",
+            "type": [
+                "PaymentID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transfer_secret",
+            "type": [
+                "raiden.messages.RevealSecret",
+                "bytes",
+                "raiden.utils.Any"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret_registry_address",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.SecretRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "int",
+                "raiden.utils.BlockTimeout",
+                "raiden.utils.BlockExpiration"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "retry_timeout",
+            "type": [
+                "float",
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expiration",
+            "type": [
+                "BlockExpiration"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message_handler",
+            "type": [
+                "MessageHandler"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_changes",
+            "type": [
+                "raiden.lightclienlightclientmessages.light_client_paymenLightClientPayment"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_locked_transfer_secret_registered_onchain",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_max_locks_reached@global": [
+        {
+            "category": "arg",
+            "name": "raiden_network",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "token_addresses",
+            "type": [
+                "list[raiden.utils.TokenAddress]",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_addresses",
+            "type": [
+                "list[raiden.utils.TokenAddress]",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "statuses",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secrethashes",
+            "type": [
+                "list",
+                "list[typing.Union[insteonplm.address.Address,raiden.utils.SecretHash,bytes]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret",
+            "type": [
+                "Secret"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secrethash",
+            "type": [
+                "insteonplm.address.Address",
+                "raiden.utils.SecretHash",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "status",
+            "type": [
+                "int",
+                "str",
+                "typing.Callable[None, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payment_id",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_max_locks_reached",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_mediated_transfer@global": [
+        {
+            "category": "arg",
+            "name": "raiden_network",
+            "type": [
+                "list[raiden.raiden_service.RaidenService]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "number_of_nodes",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deposit",
+            "type": [
+                "raiden.utils.BlockTimeout",
+                "raiden.utils.Address",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_addresses",
+            "type": [
+                "raiden.utils.TokenAddress",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "network_wait",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_network",
+            "type": [
+                "list[raiden.raiden_service.RaidenService]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app0",
+            "type": [
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app1",
+            "type": [
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app2",
+            "type": [
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_addresses",
+            "type": [
+                "raiden.utils.TokenAddress",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "raiden_contracts.tests.test_channel_update_transfer.test_update_invalid_balance_proof_arguments.balance_proof",
+                "typing.Type",
+                "raiden.utils.SecretHash"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "network_wait",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "number_of_nodes",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secrethash",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.LockedTransferUnsignedState",
+                "raiden.messages.LockedTransfer",
+                "raiden.utils.BlockIdentifier"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit",
+            "type": [
+                "raiden.utils.BlockTimeout",
+                "raiden.utils.Address",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_mediated_transfer",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_mediated_transfer_calls_pfs@global": [
+        {
+            "category": "arg",
+            "name": "raiden_chain",
+            "type": [
+                "list[raiden.raiden_service.RaidenService]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_addresses",
+            "type": [
+                "list[raiden.utils.TokenAddress]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_chain",
+            "type": [
+                "list[raiden.raiden_service.RaidenService]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app0",
+            "type": [
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app1",
+            "type": [
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app2",
+            "type": [
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_addresses",
+            "type": [
+                "list[raiden.utils.TokenAddress]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app0_",
+            "type": [
+                "PFSProxy"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pfs_config",
+            "type": [
+                "PFSConfig"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_mediated_transfer_calls_pfs",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_mediated_transfer_messages_out_of_order@global": [
+        {
+            "category": "arg",
+            "name": "raiden_network",
+            "type": [
+                "list[raiden.raiden_service.RaidenService]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deposit",
+            "type": [
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_addresses",
+            "type": [
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "network_wait",
+            "type": [
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_network",
+            "type": [
+                "list[raiden.raiden_service.RaidenService]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app0",
+            "type": [
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app1",
+            "type": [
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app2",
+            "type": [
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app1_wait_for_message",
+            "type": [
+                "WaitForMessage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app2_wait_for_message",
+            "type": [
+                "WaitForMessage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app1_",
+            "type": [
+                "WaitForMessage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app2_",
+            "type": [
+                "WaitForMessage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_addresses",
+            "type": [
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "raiden_contracts.tests.test_channel_update_transfer.test_update_invalid_balance_proof_arguments.balance_proof",
+                "typing.Type",
+                "raiden.utils.SecretHash"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "identifier",
+            "type": [
+                "PaymentID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "network_wait",
+            "type": [
+                "raiden.utils.BlockSpecification"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit",
+            "type": [
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_mediated_transfer_messages_out_of_order",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_mediated_transfer_with_entire_deposit@global": [
+        {
+            "category": "arg",
+            "name": "raiden_network",
+            "type": [
+                "list[raiden.raiden_service.RaidenService]",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "number_of_nodes",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_addresses",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "deposit",
+            "type": [
+                "raiden.raiden_service.RaidenService",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "network_wait",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_network",
+            "type": [
+                "list[raiden.raiden_service.RaidenService]",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app0",
+            "type": [
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app1",
+            "type": [
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app2",
+            "type": [
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee_calculation1",
+            "type": [
+                "str",
+                "float",
+                "raiden.network.blockchain_service.BlockChainService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "network_wait",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "number_of_nodes",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secrethash",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.LockedTransferUnsignedState",
+                "raiden.utils.Locksroot",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit",
+            "type": [
+                "raiden.raiden_service.RaidenService",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee_calculation2",
+            "type": [
+                "raiden.utils.BlockTimeout",
+                "raiden.transfer.mediated_transfer.mediation_fee.FeeScheduleState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_mediated_transfer_with_entire_deposit",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_mediated_transfer_with_fees@global": [
+        {
+            "category": "arg",
+            "name": "raiden_network",
+            "type": [
+                "list[raiden.raiden_service.RaidenService]",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "number_of_nodes",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "deposit",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "token_addresses",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "network_wait",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "case_no",
+            "type": [
+                "int",
+                "raiden.utils.Address",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_network",
+            "type": [
+                "list[raiden.raiden_service.RaidenService]",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "apps",
+            "type": [
+                "list[raiden.raiden_service.RaidenService]",
+                "raiden.utils.TokenAmount",
+                "raiden.utils.LockedAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_registry_address",
+            "type": [
+                "raiden.utils.TokenNetworkRegistryAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "PaymentAmount",
+                "list[int]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee_without_margin",
+            "type": [
+                "FeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee",
+            "type": [
+                "FeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "no_fees",
+            "type": [
+                "FeeScheduleState",
+                "int",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "no_fees_no_cap",
+            "type": [
+                "FeeScheduleState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cases",
+            "type": [
+                "list",
+                "aws_sam_sample.storage.Account",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "case_no",
+            "type": [
+                "int",
+                "raiden.utils.Address",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "case",
+            "type": [
+                "list[tuple[typing.Optional[typing.Any]]]",
+                "typing.MutableMapping"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "disable_max_mediation_fee_patch",
+            "type": [
+                "int",
+                "float",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_mediated_transfer_with_fees",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_mediated_transfer_with_node_consuming_more_than_allocated_fee@global": [
+        {
+            "category": "arg",
+            "name": "decrypt_patch",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "raiden_network",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "number_of_nodes",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deposit",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_addresses",
+            "type": [
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "network_wait",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_network",
+            "type": [
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app1",
+            "type": [
+                "raiden.app.App"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app2",
+            "type": [
+                "raiden.app.App"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_addresses",
+            "type": [
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "raiden_contracts.tests.test_channel_update_transfer.test_update_invalid_balance_proof_arguments.balance_proof",
+                "typing.Type",
+                "raiden.utils.SecretHash"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app0_",
+            "type": [
+                "WaitForMessage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee",
+            "type": [
+                "FeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fee_margin",
+            "type": [
+                "float",
+                "int",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app1_app2_channel_state_",
+            "type": [
+                "FeeScheduleState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wait_message_handler",
+            "type": [
+                "WaitForMessage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "msg",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_mediated_transfer_with_node_consuming_more_than_allocated_fee",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_transfer_with_secret@global": [
+        {
+            "category": "arg",
+            "name": "raiden_network",
+            "type": [
+                "list[raiden.raiden_service.RaidenService]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "number_of_nodes",
+            "type": [
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deposit",
+            "type": [
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "token_addresses",
+            "type": [
+                "raiden.utils.TokenAddress",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "network_wait",
+            "type": [
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "raiden_network",
+            "type": [
+                "list[raiden.raiden_service.RaidenService]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app0",
+            "type": [
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app1",
+            "type": [
+                "raiden.raiden_service.RaidenService"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_addresses",
+            "type": [
+                "raiden.utils.TokenAddress",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_address",
+            "type": [
+                "raiden_contracts.tests.test_channel_update_transfer.test_update_invalid_balance_proof_arguments.balance_proof",
+                "typing.Type",
+                "raiden.utils.SecretHash"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "network_wait",
+            "type": [
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "number_of_nodes",
+            "type": [
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret_hash",
+            "type": [
+                "str",
+                "tuple[typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit",
+            "type": [
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_transfer_with_secret",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

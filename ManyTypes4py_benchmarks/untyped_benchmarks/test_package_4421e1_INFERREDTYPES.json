@@ -1,0 +1,966 @@
+{
+    "_calculate_checksum@TestPackage": [
+        {
+            "category": "arg",
+            "name": "package_output_location",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "package_output_location",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "zip_filename",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "f",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_calculate_checksum",
+            "type": [
+                "str",
+                "bytes",
+                "int"
+            ]
+        }
+    ],
+    "_get_package_install_test_cases@global": [
+        {
+            "category": "local",
+            "name": "testcases",
+            "type": [
+                "list",
+                "list[tuple[typing.Union[typing.Text,dict[str, typing.Any]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "PY_VERSION",
+            "type": [
+                "str",
+                "tuple[typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VERSION_CUTOFF",
+            "type": [
+                "str",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "package",
+            "type": [
+                "tuple[typing.Union[str,dict[str, typing.Any]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "tuple[typing.Union[str,dict[str, typing.Any]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "PACKAGES_TO_TEST",
+            "type": [
+                "dict[str, str]",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "package_version",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_package_install_test_cases",
+            "type": [
+                "list[tuple[typing.Union[typing.Text,dict[str, typing.Any]]]]"
+            ]
+        }
+    ],
+    "_get_random_package_name@global": [
+        {
+            "category": "return",
+            "name": "_get_random_package_name",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "_run_package_cmd@TestPackage": [
+        {
+            "category": "arg",
+            "name": "package_output_location",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "app_skeleton",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "cli_factory",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "runner",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_exit_code",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "runner",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "package_output_location",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app_skeleton",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cli_factory",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_run_package_cmd",
+            "type": []
+        }
+    ],
+    "_verify_file_is_executable@TestPackage": [
+        {
+            "category": "arg",
+            "name": "package_output_location",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "filename",
+            "type": [
+                "list[list[str]]",
+                "tuple[str]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "package_output_location",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "zip_filename",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "zip",
+            "type": [
+                "ZipFile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "filename",
+            "type": [
+                "list[list[str]]",
+                "tuple[str]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "zipinfo",
+            "type": [
+                "float",
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_verify_file_is_executable",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "app_skeleton@global": [
+        {
+            "category": "arg",
+            "name": "tmpdir",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "runner",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "project_name",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tmpdir",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "app_skeleton",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "assert_can_package_dependency@global": [
+        {
+            "category": "arg",
+            "name": "runner",
+            "type": [
+                "openapi.cli.OpenApiClient",
+                "tomodachi.cli.CLI",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "app_skeleton",
+            "type": [
+                "str",
+                "Exception",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "package",
+            "type": [
+                "openapi.cli.OpenApiClient",
+                "str",
+                "tomodachi.cli.CLI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "contents",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "app_skeleton",
+            "type": [
+                "str",
+                "Exception",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "req",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "f",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "package",
+            "type": [
+                "openapi.cli.OpenApiClient",
+                "str",
+                "tomodachi.cli.CLI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "package_output_location",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "runner",
+            "type": [
+                "openapi.cli.OpenApiClient",
+                "tomodachi.cli.CLI",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "package_path",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "package_file",
+            "type": [
+                "ZipFile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "package_content",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "typing.Generator[typing.Optional[typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "assert_can_package_dependency",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "cd@global": [
+        {
+            "category": "arg",
+            "name": "path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "cd",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "PY_VERSION",
+            "type": [
+                "str",
+                "tuple[typing.Union[int,str]]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "VERSION_CUTOFF",
+            "type": [
+                "tuple[int]",
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "PACKAGES_TO_TEST",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, typing.Union[typing.Text,list[typing.Text]]]]",
+                "list[str]",
+                "dict[str, str]",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        }
+    ],
+    "runner@global": [
+        {
+            "category": "return",
+            "name": "runner",
+            "type": [
+                "CliRunner"
+            ]
+        }
+    ],
+    "test_can_package_pandas@TestPackage": [
+        {
+            "category": "arg",
+            "name": "runner",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "app_skeleton",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "no_local_config",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "version",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "runner",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app_skeleton",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_can_package_pandas",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_can_package_simplejson@TestPackage": [
+        {
+            "category": "arg",
+            "name": "runner",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "app_skeleton",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "no_local_config",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "runner",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app_skeleton",
+            "type": [
+                "int",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_can_package_simplejson",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_can_package_sqlalchemy@TestPackage": [
+        {
+            "category": "arg",
+            "name": "runner",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "app_skeleton",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "no_local_config",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "runner",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app_skeleton",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_can_package_sqlalchemy",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_can_package_with_dashes_in_name@TestPackage": [
+        {
+            "category": "arg",
+            "name": "runner",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "app_skeleton",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "no_local_config",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "runner",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app_skeleton",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_can_package_with_dashes_in_name",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_does_not_package_bad_requirements_file@TestPackage": [
+        {
+            "category": "arg",
+            "name": "runner",
+            "type": [
+                "click.testing.CliRunner",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "app_skeleton",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app_skeleton",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "req",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "package",
+            "type": [
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "f",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "runner",
+            "type": [
+                "click.testing.CliRunner",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_does_not_package_bad_requirements_file",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_package_install_smoke_tests@global": [
+        {
+            "category": "arg",
+            "name": "package",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "contents",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "runner",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "app_skeleton",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "runner",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app_skeleton",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "package",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "contents",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_package_install_smoke_tests",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_packaging_requirements_keeps_same_hash@TestPackage": [
+        {
+            "category": "arg",
+            "name": "runner",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "app_skeleton",
+            "type": [
+                "str",
+                "typing.Collection",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "no_local_config",
+            "type": [
+                "antidote.providers.factory.FactoryProvider"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "app_skeleton",
+            "type": [
+                "str",
+                "typing.Collection",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "req",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "package",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "f",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "package_output_location",
+            "type": [
+                "str",
+                "list[str]",
+                "tuple[list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "original_checksum",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_checksum",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_packaging_requirements_keeps_same_hash",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_preserves_executable_permissions@TestPackage": [
+        {
+            "category": "arg",
+            "name": "runner",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "app_skeleton",
+            "type": [
+                "str",
+                "typing.Collection",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "no_local_config",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "app_skeleton",
+            "type": [
+                "str",
+                "typing.Collection",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vendor",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "executable_file",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "f",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "package_output_location",
+            "type": [
+                "str",
+                "dict",
+                "tuple[list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "original_checksum",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_checksum",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_preserves_executable_permissions",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

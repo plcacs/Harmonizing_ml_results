@@ -1,0 +1,1394 @@
+{
+    "_analyze_candles_and_indicators@global": [
+        {
+            "category": "arg",
+            "name": "pair",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "trades",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "signal_candles",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "date_col",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signal_candles",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "buyf",
+            "type": [
+                "str",
+                "list[str]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trades",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pair",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "date_col",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_analyze_candles_and_indicators",
+            "type": []
+        }
+    ],
+    "_do_group_table_output@global": [
+        {
+            "category": "arg",
+            "name": "bigdf",
+            "type": [
+                "pandas.DataFrame",
+                "lib.Path",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "glist",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "csv_path",
+            "type": [
+                "str",
+                "typing.Callable[str, str]",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_csv",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "g",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "glist",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "group_mask",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wins",
+            "type": [
+                "bool",
+                "list[bool]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wins_",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "loss",
+            "type": [
+                "int",
+                "dict[str, typing.Any]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "loss_",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new",
+            "type": [
+                "str",
+                "list",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sortcols",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_csv",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "csv_path",
+            "type": [
+                "str",
+                "typing.Callable[str, str]",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "agg_mask",
+            "type": [
+                "dict[typing.Text, list[typing.Text]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "agg_cols",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_do_group_table_output",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_do_rejected_signals_output@global": [
+        {
+            "category": "arg",
+            "name": "rejected_signals_df",
+            "type": [
+                "pathlib.Path",
+                "pandas.DataFrame",
+                "list[list[str]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_csv",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "csv_path",
+            "type": [
+                "None",
+                "pathlib.Path",
+                "pandas.DataFrame",
+                "list[list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sortcols",
+            "type": [
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rejected_signals_df",
+            "type": [
+                "pathlib.Path",
+                "pandas.DataFrame",
+                "list[list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_csv",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "csv_path",
+            "type": [
+                "None",
+                "pathlib.Path",
+                "pandas.DataFrame",
+                "list[list[str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_do_rejected_signals_output",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_generate_dfs@global": [
+        {
+            "category": "arg",
+            "name": "pairlist",
+            "type": [
+                "str",
+                "cbc_casper_simulator.util.ticker.Ticker",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "enter_reason_list",
+            "type": [
+                "str",
+                "typing.Callable",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exit_reason_list",
+            "type": [
+                "str",
+                "typing.Callable",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "signal_candles",
+            "type": [
+                "str",
+                "cbc_casper_simulator.util.ticker.Ticker",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "strategy_name",
+            "type": [
+                "str",
+                "typing.Callable",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "timerange",
+            "type": [
+                "str",
+                "typing.Callable",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "trades",
+            "type": [
+                "str",
+                "cbc_casper_simulator.util.ticker.Ticker",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "date_col",
+            "type": [
+                "str",
+                "cbc_casper_simulator.util.ticker.Ticker",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pairlist",
+            "type": [
+                "str",
+                "cbc_casper_simulator.util.ticker.Ticker",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "strategy_name",
+            "type": [
+                "str",
+                "typing.Callable",
+                "float",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trades",
+            "type": [
+                "str",
+                "cbc_casper_simulator.util.ticker.Ticker",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signal_candles",
+            "type": [
+                "str",
+                "cbc_casper_simulator.util.ticker.Ticker",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "date_col",
+            "type": [
+                "str",
+                "cbc_casper_simulator.util.ticker.Ticker",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "analysed_trades_dict",
+            "type": [
+                "dict",
+                "dict[str, typing.Union[typing.Any,str]]",
+                "tuple[typing.Literal]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "enter_reason_list",
+            "type": [
+                "str",
+                "typing.Callable",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exit_reason_list",
+            "type": [
+                "str",
+                "typing.Callable",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timerange",
+            "type": [
+                "str",
+                "typing.Callable",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "res_df",
+            "type": [
+                "typing.Match",
+                "None",
+                "str",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_generate_dfs",
+            "type": [
+                "typing.Match",
+                "None",
+                "str",
+                "list[dict[str, typing.Any]]"
+            ]
+        }
+    ],
+    "_merge_dfs@global": [
+        {
+            "category": "arg",
+            "name": "entry_df",
+            "type": [
+                "list",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exit_df",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "available_inds",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "entry_only",
+            "type": [
+                "pandas.DataFrame",
+                "dict[str, dict[str, typing.Any]]",
+                "typing.Sequence[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exit_only",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "merge_on",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "available_inds",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exit_df",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entry_only",
+            "type": [
+                "pandas.DataFrame",
+                "dict[str, dict[str, typing.Any]]",
+                "typing.Sequence[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entry_df",
+            "type": [
+                "list",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_merge_dfs",
+            "type": [
+                "pathpy.core.path.Path.Collection",
+                "list[pathlib.Path]",
+                "list[dict[str, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exit_only",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_print_table@global": [
+        {
+            "category": "arg",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sortcols",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "show_index",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "name",
+            "type": [
+                "None",
+                "str",
+                "pathlib.Path",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_csv",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "csv_path",
+            "type": [
+                "str",
+                "freqtrade.configuration.TimeRange",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sortcols",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[str, typing.Any]",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_csv",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "csv_path",
+            "type": [
+                "str",
+                "freqtrade.configuration.TimeRange",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "safe_name",
+            "type": [
+                "Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "None",
+                "str",
+                "pathlib.Path",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "show_index",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_print_table",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_process_candles_and_indicators@global": [
+        {
+            "category": "arg",
+            "name": "pairlist",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "strategy_name",
+            "type": [
+                "freqtrade.exchange.Exchange",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "trades",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "signal_candles",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "date_col",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "strategy_name",
+            "type": [
+                "freqtrade.exchange.Exchange",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "analysed_trades_dict",
+            "type": [
+                "dict[typing.Union[freqtrade.exchange.Exchange,bool], dict]",
+                "dict[typing.Union[freqtrade.exchange.Exchange,bool], dict[typing.Text, ]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pairlist",
+            "type": [
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pair",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signal_candles",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trades",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "date_col",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_process_candles_and_indicators",
+            "type": [
+                "dict[typing.Union[freqtrade.exchange.Exchange,bool], dict[typing.Text, ]]"
+            ]
+        }
+    ],
+    "_select_rows_by_tags@global": [
+        {
+            "category": "arg",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame",
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "enter_reason_list",
+            "type": [
+                "pandas.DataFrame",
+                "list[str]",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exit_reason_list",
+            "type": [
+                "pandas.DataFrame",
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "enter_reason_list",
+            "type": [
+                "pandas.DataFrame",
+                "list[str]",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame",
+                "list[str]",
+                "str",
+                "list",
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exit_reason_list",
+            "type": [
+                "pandas.DataFrame",
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_select_rows_by_tags",
+            "type": [
+                "pandas.DataFrame",
+                "list[str]",
+                "str",
+                "list",
+                "list[dict[str, typing.Any]]"
+            ]
+        }
+    ],
+    "_select_rows_within_dates@global": [
+        {
+            "category": "arg",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "timerange",
+            "type": [
+                "None",
+                "pandas.DataFrame",
+                "str",
+                "typing.Iterable[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "df_date_col",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timerange",
+            "type": [
+                "None",
+                "pandas.DataFrame",
+                "str",
+                "typing.Iterable[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df",
+            "type": [
+                "pandas.DataFrame",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "df_date_col",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_select_rows_within_dates",
+            "type": [
+                "pandas.DataFrame",
+                "str"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "prepare_results@global": [
+        {
+            "category": "arg",
+            "name": "analysed_trades",
+            "type": [
+                "dict",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stratname",
+            "type": [
+                "dict",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "enter_reason_list",
+            "type": [
+                "pandas.DataFrame",
+                "set[str]",
+                "None",
+                "typing.BinaryIO"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exit_reason_list",
+            "type": [
+                "pandas.DataFrame",
+                "set[str]",
+                "None",
+                "typing.BinaryIO"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "timerange",
+            "type": [
+                "None",
+                "pandas.DataFrame",
+                "float",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pair",
+            "type": [
+                "tuple[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trades",
+            "type": [
+                "tuple[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "analysed_trades",
+            "type": [
+                "dict",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stratname",
+            "type": [
+                "dict",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timerange",
+            "type": [
+                "None",
+                "pandas.DataFrame",
+                "float",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "enter_reason_list",
+            "type": [
+                "pandas.DataFrame",
+                "set[str]",
+                "None",
+                "typing.BinaryIO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exit_reason_list",
+            "type": [
+                "pandas.DataFrame",
+                "set[str]",
+                "None",
+                "typing.BinaryIO"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "prepare_results",
+            "type": []
+        }
+    ],
+    "print_results@global": [
+        {
+            "category": "arg",
+            "name": "res_df",
+            "type": [
+                "pandas.DataFrame",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exit_df",
+            "type": [
+                "list",
+                "float",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "analysis_groups",
+            "type": [
+                "bool",
+                "typing.Iterable[str]",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "indicator_list",
+            "type": [
+                "str",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "entry_only",
+            "type": [
+                "list",
+                "float",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exit_only",
+            "type": [
+                "list",
+                "float",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "csv_path",
+            "type": [
+                "pandas.DataFrame",
+                "bool",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rejected_signals",
+            "type": [
+                "None",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_csv",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "res_df",
+            "type": [
+                "pandas.DataFrame",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "analysis_groups",
+            "type": [
+                "bool",
+                "typing.Iterable[str]",
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_csv",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "csv_path",
+            "type": [
+                "pandas.DataFrame",
+                "bool",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rejected_signals",
+            "type": [
+                "None",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indicator_list",
+            "type": [
+                "str",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "available_inds",
+            "type": [
+                "list",
+                "list[typing.Text]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ind",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exit_df",
+            "type": [
+                "list",
+                "float",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entry_only",
+            "type": [
+                "list",
+                "float",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exit_only",
+            "type": [
+                "list",
+                "float",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "merged_df",
+            "type": [
+                "pandas.DataFrame"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "print_results",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "process_entry_exit_reasons@global": [
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "analysis_groups",
+            "type": [
+                "list[str]",
+                "dict",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "enter_reason_list",
+            "type": [
+                "list",
+                "dict[str, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exit_reason_list",
+            "type": [
+                "list",
+                "dict",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indicator_list",
+            "type": [
+                "list[str]",
+                "str",
+                "list[util.HouseNumberRange]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entry_only",
+            "type": [
+                "str",
+                "bool",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exit_only",
+            "type": [
+                "str",
+                "dict[str, set[str]]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "do_rejected",
+            "type": [
+                "bool",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_csv",
+            "type": [
+                "list[str]",
+                "str",
+                "dict[pathlib.Path, pathlib.Path]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "csv_path",
+            "type": [
+                "Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timerange",
+            "type": [
+                "list[dict[str, typing.Any]]",
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rej_df",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_entry_exit_reasons",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

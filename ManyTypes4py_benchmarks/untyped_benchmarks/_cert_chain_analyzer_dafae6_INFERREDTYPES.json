@@ -1,0 +1,312 @@
+{
+    "__init__@CertificateDeploymentAnalyzer": [
+        {
+            "category": "arg",
+            "name": "server_subject",
+            "type": [
+                "str",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "server_certificate_chain_as_pem",
+            "type": [
+                "bytes",
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "server_ocsp_response",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "trust_stores_for_validation",
+            "type": [
+                "bool",
+                "str",
+                "None",
+                "list[typing.Callable]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "server_subject",
+            "type": [
+                "str",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "server_certificate_chain_as_pem",
+            "type": [
+                "bytes",
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "server_ocsp_response",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trust_stores_for_validation",
+            "type": [
+                "bool",
+                "str",
+                "None",
+                "list[typing.Callable]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [],
+    "perform@CertificateDeploymentAnalyzer": [
+        {
+            "category": "local",
+            "name": "received_certificate_chain",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "leaf_cert",
+            "type": [
+                "int",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "has_ocsp_must_staple",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tls_feature_ext",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_chain_order_valid",
+            "type": [
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "previous_issuer",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cert_",
+            "type": [
+                "hashes_@_SHA1"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_leaf_certificate_ev",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trust_store_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "number_of_scts",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sct_ext",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sct_ext_",
+            "type": [
+                "cryptography_@_x509_@_UnrecognizedExtension"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "all_path_validation_results",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path_validation_result",
+            "type": [
+                "list",
+                "dict[str, bool]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trust_store_that_can_build_verified_chain",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "verified_certificate_chain",
+            "type": [
+                "bytes",
+                "list[bytes]",
+                "tuple[bytes]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "has_anchor_in_certificate_chain",
+            "type": [
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "has_sha1_in_certificate_chain",
+            "type": [
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "verified_chain_has_legacy_symantec_anchor",
+            "type": [
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_ocsp_response_trusted",
+            "type": [
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "final_ocsp_response",
+            "type": [
+                "None",
+                "list",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "perform",
+            "type": [
+                "CertificateDeploymentAnalysisResult"
+            ]
+        }
+    ],
+    "received_certificate_chain_as_pem@CertificateDeploymentAnalysisResult": [
+        {
+            "category": "local",
+            "name": "pem_certs",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "received_certificate_chain_as_pem",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "sort_function@CertificateDeploymentAnalyzer": [
+        {
+            "category": "arg",
+            "name": "path_validation",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "sort_function",
+            "type": []
+        }
+    ],
+    "verified_certificate_chain@CertificateDeploymentAnalysisResult": [
+        {
+            "category": "return",
+            "name": "verified_certificate_chain",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "verified_certificate_chain_as_pem@CertificateDeploymentAnalysisResult": [
+        {
+            "category": "return",
+            "name": "verified_certificate_chain_as_pem",
+            "type": [
+                "None",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pem_certs",
+            "type": [
+                "list"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,1641 @@
+{
+    "_eligible_for_exit@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "int",
+                "list",
+                "typing.Collection"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "index",
+            "type": [
+                "int",
+                "typing.Mapping",
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "int",
+                "list",
+                "typing.Collection"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "index",
+            "type": [
+                "int",
+                "typing.Mapping",
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "not_slashed",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "active_for_long_enough",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "not_exited",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_eligible_for_exit",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "build_random_block_from_state_for_next_slot@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rng",
+            "type": [
+                "Random"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "deposits",
+            "type": [
+                "None",
+                "str",
+                "raiden.transfer.state.ChainState",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "beacon_chain.state.block.Block",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rng",
+            "type": [
+                "Random"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proposer_slashings",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_",
+            "type": [
+                "list",
+                "None",
+                "str",
+                "raiden.transfer.state.ChainState",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "slashed_indices",
+            "type": [
+                "list",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposits",
+            "type": [
+                "None",
+                "str",
+                "raiden.transfer.state.ChainState",
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "build_random_block_from_state_for_next_slot",
+            "type": [
+                "beacon_chain.state.block.Block",
+                "int",
+                "str"
+            ]
+        }
+    ],
+    "get_random_attestations@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "state.State",
+                "tuple",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rng",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rng",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_attestations",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "state.State",
+                "tuple",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "attestations",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_random_attestations",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "get_random_attester_slashings@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rng",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "slashed_indices",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rng",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "slashed_indices",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indices",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sample_upper_bound",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_slashed_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_random_attester_slashings",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "slot_range",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "slashings",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "get_random_bls_to_execution_changes@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "str",
+                "list[mythril.laser.ethereum.state.global_state.GlobalState]",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "str",
+                "list[mythril.laser.ethereum.state.global_state.GlobalState]",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rng",
+            "type": [
+                "Random"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_address_changes",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "str",
+                "list[mythril.laser.ethereum.state.global_state.GlobalState]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "str",
+                "list[mythril.laser.ethereum.state.global_state.GlobalState]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bls_indices",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rng",
+            "type": [
+                "Random"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_address_changes",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_random_bls_to_execution_changes",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "get_random_consolidation_requests@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rng",
+            "type": [
+                "int",
+                "dict",
+                "mythril.laser.ethereum.state.global_state.GlobalState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_consolidations",
+            "type": [
+                "None",
+                "collections.abc.Awaitable[None]",
+                "typing.Collection",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_consolidations",
+            "type": [
+                "None",
+                "collections.abc.Awaitable[None]",
+                "typing.Collection",
+                "int",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rng",
+            "type": [
+                "int",
+                "dict",
+                "mythril.laser.ethereum.state.global_state.GlobalState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "active_validator_indices",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "consolidation_requests",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_address",
+            "type": [
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_index",
+            "type": [
+                "int",
+                "list[int]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_index",
+            "type": [
+                "int",
+                "list[int]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_random_consolidation_requests",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "get_random_deposit_requests@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int",
+                "collections.abc.Awaitable[None]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "int",
+                "tuple",
+                "collections.abc.Awaitable[None]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rng",
+            "type": [
+                "int",
+                "collections.abc.Awaitable[None]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_deposits",
+            "type": [
+                "None",
+                "int",
+                "float",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_deposits",
+            "type": [
+                "None",
+                "int",
+                "float",
+                "tuple[int]",
+                "dict[int, float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rng",
+            "type": [
+                "int",
+                "collections.abc.Awaitable[None]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "int",
+                "collections.abc.Awaitable[None]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "int",
+                "tuple",
+                "collections.abc.Awaitable[None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "dict[str, int]",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit_data_leaves",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit_requests",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_random_deposit_requests",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "get_random_deposits@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "collections.abc.Awaitable[None]",
+                "int",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "tuple",
+                "list[mythril.laser.ethereum.state.global_state.GlobalState]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rng",
+            "type": [
+                "int",
+                "collections.abc.Awaitable[None]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_deposits",
+            "type": [
+                "None",
+                "int",
+                "collections.abc.Awaitable[None]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_deposits",
+            "type": [
+                "None",
+                "int",
+                "collections.abc.Awaitable[None]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rng",
+            "type": [
+                "int",
+                "collections.abc.Awaitable[None]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "collections.abc.Awaitable[None]",
+                "int",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_random_deposits",
+            "type": [
+                "tuple[typing.Union[list,bytes]]",
+                "tuple[list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "tuple",
+                "list[mythril.laser.ethereum.state.global_state.GlobalState]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "str",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposit_data_leaves",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposits",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "get_random_execution_requests@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "prefecengine.state.State",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "prefecengine.state.State",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rng",
+            "type": [
+                "prefecengine.state.State",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "prefecengine.state.State",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "prefecengine.state.State",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rng",
+            "type": [
+                "prefecengine.state.State",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposits",
+            "type": [
+                "int",
+                "typing.Callable[None, typing.Any]",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "withdrawals",
+            "type": [
+                "list[bytes]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "consolidations",
+            "type": [
+                "int",
+                "str",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "execution_requests",
+            "type": [
+                "str",
+                "dict",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_random_execution_requests",
+            "type": [
+                "str",
+                "dict",
+                "bytes"
+            ]
+        }
+    ],
+    "get_random_proposer_slashings@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "prefecengine.state.State",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rng",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rng",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "prefecengine.state.State",
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indices",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "slashings",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_random_proposer_slashings",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "get_random_sync_aggregate@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "random.Random"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "str",
+                "state.State",
+                "mythril.laser.ethereum.state.global_state.GlobalState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "slot",
+            "type": [
+                "random.Random",
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "raiden.transfer.state.TokenNetworkState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "block_root",
+            "type": [
+                "None",
+                "random.Random",
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "raiden.transfer.state.TokenNetworkState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fraction_participated",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rng",
+            "type": [
+                "Random"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "str",
+                "state.State",
+                "mythril.laser.ethereum.state.global_state.GlobalState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fraction_participated",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "participant_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rng",
+            "type": [
+                "Random"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "participant_indices",
+            "type": [
+                "range",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "participants",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "random.Random"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "slot",
+            "type": [
+                "random.Random",
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "raiden.transfer.state.TokenNetworkState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_root",
+            "type": [
+                "None",
+                "random.Random",
+                "mythril.laser.ethereum.state.global_state.GlobalState",
+                "raiden.transfer.state.TokenNetworkState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signature",
+            "type": [
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_random_sync_aggregate",
+            "type": [
+                "int",
+                "typing.Callable[float, None]"
+            ]
+        }
+    ],
+    "get_random_voluntary_exits@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int",
+                "collections.abc.Awaitable[None]",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_be_slashed_indices",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rng",
+            "type": [
+                "int",
+                "float",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rng",
+            "type": [
+                "int",
+                "float",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "int",
+                "collections.abc.Awaitable[None]",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "active_indices",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indices",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_be_slashed_indices",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indices_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exit_indices",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_random_voluntary_exits",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "get_random_withdrawal_requests@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict",
+                "int",
+                "collections.abc.Awaitable[None]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rng",
+            "type": [
+                "int",
+                "dict",
+                "mythril.laser.ethereum.state.global_state.GlobalState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_withdrawals",
+            "type": [
+                "None",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_withdrawals",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rng",
+            "type": [
+                "int",
+                "dict",
+                "mythril.laser.ethereum.state.global_state.GlobalState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict",
+                "int",
+                "collections.abc.Awaitable[None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "active_validator_indices",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "withdrawal_requests",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "bytes",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_random_withdrawal_requests",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "global@global": [],
+    "prepare_state_and_get_random_deposits@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int",
+                "collections.abc.Awaitable[None]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "int",
+                "collections.abc.Awaitable[None]",
+                "apps.monero.signing.state.State"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rng",
+            "type": [
+                "int",
+                "collections.abc.Awaitable[None]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_deposits",
+            "type": [
+                "None",
+                "int",
+                "collections.abc.Awaitable[None]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "int",
+                "collections.abc.Awaitable[None]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "int",
+                "collections.abc.Awaitable[None]",
+                "apps.monero.signing.state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rng",
+            "type": [
+                "int",
+                "collections.abc.Awaitable[None]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_deposits",
+            "type": [
+                "None",
+                "int",
+                "collections.abc.Awaitable[None]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "root",
+            "type": [
+                "int",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_",
+            "type": [
+                "int",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "prepare_state_and_get_random_deposits",
+            "type": []
+        }
+    ],
+    "run_slash_and_exit@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int",
+                "str",
+                "typing.Sequence[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "int",
+                "str",
+                "typing.Sequence[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "slash_index",
+            "type": [
+                "dict",
+                "int",
+                "typing.Sequence[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exit_index",
+            "type": [
+                "int",
+                "typing.Sequence[int]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "valid",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "int",
+                "str",
+                "typing.Sequence[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "int",
+                "str",
+                "typing.Sequence[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "run_slash_and_exit",
+            "type": [
+                "typing.Generator[tuple[typing.Union[typing.Text,int,typing.Sequence[int]]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,list[typing.Union[typing.Callable[None,None,None, int],bytes,tuple[typing.Union[str,int]]]]]]]",
+                "typing.Generator[tuple[typing.Optional[typing.Text]]]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "beacon_chain.state.block.Block",
+                "list",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "slash_index",
+            "type": [
+                "dict",
+                "int",
+                "typing.Sequence[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "proposer_slashing",
+            "type": [
+                "int",
+                "str",
+                "frozenset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exit_index",
+            "type": [
+                "int",
+                "typing.Sequence[int]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signed_exit",
+            "type": [
+                "str",
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "valid",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signed_block",
+            "type": [
+                "typing.Callable[None,None,None, int]",
+                "bytes",
+                "tuple[typing.Union[str,int]]"
+            ]
+        }
+    ],
+    "run_test_full_random_operations@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rng",
+            "type": [
+                "Random"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rng",
+            "type": [
+                "Random"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposits",
+            "type": [
+                "int",
+                "typing.Callable[None, typing.Any]",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block",
+            "type": [
+                "list[tuple[int]]",
+                "beacon_chain.state.block.Block"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "run_test_full_random_operations",
+            "type": [
+                "typing.Generator[tuple[typing.Union[typing.Text,dict,int]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,list[typing.Union[beacon_chain.state.chain.Chain,typing.Callable[None,None,None, int],tuple[typing.Union[str,int]]]]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signed_block",
+            "type": [
+                "beacon_chain.state.chain.Chain",
+                "typing.Callable[None,None,None, int]",
+                "tuple[typing.Union[str,int]]"
+            ]
+        }
+    ]
+}

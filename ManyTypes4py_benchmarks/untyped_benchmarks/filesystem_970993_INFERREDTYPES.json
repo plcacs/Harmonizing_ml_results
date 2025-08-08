@@ -1,0 +1,734 @@
+{
+    "__init__@FileSystemLockManager": [
+        {
+            "category": "arg",
+            "name": "lock_files_directory",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_files_directory",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_locks",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_aget_lock_info@FileSystemLockManager": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "bool",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "use_cache",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "use_cache",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_info",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "bool",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_aget_lock_info",
+            "type": [
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_path",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_info_bytes",
+            "type": [
+                "bytes",
+                "tuple[typing.Literal]",
+                "list[bytes]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expiration",
+            "type": [
+                "int",
+                "datetime.datetime",
+                "None"
+            ]
+        }
+    ],
+    "_ensure_lock_files_directory_exists@FileSystemLockManager": [
+        {
+            "category": "return",
+            "name": "_ensure_lock_files_directory_exists",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_get_lock_info@FileSystemLockManager": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "bool",
+                "typing.Mapping",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "use_cache",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "use_cache",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_info",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "bool",
+                "typing.Mapping",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_lock_info",
+            "type": [
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_path",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_file",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expiration",
+            "type": [
+                "int",
+                "datetime.datetime",
+                "None"
+            ]
+        }
+    ],
+    "_lock_path_for_key@FileSystemLockManager": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "list[str]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "list[str]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_lock_path_for_key",
+            "type": [
+                "pathlib.Path",
+                "bytes"
+            ]
+        }
+    ],
+    "aacquire_lock@FileSystemLockManager": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "holder",
+            "type": [
+                "str",
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "acquire_timeout",
+            "type": [
+                "None",
+                "float",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "hold_timeout",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_path",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "holder",
+            "type": [
+                "str",
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "acquire_timeout",
+            "type": [
+                "None",
+                "float",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_free",
+            "type": [
+                "int",
+                "float",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "aacquire_lock",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hold_timeout",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expiration",
+            "type": [
+                "None",
+                "int",
+                "datetime.datetime.timedelta"
+            ]
+        }
+    ],
+    "acquire_lock@FileSystemLockManager": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "float",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "holder",
+            "type": [
+                "str",
+                "int",
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "acquire_timeout",
+            "type": [
+                "None",
+                "float",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "hold_timeout",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "float",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_path",
+            "type": [
+                "pathlib.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "holder",
+            "type": [
+                "str",
+                "int",
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "acquire_timeout",
+            "type": [
+                "None",
+                "float",
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_free",
+            "type": [
+                "int",
+                "typing.Final"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "acquire_lock",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hold_timeout",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expiration",
+            "type": [
+                "None",
+                "int",
+                "datetime.datetime.timedelta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_file",
+            "type": [
+                "typing.IO"
+            ]
+        }
+    ],
+    "await_for_lock@FileSystemLockManager": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "bool",
+                "types.Version",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "timeout",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "seconds_waited",
+            "type": [
+                "int",
+                "float",
+                "datetime.timedelta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "bool",
+                "types.Version",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timeout",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "await_for_lock",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "is_lock_holder@FileSystemLockManager": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "apps.monero.xmr.types.Ge25519",
+                "bool",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "holder",
+            "type": [
+                "str",
+                "tuple[str]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "apps.monero.xmr.types.Ge25519",
+                "bool",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_lock_holder",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "holder",
+            "type": [
+                "str",
+                "tuple[str]",
+                "bool"
+            ]
+        }
+    ],
+    "is_locked@FileSystemLockManager": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "bool",
+                "str",
+                "typing.Callable[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "use_cache",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "bool",
+                "str",
+                "typing.Callable[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "use_cache",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "is_locked",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expiration",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expired",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "release_lock@FileSystemLockManager": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "int",
+                "None",
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "holder",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "int",
+                "None",
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock_path",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "holder",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "release_lock",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "wait_for_lock@FileSystemLockManager": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "bool",
+                "typing.Sequence[typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "timeout",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "seconds_waited",
+            "type": [
+                "int",
+                "float",
+                "datetime.timedelta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "bool",
+                "typing.Sequence[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "timeout",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "wait_for_lock",
+            "type": [
+                "bool"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,395 @@
+{
+    "__init__@Conll2003DatasetReader": [
+        {
+            "category": "arg",
+            "name": "token_indexers",
+            "type": [
+                "None",
+                "dict[str, allennlp.data.token_indexers.TokenIndexer]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "tag_label",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "feature_labels",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "convert_to_coding_scheme",
+            "type": [
+                "None",
+                "list[str]",
+                "dict[str, typing.Any]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "label_namespace",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "convert_to_coding_scheme",
+            "type": [
+                "None",
+                "list[str]",
+                "dict[str, typing.Any]",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_indexers",
+            "type": [
+                "None",
+                "dict[str, allennlp.data.token_indexers.TokenIndexer]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_token_indexers",
+            "type": [
+                "None",
+                "dict[str, allennlp.data.token_indexers.TokenIndexer]",
+                "dict[typing.Text, SingleIdTokenIndexer]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tag_label",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "feature_labels",
+            "type": [
+                "tuple",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "label_namespace",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_original_coding_scheme",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_is_divider@global": [
+        {
+            "category": "arg",
+            "name": "line",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "line",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "empty_line",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_is_divider",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "first_token",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "_read@Conll2003DatasetReader": [
+        {
+            "category": "arg",
+            "name": "file_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_file",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "line_chunks",
+            "type": [
+                "typing.Generator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fields",
+            "type": [
+                "list",
+                "list[list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens_",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pos_tags",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chunk_tags",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ner_tags",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "list[Token]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_read",
+            "type": [
+                "typing.Generator"
+            ]
+        }
+    ],
+    "apply_token_indexers@Conll2003DatasetReader": [
+        {
+            "category": "arg",
+            "name": "instance",
+            "type": [
+                "allennlp.data.instance.Instance"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instance",
+            "type": [
+                "allennlp.data.instance.Instance"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "apply_token_indexers",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "text_to_instance@Conll2003DatasetReader": [
+        {
+            "category": "arg",
+            "name": "tokens",
+            "type": [
+                "list[str]",
+                "list[allennlp.data.tokenizers.Token]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "pos_tags",
+            "type": [
+                "None",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chunk_tags",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ner_tags",
+            "type": [
+                "None",
+                "str",
+                "list[str]",
+                "list[allennlp.data.tokenizers.Token]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tokens",
+            "type": [
+                "list[str]",
+                "list[allennlp.data.tokenizers.Token]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sequence",
+            "type": [
+                "TextField"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "instance_fields",
+            "type": [
+                "dict[typing.Text, TextField]",
+                "dict[typing.Text, typing.Union[TextField,MetadataField]]",
+                "dict[typing.Text, typing.Union[TextField,MetadataField,SequenceLabelField]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "x",
+            "type": [
+                "str",
+                "allennlp.data.tokenizers.Token"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chunk_tags",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "coded_chunks",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "list[str]",
+                "bytes",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ner_tags",
+            "type": [
+                "None",
+                "str",
+                "list[str]",
+                "list[allennlp.data.tokenizers.Token]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "coded_ner",
+            "type": [
+                "None",
+                "str",
+                "list[str]",
+                "list[allennlp.data.tokenizers.Token]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pos_tags",
+            "type": [
+                "None",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "text_to_instance",
+            "type": [
+                "Instance"
+            ]
+        }
+    ]
+}

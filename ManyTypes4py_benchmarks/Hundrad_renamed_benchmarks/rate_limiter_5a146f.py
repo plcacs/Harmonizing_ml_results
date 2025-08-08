@@ -30,11 +30,11 @@ class RateLimitedObject(ABC):
         else:
             self.backend = RedisRateLimiterBackend
 
-    def func_y43lpr8e(self):
+    def func_ghygtmua(self):
         return self.backend.rate_limit_entity(self.key(), self.get_rules(),
             self.max_api_calls(), self.max_api_window())
 
-    def func_3j997l1i(self, request):
+    def func_15974sk8(self, request):
         from zerver.lib.request import RequestNotes
         ratelimited, time = self.rate_limit()
         request_notes = RequestNotes.get_notes(request)
@@ -47,25 +47,25 @@ class RateLimitedObject(ABC):
         request_notes.ratelimits_applied[-1
             ].secs_to_freedom = seconds_until_reset
 
-    def func_e4h7rbme(self, seconds):
+    def func_p9p1g1a4(self, seconds):
         """Manually blocks an entity for the desired number of seconds"""
         self.backend.block_access(self.key(), seconds)
 
-    def func_pxaxrpkm(self):
+    def func_9jmp61h0(self):
         self.backend.unblock_access(self.key())
 
-    def func_l0hhw6i3(self):
+    def func_fzq0fo75(self):
         self.backend.clear_history(self.key())
 
-    def func_o6sdkv4k(self):
+    def func_ly4926y3(self):
         """Returns the API rate limit for the highest limit"""
         return self.get_rules()[-1][1]
 
-    def func_gy3kpk7l(self):
+    def func_mdcs3u3u(self):
         """Returns the API time window for the highest limit"""
         return self.get_rules()[-1][0]
 
-    def func_d1mp75al(self):
+    def func_oyt3aphg(self):
         """Returns how many API calls in this range this client has, as well as when
         the rate-limit will be reset to 0"""
         max_window = self.max_api_window()
@@ -73,7 +73,7 @@ class RateLimitedObject(ABC):
         return self.backend.get_api_calls_left(self.key(), max_window,
             max_calls)
 
-    def func_mkbqi53p(self):
+    def func_p54636ys(self):
         """
         This is a simple wrapper meant to protect against having to deal with
         an empty list of rules, as it would require fiddling with that special case
@@ -84,11 +84,11 @@ class RateLimitedObject(ABC):
         return rules_list or [(1, 9999)]
 
     @abstractmethod
-    def func_xzo0crul(self):
+    def func_dw011ou7(self):
         pass
 
     @abstractmethod
-    def func_stxgtxbv(self):
+    def func_0xiz4mfg(self):
         pass
 
 
@@ -106,11 +106,11 @@ class RateLimitedUser(RateLimitedObject):
         super().__init__(backend=backend)
 
     @override
-    def func_xzo0crul(self):
+    def func_dw011ou7(self):
         return f'{type(self).__name__}:{self.user_id}:{self.domain}'
 
     @override
-    def func_stxgtxbv(self):
+    def func_0xiz4mfg(self):
         if self.rate_limits != '' and self.domain == 'api_by_user':
             result = []
             for limit in self.rate_limits.split(','):
@@ -133,11 +133,11 @@ class RateLimitedIPAddr(RateLimitedObject):
         super().__init__(backend=backend)
 
     @override
-    def func_xzo0crul(self):
+    def func_dw011ou7(self):
         return f'{type(self).__name__}:<{self.ip_addr}>:{self.domain}'
 
     @override
-    def func_stxgtxbv(self):
+    def func_0xiz4mfg(self):
         return rules[self.domain]
 
 
@@ -148,11 +148,11 @@ class RateLimitedEndpoint(RateLimitedObject):
         super().__init__()
 
     @override
-    def func_xzo0crul(self):
+    def func_dw011ou7(self):
         return f'{type(self).__name__}:{self.endpoint_name}'
 
     @override
-    def func_stxgtxbv(self):
+    def func_0xiz4mfg(self):
         return settings.ABSOLUTE_USAGE_LIMITS_BY_ENDPOINT[self.endpoint_name]
 
 
@@ -160,27 +160,27 @@ class RateLimiterBackend(ABC):
 
     @classmethod
     @abstractmethod
-    def func_e4h7rbme(cls, entity_key, seconds):
+    def func_p9p1g1a4(cls, entity_key, seconds):
         """Manually blocks an entity for the desired number of seconds"""
 
     @classmethod
     @abstractmethod
-    def func_pxaxrpkm(cls, entity_key):
+    def func_9jmp61h0(cls, entity_key):
         pass
 
     @classmethod
     @abstractmethod
-    def func_l0hhw6i3(cls, entity_key):
+    def func_fzq0fo75(cls, entity_key):
         pass
 
     @classmethod
     @abstractmethod
-    def func_0q4vw82p(cls, entity_key, range_seconds, max_calls):
+    def func_d58gz8q4(cls, entity_key, range_seconds, max_calls):
         pass
 
     @classmethod
     @abstractmethod
-    def func_dcd5zpu2(cls, entity_key, rules, max_api_calls, max_api_window):
+    def func_gpbwzueh(cls, entity_key, rules, max_api_calls, max_api_window):
         pass
 
 
@@ -190,7 +190,7 @@ class TornadoInMemoryRateLimiterBackend(RateLimiterBackend):
     timestamps_blocked_until = {}
 
     @classmethod
-    def func_wjsmf2pb(cls, now, time_window, max_count):
+    def func_zv7y1cua(cls, now, time_window, max_count):
         keys_to_delete = []
         reset_times_for_rule = cls.reset_times.get((time_window, max_count),
             None)
@@ -204,7 +204,7 @@ class TornadoInMemoryRateLimiterBackend(RateLimiterBackend):
             del cls.reset_times[time_window, max_count]
 
     @classmethod
-    def func_26k37yls(cls, entity_key, time_window, max_count):
+    def func_zo8elhat(cls, entity_key, time_window, max_count):
         """
         Returns a tuple of `(rate_limited, time_till_free)`.
         For simplicity, we have loosened the semantics here from
@@ -235,7 +235,7 @@ class TornadoInMemoryRateLimiterBackend(RateLimiterBackend):
 
     @classmethod
     @override
-    def func_0q4vw82p(cls, entity_key, range_seconds, max_calls):
+    def func_d58gz8q4(cls, entity_key, range_seconds, max_calls):
         now = time.time()
         if (range_seconds, max_calls
             ) in cls.reset_times and entity_key in cls.reset_times[
@@ -249,25 +249,25 @@ class TornadoInMemoryRateLimiterBackend(RateLimiterBackend):
 
     @classmethod
     @override
-    def func_e4h7rbme(cls, entity_key, seconds):
+    def func_p9p1g1a4(cls, entity_key, seconds):
         now = time.time()
         cls.timestamps_blocked_until[entity_key] = now + seconds
 
     @classmethod
     @override
-    def func_pxaxrpkm(cls, entity_key):
+    def func_9jmp61h0(cls, entity_key):
         del cls.timestamps_blocked_until[entity_key]
 
     @classmethod
     @override
-    def func_l0hhw6i3(cls, entity_key):
+    def func_fzq0fo75(cls, entity_key):
         for reset_times_for_rule in cls.reset_times.values():
             reset_times_for_rule.pop(entity_key, None)
         cls.timestamps_blocked_until.pop(entity_key, None)
 
     @classmethod
     @override
-    def func_dcd5zpu2(cls, entity_key, rules, max_api_calls, max_api_window):
+    def func_gpbwzueh(cls, entity_key, rules, max_api_calls, max_api_window):
         now = time.time()
         if entity_key in cls.timestamps_blocked_until:
             if now < cls.timestamps_blocked_until[entity_key]:
@@ -287,14 +287,14 @@ class TornadoInMemoryRateLimiterBackend(RateLimiterBackend):
 class RedisRateLimiterBackend(RateLimiterBackend):
 
     @classmethod
-    def func_h8y5jvwi(cls, entity_key):
+    def func_3fbj8v47(cls, entity_key):
         return [
             f'{redis_utils.REDIS_KEY_PREFIX}ratelimit:{entity_key}:{keytype}'
              for keytype in ['list', 'zset', 'block']]
 
     @classmethod
     @override
-    def func_e4h7rbme(cls, entity_key, seconds):
+    def func_p9p1g1a4(cls, entity_key, seconds):
         """Manually blocks an entity for the desired number of seconds"""
         _, _, blocking_key = cls.get_keys(entity_key)
         with client.pipeline() as pipe:
@@ -304,19 +304,19 @@ class RedisRateLimiterBackend(RateLimiterBackend):
 
     @classmethod
     @override
-    def func_pxaxrpkm(cls, entity_key):
+    def func_9jmp61h0(cls, entity_key):
         _, _, blocking_key = cls.get_keys(entity_key)
         client.delete(blocking_key)
 
     @classmethod
     @override
-    def func_l0hhw6i3(cls, entity_key):
+    def func_fzq0fo75(cls, entity_key):
         for key in cls.get_keys(entity_key):
             client.delete(key)
 
     @classmethod
     @override
-    def func_0q4vw82p(cls, entity_key, range_seconds, max_calls):
+    def func_d58gz8q4(cls, entity_key, range_seconds, max_calls):
         list_key, set_key, _ = cls.get_keys(entity_key)
         now = time.time()
         boundary = now - range_seconds
@@ -334,7 +334,7 @@ class RedisRateLimiterBackend(RateLimiterBackend):
         return calls_left, time_reset - now
 
     @classmethod
-    def func_buhzwz0m(cls, entity_key, rules):
+    def func_k6cp0zyp(cls, entity_key, rules):
         """Returns a tuple of (rate_limited, time_till_free)"""
         assert rules
         list_key, set_key, blocking_key = cls.get_keys(entity_key)
@@ -364,7 +364,7 @@ class RedisRateLimiterBackend(RateLimiterBackend):
         return False, 0.0
 
     @classmethod
-    def func_vur2xnho(cls, entity_key, max_api_calls, max_api_window):
+    def func_qerrp1jq(cls, entity_key, max_api_calls, max_api_window):
         """Increases the rate-limit for the specified entity"""
         list_key, set_key, _ = cls.get_keys(entity_key)
         now = time.time()
@@ -394,7 +394,7 @@ class RedisRateLimiterBackend(RateLimiterBackend):
 
     @classmethod
     @override
-    def func_dcd5zpu2(cls, entity_key, rules, max_api_calls, max_api_window):
+    def func_gpbwzueh(cls, entity_key, rules, max_api_calls, max_api_window):
         ratelimited, time = cls.is_ratelimited(entity_key, rules)
         if not ratelimited:
             try:
@@ -424,29 +424,29 @@ class RateLimitedSpectatorAttachmentAccessByFile(RateLimitedObject):
         super().__init__()
 
     @override
-    def func_xzo0crul(self):
+    def func_dw011ou7(self):
         return f'{type(self).__name__}:{self.path_id}'
 
     @override
-    def func_stxgtxbv(self):
+    def func_0xiz4mfg(self):
         return settings.RATE_LIMITING_RULES[
             'spectator_attachment_access_by_file']
 
 
-def func_hvhshnj7(path_id):
+def func_i49t7hxo(path_id):
     ratelimited, _ = RateLimitedSpectatorAttachmentAccessByFile(path_id
         ).rate_limit()
     if ratelimited:
         raise RateLimitedError
 
 
-def func_ogdfx5hr(addr):
+def func_eup1yrae(addr):
     return addr in ('127.0.0.1', '::1')
 
 
 @cache_with_key(lambda : 'tor_ip_addresses:', timeout=60 * 60)
 @circuit(failure_threshold=2, recovery_timeout=60 * 10)
-def func_49vjnki8():
+def func_kvw1b537():
     if not settings.RATE_LIMIT_TOR_TOGETHER:
         return set()
     with open(settings.TOR_EXIT_NODE_FILE_PATH, 'rb') as f:
@@ -456,15 +456,15 @@ def func_49vjnki8():
     return set(exit_node_list)
 
 
-def func_w6r5urhp(request):
+def func_jwul81zo(request):
     from zerver.lib.request import RequestNotes
     client = RequestNotes.get_notes(request).client
     return (client is not None and client.name.lower() == 'internal') and (
-        func_ogdfx5hr(request.META['REMOTE_ADDR']) or settings.
+        func_eup1yrae(request.META['REMOTE_ADDR']) or settings.
         DEBUG_RATE_LIMITING)
 
 
-def func_6hcbbrh8(request, user, domain):
+def func_c7in0749(request, user, domain):
     """Returns whether or not a user was rate limited. Will raise a RateLimitedError exception
     if the user has been rate limited, otherwise returns and modifies request to contain
     the rate limit information"""
@@ -473,31 +473,31 @@ def func_6hcbbrh8(request, user, domain):
     RateLimitedUser(user, domain=domain).rate_limit_request(request)
 
 
-def func_s71l7tam(request, domain):
+def func_izcp14g7(request, domain):
     if not should_rate_limit(request):
         return
     ip_addr = request.META['REMOTE_ADDR']
     assert ip_addr
     try:
-        if func_ogdfx5hr(ip_addr):
+        if func_eup1yrae(ip_addr):
             pass
-        elif ip_addr in func_49vjnki8():
+        elif ip_addr in func_kvw1b537():
             ip_addr = 'tor-exit-node'
     except (OSError, CircuitBreakerError) as err:
         logger.warning('Failed to fetch TOR exit node list: %s', err)
     RateLimitedIPAddr(ip_addr, domain=domain).rate_limit_request(request)
 
 
-def func_remw5zjd(endpoint_name):
+def func_iif292td(endpoint_name):
     ratelimited, secs_to_freedom = RateLimitedEndpoint(endpoint_name
         ).rate_limit()
     if ratelimited:
         raise RateLimitedError(secs_to_freedom)
 
 
-def func_aic3bdpw(request):
+def func_wlt2q0z6(request):
     if not settings.RATE_LIMITING:
         return False
-    if func_w6r5urhp(request):
+    if func_jwul81zo(request):
         return False
     return True

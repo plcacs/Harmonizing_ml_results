@@ -1,0 +1,3808 @@
+{
+    "_get_bucket_resource@S3Bucket": [
+        {
+            "category": "local",
+            "name": "params_override",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict[str, str]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket",
+            "type": [
+                "str",
+                "dict[str, int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_bucket_resource",
+            "type": [
+                "str",
+                "dict[str, int]"
+            ]
+        }
+    ],
+    "_get_s3_client@S3Bucket": [
+        {
+            "category": "return",
+            "name": "_get_s3_client",
+            "type": [
+                "str",
+                "dict"
+            ]
+        }
+    ],
+    "_join_bucket_folder@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "bucket_path",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_path",
+            "type": [
+                "typing.Text",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_join_bucket_folder",
+            "type": [
+                "typing.Text",
+                "pathlib.Path"
+            ]
+        }
+    ],
+    "_list_objects_setup@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "folder",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "delimiter",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page_size",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_items",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "jmespath_query",
+            "type": [
+                "None",
+                "str",
+                "dict[str, str]",
+                "typing.Callable[None, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "folder",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "paginator",
+            "type": [
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "delimiter",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "page_size",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_items",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "jmespath_query",
+            "type": [
+                "None",
+                "str",
+                "dict[str, str]",
+                "typing.Callable[None, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_list_objects_setup",
+            "type": [
+                "tuple[str]"
+            ]
+        }
+    ],
+    "_list_objects_sync@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "page_iterator",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_list_objects_sync",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "_list_objects_sync@global": [
+        {
+            "category": "arg",
+            "name": "page_iterator",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "_list_objects_sync",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "_move_object_setup@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "from_path",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_path",
+            "type": [
+                "pathlib.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_bucket",
+            "type": [
+                "None",
+                "pathlib.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_path",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_path",
+            "type": [
+                "pathlib.Path",
+                "pathlib.PurePath",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_bucket",
+            "type": [
+                "None",
+                "pathlib.Path",
+                "str",
+                "S3Bucket"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_bucket_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_path",
+            "type": [
+                "pathlib.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_path",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_move_object_setup",
+            "type": [
+                "tuple[typing.Union[pathlib.Path,pathlib.PurePath,list,str]]"
+            ]
+        }
+    ],
+    "_read_sync@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s3_client",
+            "type": [
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_read_sync",
+            "type": []
+        }
+    ],
+    "_resolve_path@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "path",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_resolve_path",
+            "type": [
+                "pathlib.Path"
+            ]
+        }
+    ],
+    "_write_sync@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "bytes",
+                "str",
+                "io.StringIO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s3_client",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "bytes",
+                "str",
+                "io.StringIO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_write_sync",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "acopy_objects@global": [
+        {
+            "category": "arg",
+            "name": "source_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "source_bucket_name",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "aws_credentials",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_bucket_name",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "copy_kwargs",
+            "type": [
+                "str",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "aws_credentials",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s3_client",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_bucket_name",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_bucket_name",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "copy_kwargs",
+            "type": [
+                "str",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "acopy_objects",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "adownload_folder_to_path@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "from_folder",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_folder",
+            "type": [
+                "None",
+                "pathlib.Path",
+                "str",
+                "os.PathLike"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "download_kwargs",
+            "type": [
+                "str",
+                "list[str]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_folder",
+            "type": [
+                "None",
+                "pathlib.Path",
+                "str",
+                "os.PathLike",
+                "typing.Text",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_folder",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "objects",
+            "type": [
+                "dict",
+                "typing.Iterator",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_folder",
+            "type": [
+                "str",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "async_coros",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_path",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_path",
+            "type": [
+                "pathlib.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "download_kwargs",
+            "type": [
+                "str",
+                "list[str]",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "adownload_folder_to_path",
+            "type": [
+                "Path"
+            ]
+        }
+    ],
+    "adownload_from_bucket@global": [
+        {
+            "category": "arg",
+            "name": "bucket",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "aws_credentials",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "aws_client_parameters",
+            "type": [
+                "AwsClientParameters"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "aws_client_parameters",
+            "type": [
+                "AwsClientParameters"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s3_client",
+            "type": [
+                "str",
+                "set",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "adownload_from_bucket",
+            "type": []
+        }
+    ],
+    "adownload_object_to_file_object@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "from_path",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_file_object",
+            "type": [
+                "str",
+                "typing.Iterable[str]",
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "download_kwargs",
+            "type": [
+                "str",
+                "typing.Iterable[str]",
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_path",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_path",
+            "type": [
+                "str",
+                "list",
+                "os.path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_file_object",
+            "type": [
+                "str",
+                "typing.Iterable[str]",
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "download_kwargs",
+            "type": [
+                "str",
+                "typing.Iterable[str]",
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "adownload_object_to_file_object",
+            "type": [
+                "str",
+                "typing.Iterable[str]",
+                "typing.IO"
+            ]
+        }
+    ],
+    "adownload_object_to_path@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "from_path",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "os.PathLike"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_path",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "download_kwargs",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_path",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "None",
+                "pathlib.PurePath",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_path",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "os.PathLike"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_path",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "download_kwargs",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "adownload_object_to_path",
+            "type": [
+                "Path"
+            ]
+        }
+    ],
+    "aget_directory@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "from_path",
+            "type": [
+                "None",
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "local_path",
+            "type": [
+                "None",
+                "pathlib.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_folder",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_path",
+            "type": [
+                "None",
+                "str",
+                "pathlib.Path",
+                "dict[str, dict[str, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "local_path",
+            "type": [
+                "None",
+                "pathlib.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "aget_directory",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "alist_objects@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "folder",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "delimiter",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page_size",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_items",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "jmespath_query",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "folder",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "delimiter",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "page_size",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_items",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "jmespath_query",
+            "type": [
+                "None",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "page_iterator",
+            "type": [
+                "int",
+                "list[str]",
+                "list[tuple[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_path",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "typing.Callable[object,None, list[str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "alist_objects",
+            "type": []
+        }
+    ],
+    "alist_objects@global": [
+        {
+            "category": "arg",
+            "name": "bucket",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "aws_credentials",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "aws_client_parameters",
+            "type": [
+                "AwsClientParameters"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prefix",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "delimiter",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page_size",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_items",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "jmespath_query",
+            "type": [
+                "None",
+                "str",
+                "dict[str, str]",
+                "typing.Pattern"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prefix",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "aws_client_parameters",
+            "type": [
+                "AwsClientParameters"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "delimiter",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "page_size",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_items",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "jmespath_query",
+            "type": [
+                "None",
+                "str",
+                "dict[str, str]",
+                "typing.Pattern"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "alist_objects",
+            "type": []
+        }
+    ],
+    "amove_object@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "from_path",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_path",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_bucket",
+            "type": [
+                "None",
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s3_client",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_path",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_path",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_bucket",
+            "type": [
+                "None",
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_bucket_name",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_path",
+            "type": [
+                "str",
+                "None",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_bucket_name",
+            "type": [
+                "str",
+                "list[str]",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_path",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "amove_object",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        }
+    ],
+    "amove_objects@global": [
+        {
+            "category": "arg",
+            "name": "source_path",
+            "type": [
+                "str",
+                "typing.TextIO"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_path",
+            "type": [
+                "str",
+                "typing.TextIO"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "source_bucket_name",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "aws_credentials",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_bucket_name",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "aws_credentials",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_bucket_name",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_bucket_name",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_path",
+            "type": [
+                "str",
+                "typing.TextIO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_path",
+            "type": [
+                "str",
+                "typing.TextIO"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "amove_objects",
+            "type": [
+                "str",
+                "typing.TextIO"
+            ]
+        }
+    ],
+    "aput_directory@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "local_path",
+            "type": [
+                "None",
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_path",
+            "type": [
+                "None",
+                "pathlib.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ignore_file",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_path",
+            "type": [
+                "None",
+                "pathlib.Path",
+                "str",
+                "pathlib.PurePath",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "local_path",
+            "type": [
+                "None",
+                "str",
+                "dict[str, str]",
+                "typing.Text",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "included_files",
+            "type": [
+                "list[str]",
+                "str",
+                "dict[str, dict[str, typing.Any]]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ignore_file",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "f",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ignore_patterns",
+            "type": [
+                "list[str]",
+                "set[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "uploaded_file_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "local_file",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "local_file_content",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "aput_directory",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "aread_path@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "path",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path",
+            "type": [
+                "pathlib.Path",
+                "list[pathlib.Path]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "aread_path",
+            "type": []
+        }
+    ],
+    "astream_from@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "bucket",
+            "type": [
+                "str",
+                "pathlib.PosixPath",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "from_path",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_path",
+            "type": [
+                "None",
+                "pathlib.Path",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "upload_kwargs",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_path",
+            "type": [
+                "None",
+                "pathlib.Path",
+                "str",
+                "bool",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_path",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket",
+            "type": [
+                "str",
+                "pathlib.PosixPath",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_from_path",
+            "type": [
+                "pathlib.Path",
+                "typing.Callable[None, typing.Any]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_client",
+            "type": [
+                "str",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_client",
+            "type": [
+                "str",
+                "tuple[list[typing.Any]]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upload_kwargs",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "astream_from",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "aupload_from_file_object@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "from_file_object",
+            "type": [
+                "str",
+                "bytes",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_path",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "upload_kwargs",
+            "type": [
+                "str",
+                "bytes",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_path",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_file_object",
+            "type": [
+                "str",
+                "bytes",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upload_kwargs",
+            "type": [
+                "str",
+                "bytes",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "aupload_from_file_object",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "aupload_from_folder@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "from_folder",
+            "type": [
+                "pathlib.Path",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_folder",
+            "type": [
+                "None",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "upload_kwargs",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_folder",
+            "type": [
+                "pathlib.Path",
+                "str",
+                "bool",
+                "Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_folder",
+            "type": [
+                "None",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_folder",
+            "type": [
+                "pathlib.Path",
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_uploaded",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "async_coros",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upload_kwargs",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "aupload_from_folder",
+            "type": [
+                "None",
+                "str",
+                "list[str]"
+            ]
+        }
+    ],
+    "aupload_from_path@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "from_path",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_path",
+            "type": [
+                "None",
+                "pathlib.Path",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "upload_kwargs",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_path",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_path",
+            "type": [
+                "None",
+                "pathlib.Path",
+                "str",
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upload_kwargs",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "aupload_from_path",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "aupload_to_bucket@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "bucket",
+            "type": [
+                "str",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "aws_credentials",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "aws_client_parameters",
+            "type": [
+                "AwsClientParameters"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket",
+            "type": [
+                "str",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "aws_client_parameters",
+            "type": [
+                "AwsClientParameters"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s3_client",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "aupload_to_bucket",
+            "type": [
+                "None",
+                "str"
+            ]
+        }
+    ],
+    "awrite_path@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "path",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content",
+            "type": [
+                "bytes",
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "typing.Generator[typing.Optional[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content",
+            "type": [
+                "bytes",
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "awrite_path",
+            "type": [
+                "pathlib.Path",
+                "str",
+                "typing.Generator[typing.Optional[str]]"
+            ]
+        }
+    ],
+    "basepath@S3Bucket": [
+        {
+            "category": "local",
+            "name": "bucket_folder",
+            "type": [
+                "str",
+                "typing.Type",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "basepath",
+            "type": [
+                "str",
+                "typing.Type",
+                "pathlib.Path"
+            ]
+        }
+    ],
+    "copy_object@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "from_path",
+            "type": [
+                "str",
+                "None",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_path",
+            "type": [
+                "str",
+                "None",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_bucket",
+            "type": [
+                "None",
+                "str",
+                "dict[str, str]",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "copy_kwargs",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s3_client",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_path",
+            "type": [
+                "str",
+                "None",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_path",
+            "type": [
+                "pathlib.Path",
+                "pathlib.PurePath",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_bucket",
+            "type": [
+                "None",
+                "str",
+                "dict[str, str]",
+                "pathlib.Path",
+                "S3Bucket"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_bucket_name",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_path",
+            "type": [
+                "str",
+                "None",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_path",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "copy_kwargs",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "copy_object",
+            "type": [
+                "pathlib.Path"
+            ]
+        }
+    ],
+    "copy_objects@global": [
+        {
+            "category": "arg",
+            "name": "source_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "source_bucket_name",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "aws_credentials",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_bucket_name",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "copy_kwargs",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "aws_credentials",
+            "type": [
+                "str",
+                "dict[str, typing.Any]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s3_client",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_bucket_name",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_bucket_name",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "copy_kwargs",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "copy_objects",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "download_folder_to_path@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "from_folder",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_folder",
+            "type": [
+                "None",
+                "pathlib.Path",
+                "os.PathLike"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "download_kwargs",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_folder",
+            "type": [
+                "None",
+                "pathlib.Path",
+                "os.PathLike",
+                "typing.Text",
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_folder",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "objects",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_folder",
+            "type": [
+                "str",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_path",
+            "type": [
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_path",
+            "type": [
+                "pathlib.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "download_kwargs",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "download_folder_to_path",
+            "type": [
+                "Path"
+            ]
+        }
+    ],
+    "download_from_bucket@global": [
+        {
+            "category": "arg",
+            "name": "bucket",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "aws_credentials",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "aws_client_parameters",
+            "type": [
+                "AwsClientParameters"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "aws_client_parameters",
+            "type": [
+                "AwsClientParameters"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s3_client",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "download_from_bucket",
+            "type": []
+        }
+    ],
+    "download_object_to_file_object@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "from_path",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "typing.Iterable[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_file_object",
+            "type": [
+                "str",
+                "tuple[str]",
+                "typing.Callable[str,backuppy.io.IOIter, backuppy.io.IOIter]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "download_kwargs",
+            "type": [
+                "str",
+                "tuple[str]",
+                "typing.Callable[str,backuppy.io.IOIter, backuppy.io.IOIter]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_path",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "typing.Iterable[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_path",
+            "type": [
+                "str",
+                "None",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_file_object",
+            "type": [
+                "str",
+                "tuple[str]",
+                "typing.Callable[str,backuppy.io.IOIter, backuppy.io.IOIter]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "download_kwargs",
+            "type": [
+                "str",
+                "tuple[str]",
+                "typing.Callable[str,backuppy.io.IOIter, backuppy.io.IOIter]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "download_object_to_file_object",
+            "type": [
+                "str",
+                "tuple[str]",
+                "typing.Callable[str,backuppy.io.IOIter, backuppy.io.IOIter]"
+            ]
+        }
+    ],
+    "download_object_to_path@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "from_path",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_path",
+            "type": [
+                "pathlib.Path",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "download_kwargs",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_path",
+            "type": [
+                "pathlib.Path",
+                "None",
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_path",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_path",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "download_kwargs",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "download_object_to_path",
+            "type": [
+                "Path"
+            ]
+        }
+    ],
+    "get_directory@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "from_path",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "local_path",
+            "type": [
+                "None",
+                "pathlib.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_folder",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_path",
+            "type": [
+                "None",
+                "str",
+                "dict[str, dict[str, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "local_path",
+            "type": [
+                "None",
+                "pathlib.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket",
+            "type": [
+                "str",
+                "list[str]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_directory",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "s3_download",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s3_upload",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s3_copy",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s3_move",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s3_list_objects",
+            "type": [
+                "tuple[typing.Union[typing.Literal,typing.Any,dict[str, typing.Any]]]",
+                "str",
+                "list[dict[str, typing.Any]]"
+            ]
+        }
+    ],
+    "list_objects@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "folder",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "delimiter",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page_size",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_items",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "jmespath_query",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "folder",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "delimiter",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "page_size",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_items",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "jmespath_query",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "page_iterator",
+            "type": [
+                "int",
+                "list[str]",
+                "list[tuple[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_path",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "typing.Callable[object,None, list[str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "list_objects",
+            "type": [
+                "list[str]",
+                "list",
+                "list[pathlib.Path]"
+            ]
+        }
+    ],
+    "list_objects@global": [
+        {
+            "category": "arg",
+            "name": "bucket",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "aws_credentials",
+            "type": [
+                "dict[str, typing.Any]",
+                "str",
+                "dict",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "aws_client_parameters",
+            "type": [
+                "AwsClientParameters"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "prefix",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "delimiter",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "page_size",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "max_items",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "jmespath_query",
+            "type": [
+                "None",
+                "str",
+                "typing.Pattern",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "prefix",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "aws_client_parameters",
+            "type": [
+                "AwsClientParameters"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "delimiter",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "page_size",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_items",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "jmespath_query",
+            "type": [
+                "None",
+                "str",
+                "typing.Pattern",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "list_objects",
+            "type": []
+        }
+    ],
+    "move_object@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "from_path",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_path",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_bucket",
+            "type": [
+                "None",
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_path",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_path",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_bucket",
+            "type": [
+                "None",
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_bucket_name",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_path",
+            "type": [
+                "pathlib.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_bucket_name",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_path",
+            "type": [
+                "pathlib.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "move_object",
+            "type": [
+                "pathlib.Path",
+                "str"
+            ]
+        }
+    ],
+    "move_objects@global": [
+        {
+            "category": "arg",
+            "name": "source_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "source_bucket_name",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "aws_credentials",
+            "type": [
+                "str",
+                "None",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_bucket_name",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "aws_credentials",
+            "type": [
+                "str",
+                "None",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s3_client",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_bucket_name",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_bucket_name",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "move_objects",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "put_directory@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "local_path",
+            "type": [
+                "None",
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_path",
+            "type": [
+                "None",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "ignore_file",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_path",
+            "type": [
+                "None",
+                "pathlib.Path",
+                "pathlib.PurePath",
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "local_path",
+            "type": [
+                "None",
+                "str",
+                "dict[str, str]",
+                "typing.Text",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "included_files",
+            "type": [
+                "list[str]",
+                "str",
+                "dict[str, dict[str, typing.Any]]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ignore_file",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "f",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ignore_patterns",
+            "type": [
+                "list[str]",
+                "set[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "uploaded_file_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "local_file",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "local_file_content",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "put_directory",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "read_path@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "path",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "pathlib.PurePath"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "read_path",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "bytes"
+            ]
+        }
+    ],
+    "stream_from@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "bucket",
+            "type": [
+                "str",
+                "None",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "from_path",
+            "type": [
+                "pathlib.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_path",
+            "type": [
+                "None",
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "upload_kwargs",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_path",
+            "type": [
+                "None",
+                "str",
+                "pathlib.Path",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_path",
+            "type": [
+                "pathlib.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket",
+            "type": [
+                "str",
+                "None",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_from_path",
+            "type": [
+                "pathlib.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_client",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_client",
+            "type": [
+                "str",
+                "tuple[list[typing.Any]]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upload_kwargs",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "stream_from",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "upload_from_file_object@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "from_file_object",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_path",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "upload_kwargs",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_path",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_file_object",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upload_kwargs",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_from_file_object",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "upload_from_folder@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "from_folder",
+            "type": [
+                "pathlib.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_folder",
+            "type": [
+                "None",
+                "str",
+                "pathlib.Path",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "upload_kwargs",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_folder",
+            "type": [
+                "pathlib.Path",
+                "str",
+                "Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_folder",
+            "type": [
+                "None",
+                "str",
+                "pathlib.Path",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_folder",
+            "type": [
+                "pathlib.Path",
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_uploaded",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upload_kwargs",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_from_folder",
+            "type": [
+                "None",
+                "str",
+                "pathlib.Path",
+                "list[str]"
+            ]
+        }
+    ],
+    "upload_from_path@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "from_path",
+            "type": [
+                "pathlib.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_path",
+            "type": [
+                "None",
+                "pathlib.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "upload_kwargs",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_path",
+            "type": [
+                "pathlib.Path",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_path",
+            "type": [
+                "None",
+                "pathlib.Path",
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client",
+            "type": [
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upload_kwargs",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_from_path",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "upload_to_bucket@global": [
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "bucket",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "aws_credentials",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "aws_client_parameters",
+            "type": [
+                "AwsClientParameters"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "key",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bucket",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "aws_client_parameters",
+            "type": [
+                "AwsClientParameters"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "s3_client",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "str",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_to_bucket",
+            "type": [
+                "None",
+                "str"
+            ]
+        }
+    ],
+    "validate_credentials@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "pydantic.fields.ModelField",
+                "typing.Mapping",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "value",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "field",
+            "type": [
+                "str",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "typing.Mapping"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_type_slug",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "credential_classes",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cls",
+            "type": [
+                "pydantic.fields.ModelField",
+                "typing.Mapping",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "validate_credentials",
+            "type": [
+                "str",
+                "None",
+                "bool",
+                "dict[str, typing.Any]",
+                "typing.Mapping",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "valid_classes",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "write_path@S3Bucket": [
+        {
+            "category": "arg",
+            "name": "path",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "content",
+            "type": [
+                "str",
+                "bytes",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "path",
+            "type": [
+                "str",
+                "pathlib.Path",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "content",
+            "type": [
+                "str",
+                "bytes",
+                "pathlib.Path"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "write_path",
+            "type": [
+                "pathlib.Path",
+                "str"
+            ]
+        }
+    ]
+}

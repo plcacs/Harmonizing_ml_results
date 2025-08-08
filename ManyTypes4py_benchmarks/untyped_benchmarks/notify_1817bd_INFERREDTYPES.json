@@ -1,0 +1,937 @@
+{
+    "__init__@TwitterNotificationService": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "consumer_key",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "consumer_secret",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "access_token_key",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "access_token_secret",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "username",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "username",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "default_user",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "consumer_key",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "consumer_secret",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "access_token_key",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "access_token_secret",
+            "type": [
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "api",
+            "type": [
+                "TwitterAPI"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "check_status_until_done@TwitterNotificationService": [
+        {
+            "category": "arg",
+            "name": "media_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "callback",
+            "type": [
+                "str",
+                "typing.NamedTuple"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "media_id",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resp",
+            "type": [
+                "typing.Generator[typing.Optional[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "processing_info",
+            "type": [
+                "dict[str, list[str]]",
+                "dict[str, str]",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_status_until_done",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "check_after_secs",
+            "type": [
+                "list[str]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "when",
+            "type": [
+                "datetime.datetime",
+                "datetime.time",
+                "datetime.timedelta"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "callback",
+            "type": [
+                "str",
+                "typing.NamedTuple"
+            ]
+        }
+    ],
+    "get_service@global": [
+        {
+            "category": "arg",
+            "name": "hass",
+            "type": [
+                "homeassistanhelpers.ConfigType",
+                "dict",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "config",
+            "type": [
+                "homeassistanhelpers.ConfigType",
+                "dict",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "discovery_info",
+            "type": [
+                "None",
+                "homeassistancore.HomeAssistant",
+                "dict",
+                "homeassistanhelpers.ConfigType"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hass",
+            "type": [
+                "homeassistanhelpers.ConfigType",
+                "dict",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "config",
+            "type": [
+                "homeassistanhelpers.ConfigType",
+                "dict",
+                "homeassistancore.HomeAssistant"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_CONSUMER_KEY",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_CONSUMER_SECRET",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_ACCESS_TOKEN_SECRET",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_service",
+            "type": [
+                "TwitterNotificationService"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_CONSUMER_KEY",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_CONSUMER_SECRET",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "CONF_ACCESS_TOKEN_SECRET",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_MEDIA",
+            "type": [
+                "typing.Text",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "NOTIFY_PLATFORM_SCHEMA",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "PLATFORM_SCHEMA",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "log_bytes_sent@TwitterNotificationService": [
+        {
+            "category": "arg",
+            "name": "bytes_sent",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "total_bytes",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bytes_sent",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_bytes",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "log_bytes_sent",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "log_error_resp@TwitterNotificationService": [
+        {
+            "category": "arg",
+            "name": "resp",
+            "type": [
+                "django.http.HttpResponse",
+                "scrapy.http.TextResponse"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resp",
+            "type": [
+                "django.http.HttpResponse",
+                "scrapy.http.TextResponse"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "log_error_resp",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "log_error_resp_append@TwitterNotificationService": [
+        {
+            "category": "arg",
+            "name": "resp",
+            "type": [
+                "django.http.HttpResponse",
+                "scrapy.http.TextResponse"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resp",
+            "type": [
+                "django.http.HttpResponse",
+                "scrapy.http.TextResponse"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "log_error_resp_append",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "media_category_for_type@TwitterNotificationService": [
+        {
+            "category": "arg",
+            "name": "media_type",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "media_type",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "media_category_for_type",
+            "type": [
+                "None",
+                "typing.Text"
+            ]
+        }
+    ],
+    "media_info@TwitterNotificationService": [
+        {
+            "category": "arg",
+            "name": "media_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "media_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "media_info",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "send_message@TwitterNotificationService": [
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "media",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ATTR_MEDIA",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "send_message",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "send_message_callback@TwitterNotificationService": [
+        {
+            "category": "arg",
+            "name": "message",
+            "type": [
+                "int",
+                "django.http.HttpRequest",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "user",
+            "type": [
+                "django.http.HttpRequest",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "media_id",
+            "type": [
+                "None",
+                "django.http.HttpRequest",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user",
+            "type": [
+                "django.http.HttpRequest",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_resp",
+            "type": [
+                "str",
+                "bytes",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_LOGGER",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "message",
+            "type": [
+                "int",
+                "django.http.HttpRequest",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "dict[typing.Text, dict[typing.Text, typing.Union[typing.Text,dict[typing.Text, dict[typing.Text, typing.Union[int,django.http.HttpRequest,str]]]]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "media_id",
+            "type": [
+                "None",
+                "django.http.HttpRequest",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "send_message_callback",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "upload_media_append@TwitterNotificationService": [
+        {
+            "category": "arg",
+            "name": "chunk",
+            "type": [
+                "int",
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "media_id",
+            "type": [
+                "int",
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "segment_id",
+            "type": [
+                "int",
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "media_id",
+            "type": [
+                "int",
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "segment_id",
+            "type": [
+                "int",
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chunk",
+            "type": [
+                "int",
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_media_append",
+            "type": [
+                "str",
+                "http.MITMRequest",
+                "django.http.HttpResponse"
+            ]
+        }
+    ],
+    "upload_media_chunked@TwitterNotificationService": [
+        {
+            "category": "arg",
+            "name": "file",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "total_bytes",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "media_id",
+            "type": [
+                "int",
+                "typing.IO",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "segment_id",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bytes_sent",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_bytes",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "media_id",
+            "type": [
+                "int",
+                "typing.IO",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_media_chunked",
+            "type": [
+                "None",
+                "int",
+                "typing.IO",
+                "str"
+            ]
+        }
+    ],
+    "upload_media_finalize@TwitterNotificationService": [
+        {
+            "category": "arg",
+            "name": "media_id",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "media_id",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_media_finalize",
+            "type": [
+                "str",
+                "bool"
+            ]
+        }
+    ],
+    "upload_media_init@TwitterNotificationService": [
+        {
+            "category": "arg",
+            "name": "media_type",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "media_category",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "total_bytes",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "media_type",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "media_category",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_bytes",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_media_init",
+            "type": [
+                "str",
+                "bool",
+                "dict"
+            ]
+        }
+    ],
+    "upload_media_then_callback@TwitterNotificationService": [
+        {
+            "category": "arg",
+            "name": "callback",
+            "type": [
+                "str",
+                "boucanpy.core.dns_requesDnsRequestRepo",
+                "boucanpy.core.api_token.ApiTokenRepo"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "media_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "media_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "upload_media_then_callback",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "file",
+            "type": [
+                "typing.IO"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_bytes",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "media_category",
+            "type": [
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "media_type",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "resp",
+            "type": [
+                "typing.Generator[typing.Optional[typing.Any]]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "media_id",
+            "type": [
+                "typing.Generator[typing.Optional[typing.Any]]",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "callback",
+            "type": [
+                "str",
+                "boucanpy.core.dns_requesDnsRequestRepo",
+                "boucanpy.core.api_token.ApiTokenRepo"
+            ]
+        }
+    ]
+}

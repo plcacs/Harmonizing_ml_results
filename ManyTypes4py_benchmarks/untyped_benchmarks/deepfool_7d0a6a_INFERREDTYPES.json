@@ -1,0 +1,488 @@
+{
+    "__init__@DeepFoolAttack": [
+        {
+            "category": "arg",
+            "name": "steps",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "candidates",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "overshoot",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "loss",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "steps",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "candidates",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "overshoot",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "loss",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_get_loss_fn@DeepFoolAttack": [
+        {
+            "category": "arg",
+            "name": "model",
+            "type": [
+                "eagerpy.Tensor",
+                "models.Model",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "classes",
+            "type": [
+                "eagerpy.Tensor",
+                "models.Model"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "classes",
+            "type": [
+                "eagerpy.Tensor",
+                "models.Model"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "N",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rows",
+            "type": [
+                "range"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "i0",
+            "type": [
+                "int",
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_loss_fn",
+            "type": []
+        }
+    ],
+    "get_distances@DeepFoolAttack": [
+        {
+            "category": "arg",
+            "name": "losses",
+            "type": [
+                "eagerpy.Tensor",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "grads",
+            "type": [
+                "eagerpy.Tensor",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_distances",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_distances@L2DeepFoolAttack": [
+        {
+            "category": "arg",
+            "name": "losses",
+            "type": [
+                "eagerpy.Tensor",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "grads",
+            "type": [
+                "eagerpy.Tensor",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "losses",
+            "type": [
+                "eagerpy.Tensor",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_distances",
+            "type": [
+                "float",
+                "None",
+                "bool"
+            ]
+        }
+    ],
+    "get_distances@LinfDeepFoolAttack": [
+        {
+            "category": "arg",
+            "name": "losses",
+            "type": [
+                "eagerpy.Tensor",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "grads",
+            "type": [
+                "eagerpy.Tensor",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "losses",
+            "type": [
+                "eagerpy.Tensor",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_distances",
+            "type": [
+                "float",
+                "int"
+            ]
+        }
+    ],
+    "get_perturbations@DeepFoolAttack": [
+        {
+            "category": "arg",
+            "name": "distances",
+            "type": [
+                "eagerpy.Tensor",
+                "float",
+                "T"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "grads",
+            "type": [
+                "eagerpy.Tensor",
+                "float",
+                "T"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_perturbations",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "get_perturbations@L2DeepFoolAttack": [
+        {
+            "category": "arg",
+            "name": "distances",
+            "type": [
+                "eagerpy.Tensor",
+                "float",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "grads",
+            "type": [
+                "eagerpy.Tensor",
+                "float",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "distances",
+            "type": [
+                "eagerpy.Tensor",
+                "float",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "grads",
+            "type": [
+                "eagerpy.Tensor",
+                "float",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_perturbations",
+            "type": [
+                "int",
+                "str",
+                "float"
+            ]
+        }
+    ],
+    "get_perturbations@LinfDeepFoolAttack": [
+        {
+            "category": "arg",
+            "name": "distances",
+            "type": [
+                "eagerpy.Tensor",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "grads",
+            "type": [
+                "eagerpy.Tensor",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "distances",
+            "type": [
+                "eagerpy.Tensor",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "grads",
+            "type": [
+                "eagerpy.Tensor",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_perturbations",
+            "type": [
+                "int",
+                "tuple",
+                "float"
+            ]
+        }
+    ],
+    "global@global": [],
+    "loss_fun@DeepFoolAttack": [
+        {
+            "category": "arg",
+            "name": "x",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "k",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "loss_fun",
+            "type": [
+                "tuple[tuple]"
+            ]
+        }
+    ],
+    "run@DeepFoolAttack": [
+        {
+            "category": "arg",
+            "name": "model",
+            "type": [
+                "models.Model",
+                "criteria.Criterion",
+                "base.T"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "inputs",
+            "type": [
+                "base.T"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "criterion",
+            "type": [
+                "criteria.Criterion",
+                "base.T",
+                "typing.Any",
+                "models.Model"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "early_stop",
+            "type": [
+                "None",
+                "float",
+                "base.T"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "kwargs",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "inputs",
+            "type": [
+                "base.T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "model",
+            "type": [
+                "models.Model",
+                "criteria.Criterion",
+                "base.T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "criterion",
+            "type": [
+                "criteria.Criterion",
+                "base.T",
+                "typing.Any",
+                "models.Model",
+                "app.models.Question",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logits",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "classes",
+            "type": [
+                "list",
+                "list[list[int]]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "candidates",
+            "type": [
+                "list",
+                "list[list[int]]",
+                "tuple",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "N",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rows",
+            "type": [
+                "list",
+                "int",
+                "slice"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "list[tuple[typing.Union[str,typing.Any]]]",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "diffs",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "run",
+            "type": []
+        }
+    ]
+}

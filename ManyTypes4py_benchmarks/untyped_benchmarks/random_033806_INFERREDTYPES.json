@@ -1,0 +1,773 @@
+{
+    "exit_random_validators@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int",
+                "tuple[int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "int",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rng",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fraction",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exit_epoch",
+            "type": [
+                "None",
+                "int",
+                "float",
+                "typing.Any"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "withdrawable_epoch",
+            "type": [
+                "None",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "from_epoch",
+            "type": [
+                "None",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_epoch",
+            "type": [
+                "None",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "int",
+                "tuple[int]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "int",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "epoch_diff",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_epoch",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exited_indices",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rng",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fraction",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sampled",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exit_epoch",
+            "type": [
+                "None",
+                "int",
+                "float",
+                "typing.Any",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_",
+            "type": [
+                "int",
+                "str",
+                "None",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "withdrawable_epoch",
+            "type": [
+                "None",
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "exit_random_validators",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "global@global": [],
+    "patch_state_to_non_leaking@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict[str, float]",
+                "bool",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict[str, float]",
+                "bool",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "previous_epoch",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "previous_root",
+            "type": [
+                "list[list[typing.Any]]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "previous_previous_epoch",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "previous_previous_root",
+            "type": [
+                "str",
+                "object"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "patch_state_to_non_leaking",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "randomize_attestation_participation@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "rng",
+            "type": [
+                "Random"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rng",
+            "type": [
+                "Random"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "randomize_attestation_participation",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "randomize_epoch_participation@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "str",
+                "dict",
+                "list[tuple[int]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "epoch",
+            "type": [
+                "str",
+                "dict",
+                "list[tuple[int]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rng",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "epoch",
+            "type": [
+                "str",
+                "dict",
+                "list[tuple[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "str",
+                "dict",
+                "list[tuple[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rng",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pending_attestation_",
+            "type": [
+                "bytes",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "is_timely_correct_head",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "randomize_epoch_participation",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "randomize_previous_epoch_participation@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "state.State"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "state.State",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rng",
+            "type": [
+                "Random"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "state.State",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rng",
+            "type": [
+                "Random"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "randomize_previous_epoch_participation",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "randomize_state@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rng",
+            "type": [
+                "Random"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "exit_fraction",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "slash_fraction",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rng",
+            "type": [
+                "Random"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "exit_fraction",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "slash_fraction",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "randomize_state",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "set_flag@global": [
+        {
+            "category": "arg",
+            "name": "index",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "value",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "set_flag",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "set_some_activations@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "set",
+                "tuple[list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rng",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "activation_epoch",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "activation_epoch",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "float",
+                "property"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "set",
+                "tuple[list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_validators",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "selected_indices",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rng",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_some_activations",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "set_some_new_deposits@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "prefecengine.state.State",
+                "dict[typing.Type, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rng",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "deposited_indices",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "prefecengine.state.State"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_validators",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "prefecengine.state.State",
+                "dict[typing.Type, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rng",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "set_some_new_deposits",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "slash_random_validators@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int",
+                "typing.AbstractSet",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "T",
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rng",
+            "type": [
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fraction",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "slashed_indices",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "T",
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rng",
+            "type": [
+                "int",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fraction",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sampled",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "int",
+                "typing.AbstractSet",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "slash_random_validators",
+            "type": [
+                "list"
+            ]
+        }
+    ]
+}

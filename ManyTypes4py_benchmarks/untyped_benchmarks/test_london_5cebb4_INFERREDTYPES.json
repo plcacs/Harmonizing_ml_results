@@ -1,0 +1,873 @@
+{
+    "_configure_mining_chain@global": [
+        {
+            "category": "arg",
+            "name": "name",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "genesis_vm",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "vm_under_test",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "genesis_vm",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm_under_test",
+            "type": [
+                "bool",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_configure_mining_chain",
+            "type": []
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "FOUR_TXN_GAS_LIMIT",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "EIP_3541_CREATE_AND_CREATE2_REVERT_TEST_CASES",
+            "type": [
+                "tuple[tuple]"
+            ]
+        }
+    ],
+    "london_plus_miner@global": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "base_db",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.abc.SignedTransactionAPI",
+                "eth.abc.ChainAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "genesis_state",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.abc.SignedTransactionAPI",
+                "eth.abc.ChainAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header_fields",
+            "type": [
+                "str",
+                "typing.Type",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "base_db",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.abc.SignedTransactionAPI",
+                "eth.abc.ChainAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "genesis_state",
+            "type": [
+                "eth.abc.BlockHeaderAPI",
+                "eth.abc.SignedTransactionAPI",
+                "eth.abc.ChainAPI"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "london_plus_miner",
+            "type": []
+        }
+    ],
+    "pre_london_miner@global": [
+        {
+            "category": "arg",
+            "name": "request",
+            "type": [
+                "dict",
+                "typing.Mapping",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "base_db",
+            "type": [
+                "eth.abc.SignedTransactionAPI",
+                "eth.abc.ChainAPI",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "genesis_state",
+            "type": [
+                "eth.abc.SignedTransactionAPI",
+                "eth.abc.ChainAPI",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "request",
+            "type": [
+                "dict",
+                "typing.Mapping",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "header_fields",
+            "type": [
+                "str",
+                "typing.Type",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "base_db",
+            "type": [
+                "eth.abc.SignedTransactionAPI",
+                "eth.abc.ChainAPI",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "genesis_state",
+            "type": [
+                "eth.abc.SignedTransactionAPI",
+                "eth.abc.ChainAPI",
+                "eth.abc.BlockHeaderAPI"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "pre_london_miner",
+            "type": []
+        }
+    ],
+    "test_base_fee_evolution@global": [
+        {
+            "category": "arg",
+            "name": "london_plus_miner",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "funded_address",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "funded_address_private_key",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_txns",
+            "type": [
+                "bytes",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_base_fee",
+            "type": [
+                "int",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "london_plus_miner",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm",
+            "type": [
+                "eth.chains.base.MiningChain",
+                "eth.abc.ChainAPI",
+                "eth.abc.VirtualMachineAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_txns",
+            "type": [
+                "bytes",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "funded_address",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "funded_address_private_key",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "txns",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "FOUR_TXN_GAS_LIMIT",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_import",
+            "type": [
+                "list",
+                "set",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "float",
+                "dict",
+                "dict[int, str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_base_fee_evolution",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_revert_on_reserved_0xEF_byte_for_CREATE_and_CREATE2_post_london@global": [
+        {
+            "category": "arg",
+            "name": "london_plus_miner",
+            "type": [
+                "bytes",
+                "tuple[int]",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "funded_address",
+            "type": [
+                "bytes",
+                "raiden.utils.Address",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "code",
+            "type": [
+                "bytes",
+                "raiden.utils.Address",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "bytes",
+                "raiden.utils.Address",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "london_plus_miner",
+            "type": [
+                "bytes",
+                "tuple[int]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "bytes",
+                "tuple[int]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm",
+            "type": [
+                "eth.abc.VirtualMachineAPI",
+                "interpreter.src.virtual_machine.vm.vm_def.VmState",
+                "golem.vm.vm.PythonTestVM"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "funded_address",
+            "type": [
+                "bytes",
+                "raiden.utils.Address",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "code",
+            "type": [
+                "bytes",
+                "raiden.utils.Address",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "successful_create_computation",
+            "type": [
+                "str",
+                "typing.NamedTuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "bytes",
+                "raiden.utils.Address",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "revert_create_computation",
+            "type": [
+                "int",
+                "str",
+                "tuple[typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_revert_on_reserved_0xEF_byte_for_CREATE_and_CREATE2_post_london",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_state_does_not_revert_on_reserved_0xEF_byte_for_CREATE_and_CREATE2_pre_london@global": [
+        {
+            "category": "arg",
+            "name": "pre_london_miner",
+            "type": [
+                "int",
+                "bytes",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "funded_address",
+            "type": [
+                "int",
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "code",
+            "type": [
+                "int",
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "int",
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pre_london_miner",
+            "type": [
+                "int",
+                "bytes",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "int",
+                "bytes",
+                "tuple[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm",
+            "type": [
+                "eth.abc.VirtualMachineAPI",
+                "eth.chains.base.MiningChain",
+                "eth.abc.ChainAPI"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "funded_address",
+            "type": [
+                "int",
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "code",
+            "type": [
+                "int",
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "int",
+                "bytes",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_state_does_not_revert_on_reserved_0xEF_byte_for_CREATE_and_CREATE2_pre_london",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_state_does_not_revert_on_reserved_0xEF_byte_for_create_transaction_pre_london@global": [
+        {
+            "category": "arg",
+            "name": "pre_london_miner",
+            "type": [
+                "bytes",
+                "tuple[bytes]",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "funded_address",
+            "type": [
+                "bool",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "funded_address_private_key",
+            "type": [
+                "bytes",
+                "str",
+                "list[raiden.utils.Address]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "bytes",
+                "str",
+                "list[raiden.utils.Address]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "pre_london_miner",
+            "type": [
+                "bytes",
+                "tuple[bytes]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "bytes",
+                "tuple[bytes]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm",
+            "type": [
+                "eth.abc.VirtualMachineAPI",
+                "golem.vm.vm.PythonTestVM",
+                "eth.chains.base.MiningChain"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "funded_address",
+            "type": [
+                "bool",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initial_balance",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "funded_address_private_key",
+            "type": [
+                "bytes",
+                "str",
+                "list[raiden.utils.Address]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "bytes",
+                "str",
+                "list[raiden.utils.Address]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "create_contract_txn_0xef_byte",
+            "type": [
+                "bytes",
+                "str",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_import",
+            "type": [
+                "set",
+                "tuple",
+                "frozenset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "tuple[int]",
+                "str",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computations",
+            "type": [
+                "eth.abc.ComputationAPI",
+                "tuple[typing.Union[str,int]]",
+                "list[tuple[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computation",
+            "type": [
+                "str",
+                "int",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "end_balance",
+            "type": [
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_state_does_not_revert_on_reserved_0xEF_byte_for_create_transaction_pre_london",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_state_revert_on_reserved_0xEF_byte_for_create_transaction_post_london@global": [
+        {
+            "category": "arg",
+            "name": "london_plus_miner",
+            "type": [
+                "int",
+                "tuple[int]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "funded_address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "funded_address_private_key",
+            "type": [
+                "bytearray",
+                "dict",
+                "list[raiden.utils.Address]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "bytearray",
+                "dict",
+                "list[raiden.utils.Address]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "london_plus_miner",
+            "type": [
+                "int",
+                "tuple[int]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "int",
+                "tuple[int]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm",
+            "type": [
+                "golem.vm.vm.PythonTestVM",
+                "eth.abc.VirtualMachineAPI",
+                "interpreter.src.virtual_machine.vm.vm_def.VmState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "funded_address",
+            "type": [
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initial_balance",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "funded_address_private_key",
+            "type": [
+                "bytearray",
+                "dict",
+                "list[raiden.utils.Address]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "create_successful_contract_transaction",
+            "type": [
+                "set",
+                "tuple[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_import",
+            "type": [
+                "set",
+                "frozenset",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "tuple[typing.Union[str,int]]",
+                "dict[str, list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "computations",
+            "type": [
+                "bytes",
+                "list[tuple[typing.Any]]",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "successful_create_computation",
+            "type": [
+                "bytes",
+                "tuple[typing.Any]",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "bytearray",
+                "dict",
+                "list[raiden.utils.Address]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "create_contract_txn_reserved_byte",
+            "type": [
+                "bytes",
+                "int",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reverted_computation",
+            "type": [
+                "bytes",
+                "tuple[typing.Any]",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_state_revert_on_reserved_0xEF_byte_for_create_transaction_post_london",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

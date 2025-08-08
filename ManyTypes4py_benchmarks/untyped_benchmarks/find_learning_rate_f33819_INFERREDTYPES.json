@@ -1,0 +1,545 @@
+{
+    "_save_plot@global": [
+        {
+            "category": "arg",
+            "name": "learning_rates",
+            "type": [
+                "list[float]",
+                "magic.models.Deck",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "losses",
+            "type": [
+                "list[float]",
+                "magic.models.Deck",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "save_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "error",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "learning_rates",
+            "type": [
+                "list[float]",
+                "magic.models.Deck",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "losses",
+            "type": [
+                "list[float]",
+                "magic.models.Deck",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "save_path",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_save_plot",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_smooth@global": [
+        {
+            "category": "arg",
+            "name": "values",
+            "type": [
+                "list[float]",
+                "list['cirq.Circuit']"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "beta",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "avg_value",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "smoothed",
+            "type": [
+                "list",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "i",
+            "type": [
+                "int",
+                "float",
+                "'cirq.Circuit'"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "value",
+            "type": [
+                "int",
+                "float",
+                "'cirq.Circuit'"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "values",
+            "type": [
+                "list[float]",
+                "list['cirq.Circuit']"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "beta",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_smooth",
+            "type": [
+                "list[float]"
+            ]
+        }
+    ],
+    "add_subparser@FindLearningRate": [
+        {
+            "category": "arg",
+            "name": "parser",
+            "type": [
+                "argparse.ArgumentParser",
+                "argparse._SubParsersAction",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "description",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parser",
+            "type": [
+                "argparse.ArgumentParser",
+                "argparse._SubParsersAction",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "add_subparser",
+            "type": []
+        }
+    ],
+    "find_learning_rate_from_args@global": [
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "find_learning_rate_from_args",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "find_learning_rate_model@global": [
+        {
+            "category": "arg",
+            "name": "params",
+            "type": [
+                "allennlp.common.Params"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "serialization_dir",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "start_lr",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "end_lr",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_batches",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "linear_steps",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stopping_factor",
+            "type": [
+                "None",
+                "float",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "force",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "params",
+            "type": [
+                "allennlp.common.Params"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "serialization_dir",
+            "type": [
+                "str",
+                "bool",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "force",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cuda_device",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "distributed_params",
+            "type": [
+                "dict",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "all_data_loaders",
+            "type": [
+                "dict[str, dict[str, str]]",
+                "qcodes.data.data_seDataSet"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "datasets_for_vocab_creation",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "key",
+            "type": [
+                "tuple[typing.Union[str,dict[str, str]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data_loader",
+            "type": [
+                "tuple[typing.Union[str,dict[str, str]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "start_lr",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "end_lr",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_batches",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "linear_steps",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stopping_factor",
+            "type": [
+                "None",
+                "float",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "find_learning_rate_model",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        }
+    ],
+    "search_learning_rate@global": [
+        {
+            "category": "arg",
+            "name": "trainer",
+            "type": [
+                "gluonts.mx.trainer.Trainer",
+                "allennlp.training.optimizers.Optimizer",
+                "allennlp.data.Dataset"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "start_lr",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "end_lr",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "num_batches",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "linear_steps",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "stopping_factor",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_batches",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "trainer",
+            "type": [
+                "gluonts.mx.trainer.Trainer",
+                "allennlp.training.optimizers.Optimizer",
+                "allennlp.data.Dataset"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "learning_rates",
+            "type": [
+                "list",
+                "list[float]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "losses",
+            "type": [
+                "list",
+                "list[typing.Union[float,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "best",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "linear_steps",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "end_lr",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "start_lr",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lr_update_factor",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "current_lr",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "p_",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "loss",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "stopping_factor",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "logger",
+            "type": [
+                "logging.Logger"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "search_learning_rate",
+            "type": [
+                "tuple[list[typing.Union[float,int]]]"
+            ]
+        }
+    ]
+}

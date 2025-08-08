@@ -1,0 +1,515 @@
+{
+    "__init__@MassScannerProducerThread": [
+        {
+            "category": "arg",
+            "name": "concurrent_server_scans_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "per_server_concurrent_connections_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "server_scan_requests_queue_in",
+            "type": [
+                "int",
+                "queue.Queue"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "server_scan_results_queue_out",
+            "type": [
+                "int",
+                "threading.Event"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "server_scan_results_queue_out",
+            "type": [
+                "int",
+                "threading.Event"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_server_scan_results_queue_out",
+            "type": [
+                "int",
+                "threading.Event"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "server_scan_requests_queue_in",
+            "type": [
+                "int",
+                "queue.Queue"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_server_scan_requests_queue_in",
+            "type": [
+                "int",
+                "queue.Queue"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "daemon",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "concurrent_server_scans_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_all_worker_queues",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "per_server_concurrent_connections_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_worker_threads_per_queues_count",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_all_worker_threads",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_generate_result_for_completed_server_scan@global": [
+        {
+            "category": "arg",
+            "name": "completed_scan",
+            "type": [
+                "bool",
+                "magic.models.Deck",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "all_scan_command_attempts",
+            "type": [
+                "dict",
+                "dict[typing.Union[str,list[str],list], ]",
+                "dict[ScanCommand, ]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scan_cmd",
+            "type": [
+                "str",
+                "list[str]",
+                "list",
+                "ScanCommand"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scan_cmd_to_completed_jobs",
+            "type": [
+                "dict[, list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "completed_scan",
+            "type": [
+                "bool",
+                "magic.models.Deck",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scan_command_attempt_cls",
+            "type": [
+                "str",
+                "tuple[str]",
+                "dict[str, list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scan_job_results_for_plugin",
+            "type": [
+                "list[ScanJobResult]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scan_cmd_result",
+            "type": [
+                "list",
+                "typing.Generator[typing.Optional[typing.Any]]",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scan_cmd_str_to_scan_cmd_result",
+            "type": [
+                "dict[, typing.Union[list,typing.Generator[typing.Optional[typing.Any]],dict]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scan_result",
+            "type": [
+                "AllScanCommandsAttempts"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "server_scan_result",
+            "type": [
+                "ServerScanResult"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_generate_result_for_completed_server_scan",
+            "type": [
+                "ServerScanResult"
+            ]
+        }
+    ],
+    "_generate_scan_jobs_for_server_scan@global": [
+        {
+            "category": "arg",
+            "name": "server_scan_request",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "server_connectivity_result",
+            "type": [
+                "dict[str, typing.Any]",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "all_scan_jobs_per_scan_cmd",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scan_command_errors_during_queuing",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "server_scan_request",
+            "type": [
+                "dict[str, typing.Any]",
+                "dict",
+                "None",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "server_connectivity_result",
+            "type": [
+                "dict[str, typing.Any]",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "e",
+            "type": [
+                "Exception"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_generate_scan_jobs_for_server_scan",
+            "type": [
+                "tuple[dict]"
+            ]
+        }
+    ],
+    "_queue_server_scan@global": [
+        {
+            "category": "arg",
+            "name": "server_scan_request",
+            "type": [
+                "int",
+                "dict[str, typing.Type]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "server_connectivity_result",
+            "type": [
+                "int",
+                "dict[str, typing.Type]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "assigned_worker_queue",
+            "type": [
+                "queue.Queue",
+                "typing.Deque",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "server_scan_request",
+            "type": [
+                "int",
+                "dict[str, typing.Type]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "server_connectivity_result",
+            "type": [
+                "int",
+                "dict[str, typing.Type]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "all_scan_jobs_per_scan_cmd",
+            "type": [
+                "sslyze.server_connectivity.TlsVersionEnum",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scan_command_errors_during_queuing",
+            "type": [
+                "list",
+                "list[str]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "total_job_counts",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scan_cmd",
+            "type": [
+                "tuple[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "all_jobs",
+            "type": [
+                "tuple[typing.Union[str,typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "job",
+            "type": [
+                "str",
+                "typing.Any"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "assigned_worker_queue",
+            "type": [
+                "queue.Queue",
+                "typing.Deque",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "queued_server_scan",
+            "type": [
+                "_OngoingServerScan"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_queue_server_scan",
+            "type": [
+                "_OngoingServerScan"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "ServerScanRequestsQueueType",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ServerScanResultsQueueType",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "is_completed@_OngoingServerScan": [
+        {
+            "category": "return",
+            "name": "is_completed",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "run@MassScannerProducerThread": [
+        {
+            "category": "local",
+            "name": "all_ongoing_server_scans",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "has_retrieved_all_server_scan_requests",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "entry_in_queue",
+            "type": [
+                "typing.Any",
+                "dict",
+                "list",
+                "NoMoreServerScanRequestsSentinel"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "server_scan_request",
+            "type": [
+                "dict[str, dict[str, typing.Any]]",
+                "str",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "server_connectivity_result",
+            "type": [
+                "typing.Any",
+                "sslyze.scanner.ServerScanResult"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "completed_job",
+            "type": [
+                "int",
+                "list",
+                "typing.MutableMapping"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "all_completed_server_scans",
+            "type": [
+                "list",
+                "list[list]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ongoing_server_scan",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "completed_server_scan",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "server_scan_result",
+            "type": [
+                "dict",
+                "queue.Queue"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "run",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

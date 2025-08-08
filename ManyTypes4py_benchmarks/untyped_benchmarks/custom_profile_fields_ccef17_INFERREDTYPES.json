@@ -1,0 +1,850 @@
+{
+    "check_remove_custom_profile_field_value@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "int",
+                "authentication.session.models.current_user.CurrentUser"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "field_id",
+            "type": [
+                "int",
+                "contests.models.User",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "acting_user",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "int",
+                "authentication.session.models.current_user.CurrentUser"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "field_id",
+            "type": [
+                "int",
+                "contests.models.User",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "custom_profile_field",
+            "type": [
+                "list",
+                "typing.Type",
+                "list[tuple[typing.Union[str,typing.Any]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "acting_user",
+            "type": [
+                "zerver.models.UserProfile",
+                "zerver.models.Realm",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "field_value",
+            "type": [
+                "list",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "check_remove_custom_profile_field_value",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "do_remove_realm_custom_profile_field@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "str",
+                "users.models.JustfixUser"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "field",
+            "type": [
+                "zerver.models.CustomProfileField",
+                "str",
+                "daylighdb.models.Profile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "field",
+            "type": [
+                "zerver.models.CustomProfileField",
+                "str",
+                "daylighdb.models.Profile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "str",
+                "users.models.JustfixUser"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "do_remove_realm_custom_profile_field",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "do_remove_realm_custom_profile_fields@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "do_remove_realm_custom_profile_fields",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "do_update_user_custom_profile_data_if_changed@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "list[dict[str, typing.Any]]",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "data",
+            "type": [
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "custom_profile_field",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "list[dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "zerver.models.UserProfile",
+                "list[dict[str, typing.Any]]",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "field_value",
+            "type": [
+                "list",
+                "dict",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "created",
+            "type": [
+                "int",
+                "server.models.rental.Rental",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "custom_profile_field_value_string",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "field_value_",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "do_update_user_custom_profile_data_if_changed",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [],
+    "notify_realm_custom_profile_fields@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "zerver.models.UserProfile",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "zerver.models.UserProfile",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "notify_realm_custom_profile_fields",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "notify_user_update_custom_profile_data@global": [
+        {
+            "category": "arg",
+            "name": "user_profile",
+            "type": [
+                "app.models.models.User",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "field",
+            "type": [
+                "dict",
+                "models.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "field",
+            "type": [
+                "dict",
+                "models.User"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "data",
+            "type": [
+                "dict[str, typing.Any]",
+                "list",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "user_profile",
+            "type": [
+                "app.models.models.User",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "notify_user_update_custom_profile_data",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "remove_custom_profile_field_value_if_required@global": [
+        {
+            "category": "arg",
+            "name": "field",
+            "type": [
+                "str",
+                "None",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "field_data",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "field_data",
+            "type": [
+                "dict",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "remove_custom_profile_field_value_if_required",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "try_add_realm_custom_profile_field@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "bool",
+                "users.models.User",
+                "None",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "name",
+            "type": [
+                "bool",
+                "users.models.User",
+                "None",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "field_type",
+            "type": [
+                "bool",
+                "users.models.User",
+                "None",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "hint",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "field_data",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "display_in_profile_summary",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "required",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "editable_by_user",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "bool",
+                "users.models.User",
+                "None",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "bool",
+                "users.models.User",
+                "None",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "field_type",
+            "type": [
+                "bool",
+                "users.models.User",
+                "None",
+                "zerver.models.UserProfile"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "display_in_profile_summary",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "required",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "editable_by_user",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "custom_profile_field",
+            "type": [
+                "CustomProfileField"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hint",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "custom_profile_field_",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "try_add_realm_custom_profile_field",
+            "type": [
+                "CustomProfileField"
+            ]
+        }
+    ],
+    "try_add_realm_default_custom_profile_field@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "str",
+                "None",
+                "typing.Iterable[tuple[int]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "field_subtype",
+            "type": [
+                "str",
+                "None",
+                "bool",
+                "tracim.models.data.UserRoleInWorkspace"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "display_in_profile_summary",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "required",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "editable_by_user",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "field_subtype",
+            "type": [
+                "str",
+                "None",
+                "bool",
+                "tracim.models.data.UserRoleInWorkspace"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "str",
+                "None",
+                "typing.Iterable[tuple[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "display_in_profile_summary",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "required",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "editable_by_user",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "custom_profile_field",
+            "type": [
+                "CustomProfileField"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "try_add_realm_default_custom_profile_field",
+            "type": [
+                "CustomProfileField"
+            ]
+        }
+    ],
+    "try_reorder_realm_custom_profile_fields@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "zerver.models.UserProfile",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "order",
+            "type": [
+                "dict[int, list[str]]",
+                "django.db.models.query.QuerySet",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "order",
+            "type": [
+                "dict[int, list[str]]",
+                "django.db.models.query.QuerySet",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "tuple[typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "order_mapping",
+            "type": [
+                "dict[typing.Union[int,str], typing.Union[int,str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.Realm",
+                "zerver.models.UserProfile",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "custom_profile_fields",
+            "type": [
+                "tuple[str]",
+                "tuple",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "custom_profile_field",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "custom_profile_field_",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "try_reorder_realm_custom_profile_fields",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "try_update_realm_custom_profile_field@global": [
+        {
+            "category": "arg",
+            "name": "realm",
+            "type": [
+                "zerver.models.UserProfile",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "field",
+            "type": [
+                "str",
+                "typing.Iterable[tuple[int]]",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "name",
+            "type": [
+                "None",
+                "str",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "hint",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "field_data",
+            "type": [
+                "None",
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "display_in_profile_summary",
+            "type": [
+                "None",
+                "bool",
+                "models.Credentials",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "required",
+            "type": [
+                "None",
+                "bool",
+                "list[str]",
+                "models.Credentials"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "editable_by_user",
+            "type": [
+                "None",
+                "str",
+                "dict[str, typing.Any]",
+                "zerver.models.Realm"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "name",
+            "type": [
+                "None",
+                "str",
+                "dict[str, typing.Any]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "field_",
+            "type": [
+                "str",
+                "None",
+                "bytes",
+                "list[str]",
+                "bool",
+                "tuple[typing.Any]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "hint",
+            "type": [
+                "None",
+                "str",
+                "bool",
+                "dict[str, typing.Any]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "required",
+            "type": [
+                "None",
+                "bool",
+                "list[str]",
+                "models.Credentials",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "editable_by_user",
+            "type": [
+                "None",
+                "str",
+                "dict[str, typing.Any]",
+                "zerver.models.Realm",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "display_in_profile_summary",
+            "type": [
+                "None",
+                "bool",
+                "models.Credentials",
+                "list[str]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "field",
+            "type": [
+                "str",
+                "typing.Iterable[tuple[int]]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "field_data",
+            "type": [
+                "None",
+                "str",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "realm",
+            "type": [
+                "zerver.models.UserProfile",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "try_update_realm_custom_profile_field",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

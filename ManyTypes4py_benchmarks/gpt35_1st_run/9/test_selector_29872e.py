@@ -1,0 +1,33 @@
+def _get_graph() -> graph_selector.Graph:
+    ...
+
+def _get_manifest(graph: graph_selector.Graph) -> MagicMock:
+    ...
+
+def id_macro(arg: Any) -> str:
+    ...
+
+def test_run_specs(include: List[str], exclude: List[str], expected: set, graph: graph_selector.Graph, mock_manifest_with_mock_graph: MagicMock):
+    ...
+
+def test_parse_specs(spec: str, parents: bool, parents_depth: Optional[int], children: bool, children_depth: Optional[int], filter_type: str, filter_value: str, childrens_parents: bool):
+    ...
+
+def test_invalid_specs(invalid: str):
+    ...
+
+class TestCompiler:
+
+    def test_single_model(self, runtime_config: RuntimeConfig):
+        ...
+
+    def test_two_models_simple_ref(self, runtime_config: RuntimeConfig):
+        ...
+
+class TestNodeSelector:
+
+    def test_dependency_list(self, runtime_config: RuntimeConfig):
+        ...
+
+    def test_select_downstream_of_empty_model(self, runtime_config: RuntimeConfig):
+        ...

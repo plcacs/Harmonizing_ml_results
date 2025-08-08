@@ -1,0 +1,3391 @@
+{
+    "__init__@BalanceProofData": [
+        {
+            "category": "arg",
+            "name": "canonical_identifier",
+            "type": [
+                "raiden.utils.MessageID",
+                "raiden.utils.ChannelID",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "canonical_identifier",
+            "type": [
+                "raiden.utils.MessageID",
+                "raiden.utils.ChannelID",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_canonical_identifier",
+            "type": [
+                "raiden.utils.MessageID",
+                "raiden.utils.ChannelID",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "properties",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@ChainStateStateMachine": [
+        {
+            "category": "local",
+            "name": "replay_path",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address_to_privkey",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address_to_client",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transfer_order",
+            "type": [
+                "TransferOrder"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@InitiatorMixin": [
+        {
+            "category": "local",
+            "name": "used_secrets",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "processed_secret_request_secrethashes",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initiated",
+            "type": [
+                "set"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@MediatorMixin": [
+        {
+            "category": "local",
+            "name": "partner_to_balance_proof_data",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secrethash_to_secret",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "waiting_for_unlock",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initial_number_of_channels",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_action_init_initiator@InitiatorMixin": [
+        {
+            "category": "arg",
+            "name": "route",
+            "type": [
+                "raiden.network.rpc.clienJSONRPCClient",
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState",
+                "raiden.transfer.state.RouteState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "transfer",
+            "type": [
+                "raiden.transfer.mediated_transfer.state_change.TransferDescriptionWithSecretState",
+                "raiden.messages.LockedTransfer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "route",
+            "type": [
+                "raiden.network.rpc.clienJSONRPCClient",
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState",
+                "raiden.transfer.state.RouteState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transfer",
+            "type": [
+                "raiden.transfer.mediated_transfer.state_change.TransferDescriptionWithSecretState",
+                "raiden.messages.LockedTransfer"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_action_init_initiator",
+            "type": [
+                "ActionInitInitiator"
+            ]
+        }
+    ],
+    "_action_init_mediator@MediatorMixin": [
+        {
+            "category": "arg",
+            "name": "transfer",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState",
+                "raiden.utils.PaymentNetworkID",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "client_address",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client_address",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transfer",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState",
+                "raiden.utils.PaymentNetworkID",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "action",
+            "type": [
+                "ActionInitMediator"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_action_init_mediator",
+            "type": [
+                "WithOurAddress"
+            ]
+        }
+    ],
+    "_available_amount@InitiatorMixin": [
+        {
+            "category": "arg",
+            "name": "route",
+            "type": [
+                "raiden.transfer.architecture.State.Change",
+                "mythril.laser.ethereum.state.accounAccount",
+                "relay.events.Event"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "route",
+            "type": [
+                "raiden.transfer.architecture.State.Change",
+                "mythril.laser.ethereum.state.accounAccount",
+                "relay.events.Event"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_available_amount",
+            "type": []
+        }
+    ],
+    "_get_balance_proof_data@MediatorMixin": [
+        {
+            "category": "arg",
+            "name": "partner",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "client_address",
+            "type": [
+                "str",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partner",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client_address",
+            "type": [
+                "str",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_get_balance_proof_data",
+            "type": []
+        }
+    ],
+    "_is_expired@InitiatorMixin": [
+        {
+            "category": "arg",
+            "name": "secrethash",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.utils.SecretHash",
+                "raiden.network.transpormatrix.transporMatrixTransport"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "initiator",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.utils.SecretHash",
+                "raiden.network.transpormatrix.transporMatrixTransport"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initiator",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.utils.SecretHash",
+                "raiden.network.transpormatrix.transporMatrixTransport"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secrethash",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.utils.SecretHash",
+                "raiden.network.transpormatrix.transporMatrixTransport"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_is_expired",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "_is_removed@InitiatorMixin": [
+        {
+            "category": "arg",
+            "name": "action",
+            "type": [
+                "str",
+                "list[raiden.transfer.architecture.StateChange]",
+                "aiocometd.constants.TransportState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_is_removed",
+            "type": []
+        }
+    ],
+    "_new_channel_state@ChainStateStateMachine": [
+        {
+            "category": "arg",
+            "name": "our_address",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "partner_address",
+            "type": [
+                "str",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "our_address",
+            "type": [
+                "raiden.transfer.state.ChainState",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partner_address",
+            "type": [
+                "str",
+                "raiden.utils.TokenNetworkAddress",
+                "raiden.transfer.state.ChainState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_new_channel_state",
+            "type": []
+        }
+    ],
+    "_new_channel_transaction@ChainStateStateMachine": [
+        {
+            "category": "arg",
+            "name": "client_address",
+            "type": [
+                "str",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "partner_address",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client_address",
+            "type": [
+                "str",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partner_address",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.TokenNetworkAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_new_state_change",
+            "type": [
+                "ContractReceiveChannelNew"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_new_channel_transaction",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_new_mediator_transfer@MediatorMixin": [
+        {
+            "category": "arg",
+            "name": "initiator_address",
+            "type": [
+                "raiden.utils.TokenAddress",
+                "raiden.utils.Address",
+                "raiden.utils.InitiatorAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_address",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.TokenAddress",
+                "raiden.network.proxies.payment_channel.PaymentChannel"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "payment_id",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.TokenAddress",
+                "raiden.network.proxies.payment_channel.PaymentChannel"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "amount",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.PaymentNetworkID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "secret",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.transfer.state.PendingLocksState",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "our_address",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.PaymentNetworkID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "initiator_address",
+            "type": [
+                "raiden.utils.TokenAddress",
+                "raiden.utils.Address",
+                "raiden.utils.InitiatorAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.PaymentNetworkID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.transfer.state.PendingLocksState",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "our_address",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.PaymentNetworkID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payment_id",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.TokenAddress",
+                "raiden.network.proxies.payment_channel.PaymentChannel"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_address",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.TokenAddress",
+                "raiden.network.proxies.payment_channel.PaymentChannel"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_new_mediator_transfer",
+            "type": []
+        }
+    ],
+    "_new_transfer_description@InitiatorMixin": [
+        {
+            "category": "arg",
+            "name": "route",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.NetworkTimeout",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "payment_id",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.NetworkTimeout",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "amount",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.NetworkTimeout",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "secret",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.NetworkTimeout"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.NetworkTimeout"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payment_id",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.NetworkTimeout",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.NetworkTimeout",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "route",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.NetworkTimeout",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_new_transfer_description",
+            "type": [
+                "TransferDescriptionWithSecretState"
+            ]
+        }
+    ],
+    "_unwrap@MediatorMixin": [
+        {
+            "category": "arg",
+            "name": "with_our_address",
+            "type": [
+                "raiden.utils.Address",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "with_our_address",
+            "type": [
+                "raiden.utils.Address",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_unwrap",
+            "type": [
+                "tuple"
+            ]
+        }
+    ],
+    "_update_balance_proof_data@MediatorMixin": [
+        {
+            "category": "arg",
+            "name": "partner",
+            "type": [
+                "raiden.utils.Address",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "amount",
+            "type": [
+                "raiden.utils.ChannelID",
+                "raiden.utils.MessageID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expiration",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.BlockExpiration",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "secret",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.BlockExpiration",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "our_address",
+            "type": [
+                "raiden.utils.Address",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partner",
+            "type": [
+                "raiden.utils.Address",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "our_address",
+            "type": [
+                "raiden.utils.Address",
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "dict[str, typing.Union[int,str]]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "raiden.utils.ChannelID",
+                "raiden.utils.MessageID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expiration",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.BlockExpiration",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "raiden.utils.BlockExpiration",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock",
+            "type": [
+                "HashTimeLockState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_update_balance_proof_data",
+            "type": [
+                "dict[str, str]"
+            ]
+        }
+    ],
+    "address@global": [
+        {
+            "category": "arg",
+            "name": "draw",
+            "type": [
+                "typing.Callable",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "address",
+            "type": [
+                "str",
+                "int",
+                "tuple[typing.Union[str,int]]"
+            ]
+        }
+    ],
+    "assert_channel_state_invariants@Client": [
+        {
+            "category": "local",
+            "name": "our_transferred_amount",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partner_transferred_amount",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "our_transferred",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "assert_channel_state_invariants",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "assert_monotonicity_invariants@Client": [
+        {
+            "category": "return",
+            "name": "assert_monotonicity_invariants",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "chain_state_invariants@ChainStateStateMachine": [
+        {
+            "category": "return",
+            "name": "chain_state_invariants",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "channel_opened@ChainStateStateMachine": [
+        {
+            "category": "arg",
+            "name": "partner_address",
+            "type": [
+                "raiden.utils.Address",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "client_address",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client_address",
+            "type": [
+                "str",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "channel_opened",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partner_address",
+            "type": [
+                "raiden.utils.Address",
+                "str"
+            ]
+        }
+    ],
+    "create_network@ChainStateStateMachine": [
+        {
+            "category": "return",
+            "name": "create_network",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "create_network@DirectTransfersStateMachine": [
+        {
+            "category": "local",
+            "name": "address1",
+            "type": [
+                "Address",
+                "bytes",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "address2",
+            "type": [
+                "Address",
+                "bytes",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_network",
+            "type": [
+                "list[Route]"
+            ]
+        }
+    ],
+    "create_network@OnChainStateMachine": [
+        {
+            "category": "local",
+            "name": "client",
+            "type": [
+                "raiden.network.rpc.clienJSONRPCClient",
+                "utils.clienClient",
+                "\"Client\""
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partners",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "create_network",
+            "type": [
+                "list[Route]"
+            ]
+        }
+    ],
+    "event@ChainStateStateMachine": [
+        {
+            "category": "arg",
+            "name": "description",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "description",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "event",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "event_types_match@global": [
+        {
+            "category": "arg",
+            "name": "events",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected_types",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "event",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_types",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "event_types_match",
+            "type": [
+                "bool"
+            ]
+        }
+    ],
+    "exceeded_capacity_init_initiator@InitiatorMixin": [
+        {
+            "category": "arg",
+            "name": "route",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.FeeAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "payment_id",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.MessageID",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "excess_amount",
+            "type": [
+                "int",
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "secret",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.MessageID",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "route",
+            "type": [
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.FeeAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "excess_amount",
+            "type": [
+                "int",
+                "raiden.utils.PaymentAmount",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "int",
+                "raiden_contracts.utils.type_aliases.TokenAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payment_id",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.MessageID",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.MessageID",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transfer",
+            "type": [
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState",
+                "raiden.transfer.mediated_transfer.state.LockedTransferUnsignedState",
+                "raiden.messages.LockedTransfer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "action",
+            "type": [
+                "list",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretReveal"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "exceeded_capacity_init_initiator",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "routes",
+            "type": [
+                "Bundle"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "init_initiators",
+            "type": [
+                "Bundle"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "init_mediators",
+            "type": [
+                "Bundle"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "send_locked_transfers",
+            "type": [
+                "Bundle"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret_requests",
+            "type": [
+                "Bundle"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "send_secret_requests",
+            "type": [
+                "Bundle"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "send_secret_reveals_backward",
+            "type": [
+                "Bundle"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "send_secret_reveals_forward",
+            "type": [
+                "Bundle"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "send_unlocks",
+            "type": [
+                "Bundle"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "AddressToAmount",
+            "type": [
+                "int",
+                "str",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TestMediator",
+            "type": [
+                "bool",
+                "str",
+                "list[tuple[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TestOnChain",
+            "type": [
+                "str",
+                "list[tuple[typing.Any]]",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TestMultiChannelMediator",
+            "type": [
+                "str",
+                "typing.Callable[None, list[str]]",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "TestDirectTransfers",
+            "type": [
+                "bool",
+                "str",
+                "TransactionExecutionStatus",
+                "None"
+            ]
+        }
+    ],
+    "initialize_all@ChainStateStateMachine": [
+        {
+            "category": "arg",
+            "name": "block_number",
+            "type": [
+                "int",
+                "raiden.utils.BlockNumber",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "random",
+            "type": [
+                "int",
+                "bytes",
+                "random.Random"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "random_seed",
+            "type": [
+                "int",
+                "raiden.utils.BlockNumber",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "random_seed",
+            "type": [
+                "int",
+                "raiden.utils.BlockNumber",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_number",
+            "type": [
+                "int",
+                "raiden.utils.BlockNumber",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "random",
+            "type": [
+                "int",
+                "bytes",
+                "random.Random"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_state",
+            "type": [
+                "TokenNetworkState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "token_network_registry_state",
+            "type": [
+                "TokenNetworkRegistryState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "initialize_all",
+            "type": [
+                "str",
+                "typing.Callable"
+            ]
+        }
+    ],
+    "initiator@Route": [
+        {
+            "category": "return",
+            "name": "initiator",
+            "type": []
+        }
+    ],
+    "make_tokenamount_defaultdict@global": [
+        {
+            "category": "return",
+            "name": "make_tokenamount_defaultdict",
+            "type": [
+                "str",
+                "int",
+                "set"
+            ]
+        }
+    ],
+    "new_address@ChainStateStateMachine": [
+        {
+            "category": "return",
+            "name": "new_address",
+            "type": []
+        }
+    ],
+    "new_blocks@OnChainMixin": [
+        {
+            "category": "arg",
+            "name": "number",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "number",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "block_state_change",
+            "type": [
+                "Block"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "events",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "new_blocks",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "new_channel@ChainStateStateMachine": [
+        {
+            "category": "arg",
+            "name": "client_address",
+            "type": [
+                "raiden.utils.Address",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "partner_address",
+            "type": [
+                "None",
+                "raiden.utils.Address",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partner_address",
+            "type": [
+                "None",
+                "raiden.utils.Address",
+                "str",
+                "Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client_address",
+            "type": [
+                "raiden.utils.Address",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel",
+            "type": [
+                "str",
+                "qcodes.tests.instrument_mocks.DummyChannel",
+                "dict[typing.Any, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partner_client",
+            "type": [
+                "raiden.api.python.RaidenAPI",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "mirrored",
+            "type": [
+                "beacon_chain.state.active_state.ActiveState",
+                "raiden.transfer.mediated_transfer.state.InitiatorTransferState",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "new_channel",
+            "type": [
+                "None",
+                "raiden.utils.Address",
+                "str"
+            ]
+        }
+    ],
+    "new_channel_with_transaction@ChainStateStateMachine": [
+        {
+            "category": "arg",
+            "name": "client_address",
+            "type": [
+                "raiden.utils.Address",
+                "dict"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "partner_address",
+            "type": [
+                "None",
+                "raiden.utils.Address",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client_address",
+            "type": [
+                "raiden.utils.Address",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "partner_address",
+            "type": [
+                "None",
+                "raiden.utils.Address",
+                "str",
+                "int",
+                "bytes",
+                "Address"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "new_channel_with_transaction",
+            "type": [
+                "int",
+                "bytes",
+                "Address"
+            ]
+        }
+    ],
+    "new_client@ChainStateStateMachine": [
+        {
+            "category": "local",
+            "name": "address",
+            "type": [
+                "Address",
+                "tuple[typing.Union[str,int]]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_state",
+            "type": [
+                "ChainState"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "new_client",
+            "type": [
+                "Address",
+                "tuple[typing.Union[str,int]]",
+                "str"
+            ]
+        }
+    ],
+    "open_channel@OnChainMixin": [
+        {
+            "category": "arg",
+            "name": "reference",
+            "type": [
+                "str",
+                "dict[str, float]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reference",
+            "type": [
+                "str",
+                "dict[str, float]",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "open_channel",
+            "type": []
+        }
+    ],
+    "payment_id@global": [
+        {
+            "category": "arg",
+            "name": "draw",
+            "type": [
+                "int",
+                "frozenset"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "payment_id",
+            "type": []
+        }
+    ],
+    "process_secret_request_with_wrong_amount@InitiatorMixin": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRequestInNode",
+                "raiden.utils.Address",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "wrong_amount",
+            "type": [
+                "\"Money\"",
+                "None",
+                "raiden.utils.TokenAmount",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRequestInNode",
+                "raiden.utils.Address",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wrong_amount",
+            "type": [
+                "\"Money\"",
+                "None",
+                "raiden.utils.TokenAmount",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secrethash_known",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_secret_request_with_wrong_amount",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "process_secret_request_with_wrong_payment_identifier@InitiatorMixin": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRequestInNode",
+                "raiden.utils.Address",
+                "raiden.utils.PaymentID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "wrong_payment_identifier",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.MessageID",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRequestInNode",
+                "raiden.utils.Address",
+                "raiden.utils.PaymentID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wrong_payment_identifier",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.MessageID",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_secret_request_with_wrong_payment_identifier",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "process_secret_request_with_wrong_secrethash@InitiatorMixin": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRequestInNode",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "raiden.utils.Secret"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "wrong_secret",
+            "type": [
+                "str",
+                "bytes",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRequestInNode",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "raiden.utils.Secret"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wrong_secret",
+            "type": [
+                "str",
+                "bytes",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wrong_secrethash",
+            "type": [
+                "str",
+                "typing.Type",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_secret_request_with_wrong_secrethash",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "process_secret_reveal_as_initiator@InitiatorMixin": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "raiden.tests.fuzz.utils.SendLockedTransferInNode",
+                "raiden.tests.fuzz.utils.SendUnlockInNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "raiden.tests.fuzz.utils.SendLockedTransferInNode",
+                "raiden.tests.fuzz.utils.SendUnlockInNode"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_secret_reveal_as_initiator",
+            "type": []
+        }
+    ],
+    "process_secret_reveal_as_target@TargetMixin": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "raiden.tests.fuzz.utils.SendLockedTransferInNode",
+                "raiden.tests.fuzz.utils.SendUnlockInNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "raiden.tests.fuzz.utils.SendLockedTransferInNode",
+                "raiden.tests.fuzz.utils.SendUnlockInNode"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_secret_reveal_as_target",
+            "type": []
+        }
+    ],
+    "process_secret_reveal_with_mismatched_secret_as_initiator@InitiatorMixin": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "raiden.utils.Secret",
+                "raiden.tests.fuzz.utils.SendSecretRequestInNode"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "wrong_secret",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.utils.Address",
+                "raiden.messages.Unlock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "raiden.utils.Secret",
+                "raiden.tests.fuzz.utils.SendSecretRequestInNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wrong_secret",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.utils.Address",
+                "raiden.messages.Unlock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_secret_reveal_with_mismatched_secret_as_initiator",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "process_secret_reveal_with_mismatched_secret_as_target@TargetMixin": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "raiden.utils.Secret",
+                "raiden.tests.fuzz.utils.SendUnlockInNode"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "wrong_secret",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "raiden.utils.Secret",
+                "raiden.tests.fuzz.utils.SendUnlockInNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wrong_secret",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_secret_reveal_with_mismatched_secret_as_target",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "process_secret_reveal_with_unknown_secrethash_as_initiator@InitiatorMixin": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "raiden.utils.Secret",
+                "raiden.tests.fuzz.utils.SendSecretRequestInNode"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "wrong_secret",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "raiden.utils.Secret",
+                "raiden.tests.fuzz.utils.SendSecretRequestInNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wrong_secret",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wrong_secrethash",
+            "type": [
+                "str",
+                "typing.Type",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_secret_reveal_with_unknown_secrethash_as_initiator",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "process_secret_reveal_with_unknown_secrethash_as_target@TargetMixin": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "raiden.utils.Secret",
+                "raiden.tests.fuzz.utils.SendSecretRequestInNode"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "wrong_secret",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "raiden.utils.Secret",
+                "raiden.tests.fuzz.utils.SendSecretRequestInNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wrong_secret",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wrong_secrethash",
+            "type": [
+                "str",
+                "typing.Type",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_secret_reveal_with_unknown_secrethash_as_target",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "process_secret_reveal_with_wrong_channel_identifier_as_initiator@InitiatorMixin": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "str",
+                "raiden.utils.Address",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "wrong_channel_id",
+            "type": [
+                "raiden.utils.Address",
+                "int",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "str",
+                "raiden.utils.Address",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wrong_channel_id",
+            "type": [
+                "raiden.utils.Address",
+                "int",
+                "set"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_secret_reveal_with_wrong_channel_identifier_as_initiator",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "process_secret_reveal_with_wrong_channel_identifier_as_target@TargetMixin": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "wrong_channel_id",
+            "type": [
+                "str",
+                "set",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wrong_channel_id",
+            "type": [
+                "str",
+                "set",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_secret_reveal_with_wrong_channel_identifier_as_target",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "process_secret_reveal_with_wrong_queue_identifier_as_initiator@InitiatorMixin": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "str",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "wrong_channel_id",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.messages.LockedTransfer",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "wrong_recipient",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "str",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wrong_channel_id",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.messages.LockedTransfer",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wrong_recipient",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_secret_reveal_with_wrong_queue_identifier_as_initiator",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "process_secret_reveal_with_wrong_queue_identifier_as_target@TargetMixin": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "wrong_channel_id",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "raiden.messages.LockedTransfer",
+                "bytes"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "wrong_recipient",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wrong_channel_id",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "raiden.messages.LockedTransfer",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wrong_recipient",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_secret_reveal_with_wrong_queue_identifier_as_target",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "process_send_locked_transfer@TargetMixin": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendLockedTransferInNode",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "raiden.tests.fuzz.utils.SendUnlockInNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendLockedTransferInNode",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "raiden.tests.fuzz.utils.SendUnlockInNode"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_send_locked_transfer",
+            "type": []
+        }
+    ],
+    "process_send_locked_transfer_with_scrambled_balance_proof@TargetMixin": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendLockedTransferInNode",
+                "raiden.tests.fuzz.utils.SendUnlockInNode",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "scrambling",
+            "type": [
+                "dict[str, typing.Any]",
+                "raiden.tests.fuzz.utils.SendLockedTransferInNode",
+                "raiden.tests.fuzz.utils.SendUnlockInNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scrambling",
+            "type": [
+                "dict[str, typing.Any]",
+                "raiden.tests.fuzz.utils.SendLockedTransferInNode",
+                "raiden.tests.fuzz.utils.SendUnlockInNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendLockedTransferInNode",
+                "raiden.tests.fuzz.utils.SendUnlockInNode",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_send_locked_transfer_with_scrambled_balance_proof",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "process_send_locked_transfer_with_scrambled_hash_time_lock_state@TargetMixin": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendLockedTransferInNode",
+                "raiden.tests.fuzz.utils.Scrambling",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "scrambling",
+            "type": [
+                "raiden.tests.fuzz.utils.Scrambling",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scrambling",
+            "type": [
+                "raiden.tests.fuzz.utils.Scrambling",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendLockedTransferInNode",
+                "raiden.tests.fuzz.utils.Scrambling",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_send_locked_transfer_with_scrambled_hash_time_lock_state",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "process_send_locked_transfer_with_scrambled_locked_transfer_parameter@TargetMixin": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendLockedTransferInNode",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "raiden.tests.fuzz.utils.SendUnlockInNode"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "scrambling",
+            "type": [
+                "raiden.tests.fuzz.utils.Scrambling",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendLockedTransferInNode",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "raiden.tests.fuzz.utils.SendUnlockInNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scrambling",
+            "type": [
+                "raiden.tests.fuzz.utils.Scrambling",
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_send_locked_transfer_with_scrambled_locked_transfer_parameter",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "process_unlock@TargetMixin": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendUnlockInNode",
+                "raiden.tests.fuzz.utils.SendLockedTransferInNode",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendUnlockInNode",
+                "raiden.tests.fuzz.utils.SendLockedTransferInNode",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_unlock",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "process_unlock_with_mismatched_secret@TargetMixin": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendUnlockInNode",
+                "raiden.utils.Secret",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "wrong_secret",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "raiden.tests.fuzz.utils.SendUnlockInNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendUnlockInNode",
+                "raiden.utils.Secret",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wrong_secret",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "raiden.tests.fuzz.utils.SendUnlockInNode"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_unlock_with_mismatched_secret",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "process_unlock_with_scrambled_balance_proof@TargetMixin": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendUnlockInNode",
+                "raiden.tests.fuzz.utils.SendLockedTransferInNode",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "scrambling",
+            "type": [
+                "raiden.tests.fuzz.utils.Scrambling",
+                "list[str]",
+                "raiden.tests.fuzz.utils.SendLockedTransferInNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendUnlockInNode",
+                "raiden.tests.fuzz.utils.SendLockedTransferInNode",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scrambling",
+            "type": [
+                "raiden.tests.fuzz.utils.Scrambling",
+                "list[str]",
+                "raiden.tests.fuzz.utils.SendLockedTransferInNode"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_unlock_with_scrambled_balance_proof",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "process_unlock_with_unknown_secrethash@TargetMixin": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendUnlockInNode",
+                "raiden.utils.Secret",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "wrong_secret",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "raiden.tests.fuzz.utils.SendUnlockInNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendUnlockInNode",
+                "raiden.utils.Secret",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wrong_secret",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "raiden.tests.fuzz.utils.SendUnlockInNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "wrong_secrethash",
+            "type": [
+                "str",
+                "typing.Type",
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_unlock_with_unknown_secrethash",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "process_valid_secret_request@InitiatorMixin": [
+        {
+            "category": "arg",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRequestInNode",
+                "raiden.tests.fuzz.utils.SendLockedTransferInNode",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "raiden.tests.fuzz.utils.SendSecretRequestInNode",
+                "raiden.tests.fuzz.utils.SendLockedTransferInNode",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "process_valid_secret_request",
+            "type": [
+                "bool",
+                "None",
+                "str",
+                "typing.Callable[str, None]"
+            ]
+        }
+    ],
+    "replay_init_initiator@InitiatorMixin": [
+        {
+            "category": "arg",
+            "name": "previous",
+            "type": [
+                "list[mypy.nodes.Block]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "previous",
+            "type": [
+                "list[mypy.nodes.Block]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "replay_init_initiator",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "replay_receive_secret_reveal@MediatorMixin": [
+        {
+            "category": "arg",
+            "name": "previous_action_with_address",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "replay_receive_secret_reveal",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "replay_receive_secret_reveal_scrambled_sender@MediatorMixin": [
+        {
+            "category": "arg",
+            "name": "previous_action_with_address",
+            "type": [
+                "raiden.transfer.state.RouteState",
+                "raiden.messages.LockedTransfer",
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "invalid_sender",
+            "type": [
+                "raiden.messages.LockedTransfer",
+                "raiden.transfer.mediated_transfer.state_change.TransferDescriptionWithSecretState",
+                "LockedTransferSignedState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "previous_action_with_address",
+            "type": [
+                "raiden.transfer.state.RouteState",
+                "raiden.messages.LockedTransfer",
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "previous_action",
+            "type": [
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretReveal",
+                "list",
+                "beacon_chain.state.chain.Chain"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client",
+            "type": [
+                "raiden.network.rpc.clienJSONRPCClient",
+                "utils.clienClient",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str",
+                "list",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "invalid_sender",
+            "type": [
+                "raiden.messages.LockedTransfer",
+                "raiden.transfer.mediated_transfer.state_change.TransferDescriptionWithSecretState",
+                "LockedTransferSignedState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "action",
+            "type": [
+                "ReceiveSecretReveal"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "replay_receive_secret_reveal_scrambled_sender",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "routes_for_new_channel@OnChainMixin": [
+        {
+            "category": "arg",
+            "name": "from_address",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_address",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "routes_for_new_channel",
+            "type": [
+                "bool",
+                "list[bool]"
+            ]
+        }
+    ],
+    "secret@global": [
+        {
+            "category": "arg",
+            "name": "draw",
+            "type": [
+                "int",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "secret",
+            "type": []
+        }
+    ],
+    "settle_channel@OnChainMixin": [
+        {
+            "category": "arg",
+            "name": "reference",
+            "type": [
+                "bytes",
+                "raiden.utils.ABI",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reference",
+            "type": [
+                "bytes",
+                "raiden.utils.ABI",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "channel_settled_state_change",
+            "type": [
+                "ContractReceiveChannelSettled"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "settle_channel",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "target@Route": [
+        {
+            "category": "return",
+            "name": "target",
+            "type": []
+        }
+    ],
+    "test_regression_malicious_secret_request_handled_properly@global": [
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "DirectTransfersStateMachine"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state_",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "v1",
+            "type": [
+                "int",
+                "typing.Iterator",
+                "list[list[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "v2",
+            "type": [
+                "int",
+                "list[int]",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "v3",
+            "type": [
+                "int",
+                "str",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_regression_malicious_secret_request_handled_properly",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "transferred_amount@global": [
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "state.State",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "raiden.utils.TokenAmount",
+                "state.State",
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "transferred_amount",
+            "type": [
+                "int"
+            ]
+        }
+    ],
+    "unwrap_multiple@global": [
+        {
+            "category": "arg",
+            "name": "multiple_results",
+            "type": [
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "multiple_results",
+            "type": [
+                "bool",
+                "dict"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "unwrap_multiple",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "update@BalanceProofData": [
+        {
+            "category": "arg",
+            "name": "amount",
+            "type": [
+                "int",
+                "raiden_contracts.utils.type_aliases.BlockExpiration",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "lock",
+            "type": [
+                "int",
+                "float",
+                "None",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_pending_locks",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lock",
+            "type": [
+                "int",
+                "float",
+                "None",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "properties",
+            "type": [
+                "str",
+                "dict[str, str]",
+                "list[dict[str, str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "int",
+                "raiden_contracts.utils.type_aliases.BlockExpiration",
+                "raiden.utils.TokenAmount"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "update",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "used_secret_init_initiator@InitiatorMixin": [
+        {
+            "category": "arg",
+            "name": "previous",
+            "type": [
+                "str",
+                "int",
+                "raiden.tests.fuzz.utils.SendSecretRequestInNode"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "route",
+            "type": [
+                "bytes",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "payment_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "amount",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "previous",
+            "type": [
+                "str",
+                "int",
+                "raiden.tests.fuzz.utils.SendSecretRequestInNode"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "route",
+            "type": [
+                "bytes",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payment_id",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "used_secret_init_initiator",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "valid_init_initiator@InitiatorMixin": [
+        {
+            "category": "arg",
+            "name": "route",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.Address",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "payment_id",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.MessageID",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "amount",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "secret",
+            "type": [
+                "LockedTransferSignedState",
+                "raiden.tests.fuzz.utils.SendSecretRequestInNode",
+                "raiden.messages.RevealSecret"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "route",
+            "type": [
+                "raiden.utils.PaymentID",
+                "raiden.utils.Address",
+                "raiden.utils.PaymentAmount"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret",
+            "type": [
+                "LockedTransferSignedState",
+                "raiden.tests.fuzz.utils.SendSecretRequestInNode",
+                "raiden.messages.RevealSecret"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payment_id",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.MessageID",
+                "raiden.utils.ChannelID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "transfer",
+            "type": [
+                "raiden.messages.LockedTransfer",
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState",
+                "list[list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "action",
+            "type": [
+                "raiden.transfer.mediated_transfer.state_change.ActionInitMediator",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "valid_init_initiator",
+            "type": []
+        }
+    ],
+    "valid_init_mediator@MediatorMixin": [
+        {
+            "category": "arg",
+            "name": "from_channel",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "to_channel",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.NetworkTimeout"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "payment_id",
+            "type": [
+                "raiden.utils.Address",
+                "str",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "amount",
+            "type": [
+                "raiden.utils.Address",
+                "str",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "secret",
+            "type": [
+                "raiden.utils.Address",
+                "str",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "from_channel",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.ChainID"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "to_channel",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.TokenAddress",
+                "raiden.utils.NetworkTimeout"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "payment_id",
+            "type": [
+                "raiden.utils.Address",
+                "str",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "amount",
+            "type": [
+                "raiden.utils.Address",
+                "str",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret",
+            "type": [
+                "raiden.utils.Address",
+                "str",
+                "raiden.utils.TokenAddress"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "valid_init_mediator",
+            "type": []
+        }
+    ],
+    "valid_receive_secret_reveal@MediatorMixin": [
+        {
+            "category": "arg",
+            "name": "previous_action_with_address",
+            "type": [
+                "bool",
+                "raiden.storage.sqlite.SerializedSQLiteStorage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "previous_action_with_address",
+            "type": [
+                "bool",
+                "raiden.storage.sqlite.SerializedSQLiteStorage"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "previous_action",
+            "type": [
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretReveal",
+                "list",
+                "raiden.transfer.state.NettingChannelState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client",
+            "type": [
+                "raiden.network.rpc.clienJSONRPCClient",
+                "tests.engine.cloud.test_cloud_flows.MockedCloudClient",
+                "set"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "our_address",
+            "type": [
+                "Address",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "action",
+            "type": [
+                "ReceiveSecretReveal"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "in_time",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "still_waiting",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "valid_receive_secret_reveal",
+            "type": [
+                "WithOurAddress"
+            ]
+        }
+    ],
+    "wrong_address_receive_secret_reveal@MediatorMixin": [
+        {
+            "category": "arg",
+            "name": "previous_action_with_address",
+            "type": [
+                "raiden.storage.sqlite.SerializedSQLiteStorage",
+                "int",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "invalid_sender",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "raiden.messages.LockedTransfer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "previous_action_with_address",
+            "type": [
+                "raiden.storage.sqlite.SerializedSQLiteStorage",
+                "int",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "previous_action",
+            "type": [
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretReveal",
+                "str",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client",
+            "type": [
+                "raiden.network.rpc.clienJSONRPCClient",
+                "tests.engine.cloud.test_cloud_flows.MockedCloudClient"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "our_address",
+            "type": [
+                "raiden.utils.Address",
+                "tuple[typing.Union[str,int]]",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "invalid_sender",
+            "type": [
+                "raiden.utils.Secret",
+                "raiden.tests.fuzz.utils.SendSecretRevealInNode",
+                "raiden.messages.LockedTransfer"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "invalid_action",
+            "type": [
+                "ReceiveSecretReveal"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "valid_action",
+            "type": [
+                "ReceiveSecretReveal"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "wrong_address_receive_secret_reveal",
+            "type": [
+                "WithOurAddress"
+            ]
+        }
+    ],
+    "wrong_secret_receive_secret_reveal@MediatorMixin": [
+        {
+            "category": "arg",
+            "name": "previous_action_with_address",
+            "type": [
+                "bool",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "secret",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.Secret",
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "previous_action_with_address",
+            "type": [
+                "bool",
+                "raiden.utils.Address"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "previous_action",
+            "type": [
+                "list",
+                "raiden.transfer.mediated_transfer.state_change.ReceiveSecretReveal",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "client",
+            "type": [
+                "raiden.network.rpc.clienJSONRPCClient",
+                "utils.clienClient",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "str",
+                "list",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "secret",
+            "type": [
+                "raiden.utils.Address",
+                "raiden.utils.Secret",
+                "raiden.transfer.mediated_transfer.state.LockedTransferSignedState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "action",
+            "type": [
+                "ReceiveSecretReveal"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "wrong_secret_receive_secret_reveal",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

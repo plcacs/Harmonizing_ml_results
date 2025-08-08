@@ -1,0 +1,641 @@
+{
+    "__init__@HypervolumePareto": [
+        {
+            "category": "arg",
+            "name": "upper_bounds",
+            "type": [
+                "None",
+                "bool",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "auto_bound",
+            "type": [
+                "int",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "seed",
+            "type": [
+                "None",
+                "int",
+                "list[tuple[typing.Union[numpy.ndarray,float,bool]]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "no_hypervolume",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "AUTO_BOUND",
+            "type": [
+                "int",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_auto_bound",
+            "type": [
+                "int",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "upper_bounds",
+            "type": [
+                "None",
+                "bool",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "auto_bound",
+            "type": [
+                "int",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_best_volume",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_hypervolume",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_pareto_needs_filtering",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "no_hypervolume",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_no_hypervolume",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "seed",
+            "type": [
+                "None",
+                "int",
+                "list[tuple[typing.Union[numpy.ndarray,float,bool]]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_pf",
+            "type": [
+                "ParetoFront"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "__init__@ParetoFront": [
+        {
+            "category": "arg",
+            "name": "seed",
+            "type": [
+                "None",
+                "bool",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "no_hypervolume",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_pareto",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_pareto_needs_filtering",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "no_hypervolume",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_no_hypervolume",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "seed",
+            "type": [
+                "None",
+                "bool",
+                "float",
+                "np_@_random_@_RandomState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_rng",
+            "type": [
+                "np_@_random_@_RandomState"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_hypervolume",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "_calc_hypervolume@HypervolumePareto": [
+        {
+            "category": "arg",
+            "name": "parameter",
+            "type": [
+                "str",
+                "list[float]",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "losses",
+            "type": [
+                "nevergrad.common.FloatLoss"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_hypervolume",
+            "type": [
+                "float",
+                "int",
+                "str",
+                "None",
+                "HypervolumeIndicator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "self_",
+            "type": [
+                "HypervolumeIndicator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "losses",
+            "type": [
+                "nevergrad.common.FloatLoss"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "new_volume",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_best_volume",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parameter",
+            "type": [
+                "str",
+                "list[float]",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_calc_hypervolume",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "distance_to_pareto",
+            "type": [
+                "float",
+                "int"
+            ]
+        }
+    ],
+    "_filter_pareto_front@ParetoFront": [
+        {
+            "category": "local",
+            "name": "new_pareto",
+            "type": [
+                "list",
+                "list[list[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "param",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_pareto",
+            "type": [
+                "list",
+                "list[list[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "should_be_added",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "other",
+            "type": [
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_pareto_needs_filtering",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "_filter_pareto_front",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "add@HypervolumePareto": [
+        {
+            "category": "arg",
+            "name": "parameter",
+            "type": [
+                "dict",
+                "tuple['cirq.Qid']",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parameter",
+            "type": [
+                "dict",
+                "tuple['cirq.Qid']",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_auto_bound",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_upper_bounds",
+            "type": [
+                "float",
+                "int",
+                "tuple[float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "add",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "loss",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_best_volume",
+            "type": [
+                "float"
+            ]
+        }
+    ],
+    "add_to_pareto@ParetoFront": [
+        {
+            "category": "arg",
+            "name": "parameter",
+            "type": [
+                "list",
+                "dict[str, int]",
+                "dict[int, numpy.ndarray]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "parameter",
+            "type": [
+                "list",
+                "dict[str, int]",
+                "dict[int, numpy.ndarray]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_pareto_needs_filtering",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "add_to_pareto",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "best_volume@HypervolumePareto": [
+        {
+            "category": "return",
+            "name": "best_volume",
+            "type": []
+        }
+    ],
+    "extend@HypervolumePareto": [
+        {
+            "category": "arg",
+            "name": "parameters",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "output",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "extend",
+            "type": [
+                "float"
+            ]
+        }
+    ],
+    "get_front@ParetoFront": [
+        {
+            "category": "arg",
+            "name": "size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "subset",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "subset_tentatives",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_front",
+            "type": [
+                "str",
+                "tuple[typing.Union[list[int],int]]",
+                "numpy.array"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subset",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subset_tentatives",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "tentatives",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scores",
+            "type": [
+                "list",
+                "list[typing.Union[float,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "score",
+            "type": [
+                "float",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "best_score",
+            "type": [
+                "float"
+            ]
+        }
+    ],
+    "get_min_losses@HypervolumePareto": [
+        {
+            "category": "return",
+            "name": "get_min_losses",
+            "type": []
+        }
+    ],
+    "get_raw@ParetoFront": [
+        {
+            "category": "return",
+            "name": "get_raw",
+            "type": []
+        }
+    ],
+    "global@global": [
+        {
+            "category": "local",
+            "name": "AUTO_BOUND",
+            "type": [
+                "int",
+                "dict[str, dict[str, typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_hypervolume",
+            "type": [
+                "HypervolumeIndicator"
+            ]
+        }
+    ],
+    "num_objectives@HypervolumePareto": [
+        {
+            "category": "return",
+            "name": "num_objectives",
+            "type": []
+        }
+    ],
+    "pareto_front@HypervolumePareto": [
+        {
+            "category": "arg",
+            "name": "size",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "subset",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "subset_tentatives",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "size",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subset",
+            "type": [
+                "typing.Text"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "subset_tentatives",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "pareto_front",
+            "type": [
+                "str",
+                "collections.abc.AsyncIterator",
+                "list[int]"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,319 @@
+{
+    "chain@global": [
+        {
+            "category": "arg",
+            "name": "chain_with_block_validation",
+            "type": [
+                "eth.rlp.headers.BlockHeader",
+                "bool",
+                "eth.rlp.blocks.BaseBlock"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain_with_block_validation",
+            "type": [
+                "eth.rlp.headers.BlockHeader",
+                "bool",
+                "eth.rlp.blocks.BaseBlock"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "chain",
+            "type": [
+                "eth.rlp.headers.BlockHeader",
+                "bool",
+                "eth.rlp.blocks.BaseBlock"
+            ]
+        }
+    ],
+    "genesis_state@global": [
+        {
+            "category": "arg",
+            "name": "base_genesis_state",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "simple_contract_address",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "base_genesis_state",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "simple_contract_address",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "genesis_state",
+            "type": [
+                "list[str]"
+            ]
+        }
+    ],
+    "global@global": [],
+    "simple_contract_address@global": [
+        {
+            "category": "return",
+            "name": "simple_contract_address",
+            "type": [
+                "bytes"
+            ]
+        }
+    ],
+    "test_get_transaction_result@global": [
+        {
+            "category": "arg",
+            "name": "chain",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "simple_contract_address",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "signature",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "gas_price",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signature",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "function_selector",
+            "type": [
+                "str",
+                "bytes",
+                "duniterpy.documents.transaction.Transaction"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "simple_contract_address",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "gas_price",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "call_txn",
+            "type": [
+                "dict",
+                "list[tuple[typing.Union[int,typing.Any]]]",
+                "list[list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "result_bytes",
+            "type": [
+                "bytes",
+                "list[bytes]",
+                "bytearray"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_transaction_result",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_transaction_result_revert@global": [
+        {
+            "category": "arg",
+            "name": "vm",
+            "type": [
+                "typing.Callable",
+                "nucypher.blockchain.eth.registry.BaseContractRegistry"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "chain_from_vm",
+            "type": [
+                "typing.Callable",
+                "nucypher.blockchain.eth.registry.BaseContractRegistry"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "simple_contract_address",
+            "type": [
+                "typing.Callable",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "signature",
+            "type": [
+                "int",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "expected",
+            "type": [
+                "str",
+                "bool",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vm",
+            "type": [
+                "typing.Callable",
+                "nucypher.blockchain.eth.registry.BaseContractRegistry"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "chain",
+            "type": [
+                "eth.chains.base.BaseChain",
+                "nucypher.blockchain.eth.agents.MinerAgent"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signature",
+            "type": [
+                "int",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "function_selector",
+            "type": [
+                "bytes",
+                "dict[bytes, int]",
+                "bytearray"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "simple_contract_address",
+            "type": [
+                "typing.Callable",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "call_txn",
+            "type": [
+                "list",
+                "list[dict]",
+                "list[list[typing.Any]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected",
+            "type": [
+                "str",
+                "bool",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_transaction_result_revert",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "uint256_to_bytes@global": [
+        {
+            "category": "arg",
+            "name": "uint",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "uint",
+            "type": [
+                "int",
+                "bytes"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "uint256_to_bytes",
+            "type": [
+                "bytes",
+                "str"
+            ]
+        }
+    ]
+}

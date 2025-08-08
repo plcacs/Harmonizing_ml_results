@@ -55,21 +55,21 @@ from zerver.models.users import get_system_bot, get_user_by_delivery_email, is_c
 from zerver.tornado.django_api import send_event_on_commit
 
 
-def func_x0nyp3vz(email):
+def func_ilype0c3(email):
     return Address(addr_spec=email).username + ' (IRC)'
 
 
-def func_2gjdefja(email):
+def func_g8retj1u(email):
     return Address(addr_spec=email).username + ' (XMPP)'
 
 
-def func_jcr9sbj2(realm, email, email_to_fullname):
+def func_krd2o6nw(realm, email, email_to_fullname):
     return user_profile_delivery_email_cache_key(email, realm.id)
 
 
 @cache_with_key(get_user_profile_delivery_email_cache_key, timeout=3600 * 
     24 * 7)
-def func_fr3vumxr(realm, email, email_to_fullname):
+def func_ryejyagq(realm, email, email_to_fullname):
     try:
         return get_user_by_delivery_email(email, realm)
     except UserProfile.DoesNotExist:
@@ -81,7 +81,7 @@ def func_fr3vumxr(realm, email, email_to_fullname):
             return get_user_by_delivery_email(email, realm)
 
 
-def func_gu1eb6n0(message, content, realm, mention_data=None,
+def func_h7a287w4(message, content, realm, mention_data=None,
     url_embed_data=None, email_gateway=False, acting_user=None):
     realm_alert_words_automaton = get_alert_word_automaton(realm)
     try:
@@ -109,7 +109,7 @@ class SentMessageResult:
     automatic_new_visibility_policy = None
 
 
-def func_o4182qvp(*, realm_id, recipient, sender_id, stream_topic,
+def func_4avgk8r7(*, realm_id, recipient, sender_id, stream_topic,
     possibly_mentioned_user_ids=set(), possible_topic_wildcard_mention=True,
     possible_stream_wildcard_mention=True):
     stream_push_user_ids = set()
@@ -167,26 +167,26 @@ def func_o4182qvp(*, realm_id, recipient, sender_id, stream_topic,
         user_id_to_visibility_policy = (stream_topic.
             user_id_to_visibility_policy_dict())
 
-        def func_wx9cbnmf(setting):
+        def func_40l5p6c8(setting):
             return {row['user_profile_id'] for row in subscription_rows if
                 user_allows_notifications_in_StreamTopic(row['is_muted'],
                 user_id_to_visibility_policy.get(row['user_profile_id'],
                 UserTopic.VisibilityPolicy.INHERIT), row[setting], row[
                 'user_profile_' + setting])}
-        stream_push_user_ids = func_wx9cbnmf('push_notifications')
-        stream_email_user_ids = func_wx9cbnmf('email_notifications')
+        stream_push_user_ids = func_40l5p6c8('push_notifications')
+        stream_email_user_ids = func_40l5p6c8('email_notifications')
 
-        def func_yn6rh265(setting):
+        def func_pe61uv3f(setting):
             return {row['user_profile_id'] for row in subscription_rows if 
                 user_id_to_visibility_policy.get(row['user_profile_id'],
                 UserTopic.VisibilityPolicy.INHERIT) == UserTopic.
                 VisibilityPolicy.FOLLOWED and row['followed_topic_' + setting]}
-        followed_topic_email_user_ids = func_yn6rh265('email_notifications')
-        followed_topic_push_user_ids = func_yn6rh265('push_notifications')
+        followed_topic_email_user_ids = func_pe61uv3f('email_notifications')
+        followed_topic_push_user_ids = func_pe61uv3f('push_notifications')
         if possible_stream_wildcard_mention or possible_topic_wildcard_mention:
-            wildcard_mentions_notify_user_ids = func_wx9cbnmf(
+            wildcard_mentions_notify_user_ids = func_40l5p6c8(
                 'wildcard_mentions_notify')
-            followed_topic_wildcard_mentions_notify_user_ids = func_yn6rh265(
+            followed_topic_wildcard_mentions_notify_user_ids = func_pe61uv3f(
                 'wildcard_mentions_notify')
         if possible_stream_wildcard_mention:
             stream_wildcard_mention_user_ids = (
@@ -217,18 +217,18 @@ def func_o4182qvp(*, realm_id, recipient, sender_id, stream_topic,
     else:
         rows = []
 
-    def func_d0w8gm8d(f):
+    def func_yonflixy(f):
         """Only includes users on the explicit message to line"""
         return {row['id'] for row in rows if f(row)} & message_to_user_id_set
-    active_user_ids = func_d0w8gm8d(lambda r: True)
-    online_push_user_ids = func_d0w8gm8d(lambda r: r[
+    active_user_ids = func_yonflixy(lambda r: True)
+    online_push_user_ids = func_yonflixy(lambda r: r[
         'enable_online_push_notifications'])
-    dm_mention_email_disabled_user_ids = func_d0w8gm8d(lambda r: not r[
+    dm_mention_email_disabled_user_ids = func_yonflixy(lambda r: not r[
         'enable_offline_email_notifications'])
-    dm_mention_push_disabled_user_ids = func_d0w8gm8d(lambda r: not r[
+    dm_mention_push_disabled_user_ids = func_yonflixy(lambda r: not r[
         'enable_offline_push_notifications'])
-    um_eligible_user_ids = func_d0w8gm8d(lambda r: True)
-    long_term_idle_user_ids = func_d0w8gm8d(lambda r: r['long_term_idle'])
+    um_eligible_user_ids = func_yonflixy(lambda r: True)
+    long_term_idle_user_ids = func_yonflixy(lambda r: r['long_term_idle'])
     default_bot_user_ids = {row['id'] for row in rows if row['is_bot'] and 
         row['bot_type'] == UserProfile.DEFAULT_BOT}
     service_bot_tuples = [(row['id'], row['bot_type']) for row in rows if 
@@ -257,13 +257,13 @@ def func_o4182qvp(*, realm_id, recipient, sender_id, stream_topic,
         topic_participant_user_ids, sender_muted_stream=sender_muted_stream)
 
 
-def func_06sas9a9(sender, service_bot_tuples, mentioned_user_ids,
+def func_nnfs507g(sender, service_bot_tuples, mentioned_user_ids,
     active_user_ids, recipient_type):
     event_dict = defaultdict(list)
     if sender.is_bot:
         return event_dict
 
-    def func_mw3uyztg(user_profile_id, bot_type):
+    def func_gubsck7g(user_profile_id, bot_type):
         if bot_type == UserProfile.OUTGOING_WEBHOOK_BOT:
             queue_name = 'outgoing_webhooks'
         elif bot_type == UserProfile.EMBEDDED_BOT:
@@ -285,11 +285,11 @@ def func_06sas9a9(sender, service_bot_tuples, mentioned_user_ids,
         event_dict[queue_name].append({'trigger': trigger,
             'user_profile_id': user_profile_id})
     for user_profile_id, bot_type in service_bot_tuples:
-        func_mw3uyztg(user_profile_id=user_profile_id, bot_type=bot_type)
+        func_gubsck7g(user_profile_id=user_profile_id, bot_type=bot_type)
     return event_dict
 
 
-def func_3a0cti7l(message, stream=None, local_id=None, sender_queue_id=None,
+def func_o3krieek(message, stream=None, local_id=None, sender_queue_id=None,
     widget_content_dict=None, email_gateway=False, mention_backend=None,
     limit_unread_user_ids=None, disable_external_notifications=False,
     recipients_for_user_creation_events=None, acting_user=None):
@@ -308,14 +308,14 @@ def func_3a0cti7l(message, stream=None, local_id=None, sender_queue_id=None,
             message.topic_name())
     else:
         stream_topic = None
-    info = func_o4182qvp(realm_id=realm.id, recipient=message.recipient,
+    info = func_4avgk8r7(realm_id=realm.id, recipient=message.recipient,
         sender_id=message.sender_id, stream_topic=stream_topic,
         possibly_mentioned_user_ids=mention_data.get_user_ids(),
         possible_topic_wildcard_mention=mention_data.
         message_has_topic_wildcards(), possible_stream_wildcard_mention=
         mention_data.message_has_stream_wildcards())
     assert message.rendered_content is None
-    rendering_result = func_gu1eb6n0(message, message.content, realm,
+    rendering_result = func_h7a287w4(message, message.content, realm,
         mention_data=mention_data, email_gateway=email_gateway, acting_user
         =acting_user)
     message.rendered_content = rendering_result.rendered_content
@@ -388,7 +388,7 @@ def func_3a0cti7l(message, stream=None, local_id=None, sender_queue_id=None,
     return message_send_dict
 
 
-def func_adncek82(message, rendering_result, um_eligible_user_ids,
+def func_8og22tns(message, rendering_result, um_eligible_user_ids,
     long_term_idle_user_ids, stream_push_user_ids, stream_email_user_ids,
     mentioned_user_ids, followed_topic_push_user_ids,
     followed_topic_email_user_ids, mark_as_read_user_ids,
@@ -428,7 +428,7 @@ def func_adncek82(message, rendering_result, um_eligible_user_ids,
     return user_messages
 
 
-def func_ef9h1wbb(user_ids):
+def func_i4k0rime(user_ids):
     if not user_ids:
         return []
     recent = timezone_now() - timedelta(seconds=settings.OFFLINE_THRESHOLD_SECS
@@ -440,7 +440,7 @@ def func_ef9h1wbb(user_ids):
     return sorted(idle_user_ids)
 
 
-def func_6oq7tl3k(realm, sender_id, user_notifications_data_list):
+def func_zics59t9(realm, sender_id, user_notifications_data_list):
     """
     Given a list of active_user_ids, we build up a subset
     of those users who fit these criteria:
@@ -455,11 +455,11 @@ def func_6oq7tl3k(realm, sender_id, user_notifications_data_list):
     for user_notifications_data in user_notifications_data_list:
         if user_notifications_data.is_notifiable(sender_id, idle=True):
             user_ids.add(user_notifications_data.user_id)
-    return func_ef9h1wbb(user_ids)
+    return func_i4k0rime(user_ids)
 
 
 @transaction.atomic(savepoint=False)
-def func_58dpcdu8(send_message_requests_maybe_none, *, mark_as_read=[]):
+def func_5if1xban(send_message_requests_maybe_none, *, mark_as_read=[]):
     """See
     https://zulip.readthedocs.io/en/latest/subsystems/sending-messages.html
     for high-level documentation on this subsystem.
@@ -492,7 +492,7 @@ def func_58dpcdu8(send_message_requests_maybe_none, *, mark_as_read=[]):
         mentioned_user_ids = send_request.rendering_result.mentions_user_ids
         mark_as_read_user_ids = send_request.muted_sender_user_ids
         mark_as_read_user_ids.update(mark_as_read)
-        user_messages = func_adncek82(message=send_request.message,
+        user_messages = func_8og22tns(message=send_request.message,
             rendering_result=send_request.rendering_result,
             um_eligible_user_ids=send_request.um_eligible_user_ids,
             long_term_idle_user_ids=send_request.long_term_idle_user_ids,
@@ -509,7 +509,7 @@ def func_58dpcdu8(send_message_requests_maybe_none, *, mark_as_read=[]):
             user_message_flags[send_request.message.id][um.user_profile_id
                 ] = um.flags_list()
         ums.extend(user_messages)
-        send_request.service_queue_events = func_06sas9a9(sender=
+        send_request.service_queue_events = func_nnfs507g(sender=
             send_request.message.sender, service_bot_tuples=send_request.
             service_bot_tuples, mentioned_user_ids=mentioned_user_ids,
             active_user_ids=send_request.active_user_ids, recipient_type=
@@ -637,7 +637,7 @@ def func_58dpcdu8(send_message_requests_maybe_none, *, mark_as_read=[]):
             muted_sender_user_ids=send_request.muted_sender_user_ids,
             all_bot_user_ids=send_request.all_bot_user_ids) for user_id in
             send_request.active_user_ids]
-        presence_idle_user_ids = func_6oq7tl3k(realm=send_request.realm,
+        presence_idle_user_ids = func_zics59t9(realm=send_request.realm,
             sender_id=sender.id, user_notifications_data_list=
             user_notifications_data_list)
         if send_request.recipients_for_user_creation_events is not None:
@@ -730,7 +730,7 @@ def func_58dpcdu8(send_message_requests_maybe_none, *, mark_as_read=[]):
     return sent_message_results
 
 
-def func_sgmq6m7y(message):
+def func_3xks5lef(message):
     if message.recipient.type == Recipient.DIRECT_MESSAGE_GROUP:
         time_window = timedelta(seconds=10)
     else:
@@ -745,7 +745,7 @@ def func_sgmq6m7y(message):
     return None
 
 
-def func_mkpm2z6o(s):
+def func_cnxomsk1(s):
     try:
         data = orjson.loads(s)
     except orjson.JSONDecodeError:
@@ -761,7 +761,7 @@ def func_mkpm2z6o(s):
     raise JsonableError(_('Invalid data type for channel'))
 
 
-def func_fx86au1c(s):
+def func_md922ntt(s):
     try:
         data = orjson.loads(s)
     except orjson.JSONDecodeError:
@@ -779,7 +779,7 @@ def func_fx86au1c(s):
     return get_validated_user_ids(data)
 
 
-def func_cp5oq43p(user_ids):
+def func_wpj12jq5(user_ids):
     for user_id in user_ids:
         if not isinstance(user_id, int):
             raise JsonableError(_(
@@ -788,7 +788,7 @@ def func_cp5oq43p(user_ids):
     return list(set(user_ids))
 
 
-def func_l978c4ci(emails):
+def func_xipn445r(emails):
     for email in emails:
         if not isinstance(email, str):
             raise JsonableError(_(
@@ -797,30 +797,30 @@ def func_l978c4ci(emails):
     return list(filter(bool, {email.strip() for email in emails}))
 
 
-def func_flvqy456(sender, client, stream_name, topic_name, body, *, realm=
+def func_sm168tyh(sender, client, stream_name, topic_name, body, *, realm=
     None, read_by_sender=False):
     addressee = Addressee.for_stream_name(stream_name, topic_name)
     message = check_message(sender, client, addressee, body, realm)
-    sent_message_result = func_58dpcdu8([message], mark_as_read=[sender.id] if
+    sent_message_result = func_5if1xban([message], mark_as_read=[sender.id] if
         read_by_sender else [])[0]
     return sent_message_result.message_id
 
 
-def func_4gkwjqom(sender, client, stream_id, topic_name, body, realm=None):
+def func_4eb4mler(sender, client, stream_id, topic_name, body, realm=None):
     addressee = Addressee.for_stream_id(stream_id, topic_name)
     message = check_message(sender, client, addressee, body, realm)
-    sent_message_result = func_58dpcdu8([message])[0]
+    sent_message_result = func_5if1xban([message])[0]
     return sent_message_result.message_id
 
 
-def func_k2pdayll(sender, client, receiving_user, body):
+def func_k3fkr32t(sender, client, receiving_user, body):
     addressee = Addressee.for_user_profile(receiving_user)
     message = check_message(sender, client, addressee, body)
-    sent_message_result = func_58dpcdu8([message])[0]
+    sent_message_result = func_5if1xban([message])[0]
     return sent_message_result.message_id
 
 
-def func_616zvj88(sender, client, recipient_type_name, message_to,
+def func_76a4b7bh(sender, client, recipient_type_name, message_to,
     topic_name, message_content, realm=None, forged=False, forged_timestamp
     =None, forwarder_user_profile=None, local_id=None, sender_queue_id=None,
     widget_content=None, *, skip_stream_access_check=False, read_by_sender=
@@ -834,11 +834,11 @@ def func_616zvj88(sender, client, recipient_type_name, message_to,
             skip_stream_access_check=skip_stream_access_check)
     except ZephyrMessageAlreadySentError as e:
         return SentMessageResult(message_id=e.message_id)
-    return func_58dpcdu8([message], mark_as_read=[sender.id] if
+    return func_5if1xban([message], mark_as_read=[sender.id] if
         read_by_sender else [])[0]
 
 
-def func_8abii70w(sender, realm, content):
+def func_ed79vci3(sender, realm, content):
     """
     Sends a direct message error notification to a bot's owner if one
     hasn't already been sent in the last 5 minutes.
@@ -860,7 +860,7 @@ def func_8abii70w(sender, realm, content):
     sender.save(update_fields=['last_reminder'])
 
 
-def func_xueweakj(stream, realm, sender, stream_name=None, stream_id=None):
+def func_kvvbksp6(stream, realm, sender, stream_name=None, stream_id=None):
     """If a bot sends a message to a stream that doesn't exist or has no
     subscribers, sends a notification to the bot owner (if not a
     cross-realm bot) so that the owner can correct the issue."""
@@ -890,32 +890,32 @@ def func_xueweakj(stream, realm, sender, stream_name=None, stream_id=None):
                 content = _(
                     'Your bot {bot_identity} tried to send a message to channel {channel_name}. The channel exists but does not have any subscribers.'
                     ).format(**arg_dict)
-        func_8abii70w(sender, realm, content)
+        func_ed79vci3(sender, realm, content)
 
 
-def func_e0u1t96m(stream_name, realm, sender):
+def func_53hjqnkk(stream_name, realm, sender):
     stream_name = stream_name.strip()
     check_stream_name(stream_name)
     try:
         stream = get_stream_by_name_for_sending_message(stream_name, realm)
-        func_xueweakj(stream, realm, sender)
+        func_kvvbksp6(stream, realm, sender)
     except Stream.DoesNotExist:
-        func_xueweakj(None, realm, sender, stream_name=stream_name)
+        func_kvvbksp6(None, realm, sender, stream_name=stream_name)
         raise StreamDoesNotExistError(escape(stream_name))
     return stream
 
 
-def func_1q232d1t(stream_id, realm, sender):
+def func_9bi5kqrs(stream_id, realm, sender):
     try:
         stream = get_stream_by_id_for_sending_message(stream_id, realm)
-        func_xueweakj(stream, realm, sender)
+        func_kvvbksp6(stream, realm, sender)
     except Stream.DoesNotExist:
-        func_xueweakj(None, realm, sender, stream_id=stream_id)
+        func_kvvbksp6(None, realm, sender, stream_id=stream_id)
         raise StreamWithIDDoesNotExistError(stream_id)
     return stream
 
 
-def func_o1repn4g(realm, sender, recipient_users, recipient):
+def func_bpcs6tkp(realm, sender, recipient_users, recipient):
     if sender.is_bot:
         return
     if all(user_profile.is_bot or user_profile.id == sender.id for
@@ -952,7 +952,7 @@ def func_o1repn4g(realm, sender, recipient_users, recipient):
             raise DirectMessageInitiationError
 
 
-def func_a3chq3w5(realm, sender, user_profiles):
+def func_dxnsprgo(realm, sender, user_profiles):
     recipient_user_ids = [user.id for user in user_profiles]
     inaccessible_recipients = get_inaccessible_user_ids(recipient_user_ids,
         sender)
@@ -961,7 +961,7 @@ def func_a3chq3w5(realm, sender, user_profiles):
             'You do not have permission to access some of the recipients.'))
 
 
-def func_2lsbh3ec(realm, sender, user_profiles):
+def func_o8vt7f9w(realm, sender, user_profiles):
     """
     This function returns a dictionary with data about which users would
     receive stream creation events due to gaining access to a user.
@@ -1001,7 +1001,7 @@ def func_2lsbh3ec(realm, sender, user_profiles):
     return recipients_for_user_creation_events
 
 
-def func_2kv72ztd(sender, client, addressee, message_content_raw, realm=
+def func_rp5xzeqf(sender, client, addressee, message_content_raw, realm=
     None, forged=False, forged_timestamp=None, forwarder_user_profile=None,
     local_id=None, sender_queue_id=None, widget_content=None, email_gateway
     =False, *, skip_stream_access_check=False, message_type=Message.
@@ -1023,9 +1023,9 @@ def func_2kv72ztd(sender, client, addressee, message_content_raw, realm=
         stream_name = addressee.stream_name()
         stream_id = addressee.stream_id()
         if stream_name is not None:
-            stream = func_e0u1t96m(stream_name, realm, sender)
+            stream = func_53hjqnkk(stream_name, realm, sender)
         elif stream_id is not None:
-            stream = func_1q232d1t(stream_id, realm, sender)
+            stream = func_9bi5kqrs(stream_id, realm, sender)
         else:
             stream = addressee.stream()
         assert stream is not None
@@ -1043,8 +1043,8 @@ def func_2kv72ztd(sender, client, addressee, message_content_raw, realm=
         user_profiles = addressee.user_profiles()
         mirror_message = client.name in ['zephyr_mirror', 'irc_mirror',
             'jabber_mirror', 'JabberMirror']
-        func_a3chq3w5(realm, sender, user_profiles)
-        recipients_for_user_creation_events = func_2lsbh3ec(realm, sender,
+        func_dxnsprgo(realm, sender, user_profiles)
+        recipients_for_user_creation_events = func_o8vt7f9w(realm, sender,
             user_profiles)
         forwarded_mirror_message = mirror_message and not forged
         try:
@@ -1053,7 +1053,7 @@ def func_2kv72ztd(sender, client, addressee, message_content_raw, realm=
         except ValidationError as e:
             assert isinstance(e.messages[0], str)
             raise JsonableError(e.messages[0])
-        func_o1repn4g(realm, sender, user_profiles, recipient)
+        func_bpcs6tkp(realm, sender, user_profiles, recipient)
     else:
         raise AssertionError('Invalid message type')
     message = Message()
@@ -1071,7 +1071,7 @@ def func_2kv72ztd(sender, client, addressee, message_content_raw, realm=
     message.sending_client = client
     assert message.rendered_content is None
     if client.name == 'zephyr_mirror':
-        id = func_sgmq6m7y(message)
+        id = func_3xks5lef(message)
         if id is not None:
             raise ZephyrMessageAlreadySentError(id)
     widget_content_dict = None
@@ -1086,7 +1086,7 @@ def func_2kv72ztd(sender, client, addressee, message_content_raw, realm=
         except ValidationError as error:
             raise JsonableError(_('Widgets: {error_msg}').format(error_msg=
                 error.message))
-    message_send_dict = func_3a0cti7l(message=message, stream=stream,
+    message_send_dict = func_o3krieek(message=message, stream=stream,
         local_id=local_id, sender_queue_id=sender_queue_id,
         widget_content_dict=widget_content_dict, email_gateway=
         email_gateway, mention_backend=mention_backend,
@@ -1110,7 +1110,7 @@ def func_2kv72ztd(sender, client, addressee, message_content_raw, realm=
     return message_send_dict
 
 
-def func_vfxkhbdz(realm, sender, addressee, content, *, email_gateway=False,
+def func_fyqv8zdl(realm, sender, addressee, content, *, email_gateway=False,
     message_type=Message.MessageType.NORMAL, mention_backend=None,
     limit_unread_user_ids=None, disable_external_notifications=False,
     forged=False, forged_timestamp=None, archived_channel_notice=False,
@@ -1126,7 +1126,7 @@ def func_vfxkhbdz(realm, sender, addressee, content, *, email_gateway=False,
         if stream_name is not None:
             ensure_stream(realm, stream_name, acting_user=sender)
     try:
-        return func_2kv72ztd(sender, get_client('Internal'), addressee,
+        return func_rp5xzeqf(sender, get_client('Internal'), addressee,
             content, realm=realm, email_gateway=email_gateway, message_type
             =message_type, mention_backend=mention_backend,
             limit_unread_user_ids=limit_unread_user_ids,
@@ -1140,7 +1140,7 @@ def func_vfxkhbdz(realm, sender, addressee, content, *, email_gateway=False,
     return None
 
 
-def func_6plil9d2(sender, stream, topic_name, content, *, email_gateway=
+def func_8vg2mb8x(sender, stream, topic_name, content, *, email_gateway=
     False, message_type=Message.MessageType.NORMAL, limit_unread_user_ids=
     None, forged=False, forged_timestamp=None, archived_channel_notice=
     False, acting_user=None):
@@ -1149,23 +1149,23 @@ def func_6plil9d2(sender, stream, topic_name, content, *, email_gateway=
     """
     realm = stream.realm
     addressee = Addressee.for_stream(stream, topic_name)
-    return func_vfxkhbdz(realm=realm, sender=sender, addressee=addressee,
+    return func_fyqv8zdl(realm=realm, sender=sender, addressee=addressee,
         content=content, email_gateway=email_gateway, message_type=
         message_type, limit_unread_user_ids=limit_unread_user_ids, forged=
         forged, forged_timestamp=forged_timestamp, archived_channel_notice=
         archived_channel_notice, acting_user=acting_user)
 
 
-def func_u6n4jce5(realm, sender, stream_name, topic_name, content):
+def func_5vsmayq8(realm, sender, stream_name, topic_name, content):
     """
     See _internal_prep_message for details of how this works.
     """
     addressee = Addressee.for_stream_name(stream_name, topic_name)
-    return func_vfxkhbdz(realm=realm, sender=sender, addressee=addressee,
+    return func_fyqv8zdl(realm=realm, sender=sender, addressee=addressee,
         content=content)
 
 
-def func_djqxa9bn(sender, recipient_user, content, *, mention_backend=None,
+def func_u50gr15x(sender, recipient_user, content, *, mention_backend=None,
     disable_external_notifications=False):
     """
     See _internal_prep_message for details of how this works.
@@ -1175,59 +1175,59 @@ def func_djqxa9bn(sender, recipient_user, content, *, mention_backend=None,
         realm = recipient_user.realm
     else:
         realm = sender.realm
-    return func_vfxkhbdz(realm=realm, sender=sender, addressee=addressee,
+    return func_fyqv8zdl(realm=realm, sender=sender, addressee=addressee,
         content=content, mention_backend=mention_backend,
         disable_external_notifications=disable_external_notifications)
 
 
-def func_gi7sckgs(sender, recipient_user, content, *,
+def func_esyjwyul(sender, recipient_user, content, *,
     disable_external_notifications=False):
-    message = func_djqxa9bn(sender, recipient_user, content,
+    message = func_u50gr15x(sender, recipient_user, content,
         disable_external_notifications=disable_external_notifications)
     if message is None:
         return None
-    sent_message_result = func_58dpcdu8([message])[0]
+    sent_message_result = func_5if1xban([message])[0]
     return sent_message_result.message_id
 
 
-def func_nxmk62il(sender, stream, topic_name, content, *, email_gateway=
+def func_lw19n7eq(sender, stream, topic_name, content, *, email_gateway=
     False, message_type=Message.MessageType.NORMAL, limit_unread_user_ids=
     None, archived_channel_notice=False, acting_user=None):
-    message = func_6plil9d2(sender, stream, topic_name, content,
+    message = func_8vg2mb8x(sender, stream, topic_name, content,
         email_gateway=email_gateway, message_type=message_type,
         limit_unread_user_ids=limit_unread_user_ids,
         archived_channel_notice=archived_channel_notice, acting_user=
         acting_user)
     if message is None:
         return None
-    sent_message_result = func_58dpcdu8([message])[0]
+    sent_message_result = func_5if1xban([message])[0]
     return sent_message_result.message_id
 
 
-def func_cii5hlyj(realm, sender, stream_name, topic_name, content):
-    message = func_u6n4jce5(realm, sender, stream_name, topic_name, content)
+def func_ulkok9bp(realm, sender, stream_name, topic_name, content):
+    message = func_5vsmayq8(realm, sender, stream_name, topic_name, content)
     if message is None:
         return None
-    sent_message_result = func_58dpcdu8([message])[0]
+    sent_message_result = func_5if1xban([message])[0]
     return sent_message_result.message_id
 
 
-def func_qm5mzk4u(realm, sender, content, *, emails=None, recipient_users=None
+def func_pku5l48g(realm, sender, content, *, emails=None, recipient_users=None
     ):
     if recipient_users is not None:
         addressee = Addressee.for_user_profiles(recipient_users)
     else:
         assert emails is not None
         addressee = Addressee.for_private(emails, realm)
-    return func_vfxkhbdz(realm=realm, sender=sender, addressee=addressee,
+    return func_fyqv8zdl(realm=realm, sender=sender, addressee=addressee,
         content=content)
 
 
-def func_bh4h6fs5(realm, sender, content, *, emails=None, recipient_users=None
+def func_1q8awzn5(realm, sender, content, *, emails=None, recipient_users=None
     ):
-    message = func_qm5mzk4u(realm, sender, content, emails=emails,
+    message = func_pku5l48g(realm, sender, content, emails=emails,
         recipient_users=recipient_users)
     if message is None:
         return None
-    sent_message_result = func_58dpcdu8([message])[0]
+    sent_message_result = func_5if1xban([message])[0]
     return sent_message_result.message_id

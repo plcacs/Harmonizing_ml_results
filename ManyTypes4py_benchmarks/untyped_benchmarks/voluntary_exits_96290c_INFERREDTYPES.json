@@ -1,0 +1,405 @@
+{
+    "create_signed_exit@global": [
+        {
+            "category": "arg",
+            "name": "index",
+            "type": []
+        },
+        {
+            "category": "return",
+            "name": "create_signed_exit",
+            "type": []
+        }
+    ],
+    "exit_validators@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "collections.abc.Awaitable[None]",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "int",
+                "collections.abc.Awaitable[None]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "validator_count",
+            "type": [
+                "int",
+                "list[int]",
+                "collections.abc.Awaitable[None]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "rng",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "typing.Sequence[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "rng",
+            "type": [
+                "None",
+                "int",
+                "str",
+                "typing.Sequence[int]",
+                "Random",
+                "range"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "int",
+                "collections.abc.Awaitable[None]",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "validator_count",
+            "type": [
+                "int",
+                "list[int]",
+                "collections.abc.Awaitable[None]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indices",
+            "type": [
+                "range",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "collections.abc.Awaitable[None]",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "exit_validators",
+            "type": [
+                "range",
+                "list"
+            ]
+        }
+    ],
+    "get_exited_validators@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "dict[str, float]",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "dict[str, float]",
+                "set[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_exited_validators",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "get_unslashed_exited_validators@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "T"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "T"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_unslashed_exited_validators",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "global@global": [],
+    "prepare_signed_exits@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "int",
+                "list[int]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "int",
+                "list[int]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "indices",
+            "type": [
+                "T",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fork_version",
+            "type": [
+                "None",
+                "int",
+                "list[int]",
+                "dict[str, str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "indices",
+            "type": [
+                "T",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "index",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "prepare_signed_exits",
+            "type": [
+                "list"
+            ]
+        }
+    ],
+    "run_voluntary_exit_processing@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "str",
+                "bool",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "str",
+                "typing.Iterable[str]",
+                "typing.Iterable[dict[str, str]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "signed_voluntary_exit",
+            "type": [
+                "int",
+                "dict[str, list[str]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "valid",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "str",
+                "typing.Iterable[str]",
+                "typing.Iterable[dict[str, str]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "run_voluntary_exit_processing",
+            "type": [
+                "typing.Generator[tuple[typing.Union[typing.Text,typing.Iterable[str],typing.Iterable[dict[str, str]]]]]",
+                "typing.Generator[tuple[typing.Union[typing.Text,int,dict[str, list[str]]]]]",
+                "typing.Generator[tuple[typing.Optional[typing.Text]]]",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "signed_voluntary_exit",
+            "type": [
+                "int",
+                "dict[str, list[str]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "valid",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "str",
+                "bool",
+                "typing.Callable"
+            ]
+        }
+    ],
+    "sign_voluntary_exit@global": [
+        {
+            "category": "arg",
+            "name": "spec",
+            "type": [
+                "tuple",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "state",
+            "type": [
+                "str",
+                "tuple"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "voluntary_exit",
+            "type": [
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "privkey",
+            "type": [
+                "bool",
+                "str",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "fork_version",
+            "type": [
+                "None",
+                "dict[str, typing.Any]",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "fork_version",
+            "type": [
+                "None",
+                "dict[str, typing.Any]",
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "spec",
+            "type": [
+                "tuple",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "state",
+            "type": [
+                "str",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "voluntary_exit",
+            "type": [
+                "str",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "privkey",
+            "type": [
+                "bool",
+                "str",
+                "raiden.utils.BlockNumber"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "sign_voluntary_exit",
+            "type": []
+        }
+    ]
+}

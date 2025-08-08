@@ -1,0 +1,911 @@
+{
+    "__init__@_TestInference": [
+        {
+            "category": "arg",
+            "name": "output_vocab_size",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "output_vocab_size",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "states",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "__init__",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "decode_step@_TestInference": [
+        {
+            "category": "arg",
+            "name": "step_input",
+            "type": [
+                "list",
+                "tuple[torch.Tensor]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "states",
+            "type": [
+                "int",
+                "tuple[torch.Tensor]",
+                "list"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "vocab_slice_ids",
+            "type": [
+                "None",
+                "list",
+                "int",
+                "dict[str, torch.Tensor]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "args",
+            "type": []
+        },
+        {
+            "category": "local",
+            "name": "step_input",
+            "type": [
+                "list",
+                "tuple[torch.Tensor]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_beam_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_target_factors",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "states",
+            "type": [
+                "int",
+                "tuple[torch.Tensor]",
+                "list",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "internal_lengths",
+            "type": [
+                "torch.Tensor",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_decode_step_calls",
+            "type": [
+                "torch.Tensor",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "decode_step",
+            "type": [
+                "tuple[typing.Optional[list[int]]]"
+            ]
+        }
+    ],
+    "encode_and_initialize@_TestInference": [
+        {
+            "category": "arg",
+            "name": "inputs",
+            "type": [
+                "list[int]",
+                "torch.Tensor",
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "valid_length",
+            "type": [
+                "None",
+                "list[numpy.ndarray]",
+                "torch.Tensor",
+                "typing.Iterator"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inputs",
+            "type": [
+                "list[int]",
+                "torch.Tensor",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "states",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "nvs_prediction",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "encode_and_initialize",
+            "type": [
+                "tuple[typing.Optional[list]]"
+            ]
+        }
+    ],
+    "global@global": [],
+    "model_output_factor_vocab_size@_TestInference": [
+        {
+            "category": "return",
+            "name": "model_output_factor_vocab_size",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "model_output_vocab_size@_TestInference": [
+        {
+            "category": "return",
+            "name": "model_output_vocab_size",
+            "type": []
+        }
+    ],
+    "numpy_topk@global": [
+        {
+            "category": "arg",
+            "name": "scores",
+            "type": [
+                "int",
+                "numpy.ndarray",
+                "float"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "k",
+            "type": [
+                "int",
+                "numpy.ndarray",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "offset",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scores",
+            "type": [
+                "int",
+                "numpy.ndarray",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "k",
+            "type": [
+                "int",
+                "numpy.ndarray",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "folded_scores",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "values",
+            "type": [
+                "list",
+                "float",
+                "property"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "offset",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "numpy_topk",
+            "type": [
+                "tuple[typing.Union[list,float,property]]"
+            ]
+        }
+    ],
+    "state_structure@_TestInference": [
+        {
+            "category": "return",
+            "name": "state_structure",
+            "type": []
+        }
+    ],
+    "test_beam_search@global": [
+        {
+            "category": "local",
+            "name": "num_source_factors",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "num_target_factors",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vocab_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "beam_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bos_id",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "eos_id",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "inference",
+            "type": [
+                "_TestInference"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "bs",
+            "type": [
+                "int",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "max_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source",
+            "type": [
+                "str",
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "source_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "restrict_lexicon",
+            "type": [
+                "None"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_beam_search",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_brevity_penalty@global": [
+        {
+            "category": "local",
+            "name": "brevity_penalty",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_brevity_penalty",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_brevity_penalty_default@global": [
+        {
+            "category": "local",
+            "name": "brevity_penalty",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_brevity_penalty_default",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_brevity_penalty_int_input@global": [
+        {
+            "category": "local",
+            "name": "hyp_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ref_length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "brevity_penalty",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_bp",
+            "type": [
+                "list[float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_brevity_penalty_int_input",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_candidate_scorer@global": [
+        {
+            "category": "local",
+            "name": "raw_scores",
+            "type": [
+                "int",
+                "list",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "lengths",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "reference_lengths",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scores",
+            "type": [
+                "int",
+                "float",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_candidate_scorer",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_nvs_vocab_slice_ids@global": [
+        {
+            "category": "local",
+            "name": "output_vocab_size",
+            "type": [
+                "list[float]",
+                "int",
+                "list[int]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "restrict_lexicon",
+            "type": [
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_nvs_vocab_slice_ids",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_get_vocab_slice_ids_blocking@global": [
+        {
+            "category": "local",
+            "name": "restrict_lexicon",
+            "type": [
+                "int",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vocab_slice_ids",
+            "type": [
+                "list[tuple[int]]",
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "_",
+            "type": [
+                "int",
+                "dict[int, str]",
+                "list"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_get_vocab_slice_ids_blocking",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_greedytop1@global": [
+        {
+            "category": "arg",
+            "name": "target_vocab_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "beam_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_vocab_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scores",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_hyp_index",
+            "type": [
+                "int",
+                "list",
+                "tuple"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_word_index",
+            "type": [
+                "int",
+                "list",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_value",
+            "type": [
+                "dict",
+                "float",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "greedy_top1",
+            "type": [
+                "int",
+                "list",
+                "list[tuple[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "best_word_index",
+            "type": [
+                "int",
+                "dict[str, int]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "best_word_index_with_factors",
+            "type": [
+                "int",
+                "staticmethod",
+                "dict[str, typing.Any]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_greedytop1",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_length_penalty@global": [
+        {
+            "category": "local",
+            "name": "length_penalty",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_length_penalty",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_length_penalty_default@global": [
+        {
+            "category": "local",
+            "name": "length_penalty",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_length_penalty_default",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_length_penalty_int_input@global": [
+        {
+            "category": "local",
+            "name": "length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "length_penalty",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "expected_lp",
+            "type": [
+                "list[float]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_length_penalty_int_input",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_samplek_func@global": [
+        {
+            "category": "arg",
+            "name": "batch_size",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "beam_size",
+            "type": []
+        },
+        {
+            "category": "arg",
+            "name": "target_vocab_size",
+            "type": [
+                "int",
+                "list[float]",
+                "list[tuple[int]]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "top_n",
+            "type": [
+                "int",
+                "float",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_vocab_size",
+            "type": [
+                "int",
+                "list[float]",
+                "list[tuple[int]]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "top_n",
+            "type": [
+                "int",
+                "float",
+                "torch.Tensor"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "samplek",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "finished",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "i",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_samplek_func",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_topk_func@global": [
+        {
+            "category": "arg",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "beam_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_vocab_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "beam_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_vocab_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scores",
+            "type": [
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "topk",
+            "type": [
+                "list[list[int]]",
+                "int",
+                "float"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_topk_func",
+            "type": [
+                "None"
+            ]
+        }
+    ],
+    "test_update_scores@global": [
+        {
+            "category": "arg",
+            "name": "use_unk_dist",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "vocab_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "batch_beam_size",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "use_unk_dist",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_dists",
+            "type": [
+                "float",
+                "list[float]",
+                "tuple[typing.Any]"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "scores",
+            "type": [
+                "int",
+                "list",
+                "numpy.ndarray"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "test_update_scores",
+            "type": [
+                "None"
+            ]
+        }
+    ]
+}

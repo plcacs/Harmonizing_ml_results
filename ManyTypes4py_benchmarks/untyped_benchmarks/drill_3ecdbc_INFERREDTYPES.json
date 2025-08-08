@@ -1,0 +1,383 @@
+{
+    "adjust_engine_params@DrillEngineSpec": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "bool",
+                "None",
+                "sqlalchemy.Table"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "uri",
+            "type": [
+                "str",
+                "yarl.URL",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "connect_args",
+            "type": [
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "catalog",
+            "type": [
+                "None",
+                "bool",
+                "sqlalchemy.Table"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "schema",
+            "type": [
+                "str",
+                "cmk.base.api.agent_based.type_defs.InventoryPlugin"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "schema",
+            "type": [
+                "str",
+                "cmk.base.api.agent_based.type_defs.InventoryPlugin"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "uri",
+            "type": [
+                "str",
+                "yarl.URL",
+                "typing.Type"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "connect_args",
+            "type": [
+                "str",
+                "typing.Callable"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "adjust_engine_params",
+            "type": [
+                "tuple[typing.Union[str,yarl.URL,typing.Type,typing.Callable]]"
+            ]
+        }
+    ],
+    "convert_dttm@DrillEngineSpec": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "str",
+                "None",
+                "T"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "target_type",
+            "type": [
+                "str",
+                "None",
+                "T"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "dttm",
+            "type": [
+                "datetime.datetime.datetime",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "db_extra",
+            "type": [
+                "None",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cls",
+            "type": [
+                "str",
+                "None",
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "target_type",
+            "type": [
+                "str",
+                "None",
+                "T"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "sqla_type",
+            "type": [
+                "str",
+                "dict",
+                "dict[str, typing.Any]",
+                "types_@_Date",
+                "types_@_TIMESTAMP"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "convert_dttm",
+            "type": [
+                "typing.Text",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "dttm",
+            "type": [
+                "datetime.datetime.datetime",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "datetime_formatted",
+            "type": [
+                "str"
+            ]
+        }
+    ],
+    "epoch_ms_to_dttm@DrillEngineSpec": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "str",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "epoch_ms_to_dttm",
+            "type": [
+                "typing.Text"
+            ]
+        }
+    ],
+    "epoch_to_dttm@DrillEngineSpec": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "str",
+                "T"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "epoch_to_dttm",
+            "type": [
+                "int",
+                "datetime.datetime.datetime",
+                "None",
+                "datetime.date"
+            ]
+        }
+    ],
+    "fetch_data@DrillEngineSpec": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "int",
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "cursor",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "limit",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "cursor",
+            "type": [
+                "int",
+                "None"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "limit",
+            "type": [
+                "None",
+                "int"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "fetch_data",
+            "type": [
+                "str",
+                "dict",
+                "list[str]",
+                "list"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "ex",
+            "type": [
+                "Exception"
+            ]
+        }
+    ],
+    "get_schema_from_engine_params@DrillEngineSpec": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "sqlalchemy_uri",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "connect_args",
+            "type": [
+                "str",
+                "list[str]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_schema_from_engine_params",
+            "type": [
+                "str",
+                "typing.BinaryIO"
+            ]
+        }
+    ],
+    "get_url_for_impersonation@DrillEngineSpec": [
+        {
+            "category": "arg",
+            "name": "cls",
+            "type": [
+                "str",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "url",
+            "type": [
+                "str",
+                "None",
+                "yarl.URL"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "impersonate_user",
+            "type": [
+                "str",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "username",
+            "type": [
+                "str",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "arg",
+            "name": "access_token",
+            "type": [
+                "str",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "impersonate_user",
+            "type": [
+                "str",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "username",
+            "type": [
+                "str",
+                "None",
+                "bool"
+            ]
+        },
+        {
+            "category": "local",
+            "name": "url",
+            "type": [
+                "str",
+                "None",
+                "yarl.URL",
+                "tuple[typing.Union[str,int]]"
+            ]
+        },
+        {
+            "category": "return",
+            "name": "get_url_for_impersonation",
+            "type": [
+                "str",
+                "None",
+                "yarl.URL",
+                "tuple[typing.Union[str,int]]"
+            ]
+        }
+    ],
+    "global@global": []
+}
