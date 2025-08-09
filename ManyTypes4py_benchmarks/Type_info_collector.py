@@ -30,6 +30,32 @@ def process_function(
     return {func_key: result}
 
 
+def parse_with_recovery(source: str, filename: str, max_skips: int = 100):
+    """Attempt to parse source; on SyntaxError, blank offending line and retry.
+
+    Returns a tuple of (ast.AST, List[int]) containing the parsed tree and the
+    list of line numbers that were skipped. Raises if recovery exceeds max_skips
+    or the error lacks a usable line number.
+    """
+    skipped_lines: List[int] = []
+    current_source = source
+    while True:
+        try:
+            return ast.parse(current_source, filename=filename), skipped_lines
+        except SyntaxError as e:
+            line_number = getattr(e, "lineno", None)
+            if line_number is None or len(skipped_lines) >= max_skips:
+                raise
+            lines = current_source.splitlines()
+            if 1 <= line_number <= len(lines):
+                # Blank the offending line and retry
+                lines[line_number - 1] = ""
+                skipped_lines.append(line_number)
+                current_source = "\n".join(lines)
+            else:
+                raise
+
+
 def process_file(filepath: str) -> Dict[str, Any]:
     # Try different encodings to handle Unicode issues
     encodings = ["utf-8", "latin-1", "cp1252", "iso-8859-1"]
@@ -44,23 +70,28 @@ def process_file(filepath: str) -> Dict[str, Any]:
             continue
 
     if source is None:
-        print(f"Failed to read {filepath} with any encoding")
         return {}
 
     try:
-        tree = ast.parse(source, filename=filepath)
-    except Exception as e:
-        print(f"Failed to parse {filepath}: {e}")
+        tree, _skipped = parse_with_recovery(source, filepath, max_skips=200)
+    except Exception:
         return {}
 
     annotations = {}
+    processed_functions = set()  # Track processed functions to avoid duplicates
+
     for node in ast.walk(tree):
         if isinstance(node, ast.FunctionDef):
-            annotations.update(process_function(node))
+            # Only process if this function hasn't been processed yet
+            if node not in processed_functions:
+                annotations.update(process_function(node))
+                processed_functions.add(node)
         elif isinstance(node, ast.ClassDef):
             for item in node.body:
                 if isinstance(item, ast.FunctionDef):
+                    # Process class methods and mark as processed
                     annotations.update(process_function(item, node.name))
+                    processed_functions.add(item)
     return annotations
 
 
@@ -91,17 +122,38 @@ def collect_annotations(root_dir: str, output_json: str):
     with open(output_json, "w") as f:
         json.dump(all_annotations, f, indent=2)
 
-    print(f"Annotations saved to {output_json}")
-    print(f"Number of files processed: {file_count}")
-    print(f"Number of files with errors: {error_count}")
+    num_non_empty = sum(1 for v in all_annotations.values() if v)
+    num_empty = sum(1 for v in all_annotations.values() if not v)
+    print(f"non_empty: {num_non_empty}")
+    print(f"empty: {num_empty}")
 
 
 # Example usage
 # collect_annotations("/path/to/python/codebase", "output_annotations.json")
-collect_annotations(
-    "original_files", "Type_info_collector/Type_info_original_files.json"
-)
 # collect_annotations(
-#     "claude3_sonnet_1st_run",
-#     "Type_info_collector/Type_info_claude3_sonnet_1st_run_benchmarks.json",
+#     "original_files", "Type_info_collector/Type_info_original_files.json"
 # )
+collect_annotations(
+    "claude3_sonnet_1st_run",
+    "Type_info_collector/Type_info_claude3_sonnet_1st_run_benchmarks.json",
+)
+collect_annotations(
+    "o3_mini_1st_run",
+    "Type_info_collector/Type_info_o3_mini_1st_run_benchmarks.json",
+)
+collect_annotations(
+    "gpt4o",
+    "Type_info_collector/Type_info_gpt4o_benchmarks.json",
+)
+collect_annotations(
+    "o1_mini",
+    "Type_info_collector/Type_info_o1_mini_benchmarks.json",
+)
+collect_annotations(
+    "deep_seek",
+    "Type_info_collector/Type_info_deep_seek_benchmarks.json",
+)
+collect_annotations(
+    "original_files",
+    "Type_info_collector/Type_info_original_files.json",
+)
