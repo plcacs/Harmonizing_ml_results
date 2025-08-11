@@ -1,0 +1,180 @@
+import logging
+import operator
+import socket
+from contextlib import contextmanager
+from typing import Any, Callable, Mapping, MutableMapping, Optional, cast
+from mode import Service
+from faust.types import AppT
+from . import states
+from .app import send_update
+from .models import Status
+CHECK_FREQUENCY = 5.0
+
+class Check(Service):
+    description = ''
+    prev_value_repr = None
+    current_value_repr = None
+    state_to_severity = {states.SLOW: logging.WARNING, states.STALL: logging.ERROR, states.FAIL: logging.CRITICAL}
+    faults_to_state = [(6, states.STALL), (3, states.SLOW), (0, states.OK)]
+    default_operator = None
+
+    def __init__(self, name, get_value=None, operator=None, **kwargs) -> None:
+        self.name = name
+        self._get_value = cast(Callable[[], Any], get_value)
+        if operator is None:
+            operator = self.default_operator
+        self.operator = operator
+        self.faults = 0
+        self.prev_value = None
+        self.status = states.OK
+        self.interval_skew = 0.0
+        self.app = None
+        super().__init__(**kwargs)
+
+    def to_representation(self, app: Any, severity: Any) -> Status:
+        return Status(app_id=app.conf.id, hostname=socket.gethostname(), category=self.name, color=self.color, count=self.faults, state=self.status, severity=logging.getLevelName(severity))
+
+    def asdict(self) -> dict[typing.Text, ]:
+        return {'state': self.status, 'color': self.color, 'faults': self.faults}
+
+    def get_value(self) -> Union[float, str, None, int]:
+        if self._get_value is not None:
+            return self._get_value()
+        raise NotImplementedError()
+
+    async def on_rebalancing(self, app):
+        self.status = states.REBALANCING
+        await send_update(app, self.to_representation(app, logging.INFO))
+
+    async def on_unassigned(self, app):
+        self.status = states.UNASSIGNED
+        await send_update(app, self.to_representation(app, logging.INFO))
+
+    async def on_paused(self, app):
+        self.status = states.PAUSED
+        await send_update(app, self.to_representation(app, logging.INFO))
+
+    async def check(self, app):
+        current_value = self.get_value()
+        prev_value = self.prev_value
+        severity = app.log.info
+        try:
+            if prev_value is not None:
+                if self.compare(prev_value, current_value):
+                    self.faults += 1
+                    self.status = self.get_state_for_faults(self.faults)
+                    severity = self.state_to_severity.get(self.status, logging.INFO)
+                    await self.on_failed_log(severity, app, prev_value, current_value)
+                else:
+                    self.faults = 0
+                    self.status = states.OK
+                    await self.on_ok_log(app, prev_value, current_value)
+            self.store_previous_value(current_value)
+        except Exception as exc:
+            print(f'ERROR: {exc!r}')
+            raise
+
+    def compare(self, prev_value: Union[str, list[str], typing.Sequence[T], None], current_value: Union[str, list[str], typing.Sequence[T], None]) -> typing.Iterable:
+        return self.operator(current_value, prev_value)
+
+    def store_previous_value(self, current_value: Union[float, str, esm.models.previous_values.PreviousValues]) -> None:
+        self.prev_value = current_value
+
+    async def on_failed_log(self, severity, app, prev_value, current_value):
+        await send_update(app, self.to_representation(app, severity))
+        prev_value_repr = self.prev_value_repr
+        current_value_repr = self.current_value_repr
+        if current_value_repr is None:
+            current_value_repr = repr(current_value)
+        if prev_value_repr is None:
+            prev_value_repr = repr(prev_value)
+        app.log.log(severity, '%s:%s %s (x%s): was %s now %s', app.conf.id, self.name, self.negate_description, self.faults, prev_value_repr, current_value_repr, extra={'no_alert': True})
+
+    async def on_ok_log(self, app, prev_value, current_value):
+        await send_update(app, self.to_representation(app, logging.INFO))
+        app.log.info('%s:%s %s: was %s now %s', app.conf.id, self.name, self.description, prev_value, current_value, extra={'no_alert': True})
+
+    def get_state_for_faults(self, faults: Union[int, str]):
+        for level, state in self.faults_to_state:
+            if faults > level:
+                return state
+        return states.OK
+
+    @property
+    def color(self) -> typing.Text:
+        if self.status in states.OK_STATES:
+            return 'green'
+        elif self.status in states.MAYBE_STATES:
+            return 'yellow'
+        return 'red'
+
+    @Service.task
+    async def _run_check(self):
+        try:
+            app = self.app
+            while not self.should_stop:
+                await self.sleep(CHECK_FREQUENCY)
+                if app.system_checks.paused:
+                    await self.on_paused(app)
+                elif app.rebalancing:
+                    await self.on_rebalancing(app)
+                elif app.unassigned:
+                    await self.on_unassigned(app)
+                else:
+                    await self.check(app)
+        except Exception as exc:
+            print(f'RUN CHECK RAISED: {exc!r}')
+            raise
+
+    @property
+    def label(self) -> typing.Text:
+        return f'{type(self).__name__}: {self.name}'
+
+class Increasing(Check):
+    default_operator = operator.le
+    description = 'increasing'
+    negate_description = 'not increasing'
+
+def _transitioned_to_false(previous: bool, current: bool) -> bool:
+    return not current
+
+class Condition(Check):
+    description = 'functional'
+    negate_description = 'nonfunctional'
+    default_operator = _transitioned_to_false
+    faults_to_state = [(1, states.FAIL), (0, states.OK)]
+
+class Stationary(Check):
+    """Monitors a value that should stand still, i.e, not going up or down."""
+    description = 'functional'
+    negate_description = 'increasing'
+    default_operator = operator.ne
+
+class SystemChecks(Service):
+    current_skew = 0.0
+    paused = False
+
+    def __init__(self, app: Union[faustypes.AppT, starlette.types.ASGIApp, typing.Any, None], **kwargs) -> None:
+        self.app = app
+        self.checks = {}
+        Service.__init__(self, **kwargs)
+
+    def on_init_dependencies(self) -> Union[typing.Type, str]:
+        return self.checks.values()
+
+    @contextmanager
+    def pause(self) -> typing.Generator:
+        self.paused = True
+        try:
+            yield
+        finally:
+            self.paused = False
+
+    def add(self, check: Union[str, object, cmk.base.check_utils.Service]) -> None:
+        self.checks[check.name] = check
+        self.current_skew += 0.2
+        check.interval_skew = self.current_skew
+        check.app = self.app
+
+    def remove(self, name: Union[str, None, bytes]) -> None:
+        self.checks.pop(name, None)

@@ -1,0 +1,106 @@
+"""Support for the OpenWeatherMap (OWM) service."""
+from __future__ import annotations
+from homeassistant.components.weather import Forecast, SingleCoordinatorWeatherEntity, WeatherEntityFeature
+from homeassistant.const import UnitOfLength, UnitOfPrecipitationDepth, UnitOfPressure, UnitOfSpeed, UnitOfTemperature
+from homeassistant.core import HomeAssistant, callback
+from homeassistant.helpers.device_registry import DeviceEntryType, DeviceInfo
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
+from . import OpenweathermapConfigEntry
+from .const import ATTR_API_CLOUDS, ATTR_API_CONDITION, ATTR_API_CURRENT, ATTR_API_DAILY_FORECAST, ATTR_API_DEW_POINT, ATTR_API_FEELS_LIKE_TEMPERATURE, ATTR_API_HOURLY_FORECAST, ATTR_API_HUMIDITY, ATTR_API_PRESSURE, ATTR_API_TEMPERATURE, ATTR_API_VISIBILITY_DISTANCE, ATTR_API_WIND_BEARING, ATTR_API_WIND_GUST, ATTR_API_WIND_SPEED, ATTRIBUTION, DEFAULT_NAME, DOMAIN, MANUFACTURER, OWM_MODE_FREE_FORECAST, OWM_MODE_V25, OWM_MODE_V30
+from .coordinator import WeatherUpdateCoordinator
+
+async def async_setup_entry(hass, config_entry, async_add_entities):
+    """Set up OpenWeatherMap weather entity based on a config entry."""
+    domain_data = config_entry.runtime_data
+    name = domain_data.name
+    mode = domain_data.mode
+    weather_coordinator = domain_data.coordinator
+    unique_id = f'{config_entry.unique_id}'
+    owm_weather = OpenWeatherMapWeather(name, unique_id, mode, weather_coordinator)
+    async_add_entities([owm_weather], False)
+
+class OpenWeatherMapWeather(SingleCoordinatorWeatherEntity[WeatherUpdateCoordinator]):
+    """Implementation of an OpenWeatherMap sensor."""
+    _attr_attribution = ATTRIBUTION
+    _attr_should_poll = False
+    _attr_native_precipitation_unit = UnitOfPrecipitationDepth.MILLIMETERS
+    _attr_native_pressure_unit = UnitOfPressure.HPA
+    _attr_native_temperature_unit = UnitOfTemperature.CELSIUS
+    _attr_native_wind_speed_unit = UnitOfSpeed.METERS_PER_SECOND
+    _attr_native_visibility_unit = UnitOfLength.METERS
+
+    def __init__(self, name: Union[str, None, typing.Callable], unique_id: Union[str, list[str], bool], mode: Union[str, int, PNRelationMetaData, None], weather_coordinator: Union[str, typing.Callable[None, typing.Any], float, None]) -> None:
+        """Initialize the sensor."""
+        super().__init__(weather_coordinator)
+        self._attr_name = name
+        self._attr_unique_id = unique_id
+        self._attr_device_info = DeviceInfo(entry_type=DeviceEntryType.SERVICE, identifiers={(DOMAIN, unique_id)}, manufacturer=MANUFACTURER, name=DEFAULT_NAME)
+        if mode in (OWM_MODE_V30, OWM_MODE_V25):
+            self._attr_supported_features = WeatherEntityFeature.FORECAST_DAILY | WeatherEntityFeature.FORECAST_HOURLY
+        elif mode == OWM_MODE_FREE_FORECAST:
+            self._attr_supported_features = WeatherEntityFeature.FORECAST_HOURLY
+
+    @property
+    def condition(self):
+        """Return the current condition."""
+        return self.coordinator.data[ATTR_API_CURRENT].get(ATTR_API_CONDITION)
+
+    @property
+    def cloud_coverage(self):
+        """Return the Cloud coverage in %."""
+        return self.coordinator.data[ATTR_API_CURRENT].get(ATTR_API_CLOUDS)
+
+    @property
+    def native_apparent_temperature(self):
+        """Return the apparent temperature."""
+        return self.coordinator.data[ATTR_API_CURRENT].get(ATTR_API_FEELS_LIKE_TEMPERATURE)
+
+    @property
+    def native_temperature(self):
+        """Return the temperature."""
+        return self.coordinator.data[ATTR_API_CURRENT].get(ATTR_API_TEMPERATURE)
+
+    @property
+    def native_pressure(self):
+        """Return the pressure."""
+        return self.coordinator.data[ATTR_API_CURRENT].get(ATTR_API_PRESSURE)
+
+    @property
+    def humidity(self):
+        """Return the humidity."""
+        return self.coordinator.data[ATTR_API_CURRENT].get(ATTR_API_HUMIDITY)
+
+    @property
+    def native_dew_point(self):
+        """Return the dew point."""
+        return self.coordinator.data[ATTR_API_CURRENT].get(ATTR_API_DEW_POINT)
+
+    @property
+    def native_wind_gust_speed(self):
+        """Return the wind gust speed."""
+        return self.coordinator.data[ATTR_API_CURRENT].get(ATTR_API_WIND_GUST)
+
+    @property
+    def native_wind_speed(self):
+        """Return the wind speed."""
+        return self.coordinator.data[ATTR_API_CURRENT].get(ATTR_API_WIND_SPEED)
+
+    @property
+    def wind_bearing(self):
+        """Return the wind bearing."""
+        return self.coordinator.data[ATTR_API_CURRENT].get(ATTR_API_WIND_BEARING)
+
+    @property
+    def visibility(self):
+        """Return visibility."""
+        return self.coordinator.data[ATTR_API_CURRENT].get(ATTR_API_VISIBILITY_DISTANCE)
+
+    @callback
+    def _async_forecast_daily(self):
+        """Return the daily forecast in native units."""
+        return self.coordinator.data[ATTR_API_DAILY_FORECAST]
+
+    @callback
+    def _async_forecast_hourly(self):
+        """Return the hourly forecast in native units."""
+        return self.coordinator.data[ATTR_API_HOURLY_FORECAST]

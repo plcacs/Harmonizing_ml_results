@@ -180,6 +180,7 @@ if __name__ == "__main__":
             "deepseek_2nd_run",
             "mypy_outputs/mypy_results_deepseek_2nd_run_with_errors.json",
         ),
+        ("gpt35_1st_run", "mypy_outputs/mypy_results_gpt35_1st_run_with_errors.json"),
     ]
 
     all_results = []

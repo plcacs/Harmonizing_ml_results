@@ -159,7 +159,7 @@ if __name__ == "__main__":
         "deepseek",
         "mypy_results_untyped_with_errors.json",
         "mypy_results_deepseek_with_errors.json",
-    )"""
+    )
     print("="*100)
     analyze_files(
         "o3_mini_1st_run",
@@ -171,4 +171,9 @@ if __name__ == "__main__":
         "claude_3_7_sonnet",
         "mypy_results_untyped_with_errors.json",
         "mypy_results_claude3_sonnet_1st_run_with_errors.json",
-    ) 
+    ) """
+    analyze_files(
+        "HiTyper_1st_run",
+        "mypy_results_untyped_with_errors.json",
+        "mypy_results_HiTyper_1st_run_with_errors.json",
+    )

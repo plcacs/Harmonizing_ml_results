@@ -1,0 +1,174 @@
+from bisect import bisect, bisect_right
+from copy import copy
+from dataclasses import dataclass, field
+from fractions import Fraction
+from typing import List, Optional, Sequence, Tuple, TypeVar, Union
+from raiden.exceptions import UndefinedMediationFee
+from raiden.transfer.architecture import State
+from raiden.utils.typing import Balance, FeeAmount, PaymentWithFeeAmount, ProportionalFeeAmount, TokenAmount, typecheck
+NUM_DISCRETISATION_POINTS = 21
+
+class Interpolate:
+    """Linear interpolation of a function with given points
+
+    Based on https://stackoverflow.com/a/7345691/114926
+    """
+
+    def __init__(self, x_list: Union[list[float], list, list[list[str]]], y_list: Union[list, list[str], dict[str, int]]) -> None:
+        if any((y - x <= 0 for x, y in zip(x_list, x_list[1:]))):
+            raise ValueError('x_list must be in strictly ascending order!')
+        self.x_list = [Fraction(x) for x in x_list]
+        self.y_list = [Fraction(y) for y in y_list]
+        intervals = zip(self.x_list, self.x_list[1:], y_list, y_list[1:])
+        self.slopes = [(y2 - y1) / (x2 - x1) for x1, x2, y1, y2 in intervals]
+
+    def __call__(self, x: Any):
+        if not self.x_list[0] <= x <= self.x_list[-1]:
+            raise ValueError('x out of bounds!')
+        if x == self.x_list[-1]:
+            return self.y_list[-1]
+        i = bisect_right(self.x_list, x) - 1
+        return self.y_list[i] + self.slopes[i] * (Fraction(x) - self.x_list[i])
+
+    def __repr__(self) -> typing.Text:
+        return f'Interpolate({self.x_list}, {self.y_list})'
+
+def sign(x: Union[float, int, T]) -> int:
+    """Sign of input, returns zero on zero input"""
+    if x == 0:
+        return 0
+    else:
+        return 1 if x > 0 else -1
+
+def _collect_x_values(penalty_func_in: float, penalty_func_out: float, balance_in: float, balance_out: float, max_x: Union[int, list[int]]) -> list[Fraction]:
+    """Normalizes the x-axis of the penalty functions around the amount of
+    tokens being transferred.
+
+    A penalty function maps the participant's balance to a fee. These functions
+    are then used to penalize transfers that unbalance the node's channels, and
+    as a consequence incentivize transfers that re-balance the channels.
+
+    Here the x-axis of the penalty functions normalized around the current
+    channel's capacity. So that instead of computing:
+
+        penalty(current_capacity + amount_being_transferred)
+
+    One can simply compute:
+
+        penalty(amount_being_transferred)
+
+    To find the penalty fee for the current transfer.
+    """
+    all_x_vals = [x - balance_in for x in penalty_func_in.x_list] + [balance_out - x for x in penalty_func_out.x_list]
+    limited_x_vals = (max(min(x, balance_out, max_x), 0) for x in all_x_vals)
+    return sorted(set((Fraction(x) for x in limited_x_vals)))
+
+def _cap_fees(x_list: Union[list[float], list, bytes], y_list: Union[list[int], list[tuple[typing.Union[float,typing.Any]]], tuple[int]]) -> tuple[typing.Union[list,list[int],list[typing.Union[int,float]],list[typing.Union[list,int]]]]:
+    """Insert extra points for intersections with x-axis, see `test_fee_capping`"""
+    x_list = copy(x_list)
+    y_list = copy(y_list)
+    for i in range(len(x_list) - 1):
+        y1, y2 = y_list[i:i + 2]
+        if sign(y1) * sign(y2) == -1:
+            x1, x2 = x_list[i:i + 2]
+            new_x = x1 + abs(y1) / abs(y2 - y1) * (x2 - x1)
+            new_index = bisect(x_list, new_x)
+            x_list.insert(new_index, new_x)
+            y_list.insert(new_index, Fraction(0))
+    y_list = [max(y, Fraction(0)) for y in y_list]
+    return (x_list, y_list)
+
+def _mediation_fee_func(schedule_in: str, schedule_out: Union[str, float, collections.abc.Awaitable[T]], balance_in: Union[float, int], balance_out: Union[float, str, int], receivable: Union[float, int], amount_with_fees: Union[float, str, uuid.UUID, None], amount_without_fees: Union[float, str, raiden.utils.BlockNumber], cap_fees: bool) -> Interpolate:
+    """Returns a function which calculates total_mediation_fee(x)
+
+    Either `amount_with_fees` or `amount_without_fees` must be given while the
+    other one is None. The returned function will depend on the value that is
+    not given.
+    """
+    assert amount_with_fees is None or amount_without_fees is None, 'Must be called with either amount_with_fees or amount_without_fees as None'
+    if balance_out == 0 or receivable == 0:
+        raise UndefinedMediationFee()
+    if not schedule_in._penalty_func:
+        schedule_in = copy(schedule_in)
+        schedule_in._penalty_func = Interpolate([0, balance_in + receivable], [0, 0])
+    if not schedule_out._penalty_func:
+        schedule_out = copy(schedule_out)
+        schedule_out._penalty_func = Interpolate([0, balance_out], [0, 0])
+    x_list = _collect_x_values(penalty_func_in=schedule_in._penalty_func, penalty_func_out=schedule_out._penalty_func, balance_in=balance_in, balance_out=balance_out, max_x=receivable if amount_with_fees is None else balance_out)
+    try:
+        y_list = [schedule_in.fee(balance_in, x if amount_with_fees is None else Fraction(amount_with_fees)) + schedule_out.fee(balance_out, -x if amount_without_fees is None else -Fraction(amount_without_fees)) for x in x_list]
+    except ValueError:
+        raise UndefinedMediationFee()
+    if cap_fees:
+        x_list, y_list = _cap_fees(x_list, y_list)
+    return Interpolate(x_list, y_list)
+T = TypeVar('T', bound='FeeScheduleState')
+
+@dataclass
+class FeeScheduleState(State):
+    cap_fees = True
+    flat = FeeAmount(0)
+    proportional = ProportionalFeeAmount(0)
+    imbalance_penalty = None
+    _penalty_func = field(init=False, repr=False, default=None)
+
+    def __post_init__(self) -> None:
+        self._update_penalty_func()
+
+    def _update_penalty_func(self) -> None:
+        if self.imbalance_penalty:
+            typecheck(self.imbalance_penalty, list)
+            x_list, y_list = tuple(zip(*self.imbalance_penalty))
+            self._penalty_func = Interpolate(x_list, y_list)
+
+    def fee(self, balance: Union[int, float, list], amount: Union[int, float]) -> Fraction:
+        return self.flat + Fraction(self.proportional, int(1000000.0)) * Fraction(abs(amount)) + (self._penalty_func(balance + amount) - self._penalty_func(balance)) if self._penalty_func else Fraction(0)
+
+    @staticmethod
+    def mediation_fee_func(schedule_in: Union[str, float, raiden.utils.BlockTimeout], schedule_out: Union[str, float, raiden.utils.BlockTimeout], balance_in: Union[str, float, raiden.utils.BlockTimeout], balance_out: Union[str, float, raiden.utils.BlockTimeout], receivable: Union[str, float, raiden.utils.BlockTimeout], amount_with_fees: Union[str, float, raiden.utils.BlockTimeout], cap_fees: Union[str, float, raiden.utils.BlockTimeout]) -> bool:
+        """Returns a function which calculates total_mediation_fee(amount_without_fees)"""
+        return _mediation_fee_func(schedule_in=schedule_in, schedule_out=schedule_out, balance_in=balance_in, balance_out=balance_out, receivable=receivable, amount_with_fees=amount_with_fees, amount_without_fees=None, cap_fees=cap_fees)
+
+    @staticmethod
+    def mediation_fee_backwards_func(schedule_in: Union[str, raiden.utils.BlockTimeout, raiden.utils.TokenAmount], schedule_out: Union[str, raiden.utils.BlockTimeout, raiden.utils.TokenAmount], balance_in: Union[str, raiden.utils.BlockTimeout, raiden.utils.TokenAmount], balance_out: Union[str, raiden.utils.BlockTimeout, raiden.utils.TokenAmount], receivable: Union[str, raiden.utils.BlockTimeout, raiden.utils.TokenAmount], amount_without_fees: Union[str, raiden.utils.BlockTimeout, raiden.utils.TokenAmount], cap_fees: Union[str, raiden.utils.BlockTimeout, raiden.utils.TokenAmount]) -> bool:
+        """Returns a function which calculates total_mediation_fee(amount_with_fees)"""
+        return _mediation_fee_func(schedule_in=schedule_in, schedule_out=schedule_out, balance_in=balance_in, balance_out=balance_out, receivable=receivable, amount_with_fees=None, amount_without_fees=amount_without_fees, cap_fees=cap_fees)
+
+def linspace(start: Union[int, float], stop: int, num: Union[int, float]) -> list[TokenAmount]:
+    """Returns a list of num numbers from start to stop (inclusive)."""
+    assert num > 1, 'Must generate at least one step'
+    assert start <= stop, 'start must be smaller than stop'
+    step = (stop - start) / (num - 1)
+    result = []
+    for i in range(num):
+        result.append(TokenAmount(start + round(i * step)))
+    return result
+
+def calculate_imbalance_fees(channel_capacity: Union[int, float, raiden.utils.PaymentWithFeeAmount], proportional_imbalance_fee: Union[int, str, float]) -> Union[None, list]:
+    """Calculates a U-shaped imbalance curve
+
+    The penalty term takes the following value at the extrema:
+    channel_capacity * (proportional_imbalance_fee / 1_000_000)
+    """
+    assert channel_capacity >= 0, 'channel_capacity must be larger than zero'
+    assert proportional_imbalance_fee >= 0, 'prop. imbalance fee must be larger than zero'
+    if proportional_imbalance_fee == 0:
+        return None
+    if channel_capacity == 0:
+        return None
+    MAXIMUM_SLOPE = 0.1
+    max_imbalance_fee = channel_capacity * proportional_imbalance_fee / 1000000.0
+    assert proportional_imbalance_fee / 1000000.0 <= MAXIMUM_SLOPE / 2, 'Too high imbalance fee'
+    s = MAXIMUM_SLOPE
+    c = max_imbalance_fee
+    o = channel_capacity / 2
+    b = s * o / c
+    b = min(b, 10)
+    a = c / o ** b
+
+    def f(x: Any) -> FeeAmount:
+        return FeeAmount(int(round(a * abs(x - o) ** b)))
+    num_base_points = min(NUM_DISCRETISATION_POINTS, channel_capacity + 1)
+    x_values = linspace(TokenAmount(0), channel_capacity, num_base_points)
+    y_values = [f(x) for x in x_values]
+    return list(zip(x_values, y_values))

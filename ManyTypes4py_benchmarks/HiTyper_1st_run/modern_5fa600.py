@@ -1,0 +1,262 @@
+"""Provide pre-made queries on top of the recorder component."""
+from __future__ import annotations
+from collections.abc import Callable, Iterable, Iterator
+from datetime import datetime
+from itertools import groupby
+from operator import itemgetter
+from typing import Any, cast
+from sqlalchemy import CompoundSelect, Select, Subquery, and_, func, lambda_stmt, literal, select, union_all
+from sqlalchemy.engine.row import Row
+from sqlalchemy.orm.session import Session
+from homeassistant.const import COMPRESSED_STATE_LAST_UPDATED, COMPRESSED_STATE_STATE
+from homeassistant.core import HomeAssistant, State, split_entity_id
+from homeassistant.helpers.recorder import get_instance
+from homeassistant.util import dt as dt_util
+from ..const import LAST_REPORTED_SCHEMA_VERSION
+from ..db_schema import SHARED_ATTR_OR_LEGACY_ATTRIBUTES, StateAttributes, States, StatesMeta
+from ..filters import Filters
+from ..models import LazyState, datetime_to_timestamp_or_none, extract_metadata_ids, row_to_compressed_state
+from ..util import execute_stmt_lambda_element, session_scope
+from .const import LAST_CHANGED_KEY, NEED_ATTRIBUTE_DOMAINS, SIGNIFICANT_DOMAINS, STATE_KEY
+_FIELD_MAP = {'metadata_id': 0, 'state': 1, 'last_updated_ts': 2}
+
+def _stmt_and_join_attributes(no_attributes: bool, include_last_changed: bool, include_last_reported: bool):
+    """Return the statement and if StateAttributes should be joined."""
+    _select = select(States.metadata_id, States.state, States.last_updated_ts)
+    if include_last_changed:
+        _select = _select.add_columns(States.last_changed_ts)
+    if include_last_reported:
+        _select = _select.add_columns(States.last_reported_ts)
+    if not no_attributes:
+        _select = _select.add_columns(SHARED_ATTR_OR_LEGACY_ATTRIBUTES)
+    return _select
+
+def _stmt_and_join_attributes_for_start_state(no_attributes: bool, include_last_changed: bool, include_last_reported: bool) -> Union[str, list, int]:
+    """Return the statement and if StateAttributes should be joined."""
+    _select = select(States.metadata_id, States.state)
+    _select = _select.add_columns(literal(value=0).label('last_updated_ts'))
+    if include_last_changed:
+        _select = _select.add_columns(literal(value=0).label('last_changed_ts'))
+    if include_last_reported:
+        _select = _select.add_columns(literal(value=0).label('last_reported_ts'))
+    if not no_attributes:
+        _select = _select.add_columns(SHARED_ATTR_OR_LEGACY_ATTRIBUTES)
+    return _select
+
+def _select_from_subquery(subquery: Union[str, None, static_frame.core.util.DtypesSpecifier], no_attributes: bool, include_last_changed: bool, include_last_reported: bool):
+    """Return the statement to select from the union."""
+    base_select = select(subquery.c.metadata_id, subquery.c.state, subquery.c.last_updated_ts)
+    if include_last_changed:
+        base_select = base_select.add_columns(subquery.c.last_changed_ts)
+    if include_last_reported:
+        base_select = base_select.add_columns(subquery.c.last_reported_ts)
+    if no_attributes:
+        return base_select
+    return base_select.add_columns(subquery.c.attributes)
+
+def get_significant_states(hass: Union[typing.Callable, str, dict[str, dict[str, typing.Any]]], start_time: Union[str, bool, datetime.datetime], end_time: Union[None, str, bool, datetime.datetime]=None, entity_ids: Union[None, str, bool, datetime.datetime]=None, filters: Union[None, str, bool, datetime.datetime]=None, include_start_time_state: bool=True, significant_changes_only: bool=True, minimal_response: bool=False, no_attributes: bool=False, compressed_state_format: bool=False):
+    """Wrap get_significant_states_with_session with an sql session."""
+    with session_scope(hass=hass, read_only=True) as session:
+        return get_significant_states_with_session(hass, session, start_time, end_time, entity_ids, filters, include_start_time_state, significant_changes_only, minimal_response, no_attributes, compressed_state_format)
+
+def _significant_states_stmt(start_time_ts: Union[int, None, datetime.date], end_time_ts: Union[datetime.datetime, None, str], single_metadata_id: Union[int, None, T, tuple[int]], metadata_ids: Union[int, None, datetime.date], metadata_ids_in_significant_domains: Union[int, None, dict, str], significant_changes_only: Union[bool, None, datetime.datetime], no_attributes: Union[str, typing.Any, None, int], include_start_time_state: Union[bool, str, datetime.datetime, None], run_start_ts: Union[bool, str, datetime.datetime, None]) -> Union[tuple[object], bool]:
+    """Query the database for significant state changes."""
+    include_last_changed = not significant_changes_only
+    stmt = _stmt_and_join_attributes(no_attributes, include_last_changed, False)
+    if significant_changes_only:
+        if metadata_ids_in_significant_domains:
+            stmt = stmt.filter(States.metadata_id.in_(metadata_ids_in_significant_domains) | (States.last_changed_ts == States.last_updated_ts) | States.last_changed_ts.is_(None))
+        else:
+            stmt = stmt.filter((States.last_changed_ts == States.last_updated_ts) | States.last_changed_ts.is_(None))
+    stmt = stmt.filter(States.metadata_id.in_(metadata_ids)).filter(States.last_updated_ts > start_time_ts)
+    if end_time_ts:
+        stmt = stmt.filter(States.last_updated_ts < end_time_ts)
+    if not no_attributes:
+        stmt = stmt.outerjoin(StateAttributes, States.attributes_id == StateAttributes.attributes_id)
+    if not include_start_time_state or not run_start_ts:
+        return stmt.order_by(States.metadata_id, States.last_updated_ts)
+    unioned_subquery = union_all(_select_from_subquery(_get_start_time_state_stmt(start_time_ts, single_metadata_id, metadata_ids, no_attributes, include_last_changed).subquery(), no_attributes, include_last_changed, False), _select_from_subquery(stmt.subquery(), no_attributes, include_last_changed, False)).subquery()
+    return _select_from_subquery(unioned_subquery, no_attributes, include_last_changed, False).order_by(unioned_subquery.c.metadata_id, unioned_subquery.c.last_updated_ts)
+
+def get_significant_states_with_session(hass: Union[homeassistancore.HomeAssistant, str, datetime.datetime], session: Union[dict, None, bool, str], start_time: Union[datetime.datetime, homeassistancore.HomeAssistant, datetime.datetime.timedelta], end_time: Union[None, datetime.datetime, datetime.date, set[cirq.google.engine.clienquantum.enums.ExecutionStatus.State], dict[str, str]]=None, entity_ids: Union[None, dict, bool, str]=None, filters: Union[None, str, datetime.datetime, datetime.date, dict]=None, include_start_time_state: bool=True, significant_changes_only: bool=True, minimal_response: bool=False, no_attributes: bool=False, compressed_state_format: bool=False) -> Union[dict, str, filter, typing.Mapping]:
+    """Return states changes during UTC period start_time - end_time.
+
+    entity_ids is an optional iterable of entities to include in the results.
+
+    filters is an optional SQLAlchemy filter which will be applied to the database
+    queries unless entity_ids is given, in which case its ignored.
+
+    Significant states are all states where there is a state change,
+    as well as all states from certain domains (for instance
+    thermostat so that we get current temperature in our graphs).
+    """
+    if filters is not None:
+        raise NotImplementedError('Filters are no longer supported')
+    if not entity_ids:
+        raise ValueError('entity_ids must be provided')
+    entity_id_to_metadata_id = None
+    metadata_ids_in_significant_domains = []
+    instance = get_instance(hass)
+    if not (entity_id_to_metadata_id := instance.states_meta_manager.get_many(entity_ids, session, False)) or not (possible_metadata_ids := extract_metadata_ids(entity_id_to_metadata_id)):
+        return {}
+    metadata_ids = possible_metadata_ids
+    if significant_changes_only:
+        metadata_ids_in_significant_domains = [metadata_id for entity_id, metadata_id in entity_id_to_metadata_id.items() if metadata_id is not None and split_entity_id(entity_id)[0] in SIGNIFICANT_DOMAINS]
+    oldest_ts = None
+    if include_start_time_state and (not (oldest_ts := _get_oldest_possible_ts(hass, start_time))):
+        include_start_time_state = False
+    start_time_ts = start_time.timestamp()
+    end_time_ts = datetime_to_timestamp_or_none(end_time)
+    single_metadata_id = metadata_ids[0] if len(metadata_ids) == 1 else None
+    stmt = lambda_stmt(lambda: _significant_states_stmt(start_time_ts, end_time_ts, single_metadata_id, metadata_ids, metadata_ids_in_significant_domains, significant_changes_only, no_attributes, include_start_time_state, oldest_ts), track_on=[bool(single_metadata_id), bool(metadata_ids_in_significant_domains), bool(end_time_ts), significant_changes_only, no_attributes, include_start_time_state])
+    return _sorted_states_to_dict(execute_stmt_lambda_element(session, stmt, None, end_time, orm_rows=False), start_time_ts if include_start_time_state else None, entity_ids, entity_id_to_metadata_id, minimal_response, compressed_state_format, no_attributes=no_attributes)
+
+def get_full_significant_states_with_session(hass: Union[datetime.datetime, bool], session: Union[datetime.datetime, bool], start_time: Union[datetime.datetime, bool], end_time: Union[None, datetime.datetime, bool]=None, entity_ids: Union[None, datetime.datetime, bool]=None, filters: Union[None, datetime.datetime, bool]=None, include_start_time_state: bool=True, significant_changes_only: bool=True, no_attributes: bool=False) -> Union[dict, str, None]:
+    """Variant of get_significant_states_with_session.
+
+    Difference with get_significant_states_with_session is that it does not
+    return minimal responses.
+    """
+    return cast(dict[str, list[State]], get_significant_states_with_session(hass=hass, session=session, start_time=start_time, end_time=end_time, entity_ids=entity_ids, filters=filters, include_start_time_state=include_start_time_state, significant_changes_only=significant_changes_only, minimal_response=False, no_attributes=no_attributes))
+
+def _state_changed_during_period_stmt(start_time_ts: Union[bool, datetime.datetime, None], end_time_ts: Union[datetime.datetime, None, int], single_metadata_id: Union[bool, datetime.datetime, None], no_attributes: Union[bool, datetime.datetime, None], limit: Union[int, str, None], include_start_time_state: Union[datetime.datetime, None], run_start_ts: Union[datetime.datetime, None], include_last_reported: Union[bool, datetime.datetime, None]) -> Union[bool, typing.Callable[None, bool]]:
+    stmt = _stmt_and_join_attributes(no_attributes, False, include_last_reported).filter(((States.last_changed_ts == States.last_updated_ts) | States.last_changed_ts.is_(None)) & (States.last_updated_ts > start_time_ts)).filter(States.metadata_id == single_metadata_id)
+    if end_time_ts:
+        stmt = stmt.filter(States.last_updated_ts < end_time_ts)
+    if not no_attributes:
+        stmt = stmt.outerjoin(StateAttributes, States.attributes_id == StateAttributes.attributes_id)
+    if limit:
+        stmt = stmt.limit(limit)
+    stmt = stmt.order_by(States.metadata_id, States.last_updated_ts)
+    if not include_start_time_state or not run_start_ts:
+        return stmt
+    return _select_from_subquery(union_all(_select_from_subquery(_get_single_entity_start_time_stmt(start_time_ts, single_metadata_id, no_attributes, False, include_last_reported).subquery(), no_attributes, False, include_last_reported), _select_from_subquery(stmt.subquery(), no_attributes, False, include_last_reported)).subquery(), no_attributes, False, include_last_reported)
+
+def state_changes_during_period(hass: Union[str, int], start_time: Union[int, datetime.datetime], end_time: Union[None, dict, str, datetime.date]=None, entity_id: str=None, no_attributes: bool=False, descending: bool=False, limit: Union[None, str, int, datetime.datetime]=None, include_start_time_state: bool=True) -> Union[dict, str, dict[str, typing.Union[bool,str]]]:
+    """Return states changes during UTC period start_time - end_time."""
+    has_last_reported = get_instance(hass).schema_version >= LAST_REPORTED_SCHEMA_VERSION
+    if not entity_id:
+        raise ValueError('entity_id must be provided')
+    entity_ids = [entity_id.lower()]
+    with session_scope(hass=hass, read_only=True) as session:
+        instance = get_instance(hass)
+        if not (possible_metadata_id := instance.states_meta_manager.get(entity_id, session, False)):
+            return {}
+        single_metadata_id = possible_metadata_id
+        entity_id_to_metadata_id = {entity_id: single_metadata_id}
+        oldest_ts = None
+        if include_start_time_state and (not (oldest_ts := _get_oldest_possible_ts(hass, start_time))):
+            include_start_time_state = False
+        start_time_ts = start_time.timestamp()
+        end_time_ts = datetime_to_timestamp_or_none(end_time)
+        stmt = lambda_stmt(lambda: _state_changed_during_period_stmt(start_time_ts, end_time_ts, single_metadata_id, no_attributes, limit, include_start_time_state, oldest_ts, has_last_reported), track_on=[bool(end_time_ts), no_attributes, bool(limit), include_start_time_state, has_last_reported])
+        return cast(dict[str, list[State]], _sorted_states_to_dict(execute_stmt_lambda_element(session, stmt, None, end_time, orm_rows=False), start_time_ts if include_start_time_state else None, entity_ids, entity_id_to_metadata_id, descending=descending, no_attributes=no_attributes))
+
+def _get_last_state_changes_single_stmt(metadata_id: str) -> Union[str, bool, tuple[bool]]:
+    return _stmt_and_join_attributes(False, False, False).join((lastest_state_for_metadata_id := select(States.metadata_id.label('max_metadata_id'), func.max(States.last_updated_ts).label('max_last_updated')).filter(States.metadata_id == metadata_id).group_by(States.metadata_id).subquery()), and_(States.metadata_id == lastest_state_for_metadata_id.c.max_metadata_id, States.last_updated_ts == lastest_state_for_metadata_id.c.max_last_updated)).outerjoin(StateAttributes, States.attributes_id == StateAttributes.attributes_id).order_by(States.state_id.desc())
+
+def _get_last_state_changes_multiple_stmt(number_of_states: Union[bool, str], metadata_id: Union[bool, str], include_last_reported: Union[bool, str]) -> Union[bool, str]:
+    return _stmt_and_join_attributes(False, False, include_last_reported).where(States.state_id == select(States.state_id).filter(States.metadata_id == metadata_id).order_by(States.last_updated_ts.desc()).limit(number_of_states).subquery().c.state_id).outerjoin(StateAttributes, States.attributes_id == StateAttributes.attributes_id).order_by(States.state_id.desc())
+
+def get_last_state_changes(hass: Union[homeassistancore.HomeAssistant, str], number_of_states: Union[int, str], entity_id: str) -> Union[dict, str, dict[str, str]]:
+    """Return the last number_of_states."""
+    has_last_reported = get_instance(hass).schema_version >= LAST_REPORTED_SCHEMA_VERSION
+    entity_id_lower = entity_id.lower()
+    entity_ids = [entity_id_lower]
+    with session_scope(hass=hass, read_only=True) as session:
+        instance = get_instance(hass)
+        if not (possible_metadata_id := instance.states_meta_manager.get(entity_id, session, False)):
+            return {}
+        metadata_id = possible_metadata_id
+        entity_id_to_metadata_id = {entity_id_lower: metadata_id}
+        if number_of_states == 1:
+            stmt = lambda_stmt(lambda: _get_last_state_changes_single_stmt(metadata_id))
+        else:
+            stmt = lambda_stmt(lambda: _get_last_state_changes_multiple_stmt(number_of_states, metadata_id, has_last_reported), track_on=[has_last_reported])
+        states = list(execute_stmt_lambda_element(session, stmt, orm_rows=False))
+        return cast(dict[str, list[State]], _sorted_states_to_dict(reversed(states), None, entity_ids, entity_id_to_metadata_id, no_attributes=False))
+
+def _get_start_time_state_for_entities_stmt(epoch_time: Union[str, datetime.datetime, None, list[str]], metadata_ids: Union[str, datetime.datetime, None, list[str]], no_attributes: Union[str, datetime.datetime, None, list[str]], include_last_changed: Union[str, datetime.datetime, None, list[str]]) -> str:
+    """Baked query to get states for specific entities."""
+    stmt = _stmt_and_join_attributes_for_start_state(no_attributes, include_last_changed, False).select_from(StatesMeta).join(States, and_(States.last_updated_ts == select(States.last_updated_ts).where((StatesMeta.metadata_id == States.metadata_id) & (States.last_updated_ts < epoch_time)).order_by(States.last_updated_ts.desc()).limit(1).scalar_subquery().correlate(StatesMeta), States.metadata_id == StatesMeta.metadata_id)).where(StatesMeta.metadata_id.in_(metadata_ids))
+    if no_attributes:
+        return stmt
+    return stmt.outerjoin(StateAttributes, States.attributes_id == StateAttributes.attributes_id)
+
+def _get_oldest_possible_ts(hass: Union[models.RefreshToken, datetime.date, datetime.datetime, None], utc_point_in_time: Union[datetime.datetime, None, str]) -> None:
+    """Return the oldest possible timestamp.
+
+    Returns None if there are no states as old as utc_point_in_time.
+    """
+    oldest_ts = get_instance(hass).states_manager.oldest_ts
+    if oldest_ts is not None and oldest_ts < utc_point_in_time.timestamp():
+        return oldest_ts
+    return None
+
+def _get_start_time_state_stmt(epoch_time: Union[int, None, dict], single_metadata_id: Union[bool, list[typing.AnyStr], None], metadata_ids: Union[int, None], no_attributes: Union[int, None, dict], include_last_changed: Union[int, None, dict]) -> Union[float, GregorianDateTime, datetime.datetime]:
+    """Return the states at a specific point in time."""
+    if single_metadata_id:
+        return _get_single_entity_start_time_stmt(epoch_time, single_metadata_id, no_attributes, include_last_changed, False)
+    return _get_start_time_state_for_entities_stmt(epoch_time, metadata_ids, no_attributes, include_last_changed)
+
+def _get_single_entity_start_time_stmt(epoch_time: Union[bool, datetime.datetime, str], metadata_id: Union[bool, datetime.datetime, str], no_attributes: Union[bool, datetime.datetime, str], include_last_changed: Union[bool, datetime.datetime, str], include_last_reported: Union[bool, datetime.datetime, str]) -> Union[str, list, int]:
+    stmt = _stmt_and_join_attributes_for_start_state(no_attributes, include_last_changed, include_last_reported).filter(States.last_updated_ts < epoch_time, States.metadata_id == metadata_id).order_by(States.last_updated_ts.desc()).limit(1)
+    if no_attributes:
+        return stmt
+    return stmt.outerjoin(StateAttributes, States.attributes_id == StateAttributes.attributes_id)
+
+def _sorted_states_to_dict(states: Union[dict, int, None, dict[str, typing.Any]], start_time_ts: Union[list[str], dict, list[dict]], entity_ids: Union[dict[str, typing.Any], str], entity_id_to_metadata_id: Union[dict, dict[str, dict[str, typing.Any]]], minimal_response: bool=False, compressed_state_format: bool=False, descending: bool=False, no_attributes: bool=False) -> dict[tuple[typing.Union[str,list]], tuple[typing.Union[str,list]]]:
+    """Convert SQL results into JSON friendly data structure.
+
+    This takes our state list and turns it into a JSON friendly data
+    structure {'entity_id': [list of states], 'entity_id2': [list of states]}
+
+    States must be sorted by entity_id and last_updated
+
+    We also need to go back and create a synthetic zero data point for
+    each list of states, otherwise our graphs won't start on the Y
+    axis correctly.
+    """
+    field_map = _FIELD_MAP
+    if compressed_state_format:
+        state_class = row_to_compressed_state
+        attr_time = COMPRESSED_STATE_LAST_UPDATED
+        attr_state = COMPRESSED_STATE_STATE
+    else:
+        state_class = LazyState
+        attr_time = LAST_CHANGED_KEY
+        attr_state = STATE_KEY
+    result = {entity_id: [] for entity_id in entity_ids}
+    metadata_id_to_entity_id = {}
+    metadata_id_to_entity_id = {v: k for k, v in entity_id_to_metadata_id.items() if v is not None}
+    if len(entity_ids) == 1:
+        metadata_id = entity_id_to_metadata_id[entity_ids[0]]
+        assert metadata_id is not None
+        states_iter = ((metadata_id, iter(states)),)
+    else:
+        key_func = itemgetter(field_map['metadata_id'])
+        states_iter = groupby(states, key_func)
+    state_idx = field_map['state']
+    last_updated_ts_idx = field_map['last_updated_ts']
+    for metadata_id, group in states_iter:
+        entity_id = metadata_id_to_entity_id[metadata_id]
+        attr_cache = {}
+        ent_results = result[entity_id]
+        if not minimal_response or split_entity_id(entity_id)[0] in NEED_ATTRIBUTE_DOMAINS:
+            ent_results.extend([state_class(db_state, attr_cache, start_time_ts, entity_id, db_state[state_idx], db_state[last_updated_ts_idx], False) for db_state in group])
+            continue
+        prev_state = None
+        if not ent_results:
+            if (first_state := next(group, None)) is None:
+                continue
+            prev_state = first_state[state_idx]
+            ent_results.append(state_class(first_state, attr_cache, start_time_ts, entity_id, prev_state, first_state[last_updated_ts_idx], no_attributes))
+        if compressed_state_format:
+            ent_results.extend([{attr_state: (prev_state := state), attr_time: row[last_updated_ts_idx]} for row in group if (state := row[state_idx]) != prev_state])
+            continue
+        _utc_from_timestamp = dt_util.utc_from_timestamp
+        ent_results.extend([{attr_state: (prev_state := state), attr_time: _utc_from_timestamp(row[last_updated_ts_idx]).isoformat()} for row in group if (state := row[state_idx]) != prev_state])
+    if descending:
+        for ent_results in result.values():
+            ent_results.reverse()
+    return {key: val for key, val in result.items() if val}

@@ -1,0 +1,281 @@
+""" Utilities to set-up a Raiden network. """
+from dataclasses import dataclass
+from itertools import product
+from pathlib import Path
+import gevent
+import structlog
+from web3 import Web3
+from raiden import waiting
+from raiden.constants import BLOCK_ID_LATEST, GENESIS_BLOCK_NUMBER, Environment, RoutingMode
+from raiden.exceptions import PFSReturnedError
+from raiden.network.pathfinding import PFSProxy
+from raiden.network.proxies.proxy_manager import ProxyManager, ProxyManagerMetadata
+from raiden.network.proxies.secret_registry import SecretRegistry
+from raiden.network.proxies.service_registry import ServiceRegistry
+from raiden.network.proxies.token_network_registry import TokenNetworkRegistry
+from raiden.network.rpc.client import JSONRPCClient
+from raiden.raiden_event_handler import RaidenEventHandler
+from raiden.raiden_service import RaidenService
+from raiden.settings import DEFAULT_NUMBER_OF_BLOCK_CONFIRMATIONS, DEFAULT_RETRY_TIMEOUT, BlockchainConfig, CapabilitiesConfig, MatrixTransportConfig, MediationFeeConfig, RaidenConfig, RestApiConfig, ServiceConfig
+from raiden.tests.utils.app import database_from_privatekey
+from raiden.tests.utils.factories import UNIT_CHAIN_ID
+from raiden.tests.utils.protocol import HoldRaidenEventHandler, WaitForMessage
+from raiden.tests.utils.transport import ParsedURL, TestMatrixTransport
+from raiden.transfer import views
+from raiden.transfer.identifiers import CanonicalIdentifier
+from raiden.transfer.views import get_channelstate_by_canonical_identifier, get_channelstate_by_token_network_and_partner, state_from_raiden
+from raiden.ui.app import start_api_server
+from raiden.ui.startup import RaidenBundle, ServicesBundle
+from raiden.utils.formatting import to_checksum_address, to_hex_address
+from raiden.utils.typing import Address, BlockIdentifier, BlockNumber, BlockTimeout, ChainID, Host, Iterable, Iterator, List, MonitoringServiceAddress, OneToNAddress, Optional, Port, PrivateKey, SecretRegistryAddress, ServiceRegistryAddress, TokenAddress, TokenAmount, TokenNetworkAddress, TokenNetworkRegistryAddress, Tuple, UserDepositAddress
+from raiden.waiting import wait_for_token_network
+from raiden_contracts.contract_manager import ContractManager
+AppChannels = Iterable[Tuple[RaidenService, RaidenService]]
+log = structlog.get_logger(__name__)
+CHAIN = object()
+
+@dataclass
+class BlockchainServices:
+    pass
+
+def check_channel(app1: Union[raiden.utils.TokenNetworkAddress, raiden.raiden_service.RaidenService, raiden.utils.BlockTimeout], app2: Union[raiden.utils.TokenNetworkAddress, raiden.raiden_service.RaidenService, raiden.utils.BlockTimeout], token_network_address: Union[raiden.utils.TokenNetworkAddress, raiden.raiden_service.RaidenService, raiden.utils.BlockTimeout], settle_timeout: Union[raiden.utils.TokenAmount, raiden.utils.BlockTimeout, RaidenService], deposit_amount: Union[raiden.utils.Address, raiden.utils.Signature, raiden.utils.Dict]) -> None:
+    channel_state1 = get_channelstate_by_token_network_and_partner(chain_state=state_from_raiden(app1), token_network_address=token_network_address, partner_address=app2.address)
+    assert channel_state1, 'app1 does not have a channel with app2.'
+    netcontract1 = app1.proxy_manager.payment_channel(channel_state=channel_state1, block_identifier=BLOCK_ID_LATEST)
+    channel_state2 = get_channelstate_by_token_network_and_partner(chain_state=state_from_raiden(app2), token_network_address=token_network_address, partner_address=app1.address)
+    assert channel_state2, 'app2 does not have a channel with app1.'
+    netcontract2 = app2.proxy_manager.payment_channel(channel_state=channel_state2, block_identifier=BLOCK_ID_LATEST)
+    assert settle_timeout == netcontract1.settle_timeout()
+    assert settle_timeout == netcontract2.settle_timeout()
+    if deposit_amount > 0:
+        assert netcontract1.can_transfer(BLOCK_ID_LATEST)
+        assert netcontract2.can_transfer(BLOCK_ID_LATEST)
+    app1_details = netcontract1.detail(BLOCK_ID_LATEST)
+    app2_details = netcontract2.detail(BLOCK_ID_LATEST)
+    assert app1_details.participants_data.our_details.address == app2_details.participants_data.partner_details.address
+    assert app1_details.participants_data.partner_details.address == app2_details.participants_data.our_details.address
+    assert app1_details.participants_data.our_details.deposit == app2_details.participants_data.partner_details.deposit
+    assert app1_details.participants_data.partner_details.deposit == app2_details.participants_data.our_details.deposit
+    assert app1_details.chain_id == app2_details.chain_id
+    assert app1_details.participants_data.our_details.deposit == deposit_amount
+    assert app1_details.participants_data.partner_details.deposit == deposit_amount
+    assert app2_details.participants_data.our_details.deposit == deposit_amount
+    assert app2_details.participants_data.partner_details.deposit == deposit_amount
+    assert app2_details.chain_id == UNIT_CHAIN_ID
+
+def payment_channel_open_and_deposit(app0: Union[raiden.raiden_service.RaidenService, list[raiden.utils.TokenNetworkAddress], web3.Web3], app1: Union[raiden.utils.TokenAddress, raiden.transfer.state.ChainState, raiden.utils.TokenNetworkRegistryAddress], token_address: Union[raiden.utils.TokenAmount, bytes, raiden.utils.Address, None], deposit: Union[raiden.utils.BlockTimeout, raiden.utils.TokenAddress, raiden.utils.PaymentNetworkID], settle_timeout: Union[raiden.utils.TokenAddress, raiden.utils.TokenNetworkAddress, raiden.raiden_service.RaidenService]) -> None:
+    """Open a new channel with app0 and app1 as participants"""
+    assert token_address
+    if app0.wal:
+        block_identifier = views.get_confirmed_blockhash(app0)
+    else:
+        block_identifier = BLOCK_ID_LATEST
+    token_network_address = app0.default_registry.get_token_network(token_address=token_address, block_identifier=block_identifier)
+    assert token_network_address, 'request a channel for an unregistered token'
+    token_network_proxy = app0.proxy_manager.token_network(token_network_address, block_identifier=BLOCK_ID_LATEST)
+    channel_details = token_network_proxy.new_netting_channel(partner=app1.address, settle_timeout=settle_timeout, given_block_identifier=block_identifier)
+    channel_identifier = channel_details.channel_identifier
+    assert channel_identifier
+    if deposit != 0:
+        for app, partner in [(app0, app1), (app1, app0)]:
+            waiting.wait_for_newchannel(raiden=app, token_network_registry_address=app.default_registry.address, token_address=token_address, partner_address=partner.address, retry_timeout=0.5)
+            chain_state = state_from_raiden(app)
+            canonical_identifier = CanonicalIdentifier(chain_identifier=chain_state.chain_id, token_network_address=token_network_proxy.address, channel_identifier=channel_identifier)
+            channel_state = get_channelstate_by_canonical_identifier(chain_state=chain_state, canonical_identifier=canonical_identifier)
+            assert channel_state, 'nodes dont share a channel'
+            token = app.proxy_manager.token(token_address, BLOCK_ID_LATEST)
+            payment_channel_proxy = app.proxy_manager.payment_channel(channel_state=channel_state, block_identifier=BLOCK_ID_LATEST)
+            previous_balance = token.balance_of(app.address)
+            assert previous_balance >= deposit
+            payment_channel_proxy.approve_and_set_total_deposit(total_deposit=deposit, block_identifier=BLOCK_ID_LATEST)
+            new_balance = token.balance_of(app.address)
+            assert new_balance <= previous_balance - deposit
+        check_channel(app0, app1, token_network_proxy.address, settle_timeout, deposit)
+
+def create_all_channels_for_network(app_channels: Union[raiden.utils.TokenNetworkAddress, raiden.raiden_service.RaidenService], token_addresses: Union[raiden.utils.TokenNetworkAddress, raiden.raiden_service.RaidenService], channel_individual_deposit: Union[raiden.utils.TokenAmount, raiden.utils.BlockTimeout, float], channel_settle_timeout: Union[raiden.utils.BlockTimeout, raiden.utils.TokenAmount, float]) -> None:
+    greenlets = set()
+    for token_address in token_addresses:
+        for app_pair in app_channels:
+            greenlets.add(gevent.spawn(payment_channel_open_and_deposit, app_pair[0], app_pair[1], token_address, channel_individual_deposit, channel_settle_timeout))
+    gevent.joinall(greenlets, raise_error=True)
+    channels = [{'app0': to_hex_address(app0.address), 'app1': to_hex_address(app1.address), 'deposit': channel_individual_deposit, 'token_address': to_hex_address(token_address)} for (app0, app1), token_address in product(app_channels, token_addresses)]
+    log.info('Test channels', channels=channels)
+
+def network_with_minimum_channels(apps: str, channels_per_node: int) -> typing.Generator[tuple[typing.Union[str,list,dict[str, bool]]]]:
+    """Return the channels that should be created so that each app has at
+    least `channels_per_node` with the other apps.
+
+    Yields a two-tuple (app1, app2) that must be connected to respect
+    `channels_per_node`. Any preexisting channels will be ignored, so the nodes
+    might end up with more channels open than `channels_per_node`.
+    """
+    if channels_per_node > len(apps):
+        raise ValueError("Can't create more channels than nodes")
+    if len(apps) == 1:
+        raise ValueError("Can't create channels with only one node")
+    unconnected_apps = {}
+    channel_count = {}
+    for curr_app in apps:
+        all_apps = list(apps)
+        all_apps.remove(curr_app)
+        unconnected_apps[curr_app.address] = all_apps
+        channel_count[curr_app.address] = 0
+    for curr_app in sorted(apps, key=lambda app: app.address):
+        available_apps = unconnected_apps[curr_app.address]
+        while channel_count[curr_app.address] < channels_per_node:
+            least_connect = sorted(available_apps, key=lambda app: channel_count[app.address])[0]
+            channel_count[curr_app.address] += 1
+            available_apps.remove(least_connect)
+            channel_count[least_connect.address] += 1
+            unconnected_apps[least_connect.address].remove(curr_app)
+            yield (curr_app, least_connect)
+
+def create_network_channels(raiden_apps: raiden.storage.sqlite.SQLiteStorage, channels_per_node: Union[int, raiden.constants.EthClient]) -> list:
+    num_nodes = len(raiden_apps)
+    if channels_per_node is not CHAIN and channels_per_node > num_nodes:
+        raise ValueError("Can't create more channels than nodes")
+    if channels_per_node == 0:
+        app_channels = []
+    elif channels_per_node == CHAIN:
+        app_channels = list(zip(raiden_apps[:-1], raiden_apps[1:]))
+    else:
+        app_channels = list(network_with_minimum_channels(raiden_apps, channels_per_node))
+    return app_channels
+
+def create_sequential_channels(raiden_apps: raiden.utils.BlockNumber, channels_per_node: int) -> list:
+    """Create a fully connected network with `num_nodes`, the nodes are
+    connect sequentially.
+
+    Returns:
+        A list of apps of size `num_nodes`, with the property that every
+        sequential pair in the list has an open channel with `deposit` for each
+        participant.
+    """
+    num_nodes = len(raiden_apps)
+    if num_nodes < 2:
+        raise ValueError('cannot create a network with less than two nodes')
+    if channels_per_node not in (0, 1, 2, CHAIN):
+        raise ValueError('can only create networks with 0, 1, 2 or CHAIN channels')
+    if channels_per_node == 0:
+        app_channels = []
+    if channels_per_node == 1:
+        assert len(raiden_apps) % 2 == 0, 'needs an even number of nodes'
+        every_two = iter(raiden_apps)
+        app_channels = list(zip(every_two, every_two))
+    if channels_per_node == 2:
+        app_channels = list(zip(raiden_apps, raiden_apps[1:] + [raiden_apps[0]]))
+    if channels_per_node == CHAIN:
+        app_channels = list(zip(raiden_apps[:-1], raiden_apps[1:]))
+    return app_channels
+
+def create_apps(chain_id: Union[bool, raiden.utils.BlockTimeout, float], contracts_path: Union[bool, raiden.utils.BlockTimeout, float], blockchain_services: Union[list[str], tuple, list['Node']], token_network_registry_address: Union[raiden.utils.TokenNetworkRegistryAddress, raiden.utils.MonitoringServiceAddress, raiden.utils.SecretRegistryAddress], one_to_n_address: Union[raiden.utils.OneToNAddress, None, raiden.utils.TokenNetworkRegistryAddress, raiden.utils.MonitoringServiceAddress], secret_registry_address: Union[raiden.utils.SecretRegistryAddress, raiden.utils.MonitoringServiceAddress, raiden.utils.TokenNetworkRegistryAddress], service_registry_address: Union[raiden.utils.MonitoringServiceAddress, raiden.utils.TokenNetworkRegistryAddress, raiden.utils.UserDepositAddress, None], user_deposit_address: Union[raiden.utils.UserDepositAddress, None, raiden.utils.OneToNAddress, raiden.utils.TokenNetworkRegistryAddress], monitoring_service_contract_address: Union[raiden.utils.MonitoringServiceAddress, raiden.utils.SecretRegistryAddress, raiden.utils.TokenNetworkRegistryAddress], reveal_timeout: Union[bool, raiden.utils.BlockTimeout, float], settle_timeout: Union[bool, raiden.utils.BlockTimeout, float], database_basedir: Union[str, int, list], retry_interval_initial: Union[int, float], retry_interval_max: Union[int, float], retries_before_backoff: Union[int, float], environment_type: Union[bool, raiden.utils.BlockTimeout, float], unrecoverable_error_should_crash: Union[bool, raiden.utils.BlockTimeout, float], local_matrix_url: Union[int, float], routing_mode: Union[raiden.constants.RoutingMode, raiden.utils.BlockNumber, raiden.settings.CapabilitiesConfig], blockchain_query_interval: Union[bool, raiden.utils.BlockTimeout, float], resolver_ports: Any, enable_rest_api: Union[bool, raiden.utils.BlockTimeout, float], port_generator: raiden.utils.BlockTimeout, capabilities_config: Union[float, raiden.settings.CapabilitiesConfig]) -> list[RaidenService]:
+    """Create the apps."""
+    apps = []
+    for idx, proxy_manager in enumerate(blockchain_services):
+        database_path = database_from_privatekey(base_dir=database_basedir, app_number=idx)
+        assert len(resolver_ports) > idx
+        resolver_port = resolver_ports[idx]
+        config = RaidenConfig(chain_id=chain_id, environment_type=environment_type, unrecoverable_error_should_crash=unrecoverable_error_should_crash, reveal_timeout=reveal_timeout, settle_timeout=settle_timeout, contracts_path=contracts_path, database_path=database_path, blockchain=BlockchainConfig(confirmation_blocks=DEFAULT_NUMBER_OF_BLOCK_CONFIRMATIONS, query_interval=blockchain_query_interval), mediation_fees=MediationFeeConfig(), services=ServiceConfig(monitoring_enabled=False), rest_api=RestApiConfig(rest_api_enabled=enable_rest_api, host=Host('localhost'), port=next(port_generator)), console=False, transport_type='matrix')
+        config.transport.capabilities_config = capabilities_config
+        if local_matrix_url is not None:
+            config.transport = MatrixTransportConfig(retries_before_backoff=retries_before_backoff, retry_interval_initial=retry_interval_initial, retry_interval_max=retry_interval_max, server=local_matrix_url, available_servers=[], capabilities_config=capabilities_config)
+        assert config.transport.capabilities_config is not None
+        if resolver_port is not None:
+            config.resolver_endpoint = f'http://localhost:{resolver_port}'
+        registry = proxy_manager.token_network_registry(token_network_registry_address, block_identifier=BLOCK_ID_LATEST)
+        secret_registry = proxy_manager.secret_registry(secret_registry_address, block_identifier=BLOCK_ID_LATEST)
+        services_bundle = None
+        if user_deposit_address:
+            user_deposit = proxy_manager.user_deposit(user_deposit_address, block_identifier=BLOCK_ID_LATEST)
+            service_registry = None
+            if service_registry_address:
+                service_registry = proxy_manager.service_registry(service_registry_address, block_identifier=BLOCK_ID_LATEST)
+            monitoring_service = None
+            if monitoring_service_contract_address:
+                monitoring_service = proxy_manager.monitoring_service(monitoring_service_contract_address, block_identifier=BLOCK_ID_LATEST)
+            one_to_n = None
+            if one_to_n_address:
+                one_to_n = proxy_manager.one_to_n(one_to_n_address, block_identifier=BLOCK_ID_LATEST)
+            services_bundle = ServicesBundle(user_deposit, service_registry, monitoring_service, one_to_n)
+        assert config.transport.capabilities_config is not None
+        transport = TestMatrixTransport(config=config.transport, environment=environment_type)
+        raiden_event_handler = RaidenEventHandler()
+        hold_handler = HoldRaidenEventHandler(raiden_event_handler)
+        message_handler = WaitForMessage()
+        api_server = None
+        if enable_rest_api:
+            api_server = start_api_server(rpc_client=proxy_manager.client, config=config.rest_api, eth_rpc_endpoint='bla')
+        app = RaidenService(config=config, rpc_client=proxy_manager.client, proxy_manager=proxy_manager, query_start_block=BlockNumber(0), raiden_bundle=RaidenBundle(registry, secret_registry), services_bundle=services_bundle, transport=transport, raiden_event_handler=hold_handler, message_handler=message_handler, routing_mode=routing_mode, api_server=api_server, pfs_proxy=SimplePFSProxy(apps))
+        apps.append(app)
+    return apps
+
+class SimplePFSProxy(PFSProxy):
+
+    def __init__(self, services: Union[str, list[str]]) -> None:
+        self._services = services
+
+    def query_address_metadata(self, address: Union[str, Address]):
+        for service in self._services:
+            if service.address == address:
+                return service.transport.address_metadata
+        raise PFSReturnedError(message='Address not found', error_code=404, error_details={})
+
+    def set_services(self, services: Union[str, tuple[str], list[str]]) -> None:
+        self._services = services
+
+def parallel_start_apps(raiden_apps: Union[web3.contracContract, list[str]]) -> None:
+    """Start all the raiden apps in parallel."""
+    start_tasks = set()
+    for app in raiden_apps:
+        greenlet = gevent.spawn(app.start)
+        greenlet.name = f'Fixture:raiden_network node:{to_checksum_address(app.address)}'
+        start_tasks.add(greenlet)
+    gevent.joinall(start_tasks, raise_error=True)
+    addresses_in_order = {pos: to_hex_address(app.address) for pos, app in enumerate(raiden_apps)}
+    log.info('Raiden Apps started', addresses_in_order=addresses_in_order)
+
+def jsonrpc_services(proxy_manager: Union[raiden.network.proxies.proxy_manager.ProxyManager, raiden.utils.BlockSpecification, raiden.network.blockchain_service.BlockChainService], private_keys: Union[web3.Web3, str], secret_registry_address: Union[raiden.utils.SecretRegistryAddress, raiden.utils.TokenNetworkRegistryAddress, raiden_contracts.contract_manager.ContractManager], service_registry_address: Union[raiden.utils.TokenNetworkRegistryAddress, raiden.utils.SecretRegistryAddress, raiden_contracts.contract_manager.ContractManager], token_network_registry_address: Union[raiden.utils.TokenNetworkRegistryAddress, raiden.utils.SecretRegistryAddress, raiden_contracts.contract_manager.ContractManager], web3: Union[web3.Web3, raiden.constants.RoutingMode, str], contract_manager: Union[raiden_contracts.contract_manager.ContractManager, raiden.utils.BlockIdentifier]) -> BlockchainServices:
+    block_identifier = BLOCK_ID_LATEST
+    secret_registry = proxy_manager.secret_registry(secret_registry_address, block_identifier=block_identifier)
+    service_registry = None
+    if service_registry_address:
+        service_registry = proxy_manager.service_registry(service_registry_address, block_identifier=block_identifier)
+    deploy_registry = proxy_manager.token_network_registry(token_network_registry_address, block_identifier=block_identifier)
+    blockchain_services = []
+    for privkey in private_keys:
+        rpc_client = JSONRPCClient(web3, privkey)
+        proxy_manager = ProxyManager(rpc_client=rpc_client, contract_manager=contract_manager, metadata=ProxyManagerMetadata(token_network_registry_deployed_at=GENESIS_BLOCK_NUMBER, filters_start_at=GENESIS_BLOCK_NUMBER))
+        blockchain_services.append(proxy_manager)
+    return BlockchainServices(deploy_registry=deploy_registry, secret_registry=secret_registry, service_registry=service_registry, proxy_manager=proxy_manager, blockchain_services=blockchain_services)
+
+def wait_for_alarm_start(raiden_apps: str, retry_timeout: Any=DEFAULT_RETRY_TIMEOUT) -> None:
+    """Wait until all Alarm tasks start & set up the last_block"""
+    apps = list(raiden_apps)
+    while apps:
+        app = apps[-1]
+        if app.alarm.known_block_number is None:
+            gevent.sleep(retry_timeout)
+        else:
+            apps.pop()
+
+def wait_for_usable_channel(raiden: Union[raiden.utils.TokenNetworkRegistryAddress, float, raiden.raiden_service.RaidenService], partner_address: Union[raiden.utils.TokenNetworkRegistryAddress, float, raiden.raiden_service.RaidenService], token_network_registry_address: Union[raiden.utils.TokenNetworkRegistryAddress, float, raiden.raiden_service.RaidenService], token_address: Union[raiden.utils.TokenNetworkRegistryAddress, float, raiden.raiden_service.RaidenService], our_deposit: Union[raiden.utils.TokenAmount, raiden.utils.TokenNetworkRegistryAddress, raiden.raiden_service.RaidenService], partner_deposit: Union[raiden.utils.TokenAmount, raiden.utils.TokenNetworkRegistryAddress, raiden.raiden_service.RaidenService], retry_timeout: Any=DEFAULT_RETRY_TIMEOUT) -> None:
+    """Wait until the channel from app0 to app1 is usable.
+
+    The channel and the deposits are registered, and the partner network state
+    is reachable.
+    """
+    waiting.wait_for_newchannel(raiden=raiden, token_network_registry_address=token_network_registry_address, token_address=token_address, partner_address=partner_address, retry_timeout=retry_timeout)
+    waiting.wait_for_participant_deposit(raiden=raiden, token_network_registry_address=token_network_registry_address, token_address=token_address, partner_address=partner_address, target_address=raiden.address, target_balance=our_deposit, retry_timeout=retry_timeout)
+    waiting.wait_for_participant_deposit(raiden=raiden, token_network_registry_address=token_network_registry_address, token_address=token_address, partner_address=partner_address, target_address=partner_address, target_balance=partner_deposit, retry_timeout=retry_timeout)
+
+def wait_for_token_networks(raiden_apps: Any, token_network_registry_address: Union[float, raiden.utils.TokenNetworkRegistryAddress, RaidenService], token_addresses: Any, retry_timeout: Any=DEFAULT_RETRY_TIMEOUT) -> None:
+    for token_address in token_addresses:
+        for app in raiden_apps:
+            wait_for_token_network(app, token_network_registry_address, token_address, retry_timeout)
+
+def wait_for_channels(app_channels: Any, token_network_registry_address: Union[raiden.utils.TokenAmount, float, raiden.utils.TokenNetworkRegistryAddress], token_addresses: Any, deposit: Union[raiden.utils.TokenAmount, float, raiden.utils.TokenNetworkRegistryAddress], retry_timeout: Any=DEFAULT_RETRY_TIMEOUT) -> None:
+    """Wait until all channels are usable from both directions."""
+    for app0, app1 in app_channels:
+        for token_address in token_addresses:
+            wait_for_usable_channel(raiden=app0, partner_address=app1.address, token_network_registry_address=token_network_registry_address, token_address=token_address, our_deposit=deposit, partner_deposit=deposit, retry_timeout=retry_timeout)
+            wait_for_usable_channel(raiden=app1, partner_address=app0.address, token_network_registry_address=token_network_registry_address, token_address=token_address, our_deposit=deposit, partner_deposit=deposit, retry_timeout=retry_timeout)
