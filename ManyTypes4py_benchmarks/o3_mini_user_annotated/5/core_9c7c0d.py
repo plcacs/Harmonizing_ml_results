@@ -1,0 +1,312 @@
+#!/usr/bin/env python3
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+#
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+
+import datetime
+import warnings
+import itertools
+import importlib.util
+from pathlib import Path
+import numpy as np
+import pandas as pd
+import nevergrad.common.typing as tp
+from nevergrad.optimization.utils import SequentialExecutor
+from .experiments import registry as registry
+from .experiments import Experiment
+from . import utils
+
+
+def import_additional_module(filepath: tp.PathLike) -> None:
+    """Imports an additional file at runtime
+
+    Parameter
+    ---------
+    filepath: str or Path
+        the file to import
+    """
+    filepath = Path(filepath)
+    spec = importlib.util.spec_from_file_location(
+        "nevergrad.additionalimport." + filepath.with_suffix("").name, str(filepath)
+    )
+    module = importlib.util.module_from_spec(spec)  # type: ignore
+    assert spec.loader is not None  # type: ignore
+    spec.loader.exec_module(module)  # type: ignore
+
+
+def save_or_append_to_csv(df: pd.DataFrame, path: Path) -> None:
+    """Saves a dataframe to a file in append mode"""
+    if path.exists():
+        print("Appending to existing file")
+        try:
+            predf = pd.read_csv(
+                str(path), on_bad_lines="warn"
+            )  # for newer versions of Pandas
+        except Exception:
+            predf = pd.read_csv(str(path))
+        df = pd.concat([predf, df], sort=False)
+    df.to_csv(path, index=False)
+
+
+class Moduler:
+    """Provides a selector of indices based on the modulo.
+    moduler(number) will be true iff number = modulo * k + index with k an integer
+
+    Parameters
+    ----------
+    modulo: int
+        modulo for number selection
+    index: int
+        the congruence of the number for the moduler function to evaluate to True
+    total_length: int or None
+        total length of the sequence the moduler will be applied on. If provided,
+        this allows to compute the length of the modulated sequence.
+    """
+
+    def __init__(self, modulo: int, index: int, total_length: tp.Optional[int] = None) -> None:
+        assert modulo > 0, "Modulo must be strictly positive"
+        assert index < modulo, "Index must be strictly smaller than modulo"
+        self.modulo: int = modulo
+        self.index: int = index
+        self.total_length: tp.Optional[int] = total_length
+
+    def split(self, number: int) -> tp.List["Moduler"]:
+        return [
+            Moduler(self.modulo * number, self.index + k * self.modulo, self.total_length)
+            for k in range(number)
+        ]
+
+    def __len__(self) -> int:
+        if self.total_length is None:
+            raise RuntimeError("Cannot give an expected length if total_length was not provided")
+        return self.total_length // self.modulo + (self.index < self.total_length % self.modulo)
+
+    def __call__(self, index: int) -> bool:
+        return (index % self.modulo) == self.index
+
+    def __repr__(self) -> str:
+        return f"Moduler({self.index}, {self.modulo}, total_length={self.total_length})"
+
+
+class BenchmarkChunk:
+    """Splittable chunk of a benchmark
+
+    Parameters
+    ----------
+    name: str
+        Name of the benchmark
+    repetitions: int
+        Number of repetitions to perform on the benchmark
+    seed: int or None
+        A seed for the experiment plan (if seedable)
+    cap_index: int or None
+        index at which the experiment plan must be stopped (convenient for testing if the experiment
+        plan holds 10k experiment, we can select the first cap_index=100 for instance)
+    """
+
+    def __init__(
+        self,
+        name: str,
+        repetitions: int = 1,
+        seed: tp.Optional[int] = None,
+        cap_index: tp.Optional[int] = None,
+    ) -> None:
+        self.name: str = name
+        self.seed: tp.Optional[int] = seed
+        self.cap_index: tp.Optional[int] = None if cap_index is None else max(1, int(cap_index))
+        self._moduler: tp.Optional[Moduler] = None
+        self.repetitions: int = repetitions
+        self.summaries: tp.List[tp.Dict[str, tp.Any]] = []
+        self._current_experiment: tp.Optional[Experiment] = None  # for stopping and resuming
+        self._id: str = (
+            datetime.datetime.now().strftime("%y-%m-%d_%H%M")
+            + "_"
+            + "".join(np.random.choice(list("abcdefghijklmnopqrstuvwxyz"), 4))
+        )
+
+    @property
+    def moduler(self) -> Moduler:
+        if self._moduler is None:
+            total_length: int = sum(
+                1 for _ in itertools.islice(registry[self.name](), 0, self.cap_index)
+            ) * self.repetitions
+            self._moduler = Moduler(1, 0, total_length=total_length)
+        return self._moduler
+
+    @property
+    def id(self) -> str:
+        """Unique ID which can be used to print in a file for instance"""
+        return f"{self._id}_i{self.moduler.index}m{self.moduler.modulo}"
+
+    def __iter__(self) -> tp.Iterator[tp.Tuple[int, Experiment]]:
+        maker = registry[self.name]
+        seeds: tp.Iterable[tp.Optional[int]]
+        if self.seed is None:
+            seeds = (None for _ in range(self.repetitions))
+        else:
+            seeds = range(self.seed, self.seed + self.repetitions)
+        generators: tp.List[tp.Iterator[Experiment]] = [
+            maker() if seed is None else maker(seed=seed) for seed in seeds  # type: ignore
+        ]
+        generators = [itertools.islice(g, 0, self.cap_index) for g in generators]
+        enumerated_selection: tp.Iterator[tp.Tuple[int, Experiment]] = (
+            (k, s) for (k, s) in enumerate(itertools.chain.from_iterable(generators)) if self.moduler(k)
+        )
+        return enumerated_selection
+
+    def split(self, number: int) -> tp.List["BenchmarkChunk"]:
+        """Create n BenchmarkChunk which split the experiments of the current BenchmarkChunk
+
+        Parameters
+        ----------
+        number: int
+            The number of sub-chunks to create
+
+        Returns
+        -------
+        list of BenchmarkChunk
+            A list of new sub-chunks
+        """
+        chunks: tp.List[BenchmarkChunk] = []
+        for submoduler in self.moduler.split(number):
+            chunk = BenchmarkChunk(
+                name=self.name, repetitions=self.repetitions, seed=self.seed, cap_index=self.cap_index
+            )
+            chunk._moduler = submoduler
+            chunk._id = self._id
+            chunks.append(chunk)
+        return chunks
+
+    def __repr__(self) -> str:
+        return f"BenchmarkChunk({self.name}, {self.repetitions}, {self.seed}) with {self.moduler}"
+
+    def __len__(self) -> int:
+        return len(self.moduler)
+
+    def compute(
+        self,
+        process_function: tp.Optional[tp.Callable[["BenchmarkChunk", Experiment], None]] = None,
+    ) -> utils.Selector:
+        """Run all the experiments and returns the result selector.
+
+        Parameters
+        ----------
+        process_function: Callable[[BenchmarkChunk, Experiment], None] or None
+            A function to process after each experiment for custom logging
+
+        Returns
+        -------
+        utils.Selector
+            The selector holding experiment summaries
+        """
+        for local_ind, (index, xp) in enumerate(self):
+            if local_ind < len(self.summaries):
+                continue  # already computed
+            indstr: str = f"{index} ({local_ind + 1}/{len(self)} of worker)"
+            print(f"Starting {indstr}: {xp}", flush=True)
+            if self._current_experiment is None:
+                self._current_experiment = xp
+            else:
+                # computation was started but interrupted (eg: KeyboardInterrupt)
+                if xp != self._current_experiment:
+                    warnings.warn(f"Could not resume unfinished xp: {self._current_experiment}")
+                    self._current_experiment = xp
+                else:
+                    opt = self._current_experiment._optimizer  # type: ignore
+                    if opt is not None:
+                        print(f"Resuming existing experiment from iteration {opt.num_ask}.", flush=True)
+            self._current_experiment.run()
+            summary: tp.Dict[str, tp.Any] = self._current_experiment.get_description()
+            if process_function is not None:
+                process_function(self, self._current_experiment)
+            self.summaries.append(summary)
+            self._current_experiment = None
+            print(f"Finished {indstr}", flush=True)
+        return utils.Selector(data=self.summaries)
+
+
+def _submit_jobs(
+    experiment_name: str,
+    num_workers: int = 1,
+    seed: tp.Optional[int] = None,
+    executor: tp.Optional[tp.ExecutorLike] = None,
+    print_function: tp.Optional[tp.Callable[[Experiment], None]] = None,
+    cap_index: tp.Optional[int] = None,
+) -> tp.List[tp.JobLike[utils.Selector]]:
+    """Submits a job for computation
+
+    Parameters
+    ----------
+    experiment_name: str
+        Name of the experiment plan (must be registered in experiments.registry)
+    num_workers: int
+        Number of workers onto which the jobs will be distributed
+    seed: int or None
+        A seed for the experiment plan (if seedable)
+    executor: Executor-like object or None
+        An object such as concurrent.futures.ProcessPoolExecutor for running experiments in parallel
+    print_function: Callable[[Experiment], None] or None
+        A function to print at the end of each experiment (for custom logging)
+    cap_index: int or None
+        Index at which the experiment plan must be stopped
+
+    Returns
+    -------
+    List[JobLike[utils.Selector]]
+        A list of jobs corresponding to each of the workers
+    """
+    if executor is None:
+        if num_workers > 1:
+            raise ValueError("An executor must be provided to run multiple jobs in parallel")
+        executor = SequentialExecutor()
+    jobs: tp.List[tp.JobLike[utils.Selector]] = []
+    bench: BenchmarkChunk = BenchmarkChunk(name=experiment_name, seed=seed, cap_index=cap_index)
+    # instantiate the experiment iterator once (in case data needs to be downloaded)
+    next(registry[experiment_name]())
+    for chunk in bench.split(num_workers):
+        jobs.append(executor.submit(chunk.compute, print_function))
+    return jobs
+
+
+def compute(
+    experiment_name: str,
+    num_workers: int = 1,
+    seed: tp.Optional[int] = None,
+    executor: tp.Optional[tp.ExecutorLike] = None,
+    print_function: tp.Optional[tp.Callable[[tp.Dict[str, tp.Any]], None]] = None,
+    cap_index: tp.Optional[int] = None,
+) -> utils.Selector:
+    """Submits a job for computation and returns the summarizing dataframe.
+
+    Parameters
+    ----------
+    experiment_name: str
+        Name of the experiment plan (must be registered in experiments.registry)
+    num_workers: int
+        Number of workers onto which the jobs will be distributed
+    seed: int or None
+        A seed for the experiment plan (if seedable)
+    executor: Executor-like object or None
+        An object such as concurrent.futures.ProcessPoolExecutor for running experiments in parallel
+    print_function: Callable[[Dict[str, Any]], None] or None
+        A function to print at the end of each experiment (for custom logging)
+    cap_index: int or None
+        Index at which the experiment plan must be stopped
+
+    Returns
+    -------
+    utils.Selector
+        A selector holding the dataframe summarizing all the experiments
+    """
+    jobs: tp.List[tp.JobLike[utils.Selector]] = _submit_jobs(
+        experiment_name=experiment_name,
+        num_workers=num_workers,
+        seed=seed,
+        executor=executor,
+        print_function=print_function,  # type: ignore
+        cap_index=cap_index,
+    )
+    dfs: tp.List[utils.Selector] = [j.result() for j in jobs]
+    concatenated = pd.concat([selector.data if hasattr(selector, "data") else selector for selector in dfs])
+    return utils.Selector(concatenated)

@@ -1,0 +1,1100 @@
+#!/usr/bin/env python3
+import re
+from collections.abc import Callable, Collection, Mapping, Sequence
+from dataclasses import dataclass, field
+from datetime import datetime, timedelta
+from typing import Any, TypedDict, Union
+
+from django.conf import settings
+from django.db import connection
+from django.db.models import Exists, Max, OuterRef, QuerySet, Sum
+from django.utils.timezone import now as timezone_now
+from django.utils.translation import gettext as _
+from psycopg2.sql import SQL
+
+from analytics.lib.counts import COUNT_STATS
+from analytics.models import RealmCount
+from zerver.lib.cache import generic_bulk_cached_fetch, to_dict_cache_key_id
+from zerver.lib.display_recipient import get_display_recipient_by_id
+from zerver.lib.exceptions import JsonableError, MissingAuthenticationError
+from zerver.lib.markdown import MessageRenderingResult
+from zerver.lib.mention import MentionData
+from zerver.lib.message_cache import MessageDict, extract_message_dict, stringify_message_dict
+from zerver.lib.partial import partial
+from zerver.lib.request import RequestVariableConversionError
+from zerver.lib.stream_subscription import (
+    get_active_subscriptions_for_stream_id,
+    get_stream_subscriptions_for_user,
+    get_subscribed_stream_recipient_ids_for_user,
+    num_subscribers_for_stream_id,
+)
+from zerver.lib.streams import can_access_stream_history, get_web_public_streams_queryset
+from zerver.lib.topic import (
+    MESSAGE__TOPIC,
+    TOPIC_NAME,
+    maybe_rename_general_chat_to_empty_topic,
+    messages_for_topic,
+)
+from zerver.lib.types import UserDisplayRecipient
+from zerver.lib.user_groups import user_has_permission_for_group_setting
+from zerver.lib.user_topics import build_get_topic_visibility_policy, get_topic_visibility_policy
+from zerver.lib.users import get_inaccessible_user_ids
+from zerver.models import (
+    Message,
+    NamedUserGroup,
+    Realm,
+    Recipient,
+    Stream,
+    Subscription,
+    UserMessage,
+    UserProfile,
+    UserTopic,
+)
+from zerver.models.constants import MAX_TOPIC_NAME_LENGTH
+from zerver.models.groups import SystemGroups
+from zerver.models.messages import get_usermessage_by_message_id
+from zerver.models.users import is_cross_realm_bot_email
+
+
+class MessageDetailsDict(TypedDict, total=False):
+    type: str
+    mentioned: bool
+    user_ids: list[int]
+    stream_id: int
+    topic: str
+    unmuted_stream_msg: bool
+
+
+class RawUnreadStreamDict(TypedDict):
+    stream_id: int
+    topic: str
+
+
+class RawUnreadDirectMessageDict(TypedDict):
+    other_user_id: int
+
+
+class RawUnreadDirectMessageGroupDict(TypedDict):
+    user_ids_string: str
+
+
+class RawUnreadMessagesResult(TypedDict):
+    pm_dict: dict[int, RawUnreadDirectMessageDict]
+    stream_dict: dict[int, RawUnreadStreamDict]
+    huddle_dict: dict[int, RawUnreadDirectMessageGroupDict]
+    mentions: set[int]
+    muted_stream_ids: set[int]
+    unmuted_stream_msgs: set[int]
+    old_unreads_missing: bool
+
+
+class UnreadStreamInfo(TypedDict):
+    stream_id: int
+    topic: str
+    unread_message_ids: list[int]
+
+
+class UnreadDirectMessageInfo(TypedDict):
+    other_user_id: int
+    # Deprecated and misleading synonym for other_user_id
+    sender_id: int
+    unread_message_ids: list[int]
+
+
+class UnreadDirectMessageGroupInfo(TypedDict):
+    user_ids_string: str
+    unread_message_ids: list[int]
+
+
+class UnreadMessagesResult(TypedDict):
+    pms: list[UnreadDirectMessageInfo]
+    streams: list[UnreadStreamInfo]
+    huddles: list[UnreadDirectMessageGroupInfo]
+    mentions: list[int]
+    count: int
+    old_unreads_missing: bool
+
+
+@dataclass
+class SendMessageRequest:
+    message: Message
+    rendering_result: MessageRenderingResult
+    stream: Union[Stream, None]
+    sender_muted_stream: Union[bool, None]
+    local_id: Union[str, None]
+    sender_queue_id: Union[str, None]
+    realm: Realm
+    mention_data: MentionData
+    mentioned_user_groups_map: dict[int, int]
+    active_user_ids: set[int]
+    online_push_user_ids: set[int]
+    dm_mention_push_disabled_user_ids: set[int]
+    dm_mention_email_disabled_user_ids: set[int]
+    stream_push_user_ids: set[int]
+    stream_email_user_ids: set[int]
+    # IDs of users who have followed the topic the message is being sent to,
+    # and have the followed topic push notifications setting ON.
+    followed_topic_push_user_ids: set[int]
+    # IDs of users who have followed the topic the message is being sent to,
+    # and have the followed topic email notifications setting ON.
+    followed_topic_email_user_ids: set[int]
+    muted_sender_user_ids: set[int]
+    um_eligible_user_ids: set[int]
+    long_term_idle_user_ids: set[int]
+    default_bot_user_ids: set[int]
+    service_bot_tuples: list[tuple[int, int]]
+    all_bot_user_ids: set[int]
+    # IDs of topic participants who should be notified of topic wildcard mention.
+    # The 'user_allows_notifications_in_StreamTopic' with 'wildcard_mentions_notify'
+    # setting ON should return True.
+    # A user_id can exist in either or both of the 'topic_wildcard_mention_user_ids'
+    # and 'topic_wildcard_mention_in_followed_topic_user_ids' sets.
+    topic_wildcard_mention_user_ids: set[int]
+    # IDs of users subscribed to the stream who should be notified of
+    # stream wildcard mention.
+    # The 'user_allows_notifications_in_StreamTopic' with 'wildcard_mentions_notify'
+    # setting ON should return True.
+    # A user_id can exist in either or both of the 'stream_wildcard_mention_user_ids'
+    # and 'stream_wildcard_mention_in_followed_topic_user_ids' sets.
+    stream_wildcard_mention_user_ids: set[int]
+    # IDs of topic participants who have followed the topic the message
+    # (having topic wildcard) is being sent to, and have the
+    # 'followed_topic_wildcard_mentions_notify' setting ON.
+    topic_wildcard_mention_in_followed_topic_user_ids: set[int]
+    # IDs of users who have followed the topic the message
+    # (having stream wildcard) is being sent to, and have the
+    # 'followed_topic_wildcard_mentions_notify' setting ON.
+    stream_wildcard_mention_in_followed_topic_user_ids: set[int]
+    # A topic participant is anyone who either sent or reacted to messages in the topic.
+    topic_participant_user_ids: set[int]
+    links_for_embed: set[str]
+    widget_content: Union[dict[str, Any], None]
+    submessages: list[dict[str, Any]] = field(default_factory=list)
+    deliver_at: Union[datetime, None] = None
+    delivery_type: Union[str, None] = None
+    limit_unread_user_ids: Union[set[int], None] = None
+    service_queue_events: Union[dict[str, list[dict[str, Any]]], None] = None
+    disable_external_notifications: bool = False
+    automatic_new_visibility_policy: Union[int, None] = None
+    recipients_for_user_creation_events: Union[dict[UserProfile, set[int]], None] = None
+
+
+MAX_UNREAD_MESSAGES: int = 50000
+
+
+def truncate_content(content: str, max_length: int, truncation_message: str) -> str:
+    if len(content) > max_length:
+        content = content[: max_length - len(truncation_message)] + truncation_message
+    return content
+
+
+def normalize_body(body: str) -> str:
+    body = body.rstrip().lstrip("\n")
+    if len(body) == 0:
+        raise JsonableError(_("Message must not be empty"))
+    if "\x00" in body:
+        raise JsonableError(_("Message must not contain null bytes"))
+    return truncate_content(body, settings.MAX_MESSAGE_LENGTH, "\n[message truncated]")
+
+
+def normalize_body_for_import(body: str) -> str:
+    if "\x00" in body:
+        body = re.sub(r"\x00", "", body)
+    return truncate_content(body, settings.MAX_MESSAGE_LENGTH, "\n[message truncated]")
+
+
+def truncate_topic(topic_name: str) -> str:
+    return truncate_content(topic_name, MAX_TOPIC_NAME_LENGTH, "...")
+
+
+def messages_for_ids(
+    message_ids: list[int],
+    user_message_flags: dict[int, list[str]],
+    search_fields: dict[int, dict[str, str]],
+    apply_markdown: bool,
+    client_gravatar: bool,
+    allow_empty_topic_name: bool,
+    allow_edit_history: bool,
+    user_profile: Union[UserProfile, None],
+    realm: Realm,
+) -> list[dict[str, Any]]:
+    id_fetcher: Callable[[dict[str, Any]], Any] = lambda row: row["id"]
+    message_dicts: dict[int, dict[str, Any]] = generic_bulk_cached_fetch(
+        to_dict_cache_key_id,
+        MessageDict.ids_to_dict,
+        message_ids,
+        id_fetcher=id_fetcher,
+        cache_transformer=lambda obj: obj,
+        extractor=extract_message_dict,
+        setter=stringify_message_dict,
+    )
+    message_list: list[dict[str, Any]] = []
+    sender_ids: list[int] = [message_dicts[message_id]["sender_id"] for message_id in message_ids]
+    inaccessible_sender_ids: set[int] = get_inaccessible_user_ids(sender_ids, user_profile)
+    for message_id in message_ids:
+        msg_dict: dict[str, Any] = message_dicts[message_id]
+        flags: list[str] = user_message_flags[message_id]
+        if "stream_wildcard_mentioned" in flags or "topic_wildcard_mentioned" in flags:
+            flags.append("wildcard_mentioned")
+        msg_dict.update(flags=flags)
+        if message_id in search_fields:
+            msg_dict.update(search_fields[message_id])
+        if "edit_history" in msg_dict and not allow_edit_history:
+            del msg_dict["edit_history"]
+        msg_dict["can_access_sender"] = msg_dict["sender_id"] not in inaccessible_sender_ids
+        message_list.append(msg_dict)
+    MessageDict.post_process_dicts(
+        message_list,
+        apply_markdown=apply_markdown,
+        client_gravatar=client_gravatar,
+        allow_empty_topic_name=allow_empty_topic_name,
+        realm=realm,
+        user_recipient_id=None if user_profile is None else user_profile.recipient_id,
+    )
+    return message_list
+
+
+def access_message(
+    user_profile: UserProfile,
+    message_id: int,
+    lock_message: bool = False,
+) -> Message:
+    try:
+        base_query = Message.objects.select_related(*Message.DEFAULT_SELECT_RELATED)
+        if lock_message:
+            base_query = base_query.select_for_update(of=("self",))
+        message: Message = base_query.get(id=message_id)
+    except Message.DoesNotExist:
+        raise JsonableError(_("Invalid message(s)"))
+    has_user_message: Callable[[], bool] = lambda: UserMessage.objects.filter(
+        user_profile=user_profile, message_id=message_id
+    ).exists()
+    if has_message_access(user_profile, message, has_user_message=has_user_message):
+        return message
+    raise JsonableError(_("Invalid message(s)"))
+
+
+def access_message_and_usermessage(
+    user_profile: UserProfile,
+    message_id: int,
+    lock_message: bool = False,
+) -> tuple[Message, Union[UserMessage, None]]:
+    try:
+        base_query = Message.objects.select_related(*Message.DEFAULT_SELECT_RELATED)
+        if lock_message:
+            base_query = base_query.select_for_update(of=("self",))
+        message: Message = base_query.get(id=message_id)
+    except Message.DoesNotExist:
+        raise JsonableError(_("Invalid message(s)"))
+    user_message: Union[UserMessage, None] = get_usermessage_by_message_id(user_profile, message_id)
+    has_user_message: Callable[[], bool] = lambda: user_message is not None
+    if has_message_access(user_profile, message, has_user_message=has_user_message):
+        return (message, user_message)
+    raise JsonableError(_("Invalid message(s)"))
+
+
+def access_web_public_message(
+    realm: Realm,
+    message_id: int,
+) -> Message:
+    if not realm.web_public_streams_enabled():
+        raise MissingAuthenticationError
+    try:
+        message: Message = Message.objects.select_related(*Message.DEFAULT_SELECT_RELATED).get(id=message_id)
+    except Message.DoesNotExist:
+        raise MissingAuthenticationError
+    if not message.is_stream_message():
+        raise MissingAuthenticationError
+    queryset = get_web_public_streams_queryset(realm)
+    try:
+        stream: Stream = queryset.get(id=message.recipient.type_id)
+    except Stream.DoesNotExist:
+        raise MissingAuthenticationError
+    assert stream.is_web_public
+    assert not stream.deactivated
+    assert not stream.invite_only
+    assert stream.history_public_to_subscribers
+    return message
+
+
+def has_message_access(
+    user_profile: UserProfile,
+    message: Message,
+    *,
+    has_user_message: Callable[[], bool],
+    stream: Union[Stream, None] = None,
+    is_subscribed: Union[bool, None] = None,
+) -> bool:
+    if message.recipient.type != Recipient.STREAM:
+        return has_user_message()
+    if stream is None:
+        stream = Stream.objects.get(id=message.recipient.type_id)
+    else:
+        assert stream.recipient_id == message.recipient_id
+    if stream.realm_id != user_profile.realm_id:
+        return False
+    if stream.deactivated:
+        return False
+    def is_subscribed_helper() -> bool:
+        if is_subscribed is not None:
+            return is_subscribed
+        return Subscription.objects.filter(
+            user_profile=user_profile, active=True, recipient=message.recipient
+        ).exists()
+    if stream.is_public() and user_profile.can_access_public_streams():
+        return True
+    if not stream.is_history_public_to_subscribers():
+        return has_user_message() and is_subscribed_helper()
+    return is_subscribed_helper()
+
+
+def event_recipient_ids_for_action_on_messages(
+    messages: list[Message],
+    *,
+    channel: Union[Stream, None] = None,
+    exclude_long_term_idle_users: bool = True,
+) -> set[int]:
+    assert len(messages) > 0
+    message_ids: list[int] = [message.id for message in messages]
+    def get_user_ids_having_usermessage_row_for_messages(message_ids: list[int]) -> set[int]:
+        usermessages: QuerySet[UserMessage] = UserMessage.objects.filter(message_id__in=message_ids)
+        if exclude_long_term_idle_users:
+            usermessages = usermessages.exclude(user_profile__long_term_idle=True)
+        return set(usermessages.values_list("user_profile_id", flat=True))
+    sample_message: Message = messages[0]
+    if not sample_message.is_stream_message():
+        return get_user_ids_having_usermessage_row_for_messages(message_ids)
+    channel_id: int = sample_message.recipient.type_id
+    if channel is None:
+        channel = Stream.objects.get(id=channel_id)
+    subscriptions = get_active_subscriptions_for_stream_id(channel_id, include_deactivated_users=False)
+    if exclude_long_term_idle_users:
+        subscriptions = subscriptions.exclude(user_profile__long_term_idle=True)
+    subscriber_ids: set[int] = set(subscriptions.values_list("user_profile_id", flat=True))
+    if not channel.is_history_public_to_subscribers():
+        assert not channel.is_public()
+        user_ids_with_usermessage_row: set[int] = get_user_ids_having_usermessage_row_for_messages(message_ids)
+        return user_ids_with_usermessage_row & subscriber_ids
+    if not channel.is_public():
+        return subscriber_ids
+    usermessage_rows: QuerySet[UserMessage] = UserMessage.objects.filter(message_id__in=message_ids).exclude(
+        user_profile__role=UserProfile.ROLE_GUEST
+    )
+    if exclude_long_term_idle_users:
+        usermessage_rows = usermessage_rows.exclude(user_profile__long_term_idle=True)
+    user_ids_with_usermessage_row_and_channel_access: set[int] = set(
+        usermessage_rows.values_list("user_profile_id", flat=True)
+    )
+    return user_ids_with_usermessage_row_and_channel_access | subscriber_ids
+
+
+def bulk_access_messages(
+    user_profile: UserProfile,
+    messages: Union[Collection[Message], QuerySet[Message]],
+    *,
+    stream: Union[Stream, None] = None,
+) -> list[Message]:
+    filtered_messages: list[Message] = []
+    user_message_set: set[int] = set(
+        get_messages_with_usermessage_rows_for_user(
+            user_profile.id, [message.id for message in messages]
+        )
+    )
+    if stream is None:
+        streams: dict[int, Stream] = {
+            stream.recipient_id: stream
+            for stream in Stream.objects.filter(
+                id__in={
+                    message.recipient.type_id
+                    for message in messages
+                    if message.recipient.type == Recipient.STREAM
+                }
+            )
+        }
+    subscribed_recipient_ids: set[int] = set(get_subscribed_stream_recipient_ids_for_user(user_profile))
+    for message in messages:
+        is_subscribed: bool = message.recipient_id in subscribed_recipient_ids
+        if has_message_access(
+            user_profile,
+            message,
+            has_user_message=partial(lambda m: m.id in user_message_set, message),
+            stream=streams.get(message.recipient_id) if stream is None else stream,
+            is_subscribed=is_subscribed,
+        ):
+            filtered_messages.append(message)
+    return filtered_messages
+
+
+def bulk_access_stream_messages_query(
+    user_profile: UserProfile, messages: QuerySet[Message], stream: Stream
+) -> QuerySet[Message]:
+    assert stream.recipient_id is not None
+    messages = messages.filter(realm_id=user_profile.realm_id, recipient_id=stream.recipient_id)
+    if stream.is_public() and user_profile.can_access_public_streams():
+        return messages
+    if not Subscription.objects.filter(
+        user_profile=user_profile, active=True, recipient=stream.recipient
+    ).exists():
+        return Message.objects.none()
+    if not stream.is_history_public_to_subscribers():
+        messages = messages.alias(
+            has_usermessage=Exists(
+                UserMessage.objects.filter(
+                    user_profile_id=user_profile.id, message_id=OuterRef("id")
+                )
+            )
+        ).filter(has_usermessage=True)
+    return messages
+
+
+def get_messages_with_usermessage_rows_for_user(
+    user_profile_id: int, message_ids: Sequence[int]
+) -> QuerySet[UserMessage]:
+    return UserMessage.objects.filter(
+        user_profile_id=user_profile_id,
+        message_id__in=message_ids,
+    ).values_list("message_id", flat=True)
+
+
+def direct_message_group_users(recipient_id: int) -> str:
+    display_recipient: list[UserDisplayRecipient] = get_display_recipient_by_id(
+        recipient_id,
+        Recipient.DIRECT_MESSAGE_GROUP,
+        None,
+    )
+    user_ids: list[int] = [obj["id"] for obj in display_recipient]
+    user_ids = sorted(user_ids)
+    return ",".join(str(uid) for uid in user_ids)
+
+
+def get_inactive_recipient_ids(user_profile: UserProfile) -> list[int]:
+    rows = (
+        get_stream_subscriptions_for_user(user_profile)
+        .filter(active=False)
+        .values("recipient_id")
+    )
+    return [row["recipient_id"] for row in rows]
+
+
+def get_muted_stream_ids(user_profile: UserProfile) -> set[int]:
+    rows = (
+        get_stream_subscriptions_for_user(user_profile)
+        .filter(active=True, is_muted=True)
+        .values("recipient__type_id")
+    )
+    return {row["recipient__type_id"] for row in rows}
+
+
+def get_starred_message_ids(user_profile: UserProfile) -> list[int]:
+    return list(
+        UserMessage.objects.filter(
+            user_profile=user_profile,
+        )
+        .extra(where=[UserMessage.where_starred()])
+        .order_by("message_id")
+        .values_list("message_id", flat=True)[:10000]
+    )
+
+
+def get_raw_unread_data(
+    user_profile: UserProfile, message_ids: Union[list[int], None] = None
+) -> RawUnreadMessagesResult:
+    excluded_recipient_ids: list[int] = get_inactive_recipient_ids(user_profile)
+    first_visible_message_id: int = get_first_visible_message_id(user_profile.realm)
+    user_msgs: QuerySet[Any] = UserMessage.objects.filter(
+        user_profile=user_profile,
+        message_id__gte=first_visible_message_id,
+    ).exclude(
+        message__recipient_id__in=excluded_recipient_ids,
+    ).values(
+        "message_id",
+        "message__sender_id",
+        MESSAGE__TOPIC,
+        "message__recipient_id",
+        "message__recipient__type",
+        "message__recipient__type_id",
+        "flags",
+    ).order_by("-message_id")
+    if message_ids is not None:
+        user_msgs = user_msgs.filter(message_id__in=message_ids)
+    else:
+        user_msgs = user_msgs.extra(where=[UserMessage.where_unread()])
+    user_msgs = list(user_msgs[:MAX_UNREAD_MESSAGES])
+    rows: list[dict[str, Any]] = list(reversed(user_msgs))
+    return extract_unread_data_from_um_rows(rows, user_profile)
+
+
+def extract_unread_data_from_um_rows(
+    rows: list[dict[str, Any]], user_profile: Union[UserProfile, None]
+) -> RawUnreadMessagesResult:
+    pm_dict: dict[int, RawUnreadDirectMessageDict] = {}
+    stream_dict: dict[int, RawUnreadStreamDict] = {}
+    muted_stream_ids: set[int] = set()
+    unmuted_stream_msgs: set[int] = set()
+    direct_message_group_dict: dict[int, RawUnreadDirectMessageGroupDict] = {}
+    mentions: set[int] = set()
+    total_unreads: int = 0
+    raw_unread_messages: RawUnreadMessagesResult = {
+        "pm_dict": pm_dict,
+        "stream_dict": stream_dict,
+        "muted_stream_ids": muted_stream_ids,
+        "unmuted_stream_msgs": unmuted_stream_msgs,
+        "huddle_dict": direct_message_group_dict,
+        "mentions": mentions,
+        "old_unreads_missing": False,
+    }
+    if user_profile is None:
+        return raw_unread_messages
+    muted_stream_ids = get_muted_stream_ids(user_profile)
+    raw_unread_messages["muted_stream_ids"] = muted_stream_ids
+    get_topic_visibility_policy_func: Callable[[int, str], int] = build_get_topic_visibility_policy(user_profile)
+    def is_row_muted(stream_id: int, recipient_id: int, topic_name: str) -> bool:
+        stream_muted: bool = stream_id in muted_stream_ids
+        visibility_policy: int = get_topic_visibility_policy_func(recipient_id, topic_name)
+        if stream_muted and visibility_policy in [
+            UserTopic.VisibilityPolicy.UNMUTED,
+            UserTopic.VisibilityPolicy.FOLLOWED,
+        ]:
+            return False
+        if stream_muted:
+            return True
+        if visibility_policy == UserTopic.VisibilityPolicy.MUTED:
+            return True
+        return False
+    direct_message_group_cache: dict[int, str] = {}
+    def get_direct_message_group_users_func(recipient_id: int) -> str:
+        if recipient_id in direct_message_group_cache:
+            return direct_message_group_cache[recipient_id]
+        user_ids_string: str = direct_message_group_users(recipient_id)
+        direct_message_group_cache[recipient_id] = user_ids_string
+        return user_ids_string
+    for row in rows:
+        total_unreads += 1
+        message_id: int = row["message_id"]
+        msg_type: int = row["message__recipient__type"]
+        recipient_id: int = row["message__recipient_id"]
+        sender_id: int = row["message__sender_id"]
+        if msg_type == Recipient.STREAM:
+            stream_id: int = row["message__recipient__type_id"]
+            topic_name: str = row[MESSAGE__TOPIC]
+            stream_dict[message_id] = {"stream_id": stream_id, "topic": topic_name}
+            if not is_row_muted(stream_id, recipient_id, topic_name):
+                unmuted_stream_msgs.add(message_id)
+        elif msg_type == Recipient.PERSONAL:
+            if sender_id == user_profile.id:
+                other_user_id: int = row["message__recipient__type_id"]
+            else:
+                other_user_id = sender_id
+            pm_dict[message_id] = {"other_user_id": other_user_id}
+        elif msg_type == Recipient.DIRECT_MESSAGE_GROUP:
+            user_ids_string: str = get_direct_message_group_users_func(recipient_id)
+            direct_message_group_dict[message_id] = {"user_ids_string": user_ids_string}
+        is_mentioned: bool = (row["flags"] & UserMessage.flags.mentioned) != 0
+        is_stream_wildcard_mentioned: bool = (row["flags"] & UserMessage.flags.stream_wildcard_mentioned) != 0
+        is_topic_wildcard_mentioned: bool = (row["flags"] & UserMessage.flags.topic_wildcard_mentioned) != 0
+        if is_mentioned:
+            mentions.add(message_id)
+        if is_stream_wildcard_mentioned or is_topic_wildcard_mentioned:
+            if msg_type == Recipient.STREAM:
+                stream_id = row["message__recipient__type_id"]
+                topic_name = row[MESSAGE__TOPIC]
+                if not is_row_muted(stream_id, recipient_id, topic_name):
+                    mentions.add(message_id)
+            else:
+                mentions.add(message_id)
+    raw_unread_messages["old_unreads_missing"] = total_unreads == MAX_UNREAD_MESSAGES
+    return raw_unread_messages
+
+
+def aggregate_streams(
+    *, input_dict: dict[int, RawUnreadStreamDict], allow_empty_topic_name: bool
+) -> list[UnreadStreamInfo]:
+    lookup_dict: dict[tuple[int, str], UnreadStreamInfo] = {}
+    for message_id, attribute_dict in input_dict.items():
+        stream_id: int = attribute_dict["stream_id"]
+        topic_name: str = attribute_dict["topic"]
+        if topic_name == "" and not allow_empty_topic_name:
+            topic_name = Message.EMPTY_TOPIC_FALLBACK_NAME
+        lookup_key: tuple[int, str] = (stream_id, topic_name.lower())
+        if lookup_key not in lookup_dict:
+            obj: UnreadStreamInfo = {
+                "stream_id": stream_id,
+                "topic": topic_name,
+                "unread_message_ids": [],
+            }
+            lookup_dict[lookup_key] = obj
+        bucket: UnreadStreamInfo = lookup_dict[lookup_key]
+        bucket["unread_message_ids"].append(message_id)
+    for dct in lookup_dict.values():
+        dct["unread_message_ids"].sort()
+    sorted_keys = sorted(lookup_dict.keys())
+    return [lookup_dict[k] for k in sorted_keys]
+
+
+def aggregate_pms(
+    *, input_dict: dict[int, RawUnreadDirectMessageDict]
+) -> list[UnreadDirectMessageInfo]:
+    lookup_dict: dict[int, UnreadDirectMessageInfo] = {}
+    for message_id, attribute_dict in input_dict.items():
+        other_user_id: int = attribute_dict["other_user_id"]
+        if other_user_id not in lookup_dict:
+            obj: UnreadDirectMessageInfo = {
+                "other_user_id": other_user_id,
+                "sender_id": other_user_id,
+                "unread_message_ids": [],
+            }
+            lookup_dict[other_user_id] = obj
+        bucket: UnreadDirectMessageInfo = lookup_dict[other_user_id]
+        bucket["unread_message_ids"].append(message_id)
+    for dct in lookup_dict.values():
+        dct["unread_message_ids"].sort()
+    sorted_keys = sorted(lookup_dict.keys())
+    return [lookup_dict[k] for k in sorted_keys]
+
+
+def aggregate_direct_message_groups(
+    *, input_dict: dict[int, RawUnreadDirectMessageGroupDict]
+) -> list[UnreadDirectMessageGroupInfo]:
+    lookup_dict: dict[str, UnreadDirectMessageGroupInfo] = {}
+    for message_id, attribute_dict in input_dict.items():
+        user_ids_string: str = attribute_dict["user_ids_string"]
+        if user_ids_string not in lookup_dict:
+            obj: UnreadDirectMessageGroupInfo = {
+                "user_ids_string": user_ids_string,
+                "unread_message_ids": [],
+            }
+            lookup_dict[user_ids_string] = obj
+        bucket: UnreadDirectMessageGroupInfo = lookup_dict[user_ids_string]
+        bucket["unread_message_ids"].append(message_id)
+    for dct in lookup_dict.values():
+        dct["unread_message_ids"].sort()
+    sorted_keys = sorted(lookup_dict.keys())
+    return [lookup_dict[k] for k in sorted_keys]
+
+
+def aggregate_unread_data(
+    raw_data: RawUnreadMessagesResult, allow_empty_topic_name: bool
+) -> UnreadMessagesResult:
+    pm_dict: dict[int, RawUnreadDirectMessageDict] = raw_data["pm_dict"]
+    stream_dict: dict[int, RawUnreadStreamDict] = raw_data["stream_dict"]
+    unmuted_stream_msgs: set[int] = raw_data["unmuted_stream_msgs"]
+    direct_message_group_dict: dict[int, RawUnreadDirectMessageGroupDict] = raw_data["huddle_dict"]
+    mentions: list[int] = list(raw_data["mentions"])
+    count: int = len(pm_dict) + len(unmuted_stream_msgs) + len(direct_message_group_dict)
+    pm_objects: list[UnreadDirectMessageInfo] = aggregate_pms(input_dict=pm_dict)
+    stream_objects: list[UnreadStreamInfo] = aggregate_streams(
+        input_dict=stream_dict, allow_empty_topic_name=allow_empty_topic_name
+    )
+    direct_message_groups: list[UnreadDirectMessageGroupInfo] = aggregate_direct_message_groups(input_dict=direct_message_group_dict)
+    result: UnreadMessagesResult = {
+        "pms": pm_objects,
+        "streams": stream_objects,
+        "huddles": direct_message_groups,
+        "mentions": mentions,
+        "count": count,
+        "old_unreads_missing": raw_data["old_unreads_missing"],
+    }
+    return result
+
+
+def apply_unread_message_event(
+    user_profile: UserProfile,
+    state: RawUnreadMessagesResult,
+    message: dict[str, Any],
+    flags: list[str],
+) -> None:
+    message_id: int = message["id"]
+    if message["type"] == "stream":
+        recipient_type: str = "stream"
+    elif message["type"] == "private":
+        others: list[dict[str, Any]] = [recip for recip in message["display_recipient"] if recip["id"] != user_profile.id]
+        if len(others) <= 1:
+            recipient_type = "private"
+        else:
+            recipient_type = "huddle"
+    else:
+        raise AssertionError("Invalid message type {}".format(message["type"]))
+    if recipient_type == "stream":
+        stream_id: int = message["stream_id"]
+        topic_name: str = message[TOPIC_NAME]
+        state["stream_dict"][message_id] = {"stream_id": stream_id, "topic": topic_name}
+        stream_muted: bool = stream_id in state["muted_stream_ids"]
+        visibility_policy: int = get_topic_visibility_policy(
+            user_profile, stream_id, topic_name=maybe_rename_general_chat_to_empty_topic(topic_name)
+        )
+        if (not stream_muted and visibility_policy != UserTopic.VisibilityPolicy.MUTED) or (
+            stream_muted
+            and visibility_policy in [UserTopic.VisibilityPolicy.UNMUTED, UserTopic.VisibilityPolicy.FOLLOWED]
+        ):
+            state["unmuted_stream_msgs"].add(message_id)
+    elif recipient_type == "private":
+        if len(others) == 1:
+            other_user_id: int = others[0]["id"]
+        else:
+            other_user_id = user_profile.id
+        state["pm_dict"][message_id] = {"other_user_id": other_user_id}
+    else:
+        display_recipient: list[dict[str, Any]] = message["display_recipient"]
+        user_ids: list[int] = [obj["id"] for obj in display_recipient]
+        user_ids = sorted(user_ids)
+        user_ids_string: str = ",".join(str(uid) for uid in user_ids)
+        state["huddle_dict"][message_id] = {"user_ids_string": user_ids_string}
+    if "mentioned" in flags:
+        state["mentions"].add(message_id)
+    if ("stream_wildcard_mentioned" in flags or "topic_wildcard_mentioned" in flags) and message_id in state["unmuted_stream_msgs"]:
+        state["mentions"].add(message_id)
+
+
+def remove_message_id_from_unread_mgs(state: RawUnreadMessagesResult, message_id: int) -> None:
+    state["pm_dict"].pop(message_id, None)
+    state["stream_dict"].pop(message_id, None)
+    state["huddle_dict"].pop(message_id, None)
+    state["unmuted_stream_msgs"].discard(message_id)
+    state["mentions"].discard(message_id)
+
+
+def format_unread_message_details(
+    my_user_id: int,
+    raw_unread_data: RawUnreadMessagesResult,
+) -> dict[str, MessageDetailsDict]:
+    unread_data: dict[str, MessageDetailsDict] = {}
+    for message_id, private_message_details in raw_unread_data["pm_dict"].items():
+        other_user_id: int = private_message_details["other_user_id"]
+        if other_user_id == my_user_id:
+            user_ids: list[int] = []
+        else:
+            user_ids = [other_user_id]
+        message_details: MessageDetailsDict = {
+            "type": "private",
+            "user_ids": user_ids,
+        }
+        if message_id in raw_unread_data["mentions"]:
+            message_details["mentioned"] = True
+        unread_data[str(message_id)] = message_details
+    for message_id, stream_message_details in raw_unread_data["stream_dict"].items():
+        unmuted_stream_msg: bool = message_id in raw_unread_data["unmuted_stream_msgs"]
+        message_details = {
+            "type": "stream",
+            "stream_id": stream_message_details["stream_id"],
+            "topic": stream_message_details["topic"],
+            "unmuted_stream_msg": unmuted_stream_msg,
+        }
+        if message_id in raw_unread_data["mentions"]:
+            message_details["mentioned"] = True
+        unread_data[str(message_id)] = message_details
+    for message_id, huddle_message_details in raw_unread_data["huddle_dict"].items():
+        user_ids = sorted(
+            user_id for s in huddle_message_details["user_ids_string"].split(",")
+            if (user_id := int(s)) != my_user_id
+        )
+        message_details: MessageDetailsDict = {
+            "type": "private",
+            "user_ids": user_ids,
+        }
+        if message_id in raw_unread_data["mentions"]:
+            message_details["mentioned"] = True
+        unread_data[str(message_id)] = message_details
+    return unread_data
+
+
+def add_message_to_unread_msgs(
+    my_user_id: int,
+    state: RawUnreadMessagesResult,
+    message_id: int,
+    message_details: MessageDetailsDict,
+) -> None:
+    if message_details.get("mentioned"):
+        state["mentions"].add(message_id)
+    if message_details["type"] == "private":
+        user_ids: list[int] = message_details["user_ids"]
+        user_ids = [user_id for user_id in user_ids if user_id != my_user_id]
+        if user_ids == []:
+            state["pm_dict"][message_id] = {"other_user_id": my_user_id}
+        elif len(user_ids) == 1:
+            state["pm_dict"][message_id] = {"other_user_id": user_ids[0]}
+        else:
+            user_ids.append(my_user_id)
+            user_ids_string: str = ",".join(str(user_id) for user_id in sorted(user_ids))
+            state["huddle_dict"][message_id] = {"user_ids_string": user_ids_string}
+    elif message_details["type"] == "stream":
+        state["stream_dict"][message_id] = {
+            "stream_id": message_details["stream_id"],
+            "topic": message_details["topic"],
+        }
+        if message_details["unmuted_stream_msg"]:
+            state["unmuted_stream_msgs"].add(message_id)
+
+
+def estimate_recent_messages(realm: Realm, hours: int) -> int:
+    stat = COUNT_STATS["messages_sent:is_bot:hour"]
+    d: datetime = timezone_now() - timedelta(hours=hours)
+    return (
+        RealmCount.objects.filter(property=stat.property, end_time__gt=d, realm=realm).aggregate(
+            Sum("value")
+        )["value__sum"]
+        or 0
+    )
+
+
+def get_first_visible_message_id(realm: Realm) -> int:
+    return realm.first_visible_message_id
+
+
+def maybe_update_first_visible_message_id(realm: Realm, lookback_hours: int) -> None:
+    recent_messages_count: int = estimate_recent_messages(realm, lookback_hours)
+    if realm.message_visibility_limit is not None and recent_messages_count > 0:
+        update_first_visible_message_id(realm)
+
+
+def update_first_visible_message_id(realm: Realm) -> None:
+    if realm.message_visibility_limit is None:
+        realm.first_visible_message_id = 0
+    else:
+        try:
+            first_visible_message_id: int = (
+                Message.objects.filter(realm=realm)
+                .values("id")
+                .order_by("-id")[realm.message_visibility_limit - 1]["id"]
+            )
+        except IndexError:
+            first_visible_message_id = 0
+        realm.first_visible_message_id = first_visible_message_id
+    realm.save(update_fields=["first_visible_message_id"])
+
+
+def get_last_message_id() -> int:
+    last_id: Union[int, None] = Message.objects.aggregate(Max("id"))["id__max"]
+    if last_id is None:
+        last_id = -1
+    return last_id
+
+
+def get_recent_conversations_recipient_id(
+    user_profile: UserProfile, recipient_id: int, sender_id: int
+) -> int:
+    my_recipient_id: int = user_profile.recipient_id
+    if recipient_id == my_recipient_id:
+        return UserProfile.objects.values_list("recipient_id", flat=True).get(id=sender_id)
+    return recipient_id
+
+
+def get_recent_private_conversations(user_profile: UserProfile) -> dict[int, dict[str, Any]]:
+    RECENT_CONVERSATIONS_LIMIT: int = 1000
+    recipient_map: dict[int, dict[str, Any]] = {}
+    my_recipient_id: int = user_profile.recipient_id
+    query: SQL = SQL(
+        """
+        WITH personals AS (
+            SELECT   um.message_id AS message_id
+            FROM     zerver_usermessage um
+            WHERE    um.user_profile_id = %(user_profile_id)s
+            AND      um.flags & 2048 <> 0
+            ORDER BY message_id DESC limit %(conversation_limit)s
+        ),
+        message AS (
+            SELECT message_id,
+                   CASE
+                          WHEN m.recipient_id = %(my_recipient_id)s
+                          THEN m.sender_id
+                          ELSE NULL
+                   END AS sender_id,
+                   CASE
+                          WHEN m.recipient_id <> %(my_recipient_id)s
+                          THEN m.recipient_id
+                          ELSE NULL
+                   END AS outgoing_recipient_id
+            FROM   personals
+            JOIN   zerver_message m
+            ON     personals.message_id = m.id
+        ),
+        unified AS (
+            SELECT    message_id,
+                      COALESCE(zerver_userprofile.recipient_id, outgoing_recipient_id) AS other_recipient_id
+            FROM      message
+            LEFT JOIN zerver_userprofile
+            ON        zerver_userprofile.id = sender_id
+        )
+        SELECT   other_recipient_id,
+                 MAX(message_id)
+        FROM     unified
+        GROUP BY other_recipient_id
+    """
+    )
+    with connection.cursor() as cursor:
+        cursor.execute(
+            query,
+            {
+                "user_profile_id": user_profile.id,
+                "conversation_limit": RECENT_CONVERSATIONS_LIMIT,
+                "my_recipient_id": my_recipient_id,
+            },
+        )
+        rows: list[tuple[int, int]] = cursor.fetchall()
+    for recipient_id, max_message_id in rows:
+        recipient_map[recipient_id] = {"max_message_id": max_message_id, "user_ids": []}
+    for recipient_id, user_profile_id in (
+        Subscription.objects.filter(recipient_id__in=recipient_map.keys())
+        .exclude(user_profile_id=user_profile.id)
+        .values_list("recipient_id", "user_profile_id")
+    ):
+        recipient_map[recipient_id]["user_ids"].append(user_profile_id)
+    for rec in recipient_map.values():
+        rec["user_ids"].sort()
+    return recipient_map
+
+
+def can_mention_many_users(sender: UserProfile) -> bool:
+    return sender.has_permission("can_mention_many_users_group")
+
+
+def topic_wildcard_mention_allowed(
+    sender: UserProfile, topic_participant_count: int, realm: Realm
+) -> bool:
+    if topic_participant_count <= Realm.WILDCARD_MENTION_THRESHOLD:
+        return True
+    return can_mention_many_users(sender)
+
+
+def stream_wildcard_mention_allowed(sender: UserProfile, stream: Stream, realm: Realm) -> bool:
+    if num_subscribers_for_stream_id(stream.id) <= Realm.WILDCARD_MENTION_THRESHOLD:
+        return True
+    return can_mention_many_users(sender)
+
+
+def check_user_group_mention_allowed(sender: UserProfile, user_group_ids: list[int]) -> None:
+    user_groups = NamedUserGroup.objects.filter(id__in=user_group_ids).select_related(
+        "can_mention_group", "can_mention_group__named_user_group"
+    )
+    sender_is_system_bot: bool = is_cross_realm_bot_email(sender.delivery_email)
+    for group in user_groups:
+        can_mention_group = group.can_mention_group
+        if hasattr(can_mention_group, "named_user_group") and can_mention_group.named_user_group.name == SystemGroups.EVERYONE:
+            continue
+        if sender_is_system_bot:
+            raise JsonableError(
+                _("You are not allowed to mention user group '{user_group_name}'.").format(
+                    user_group_name=group.name
+                )
+            )
+        if not user_has_permission_for_group_setting(
+            can_mention_group,
+            sender,
+            NamedUserGroup.GROUP_PERMISSION_SETTINGS["can_mention_group"],
+            direct_member_only=False,
+        ):
+            raise JsonableError(
+                _("You are not allowed to mention user group '{user_group_name}'.").format(
+                    user_group_name=group.name
+                )
+            )
+
+
+def parse_message_time_limit_setting(
+    value: Union[int, str],
+    special_values_map: Mapping[str, Union[int, None]],
+    *,
+    setting_name: str,
+) -> Union[int, None]:
+    if isinstance(value, str) and value in special_values_map:
+        return special_values_map[value]
+    if isinstance(value, str) or value <= 0:
+        raise RequestVariableConversionError(setting_name, value)
+    assert isinstance(value, int)
+    return value
+
+
+def visibility_policy_for_participation(
+    sender: UserProfile,
+    is_stream_muted: Union[bool, None],
+) -> Union[int, None]:
+    if sender.automatically_follow_topics_policy == UserProfile.AUTOMATICALLY_CHANGE_VISIBILITY_POLICY_ON_PARTICIPATION:
+        return UserTopic.VisibilityPolicy.FOLLOWED
+    if is_stream_muted and sender.automatically_unmute_topics_in_muted_streams_policy == UserProfile.AUTOMATICALLY_CHANGE_VISIBILITY_POLICY_ON_PARTICIPATION:
+        return UserTopic.VisibilityPolicy.UNMUTED
+    return None
+
+
+def visibility_policy_for_send(
+    sender: UserProfile,
+    is_stream_muted: Union[bool, None],
+) -> Union[int, None]:
+    if sender.automatically_follow_topics_policy == UserProfile.AUTOMATICALLY_CHANGE_VISIBILITY_POLICY_ON_SEND:
+        return UserTopic.VisibilityPolicy.FOLLOWED
+    if is_stream_muted and sender.automatically_unmute_topics_in_muted_streams_policy == UserProfile.AUTOMATICALLY_CHANGE_VISIBILITY_POLICY_ON_SEND:
+        return UserTopic.VisibilityPolicy.UNMUTED
+    return None
+
+
+def visibility_policy_for_send_message(
+    sender: UserProfile,
+    message: Message,
+    stream: Stream,
+    is_stream_muted: Union[bool, None],
+    current_visibility_policy: int,
+) -> Union[int, None]:
+    visibility_policy: Union[int, None] = None
+    if current_visibility_policy == UserTopic.VisibilityPolicy.FOLLOWED:
+        return visibility_policy
+    visibility_policy_participation: Union[int, None] = visibility_policy_for_participation(sender, is_stream_muted)
+    visibility_policy_send: Union[int, None] = visibility_policy_for_send(sender, is_stream_muted)
+    if UserTopic.VisibilityPolicy.FOLLOWED in (visibility_policy_participation, visibility_policy_send):
+        return UserTopic.VisibilityPolicy.FOLLOWED
+    if UserTopic.VisibilityPolicy.UNMUTED in (visibility_policy_participation, visibility_policy_send):
+        visibility_policy = UserTopic.VisibilityPolicy.UNMUTED
+    if current_visibility_policy != UserTopic.VisibilityPolicy.INHERIT:
+        if visibility_policy and current_visibility_policy == visibility_policy:
+            return None
+        return visibility_policy
+    old_accessible_messages_in_topic: Union[QuerySet[Message], QuerySet[UserMessage]]
+    if can_access_stream_history(sender, stream):
+        old_accessible_messages_in_topic = messages_for_topic(
+            realm_id=sender.realm_id,
+            stream_recipient_id=message.recipient_id,
+            topic_name=message.topic_name(),
+        ).exclude(id=message.id)
+    else:
+        old_accessible_messages_in_topic = UserMessage.objects.filter(
+            user_profile=sender,
+            message__recipient_id=message.recipient_id,
+            message__subject__iexact=message.topic_name(),
+        ).exclude(message_id=message.id)
+    if sender.automatically_follow_topics_policy == UserProfile.AUTOMATICALLY_CHANGE_VISIBILITY_POLICY_ON_INITIATION and not old_accessible_messages_in_topic.exists():
+        return UserTopic.VisibilityPolicy.FOLLOWED
+    if is_stream_muted and sender.automatically_unmute_topics_in_muted_streams_policy == UserProfile.AUTOMATICALLY_CHANGE_VISIBILITY_POLICY_ON_INITIATION and not old_accessible_messages_in_topic.exists():
+        visibility_policy = UserTopic.VisibilityPolicy.UNMUTED
+    return visibility_policy
+
+
+def should_change_visibility_policy(
+    new_visibility_policy: int,
+    sender: UserProfile,
+    stream_id: int,
+    topic_name: str,
+) -> bool:
+    try:
+        user_topic: UserTopic = UserTopic.objects.get(
+            user_profile=sender, stream_id=stream_id, topic_name__iexact=topic_name
+        )
+    except UserTopic.DoesNotExist:
+        return True
+    current_visibility_policy: int = user_topic.visibility_policy
+    if new_visibility_policy == current_visibility_policy:
+        return False
+    if current_visibility_policy == UserTopic.VisibilityPolicy.FOLLOWED:
+        return False
+    return True
+
+
+def set_visibility_policy_possible(user_profile: UserProfile, message: Message) -> bool:
+    if not message.is_stream_message():
+        return False
+    if user_profile.is_bot:
+        return False
+    if user_profile.realm != message.get_realm():
+        return False
+    return True
+
+
+def remove_single_newlines(content: str) -> str:
+    content = content.strip("\n")
+    return re.sub(r"(?<!\n)\n(?!\n|[-*] |[0-9]+\. )", " ", content)

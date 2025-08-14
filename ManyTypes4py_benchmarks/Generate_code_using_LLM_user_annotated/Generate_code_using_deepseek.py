@@ -1,0 +1,209 @@
+import os
+import json
+import time
+import tiktoken
+from openai import OpenAI
+import hashlib
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Get API key from environment variable
+api_key = os.getenv("DEEPSEEK_API_KEY")
+if not api_key:
+    raise ValueError("DEEPSEEK_API_KEY not found in environment variables")
+
+client = OpenAI(api_key=api_key, base_url="https://api.deepseek.com")
+PROCESSED_FILES_LOG = "ManyTypes4py_benchmarks/Files_not_for_root_directories/processed_files_deep_seek_user_annotated.txt"
+JSON_FILE = "ManyTypes4py_benchmarks/Files_not_for_root_directories/original_files_grouped_paths.json"
+OUTPUT_DIR = "ManyTypes4py_benchmarks/deepseek_user_annotated"
+TIMING_LOG = "ManyTypes4py_benchmarks/Files_not_for_root_directories/deepseek_model_timings_user_annotated.json"
+
+
+def ensure_directories_and_files():
+    """Create all necessary directories and files if they don't exist."""
+    # Create directories
+    directories = [
+       
+        "ManyTypes4py_benchmarks/deepseek_user_annotated"
+    ]
+    
+    for directory in directories:
+        if not os.path.exists(directory):
+            os.makedirs(directory, exist_ok=True)
+            print(f"Created directory: {directory}")
+    
+    # Create empty files if they don't exist
+    files_to_create = [
+        PROCESSED_FILES_LOG,
+        TIMING_LOG
+    ]
+    
+    for file_path in files_to_create:
+        if not os.path.exists(file_path):
+            # Create empty file
+            with open(file_path, 'w', encoding='utf-8') as f:
+                pass
+            print(f"Created file: {file_path}")
+    
+    # Initialize timing log with empty array if it's empty
+    if os.path.exists(TIMING_LOG) and os.path.getsize(TIMING_LOG) == 0:
+        with open(TIMING_LOG, 'w', encoding='utf-8') as f:
+            json.dump([], f)
+def get_token_count(text: str, model: str = "deepseek-reasoner"):
+    encoding = tiktoken.get_encoding("cl100k_base")  # Use a known encoding
+    return len(encoding.encode(text))
+
+def log_timing(file_path, duration):
+    """Log model processing time to a JSON file."""
+    log_entry = {"file": file_path, "time_taken": duration}
+    if os.path.exists(TIMING_LOG):
+        with open(TIMING_LOG, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    else:
+        data = []
+    
+    data.append(log_entry)
+    
+    with open(TIMING_LOG, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=4)
+
+def generate_type_annotated_code(code: str) -> str:
+    """Generate type annotations using DeepSeek API and log time taken."""
+    prompt = f"Here is a Python program:\n\n{code}\n\nAdd appropriate type annotations. Output only the type annotated Python code. No Explanation. Your output should be directly executable by python compiler."
+    
+    token_count = get_token_count(prompt) + 1  # Ensure token limit safety
+    max_retries = 3
+    wait_time = 60
+    
+    for attempt in range(max_retries):
+        try:
+            start_time = time.time()  # Start timing
+            response = client.chat.completions.create(
+                model="deepseek-chat",
+                
+                messages=[{"role": "system", "content": "You are a genius python programmer"},{"role": "user", "content": prompt}],
+                
+                stream=False
+            )
+            end_time = time.time()  # End timing
+            
+            duration = end_time - start_time
+            log_timing("deepseek_annotation", duration)  # Log timing
+            content = ""
+
+            content = response.choices[0].message.content
+            """reasoning_content=""
+            for chunk in response:
+                if hasattr(chunk.choices[0].delta, "reasoning_content") and chunk.choices[0].delta.reasoning_content:
+                    reasoning_content += chunk.choices[0].delta.reasoning_content
+                if hasattr(chunk.choices[0].delta, "content") and chunk.choices[0].delta.content:
+                    content += chunk.choices[0].delta.content  # Ensure `content` is not `None`
+            """
+                    
+            return content if content else code  # Ret
+        
+        except Exception as e:
+            error_msg = str(e)
+            print(error_msg)
+            if "rate_limit_exceeded" in error_msg:
+                print(f"Rate limit exceeded. Retrying in {wait_time} seconds... (Attempt {attempt+1}/{max_retries})")
+                time.sleep(wait_time)
+                wait_time += 30
+            else:
+                print(f"Error generating type-annotated code: {e}")
+                return code 
+    
+    print("Max retries reached. Skipping request.")
+    return code
+
+def process_file(file_path, grouped_id):
+    """Process a single file, handling encoding errors and logging processing time."""
+    processed_files = load_processed_files()
+
+    if file_path in processed_files:
+        print(f"Skipping {file_path}, already processed.")
+        return
+    print(f"Processing file: {file_path}")
+    
+    try:
+        with open(file_path, 'r', encoding='utf-8', errors='ignore') as file:
+            code = file.read()
+    except (UnicodeDecodeError, IOError) as e:
+        print(f"Skipping {file_path} due to read error: {e}")
+        return
+    
+    start_time = time.time()
+    modified_code = generate_type_annotated_code(code)
+    end_time = time.time()
+    log_timing(file_path, end_time - start_time)
+    
+    content = modified_code.content if hasattr(modified_code, 'content') else modified_code
+    try:
+        code_block = content.split('```python\n')[1].split('```')[0]
+        #code_block=content
+    except IndexError:
+        print(f"Skipping file {file_path} due to unexpected format")
+        return
+    new_file_path= os.path.join(OUTPUT_DIR, grouped_id)
+    if not os.path.exists(new_file_path):
+        os.makedirs(new_file_path)
+    
+    filename = os.path.basename(file_path)
+    #file_hash = hashlib.md5(file_path.encode()).hexdigest()[:8]  # Take first 8 chars of hash
+    #new_file_name = f"{filename}_deepseek_{file_hash}.py"
+    new_file_path = os.path.join(new_file_path, filename)
+    
+    try:
+        with open(new_file_path, 'w', encoding='utf-8', errors='ignore') as file:
+            file.write(code_block)
+    except (UnicodeEncodeError, IOError) as e:
+        print(f"Skipping {file_path} due to write error: {e}")
+        return
+    
+    print(f"Successfully processed: {file_path}")
+    with open(PROCESSED_FILES_LOG, "a", encoding="utf-8") as f:
+        f.write(file_path + "\n")
+
+def load_processed_files():
+    if os.path.exists(PROCESSED_FILES_LOG):
+        with open(PROCESSED_FILES_LOG, "r", encoding="utf-8") as f:
+            return set(f.read().splitlines())
+    return set()
+
+def process_files_from_json():
+    processed_files = load_processed_files()
+    try:
+        with open(JSON_FILE, "r", encoding="utf-8") as f:
+            file_map = json.load(f)
+    except Exception as e:
+        print(f"Error loading JSON: {e}")
+        return
+    
+    all_files = []
+    for id_ in range(1,19):
+        grouped_id = str(id_)
+        all_files.extend(file_map.get(grouped_id, []))
+    # Only count files that are not already processed
+    files_to_process = [f for f in all_files if f not in processed_files]
+    total_to_process = len(files_to_process)
+    processed_count = 0
+    left_count = total_to_process
+    
+    for id_ in range(1,19):
+        grouped_id=str(id_)
+        for file_path in file_map[grouped_id]:
+            if file_path in processed_files:
+                print(f"Skipping already processed file: {file_path}")
+                continue
+            process_file(file_path, grouped_id)
+            processed_count += 1
+            left_count -= 1
+            print(f"Processed: {processed_count}, Left: {left_count}")
+            time.sleep(5)
+        time.sleep(300)
+
+if __name__ == "__main__":
+    ensure_directories_and_files()
+    process_files_from_json()
