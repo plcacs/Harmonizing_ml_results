@@ -5,6 +5,7 @@ import tiktoken
 import anthropic
 import hashlib
 from dotenv import load_dotenv
+
 load_dotenv()
 
 client = anthropic.Anthropic()  # Uses ANTHROPIC_API_KEY from environment
@@ -25,6 +26,7 @@ def get_token_count(text: str, model: str = MODEL_NAME) -> int:
         encoding = tiktoken.get_encoding("cl100k_base")
     return len(encoding.encode(text))
 
+
 def log_timing(file_path, duration):
     log_entry = {"file": file_path, "time_taken": duration}
     if os.path.exists(TIMING_LOG):
@@ -36,18 +38,20 @@ def log_timing(file_path, duration):
     with open(TIMING_LOG, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4)
 
+
 def load_processed_files():
     if os.path.exists(PROCESSED_FILES_LOG):
         with open(PROCESSED_FILES_LOG, "r", encoding="utf-8") as f:
             return set(f.read().splitlines())
     return set()
 
+
 def generate_type_annotated_code(code: str) -> str:
     prompt = f"Here is a Python program:\n\n{code}\n\nAdd appropriate type annotations. Output only the annotated Python code. No Explanation needed."
     prompt_tokens = get_token_count(prompt, model=MODEL_NAME)
     # Dynamically set max_tokens: twice the code tokens, capped at 64,000, and ensure total context <= 200,000
-    max_tokens = min(64000, (prompt_tokens * 2)+1000)
-  
+    max_tokens = min(64000, (prompt_tokens * 2) + 1000)
+
     token_count = prompt_tokens
     max_retries = 3
     wait_time = 60
@@ -66,7 +70,7 @@ def generate_type_annotated_code(code: str) -> str:
             for chunk in response:
                 if chunk.type == "content_block_delta":
                     content_parts.append(chunk.delta.text)
-            
+
             content = "".join(content_parts)
             end_time = time.time()
             log_timing("claude3_sonnet_annotation", end_time - start_time)
@@ -78,7 +82,9 @@ def generate_type_annotated_code(code: str) -> str:
                 print("TPM limit hit — not retrying.")
                 return code, 2
             elif "rate_limit_exceeded" in error_msg:
-                print(f"Rate limit exceeded. Retrying in {wait_time} seconds... (Attempt {attempt+1}/{max_retries})")
+                print(
+                    f"Rate limit exceeded. Retrying in {wait_time} seconds... (Attempt {attempt+1}/{max_retries})"
+                )
                 time.sleep(wait_time)
                 wait_time += 30
             else:
@@ -87,27 +93,29 @@ def generate_type_annotated_code(code: str) -> str:
     print("Max retries reached. Skipping file.")
     return code, 2
 
+
 def extract_code_from_response(content: str) -> str:
     """Extract Python code from the response, handling various formats."""
     # Try to find code blocks
-    if '```python' in content:
+    if "```python" in content:
         try:
             # Extract code between ```python and ```
-            code_block = content.split('```python\n')[1].split('```')[0]
+            code_block = content.split("```python\n")[1].split("```")[0]
             return code_block
         except IndexError:
             pass
-    
-    if '```' in content:
+
+    if "```" in content:
         try:
             # Try without 'python' specifier
-            code_block = content.split('```\n')[1].split('```')[0]
+            code_block = content.split("```\n")[1].split("```")[0]
             return code_block
         except IndexError:
             pass
-    
+
     # If no code blocks found, return the content as-is
     return content
+
 
 def process_file(file_path, grouped_id):
     processed_files = load_processed_files()
@@ -116,7 +124,7 @@ def process_file(file_path, grouped_id):
         return
     print(f"Processing file: {file_path}")
     try:
-        with open(file_path, 'r', encoding='utf-8', errors='ignore') as file:
+        with open(file_path, "r", encoding="utf-8", errors="ignore") as file:
             code = file.read()
     except (UnicodeDecodeError, IOError) as e:
         print(f"Skipping {file_path} due to read error: {e}")
@@ -130,24 +138,24 @@ def process_file(file_path, grouped_id):
         with open(UNPROCESSED_FILES, "a", encoding="utf-8") as f:
             f.write(file_path + "\n")
         return
-    
+
     # Extract code from response
     code_block = extract_code_from_response(modified_code)
-    
+
     # If extraction failed, log the unexpected format
     if not code_block or code_block == modified_code:
         print(f"Skipping file {file_path} due to unexpected format")
         with open(UNEXPECTED_FORMAT_LOG, "a", encoding="utf-8") as f:
             f.write(f"File: {file_path}\nResponse:\n{modified_code}\n{'='*40}\n")
         return
-    
+
     new_file_path = os.path.join(OUTPUT_DIR, grouped_id)
     if not os.path.exists(new_file_path):
         os.makedirs(new_file_path)
     filename = os.path.basename(file_path)
     new_file_path = os.path.join(new_file_path, filename)
     try:
-        with open(new_file_path, 'w', encoding='utf-8', errors='ignore') as file:
+        with open(new_file_path, "w", encoding="utf-8", errors="ignore") as file:
             file.write(code_block)
     except (UnicodeEncodeError, IOError) as e:
         print(f"Skipping {file_path} due to write error: {e}")
@@ -155,6 +163,7 @@ def process_file(file_path, grouped_id):
     print(f"Successfully processed: {file_path}")
     with open(PROCESSED_FILES_LOG, "a", encoding="utf-8") as f:
         f.write(file_path + "\n")
+
 
 def process_files_from_json():
     processed_files = load_processed_files()
@@ -172,7 +181,7 @@ def process_files_from_json():
     total_to_process = len(files_to_process)
     processed_count = 0
     left_count = total_to_process
-    for id_ in range(1, 19):
+    for id_ in range(5, 19):
         grouped_id = str(id_)
         for file_path in file_map[grouped_id]:
             if file_path in processed_files:
@@ -185,5 +194,6 @@ def process_files_from_json():
             time.sleep(5)
         time.sleep(600)
 
+
 if __name__ == "__main__":
-    process_files_from_json() 
+    process_files_from_json()
