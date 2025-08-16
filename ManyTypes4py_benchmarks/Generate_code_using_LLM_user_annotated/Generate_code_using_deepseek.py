@@ -89,7 +89,7 @@ def generate_type_annotated_code(code: str) -> str:
             end_time = time.time()  # End timing
 
             duration = end_time - start_time
-            log_timing("deepseek_annotation", duration)  # Log timing
+            # log_timing("deepseek_annotation", duration)  # Log timing
             content = ""
 
             content = response.choices[0].message.content
@@ -188,7 +188,7 @@ def process_files_from_json():
         return
 
     all_files = []
-    for id_ in range(4, 19):
+    for id_ in range(6, 19):
         grouped_id = str(id_)
         all_files.extend(file_map.get(grouped_id, []))
     # Only count files that are not already processed
@@ -197,7 +197,7 @@ def process_files_from_json():
     processed_count = 0
     left_count = total_to_process
 
-    for id_ in range(4, 19):
+    for id_ in range(6, 19):
         grouped_id = str(id_)
         for file_path in file_map[grouped_id]:
             if file_path in processed_files:
@@ -208,7 +208,7 @@ def process_files_from_json():
             left_count -= 1
             print(f"Processed: {processed_count}, Left: {left_count}")
             time.sleep(5)
-        time.sleep(300)
+        time.sleep(30)
 
 
 if __name__ == "__main__":

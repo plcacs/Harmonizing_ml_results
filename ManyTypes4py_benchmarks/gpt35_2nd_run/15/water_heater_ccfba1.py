@@ -1,0 +1,19 @@
+def _build_entities(device_list: list[ViCareDevice]) -> list[ViCareWater]:
+    ...
+
+async def async_setup_entry(hass: HomeAssistant, config_entry: ViCareConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None:
+    ...
+
+class ViCareWater(ViCareEntity, WaterHeaterEntity):
+    def __init__(self, device_serial: str, device_config: PyViCareDeviceConfig, device: PyViCareDevice, circuit: PyViCareHeatingCircuit) -> None:
+        ...
+
+    def update(self) -> None:
+        ...
+
+    def set_temperature(self, **kwargs: Any) -> None:
+        ...
+
+    @property
+    def current_operation(self) -> str:
+        ...

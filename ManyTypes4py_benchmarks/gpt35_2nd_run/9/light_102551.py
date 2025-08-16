@@ -1,0 +1,23 @@
+def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType = None) -> None:
+    ...
+
+class IhcLight(IHCEntity, LightEntity):
+    def __init__(self, ihc_controller: IHCController, controller_id: Any, name: str, ihc_id: int, ihc_off_id: int, ihc_on_id: int, dimmable: bool = False, product: Any = None) -> None:
+        ...
+
+    @property
+    def brightness(self) -> int:
+        ...
+
+    @property
+    def is_on(self) -> bool:
+        ...
+
+    async def async_turn_on(self, **kwargs: Any) -> None:
+        ...
+
+    async def async_turn_off(self, **kwargs: Any) -> None:
+        ...
+
+    def on_ihc_change(self, ihc_id: int, value: Any) -> None:
+        ...

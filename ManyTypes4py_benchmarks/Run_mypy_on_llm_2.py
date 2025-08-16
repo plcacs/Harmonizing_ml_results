@@ -83,8 +83,8 @@ import time
 if __name__ == "__main__":
     start_time = time.time()
     run_mypy_and_save_results(
-        "deepseek_renamed_output_2",
-        "mypy_results/mypy_outputs/renamed_output/mypy_results_deepseek_renamed_output_2_with_errors.json",
+        "o3_mini_2nd_run",
+        "mypy_results/mypy_outputs/mypy_results_o3_mini_2nd_run_with_errors.json",
     )
     end_time = time.time()
     print(f"Time taken: {end_time - start_time} seconds")

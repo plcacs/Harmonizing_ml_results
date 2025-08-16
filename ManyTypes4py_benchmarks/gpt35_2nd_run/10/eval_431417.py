@@ -1,0 +1,23 @@
+from __future__ import annotations
+from typing import TYPE_CHECKING, Any, List, Tuple, Union, Dict
+
+def _check_engine(engine: str) -> str:
+    ...
+
+def _check_parser(parser: str) -> None:
+    ...
+
+def _check_resolvers(resolvers: Union[None, Tuple]) -> None:
+    ...
+
+def _check_expression(expr: object) -> None:
+    ...
+
+def _convert_expression(expr: object) -> str:
+    ...
+
+def _check_for_locals(expr: str, stack_level: int, parser: str) -> None:
+    ...
+
+def eval(expr: str, parser: str = 'pandas', engine: Union[str, None] = None, local_dict: Union[None, Dict] = None, global_dict: Union[None, Dict] = None, resolvers: Union[None, Tuple] = (), level: int = 0, target: Union[None, Any] = None, inplace: bool = False) -> Union[None, Any]:
+    ...

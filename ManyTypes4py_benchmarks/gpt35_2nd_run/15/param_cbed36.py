@@ -1,0 +1,13 @@
+from typing import List, Tuple
+
+def _add_argument_issue(error_name: str, lazy_value: LazyTreeValue, message: str) -> analysis:
+    ...
+
+def get_executed_param_names_and_issues(function_value: analysis, arguments: List) -> Tuple[List[ExecutedParamName], List]:
+    ...
+
+def get_executed_param_names(function_value: analysis, arguments: List) -> List[ExecutedParamName]:
+    ...
+
+def _error_argument_count(funcdef: analysis, actual_count: int) -> str:
+    ...

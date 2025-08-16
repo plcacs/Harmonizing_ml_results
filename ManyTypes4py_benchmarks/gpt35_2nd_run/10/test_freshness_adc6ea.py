@@ -1,0 +1,43 @@
+from typing import Dict, Set, Any, List
+import datetime
+
+class TestFreshnessTaskMetadataCache:
+
+    def args(self) -> Any:
+        ...
+
+    def config(self) -> Any:
+        ...
+
+    def manifest(self) -> Any:
+        ...
+
+    def source_with_loaded_at_field(self) -> Any:
+        ...
+
+    def source_no_loaded_at_field(self) -> Any:
+        ...
+
+    def source_no_loaded_at_field2(self) -> Any:
+        ...
+
+    def adapter(self) -> Any:
+        ...
+
+    def freshness_response(self) -> FreshnessResponse:
+        ...
+
+    def test_populate_metadata_freshness_cache(self, args: Any, config: Any, manifest: Any, adapter: Any, source_no_loaded_at_field: Any, freshness_response: FreshnessResponse) -> None:
+        ...
+
+    def test_populate_metadata_freshness_cache_multiple_sources(self, args: Any, config: Any, manifest: Any, adapter: Any, source_no_loaded_at_field: Any, source_no_loaded_at_field2: Any, freshness_response: FreshnessResponse) -> None:
+        ...
+
+    def test_populate_metadata_freshness_cache_with_loaded_at_field(self, args: Any, config: Any, manifest: Any, adapter: Any, source_with_loaded_at_field: Any, freshness_response: FreshnessResponse) -> None:
+        ...
+
+    def test_populate_metadata_freshness_cache_multiple_sources_mixed(self, args: Any, config: Any, manifest: Any, adapter: Any, source_no_loaded_at_field: Any, source_with_loaded_at_field: Any, freshness_response: FreshnessResponse) -> None:
+        ...
+
+    def test_populate_metadata_freshness_cache_adapter_exception(self, args: Any, config: Any, manifest: Any, adapter: Any, source_no_loaded_at_field: Any, freshness_response: FreshnessResponse) -> None:
+        ...

@@ -1,0 +1,53 @@
+def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType = None) -> None:
+    ...
+
+class IgnSismologiaFeedEntityManager:
+    def __init__(self, hass: HomeAssistant, add_entities: AddEntitiesCallback, scan_interval: timedelta, coordinates: tuple[float, float], radius_in_km: float, minimum_magnitude: float) -> None:
+        ...
+
+    def startup(self) -> None:
+        ...
+
+    def _init_regular_updates(self) -> None:
+        ...
+
+    def get_entry(self, external_id: str) -> IgnSismologiaFeedEntry:
+        ...
+
+    def _generate_entity(self, external_id: str) -> None:
+        ...
+
+    def _update_entity(self, external_id: str) -> None:
+        ...
+
+    def _remove_entity(self, external_id: str) -> None:
+        ...
+
+class IgnSismologiaLocationEvent(GeolocationEvent):
+    def __init__(self, feed_manager: IgnSismologiaFeedEntityManager, external_id: str) -> None:
+        ...
+
+    async def async_added_to_hass(self) -> None:
+        ...
+
+    @callback
+    def _delete_callback(self) -> None:
+        ...
+
+    @callback
+    def _update_callback(self) -> None:
+        ...
+
+    async def async_update(self) -> None:
+        ...
+
+    def _update_from_feed(self, feed_entry: IgnSismologiaFeedEntry) -> None:
+        ...
+
+    @property
+    def name(self) -> str:
+        ...
+
+    @property
+    def extra_state_attributes(self) -> dict[str, Any]:
+        ...

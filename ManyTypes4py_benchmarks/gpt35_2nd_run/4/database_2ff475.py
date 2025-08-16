@@ -1,0 +1,16 @@
+from snowflake.connector.cursor import SnowflakeCursor
+
+def snowflake_query(query: str, snowflake_connector: SnowflakeConnector, params: Optional[Dict[str, Any]] = None, cursor_type: Type[SnowflakeCursor] = SnowflakeCursor, poll_frequency_seconds: int = 1) -> List[Tuple]:
+    ...
+
+async def snowflake_query_async(query: str, snowflake_connector: SnowflakeConnector, params: Optional[Dict[str, Any]] = None, cursor_type: Type[SnowflakeCursor] = SnowflakeCursor, poll_frequency_seconds: int = 1) -> List[Tuple]:
+    ...
+
+def snowflake_multiquery(queries: List[str], snowflake_connector: SnowflakeConnector, params: Optional[Dict[str, Any]] = None, cursor_type: Type[SnowflakeCursor] = SnowflakeCursor, as_transaction: bool = False, return_transaction_control_results: bool = False, poll_frequency_seconds: int = 1) -> List[List[Tuple]]:
+    ...
+
+async def snowflake_multiquery_async(queries: List[str], snowflake_connector: SnowflakeConnector, params: Optional[Dict[str, Any]] = None, cursor_type: Type[SnowflakeCursor] = SnowflakeCursor, as_transaction: bool = False, return_transaction_control_results: bool = False, poll_frequency_seconds: int = 1) -> List[List[Tuple]]:
+    ...
+
+def snowflake_query_sync(query: str, snowflake_connector: SnowflakeConnector, params: Optional[Dict[str, Any]] = None, cursor_type: Type[SnowflakeCursor] = SnowflakeCursor) -> List[Tuple]:
+    ...

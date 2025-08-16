@@ -1,0 +1,44 @@
+import logging
+from aiopvapi.resources.shade import BaseShade, ShadePosition
+from homeassistant.helpers import device_registry as dr
+from homeassistant.helpers.device_registry import DeviceInfo
+from homeassistant.helpers.update_coordinator import CoordinatorEntity
+from .const import DOMAIN, MANUFACTURER
+from .coordinator import PowerviewShadeUpdateCoordinator
+from .model import PowerviewDeviceInfo
+from .shade_data import PowerviewShadeData
+_LOGGER = logging.getLogger(__name__)
+
+class HDEntity(CoordinatorEntity[PowerviewShadeUpdateCoordinator]):
+    _attr_has_entity_name: bool = True
+
+    def __init__(self, coordinator: PowerviewShadeUpdateCoordinator, device_info: PowerviewDeviceInfo, room_name: str, powerview_id: str) -> None:
+        super().__init__(coordinator)
+        self._room_name: str = room_name
+        self._attr_unique_id: str = f'{device_info.serial_number}_{powerview_id}'
+        self._device_info: PowerviewDeviceInfo = device_info
+        self._configuration_url: str = self.coordinator.hub.url
+
+    @property
+    def data(self) -> PowerviewShadeData:
+        return self.coordinator.data
+
+    @property
+    def device_info(self) -> DeviceInfo:
+        return DeviceInfo(connections={(dr.CONNECTION_NETWORK_MAC, self._device_info.mac_address)}, identifiers={(DOMAIN, self._device_info.serial_number)}, manufacturer=MANUFACTURER, model=self._device_info.model, name=self._device_info.name, sw_version=self._device_info.firmware, configuration_url=self._configuration_url)
+
+class ShadeEntity(HDEntity):
+    def __init__(self, coordinator: PowerviewShadeUpdateCoordinator, device_info: PowerviewDeviceInfo, room_name: str, shade: BaseShade, shade_name: str) -> None:
+        super().__init__(coordinator, device_info, room_name, shade.id)
+        self._shade_name: str = shade_name
+        self._shade: BaseShade = shade
+        self._is_hard_wired: bool = not shade.is_battery_powered()
+        self._configuration_url: str = shade.url
+
+    @property
+    def positions(self) -> ShadePosition:
+        return self.data.get_shade_position(self._shade.id)
+
+    @property
+    def device_info(self) -> DeviceInfo:
+        return DeviceInfo(identifiers={(DOMAIN, self._shade.id)}, name=self._shade_name, suggested_area=self._room_name, manufacturer=MANUFACTURER, model=self._shade.type_name, sw_version=self._shade.firmware, via_device=(DOMAIN, self._device_info.serial_number), configuration_url=self._configuration_url)

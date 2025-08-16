@@ -1,0 +1,23 @@
+def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType = None) -> None:
+    ...
+
+def read_gpio(device_id: str, port: str, level: bool) -> None:
+    ...
+
+class NumatoGpioBinarySensor(BinarySensorEntity):
+    def __init__(self, name: str, device_id: str, port: str, invert_logic: bool, api: Any) -> None:
+        ...
+
+    async def async_added_to_hass(self) -> None:
+        ...
+
+    @callback
+    def _async_update_state(self, level: bool) -> None:
+        ...
+
+    @property
+    def is_on(self) -> bool:
+        ...
+
+    def update(self) -> None:
+        ...

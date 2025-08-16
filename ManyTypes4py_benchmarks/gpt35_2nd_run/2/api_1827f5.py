@@ -1,0 +1,36 @@
+from io import TextIO
+from pathlib import Path
+from typing import Any, Iterator, Optional, Set, Union
+
+def sort_code_string(code: str, extension: Optional[str] = None, config: Config = DEFAULT_CONFIG, file_path: Optional[Path] = None, disregard_skip: bool = False, show_diff: bool = False, **config_kwargs: Any) -> str:
+    ...
+
+def check_code_string(code: str, show_diff: bool = False, extension: Optional[str] = None, config: Config = DEFAULT_CONFIG, file_path: Optional[Path] = None, disregard_skip: bool = False, **config_kwargs: Any) -> bool:
+    ...
+
+def sort_stream(input_stream: TextIO, output_stream: TextIO, extension: Optional[str] = None, config: Config = DEFAULT_CONFIG, file_path: Optional[Path] = None, disregard_skip: bool = False, show_diff: bool = False, raise_on_skip: bool = True, **config_kwargs: Any) -> bool:
+    ...
+
+def check_stream(input_stream: TextIO, show_diff: bool = False, extension: Optional[str] = None, config: Config = DEFAULT_CONFIG, file_path: Optional[Path] = None, disregard_skip: bool = False, **config_kwargs: Any) -> bool:
+    ...
+
+def check_file(filename: Union[str, Path], show_diff: bool = False, config: Config = DEFAULT_CONFIG, file_path: Optional[Path] = None, disregard_skip: bool = True, extension: Optional[str] = None, **config_kwargs: Any) -> bool:
+    ...
+
+def sort_file(filename: Union[str, Path], extension: Optional[str] = None, config: Config = DEFAULT_CONFIG, file_path: Optional[Path] = None, disregard_skip: bool = True, ask_to_apply: bool = False, show_diff: bool = False, write_to_stdout: bool = False, output: Optional[TextIO] = None, **config_kwargs: Any) -> bool:
+    ...
+
+def find_imports_in_code(code: str, config: Config = DEFAULT_CONFIG, file_path: Optional[Path] = None, unique: bool = False, top_only: bool = False, **config_kwargs: Any) -> Iterator[IdentifiedImport]:
+    ...
+
+def find_imports_in_stream(input_stream: TextIO, config: Config = DEFAULT_CONFIG, file_path: Optional[Path] = None, unique: bool = False, top_only: bool = False, _seen: Optional[Set[str]] = None, **config_kwargs: Any) -> Iterator[IdentifiedImport]:
+    ...
+
+def find_imports_in_file(filename: Union[str, Path], config: Config = DEFAULT_CONFIG, file_path: Optional[Path] = None, unique: bool = False, top_only: bool = False, **config_kwargs: Any) -> Iterator[IdentifiedImport]:
+    ...
+
+def find_imports_in_paths(paths: Iterable[Union[str, Path]], config: Config = DEFAULT_CONFIG, file_path: Optional[Path] = None, unique: bool = False, top_only: bool = False, **config_kwargs: Any) -> Iterator[IdentifiedImport]:
+    ...
+
+def _config(path: Optional[Path] = None, config: Config = DEFAULT_CONFIG, **config_kwargs: Any) -> Config:
+    ...

@@ -1,0 +1,24 @@
+import logging
+from flask import request
+from alerta.plugins import PluginBase
+from alerta.models.alert import Alert
+
+LOG: logging.Logger = logging.getLogger('alerta.plugins')
+
+class RemoteIpAddr(PluginBase):
+    def pre_receive(self, alert: Alert, **kwargs) -> Alert:
+        remote_addr: str = next(iter(request.access_route), request.remote_addr)
+        alert.attributes.update(ip=remote_addr)
+        return alert
+
+    def post_receive(self, alert: Alert, **kwargs) -> None:
+        pass
+
+    def status_change(self, alert: Alert, status: str, text: str, **kwargs) -> None:
+        pass
+
+    def take_action(self, alert: Alert, action: str, text: str, **kwargs) -> None:
+        raise NotImplementedError
+
+    def delete(self, alert: Alert, **kwargs) -> None:
+        raise NotImplementedError

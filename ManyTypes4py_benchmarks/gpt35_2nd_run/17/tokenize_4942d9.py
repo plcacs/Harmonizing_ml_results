@@ -1,0 +1,26 @@
+from typing import Callable, Tuple, List, Any
+
+def generate_tokens(readline: Callable[[], str]) -> Any:
+    ...
+
+def tokenize(readline: Callable[[], str], tokeneater: Callable[[int, str, Tuple[int, int], Tuple[int, int], str], None]) -> None:
+    ...
+
+def tokenize_loop(readline: Callable[[], str], tokeneater: Callable[[int, str, Tuple[int, int], Tuple[int, int], str], None]) -> None:
+    ...
+
+class Untokenizer:
+    def add_whitespace(self, start: Tuple[int, int]) -> None:
+        ...
+
+    def untokenize(self, iterable: Any) -> str:
+        ...
+
+    def compat(self, token: Tuple[int, str], iterable: Any) -> None:
+        ...
+
+def detect_encoding(readline: Callable[[], str]) -> Tuple[str, List[str]]:
+    ...
+
+def untokenize(iterable: Any) -> str:
+    ...

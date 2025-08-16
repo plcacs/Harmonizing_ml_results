@@ -1,0 +1,16 @@
+from typing import Optional
+
+def copy_default_settings(settings_source: UserProfile, target_profile: UserProfile) -> None:
+    ...
+
+def get_dummy_email_address_for_display_regex(realm: Realm) -> str:
+    ...
+
+def get_display_email_address(user_profile: UserProfile) -> str:
+    ...
+
+def create_user_profile(realm: Realm, email: str, password: str, active: bool, bot_type: Optional[int], full_name: str, bot_owner: Optional[UserProfile], is_mirror_dummy: bool, tos_version: Optional[str], timezone: str, default_language: str, force_id: Optional[int] = None, force_date_joined: Optional[datetime] = None, *, email_address_visibility: int) -> UserProfile:
+    ...
+
+def create_user(email: str, password: str, realm: Realm, full_name: str, active: bool = True, role: Optional[int] = None, bot_type: Optional[int] = None, bot_owner: Optional[UserProfile] = None, tos_version: Optional[str] = None, timezone: str = '', avatar_source: int = UserProfile.AVATAR_FROM_GRAVATAR, is_mirror_dummy: bool = False, default_language: Optional[str] = None, default_sending_stream: Optional[Stream] = None, default_events_register_stream: Optional[Stream] = None, default_all_public_streams: Optional[bool] = None, source_profile: Optional[UserProfile] = None, force_id: Optional[int] = None, force_date_joined: Optional[datetime] = None, create_personal_recipient: bool = True, enable_marketing_emails: Optional[bool] = None, email_address_visibility: Optional[int] = None) -> UserProfile:
+    ...

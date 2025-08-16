@@ -1,0 +1,63 @@
+def node_address_from_userid(user_id: str) -> Optional[AddressHex]:
+    if user_id:
+        return AddressHex(HexStr(user_id.split(':', 1)[0][1:]))
+    return None
+
+class GMatrixHttpApi(MatrixHttpApi):
+    def __init__(self, *args, pool_maxsize: int = 10, retry_timeout: int = 60, retry_delay: Optional[Callable[[], Iterable[int]]] = None, long_paths: Tuple[str] = (), user_agent: Optional[str] = None, **kwargs):
+        ...
+
+    def _send(self, method: str, path: str, *args, **kwargs) -> JSONResponse:
+        ...
+
+    def get_room_state_type(self, room_id: str, event_type: str, state_key: str) -> JSONResponse:
+        ...
+
+    def create_room(self, alias: Optional[str] = None, is_public: bool = False, invitees: Optional[List[str]] = None, **kwargs) -> JSONResponse:
+        ...
+
+    def get_presence(self, user_id: str) -> JSONResponse:
+        ...
+
+    def get_aliases(self, room_id: str) -> JSONResponse:
+        ...
+
+    def disable_push_notifications(self) -> JSONResponse:
+        ...
+
+class GMatrixClient(MatrixClient):
+    def __init__(self, handle_messages_callback: Callable[[List[MatrixMessage]], None], base_url: str, token: Optional[str] = None, user_id: Optional[str] = None, valid_cert_check: bool = True, sync_filter_limit: int = 20, cache_level: str = CACHE.ALL, http_pool_maxsize: int = 10, http_retry_timeout: int = 60, http_retry_delay: Callable[[], Iterable[int]] = lambda: repeat(1), environment: Environment = Environment.PRODUCTION, user_agent: Optional[str] = None):
+        ...
+
+    def create_sync_filter(self, limit: int) -> str:
+        ...
+
+    def listen_forever(self, timeout_ms: int, latency_ms: int, exception_handler: Optional[Callable[[Exception], None]] = None, bad_sync_timeout: int = 5):
+        ...
+
+    def start_listener_thread(self, timeout_ms: int, latency_ms: int, exception_handler: Optional[Callable[[Exception], None]] = None):
+        ...
+
+    def search_user_directory(self, term: str) -> List[User]:
+        ...
+
+    def set_presence_state(self, state: str) -> JSONResponse:
+        ...
+
+    def get_user_presence(self, user_id: str) -> str:
+        ...
+
+    def blocking_sync(self, timeout_ms: int, latency_ms: int):
+        ...
+
+    def _sync(self, timeout_ms: int, latency_ms: int):
+        ...
+
+    def _handle_message(self, response_queue: NotifyingQueue, stop_event: Event):
+        ...
+
+    def set_access_token(self, user_id: str, token: str):
+        ...
+
+    def set_sync_filter_id(self, sync_filter_id: str) -> Optional[str]:
+        ...

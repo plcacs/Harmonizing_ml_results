@@ -1,0 +1,16 @@
+from typing import List
+
+def open_and_wait_for_channels(app_channels: List, registry_address: str, token: TokenAddress, deposit: TokenAmount, settle_timeout: int) -> None:
+    ...
+
+def test_regression_unfiltered_routes(raiden_network: List, token_addresses: List, settle_timeout: int, deposit: TokenAmount) -> None:
+    ...
+
+def test_regression_revealsecret_after_secret(raiden_network: List, token_addresses: List) -> None:
+    ...
+
+def test_regression_multiple_revealsecret(raiden_network: List, token_addresses: List) -> None:
+    ...
+
+def test_regression_register_secret_once(secret_registry_address: str, proxy_manager: ProxyManager) -> None:
+    ...

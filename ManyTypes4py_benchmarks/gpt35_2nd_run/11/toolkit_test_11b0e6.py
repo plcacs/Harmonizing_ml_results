@@ -1,0 +1,120 @@
+import pytest
+import torch
+from torch.testing import assert_allclose
+from transformers import AutoModel
+from transformers.models.albert.modeling_albert import AlbertEmbeddings
+from allennlp.common import cached_transformers
+from allennlp.data.vocabulary import Vocabulary
+from allennlp.modules.token_embedders import Embedding, TokenEmbedder
+from allennlp.modules.transformer import TransformerStack, TransformerEmbeddings, TransformerPooler
+from allennlp.common.testing import AllenNlpTestCase
+
+class TestTransformerToolkit(AllenNlpTestCase):
+
+    def setup_method(self) -> None:
+        super().setup_method()
+        self.vocab: Vocabulary = Vocabulary()
+        self.vocab.add_token_to_namespace('word')
+        self.vocab.add_token_to_namespace('the')
+        self.vocab.add_token_to_namespace('an')
+
+    def test_create_embedder_using_toolkit(self) -> None:
+        embedding_file: str = str(self.FIXTURES_ROOT / 'embeddings/glove.6B.300d.sample.txt.gz')
+
+        class TinyTransformer(TokenEmbedder):
+
+            def __init__(self, vocab: Vocabulary, embedding_dim: int, hidden_size: int, intermediate_size: int) -> None:
+                super().__init__()
+                self.embeddings: Embedding = Embedding(pretrained_file=embedding_file, embedding_dim=embedding_dim, projection_dim=hidden_size, vocab=vocab)
+                self.transformer: TransformerStack = TransformerStack(num_hidden_layers=4, hidden_size=hidden_size, intermediate_size=intermediate_size)
+
+            def forward(self, token_ids: torch.Tensor) -> torch.Tensor:
+                x: torch.Tensor = self.embeddings(token_ids)
+                x = self.transformer(x)
+                return x
+        tiny: TinyTransformer = TinyTransformer(self.vocab, embedding_dim=300, hidden_size=80, intermediate_size=40)
+        tiny.forward(torch.LongTensor([[0, 1, 2]]))
+
+    def test_use_first_four_layers_of_pretrained(self) -> None:
+        pretrained: str = 'bert-base-cased'
+
+        class SmallTransformer(TokenEmbedder):
+
+            def __init__(self) -> None:
+                super().__init__()
+                self.embeddings: TransformerEmbeddings = TransformerEmbeddings.from_pretrained_module(pretrained, relevant_module='bert.embeddings')
+                self.transformer: TransformerStack = TransformerStack.from_pretrained_module(pretrained, num_hidden_layers=4, relevant_module='bert.encoder', strict=False)
+
+            def forward(self, token_ids: torch.Tensor) -> torch.Tensor:
+                x: torch.Tensor = self.embeddings(token_ids)
+                x = self.transformer(x)
+                return x
+        small: SmallTransformer = SmallTransformer()
+        assert len(small.transformer.layers) == 4
+        small(torch.LongTensor([[0, 1, 2]]))
+
+    def test_use_selected_layers_of_bert_for_different_purposes(self) -> None:
+
+        class MediumTransformer(torch.nn.Module):
+
+            def __init__(self) -> None:
+                super().__init__()
+                self.embeddings: TransformerEmbeddings = TransformerEmbeddings.from_pretrained_module('bert-base-cased', relevant_module='bert.embeddings')
+                self.separate_transformer: TransformerStack = TransformerStack.from_pretrained_module('bert-base-cased', relevant_module='bert.encoder', num_hidden_layers=8, strict=False)
+                self.combined_transformer: TransformerStack = TransformerStack.from_pretrained_module('bert-base-cased', relevant_module='bert.encoder', num_hidden_layers=4, mapping={f'layer.{l}': f'layers.{i}' for i, l in enumerate(range(8, 12))}, strict=False)
+
+            def forward(self, left_token_ids: torch.Tensor, right_token_ids: torch.Tensor) -> torch.Tensor:
+                left: torch.Tensor = self.embeddings(left_token_ids)
+                left = self.separate_transformer(left)
+                right: torch.Tensor = self.embeddings(right_token_ids)
+                right = self.separate_transformer(right)
+                combined: torch.Tensor = left + right
+                return self.combined_transformer(combined)
+        medium: MediumTransformer = MediumTransformer()
+        assert len(medium.separate_transformer.layers) == 8
+        assert len(medium.combined_transformer.layers) == 4
+        pretrained: cached_transformers.PRETRAINED_MODEL_ARCHIVE_MAP = cached_transformers.get('bert-base-cased', False)
+        pretrained_layers: dict = dict(pretrained.encoder.layer.named_modules())
+        separate_layers: dict = dict(medium.separate_transformer.layers.named_modules())
+        assert_allclose(separate_layers['0'].intermediate.dense.weight.data, pretrained_layers['0'].intermediate.dense.weight.data)
+        combined_layers: dict = dict(medium.combined_transformer.layers.named_modules())
+        assert_allclose(combined_layers['0'].intermediate.dense.weight.data, pretrained_layers['8'].intermediate.dense.weight.data)
+        assert_allclose(combined_layers['1'].intermediate.dense.weight.data, pretrained_layers['9'].intermediate.dense.weight.data)
+        assert_allclose(combined_layers['2'].intermediate.dense.weight.data, pretrained_layers['10'].intermediate.dense.weight.data)
+        assert_allclose(combined_layers['3'].intermediate.dense.weight.data, pretrained_layers['11'].intermediate.dense.weight.data)
+
+    def test_combination_of_two_different_berts(self) -> None:
+
+        class AlmostRegularTransformer(TokenEmbedder):
+
+            def __init__(self) -> None:
+                super().__init__()
+                self.embeddings: AlbertEmbeddings = AutoModel.from_pretrained('albert-base-v2').embeddings
+                self.transformer: TransformerStack = TransformerStack.from_pretrained_module('bert-base-cased', relevant_module='bert.encoder')
+                self.transformer.requires_grad = False
+
+            def forward(self, token_ids: torch.Tensor, mask: torch.Tensor) -> torch.Tensor:
+                x: torch.Tensor = self.embeddings(token_ids, mask)
+                x = self.transformer(x)
+                return x
+        almost: AlmostRegularTransformer = AlmostRegularTransformer()
+        assert len(almost.transformer.layers) == 12
+        assert isinstance(almost.embeddings, AlbertEmbeddings)
+
+    @pytest.mark.parametrize('model_name', ['bert-base-cased', 'roberta-base'])
+    def test_end_to_end(self, model_name: str) -> None:
+        data: list = [("I'm against picketing", "but I don't know how to show it."), ('I saw a human pyramid once.', 'It was very unnecessary.')]
+        tokenizer: cached_transformers.PreTrainedTokenizer = cached_transformers.get_tokenizer(model_name)
+        batch: dict = tokenizer.batch_encode_plus(data, padding=True, return_tensors='pt')
+        with torch.no_grad():
+            huggingface_model: torch.nn.Module = cached_transformers.get(model_name, make_copy=False).eval()
+            huggingface_output: torch.Tensor = huggingface_model(**batch)
+            embeddings: TransformerEmbeddings = TransformerEmbeddings.from_pretrained_module(model_name).eval()
+            transformer_stack: TransformerStack = TransformerStack.from_pretrained_module(model_name).eval()
+            pooler: TransformerPooler = TransformerPooler.from_pretrained_module(model_name).eval()
+            batch['attention_mask'] = batch['attention_mask'].to(torch.bool)
+            output: torch.Tensor = embeddings(**batch)
+            output = transformer_stack(output, batch['attention_mask'])
+            assert_allclose(output.final_hidden_states, huggingface_output.last_hidden_state, rtol=0.0001, atol=0.0001)
+            output = pooler(output.final_hidden_states)
+            assert_allclose(output, huggingface_output.pooler_output, rtol=0.0001, atol=0.0001)

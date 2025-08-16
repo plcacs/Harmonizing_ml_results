@@ -1,0 +1,69 @@
+from typing import Tuple, Union
+
+ColorTuple = Union[Tuple[int, int, int], Tuple[int, int, int, float]]
+ColorType = Union[ColorTuple, str]
+
+class RGBA:
+    def __init__(self, r: int, g: int, b: int, alpha: float):
+        ...
+
+class Color:
+    def __init__(self, value: ColorType):
+        ...
+
+    def original(self) -> ColorType:
+        ...
+
+    def as_named(self, *, fallback: bool = False) -> str:
+        ...
+
+    def as_hex(self) -> str:
+        ...
+
+    def as_rgb(self) -> str:
+        ...
+
+    def as_rgb_tuple(self, *, alpha: bool = None) -> ColorTuple:
+        ...
+
+    def as_hsl(self) -> str:
+        ...
+
+    def as_hsl_tuple(self, *, alpha: bool = None) -> ColorTuple:
+        ...
+
+    def _alpha_float(self) -> float:
+        ...
+
+    def __str__(self) -> str:
+        ...
+
+    def __repr_args__(self) -> list:
+        ...
+
+    def __eq__(self, other) -> bool:
+        ...
+
+    def __hash__(self) -> int:
+        ...
+
+def parse_tuple(value: ColorTuple) -> RGBA:
+    ...
+
+def parse_str(value: str) -> RGBA:
+    ...
+
+def ints_to_rgba(r: int, g: int, b: int, alpha: float) -> RGBA:
+    ...
+
+def parse_color_value(value: int, max_val: int = 255) -> float:
+    ...
+
+def parse_float_alpha(value: float) -> float:
+    ...
+
+def parse_hsl(h: float, h_units: str, sat: float, light: float, alpha: float = None) -> RGBA:
+    ...
+
+def float_to_255(c: float) -> int:
+    ...
