@@ -1,0 +1,13 @@
+from typing import Any, Dict, List, Union
+
+def create_attrs_autospec(spec: Any, spec_set: bool = True) -> Any:
+    ...
+
+def _mock_imported_settings_paths(mocker: Any, mock_settings: Any) -> Any:
+    ...
+
+def get_all_values(mapping: Dict[str, Any]) -> List[Any]:
+    ...
+
+def test_no_DictConfig_in_store(params: str, fake_project: Any) -> None:
+    ...

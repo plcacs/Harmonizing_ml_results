@@ -1,0 +1,19 @@
+from typing import List, Optional, Callable
+
+def http_status_code_list(code_list_str: str) -> List[int]:
+    ...
+
+def filterstr_to_filterfunc(filter_str: str, item_type: type) -> Callable:
+    ...
+
+def get_cookies_from_instagram(domain: str, browser: str, cookie_file: str = '', cookie_name: str = '') -> dict:
+    ...
+
+def import_session(browser: str, instaloader: Instaloader, cookiefile: str) -> None:
+    ...
+
+def _main(instaloader: Instaloader, targetlist: List[str], username: Optional[str] = None, password: Optional[str] = None, sessionfile: Optional[str] = None, download_profile_pic: bool = True, download_posts: bool = True, download_stories: bool = False, download_highlights: bool = False, download_tagged: bool = False, download_reels: bool = False, download_igtv: bool = False, fast_update: bool = False, latest_stamps_file: Optional[str] = None, max_count: Optional[int] = None, post_filter_str: Optional[str] = None, storyitem_filter_str: Optional[str] = None, browser: Optional[str] = None, cookiefile: Optional[str] = None) -> int:
+    ...
+
+def main() -> None:
+    ...

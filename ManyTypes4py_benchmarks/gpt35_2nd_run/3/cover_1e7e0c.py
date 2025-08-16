@@ -1,0 +1,33 @@
+def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType = None) -> None:
+    ...
+
+class AdsCover(AdsEntity, CoverEntity):
+    def __init__(self, ads_hub: AdsHub, ads_var_is_closed: str, ads_var_position: str, ads_var_pos_set: str, ads_var_open: str, ads_var_close: str, ads_var_stop: str, name: str, device_class: str) -> None:
+        ...
+
+    async def async_added_to_hass(self) -> None:
+        ...
+
+    @property
+    def is_closed(self) -> bool:
+        ...
+
+    @property
+    def current_cover_position(self) -> Any:
+        ...
+
+    def stop_cover(self, **kwargs: Any) -> None:
+        ...
+
+    def set_cover_position(self, **kwargs: Any) -> None:
+        ...
+
+    def open_cover(self, **kwargs: Any) -> None:
+        ...
+
+    def close_cover(self, **kwargs: Any) -> None:
+        ...
+
+    @property
+    def available(self) -> bool:
+        ...

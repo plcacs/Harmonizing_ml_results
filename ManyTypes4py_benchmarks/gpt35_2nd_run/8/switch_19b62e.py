@@ -1,0 +1,23 @@
+def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType = None) -> None:
+    ...
+
+class AcerSwitch(SwitchEntity):
+    _attr_icon: str = ICON
+
+    def __init__(self, serial_port: str, name: str, timeout: int, write_timeout: int) -> None:
+        ...
+
+    def _write_read(self, msg: str) -> str:
+        ...
+
+    def _write_read_format(self, msg: str) -> str:
+        ...
+
+    def update(self) -> None:
+        ...
+
+    def turn_on(self, **kwargs: Any) -> None:
+        ...
+
+    def turn_off(self, **kwargs: Any) -> None:
+        ...

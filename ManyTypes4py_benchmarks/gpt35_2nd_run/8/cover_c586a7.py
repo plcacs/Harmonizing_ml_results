@@ -1,0 +1,59 @@
+from typing import Any, List, Dict
+from homeassistant.components.cover import CoverEntity
+from homeassistant.config_entries import ConfigEntry
+from homeassistant.core import HomeAssistant
+from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from .const import DOMAIN, GATEWAYS_KEY
+
+ATTR_CURTAIN_LEVEL: str = 'curtain_level'
+DATA_KEY_PROTO_V1: str = 'status'
+DATA_KEY_PROTO_V2: str = 'curtain_status'
+
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None:
+    entities: List[XiaomiGenericCover] = []
+    gateway = hass.data[DOMAIN][GATEWAYS_KEY][config_entry.entry_id]
+    for device in gateway.devices['cover']:
+        model = device['model']
+        if model in ('curtain', 'curtain.aq2', 'curtain.hagl04'):
+            if 'proto' not in device or int(device['proto'][0:1]) == 1:
+                data_key = DATA_KEY_PROTO_V1
+            else:
+                data_key = DATA_KEY_PROTO_V2
+            entities.append(XiaomiGenericCover(device, 'Curtain', data_key, gateway, config_entry))
+    async_add_entities(entities)
+
+class XiaomiGenericCover(XiaomiDevice, CoverEntity):
+    def __init__(self, device: Dict[str, Any], name: str, data_key: str, xiaomi_hub: Any, config_entry: ConfigEntry) -> None:
+        self._data_key: str = data_key
+        self._pos: int = 0
+        super().__init__(device, name, xiaomi_hub, config_entry)
+
+    @property
+    def current_cover_position(self) -> int:
+        return self._pos
+
+    @property
+    def is_closed(self) -> bool:
+        return self.current_cover_position <= 0
+
+    def close_cover(self, **kwargs: Any) -> None:
+        self._write_to_hub(self._sid, **{self._data_key: 'close'})
+
+    def open_cover(self, **kwargs: Any) -> None:
+        self._write_to_hub(self._sid, **{self._data_key: 'open'})
+
+    def stop_cover(self, **kwargs: Any) -> None:
+        self._write_to_hub(self._sid, **{self._data_key: 'stop'})
+
+    def set_cover_position(self, **kwargs: Any) -> None:
+        position = kwargs.get(ATTR_POSITION)
+        if self._data_key == DATA_KEY_PROTO_V2:
+            self._write_to_hub(self._sid, **{ATTR_CURTAIN_LEVEL: position})
+        else:
+            self._write_to_hub(self._sid, **{ATTR_CURTAIN_LEVEL: str(position)})
+
+    def parse_data(self, data: Dict[str, Any], raw_data: Any) -> bool:
+        if ATTR_CURTAIN_LEVEL in data:
+            self._pos = int(data[ATTR_CURTAIN_LEVEL])
+            return True
+        return False

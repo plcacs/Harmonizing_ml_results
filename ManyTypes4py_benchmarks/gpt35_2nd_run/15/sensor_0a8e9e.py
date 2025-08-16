@@ -1,0 +1,43 @@
+def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType = None) -> None:
+    ...
+
+def __init__(self, api: Any, temp_id: Optional[int], name: str, printer_id: str, description: RepetierSensorEntityDescription) -> None:
+    ...
+
+@property
+def extra_state_attributes(self) -> dict:
+    ...
+
+@property
+def native_value(self) -> Any:
+    ...
+
+@callback
+def update_callback(self) -> None:
+    ...
+
+async def async_added_to_hass(self) -> None:
+    ...
+
+def _get_data(self) -> Optional[dict]:
+    ...
+
+def update(self) -> None:
+    ...
+
+@property
+def native_value(self) -> Any:
+    ...
+
+def update(self) -> None:
+    ...
+
+@property
+def native_value(self) -> Any:
+    ...
+
+def update(self) -> None:
+    ...
+
+def update(self) -> None:
+    ...

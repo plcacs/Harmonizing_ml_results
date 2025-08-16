@@ -1,0 +1,8 @@
+def fetch_available_matrix_servers(transport_config: MatrixTransportConfig, environment_type: Environment) -> None:
+def get_account_and_private_key(account_manager: AccountManager, address: Optional[Address], password_file: Optional[str]) -> Tuple[Address, PrivateKey]:
+def get_smart_contracts_start_at(chain_id: ChainID) -> BlockNumber:
+def get_min_reveal_timeout(chain_id: ChainID) -> BlockTimeout:
+def rpc_normalized_endpoint(eth_rpc_endpoint: str) -> URI:
+def start_api_server(rpc_client: JSONRPCClient, config: RestApiConfig, eth_rpc_endpoint: str) -> APIServer:
+def setup_raiden_config(eth_rpc_endpoint: str, api_address: str, rpc: bool, rpccorsdomain: str, console: bool, web_ui: bool, matrix_server: str, chain_id: ChainID, environment_type: Environment, development_environment: bool, unrecoverable_error_should_crash: bool, pathfinding_max_paths: int, enable_monitoring: bool, resolver_endpoint: str, default_reveal_timeout: BlockTimeout, default_settle_timeout: BlockTimeout, flat_fee: FeeAmount, proportional_fee: ProportionalFeeAmount, proportional_imbalance_fee: ProportionalFeeAmount, blockchain_query_interval: int, cap_mediation_fees: bool, enable_tracing: bool, **kwargs: Any) -> RaidenConfig:
+def run_raiden_service(config: RaidenConfig, eth_rpc_endpoint: str, address: Optional[Address], keystore_path: str, gas_price: Callable, user_deposit_contract_address: Optional[UserDepositAddress], sync_check: bool, password_file: Optional[str], datadir: Optional[str], pathfinding_service_address: Optional[Endpoint], routing_mode: RoutingMode, **kwargs: Any) -> RaidenService:

@@ -1,0 +1,29 @@
+def _crossproduct(template: CheckListTemplate) -> CheckListTemplate:
+    ...
+
+def _prediction_and_confidence_scores(self, predictor: Predictor) -> Callable[[Iterable[Tuple[str, str]]], Tuple[List[str], np.ndarray]]:
+    ...
+
+def _format_failing_examples(self, inputs: Tuple[str, str], pred: str, conf: float, label: Optional[str] = None, *args, **kwargs) -> str:
+    ...
+
+@classmethod
+def contractions(cls) -> Callable[[Tuple[str, str]], List[Tuple[str, str]]]:
+    ...
+
+@classmethod
+def typos(cls) -> Callable[[Tuple[str, str], **kwargs], Tuple[str, str]]:
+    ...
+
+@classmethod
+def punctuation(cls) -> Callable[[Tuple[str, str]], Tuple[str, str]]:
+    ...
+
+def _default_tests(self, data: Iterable[str], num_test_cases: int = 100) -> None:
+    ...
+
+def _default_vocabulary_tests(self, data: Iterable[str], num_test_cases: int = 100) -> None:
+    ...
+
+def _default_taxonomy_tests(self, data: Iterable[str], num_test_cases: int = 100) -> None:
+    ...

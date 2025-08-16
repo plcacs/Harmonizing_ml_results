@@ -1,0 +1,46 @@
+from typing import Any, Set
+
+def subscriber_info(user_id: int) -> dict:
+    return {'id': user_id, 'flags': ['read']}
+
+def validate_message_edit_payload(message: Any, stream_id: int, topic_name: str, propagate_mode: str, content: str) -> None:
+    ...
+
+def validate_user_can_edit_message(user_profile: Any, message: Any, edit_limit_buffer: int) -> None:
+    ...
+
+def maybe_send_resolve_topic_notifications(*, user_profile: Any, message_edit_request: Any, changed_messages: Any) -> tuple:
+    ...
+
+def maybe_delete_previous_resolve_topic_notification(user_profile: Any, stream: Any, topic: str) -> bool:
+    ...
+
+def send_message_moved_breadcrumbs(target_message: Any, user_profile: Any, message_edit_request: Any, old_thread_notification_string: str, new_thread_notification_string: str, changed_messages_count: int) -> None:
+    ...
+
+def get_mentions_for_message_updates(message: Any) -> Set[int]:
+    ...
+
+def update_user_message_flags(rendering_result: Any, ums: Any, topic_participant_user_ids: Set[int] = set()) -> None:
+    ...
+
+def do_update_embedded_data(user_profile: Any, message: Any, rendered_content: Any) -> None:
+    ...
+
+def get_visibility_policy_after_merge(orig_topic_visibility_policy: Any, target_topic_visibility_policy: Any) -> Any:
+    ...
+
+def update_message_content(user_profile: Any, target_message: Any, content: str, rendering_result: Any, prior_mention_user_ids: Set[int], mention_data: Any, event: dict, edit_history_event: dict, stream_topic: Any) -> None:
+    ...
+
+def do_update_message(user_profile: Any, target_message: Any, message_edit_request: Any, send_notification_to_old_thread: bool, send_notification_to_new_thread: bool, rendering_result: Any, prior_mention_user_ids: Set[int], mention_data: Any = None) -> Any:
+    ...
+
+def check_time_limit_for_change_all_propagate_mode(message: Any, user_profile: Any, topic_name: str = None, stream_id: int = None) -> None:
+    ...
+
+def build_message_edit_request(*, message: Any, user_profile: Any, propagate_mode: str, stream_id: int = None, topic_name: str = None, content: str = None) -> Any:
+    ...
+
+def check_update_message(user_profile: Any, message_id: int, stream_id: int = None, topic_name: str = None, propagate_mode: str = 'change_one', send_notification_to_old_thread: bool = True, send_notification_to_new_thread: bool = True, content: str = None) -> Any:
+    ...

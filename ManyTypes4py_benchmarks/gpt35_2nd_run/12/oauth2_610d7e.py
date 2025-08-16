@@ -1,0 +1,77 @@
+from typing import Any, Dict, List, Optional, Union, cast
+from fastapi.exceptions import HTTPException
+from fastapi.openapi.models import OAuth2 as OAuth2Model
+from fastapi.openapi.models import OAuthFlows as OAuthFlowsModel
+from fastapi.param_functions import Form
+from fastapi.security.base import SecurityBase
+from fastapi.security.utils import get_authorization_scheme_param
+from starlette.requests import Request
+from starlette.status import HTTP_401_UNAUTHORIZED, HTTP_403_FORBIDDEN
+from typing_extensions import Annotated, Doc
+
+class OAuth2PasswordRequestForm:
+    def __init__(self, *, grant_type=None, username: str, password: str, scope: str = '', client_id=None, client_secret=None):
+        self.grant_type = grant_type
+        self.username = username
+        self.password = password
+        self.scopes = scope.split()
+        self.client_id = client_id
+        self.client_secret = client_secret
+
+class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
+    def __init__(self, grant_type: str, username: str, password: str, scope: str = '', client_id=None, client_secret=None):
+        super().__init__(grant_type=grant_type, username=username, password=password, scope=scope, client_id=client_id, client_secret=client_secret)
+
+class OAuth2(SecurityBase):
+    def __init__(self, *, flows: OAuthFlowsModel = OAuthFlowsModel(), scheme_name: str = None, description: str = None, auto_error: bool = True):
+        self.model = OAuth2Model(flows=cast(OAuthFlowsModel, flows), description=description)
+        self.scheme_name = scheme_name or self.__class__.__name__
+        self.auto_error = auto_error
+
+    async def __call__(self, request: Request) -> Optional[str]:
+        authorization = request.headers.get('Authorization')
+        if not authorization:
+            if self.auto_error:
+                raise HTTPException(status_code=HTTP_403_FORBIDDEN, detail='Not authenticated')
+            else:
+                return None
+        return authorization
+
+class OAuth2PasswordBearer(OAuth2):
+    def __init__(self, tokenUrl: str, scheme_name: str = None, scopes: Dict[str, str] = None, description: str = None, auto_error: bool = True):
+        if not scopes:
+            scopes = {}
+        flows = OAuthFlowsModel(password=cast(Any, {'tokenUrl': tokenUrl, 'scopes': scopes}))
+        super().__init__(flows=flows, scheme_name=scheme_name, description=description, auto_error=auto_error)
+
+    async def __call__(self, request: Request) -> Optional[str]:
+        authorization = request.headers.get('Authorization')
+        scheme, param = get_authorization_scheme_param(authorization)
+        if not authorization or scheme.lower() != 'bearer':
+            if self.auto_error:
+                raise HTTPException(status_code=HTTP_401_UNAUTHORIZED, detail='Not authenticated', headers={'WWW-Authenticate': 'Bearer'})
+            else:
+                return None
+        return param
+
+class OAuth2AuthorizationCodeBearer(OAuth2):
+    def __init__(self, authorizationUrl: str, tokenUrl: str, refreshUrl: str = None, scheme_name: str = None, scopes: Dict[str, str] = None, description: str = None, auto_error: bool = True):
+        if not scopes:
+            scopes = {}
+        flows = OAuthFlowsModel(authorizationCode=cast(Any, {'authorizationUrl': authorizationUrl, 'tokenUrl': tokenUrl, 'refreshUrl': refreshUrl, 'scopes': scopes}))
+        super().__init__(flows=flows, scheme_name=scheme_name, description=description, auto_error=auto_error)
+
+    async def __call__(self, request: Request) -> Optional[str]:
+        authorization = request.headers.get('Authorization')
+        scheme, param = get_authorization_scheme_param(authorization)
+        if not authorization or scheme.lower() != 'bearer':
+            if self.auto_error:
+                raise HTTPException(status_code=HTTP_401_UNAUTHORIZED, detail='Not authenticated', headers={'WWW-Authenticate': 'Bearer'})
+            else:
+                return None
+        return param
+
+class SecurityScopes:
+    def __init__(self, scopes: List[str] = None):
+        self.scopes = scopes or []
+        self.scope_str = ' '.join(self.scopes)

@@ -1,0 +1,16 @@
+from pandas import DataFrame, MultiIndex, Styler
+
+def test_format_index_names_level(axis: int, level: int, expected: list):
+    ...
+
+def test_format_index_names_clear(styler: Styler, attr: str, kwargs: dict):
+    ...
+
+def test_format_index_names_callable(styler_multi: Styler, axis: int):
+    ...
+
+def test_format_index_names_dict(styler_multi: Styler):
+    ...
+
+def test_format_index_names_with_hidden_levels(styler_multi: Styler):
+    ...

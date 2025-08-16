@@ -1,0 +1,8 @@
+def async_setup_entry_attribute_entities(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback, sensors: Mapping[Tuple[str, str], EntityDescription], sensor_class: Callable) -> None:
+def async_setup_block_attribute_entities(hass: HomeAssistant, async_add_entities: AddEntitiesCallback, coordinator: ShellyBlockCoordinator, sensors: Mapping[Tuple[str, str], EntityDescription], sensor_class: Callable) -> None:
+def async_restore_block_attribute_entities(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback, coordinator: ShellyBlockCoordinator, sensors: Mapping[Tuple[str, str], EntityDescription], sensor_class: Callable) -> None:
+def async_setup_entry_rpc(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback, sensors: Mapping[str, RpcEntityDescription], sensor_class: Callable) -> None:
+def async_setup_rpc_attribute_entities(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback, sensors: Mapping[str, RpcEntityDescription], sensor_class: Callable) -> None:
+def async_restore_rpc_attribute_entities(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback, coordinator: ShellyRpcCoordinator, sensors: Mapping[str, RpcEntityDescription], sensor_class: Callable) -> None:
+def async_setup_entry_rest(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback, sensors: Mapping[str, RestEntityDescription], sensor_class: Callable) -> None:
+def get_entity_class(sensor_class: Callable, description: RpcEntityDescription) -> Callable:

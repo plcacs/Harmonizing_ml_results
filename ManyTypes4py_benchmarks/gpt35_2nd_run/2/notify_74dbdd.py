@@ -1,0 +1,33 @@
+from __future__ import annotations
+from typing import List, Optional, Union
+
+def get_service(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType = None) -> Optional[MailNotificationService]:
+    ...
+
+class MailNotificationService(BaseNotificationService):
+    def __init__(self, server: str, port: int, timeout: int, sender: str, encryption: str, username: Optional[str], password: Optional[str], recipients: List[str], sender_name: Optional[str], debug: bool, verify_ssl: bool):
+        ...
+
+    def connect(self) -> smtplib.SMTP:
+        ...
+
+    def connection_is_valid(self) -> bool:
+        ...
+
+    def send_message(self, message: str = '', **kwargs: Union[str, List[str]]) -> bool:
+        ...
+
+    def _send_email(self, msg: MIMEText, recipients: Union[str, List[str]]) -> None:
+        ...
+
+def _build_text_msg(message: str) -> MIMEText:
+    ...
+
+def _attach_file(hass: HomeAssistant, atch_name: str, content_id: str = '') -> Optional[MIMEImage]:
+    ...
+
+def _build_multipart_msg(hass: HomeAssistant, message: str, images: List[str]) -> MIMEMultipart:
+    ...
+
+def _build_html_msg(hass: HomeAssistant, text: str, html: str, images: List[str]) -> MIMEMultipart:
+    ...

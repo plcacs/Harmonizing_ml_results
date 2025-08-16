@@ -1,0 +1,19 @@
+def devices_from_config(domain_config: ConfigType) -> List[RflinkBinarySensor]:
+    ...
+
+async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType = None) -> None:
+    ...
+
+class RflinkBinarySensor(RflinkDevice, BinarySensorEntity, RestoreEntity):
+    def __init__(self, device_id: str, device_class: str = None, force_update: bool = False, off_delay: int = None, **kwargs: Any) -> None:
+        ...
+
+    async def async_added_to_hass(self) -> None:
+        ...
+
+    def _handle_event(self, event: dict) -> None:
+        ...
+
+    @property
+    def is_on(self) -> bool:
+        ...

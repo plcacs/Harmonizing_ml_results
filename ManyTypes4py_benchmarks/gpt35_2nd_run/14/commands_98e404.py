@@ -1,0 +1,19 @@
+from typing import List, Dict, Any
+
+async def trigger_dbt_cli_command(command: str, profiles_dir: str = None, project_dir: str = None, overwrite_profiles: bool = False, dbt_cli_profile: Any = None, create_summary_artifact: bool = False, summary_artifact_key: str = 'dbt-cli-command-summary', extra_command_args: List[str] = None, stream_output: bool = True) -> Any:
+    ...
+
+def create_summary_markdown(run_results: Dict[str, List[Any]], command: str) -> str:
+    ...
+
+def _create_node_info_md(node_name: str, resource_type: str, message: str, path: str, compiled_code: str) -> str:
+    ...
+
+def _create_node_summary_table_md(run_results: Dict[str, List[Any]]) -> str:
+    ...
+
+def _create_unsuccessful_markdown(run_results: Dict[str, List[Any]]) -> str:
+    ...
+
+def consolidate_run_results(results: Any) -> Dict[str, List[Any]]:
+    ...

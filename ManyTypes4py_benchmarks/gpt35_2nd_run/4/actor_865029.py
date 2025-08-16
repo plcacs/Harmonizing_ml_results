@@ -1,0 +1,67 @@
+from typing import Any, AsyncGenerator, AsyncIterator, Coroutine, Set, cast
+from mode import Service
+from mode.utils.tracebacks import format_agen_stack, format_coro_stack
+from faust.types import ChannelT, StreamT, TP
+from faust.types.agents import ActorT, AgentT, AsyncIterableActorT, AwaitableActorT, _T
+
+class Actor(ActorT, Service):
+    agent: AgentT
+    stream: StreamT
+    it: _T
+    index: Any
+    active_partitions: Set[TP]
+    actor_task: Any
+
+    def __init__(self, agent: AgentT, stream: StreamT, it: _T, index: Any = None, active_partitions: Set[TP] = None, **kwargs: Any) -> None:
+        self.agent = agent
+        self.stream = stream
+        self.it = it
+        self.index = index
+        self.active_partitions = active_partitions
+        self.actor_task = None
+        Service.__init__(self, **kwargs)
+
+    async def on_start(self) -> None:
+        assert self.actor_task
+        self.add_future(self.actor_task)
+
+    async def on_stop(self) -> None:
+        self.cancel()
+
+    async def on_isolated_partition_revoked(self, tp: TP) -> None:
+        self.log.debug('Cancelling current task in actor for partition %r', tp)
+        self.cancel()
+        self.log.info('Stopping actor for revoked partition %r...', tp)
+        await self.stop()
+        self.log.debug('Actor for revoked partition %r stopped')
+
+    async def on_isolated_partition_assigned(self, tp: TP) -> None:
+        self.log.dev('Actor was assigned to %r', tp)
+
+    def cancel(self) -> None:
+        cast(ChannelT, self.stream.channel)._throw(StopAsyncIteration())
+
+    def __repr__(self) -> str:
+        return f'<{self.shortlabel}>'
+
+    @property
+    def label(self) -> str:
+        s = self.agent._agent_label(name_suffix='*')
+        if self.stream.active_partitions:
+            partitions = {tp.partition for tp in self.stream.active_partitions}
+            s += f' isolated={partitions}'
+        return s
+
+class AsyncIterableActor(AsyncIterableActorT, Actor):
+    def __aiter__(self) -> AsyncIterator:
+        return self.it.__aiter__()
+
+    def traceback(self) -> str:
+        return format_agen_stack(cast(AsyncGenerator, self.it))
+
+class AwaitableActor(AwaitableActorT, Actor):
+    def __await__(self) -> Coroutine:
+        return self.it.__await__()
+
+    def traceback(self) -> str:
+        return format_coro_stack(cast(Coroutine, self.it))
