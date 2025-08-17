@@ -193,6 +193,12 @@ if __name__ == "__main__":
         ),
         ("gpt35_1st_run", "mypy_outputs/mypy_results_gpt35_1st_run_with_errors.json"),
         ("HiTyper_1st_run", "mypy_outputs/mypy_results_HiTyper_1st_run_with_errors.json"),
+        ("claude3_sonnet_2nd_run", "mypy_outputs/mypy_results_claude3_sonnet_2nd_run_2nd_run_with_errors.json"),
+        ("gpt35_2nd_run", "mypy_outputs/mypy_results_gpt35_2nd_run_with_errors.json"),
+        ("o3_mini_2nd_run", "mypy_outputs/mypy_results_o3_mini_2nd_run_with_errors.json"),
+        ("claude3_sonnet_user_annotated", "mypy_outputs/mypy_results_claude3_sonnet_user_annotated_with_errors.json"),
+        ("o3_mini_user_annotated", "mypy_outputs/mypy_results_o3_mini_user_annotated_with_errors.json"),
+        ("claude3_sonnet_user_annotated", "mypy_outputs/mypy_results_claude3_sonnet_user_annotated_with_errors.json"),
     ]
 
     all_results = []
