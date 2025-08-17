@@ -171,6 +171,7 @@ if __name__ == "__main__":
         ("gpt4o", "mypy_outputs/mypy_results_gpt4o_with_errors.json"),
         ("o1-mini", "mypy_outputs/mypy_results_o1_mini_with_errors.json"),
         ("deepseek", "mypy_outputs/mypy_results_deepseek_with_errors.json"),
+         ("gpt35_1st_run", "mypy_outputs/mypy_results_gpt35_1st_run_with_errors.json"),
         ("gpt4o_2nd_run", "mypy_outputs/mypy_results_gpt4o_2nd_run_with_errors.json"),
         (
             "o1-mini_2nd_run",
@@ -180,8 +181,14 @@ if __name__ == "__main__":
             "deepseek_2nd_run",
             "mypy_outputs/mypy_results_deepseek_2nd_run_with_errors.json",
         ),
-        ("gpt35_1st_run", "mypy_outputs/mypy_results_gpt35_1st_run_with_errors.json"),
-        ("HiTyper_1st_run", "mypy_outputs/mypy_results_HiTyper_1st_run_with_errors.json"),
+       
+        #("HiTyper_1st_run", "mypy_outputs/mypy_results_HiTyper_1st_run_with_errors.json"),
+        ("claude3_sonnet_2nd_run", "mypy_outputs/mypy_results_claude3_sonnet_2nd_run_2nd_run_with_errors.json"),
+        ("gpt35_2nd_run", "mypy_outputs/mypy_results_gpt35_2nd_run_with_errors.json"),
+        ("o3_mini_2nd_run", "mypy_outputs/mypy_results_o3_mini_2nd_run_with_errors.json"),
+        ("o3_mini_user_annotated", "mypy_outputs/mypy_results_o3_mini_user_annotated_with_errors.json"),
+        ("claude3_sonnet_user_annotated", "mypy_outputs/mypy_results_claude3_sonnet_user_annotated_with_errors.json"),
+
     ]
 
     all_results = []
