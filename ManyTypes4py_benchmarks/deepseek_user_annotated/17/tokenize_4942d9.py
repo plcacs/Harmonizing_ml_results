@@ -1,0 +1,366 @@
+# Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006 Python Software Foundation.
+# All rights reserved.
+
+"""Tokenization help for Python programs.
+
+generate_tokens(readline) is a generator that breaks a stream of
+text into Python tokens.  It accepts a readline-like method which is called
+repeatedly to get the next line of input (or "" for EOF).  It generates
+5-tuples with these members:
+
+    the token type (see token.py)
+    the token (a string)
+    the starting (row, column) indices of the token (a 2-tuple of ints)
+    the ending (row, column) indices of the token (a 2-tuple of ints)
+    the original line (string)
+
+It is designed to match the working of the Python tokenizer exactly, except
+that it produces COMMENT tokens for comments and gives type OP for all
+operators
+
+Older entry points
+    tokenize_loop(readline, tokeneater)
+    tokenize(readline, tokeneater=printtoken)
+are the same, except instead of generating tokens, tokeneater is a callback
+function to which the 5 fields described above are passed as 5 arguments,
+each time a new token is found."""
+
+__author__ = 'Ka-Ping Yee <ping@lfw.org>'
+__credits__ = \
+    'GvR, ESR, Tim Peters, Thomas Wouters, Fred Drake, Skip Montanaro'
+
+import string
+import re
+from codecs import BOM_UTF8, lookup
+from lib2to3.pgen2.token import *
+from typing import (Any, Callable, Dict, Iterator, List, Match, Optional, 
+                    Pattern, Sequence, Text, Tuple, Union, cast)
+
+from . import token
+__all__ = [x for x in dir(token) if x[0] != '_'] + ["tokenize",
+           "generate_tokens", "untokenize"]
+del token
+
+try:
+    bytes
+except NameError:
+    # Support bytes type in Python <= 2.5, so 2to3 turns itself into
+    # valid Python 3 code.
+    bytes = str
+
+def group(*choices: str) -> str: return '(' + '|'.join(choices) + ')'
+def any(*choices: str) -> str: return group(*choices) + '*'
+def maybe(*choices: str) -> str: return group(*choices) + '?'
+
+Whitespace = r'[ \f\t]*'
+Comment = r'#[^\r\n]*'
+Ignore = Whitespace + any(r'\\\r?\n' + Whitespace) + maybe(Comment)
+Name = r'[a-zA-Z_]\w*'
+
+Binnumber = r'0[bB][01]*'
+Hexnumber = r'0[xX][\da-fA-F]*[lL]?'
+Octnumber = r'0[oO]?[0-7]*[lL]?'
+Decnumber = r'[1-9]\d*[lL]?'
+Intnumber = group(Binnumber, Hexnumber, Octnumber, Decnumber)
+Exponent = r'[eE][-+]?\d+'
+Pointfloat = group(r'\d+\.\d*', r'\.\d+') + maybe(Exponent)
+Expfloat = r'\d+' + Exponent
+Floatnumber = group(Pointfloat, Expfloat)
+Imagnumber = group(r'\d+[jJ]', Floatnumber + r'[jJ]')
+Number = group(Imagnumber, Floatnumber, Intnumber)
+
+# Tail end of ' string.
+Single = r"[^'\\]*(?:\\.[^'\\]*)*'"
+# Tail end of " string.
+Double = r'[^"\\]*(?:\\.[^"\\]*)*"'
+# Tail end of ''' string.
+Single3 = r"[^'\\]*(?:(?:\\.|'(?!''))[^'\\]*)*'''"
+# Tail end of """ string.
+Double3 = r'[^"\\]*(?:(?:\\.|"(?!""))[^"\\]*)*"""'
+Triple = group("[ubUB]?[rR]?'''", '[ubUB]?[rR]?"""')
+# Single-line ' or " string.
+String = group(r"[uU]?[rR]?'[^\n'\\]*(?:\\.[^\n'\\]*)*'",
+               r'[uU]?[rR]?"[^\n"\\]*(?:\\.[^\n"\\]*)*"')
+
+# Because of leftmost-then-longest match semantics, be sure to put the
+# longest operators first (e.g., if = came before ==, == would get
+# recognized as two instances of =).
+Operator = group(r"\*\*=?", r">>=?", r"<<=?", r"<>", r"!=",
+                 r"//=?", r"->",
+                 r"[+\-*/%&|^=<>]=?",
+                 r"~")
+
+Bracket = '[][(){}]'
+Special = group(r'\r?\n', r'[:;.,`@]')
+Funny = group(Operator, Bracket, Special)
+
+PlainToken = group(Number, Funny, String, Name)
+Token = Ignore + PlainToken
+
+# First (or only) line of ' or " string.
+ContStr = group(r"[uUbB]?[rR]?'[^\n'\\]*(?:\\.[^\n'\\]*)*" +
+                group("'", r'\\\r?\n'),
+                r'[uUbB]?[rR]?"[^\n"\\]*(?:\\.[^\n"\\]*)*' +
+                group('"', r'\\\r?\n'))
+PseudoExtras = group(r'\\\r?\n', Comment, Triple)
+PseudoToken = Whitespace + group(PseudoExtras, Number, Funny, ContStr, Name)
+
+tokenprog, pseudoprog, single3prog, double3prog = list(map(
+    re.compile, (Token, PseudoToken, Single3, Double3)))
+endprogs: Dict[str, Optional[Pattern[str]]] = {"'": re.compile(Single), '"': re.compile(Double),
+            "'''": single3prog, '"""': double3prog,
+            "r'''": single3prog, 'r"""': double3prog,
+            "u'''": single3prog, 'u"""': double3prog,
+            "b'''": single3prog, 'b"""': double3prog,
+            "ur'''": single3prog, 'ur"""': double3prog,
+            "br'''": single3prog, 'br"""': double3prog,
+            "R'''": single3prog, 'R"""': double3prog,
+            "U'''": single3prog, 'U"""': double3prog,
+            "B'''": single3prog, 'B"""': double3prog,
+            "uR'''": single3prog, 'uR"""': double3prog,
+            "Ur'''": single3prog, 'Ur"""': double3prog,
+            "UR'''": single3prog, 'UR"""': double3prog,
+            "bR'''": single3prog, 'bR"""': double3prog,
+            "Br'''": single3prog, 'Br"""': double3prog,
+            "BR'''": single3prog, 'BR"""': double3prog,
+            'r': None, 'R': None,
+            'u': None, 'U': None,
+            'b': None, 'B': None}
+
+triple_quoted: Dict[str, str] = {}
+for t in ("'''", '"""',
+          "r'''", 'r"""', "R'''", 'R"""',
+          "u'''", 'u"""', "U'''", 'U"""',
+          "b'''", 'b"""', "B'''", 'B"""',
+          "ur'''", 'ur"""', "Ur'''", 'Ur"""',
+          "uR'''", 'uR"""', "UR'''", 'UR"""',
+          "br'''", 'br"""', "Br'''", 'Br"""',
+          "bR'''", 'bR"""', "BR'''", 'BR"""',):
+    triple_quoted[t] = t
+single_quoted: Dict[str, str] = {}
+for t in ("'", '"',
+          "r'", 'r"', "R'", 'R"',
+          "u'", 'u"', "U'", 'U"',
+          "b'", 'b"', "B'", 'B"',
+          "ur'", 'ur"', "Ur'", 'Ur"',
+          "uR'", 'uR"', "UR'", 'UR"',
+          "br'", 'br"', "Br'", 'Br"',
+          "bR'", 'bR"', "BR'", 'BR"', ):
+    single_quoted[t] = t
+
+tabsize = 8
+
+class TokenError(Exception): pass
+
+class StopTokenizing(Exception): pass
+
+def printtoken(type: int, token: str, xxx_todo_changeme: Tuple[int, int], 
+               xxx_todo_changeme1: Tuple[int, int], line: str) -> None: # for testing
+    (srow, scol) = xxx_todo_changeme
+    (erow, ecol) = xxx_todo_changeme1
+    print("%d,%d-%d,%d:\t%s\t%s" % \
+        (srow, scol, erow, ecol, tok_name[type], repr(token)))
+
+def tokenize(readline: Callable[[], str], tokeneater: Callable[[int, str, Tuple[int, int], Tuple[int, int], str], None] = printtoken) -> None:
+    """
+    The tokenize() function accepts two parameters: one representing the
+    input stream, and one providing an output mechanism for tokenize().
+
+    The first parameter, readline, must be a callable object which provides
+    the same interface as the readline() method of built-in file objects.
+    Each call to the function should return one line of input as a string.
+
+    The second parameter, tokeneater, must also be a callable object. It is
+    called once for each token, with five arguments, corresponding to the
+    tuples generated by generate_tokens().
+    """
+    try:
+        tokenize_loop(readline, tokeneater)
+    except StopTokenizing:
+        pass
+
+# backwards compatible interface
+def tokenize_loop(readline: Callable[[], str], tokeneater: Callable[[int, str, Tuple[int, int], Tuple[int, int], str], None]) -> None:
+    for token_info in generate_tokens(readline):
+        tokeneater(*token_info)
+
+class Untokenizer:
+
+    def __init__(self) -> None:
+        self.tokens: List[str] = []
+        self.prev_row = 1
+        self.prev_col = 0
+
+    def add_whitespace(self, start: Tuple[int, int]) -> None:
+        row, col = start
+        assert row <= self.prev_row
+        col_offset = col - self.prev_col
+        if col_offset:
+            self.tokens.append(" " * col_offset)
+
+    def untokenize(self, iterable: Sequence[Union[Tuple[int, str], Tuple[int, str, Tuple[int, int], Tuple[int, int], str]]]) -> str:
+        for t in iterable:
+            if len(t) == 2:
+                self.compat(t, iterable)
+                break
+            tok_type, token, start, end, line = t
+            self.add_whitespace(start)
+            self.tokens.append(token)
+            self.prev_row, self.prev_col = end
+            if tok_type in (NEWLINE, NL):
+                self.prev_row += 1
+                self.prev_col = 0
+        return "".join(self.tokens)
+
+    def compat(self, token: Tuple[int, str], iterable: Iterator[Tuple[int, str]]) -> None:
+        startline = False
+        indents: List[str] = []
+        toks_append = self.tokens.append
+        toknum, tokval = token
+        if toknum in (NAME, NUMBER):
+            tokval += ' '
+        if toknum in (NEWLINE, NL):
+            startline = True
+        for tok in iterable:
+            toknum, tokval = tok[:2]
+
+            if toknum in (NAME, NUMBER):
+                tokval += ' '
+
+            if toknum == INDENT:
+                indents.append(tokval)
+                continue
+            elif toknum == DEDENT:
+                indents.pop()
+                continue
+            elif toknum in (NEWLINE, NL):
+                startline = True
+            elif startline and indents:
+                toks_append(indents[-1])
+                startline = False
+            toks_append(tokval)
+
+cookie_re = re.compile("coding[:=]\s*([-\w.]+)")
+
+def _get_normal_name(orig_enc: str) -> str:
+    """Imitates get_normal_name in tokenizer.c."""
+    # Only care about the first 12 characters.
+    enc = orig_enc[:12].lower().replace("_", "-")
+    if enc == "utf-8" or enc.startswith("utf-8-"):
+        return "utf-8"
+    if enc in ("latin-1", "iso-8859-1", "iso-latin-1") or \
+       enc.startswith(("latin-1-", "iso-8859-1-", "iso-latin-1-")):
+        return "iso-8859-1"
+    return orig_enc
+
+def detect_encoding(readline: Callable[[], bytes]) -> Tuple[str, List[bytes]]:
+    """
+    The detect_encoding() function is used to detect the encoding that should
+    be used to decode a Python source file. It requires one argment, readline,
+    in the same way as the tokenize() generator.
+
+    It will call readline a maximum of twice, and return the encoding used
+    (as a string) and a list of any lines (left as bytes) it has read
+    in.
+
+    It detects the encoding from the presence of a utf-8 bom or an encoding
+    cookie as specified in pep-0263. If both a bom and a cookie are present, but
+    disagree, a SyntaxError will be raised. If the encoding cookie is an invalid
+    charset, raise a SyntaxError.  Note that if a utf-8 bom is found,
+    'utf-8-sig' is returned.
+
+    If no encoding is specified, then the default of 'utf-8' will be returned.
+    """
+    bom_found = False
+    encoding: Optional[str] = None
+    default = 'utf-8'
+    def read_or_stop() -> bytes:
+        try:
+            return readline()
+        except StopIteration:
+            return bytes()
+
+    def find_cookie(line: bytes) -> Optional[str]:
+        try:
+            line_string = line.decode('ascii')
+        except UnicodeDecodeError:
+            return None
+
+        matches = cookie_re.findall(line_string)
+        if not matches:
+            return None
+        encoding = _get_normal_name(matches[0])
+        try:
+            codec = lookup(encoding)
+        except LookupError:
+            # This behaviour mimics the Python interpreter
+            raise SyntaxError("unknown encoding: " + encoding)
+
+        if bom_found:
+            if codec.name != 'utf-8':
+                # This behaviour mimics the Python interpreter
+                raise SyntaxError('encoding problem: utf-8')
+            encoding += '-sig'
+        return encoding
+
+    first = read_or_stop()
+    if first.startswith(BOM_UTF8):
+        bom_found = True
+        first = first[3:]
+        default = 'utf-8-sig'
+    if not first:
+        return default, []
+
+    encoding = find_cookie(first)
+    if encoding:
+        return encoding, [first]
+
+    second = read_or_stop()
+    if not second:
+        return default, [first]
+
+    encoding = find_cookie(second)
+    if encoding:
+        return encoding, [first, second]
+
+    return default, [first, second]
+
+def untokenize(iterable: Sequence[Union[Tuple[int, str], Tuple[int, str, Tuple[int, int], Tuple[int, int], str]]]) -> str:
+    """Transform tokens back into Python source code.
+
+    Each element returned by the iterable must be a token sequence
+    with at least two elements, a token number and token value.  If
+    only two tokens are passed, the resulting output is poor.
+
+    Round-trip invariant for full input:
+        Untokenized source will match input source exactly
+
+    Round-trip invariant for limited intput:
+        # Output text will tokenize the back to the input
+        t1 = [tok[:2] for tok in generate_tokens(f.readline)]
+        newcode = untokenize(t1)
+        readline = iter(newcode.splitlines(1)).next
+        t2 = [tok[:2] for tokin generate_tokens(readline)]
+        assert t1 == t2
+    """
+    ut = Untokenizer()
+    return ut.untokenize(iterable)
+
+def generate_tokens(readline: Callable[[], str]) -> Iterator[Tuple[int, str, Tuple[int, int], Tuple[int, int], str]]:
+    """
+    The generate_tokens() generator requires one argment, readline, which
+    must be a callable object which provides the same interface as the
+    readline() method of built-in file objects. Each call to the function
+    should return one line of input as a string.  Alternately, readline
+    can be a callable function terminating with StopIteration:
+        readline = open(myfile).next    # Example of alternate readline
+
+    The generator produces 5-tuples with these members: the token type; the
+    token string; a 2-tuple (srow, scol) of ints specifying the row and
+    column where the token begins in the source; a 2-tuple (erow, ecol) of
+    ints specifying the row and column where the token ends in the source;
+    and the line on which the token was found. The line passed is the
+    logical line; continuation lines are included.
+    """
+    lnum = parenlev = continued = 0
+    namechars, numchars = string.as

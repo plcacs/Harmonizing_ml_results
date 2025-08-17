@@ -1,0 +1,215 @@
+import io
+import json
+import re
+from typing import TYPE_CHECKING, Any, Dict, List, Mapping, Optional, Union, Tuple, Set, TypeVar, Type
+
+from dbt.node_types import REFABLE_NODE_TYPES, AccessType, NodeType
+from dbt_common.constants import SECRET_ENV_PREFIX
+from dbt_common.dataclass_schema import ValidationError
+from dbt_common.exceptions import (
+    CommandResultError,
+    CompilationError,
+    DbtConfigError,
+    DbtInternalError,
+    DbtRuntimeError,
+    DbtValidationError,
+    env_secrets,
+    scrub_secrets,
+)
+
+if TYPE_CHECKING:
+    import agate
+    from dbt.contracts.graph.nodes import ManifestNode
+    from dbt.contracts.graph.unparsed import UnparsedNode
+    from dbt.contracts.results import RunResult
+    from dbt.contracts.files import FilePath
+    from dbt.contracts.graph.manifest import Manifest
+    from dbt.contracts.project import Project
+    from dbt.contracts.connection import AdapterResponse
+    from dbt.contracts.relation import Relation
+    from dbt.contracts.graph.parsed import ParsedNode
+    from dbt.contracts.graph.compiled import CompiledNode
+    from dbt.task.runnable import RemoteCallable
+    from dbt.adapters.base import BaseAdapter
+    from dbt.contracts.relation import Policy
+    from dbt.contracts.util import VersionSpecifier
+    from dbt.contracts.selection import SelectorDefinition
+    from dbt.contracts.graph.model_config import NodeConfig
+    from dbt.contracts.graph.parsed import ParsedSourceDefinition
+    from dbt.contracts.graph.unparsed import UnparsedSourceDefinition
+    from dbt.contracts.graph.manifest import MacroManifest
+    from dbt.contracts.graph.manifest import SourcePatch
+    from dbt.contracts.graph.manifest import MacroPatch
+    from dbt.contracts.graph.manifest import Disabled
+    from dbt.contracts.graph.manifest import AnyNode
+    from dbt.contracts.graph.manifest import ModelNode
+    from dbt.contracts.graph.manifest import SeedNode
+    from dbt.contracts.graph.manifest import TestNode
+    from dbt.contracts.graph.manifest import SnapshotNode
+    from dbt.contracts.graph.manifest import AnalysisNode
+    from dbt.contracts.graph.manifest import HookNode
+    from dbt.contracts.graph.manifest import RPCNode
+    from dbt.contracts.graph.manifest import DocumentationNode
+    from dbt.contracts.graph.manifest import ExposureNode
+    from dbt.contracts.graph.manifest import MetricNode
+    from dbt.contracts.graph.manifest import GroupNode
+    from dbt.contracts.graph.manifest import UnitTestNode
+    from dbt.contracts.graph.manifest import SavedQueryNode
+    from dbt.contracts.graph.manifest import SemanticModelNode
+    from dbt.contracts.graph.manifest import TestMetadata
+    from dbt.contracts.graph.manifest import ColumnInfo
+    from dbt.contracts.graph.manifest import Contract
+    from dbt.contracts.graph.manifest import DependsOn
+    from dbt.contracts.graph.manifest import MacroDependsOn
+    from dbt.contracts.graph.manifest import MacroGenerator
+    from dbt.contracts.graph.manifest import MacroArgs
+    from dbt.contracts.graph.manifest import MacroArgument
+    from dbt.contracts.graph.manifest import MacroKwargs
+    from dbt.contracts.graph.manifest import MacroTestConfig
+    from dbt.contracts.graph.manifest import MacroTestMetadata
+    from dbt.contracts.graph.manifest import MacroTestColumn
+    from dbt.contracts.graph.manifest import MacroTestColumnInfo
+    from dbt.contracts.graph.manifest import MacroTestColumnType
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfo
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoDictOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoDictOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoDictOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoDictOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoUnionOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoUnionOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoUnionOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoUnionOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoAnyOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoAnyOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoAnyOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoAnyOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfListOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfListOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfListOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfListOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfDictOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfDictOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfDictOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfDictOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfUnionOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfUnionOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfUnionOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfUnionOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfAnyOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfAnyOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfAnyOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfAnyOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoDictOfListOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoDictOfListOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoDictOfListOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoDictOfListOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoDictOfDictOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoDictOfDictOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoDictOfDictOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoDictOfDictOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoDictOfUnionOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoDictOfUnionOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoDictOfUnionOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoDictOfUnionOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoDictOfAnyOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoDictOfAnyOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoDictOfAnyOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoDictOfAnyOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoUnionOfListOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoUnionOfListOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoUnionOfListOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoUnionOfListOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoUnionOfDictOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoUnionOfDictOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoUnionOfDictOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoUnionOfDictOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoUnionOfUnionOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoUnionOfUnionOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoUnionOfUnionOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoUnionOfUnionOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoUnionOfAnyOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoUnionOfAnyOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoUnionOfAnyOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoUnionOfAnyOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoAnyOfListOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoAnyOfListOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoAnyOfListOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoAnyOfListOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoAnyOfDictOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoAnyOfDictOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoAnyOfDictOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoAnyOfDictOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoAnyOfUnionOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoAnyOfUnionOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoAnyOfUnionOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoAnyOfUnionOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoAnyOfAnyOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoAnyOfAnyOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoAnyOfAnyOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoAnyOfAnyOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfListOfListOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfListOfListOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfListOfListOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfListOfListOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfListOfDictOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfListOfDictOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfListOfDictOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfListOfDictOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfListOfUnionOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfListOfUnionOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfListOfUnionOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfListOfUnionOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfListOfAnyOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfListOfAnyOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfListOfAnyOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfListOfAnyOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfDictOfListOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfDictOfListOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfDictOfListOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfDictOfListOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfDictOfDictOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfDictOfDictOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfDictOfDictOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfDictOfDictOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfDictOfUnionOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfDictOfUnionOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfDictOfUnionOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfDictOfUnionOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfDictOfAnyOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfDictOfAnyOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfDictOfAnyOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfDictOfAnyOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfUnionOfListOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfUnionOfListOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfUnionOfListOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfUnionOfListOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfUnionOfDictOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfUnionOfDictOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfUnionOfDictOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfUnionOfDictOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfUnionOfUnionOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfUnionOfUnionOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfUnionOfUnionOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfUnionOfUnionOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfUnionOfAnyOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfUnionOfAnyOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfUnionOfAnyOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfUnionOfAnyOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfAnyOfListOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfAnyOfListOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfAnyOfListOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfAnyOfListOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfAnyOfDictOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfAnyOfDictOfList
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfAnyOfDictOfUnion
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfAnyOfDictOfAny
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfAnyOfUnionOfDict
+    from dbt.contracts.graph.manifest import MacroTestColumnTypeInfoListOfAnyOfUnionOfList
