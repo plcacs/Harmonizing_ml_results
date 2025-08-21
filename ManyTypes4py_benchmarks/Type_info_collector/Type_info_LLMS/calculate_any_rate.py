@@ -101,6 +101,9 @@ def main():
         "O3-mini": "./Type_info_o3_mini_1st_run_benchmarks.json",
         "DeepSeek": "./Type_info_deep_seek_benchmarks.json",
         "Claude3-Sonnet": "./Type_info_claude3_sonnet_1st_run_benchmarks.json",
+        "DeepSeek-User-Annotated": "./Type_info_deepseek_user_annotated_benchmarks.json",
+        "Claude3-Sonnet-User-Annotated": "./Type_info_claude3_sonnet_user_annotated_benchmarks.json",
+        "O3-Mini-User-Annotated": "./Type_info_o3_mini_user_annotated_benchmarks.json",
     }
 
     print("=" * 80)
@@ -202,14 +205,14 @@ def main():
                     model_name,
                     data["any_slots"],
                     data["typed_slots"],
-                    f"{data['any_rate']:.6f}",
+                    f"{data['any_rate']*100:.2f}%",
                     data["param_any"],
                     data["param_typed"],
-                    f"{data['param_rate']:.6f}",
+                    f"{data['param_rate']*100:.2f}%",
                     data["return_any"],
                     data["return_typed"],
-                    f"{data['return_rate']:.6f}",
-                    f"{delta:.6f}" if model_name != "Human" else "—",
+                    f"{data['return_rate']*100:.2f}%",
+                    f"{delta*100:+.2f}%" if model_name != "Human" else "—",
                 ]
             )
 

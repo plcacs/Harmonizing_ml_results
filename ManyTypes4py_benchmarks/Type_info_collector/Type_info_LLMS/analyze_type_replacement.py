@@ -90,6 +90,9 @@ def main():
         "O3-mini": "./Type_info_o3_mini_1st_run_benchmarks.json",
         "DeepSeek": "./Type_info_deep_seek_benchmarks.json",
         "Claude3-Sonnet": "./Type_info_claude3_sonnet_1st_run_benchmarks.json",
+        "DeepSeek-User-Annotated": "./Type_info_deepseek_user_annotated_benchmarks.json",
+        "O3-Mini-User-Annotated": "./Type_info_o3_mini_user_annotated_benchmarks.json",
+        "Claude3-Sonnet-User-Annotated": "./Type_info_claude3_sonnet_user_annotated_benchmarks.json",
     }
 
     print("=" * 60)
@@ -129,7 +132,13 @@ def main():
     with open(output_file, "w", newline="") as f:
         writer = csv.writer(f)
         writer.writerow(
-            ["Model", "Replacements", "Total_Concrete", "Replacement_Rate", "Preserved"]
+            [
+                "Model",
+                "Replacements",
+                "Total_Concrete",
+                "Replacement_Rate_%",
+                "Preserved",
+            ]
         )
 
         for result in results:
@@ -138,7 +147,7 @@ def main():
                     result["Model"],
                     result["Replacements"],
                     result["Total_Concrete"],
-                    f"{result['Replacement_Rate']:.6f}",
+                    f"{result['Replacement_Rate']*100:.2f}",
                     result["Preserved"],
                 ]
             )
@@ -149,11 +158,11 @@ def main():
     print("\n" + "=" * 60)
     print("SUMMARY")
     print("=" * 60)
-    print(f"{'Model':<15} {'Replacements':<12} {'Rate':<8}")
+    print(f"{'Model':<15} {'Replacements':<12} {'%':<8}")
     print("-" * 40)
     for result in results:
         print(
-            f"{result['Model']:<15} {result['Replacements']:<12,} {result['Replacement_Rate']:<8.3f}"
+            f"{result['Model']:<15} {result['Replacements']:<12,} {result['Replacement_Rate']*100:<8.1f}%"
         )
 
 

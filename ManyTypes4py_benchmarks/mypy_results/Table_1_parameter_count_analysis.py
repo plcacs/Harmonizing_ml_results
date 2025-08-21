@@ -51,15 +51,15 @@ def split_files_by_parameter_count(json_data):
     """Split files into two groups based on parameter count (threshold: 50)"""
     files_with_less_than_50_parameters = {}
     files_with_more_than_50_parameters = {}
-    
+
     for file_key, file_data in json_data.items():
         total_parameters = file_data.get("stats", {}).get("total_parameters", 0)
-        
+
         if total_parameters < 50:
             files_with_less_than_50_parameters[file_key] = file_data
         else:
             files_with_more_than_50_parameters[file_key] = file_data
-    
+
     return files_with_less_than_50_parameters, files_with_more_than_50_parameters
 
 
@@ -166,7 +166,9 @@ def analyze_model(
 if __name__ == "__main__":
     # Load and split files by parameter count
     untyped_data = load_json_file("mypy_outputs/mypy_results_untyped_with_errors.json")
-    files_with_less_than_50_parameters, files_with_more_than_50_parameters = split_files_by_parameter_count(untyped_data)
+    files_with_less_than_50_parameters, files_with_more_than_50_parameters = (
+        split_files_by_parameter_count(untyped_data)
+    )
 
     # Models to analyze
     models = [
@@ -192,13 +194,35 @@ if __name__ == "__main__":
             "mypy_outputs/mypy_results_deepseek_2nd_run_with_errors.json",
         ),
         ("gpt35_1st_run", "mypy_outputs/mypy_results_gpt35_1st_run_with_errors.json"),
-        ("HiTyper_1st_run", "mypy_outputs/mypy_results_HiTyper_1st_run_with_errors.json"),
-        ("claude3_sonnet_2nd_run", "mypy_outputs/mypy_results_claude3_sonnet_2nd_run_2nd_run_with_errors.json"),
+        (
+            "HiTyper_1st_run",
+            "mypy_outputs/mypy_results_HiTyper_1st_run_with_errors.json",
+        ),
+        (
+            "claude3_sonnet_2nd_run",
+            "mypy_outputs/mypy_results_claude3_sonnet_2nd_run_2nd_run_with_errors.json",
+        ),
         ("gpt35_2nd_run", "mypy_outputs/mypy_results_gpt35_2nd_run_with_errors.json"),
-        ("o3_mini_2nd_run", "mypy_outputs/mypy_results_o3_mini_2nd_run_with_errors.json"),
-        ("claude3_sonnet_user_annotated", "mypy_outputs/mypy_results_claude3_sonnet_user_annotated_with_errors.json"),
-        ("o3_mini_user_annotated", "mypy_outputs/mypy_results_o3_mini_user_annotated_with_errors.json"),
-        ("claude3_sonnet_user_annotated", "mypy_outputs/mypy_results_claude3_sonnet_user_annotated_with_errors.json"),
+        (
+            "o3_mini_2nd_run",
+            "mypy_outputs/mypy_results_o3_mini_2nd_run_with_errors.json",
+        ),
+        (
+            "claude3_sonnet_user_annotated",
+            "mypy_outputs/mypy_results_claude3_sonnet_user_annotated_with_errors.json",
+        ),
+        (
+            "o3_mini_user_annotated",
+            "mypy_outputs/mypy_results_o3_mini_user_annotated_with_errors.json",
+        ),
+        (
+            "claude3_sonnet_user_annotated",
+            "mypy_outputs/mypy_results_claude3_sonnet_user_annotated_with_errors.json",
+        ),
+        (
+            "deepseek_user_annotated",
+            "mypy_outputs/mypy_results_deepseek_user_annotated_with_errors.json",
+        ),
     ]
 
     all_results = []
@@ -233,4 +257,4 @@ if __name__ == "__main__":
         )
         print(
             f"{more_than_50['unprocessed']+total_preprocessed_error_files_count_more_than_50}, {more_than_50['both_errors']}, {more_than_50['both_success']}, {more_than_50['llm_only_failures']}, {more_than_50['llm_success_rate']:.2f}%"
-        ) 
+        )
