@@ -93,17 +93,21 @@ def calculate_any_rate_by_category(type_info_data):
 
 
 def main():
-    # Define model files (using relative paths)
+    # Define model files (using relative paths) - ordered by preference
     model_files = {
         "Human": "./Type_info_original_files.json",
-        "GPT4o": "./Type_info_gpt4o_benchmarks.json",
-        "O1-mini": "./Type_info_o1_mini_benchmarks.json",
-        "O3-mini": "./Type_info_o3_mini_1st_run_benchmarks.json",
-        "DeepSeek": "./Type_info_deep_seek_benchmarks.json",
-        "Claude3-Sonnet": "./Type_info_claude3_sonnet_1st_run_benchmarks.json",
-        "DeepSeek-User-Annotated": "./Type_info_deepseek_user_annotated_benchmarks.json",
-        "Claude3-Sonnet-User-Annotated": "./Type_info_claude3_sonnet_user_annotated_benchmarks.json",
-        "O3-Mini-User-Annotated": "./Type_info_o3_mini_user_annotated_benchmarks.json",
+        "GPT35_1st_run": "./Type_info_gpt35_1st_run_benchmarks.json",
+        "GPT35_2nd_run": "./Type_info_gpt35_2nd_run_benchmarks.json",
+        "GPT4o_1st_run": "./Type_info_gpt4o_benchmarks.json",
+        "GPT4o_2nd_run": "./Type_info_gpt4o_2nd_run_benchmarks.json",
+        "O1-mini_1st_run": "./Type_info_o1_mini_1st_run_benchmarks.json",
+        "O1-mini_2nd_run": "./Type_info_o1_mini_2nd_run_benchmarks.json",
+        "O3-mini_1st_run": "./Type_info_o3_mini_1st_run_benchmarks.json",
+        "O3-mini_2nd_run": "./Type_info_o3_mini_2nd_run_benchmarks.json",
+        "DeepSeek_1st_run": "./Type_info_deep_seek_benchmarks.json",
+        "DeepSeek_2nd_run": "./Type_info_deep_seek_2nd_run_benchmarks.json",
+        "Claude3-Sonnet_1st_run": "./Type_info_claude3_sonnet_1st_run_benchmarks.json",
+        "Claude3-Sonnet_2nd_run": "./Type_info_claude3_sonnet_2nd_run_benchmarks.json",
     }
 
     print("=" * 80)
@@ -176,7 +180,7 @@ def main():
                 print(f"{model_name:<15} {data['any_rate']:<10.3f} {delta:<+12.3f}")
 
     # Save results to CSV
-    output_file = "any_rate_results.csv"
+    output_file = "./any_rate_results.csv"
     with open(output_file, "w", newline="") as f:
         writer = csv.writer(f)
         # Write header

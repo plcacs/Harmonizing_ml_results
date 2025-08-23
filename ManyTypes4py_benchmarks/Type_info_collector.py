@@ -124,6 +124,7 @@ def collect_annotations(root_dir: str, output_json: str):
 
     num_non_empty = sum(1 for v in all_annotations.values() if v)
     num_empty = sum(1 for v in all_annotations.values() if not v)
+    print(f"root_dir: {root_dir}")
     print(f"non_empty: {num_non_empty}")
     print(f"empty: {num_empty}")
 
@@ -144,7 +145,7 @@ collect_annotations(
 collect_annotations(
     "gpt4o",
     "Type_info_collector/Type_info_gpt4o_benchmarks.json",
-)"""
+)
 collect_annotations(
     "claude3_sonnet_user_annotated",
     "Type_info_collector/Type_info_LLMS/Type_info_claude3_sonnet_user_annotated_benchmarks.json",
@@ -156,4 +157,28 @@ collect_annotations(
 collect_annotations(
     "o3_mini_user_annotated",
     "Type_info_collector/Type_info_LLMS/Type_info_o3_mini_user_annotated_benchmarks.json",
+)"""
+collect_annotations(
+    "deep_seek_2nd_run",
+    "Type_info_collector/Type_info_LLMS/Type_info_deep_seek_2nd_run_benchmarks.json",
+)
+collect_annotations(
+    "o3_mini_2nd_run",
+    "Type_info_collector/Type_info_LLMS/Type_info_o3_mini_2nd_run_benchmarks.json",
+)
+collect_annotations(
+    "claude3_sonnet_2nd_run",
+    "Type_info_collector/Type_info_LLMS/Type_info_claude3_sonnet_2nd_run_benchmarks.json",
+)
+collect_annotations(
+    "gpt4o_2nd_run",
+    "Type_info_collector/Type_info_LLMS/Type_info_gpt4o_2nd_run_benchmarks.json",
+)
+collect_annotations(
+    "gpt35_2nd_run",
+    "Type_info_collector/Type_info_LLMS/Type_info_gpt35_2nd_run_benchmarks.json",
+)
+collect_annotations(
+    "o1_mini_2nd_run",
+    "Type_info_collector/Type_info_LLMS/Type_info_o1_mini_2nd_run_benchmarks.json",
 )
