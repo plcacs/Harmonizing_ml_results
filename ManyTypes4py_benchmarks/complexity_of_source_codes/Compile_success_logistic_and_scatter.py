@@ -17,16 +17,18 @@ def load_json(path: str) -> Optional[Dict[str, Any]]:
 		return None
 
 
-def extract_top3_sum_ccn(complexity: Dict[str, Any]) -> Dict[str, float]:
-	"""Map filename -> sum(top_3_functions_CCN). Missing/invalid -> 0.0"""
+def extract_top_n_sum_ccn(complexity: Dict[str, Any], n: int) -> Dict[str, float]:
+	"""Map filename -> sum(top_n_functions_CCN). Missing/invalid -> 0.0"""
 	result: Dict[str, float] = {}
 	for filename, metrics in complexity.items():
 		values = metrics.get("top_3_functions_CCN", [])
 		if isinstance(values, (list, tuple)):
 			numeric = [float(v) for v in values if isinstance(v, (int, float))]
-			result[filename] = float(np.sum(numeric)) if numeric else 0.0
+			# Take top n values
+			top_n = sorted(numeric, reverse=True)[:n] if numeric else []
+			result[filename] = float(np.sum(top_n)) if top_n else 0.0
 		elif isinstance(values, (int, float)):
-			result[filename] = float(values)
+			result[filename] = float(values) if n == 1 else 0.0
 		else:
 			result[filename] = 0.0
 	return result
@@ -45,7 +47,9 @@ def build_dataframe(
 	if not mypy:
 		raise RuntimeError("Could not load mypy results data")
 
-	top3_sum_map = extract_top3_sum_ccn(complexity)
+	top1_sum_map = extract_top_n_sum_ccn(complexity, 1)
+	top2_sum_map = extract_top_n_sum_ccn(complexity, 2)
+	top3_sum_map = extract_top_n_sum_ccn(complexity, 3)
 	rows: List[Dict[str, Any]] = []
 	for filename, result in mypy.items():
 		stats = result.get("stats", {}) if isinstance(result, dict) else {}
@@ -54,6 +58,8 @@ def build_dataframe(
 		rows.append(
 			{
 				"filename": filename,
+				"top1_sum_CCN": float(top1_sum_map[filename]),
+				"top2_sum_CCN": float(top2_sum_map[filename]),
 				"top3_sum_CCN": float(top3_sum_map[filename]),
 				"total_parameters": int(stats.get("total_parameters", 0) or 0),
 				"parameters_with_annotations": int(stats.get("parameters_with_annotations", 0) or 0),
@@ -76,6 +82,8 @@ def build_dataframe(
 def compute_correlations(df: pd.DataFrame) -> pd.DataFrame:
 	"""Compute Pearson (point-biserial) and Spearman correlations vs isCompiled for key predictors."""
 	metrics = [
+		("top1_sum_CCN", "top1_sum_CCN"),
+		("top2_sum_CCN", "top2_sum_CCN"),
 		("top3_sum_CCN", "top3_sum_CCN"),
 		("parameters_with_annotations", "parameters_with_annotations"),
 		("total_parameters", "total_parameters"),

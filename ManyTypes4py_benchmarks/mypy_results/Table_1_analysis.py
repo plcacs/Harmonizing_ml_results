@@ -129,6 +129,7 @@ if __name__ == "__main__":
             "o3_mini_2nd_run",
             "mypy_outputs/mypy_results_o3_mini_2nd_run_with_errors.json",
         ),
+        ("gpt5_1st_run", "mypy_outputs/mypy_results_gpt5_1st_run_with_errors.json"),
     ]
 
     all_results = []
