@@ -1,0 +1,19 @@
+from typing import List, Tuple
+
+def combinations(l: List[Tuple]) -> List[Tuple]:
+    ...
+
+def advance(dt: float, n: int, bodies: List[Tuple], pairs: List[Tuple]) -> None:
+    ...
+
+def report_energy(bodies: List[Tuple], pairs: List[Tuple], e: float = 0.0) -> float:
+    ...
+
+def offset_momentum(ref: Tuple, bodies: List[Tuple], px: float = 0.0, py: float = 0.0, pz: float = 0.0) -> None:
+    ...
+
+def bench_nbody(loops: int, reference: str, iterations: int) -> float:
+    ...
+
+def add_cmdline_args(cmd: List, args: Any) -> None:
+    ...

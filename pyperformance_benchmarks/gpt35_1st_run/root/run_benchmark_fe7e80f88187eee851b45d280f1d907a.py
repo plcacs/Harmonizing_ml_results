@@ -1,0 +1,33 @@
+import decimal
+import pyperf
+
+def pi_decimal() -> decimal.Decimal:
+    'decimal'
+    D: decimal.Decimal = decimal.Decimal
+    lasts: decimal.Decimal
+    t: decimal.Decimal
+    s: decimal.Decimal
+    n: decimal.Decimal
+    na: decimal.Decimal
+    d: decimal.Decimal
+    da: decimal.Decimal
+    lasts, t, s, n, na, d, da = D(0), D(3), D(3), D(1), D(0), D(0), D(24)
+    while s != lasts:
+        lasts = s
+        n, na = n + na, na + 8
+        d, da = d + da, da + 32
+        t = (t * n) / d
+        s += t
+    return s
+
+def bench_decimal_pi() -> None:
+    for prec in [9, 19]:
+        decimal.getcontext().prec = prec
+        for _ in range(10000):
+            _ = pi_decimal()
+
+if __name__ == '__main__':
+    runner: pyperf.Runner = pyperf.Runner()
+    runner.metadata['description'] = 'decimal_pi benchmark'
+    args: Any = runner.parse_args()
+    runner.bench_func('decimal_pi', bench_decimal_pi)

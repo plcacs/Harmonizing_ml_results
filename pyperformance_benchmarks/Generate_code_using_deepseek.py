@@ -6,11 +6,12 @@ from openai import OpenAI
 import hashlib
 
 client = OpenAI(api_key="sk-4088954d38254ee4b072d590b59b0e27", base_url="https://api.deepseek.com")
-PROCESSED_FILES_LOG = "processed_files_deep_seek.txt"
-JSON_FILE = "analysis.json"
-OUTPUT_DIR = "deep_seek"
-TIMING_LOG = "deepseek_model_timings.json"
+PROCESSED_FILES_LOG = "LLM_Gen_Files/processed_files_deepseek_1st_run.txt"
 
+OUTPUT_DIR = "deepseek_2nd_run"
+TIMING_LOG = "LLM_Gen_Files/deepseek_model_timings_2nd_run.json"
+UNPROSED_FILES = "LLM_Gen_Files/unprocessed_files_deepseek_2nd_run.txt"
+INPUT_DIR = "untyped_benchmarks"
 
 def get_token_count(text: str, model: str = "deepseek-reasoner"):
     encoding = tiktoken.get_encoding("cl100k_base")  # Use a known encoding
@@ -35,7 +36,7 @@ def generate_type_annotated_code(code: str) -> str:
     prompt = f"Here is a Python program:\n\n{code}\n\nAdd appropriate type annotations. Output only the type annotated Python code. No Explanation. Your output should be directly executable by python compiler."
     
     token_count = get_token_count(prompt) + 1  # Ensure token limit safety
-    max_retries = 5
+    max_retries = 3
     wait_time = 60
     
     for attempt in range(max_retries):
@@ -79,7 +80,7 @@ def generate_type_annotated_code(code: str) -> str:
     print("Max retries reached. Skipping request.")
     return code
 
-def process_file(file_path):
+def process_file(file_path, grouped_id):
     """Process a single file, handling encoding errors and logging processing time."""
     processed_files = load_processed_files()
 
@@ -107,14 +108,14 @@ def process_file(file_path):
     except IndexError:
         print(f"Skipping file {file_path} due to unexpected format")
         return
-    
-    if not os.path.exists(OUTPUT_DIR):
-        os.makedirs(OUTPUT_DIR)
+    new_file_path= os.path.join(OUTPUT_DIR, grouped_id)
+    if not os.path.exists(new_file_path):
+        os.makedirs(new_file_path)
     
     filename = os.path.basename(file_path)
-    file_hash = hashlib.md5(file_path.encode()).hexdigest()[:8]  # Take first 8 chars of hash
-    new_file_name = f"{filename}_deepseek_{file_hash}.py"
-    new_file_path = os.path.join(OUTPUT_DIR, new_file_name)
+    #file_hash = hashlib.md5(file_path.encode()).hexdigest()[:8]  # Take first 8 chars of hash
+    #new_file_name = f"{filename}_deepseek_{file_hash}.py"
+    new_file_path = os.path.join(new_file_path, filename)
     
     try:
         with open(new_file_path, 'w', encoding='utf-8', errors='ignore') as file:
@@ -133,24 +134,30 @@ def load_processed_files():
             return set(f.read().splitlines())
     return set()
 
-def process_files_from_json():
+
+
+def process_files_from_directory():
     processed_files = load_processed_files()
-    try:
-        with open(JSON_FILE, "r", encoding="utf-8") as f:
-            file_map = json.load(f)
-    except Exception as e:
-        print(f"Error loading JSON: {e}")
-        return
+    all_files = []
+    for root, dirs, files in os.walk(INPUT_DIR):
+        for filename in files:
+            if filename.endswith(".py"):
+                file_path = os.path.join(root, filename)
+                all_files.append(file_path)
 
+    files_to_process = [f for f in all_files if f not in processed_files]
+    total_to_process = len(files_to_process)
     processed_count = 0
-    for file_path in file_map:
-        
-        if file_path in processed_files:
-            print(f"Skipping already processed file: {file_path}")
-            continue
-        process_file(file_path)
-        processed_count += 1
-        time.sleep(30)
+    left_count = total_to_process
 
+    for file_path in files_to_process:
+        relative_dir = os.path.relpath(os.path.dirname(file_path), INPUT_DIR)
+        grouped_id = relative_dir if relative_dir != "." else "root"
+        process_file(file_path, grouped_id)
+        processed_count += 1
+        left_count -= 1
+        print(f"Processed: {processed_count}, Left: {left_count}")
+
+        time.sleep(5)
 if __name__ == "__main__":
-    process_files_from_json()
+    process_files_from_directory() 

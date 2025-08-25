@@ -1,0 +1,26 @@
+from xml.etree.ElementTree import Element, SubElement
+from typing import Any, Tuple
+
+def build_xml_tree(etree: Any) -> Element:
+    ...
+
+def process(etree: Any, xml_root: Element = None) -> bytes:
+    ...
+
+def bench_iterparse(etree: Any, xml_file: str, xml_data: bytes, xml_root: Element) -> None:
+    ...
+
+def bench_parse(etree: Any, xml_file: str, xml_data: bytes, xml_root: Element) -> None:
+    ...
+
+def bench_process(etree: Any, xml_file: str, xml_data: bytes, xml_root: Element) -> None:
+    ...
+
+def bench_generate(etree: Any, xml_file: str, xml_data: bytes, xml_root: Element) -> None:
+    ...
+
+def bench_etree(iterations: int, etree: Any, bench_func: Any) -> float:
+    ...
+
+def add_cmdline_args(cmd: list, args: Any) -> None:
+    ...

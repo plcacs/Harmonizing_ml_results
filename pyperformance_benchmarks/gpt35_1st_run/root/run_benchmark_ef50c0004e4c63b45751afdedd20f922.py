@@ -1,0 +1,19 @@
+from typing import Tuple, List
+
+def gen_x() -> map:
+    ...
+
+def compose(a: Tuple[int, int, int, int], b: Tuple[int, int, int, int]) -> Tuple[int, int, int, int]:
+    ...
+
+def extract(z: Tuple[int, int, int, int], j: int) -> int:
+    ...
+
+def gen_pi_digits() -> int:
+    ...
+
+def calc_ndigits(n: int) -> List[int]:
+    ...
+
+def add_cmdline_args(cmd: List[str], args: argparse.Namespace) -> None:
+    ...
