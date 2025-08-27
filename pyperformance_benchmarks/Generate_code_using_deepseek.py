@@ -6,8 +6,7 @@ from openai import OpenAI
 import hashlib
 
 client = OpenAI(api_key="sk-4088954d38254ee4b072d590b59b0e27", base_url="https://api.deepseek.com")
-PROCESSED_FILES_LOG = "LLM_Gen_Files/processed_files_deepseek_1st_run.txt"
-
+PROCESSED_FILES_LOG = "LLM_Gen_Files/processed_files_deepseek_2nd_run.txt"
 OUTPUT_DIR = "deepseek_2nd_run"
 TIMING_LOG = "LLM_Gen_Files/deepseek_model_timings_2nd_run.json"
 UNPROSED_FILES = "LLM_Gen_Files/unprocessed_files_deepseek_2nd_run.txt"
@@ -80,7 +79,7 @@ def generate_type_annotated_code(code: str) -> str:
     print("Max retries reached. Skipping request.")
     return code
 
-def process_file(file_path, grouped_id):
+def process_file(file_path):
     """Process a single file, handling encoding errors and logging processing time."""
     processed_files = load_processed_files()
 
@@ -108,7 +107,7 @@ def process_file(file_path, grouped_id):
     except IndexError:
         print(f"Skipping file {file_path} due to unexpected format")
         return
-    new_file_path= os.path.join(OUTPUT_DIR, grouped_id)
+    new_file_path= os.path.join(OUTPUT_DIR)
     if not os.path.exists(new_file_path):
         os.makedirs(new_file_path)
     
@@ -153,7 +152,7 @@ def process_files_from_directory():
     for file_path in files_to_process:
         relative_dir = os.path.relpath(os.path.dirname(file_path), INPUT_DIR)
         grouped_id = relative_dir if relative_dir != "." else "root"
-        process_file(file_path, grouped_id)
+        process_file(file_path)
         processed_count += 1
         left_count -= 1
         print(f"Processed: {processed_count}, Left: {left_count}")

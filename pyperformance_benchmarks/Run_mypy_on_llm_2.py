@@ -4,6 +4,7 @@ import glob
 import json
 import ast
 
+
 def count_parameters(filename):
     total_params = 0
     annotated_params = 0
@@ -19,6 +20,7 @@ def count_parameters(filename):
     except (FileNotFoundError, SyntaxError):
         pass
     return total_params, annotated_params
+
 
 def run_mypy_and_save_results(directory, output_file):
     results = {}
@@ -44,7 +46,7 @@ def run_mypy_and_save_results(directory, output_file):
                 cwd=os.path.dirname(abs_path),
                 capture_output=True,
                 text=True,
-                check=False
+                check=False,
             )
             output = process.stdout.strip()
             error_output = process.stderr.strip()
@@ -61,7 +63,7 @@ def run_mypy_and_save_results(directory, output_file):
             else:
                 error_count = output.count("\n")
                 if error_count == 0 and error_output:
-                    error_count = error_output.count('\n')
+                    error_count = error_output.count("\n")
                 errors = output.splitlines() if output else error_output.splitlines()
                 file_result["error_count"] = error_count
                 file_result["isCompiled"] = False
@@ -74,9 +76,60 @@ def run_mypy_and_save_results(directory, output_file):
         with open(output_file, "w") as f:
             json.dump(results, f, indent=4)
     print(f"\\nResults saved to {output_file}")
+
+
 import time
+
 if __name__ == "__main__":
     start_time = time.time()
-    run_mypy_and_save_results("untyped_benchmarks", "mypy_results_untyped_benchmarks_with_errors.json")
+    run_mypy_and_save_results(
+        "gpt35_1st_run",
+        "mypy_results/mypy_outputs/mypy_results_gpt35_1st_run_with_errors.json",
+    )
+    run_mypy_and_save_results(
+        "gpt35_2nd_run",
+        "mypy_results/mypy_outputs/mypy_results_gpt35_2nd_run_with_errors.json",
+    )
+    run_mypy_and_save_results(
+        "gpt4o_1st_run",
+        "mypy_results/mypy_outputs/mypy_results_gpt4o_1st_run_with_errors.json",
+    )
+    run_mypy_and_save_results(
+        "gpt4o_2nd_run",
+        "mypy_results/mypy_outputs/mypy_results_gpt4o_2nd_run_with_errors.json",
+    )
+    run_mypy_and_save_results(
+        "o1_mini_1st_run",
+        "mypy_results/mypy_outputs/mypy_results_o1_mini_1st_run_with_errors.json",
+    )
+    run_mypy_and_save_results(
+        "o1_mini_2nd_run",
+        "mypy_results/mypy_outputs/mypy_results_o1_mini_2nd_run_with_errors.json",
+    )
+    run_mypy_and_save_results(
+        "o3_mini_1st_run",
+        "mypy_results/mypy_outputs/mypy_results_o3_mini_1st_run_with_errors.json",
+    )
+    run_mypy_and_save_results(
+        "o3_mini_2nd_run",
+        "mypy_results/mypy_outputs/mypy_results_o3_mini_2nd_run_with_errors.json",
+    )
+    run_mypy_and_save_results(
+        "claude3_sonnet_1st_run",
+        "mypy_results/mypy_outputs/mypy_results_claude3_sonnet_1st_run_with_errors.json",
+    )
+    run_mypy_and_save_results(
+        "claude3_sonnet_2nd_run",
+        "mypy_results/mypy_outputs/mypy_results_claude3_sonnet_2nd_run_with_errors.json",
+    )
+    run_mypy_and_save_results(
+        "deepseek_1st_run",
+        "mypy_results/mypy_outputs/mypy_results_deepseek_1st_run_with_errors.json",
+    )
+    run_mypy_and_save_results(
+        "deepseek_2nd_run",
+        "mypy_results/mypy_outputs/mypy_results_deepseek_2nd_run_with_errors.json",
+    )
+
     end_time = time.time()
     print(f"Time taken: {end_time - start_time} seconds")
