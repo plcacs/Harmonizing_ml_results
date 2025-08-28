@@ -39,35 +39,59 @@ def build_baseline_files(untyped_mypy: Dict) -> Set[str]:
     return {fname for fname, info in untyped_mypy.items() if info.get("isCompiled") is True}
 
 
-def count_any_and_typed_slots(type_info_for_file: Dict) -> Tuple[int, int]:
-    """Return (any_slots, typed_slots) over parameters and returns.
+def count_slots(type_info_for_file: Dict) -> Tuple[int, int, int, int]:
+    """Return (any_slots, untyped_slots, total_slots, total_functions) over parameters and returns.
     Expects structure: { func_name: [ {"category": "arg"|"return", "type": ["..."]}, ... ] }
+    Skips 'self' parameter (first parameter of each method).
     """
     any_slots = 0
-    typed_slots = 0
+    untyped_slots = 0
+    total_slots = 0
+    total_functions = 0
+    
     if not isinstance(type_info_for_file, dict):
-        return any_slots, typed_slots
+        return any_slots, untyped_slots, total_slots, total_functions
 
-    for _func_name, items in type_info_for_file.items():
+    for func_name, items in type_info_for_file.items():
         if not isinstance(items, list):
             continue
+        
+        total_functions += 1
+        arg_count = 0  # Track arguments per function to skip 'self'
+        
         for entry in items:
             if not isinstance(entry, dict):
                 continue
+            
+            category = entry.get("category", "")
             tlist = entry.get("type", [])
+            
+            if category == "arg":
+                arg_count += 1
+                # Skip 'self' parameter (first argument of each method)
+                if arg_count == 1:
+                    continue
+            
             if isinstance(tlist, list) and tlist:
                 t0 = tlist[0]
                 if isinstance(t0, str) and t0.strip():
-                    typed_slots += 1
+                    total_slots += 1
                     if t0.strip().lower() == "any":
                         any_slots += 1
-    return any_slots, typed_slots
+                    elif t0.strip().lower() == "untyped":
+                        untyped_slots += 1
+            else:
+                # Empty or invalid type list counts as untyped
+                total_slots += 1
+                untyped_slots += 1
+                
+    return any_slots, untyped_slots, total_slots, total_functions
 
 
-def compute_non_any_ratio(any_slots: int, typed_slots: int) -> float:
-    if typed_slots <= 0:
+def compute_non_any_ratio(any_slots: int, untyped_slots: int, total_slots: int) -> float:
+    if total_slots <= 0:
         return -1.0  # indicates no data
-    return 1.0 - (any_slots / typed_slots)
+    return 1.0 - ((any_slots + untyped_slots) / total_slots)
 
 
 def main() -> None:
@@ -92,8 +116,8 @@ def main() -> None:
             if filename not in llm_typeinfo.get(llm_name, {}):
                 continue
             typeinfo_file = llm_typeinfo[llm_name][filename]
-            any_slots, typed_slots = count_any_and_typed_slots(typeinfo_file)
-            score = compute_non_any_ratio(any_slots, typed_slots)
+            any_slots, untyped_slots, total_slots, total_functions = count_slots(typeinfo_file)
+            score = compute_non_any_ratio(any_slots, untyped_slots, total_slots)
             if score >= 0.0:
                 llm_scores[llm_name] = score
 
