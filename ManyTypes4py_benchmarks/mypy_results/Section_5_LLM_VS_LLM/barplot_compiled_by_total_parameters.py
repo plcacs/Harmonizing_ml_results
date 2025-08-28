@@ -53,6 +53,52 @@ def aggregate_counts_by_bin(
     return counts
 
 
+def aggregate_counts_by_bin_multi(
+    llm_paths: List[str],
+    baseline_files: Set[str],
+    filename_to_params: Dict[str, int],
+    bin_edges: List[Tuple[int, int]],
+    mode: str,
+) -> Dict[str, int]:
+    """
+    Aggregate counts per bin across multiple LLM result files using a set operation.
+
+    mode: "union" counts if any of the provided LLMs compiled the file,
+          "intersection" counts only if all provided LLMs compiled the file.
+    """
+    datasets = [load_json(p) for p in llm_paths]
+
+    def in_bin_label(value: int) -> str | None:
+        for start, end in bin_edges:
+            if start <= value <= end:
+                return f"{start}-{end}"
+        return None
+
+    counts: Dict[str, int] = defaultdict(int)
+    for filename in baseline_files:
+        compiled_flags: List[bool] = []
+        for data in datasets:
+            info = data.get(filename)
+            compiled_flags.append(bool(info and info.get("isCompiled") is True))
+
+        ok = False
+        if mode == "union":
+            ok = any(compiled_flags)
+        elif mode == "intersection":
+            ok = all(compiled_flags) and len(compiled_flags) > 0
+
+        if not ok:
+            continue
+
+        param_val = filename_to_params.get(filename)
+        if isinstance(param_val, int):
+            label = in_bin_label(param_val)
+            if label is not None:
+                counts[label] += 1
+
+    return counts
+
+
 def plot_grouped_bars(
     bin_labels: List[str],
     series: List[Tuple[str, List[int]]],
@@ -93,9 +139,9 @@ def plot_grouped_bars(
     plt.ylabel("Number of files typechecked successfully",fontsize=16)
     plt.title("Compiled successes by parameter count across LLMs (baseline filtered)",fontsize=20)
     plt.grid(axis="y", linestyle=":", alpha=0.5)
-    plt.legend(loc="center left", bbox_to_anchor=(1.0, 0.5))
+    plt.legend(loc="upper right")
     plt.tight_layout()
-    plt.savefig("Section_5_LLM_VS_LLM/compiled_counts_by_total_parameters.pdf", bbox_inches="tight")
+    #plt.savefig("Section_5_LLM_VS_LLM/compiled_counts_by_total_parameters.pdf", bbox_inches="tight")
     plt.show()
 
 
@@ -139,7 +185,7 @@ def plot_grouped_bars_percent(
     plt.title("Compiled success rate by parameter count across LLMs (baseline filtered)",fontsize=20)
     plt.ylim(0, 100)
     plt.grid(axis="y", linestyle=":", alpha=0.5)
-    plt.legend(loc="center left", bbox_to_anchor=(1.0, 0.5))
+    plt.legend(loc="upper right")
     plt.tight_layout()
     plt.savefig("Section_5_LLM_VS_LLM/compiled_percent_by_total_parameters.pdf", bbox_inches="tight")
     plt.show()
@@ -152,7 +198,7 @@ def main() -> None:
     llm_paths = {
         "gpt-3.5": "mypy_outputs/mypy_results_gpt35_1st_run_with_errors.json",
         "gpt-4o": "mypy_outputs/mypy_results_gpt4o_with_errors.json",
-        "o1-mini (old)": "mypy_outputs/mypy_results_o1_mini_with_errors_old.json",
+        "o1-mini": "mypy_outputs/mypy_results_o1_mini_with_errors.json",
         "o3-mini": "mypy_outputs/mypy_results_o3_mini_1st_run_with_errors.json",
         "deepseek": "mypy_outputs/mypy_results_deepseek_with_errors.json",
         "claude3 sonnet": "mypy_outputs/mypy_results_claude3_sonnet_1st_run_with_errors.json",
@@ -196,6 +242,42 @@ def main() -> None:
         counts_map = aggregate_counts_by_bin(path, baseline_files, filename_to_params, bin_edges)
         temp_series.append((label, counts_map))
 
+    # Add requested aggregate series
+    trio_for_union_intersection = [
+        llm_paths["o3-mini"],
+        llm_paths["deepseek"],
+        llm_paths["claude3 sonnet"],
+    ]
+    union_trio = aggregate_counts_by_bin_multi(
+        trio_for_union_intersection,
+        baseline_files,
+        filename_to_params,
+        bin_edges,
+        mode="union",
+    )
+    intersection_trio = aggregate_counts_by_bin_multi(
+        trio_for_union_intersection,
+        baseline_files,
+        filename_to_params,
+        bin_edges,
+        mode="intersection",
+    )
+    trio_for_second_union = [
+        llm_paths["o3-mini"],
+        llm_paths["o1-mini"],
+        llm_paths["gpt-4o"],
+    ]
+    union_trio_2 = aggregate_counts_by_bin_multi(
+        trio_for_second_union,
+        baseline_files,
+        filename_to_params,
+        bin_edges,
+        mode="union",
+    )
+    temp_series.append(("Union(o3-mini, deepseek, claude)", union_trio))
+    temp_series.append(("Intersection(o3-mini, deepseek, claude)", intersection_trio))
+    temp_series.append(("Union(o3-mini, o1-mini, gpt-4o)", union_trio_2))
+
     bin_labels = [f"{s}-{e}" for s, e in bin_edges]
 
     # Baseline totals per bin for percentage denominator
@@ -226,7 +308,7 @@ def main() -> None:
 
     # Enhance first plot labels with baseline bin sizes
     display_labels_with_n = [f"{lbl} (n={baseline_counts_map.get(lbl, 0)})" for lbl in filtered_labels]
-    plot_grouped_bars(display_labels_with_n, series)
+    #plot_grouped_bars(display_labels_with_n, series)
 
     # Percentage plot
     series_percent: List[Tuple[str, List[float]]] = []
