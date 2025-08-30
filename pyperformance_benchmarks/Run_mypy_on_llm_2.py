@@ -82,7 +82,7 @@ import time
 
 if __name__ == "__main__":
     start_time = time.time()
-    run_mypy_and_save_results(
+    """run_mypy_and_save_results(
         "gpt35_1st_run",
         "mypy_results/mypy_outputs/mypy_results_gpt35_1st_run_with_errors.json",
     )
@@ -129,6 +129,10 @@ if __name__ == "__main__":
     run_mypy_and_save_results(
         "deepseek_2nd_run",
         "mypy_results/mypy_outputs/mypy_results_deepseek_2nd_run_with_errors.json",
+    )"""
+    run_mypy_and_save_results(
+        "untyped_benchmarks",
+        "mypy_results/mypy_outputs/mypy_results_untyped_with_errors.json",
     )
 
     end_time = time.time()
