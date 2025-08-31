@@ -134,49 +134,53 @@ def collect_annotations(root_dir: str, output_json: str):
 # collect_annotations(
 #     "original_files", "Type_info_collector/Type_info_original_files.json"
 # )
-"""collect_annotations(
+collect_annotations(
     "claude3_sonnet_1st_run",
-    "Type_info_collector/Type_info_claude3_sonnet_1st_run_benchmarks.json",
-)
-collect_annotations(
-    "o3_mini_1st_run",
-    "Type_info_collector/Type_info_o3_mini_1st_run_benchmarks.json",
-)
-collect_annotations(
-    "gpt4o",
-    "Type_info_collector/Type_info_gpt4o_benchmarks.json",
-)
-collect_annotations(
-    "claude3_sonnet_user_annotated",
-    "Type_info_collector/Type_info_LLMS/Type_info_claude3_sonnet_user_annotated_benchmarks.json",
-)
-collect_annotations(
-    "deepseek_user_annotated",
-    "Type_info_collector/Type_info_LLMS/Type_info_deepseek_user_annotated_benchmarks.json",
-)
-collect_annotations(
-    "o3_mini_user_annotated",
-    "Type_info_collector/Type_info_LLMS/Type_info_o3_mini_user_annotated_benchmarks.json",
-)"""
-collect_annotations(
-    "deep_seek_2nd_run",
-    "Type_info_collector/Type_info_LLMS/Type_info_deep_seek_2nd_run_benchmarks.json",
-)
-collect_annotations(
-    "o3_mini_2nd_run",
-    "Type_info_collector/Type_info_LLMS/Type_info_o3_mini_2nd_run_benchmarks.json",
+    "Type_info_collector/Type_info_LLMS/Type_info_claude3_sonnet_1st_run_benchmarks.json",
 )
 collect_annotations(
     "claude3_sonnet_2nd_run",
     "Type_info_collector/Type_info_LLMS/Type_info_claude3_sonnet_2nd_run_benchmarks.json",
 )
 collect_annotations(
+    "deepseek_1st_run",
+    "Type_info_collector/Type_info_LLMS/Type_info_deepseek_1st_run_benchmarks.json",
+)
+collect_annotations(
+    "deepseek_2nd_run",
+    "Type_info_collector/Type_info_LLMS/Type_info_deepseek_2nd_run_benchmarks.json",
+)
+
+collect_annotations(
+    "gpt4o_1st_run",
+    "Type_info_collector/Type_info_LLMS/Type_info_gpt4o_1st_run_benchmarks.json",
+)
+collect_annotations(
     "gpt4o_2nd_run",
     "Type_info_collector/Type_info_LLMS/Type_info_gpt4o_2nd_run_benchmarks.json",
 )
+
+collect_annotations(
+    "o3_mini_1st_run",
+    "Type_info_collector/Type_info_LLMS/Type_info_o3_mini_1st_run_benchmarks.json",
+)
+collect_annotations(
+    "o3_mini_2nd_run",
+    "Type_info_collector/Type_info_LLMS/Type_info_o3_mini_2nd_run_benchmarks.json",
+)
+collect_annotations(
+    "gpt35_1st_run",
+    "Type_info_collector/Type_info_LLMS/Type_info_gpt35_1st_run_benchmarks.json",
+)
+
 collect_annotations(
     "gpt35_2nd_run",
     "Type_info_collector/Type_info_LLMS/Type_info_gpt35_2nd_run_benchmarks.json",
+)
+
+collect_annotations(
+    "o1_mini_1st_run",
+    "Type_info_collector/Type_info_LLMS/Type_info_o1_mini_1st_run_benchmarks.json",
 )
 collect_annotations(
     "o1_mini_2nd_run",
