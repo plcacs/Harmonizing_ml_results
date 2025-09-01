@@ -134,6 +134,7 @@ def collect_annotations(root_dir: str, output_json: str):
 # collect_annotations(
 #     "original_files", "Type_info_collector/Type_info_original_files.json"
 # )
+"""
 collect_annotations(
     "claude3_sonnet_1st_run",
     "Type_info_collector/Type_info_LLMS/Type_info_claude3_sonnet_1st_run_benchmarks.json",
@@ -185,4 +186,12 @@ collect_annotations(
 collect_annotations(
     "o1_mini_2nd_run",
     "Type_info_collector/Type_info_LLMS/Type_info_o1_mini_2nd_run_benchmarks.json",
+)
+collect_annotations(
+    "untyped_benchmarks",
+    "Type_info_collector/Type_info_LLMS/Type_info_untyped_benchmarks.json",
+)"""
+collect_annotations(
+    "original_benchmarks_files",
+    "Type_info_collector/Type_info_LLMS/Type_info_original_benchmarks_files.json",
 )

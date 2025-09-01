@@ -103,7 +103,7 @@ def rename_functions_in_file(file_path, output_dir):
                         output_file = os.path.join(output_dir, file_path.name)
                         with open(output_file, 'w', encoding='utf-8') as f:
                             f.write(source_code)
-                        return 0
+                        return 0, {}
         
         # Create renamer and transform the AST
         renamer = FunctionRenamer()
@@ -120,7 +120,7 @@ def rename_functions_in_file(file_path, output_dir):
         with open(output_file, 'w', encoding='utf-8') as f:
             f.write(new_source)
         
-        return len(renamer.function_mapping)
+        return len(renamer.function_mapping), renamer.function_mapping
     
     except Exception as e:
         print(f"Error processing {file_path}: {e}")
@@ -129,7 +129,7 @@ def rename_functions_in_file(file_path, output_dir):
         with open(file_path, 'r', encoding='utf-8') as src:
             with open(output_file, 'w', encoding='utf-8') as dst:
                 dst.write(src.read())
-        return 0
+        return 0, {}
 
 def process_all_files():
     """Process all Python files in the target directory"""
@@ -155,17 +155,30 @@ def process_all_files():
     
     total_functions_renamed = 0
     processed_files = 0
+    all_mappings = {}
     
     for file_path in python_files:
         print(f"Processing: {file_path.name}")
-        functions_renamed = rename_functions_in_file(file_path, output_dir)
+        functions_renamed, function_mapping = rename_functions_in_file(file_path, output_dir)
         total_functions_renamed += functions_renamed
         processed_files += 1
+        
+        # Save mapping for this file
+        if function_mapping:
+            all_mappings[file_path.name] = function_mapping
+            
         print(f"  - Renamed {functions_renamed} functions")
+    
+    # Save all mappings to a JSON file
+    import json
+    mapping_file = os.path.join(output_dir, "function_mappings.json")
+    with open(mapping_file, 'w', encoding='utf-8') as f:
+        json.dump(all_mappings, f, indent=2)
     
     print(f"\nCompleted! Processed {processed_files} files, renamed {total_functions_renamed} functions total")
     print(f"Original files: {source_dir}")
     print(f"Renamed files: {output_dir}")
+    print(f"Function mappings saved to: {mapping_file}")
 
 if __name__ == "__main__":
     process_all_files() 
