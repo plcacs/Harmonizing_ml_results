@@ -14,7 +14,7 @@ def load_type_info(file_path):
 
 
 def load_function_mappings(mappings_file):
-    """Load function name mappings from JSON file."""
+    """Load function signature mappings from JSON file."""
     try:
         with open(mappings_file, "r", encoding="utf-8") as f:
             return json.load(f)
@@ -41,60 +41,40 @@ def analyze_type_replacements(original_data, renamed_data, function_mappings):
     # Find common files
     common_files = set(original_data.keys()) & set(renamed_data.keys())
     print(f"Found {len(common_files)} common files")
-    
+
     for filename in common_files:
         original_functions = original_data[filename]
         renamed_functions = renamed_data[filename]
-        
+
         # Get function mappings for this file
-        file_mappings = function_mappings.get(filename, {})
+        file_mappings = function_mappings.get(filename, [])
         if not file_mappings:
             print(f"  Skipping {filename} - no mappings found")
             continue
 
         print(f"  Processing {filename} with {len(file_mappings)} function mappings")
 
-        for original_func_name, renamed_func_name in file_mappings.items():
-            # Check if both functions exist in any scope
-            original_func_found = False
-            renamed_func_found = False
-            original_func_key = None
-            renamed_func_key = None
-            
-            # Look for functions in any scope (global, class, etc.)
-            for func_key in original_functions.keys():
-                # Extract base function name by removing scope suffix (e.g., "@global@" or "@ClassName@")
-                if '@' in func_key:
-                    base_name = func_key.split('@')[0]
-                else:
-                    base_name = func_key
-                
-                if base_name == original_func_name:
-                    original_func_key = func_key
-                    original_func_found = True
-                    break
-            
-            for func_key in renamed_functions.keys():
-                # Extract base function name by removing scope suffix
-                if '@' in func_key:
-                    base_name = func_key.split('@')[0]
-                else:
-                    base_name = func_key
-                
-                if base_name == renamed_func_name:
-                    renamed_func_key = func_key
-                    renamed_func_found = True
-                    break
-            
-            # Check if both functions exist
-            if not original_func_found or not renamed_func_found:
-                print(f"    Skipping {original_func_name} -> {renamed_func_name} - function not found in both datasets")
+        for mapping in file_mappings:
+            original_func_key = mapping["original_func"]
+            renamed_func_key = mapping["renamed_func"]
+
+            # Check if both functions exist in the datasets
+            if original_func_key not in original_functions:
+                print(
+                    f"    Skipping {original_func_key} - not found in original dataset"
+                )
+                continue
+
+            if renamed_func_key not in renamed_functions:
+                print(f"    Skipping {renamed_func_key} - not found in renamed dataset")
                 continue
 
             original_params = original_functions[original_func_key]
             renamed_params = renamed_functions[renamed_func_key]
 
-            print(f"    Comparing {original_func_name} -> {renamed_func_name}: {len(original_params)} vs {len(renamed_params)} params")
+            print(
+                f"    Comparing {original_func_key} -> {renamed_func_key}: {len(original_params)} vs {len(renamed_params)} params"
+            )
 
             # Match parameters by category and name
             original_dict = {
@@ -105,13 +85,17 @@ def analyze_type_replacements(original_data, renamed_data, function_mappings):
             }
 
             common_keys = set(original_dict.keys()) & set(renamed_dict.keys())
-            
+
             # Debug: show parameter keys
             if len(common_keys) == 0 and total_concrete < 3:
                 print(f"      Original param keys: {list(original_dict.keys())[:5]}")
                 print(f"      Renamed param keys: {list(renamed_dict.keys())[:5]}")
-                print(f"      Original params sample: {original_params[:2] if original_params else 'None'}")
-                print(f"      Renamed params sample: {renamed_params[:2] if renamed_params else 'None'}")
+                print(
+                    f"      Original params sample: {original_params[:2] if original_params else 'None'}"
+                )
+                print(
+                    f"      Renamed params sample: {renamed_params[:2] if renamed_params else 'None'}"
+                )
 
             print(f"      Found {len(common_keys)} common parameters")
 
@@ -120,15 +104,21 @@ def analyze_type_replacements(original_data, renamed_data, function_mappings):
                 renamed_param = renamed_dict[key]
 
                 original_type = (
-                    original_param.get("type", [""])[0] if original_param.get("type") else ""
+                    original_param.get("type", [""])[0]
+                    if original_param.get("type")
+                    else ""
                 )
                 renamed_type = (
-                    renamed_param.get("type", [""])[0] if renamed_param.get("type") else ""
+                    renamed_param.get("type", [""])[0]
+                    if renamed_param.get("type")
+                    else ""
                 )
 
                 # Debug: print some type examples
                 if total_concrete < 5:  # Only print first few for debugging
-                    debug_info.append(f"      {key}: '{original_type}' -> '{renamed_type}'")
+                    debug_info.append(
+                        f"      {key}: '{original_type}' -> '{renamed_type}'"
+                    )
 
                 # Check if original had concrete type
                 if is_concrete_type(original_type):
@@ -151,7 +141,7 @@ def analyze_type_replacements(original_data, renamed_data, function_mappings):
 
 def main():
     # Load function mappings
-    function_mappings = load_function_mappings("function_mappings.json")
+    function_mappings = load_function_mappings("function_signature_mappings.json")
     if not function_mappings:
         print("Failed to load function mappings")
         return
@@ -160,20 +150,20 @@ def main():
     model_pairs = {
         "deepseek": {
             "original": "../Type_info_LLMS/Type_info_deep_seek_benchmarks.json",
-            "renamed": "../Type_info_LLMS/Type_info_deepseek_renamed_output_2_benchmarks.json"
+            "renamed": "../Type_info_LLMS/Type_info_deepseek_renamed_output_2_benchmarks.json",
         },
         "o3-mini": {
             "original": "../Type_info_LLMS/Type_info_o3_mini_1st_run_benchmarks.json",
-            "renamed": "../Type_info_LLMS/Type_info_o3_mini_renamed_output_benchmarks.json"
+            "renamed": "../Type_info_LLMS/Type_info_o3_mini_renamed_output_benchmarks.json",
         },
         "claude3-sonnet": {
             "original": "../Type_info_LLMS/Type_info_claude3_sonnet_1st_run_benchmarks.json",
-            "renamed": "../Type_info_LLMS/Type_info_claude_sonnet_renamed_output_benchmarks.json"
+            "renamed": "../Type_info_LLMS/Type_info_claude_sonnet_renamed_output_benchmarks.json",
         },
         "gpt35": {
             "original": "../Type_info_LLMS/Type_info_gpt35_1st_run_benchmarks.json",
-            "renamed": "../Type_info_LLMS/Type_info_gpt35_renamed_output_benchmarks.json"
-        }
+            "renamed": "../Type_info_LLMS/Type_info_gpt35_renamed_output_benchmarks.json",
+        },
     }
 
     print("=" * 60)
@@ -187,7 +177,7 @@ def main():
 
         original_data = load_type_info(file_paths["original"])
         renamed_data = load_type_info(file_paths["renamed"])
-        
+
         if not original_data:
             print(f"  Failed to load original: {file_paths['original']}")
             continue
