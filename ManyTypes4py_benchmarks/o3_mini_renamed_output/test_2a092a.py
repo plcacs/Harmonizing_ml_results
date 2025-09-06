@@ -1,0 +1,287 @@
+from __future__ import annotations
+import os
+import json
+import base64
+import contextlib
+from types import TracebackType
+from typing import Optional, Type, Generator, Dict, Any, List, Callable
+from chalice import Chalice
+from chalice.config import Config
+from chalice.local import LocalGateway, LambdaContext, LocalGatewayException
+from chalice.cli.factory import CLIFactory
+
+
+class FunctionNotFoundError(Exception):
+    pass
+
+
+class Client:
+    def __init__(self, app: Chalice, stage_name: str = 'dev', project_dir: str = '.') -> None:
+        self._app: Chalice = app
+        self._project_dir: str = project_dir
+        self._stage_name: str = stage_name
+        self._http_client: Optional[TestHTTPClient] = None
+        self._events_client: Optional[TestEventsClient] = None
+        self._lambda_client: Optional[TestLambdaClient] = None
+        self._chalice_config_obj: Optional[Config] = None
+        self._cli_factory: CLIFactory = CLIFactory(project_dir)
+
+    @property
+    def func_snvu419b(self) -> Config:
+        if self._chalice_config_obj is None:
+            try:
+                self._chalice_config_obj = self._cli_factory.create_config_obj(
+                    chalice_stage_name=self._stage_name)
+            except RuntimeError:
+                self._chalice_config_obj = Config.create()
+        return self._chalice_config_obj
+
+    @property
+    def func_wu0lj23y(self) -> TestHTTPClient:
+        if self._http_client is None:
+            self._http_client = TestHTTPClient(self._app, self._chalice_config_obj or self.func_snvu419b)
+        return self._http_client
+
+    @property
+    def func_3ku49lw4(self) -> TestLambdaClient:
+        if self._lambda_client is None:
+            self._lambda_client = TestLambdaClient(self._app, self._chalice_config_obj or self.func_snvu419b)
+        return self._lambda_client
+
+    @property
+    def func_578whknr(self) -> TestEventsClient:
+        if self._events_client is None:
+            self._events_client = TestEventsClient(self._app)
+        return self._events_client
+
+    def __enter__(self) -> Client:
+        return self
+
+    def __exit__(self, 
+                 exception_type: Optional[Type[BaseException]], 
+                 exception_value: Optional[BaseException], 
+                 traceback: Optional[TracebackType]) -> Optional[bool]:
+        pass
+
+
+class BaseClient:
+    @contextlib.contextmanager
+    def func_agnajhk1(self, environment_variables: Dict[str, str]) -> Generator[None, None, None]:
+        original = os.environ
+        patched = os.environ.copy()
+        patched.update(environment_variables)
+        os.environ = patched
+        try:
+            yield
+        finally:
+            os.environ = original
+
+
+class TestHTTPClient(BaseClient):
+    def __init__(self, app: Chalice, config: Config) -> None:
+        self._app: Chalice = app
+        self._config: Config = config
+        self._local_gateway: LocalGateway = LocalGateway(app, self._config)
+
+    def func_qkc4va93(self, method: str, path: str, headers: Optional[Dict[str, str]] = None, body: bytes = b'') -> HTTPResponse:
+        if headers is None:
+            headers = {}
+        scoped = self._config.scope(self._config.chalice_stage, 'api_handler')
+        with self._patched_env_vars(scoped.environment_variables):  # type: ignore[attr-defined]
+            try:
+                response: Dict[str, Any] = self._local_gateway.handle_request(method=method.upper(), path=path, headers=headers, body=body)
+            except LocalGatewayException as e:
+                return self.func_kzyhswgi(e)
+        return HTTPResponse.func_9ejpzzge(response)
+
+    def func_kzyhswgi(self, e: LocalGatewayException) -> HTTPResponse:
+        return HTTPResponse(headers=e.headers, body=e.body if e.body else b'', status_code=e.CODE)
+
+    def func_laor1zbh(self, path: str, **kwargs: Any) -> HTTPResponse:
+        return self.request('GET', path, **kwargs)  # type: ignore
+
+    def func_ulqhy53b(self, path: str, **kwargs: Any) -> HTTPResponse:
+        return self.request('POST', path, **kwargs)  # type: ignore
+
+    def func_6p9miwau(self, path: str, **kwargs: Any) -> HTTPResponse:
+        return self.request('PUT', path, **kwargs)  # type: ignore
+
+    def func_d6doe0yl(self, path: str, **kwargs: Any) -> HTTPResponse:
+        return self.request('PATCH', path, **kwargs)  # type: ignore
+
+    def func_0pndpchy(self, path: str, **kwargs: Any) -> HTTPResponse:
+        return self.request('OPTIONS', path, **kwargs)  # type: ignore
+
+    def func_916vlp4x(self, path: str, **kwargs: Any) -> HTTPResponse:
+        return self.request('DELETE', path, **kwargs)  # type: ignore
+
+    def func_m386m86q(self, path: str, **kwargs: Any) -> HTTPResponse:
+        return self.request('HEAD', path, **kwargs)  # type: ignore
+
+    # Placeholder for the missing 'request' method to avoid type checking errors.
+    def request(self, method: str, path: str, **kwargs: Any) -> HTTPResponse:
+        return self.func_qkc4va93(method, path, **kwargs)
+
+
+class HTTPResponse:
+    def __init__(self, body: bytes, headers: Dict[str, Any], status_code: int) -> None:
+        self.body: bytes = body
+        self.headers: Dict[str, Any] = headers
+        self.status_code: int = status_code
+
+    @property
+    def func_nregitqq(self) -> Optional[Any]:
+        try:
+            return json.loads(self.body)
+        except ValueError:
+            return None
+
+    @classmethod
+    def func_9ejpzzge(cls, response_dict: Dict[str, Any]) -> HTTPResponse:
+        if response_dict.get('isBase64Encoded', False):
+            body: bytes = base64.b64decode(response_dict['body'])
+        else:
+            body = response_dict['body'].encode('utf-8')
+        combined_headers: Dict[str, Any] = response_dict['headers']
+        combined_headers.update(response_dict['multiValueHeaders'])
+        return cls(body=body, status_code=response_dict['statusCode'], headers=combined_headers)
+
+
+class TestEventsClient(BaseClient):
+    def __init__(self, app: Chalice) -> None:
+        self._app: Chalice = app
+
+    def func_29b5eb55(self, message: str, subject: str = '', message_attributes: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+        if message_attributes is None:
+            message_attributes = {'AttributeKey': {'Type': 'String', 'Value': 'AttributeValue'}}
+        sns_event: Dict[str, Any] = {
+            'Records': [{
+                'EventSource': 'aws:sns',
+                'EventSubscriptionArn': 'arn:subscription-arn',
+                'EventVersion': '1.0',
+                'Sns': {
+                    'Message': message,
+                    'MessageAttributes': message_attributes,
+                    'MessageId': 'abcdefgh-51e4-5ae2-9964-b296c8d65d1a',
+                    'Signature': 'signature',
+                    'SignatureVersion': '1',
+                    'SigningCertUrl': 'https://sns.us-west-2.amazonaws.com/cert.pem',
+                    'Subject': subject,
+                    'Timestamp': '2018-06-26T19:41:38.695Z',
+                    'TopicArn': 'arn:aws:sns:us-west-2:12345:TopicName',
+                    'Type': 'Notification',
+                    'UnsubscribeUrl': 'https://unsubscribe-url/'
+                }
+            }]
+        }
+        return sns_event
+
+    def func_nxwg41n0(self, bucket: str, key: str, event_name: str = 'ObjectCreated:Put') -> Dict[str, Any]:
+        s3_event: Dict[str, Any] = {
+            'Records': [{
+                'awsRegion': 'us-west-2',
+                'eventName': event_name,
+                'eventSource': 'aws:s3',
+                'eventTime': '2018-05-22T04:41:23.823Z',
+                'eventVersion': '2.0',
+                'requestParameters': {'sourceIPAddress': '1.1.1.1'},
+                'responseElements': {
+                    'x-amz-id-2': 'request-id-2',
+                    'x-amz-request-id': 'request-id-1'
+                },
+                's3': {
+                    'bucket': {
+                        'arn': 'arn:aws:s3:::%s' % bucket,
+                        'name': bucket,
+                        'ownerIdentity': {
+                            'principalId': 'ABCD'
+                        }
+                    },
+                    'configurationId': 'config-id',
+                    'object': {
+                        'eTag': 'd41d8cd98f00b204e9800998ecf8427e',
+                        'key': key,
+                        'sequencer': '005B039F73C627CE8B',
+                        'size': 0
+                    },
+                    's3SchemaVersion': '1.0'
+                },
+                'userIdentity': {'principalId': 'AWS:XYZ'}
+            }]
+        }
+        return s3_event
+
+    def func_lotxij3j(self, message_bodies: List[str], queue_name: str = 'queue-name') -> Dict[str, Any]:
+        records: List[Dict[str, Any]] = [{
+            'attributes': {
+                'ApproximateFirstReceiveTimestamp': '1530576251596',
+                'ApproximateReceiveCount': '1',
+                'SenderId': 'sender-id',
+                'SentTimestamp': '1530576251595'
+            },
+            'awsRegion': 'us-west-2',
+            'body': body,
+            'eventSource': 'aws:sqs',
+            'eventSourceARN': 'arn:aws:sqs:us-west-2:12345:%s' % queue_name,
+            'md5OfBody': '754ac2f7a12df38320e0c5eafd060145',
+            'messageAttributes': {},
+            'messageId': 'message-id',
+            'receiptHandle': 'receipt-handle'
+        } for body in message_bodies]
+        sqs_event: Dict[str, Any] = {'Records': records}
+        return sqs_event
+
+    def func_x5696tho(self, source: str, detail_type: str, detail: Dict[str, Any], resources: List[str], region: str = 'us-west-2') -> Dict[str, Any]:
+        event: Dict[str, Any] = {
+            'version': 0,
+            'id': '7bf73129-1428-4cd3-a780-95db273d1602',
+            'detail-type': detail_type,
+            'source': source,
+            'account': '123456789012',
+            'time': '2015-11-11T21:29:54Z',
+            'region': region,
+            'resources': resources,
+            'detail': detail
+        }
+        return event
+
+    def func_kijogmxc(self, message_bodies: List[bytes], stream_name: str = 'stream-name') -> Dict[str, Any]:
+        records: List[Dict[str, Any]] = [{
+            'kinesis': {
+                'kinesisSchemaVersion': '1.0',
+                'partitionKey': '1',
+                'sequenceNumber': '12345',
+                'data': base64.b64encode(body).decode('ascii'),
+                'approximateArrivalTimestamp': 1545084650.987
+            },
+            'eventSource': 'aws:kinesis',
+            'eventVersion': '1.0',
+            'eventID': 'shardId-000000000006:12345',
+            'eventName': 'aws:kinesis:record',
+            'invokeIdentityArn': 'arn:aws:iam::123:role/lambda-role',
+            'awsRegion': 'us-west-2',
+            'eventSourceARN': 'arn:aws:kinesis:us-east-2:123:stream/%s' % stream_name
+        } for body in message_bodies]
+        return {'Records': records}
+
+
+class TestLambdaClient(BaseClient):
+    def __init__(self, app: Chalice, config: Config) -> None:
+        self._app: Chalice = app
+        self._config: Config = config
+
+    def func_rs5h1f7h(self, function_name: str, payload: Optional[Dict[str, Any]] = None) -> InvokeResponse:
+        if payload is None:
+            payload = {}
+        scoped = self._config.scope(self._config.chalice_stage, function_name)
+        lambda_context: LambdaContext = LambdaContext(function_name, memory_size=scoped.lambda_memory_size)
+        if function_name not in self._app.handler_map:  # type: ignore[attr-defined]
+            raise FunctionNotFoundError(function_name)
+        with self._patched_env_vars(scoped.environment_variables):  # type: ignore[attr-defined]
+            response: Any = self._app.handler_map[function_name](payload, lambda_context)  # type: ignore[attr-defined]
+        return InvokeResponse(payload=response)
+
+
+class InvokeResponse:
+    def __init__(self, payload: Any) -> None:
+        self.payload: Any = payload

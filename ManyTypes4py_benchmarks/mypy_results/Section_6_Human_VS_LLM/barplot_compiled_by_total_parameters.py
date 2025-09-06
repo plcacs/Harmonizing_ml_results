@@ -112,13 +112,20 @@ def plot_grouped_bars(
     plt.figure(figsize=(14, 7))
     bars_by_series = []
     
-    # Define soothing colors
+    # Consistent colors across plots
     color_map = {
-        "Human (original)": "#2E86AB",      # Soft blue
-        "o3-mini": "#A23B72",               # Muted purple
-        "deepseek": "#F18F01",              # Warm orange
-        "claude3 sonnet": "#C73E1D",        # Muted red
-        "Union of 3 LLMs": "#8B5A96",       # Soft violet
+        # Core labels used in this script
+        "Human (original)": "pink",
+        "o3-mini": "red",
+        "deepseek": "blue",
+        "claude3 sonnet": "purple",
+        "Union of 3 LLMs": "#8B5A96",  # keep distinct color for union
+        # Also support alternative label spellings seen elsewhere
+        "Human": "pink",
+        "claude3-sonnet": "purple",
+        "gpt-4o": "orange",
+        "o1-mini": "skyblue",
+        "gpt-3.5": "green",
     }
     
     for idx, ((label, counts), dx) in enumerate(zip(series, offsets)):
@@ -141,13 +148,13 @@ def plot_grouped_bars(
                         textcoords="offset points",
                         ha="center",
                         va="bottom",
-                        fontsize=8,
+                        fontsize=12,
                     )
 
     plt.xticks(list(x), bin_labels, rotation=30, ha="right")
     plt.xlabel("Parameter count (from untyped baseline)",fontsize=16)
     plt.ylabel("Number of files typechecked successfully",fontsize=16)
-    plt.title("Compiled successes by parameter count across LLMs (baseline filtered)",fontsize=20)
+    # plt.title("Compiled successes by parameter count across LLMs (baseline filtered)",fontsize=20)
     plt.grid(axis="y", linestyle=":", alpha=0.5)
     plt.legend(loc="upper right")
     plt.tight_layout()
@@ -168,13 +175,20 @@ def plot_grouped_bars_percent(
     plt.figure(figsize=(14, 7))
     bars_by_series = []
     
-    # Define soothing colors
+    # Consistent colors across plots
     color_map = {
-        "Human (original)": "#2E86AB",      # Soft blue
-        "o3-mini": "#A23B72",               # Muted purple
-        "deepseek": "#F18F01",              # Warm orange
-        "claude3 sonnet": "#C73E1D",        # Muted red
-        "Union of 3 LLMs": "#8B5A96",       # Soft violet
+        # Core labels used in this script
+        "Human (original)": "pink",
+        "o3-mini": "red",
+        "deepseek": "blue",
+        "claude3 sonnet": "purple",
+        "Union of 3 LLMs": "#8B5A96",  # keep distinct color for union
+        # Also support alternative label spellings seen elsewhere
+        "Human": "pink",
+        "claude3-sonnet": "purple",
+        "gpt-4o": "orange",
+        "o1-mini": "skyblue",
+        "gpt-3.5": "green",
     }
     
     for idx, ((label, percents), dx) in enumerate(zip(series_percent, offsets)):
@@ -196,13 +210,14 @@ def plot_grouped_bars_percent(
                         textcoords="offset points",
                         ha="center",
                         va="bottom",
-                        fontsize=8,
+                        fontsize=12,
                     )
 
-    plt.xticks(list(x), bin_labels, rotation=30, ha="right")
+    plt.xticks(list(x), bin_labels, rotation=30, ha="right",fontsize=16)
+    plt.yticks(fontsize=16)
     plt.xlabel("Parameter count bins (from untyped baseline)",fontsize=16)
     plt.ylabel("Percentage of files typechecked successfully",fontsize=16)
-    plt.title("Compiled success rate by parameter count across LLMs (baseline filtered)",fontsize=20)
+    # plt.title("Compiled success rate by parameter count across LLMs (baseline filtered)",fontsize=20)
     plt.ylim(0, 100)
     plt.grid(axis="y", linestyle=":", alpha=0.5)
     plt.legend(loc="upper right")

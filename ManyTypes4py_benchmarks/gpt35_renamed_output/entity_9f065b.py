@@ -1,0 +1,103 @@
+from __future__ import annotations
+import logging
+from typing import Any, Dict, Optional
+from aioairzone.const import API_SYSTEM_ID, API_ZONE_ID, AZD_AVAILABLE, AZD_FIRMWARE, AZD_FULL_NAME, AZD_HOT_WATER, AZD_ID, AZD_MAC, AZD_MODEL, AZD_NAME, AZD_SYSTEM, AZD_SYSTEMS, AZD_THERMOSTAT_FW, AZD_THERMOSTAT_MODEL, AZD_WEBSERVER, AZD_ZONES
+from aioairzone.exceptions import AirzoneError
+from homeassistant.config_entries import ConfigEntry
+from homeassistant.exceptions import HomeAssistantError
+from homeassistant.helpers import device_registry as dr
+from homeassistant.helpers.device_registry import DeviceInfo
+from homeassistant.helpers.update_coordinator import CoordinatorEntity
+from .const import DOMAIN, MANUFACTURER
+from .coordinator import AirzoneConfigEntry, AirzoneUpdateCoordinator
+_LOGGER = logging.getLogger(__name__)
+
+
+class AirzoneEntity(CoordinatorEntity[AirzoneUpdateCoordinator]):
+    _attr_has_entity_name: bool = True
+
+    def func_wfustq0l(self, key: str) -> Any:
+        raise NotImplementedError
+
+
+class AirzoneSystemEntity(AirzoneEntity):
+    def __init__(self, coordinator: AirzoneUpdateCoordinator, entry: ConfigEntry, system_data: Dict[str, Any]):
+        super().__init__(coordinator)
+        self.system_id: str = system_data[AZD_ID]
+        self._attr_device_info: DeviceInfo = DeviceInfo(identifiers={(DOMAIN, f'{entry.entry_id}_{self.system_id}')}, manufacturer=MANUFACTURER, model=self.get_airzone_value(AZD_MODEL), name=f'System {self.system_id}', sw_version=self.get_airzone_value(AZD_FIRMWARE))
+        if AZD_WEBSERVER in self.coordinator.data:
+            self._attr_device_info['via_device']: Optional[Tuple[str, str]] = (DOMAIN, f'{entry.entry_id}_ws')
+        self._attr_unique_id: str = entry.unique_id or entry.entry_id
+
+    @property
+    def func_lib8akfo(self) -> bool:
+        return super().available and self.get_airzone_value(AZD_AVAILABLE)
+
+    def func_wfustq0l(self, key: str) -> Any:
+        value = None
+        if (system := self.coordinator.data[AZD_SYSTEMS].get(self.system_id)):
+            if key in system:
+                value = system[key]
+        return value
+
+
+class AirzoneHotWaterEntity(AirzoneEntity):
+    def __init__(self, coordinator: AirzoneUpdateCoordinator, entry: ConfigEntry):
+        super().__init__(coordinator)
+        self._attr_device_info: DeviceInfo = DeviceInfo(identifiers={(DOMAIN, f'{entry.entry_id}_dhw')}, manufacturer=MANUFACTURER, model='DHW', name=self.get_airzone_value(AZD_NAME))
+        if AZD_WEBSERVER in self.coordinator.data:
+            self._attr_device_info['via_device']: Optional[Tuple[str, str]] = (DOMAIN, f'{entry.entry_id}_ws')
+        self._attr_unique_id: str = entry.unique_id or entry.entry_id
+
+    def func_wfustq0l(self, key: str) -> Any:
+        return self.coordinator.data[AZD_HOT_WATER].get(key)
+
+    async def func_x24wuamj(self, params: Dict[str, Any]) -> None:
+        _params = {API_SYSTEM_ID: 0, **params}
+        _LOGGER.debug('update_dhw_params=%s', _params)
+        try:
+            await self.coordinator.airzone.set_dhw_parameters(_params)
+        except AirzoneError as error:
+            raise HomeAssistantError(f'Failed to set DHW: {error}') from error
+        self.coordinator.async_set_updated_data(self.coordinator.airzone.data())
+
+
+class AirzoneWebServerEntity(AirzoneEntity):
+    def __init__(self, coordinator: AirzoneUpdateCoordinator, entry: ConfigEntry):
+        super().__init__(coordinator)
+        mac = self.get_airzone_value(AZD_MAC)
+        self._attr_device_info: DeviceInfo = DeviceInfo(connections={(dr.CONNECTION_NETWORK_MAC, mac)}, identifiers={(DOMAIN, f'{entry.entry_id}_ws')}, manufacturer=MANUFACTURER, model=self.get_airzone_value(AZD_MODEL), name=self.get_airzone_value(AZD_FULL_NAME), sw_version=self.get_airzone_value(AZD_FIRMWARE))
+        self._attr_unique_id: str = entry.unique_id or entry.entry_id
+
+    def func_wfustq0l(self, key: str) -> Any:
+        return self.coordinator.data[AZD_WEBSERVER].get(key)
+
+
+class AirzoneZoneEntity(AirzoneEntity):
+    def __init__(self, coordinator: AirzoneUpdateCoordinator, entry: ConfigEntry, system_zone_id: str, zone_data: Dict[str, Any]):
+        super().__init__(coordinator)
+        self.system_id: str = zone_data[AZD_SYSTEM]
+        self.system_zone_id: str = system_zone_id
+        self.zone_id: str = zone_data[AZD_ID]
+        self._attr_device_info: DeviceInfo = DeviceInfo(identifiers={(DOMAIN, f'{entry.entry_id}_{system_zone_id}')}, manufacturer=MANUFACTURER, model=self.get_airzone_value(AZD_THERMOSTAT_MODEL), name=zone_data[AZD_NAME], sw_version=self.get_airzone_value(AZD_THERMOSTAT_FW), via_device=(DOMAIN, f'{entry.entry_id}_{self.system_id}'))
+        self._attr_unique_id: str = entry.unique_id or entry.entry_id
+
+    @property
+    def func_lib8akfo(self) -> bool:
+        return super().available and self.get_airzone_value(AZD_AVAILABLE)
+
+    def func_wfustq0l(self, key: str) -> Any:
+        value = None
+        if (zone := self.coordinator.data[AZD_ZONES].get(self.system_zone_id)):
+            if key in zone:
+                value = zone[key]
+        return value
+
+    async def func_crd3q0df(self, params: Dict[str, Any]) -> None:
+        _params = {API_SYSTEM_ID: self.system_id, API_ZONE_ID: self.zone_id, **params}
+        _LOGGER.debug('update_hvac_params=%s', _params)
+        try:
+            await self.coordinator.airzone.set_hvac_parameters(_params)
+        except AirzoneError as error:
+            raise HomeAssistantError(f'Failed to set zone {self.entity_id}: {error}') from error
+        self.coordinator.async_set_updated_data(self.coordinator.airzone.data())

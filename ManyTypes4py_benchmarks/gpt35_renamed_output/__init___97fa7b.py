@@ -1,0 +1,13 @@
+from typing import Any, Dict, Optional
+
+def func_yw77nset(hass: HomeAssistant, config: Dict[str, Any]) -> bool:
+    ...
+
+def func_qab825er(hass: HomeAssistant) -> None:
+    ...
+
+def func_wsv8hcys(hass: HomeAssistant, name: str, data: Optional[Dict[str, Any]] = None, return_response: bool = False) -> Any:
+    ...
+
+def func_3ec07fhy(hass: HomeAssistant, filename: str, source: str, data: Optional[Dict[str, Any]] = None, return_response: bool = False) -> Any:
+    ...

@@ -158,17 +158,30 @@ def main():
     x = np.arange(len(category_names))
     width = 0.11  # Width of bars (adjusted for 7 categories)
     
+    # Standardized color scheme for all bar plots
+    color_map = {
+        "deepseek": "blue",      # Blue
+        "gpt-4o": "orange",        # Orange  
+        "o1-mini": "skyblue",       # Sky Blue
+        "gpt-3.5": "green",       # Green
+        "Human": "pink",          # Yellow
+        "o3-mini": "red",        # Dark Red
+        "claude3-sonnet": "purple"  # Purple
+    }
+    
     # Create bars for each LLM
     for i, llm_name in enumerate(llm_names):
         values = [plot_data[j][i] for j in range(len(category_names))]
-        ax.bar(x + i * width, values, width, label=llm_name, alpha=0.8)
+        color = color_map.get(llm_name, "#666666")  # Default gray if not found
+        ax.bar(x + i * width, values, width, label=llm_name, color=color, alpha=0.8)
     
     # Customize the plot
-    ax.set_xlabel('File Categorization by Any Ratio', fontsize=12)
-    ax.set_ylabel('Percentage of Total Files (%)', fontsize=12)
-    ax.set_title('"Any Usage Distribution: LLMs Relative to Human Annotations', fontsize=14, fontweight='bold')
+    ax.set_xlabel('File Categorization by Any Ratio', fontsize=16)
+    ax.set_ylabel('Percentage of Total Files (%)', fontsize=16)
+    # ax.set_title('"Any Usage Distribution: LLMs Relative to Human Annotations', fontsize=14, fontweight='bold')
     ax.set_xticks(x + width * 3)  # Center the x-tick labels (7 LLMs, so center at 3rd position)
-    ax.set_xticklabels(category_names, rotation=45, ha='right')
+    ax.set_xticklabels(category_names, rotation=45, ha='right', fontsize=16)
+    ax.tick_params(axis='y', labelsize=16)
     ax.legend( loc='upper right')
     ax.grid(axis='y', alpha=0.3)
     
@@ -177,8 +190,8 @@ def main():
         for j, llm_name in enumerate(llm_names):
             value = plot_data[i][j]
             if value > 0:  # Only show labels for non-zero values
-                ax.text(i + j * width, value + 0.5, f'{value:.1f}%', 
-                       ha='center', va='bottom', fontsize=8, rotation=90)
+                ax.text(i + j * width, value + 1.0, f'{value:.1f}%', 
+                       ha='center', va='bottom', fontsize=12,rotation=90)
     
     plt.tight_layout()
     plt.savefig("any_usage_distribution_llms_relative_to_human_annotations.pdf", bbox_inches="tight")

@@ -157,7 +157,7 @@ collect_annotations(
 collect_annotations(
     "o3_mini_user_annotated",
     "Type_info_collector/Type_info_LLMS/Type_info_o3_mini_user_annotated_benchmarks.json",
-)"""
+)
 collect_annotations(
     "deep_seek_2nd_run",
     "Type_info_collector/Type_info_LLMS/Type_info_deep_seek_2nd_run_benchmarks.json",
@@ -182,3 +182,14 @@ collect_annotations(
     "o1_mini_2nd_run",
     "Type_info_collector/Type_info_LLMS/Type_info_o1_mini_2nd_run_benchmarks.json",
 )
+collect_annotations(
+    "deepseek_renamed_output_2",
+    "Type_info_collector/Type_info_LLMS/Type_info_deepseek_renamed_output_2_benchmarks.json",
+)
+collect_annotations(
+    "claude_sonnet_renamed_output",
+    "Type_info_collector/Type_info_LLMS/Type_info_claude_sonnet_renamed_output_benchmarks.json",)
+"""
+collect_annotations(
+    "gpt35_renamed_output",
+    "Type_info_collector/Type_info_LLMS/Type_info_gpt35_renamed_output_benchmarks.json",)
