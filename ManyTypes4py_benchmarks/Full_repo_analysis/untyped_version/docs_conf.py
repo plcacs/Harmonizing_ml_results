@@ -1,0 +1,31 @@
+import requests_html
+project = 'requests-HTML'
+copyright = u'MMXVIII. A <a href="http://kennethreitz.com/pages/open-projects.html">Kenneth Reitz</a> Project'
+author = 'Kenneth Reitz'
+version = ''
+release = 'v0.3.4'
+extensions = ['sphinx.ext.autodoc', 'sphinx.ext.doctest', 'sphinx.ext.intersphinx', 'sphinx.ext.todo', 'sphinx.ext.coverage', 'sphinx.ext.viewcode', 'sphinx.ext.githubpages']
+templates_path = ['_templates']
+source_suffix = '.rst'
+master_doc = 'index'
+language = None
+exclude_patterns = []
+pygments_style = 'sphinx'
+html_theme = 'alabaster'
+html_theme_options = {'show_powered_by': False, 'github_user': 'psf', 'github_repo': 'requests-html', 'github_banner': True, 'show_related': False, 'note_bg': '#FFF59C'}
+html_static_path = ['_static']
+html_sidebars = {'index': ['sidebarintro.html', 'sourcelink.html', 'searchbox.html', 'hacks.html'], '**': ['sidebarlogo.html', 'localtoc.html', 'relations.html', 'sourcelink.html', 'searchbox.html', 'hacks.html']}
+html_show_sphinx = False
+html_show_sourcelink = False
+htmlhelp_basename = 'requests-htmldoc'
+latex_elements = {}
+latex_documents = [(master_doc, 'requests-html.tex', 'requests-html Documentation', 'Kenneth Reitz', 'manual')]
+man_pages = [(master_doc, 'requests-html', 'requests-html Documentation', [author], 1)]
+texinfo_documents = [(master_doc, 'requests-html', 'requests-html Documentation', author, 'requests-html', 'One line description of project.', 'Miscellaneous')]
+epub_title = project
+epub_author = author
+epub_publisher = author
+epub_copyright = copyright
+epub_exclude_files = ['search.html']
+intersphinx_mapping = {'https://docs.python.org/': None}
+todo_include_todos = True
