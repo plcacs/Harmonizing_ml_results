@@ -31,6 +31,15 @@ def normalize_type(type_str):
         return ""
 
     type_str = type_str.strip().lower()
+    # Remove surrounding quotes/backticks
+    if (
+        (type_str.startswith("'") and type_str.endswith("'"))
+        or (type_str.startswith('"') and type_str.endswith('"'))
+        or (type_str.startswith("`") and type_str.endswith("`"))
+    ):
+        type_str = type_str[1:-1]
+    # Remove quotes/backticks anywhere
+    type_str = type_str.replace("'", "").replace('"', "").replace("`", "")
 
     # Handle common type aliases and variations
     type_mappings = {
@@ -54,10 +63,45 @@ def normalize_type(type_str):
         "typing.iterable": "iterable",
         "tp.callable": "callable",
         "typing.callable": "callable",
+        "dict[": "dict[",
+        "list[": "list[",
+        "tuple[": "tuple[",
+        "set[": "set[",
     }
 
     for old, new in type_mappings.items():
         type_str = type_str.replace(old, new)
+
+    # Strip common module/alias prefixes (keep last segment)
+    for prefix in [
+        "typing.",
+        "tp.",
+        "pd.",
+        "pandas.",
+        "builtins.",
+        "collections.",
+    ]:
+        type_str = type_str.replace(prefix, "")
+
+    # Remove spaces to canonicalize
+    type_str = type_str.replace(" ", "")
+
+    # Canonicalize Union with None to Optional[...] and handle "x|none" forms
+    # Convert forms like "str|none" or "none|str" to optional[str]
+    if "|" in type_str:
+        parts = [p for p in type_str.split("|") if p]
+        if "none" in parts and len(parts) == 2:
+            other = parts[0] if parts[1] == "none" else parts[1]
+            type_str = f"optional[{other}]"
+
+    # Convert union[...none...] simple cases to optional
+    if type_str.startswith("union[") and type_str.endswith("]"):
+        inner = type_str[len("union[") : -1]
+        # Only handle simple two-part unions
+        union_parts = [p for p in inner.split(",") if p]
+        if "none" in union_parts and len(union_parts) == 2:
+            other = union_parts[0] if union_parts[1] == "none" else union_parts[1]
+            type_str = f"optional[{other}]"
 
     return type_str
 
@@ -71,24 +115,22 @@ def types_semantically_match(type1, type2):
     if norm1 == norm2:
         return True
 
-    # Handle empty/None cases
-    if not norm1 and not norm2:
-        return True
-
-    # Handle Any vs concrete types (Any is considered to match everything)
+    # Do not treat Any as wildcard; only matches if both are Any
     if norm1 == "any" or norm2 == "any":
-        return True
+        return norm1 == norm2
 
-    # Handle None vs empty
-    if (norm1 == "none" and not norm2) or (norm2 == "none" and not norm1):
-        return True
+    # Optional[X] matches X and Optional[X]
+    def extract_optional_inner(t: str):
+        if t.startswith("optional[") and t.endswith("]"):
+            return t[len("optional[") : -1]
+        return None
 
-    # Handle generic types with same base
-    if "[" in norm1 and "[" in norm2:
-        base1 = norm1.split("[")[0]
-        base2 = norm2.split("[")[0]
-        if base1 == base2:
-            return True
+    inner1 = extract_optional_inner(norm1)
+    inner2 = extract_optional_inner(norm2)
+    if inner1 is not None and (norm2 == inner1 or inner2 == inner1):
+        return True
+    if inner2 is not None and (norm1 == inner2 or inner1 == inner2):
+        return True
 
     return False
 

@@ -1,0 +1,7604 @@
+{
+  "musicbox_merged.py": {
+    "create_config@global@": [
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "start@global@": [
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "_song_url_by_id@Parse@": [
+      {
+        "category": "arg",
+        "name": "cls",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "sid",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "tuple[str, str]"
+        ]
+      }
+    ],
+    "song_url@Parse@": [
+      {
+        "category": "arg",
+        "name": "cls",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "song",
+        "type": [
+          "dict"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "tuple[str, str]"
+        ]
+      }
+    ],
+    "song_album@Parse@": [
+      {
+        "category": "arg",
+        "name": "cls",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "song",
+        "type": [
+          "dict"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "tuple[str, str]"
+        ]
+      }
+    ],
+    "song_artist@Parse@": [
+      {
+        "category": "arg",
+        "name": "cls",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "song",
+        "type": [
+          "dict"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "songs@Parse@": [
+      {
+        "category": "arg",
+        "name": "cls",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "songs",
+        "type": [
+          "list[dict]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list[dict]"
+        ]
+      }
+    ],
+    "artists@Parse@": [
+      {
+        "category": "arg",
+        "name": "cls",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "artists",
+        "type": [
+          "list[dict]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list[dict]"
+        ]
+      }
+    ],
+    "albums@Parse@": [
+      {
+        "category": "arg",
+        "name": "cls",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "albums",
+        "type": [
+          "list[dict]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list[dict]"
+        ]
+      }
+    ],
+    "playlists@Parse@": [
+      {
+        "category": "arg",
+        "name": "cls",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "playlists",
+        "type": [
+          "list[dict]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list[dict]"
+        ]
+      }
+    ],
+    "__init__@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "toplists@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list[str]"
+        ]
+      }
+    ],
+    "logout@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "_raw_request@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "method",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "endpoint",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "data",
+        "type": [
+          "dict | None"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "requests.Response | None"
+        ]
+      }
+    ],
+    "make_cookie@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "name",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "value",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Cookie"
+        ]
+      }
+    ],
+    "request@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "method",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "path",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "params",
+        "type": [
+          "dict"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "default",
+        "type": [
+          "dict"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "custom_cookies",
+        "type": [
+          "dict"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "dict"
+        ]
+      }
+    ],
+    "login@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "username",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "password",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "dict"
+        ]
+      }
+    ],
+    "daily_task@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "is_mobile",
+        "type": [
+          "bool"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "dict"
+        ]
+      }
+    ],
+    "user_playlist@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "uid",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "offset",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "limit",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list"
+        ]
+      }
+    ],
+    "recommend_resource@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list"
+        ]
+      }
+    ],
+    "recommend_playlist@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "total",
+        "type": [
+          "bool"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "offset",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "limit",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list"
+        ]
+      }
+    ],
+    "personal_fm@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list"
+        ]
+      }
+    ],
+    "fm_like@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "songid",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "like",
+        "type": [
+          "bool"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "time_",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "alg",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "bool"
+        ]
+      }
+    ],
+    "fm_trash@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "songid",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "time_",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "alg",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "bool"
+        ]
+      }
+    ],
+    "search@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "keywords",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "stype",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "offset",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "total",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "limit",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "dict"
+        ]
+      }
+    ],
+    "new_albums@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "offset",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "limit",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list"
+        ]
+      }
+    ],
+    "top_playlists@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "category",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "order",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "offset",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "limit",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list"
+        ]
+      }
+    ],
+    "playlist_catelogs@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "dict"
+        ]
+      }
+    ],
+    "playlist_songlist@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "playlist_id",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list"
+        ]
+      }
+    ],
+    "top_artists@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "offset",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "limit",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list"
+        ]
+      }
+    ],
+    "top_songlist@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "idx",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "offset",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "limit",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list"
+        ]
+      }
+    ],
+    "artists@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "artist_id",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list"
+        ]
+      }
+    ],
+    "get_artist_album@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "artist_id",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "offset",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "limit",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list"
+        ]
+      }
+    ],
+    "album@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "album_id",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list"
+        ]
+      }
+    ],
+    "song_comments@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "music_id",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "offset",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "total",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "limit",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "dict"
+        ]
+      }
+    ],
+    "songs_detail@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "ids",
+        "type": [
+          "list[int]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list"
+        ]
+      }
+    ],
+    "songs_url@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "ids",
+        "type": [
+          "list[int]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list"
+        ]
+      }
+    ],
+    "song_lyric@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "music_id",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list"
+        ]
+      }
+    ],
+    "song_tlyric@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "music_id",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list"
+        ]
+      }
+    ],
+    "djRadios@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "offset",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "limit",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list"
+        ]
+      }
+    ],
+    "djprograms@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "radio_id",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "asc",
+        "type": [
+          "bool"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "offset",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "limit",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list"
+        ]
+      }
+    ],
+    "alldjprograms@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "radio_id",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "asc",
+        "type": [
+          "bool"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "offset",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "limit",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list"
+        ]
+      }
+    ],
+    "get_version@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "dict"
+        ]
+      }
+    ],
+    "dig_info@NetEase@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "data",
+        "type": [
+          "list"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "dig_type",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list"
+        ]
+      }
+    ],
+    "__init__@Cache@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "_is_cache_successful@Cache@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "bool"
+        ]
+      }
+    ],
+    "_kill_all@Cache@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "start_download@Cache@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "bool"
+        ]
+      }
+    ],
+    "add@Cache@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "song_id",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "song_name",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "artist",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "url",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "onExit",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "quit@Cache@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "coroutine@global@": [
+      {
+        "category": "arg",
+        "name": "func",
+        "type": [
+          ""
+        ]
+      }
+    ],
+    "_cmd_parser@global@": [
+      {
+        "category": "return",
+        "type": [
+          "'generator'"
+        ]
+      }
+    ],
+    "cmd_parser@global@": [
+      {
+        "category": "arg",
+        "name": "results",
+        "type": [
+          "list[int]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "'generator'"
+        ]
+      }
+    ],
+    "_erase_coroutine@global@": [
+      {
+        "category": "return",
+        "type": [
+          "'generator'"
+        ]
+      }
+    ],
+    "erase_coroutine@global@": [
+      {
+        "category": "arg",
+        "name": "erase_cmd_list",
+        "type": [
+          "list[int]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "'generator'"
+        ]
+      }
+    ],
+    "parse_keylist@global@": [
+      {
+        "category": "arg",
+        "name": "keylist",
+        "type": [
+          "list[int]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "int | tuple[int, int] | None"
+        ]
+      }
+    ],
+    "main@global@": [
+      {
+        "category": "arg",
+        "name": "data",
+        "type": [
+          "list[int]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "__init__@Config@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "generate_config_file@Config@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "save_config_file@Config@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "get@Config@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "name",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "encrypted_id@global@": [
+      {
+        "category": "arg",
+        "name": "id",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "encrypted_request@global@": [
+      {
+        "category": "arg",
+        "name": "text",
+        "type": [
+          "dict"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "dict"
+        ]
+      }
+    ],
+    "aes@global@": [
+      {
+        "category": "arg",
+        "name": "text",
+        "type": [
+          "bytes"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "key",
+        "type": [
+          "bytes"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "bytes"
+        ]
+      }
+    ],
+    "rsa@global@": [
+      {
+        "category": "arg",
+        "name": "text",
+        "type": [
+          "bytes"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "pubkey",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "modulus",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "create_key@global@": [
+      {
+        "category": "arg",
+        "name": "size",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "bytes"
+        ]
+      }
+    ],
+    "_async_raise@global@": [
+      {
+        "category": "arg",
+        "name": "tid",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "exctype",
+        "type": [
+          "Exception"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "stop_thread@global@": [
+      {
+        "category": "arg",
+        "name": "thread",
+        "type": [
+          "threading.Thread"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "test@global@": [
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "getLogger@global@": [
+      {
+        "category": "arg",
+        "name": "name",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "logging.Logger"
+        ]
+      }
+    ],
+    "carousel@global@": [
+      {
+        "category": "arg",
+        "name": "left",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "right",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "x",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "int"
+        ]
+      }
+    ],
+    "__init__@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "user@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "dict"
+        ]
+      }
+    ],
+    "account@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "md5pass@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "userid@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "username@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "login@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "bool"
+        ]
+      }
+    ],
+    "in_place_search@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "tuple[list, str]"
+        ]
+      }
+    ],
+    "search@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "category",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list"
+        ]
+      }
+    ],
+    "change_term@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "signum",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "frame",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "send_kill@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "signum",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "fram",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "update_alert@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "version",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "check_version@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "start_fork@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "version",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "next_song@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "previous_song@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "prev_key_event@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "next_key_event@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "up_key_event@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "down_key_event@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "space_key_event_in_search_result@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "space_key_event@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "like_event@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "back_page_event@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "enter_page_event@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "album_key_event@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "num_jump_key_event@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "digit_key_song_event@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "time_key_event@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "down_page_event@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "up_page_event@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "resize_key_event@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "build_menu_processbar@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "quit_event@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "stop@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "start@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "dispatch_enter@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "idx",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "show_playing_song@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "song_changed_callback@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "fm_callback@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "request_api@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "func",
+        "type": [
+          ""
+        ]
+      }
+    ],
+    "get_new_fm@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list"
+        ]
+      }
+    ],
+    "choice_channel@Menu@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "idx",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "stop_lyrics_process@global@": [
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "show_lyrics_new_process@global@": [
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "__init__@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "info@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "dict"
+        ]
+      }
+    ],
+    "songs@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "dict"
+        ]
+      }
+    ],
+    "index@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "int"
+        ]
+      }
+    ],
+    "list@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list"
+        ]
+      }
+    ],
+    "order@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list"
+        ]
+      }
+    ],
+    "mode@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "int"
+        ]
+      }
+    ],
+    "is_ordered_mode@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "bool"
+        ]
+      }
+    ],
+    "is_ordered_loop_mode@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "bool"
+        ]
+      }
+    ],
+    "is_single_loop_mode@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "bool"
+        ]
+      }
+    ],
+    "is_random_mode@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "bool"
+        ]
+      }
+    ],
+    "is_random_loop_mode@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "bool"
+        ]
+      }
+    ],
+    "config_notifier@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "bool"
+        ]
+      }
+    ],
+    "config_mpg123@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list"
+        ]
+      }
+    ],
+    "current_song@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "dict"
+        ]
+      }
+    ],
+    "playing_id@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "int"
+        ]
+      }
+    ],
+    "playing_name@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "is_empty@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "bool"
+        ]
+      }
+    ],
+    "is_index_valid@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "bool"
+        ]
+      }
+    ],
+    "notify_playing@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "notify_copyright_issue@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "change_mode@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "step",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "build_playinfo@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "add_songs@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "songs",
+        "type": [
+          "list[dict]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "refresh_urls@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "stop@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "tune_volume@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "up",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "switch@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "run_mpg123@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "on_exit",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "url",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "expires",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "get_time",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "download_lyric@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "is_transalted",
+        "type": [
+          "bool"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "download_song@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "song_id",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "song_name",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "artist",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "song_url",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "start_playing@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "on_exit",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "args",
+        "type": [
+          "dict"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "threading.Thread"
+        ]
+      }
+    ],
+    "replay@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "_swap_song@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "_need_to_shuffle@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "bool"
+        ]
+      }
+    ],
+    "next_idx@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "next@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "prev_idx@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "prev@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "shuffle@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "volume_up@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "volume_down@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "update_size@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "cache_song@Player@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "song_id",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "song_name",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "artist",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "song_url",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "__init__@scrollstring@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "content",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "START",
+        "type": [
+          "float"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "update@scrollstring@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "__repr__@scrollstring@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "truelen@global@": [
+      {
+        "category": "arg",
+        "name": "string",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "int"
+        ]
+      }
+    ],
+    "truelen_cut@global@": [
+      {
+        "category": "arg",
+        "name": "string",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "length",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "__new__@Singleton@": [
+      {
+        "category": "arg",
+        "name": "cls",
+        "type": [
+          ""
+        ]
+      }
+    ],
+    "__init__@Storage@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "login@Storage@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "username",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "password",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "userid",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "nickname",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "logout@Storage@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "load@Storage@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "save@Storage@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "break_substr@global@": [
+      {
+        "category": "arg",
+        "name": "s",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "start",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "max_len",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "break_str@global@": [
+      {
+        "category": "arg",
+        "name": "s",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "start",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "max_len",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "__init__@Ui@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "addstr@Ui@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "update_margin@Ui@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "build_playinfo@Ui@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "song_name",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "artist",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "album_name",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "quality",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "start",
+        "type": [
+          "float"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "pause",
+        "type": [
+          "bool"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "update_lyrics@Ui@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "now_playing",
+        "type": [
+          "float"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "lyrics",
+        "type": [
+          "list[str]"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "tlyrics",
+        "type": [
+          "list[str]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "build_process_bar@Ui@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "song",
+        "type": [
+          "dict"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "now_playing",
+        "type": [
+          "float"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "total_length",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "playing_flag",
+        "type": [
+          "bool"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "playing_mode",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "build_loading@Ui@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "build_submenu@Ui@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "data",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "build_menu@Ui@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "datatype",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "title",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "datalist",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "offset",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "index",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "step",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "start",
+        "type": [
+          "float"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "build_login@Ui@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "tuple[str, str]"
+        ]
+      }
+    ],
+    "build_login_bar@Ui@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "build_login_error@Ui@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "int"
+        ]
+      }
+    ],
+    "build_search_error@Ui@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "int"
+        ]
+      }
+    ],
+    "build_timing@Ui@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "get_account@Ui@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "get_password@Ui@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "get_param@Ui@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "prompt_string",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "update_size@Ui@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "update_space@Ui@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "md5@global@": [
+      {
+        "category": "arg",
+        "name": "s",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "mkdir@global@": [
+      {
+        "category": "arg",
+        "name": "path",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "bool"
+        ]
+      }
+    ],
+    "create_dir@global@": [
+      {
+        "category": "arg",
+        "name": "path",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "bool"
+        ]
+      }
+    ],
+    "create_file@global@": [
+      {
+        "category": "arg",
+        "name": "path",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "default",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "uniq@global@": [
+      {
+        "category": "arg",
+        "name": "arr",
+        "type": [
+          "list"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list"
+        ]
+      }
+    ],
+    "utf8_data_to_file@global@": [
+      {
+        "category": "arg",
+        "name": "f",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "data",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "notify_command_osx@global@": [
+      {
+        "category": "arg",
+        "name": "msg",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "msg_type",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "duration_time",
+        "type": [
+          "int | None"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list"
+        ]
+      }
+    ],
+    "notify_command_linux@global@": [
+      {
+        "category": "arg",
+        "name": "msg",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "duration_time",
+        "type": [
+          "int | None"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "list"
+        ]
+      }
+    ],
+    "notify@global@": [
+      {
+        "category": "arg",
+        "name": "msg",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "msg_type",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "duration_time",
+        "type": [
+          "int | None"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "bool"
+        ]
+      }
+    ],
+    "test_api@global@": [
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "primer@global@": [],
+    "__init__@Lyrics@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "initUI@Lyrics@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "mousePressEvent@Lyrics@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "event",
+        "type": [
+          "QtGui.QMouseEvent"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "mouseMoveEvent@Lyrics@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "event",
+        "type": [
+          "QtGui.QMouseEvent"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "wheelEvent@Lyrics@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "event",
+        "type": [
+          "QtGui.QWheelEvent"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "paintEvent@Lyrics@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "event",
+        "type": [
+          "QtGui.QPaintEvent"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "drawText@Lyrics@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "event",
+        "type": [
+          "QtGui.QPaintEvent"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "qp",
+        "type": [
+          "QtGui.QPainter"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "setText@Lyrics@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "text",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "__init__@LyricsAdapter@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "name",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "session",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "refresh_lyrics@LyricsAdapter@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "text",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "exit@LyricsAdapter@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "show_lyrics@global@": [
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "succ@global@": [
+      {
+        "category": "arg",
+        "name": "x",
+        "type": [
+          "subprocess.Popen | None"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "bool"
+        ]
+      }
+    ],
+    "_kill@global@": [
+      {
+        "category": "arg",
+        "name": "p",
+        "type": [
+          "subprocess.Popen | None"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "write_path@global@": [
+      {
+        "category": "arg",
+        "name": "song_id",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "path",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "on_exit@global@": [
+      {
+        "category": "arg",
+        "name": "song_id",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "path",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "get_timestap@global@": [
+      {
+        "category": "arg",
+        "name": "lyric_line",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "get_lyric_time@global@": [
+      {
+        "category": "arg",
+        "name": "lyric_line",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "datetime.timedelta"
+        ]
+      }
+    ],
+    "strip_timestap@global@": [
+      {
+        "category": "arg",
+        "name": "lyric_line",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "append_translation@global@": [
+      {
+        "category": "arg",
+        "name": "translated_lyric",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "origin_lyric",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ]
+  },
+  "catt_merged.py": {
+    "ignore_tmr_failure@global@": [
+      {
+        "category": "arg",
+        "name": "func",
+        "type": [
+          "Callable[..., Any]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Callable[..., Any]"
+        ]
+      }
+    ],
+    "test_stream_info_youtube_video@TestThings@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "test_stream_info_youtube_playlist@TestThings@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "test_stream_info_other_video@TestThings@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "wrapper@global@": [
+      {
+        "category": "return",
+        "type": [
+          "Any"
+        ]
+      }
+    ]
+  },
+  "easyquotation_merged.py": {
+    "use@global@": [
+      {
+        "category": "arg",
+        "name": "source",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "object"
+        ]
+      }
+    ],
+    "stock_api@BaseQuotation@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "__init__@BaseQuotation@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "gen_stock_list@BaseQuotation@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "stock_codes",
+        "type": [
+          "List[str]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "List[str]"
+        ]
+      }
+    ],
+    "_gen_stock_prefix@BaseQuotation@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "stock_codes",
+        "type": [
+          "List[str]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "List[str]"
+        ]
+      }
+    ],
+    "load_stock_codes@BaseQuotation@": [
+      {
+        "category": "return",
+        "type": [
+          "List[str]"
+        ]
+      }
+    ],
+    "all@BaseQuotation@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      }
+    ],
+    "all_market@BaseQuotation@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      }
+    ],
+    "stocks@BaseQuotation@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "stock_codes",
+        "type": [
+          "Union[str, List[str]]"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "prefix",
+        "type": [
+          "bool"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      }
+    ],
+    "real@BaseQuotation@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "stock_codes",
+        "type": [
+          "Union[str, List[str]]"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "prefix",
+        "type": [
+          "bool"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      }
+    ],
+    "market_snapshot@BaseQuotation@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "prefix",
+        "type": [
+          "bool"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      }
+    ],
+    "get_stocks_by_range@BaseQuotation@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "params",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "_get_headers@BaseQuotation@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, str]"
+        ]
+      }
+    ],
+    "get_stock_data@BaseQuotation@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "stock_list",
+        "type": [
+          "List[str]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      }
+    ],
+    "_fetch_stock_data@BaseQuotation@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "stock_list",
+        "type": [
+          "List[str]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "List[Any]"
+        ]
+      }
+    ],
+    "format_response_data@BaseQuotation@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "rep_data",
+        "type": [
+          "List[Any]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      }
+    ],
+    "get_exchange_rate@Boc@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "currency",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, str]"
+        ]
+      }
+    ],
+    "stock_api@DayKline@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "_gen_stock_prefix@DayKline@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "stock_codes",
+        "type": [
+          "List[str]"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "day",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "List[str]"
+        ]
+      }
+    ],
+    "format_response_data@DayKline@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "rep_data",
+        "type": [
+          "List[Any]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      }
+    ],
+    "update_stock_codes@global@": [
+      {
+        "category": "return",
+        "type": [
+          "List[str]"
+        ]
+      }
+    ],
+    "get_stock_codes@global@": [
+      {
+        "category": "arg",
+        "name": "realtime",
+        "type": [
+          "bool"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "List[str]"
+        ]
+      }
+    ],
+    "get_stock_type@global@": [
+      {
+        "category": "arg",
+        "name": "stock_code",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "stock_api@HKQuote@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "_gen_stock_prefix@HKQuote@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "stock_codes",
+        "type": [
+          "List[str]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "List[str]"
+        ]
+      }
+    ],
+    "format_response_data@HKQuote@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "rep_data",
+        "type": [
+          "List[str]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      }
+    ],
+    "__init__@Jsl@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "set_cookie@Jsl@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "cookie",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "_get_headers@Jsl@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, str]"
+        ]
+      }
+    ],
+    "formatfundajson@Jsl@": [
+      {
+        "category": "arg",
+        "name": "fundajson",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      }
+    ],
+    "formatfundbjson@Jsl@": [
+      {
+        "category": "arg",
+        "name": "fundbjson",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      }
+    ],
+    "formatetfindexjson@Jsl@": [
+      {
+        "category": "arg",
+        "name": "fundbjson",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      }
+    ],
+    "formatjisilujson@Jsl@": [
+      {
+        "category": "arg",
+        "name": "data",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      }
+    ],
+    "percentage2float@Jsl@": [
+      {
+        "category": "arg",
+        "name": "per",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "float"
+        ]
+      }
+    ],
+    "funda@Jsl@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "fields",
+        "type": [
+          "Optional[list]"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "min_volume",
+        "type": [
+          "float"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "min_discount",
+        "type": [
+          "float"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "ignore_nodown",
+        "type": [
+          "bool"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "forever",
+        "type": [
+          "bool"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      }
+    ],
+    "fundm@Jsl@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      }
+    ],
+    "fundb@Jsl@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "fields",
+        "type": [
+          "Optional[list]"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "min_volume",
+        "type": [
+          "float"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "min_discount",
+        "type": [
+          "float"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "forever",
+        "type": [
+          "bool"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      }
+    ],
+    "fundarb@Jsl@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "jsl_username",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "jsl_password",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "avolume",
+        "type": [
+          "float"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "bvolume",
+        "type": [
+          "float"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "ptype",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      }
+    ],
+    "etfindex@Jsl@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "index_id",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "min_volume",
+        "type": [
+          "float"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "max_discount",
+        "type": [
+          "Optional[Union[str, float]]"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "min_discount",
+        "type": [
+          "Optional[Union[str, float]]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      }
+    ],
+    "qdii@Jsl@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "min_volume",
+        "type": [
+          "float"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      }
+    ],
+    "cb@Jsl@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "min_volume",
+        "type": [
+          "float"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "cookie",
+        "type": [
+          "Optional[str]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      }
+    ],
+    "stock_api@Sina@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "_get_headers@Sina@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, str]"
+        ]
+      }
+    ],
+    "format_response_data@Sina@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "rep_data",
+        "type": [
+          "List[str]"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "prefix",
+        "type": [
+          "bool"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      }
+    ],
+    "stock_api@Tencent@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "format_response_data@Tencent@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "rep_data",
+        "type": [
+          "List[str]"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "prefix",
+        "type": [
+          "bool"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      }
+    ],
+    "_safe_acquire_float@Tencent@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "stock",
+        "type": [
+          "List[str]"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "idx",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Optional[float]"
+        ]
+      }
+    ],
+    "_safe_float@Tencent@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "s",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Optional[float]"
+        ]
+      }
+    ],
+    "stock_api@TimeKline@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "_gen_stock_prefix@TimeKline@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "stock_codes",
+        "type": [
+          "List[str]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "List[str]"
+        ]
+      }
+    ],
+    "_fetch_stock_data@TimeKline@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "stock_list",
+        "type": [
+          "List[str]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "List[Tuple[str, Any]]"
+        ]
+      }
+    ],
+    "format_response_data@TimeKline@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "rep_data",
+        "type": [
+          "List[Tuple[str, Any]]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      }
+    ],
+    "test_stock_code_with_prefix@TestEasyquotation@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "test_all@TestEasyquotation@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "setUp@TestHqouteQuotatin@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "test_format_response_data@TestHqouteQuotatin@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "setUp@TestDayklineQuotatin@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "test_format_response_data@TestDayklineQuotatin@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "setUp@TestSina@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "test_extract_stock_name@TestSina@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "test_skip_empty_quotation_stock@TestSina@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "setUp@TestTimeklineQuotation@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "test_fetch_stock_data@TestTimeklineQuotation@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "mock_super_fetch",
+        "type": [
+          "Any"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "test_format_response_data@TestTimeklineQuotation@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ]
+  },
+  "databases_merged.py": {
+    "__init__@Database@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "url",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "_current_task@Database@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "asyncio.Task"
+        ]
+      }
+    ],
+    "_connection@Database@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "connection",
+        "type": [
+          "typing.Optional['Connection']"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "connection@Database@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "'Connection'"
+        ]
+      }
+    ],
+    "transaction@Database@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "'Transaction'"
+        ]
+      }
+    ],
+    "force_rollback@Database@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "typing.Iterator[None]"
+        ]
+      }
+    ],
+    "_get_backend@Database@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "__init__@Connection@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "database",
+        "type": [
+          "Database"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "backend",
+        "type": [
+          "DatabaseBackend"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "transaction@Connection@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "'Transaction'"
+        ]
+      }
+    ],
+    "raw_connection@Connection@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "typing.Any"
+        ]
+      }
+    ],
+    "_build_query@Connection@": [
+      {
+        "category": "arg",
+        "name": "query",
+        "type": [
+          "typing.Union[str, ClauseElement]"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "values",
+        "type": [
+          "typing.Optional[typing.Dict[str, typing.Any]]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "ClauseElement"
+        ]
+      }
+    ],
+    "__init__@Transaction@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "connection_callable",
+        "type": [
+          "typing.Union[typing.Callable[[], Connection], Connection]"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "force_rollback",
+        "type": [
+          "bool"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "_connection@Transaction@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Connection"
+        ]
+      }
+    ],
+    "_transaction@Transaction@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "transaction",
+        "type": [
+          "typing.Optional[TransactionBackend]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "__await__@Transaction@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "typing.Generator[typing.Any, None, 'Transaction']"
+        ]
+      }
+    ],
+    "__call__@Transaction@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "func",
+        "type": [
+          "_CallableType"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "_CallableType"
+        ]
+      }
+    ],
+    "__bool__@_EmptyNetloc@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "bool"
+        ]
+      }
+    ],
+    "__init__@DatabaseURL@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "url",
+        "type": [
+          "typing.Union[str, 'DatabaseURL']"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "components@DatabaseURL@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "SplitResult"
+        ]
+      }
+    ],
+    "scheme@DatabaseURL@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "dialect@DatabaseURL@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "driver@DatabaseURL@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "userinfo@DatabaseURL@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "typing.Optional[bytes]"
+        ]
+      }
+    ],
+    "username@DatabaseURL@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "typing.Optional[str]"
+        ]
+      }
+    ],
+    "password@DatabaseURL@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "typing.Optional[str]"
+        ]
+      }
+    ],
+    "hostname@DatabaseURL@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "typing.Optional[str]"
+        ]
+      }
+    ],
+    "port@DatabaseURL@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "typing.Optional[int]"
+        ]
+      }
+    ],
+    "netloc@DatabaseURL@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "database@DatabaseURL@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "options@DatabaseURL@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "typing.Dict[str, str]"
+        ]
+      }
+    ],
+    "replace@DatabaseURL@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "'DatabaseURL'"
+        ]
+      }
+    ],
+    "obscure_password@DatabaseURL@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "__str__@DatabaseURL@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "__repr__@DatabaseURL@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "__eq__@DatabaseURL@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "other",
+        "type": [
+          "object"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "bool"
+        ]
+      }
+    ],
+    "connection_callable@global@": [
+      {
+        "category": "return",
+        "type": [
+          "Connection"
+        ]
+      }
+    ]
+  },
+  "requests-html_merged.py": {
+    "__init__@MaxRetries@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "message",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "__init__@BaseParser@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "raw_html@BaseParser@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "html",
+        "type": [
+          "bytes"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "html@BaseParser@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "html",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "encoding@BaseParser@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "enc",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "pq@BaseParser@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "PyQuery"
+        ]
+      }
+    ],
+    "lxml@BaseParser@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "HtmlElement"
+        ]
+      }
+    ],
+    "text@BaseParser@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "full_text@BaseParser@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "find@BaseParser@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "selector",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Union[Element, List[Element]]"
+        ]
+      }
+    ],
+    "xpath@BaseParser@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "selector",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Union[Element, List[Element], List[str]]"
+        ]
+      }
+    ],
+    "search@BaseParser@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "template",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Optional[Result]"
+        ]
+      }
+    ],
+    "search_all@BaseParser@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "template",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "List[Result]"
+        ]
+      }
+    ],
+    "links@BaseParser@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Set[str]"
+        ]
+      }
+    ],
+    "_make_absolute@BaseParser@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "link",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "absolute_links@BaseParser@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Set[str]"
+        ]
+      }
+    ],
+    "base_url@BaseParser@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "__init__@Element@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "__repr__@Element@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "attrs@Element@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      }
+    ],
+    "__init__@HTML@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "__repr__@HTML@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "next@HTML@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "fetch",
+        "type": [
+          "bool"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "next_symbol",
+        "type": [
+          "Optional[List[str]]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Union[str, Any, None]"
+        ]
+      }
+    ],
+    "__iter__@HTML@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Any"
+        ]
+      }
+    ],
+    "__next__@HTML@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Any"
+        ]
+      }
+    ],
+    "__aiter__@HTML@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Any"
+        ]
+      }
+    ],
+    "add_next_symbol@HTML@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "next_symbol",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "_convert_cookiejar_to_render@HTML@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "session_cookiejar",
+        "type": [
+          "http.cookiejar.Cookie"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      }
+    ],
+    "_convert_cookiesjar_to_render@HTML@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "List[Dict[str, Any]]"
+        ]
+      }
+    ],
+    "render@HTML@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "retries",
+        "type": [
+          "int"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "script",
+        "type": [
+          "Optional[str]"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "wait",
+        "type": [
+          "float"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "scrolldown",
+        "type": [
+          "Union[bool, int]"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "sleep",
+        "type": [
+          "float"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "reload",
+        "type": [
+          "bool"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "timeout",
+        "type": [
+          "float"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "keep_page",
+        "type": [
+          "bool"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "cookies",
+        "type": [
+          "List[Dict[str, Any]]"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "send_cookies_session",
+        "type": [
+          "bool"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Any"
+        ]
+      }
+    ],
+    "__init__@HTMLResponse@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "session",
+        "type": [
+          "Union[HTMLSession, AsyncHTMLSession]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "html@HTMLResponse@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "HTML"
+        ]
+      }
+    ],
+    "_from_response@HTMLResponse@": [
+      {
+        "category": "arg",
+        "name": "cls",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "response",
+        "type": [
+          "requests.Response"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "session",
+        "type": [
+          "Union[HTMLSession, AsyncHTMLSession]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "HTMLResponse"
+        ]
+      }
+    ],
+    "user_agent@global@": [
+      {
+        "category": "arg",
+        "name": "style",
+        "type": [
+          "Optional[str]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "str"
+        ]
+      }
+    ],
+    "_get_first_or_list@global@": [
+      {
+        "category": "arg",
+        "name": "l",
+        "type": [
+          "List[T]"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "first",
+        "type": [
+          "bool"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Union[T, List[T], None]"
+        ]
+      }
+    ],
+    "__init__@BaseSession@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "mock_browser",
+        "type": [
+          "bool"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "verify",
+        "type": [
+          "bool"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "browser_args",
+        "type": [
+          "List[str]"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "response_hook@BaseSession@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "response",
+        "type": [
+          "requests.Response"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Any"
+        ]
+      }
+    ],
+    "__init__@HTMLSession@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "browser@HTMLSession@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Any"
+        ]
+      }
+    ],
+    "close@HTMLSession@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "__init__@AsyncHTMLSession@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "loop",
+        "type": [
+          "Optional[asyncio.AbstractEventLoop]"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "workers",
+        "type": [
+          "Optional[int]"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "mock_browser",
+        "type": [
+          "bool"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "request@AsyncHTMLSession@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Any"
+        ]
+      }
+    ],
+    "run@AsyncHTMLSession@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "List[Any]"
+        ]
+      }
+    ],
+    "status@UploadCommand@": [
+      {
+        "category": "arg",
+        "name": "s",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "initialize_options@UploadCommand@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "finalize_options@UploadCommand@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "run@UploadCommand@": [
+      {
+        "category": "arg",
+        "name": "self",
+        "type": [
+          ""
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "test_pagination@global@": [
+      {
+        "category": "arg",
+        "name": "url",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "test_async_run@global@": [
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "get@global@": [
+      {
+        "category": "return",
+        "type": [
+          "Any"
+        ]
+      }
+    ],
+    "async_get@global@": [
+      {
+        "category": "arg",
+        "name": "event_loop",
+        "type": [
+          "Any"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Any"
+        ]
+      }
+    ],
+    "test_file_get@global@": [
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "test_class_seperation@global@": [
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "test_css_selector@global@": [
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "test_containing@global@": [
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "test_attrs@global@": [
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "test_links@global@": [
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "test_search@global@": [
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "test_xpath@global@": [
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "test_html_loading@global@": [
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "test_anchor_links@global@": [
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "test_absolute_links@global@": [
+      {
+        "category": "arg",
+        "name": "url",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "link",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "expected",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "test_parser@global@": [
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "test_render@global@": [
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "test_bare_render@global@": [
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "test_bare_js_eval@global@": [
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "test_browser_session@global@": [
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "test_browser_process@global@": [
+      {
+        "category": "return",
+        "type": [
+          "None"
+        ]
+      }
+    ],
+    "gen@global@": [
+      {
+        "category": "return",
+        "type": [
+          "Any"
+        ]
+      }
+    ],
+    "get_next@global@": [
+      {
+        "category": "return",
+        "type": [
+          "Optional[str]"
+        ]
+      }
+    ],
+    "__convert@global@": [
+      {
+        "category": "arg",
+        "name": "cookiejar",
+        "type": [
+          "Any"
+        ]
+      },
+      {
+        "category": "arg",
+        "name": "key",
+        "type": [
+          "str"
+        ]
+      },
+      {
+        "category": "return",
+        "type": [
+          "Dict[str, Any]"
+        ]
+      }
+    ]
+  }
+}

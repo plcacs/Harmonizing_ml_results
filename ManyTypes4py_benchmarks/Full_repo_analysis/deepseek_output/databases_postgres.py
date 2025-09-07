@@ -1,0 +1,163 @@
+import logging
+import typing
+import asyncpg
+from sqlalchemy.engine.interfaces import Dialect
+from sqlalchemy.sql import ClauseElement
+from sqlalchemy.sql.ddl import DDLElement
+from databases.backends.common.records import Record, create_column_maps
+from databases.backends.dialects.psycopg import dialect as psycopg_dialect
+from databases.core import LOG_EXTRA, DatabaseURL
+from databases.interfaces import ConnectionBackend, DatabaseBackend, Record as RecordInterface, TransactionBackend
+from typing import Any, Dict, List, Optional, Tuple, Union, AsyncIterator
+logger = logging.getLogger('databases')
+
+class PostgresBackend(DatabaseBackend):
+
+    def __init__(self, database_url: Union[str, DatabaseURL], **options: Any) -> None:
+        self._database_url: DatabaseURL = DatabaseURL(database_url)
+        self._options: Dict[str, Any] = options
+        self._dialect: Dialect = self._get_dialect()
+        self._pool: Optional[asyncpg.pool.Pool] = None
+
+    def _get_dialect(self) -> Dialect:
+        dialect: Dialect = psycopg_dialect(paramstyle='pyformat')
+        dialect.implicit_returning = True
+        dialect.supports_native_enum = True
+        dialect.supports_smallserial = True
+        dialect._backslash_escapes = False
+        dialect.supports_sane_multi_rowcount = True
+        dialect._has_native_hstore = True
+        dialect.supports_native_decimal = True
+        return dialect
+
+    def _get_connection_kwargs(self) -> Dict[str, Any]:
+        url_options: Dict[str, str] = self._database_url.options
+        kwargs: Dict[str, Any] = {}
+        min_size: Optional[str] = url_options.get('min_size')
+        max_size: Optional[str] = url_options.get('max_size')
+        ssl: Optional[str] = url_options.get('ssl')
+        if min_size is not None:
+            kwargs['min_size'] = int(min_size)
+        if max_size is not None:
+            kwargs['max_size'] = int(max_size)
+        if ssl is not None:
+            ssl = ssl.lower()
+            kwargs['ssl'] = {'true': True, 'false': False}.get(ssl, ssl)
+        kwargs.update(self._options)
+        return kwargs
+
+    async def connect(self) -> None:
+        assert self._pool is None, 'DatabaseBackend is already running'
+        kwargs: Dict[str, Any] = dict(host=self._database_url.hostname, port=self._database_url.port, user=self._database_url.username, password=self._database_url.password, database=self._database_url.database)
+        kwargs.update(self._get_connection_kwargs())
+        self._pool = await asyncpg.create_pool(**kwargs)
+
+    async def disconnect(self) -> None:
+        assert self._pool is not None, 'DatabaseBackend is not running'
+        await self._pool.close()
+        self._pool = None
+
+    def connection(self) -> "PostgresConnection":
+        return PostgresConnection(self, self._dialect)
+
+class PostgresConnection(ConnectionBackend):
+
+    def __init__(self, database: PostgresBackend, dialect: Dialect) -> None:
+        self._database: PostgresBackend = database
+        self._dialect: Dialect = dialect
+        self._connection: Optional[asyncpg.connection.Connection] = None
+
+    async def acquire(self) -> None:
+        assert self._connection is None, 'Connection is already acquired'
+        assert self._database._pool is not None, 'DatabaseBackend is not running'
+        self._connection = await self._database._pool.acquire()
+
+    async def release(self) -> None:
+        assert self._connection is not None, 'Connection is not acquired'
+        assert self._database._pool is not None, 'DatabaseBackend is not running'
+        self._connection = await self._database._pool.release(self._connection)
+        self._connection = None
+
+    async def fetch_all(self, query: ClauseElement) -> List[Record]:
+        assert self._connection is not None, 'Connection is not acquired'
+        (query_str, args, result_columns) = self._compile(query)
+        rows: List[asyncpg.Record] = await self._connection.fetch(query_str, *args)
+        dialect: Dialect = self._dialect
+        column_maps: Tuple[Dict[str, int], Dict[str, Tuple[int, int, int]]] = create_column_maps(result_columns)
+        return [Record(row, result_columns, dialect, column_maps) for row in rows]
+
+    async def fetch_one(self, query: ClauseElement) -> Optional[Record]:
+        assert self._connection is not None, 'Connection is not acquired'
+        (query_str, args, result_columns) = self._compile(query)
+        row: Optional[asyncpg.Record] = await self._connection.fetchrow(query_str, *args)
+        if row is None:
+            return None
+        return Record(row, result_columns, self._dialect, create_column_maps(result_columns))
+
+    async def fetch_val(self, query: ClauseElement, column: int = 0) -> Any:
+        row: Optional[Record] = await self.fetch_one(query)
+        if row is None:
+            return None
+        return row[column]
+
+    async def execute(self, query: ClauseElement) -> Any:
+        assert self._connection is not None, 'Connection is not acquired'
+        (query_str, args, _) = self._compile(query)
+        return await self._connection.fetchval(query_str, *args)
+
+    async def execute_many(self, queries: List[ClauseElement]) -> None:
+        assert self._connection is not None, 'Connection is not acquired'
+        for single_query in queries:
+            (single_query, args, _) = self._compile(single_query)
+            await self._connection.execute(single_query, *args)
+
+    async def iterate(self, query: ClauseElement) -> AsyncIterator[Record]:
+        assert self._connection is not None, 'Connection is not acquired'
+        (query_str, args, result_columns) = self._compile(query)
+        column_maps: Tuple[Dict[str, int], Dict[str, Tuple[int, int, int]]] = create_column_maps(result_columns)
+        async for row in self._connection.cursor(query_str, *args):
+            yield Record(row, result_columns, self._dialect, column_maps)
+
+    def transaction(self) -> "PostgresTransaction":
+        return PostgresTransaction(connection=self)
+
+    def _compile(self, query: ClauseElement) -> Tuple[str, List[Any], Optional[List[Any]]]:
+        compiled: Any = query.compile(dialect=self._dialect, compile_kwargs={'render_postcompile': True})
+        if not isinstance(query, DDLElement):
+            compiled_params: List[Tuple[str, Any]] = sorted(compiled.params.items())
+            mapping: Dict[str, str] = {key: '$' + str(i) for (i, (key, _)) in enumerate(compiled_params, start=1)}
+            compiled_query: str = compiled.string % mapping
+            processors: Dict[str, Any] = compiled._bind_processors
+            args: List[Any] = [processors[key](val) if key in processors else val for (key, val) in compiled_params]
+            result_map: Optional[List[Any]] = compiled._result_columns
+        else:
+            compiled_query: str = compiled.string
+            args: List[Any] = []
+            result_map: Optional[List[Any]] = None
+        query_message: str = compiled_query.replace(' \n', ' ').replace('\n', ' ')
+        logger.debug('Query: %s Args: %s', query_message, repr(tuple(args)), extra=LOG_EXTRA)
+        return (compiled_query, args, result_map)
+
+    @property
+    def raw_connection(self) -> asyncpg.connection.Connection:
+        assert self._connection is not None, 'Connection is not acquired'
+        return self._connection
+
+class PostgresTransaction(TransactionBackend):
+
+    def __init__(self, connection: PostgresConnection) -> None:
+        self._connection: PostgresConnection = connection
+        self._transaction: Optional[asyncpg.transaction.Transaction] = None
+
+    async def start(self, is_root: bool, extra_options: Dict[str, Any]) -> None:
+        assert self._connection._connection is not None, 'Connection is not acquired'
+        self._transaction = self._connection._connection.transaction(**extra_options)
+        await self._transaction.start()
+
+    async def commit(self) -> None:
+        assert self._transaction is not None
+        await self._transaction.commit()
+
+    async def rollback(self) -> None:
+        assert self._transaction is not None
+        await self._transaction.rollback()

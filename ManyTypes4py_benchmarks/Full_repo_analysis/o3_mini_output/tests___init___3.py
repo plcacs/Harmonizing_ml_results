@@ -1,0 +1,1 @@
+# The Python program is not provided. Please provide the code so that I can add appropriate type annotations.

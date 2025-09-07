@@ -1,0 +1,22 @@
+from typing import Any, Type, TypeVar
+
+T = TypeVar('T', bound='Singleton')
+
+class Singleton(object):
+    """Singleton Class
+    This is a class to make some class being a Singleton class.
+    Such as database class or config class.
+
+    usage:
+        class xxx(Singleton):
+            def __init__(self):
+                if hasattr(self, '_init'):
+                    return
+                self._init = True
+                other init method
+    """
+
+    def __new__(cls: Type[T], *args: Any, **kwargs: Any) -> T:
+        if not hasattr(cls, '_instance'):
+            cls._instance = super().__new__(cls, *args, **kwargs)
+        return cls._instance
