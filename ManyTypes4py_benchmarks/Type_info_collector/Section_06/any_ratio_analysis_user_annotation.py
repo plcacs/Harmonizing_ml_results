@@ -129,7 +129,8 @@ def main():
         ">30%"
     ]
     
-    llm_names = list(LLM_CONFIGS.keys())
+    # Ensure Human comes first in plotting/legend order
+    llm_names = ["Human"] + [n for n in LLM_CONFIGS.keys() if n != "Human"]
     
     # Calculate percentages for each LLM and category
     plot_data = []

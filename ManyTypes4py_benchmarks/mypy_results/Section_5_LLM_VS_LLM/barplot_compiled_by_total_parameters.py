@@ -11,14 +11,14 @@ color_map = {
     "deepseek": "blue",
     "claude3 sonnet": "purple",
     "Union(o3-mini, deepseek, claude)": "#8B5A96",  # purple for first union
-    "Union(o3-mini, o1-mini, gpt-4o)": "#2E8B57",  # sea green for second union
+    "Union(o3-mini, o1-mini, gpt-4o)": "#FF8C00",  # dark orange for second union
     "Intersection(o3-mini, deepseek, claude)": "#FF6B6B",  # distinct color for intersection
     # Also support alternative label spellings seen elsewhere
     "Human": "pink",
     "claude3-sonnet": "purple",
     "gpt-4o": "orange",
     "o1-mini": "skyblue",
-    "gpt-3.5": "green",
+    "gpt-3.5": "green",  # lime green
 }
 
 
@@ -152,12 +152,12 @@ def plot_grouped_bars(
                         fontsize=8,
                     )
 
-    plt.xticks(list(x), bin_labels, rotation=30, ha="right")
-    plt.xlabel("Parameter count (from untyped baseline)", fontsize=16)
-    plt.ylabel("Number of files typechecked successfully", fontsize=16)
+    plt.xticks(list(x), bin_labels, rotation=30, ha="right", fontsize=14)
+    plt.xlabel("Parameter count (from untyped baseline)", fontsize=18)
+    plt.ylabel("Number of files typechecked successfully", fontsize=18)
 
     plt.grid(axis="y", linestyle=":", alpha=0.5)
-    plt.legend(loc="upper right")
+    plt.legend(loc="upper right", fontsize=10)
     plt.tight_layout()
     # plt.savefig("Section_5_LLM_VS_LLM/compiled_counts_by_total_parameters.pdf", bbox_inches="tight")
     plt.show()
@@ -198,13 +198,13 @@ def plot_grouped_bars_percent(
                         fontsize=8,
                     )
 
-    plt.xticks(list(x), bin_labels, rotation=30, ha="right")
-    plt.xlabel("Parameter count bins (from untyped baseline)", fontsize=16)
-    plt.ylabel("Percentage of files typechecked successfully", fontsize=16)
+    plt.xticks(list(x), bin_labels, rotation=30, ha="right", fontsize=14)
+    plt.xlabel("Parameter count bins (from untyped baseline)", fontsize=18)
+    plt.ylabel("Percentage of files typechecked successfully", fontsize=18)
 
     plt.ylim(0, 100)
     plt.grid(axis="y", linestyle=":", alpha=0.5)
-    plt.legend(loc="upper right")
+    plt.legend(loc="upper right", fontsize=10)
     plt.tight_layout()
     plt.savefig(
         "Section_5_LLM_VS_LLM/compiled_percent_by_total_parameters.pdf",

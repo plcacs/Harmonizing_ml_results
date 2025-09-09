@@ -26,7 +26,7 @@ def load_success_set(path: str, allowed_filenames: Set[str]) -> Set[str]:
 # Paths relative to this script
 claude_path = "mypy_outputs/mypy_results_claude3_sonnet_1st_run_with_errors.json"
 o3mini_path = "mypy_outputs/mypy_results_o3_mini_1st_run_with_errors.json"
-deepseek_path = "mypy_outputs/mypy_results_deepseek_with_errors.json"
+deepseek_path = "mypy_outputs/mypy_results_deepseek_1st_run_with_errors.json"
 
 claude_zero = load_success_set(claude_path, compiled_success_files)
 o3mini_zero = load_success_set(o3mini_path, compiled_success_files)
@@ -49,6 +49,8 @@ v = venn3(
         fmt_label("Deepseek", deepseek_zero),
     ),
 )
+
+# Make numbers in circles larger and bold
 for text in v.set_labels:
     if text:
         text.set_fontsize(14)
@@ -60,6 +62,5 @@ for text in v.subset_labels:
 
 plt.rcParams.update({'font.size': 14})
 plt.tight_layout()
-plt.savefig("Section_5_LLM_VS_LLM/venn_diagram_compiled_successes_3_models_ManyTypes4py.pdf", dpi=300)
+plt.savefig("venn_diagram_compiled_successes_3_models_pyperformance.pdf", bbox_inches='tight', pad_inches=0.1)
 plt.show()
-
