@@ -32,7 +32,10 @@ def load_type_info(file_path):
 
 
 def calculate_any_rate(type_info_data):
-    """Calculate Any-rate: #Any_slots / #typed_slots."""
+    """Calculate Any-rate: #Any_slots / #typed_slots.
+
+    Treat empty/missing types as Any (counts toward both typed_slots and any_slots).
+    """
     any_slots = 0
     typed_slots = 0
 
@@ -47,22 +50,32 @@ def calculate_any_rate(type_info_data):
                         if isinstance(param, dict):
                             # Get type annotations
                             param_types = param.get("type", [])
-                            if isinstance(param_types, list) and len(param_types) > 0:
-                                type_str = param_types[0]
-                                if isinstance(type_str, str) and type_str.strip():
-                                    # Count as typed slot
-                                    typed_slots += 1
-
-                                    # Check if it's Any
-                                    if type_str.strip().lower() == "any":
+                            if isinstance(param_types, list):
+                                if len(param_types) > 0:
+                                    type_str = param_types[0]
+                                    if isinstance(type_str, str) and type_str.strip():
+                                        # Non-empty explicit type
+                                        typed_slots += 1
+                                        if type_str.strip().lower() in ["any", "tp.any", "typing.any"]:
+                                            any_slots += 1
+                                    else:
+                                        # Empty string or non-str -> treat as Any
+                                        typed_slots += 1
                                         any_slots += 1
+                                else:
+                                    # Missing/empty list -> treat as Any
+                                    typed_slots += 1
+                                    any_slots += 1
 
     any_rate = any_slots / typed_slots if typed_slots > 0 else 0
     return any_slots, typed_slots, any_rate
 
 
 def calculate_any_rate_by_category(type_info_data):
-    """Calculate Any-rate separately for parameters and return types."""
+    """Calculate Any-rate separately for parameters and return types.
+
+    Treat empty/missing types as Any.
+    """
     param_any_slots = 0
     param_typed_slots = 0
     return_any_slots = 0
@@ -80,19 +93,35 @@ def calculate_any_rate_by_category(type_info_data):
                             category = param.get("category", "")
                             param_types = param.get("type", [])
 
-                            if isinstance(param_types, list) and len(param_types) > 0:
-                                type_str = param_types[0]
-                                if isinstance(type_str, str) and type_str.strip():
-                                    is_any = type_str.strip().lower() == "any"
-
-                                    if category == "arg":  # Parameter
-                                        param_typed_slots += 1
-                                        if is_any:
+                            if isinstance(param_types, list):
+                                if len(param_types) > 0:
+                                    type_str = param_types[0]
+                                    if isinstance(type_str, str) and type_str.strip():
+                                        is_any = type_str.strip().lower() in ["any", "tp.any", "typing.any"]
+                                        if category == "arg":  # Parameter
+                                            param_typed_slots += 1
+                                            if is_any:
+                                                param_any_slots += 1
+                                        elif category == "return":  # Return type
+                                            return_typed_slots += 1
+                                            if is_any:
+                                                return_any_slots += 1
+                                    else:
+                                        # Empty string or non-str -> treat as Any
+                                        if category == "arg":
+                                            param_typed_slots += 1
                                             param_any_slots += 1
-                                    elif category == "return":  # Return type
-                                        return_typed_slots += 1
-                                        if is_any:
+                                        elif category == "return":
+                                            return_typed_slots += 1
                                             return_any_slots += 1
+                                else:
+                                    # Missing/empty list -> treat as Any
+                                    if category == "arg":
+                                        param_typed_slots += 1
+                                        param_any_slots += 1
+                                    elif category == "return":
+                                        return_typed_slots += 1
+                                        return_any_slots += 1
 
     param_any_rate = param_any_slots / param_typed_slots if param_typed_slots > 0 else 0
     return_any_rate = (

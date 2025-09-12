@@ -7,22 +7,22 @@ from collections import defaultdict
 # Configuration for 6 LLMs
 LLM_CONFIGS = {
     "gpt-3.5": {
-        "type_info_path": "./Type_info_gpt35_2nd_run_benchmarks.json",
+        "type_info_path": "../Type_info_LLMS/Type_info_gpt35_2nd_run_benchmarks.json",
     },
     "gpt-4o": {
-        "type_info_path": "./Type_info_gpt4o_benchmarks.json",
+        "type_info_path": "../Type_info_LLMS/Type_info_gpt4o_benchmarks.json",
     },
     "o1-mini": {
-        "type_info_path": "./Type_info_o1_mini_benchmarks.json",
+        "type_info_path": "../Type_info_LLMS/Type_info_o1_mini_benchmarks.json",
     },
     "o3-mini": {
-        "type_info_path": "./Type_info_o3_mini_1st_run_benchmarks.json",
+        "type_info_path": "../Type_info_LLMS/Type_info_o3_mini_1st_run_benchmarks.json",
     },
     "deepseek": {
-        "type_info_path": "./Type_info_deep_seek_benchmarks.json",
+        "type_info_path": "../Type_info_LLMS/Type_info_deep_seek_benchmarks.json",
     },
     "claude3-sonnet": {
-        "type_info_path": "./Type_info_claude3_sonnet_1st_run_benchmarks.json",
+        "type_info_path": "../Type_info_LLMS/Type_info_claude3_sonnet_1st_run_benchmarks.json",
     },
 }
 
@@ -50,9 +50,9 @@ def load_json(path: str) -> Dict:
 
 def get_type_precision_score(type_str: str) -> int:
     """Calculate precision score for a type annotation.
-    Higher score = more precise type."""
-    if not isinstance(type_str, str):
-        return 0
+    Higher score = more precise type. Empty types are treated as 'Any' (score 0)."""
+    if not isinstance(type_str, str) or not type_str.strip():
+        return 0  # Empty or None types are treated as 'Any'
 
     type_str = type_str.strip().lower()
 
@@ -66,7 +66,7 @@ def get_type_precision_score(type_str: str) -> int:
     elif type_str in ["list", "dict", "set", "tuple"]:
         return 5
     elif type_str in ["none", "nonetype"]:
-        return 8
+        return 1
 
     # Handle generic types with type parameters
     if type_str.startswith("list["):
@@ -117,12 +117,21 @@ def get_type_precision_score(type_str: str) -> int:
 
     elif "typing." in type_str:
         return 8
-
-    return 5
+    
+    # Handle custom class types (e.g., "ClassA", "MyClass", "User")
+    # Custom classes are more specific than generic types but less than built-in primitives
+    elif type_str.replace("_", "").replace(".", "").isalnum() and not type_str.startswith(("list", "dict", "set", "tuple", "union", "optional")):
+        # Check if it looks like a class name (starts with capital letter or contains dots for modules)
+        if type_str[0].isupper() or "." in type_str:
+            return 15  # Custom classes get high precision score
+        else:
+            return 8   # Other identifiers get medium score
+    
+    return 5  # Default fallback
 
 
 def analyze_file_precision(type_info: Dict) -> Dict:
-    """Analyze precision metrics for a single file."""
+    """Analyze precision metrics for a single file. Includes all parameters (empty types treated as 'Any')."""
     total_slots = 0
     total_precision_score = 0
     total_functions = 0
@@ -155,12 +164,18 @@ def analyze_file_precision(type_info: Dict) -> Dict:
                 if arg_count == 1:
                     continue
 
+            # Count all parameters (including those without type annotations)
+            total_slots += 1
+            
+            # Get type string (empty if no type annotation)
             if isinstance(tlist, list) and tlist:
                 t0 = tlist[0]
-                if isinstance(t0, str) and t0.strip():
-                    total_slots += 1
-                    precision_score = get_type_precision_score(t0)
-                    total_precision_score += precision_score
+                type_str = t0 if isinstance(t0, str) else ""
+            else:
+                type_str = ""  # No type annotation
+            
+            precision_score = get_type_precision_score(type_str)
+            total_precision_score += precision_score
 
     avg_precision_score = total_precision_score / total_slots if total_slots > 0 else 0
 

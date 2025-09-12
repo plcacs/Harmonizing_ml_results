@@ -95,19 +95,19 @@ def calculate_any_rate_by_category(type_info_data):
 def main():
     # Define model files (using relative paths) - ordered by preference
     model_files = {
-        "Human": "./Type_info_original_files.json",
-        "GPT35_1st_run": "./Type_info_gpt35_1st_run_benchmarks.json",
-        "GPT35_2nd_run": "./Type_info_gpt35_2nd_run_benchmarks.json",
-        "GPT4o_1st_run": "./Type_info_gpt4o_benchmarks.json",
-        "GPT4o_2nd_run": "./Type_info_gpt4o_2nd_run_benchmarks.json",
-        "O1-mini_1st_run": "./Type_info_o1_mini_1st_run_benchmarks.json",
-        "O1-mini_2nd_run": "./Type_info_o1_mini_2nd_run_benchmarks.json",
-        "O3-mini_1st_run": "./Type_info_o3_mini_1st_run_benchmarks.json",
-        "O3-mini_2nd_run": "./Type_info_o3_mini_2nd_run_benchmarks.json",
-        "DeepSeek_1st_run": "./Type_info_deep_seek_benchmarks.json",
-        "DeepSeek_2nd_run": "./Type_info_deep_seek_2nd_run_benchmarks.json",
-        "Claude3-Sonnet_1st_run": "./Type_info_claude3_sonnet_1st_run_benchmarks.json",
-        "Claude3-Sonnet_2nd_run": "./Type_info_claude3_sonnet_2nd_run_benchmarks.json",
+        "Human": "../Type_info_LLMS/Type_info_original_files.json",
+        "GPT35_1st_run": "../Type_info_LLMS/Type_info_gpt35_1st_run_benchmarks.json",
+        "GPT35_2nd_run": "../Type_info_LLMS/Type_info_gpt35_2nd_run_benchmarks.json",
+        "GPT4o_1st_run": "../Type_info_LLMS/Type_info_gpt4o_1st_run_benchmarks.json",
+        "GPT4o_2nd_run": "../Type_info_LLMS/Type_info_gpt4o_2nd_run_benchmarks.json",
+        "O1-mini_1st_run": "../Type_info_LLMS/Type_info_o1_mini_1st_run_benchmarks.json",
+        "O1-mini_2nd_run": "../Type_info_LLMS/Type_info_o1_mini_2nd_run_benchmarks.json",
+        "O3-mini_1st_run": "../Type_info_LLMS/Type_info_o3_mini_1st_run_benchmarks.json",
+        "O3-mini_2nd_run": "../Type_info_LLMS/Type_info_o3_mini_2nd_run_benchmarks.json",
+        "DeepSeek_1st_run": "../Type_info_LLMS/Type_info_deep_seek_benchmarks.json",
+        "DeepSeek_2nd_run": "../Type_info_LLMS/Type_info_deep_seek_2nd_run_benchmarks.json",
+        "Claude3-Sonnet_1st_run": "../Type_info_LLMS/Type_info_claude3_sonnet_1st_run_benchmarks.json",
+        "Claude3-Sonnet_2nd_run": "../Type_info_LLMS/Type_info_claude3_sonnet_2nd_run_benchmarks.json",
     }
 
     print("=" * 80)

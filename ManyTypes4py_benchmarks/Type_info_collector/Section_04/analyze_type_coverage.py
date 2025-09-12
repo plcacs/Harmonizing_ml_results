@@ -158,21 +158,21 @@ def analyze_type_coverage_by_category(human_data, llm_data):
 
 def main():
     # Load human data
-    human_data = load_type_info("./Type_info_original_files.json")
+    human_data = load_type_info("../Type_info_LLMS/Type_info_original_files.json")
     if not human_data:
         print("Failed to load human data")
         return
 
     # Define LLM files
     llm_files = {
-        "GPT4o": "./Type_info_gpt4o_benchmarks.json",
-        "O1-mini": "./Type_info_o1_mini_benchmarks.json",
-        "O3-mini": "./Type_info_o3_mini_1st_run_benchmarks.json",
-        "DeepSeek": "./Type_info_deep_seek_benchmarks.json",
-        "Claude3-Sonnet": "./Type_info_claude3_sonnet_1st_run_benchmarks.json",
-        "DeepSeek-User-Annotated": "./Type_info_deepseek_user_annotated_benchmarks.json",
-        "O3-Mini-User-Annotated": "./Type_info_o3_mini_user_annotated_benchmarks.json",
-        "Claude3-Sonnet-User-Annotated": "./Type_info_claude3_sonnet_user_annotated_benchmarks.json",
+        "GPT4o": "../Type_info_LLMS/Type_info_gpt4o_benchmarks.json",
+        "O1-mini": "../Type_info_LLMS/Type_info_o1_mini_benchmarks.json",
+        "O3-mini": "../Type_info_LLMS/Type_info_o3_mini_1st_run_benchmarks.json",
+        "DeepSeek": "../Type_info_LLMS/Type_info_deep_seek_benchmarks.json",
+        "Claude3-Sonnet": "../Type_info_LLMS/Type_info_claude3_sonnet_1st_run_benchmarks.json",
+        "DeepSeek-User-Annotated": "../Type_info_LLMS/Type_info_deepseek_user_annotated_benchmarks.json",
+        "O3-Mini-User-Annotated": "../Type_info_LLMS/Type_info_o3_mini_user_annotated_benchmarks.json",
+        "Claude3-Sonnet-User-Annotated": "../Type_info_LLMS/Type_info_claude3_sonnet_user_annotated_benchmarks.json",
     }
 
     print("=" * 80)

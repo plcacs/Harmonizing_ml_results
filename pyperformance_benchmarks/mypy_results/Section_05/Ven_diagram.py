@@ -1,7 +1,7 @@
 import json
 from typing import Set
 import matplotlib.pyplot as plt
-from matplotlib_venn import venn3
+from matplotlib_venn import venn3_unweighted
 
 # Build the set of compiled-success files from untyped results
 with open("mypy_outputs/mypy_results_untyped_with_errors.json") as f_untyped:
@@ -41,7 +41,7 @@ def fmt_label(name: str, s: Set[str]) -> str:
     pct = (count * 100.0 / total_base) if total_base else 0.0
     return f"{name} ({count}/{total_base}, {pct:.1f}%)"
 
-v = venn3(
+v = venn3_unweighted(
     [claude_zero, o3mini_zero, deepseek_zero],
     set_labels=(
         fmt_label("Claude 3 Sonnet", claude_zero),
@@ -62,6 +62,6 @@ for text in v.subset_labels:
 
 plt.rcParams.update({'font.size': 14})
 plt.tight_layout()
-plt.savefig("Section_05/venn_diagram_compiled_successes_3_models_pyperformance.pdf", dpi=300)
+plt.savefig("Section_05/venn_diagram_compiled_successes_3_models_pyperformance.pdf",bbox_inches='tight')
 plt.show()
 

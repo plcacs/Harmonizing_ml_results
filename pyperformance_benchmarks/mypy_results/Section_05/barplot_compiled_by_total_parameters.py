@@ -11,14 +11,14 @@ color_map = {
     "deepseek": "blue",
     "claude3 sonnet": "purple",
     "Union(o3-mini, deepseek, claude)": "#8B5A96",  # purple for first union
-    "Union(o3-mini, o1-mini, gpt-4o)": "#2E8B57",  # sea green for second union
+    "Union(o3-mini, o1-mini, gpt-4o, gpt-3.5)": "#FF8C00",  # dark orange for second union
     "Intersection(o3-mini, deepseek, claude)": "#FF6B6B",  # distinct color for intersection
     # Also support alternative label spellings seen elsewhere
     "Human": "pink",
     "claude3-sonnet": "purple",
     "gpt-4o": "orange",
     "o1-mini": "skyblue",
-    "gpt-3.5": "green",
+    "gpt-3.5": "green",  # lime green
 }
 
 
@@ -116,51 +116,7 @@ def aggregate_counts_by_bin_multi(
     return counts
 
 
-def plot_grouped_bars(
-    bin_labels: List[str],
-    series: List[Tuple[str, List[int]]],
-) -> None:
-    x = range(len(bin_labels))
-    num_series = len(series)
-    total_width = 0.82
-    bar_width = total_width / max(1, num_series)
-    offsets = [(-total_width / 2) + (i + 0.5) * bar_width for i in range(num_series)]
 
-    plt.figure(figsize=(14, 7))
-    bars_by_series = []
-    for idx, ((label, counts), dx) in enumerate(zip(series, offsets)):
-        positions = [i + dx for i in x]
-        # Use custom color map, fallback to default if not found
-        color = color_map.get(label, plt.get_cmap("tab10")(idx % 10))
-        bars = plt.bar(positions, counts, width=bar_width, label=label, color=color)
-        bars_by_series.append(bars)
-
-    # Value labels for legibility (only annotate small numbers of bars)
-    total_bars = len(bin_labels) * num_series
-    if total_bars <= 150:
-        for bars in bars_by_series:
-            for rect in bars:
-                height = rect.get_height()
-                if height > 0:
-                    plt.annotate(
-                        f"{int(height)}",
-                        xy=(rect.get_x() + rect.get_width() / 2, height),
-                        xytext=(0, 3),
-                        textcoords="offset points",
-                        ha="center",
-                        va="bottom",
-                        fontsize=8,
-                    )
-
-    plt.xticks(list(x), bin_labels, rotation=30, ha="right")
-    plt.xlabel("Parameter count (from untyped baseline)", fontsize=16)
-    plt.ylabel("Number of files typechecked successfully", fontsize=16)
-
-    plt.grid(axis="y", linestyle=":", alpha=0.5)
-    plt.legend(loc="upper right")
-    plt.tight_layout()
-    # plt.savefig("Section_5_LLM_VS_LLM/compiled_counts_by_total_parameters.pdf", bbox_inches="tight")
-    plt.show()
 
 
 def plot_grouped_bars_percent(
@@ -198,16 +154,17 @@ def plot_grouped_bars_percent(
                         fontsize=8,
                     )
 
-    plt.xticks(list(x), bin_labels, rotation=30, ha="right")
-    plt.xlabel("Parameter count bins (from untyped baseline)", fontsize=16)
-    plt.ylabel("Percentage of files typechecked successfully", fontsize=16)
+    plt.xticks(list(x), bin_labels, rotation=30, ha="right", fontsize=14)
+    plt.xlabel("Parameter count bins (from untyped baseline)", fontsize=18)
+    plt.ylabel("Percentage of files typechecked successfully", fontsize=18)
 
     plt.ylim(0, 100)
     plt.grid(axis="y", linestyle=":", alpha=0.5)
-    plt.legend(loc="upper right")
+    plt.legend(loc="upper right", fontsize=10)
+   
     plt.tight_layout()
     plt.savefig(
-        "Section_5_LLM_VS_LLM/compiled_percent_by_total_parameters.pdf",
+        "Section_05/compiled_percent_by_total_parameters_pyperformance.pdf",
         bbox_inches="tight",
     )
     plt.show()
@@ -219,10 +176,10 @@ def main() -> None:
 
     llm_paths = {
         "gpt-3.5": "mypy_outputs/mypy_results_gpt35_1st_run_with_errors.json",
-        "gpt-4o": "mypy_outputs/mypy_results_gpt4o_with_errors.json",
-        "o1-mini": "mypy_outputs/mypy_results_o1_mini_with_errors.json",
+        "gpt-4o": "mypy_outputs/mypy_results_gpt4o_1st_run_with_errors.json",
+        "o1-mini": "mypy_outputs/mypy_results_o1_mini_1st_run_with_errors.json",
         "o3-mini": "mypy_outputs/mypy_results_o3_mini_1st_run_with_errors.json",
-        "deepseek": "mypy_outputs/mypy_results_deepseek_with_errors.json",
+        "deepseek": "mypy_outputs/mypy_results_deepseek_1st_run_with_errors.json",
         "claude3 sonnet": "mypy_outputs/mypy_results_claude3_sonnet_1st_run_with_errors.json",
     }
 
@@ -251,13 +208,19 @@ def main() -> None:
             s = e + 1
 
     bin_edges: List[Tuple[int, int]] = []
-    # if has_zero:
-    #    bin_edges.append((0, 0))
-
-    if max_val >= 0:
-        add_range_bins(bin_edges, 0, min(140, max_val), 20)
-    if max_val > 150:
-        add_range_bins(bin_edges, 141, max_val, 500)
+    # Granular until 10, then a single bin for >10
+    candidate_bins: List[Tuple[int, int]] = [
+        (0, 1),
+        (2, 3),
+        (4, 5),
+        (6, 7),
+        (8, 10),
+    ]
+    for start, end in candidate_bins:
+        if start <= max_val:
+            bin_edges.append((start, min(end, max_val)))
+    if max_val > 10:
+        bin_edges.append((11, max_val))
 
     # Aggregate counts per bin for each LLM and compute baseline totals per bin
     temp_series: List[Tuple[str, Dict[str, int]]] = []
@@ -303,7 +266,7 @@ def main() -> None:
     )
     temp_series.append(("Union(o3-mini, deepseek, claude)", union_trio))
     temp_series.append(("Intersection(o3-mini, deepseek, claude)", intersection_trio))
-    temp_series.append(("Union(o3-mini, o1-mini, gpt-4o)", union_trio_2))
+    temp_series.append(("Union(o3-mini, o1-mini, gpt-4o, gpt-3.5)", union_trio_2))
 
     bin_labels = [f"{s}-{e}" for s, e in bin_edges]
 
@@ -331,6 +294,13 @@ def main() -> None:
     if not filtered_labels:
         # If everything is empty, keep original labels to show empty chart context
         filtered_labels = bin_labels
+
+    # Print counts per bin for each LLM/aggregate in readable terminal format
+    print("Counts per bin (compiled files):")
+    for lbl in bin_labels:
+        print(f"- Bin {lbl}:")
+        for label, counts_map in temp_series:
+            print(f"  {label}: {counts_map.get(lbl, 0)}")
 
     for label, counts_map in temp_series:
         series.append((label, [counts_map.get(lbl, 0) for lbl in filtered_labels]))

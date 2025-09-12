@@ -1,6 +1,8 @@
 import json
 import csv
 from collections import defaultdict
+from typing import Set, Tuple
+import os
 
 
 def load_type_info(file_path):
@@ -21,6 +23,44 @@ def is_concrete_type(type_str):
     return type_str not in ["any", "none", ""]
 
 
+def is_any_or_empty(type_str: str) -> bool:
+    """Return True if type is Any or effectively missing/empty."""
+    if not type_str or not isinstance(type_str, str):
+        return True
+    t = type_str.strip().lower()
+    return t in ["any", "tp.any", "typing.any", ""]
+
+
+FILTER_TO_COMPILED: bool = True  # set True to filter by compiled files only
+COMPILED_RESULTS_PATH: str = "../../mypy_results/mypy_outputs/mypy_results_untyped_with_errors.json"
+
+
+def _normalize_path(p: str) -> str:
+    return p.replace("\\", "/") if isinstance(p, str) else p
+
+
+def load_compiled_true_files(path: str) -> Tuple[Set[str], Set[str]]:
+    """Load filenames where isCompiled == true. Returns (full_paths, basenames)."""
+    data = load_type_info(path)
+    full_paths: Set[str] = set()
+    basenames: Set[str] = set()
+    if isinstance(data, list):
+        for entry in data:
+            if isinstance(entry, dict) and entry.get("isCompiled") is True:
+                name = entry.get("filename") or entry.get("file") or entry.get("path")
+                if isinstance(name, str) and name:
+                    norm = _normalize_path(name)
+                    full_paths.add(norm)
+                    basenames.add(os.path.basename(norm))
+    elif isinstance(data, dict):
+        for name, entry in data.items():
+            if isinstance(entry, dict) and entry.get("isCompiled") is True and isinstance(name, str):
+                norm = _normalize_path(name)
+                full_paths.add(norm)
+                basenames.add(os.path.basename(norm))
+    return full_paths, basenames
+
+
 def analyze_type_replacements(human_data, llm_data):
     """Analyze how LLMs replace human concrete types with Any."""
     replacements = 0
@@ -29,6 +69,17 @@ def analyze_type_replacements(human_data, llm_data):
 
     # Find common files
     common_files = set(human_data.keys()) & set(llm_data.keys())
+
+    # Optionally filter to compiled files only
+    if FILTER_TO_COMPILED:
+        compiled_full, compiled_base = load_compiled_true_files(COMPILED_RESULTS_PATH)
+        filtered = set()
+        for fname in common_files:
+            norm = _normalize_path(fname)
+            base = os.path.basename(norm)
+            if norm in compiled_full or base in compiled_base:
+                filtered.add(fname)
+        common_files = filtered
 
     for filename in common_files:
         human_functions = human_data[filename]
@@ -66,8 +117,8 @@ def analyze_type_replacements(human_data, llm_data):
                 if is_concrete_type(human_type):
                     total_concrete += 1
 
-                    # Check if LLM replaced with Any
-                    if llm_type.strip().lower() == "any":
+                    # Check if LLM replaced with Any or left empty/missing
+                    if is_any_or_empty(llm_type):
                         replacements += 1
                     else:
                         preserved += 1

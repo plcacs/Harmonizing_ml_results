@@ -9,6 +9,7 @@ DETAILED_CSV = "./precision_results/llm_precision_detailed.csv"
 PLOT_PDF = "./precision_results/llm_precision_plot.pdf"
 PLOT_PERCENT_PDF = "./precision_results/llm_precision_plot_percent.pdf"
 PLOT_NORMALIZED_PDF = "./precision_results/llm_precision_plot_normalized.pdf"
+PLOT_MERGED_PDF = "./precision_results/llm_precision_plot_merged_percent_and_normalized.pdf"
 
 
 def read_detailed_csv(path: str) -> List[Dict[str, object]]:
@@ -127,6 +128,99 @@ def build_normalized_by_group(
     return result
 
 
+# Custom color map for consistent coloring
+color_map = {
+    "gpt-3.5": "green",
+    "gpt-4o": "orange", 
+    "o1-mini": "skyblue",
+    "o3-mini": "red",
+    "claude3-sonnet": "purple",
+    "deepseek": "blue"
+}
+
+def create_hatch_pattern(color, is_normalized=False):
+    """Create color and hatch pattern for bars."""
+    if is_normalized:
+        return color, '///'  # Vertical stripes for normalized
+    else:
+        return color, None   # Solid for percent
+
+def merged_grouped_bar(
+    percent_data: Dict[int, Dict[str, float]], 
+    normalized_data: Dict[int, Dict[str, float]], 
+    outfile: str
+):
+    """Create a merged grouped bar chart with both percent and normalized data."""
+    groups = sorted(percent_data.keys())
+
+    # Maintain specific LLM order
+    llm_order = [
+        "gpt-3.5",
+        "gpt-4o", 
+        "o1-mini",
+        "o3-mini",
+        "deepseek",
+        "claude3-sonnet",
+    ]
+    llms = [llm for llm in llm_order if any(llm in percent_data[g] for g in groups)]
+
+    x = range(len(groups))
+    num_llms = len(llms)
+    total_width = 0.82
+    bar_width = total_width / max(1, num_llms * 2)  # Half width for 12 bars total
+    offsets = [(-total_width / 2) + (i + 0.5) * bar_width for i in range(num_llms * 2)]
+
+    plt.figure(figsize=(16, 8))
+    bars_by_series = []
+
+    # Plot percent bars (solid)
+    for idx, llm in enumerate(llms):
+        heights = [percent_data[g].get(llm, 0.0) for g in groups]
+        positions = [i + offsets[idx] for i in x]
+        color, hatch = create_hatch_pattern(color_map.get(llm, "gray"), False)
+        bars = plt.bar(
+            positions, heights, width=bar_width, 
+            label=f"{llm} (percent)", color=color, hatch=hatch
+        )
+        bars_by_series.append(bars)
+
+    # Plot normalized bars (striped)
+    for idx, llm in enumerate(llms):
+        heights = [normalized_data[g].get(llm, 0.0) for g in groups]
+        positions = [i + offsets[idx + num_llms] for i in x]
+        color, hatch = create_hatch_pattern(color_map.get(llm, "gray"), True)
+        bars = plt.bar(
+            positions, heights, width=bar_width,
+            label=f"{llm} (normalized)", color=color, hatch=hatch
+        )
+        bars_by_series.append(bars)
+
+    # Add value labels
+    total_bars = len(groups) * num_llms * 2
+    if total_bars <= 200:
+        for bars in bars_by_series:
+            for rect in bars:
+                height = rect.get_height()
+                if height > 0:
+                    plt.annotate(
+                        f"{height:.1f}",
+                        xy=(rect.get_x() + rect.get_width() / 2, height),
+                        xytext=(0, 3),
+                        textcoords="offset points",
+                        ha="center",
+                        va="bottom",
+                        fontsize=9,
+                    )
+
+    plt.xticks(list(x), [str(g) for g in groups], rotation=30, ha="right", fontsize=14)
+    plt.xlabel("Winner group size (number of top scorers)", fontsize=18)
+    plt.ylabel("Percentage (%)", fontsize=18)
+    plt.grid(axis="y", linestyle=":", alpha=0.5)
+    plt.legend(loc="upper right", fontsize=9)
+    plt.tight_layout()
+    plt.savefig(outfile, bbox_inches="tight")
+    plt.show()
+
 def grouped_bar(
     data: Dict[int, Dict[str, float]], ylabel: str, title: str, outfile: str
 ):
@@ -205,59 +299,45 @@ def main():
 
         print(f"Found data for {len(rows)} files")
 
-        # Build file counts by group
-        file_counts_by_group = build_file_counts_by_group(rows)
-
-        # Create the grouped bar chart (counts)
-        grouped_bar(
-            file_counts_by_group,
-            ylabel="Number of files won",
-            title="LLM file wins by winner group size (type precision score)",
-            outfile=PLOT_PDF,
-        )
-
-        print(f"Count plot saved to: {PLOT_PDF}")
-
-        # Build percentage data by group
+        # Build percentage and normalized data by group
         percentage_by_group = build_percentage_by_group(rows)
-
-        # Create the grouped bar chart (percentages)
-        grouped_bar(
-            percentage_by_group,
-            ylabel="Percentage of files won (%)",
-            title="LLM file win percentage by winner group size (type precision score)",
-            outfile=PLOT_PERCENT_PDF,
-        )
-
-        print(f"Percentage plot saved to: {PLOT_PERCENT_PDF}")
-
-        # Build normalized data by group
         normalized_by_group = build_normalized_by_group(rows)
 
-        # Create the grouped bar chart (normalized)
-        grouped_bar(
+        # Create merged plot only
+        merged_grouped_bar(
+            percentage_by_group,
             normalized_by_group,
-            ylabel="Percentage of total LLM wins (%)",
-            title="LLM win distribution by winner group size (normalized by total LLM wins)",
-            outfile=PLOT_NORMALIZED_PDF,
+            PLOT_MERGED_PDF
         )
+        print(f"Merged plot saved to: {PLOT_MERGED_PDF}")
 
-        print(f"Normalized plot saved to: {PLOT_NORMALIZED_PDF}")
-
-        # Print summary
-        print("\nGroup sizes found:")
-        for group_size in sorted(file_counts_by_group.keys()):
+        # Print detailed summary
+        print("\nDetailed breakdown by group size:")
+        print("=" * 80)
+        
+        for group_size in sorted(percentage_by_group.keys()):
             total_files = len([r for r in rows if r["group_size"] == group_size])
-            print(f"  Group size {group_size}: {total_files} files")
+            print(f"\nGroup size {group_size} (Total files: {total_files}):")
+            print("-" * 50)
+            
+            # Get detailed counts for this group size
+            group_data = percentage_by_group[group_size]
+            for llm in sorted(group_data.keys()):
+                percentage = group_data[llm]
+                # Calculate actual file count from percentage
+                file_count = int((percentage / 100) * total_files)
+                print(f"  {llm:<15}: {file_count:>3} files ({percentage:>5.1f}%)")
 
-        print("\nTotal wins per LLM:")
+        print("\n" + "=" * 80)
+        print("Total wins per LLM across all group sizes:")
+        print("-" * 50)
         total_wins = defaultdict(int)
         for row in rows:
             for winner in row["winners"]:
                 total_wins[winner] += 1
 
         for llm in sorted(total_wins.keys()):
-            print(f"  {llm}: {total_wins[llm]} wins")
+            print(f"  {llm:<15}: {total_wins[llm]:>3} total wins")
 
     except FileNotFoundError:
         print(f"Error: Could not find {DETAILED_CSV}")

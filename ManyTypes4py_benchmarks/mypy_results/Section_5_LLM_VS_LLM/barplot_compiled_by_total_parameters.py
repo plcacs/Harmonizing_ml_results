@@ -11,7 +11,7 @@ color_map = {
     "deepseek": "blue",
     "claude3 sonnet": "purple",
     "Union(o3-mini, deepseek, claude)": "#8B5A96",  # purple for first union
-    "Union(o3-mini, o1-mini, gpt-4o)": "#FF8C00",  # dark orange for second union
+    "Union(o3-mini, o1-mini, gpt-4o, gpt-3.5)": "#FF8C00",  # dark orange for second union
     "Intersection(o3-mini, deepseek, claude)": "#FF6B6B",  # distinct color for intersection
     # Also support alternative label spellings seen elsewhere
     "Human": "pink",
@@ -207,7 +207,7 @@ def plot_grouped_bars_percent(
     plt.legend(loc="upper right", fontsize=10)
     plt.tight_layout()
     plt.savefig(
-        "Section_5_LLM_VS_LLM/compiled_percent_by_total_parameters.pdf",
+        "Section_5_LLM_VS_LLM/compiled_percent_by_total_parameters_ManyTypes4py.pdf",
         bbox_inches="tight",
     )
     plt.show()
@@ -303,7 +303,7 @@ def main() -> None:
     )
     temp_series.append(("Union(o3-mini, deepseek, claude)", union_trio))
     temp_series.append(("Intersection(o3-mini, deepseek, claude)", intersection_trio))
-    temp_series.append(("Union(o3-mini, o1-mini, gpt-4o)", union_trio_2))
+    temp_series.append(("Union(o3-mini, o1-mini, gpt-4o, gpt-3.5)", union_trio_2))
 
     bin_labels = [f"{s}-{e}" for s, e in bin_edges]
 

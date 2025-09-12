@@ -33,7 +33,7 @@ def get_type_precision_score(type_str):
     elif type_str in ["list", "dict", "set", "tuple"]:
         return 5
     elif type_str in ["none", "nonetype"]:
-        return 8
+        return 1
     
     # Handle generic types with type parameters
     # List[Any] = 5, List[str] = 15, List[List[str]] = 25
