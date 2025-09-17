@@ -1,0 +1,270 @@
+#!/usr/bin/env python3
+"""
+A Rest Client for Freqtrade bot
+
+Should not import anything from freqtrade,
+so it can be used as a standalone script, and can be installed independently.
+"""
+
+import json
+import logging
+from typing import Any, Optional, Union, List, Dict
+from urllib.parse import urlencode, urlparse, urlunparse
+
+import requests
+from requests.adapters import HTTPAdapter
+from requests.exceptions import ConnectionError as RequestConnectionError
+
+logger = logging.getLogger('ft_rest_client')
+ParamsT = Optional[Dict[str, Any]]
+PostDataT = Optional[Union[Dict[str, Any], List[Dict[str, Any]]]]
+
+class FtRestClient:
+    def __init__(self, serverurl: str, username: Optional[str] = None, password: Optional[str] = None, *,
+                 pool_connections: int = 10, pool_maxsize: int = 10, timeout: int = 10) -> None:
+        self._serverurl: str = serverurl
+        self._session: requests.Session = requests.Session()
+        self._timeout: int = timeout
+        adapter = HTTPAdapter(pool_connections=pool_connections, pool_maxsize=pool_maxsize)
+        self._session.mount('http://', adapter)
+        if username and password:
+            self._session.auth = (username, password)
+
+    def _call(self, method: str, apipath: str, params: ParamsT = None, data: PostDataT = None, files: Any = None) -> Any:
+        if str(method).upper() not in ('GET', 'POST', 'PUT', 'DELETE'):
+            raise ValueError(f'invalid method <{method}>')
+        basepath: str = f'{self._serverurl}/api/v1/{apipath}'
+        hd: Dict[str, str] = {'Accept': 'application/json', 'Content-Type': 'application/json'}
+        schema, netloc, path, par, query, fragment = urlparse(basepath)
+        query = urlencode(params) if params else ''
+        url: str = urlunparse((schema, netloc, path, par, query, fragment))
+        try:
+            resp = self._session.request(method, url, headers=hd, timeout=self._timeout, data=json.dumps(data))
+            return resp.json()
+        except RequestConnectionError:
+            logger.warning(f'Connection error - could not connect to {netloc}.')
+            return None
+
+    def _get(self, apipath: str, params: ParamsT = None) -> Any:
+        return self._call('GET', apipath, params=params)
+
+    def _delete(self, apipath: str, params: ParamsT = None) -> Any:
+        return self._call('DELETE', apipath, params=params)
+
+    def _post(self, apipath: str, params: ParamsT = None, data: PostDataT = None) -> Any:
+        return self._call('POST', apipath, params=params, data=data)
+
+    def start(self) -> Any:
+        """Start the bot if it's in the stopped state."""
+        return self._post('start')
+
+    def stop(self) -> Any:
+        """Stop the bot. Use `start` to restart."""
+        return self._post('stop')
+
+    def stopbuy(self) -> Any:
+        """Stop buying (but handle sells gracefully). Use `reload_config` to reset."""
+        return self._post('stopbuy')
+
+    def reload_config(self) -> Any:
+        """Reload configuration."""
+        return self._post('reload_config')
+
+    def balance(self) -> Any:
+        """Get the account balance."""
+        return self._get('balance')
+
+    def count(self) -> Any:
+        """Return the amount of open trades."""
+        return self._get('count')
+
+    def entries(self, pair: Optional[str] = None) -> Any:
+        """Returns List of dicts containing all Trades, based on buy tag performance."""
+        return self._get('entries', params={'pair': pair} if pair else None)
+
+    def exits(self, pair: Optional[str] = None) -> Any:
+        """Returns List of dicts containing all Trades, based on exit reason performance."""
+        return self._get('exits', params={'pair': pair} if pair else None)
+
+    def mix_tags(self, pair: Optional[str] = None) -> Any:
+        """Returns List of dicts containing all Trades, based on entry_tag + exit_reason performance."""
+        return self._get('mix_tags', params={'pair': pair} if pair else None)
+
+    def locks(self) -> Any:
+        """Return current locks."""
+        return self._get('locks')
+
+    def delete_lock(self, lock_id: Any) -> Any:
+        """Delete (disable) lock from the database."""
+        return self._delete(f'locks/{lock_id}')
+
+    def lock_add(self, pair: str, until: str, side: str = '*', reason: str = '') -> Any:
+        """Lock pair."""
+        data: List[Dict[str, Any]] = [{'pair': pair, 'until': until, 'side': side, 'reason': reason}]
+        return self._post('locks', data=data)
+
+    def daily(self, days: Optional[Any] = None) -> Any:
+        """Return the profits for each day, and amount of trades."""
+        return self._get('daily', params={'timescale': days} if days else None)
+
+    def weekly(self, weeks: Optional[Any] = None) -> Any:
+        """Return the profits for each week, and amount of trades."""
+        return self._get('weekly', params={'timescale': weeks} if weeks else None)
+
+    def monthly(self, months: Optional[Any] = None) -> Any:
+        """Return the profits for each month, and amount of trades."""
+        return self._get('monthly', params={'timescale': months} if months else None)
+
+    def edge(self) -> Any:
+        """Return information about edge."""
+        return self._get('edge')
+
+    def profit(self) -> Any:
+        """Return the profit summary."""
+        return self._get('profit')
+
+    def stats(self) -> Any:
+        """Return the stats report (durations, sell-reasons)."""
+        return self._get('stats')
+
+    def performance(self) -> Any:
+        """Return the performance of the different coins."""
+        return self._get('performance')
+
+    def status(self) -> Any:
+        """Get the status of open trades."""
+        return self._get('status')
+
+    def version(self) -> Any:
+        """Return the version of the bot."""
+        return self._get('version')
+
+    def show_config(self) -> Any:
+        """Returns part of the configuration, relevant for trading operations."""
+        return self._get('show_config')
+
+    def ping(self) -> Any:
+        """Simple ping."""
+        configstatus: Any = self.show_config()
+        if not configstatus:
+            return {'status': 'not_running'}
+        elif configstatus.get('state') == 'running':
+            return {'status': 'pong'}
+        else:
+            return {'status': 'not_running'}
+
+    def logs(self, limit: Optional[int] = None) -> Any:
+        """Show latest logs."""
+        return self._get('logs', params={'limit': limit} if limit else {})
+
+    def trades(self, limit: Optional[int] = None, offset: Optional[int] = None) -> Any:
+        """Return trades history, sorted by id."""
+        params: Dict[str, Any] = {}
+        if limit:
+            params['limit'] = limit
+        if offset:
+            params['offset'] = offset
+        return self._get('trades', params)
+
+    def trade(self, trade_id: Any) -> Any:
+        """Return specific trade."""
+        return self._get(f'trade/{trade_id}')
+
+    def delete_trade(self, trade_id: Any) -> Any:
+        """Delete trade from the database."""
+        return self._delete(f'trades/{trade_id}')
+
+    def cancel_open_order(self, trade_id: Any) -> Any:
+        """Cancel open order for trade."""
+        return self._delete(f'trades/{trade_id}/open-order')
+
+    def whitelist(self) -> Any:
+        """Show the current whitelist."""
+        return self._get('whitelist')
+
+    def blacklist(self, *args: str) -> Any:
+        """Show the current blacklist, or add coins to blacklist if provided."""
+        if not args:
+            return self._get('blacklist')
+        else:
+            return self._post('blacklist', data={'blacklist': args})
+
+    def forcebuy(self, pair: str, price: Optional[Any] = None) -> Any:
+        """Buy an asset."""
+        data: Dict[str, Any] = {'pair': pair, 'price': price}
+        return self._post('forcebuy', data=data)
+
+    def forceenter(self, pair: str, side: str, price: Optional[Any] = None, *,
+                   order_type: Optional[str] = None, stake_amount: Optional[Union[int, float]] = None,
+                   leverage: Optional[Union[int, float]] = None, enter_tag: Optional[str] = None) -> Any:
+        """Force entering a trade."""
+        data: Dict[str, Any] = {'pair': pair, 'side': side}
+        if price:
+            data['price'] = price
+        if order_type:
+            data['ordertype'] = order_type
+        if stake_amount:
+            data['stakeamount'] = stake_amount
+        if leverage:
+            data['leverage'] = leverage
+        if enter_tag:
+            data['entry_tag'] = enter_tag
+        return self._post('forceenter', data=data)
+
+    def forceexit(self, tradeid: Any, ordertype: Optional[str] = None, amount: Optional[Any] = None) -> Any:
+        """Force-exit a trade."""
+        return self._post('forceexit', data={'tradeid': tradeid, 'ordertype': ordertype, 'amount': amount})
+
+    def strategies(self) -> Any:
+        """Lists available strategies."""
+        return self._get('strategies')
+
+    def strategy(self, strategy: str) -> Any:
+        """Get strategy details."""
+        return self._get(f'strategy/{strategy}')
+
+    def pairlists_available(self) -> Any:
+        """Lists available pairlist providers."""
+        return self._get('pairlists/available')
+
+    def plot_config(self) -> Any:
+        """Return plot configuration if the strategy defines one."""
+        return self._get('plot_config')
+
+    def available_pairs(self, timeframe: Optional[str] = None, stake_currency: Optional[str] = None) -> Any:
+        """Return available pair (backtest data) based on timeframe / stake_currency selection."""
+        params: Dict[str, str] = {
+            'stake_currency': stake_currency if stake_currency else '',
+            'timeframe': timeframe if timeframe else ''
+        }
+        return self._get('available_pairs', params=params)
+
+    def pair_candles(self, pair: str, timeframe: str, limit: Optional[int] = None, columns: Optional[List[str]] = None) -> Any:
+        """Return live dataframe for <pair><timeframe>."""
+        params: Dict[str, Any] = {'pair': pair, 'timeframe': timeframe}
+        if limit:
+            params['limit'] = limit
+        if columns is not None:
+            params['columns'] = columns
+            return self._post('pair_candles', data=params)
+        return self._get('pair_candles', params=params)
+
+    def pair_history(self, pair: str, timeframe: str, strategy: str,
+                     timerange: Optional[str] = None, freqaimodel: Optional[str] = None) -> Any:
+        """Return historic, analyzed dataframe."""
+        params: Dict[str, Any] = {
+            'pair': pair,
+            'timeframe': timeframe,
+            'strategy': strategy,
+            'freqaimodel': freqaimodel,
+            'timerange': timerange if timerange else ''
+        }
+        return self._get('pair_history', params=params)
+
+    def sysinfo(self) -> Any:
+        """Provides system information (CPU, RAM usage)."""
+        return self._get('sysinfo')
+
+    def health(self) -> Any:
+        """Provides a quick health check of the running bot."""
+        return self._get('health')

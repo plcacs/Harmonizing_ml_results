@@ -1,0 +1,162 @@
+from __future__ import annotations
+from datetime import timedelta
+from http import HTTPStatus
+import logging
+import requests
+from typing import Any, Callable, Dict, Optional
+import voluptuous as vol
+from homeassistant.components.sensor import PLATFORM_SCHEMA as SENSOR_PLATFORM_SCHEMA, SensorEntity
+from homeassistant.const import CONF_MONITORED_VARIABLES, CONF_NAME, CONF_RESOURCE, CONF_UNIT_OF_MEASUREMENT, CONF_VALUE_TEMPLATE
+from homeassistant.core import HomeAssistant
+from homeassistant.exceptions import TemplateError
+from homeassistant.helpers import config_validation as cv
+from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
+from homeassistant.util import Throttle
+
+_LOGGER = logging.getLogger(__name__)
+
+MIN_TIME_BETWEEN_UPDATES = timedelta(seconds=30)
+CONF_FUNCTIONS = 'functions'
+CONF_PINS = 'pins'
+DEFAULT_NAME = 'aREST sensor'
+PIN_VARIABLE_SCHEMA = vol.Schema({
+    vol.Optional(CONF_NAME): cv.string,
+    vol.Optional(CONF_UNIT_OF_MEASUREMENT): cv.string,
+    vol.Optional(CONF_VALUE_TEMPLATE): cv.template
+})
+PLATFORM_SCHEMA = SENSOR_PLATFORM_SCHEMA.extend({
+    vol.Required(CONF_RESOURCE): cv.url,
+    vol.Optional(CONF_NAME, default=DEFAULT_NAME): cv.string,
+    vol.Optional(CONF_PINS, default={}): vol.Schema({cv.string: PIN_VARIABLE_SCHEMA}),
+    vol.Optional(CONF_MONITORED_VARIABLES, default={}): vol.Schema({cv.string: PIN_VARIABLE_SCHEMA})
+})
+
+
+def setup_platform(
+    hass: HomeAssistant,
+    config: ConfigType,
+    add_entities: AddEntitiesCallback,
+    discovery_info: Optional[DiscoveryInfoType] = None,
+) -> None:
+    resource: str = config[CONF_RESOURCE]
+    var_conf: Dict[str, Any] = config[CONF_MONITORED_VARIABLES]
+    pins: Dict[str, Any] = config[CONF_PINS]
+    try:
+        response: Dict[str, Any] = requests.get(resource, timeout=10).json()
+    except requests.exceptions.MissingSchema:
+        _LOGGER.error('Missing resource or schema in configuration. Add http:// to your URL')
+        return
+    except requests.exceptions.ConnectionError:
+        _LOGGER.error('No route to device at %s', resource)
+        return
+
+    arest: ArestData = ArestData(resource)
+
+    def make_renderer(value_template: Optional[Any]) -> Callable[[Any], Any]:
+        if value_template is None:
+            return lambda value: value
+
+        def _render(value: Any) -> Any:
+            try:
+                return value_template.async_render({'value': value}, parse_result=False)
+            except TemplateError:
+                _LOGGER.exception('Error parsing value')
+                return value
+        return _render
+
+    dev: list[ArestSensor] = []
+    if var_conf is not None:
+        for variable, var_data in var_conf.items():
+            if variable not in response['variables']:
+                _LOGGER.error('Variable: %s does not exist', variable)
+                continue
+            renderer: Callable[[Any], Any] = make_renderer(var_data.get(CONF_VALUE_TEMPLATE))
+            dev.append(
+                ArestSensor(
+                    arest,
+                    resource,
+                    config.get(CONF_NAME, response[CONF_NAME]),
+                    var_data.get(CONF_NAME, variable),
+                    variable=variable,
+                    unit_of_measurement=var_data.get(CONF_UNIT_OF_MEASUREMENT),
+                    renderer=renderer
+                )
+            )
+    if pins is not None:
+        for pinnum, pin in pins.items():
+            renderer = make_renderer(pin.get(CONF_VALUE_TEMPLATE))
+            dev.append(
+                ArestSensor(
+                    ArestData(resource, pinnum),
+                    resource,
+                    config.get(CONF_NAME, response.get(CONF_NAME)),
+                    pin.get(CONF_NAME),
+                    pin=pinnum,
+                    unit_of_measurement=pin.get(CONF_UNIT_OF_MEASUREMENT),
+                    renderer=renderer
+                )
+            )
+    add_entities(dev, True)
+
+
+class ArestSensor(SensorEntity):
+    def __init__(
+        self,
+        arest: ArestData,
+        resource: str,
+        location: str,
+        name: str,
+        variable: Optional[str] = None,
+        pin: Optional[str] = None,
+        unit_of_measurement: Optional[str] = None,
+        renderer: Optional[Callable[[Any], Any]] = None,
+    ) -> None:
+        self.arest: ArestData = arest
+        self._attr_name: str = f'{location.title()} {name.title()}'
+        self._variable: Optional[str] = variable
+        self._attr_native_unit_of_measurement: Optional[str] = unit_of_measurement
+        self._renderer: Optional[Callable[[Any], Any]] = renderer
+        if pin is not None:
+            request = requests.get(f'{resource}/mode/{pin}/i', timeout=10)
+            if request.status_code != HTTPStatus.OK:
+                _LOGGER.error("Can't set mode of %s", resource)
+
+    def update(self) -> None:
+        self.arest.update()
+        self._attr_available = self.arest.available
+        values: Dict[str, Any] = self.arest.data
+        if 'error' in values:
+            self._attr_native_value = values['error']
+        else:
+            if self._renderer is not None:
+                self._attr_native_value = self._renderer(values.get('value', values.get(self._variable, None)))
+            else:
+                self._attr_native_value = values.get('value', values.get(self._variable, None))
+
+
+class ArestData:
+    def __init__(self, resource: str, pin: Optional[str] = None) -> None:
+        self._resource: str = resource
+        self._pin: Optional[str] = pin
+        self.data: Dict[str, Any] = {}
+        self.available: bool = True
+
+    @Throttle(MIN_TIME_BETWEEN_UPDATES)
+    def update(self) -> None:
+        try:
+            if self._pin is None:
+                response: requests.Response = requests.get(self._resource, timeout=10)
+                self.data = response.json()['variables']
+            else:
+                try:
+                    if str(self._pin[0]) == 'A':
+                        response = requests.get(f'{self._resource}/analog/{self._pin[1:]}', timeout=10)
+                        self.data = {'value': response.json()['return_value']}
+                except TypeError:
+                    response = requests.get(f'{self._resource}/digital/{self._pin}', timeout=10)
+                    self.data = {'value': response.json()['return_value']}
+            self.available = True
+        except requests.exceptions.ConnectionError:
+            _LOGGER.error('No route to device %s', self._resource)
+            self.available = False
