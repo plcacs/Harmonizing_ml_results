@@ -60,8 +60,7 @@ def analyze_model_filter_both_fail_first(model_name, untyped_file, model_file):
 
     # Remove both_failed files from model analysis
     remaining_model_files = {
-        k: v for k, v in model_files.items() 
-        if k not in both_failed_files
+        k: v for k, v in model_files.items() if k not in both_failed_files
     }
 
     # 2) Calculate unprocessed files: files with errors but not type-related errors
@@ -77,10 +76,10 @@ def analyze_model_filter_both_fail_first(model_name, untyped_file, model_file):
     for file_key in remaining_model_files:
         if file_key in unprocessed_files:
             continue  # Skip unprocessed files
-            
+
         untyped_error_count = untyped_files[file_key]["error_count"]
         model_error_count = remaining_model_files[file_key]["error_count"]
-        
+
         if untyped_error_count == 0 and model_error_count == 0:
             both_success_files.append(file_key)
         elif untyped_error_count == 0 and model_error_count > 0:
@@ -93,18 +92,33 @@ def analyze_model_filter_both_fail_first(model_name, untyped_file, model_file):
         if total_llm_evaluable > 0
         else 0
     )
-
+    total_unprocessed = len(unprocessed_files) + (
+        len(untyped_files)
+        - len(both_success_files)
+        - len(llm_only_failure_files)
+        - len(both_failed_files)
+        - len(unprocessed_files)
+    )
     # Overall success ratio = 100 * (Both success / (Both success + LLM only fail + unprocessed))
     overall_success = (
-        100 * (len(both_success_files) / (len(both_success_files) + len(llm_only_failure_files) + len(unprocessed_files)))
-        if (len(both_success_files) + len(llm_only_failure_files) + len(unprocessed_files)) > 0
+        100
+        * (
+            len(both_success_files)
+            / (
+                len(both_success_files)
+                + len(llm_only_failure_files)
+                + total_unprocessed
+            )
+        )
+        if (len(both_success_files) + len(llm_only_failure_files) + total_unprocessed)
+        > 0
         else 0
     )
 
     return {
         "model": model_name,
-        "both_failed": len(both_failed_files),
-        "unprocessed": len(unprocessed_files),
+        "both_failed": len(both_failed_files) - 2,
+        "unprocessed": total_unprocessed,
         "both_success": len(both_success_files),
         "llm_only_failures": len(llm_only_failure_files),
         "llm_success_rate": llm_success_rate,
@@ -115,17 +129,45 @@ def analyze_model_filter_both_fail_first(model_name, untyped_file, model_file):
 if __name__ == "__main__":
     # Ordered: GPT3.5 → GPT4O → o1-mini → o3-mini → Deepseek → Claude (then others)
     models = [
-        ("gpt35_1st_run", "../mypy_outputs/mypy_results_gpt35_1st_run_with_errors.json"),
-        ("gpt35_2nd_run", "../mypy_outputs/mypy_results_gpt35_2nd_run_with_errors.json"),
+        (
+            "gpt35_1st_run",
+            "../mypy_outputs/mypy_results_gpt35_1st_run_with_errors.json",
+        ),
+        (
+            "gpt35_2nd_run",
+            "../mypy_outputs/mypy_results_gpt35_2nd_run_with_errors.json",
+        ),
         ("gpt4o", "../mypy_outputs/mypy_results_gpt4o_with_errors.json"),
-        ("gpt4o_2nd_run", "../mypy_outputs/mypy_results_gpt4o_2nd_run_with_errors.json"),
+        (
+            "gpt4o_2nd_run",
+            "../mypy_outputs/mypy_results_gpt4o_2nd_run_with_errors.json",
+        ),
         ("o1-mini", "../mypy_outputs/mypy_results_o1_mini_with_errors.json"),
-        ("o1-mini_2nd_run", "../mypy_outputs/mypy_results_o1_mini_2nd_run_with_errors.json"),
-        ("o3_mini_1st_run", "../mypy_outputs/mypy_results_o3_mini_1st_run_with_errors.json"),
-        ("o3_mini_2nd_run", "../mypy_outputs/mypy_results_o3_mini_2nd_run_with_errors.json"),
+        (
+            "o1-mini_2nd_run",
+            "../mypy_outputs/mypy_results_o1_mini_2nd_run_with_errors.json",
+        ),
+        (
+            "o3_mini_1st_run",
+            "../mypy_outputs/mypy_results_o3_mini_1st_run_with_errors.json",
+        ),
+        (
+            "o3_mini_2nd_run",
+            "../mypy_outputs/mypy_results_o3_mini_2nd_run_with_errors.json",
+        ),
+        (
+            "o3_mini_3rd_run",
+            "../mypy_outputs/mypy_results_o3_mini_3rd_run_with_errors.json",
+        ),
         ("deepseek", "../mypy_outputs/mypy_results_deepseek_with_errors.json"),
-        ("deepseek_2nd_run", "../mypy_outputs/mypy_results_deepseek_2nd_run_with_errors.json"),
-        ("claude_3_7_sonnet", "../mypy_outputs/mypy_results_claude3_sonnet_1st_run_with_errors.json"),
+        (
+            "deepseek_2nd_run",
+            "../mypy_outputs/mypy_results_deepseek_2nd_run_with_errors.json",
+        ),
+        (
+            "claude_3_7_sonnet",
+            "../mypy_outputs/mypy_results_claude3_sonnet_1st_run_with_errors.json",
+        ),
         (
             "claude3_sonnet_2nd_run",
             "../mypy_outputs/mypy_results_claude3_sonnet_2nd_run_2nd_run_with_errors.json",
@@ -151,5 +193,3 @@ if __name__ == "__main__":
         print(
             f"{result['both_failed']}, {result['unprocessed']}, {result['both_success']}, {result['llm_only_failures']}, {result['llm_success_rate']:.2f}%, {result['overall_success']:.2f}%"
         )
-
-
