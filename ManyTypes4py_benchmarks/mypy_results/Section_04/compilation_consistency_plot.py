@@ -25,6 +25,45 @@ def load_json_file(filename):
     with open(filename, "r") as f:
         return json.load(f)
 
+def has_syntax_error(errors):
+    non_type_related_errors = [
+        "name-defined",
+        "import",
+        "syntax",
+        "no-redef",
+        "unused-ignore",
+        "override-without-super",
+        "redundant-cast",
+        "literal-required",
+        "typeddict-unknown-key",
+        "typeddict-item",
+        "truthy-function",
+        "str-bytes-safe",
+        "unused-coroutine",
+        "explicit-override",
+        "truthy-iterable",
+        "redundant-self",
+        "redundant-await",
+        "unreachable",
+    ]
+
+    def extract_error_code(error):
+        if "[" in error and "]" in error:
+            return error[error.rindex("[") + 1 : error.rindex("]")]
+        return ""
+
+    if any(
+        error_type in error.lower()
+        for error in errors
+        for error_type in ["syntax", "empty_body", "name_defined"]
+    ):
+        return True
+
+    for error in errors:
+        error_code = extract_error_code(error)
+        if error_code in non_type_related_errors:
+            return True
+    return False
 
 def get_compilation_status(file_key, untyped_data, first_run_data, second_run_data):
     """
@@ -48,6 +87,10 @@ def get_compilation_status(file_key, untyped_data, first_run_data, second_run_da
     elif not in_first:
         return "not_in_first"
     elif not in_second:
+        return "not_in_second"
+    elif in_first and has_syntax_error(first_run_data[file_key].get("errors", [])):
+        return "not_in_first"
+    elif in_second and has_syntax_error(second_run_data[file_key].get("errors", [])):
         return "not_in_second"
 
     # Both runs have the file, check compilation status
@@ -143,11 +186,11 @@ def create_compilation_consistency_plot():
 
     # Define sub-belt positions for each model (5 sub-belts)
     sub_belt_positions = {
-        "both_success": 0.2,
-        "first_only": 0.4,
-        "second_only": 0.6,
-        "both_fail": 0.8,
-        "not_in_first": 1.0,  # represents all unprocessed
+        "both_success": 0.0,
+        "first_only": 0.2,
+        "second_only": 0.4,
+        "both_fail": 0.6,
+        "not_in_first": 0.8,  # represents all unprocessed
     }
 
     # Process each model
@@ -245,6 +288,10 @@ def create_compilation_consistency_plot():
     model_names = [model[0] for model in models]
     plt.yticks(range(1, len(models) + 1), model_names)
 
+    # Add horizontal divider lines between models
+    for i in range(1, len(models)):
+        plt.axhline(y=i + 0.5, color='black', linestyle='-', linewidth=1, alpha=0.5)
+
     # Add grid for better readability
     plt.grid(True, alpha=0.3)
 
@@ -255,8 +302,9 @@ def create_compilation_consistency_plot():
     plt.tight_layout()
 
     # Show plot
-    plt.show()
-    # plt.savefig("compilation_consistency_plot.pdf", bbox_inches="tight")
+    #plt.show()
+    plt.savefig("compilation_consistency_plot.pdf", bbox_inches="tight")
+    print("Plot saved as compilation_consistency_plot.pdf")
 
 
 if __name__ == "__main__":
