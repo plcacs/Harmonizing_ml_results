@@ -16,6 +16,7 @@ Color coding:
 """
 
 import json
+import os
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -178,28 +179,48 @@ def create_compilation_consistency_plot_ccn():
         "not_in_both": "Unprocessed",
     }
 
-    # Create figure
-    plt.figure(figsize=(14, 10))
+    # We will create six individual figures (one per model)
 
-    # Define the order for legend items (5 main categories)
+    # Prepare output directory for PDFs
+    output_dir = os.path.join(os.path.dirname(__file__), "ccn_bar_plots_pdf")
+    os.makedirs(output_dir, exist_ok=True)
+
+    # Categories to include (five total)
     legend_order = [
         "both_success",
         "first_only",
         "second_only",
         "both_fail",
-        "not_in_first",  # represents all unprocessed
+        "not_in_first",  # represents all unprocessed combined
     ]
-    used_statuses = set()
 
-    # Define sub-belt positions for each model (5 sub-belts)
-    # Match the main plot logic so points stay within model boundaries
-    sub_belt_positions = {
-        "both_success": 0.0,
-        "first_only": 0.2,
-        "second_only": 0.4,
-        "both_fail": 0.6,
-        "not_in_first": 0.8,  # represents all unprocessed
-    }
+    # Prepare global CCN bins based on all compiled baseline files
+    # Gather CCN sums for all baseline compiled files
+    all_baseline_ccn = []
+    for file_key, file_data in load_json_file(
+        "../mypy_outputs/mypy_results_untyped_with_errors.json"
+    ).items():
+        if file_data.get("isCompiled", False):
+            file_name = file_key.split("/")[-1] if "/" in file_key else file_key
+            if file_name in complexity_data:
+                top_3_ccn = complexity_data[file_name]["top_3_functions_CCN"]
+                all_baseline_ccn.append(sum(top_3_ccn))
+            else:
+                all_baseline_ccn.append(0)
+
+    if len(all_baseline_ccn) == 0:
+        # Fallback to a simple range to avoid errors
+        bin_edges = np.linspace(0, 1, 6)
+    else:
+        # Use 10 bins across the observed range
+        min_val, max_val = float(min(all_baseline_ccn)), float(max(all_baseline_ccn))
+        if min_val == max_val:
+            # Avoid zero-width bins
+            min_val, max_val = 0.0, max_val + 1.0
+        bin_edges = np.linspace(min_val, max_val, 11)
+
+    # Precompute global baseline totals per bin for consistent labeling and normalization
+    baseline_counts_per_bin, _ = np.histogram(all_baseline_ccn, bins=bin_edges)
 
     # Process each model
     for y_pos, (model_name, first_run_file, second_run_file) in enumerate(models, 1):
@@ -235,44 +256,87 @@ def create_compilation_consistency_plot_ccn():
             unprocessed_files  # Use this as the combined unprocessed
         )
 
-        # Plot each status group in the specified order
+        # For each status, compute CCN sums for histogram
+        status_to_ccn = {status: [] for status in legend_order}
+
+        # Combine unprocessed categories into 'not_in_first'
+        unprocessed_files = []
+        for unprocessed_status in ["not_in_first", "not_in_second", "not_in_both"]:
+            if unprocessed_status in status_groups:
+                unprocessed_files.extend(status_groups[unprocessed_status])
+        status_groups["not_in_first"] = unprocessed_files
+
         for status in legend_order:
-            if status not in status_groups or not status_groups[status]:
-                continue
-
-            files = status_groups[status]
-
-            # Get CCN sums for these files
-            ccn_sums = []
+            files = status_groups.get(status, [])
             for file_key in files:
-                # Get the file name without path for complexity lookup
                 file_name = file_key.split("/")[-1] if "/" in file_key else file_key
-
-                # Get CCN data from complexity analysis
                 if file_name in complexity_data:
                     top_3_ccn = complexity_data[file_name]["top_3_functions_CCN"]
-                    ccn_sum = sum(top_3_ccn)
-                    ccn_sums.append(ccn_sum)
+                    status_to_ccn[status].append(sum(top_3_ccn))
                 else:
-                    # If file not found in complexity data, use 0
-                    ccn_sums.append(0)
+                    status_to_ccn[status].append(0)
 
-            # Calculate y-position for sub-belt
-            sub_belt_y = y_pos - 0.4 + sub_belt_positions[status]
-            y_positions = np.random.normal(sub_belt_y, 0.05, len(ccn_sums))
+        # Build grouped bars per CCN bin for this model in its own figure
+        fig = plt.figure(figsize=(10, 6))
+        ax = plt.gca()
+        bin_centers = 0.5 * (bin_edges[:-1] + bin_edges[1:])
+        bin_widths = bin_edges[1:] - bin_edges[:-1]
+        # Use a fraction of bin width for grouped bars
+        group_bar_width = 0.18
 
-            # Plot the points
-            plt.scatter(
-                ccn_sums,
-                y_positions,
-                c=color_map[status],
-                alpha=0.7,
-                s=30,
-                label=status_labels[status] if status not in used_statuses else "",
+        # For each status, compute histogram counts then convert to percentages per bin
+        counts_by_status = {}
+        for status in legend_order:
+            counts, _ = np.histogram(status_to_ccn[status], bins=bin_edges)
+            counts_by_status[status] = counts
+
+        # Use global baseline totals per bin for normalization to ensure consistency across figures
+        totals_per_bin = baseline_counts_per_bin
+
+        percentages_by_status = {}
+        with np.errstate(divide='ignore', invalid='ignore'):
+            for status in legend_order:
+                percentages = np.where(
+                    totals_per_bin > 0,
+                    (counts_by_status[status] / totals_per_bin) * 100.0,
+                    0.0,
+                )
+                percentages_by_status[status] = percentages
+
+        # Plot grouped bars with slight offsets
+        num_statuses = len(legend_order)
+        for idx, status in enumerate(legend_order):
+            offset = (idx - (num_statuses - 1) / 2.0) * (group_bar_width * bin_widths)
+            ax.bar(
+                bin_centers + offset,
+                percentages_by_status[status],
+                width=group_bar_width * bin_widths,
+                color=color_map[status],
+                alpha=0.85,
+                label=status_labels[status],
+                align="center",
             )
 
-            if status not in used_statuses:
-                used_statuses.add(status)
+        ax.set_title(model_name)
+        ax.grid(axis="y", alpha=0.3)
+        ax.set_ylabel("Percentage of Files (%)")
+        ax.set_xlabel("Sum of Top 3 Functions CCN")
+        ax.set_ylim(0, 100)
+        # Label x-axis bins with total file counts per bin (use global baseline totals)
+        xtick_labels = []
+        for center, total in zip(bin_centers, baseline_counts_per_bin):
+            label_ccn = int(round(center))
+            xtick_labels.append(f"CCN {label_ccn} ({int(total)} files)")
+        ax.set_xticks(bin_centers)
+        ax.set_xticklabels(xtick_labels, rotation=45, ha="right")
+        ax.legend(loc="upper right")
+
+        plt.tight_layout()
+
+        # Save figure as PDF in the output directory
+        safe_model_name = model_name.replace("/", "-")
+        pdf_path = os.path.join(output_dir, f"compilation_consistency_{safe_model_name}.pdf")
+        plt.savefig(pdf_path, bbox_inches="tight")
 
         print(f"  - Total compiled files: {len(compiled_files)}")
 
@@ -292,35 +356,12 @@ def create_compilation_consistency_plot_ccn():
         print("    - 1st only success:", status_groups.get("first_only", []).__len__())
         print("    - 2nd only success:", status_groups.get("second_only", []).__len__())
 
-    # Customize plot
-    plt.xlabel("Sum of Top 3 Functions CCN", fontsize=12)
-    plt.ylabel("Language Models", fontsize=12)
-    plt.title(
-        "Compilation Consistency Across LLM Runs\n(Using Sum of Top 3 Functions CCN)",
-        fontsize=14,
-        pad=20,
-    )
-
-    # Set y-axis labels
-    model_names = [model[0] for model in models]
-    plt.yticks(range(1, len(models) + 1), model_names)
-
-    # Add horizontal divider lines between models
-    for i in range(1, len(models)):
-        plt.axhline(y=i + 0.5, color="black", linestyle="-", linewidth=1, alpha=0.5)
-
-    # Add grid for better readability
-    plt.grid(True, alpha=0.3)
-
-    # Add legend
-    plt.legend(bbox_to_anchor=(1.05, 1), loc="upper left")
-
-    # Adjust layout to prevent legend cutoff
-    plt.tight_layout()
-
-    # Show plot
+    # Show all figures (one per model)
+    
     plt.show()
-    #plt.savefig("compilation_consistency_plot_ccn.pdf", bbox_inches="tight")
+
+    # Show plot (do not save)
+    plt.show()
 
 
 if __name__ == "__main__":

@@ -83,8 +83,16 @@ import time
 if __name__ == "__main__":
     start_time = time.time()
     run_mypy_and_save_results(
-        "o3_mini_3rd_run",
-        "mypy_results/mypy_outputs/mypy_results_o3_mini_3rd_run_with_errors.json",
+        "partial_annoated_code_generation_by_LLM/deepseek_partially_typed_files",
+        "mypy_results/mypy_outputs/partial_typed/mypy_results_deepseek_partially_typed_files_with_errors.json",
+    )
+    run_mypy_and_save_results(
+        "partial_annoated_code_generation_by_LLM/claude3_sonnet_partially_typed_files",
+        "mypy_results/mypy_outputs/partial_typed/mypy_results_claude3_sonnet_partially_typed_files_with_errors.json",
+    )
+    run_mypy_and_save_results(
+        "partial_annoated_code_generation_by_LLM/o3_mini_partially_typed_files",
+        "mypy_results/mypy_outputs/partial_typed/mypy_results_o3_mini_partially_typed_files_with_errors.json",
     )
     """
     run_mypy_and_save_results(

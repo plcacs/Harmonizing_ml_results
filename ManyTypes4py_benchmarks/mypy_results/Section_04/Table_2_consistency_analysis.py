@@ -2,22 +2,23 @@
 Run Consistency Analysis Script
 
 This script analyzes the consistency of type annotation quality between 1st and 2nd runs
-of different language models on the same benchmark files.
+of different language models on baseline files (untyped files that successfully pass type checking).
 
 What it produces:
 - A table showing for each LLM model:
-  * Number of files processed in both runs (excluding syntax errors)
+  * Number of unprocessed baseline files (not processed in either run)
   * Number of files successful in both runs
   * Number of files successful only in 1st run
   * Number of files successful only in 2nd run
   * Number of files that failed in both runs
+  * Instability rate (percentage of processed files with inconsistent results between runs)
 
-How it differs from Table_1_analysis.py:
-- Table_1_analysis.py compares LLM-generated code against untyped original code
-- This script compares 1st run vs 2nd run results for the same LLM models
-- Focuses on consistency/reproducibility rather than absolute performance
-- Only analyzes models that have both 1st and 2nd run data available
-- Excludes files with syntax errors from both runs for fair comparison
+Key features:
+- All calculations are based on baseline files (untyped files that successfully pass mypy type checking)
+- Analyzes all baseline files, regardless of whether they appear in both runs
+- Shows distribution of baseline files across different processing outcomes
+- Excludes files with syntax errors from analysis for fair comparison
+- Provides comprehensive view of how baseline files are handled across runs
 """
 
 import json
@@ -69,9 +70,16 @@ def has_syntax_error(errors):
     return False
 
 
-def analyze_run_consistency(model_name, first_run_file, second_run_file):
+def analyze_run_consistency(model_name, first_run_file, second_run_file, baseline_file):
     first_run_files = load_json_file(first_run_file)
     second_run_files = load_json_file(second_run_file)
+    baseline_files = load_json_file(baseline_file)
+
+    # Get baseline files that successfully pass type checking (untyped successful files)
+    baseline_successful = set()
+    for file_key, file_data in baseline_files.items():
+        if file_data.get("error_count", 0) == 0 and file_data.get("isCompiled", False):
+            baseline_successful.add(file_key)
 
     # Find syntax error files for both runs
     first_run_syntax_errors = set()
@@ -85,42 +93,70 @@ def analyze_run_consistency(model_name, first_run_file, second_run_file):
         if has_syntax_error(file_data.get("errors", [])):
             second_run_syntax_errors.add(file_key)
 
-    # Get common files that are processed in both runs
-    common_files = set(first_run_files.keys()) & set(second_run_files.keys())
-    processed_in_both = common_files - first_run_syntax_errors - second_run_syntax_errors
+    # Get files that are in baseline and don't have syntax errors in either run
+    first_run_valid = set(first_run_files.keys()) & baseline_successful - first_run_syntax_errors
+    second_run_valid = set(second_run_files.keys()) & baseline_successful - second_run_syntax_errors
 
-    # Categorize files
+    # Categorize baseline files
+    unprocessed = []
     both_success = []
     first_success_only = []
     second_success_only = []
     both_failure = []
 
-    for file_key in processed_in_both:
-        first_error_count = first_run_files[file_key]["error_count"]
-        second_error_count = second_run_files[file_key]["error_count"]
+    for file_key in baseline_successful:
+        if file_key not in first_run_valid and file_key not in second_run_valid:
+            # File not processed in either run
+            unprocessed.append(file_key)
+        elif file_key in first_run_valid and file_key in second_run_valid:
+            # File processed in both runs
+            first_error_count = first_run_files[file_key]["error_count"]
+            second_error_count = second_run_files[file_key]["error_count"]
 
-        if first_error_count == 0 and second_error_count == 0:
-            both_success.append(file_key)
-        elif first_error_count == 0 and second_error_count > 0:
-            first_success_only.append(file_key)
-        elif first_error_count > 0 and second_error_count == 0:
-            second_success_only.append(file_key)
-        else:  # both have errors
-            both_failure.append(file_key)
+            if first_error_count == 0 and second_error_count == 0:
+                both_success.append(file_key)
+            elif first_error_count == 0 and second_error_count > 0:
+                first_success_only.append(file_key)
+            elif first_error_count > 0 and second_error_count == 0:
+                second_success_only.append(file_key)
+            else:  # both have errors
+                both_failure.append(file_key)
+        elif file_key in first_run_valid:
+            # File only in first run
+            first_error_count = first_run_files[file_key]["error_count"]
+            if first_error_count == 0:
+                first_success_only.append(file_key)
+            else:
+                both_failure.append(file_key)
+        elif file_key in second_run_valid:
+            # File only in second run
+            second_error_count = second_run_files[file_key]["error_count"]
+            if second_error_count == 0:
+                second_success_only.append(file_key)
+            else:
+                both_failure.append(file_key)
+
+    # Calculate instability rate (files that are successful in one run but fail in the other)
+    inconsistent_files = len(first_success_only) + len(second_success_only)
+    total_processed = len(both_success) + inconsistent_files + len(both_failure)
+    instability_rate = (inconsistent_files / total_processed * 100) if total_processed > 0 else 0
 
     return {
         "model": model_name,
-        "total_common_files": len(common_files),
-        "processed_in_both": len(processed_in_both),
+        "total_baseline_files": len(baseline_successful),
+        "unprocessed": len(unprocessed),
         "both_success": len(both_success),
         "first_success_only": len(first_success_only),
         "second_success_only": len(second_success_only),
         "both_failure": len(both_failure),
-        "consistency_rate": (len(both_success) / len(processed_in_both) * 100) if len(processed_in_both) > 0 else 0
+        "instability_rate": instability_rate
     }
 
 
 if __name__ == "__main__":
+    # Baseline file (untyped successful files)
+    baseline_file = "mypy_outputs/mypy_results_untyped_with_errors.json"
+    
     # Models with both 1st and 2nd runs
     models = [
         ("gpt4o", 
@@ -145,12 +181,12 @@ if __name__ == "__main__":
 
     all_results = []
     for model_name, first_run_file, second_run_file in models:
-        results = analyze_run_consistency(model_name, first_run_file, second_run_file)
+        results = analyze_run_consistency(model_name, first_run_file, second_run_file, baseline_file)
         all_results.append(results)
 
     # Print summary table
-    print("Model       Processed in both runs     Both Success 1st Only   2nd Only   Both Fail")
-    print("-" * 80)
+    print("Model       Unprocessed    Both Success 1st Only   2nd Only   Both Fail  Instability Rate")
+    print("-" * 85)
     
     for result in all_results:
-        print(f"{result['model']:<12} {result['processed_in_both']:<25} {result['both_success']:<12} {result['first_success_only']:<10} {result['second_success_only']:<10} {result['both_failure']}")
+        print(f"{result['model']:<12} {result['unprocessed']:<13} {result['both_success']:<12} {result['first_success_only']:<10} {result['second_success_only']:<10} {result['both_failure']:<10} {result['instability_rate']:.1f}%")
