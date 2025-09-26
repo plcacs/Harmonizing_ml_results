@@ -123,6 +123,7 @@ def analyze_model_filter_both_fail_first(model_name, untyped_file, model_file):
         "llm_only_failures": len(llm_only_failure_files),
         "llm_success_rate": llm_success_rate,
         "overall_success": overall_success,
+        "llm_only_failure_files": llm_only_failure_files,
     }
 
 
@@ -173,9 +174,12 @@ if __name__ == "__main__":
             "../mypy_outputs/mypy_results_claude3_sonnet_2nd_run_2nd_run_with_errors.json",
         ),
         ("gpt5_1st_run", "../mypy_outputs/mypy_results_gpt5_1st_run_with_errors.json"),
+        ("original", "../mypy_outputs/mypy_results_original_files_with_errors.json"),
     ]
 
     all_results = []
+    all_llm_only_failures = {}
+
     for model_name, model_file in models:
         results = analyze_model_filter_both_fail_first(
             model_name,
@@ -183,6 +187,12 @@ if __name__ == "__main__":
             model_file,
         )
         all_results.append(results)
+        # Collect LLM-only failure files for each model
+        all_llm_only_failures[model_name] = results["llm_only_failure_files"]
+
+    # Save LLM-only failure files to JSON
+    with open("llm_only_failure_files.json", "w") as f:
+        json.dump(all_llm_only_failures, f, indent=2)
 
     for result in all_results:
         model = result["model"]
