@@ -149,7 +149,9 @@ def analyze_run_consistency(model_name, first_run_file, second_run_file, baselin
         "first_success_only": len(first_success_only),
         "second_success_only": len(second_success_only),
         "both_failure": len(both_failure),
-        "instability_rate": instability_rate
+        "instability_rate": instability_rate,
+        "first_success_only_files": first_success_only,
+        "second_success_only_files": second_success_only
     }
 
 
@@ -184,8 +186,19 @@ if __name__ == "__main__":
         results = analyze_run_consistency(model_name, first_run_file, second_run_file, baseline_file)
         all_results.append(results)
 
-    # Print summary table
-    print("Model       Unprocessed    Both Success 1st Only   2nd Only   Both Fail  Instability Rate")
+    # Save file names to JSON
+    file_names_data = {}
+    for result in all_results:
+        file_names_data[result['model']] = {
+            "first_success_only_files": result['first_success_only_files'],
+            "second_success_only_files": result['second_success_only_files']
+        }
+    
+    with open("inconsistent_files_by_model.json", "w") as f:
+        json.dump(file_names_data, f, indent=2)
+    
+    print("File names saved to 'inconsistent_files_by_model.json'")
+    print("\nModel       Unprocessed    Both Success 1st Only   2nd Only   Both Fail  Instability Rate")
     print("-" * 85)
     
     for result in all_results:
