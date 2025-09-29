@@ -51,11 +51,14 @@ def main() -> None:
 
     counts = Counter()
     per_model = defaultdict(Counter)
+    non_type_errors = []  # Store non-type related errors for logging
+    
     # Count on the failing run's top error (overall and per model)
     with open(csv_path, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
             model = row.get("model", "")
+            filename = row.get("file", "")
             run1_status = row.get("run1_status", "")
             run2_status = row.get("run2_status", "")
             if run1_status == run2_status:
@@ -63,17 +66,38 @@ def main() -> None:
             # Determine failing side and use its top error
             if run1_status == "fail" and run2_status == "success":
                 msg = row.get("run1_error_top", "")
+                flip_direction = "fail->success"
             elif run1_status == "success" and run2_status == "fail":
                 msg = row.get("run2_error_top", "")
+                flip_direction = "success->fail"
             else:
                 # unexpected
                 msg = row.get("run2_error_top", "") or row.get("run1_error_top", "")
+                flip_direction = "unknown"
             bucket = classify(msg)
             counts[bucket] += 1
             per_model[model][bucket] += 1
+            
+            # Log non-type related errors
+            if bucket == "non_type":
+                non_type_errors.append({
+                    "model": model,
+                    "file": filename,
+                    "flip_direction": flip_direction,
+                    "error_message": msg
+                })
+
+    # Write non-type errors to CSV
+    non_type_csv_path = os.path.join(here, "non_type_errors.csv")
+    with open(non_type_csv_path, "w", newline="", encoding="utf-8") as f:
+        if non_type_errors:
+            writer = csv.DictWriter(f, fieldnames=["model", "file", "flip_direction", "error_message"])
+            writer.writeheader()
+            writer.writerows(non_type_errors)
 
     # Overall
     print(f"type_related={counts.get('type', 0)} non_type_related={counts.get('non_type', 0)} total={sum(counts.values())}")
+    print(f"Logged {len(non_type_errors)} non-type errors to non_type_errors.csv")
     # Per model concise lines
     for model in sorted(per_model.keys()):
         m = per_model[model]
