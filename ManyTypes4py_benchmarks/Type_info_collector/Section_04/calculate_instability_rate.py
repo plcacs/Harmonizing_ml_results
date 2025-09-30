@@ -49,6 +49,32 @@ def is_any_type(param_types):
         return True
 
 
+def is_imprecise_type(type_str):
+    """Check if a type is imprecise (contains Any or Optional with Any)."""
+    if not type_str:
+        return True
+    
+    type_str = type_str.strip()
+    
+    # Check for explicit Any
+    if type_str.lower() == "any":
+        return True
+    
+    # Check for List[Any], Dict[Any, Any], etc.
+    if "any" in type_str.lower() and ("[" in type_str or "]" in type_str):
+        return True
+    
+    # Check for Optional[Any]
+    if "optional[any]" in type_str.lower():
+        return True
+    
+    # Check for Union[Any, ...]
+    if "union" in type_str.lower() and "any" in type_str.lower():
+        return True
+    
+    return False
+
+
 def extract_parameter_signatures(type_info_data, baseline_files=None):
     """Extract parameter signatures from type info data."""
     signatures = {}
@@ -87,13 +113,58 @@ def extract_parameter_signatures(type_info_data, baseline_files=None):
     return signatures
 
 
+def extract_parameter_signatures_with_types(type_info_data, baseline_files=None):
+    """Extract parameter signatures with actual type information from type info data."""
+    signatures = {}
+
+    if not isinstance(type_info_data, dict):
+        return signatures
+
+    for filename, functions in type_info_data.items():
+        # Only process files that are in baseline_files (if provided)
+        if baseline_files is not None and filename not in baseline_files:
+            continue
+
+        if isinstance(functions, dict):
+            for func_name, func_data in functions.items():
+                if isinstance(func_data, list):
+                    # Create a signature key for this function
+                    signature_key = f"{filename}::{func_name}"
+                    param_info = []
+
+                    for param in func_data:
+                        if isinstance(param, dict):
+                            category = param.get("category", "")
+                            param_types = param.get("type", [])
+                            param_name = param.get("name", "")
+
+                            # Extract actual type string
+                            type_str = ""
+                            if isinstance(param_types, list) and len(param_types) > 0:
+                                type_str = str(param_types[0]) if param_types[0] else ""
+
+                            param_info.append(
+                                {
+                                    "category": category,
+                                    "name": param_name,
+                                    "is_any": is_any_type(param_types),
+                                    "type_str": type_str.strip(),
+                                    "is_imprecise": is_imprecise_type(type_str.strip()),
+                                }
+                            )
+
+                    signatures[signature_key] = param_info
+
+    return signatures
+
+
 def calculate_instability_rate(
     model_name, first_run_data, second_run_data, baseline_files=None
 ):
     """Calculate instability rate for a model between first and second runs."""
     # Extract signatures from both runs (filtered to baseline files)
-    first_signatures = extract_parameter_signatures(first_run_data, baseline_files)
-    second_signatures = extract_parameter_signatures(second_run_data, baseline_files)
+    first_signatures = extract_parameter_signatures_with_types(first_run_data, baseline_files)
+    second_signatures = extract_parameter_signatures_with_types(second_run_data, baseline_files)
 
     # Find common parameters (exist in both runs)
     common_signatures = set(first_signatures.keys()) & set(second_signatures.keys())
@@ -103,6 +174,12 @@ def calculate_instability_rate(
     any_first = 0
     any_second = 0
     any_neither = 0
+    type_consistent = 0  # Parameters with same type in both runs
+    
+    # Subcategories for any_neither (typed in both runs)
+    first_more_precise = 0  # First run more precise, second run uses Any/Optional
+    second_more_precise = 0  # Second run more precise, first run uses Any/Optional
+    neither_precise = 0  # Neither is precise or both equal precision
 
     for signature_key in common_signatures:
         first_params = first_signatures[signature_key]
@@ -110,10 +187,12 @@ def calculate_instability_rate(
 
         # Match parameters by category and name
         first_param_map = {
-            (p["category"], p["name"]): p["is_any"] for p in first_params
+            (p["category"], p["name"]): {"is_any": p["is_any"], "type_str": p["type_str"], "is_imprecise": p["is_imprecise"]} 
+            for p in first_params
         }
         second_param_map = {
-            (p["category"], p["name"]): p["is_any"] for p in second_params
+            (p["category"], p["name"]): {"is_any": p["is_any"], "type_str": p["type_str"], "is_imprecise": p["is_imprecise"]} 
+            for p in second_params
         }
 
         # Find common parameters between the two runs
@@ -121,8 +200,13 @@ def calculate_instability_rate(
 
         for param_key in common_param_keys:
             total_params += 1
-            first_is_any = first_param_map[param_key]
-            second_is_any = second_param_map[param_key]
+            first_data = first_param_map[param_key]
+            second_data = second_param_map[param_key]
+            
+            first_is_any = first_data["is_any"]
+            second_is_any = second_data["is_any"]
+            first_is_imprecise = first_data["is_imprecise"]
+            second_is_imprecise = second_data["is_imprecise"]
 
             if first_is_any and second_is_any:
                 any_both += 1
@@ -132,6 +216,17 @@ def calculate_instability_rate(
                 any_second += 1
             else:  # not first_is_any and not second_is_any
                 any_neither += 1
+                # Check if the actual types are the same
+                if first_data["type_str"] == second_data["type_str"]:
+                    type_consistent += 1
+                
+                # Categorize precision differences within any_neither
+                if not first_is_imprecise and second_is_imprecise:
+                    first_more_precise += 1
+                elif first_is_imprecise and not second_is_imprecise:
+                    second_more_precise += 1
+                else:  # Both imprecise or both precise
+                    neither_precise += 1
 
     # Calculate instability rate
     instability_rate = (
@@ -145,6 +240,10 @@ def calculate_instability_rate(
         "any_first": any_first,
         "any_second": any_second,
         "any_neither": any_neither,
+        "type_consistent": type_consistent,
+        "first_more_precise": first_more_precise,
+        "second_more_precise": second_more_precise,
+        "neither_precise": neither_precise,
         "instability_rate": instability_rate,
     }
 
@@ -215,6 +314,10 @@ def main():
         print(f"  Any in 1st run only: {result['any_first']:,}")
         print(f"  Any in 2nd run only: {result['any_second']:,}")
         print(f"  Not Any in both runs: {result['any_neither']:,}")
+        print(f"    - Same type in both runs: {result['type_consistent']:,}")
+        print(f"    - 1st run more precise: {result['first_more_precise']:,}")
+        print(f"    - 2nd run more precise: {result['second_more_precise']:,}")
+        print(f"    - Neither precise: {result['neither_precise']:,}")
         print(f"  Instability rate: {result['instability_rate']:.2f}%")
 
     # Print summary table
@@ -222,13 +325,13 @@ def main():
     print("SUMMARY TABLE")
     print("=" * 100)
     print(
-        f"{'Model':<15} {'Total Params':<12} {'Any Both':<10} {'Any 1st':<10} {'Any 2nd':<10} {'Any Neither':<12} {'Instability Rate':<15}"
+        f"{'Model':<15} {'Total Params':<12} {'Any Both':<10} {'Any 1st':<10} {'Any 2nd':<10} {'Any Neither':<12} {'Same Type':<10} {'1st Precise':<11} {'2nd Precise':<11} {'Neither Precise':<15} {'Instability Rate':<15}"
     )
-    print("-" * 100)
+    print("-" * 150)
 
     for result in results:
         print(
-            f"{result['model']:<15} {result['total_params']:<12,} {result['any_both']:<10,} {result['any_first']:<10,} {result['any_second']:<10,} {result['any_neither']:<12,} {result['instability_rate']:<15.2f}%"
+            f"{result['model']:<15} {result['total_params']:<12,} {result['any_both']:<10,} {result['any_first']:<10,} {result['any_second']:<10,} {result['any_neither']:<12,} {result['type_consistent']:<10,} {result['first_more_precise']:<11,} {result['second_more_precise']:<11,} {result['neither_precise']:<15,} {result['instability_rate']:<15.2f}%"
         )
 
     # Save results to CSV
@@ -244,6 +347,10 @@ def main():
                 "Any_1st",
                 "Any_2nd",
                 "Any_Neither",
+                "Same_Type",
+                "First_More_Precise",
+                "Second_More_Precise",
+                "Neither_Precise",
                 "Instability_Rate",
             ]
         )
@@ -258,6 +365,10 @@ def main():
                     result["any_first"],
                     result["any_second"],
                     result["any_neither"],
+                    result["type_consistent"],
+                    result["first_more_precise"],
+                    result["second_more_precise"],
+                    result["neither_precise"],
                     f"{result['instability_rate']:.2f}%",
                 ]
             )
