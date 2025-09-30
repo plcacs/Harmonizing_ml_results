@@ -14,7 +14,27 @@ def load_type_info(file_path):
         return None
 
 
-def calculate_any_rate(type_info_data):
+def load_baseline_files():
+    """Load baseline files from untyped mypy results (files with isCompiled=True)."""
+    untyped_mypy_path = (
+        "../../mypy_results/mypy_outputs/mypy_results_untyped_with_errors.json"
+    )
+    try:
+        with open(untyped_mypy_path, "r", encoding="utf-8") as f:
+            untyped_mypy = json.load(f)
+        baseline_files = {
+            fname
+            for fname, info in untyped_mypy.items()
+            if info.get("isCompiled") is True
+        }
+        print(f"Loaded {len(baseline_files)} baseline files")
+        return baseline_files
+    except Exception as e:
+        print(f"Error loading baseline files from {untyped_mypy_path}: {e}")
+        return set()
+
+
+def calculate_any_rate(type_info_data, baseline_files=None):
     """Calculate Any-rate: #Any_slots / #total_params (including empty types as Any)."""
     any_slots = 0
     total_params = 0
@@ -23,6 +43,10 @@ def calculate_any_rate(type_info_data):
         return 0, 0, 0
 
     for filename, functions in type_info_data.items():
+        # Only process files that are in baseline_files (if provided)
+        if baseline_files is not None and filename not in baseline_files:
+            continue
+
         if isinstance(functions, dict):
             for func_name, func_data in functions.items():
                 if isinstance(func_data, list):
@@ -30,10 +54,10 @@ def calculate_any_rate(type_info_data):
                         if isinstance(param, dict):
                             # Count all parameters
                             total_params += 1
-                            
+
                             # Get type annotations
                             param_types = param.get("type", [])
-                            
+
                             # Check if it's Any or empty
                             is_any = False
                             if isinstance(param_types, list) and len(param_types) > 0:
@@ -48,7 +72,7 @@ def calculate_any_rate(type_info_data):
                             else:
                                 # No type annotation counts as Any
                                 is_any = True
-                            
+
                             if is_any:
                                 any_slots += 1
 
@@ -56,7 +80,7 @@ def calculate_any_rate(type_info_data):
     return any_slots, total_params, any_rate
 
 
-def calculate_any_rate_by_category(type_info_data):
+def calculate_any_rate_by_category(type_info_data, baseline_files=None):
     """Calculate Any-rate separately for parameters and return types (including empty types as Any)."""
     param_any_slots = 0
     param_total_slots = 0
@@ -67,6 +91,10 @@ def calculate_any_rate_by_category(type_info_data):
         return 0, 0, 0, 0, 0, 0
 
     for filename, functions in type_info_data.items():
+        # Only process files that are in baseline_files (if provided)
+        if baseline_files is not None and filename not in baseline_files:
+            continue
+
         if isinstance(functions, dict):
             for func_name, func_data in functions.items():
                 if isinstance(func_data, list):
@@ -115,6 +143,12 @@ def calculate_any_rate_by_category(type_info_data):
 
 
 def main():
+    # Load baseline files (files with isCompiled=True)
+    baseline_files = load_baseline_files()
+    if not baseline_files:
+        print("No baseline files found. Exiting.")
+        return
+
     # Define model files (using relative paths) - ordered by preference
     model_files = {
         "Human": "../Type_info_LLMS/Type_info_original_files.json",
@@ -133,7 +167,10 @@ def main():
     }
 
     print("=" * 80)
-    print("ANY-RATE ANALYSIS: Any_rate = #Any_slots / #total_params (including empty types as Any)")
+    print(
+        "ANY-RATE ANALYSIS: Any_rate = #Any_slots / #total_params (including empty types as Any)"
+    )
+    print(f"BASELINE FILES: {len(baseline_files)} files with isCompiled=True")
     print("=" * 80)
 
     results = {}
@@ -147,12 +184,14 @@ def main():
             print(f"  Failed to load {filename}")
             continue
 
-        # Calculate overall Any-rate
-        any_slots, total_params, any_rate = calculate_any_rate(type_info_data)
+        # Calculate overall Any-rate (filtered to baseline files)
+        any_slots, total_params, any_rate = calculate_any_rate(
+            type_info_data, baseline_files
+        )
 
-        # Calculate category-specific Any-rates
+        # Calculate category-specific Any-rates (filtered to baseline files)
         param_any, param_total, param_rate, return_any, return_total, return_rate = (
-            calculate_any_rate_by_category(type_info_data)
+            calculate_any_rate_by_category(type_info_data, baseline_files)
         )
 
         results[model_name] = {
@@ -202,7 +241,7 @@ def main():
                 print(f"{model_name:<15} {data['any_rate']:<10.3f} {delta:<+12.3f}")
 
     # Save results to CSV
-    output_file = "./any_empty_rate_results.csv"
+    output_file = "./any_empty_rate_results_baseline.csv"
     with open(output_file, "w", newline="") as f:
         writer = csv.writer(f)
         # Write header
