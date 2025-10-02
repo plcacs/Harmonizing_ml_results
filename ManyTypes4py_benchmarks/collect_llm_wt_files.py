@@ -53,9 +53,9 @@ def main() -> None:
         # DeepSeek (JSON keys are 'deepseek' and 'deepseek_2nd_run')
         "deepseek": ("deepseek", os.path.join(repo_root, "deep_seek")),
         "deepseek_2nd_run": ("deepseek", os.path.join(repo_root, "deep_seek_2nd_run")),
-        # o1-mini
-        "o1_mini": ("o1mini", os.path.join(repo_root, "o1_mini")),
-        "o1_mini_2nd_run": ("o1mini", os.path.join(repo_root, "o1_mini_2nd_run")),
+        # o1-mini (JSON keys use hyphen)
+        "o1-mini": ("o1mini", os.path.join(repo_root, "o1_mini")),
+        "o1-mini_2nd_run": ("o1mini", os.path.join(repo_root, "o1_mini_2nd_run")),
         # o3-mini
         "o3_mini_1st_run": ("o3mini", os.path.join(repo_root, "o3_mini_1st_run")),
         "o3_mini_2nd_run": ("o3mini", os.path.join(repo_root, "o3_mini_2nd_run")),
