@@ -1,0 +1,16 @@
+from typing import List, Tuple
+
+def test_seq_copy(train_params: str, translate_params: str, use_prepared_data: bool, n_source_factors: int, n_target_factors: int) -> None:
+    ...
+
+def test_other_clis(train_params: str, translate_params: str) -> None:
+    ...
+
+def _test_evaluate_cli(test_outputs: List[str], test_target_path: str) -> None:
+    ...
+
+def _test_parameter_averaging(model_path: str) -> None:
+    ...
+
+def _test_checkpoint_decoder(dev_source_path: str, dev_target_path: str, model_path: str) -> None:
+    ...

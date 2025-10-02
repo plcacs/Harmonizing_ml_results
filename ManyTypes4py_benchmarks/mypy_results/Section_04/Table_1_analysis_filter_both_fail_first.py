@@ -124,6 +124,7 @@ def analyze_model_filter_both_fail_first(model_name, untyped_file, model_file):
         "llm_success_rate": llm_success_rate,
         "overall_success": overall_success,
         "llm_only_failure_files": llm_only_failure_files,
+        "both_success_files": both_success_files,
     }
 
 
@@ -179,7 +180,7 @@ if __name__ == "__main__":
 
     all_results = []
     all_llm_only_failures = {}
-
+    all_both_success_files = {}
     for model_name, model_file in models:
         results = analyze_model_filter_both_fail_first(
             model_name,
@@ -189,11 +190,12 @@ if __name__ == "__main__":
         all_results.append(results)
         # Collect LLM-only failure files for each model
         all_llm_only_failures[model_name] = results["llm_only_failure_files"]
-
+        all_both_success_files[model_name] = results["both_success_files"]
     # Save LLM-only failure files to JSON
-    with open("llm_only_failure_files.json", "w") as f:
-        json.dump(all_llm_only_failures, f, indent=2)
-
+    # with open("llm_only_failure_files.json", "w") as f:
+    #    json.dump(all_llm_only_failures, f, indent=2)
+    with open("both_success_files.json", "w") as f:
+        json.dump(all_both_success_files, f, indent=2)
     for result in all_results:
         model = result["model"]
         print(model)
