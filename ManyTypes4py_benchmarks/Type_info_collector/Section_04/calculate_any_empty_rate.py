@@ -142,9 +142,87 @@ def calculate_any_rate_by_category(type_info_data, baseline_files=None):
     )
 
 
+def compute_per_file_any_percentage(type_info_data, baseline_files=None):
+    """Compute per-file Any percentage.
+    Returns dict: { filename: {"any_slots": int, "total_slots": int, "any_percentage": float} }
+    """
+    results = {}
+
+    if not isinstance(type_info_data, dict):
+        return results
+
+    for filename, functions in type_info_data.items():
+        if baseline_files is not None and filename not in baseline_files:
+            continue
+
+        any_slots = 0
+        total_slots = 0
+
+        if isinstance(functions, dict):
+            for func_name, func_data in functions.items():
+                if isinstance(func_data, list):
+                    for param in func_data:
+                        if isinstance(param, dict):
+                            total_slots += 1
+
+                            param_types = param.get("type", [])
+
+                            is_any = False
+                            if isinstance(param_types, list) and len(param_types) > 0:
+                                type_str = param_types[0]
+                                if isinstance(type_str, str) and type_str.strip():
+                                    if type_str.strip().lower() == "any":
+                                        is_any = True
+                                else:
+                                    is_any = True
+                            else:
+                                is_any = True
+
+                            if is_any:
+                                any_slots += 1
+
+        percentage = (any_slots / total_slots * 100.0) if total_slots > 0 else 0.0
+        results[filename] = {
+            "any_slots": any_slots,
+            "total_slots": total_slots,
+            "any_percentage": percentage,
+        }
+
+    return results
+
+
+def save_per_run_file_any_percentages(
+    model_files, output_root="./per_file_any_percentage", baseline_files=None
+):
+    """Save per-file Any percentages for each run/model into separate subfolders.
+    - model_files: dict like in main() mapping model_name -> path
+    - output_root: directory where subfolders per model_name will be created
+    - baseline_files: optional set of filenames to filter
+    """
+    os.makedirs(output_root, exist_ok=True)
+
+    for model_name, filepath in model_files.items():
+        type_info = load_type_info(filepath)
+        if not type_info:
+            continue
+
+        per_file = compute_per_file_any_percentage(type_info, baseline_files)
+
+        model_dir = os.path.join(output_root, model_name)
+        os.makedirs(model_dir, exist_ok=True)
+
+        out_path = os.path.join(model_dir, "per_file_any_percentage.json")
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(per_file, f, ensure_ascii=False, indent=2, sort_keys=True)
+
+    return True
+
+
 def main():
     # Load baseline files (files with isCompiled=True)
     baseline_files = load_baseline_files()
+    baseline = load_baseline_files()
+
     if not baseline_files:
         print("No baseline files found. Exiting.")
         return
@@ -165,7 +243,7 @@ def main():
         "Claude3-Sonnet_1st_run": "../Type_info_LLMS/Type_info_claude3_sonnet_1st_run_benchmarks.json",
         "Claude3-Sonnet_2nd_run": "../Type_info_LLMS/Type_info_claude3_sonnet_2nd_run_benchmarks.json",
     }
-
+    save_per_run_file_any_percentages(model_files, baseline_files=baseline)
     print("=" * 80)
     print(
         "ANY-RATE ANALYSIS: Any_rate = #Any_slots / #total_params (including empty types as Any)"
