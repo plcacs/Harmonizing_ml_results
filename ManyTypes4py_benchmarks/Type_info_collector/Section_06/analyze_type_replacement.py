@@ -32,7 +32,9 @@ def is_any_or_empty(type_str: str) -> bool:
 
 
 FILTER_TO_COMPILED: bool = True  # set True to filter by compiled files only
-COMPILED_RESULTS_PATH: str = "../../mypy_results/mypy_outputs/mypy_results_untyped_with_errors.json"
+COMPILED_RESULTS_PATH: str = (
+    "../../mypy_results/mypy_outputs/mypy_results_untyped_with_errors.json"
+)
 
 
 def _normalize_path(p: str) -> str:
@@ -54,7 +56,11 @@ def load_compiled_true_files(path: str) -> Tuple[Set[str], Set[str]]:
                     basenames.add(os.path.basename(norm))
     elif isinstance(data, dict):
         for name, entry in data.items():
-            if isinstance(entry, dict) and entry.get("isCompiled") is True and isinstance(name, str):
+            if (
+                isinstance(entry, dict)
+                and entry.get("isCompiled") is True
+                and isinstance(name, str)
+            ):
                 norm = _normalize_path(name)
                 full_paths.add(norm)
                 basenames.add(os.path.basename(norm))
@@ -105,6 +111,11 @@ def analyze_type_replacements(human_data, llm_data):
             for key in common_keys:
                 human_param = human_dict[key]
                 llm_param = llm_dict[key]
+
+                # Skip 'self' parameter completely
+                param_name = human_param.get("name", "")
+                if param_name == "self":
+                    continue
 
                 human_type = (
                     human_param.get("type", [""])[0] if human_param.get("type") else ""
