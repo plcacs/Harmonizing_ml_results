@@ -59,7 +59,7 @@ human_zero = load_success_set(human_path, compiled_success_files)
 # Create union of all LLM results
 llm_union = claude_zero | o3mini_zero | deepseek_zero
 
-# Create single figure with 4 subplots
+# Create single figure with 4 horizontal subplots
 total_base = len(compiled_success_files)
 
 def fmt_label(name: str, s: Set[str]) -> str:
@@ -80,39 +80,42 @@ def create_venn_subplot(ax, human_set, llm_set, llm_name, colors):
     if vd.set_labels:
         for lbl in vd.set_labels:
             if lbl is not None:
-                lbl.set_fontsize(16)
+                lbl.set_fontsize(14)
                 lbl.set_fontweight('bold')
                 lbl.set_clip_on(False)
     if vd.subset_labels:
         for lbl in vd.subset_labels:
             if lbl is not None:
-                lbl.set_fontsize(16)
+                lbl.set_fontsize(14)
                 lbl.set_fontweight('bold')
                 lbl.set_clip_on(False)
     
-    # Position labels manually: Human at top, LLM at bottom
-    ax.text(0, 1.2, fmt_label("Human", human_set), ha='center', va='center', fontsize=16, fontweight='bold')
-    ax.text(0, -1.2, fmt_label(llm_name, llm_set), ha='center', va='center', fontsize=16, fontweight='bold')
+    # Position labels manually: Human at top, LLM at bottom (closer to the figure)
+    ax.text(0, 0.8, fmt_label("Human", human_set), ha='center', va='center', fontsize=14, fontweight='bold')
+    ax.text(0, -0.8, fmt_label(llm_name, llm_set), ha='center', va='center', fontsize=14, fontweight='bold')
     ax.set_axis_off()
     ax.set_aspect('equal', adjustable='box')
 
-# Create single figure with 2x2 subplot layout
-fig, axes = plt.subplots(2, 2, figsize=(17, 17), constrained_layout=True)
+# Create single figure with 1x4 horizontal subplot layout
+fig, axes = plt.subplots(1, 4, figsize=(20, 5))
 
 # Define the comparisons with their colors
 comparisons = [
-    (axes[0, 0], human_zero, o3mini_zero, "o3-mini", (COLOR_MAP["Human"], COLOR_MAP["o3-mini"])),
-    (axes[0, 1], human_zero, claude_zero, "claude3 sonnet", (COLOR_MAP["Human"], COLOR_MAP["claude3 sonnet"])),
-    (axes[1, 0], human_zero, deepseek_zero, "deepseek", (COLOR_MAP["Human"], COLOR_MAP["deepseek"])),
-    (axes[1, 1], human_zero, llm_union, "Union of LLMs", (COLOR_MAP["Human"], COLOR_MAP["Union of 3 LLMs"])),
+    (axes[0], human_zero, o3mini_zero, "o3-mini", (COLOR_MAP["Human"], COLOR_MAP["o3-mini"])),
+    (axes[1], human_zero, claude_zero, "claude3 sonnet", (COLOR_MAP["Human"], COLOR_MAP["claude3 sonnet"])),
+    (axes[2], human_zero, deepseek_zero, "deepseek", (COLOR_MAP["Human"], COLOR_MAP["deepseek"])),
+    (axes[3], human_zero, llm_union, "Union of LLMs", (COLOR_MAP["Human"], COLOR_MAP["Union of 3 LLMs"])),
 ]
 
 # Create each subplot
 for ax, human_set, llm_set, llm_name, colors in comparisons:
     create_venn_subplot(ax, human_set, llm_set, llm_name, colors)
 
-# Save the single figure
-plt.savefig("Section_6_Human_VS_LLM/venn_human_vs_all_llms_combined.pdf", dpi=300)
+# Remove all spacing and padding
+plt.subplots_adjust(left=0, right=1, top=1, bottom=0, wspace=0, hspace=0)
+
+# Save the single figure with no padding
+plt.savefig("Section_6_Human_VS_LLM/venn_human_vs_all_llms_combined.pdf", dpi=300, bbox_inches='tight', pad_inches=0)
 #plt.show()
 
 # Print statistics for all comparisons
