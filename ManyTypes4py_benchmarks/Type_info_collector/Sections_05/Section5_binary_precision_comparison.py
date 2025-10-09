@@ -52,7 +52,7 @@ def is_any_type(type_str: str) -> bool:
     Returns True if type is Any/empty, False if it's a specific type."""
     if not isinstance(type_str, str) or not type_str.strip():
         return True  # Empty or None types are treated as 'Any'
-    
+
     type_str = type_str.strip().lower()
     return type_str == "any"
 
@@ -64,7 +64,7 @@ def get_binary_precision_score(type_str: str) -> int:
 
 
 def analyze_file_binary_precision(type_info: Dict) -> Dict:
-    """Analyze binary precision metrics for a single file. 
+    """Analyze binary precision metrics for a single file.
     Includes all parameters (empty types treated as 'Any' = 0 points)."""
     total_slots = 0
     total_precision_score = 0
@@ -90,24 +90,23 @@ def analyze_file_binary_precision(type_info: Dict) -> Dict:
                 continue
 
             category = entry.get("category", "")
+            param_name = entry.get("name", "")
             tlist = entry.get("type", [])
 
-            if category == "arg":
-                arg_count += 1
-                # Skip 'self' parameter
-                if arg_count == 1:
-                    continue
+            # Skip 'self' parameter completely
+            if param_name == "self":
+                continue
 
             # Count all parameters (including those without type annotations)
             total_slots += 1
-            
+
             # Get type string (empty if no type annotation)
             if isinstance(tlist, list) and tlist:
                 t0 = tlist[0]
                 type_str = t0 if isinstance(t0, str) else ""
             else:
                 type_str = ""  # No type annotation
-            
+
             precision_score = get_binary_precision_score(type_str)
             total_precision_score += precision_score
 
@@ -126,8 +125,6 @@ def build_baseline_files(untyped_mypy: Dict) -> Set[str]:
     return {
         fname for fname, info in untyped_mypy.items() if info.get("isCompiled") is True
     }
-
-
 
 
 def main():
@@ -193,7 +190,6 @@ def main():
             "avg_precision_score": avg_precision_score,
         }
 
-
     # Sort LLMs by average precision score
     ranked_llms = sorted(
         llm_results.items(), key=lambda x: x[1]["avg_precision_score"], reverse=True
@@ -235,9 +231,9 @@ def main():
     print("-" * 80)
     for rank, (llm_name, results) in enumerate(ranked_llms, 1):
         non_any_rate = results["avg_precision_score"] * 100
-        
+
         description = ""
-            
+
         print(
             f"{rank}. {llm_name:<20} Non-Any Rate: {non_any_rate:.1f}% "
             f"(Files: {results['total_files']}, Slots: {results['total_slots']}){description}"
