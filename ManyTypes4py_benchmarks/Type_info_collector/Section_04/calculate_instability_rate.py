@@ -100,6 +100,14 @@ def extract_parameter_signatures(type_info_data, baseline_files=None):
                             param_types = param.get("type", [])
                             param_name = param.get("name", "")
 
+                            # Skip method receiver parameter named "self" for parameter category
+                            if (
+                                isinstance(param_name, str)
+                                and category == "arg"
+                                and param_name.strip().lower() == "self"
+                            ):
+                                continue
+
                             param_info.append(
                                 {
                                     "category": category,
@@ -137,6 +145,14 @@ def extract_parameter_signatures_with_types(type_info_data, baseline_files=None)
                             category = param.get("category", "")
                             param_types = param.get("type", [])
                             param_name = param.get("name", "")
+
+                            # Skip method receiver parameter named "self" for parameter category
+                            if (
+                                isinstance(param_name, str)
+                                and category == "arg"
+                                and param_name.strip().lower() == "self"
+                            ):
+                                continue
 
                             # Extract actual type string
                             type_str = ""

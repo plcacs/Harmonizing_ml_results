@@ -189,7 +189,17 @@ collect_annotations(
 collect_annotations(
     "claude_sonnet_renamed_output",
     "Type_info_collector/Type_info_LLMS/Type_info_claude_sonnet_renamed_output_benchmarks.json",)
-"""
+
 collect_annotations(
     "gpt35_renamed_output",
     "Type_info_collector/Type_info_LLMS/Type_info_gpt35_renamed_output_benchmarks.json",)
+"""
+collect_annotations(
+    "partial_annoated_code_generation_by_LLM/claude3_sonnet_partially_typed_files",
+    "Type_info_collector/Type_info_LLMS/Type_info_claude3_sonnet_partially_typed_files_benchmarks.json")
+collect_annotations(
+    "partial_annoated_code_generation_by_LLM/deepseek_partially_typed_files",
+    "Type_info_collector/Type_info_LLMS/Type_info_deepseek_partially_typed_files_benchmarks.json")
+collect_annotations(
+    "partial_annoated_code_generation_by_LLM/o3_mini_partially_typed_files",
+    "Type_info_collector/Type_info_LLMS/Type_info_o3_mini_partially_typed_files_benchmarks.json")
