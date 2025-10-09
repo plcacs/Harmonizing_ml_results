@@ -7,9 +7,23 @@ from matplotlib_venn import venn2
 # Global style tweaks
 plt.style.use('default')
 plt.rcParams.update({
-    'font.size': 24,
+    'font.size': 16,
 })
 plt.rcParams['savefig.pad_inches'] = 0
+
+# Color map as requested
+COLOR_MAP = {
+    "Human (original)": "pink",
+    "o3-mini": "red",
+    "deepseek": "blue",
+    "claude3 sonnet": "purple",
+    "Union of 3 LLMs": "#8B5A96",  
+    "Human": "pink",
+    "claude3-sonnet": "purple",
+    "gpt-4o": "orange",
+    "o1-mini": "skyblue",
+    "gpt-3.5": "green",
+}
 
 # Build the set of compiled-success files from untyped results
 with open("mypy_outputs/mypy_results_untyped_with_errors.json") as f_untyped:
@@ -45,7 +59,7 @@ human_zero = load_success_set(human_path, compiled_success_files)
 # Create union of all LLM results
 llm_union = claude_zero | o3mini_zero | deepseek_zero
 
-# Create 4 individual Venn diagrams
+# Create single figure with 4 subplots
 total_base = len(compiled_success_files)
 
 def fmt_label(name: str, s: Set[str]) -> str:
@@ -53,126 +67,52 @@ def fmt_label(name: str, s: Set[str]) -> str:
     pct = (count * 100.0 / total_base) if total_base else 0.0
     return f"{name}\n({count}/{total_base}, {pct:.1f}%)"
 
-# 1. Human vs o3-mini
-plt.figure(figsize=(8.5, 8.5), constrained_layout=True)
-vd = venn2(
-    [human_zero, o3mini_zero],
-    set_labels=("", ""),  # Empty labels, we'll position them manually
-    set_colors=('#2E86AB', '#A23B72'), alpha=0.7,
-)
-# Apply consistent, larger fonts
-if vd.set_labels:
-    for lbl in vd.set_labels:
-        if lbl is not None:
-            lbl.set_fontsize(24)
-            lbl.set_fontweight('bold')
-            lbl.set_clip_on(False)
-if vd.subset_labels:
-    for lbl in vd.subset_labels:
-        if lbl is not None:
-            lbl.set_fontsize(24)
-            lbl.set_fontweight('bold')
-            lbl.set_clip_on(False)
-# Position labels manually: Human at top, LLM at bottom
-plt.text(0, 1.2, fmt_label("Human", human_zero), ha='center', va='center', fontsize=24, fontweight='bold')
-plt.text(0, -1.2, fmt_label("o3-mini", o3mini_zero), ha='center', va='center', fontsize=24, fontweight='bold')
-# Fill entire canvas and remove axes for identical sizing
-fig = plt.gcf()
-fig.set_size_inches(8.5, 8.5)
-ax = plt.gca()
-ax.set_axis_off()
-ax.set_aspect('equal', adjustable='box')
-plt.savefig("Section_6_Human_VS_LLM/venn_human_vs_o3mini.pdf", dpi=300)
-#plt.show()
+def create_venn_subplot(ax, human_set, llm_set, llm_name, colors):
+    """Create a single Venn diagram subplot"""
+    vd = venn2(
+        [human_set, llm_set],
+        set_labels=("", ""),  # Empty labels, we'll position them manually
+        set_colors=colors, alpha=0.7,
+        ax=ax
+    )
+    
+    # Apply consistent fonts
+    if vd.set_labels:
+        for lbl in vd.set_labels:
+            if lbl is not None:
+                lbl.set_fontsize(16)
+                lbl.set_fontweight('bold')
+                lbl.set_clip_on(False)
+    if vd.subset_labels:
+        for lbl in vd.subset_labels:
+            if lbl is not None:
+                lbl.set_fontsize(16)
+                lbl.set_fontweight('bold')
+                lbl.set_clip_on(False)
+    
+    # Position labels manually: Human at top, LLM at bottom
+    ax.text(0, 1.2, fmt_label("Human", human_set), ha='center', va='center', fontsize=16, fontweight='bold')
+    ax.text(0, -1.2, fmt_label(llm_name, llm_set), ha='center', va='center', fontsize=16, fontweight='bold')
+    ax.set_axis_off()
+    ax.set_aspect('equal', adjustable='box')
 
-# 2. Human vs Claude
-plt.figure(figsize=(8.5, 8.5), constrained_layout=True)
-vd = venn2(
-    [human_zero, claude_zero],
-    set_labels=("", ""),  # Empty labels, we'll position them manually
-    set_colors=('#2E86AB', '#F18F01'), alpha=0.7,
-)
-if vd.set_labels:
-    for lbl in vd.set_labels:
-        if lbl is not None:
-            lbl.set_fontsize(24)
-            lbl.set_fontweight('bold')
-            lbl.set_clip_on(False)
-if vd.subset_labels:
-    for lbl in vd.subset_labels:
-        if lbl is not None:
-            lbl.set_fontsize(24)
-            lbl.set_fontweight('bold')
-            lbl.set_clip_on(False)
-# Position labels manually: Human at top, LLM at bottom
-plt.text(0, 1.2, fmt_label("Human", human_zero), ha='center', va='center', fontsize=24, fontweight='bold')
-plt.text(0, -1.2, fmt_label("Claude 3 Sonnet", claude_zero), ha='center', va='center', fontsize=24, fontweight='bold')
-fig = plt.gcf()
-fig.set_size_inches(8.5, 8.5)
-ax = plt.gca()
-ax.set_axis_off()
-ax.set_aspect('equal', adjustable='box')
-plt.savefig("Section_6_Human_VS_LLM/venn_human_vs_claude.pdf", dpi=300)
-#plt.show()
+# Create single figure with 2x2 subplot layout
+fig, axes = plt.subplots(2, 2, figsize=(17, 17), constrained_layout=True)
 
-# 3. Human vs Deepseek
-plt.figure(figsize=(8.5, 8.5), constrained_layout=True)
-vd = venn2(
-    [human_zero, deepseek_zero],
-    set_labels=("", ""),  # Empty labels, we'll position them manually
-    set_colors=('#2E86AB', '#C73E1D'), alpha=0.7,
-)
-if vd.set_labels:
-    for lbl in vd.set_labels:
-        if lbl is not None:
-            lbl.set_fontsize(24)
-            lbl.set_fontweight('bold')
-            lbl.set_clip_on(False)
-if vd.subset_labels:
-    for lbl in vd.subset_labels:
-        if lbl is not None:
-            lbl.set_fontsize(24)
-            lbl.set_fontweight('bold')
-            lbl.set_clip_on(False)
-# Position labels manually: Human at top, LLM at bottom
-plt.text(0, 1.2, fmt_label("Human", human_zero), ha='center', va='center', fontsize=24, fontweight='bold')
-plt.text(0, -1.2, fmt_label("Deepseek", deepseek_zero), ha='center', va='center', fontsize=24, fontweight='bold')
-fig = plt.gcf()
-fig.set_size_inches(8.5, 8.5)
-ax = plt.gca()
-ax.set_axis_off()
-ax.set_aspect('equal', adjustable='box')
-plt.savefig("Section_6_Human_VS_LLM/venn_human_vs_deepseek.pdf", dpi=300)
-#plt.show()
+# Define the comparisons with their colors
+comparisons = [
+    (axes[0, 0], human_zero, o3mini_zero, "o3-mini", (COLOR_MAP["Human"], COLOR_MAP["o3-mini"])),
+    (axes[0, 1], human_zero, claude_zero, "claude3 sonnet", (COLOR_MAP["Human"], COLOR_MAP["claude3 sonnet"])),
+    (axes[1, 0], human_zero, deepseek_zero, "deepseek", (COLOR_MAP["Human"], COLOR_MAP["deepseek"])),
+    (axes[1, 1], human_zero, llm_union, "Union of LLMs", (COLOR_MAP["Human"], COLOR_MAP["Union of 3 LLMs"])),
+]
 
-# 4. Human vs Union of all 3 LLMs
-plt.figure(figsize=(8.5, 8.5), constrained_layout=True)
-vd = venn2(
-    [human_zero, llm_union],
-    set_labels=("", ""),  # Empty labels, we'll position them manually
-    set_colors=('#2E86AB', '#8B5A96'), alpha=0.7,
-)
-if vd.set_labels:
-    for lbl in vd.set_labels:
-        if lbl is not None:
-            lbl.set_fontsize(24)
-            lbl.set_fontweight('bold')
-            lbl.set_clip_on(False)
-if vd.subset_labels:
-    for lbl in vd.subset_labels:
-        if lbl is not None:
-            lbl.set_fontsize(24)
-            lbl.set_fontweight('bold')
-            lbl.set_clip_on(False)
-# Position labels manually: Human at top, LLM at bottom
-plt.text(0, 1.2, fmt_label("Human", human_zero), ha='center', va='center', fontsize=24, fontweight='bold')
-plt.text(0, -1.2, fmt_label("Union of LLMs", llm_union), ha='center', va='center', fontsize=24, fontweight='bold')
-fig = plt.gcf()
-fig.set_size_inches(8.5, 8.5)
-ax = plt.gca()
-ax.set_axis_off()
-ax.set_aspect('equal', adjustable='box')
-plt.savefig("Section_6_Human_VS_LLM/venn_human_vs_union.pdf", dpi=300)
+# Create each subplot
+for ax, human_set, llm_set, llm_name, colors in comparisons:
+    create_venn_subplot(ax, human_set, llm_set, llm_name, colors)
+
+# Save the single figure
+plt.savefig("Section_6_Human_VS_LLM/venn_human_vs_all_llms_combined.pdf", dpi=300)
 #plt.show()
 
 # Print statistics for all comparisons

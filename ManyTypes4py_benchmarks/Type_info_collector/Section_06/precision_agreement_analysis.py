@@ -178,13 +178,23 @@ def analyze_parameter_agreement(human_data: Dict, llm_data: Dict, llm_name: str)
             human_dict = {}
             for param in human_params:
                 if isinstance(param, dict):
-                    key = (param.get("category", ""), param.get("name", ""))
+                    name = param.get("name", "")
+                    category = param.get("category", "")
+                    # Skip method receiver parameter named "self"
+                    if isinstance(name, str) and category == "arg" and name.strip().lower() == "self":
+                        continue
+                    key = (category, name)
                     human_dict[key] = param
             
             llm_dict = {}
             for param in llm_params:
                 if isinstance(param, dict):
-                    key = (param.get("category", ""), param.get("name", ""))
+                    name = param.get("name", "")
+                    category = param.get("category", "")
+                    # Skip method receiver parameter named "self"
+                    if isinstance(name, str) and category == "arg" and name.strip().lower() == "self":
+                        continue
+                    key = (category, name)
                     llm_dict[key] = param
             
             # Find common parameters
@@ -249,9 +259,24 @@ def analyze_file_level_agreement(human_data: Dict, llm_data: Dict, llm_name: str
         human_functions = human_data[filename]
         llm_functions = llm_data[filename]
         
-        # Count parameters in each file
-        human_params = sum(len(func_params) for func_params in human_functions.values() if isinstance(func_params, list))
-        llm_params = sum(len(func_params) for func_params in llm_functions.values() if isinstance(func_params, list))
+        # Count parameters in each file (exclude parameters named "self")
+        def count_non_self(params_list):
+            total = 0
+            for func_params in params_list.values():
+                if not isinstance(func_params, list):
+                    continue
+                for p in func_params:
+                    if not isinstance(p, dict):
+                        continue
+                    name = p.get("name", "")
+                    category = p.get("category", "")
+                    if isinstance(name, str) and category == "arg" and name.strip().lower() == "self":
+                        continue
+                    total += 1
+            return total
+
+        human_params = count_non_self(human_functions)
+        llm_params = count_non_self(llm_functions)
         
         # Calculate file-level agreement ratio
         if human_params > 0 and llm_params > 0:
@@ -357,6 +382,14 @@ def main():
                 param_name = human_param.get("name", "")
                 param_category = human_param.get("category", "")
                 human_type = human_param.get("type", [""])[0] if human_param.get("type") else ""
+
+                # Skip method receiver parameter named "self"
+                if (
+                    isinstance(param_name, str)
+                    and param_category == "arg"
+                    and param_name.strip().lower() == "self"
+                ):
+                    continue
                 
                 # Find the best annotation for this parameter among the 3 models
                 best_annotation = None
@@ -395,13 +428,10 @@ def main():
                                 if best_annotation:
                                     break
                 
-                # Always add the parameter to union data, even if no model annotation found
-                # This ensures we don't lose parameter coverage
+                # Only add if an actual model annotation was found
+                # Do not fall back to human annotation to avoid inflating agreement metrics
                 if best_annotation:
                     union_data[filename][func_name].append(best_annotation)
-                else:
-                    # If no model annotation found, add the human parameter as fallback
-                    union_data[filename][func_name].append(human_param)
     
     # Analyze union performance
     union_param_analysis = analyze_parameter_agreement(human_data, union_data, "Union of Top 3")
