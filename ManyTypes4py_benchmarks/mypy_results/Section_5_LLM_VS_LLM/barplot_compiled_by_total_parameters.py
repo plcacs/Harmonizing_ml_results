@@ -199,7 +199,7 @@ def plot_grouped_bars_percent(
                     )
 
     plt.xticks(list(x), bin_labels, rotation=30, ha="right", fontsize=14)
-    plt.xlabel("Parameter count bins (from untyped baseline)", fontsize=18)
+    # plt.xlabel("Parameter count bins (from untyped baseline)", fontsize=18)
     plt.ylabel("Percentage of files typechecked successfully", fontsize=18)
 
     plt.ylim(0, 100)
