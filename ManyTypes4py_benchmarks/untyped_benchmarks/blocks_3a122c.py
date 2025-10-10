@@ -49,7 +49,12 @@ class Block(PandasObject, libinternals.Block):
     """
     __slots__ = ()
     is_numeric = False
+    values: Any
+    ndim: Any
+    refs: Any
+    __init__: Any
 
+    
     @final
     @cache_readonly
     def _validate_ndim(self):
