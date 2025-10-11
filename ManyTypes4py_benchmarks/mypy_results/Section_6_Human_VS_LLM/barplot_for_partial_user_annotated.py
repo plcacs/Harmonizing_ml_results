@@ -152,13 +152,13 @@ def plot_grouped_bars(
                     )
 
     plt.xticks(list(x), bin_labels, rotation=30, ha="right")
-    plt.xlabel("Parameter count (from untyped baseline)",fontsize=16)
+    #plt.xlabel("Parameter count (from untyped baseline)",fontsize=16)
     plt.ylabel("Number of files typechecked successfully",fontsize=16)
     # plt.title("Compiled successes by parameter count across LLMs (baseline filtered)",fontsize=20)
     plt.grid(axis="y", linestyle=":", alpha=0.5)
     plt.legend(loc="upper right")
     plt.tight_layout()
-    # plt.savefig("Section_5_LLM_VS_LLM/compiled_counts_by_total_parameters.pdf", bbox_inches="tight")
+    plt.savefig("Section_5_LLM_VS_LLM/compiled_counts_by_total_parameters.pdf", bbox_inches="tight")
     plt.show()
 
 
@@ -210,13 +210,13 @@ def plot_grouped_bars_percent(
                         textcoords="offset points",
                         ha="center",
                         va="bottom",
-                        rotation=90,
+                    
                         fontsize=12,
                     )
 
     plt.xticks(list(x), bin_labels, rotation=30, ha="right",fontsize=16)
     plt.yticks(fontsize=16)
-    plt.xlabel("Parameter count bins (from untyped baseline)",fontsize=16)
+    #plt.xlabel("Parameter count bins (from untyped baseline)",fontsize=16)
     plt.ylabel("Percentage of files typechecked successfully",fontsize=16)
     # plt.title("Compiled success rate by parameter count across LLMs (baseline filtered)",fontsize=20)
     plt.ylim(0, 100)

@@ -232,7 +232,7 @@ def merged_grouped_bar(
                     )
 
     plt.xticks(list(x), [str(g) for g in groups], rotation=30, ha="right", fontsize=14)
-    plt.xlabel("Winner group size (number of top scorers)", fontsize=18)
+    #plt.xlabel("Winner group size (number of top scorers)", fontsize=18)
     plt.ylabel("Percentage (%)", fontsize=18)
     plt.grid(axis="y", linestyle=":", alpha=0.5)
     plt.legend(loc="upper left", fontsize=10)
@@ -299,7 +299,7 @@ def grouped_bar(
                     )
 
     plt.xticks(list(x), [str(g) for g in groups], rotation=30, ha="right")
-    plt.xlabel("Winner group size (number of top scorers)", fontsize=16)
+    #plt.xlabel("Winner group size (number of top scorers)", fontsize=16)
     plt.ylabel(ylabel, fontsize=16)
     plt.title(title, fontsize=20)
     plt.grid(axis="y", linestyle=":", alpha=0.5)

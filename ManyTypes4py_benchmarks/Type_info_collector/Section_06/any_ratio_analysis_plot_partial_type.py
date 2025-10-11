@@ -219,7 +219,7 @@ def main():
         ax.bar(x + i * width, values, width, label=llm_name, color=color, alpha=0.8)
     
     # Customize the plot
-    ax.set_xlabel('File Categorization by Any Ratio', fontsize=18)
+    #ax.set_xlabel('File Categorization by Any Ratio', fontsize=18)
     ax.set_ylabel('Percentage of Total Files (%)', fontsize=18)
     # ax.set_title('"Any Usage Distribution: LLMs Relative to Human Annotations', fontsize=14, fontweight='bold')
     ax.set_xticks(x + width * 3)  # Center the x-tick labels (7 LLMs, so center at 3rd position)

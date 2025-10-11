@@ -406,6 +406,418 @@ class LLMAnalyzer:
 
         return (specific_types / total_types) * 100
 
+    def get_type_precision_score(self, type_val: str) -> int:
+        """Assign precision score to a type annotation (0-100 scale)."""
+        if not type_val or not type_val.strip():
+            return 0  # No annotation
+        
+        type_val = type_val.strip()
+        
+        if type_val.lower() == "any":
+            return 10  # Any type
+        
+        # Generic types (medium precision)
+        generic_types = ["list", "dict", "tuple", "set", "frozenset"]
+        if any(generic in type_val.lower() for generic in generic_types):
+            return 50
+        
+        # Optional types (medium-high precision)
+        if "optional" in type_val.lower() or "union" in type_val.lower():
+            return 70
+        
+        # Built-in types (high precision)
+        builtin_types = ["str", "int", "float", "bool", "bytes"]
+        if any(builtin in type_val.lower() for builtin in builtin_types):
+            return 80
+        
+        # Specific generic types like List[str], Dict[str, int] (very high precision)
+        if "[" in type_val and "]" in type_val:
+            return 90
+        
+        # Custom types, classes, etc. (high precision)
+        return 85
+
+    def analyze_organic_gains_losses(self, compiled_files: List[str]) -> Dict:
+        """Analyze organic gains and losses across scenarios."""
+        print("Loading typeinfo data for organic analysis...")
+        
+        typeinfo_data = {}
+        for scenario, file_path in self.typeinfo_files.items():
+            typeinfo_data[scenario] = self.load_json_file(file_path)
+            print(f"  {scenario}: {len(typeinfo_data[scenario])} files")
+        
+        results = {
+            'H_vs_U': {'gains': 0, 'losses': 0, 'neutral': 0, 'total': 0},
+            'O_vs_H': {'gains': 0, 'losses': 0, 'neutral': 0, 'total': 0},
+            'O_vs_U': {'gains': 0, 'losses': 0, 'neutral': 0, 'total': 0}
+        }
+        
+        print(f"Analyzing organic gains/losses for {len(compiled_files)} files...")
+        
+        for filename in compiled_files:
+            original_info = typeinfo_data['original'].get(filename, {})
+            partial_info = typeinfo_data['partial'].get(filename, original_info)
+            full_info = typeinfo_data['full'].get(filename, original_info)
+            
+            # Extract all parameters from all scenarios
+            all_params = set()
+            for scenario_info in [original_info, partial_info, full_info]:
+                for func_name, func_data in scenario_info.items():
+                    for param_info in func_data:
+                        if param_info.get('category') in ['arg', 'return']:
+                            param_key = f"{func_name}::{param_info.get('name', 'return')}::{param_info.get('category')}"
+                            all_params.add(param_key)
+            
+            # Analyze each parameter
+            for param_key in all_params:
+                func_name, param_name, category = param_key.split('::')
+                
+                # Get type scores for each scenario
+                u_score = self.get_type_precision_score(self._get_param_type(original_info, func_name, param_name, category))
+                h_score = self.get_type_precision_score(self._get_param_type(partial_info, func_name, param_name, category))
+                o_score = self.get_type_precision_score(self._get_param_type(full_info, func_name, param_name, category))
+                
+                # Analyze H vs U (Partial vs Original)
+                if h_score > u_score:
+                    results['H_vs_U']['gains'] += 1
+                elif h_score < u_score:
+                    results['H_vs_U']['losses'] += 1
+                else:
+                    results['H_vs_U']['neutral'] += 1
+                results['H_vs_U']['total'] += 1
+                
+                # Analyze O vs H (Full vs Partial)
+                if o_score > h_score:
+                    results['O_vs_H']['gains'] += 1
+                elif o_score < h_score:
+                    results['O_vs_H']['losses'] += 1
+                else:
+                    results['O_vs_H']['neutral'] += 1
+                results['O_vs_H']['total'] += 1
+                
+                # Analyze O vs U (Full vs Original)
+                if o_score > u_score:
+                    results['O_vs_U']['gains'] += 1
+                elif o_score < u_score:
+                    results['O_vs_U']['losses'] += 1
+                else:
+                    results['O_vs_U']['neutral'] += 1
+                results['O_vs_U']['total'] += 1
+        
+        return results
+
+    def _get_param_type(self, file_info: Dict, func_name: str, param_name: str, category: str) -> str:
+        """Extract type annotation for a specific parameter."""
+        if func_name not in file_info:
+            return ""
+        
+        for param_info in file_info[func_name]:
+            if (param_info.get('category') == category and 
+                param_info.get('name', 'return') == param_name):
+                types = param_info.get('type', [])
+                return types[0] if types else ""
+        
+        return ""
+
+    def calculate_pairwise_non_any_comparisons(self, compiled_files: List[str]) -> Dict:
+        """Calculate detailed pairwise comparisons for non-Any ratios."""
+        print("Loading any-ratio data for pairwise comparisons...")
+        
+        any_ratio_data = {}
+        for scenario, file_path in self.any_ratio_files.items():
+            any_ratio_data[scenario] = self.load_json_file(file_path)
+        
+        results = {
+            'H_U': {'wins': [], 'losses': [], 'ties': 0},
+            'O_U': {'wins': [], 'losses': [], 'ties': 0},
+            'O_H': {'wins': [], 'losses': [], 'ties': 0}
+        }
+        
+        print(f"Analyzing pairwise non-Any ratios for {len(compiled_files)} files...")
+        
+        for filename in compiled_files:
+            # Get any percentages for each scenario
+            original_any = any_ratio_data["original"].get(filename, {}).get("any_percentage", 100.0)
+            partial_any = any_ratio_data["partial"].get(filename, {}).get("any_percentage", original_any)
+            full_any = any_ratio_data["full"].get(filename, {}).get("any_percentage", original_any)
+            
+            # Calculate non-any ratios (100 - any_percentage)
+            ratios = {
+                "U": 100 - original_any,  # Untyped (original)
+                "H": 100 - partial_any,   # Half-typed (partial)
+                "O": 100 - full_any,      # Original types (full)
+            }
+            
+            # H vs U comparison
+            if ratios["H"] > ratios["U"]:
+                results['H_U']['wins'].append(ratios["H"])
+            elif ratios["H"] < ratios["U"]:
+                results['H_U']['losses'].append(ratios["H"])
+            else:
+                results['H_U']['ties'] += 1
+            
+            # O vs U comparison
+            if ratios["O"] > ratios["U"]:
+                results['O_U']['wins'].append(ratios["O"])
+            elif ratios["O"] < ratios["U"]:
+                results['O_U']['losses'].append(ratios["O"])
+            else:
+                results['O_U']['ties'] += 1
+            
+            # O vs H comparison
+            if ratios["O"] > ratios["H"]:
+                results['O_H']['wins'].append(ratios["O"])
+            elif ratios["O"] < ratios["H"]:
+                results['O_H']['losses'].append(ratios["O"])
+            else:
+                results['O_H']['ties'] += 1
+        
+        # Calculate summary statistics
+        total_files = len(compiled_files)
+        summary = {}
+        
+        for comparison, data in results.items():
+            win_count = len(data['wins'])
+            loss_count = len(data['losses'])
+            win_pct = (win_count / total_files) * 100
+            loss_pct = (loss_count / total_files) * 100
+            win_avg = sum(data['wins']) / len(data['wins']) if data['wins'] else 0
+            loss_avg = sum(data['losses']) / len(data['losses']) if data['losses'] else 0
+            
+            summary[comparison] = {
+                'win_count': win_count,
+                'loss_count': loss_count,
+                'win_pct': win_pct,
+                'loss_pct': loss_pct,
+                'win_avg': win_avg,
+                'loss_avg': loss_avg,
+                'ties': data['ties']
+            }
+        
+        return summary
+
+    def calculate_pairwise_precision_comparisons(self, compiled_files: List[str]) -> Dict:
+        """Calculate pairwise precision comparisons."""
+        print("Loading typeinfo data for pairwise precision comparisons...")
+        
+        typeinfo_data = {}
+        for scenario, file_path in self.typeinfo_files.items():
+            typeinfo_data[scenario] = self.load_json_file(file_path)
+        
+        results = {
+            'H_U': {'wins': 0, 'losses': 0, 'ties': 0},
+            'O_U': {'wins': 0, 'losses': 0, 'ties': 0},
+            'O_H': {'wins': 0, 'losses': 0, 'ties': 0}
+        }
+        
+        print(f"Analyzing pairwise precision for {len(compiled_files)} files...")
+        
+        for filename in compiled_files:
+            original_info = typeinfo_data['original'].get(filename, {})
+            partial_info = typeinfo_data['partial'].get(filename, original_info)
+            full_info = typeinfo_data['full'].get(filename, original_info)
+            
+            # Calculate precision for each scenario
+            precisions = {
+                "U": self.calculate_file_precision(original_info),  # Untyped (original)
+                "H": self.calculate_file_precision(partial_info),   # Half-typed (partial)
+                "O": self.calculate_file_precision(full_info),      # Original types (full)
+            }
+            
+            # H vs U comparison
+            if precisions["H"] > precisions["U"]:
+                results['H_U']['wins'] += 1
+            elif precisions["H"] < precisions["U"]:
+                results['H_U']['losses'] += 1
+            else:
+                results['H_U']['ties'] += 1
+            
+            # O vs U comparison
+            if precisions["O"] > precisions["U"]:
+                results['O_U']['wins'] += 1
+            elif precisions["O"] < precisions["U"]:
+                results['O_U']['losses'] += 1
+            else:
+                results['O_U']['ties'] += 1
+            
+            # O vs H comparison
+            if precisions["O"] > precisions["H"]:
+                results['O_H']['wins'] += 1
+            elif precisions["O"] < precisions["H"]:
+                results['O_H']['losses'] += 1
+            else:
+                results['O_H']['ties'] += 1
+        
+        # Calculate summary statistics
+        total_files = len(compiled_files)
+        summary = {}
+        
+        for comparison, data in results.items():
+            win_pct = (data['wins'] / total_files) * 100
+            loss_pct = (data['losses'] / total_files) * 100
+            
+            summary[comparison] = {
+                'win_count': data['wins'],
+                'loss_count': data['losses'],
+                'win_pct': win_pct,
+                'loss_pct': loss_pct,
+                'ties': data['ties']
+            }
+        
+        return summary
+
+    def calculate_pairwise_differences(self, compiled_files: List[str]) -> Dict:
+        """Calculate pairwise differences for non-Any ratios to show the effect of user annotations."""
+        print("Loading any-ratio data for difference analysis...")
+        
+        any_ratio_data = {}
+        for scenario, file_path in self.any_ratio_files.items():
+            any_ratio_data[scenario] = self.load_json_file(file_path)
+        
+        results = {
+            'H_U': {'differences': [], 'wins': 0, 'losses': 0, 'ties': 0},
+            'O_U': {'differences': [], 'wins': 0, 'losses': 0, 'ties': 0},
+            'O_H': {'differences': [], 'wins': 0, 'losses': 0, 'ties': 0}
+        }
+        
+        print(f"Analyzing pairwise differences for {len(compiled_files)} files...")
+        
+        for filename in compiled_files:
+            # Get any percentages for each scenario
+            original_any = any_ratio_data["original"].get(filename, {}).get("any_percentage", 100.0)
+            partial_any = any_ratio_data["partial"].get(filename, {}).get("any_percentage", original_any)
+            full_any = any_ratio_data["full"].get(filename, {}).get("any_percentage", original_any)
+            
+            # Calculate non-any ratios (100 - any_percentage)
+            ratios = {
+                "U": 100 - original_any,  # Untyped (original)
+                "H": 100 - partial_any,   # Half-typed (partial)
+                "O": 100 - full_any,      # Original types (full)
+            }
+            
+            # Calculate differences (first scenario - second scenario)
+            h_u_diff = ratios["H"] - ratios["U"]  # Half-typed - Untyped
+            o_u_diff = ratios["O"] - ratios["U"]  # Original - Untyped
+            o_h_diff = ratios["O"] - ratios["H"]  # Original - Half-typed
+            
+            # Store differences
+            results['H_U']['differences'].append(h_u_diff)
+            results['O_U']['differences'].append(o_u_diff)
+            results['O_H']['differences'].append(o_h_diff)
+            
+            # Count wins/losses based on differences
+            if h_u_diff > 0:
+                results['H_U']['wins'] += 1
+            elif h_u_diff < 0:
+                results['H_U']['losses'] += 1
+            else:
+                results['H_U']['ties'] += 1
+                
+            if o_u_diff > 0:
+                results['O_U']['wins'] += 1
+            elif o_u_diff < 0:
+                results['O_U']['losses'] += 1
+            else:
+                results['O_U']['ties'] += 1
+                
+            if o_h_diff > 0:
+                results['O_H']['wins'] += 1
+            elif o_h_diff < 0:
+                results['O_H']['losses'] += 1
+            else:
+                results['O_H']['ties'] += 1
+        
+        # Calculate summary statistics
+        total_files = len(compiled_files)
+        summary = {}
+        
+        for comparison, data in results.items():
+            win_pct = (data['wins'] / total_files) * 100
+            loss_pct = (data['losses'] / total_files) * 100
+            
+            # Calculate average differences for wins and losses
+            winning_diffs = [d for d in data['differences'] if d > 0]
+            losing_diffs = [d for d in data['differences'] if d < 0]
+            
+            avg_win_diff = sum(winning_diffs) / len(winning_diffs) if winning_diffs else 0
+            avg_loss_diff = sum(losing_diffs) / len(losing_diffs) if losing_diffs else 0
+            
+            summary[comparison] = {
+                'win_count': data['wins'],
+                'loss_count': data['losses'],
+                'win_pct': win_pct,
+                'loss_pct': loss_pct,
+                'avg_win_diff': avg_win_diff,
+                'avg_loss_diff': avg_loss_diff,
+                'ties': data['ties']
+            }
+        
+        return summary
+
+    def format_latex_table_data(self, non_any_data: Dict, precision_data: Dict) -> str:
+        """Format the analysis results into LaTeX table format."""
+        model_name = self.llm_name.replace('-', '').replace('3', '3').title()
+        if 'o3' in self.llm_name.lower():
+            model_name = 'O3-mini'
+        elif 'deepseek' in self.llm_name.lower():
+            model_name = 'DeepSeek'
+        elif 'claude' in self.llm_name.lower():
+            model_name = 'Claude3'
+        
+        # Format non-Any ratio data (with averages)
+        def format_non_any_cell(comparison):
+            data = non_any_data[comparison]
+            win_str = f"+{data['win_pct']:.1f} ({data['win_avg']:.1f})" if data['win_count'] > 0 else "+0.0 (0.0)"
+            loss_str = f"-{data['loss_pct']:.1f} ({data['loss_avg']:.1f})" if data['loss_count'] > 0 else "-0.0 (0.0)"
+            return f"{win_str} / {loss_str}"
+        
+        # Format precision data (without averages)
+        def format_precision_cell(comparison):
+            data = precision_data[comparison]
+            win_str = f"+{data['win_pct']:.1f}" if data['win_count'] > 0 else "+0.0"
+            loss_str = f"-{data['loss_pct']:.1f}" if data['loss_count'] > 0 else "-0.0"
+            return f"{win_str} / {loss_str}"
+        
+        # Generate the table row
+        latex_row = f"{model_name:<10} & "
+        latex_row += f"{format_non_any_cell('H_U')} & {format_non_any_cell('O_U')} & {format_non_any_cell('O_H')} & "
+        latex_row += f"{format_precision_cell('H_U')} & {format_precision_cell('O_U')} & {format_precision_cell('O_H')} & "
+        latex_row += f"{format_non_any_cell('H_U')} & {format_non_any_cell('O_U')} & {format_non_any_cell('O_H')} \\\\"
+        
+        return latex_row
+
+    def format_difference_table_data(self, difference_data: Dict, precision_data: Dict) -> str:
+        """Format the difference analysis results into LaTeX table format."""
+        model_name = self.llm_name.replace('-', '').replace('3', '3').title()
+        if 'o3' in self.llm_name.lower():
+            model_name = 'O3-mini'
+        elif 'deepseek' in self.llm_name.lower():
+            model_name = 'DeepSeek'
+        elif 'claude' in self.llm_name.lower():
+            model_name = 'Claude3'
+        
+        # Format difference data (with differences in parentheses)
+        def format_difference_cell(comparison):
+            data = difference_data[comparison]
+            win_str = f"+{data['win_pct']:.1f} (+{data['avg_win_diff']:.1f})" if data['win_count'] > 0 else "+0.0 (+0.0)"
+            loss_str = f"-{data['loss_pct']:.1f} ({data['avg_loss_diff']:.1f})" if data['loss_count'] > 0 else "-0.0 (0.0)"
+            return f"{win_str} / {loss_str}"
+        
+        # Format precision data (without averages)
+        def format_precision_cell(comparison):
+            data = precision_data[comparison]
+            win_str = f"+{data['win_pct']:.1f}" if data['win_count'] > 0 else "+0.0"
+            loss_str = f"-{data['loss_pct']:.1f}" if data['loss_count'] > 0 else "-0.0"
+            return f"{win_str} / {loss_str}"
+        
+        # Generate the table row
+        latex_row = f"{model_name:<10} & "
+        latex_row += f"{format_difference_cell('H_U')} & {format_difference_cell('O_U')} & {format_difference_cell('O_H')} & "
+        latex_row += f"{format_precision_cell('H_U')} & {format_precision_cell('O_U')} & {format_precision_cell('O_H')} & "
+        latex_row += f"{format_difference_cell('H_U')} & {format_difference_cell('O_U')} & {format_difference_cell('O_H')} \\\\"
+        
+        return latex_row
+
     def run_analysis(self) -> AnalysisResult:
         """Run the complete analysis."""
         print(f"=== {self.llm_name.upper()} Analysis ===\n")
@@ -468,6 +880,25 @@ class LLMAnalyzer:
             f"  Partial (H) precision ratio: {H_prec:.4f} ({H_prec*100:.2f}%) - {self.precision_file_counts['H']} files"
         )
         print()
+        
+        # Step 4: Organic gains/losses analysis
+        print("=== Organic Gains/Losses Analysis ===")
+        organic_results = self.analyze_organic_gains_losses(compiled_files)
+        
+        print(f"Results (parameter-level analysis):")
+        for comparison, data in organic_results.items():
+            gains_pct = (data['gains'] / data['total'] * 100) if data['total'] > 0 else 0
+            losses_pct = (data['losses'] / data['total'] * 100) if data['total'] > 0 else 0
+            neutral_pct = (data['neutral'] / data['total'] * 100) if data['total'] > 0 else 0
+            net_gain = data['gains'] - data['losses']
+            
+            print(f"  {comparison}:")
+            print(f"    Gains: {data['gains']} ({gains_pct:.1f}%)")
+            print(f"    Losses: {data['losses']} ({losses_pct:.1f}%)")
+            print(f"    Neutral: {data['neutral']} ({neutral_pct:.1f}%)")
+            print(f"    Net gain: {net_gain} parameters")
+            print(f"    Total parameters: {data['total']}")
+            print()
 
         # Summary
         print("=== Summary ===")
@@ -492,6 +923,29 @@ class LLMAnalyzer:
         print(f"Non-Any Ratio Winner (compiled files): {non_any_winner}")
         print(f"Non-Any Ratio Winner (all files): {non_any_winner_all}")
         print(f"Precision Winner: {precision_winner}")
+
+        # Step 5: Pairwise comparisons for LaTeX table
+        print("=== Pairwise Comparisons for LaTeX Table ===")
+        non_any_pairwise = self.calculate_pairwise_non_any_comparisons(compiled_files)
+        precision_pairwise = self.calculate_pairwise_precision_comparisons(compiled_files)
+        
+        # Print detailed pairwise results
+        print("Non-Any Ratio Pairwise Comparisons:")
+        for comparison, data in non_any_pairwise.items():
+            print(f"  {comparison}: {data['win_count']} wins ({data['win_pct']:.1f}%), {data['loss_count']} losses ({data['loss_pct']:.1f}%), {data['ties']} ties")
+            if data['win_count'] > 0:
+                print(f"    Average winning ratio: {data['win_avg']:.2f}%")
+            if data['loss_count'] > 0:
+                print(f"    Average losing ratio: {data['loss_avg']:.2f}%")
+        
+        print("\nPrecision Pairwise Comparisons:")
+        for comparison, data in precision_pairwise.items():
+            print(f"  {comparison}: {data['win_count']} wins ({data['win_pct']:.1f}%), {data['loss_count']} losses ({data['loss_pct']:.1f}%), {data['ties']} ties")
+        
+        # Generate LaTeX table row
+        latex_row = self.format_latex_table_data(non_any_pairwise, precision_pairwise)
+        print(f"\nLaTeX Table Row:")
+        print(latex_row)
 
         return AnalysisResult(
             llm_name=self.llm_name,
@@ -520,18 +974,102 @@ def compare_llms(llm_names: List[str]) -> Dict[str, AnalysisResult]:
     return results
 
 
+def generate_latex_table(llm_names: List[str]) -> str:
+    """Generate complete LaTeX table for all specified LLMs."""
+    latex_lines = []
+    latex_lines.append("\\begin{table}[h]")
+    latex_lines.append("\\centering")
+    latex_lines.append("\\scriptsize")
+    latex_lines.append("\\caption{Precise Output and Precise Input Correlation.}")
+    latex_lines.append("\\label{tab:precise-distribution}")
+    latex_lines.append("\\resizebox{\\linewidth}{!}{%")
+    latex_lines.append("\\begin{tabular}{l | c c c | c c c | c c c}")
+    latex_lines.append("\\toprule")
+    latex_lines.append("\\multirow{2}{*}{Model} & \\multicolumn{3}{c|}{WT \\& highest ratio} & \\multicolumn{3}{c|}{WT \\& most precise} & \\multicolumn{3}{c}{Highest ratio} \\\\")
+    latex_lines.append("& $H_U$ & $O_U$ & $O_H$ & $H_U$ & $O_U$ & $O_H$ & $H_U$ & $O_U$ & $O_H$ \\\\")
+    latex_lines.append("\\midrule")
+    
+    for llm_name in llm_names:
+        analyzer = LLMAnalyzer(llm_name)
+        compiled_files = analyzer.find_common_compiled_files()
+        if compiled_files:
+            non_any_pairwise = analyzer.calculate_pairwise_non_any_comparisons(compiled_files)
+            precision_pairwise = analyzer.calculate_pairwise_precision_comparisons(compiled_files)
+            latex_row = analyzer.format_latex_table_data(non_any_pairwise, precision_pairwise)
+            latex_lines.append(latex_row)
+    
+    latex_lines.append("\\bottomrule")
+    latex_lines.append("\\end{tabular}}")
+    latex_lines.append("\\end{table}")
+    
+    return "\n".join(latex_lines)
+
+
+def generate_difference_latex_table(llm_names: List[str]) -> str:
+    """Generate complete LaTeX table showing differences for all specified LLMs."""
+    latex_lines = []
+    latex_lines.append("\\begin{table}[h]")
+    latex_lines.append("\\centering")
+    latex_lines.append("\\scriptsize")
+    latex_lines.append("\\caption{Effect of User Annotations on Precision Results (Differences).}")
+    latex_lines.append("\\label{tab:user-annotation-effect}")
+    latex_lines.append("\\resizebox{\\linewidth}{!}{%")
+    latex_lines.append("\\begin{tabular}{l | c c c | c c c | c c c}")
+    latex_lines.append("\\toprule")
+    latex_lines.append("\\multirow{2}{*}{Model} & \\multicolumn{3}{c|}{WT \\& highest ratio} & \\multicolumn{3}{c|}{WT \\& most precise} & \\multicolumn{3}{c}{Highest ratio} \\\\")
+    latex_lines.append("& $H_U$ & $O_U$ & $O_H$ & $H_U$ & $O_U$ & $O_H$ & $H_U$ & $O_U$ & $O_H$ \\\\")
+    latex_lines.append("\\midrule")
+    
+    for llm_name in llm_names:
+        analyzer = LLMAnalyzer(llm_name)
+        compiled_files = analyzer.find_common_compiled_files()
+        if compiled_files:
+            difference_data = analyzer.calculate_pairwise_differences(compiled_files)
+            precision_data = analyzer.calculate_pairwise_precision_comparisons(compiled_files)
+            latex_row = analyzer.format_difference_table_data(difference_data, precision_data)
+            latex_lines.append(latex_row)
+    
+    latex_lines.append("\\bottomrule")
+    latex_lines.append("\\end{tabular}}")
+    latex_lines.append("\\end{table}")
+    
+    return "\n".join(latex_lines)
+
+
 def main():
     import sys
 
     if len(sys.argv) < 2:
-        print("Usage: python llm_analysis.py claude")
-        print("Currently only Claude is supported.")
+        print("Usage: python llm_analysis.py [claude|deepseek|o3-mini] [--latex|--difference]")
         print("Example: python llm_analysis.py claude")
+        print("Example: python llm_analysis.py claude deepseek o3-mini --latex")
+        print("Example: python llm_analysis.py claude deepseek o3-mini --difference")
         return
 
-    llm_names = sys.argv[1:]
+    # Check for flags
+    latex_mode = "--latex" in sys.argv
+    difference_mode = "--difference" in sys.argv
+    llm_names = [arg for arg in sys.argv[1:] if arg not in ["--latex", "--difference"]]
 
-    if len(llm_names) == 1:
+    if latex_mode:
+        # Generate LaTeX table
+        print("Generating LaTeX table...")
+        latex_table = generate_latex_table(llm_names)
+        print("\n" + "="*80)
+        print("LATEX TABLE OUTPUT:")
+        print("="*80)
+        print(latex_table)
+        print("="*80)
+    elif difference_mode:
+        # Generate difference LaTeX table
+        print("Generating difference LaTeX table...")
+        difference_table = generate_difference_latex_table(llm_names)
+        print("\n" + "="*80)
+        print("DIFFERENCE LATEX TABLE OUTPUT:")
+        print("="*80)
+        print(difference_table)
+        print("="*80)
+    elif len(llm_names) == 1:
         # Single LLM analysis
         result = analyze_llm(llm_names[0])
         if result:
