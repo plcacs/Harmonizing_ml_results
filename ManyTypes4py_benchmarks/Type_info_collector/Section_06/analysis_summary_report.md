@@ -85,3 +85,6 @@ This analysis compares `any_percentage` values across three different type annot
 
 ## Conclusion
 The analysis reveals significant differences in type annotation approaches, with partial typing showing concerning patterns of missing data and potential over-optimization. The transition from partial to fully typed annotations shows more realistic type usage patterns, suggesting that human annotators provide more balanced type annotations.
+
+
+
