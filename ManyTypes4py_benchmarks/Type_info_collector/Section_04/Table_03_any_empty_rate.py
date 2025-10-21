@@ -153,7 +153,7 @@ def calculate_any_rate_by_category(type_info_data, baseline_files=None):
 
 def compute_per_file_any_percentage(type_info_data, baseline_files=None):
     """Compute per-file Any percentage.
-    Returns dict: { filename: {"any_slots": int, "total_slots": int, "any_percentage": float} }
+    Returns dict: { filename: {"any_slots": int, "total_slots": int, "type_annotationed_slots": int, "any_percentage": float, "type_annotationed_percentage": float} }
     """
     results = {}
 
@@ -166,6 +166,7 @@ def compute_per_file_any_percentage(type_info_data, baseline_files=None):
 
         any_slots = 0
         total_slots = 0
+        type_annotated_slots = 0
 
         if isinstance(functions, dict):
             for func_name, func_data in functions.items():
@@ -182,24 +183,39 @@ def compute_per_file_any_percentage(type_info_data, baseline_files=None):
                             param_types = param.get("type", [])
 
                             is_any = False
+                            is_type_annotated = False
+
                             if isinstance(param_types, list) and len(param_types) > 0:
                                 type_str = param_types[0]
                                 if isinstance(type_str, str) and type_str.strip():
                                     if type_str.strip().lower() == "any":
                                         is_any = True
+                                    else:
+                                        # Has a non-empty, non-Any type annotation
+                                        is_type_annotated = True
                                 else:
+                                    # Empty string counts as Any
                                     is_any = True
                             else:
+                                # No type annotation counts as Any
                                 is_any = True
 
                             if is_any:
                                 any_slots += 1
+                            elif is_type_annotated:
+                                type_annotated_slots += 1
 
-        percentage = (any_slots / total_slots * 100.0) if total_slots > 0 else 0.0
+        any_percentage = (any_slots / total_slots * 100.0) if total_slots > 0 else 0.0
+        type_annotated_percentage = (
+            (type_annotated_slots / total_slots * 100.0) if total_slots > 0 else 0.0
+        )
+
         results[filename] = {
-            "any_slots": any_slots,
             "total_slots": total_slots,
-            "any_percentage": percentage,
+            "any_slots": any_slots,
+            "type_annotationed_slots": type_annotated_slots,
+            "type_annotationed_percentage": type_annotated_percentage,
+            "any_percentage": any_percentage,
         }
 
     return results
