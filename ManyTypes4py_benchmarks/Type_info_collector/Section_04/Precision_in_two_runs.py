@@ -217,28 +217,28 @@ def main():
     # Define model pairs (1st and 2nd runs)
     model_pairs = {
         "GPT35": {
-            "run1": "./Type_info_gpt35_1st_run_benchmarks.json",
-            "run2": "./Type_info_gpt35_2nd_run_benchmarks.json"
+            "run1": "../Type_info_LLMS/Type_info_gpt35_1st_run_benchmarks.json",
+            "run2": "../Type_info_LLMS/Type_info_gpt35_2nd_run_benchmarks.json"
         },
         "GPT4o": {
-            "run1": "./Type_info_gpt4o_benchmarks.json",
-            "run2": "./Type_info_gpt4o_2nd_run_benchmarks.json"
+            "run1": "../Type_info_LLMS/Type_info_gpt4o_benchmarks.json",
+            "run2": "../Type_info_LLMS/Type_info_gpt4o_2nd_run_benchmarks.json"
         },
         "O1-mini": {
-            "run1": "./Type_info_o1_mini_1st_run_benchmarks.json",
-            "run2": "./Type_info_o1_mini_2nd_run_benchmarks.json"
+            "run1": "../Type_info_LLMS/Type_info_o1_mini_1st_run_benchmarks.json",
+            "run2": "../Type_info_LLMS/Type_info_o1_mini_2nd_run_benchmarks.json"
         },
         "O3-mini": {
-            "run1": "./Type_info_o3_mini_1st_run_benchmarks.json",
-            "run2": "./Type_info_o3_mini_2nd_run_benchmarks.json"
+            "run1": "../Type_info_LLMS/Type_info_o3_mini_1st_run_benchmarks.json",
+            "run2": "../Type_info_LLMS/Type_info_o3_mini_2nd_run_benchmarks.json"
         },
         "DeepSeek": {
-            "run1": "./Type_info_deep_seek_benchmarks.json",
-            "run2": "./Type_info_deep_seek_2nd_run_benchmarks.json"
+            "run1": "../Type_info_LLMS/Type_info_deep_seek_benchmarks.json",
+            "run2": "../Type_info_LLMS/Type_info_deep_seek_2nd_run_benchmarks.json"
         },
         "Claude3-Sonnet": {
-            "run1": "./Type_info_claude3_sonnet_1st_run_benchmarks.json",
-            "run2": "./Type_info_claude3_sonnet_2nd_run_benchmarks.json"
+            "run1": "../Type_info_LLMS/Type_info_claude3_sonnet_1st_run_benchmarks.json",
+            "run2": "../Type_info_LLMS/Type_info_claude3_sonnet_2nd_run_benchmarks.json"
         }
     }
     
