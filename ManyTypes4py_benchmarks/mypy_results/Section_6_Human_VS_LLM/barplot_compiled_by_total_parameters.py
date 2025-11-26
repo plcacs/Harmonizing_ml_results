@@ -126,6 +126,7 @@ def plot_grouped_bars(
         "gpt-4o": "orange",
         "o1-mini": "skyblue",
         "gpt-3.5": "green",
+        "gpt-5": "yellow",
     }
     
     for idx, ((label, counts), dx) in enumerate(zip(series, offsets)):
@@ -189,6 +190,7 @@ def plot_grouped_bars_percent(
         "gpt-4o": "orange",
         "o1-mini": "skyblue",
         "gpt-3.5": "green",
+        "gpt-5": "yellow",
     }
     
     for idx, ((label, percents), dx) in enumerate(zip(series_percent, offsets)):
@@ -211,6 +213,7 @@ def plot_grouped_bars_percent(
                         ha="center",
                         va="bottom",
                         fontsize=12,
+                        rotation=90,
                     )
 
     plt.xticks(list(x), bin_labels, rotation=30, ha="right",fontsize=16)
@@ -235,6 +238,7 @@ def main() -> None:
         "o3-mini": "mypy_outputs/mypy_results_o3_mini_1st_run_with_errors.json",
         "deepseek": "mypy_outputs/mypy_results_deepseek_with_errors.json",
         "claude3 sonnet": "mypy_outputs/mypy_results_claude3_sonnet_1st_run_with_errors.json",
+        "gpt-5": "mypy_outputs/mypy_results_gpt5_1st_run_with_errors.json",
     }
 
     baseline_files, filename_to_params = build_baseline_compiled_and_params(untyped_path)
@@ -296,6 +300,7 @@ def main() -> None:
         "o3-mini",
         "deepseek",
         "claude3 sonnet",
+        "gpt-5",
         "Union of 3 LLMs",
     ]
     order_index = {name: i for i, name in enumerate(desired_order)}

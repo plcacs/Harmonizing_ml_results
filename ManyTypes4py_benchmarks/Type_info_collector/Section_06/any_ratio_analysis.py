@@ -25,6 +25,9 @@ LLM_CONFIGS = {
     "claude3-sonnet": {
         "type_info_path": "../Type_info_LLMS/Type_info_claude3_sonnet_1st_run_benchmarks.json",
     },
+    "gpt-5": {
+        "type_info_path": "../Type_info_LLMS/Type_info_gpt5_1st_run_benchmarks.json",
+    },
     "Human": {
         "type_info_path": "../Type_info_LLMS/Type_info_original_files.json",
     },
@@ -237,7 +240,9 @@ def main():
         "gpt-3.5": "green",  # Green
         "Human": "pink",  # Yellow
         "o3-mini": "red",  # Dark Red
-        "claude3-sonnet": "purple",  # Purple
+        
+        "claude3-sonnet": "purple", 
+        "gpt-5": "yellow", 
     }
 
     # Create bars for each LLM
