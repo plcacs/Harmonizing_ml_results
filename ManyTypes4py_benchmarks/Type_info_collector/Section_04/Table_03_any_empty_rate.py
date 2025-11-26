@@ -272,7 +272,9 @@ def main():
         "DeepSeek_2nd_run": "../Type_info_LLMS/Type_info_deep_seek_2nd_run_benchmarks.json",
         "Claude3-Sonnet_1st_run": "../Type_info_LLMS/Type_info_claude3_sonnet_1st_run_benchmarks.json",
         "Claude3-Sonnet_2nd_run": "../Type_info_LLMS/Type_info_claude3_sonnet_2nd_run_benchmarks.json",
+        "GPT5_1st_run": "../Type_info_LLMS/Type_info_gpt5_1st_run_benchmarks.json",
     }
+    
     save_per_run_file_any_percentages(model_files, baseline_files=baseline)
     print("=" * 80)
     print(

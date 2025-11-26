@@ -153,8 +153,10 @@ def main():
         "O3-mini": "../Type_info_LLMS/Type_info_o3_mini_1st_run_benchmarks.json",
         "DeepSeek": "../Type_info_LLMS/Type_info_deep_seek_benchmarks.json",
         "Claude3-Sonnet": "../Type_info_LLMS/Type_info_claude3_sonnet_1st_run_benchmarks.json",
+        "GPT5_1st_run": "../Type_info_LLMS/Type_info_gpt5_1st_run_benchmarks.json",
         "DeepSeek-User-Annotated": "../Type_info_LLMS/Type_info_deepseek_user_annotated_benchmarks.json",
         "O3-Mini-User-Annotated": "../Type_info_LLMS/Type_info_o3_mini_user_annotated_benchmarks.json",
+       
         "Claude3-Sonnet-User-Annotated": "../Type_info_LLMS/Type_info_claude3_sonnet_user_annotated_benchmarks.json",
     }
 

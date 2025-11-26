@@ -26,6 +26,9 @@ LLM_CONFIGS = {
     "claude3-sonnet-renamed": {
         "type_info_path": "../Type_info_LLMS/Type_info_claude_sonnet_renamed_output_benchmarks.json",
     },
+    "gpt-5": {
+        "type_info_path": "../Type_info_LLMS/Type_info_gpt5_1st_run_benchmarks.json",
+    },
     "Human": {
         "type_info_path": "../Type_info_LLMS/Type_info_original_files.json",
     }
