@@ -238,8 +238,8 @@ def main():
     )  # Center the x-tick labels (7 LLMs, so center at 3rd position)
     ax.set_xticklabels(category_names, rotation=45, ha="right", fontsize=18)
     ax.tick_params(axis="y", labelsize=18)
-    ax.set_ylim(0, 70)
-    ax.legend(loc="upper left", fontsize=12)
+    ax.set_ylim(0, 60)
+    ax.legend(loc="upper center", fontsize=12)
     ax.grid(axis="y", alpha=0.3)
 
     # Add value labels on bars
