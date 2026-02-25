@@ -1,0 +1,190 @@
+#!/usr/bin/env python3
+import gc
+import inspect
+import warnings
+from typing import Dict, Tuple, List, Any, Callable
+
+import pandas as pd
+from joblib import Parallel, delayed
+from toolz import compose
+from toolz.curried import assoc, curry, dissoc, first, map, partial, pipe
+from toolz.functoolz import identity
+from tqdm import tqdm
+
+from fklearn.types import EvalFnType, LearnerFnType, LogType
+from fklearn.types import SplitterFnType, ValidatorReturnType, PerturbFnType
+
+
+def validator_iteration(data: pd.DataFrame,
+                        train_index: pd.Index,
+                        test_indexes: List[pd.Index],
+                        fold_num: int,
+                        train_fn: LearnerFnType,
+                        eval_fn: EvalFnType,
+                        predict_oof: bool = False,
+                        return_eval_logs_on_train: bool = False,
+                        verbose: bool = False) -> LogType:
+    """
+    Perform an iteration of train test split, training and evaluation.
+    """
+    train_data: pd.DataFrame = data.iloc[train_index]
+
+    empty_set_warn: str = "Splitter on validator_iteration in generating an empty training dataset. train_data.shape is %s" \
+                     % str(train_data.shape)
+    if train_data.shape[0] == 0:
+        warnings.warn(empty_set_warn)  # type: ignore
+
+    predict_fn, train_out, train_log = train_fn(train_data)
+    if return_eval_logs_on_train:
+        train_log = assoc(train_log, "eval_results", eval_fn(train_out))
+
+    eval_results: List[Any] = []
+    oof_predictions: List[Any] = []
+
+    if verbose:
+        print(f"Running validation for {fold_num} fold.")
+    for test_index in (tqdm(test_indexes) if verbose else test_indexes):
+        test_predictions = predict_fn(data.iloc[test_index])
+        eval_results.append(eval_fn(test_predictions))
+        if predict_oof:
+            oof_predictions.append(test_predictions)
+
+    logs: LogType = {'fold_num': fold_num,
+                     'train_log': train_log,
+                     'eval_results': eval_results}
+    return assoc(logs, "oof_predictions", oof_predictions) if predict_oof else logs
+
+
+@curry
+def validator(train_data: pd.DataFrame,
+              split_fn: SplitterFnType,
+              train_fn: LearnerFnType,
+              eval_fn: EvalFnType,
+              perturb_fn_train: PerturbFnType = identity,
+              perturb_fn_test: PerturbFnType = identity,
+              predict_oof: bool = False,
+              return_eval_logs_on_train: bool = False,
+              return_all_train_logs: bool = False,
+              verbose: bool = False,
+              drop_empty_folds: bool = False) -> ValidatorReturnType:
+    """
+    Splits the training data into folds and performs train-evaluation on each fold.
+    """
+    folds, logs = split_fn(train_data)  # folds: List[Tuple[pd.Index, List[pd.Index]]], logs: List[Any]
+
+    train_fn = compose(train_fn, perturb_fn_train)
+    eval_fn = compose(eval_fn, perturb_fn_test)
+
+    def fold_iter(fold: Tuple[int, Tuple[pd.Index, List[pd.Index]]]) -> LogType:
+        (fold_num, (train_index, test_indexes)) = fold
+
+        test_contains_null_folds: bool = max(map(lambda x: len(x) == 0, test_indexes))
+        train_fold_is_null: bool = len(train_index) == 0
+
+        if (train_fold_is_null or test_contains_null_folds) and drop_empty_folds:
+            return {"empty_fold": True}
+        else:
+            iter_results: LogType = validator_iteration(train_data, train_index, test_indexes, fold_num,
+                                                        train_fn, eval_fn, predict_oof, return_eval_logs_on_train, verbose)
+        return assoc(iter_results, "empty_fold", False)
+
+    zipped_logs = pipe(folds,
+                       enumerate,
+                       map(fold_iter),
+                       partial(zip, logs))
+
+    def clean_logs(log_tuple: Tuple) -> Tuple[List[Tuple[Any, LogType]], List[Any]]:
+        split_log_error: List[Any] = []
+
+        new_validator_logs: List[LogType] = []
+        new_split_log: List[Any] = []
+        for split_log, validator_log in log_tuple:
+            if not validator_log["empty_fold"]:
+                new_validator_logs.append(dissoc(validator_log, "empty_fold"))
+                new_split_log.append(split_log)
+            else:
+                split_log_error.append(split_log)
+
+        return list(zip(new_split_log, new_validator_logs)), split_log_error
+
+    zipped_error_logs: List[Any] = []
+    if drop_empty_folds:
+        zipped_logs, zipped_error_logs = clean_logs(zipped_logs)
+
+    def _join_split_log(log_tuple: Tuple[LogType, LogType]) -> Tuple[LogType, LogType]:
+        train_log_inner: Dict[str, Any] = {}
+        split_log, validator_log = log_tuple
+        train_log_inner["train_log"] = validator_log["train_log"]
+        return train_log_inner, assoc(dissoc(validator_log, "train_log"), "split_log", split_log)
+
+    def get_perturbed_columns(perturbator: PerturbFnType) -> List[str]:
+        args = inspect.getfullargspec(perturbator).kwonlydefaults
+        return args['cols'] if args and 'cols' in args else []
+
+    join_iter = map(_join_split_log, zipped_logs)
+    join_list: List[Tuple[LogType, LogType]] = list(join_iter)
+    train_logs_, validator_logs = zip(*join_list)  # type: ignore
+    if return_all_train_logs:
+        train_logs: LogType = {"train_log": [log["train_log"] for log in train_logs_]}
+    else:
+        train_logs = first(train_logs_)
+
+    perturbator_log: LogType = {'perturbated_train': [], 'perturbated_test': []}
+    if perturb_fn_train != identity:
+        perturbator_log['perturbated_train'] = get_perturbed_columns(perturb_fn_train)
+    if perturb_fn_test != identity:
+        perturbator_log['perturbated_test'] = get_perturbed_columns(perturb_fn_test)
+    train_logs = assoc(train_logs, "perturbator_log", perturbator_log)
+
+    if drop_empty_folds:
+        train_logs = assoc(train_logs, "fold_error_logs", zipped_error_logs)
+
+    return assoc(train_logs, "validator_log", list(validator_logs))
+
+
+def parallel_validator_iteration(train_data: pd.DataFrame,
+                                 fold: Tuple[int, Tuple[pd.Index, List[pd.Index]]],
+                                 train_fn: LearnerFnType,
+                                 eval_fn: EvalFnType,
+                                 predict_oof: bool,
+                                 return_eval_logs_on_train: bool = False,
+                                 verbose: bool = False) -> LogType:
+    (fold_num, (train_index, test_indexes)) = fold
+    return validator_iteration(train_data, train_index, test_indexes, fold_num, train_fn, eval_fn, predict_oof,
+                               return_eval_logs_on_train, verbose)
+
+
+@curry
+def parallel_validator(train_data: pd.DataFrame,
+                       split_fn: SplitterFnType,
+                       train_fn: LearnerFnType,
+                       eval_fn: EvalFnType,
+                       n_jobs: int = 1,
+                       predict_oof: bool = False,
+                       return_eval_logs_on_train: bool = False,
+                       verbose: bool = False) -> ValidatorReturnType:
+    """
+    Splits training data into folds and runs train-evaluation on each fold in parallel.
+    """
+    folds, logs = split_fn(train_data)
+    # folds: List[Tuple[pd.Index, List[pd.Index]]], logs: List[Any]
+
+    result: List[LogType] = Parallel(n_jobs=n_jobs, backend="threading")(
+        delayed(parallel_validator_iteration)(train_data, x, train_fn, eval_fn, predict_oof, return_eval_logs_on_train,
+                                              verbose)
+        for x in enumerate(folds))
+    gc.collect()
+
+    train_log: LogType = {"train_log": [fold_result["train_log"] for fold_result in result]}
+
+    @curry
+    def kwdissoc(d: Dict[str, Any], key: str) -> Dict[str, Any]:
+        return dissoc(d, key)
+
+    validator_logs: List[LogType] = pipe(result,
+                          partial(zip, logs),
+                          map(lambda log_tuple: assoc(log_tuple[1], "split_log", log_tuple[0])),
+                          map(kwdissoc(key="train_log")),
+                          list)
+
+    return assoc(train_log, "validator_log", validator_logs)
