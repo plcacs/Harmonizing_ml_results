@@ -36,6 +36,7 @@ def run_mypy_and_save_results(directory, output_file):
             "--ignore-missing-imports",
             "--allow-untyped-defs",
             "--no-incremental",
+            "--python-version=3.10",
             "--disable-error-code=no-redef",
             "--cache-dir=/dev/null",
             abs_path,
@@ -96,8 +97,8 @@ if __name__ == "__main__":
         "mypy_results/mypy_outputs/partial_typed/mypy_results_o3_mini_partially_typed_files_with_errors.json",
     )"""
     run_mypy_and_save_results(
-        "partially_typed_files",
-        "mypy_results/mypy_outputs/mypy_results_manytypes4py_benchmarks_partially_typed_files_with_errors.json",
+        "llama3_1_8B_2nd_run",
+        "mypy_results/mypy_outputs/mypy_results_llama3_1_8B_1st_run_with_errors.json",
     )
     """
     run_mypy_and_save_results(

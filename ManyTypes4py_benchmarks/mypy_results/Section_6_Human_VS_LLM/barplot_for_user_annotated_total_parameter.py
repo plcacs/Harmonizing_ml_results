@@ -239,6 +239,12 @@ def main() -> None:
 
     baseline_files, filename_to_params = build_baseline_compiled_and_params(untyped_path)
 
+    for label, path in llm_paths.items():
+        d = load_json(path)
+        compiled = sum(1 for f in baseline_files if d.get(f, {}).get("isCompiled") is True)
+        print(f"{label} overall compilation success: {compiled}/{len(baseline_files)} "
+              f"({compiled * 100.0 / len(baseline_files):.2f}%)")
+
     # Build custom bins: 0-0 if present, 1–150 (step 10), 151–500 (step 50), 501+ (step 100)
     all_params = [p for f, p in filename_to_params.items() if f in baseline_files]
     if not all_params:
@@ -332,7 +338,7 @@ def main() -> None:
             percents.append((num * 100.0 / denom) if denom else 0.0)
         series_percent.append((label, percents))
 
-    plot_grouped_bars_percent(display_labels_with_n, series_percent)
+    #plot_grouped_bars_percent(display_labels_with_n, series_percent)
 
 
 if __name__ == "__main__":

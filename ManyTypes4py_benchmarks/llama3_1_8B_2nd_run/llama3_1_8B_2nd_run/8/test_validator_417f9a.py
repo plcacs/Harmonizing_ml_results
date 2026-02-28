@@ -1,0 +1,177 @@
+import random
+from collections import defaultdict
+from eth2spec.utils.ssz.ssz_typing import Bitvector
+from eth2spec.utils import bls
+from eth2spec.test.helpers.block import build_empty_block
+from eth2spec.test.helpers.keys import pubkey_to_privkey, privkeys, pubkeys
+from eth2spec.test.helpers.state import transition_to
+from eth2spec.test.helpers.sync_committee import compute_sync_committee_signature
+from eth2spec.test.context import always_bls, spec_state_test, with_altair_and_later, with_presets
+from eth2spec.test.helpers.constants import MAINNET, MINIMAL
+rng = random.Random(1337)
+
+def ensure_assignments_in_sync_committee(spec: object, state: object, epoch: int, sync_committee: object, active_pubkeys: list) -> None:
+    assert len(sync_committee.pubkeys) >= 3
+    some_pubkeys: list = rng.sample(sync_committee.pubkeys, 3)
+    for pubkey in some_pubkeys:
+        validator_index: int = active_pubkeys.index(pubkey)
+        assert spec.is_assigned_to_sync_committee(state, epoch, validator_index)
+
+@with_altair_and_later
+@spec_state_test
+def test_is_assigned_to_sync_committee(spec: object, state: object) -> None:
+    epoch: int = spec.get_current_epoch(state)
+    validator_indices: list = spec.get_active_validator_indices(state, epoch)
+    validator_count: int = len(validator_indices)
+    query_epoch: int = epoch + 1
+    next_query_epoch: int = query_epoch + spec.EPOCHS_PER_SYNC_COMMITTEE_PERIOD
+    active_pubkeys: list = [state.validators[index].pubkey for index in validator_indices]
+    ensure_assignments_in_sync_committee(spec, state, query_epoch, state.current_sync_committee, active_pubkeys)
+    ensure_assignments_in_sync_committee(spec, state, next_query_epoch, state.next_sync_committee, active_pubkeys)
+    sync_committee_pubkeys: set = set(list(state.current_sync_committee.pubkeys) + list(state.next_sync_committee.pubkeys))
+    disqualified_pubkeys: set = set(filter(lambda key: key not in sync_committee_pubkeys, active_pubkeys))
+    if disqualified_pubkeys:
+        sample_size: int = 3
+        assert validator_count >= sample_size
+        some_pubkeys: list = rng.sample(sorted(disqualified_pubkeys), sample_size)
+        for pubkey in some_pubkeys:
+            validator_index: int = active_pubkeys.index(pubkey)
+            is_current: bool = spec.is_assigned_to_sync_committee(state, query_epoch, validator_index)
+            is_next: bool = spec.is_assigned_to_sync_committee(state, next_query_epoch, validator_index)
+            is_current_or_next: bool = is_current or is_next
+            assert not is_current_or_next
+
+def _get_sync_committee_signature(spec: object, state: object, target_slot: int, target_block_root: object, subcommittee_index: int, index_in_subcommittee: int) -> object:
+    subcommittee_size: int = spec.SYNC_COMMITTEE_SIZE // spec.SYNC_COMMITTEE_SUBNET_COUNT
+    sync_committee_index: int = subcommittee_index * subcommittee_size + index_in_subcommittee
+    pubkey: object = state.current_sync_committee.pubkeys[sync_committee_index]
+    privkey: object = pubkey_to_privkey[pubkey]
+    return compute_sync_committee_signature(spec, state, target_slot, privkey, block_root=target_block_root)
+
+@with_altair_and_later
+@with_presets([MINIMAL], reason='too slow')
+@spec_state_test
+@always_bls
+def test_process_sync_committee_contributions(spec: object, state: object) -> None:
+    transition_to(spec, state, state.slot + 3)
+    block: object = build_empty_block(spec, state)
+    previous_slot: int = state.slot - 1
+    target_block_root: object = spec.get_block_root_at_slot(state, previous_slot)
+    aggregation_bits: Bitvector = Bitvector[spec.SYNC_COMMITTEE_SIZE // spec.SYNC_COMMITTEE_SUBNET_COUNT]()
+    aggregation_index: int = 0
+    aggregation_bits[aggregation_index] = True
+    contributions: list = [spec.SyncCommitteeContribution(slot=block.slot, beacon_block_root=target_block_root, subcommittee_index=i, aggregation_bits=aggregation_bits, signature=_get_sync_committee_signature(spec, state, previous_slot, target_block_root, i, aggregation_index)) for i in range(spec.SYNC_COMMITTEE_SUBNET_COUNT)]
+    empty_sync_aggregate: object = spec.SyncAggregate()
+    empty_sync_aggregate.sync_committee_signature = spec.G2_POINT_AT_INFINITY
+    assert block.body.sync_aggregate == empty_sync_aggregate
+    spec.process_sync_committee_contributions(block, set(contributions))
+    assert len(block.body.sync_aggregate.sync_committee_bits) != 0
+    assert block.body.sync_aggregate.sync_committee_signature != spec.G2_POINT_AT_INFINITY
+    spec.process_block(state, block)
+
+@with_altair_and_later
+@spec_state_test
+@always_bls
+def test_get_sync_committee_message(spec: object, state: object) -> None:
+    validator_index: int = 0
+    block_root: object = spec.Root(b'\x12' * 32)
+    sync_committee_message: object = spec.get_sync_committee_message(state=state, block_root=block_root, validator_index=validator_index, privkey=privkeys[validator_index])
+    assert sync_committee_message.slot == state.slot
+    assert sync_committee_message.beacon_block_root == block_root
+    assert sync_committee_message.validator_index == validator_index
+    epoch: int = spec.get_current_epoch(state)
+    domain: object = spec.get_domain(state, spec.DOMAIN_SYNC_COMMITTEE, epoch)
+    signing_root: object = spec.compute_signing_root(block_root, domain)
+    signature: object = bls.Sign(privkeys[validator_index], signing_root)
+    assert sync_committee_message.signature == signature
+
+def _validator_index_for_pubkey(state: object, pubkey: object) -> int:
+    return list(map(lambda v: v.pubkey, state.validators)).index(pubkey)
+
+def _subnet_for_sync_committee_index(spec: object, i: int) -> int:
+    return i // (spec.SYNC_COMMITTEE_SIZE // spec.SYNC_COMMITTEE_SUBNET_COUNT)
+
+def _get_expected_subnets_by_pubkey(sync_committee_members: list) -> defaultdict:
+    expected_subnets_by_pubkey: defaultdict = defaultdict(set)
+    for subnet, pubkey in sync_committee_members:
+        expected_subnets_by_pubkey[pubkey].add(subnet)
+    return expected_subnets_by_pubkey
+
+@with_altair_and_later
+@with_presets([MINIMAL], reason='too slow')
+@spec_state_test
+def test_compute_subnets_for_sync_committee(state: object, spec: object) -> None:
+    transition_to(spec, state, spec.SLOTS_PER_EPOCH * spec.EPOCHS_PER_SYNC_COMMITTEE_PERIOD)
+    next_slot_epoch: int = spec.compute_epoch_at_slot(state.slot + 1)
+    assert spec.compute_sync_committee_period(spec.get_current_epoch(state)) == spec.compute_sync_committee_period(next_slot_epoch)
+    some_sync_committee_members: list = list(((_subnet_for_sync_committee_index(spec, i), pubkey) for i, pubkey in enumerate(state.current_sync_committee.pubkeys)))
+    expected_subnets_by_pubkey: defaultdict = _get_expected_subnets_by_pubkey(some_sync_committee_members)
+    for _, pubkey in some_sync_committee_members:
+        validator_index: int = _validator_index_for_pubkey(state, pubkey)
+        subnets: list = spec.compute_subnets_for_sync_committee(state, validator_index)
+        expected_subnets: set = expected_subnets_by_pubkey[pubkey]
+        assert subnets == expected_subnets
+
+@with_altair_and_later
+@with_presets([MINIMAL], reason='too slow')
+@spec_state_test
+def test_compute_subnets_for_sync_committee_slot_period_boundary(state: object, spec: object) -> None:
+    transition_to(spec, state, spec.SLOTS_PER_EPOCH * spec.EPOCHS_PER_SYNC_COMMITTEE_PERIOD - 1)
+    next_slot_epoch: int = spec.compute_epoch_at_slot(state.slot + 1)
+    assert spec.compute_sync_committee_period(spec.get_current_epoch(state)) != spec.compute_sync_committee_period(next_slot_epoch)
+    some_sync_committee_members: list = list(((_subnet_for_sync_committee_index(spec, i), pubkey) for i, pubkey in enumerate(state.next_sync_committee.pubkeys)))
+    expected_subnets_by_pubkey: defaultdict = _get_expected_subnets_by_pubkey(some_sync_committee_members)
+    for _, pubkey in some_sync_committee_members:
+        validator_index: int = _validator_index_for_pubkey(state, pubkey)
+        subnets: list = spec.compute_subnets_for_sync_committee(state, validator_index)
+        expected_subnets: set = expected_subnets_by_pubkey[pubkey]
+        assert subnets == expected_subnets
+
+@with_altair_and_later
+@spec_state_test
+@always_bls
+def test_get_sync_committee_selection_proof(spec: object, state: object) -> None:
+    slot: int = 1
+    subcommittee_index: int = 0
+    privkey: object = privkeys[1]
+    sync_committee_selection_proof: object = spec.get_sync_committee_selection_proof(state, slot, subcommittee_index, privkey)
+    domain: object = spec.get_domain(state, spec.DOMAIN_SYNC_COMMITTEE_SELECTION_PROOF, spec.compute_epoch_at_slot(slot))
+    signing_data: object = spec.SyncAggregatorSelectionData(slot=slot, subcommittee_index=subcommittee_index)
+    signing_root: object = spec.compute_signing_root(signing_data, domain)
+    pubkey: object = pubkeys[1]
+    assert bls.Verify(pubkey, signing_root, sync_committee_selection_proof)
+
+@with_altair_and_later
+@spec_state_test
+@with_presets([MAINNET], reason='to test against the mainnet SYNC_COMMITTEE_SIZE')
+def test_is_sync_committee_aggregator(spec: object, state: object) -> None:
+    sample_count: int = int(spec.SYNC_COMMITTEE_SIZE // spec.SYNC_COMMITTEE_SUBNET_COUNT) * 100
+    is_aggregator_count: int = 0
+    for i in range(sample_count):
+        signature: object = spec.hash(i.to_bytes(32, byteorder='little'))
+        if spec.is_sync_committee_aggregator(signature):
+            is_aggregator_count += 1
+    assert spec.TARGET_AGGREGATORS_PER_SYNC_SUBCOMMITTEE * 100 * 0.9 <= is_aggregator_count <= spec.TARGET_AGGREGATORS_PER_SYNC_SUBCOMMITTEE * 100 * 1.1
+
+@with_altair_and_later
+@spec_state_test
+def test_get_contribution_and_proof(spec: object, state: object) -> None:
+    aggregator_index: int = 10
+    privkey: object = privkeys[3]
+    contribution: object = spec.SyncCommitteeContribution(slot=10, beacon_block_root=b'\x12' * 32, subcommittee_index=1, aggregation_bits=spec.Bitvector[spec.SYNC_COMMITTEE_SIZE // spec.SYNC_COMMITTEE_SUBNET_COUNT](), signature=b'2' * 96)
+    selection_proof: object = spec.get_sync_committee_selection_proof(state, contribution.slot, contribution.subcommittee_index, privkey)
+    contribution_and_proof: object = spec.get_contribution_and_proof(state, aggregator_index, contribution, privkey)
+    assert contribution_and_proof == spec.ContributionAndProof(aggregator_index=aggregator_index, contribution=contribution, selection_proof=selection_proof)
+
+@with_altair_and_later
+@spec_state_test
+@always_bls
+def test_get_contribution_and_proof_signature(spec: object, state: object) -> None:
+    privkey: object = privkeys[3]
+    pubkey: object = pubkeys[3]
+    contribution_and_proof: object = spec.ContributionAndProof(aggregator_index=10, contribution=spec.SyncCommitteeContribution(slot=10, beacon_block_root=b'\x12' * 32, subcommittee_index=1, aggregation_bits=spec.Bitvector[spec.SYNC_COMMITTEE_SIZE // spec.SYNC_COMMITTEE_SUBNET_COUNT](), signature=b'4' * 96), selection_proof=b'V' * 96)
+    contribution_and_proof_signature: object = spec.get_contribution_and_proof_signature(state, contribution_and_proof, privkey)
+    contribution: object = contribution_and_proof.contribution
+    domain: object = spec.get_domain(state, spec.DOMAIN_CONTRIBUTION_AND_PROOF, spec.compute_epoch_at_slot(contribution.slot))
+    signing_root: object = spec.compute_signing_root(contribution_and_proof, domain)
+    assert bls.Verify(pubkey, signing_root, contribution_and_proof_signature)
