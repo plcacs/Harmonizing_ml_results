@@ -97,8 +97,8 @@ if __name__ == "__main__":
         "mypy_results/mypy_outputs/partial_typed/mypy_results_o3_mini_partially_typed_files_with_errors.json",
     )"""
     run_mypy_and_save_results(
-        "llama3_1_8B_2nd_run",
-        "mypy_results/mypy_outputs/mypy_results_llama3_1_8B_1st_run_with_errors.json",
+        "llama3_1_8B_1st_run",
+        "mypy_results/mypy_outputs/mypy_results_llama3_1_8B_2nd_run_with_errors.json",
     )
     """
     run_mypy_and_save_results(

@@ -176,6 +176,7 @@ if __name__ == "__main__":
         ),
         ("gpt5_1st_run", "../mypy_outputs/mypy_results_gpt5_1st_run_with_errors.json"),
         ("original", "../mypy_outputs/mypy_results_original_files_with_errors.json"),
+        ("llama3_1_8B_1st_run", "../mypy_outputs/mypy_results_llama3_1_8B_1st_run_with_errors.json"),
     ]
 
     all_results = []
