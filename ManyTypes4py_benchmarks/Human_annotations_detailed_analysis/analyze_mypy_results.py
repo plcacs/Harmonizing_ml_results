@@ -24,6 +24,26 @@ LLM_CONFIGS = {
 }
 
 
+NON_TYPE_ERROR_CODES = [
+    "name-defined", "import", "syntax", "no-redef", "unused-ignore",
+    "override-without-super", "redundant-cast", "literal-required",
+    "typeddict-unknown-key", "typeddict-item", "truthy-function",
+    "str-bytes-safe", "unused-coroutine", "explicit-override",
+    "truthy-iterable", "redundant-self", "redundant-await", "unreachable",
+]
+
+
+def has_non_type_error(errors):
+    for error in errors:
+        if any(t in error.lower() for t in ["syntax", "empty_body", "name_defined"]):
+            return True
+        if "[" in error and "]" in error:
+            code = error[error.rindex("[") + 1 : error.rindex("]")]
+            if code in NON_TYPE_ERROR_CODES:
+                return True
+    return False
+
+
 def load_results(base_dir, prefix, suffix):
     """Load mypy results for all percentages. Returns dict: {percent: data}."""
     all_data = {}
@@ -38,7 +58,8 @@ def compute_metrics(all_data):
     """Compute compilation rate and avg errors per percentage."""
     metrics = {"percent": [], "compilation_rate": [], "avg_errors": [], "total_files": []}
     for pct in PERCENTAGES:
-        data = all_data[pct]
+        data = {k: v for k, v in all_data[pct].items()
+                if not has_non_type_error(v.get("errors", []))}
         total = len(data)
         compiled = sum(1 for v in data.values() if v["isCompiled"])
         errors = [v["error_count"] for v in data.values()]
