@@ -193,8 +193,8 @@ if __name__ == "__main__":
         all_llm_only_failures[model_name] = results["llm_only_failure_files"]
         all_both_success_files[model_name] = results["both_success_files"]
     # Save LLM-only failure files to JSON
-    # with open("llm_only_failure_files.json", "w") as f:
-    #    json.dump(all_llm_only_failures, f, indent=2)
+    with open("llm_only_failure_files.json", "w") as f:
+        json.dump(all_llm_only_failures, f, indent=2)
     with open("both_success_files.json", "w") as f:
         json.dump(all_both_success_files, f, indent=2)
     for result in all_results:
