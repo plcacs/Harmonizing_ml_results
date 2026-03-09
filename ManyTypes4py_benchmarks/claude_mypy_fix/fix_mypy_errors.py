@@ -130,7 +130,7 @@ def main():
         failures = json.load(f)
 
     file_list = failures.get("claude_3_7_sonnet", [])
-    TEST_LIMIT = 3  # Set to None to process all files
+    TEST_LIMIT = None  # Set to None to process all files
     if TEST_LIMIT:
         file_list = file_list[:TEST_LIMIT]
     print(f"Total files to fix: {len(file_list)}")
