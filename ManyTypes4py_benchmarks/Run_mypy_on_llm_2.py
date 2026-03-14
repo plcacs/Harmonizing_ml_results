@@ -97,9 +97,11 @@ if __name__ == "__main__":
         "mypy_results/mypy_outputs/partial_typed/mypy_results_o3_mini_partially_typed_files_with_errors.json",
     )"""
     run_mypy_and_save_results(
-        "llama3_1_8B_1st_run",
-        "mypy_results/mypy_outputs/mypy_results_llama3_1_8B_2nd_run_with_errors.json",
+        "gpt5_2_run",
+        "GPCE_mypy_results/mypy_results_gpt5_2_run_with_errors.json",
     )
+   
+    
     """
     run_mypy_and_save_results(
         "deepseek_renamed_output_2",
