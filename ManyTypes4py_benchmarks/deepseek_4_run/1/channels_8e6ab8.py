@@ -1,4 +1,3 @@
-```python
 """Channel.
 
 A channel is used to send values to streams.

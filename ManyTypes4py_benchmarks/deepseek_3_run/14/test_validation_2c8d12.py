@@ -1,4 +1,3 @@
-```python
 from collections import deque
 from typing import Any, List, Optional, Union
 import jsonschema

@@ -1,4 +1,3 @@
-```python
 """
 Tests for the file pandas.io.formats.format, *not* tests for general formatting
 of pandas objects.

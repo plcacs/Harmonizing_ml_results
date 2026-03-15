@@ -1,4 +1,3 @@
-```python
 import os
 import threading
 import time
@@ -186,4 +185,3 @@ class FreshnessTask(RunTask):
 
     def get_freshness_metadata_cache(self) -> Dict[BaseRelation, Dict[str, Any]]:
         return self._metadata_freshness_cache
-```

@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import warnings
 from datetime import datetime
@@ -349,4 +348,3 @@ class WorkPoolAsyncClient(BaseAsyncClient):
             else:
                 raise
         return WorkerFlowRunResponse.model_validate_list(response.json())
-```

@@ -1,4 +1,3 @@
-```python
 import re
 import pytest
 from typing import List, Tuple, Any, Dict

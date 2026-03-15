@@ -1,4 +1,3 @@
-```python
 import operator
 import random
 from datetime import datetime

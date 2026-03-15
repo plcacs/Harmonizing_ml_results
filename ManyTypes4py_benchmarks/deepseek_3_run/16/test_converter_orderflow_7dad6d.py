@@ -1,4 +1,3 @@
-```python
 import pandas as pd
 import pytest
 from freqtrade.constants import DEFAULT_TRADES_COLUMNS

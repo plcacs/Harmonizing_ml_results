@@ -1,4 +1,3 @@
-```python
 import bz2
 import datetime as dt
 from datetime import datetime

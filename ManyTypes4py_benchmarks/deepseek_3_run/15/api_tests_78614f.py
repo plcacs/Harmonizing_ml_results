@@ -1,4 +1,3 @@
-```python
 from unittest.mock import patch
 import pytest
 from flask_appbuilder.security.sqla.models import User
@@ -212,4 +211,3 @@ def test_delete_not_owner(test_client: Any, login_as_admin: Any, chart_id: int, 
     cache_manager.explore_form_data_cache.set(another_key, entry)
     resp = test_client.delete(f'api/v1/explore/form_data/{another_key}')
     assert resp.status_code == 403
-```

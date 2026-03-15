@@ -1,4 +1,3 @@
-```python
 """
 test setting *parts* of objects both positionally and label based
 

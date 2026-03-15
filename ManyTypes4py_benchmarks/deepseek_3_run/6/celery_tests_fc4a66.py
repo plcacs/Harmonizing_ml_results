@@ -1,4 +1,3 @@
-```python
 """Unit tests for Superset Celery worker"""
 import datetime
 import random

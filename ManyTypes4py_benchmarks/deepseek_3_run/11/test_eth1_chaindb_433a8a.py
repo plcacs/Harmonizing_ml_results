@@ -1,4 +1,3 @@
-```python
 import pytest
 from eth_hash.auto import keccak
 from hypothesis import HealthCheck, given, settings, strategies as st

@@ -1,4 +1,3 @@
-```python
 """
 Tests for DatetimeIndex methods behaving like their Timestamp counterparts
 """

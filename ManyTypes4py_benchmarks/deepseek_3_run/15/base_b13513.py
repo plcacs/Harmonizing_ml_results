@@ -1,4 +1,3 @@
-```python
 import os
 import threading
 import time
@@ -309,4 +308,3 @@ def resource_types_from_args(args: Any, all_resource_values: Set[NodeType], defa
         exclude_resource_types = set([NodeType(rt) for rt in args.exclude_resource_types])
         resource_types = resource_types - exclude_resource_types
     return resource_types
-```

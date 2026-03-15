@@ -1,4 +1,3 @@
-```python
 import itertools
 import re
 import unicodedata

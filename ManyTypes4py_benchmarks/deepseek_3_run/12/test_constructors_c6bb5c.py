@@ -1,4 +1,3 @@
-```python
 import array
 from collections import OrderedDict, abc, defaultdict, namedtuple
 from collections.abc import Iterator

@@ -1,4 +1,3 @@
-```python
 """Message transport using :pypi:`aiokafka`."""
 import asyncio
 import typing

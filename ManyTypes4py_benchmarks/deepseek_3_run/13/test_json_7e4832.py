@@ -1,4 +1,3 @@
-```python
 import collections
 import operator
 import sys

@@ -1,4 +1,3 @@
-```python
 import copy
 import glob
 import json

@@ -1,4 +1,3 @@
-```python
 from parso.python import tree
 from jedi import debug
 from jedi.inference.cache import inference_state_method_cache, CachedMetaClass
@@ -370,4 +369,3 @@ def _find_overload_functions(context: Any, tree_node: Any) -> Generator[Any, Non
                 yield funcdef
         if not found:
             break
-```

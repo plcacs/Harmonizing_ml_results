@@ -1,4 +1,3 @@
-```python
 import inspect
 import io
 import json
@@ -220,4 +219,3 @@ class TestLambdaFunctionAsync:
         assert result['StatusCode'] == 200
         response_payload = from_json(result['Payload'].read())
         assert response_payload == {'data': [1, 2, 3]}
-```

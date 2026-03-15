@@ -1,4 +1,3 @@
-```python
 """
 Makes it possible to do the compiled analysis in a subprocess. This has two
 goals:
@@ -303,4 +302,3 @@ class AccessHandle:
     @memoize_method
     def _cached_results(self, name: str, *args: Any, **kwargs: Any) -> Any:
         return self._subprocess.get_compiled_method_return(self.id, name, *args, **kwargs)
-```

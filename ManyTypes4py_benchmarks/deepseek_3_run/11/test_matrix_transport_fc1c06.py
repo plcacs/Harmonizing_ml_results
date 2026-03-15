@@ -1,4 +1,3 @@
-```python
 import random
 from unittest.mock import MagicMock, Mock
 import gevent

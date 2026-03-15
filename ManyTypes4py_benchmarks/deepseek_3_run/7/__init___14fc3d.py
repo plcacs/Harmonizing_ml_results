@@ -1,4 +1,3 @@
-```python
 """
 The API basically only provides one class. You can create a :class:`Script` and
 use its methods.

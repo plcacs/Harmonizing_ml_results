@@ -1,4 +1,3 @@
-```python
 from dataclasses import dataclass
 import gevent
 import pytest

@@ -1,4 +1,3 @@
-```python
 from collections.abc import Iterator
 from functools import partial
 from io import BytesIO, StringIO

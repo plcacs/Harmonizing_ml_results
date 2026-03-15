@@ -1,4 +1,3 @@
-```python
 from datetime import datetime
 from io import StringIO
 import itertools

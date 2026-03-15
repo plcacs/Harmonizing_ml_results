@@ -1,4 +1,3 @@
-```python
 """Unit tests for Superset"""
 import unittest
 import copy

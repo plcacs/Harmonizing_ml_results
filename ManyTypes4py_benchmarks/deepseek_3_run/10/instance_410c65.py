@@ -1,4 +1,3 @@
-```python
 from abc import abstractproperty
 from parso.tree import search_ancestor
 from jedi import debug

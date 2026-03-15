@@ -1,4 +1,3 @@
-```python
 """Unit tests for Superset"""
 import unittest
 from tests.integration_tests.fixtures.birth_names_dashboard import load_birth_names_dashboard_with_slices, load_birth_names_data

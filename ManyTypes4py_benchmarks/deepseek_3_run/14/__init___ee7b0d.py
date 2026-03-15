@@ -1,4 +1,3 @@
-```python
 """The motionEye integration."""
 from __future__ import annotations
 from collections.abc import Callable
@@ -231,4 +230,3 @@ def get_media_url(client: MotionEyeClient, camera_id: int, path: str, image: boo
             return client.get_image_url(camera_id, path)
         return client.get_movie_url(camera_id, path)
     return None
-```

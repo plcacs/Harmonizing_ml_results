@@ -1,4 +1,3 @@
-```python
 from contextlib import contextmanager
 from dataclasses import dataclass, field
 import structlog

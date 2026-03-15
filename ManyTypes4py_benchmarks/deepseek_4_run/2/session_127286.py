@@ -1,4 +1,3 @@
-```python
 """This module implements Kedro session responsible for project lifecycle."""
 from __future__ import annotations
 import getpass
@@ -246,4 +245,3 @@ class KedroSession:
             raise
         hook_manager.hook.after_pipeline_run(run_params=record_data, run_result=run_result, pipeline=filtered_pipeline, catalog=catalog)
         return run_result
-```

@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pytest
 from pandas.core.dtypes.common import ensure_platform_int

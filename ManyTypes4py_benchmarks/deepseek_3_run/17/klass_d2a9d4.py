@@ -1,4 +1,3 @@
-```python
 """
 Like described in the :mod:`parso.python.tree` module,
 there's a need for an ast like module to represent the states of parsed
@@ -306,4 +305,3 @@ class ClassValue(ClassMixin, FunctionAndClassBase, metaclass=CachedMetaClass):
     @plugin_manager.decorate()
     def get_metaclass_signatures(self, metaclasses: ValueSet) -> List[Any]:
         return []
-```

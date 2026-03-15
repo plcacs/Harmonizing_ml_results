@@ -1,4 +1,3 @@
-```python
 import dataclasses
 import json
 import random
@@ -294,4 +293,3 @@ class PFSMock:
 
 def make_pfs_config() -> PFSConfig:
     return PFSConfig(info=PFSInfo(url='mock-address', chain_id=UNIT_CHAIN_ID, token_network_registry_address=make_token_network_registry_address(), user_deposit_address=factories.make_address(), payment_address=factories.make_address(), confirmed_block_number=BlockNumber(100), message='', operator='', version='', price=TokenAmount(0), matrix_server='http://matrix.example.com'), maximum_fee=TokenAmount(100), iou_timeout=BlockTimeout(100), max_paths=5)
-```

@@ -1,4 +1,3 @@
-```python
 import logging
 import shutil
 from pathlib import Path

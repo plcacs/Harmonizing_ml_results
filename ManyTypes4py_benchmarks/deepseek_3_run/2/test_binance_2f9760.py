@@ -1,4 +1,3 @@
-```python
 from datetime import datetime, timedelta
 from random import randint
 from unittest.mock import MagicMock, PropertyMock

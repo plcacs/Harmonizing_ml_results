@@ -1,4 +1,3 @@
-```python
 """Tasks for interacting with AWS S3"""
 import asyncio
 import io

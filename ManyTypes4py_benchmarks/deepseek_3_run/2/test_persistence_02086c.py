@@ -1,4 +1,3 @@
-```python
 from datetime import datetime, timedelta, timezone
 from types import FunctionType
 from typing import Any, Dict, List, Optional, Tuple, Union

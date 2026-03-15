@@ -1,4 +1,3 @@
-```python
 from typing import Dict, Sequence, Tuple, Type, Any, List, Optional, Union
 from cached_property import cached_property
 from eth_keys.datatypes import PrivateKey
@@ -138,4 +137,3 @@ class LondonTransactionBuilder(BerlinTransactionBuilder):
     def new_dynamic_fee_transaction(cls, chain_id: int, nonce: int, max_priority_fee_per_gas: int, max_fee_per_gas: int, gas: int, to: Address, value: int, data: bytes, access_list: Sequence[AccountAccesses], y_parity: int, r: int, s: int) -> LondonTypedTransaction:
         transaction = DynamicFeeTransaction(chain_id, nonce, max_priority_fee_per_gas, max_fee_per_gas, gas, to, value, data, access_list, y_parity, r, s)
         return LondonTypedTransaction(DYNAMIC_FEE_TRANSACTION_TYPE, transaction)
-```

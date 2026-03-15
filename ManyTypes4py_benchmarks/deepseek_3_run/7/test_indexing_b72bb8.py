@@ -1,4 +1,3 @@
-```python
 from collections import namedtuple
 from datetime import timedelta
 import re

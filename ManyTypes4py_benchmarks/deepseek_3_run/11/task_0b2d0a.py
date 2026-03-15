@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import inspect
 import itertools as it
@@ -196,4 +195,3 @@ class Task:
             raise exc
         hook_manager.hook.after_node_run(node=node, catalog=catalog, inputs=inputs, outputs=outputs, is_async=is_async, session_id=session_id)
         return outputs
-```

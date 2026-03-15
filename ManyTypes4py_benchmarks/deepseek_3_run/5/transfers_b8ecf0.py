@@ -1,4 +1,3 @@
-```python
 from dataclasses import dataclass, field
 from hashlib import sha256
 from typing import Any, ClassVar
@@ -315,4 +314,3 @@ class LockExpired(EnvelopeMessage):
     @property
     def message_hash(self) -> bytes:
         return eth_hash.keccak(bytes([self.cmdid.value]) + self.message_identifier.to_bytes(8, byteorder='big') + self.recipient + self.secrethash)
-```

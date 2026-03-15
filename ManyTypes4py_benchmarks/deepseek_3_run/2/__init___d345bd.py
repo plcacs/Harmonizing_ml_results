@@ -1,4 +1,3 @@
-```python
 """Unit test utility functions.
 
 Note that all imports should be inside the functions to avoid import/mocking
@@ -301,4 +300,3 @@ def replace_config(n: Any, **kwargs: Any) -> Any:
 
 def make_manifest(nodes: List[Any] = [], sources: List[Any] = [], macros: List[Any] = [], docs: List[Any] = []) -> Manifest:
     return Manifest(nodes={n.unique_id: n for n in nodes}, macros={m.unique_id: m for m in macros}, sources={s.unique_id: s for s in sources}, docs={d.unique_id: d for d in docs}, disabled={}, files={}, exposures={}, metrics={}, selectors={})
-```

@@ -1,4 +1,3 @@
-```python
 from datetime import datetime, timedelta
 from functools import wraps
 from pathlib import Path

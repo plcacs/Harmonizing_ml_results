@@ -1,4 +1,3 @@
-```python
 """Test cases for .hist method"""
 import re
 from typing import Any, Dict, List, Optional, Tuple, Union

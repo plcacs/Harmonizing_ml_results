@@ -1,4 +1,3 @@
-```python
 import random
 from typing import Tuple, Any
 from raiden.transfer import channel, routes

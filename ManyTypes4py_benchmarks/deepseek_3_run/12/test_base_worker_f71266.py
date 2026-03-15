@@ -1,4 +1,3 @@
-```python
 import uuid
 from typing import Any, Dict, Optional, Type, List, Set, Union, cast
 from unittest import mock

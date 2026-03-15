@@ -1,4 +1,3 @@
-```python
 import inspect
 import operator
 from typing import Any, Callable, List, Optional, Sequence, Tuple, Union, cast

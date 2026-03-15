@@ -1,4 +1,3 @@
-```python
 import io
 import textwrap
 from typing import Any, Dict, List, Optional, Tuple, Union
@@ -205,4 +204,3 @@ class TestMainFunction:
         assert exit_status == 3
         exit_status = validate_docstrings.main(func_name=None, output_format='default', prefix=None, ignore_deprecated=False, ignore_errors={None: {'ER01', 'ER02'}})
         assert exit_status == 1
-```

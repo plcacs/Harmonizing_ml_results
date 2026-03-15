@@ -1,4 +1,3 @@
-```python
 from typing import Any, Dict, Iterator, List, Optional, Tuple, Union
 from jedi.inference.cache import inference_state_method_cache
 from jedi.inference.base_value import ValueSet, NO_VALUES, Value, iterator_to_value_set, LazyValueWrapper, ValueWrapper
@@ -341,4 +340,3 @@ class BaseTypingInstance(LazyValueWrapper):
 
     def __repr__(self) -> str:
         return '<%s: %s>' % (self.__class__.__name__, self._generics_manager)
-```

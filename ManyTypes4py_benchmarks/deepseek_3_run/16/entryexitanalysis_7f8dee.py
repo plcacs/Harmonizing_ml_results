@@ -1,4 +1,3 @@
-```python
 import logging
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
@@ -206,4 +205,3 @@ def _generate_dfs(pairlist: List[str], enter_reason_list: List[str], exit_reason
     analysed_trades_dict = _process_candles_and_indicators(pairlist, strategy_name, trades, signal_candles, date_col)
     res_df = prepare_results(analysed_trades_dict, strategy_name, enter_reason_list, exit_reason_list, timerange=timerange)
     return res_df
-```

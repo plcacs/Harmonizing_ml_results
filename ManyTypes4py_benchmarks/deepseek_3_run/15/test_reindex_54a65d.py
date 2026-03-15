@@ -1,4 +1,3 @@
-```python
 from datetime import datetime, timedelta
 import inspect
 from typing import Any, List, Optional, Sequence, Tuple, Union

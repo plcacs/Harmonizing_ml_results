@@ -1,4 +1,3 @@
-```python
 from datetime import datetime, time, timedelta, timezone
 from itertools import product, starmap
 import operator

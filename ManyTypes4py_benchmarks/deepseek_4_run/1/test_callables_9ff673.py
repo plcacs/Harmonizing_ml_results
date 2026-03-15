@@ -1,4 +1,3 @@
-```python
 import datetime
 from enum import Enum
 from pathlib import Path

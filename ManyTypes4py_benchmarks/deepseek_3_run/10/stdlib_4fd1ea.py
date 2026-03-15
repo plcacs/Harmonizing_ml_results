@@ -1,4 +1,3 @@
-```python
 """
 Implementations of standard library functions, because it's not possible to
 understand them with Jedi.

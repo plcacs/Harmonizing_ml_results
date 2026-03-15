@@ -1,4 +1,3 @@
-```python
 import copy
 from collections.abc import Iterable
 from typing import Any, overload, Dict, List as ListType, Tuple, TypeVar, Optional, Callable, Set, Union
@@ -246,4 +245,3 @@ class FixedAndOptionalKeysDictStrategy(SearchStrategy[Dict[Any, Any]]):
             key = remaining.pop()
             result[key] = data.draw(self.optional[key])
         return result
-```

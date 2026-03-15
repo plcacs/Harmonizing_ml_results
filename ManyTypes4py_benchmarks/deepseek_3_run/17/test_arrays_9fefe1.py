@@ -1,4 +1,3 @@
-```python
 import math
 import pytest
 from hypothesis import given, settings, strategies as st

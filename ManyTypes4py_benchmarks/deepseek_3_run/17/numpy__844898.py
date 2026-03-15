@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import TYPE_CHECKING, Literal, Any, overload
 import numpy as np
@@ -246,4 +245,3 @@ class NumpyExtensionArray(OpsMixin, NDArrayBackedExtensionArray, ObjectStringArr
             from pandas.core.arrays import TimedeltaArray
             return TimedeltaArray._simple_new(result, dtype=result.dtype)
         return type(self)(result)
-```

@@ -1,4 +1,3 @@
-```python
 import inspect
 from copy import deepcopy
 from dataclasses import dataclass, field
@@ -227,4 +226,3 @@ TASK_SOURCE: TaskSource = TaskSource()
 FLOW_PARAMETERS: FlowParameters = FlowParameters()
 RUN_ID: RunId = RunId()
 DEFAULT: CompoundCachePolicy = INPUTS + TASK_SOURCE + RUN_ID
-```

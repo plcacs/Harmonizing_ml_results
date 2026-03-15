@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pytest
 from pandas import NA, DataFrame, IndexSlice, MultiIndex, NaT, Timestamp, option_context

@@ -1,4 +1,3 @@
-```python
 from bisect import bisect, bisect_right
 from copy import copy
 from dataclasses import dataclass, field
@@ -173,4 +172,3 @@ def calculate_imbalance_fees(channel_capacity: TokenAmount, proportional_imbalan
     x_values: List[TokenAmount] = linspace(TokenAmount(0), channel_capacity, num_base_points)
     y_values: List[FeeAmount] = [f(x) for x in x_values]
     return list(zip(x_values, y_values))
-```

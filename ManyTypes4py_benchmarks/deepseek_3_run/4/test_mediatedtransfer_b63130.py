@@ -1,4 +1,3 @@
-```python
 from typing import List, cast, Dict, Any, Optional, Tuple, Union
 from unittest.mock import Mock, patch
 import gevent

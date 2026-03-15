@@ -1,4 +1,3 @@
-```python
 from distutils.version import LooseVersion
 from functools import partial
 from typing import Any, Optional, Tuple, Union, cast, List, Sequence, Iterable, Dict

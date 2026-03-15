@@ -1,4 +1,3 @@
-```python
 from distutils.version import LooseVersion
 from itertools import product
 import unittest

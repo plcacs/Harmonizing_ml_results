@@ -1,4 +1,3 @@
-```python
 """Wrappers for windowed tables."""
 import operator
 import typing

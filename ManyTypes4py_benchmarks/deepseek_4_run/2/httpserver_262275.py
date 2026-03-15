@@ -1,4 +1,3 @@
-```python
 """A non-blocking, single-threaded HTTP server.
 
 Typical applications have little direct interaction with the `HTTPServer`
@@ -294,4 +293,3 @@ class _ProxyAdapter(httputil.HTTPMessageDelegate):
     def _cleanup(self) -> None:
         self.connection.context._unapply_xheaders()
 HTTPRequest = httputil.HTTPServerRequest
-```

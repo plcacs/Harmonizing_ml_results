@@ -1,4 +1,3 @@
-```python
 from argparse import Namespace
 from typing import Optional, Any, Dict, Tuple, List, Union
 from unittest.mock import MagicMock, patch
@@ -174,4 +173,3 @@ class TestCheckForcingConcurrentBatches:
             assert 'Batches will be run sequentially' in event_catcher.caught_events[0].info.msg
         else:
             assert len(event_catcher.caught_events) == 0
-```

@@ -1,4 +1,3 @@
-```python
 import re
 from itertools import zip_longest
 from parso.python import tree
@@ -276,4 +275,3 @@ def _star_star_dict(context: Any, array: Any, input_node: tree.BaseNode, funcdef
             m = 'TypeError: %s argument after ** must be a mapping, not %s' % (funcdef.name.value, array)
             analysis.add(context, 'type-error-star-star', input_node, message=m)
         return {}
-```

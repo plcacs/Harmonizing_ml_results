@@ -1,4 +1,3 @@
-```python
 import datetime
 from typing import Any, Optional, Union, List, Dict, Tuple, cast
 import numpy as np

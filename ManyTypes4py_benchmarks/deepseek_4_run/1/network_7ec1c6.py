@@ -1,4 +1,3 @@
-```python
 """ Utilities to set-up a Raiden network. """
 from dataclasses import dataclass
 from itertools import product

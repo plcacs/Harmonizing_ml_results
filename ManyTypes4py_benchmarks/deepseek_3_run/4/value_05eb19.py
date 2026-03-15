@@ -1,4 +1,3 @@
-```python
 """
 Imitate the parser representation.
 """

@@ -1,4 +1,3 @@
-```python
 """
 Utility code to generate randomized block tests
 """
@@ -291,4 +290,3 @@ def run_generated_randomized_test(spec: Any, state: Any, scenario: Dict[str, Any
         assert validation(spec, state)
     yield ('blocks', blocks)
     yield ('post', state)
-```

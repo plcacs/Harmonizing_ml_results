@@ -1,4 +1,3 @@
-```python
 import os
 import warnings
 from pathlib import Path
@@ -258,4 +257,3 @@ def find_case_path(dir_path: Path, file_name: str, case_sensitive: bool) -> Opti
         elif not case_sensitive and f.name.lower() == file_name.lower():
             return f
     return None
-```

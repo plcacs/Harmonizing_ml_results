@@ -1,4 +1,3 @@
-```python
 from __future__ import with_statement
 import optparse
 import sys
@@ -301,4 +300,3 @@ def main(argv: Optional[List[str]] = None) -> None:
                 print(graph.name, graph.complexity())
 if __name__ == '__main__':
     main(sys.argv[1:])
-```

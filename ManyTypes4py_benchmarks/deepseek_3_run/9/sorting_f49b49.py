@@ -1,4 +1,3 @@
-```python
 """miscellaneous sorting / groupby utilities"""
 from __future__ import annotations
 import itertools

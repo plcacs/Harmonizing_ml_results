@@ -1,4 +1,3 @@
-```python
 from itertools import chain
 import operator
 from typing import Any, List, Tuple, Union, Optional, Sequence

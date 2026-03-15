@@ -1,4 +1,3 @@
-```python
 from random import Random
 from typing import Iterator, Optional, Callable, Any
 from eth2spec.test.context import spec_state_test, with_altair_and_later
@@ -241,4 +240,3 @@ def test_randomized_state_leaking(spec: Any, state: Any) -> Iterator[Any]:
     rng = Random(10011002)
     yield from _run_randomized_state_test_for_inactivity_updates(spec, state, rng=rng)
     assert spec.is_in_inactivity_leak(state)
-```

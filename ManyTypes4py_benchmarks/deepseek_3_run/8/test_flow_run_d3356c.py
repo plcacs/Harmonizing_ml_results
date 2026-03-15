@@ -1,4 +1,3 @@
-```python
 from typing import Any, Awaitable, Callable, List, Optional, Union
 from uuid import UUID, uuid4
 import pytest

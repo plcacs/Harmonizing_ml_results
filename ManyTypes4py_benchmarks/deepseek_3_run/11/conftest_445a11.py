@@ -1,4 +1,3 @@
-```python
 """Configuration for Sonos tests."""
 import asyncio
 from collections.abc import Callable, Coroutine, Generator

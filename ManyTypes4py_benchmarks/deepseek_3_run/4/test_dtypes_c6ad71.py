@@ -1,4 +1,3 @@
-```python
 import re
 import weakref
 from typing import Any, Optional, Union, List, Tuple, Type, Dict, Pattern

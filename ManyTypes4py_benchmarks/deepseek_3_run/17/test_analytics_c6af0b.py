@@ -1,4 +1,3 @@
-```python
 import re
 import sys
 from typing import Any, List, Optional, Union, Tuple, Callable
@@ -235,4 +234,3 @@ class TestCategoricalAnalytics:
         assert result._codes.dtype == np.int8
         expected = cat.take([-1, -1], allow_fill=True)
         tm.assert_extension_array_equal(result, expected)
-```

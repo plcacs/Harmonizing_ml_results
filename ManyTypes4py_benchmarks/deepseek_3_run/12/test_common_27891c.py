@@ -1,4 +1,3 @@
-```python
 """
 Tests for the pandas.io.common functionalities
 """

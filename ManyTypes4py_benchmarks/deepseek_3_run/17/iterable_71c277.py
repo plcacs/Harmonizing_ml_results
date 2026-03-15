@@ -1,4 +1,3 @@
-```python
 """
 Contains all classes and functions to deal with lists, dicts, generators and
 iterators in general.

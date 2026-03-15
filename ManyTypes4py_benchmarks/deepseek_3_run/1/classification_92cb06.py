@@ -1,4 +1,3 @@
-```python
 from typing import List, Any, Optional, Callable, Tuple, Union, TYPE_CHECKING, Literal, Dict
 import numpy as np
 import numpy.typing as npt

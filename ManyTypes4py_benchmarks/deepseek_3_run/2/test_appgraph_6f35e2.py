@@ -1,4 +1,3 @@
-```python
 import pytest
 from chalice.app import Chalice
 from chalice.config import Config

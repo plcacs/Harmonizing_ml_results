@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pytest
 from pandas import DataFrame, DatetimeIndex, Index, MultiIndex, NamedAgg, Series, Timestamp, date_range, to_datetime

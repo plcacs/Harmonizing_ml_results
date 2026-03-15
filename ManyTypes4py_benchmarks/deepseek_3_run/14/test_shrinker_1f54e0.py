@@ -1,4 +1,3 @@
-```python
 import time
 import pytest
 from hypothesis import HealthCheck, assume, example, given, settings, strategies as st

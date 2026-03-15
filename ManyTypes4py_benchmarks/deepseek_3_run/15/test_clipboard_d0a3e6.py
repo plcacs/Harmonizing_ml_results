@@ -1,4 +1,3 @@
-```python
 from textwrap import dedent
 import numpy as np
 import pytest
@@ -222,4 +221,3 @@ class TestClipboard:
         msg = "dtype_backend numpy is invalid, only 'numpy_nullable' and 'pyarrow' are allowed."
         with pytest.raises(ValueError, match=msg):
             read_clipboard(dtype_backend='numpy')
-```

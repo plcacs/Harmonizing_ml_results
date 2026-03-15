@@ -1,4 +1,3 @@
-```python
 """Provides data related to internet."""
 import typing as t
 import urllib.error
@@ -401,4 +400,3 @@ class Internet(BaseProvider):
         :return: IPv4 address as string.
         """
         return str(self.special_ip_v4_object(purpose))
-```

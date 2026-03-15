@@ -1,4 +1,3 @@
-```python
 import random
 from raiden.transfer import channel, secret_registry
 from raiden.transfer.architecture import Event, StateChange, TransitionResult
@@ -164,4 +163,3 @@ def state_transition(target_state: Optional[TargetTransferState], state_change: 
         iteration = handle_lock_expired(target_state=target_state, state_change=state_change, channel_state=channel_state, block_number=block_number)
     sanity_check(old_state=target_state, new_state=iteration.new_state, channel_state=channel_state)
     return iteration
-```

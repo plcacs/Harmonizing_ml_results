@@ -1,4 +1,3 @@
-```python
 import argparse
 import csv
 import io
@@ -259,4 +258,3 @@ class TestPredict(AllenNlpTestCase):
                 assert 0 <= float(prob) <= 1
             assert label != ''
         shutil.rmtree(self.tempdir)
-```

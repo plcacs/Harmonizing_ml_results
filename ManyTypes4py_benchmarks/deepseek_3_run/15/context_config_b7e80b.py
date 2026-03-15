@@ -1,4 +1,3 @@
-```python
 from abc import abstractmethod
 from copy import deepcopy
 from dataclasses import dataclass
@@ -227,4 +226,3 @@ class ContextConfig:
             else:
                 config_call_dict = self._unrendered_config_call_dict
         return src.calculate_node_config_dict(config_call_dict=config_call_dict, fqn=self._fqn, resource_type=self._resource_type, project_name=self._project_name, base=base, patch_config_dict=patch_config_dict)
-```

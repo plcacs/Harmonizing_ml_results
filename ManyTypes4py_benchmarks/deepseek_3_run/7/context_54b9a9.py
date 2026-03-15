@@ -1,4 +1,3 @@
-```python
 import pytest
 from copy import deepcopy
 from dataclasses import dataclass

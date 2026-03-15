@@ -1,4 +1,3 @@
-```python
 from typing import Any, Dict, Sequence, Tuple, Type, Union, cast, List, Optional, TypeVar
 from cached_property import cached_property
 from eth_hash.auto import keccak
@@ -332,4 +331,3 @@ def _calculate_txn_intrinsic_gas_berlin(klass: Union[UnsignedAccessListTransacti
     num_slots = sum((len(slots) for _, slots in klass.access_list))
     preload_slot_costs = ACCESS_LIST_STORAGE_KEY_COST_EIP_2930 * num_slots
     return core_gas + preload_address_costs + preload_slot_costs
-```

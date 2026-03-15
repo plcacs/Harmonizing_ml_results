@@ -1,4 +1,3 @@
-```python
 """Test cases for DataFrame.plot"""
 from datetime import date, datetime
 import gc

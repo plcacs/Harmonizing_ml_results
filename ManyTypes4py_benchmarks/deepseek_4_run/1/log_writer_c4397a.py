@@ -1,4 +1,3 @@
-```python
 from collections import deque, defaultdict
 import logging
 from typing import List, Dict, Any, Optional, TYPE_CHECKING, Union, Deque, Set, Tuple, cast
@@ -251,4 +250,3 @@ class LogWriterCallback(TrainerCallback):
             param_norm = torch.norm(param.view(-1)).cpu()
             gradient_update_scalars[name] = (update_norm / (param_norm + tiny_value_of_dtype(param_norm.dtype))).item()
         self.log_scalars(gradient_update_scalars, log_prefix='gradient_update')
-```

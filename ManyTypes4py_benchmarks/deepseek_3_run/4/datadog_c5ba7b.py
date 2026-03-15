@@ -1,4 +1,3 @@
-```python
 """Monitor using datadog."""
 import re
 from typing import Any, Dict, List, Optional, cast
@@ -225,4 +224,3 @@ class DatadogMonitor(Monitor):
     def client(self) -> DatadogStatsClient:
         """Return the datadog client."""
         return self._new_datadog_stats_client()
-```

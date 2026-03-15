@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import os
 import sys
@@ -323,4 +322,3 @@ class DeployedResources(object):
 
     def resource_names(self) -> List[str]:
         return [r['name'] for r in self._deployed_values]
-```

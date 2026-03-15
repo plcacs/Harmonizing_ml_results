@@ -1,4 +1,3 @@
-```python
 """TemplateEntity utility class."""
 from __future__ import annotations
 from collections.abc import Callable, Mapping
@@ -316,4 +315,3 @@ class TemplateEntity(Entity):
         if run_variables is None:
             run_variables = {}
         await script.async_run(run_variables={'this': TemplateStateFromEntityId(self.hass, self.entity_id), **self._render_variables(), **run_variables}, context=context)
-```

@@ -1,4 +1,3 @@
-```python
 import random
 from datetime import datetime, timedelta, timezone
 from typing import Any, List, Optional, Union, Dict, Tuple

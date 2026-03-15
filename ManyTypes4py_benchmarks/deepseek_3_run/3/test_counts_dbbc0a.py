@@ -1,4 +1,3 @@
-```python
 from collections.abc import Iterator
 from contextlib import AbstractContextManager, ExitStack, contextmanager
 from datetime import datetime, timedelta, timezone

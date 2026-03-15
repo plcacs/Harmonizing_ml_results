@@ -1,4 +1,3 @@
-```python
 """Helper functions for Z-Wave JS integration."""
 from __future__ import annotations
 from collections.abc import Callable, Collection
@@ -286,4 +285,3 @@ def get_network_identifier_for_notification(hass: HomeAssistant, config_entry: C
             return f'`{config_entry.title}`, with the home ID `{home_id}`,'
         return f'with the home ID `{home_id}`'
     return ''
-```

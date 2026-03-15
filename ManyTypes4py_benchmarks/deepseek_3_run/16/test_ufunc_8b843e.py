@@ -1,4 +1,3 @@
-```python
 from collections import deque
 import re
 import string
@@ -330,4 +329,3 @@ def test_np_fix() -> None:
     result = np.fix(ser)
     expected = pd.Series([-1.0, -0.0, 0.0, 1.0])
     tm.assert_series_equal(result, expected)
-```

@@ -1,4 +1,3 @@
-```python
 """
 Tests of pandas.tseries.offsets
 """

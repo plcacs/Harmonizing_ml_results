@@ -1,4 +1,3 @@
-```python
 import unittest
 from types import SimpleNamespace
 from typing import Any, Optional, Dict, List, Tuple, Union, Callable
@@ -362,4 +361,3 @@ class TestGetHashable(unittest.TestCase):
         x = (8, dict(a=v))
         with self.assertRaises(ValueError):
             get_hashable(x)
-```

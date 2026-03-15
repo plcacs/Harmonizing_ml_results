@@ -1,4 +1,3 @@
-```python
 import os
 import json
 import uuid
@@ -243,4 +242,3 @@ def test_websocket_redployment_does_not_lose_messages(smoke_test_app_ws: SmokeTe
     assert sender.last_sent in numbers
     skips: List[Tuple[int, int]] = find_skips_in_seq(numbers)
     assert skips == []
-```

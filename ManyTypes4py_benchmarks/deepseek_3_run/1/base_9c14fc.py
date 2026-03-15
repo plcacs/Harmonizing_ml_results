@@ -1,4 +1,3 @@
-```python
 """Base class Collection for Table and future data structures."""
 import abc
 import time

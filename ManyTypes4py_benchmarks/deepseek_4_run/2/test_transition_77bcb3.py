@@ -1,4 +1,3 @@
-```python
 import random
 from typing import Iterator, List, Optional, Callable, Set
 from eth2spec.test.context import ForkMeta, with_fork_metas

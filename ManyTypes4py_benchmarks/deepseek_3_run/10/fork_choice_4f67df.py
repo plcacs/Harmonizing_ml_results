@@ -1,4 +1,3 @@
-```python
 from typing import NamedTuple, Sequence, Any, Generator, Tuple, List, Optional, Callable, Dict, Union, Iterator
 from eth_utils import encode_hex
 from eth2spec.test.exceptions import BlockNotFoundException
@@ -251,4 +250,3 @@ def get_pow_block_file_name(pow_block: Any) -> str:
 def add_pow_block(spec: Any, store: Any, pow_block: Any, test_steps: List) -> Generator:
     yield (get_pow_block_file_name(pow_block), pow_block)
     test_steps.append({'pow_block': get_pow_block_file_name(pow_block)})
-```

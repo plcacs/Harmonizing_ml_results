@@ -1,4 +1,3 @@
-```python
 from random import Random
 from eth2spec.test.helpers.keys import privkeys, pubkeys
 from eth2spec.test.helpers.state import state_transition_and_sign_block
@@ -189,4 +188,3 @@ def get_random_consolidation_requests(spec: Any, state: Any, rng: Random, num_co
         target_validator = state.validators[target_index]
         consolidation_requests.append(spec.ConsolidationRequest(source_address=source_address, source_pubkey=source_validator.pubkey, target_pubkey=target_validator.pubkey))
     return consolidation_requests
-```

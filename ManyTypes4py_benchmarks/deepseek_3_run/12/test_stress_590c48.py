@@ -1,4 +1,3 @@
-```python
 import time
 from http import HTTPStatus
 from itertools import count
@@ -159,4 +158,3 @@ def test_stress(raiden_network: List[RaidenService], restart_node: RestartNode, 
             stress_send_and_receive_parallel_transfers(rest_apis, token_address, identifier_generator, deposit)
         raiden_network, rest_apis = restart_network_and_apiservers(raiden_network, restart_node, rest_apis, port_generator)
     restart_network(raiden_network, restart_node)
-```

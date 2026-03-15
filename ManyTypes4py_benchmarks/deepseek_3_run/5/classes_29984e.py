@@ -1,4 +1,3 @@
-```python
 """
 There are a couple of classes documented in here:
 

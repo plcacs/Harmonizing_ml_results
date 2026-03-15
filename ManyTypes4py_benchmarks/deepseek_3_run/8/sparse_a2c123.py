@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import scipy.sparse
 import pandas as pd
@@ -198,4 +197,3 @@ class GetItemMask:
     def time_mask(self, fill_value: Any) -> SparseArray:
         return self.sp_arr[self.sp_b_arr]
 from .pandas_vb_common import setup
-```

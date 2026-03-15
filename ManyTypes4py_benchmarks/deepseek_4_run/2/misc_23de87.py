@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import random
 from typing import TYPE_CHECKING, Any, Dict, List, Optional, Sequence, Tuple, Union
@@ -301,4 +300,3 @@ def unpack_single_str_list(keys: Union[str, List[str]]) -> Union[str, List[str]]
     if isinstance(keys, list) and len(keys) == 1:
         keys = keys[0]
     return keys
-```

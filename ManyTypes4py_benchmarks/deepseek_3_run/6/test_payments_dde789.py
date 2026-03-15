@@ -1,4 +1,3 @@
-```python
 from http import HTTPStatus
 import grequests
 import pytest

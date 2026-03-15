@@ -1,4 +1,3 @@
-```python
 import logging
 import time
 from collections.abc import Iterable, Mapping

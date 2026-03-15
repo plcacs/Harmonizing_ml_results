@@ -1,4 +1,3 @@
-```python
 """Message transport using :pypi:`confluent_kafka`."""
 import asyncio
 import typing

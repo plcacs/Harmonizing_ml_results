@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import string
 from typing import cast, Any, Iterator, Sequence, TYPE_CHECKING
@@ -199,4 +198,3 @@ def test_searchsorted_with_na_raises(data_for_sorting: Any, as_series: bool) -> 
     msg = 'searchsorted requires array to be sorted, which is impossible with NAs present.'
     with pytest.raises(ValueError, match=msg):
         arr.searchsorted(b)
-```

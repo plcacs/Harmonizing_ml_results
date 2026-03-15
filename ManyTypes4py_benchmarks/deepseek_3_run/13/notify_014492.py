@@ -1,4 +1,3 @@
-```python
 """HTML5 Push Messaging notification service."""
 from __future__ import annotations
 from contextlib import suppress

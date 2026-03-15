@@ -1,4 +1,3 @@
-```python
 from pathlib import Path
 from typing import Any, Dict, Optional, List, Union
 import pytest

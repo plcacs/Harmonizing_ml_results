@@ -1,4 +1,3 @@
-```python
 from abc import abstractmethod, abstractproperty
 from typing import List, Optional, Tuple, Union, Any, Iterator, cast
 from parso.utils import split_lines
@@ -447,4 +446,3 @@ class ErrorLeaf(Leaf):
 
     def __repr__(self) -> str:
         return '<%s: %s:%s, %s>' % (type(self).__name__, self.token_type, repr(self.value), self.start_pos)
-```

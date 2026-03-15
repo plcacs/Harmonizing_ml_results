@@ -1,4 +1,3 @@
-```python
 """Monitor using Promethus."""
 import typing
 from typing import Any, cast, Dict, Optional
@@ -209,4 +208,3 @@ class PrometheusMonitor(Monitor):
         async def metrics_handler(self: Any, request: web.Request) -> _web.Response:
             headers = {'Content-Type': 'text/plain; version=0.0.4; charset=utf-8'}
             return cast(_web.Response, Response(body=generate_latest(REGISTRY), headers=headers, status=200))
-```

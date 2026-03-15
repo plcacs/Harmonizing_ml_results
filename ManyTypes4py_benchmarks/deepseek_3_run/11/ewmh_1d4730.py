@@ -1,4 +1,3 @@
-```python
 """
 pyewmh Copyright (C) 2011-2017 Julien Pagès (parkouss)
 Licenced under GNU Lesser General Public License, version 3

@@ -1,4 +1,3 @@
-```python
 """Test cases for Series.plot"""
 from datetime import datetime
 from itertools import chain

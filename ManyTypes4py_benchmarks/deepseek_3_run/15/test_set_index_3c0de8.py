@@ -1,4 +1,3 @@
-```python
 """
 See also: test_reindex.py:TestReindexSetIndex
 """

@@ -1,4 +1,3 @@
-```python
 from collections import deque
 from http import HTTPStatus
 from statistics import median

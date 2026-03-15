@@ -1,4 +1,3 @@
-```python
 import asyncio
 import itertools
 import json

@@ -1,4 +1,3 @@
-```python
 from datetime import date, datetime, timedelta
 from itertools import product
 import re

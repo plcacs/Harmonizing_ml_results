@@ -1,4 +1,3 @@
-```python
 import math
 from typing import Optional, Tuple, TYPE_CHECKING
 from dataclasses import dataclass

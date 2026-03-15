@@ -1,4 +1,3 @@
-```python
 import functools
 from typing import Iterable, Sequence, Tuple, cast, Optional, Iterator, List, Any
 from eth_typing import BlockNumber, Hash32

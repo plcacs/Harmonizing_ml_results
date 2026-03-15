@@ -1,4 +1,3 @@
-```python
 import asyncio
 import re
 from contextlib import suppress

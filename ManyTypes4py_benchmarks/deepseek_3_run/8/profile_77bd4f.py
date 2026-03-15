@@ -1,4 +1,3 @@
-```python
 import os
 from dataclasses import dataclass
 from typing import Any, Dict, Optional, Tuple, Union
@@ -229,4 +228,3 @@ class Profile(HasCredentials):
         raw_profiles = read_profile(flags.PROFILES_DIR)
         profile_name = cls.pick_profile_name(profile_name_override, project_profile_name)
         return cls.from_raw_profiles(raw_profiles=raw_profiles, profile_name=profile_name, renderer=renderer, target_override=target_override, threads_override=threads_override)
-```

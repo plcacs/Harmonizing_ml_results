@@ -1,4 +1,3 @@
-```python
 from typing import Optional, Tuple, Iterable, Callable, Union, List, Any, Dict
 import itertools
 import numpy as np

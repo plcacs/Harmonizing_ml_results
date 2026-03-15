@@ -1,4 +1,3 @@
-```python
 """
 Tests date parsing functionality for all of the
 parsers defined in parsers.py

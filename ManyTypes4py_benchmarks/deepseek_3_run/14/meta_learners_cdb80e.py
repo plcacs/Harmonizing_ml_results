@@ -1,4 +1,3 @@
-```python
 import copy
 import inspect
 from typing import Callable, Dict, List, Tuple, Optional, Any, Union
@@ -228,4 +227,3 @@ def causal_t_classification_learner(df: pd.DataFrame, treatment_col: str, contro
     log = {'causal_t_classification_learner': {**learners_logs}}
     return (p, p(df), log)
 causal_t_classification_learner.__doc__ += learner_return_docstring('Causal T-Learner Classifier')
-```

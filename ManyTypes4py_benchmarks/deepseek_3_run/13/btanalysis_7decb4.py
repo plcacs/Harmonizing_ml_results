@@ -1,4 +1,3 @@
-```python
 """
 Helpers when analyzing backtest data
 """

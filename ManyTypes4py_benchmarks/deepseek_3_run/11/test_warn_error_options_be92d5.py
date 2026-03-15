@@ -1,4 +1,3 @@
-```python
 from typing import Dict, Union, Any, List, Optional
 import pytest
 from dbt.cli.main import dbtRunner, dbtRunnerResult
@@ -152,4 +151,3 @@ class TestEmptyWarnError:
         run_dbt(['run'])
         flags = get_flags()
         assert flags.warn_error_options.silence == ['TestsConfigDeprecation']
-```

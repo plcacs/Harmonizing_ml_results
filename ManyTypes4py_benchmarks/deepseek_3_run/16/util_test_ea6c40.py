@@ -1,4 +1,3 @@
-```python
 import json
 import random
 from typing import NamedTuple, Any, Union, Callable, Dict, List, Tuple, Optional, Sequence

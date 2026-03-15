@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from collections import defaultdict
 from typing import Any, Optional, Dict, List
@@ -263,4 +262,3 @@ class TableNotFoundException(SupersetErrorException):
 
     def __init__(self, message: str) -> None:
         super().__init__(SupersetError(message=message, error_type=SupersetErrorType.TABLE_NOT_FOUND_ERROR, level=ErrorLevel.ERROR))
-```

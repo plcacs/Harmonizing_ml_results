@@ -1,4 +1,3 @@
-```python
 import random
 from math import ceil
 from typing import Tuple, Sequence, Union
@@ -221,4 +220,3 @@ def state_transition(initiator_state: Optional[InitiatorTransferState], state_ch
     else:
         iteration = TransitionResult(initiator_state, [])
     return iteration
-```

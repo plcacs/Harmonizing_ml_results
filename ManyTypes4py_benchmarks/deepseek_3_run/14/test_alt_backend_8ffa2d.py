@@ -1,4 +1,3 @@
-```python
 import itertools
 import math
 import sys

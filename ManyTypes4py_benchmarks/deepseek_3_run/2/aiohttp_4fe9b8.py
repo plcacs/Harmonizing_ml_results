@@ -1,4 +1,3 @@
-```python
 """Aiohttp test utils."""
 import asyncio
 from collections.abc import Iterator
@@ -266,4 +265,3 @@ class MockLongPollSideEffect:
         """
         self.stopping = True
         self.queue_response(exc=ClientError())
-```

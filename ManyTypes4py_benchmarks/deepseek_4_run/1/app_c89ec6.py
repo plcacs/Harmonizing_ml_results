@@ -1,4 +1,3 @@
-```python
 import abc
 import asyncio
 import typing
@@ -382,4 +381,3 @@ class AppT(ServiceT):
     @abc.abstractmethod
     def _start_span_from_rebalancing(self, name: str) -> opentracing.Span:
         ...
-```

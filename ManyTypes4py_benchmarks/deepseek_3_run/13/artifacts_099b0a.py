@@ -1,4 +1,3 @@
-```python
 """
 Interface for creating and reading artifacts.
 """

@@ -1,4 +1,3 @@
-```python
 from typing import List, Iterator, Dict, Tuple, Any, Type, Union, Optional
 import logging
 from os import PathLike
@@ -331,4 +330,3 @@ class Predictor(Registrable):
         if extra_args is None:
             extra_args = {}
         return predictor_class(model, dataset_reader, **extra_args)
-```

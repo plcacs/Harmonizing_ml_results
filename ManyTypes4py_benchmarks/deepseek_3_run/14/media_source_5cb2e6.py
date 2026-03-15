@@ -1,4 +1,3 @@
-```python
 """Nest Media Source implementation.
 
 The Nest MediaSource implementation provides a directory tree of devices and

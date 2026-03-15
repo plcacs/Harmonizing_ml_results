@@ -1,4 +1,3 @@
-```python
 import logging
 import os
 import secrets
@@ -257,4 +256,3 @@ class S3UploadBackend(ZulipUploadBackend):
         if self.delete_file_from_s3(path_id, bucket):
             return export_path
         return None
-```

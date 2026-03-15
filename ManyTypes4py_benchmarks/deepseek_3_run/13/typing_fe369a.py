@@ -1,4 +1,3 @@
-```python
 """
 We need to somehow work with the typing objects. Since the typing objects are
 pretty bare we need to add all the Jedi customizations to make them work as
@@ -334,4 +333,3 @@ class TypedDict(LazyValueWrapper):
         d, = self.inference_state.builtins_module.py__getattribute__('dict')
         result, = d.execute_with_values()
         return result
-```

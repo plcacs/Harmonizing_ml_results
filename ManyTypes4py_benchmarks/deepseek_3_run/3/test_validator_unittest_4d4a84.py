@@ -1,4 +1,3 @@
-```python
 import random
 from typing import List, Tuple, Optional, Any
 from eth2spec.test.context import single_phase, spec_state_test, spec_test, always_bls, with_phases, with_all_phases

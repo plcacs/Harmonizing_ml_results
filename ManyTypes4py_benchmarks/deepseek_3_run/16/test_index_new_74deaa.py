@@ -1,4 +1,3 @@
-```python
 """
 Tests for the Index constructor conducting inference.
 """
@@ -288,4 +287,3 @@ class TestIndexConstructionErrors:
         msg = 'The elements provided in the data cannot all be casted to the dtype int64'
         with pytest.raises(OverflowError, match=msg):
             Index([np.iinfo(np.uint64).max - 1], dtype='int64')
-```

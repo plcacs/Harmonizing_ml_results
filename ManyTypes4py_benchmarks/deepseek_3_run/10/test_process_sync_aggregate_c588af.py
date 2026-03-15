@@ -1,4 +1,3 @@
-```python
 import random
 from typing import Iterator, Set, List, Callable, Any
 from eth2spec.test.helpers.block import build_empty_block_for_next_slot

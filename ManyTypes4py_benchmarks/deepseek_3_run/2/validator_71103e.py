@@ -1,4 +1,3 @@
-```python
 import gc
 import inspect
 import warnings
@@ -235,4 +234,3 @@ def parallel_validator(train_data: pd.DataFrame, split_fn: SplitterFnType, train
         return dissoc(d, key)
     validator_logs = pipe(result, partial(zip, logs), map(lambda log_tuple: assoc(log_tuple[1], 'split_log', log_tuple[0])), map(kwdissoc(key='train_log')), list)
     return assoc(train_log, 'validator_log', validator_logs)
-```

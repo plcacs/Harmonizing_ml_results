@@ -1,4 +1,3 @@
-```python
 import itertools
 import json
 from math import ceil

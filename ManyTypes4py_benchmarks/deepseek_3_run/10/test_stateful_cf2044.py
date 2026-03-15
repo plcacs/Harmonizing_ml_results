@@ -1,4 +1,3 @@
-```python
 import re
 from collections import defaultdict
 from typing import ClassVar, Any, Callable, Dict, List, Optional, Set, Tuple, Union

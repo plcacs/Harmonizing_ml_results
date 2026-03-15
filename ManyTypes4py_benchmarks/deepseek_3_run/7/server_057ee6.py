@@ -1,4 +1,3 @@
-```python
 """
 Command line interface for working with the Prefect API and server.
 """

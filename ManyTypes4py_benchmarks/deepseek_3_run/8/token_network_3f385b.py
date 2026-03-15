@@ -1,4 +1,3 @@
-```python
 import random
 from raiden.transfer import channel
 from raiden.transfer.architecture import Event, StateChange, TransitionResult
@@ -219,4 +218,3 @@ def state_transition(
         assert isinstance(state_change, ReceiveWithdrawExpired), MYPY_ANNOTATION
         iteration = handle_receive_channel_withdraw_expired(token_network_state=token_network_state, state_change=state_change, block_number=block_number, block_hash=block_hash, pseudo_random_generator=pseudo_random_generator)
     return iteration
-```

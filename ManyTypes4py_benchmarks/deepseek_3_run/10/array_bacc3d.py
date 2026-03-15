@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import decimal
 import numbers
@@ -225,4 +224,3 @@ def to_decimal(values: Sequence[Any], context: Optional[decimal.Context] = None)
 def make_data() -> List[decimal.Decimal]:
     return [decimal.Decimal(val) for val in np.random.default_rng(2).random(100)]
 DecimalArray._add_arithmetic_ops()
-```

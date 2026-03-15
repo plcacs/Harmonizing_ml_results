@@ -1,4 +1,3 @@
-```python
 import os
 from typing import Any, Dict, Set, Iterator, Optional, Union, List, FrozenSet, cast
 from unittest import mock

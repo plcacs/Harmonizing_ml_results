@@ -1,4 +1,3 @@
-```python
 """``AbstractRunner`` is the base class for all ``Pipeline`` runner
 implementations.
 """

@@ -1,4 +1,3 @@
-```python
 """The tests for the Light component."""
 from types import ModuleType
 from typing import Literal, Any, Dict, List, Optional, Set, Tuple, Union

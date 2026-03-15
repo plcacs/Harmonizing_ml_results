@@ -1,4 +1,3 @@
-```python
 from datetime import date, datetime, time, timedelta
 import numpy as np
 import pytest

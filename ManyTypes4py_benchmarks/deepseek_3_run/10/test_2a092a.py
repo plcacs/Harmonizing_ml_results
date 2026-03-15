@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import os
 import json
@@ -187,4 +186,3 @@ class InvokeResponse(object):
 
     def __init__(self, payload: Any) -> None:
         self.payload = payload
-```

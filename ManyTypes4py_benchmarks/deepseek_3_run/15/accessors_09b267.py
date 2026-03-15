@@ -1,4 +1,3 @@
-```python
 """
 Spark related features. Usually, the features here are missing in pandas
 but Spark has it.

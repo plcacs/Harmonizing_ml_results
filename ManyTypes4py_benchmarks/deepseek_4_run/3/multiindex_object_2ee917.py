@@ -1,4 +1,3 @@
-```python
 import string
 from typing import Any, List, Tuple, Union
 import numpy as np
@@ -293,4 +292,3 @@ class Append:
     def time_append(self, dtype: str) -> None:
         self.left.append(self.right)
 from .pandas_vb_common import setup
-```

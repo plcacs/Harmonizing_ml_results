@@ -1,4 +1,3 @@
-```python
 from typing import Any, Tuple, List, Optional, Iterator
 from eth2spec.test.helpers.forks import is_post_electra
 
@@ -164,4 +163,3 @@ def run_withdrawals_processing(spec: Any, state: Any, execution_payload: Any, nu
             assert withdrawal.validator_index == request.validator_index
             assert withdrawal.amount == request.amount
     return expected_withdrawals
-```

@@ -1,4 +1,3 @@
-```python
 import datetime as dt
 import decimal
 import math

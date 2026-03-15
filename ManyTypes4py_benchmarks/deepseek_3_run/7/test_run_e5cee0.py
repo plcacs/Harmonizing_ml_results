@@ -1,4 +1,3 @@
-```python
 from argparse import Namespace
 from dataclasses import dataclass
 from importlib import import_module
@@ -157,4 +156,3 @@ class TestRunTask:
             assert not isinstance(expected_result, RunStatus)
             assert issubclass(expected_result, BaseException)
             assert type(e) == expected_result
-```

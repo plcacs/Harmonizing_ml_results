@@ -1,4 +1,3 @@
-```python
 from abc import abstractmethod
 import pathlib
 from typing import Tuple, Any, Callable, Dict, Optional
@@ -200,4 +199,3 @@ class ERC20TransferFromBenchmark(BaseERC20Benchmark):
         txn = txn_info[0]
         self._next_nonce = txn.nonce + 1
         return txn_info
-```

@@ -1,4 +1,3 @@
-```python
 import pytest
 from kedro.pipeline import node, pipeline
 from kedro.pipeline.modular_pipeline import ModularPipelineError

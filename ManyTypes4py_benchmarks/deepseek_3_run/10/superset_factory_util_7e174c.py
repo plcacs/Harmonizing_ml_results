@@ -1,4 +1,3 @@
-```python
 import logging
 from typing import Optional, List, Any
 from flask_appbuilder import Model
@@ -186,4 +185,3 @@ def delete_database(database: Database, do_commit: bool = False) -> None:
     db.session.delete(database)
     if do_commit:
         db.session.commit()
-```

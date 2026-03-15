@@ -1,4 +1,3 @@
-```python
 from collections import deque
 from datetime import datetime, timezone
 from enum import Enum

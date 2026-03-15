@@ -1,4 +1,3 @@
-```python
 from org.transcrypt.stubs.browser import __pragma__
 from re.translate import translate
 from typing import Optional, Union, Tuple, List, Dict, Callable, Iterator, Any, Iterable

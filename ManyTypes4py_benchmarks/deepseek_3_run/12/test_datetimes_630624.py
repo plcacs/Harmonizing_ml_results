@@ -1,4 +1,3 @@
-```python
 """
 Tests for DatetimeArray
 """

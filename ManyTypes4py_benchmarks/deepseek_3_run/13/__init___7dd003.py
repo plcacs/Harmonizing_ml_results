@@ -1,4 +1,3 @@
-```python
 import io
 import logging
 import os
@@ -249,4 +248,3 @@ def upload_export_tarball(realm: Realm, tarball_path: str, percent_callback: Opt
 
 def delete_export_tarball(export_path: str) -> None:
     return upload_backend.delete_export_tarball(export_path)
-```

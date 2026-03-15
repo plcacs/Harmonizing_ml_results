@@ -1,4 +1,3 @@
-```python
 """Test cases for time series specific (freq conversion, etc)"""
 from datetime import date, datetime, time, timedelta
 import pickle

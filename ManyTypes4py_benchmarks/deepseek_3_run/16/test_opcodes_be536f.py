@@ -1,4 +1,3 @@
-```python
 import pytest
 import warnings
 from eth_utils import ValidationError, decode_hex, encode_hex, hexstr_if_str, int_to_big_endian, to_bytes, to_canonical_address

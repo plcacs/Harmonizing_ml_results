@@ -1,4 +1,3 @@
-```python
 """
 Tests parsers ability to read and parse non-local files
 and hence require a network connection to be read.
@@ -192,4 +191,3 @@ class TestS3:
         expected = read_feather(feather_file)
         res = read_feather(f's3://{s3_public_bucket_with_data.name}/simple_dataset.feather', storage_options=s3so)
         tm.assert_frame_equal(expected, res)
-```

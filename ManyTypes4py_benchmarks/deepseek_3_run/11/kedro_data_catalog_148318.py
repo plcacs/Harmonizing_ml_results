@@ -1,4 +1,3 @@
-```python
 """``KedroDataCatalog`` stores instances of ``AbstractDataset`` implementations to
 provide ``load`` and ``save`` capabilities from anywhere in the program. To
 use a ``KedroDataCatalog``, you need to instantiate it with a dictionary of datasets.

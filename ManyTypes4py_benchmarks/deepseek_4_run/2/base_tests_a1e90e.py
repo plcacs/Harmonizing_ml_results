@@ -1,4 +1,3 @@
-```python
 """Unit tests for Superset"""
 from datetime import datetime
 from importlib.util import find_spec

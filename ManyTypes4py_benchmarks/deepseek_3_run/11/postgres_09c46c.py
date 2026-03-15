@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import logging
 import re
@@ -255,4 +254,3 @@ class PostgresEngineSpec(BasicParametersMixin, PostgresBaseEngineSpec):
         except Exception:
             return False
         return True
-```

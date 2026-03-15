@@ -1,4 +1,3 @@
-```python
 import os
 import subprocess
 from pathlib import Path
@@ -135,4 +134,3 @@ class RestartNode:
 @pytest.fixture
 def restart_node() -> RestartNode:
     return RestartNode()
-```

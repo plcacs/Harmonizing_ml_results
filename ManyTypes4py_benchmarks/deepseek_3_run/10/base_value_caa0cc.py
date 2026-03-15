@@ -1,4 +1,3 @@
-```python
 """
 Values are the "values" that Python would return. However Values are at the
 same time also the "values" that a user is currently sitting in.

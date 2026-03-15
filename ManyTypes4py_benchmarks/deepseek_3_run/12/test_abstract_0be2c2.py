@@ -1,4 +1,3 @@
-```python
 import pytest
 from prefect.blocks.abstract import CredentialsBlock, DatabaseBlock, JobBlock, JobRun, NotificationBlock, ObjectStorageBlock, SecretBlock
 from prefect.exceptions import PrefectException
@@ -258,4 +257,3 @@ class TestSecretBlock:
         a_secret_block.delete_secret()
         with pytest.raises(KeyError, match='Secret does not exist'):
             assert a_secret_block.read_secret()
-```

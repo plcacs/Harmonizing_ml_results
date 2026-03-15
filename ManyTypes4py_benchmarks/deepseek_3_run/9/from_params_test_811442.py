@@ -1,4 +1,3 @@
-```python
 from typing import Dict, Iterable, List, Mapping, Optional, Set, Tuple, Union, Any, TypeVar, Type, Callable
 import pytest
 import torch

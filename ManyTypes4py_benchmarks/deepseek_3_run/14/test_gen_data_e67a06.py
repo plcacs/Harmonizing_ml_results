@@ -1,4 +1,3 @@
-```python
 import sys
 from functools import reduce
 from itertools import zip_longest

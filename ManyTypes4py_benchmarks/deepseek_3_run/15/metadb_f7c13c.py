@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import datetime
 import decimal
@@ -210,4 +209,3 @@ class SupersetShillelaghAdapter(Adapter):
         with self.engine_context() as engine:
             connection = engine.connect()
             connection.execute(query)
-```

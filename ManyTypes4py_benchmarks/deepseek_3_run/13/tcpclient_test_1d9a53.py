@@ -1,4 +1,3 @@
-```python
 from contextlib import closing
 import getpass
 import socket

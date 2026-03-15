@@ -1,4 +1,3 @@
-```python
 from collections.abc import Callable
 from datetime import datetime
 from typing import Any, Optional, Union, Tuple, List, Dict, Set
@@ -155,4 +154,3 @@ def get_topic_display_name(topic_name: str, language: str) -> str:
         with override_language(language):
             return _(Message.EMPTY_TOPIC_FALLBACK_NAME)
     return topic_name
-```

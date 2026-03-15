@@ -1,4 +1,3 @@
-```python
 import json
 from pathlib import Path
 from unittest.mock import AsyncMock, MagicMock
@@ -255,4 +254,3 @@ def gcp_credentials(monkeypatch: pytest.MonkeyPatch, google_auth: MagicMock, moc
     gcp_credentials_mock.get_job_service_client.return_value = gcp_credentials_mock.job_service_client
     gcp_credentials_mock.get_job_service_async_client.return_value = gcp_credentials_mock.job_service_async_client
     return gcp_credentials_mock
-```

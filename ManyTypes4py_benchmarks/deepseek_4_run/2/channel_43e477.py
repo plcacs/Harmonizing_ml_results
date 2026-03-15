@@ -1,4 +1,3 @@
-```python
 import random
 from enum import Enum
 from functools import singledispatch

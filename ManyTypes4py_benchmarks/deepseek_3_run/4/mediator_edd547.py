@@ -1,4 +1,3 @@
-```python
 import itertools
 import operator
 import random

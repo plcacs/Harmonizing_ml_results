@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import sys
 import typing
@@ -174,4 +173,3 @@ class Starlette:
             self.add_middleware(BaseHTTPMiddleware, dispatch=func)
             return func
         return decorator
-```

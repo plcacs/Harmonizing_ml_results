@@ -1,4 +1,3 @@
-```python
 """Provide functionality to stream video source.
 
 Components use create_stream with a stream source (e.g. an rtsp url) to create

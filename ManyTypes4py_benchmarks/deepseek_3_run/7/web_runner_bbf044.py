@@ -1,4 +1,3 @@
-```python
 import asyncio
 import signal
 import socket
@@ -283,4 +282,3 @@ class AppRunner(BaseRunner[Request]):
 
     async def _cleanup_server(self) -> None:
         await self._app.cleanup()
-```

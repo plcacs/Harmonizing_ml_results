@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import re
 from typing import Any, List, Dict, Tuple, Pattern
@@ -201,4 +200,3 @@ class TestMemoryDatasetBehaviour:
         assert 'MemOutput1' in output
         assert 'MemOutput2' in output
         assert 'RegularOutput' not in output
-```

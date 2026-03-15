@@ -1,4 +1,3 @@
-```python
 import logging
 import random
 from abc import abstractmethod
@@ -315,4 +314,3 @@ class BaseEnvironment(gym.Env):
         initialized env for tensorboard callback
         """
         return self.actions
-```

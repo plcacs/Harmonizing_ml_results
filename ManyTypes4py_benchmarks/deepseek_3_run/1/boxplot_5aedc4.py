@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import TYPE_CHECKING, Literal, NamedTuple, Any, Sequence, Optional, Union, Tuple, Dict, List
 import warnings
@@ -322,4 +321,3 @@ def boxplot_frame_groupby(grouped: Any, subplots: bool = True, column: Optional[
             column = list(multi_key.values)
         ret = df.boxplot(column=column, fontsize=fontsize, rot=rot, grid=grid, ax=ax, figsize=figsize, layout=layout, **kwds)
     return ret
-```

@@ -1,4 +1,3 @@
-```python
 """Fixtures for Plex tests."""
 from collections.abc import Generator
 from unittest.mock import AsyncMock, patch

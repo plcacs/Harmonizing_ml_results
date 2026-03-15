@@ -1,4 +1,3 @@
-```python
 """Tasks for interacting with GCP Cloud Storage."""
 import asyncio
 import os

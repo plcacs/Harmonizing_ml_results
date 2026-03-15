@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from contextlib import contextmanager
 from typing import TYPE_CHECKING, Any, Optional, Union, List, Tuple, Dict

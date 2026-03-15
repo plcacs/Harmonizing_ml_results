@@ -1,4 +1,3 @@
-```python
 import pytest
 from dbt.tests.util import run_dbt
 from tests.functional.test_selection.fixtures import models, tests
@@ -255,4 +254,3 @@ class TestExpansionWithSelectors(TestSelectionExpansion):
         expected = ['cf_a_b', 'cf_a_src', 'just_a', 'relationships_model_a_fun__fun__ref_model_b_', 'relationships_model_a_fun__fun__source_my_src_my_tbl_', 'unique_model_a_fun']
         self.list_tests_and_assert(include=None, exclude=None, expected_tests=expected, selector_name='model_a_buildable_indirect_selection')
         self.run_tests_and_assert(include=None, exclude=None, expected_tests=expected, selector_name='model_a_buildable_indirect_selection')
-```

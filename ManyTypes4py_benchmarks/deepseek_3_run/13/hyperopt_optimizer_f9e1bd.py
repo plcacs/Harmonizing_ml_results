@@ -1,4 +1,3 @@
-```python
 """
 This module contains the hyperopt optimizer class, which needs to be pickled
 and will be sent to the hyperopt worker processes.
@@ -255,4 +254,3 @@ class HyperOptimizer:
             dump(preprocessed, self.data_pickle_file)
         else:
             dump(data, self.data_pickle_file)
-```

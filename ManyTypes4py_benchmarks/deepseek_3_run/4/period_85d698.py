@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from datetime import datetime, timedelta
 from typing import TYPE_CHECKING, Any, overload
@@ -217,4 +216,3 @@ def period_range(start: Any = None, end: Any = None, periods: int | None = None,
     dtype = PeriodDtype(freq)
     data = PeriodArray(data, dtype=dtype)
     return PeriodIndex(data, name=name)
-```

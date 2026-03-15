@@ -1,4 +1,3 @@
-```python
 """
 Dataprovider
 Responsible to provide data to the bot

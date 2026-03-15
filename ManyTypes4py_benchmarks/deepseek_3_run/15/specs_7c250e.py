@@ -1,4 +1,3 @@
-```python
 """A module containing specifications for all callable hooks in the Kedro's execution timeline.
 For more information about these specifications, please visit
 [Pluggy's documentation](https://pluggy.readthedocs.io/en/stable/#specs)
@@ -302,4 +301,3 @@ class KedroContextSpecs:
             context: The context that was created.
         """
         pass
-```

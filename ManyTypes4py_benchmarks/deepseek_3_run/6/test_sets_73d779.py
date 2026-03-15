@@ -1,4 +1,3 @@
-```python
 import faust
 import pytest
 from faust.tables.sets import ChangeloggedSet, ChangeloggedSetManager, OPERATION_ADD, OPERATION_DISCARD, OPERATION_UPDATE, SetAction, SetManagerOperation, SetTableManager, SetWindowSet
@@ -279,4 +278,3 @@ class test_SetTable:
 
     def test__getitem__(self, *, stable: Any) -> None:
         assert stable['foo'] is not None
-```

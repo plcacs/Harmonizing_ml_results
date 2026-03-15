@@ -1,4 +1,3 @@
-```python
 """
 :mod:`jedi.inference.imports` is here to resolve import statements and return
 the modules/classes/functions/whatever, which they stand for. However there's

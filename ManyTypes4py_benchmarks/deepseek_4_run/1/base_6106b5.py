@@ -1,4 +1,3 @@
-```python
 """Faust Application.
 
 An app is an instance of the Faust library.

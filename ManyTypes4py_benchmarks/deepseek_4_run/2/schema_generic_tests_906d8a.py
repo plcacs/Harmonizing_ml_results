@@ -1,4 +1,3 @@
-```python
 import itertools
 import os
 import pathlib
@@ -217,4 +216,3 @@ class SchemaGenericTestParser(SimpleParser):
 
     def generate_unique_id(self, resource_name: str, hash: Optional[str] = None) -> str:
         return '.'.join(filter(None, [self.resource_type, self.project.project_name, resource_name, hash]))
-```

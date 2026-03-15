@@ -1,4 +1,3 @@
-```python
 from typing import Dict, Tuple, Union, List, Any, Optional, Callable
 import numpy as np
 import pytest

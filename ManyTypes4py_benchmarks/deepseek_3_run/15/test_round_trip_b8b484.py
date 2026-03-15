@@ -1,4 +1,3 @@
-```python
 import datetime
 import re
 from typing import Any, Callable, Optional, Union

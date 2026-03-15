@@ -1,4 +1,3 @@
-```python
 from datetime import timedelta
 from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 from unittest import mock

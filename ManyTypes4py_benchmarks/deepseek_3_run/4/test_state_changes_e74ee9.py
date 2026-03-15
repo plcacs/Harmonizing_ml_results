@@ -1,4 +1,3 @@
-```python
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field, replace
 from random import Random

@@ -1,4 +1,3 @@
-```python
 """
 Module consolidating common testing functions for checking plotting.
 """

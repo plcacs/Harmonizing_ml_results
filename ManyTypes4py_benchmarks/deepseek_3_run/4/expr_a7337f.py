@@ -1,4 +1,3 @@
-```python
 """
 :func:`~pandas.eval` parsers.
 """

@@ -1,4 +1,3 @@
-```python
 import enum
 from collections import defaultdict
 from dataclasses import dataclass, field, replace

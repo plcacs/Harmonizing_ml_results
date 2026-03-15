@@ -1,4 +1,3 @@
-```python
 from typing import Optional, Iterable, List, Union, Tuple, Any, Dict, Callable
 import numpy as np
 from checklist.test_suite import TestSuite

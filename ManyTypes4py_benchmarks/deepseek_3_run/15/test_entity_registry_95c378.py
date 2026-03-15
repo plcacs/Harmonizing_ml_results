@@ -1,4 +1,3 @@
-```python
 """Tests for the Entity Registry."""
 from datetime import datetime, timedelta
 from functools import partial

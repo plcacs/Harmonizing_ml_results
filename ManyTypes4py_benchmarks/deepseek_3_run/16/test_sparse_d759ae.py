@@ -1,4 +1,3 @@
-```python
 """
 This file contains a minimal set of tests for compliance with the extension
 array interface test suite, and should contain no other tests.

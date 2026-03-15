@@ -1,4 +1,3 @@
-```python
 from collections.abc import Mapping, Sequence
 from datetime import datetime
 from typing import TypedDict, Any, Dict, List, Optional
@@ -176,4 +175,3 @@ def do_change_user_group_permission_setting(user_group: NamedUserGroup, setting_
     RealmAuditLog.objects.create(realm=user_group.realm, acting_user=acting_user, event_type=AuditLogEventType.USER_GROUP_GROUP_BASED_SETTING_CHANGED, event_time=timezone_now(), modified_user_group=user_group, extra_data={RealmAuditLog.OLD_VALUE: get_group_setting_value_for_audit_log_data(old_setting_api_value), RealmAuditLog.NEW_VALUE: get_group_setting_value_for_audit_log_data(new_setting_api_value), 'property': setting_name})
     event_data_dict = {setting_name: new_setting_api_value}
     do_send_user_group_update_event(user_group, event_data_dict)
-```

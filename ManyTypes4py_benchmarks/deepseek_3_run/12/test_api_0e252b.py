@@ -1,4 +1,3 @@
-```python
 """
 Tests for L{pyflakes.scripts.pyflakes}.
 """

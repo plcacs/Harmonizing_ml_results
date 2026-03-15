@@ -1,4 +1,3 @@
-```python
 from collections import deque
 from copy import copy
 from dataclasses import dataclass, is_dataclass

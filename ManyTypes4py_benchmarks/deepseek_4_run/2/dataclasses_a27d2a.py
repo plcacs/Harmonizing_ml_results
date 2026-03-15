@@ -1,4 +1,3 @@
-```python
 """
 The main purpose is to enhance stdlib dataclasses by adding validation
 A pydantic dataclass can be generated from scratch or from a stdlib one.

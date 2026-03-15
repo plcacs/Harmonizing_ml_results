@@ -1,4 +1,3 @@
-```python
 """
 Provide the class Message and its subclasses.
 """
@@ -379,4 +378,3 @@ class PercentFormatStarRequiresSequence(Message):
 
     def __init__(self, filename: str, loc: Any) -> None:
         Message.__init__(self, filename, loc)
-```

@@ -1,4 +1,3 @@
-```python
 """Monitor using Statsd."""
 import typing
 from typing import Any, Dict, Optional, cast
@@ -167,4 +166,3 @@ class StatsdMonitor(Monitor):
     def client(self) -> "statsd.StatsClient":
         """Return statsd client."""
         return self._new_statsd_client()
-```

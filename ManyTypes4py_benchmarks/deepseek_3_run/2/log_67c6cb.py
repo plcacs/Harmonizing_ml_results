@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import functools
 import inspect
@@ -215,4 +214,3 @@ class StdOutEventLogger(AbstractEventLogger):
     def log(self, user_id: Optional[int], action: str, dashboard_id: Optional[int], duration_ms: Optional[int], slice_id: Optional[int], referrer: Optional[str], curated_payload: Dict[str, Any], curated_form_data: Dict[str, Any], *args: Any, **kwargs: Any) -> None:
         data = dict(user_id=user_id, action=action, dashboard_id=dashboard_id, duration_ms=duration_ms, slice_id=slice_id, referrer=referrer, curated_payload=curated_payload, curated_form_data=curated_form_data, **kwargs)
         print('StdOutEventLogger: ', data)
-```

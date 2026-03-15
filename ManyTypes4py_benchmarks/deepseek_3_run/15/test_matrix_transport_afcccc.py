@@ -1,4 +1,3 @@
-```python
 from collections import defaultdict
 import gevent
 import pytest

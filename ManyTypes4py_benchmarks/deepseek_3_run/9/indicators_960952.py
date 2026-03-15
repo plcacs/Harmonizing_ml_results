@@ -1,4 +1,3 @@
-```python
 import warnings
 from datetime import datetime, timedelta
 from typing import Optional, Union, Literal, overload

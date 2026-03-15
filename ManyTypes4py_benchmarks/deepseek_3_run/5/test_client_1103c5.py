@@ -1,4 +1,3 @@
-```python
 """The tests for the MQTT client."""
 import asyncio
 from datetime import timedelta

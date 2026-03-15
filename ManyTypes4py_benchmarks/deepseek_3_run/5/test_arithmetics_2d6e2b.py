@@ -1,4 +1,3 @@
-```python
 import operator
 from typing import Any, Callable, List, Optional, Tuple, Union
 import numpy as np

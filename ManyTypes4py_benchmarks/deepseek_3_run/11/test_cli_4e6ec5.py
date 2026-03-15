@@ -1,4 +1,3 @@
-```python
 from contextlib import contextmanager
 import io
 import os

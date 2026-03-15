@@ -1,4 +1,3 @@
-```python
 import os
 from pathlib import Path
 from typing import Any, Callable, TextIO, Dict, List, Union
@@ -177,4 +176,3 @@ def run_raiden_service(config: RaidenConfig, eth_rpc_endpoint: str, address: Opt
     raiden_service = RaidenService(config=config, rpc_client=rpc_client, proxy_manager=proxy_manager, query_start_block=smart_contracts_start_at, raiden_bundle=raiden_bundle, services_bundle=services_bundle, transport=matrix_transport, raiden_event_handler=event_handler, message_handler=message_handler, routing_mode=routing_mode, api_server=api_server)
     raiden_service.start()
     return raiden_service
-```

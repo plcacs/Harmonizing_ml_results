@@ -1,4 +1,3 @@
-```python
 """Base-interface for sensors."""
 from time import monotonic
 from typing import Any, Dict, Iterator, Mapping, Optional, Set
@@ -236,4 +235,3 @@ class SensorDelegate(SensorDelegateT):
 
     def __repr__(self) -> str:
         return f'<{type(self).__name__}: {self._sensors!r}>'
-```

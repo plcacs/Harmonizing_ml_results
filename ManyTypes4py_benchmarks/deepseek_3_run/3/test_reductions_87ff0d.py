@@ -1,4 +1,3 @@
-```python
 import builtins
 import datetime as dt
 from string import ascii_lowercase

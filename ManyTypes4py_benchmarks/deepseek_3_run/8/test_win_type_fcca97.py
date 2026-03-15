@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pytest
 from pandas import DataFrame, Series, Timedelta, concat, date_range

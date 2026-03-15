@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pytest
 from pandas.compat import is_platform_arm

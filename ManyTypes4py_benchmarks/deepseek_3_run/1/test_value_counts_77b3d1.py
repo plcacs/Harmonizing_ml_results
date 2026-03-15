@@ -1,4 +1,3 @@
-```python
 """
 these are systematically testing all of the args to value_counts
 with different size combinations. This is to ensure stability of the sorting

@@ -1,4 +1,3 @@
-```python
 """Test selectors."""
 from enum import Enum
 from typing import Any, List, Dict, Union, Optional, Tuple, Sequence, Callable

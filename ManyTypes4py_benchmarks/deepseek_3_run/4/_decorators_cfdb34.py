@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from functools import wraps
 import inspect
@@ -378,4 +377,3 @@ def set_module(module: str | None) -> Callable[[F], F]:
             func.__module__ = module
         return func
     return decorator
-```

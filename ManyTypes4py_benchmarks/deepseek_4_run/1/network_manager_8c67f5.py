@@ -1,4 +1,3 @@
-```python
 """Network Manager module."""
 import asyncio
 import base64

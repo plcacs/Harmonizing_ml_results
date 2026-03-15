@@ -1,4 +1,3 @@
-```python
 import base64
 from distutils.version import LooseVersion
 from io import BytesIO

@@ -1,4 +1,3 @@
-```python
 """Command line interface for chalice.
 
 Contains commands for deploying chalice.

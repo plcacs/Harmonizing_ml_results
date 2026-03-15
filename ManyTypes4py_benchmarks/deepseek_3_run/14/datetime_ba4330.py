@@ -1,4 +1,3 @@
-```python
 import datetime as dt
 import operator as op
 import zoneinfo
@@ -321,4 +320,3 @@ def timezones(*, no_cache: bool = False) -> SearchStrategy:
     """
     check_type(bool, no_cache, 'no_cache')
     return timezone_keys().map(zoneinfo.ZoneInfo.no_cache if no_cache else zoneinfo.ZoneInfo)
-```

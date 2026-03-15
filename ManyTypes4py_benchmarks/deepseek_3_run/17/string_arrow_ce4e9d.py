@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import operator
 import re
@@ -283,4 +282,3 @@ class ArrowStringArray(ObjectStringArrayMixin, ArrowExtensionArray, BaseStringAr
 
 class ArrowStringArrayNumpySemantics(ArrowStringArray):
     _na_value = np.nan
-```

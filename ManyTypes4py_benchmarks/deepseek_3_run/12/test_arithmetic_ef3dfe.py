@@ -1,4 +1,3 @@
-```python
 from datetime import date, timedelta, timezone
 from decimal import Decimal
 import operator

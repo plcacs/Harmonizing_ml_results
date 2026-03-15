@@ -1,4 +1,3 @@
-```python
 """
 Tests the 'read_fwf' function in parsers.py. This
 test suite is independent of the others because the

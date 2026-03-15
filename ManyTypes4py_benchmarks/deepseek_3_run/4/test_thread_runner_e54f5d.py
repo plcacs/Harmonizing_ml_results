@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import re
 from concurrent.futures import ThreadPoolExecutor
@@ -182,4 +181,3 @@ class TestSuggestResumeScenario:
         with pytest.raises(Exception, match='test exception'):
             ThreadRunner(max_workers=1).run(test_pipeline, persistent_dataset_catalog, hook_manager=_create_hook_manager())
         assert re.search(expected_pattern, caplog.text)
-```

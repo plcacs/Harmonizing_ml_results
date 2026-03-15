@@ -1,4 +1,3 @@
-```python
 import copy
 from datetime import timedelta
 from typing import Any, Dict, Generator, List, Literal, Optional, Union

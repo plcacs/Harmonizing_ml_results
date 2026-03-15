@@ -1,4 +1,3 @@
-```python
 import asyncio
 import operator
 from copy import copy

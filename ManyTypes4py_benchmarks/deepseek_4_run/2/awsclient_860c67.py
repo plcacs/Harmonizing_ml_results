@@ -1,4 +1,3 @@
-```python
 """Simplified AWS client.
 
 This module abstracts the botocore session and clients

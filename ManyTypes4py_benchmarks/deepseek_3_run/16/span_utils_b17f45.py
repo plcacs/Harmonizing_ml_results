@@ -1,4 +1,3 @@
-```python
 from typing import Callable, List, Set, Tuple, TypeVar, Optional, Any, Sequence
 import warnings
 from allennlp.common.checks import ConfigurationError
@@ -366,4 +365,3 @@ def bmes_tags_to_spans(
         prev_bmes_tag = bmes_tag
     classes_to_ignore = classes_to_ignore or []
     return [(span[0], (span[1][0], span[1][1])) for span in spans if span[0] not in classes_to_ignore]
-```

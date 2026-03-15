@@ -1,4 +1,3 @@
-```python
 from collections import namedtuple
 from collections.abc import Generator
 from contextlib import contextmanager

@@ -1,4 +1,3 @@
-```python
 import io
 import json
 import os

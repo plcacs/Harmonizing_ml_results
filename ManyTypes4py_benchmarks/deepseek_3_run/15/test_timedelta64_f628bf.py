@@ -1,4 +1,3 @@
-```python
 from datetime import datetime, timedelta
 from typing import Any, List, Optional, Sequence, Union
 import numpy as np

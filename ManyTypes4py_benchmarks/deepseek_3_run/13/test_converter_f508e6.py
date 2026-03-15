@@ -1,4 +1,3 @@
-```python
 import logging
 from shutil import copyfile
 from typing import Any, Dict, List, Optional, Tuple, Union

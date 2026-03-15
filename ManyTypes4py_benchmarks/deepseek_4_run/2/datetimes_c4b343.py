@@ -1,4 +1,3 @@
-```python
 import datetime
 from functools import partial
 from typing import Any, Optional, Union, TYPE_CHECKING
@@ -200,4 +199,3 @@ class DatetimeIndex(Index):
 def disallow_nanoseconds(freq: Union[str, 'BaseOffset']) -> None:
     if freq in ['N', 'ns']:
         raise ValueError('nanoseconds is not supported')
-```

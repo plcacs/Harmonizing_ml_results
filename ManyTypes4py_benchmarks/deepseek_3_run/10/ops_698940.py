@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import final, Any, Callable, Type, Union, Optional, TYPE_CHECKING
 import numpy as np
@@ -209,4 +208,3 @@ class BaseUnaryOpsTests(BaseOpsUtil):
         else:
             alt = ufunc(data)
             tm.assert_extension_array_equal(result, alt)
-```

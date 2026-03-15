@@ -1,4 +1,3 @@
-```python
 """Demo implementation of the media player."""
 from __future__ import annotations
 from datetime import datetime
@@ -261,4 +260,3 @@ class DemoBrowsePlayer(AbstractDemoPlayer):
 class DemoGroupPlayer(AbstractDemoPlayer):
     """A Demo media player that supports grouping."""
     _attr_supported_features = YOUTUBE_PLAYER_SUPPORT | MediaPlayerEntityFeature.GROUPING | MediaPlayerEntityFeature.TURN_OFF
-```

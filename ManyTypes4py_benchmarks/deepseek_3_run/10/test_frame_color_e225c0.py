@@ -1,4 +1,3 @@
-```python
 """Test cases for DataFrame.plot"""
 import re
 from typing import Any, Dict, List, Optional, Tuple, Union

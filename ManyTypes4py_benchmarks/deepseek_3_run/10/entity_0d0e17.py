@@ -1,4 +1,3 @@
-```python
 """Provide entity classes for group entities."""
 from __future__ import annotations
 from abc import abstractmethod
@@ -330,4 +329,3 @@ def async_get_component(hass: HomeAssistant) -> EntityComponent[Group]:
     if (component := hass.data.get(DATA_COMPONENT)) is None:
         component = hass.data[DATA_COMPONENT] = EntityComponent[Group](_PACKAGE_LOGGER, DOMAIN, hass)
     return component
-```

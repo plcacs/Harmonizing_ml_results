@@ -1,4 +1,3 @@
-```python
 from typing import List, Optional, Any, Tuple
 from eth_hash.auto import keccak
 from hashlib import sha256
@@ -198,4 +197,3 @@ def build_state_with_execution_payload_header(spec: Any, state: Any, execution_p
 
 def get_random_tx(rng: Any) -> bytes:
     return get_random_bytes_list(rng, rng.randint(1, 1000))
-```

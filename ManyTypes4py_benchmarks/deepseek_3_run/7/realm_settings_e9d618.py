@@ -1,4 +1,3 @@
-```python
 import datetime
 import logging
 import zoneinfo
