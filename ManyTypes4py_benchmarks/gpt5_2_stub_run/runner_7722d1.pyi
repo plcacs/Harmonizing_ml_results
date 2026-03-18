@@ -1,0 +1,73 @@
+from __future__ import annotations
+
+import logging
+from abc import ABC, abstractmethod
+from concurrent.futures import Executor
+from typing import Any, Collection, Dict, Iterable, List, Optional, Set
+
+from kedro.io import CatalogProtocol
+from kedro.pipeline import Pipeline
+from pluggy import PluginManager
+
+_MAX_WINDOWS_WORKERS: int = ...
+
+class AbstractRunner(ABC):
+    def __init__(self, is_async: bool = ..., extra_dataset_patterns: Optional[Any] = ...) -> None: ...
+    @property
+    def _logger(self) -> logging.Logger: ...
+    def run(
+        self,
+        pipeline: Pipeline,
+        catalog: CatalogProtocol,
+        hook_manager: Optional[PluginManager] = ...,
+        session_id: Optional[Any] = ...,
+    ) -> Dict[str, Any]: ...
+    def run_only_missing(
+        self,
+        pipeline: Pipeline,
+        catalog: CatalogProtocol,
+        hook_manager: PluginManager,
+    ) -> Dict[str, Any]: ...
+    @abstractmethod
+    def _get_executor(self, max_workers: Optional[int]) -> Executor: ...
+    @abstractmethod
+    def _run(
+        self,
+        pipeline: Pipeline,
+        catalog: CatalogProtocol,
+        hook_manager: Optional[PluginManager] = ...,
+        session_id: Optional[Any] = ...,
+    ) -> None: ...
+    @staticmethod
+    def _raise_runtime_error(todo_nodes: Any, done_nodes: Any, ready: Any, done: Any) -> None: ...
+    def _suggest_resume_scenario(self, pipeline: Pipeline, done_nodes: Any, catalog: CatalogProtocol) -> None: ...
+    @staticmethod
+    def _release_datasets(node: Any, catalog: CatalogProtocol, load_counts: Any, pipeline: Pipeline) -> None: ...
+    def _validate_catalog(self, catalog: CatalogProtocol, pipeline: Pipeline) -> None: ...
+    def _validate_nodes(self, node: Any) -> None: ...
+    def _set_manager_datasets(self, catalog: CatalogProtocol, pipeline: Pipeline) -> None: ...
+    def _get_required_workers_count(self, pipeline: Pipeline) -> int: ...
+    @classmethod
+    def _validate_max_workers(cls, max_workers: Optional[int]) -> int: ...
+
+def _find_nodes_to_resume_from(
+    pipeline: Pipeline,
+    unfinished_nodes: Collection[Any],
+    catalog: CatalogProtocol,
+) -> Set[str]: ...
+def _find_all_nodes_for_resumed_pipeline(
+    pipeline: Pipeline,
+    unfinished_nodes: Iterable[Any],
+    catalog: CatalogProtocol,
+) -> Set[Any]: ...
+def _nodes_with_external_inputs(nodes_of_interest: Iterable[Any]) -> Set[Any]: ...
+def _enumerate_non_persistent_inputs(node: Any, catalog: CatalogProtocol) -> Set[str]: ...
+def _enumerate_nodes_with_outputs(pipeline: Pipeline, outputs: Iterable[str]) -> List[Any]: ...
+def _find_initial_node_group(pipeline: Pipeline, nodes: Iterable[Any]) -> List[Any]: ...
+def run_node(
+    node: Any,
+    catalog: CatalogProtocol,
+    hook_manager: PluginManager,
+    is_async: bool = ...,
+    session_id: Optional[Any] = ...,
+) -> Any: ...

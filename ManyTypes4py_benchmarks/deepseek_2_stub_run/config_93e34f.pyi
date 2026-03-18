@@ -1,0 +1,126 @@
+```python
+from __future__ import annotations
+from typing import Dict, Any, Optional, List, Union
+
+StrMap = Dict[str, Any]
+
+class Config:
+    def __init__(
+        self,
+        chalice_stage: str = ...,
+        function_name: str = ...,
+        user_provided_params: Optional[Dict[str, Any]] = ...,
+        config_from_disk: Optional[Dict[str, Any]] = ...,
+        default_params: Optional[Dict[str, Any]] = ...,
+        layers: Any = ...
+    ) -> None: ...
+    
+    @classmethod
+    def create(
+        cls,
+        chalice_stage: str = ...,
+        function_name: str = ...,
+        **kwargs: Any
+    ) -> Config: ...
+    
+    @property
+    def profile(self) -> Any: ...
+    
+    @property
+    def app_name(self) -> Any: ...
+    
+    @property
+    def project_dir(self) -> Any: ...
+    
+    @property
+    def chalice_app(self) -> Any: ...
+    
+    @property
+    def config_from_disk(self) -> Dict[str, Any]: ...
+    
+    @property
+    def lambda_python_version(self) -> str: ...
+    
+    @property
+    def log_retention_in_days(self) -> Any: ...
+    
+    @property
+    def layers(self) -> Any: ...
+    
+    @property
+    def api_gateway_custom_domain(self) -> Any: ...
+    
+    @property
+    def websocket_api_custom_domain(self) -> Any: ...
+    
+    @property
+    def config_file_version(self) -> str: ...
+    
+    @property
+    def api_gateway_stage(self) -> Any: ...
+    
+    @property
+    def api_gateway_endpoint_type(self) -> Any: ...
+    
+    @property
+    def api_gateway_endpoint_vpce(self) -> Any: ...
+    
+    @property
+    def api_gateway_policy_file(self) -> Any: ...
+    
+    @property
+    def minimum_compression_size(self) -> Any: ...
+    
+    @property
+    def iam_policy_file(self) -> Any: ...
+    
+    @property
+    def lambda_memory_size(self) -> Any: ...
+    
+    @property
+    def lambda_timeout(self) -> Any: ...
+    
+    @property
+    def automatic_layer(self) -> bool: ...
+    
+    @property
+    def iam_role_arn(self) -> Any: ...
+    
+    @property
+    def manage_iam_role(self) -> bool: ...
+    
+    @property
+    def autogen_policy(self) -> Any: ...
+    
+    @property
+    def xray_enabled(self) -> Any: ...
+    
+    @property
+    def environment_variables(self) -> Dict[str, Any]: ...
+    
+    @property
+    def tags(self) -> Dict[str, str]: ...
+    
+    @property
+    def security_group_ids(self) -> Any: ...
+    
+    @property
+    def subnet_ids(self) -> Any: ...
+    
+    @property
+    def reserved_concurrency(self) -> Any: ...
+    
+    def scope(self, chalice_stage: str, function_name: str) -> Config: ...
+    
+    def deployed_resources(self, chalice_stage_name: str) -> DeployedResources: ...
+
+class DeployedResources:
+    def __init__(self, deployed_values: Dict[str, Any]) -> None: ...
+    
+    @classmethod
+    def empty(cls) -> DeployedResources: ...
+    
+    def resource_values(self, name: str) -> Dict[str, Any]: ...
+    
+    def resource_names(self) -> List[str]: ...
+```

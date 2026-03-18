@@ -12,6 +12,7 @@ import re
 import glob
 import difflib
 from collections import Counter
+from typing import Dict, Tuple, Any, List
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PARENT_DIR = os.path.dirname(BASE_DIR)
@@ -39,6 +40,64 @@ MODELS = {
 }
 
 ERROR_PATTERN = re.compile(r"^.+?:(\d+): error: .+\[(.+)\]$")
+
+
+STRATEGY_ORDER = [
+    "type_corrected",
+    "cast_added",
+    "type_ignore_added",
+    "annotation_removed",
+    "code_modified",
+    "changed_to_any",
+    "restructured",
+    "unchanged",
+    "other",
+]
+
+
+def format_percent(count: int, total: int) -> str:
+    return f"{(100.0 * count / total):.1f}%" if total else "0.0%"
+
+
+def print_markdown_table(headers: List[str], rows: List[List[Any]]):
+    print("| " + " | ".join(headers) + " |")
+    print("|" + "|".join(["---"] * len(headers)) + "|")
+    for row in rows:
+        print("| " + " | ".join(str(cell) for cell in row) + " |")
+
+
+def print_strategy_taxonomy_table(strategy_counter: Counter, total_errors: int):
+    """Print a paper-friendly taxonomy of fix strategies with counts and percentages."""
+    print("\n  --- Taxonomy of fix strategies ---")
+    rows = []
+    for strategy in STRATEGY_ORDER:
+        count = strategy_counter.get(strategy, 0)
+        if count == 0 and strategy in {"unchanged", "other"}:
+            continue
+        rows.append([strategy, count, format_percent(count, total_errors)])
+    print_markdown_table(["Strategy", "Count", "% of errors"], rows)
+
+
+def print_strategy_by_error_code_table(strategy_by_error_code: Dict[str, Counter], top_k: int = 10):
+    """Optional table: distribution of strategies for the most frequent mypy error codes."""
+    if not strategy_by_error_code:
+        return
+
+    print(f"\n  --- Strategy by mypy error code (top {top_k}) ---")
+    sorted_codes = sorted(
+        strategy_by_error_code.items(), key=lambda item: sum(item[1].values()), reverse=True
+    )[:top_k]
+
+    headers = ["Error code", "Total"] + [s for s in STRATEGY_ORDER if s not in {"other"}]
+    rows = []
+    for error_code, strategies in sorted_codes:
+        total = sum(strategies.values())
+        row = [error_code, total]
+        for strategy in headers[2:]:
+            count = strategies.get(strategy, 0)
+            row.append(f"{count} ({format_percent(count, total)})")
+        rows.append(row)
+    print_markdown_table(headers, rows)
 
 
 def find_file(directory, filename):
@@ -325,6 +384,69 @@ def analyze_model(model_name, config):
             print(f"    {n_removed} annotation(s) removed: {freq} ({100*freq/total_ann_rm:.1f}%)")
 
 
+def compute_strategy_distribution_and_matrix(
+    model_name: str, config: Dict[str, str]
+) -> Tuple[Counter, Dict[str, Counter], int, int]:
+    """
+    Simple, reusable stats for papers:
+
+    (1) Overall strategy distribution across all mypy errors in files that were fixed.
+    (2) Strategy-by-error-code matrix: {error_code -> Counter(strategy -> count)}.
+
+    Returns:
+      - strategy_counter
+      - strategy_by_error_code
+      - total_errors
+      - files_analyzed
+    """
+    for path_key in ["log", "mypy_json"]:
+        if not os.path.exists(config[path_key]):
+            raise FileNotFoundError(f"{model_name}: {path_key} not found at {config[path_key]}")
+
+    with open(config["log"], "r") as f:
+        log = json.load(f)
+
+    with open(config["mypy_json"], "r") as f:
+        mypy_data = json.load(f)
+
+    fixed_files = {k: v for k, v in log.items() if v.get("status") == "fixed"}
+
+    strategy_counter: Counter = Counter()
+    strategy_by_error_code: Dict[str, Counter] = {}
+    total_errors = 0
+    files_analyzed = 0
+
+    for filename in fixed_files:
+        if filename not in mypy_data:
+            continue
+        errors = parse_errors(mypy_data[filename].get("errors", []))
+        if not errors:
+            continue
+
+        initial_path = find_file(config["initial_dir"], filename)
+        fixed_path = os.path.join(config["fixed_dir"], filename)
+        if not initial_path or not os.path.exists(fixed_path):
+            continue
+
+        init_lines = read_lines(initial_path)
+        fixed_lines = read_lines(fixed_path)
+        files_analyzed += 1
+
+        for line_num, error_code in errors:
+            total_errors += 1
+            init_line = init_lines[line_num - 1] if line_num <= len(init_lines) else None
+            fixed_line = find_best_match_line(init_lines, fixed_lines, line_num)
+            strategy = classify_fix(init_line, fixed_line)
+
+            strategy_counter[strategy] += 1
+            if error_code not in strategy_by_error_code:
+                strategy_by_error_code[error_code] = Counter()
+            strategy_by_error_code[error_code][strategy] += 1
+
+    return strategy_counter, strategy_by_error_code, total_errors, files_analyzed
+
+
 if __name__ == "__main__":
     for model_name, config in MODELS.items():
         analyze_model(model_name, config)
+        break

@@ -1,0 +1,72 @@
+```python
+from typing import List, Iterator, Dict, Tuple, Any, Type, Union, Optional, ContextManager
+import logging
+from os import PathLike
+import numpy
+import torch
+from torch.utils.hooks import RemovableHandle
+from torch import Tensor
+from allennlp.common import Registrable
+from allennlp.common.util import JsonDict
+from allennlp.data import DatasetReader, Instance
+from allennlp.models import Model
+from allennlp.models.archival import Archive
+
+logger: logging.Logger = ...
+
+class Predictor(Registrable):
+    def __init__(self, model: Any, dataset_reader: Any, frozen: bool = ...) -> None: ...
+    
+    def load_line(self, line: str) -> Any: ...
+    
+    def dump_line(self, outputs: Any) -> str: ...
+    
+    def predict_json(self, inputs: Any) -> Any: ...
+    
+    def json_to_labeled_instances(self, inputs: Any) -> List[Any]: ...
+    
+    def get_gradients(self, instances: List[Instance]) -> Tuple[Dict[str, Any], Dict[str, Any]]: ...
+    
+    def get_interpretable_layer(self) -> Any: ...
+    
+    def get_interpretable_text_field_embedder(self) -> Any: ...
+    
+    def _register_embedding_gradient_hooks(self, embedding_gradients: List[Any]) -> List[RemovableHandle]: ...
+    
+    def capture_model_internals(self, module_regex: str = ...) -> ContextManager[Dict[Any, Any]]: ...
+    
+    def predict_instance(self, instance: Instance) -> Any: ...
+    
+    def predictions_to_labeled_instances(self, instance: Instance, outputs: Any) -> List[Instance]: ...
+    
+    def _json_to_instance(self, json_dict: Any) -> Instance: ...
+    
+    def predict_batch_json(self, inputs: List[Any]) -> Any: ...
+    
+    def predict_batch_instance(self, instances: List[Instance]) -> Any: ...
+    
+    def _batch_json_to_instances(self, json_dicts: List[Any]) -> List[Instance]: ...
+    
+    @classmethod
+    def from_path(
+        cls,
+        archive_path: Union[str, PathLike],
+        predictor_name: Optional[str] = ...,
+        cuda_device: int = ...,
+        dataset_reader_to_load: str = ...,
+        frozen: bool = ...,
+        import_plugins: bool = ...,
+        overrides: Union[str, Dict[str, Any]] = ...,
+        **kwargs: Any
+    ) -> "Predictor": ...
+    
+    @classmethod
+    def from_archive(
+        cls,
+        archive: Archive,
+        predictor_name: Optional[str] = ...,
+        dataset_reader_to_load: str = ...,
+        frozen: bool = ...,
+        extra_args: Optional[Dict[str, Any]] = ...
+    ) -> "Predictor": ...
+```

@@ -1,0 +1,232 @@
+```python
+import random
+from typing import Any, Iterator, Tuple
+
+def run_withdrawal_request_processing(
+    spec: Any,
+    state: Any,
+    withdrawal_request: Any,
+    valid: bool = ...,
+    success: bool = ...
+) -> Iterator[Tuple[str, Any]]: ...
+
+def compute_amount_to_withdraw(
+    spec: Any,
+    state: Any,
+    index: Any,
+    amount: Any
+) -> Any: ...
+
+@with_electra_and_later
+@spec_state_test
+def test_basic_withdrawal_request(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+
+@with_electra_and_later
+@spec_state_test
+def test_basic_withdrawal_request_with_first_validator(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+
+@with_electra_and_later
+@spec_state_test
+def test_basic_withdrawal_request_with_compounding_credentials(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+
+@with_electra_and_later
+@spec_state_test
+@with_presets([MINIMAL], 'need full partial withdrawal queue')
+def test_basic_withdrawal_request_with_full_partial_withdrawal_queue(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+
+@with_electra_and_later
+@spec_state_test
+def test_incorrect_source_address(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+
+@with_electra_and_later
+@spec_state_test
+def test_incorrect_withdrawal_credential_prefix(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+
+@with_electra_and_later
+@spec_state_test
+def test_on_withdrawal_request_initiated_exit_validator(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+
+@with_electra_and_later
+@spec_state_test
+def test_activation_epoch_less_than_shard_committee_period(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+
+@with_electra_and_later
+@spec_state_test
+def test_unknown_pubkey(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+
+@with_electra_and_later
+@spec_state_test
+@with_presets([MINIMAL])
+def test_basic_partial_withdrawal_request(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+
+@with_electra_and_later
+@spec_state_test
+@with_presets([MINIMAL])
+def test_basic_partial_withdrawal_request_higher_excess_balance(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+
+@with_electra_and_later
+@spec_state_test
+@with_presets([MINIMAL])
+def test_basic_partial_withdrawal_request_lower_than_excess_balance(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+
+@with_electra_and_later
+@spec_state_test
+@with_presets([MINIMAL])
+def test_partial_withdrawal_request_with_pending_withdrawals(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+
+@with_electra_and_later
+@spec_state_test
+@with_presets([MINIMAL])
+def test_partial_withdrawal_request_with_pending_withdrawals_and_high_amount(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+
+@with_electra_and_later
+@spec_state_test
+@with_presets([MINIMAL])
+def test_partial_withdrawal_request_with_high_balance(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+
+@with_electra_and_later
+@spec_state_test
+@with_presets([MINIMAL])
+def test_partial_withdrawal_request_with_high_amount(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+
+@with_electra_and_later
+@spec_state_test
+@with_presets([MINIMAL])
+def test_partial_withdrawal_request_with_low_amount(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+
+@with_electra_and_later
+@spec_state_test
+@with_presets([MINIMAL], 'need full partial withdrawal queue')
+def test_partial_withdrawal_queue_full(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+
+@with_electra_and_later
+@spec_state_test
+def test_no_compounding_credentials(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+
+@with_electra_and_later
+@spec_state_test
+def test_no_excess_balance(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+
+@with_electra_and_later
+@spec_state_test
+def test_pending_withdrawals_consume_all_excess_balance(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+
+@with_electra_and_later
+@spec_state_test
+def test_insufficient_effective_balance(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+
+@with_electra_and_later
+@spec_state_test
+def test_partial_withdrawal_incorrect_source_address(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+
+@with_electra_and_later
+@spec_state_test
+def test_partial_withdrawal_incorrect_withdrawal_credential_prefix(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+
+@with_electra_and_later
+@spec_state_test
+def test_partial_withdrawal_on_exit_initiated_validator(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+
+@with_electra_and_later
+@spec_state_test
+def test_partial_withdrawal_activation_epoch_less_than_shard_committee_period(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+
+@with_electra_and_later
+@spec_state_test
+def test_insufficient_balance(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+
+@with_electra_and_later
+@spec_state_test
+def test_full_exit_request_has_partial_withdrawal(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+
+@with_electra_and_later
+@spec_state_test
+def test_incorrect_inactive_validator(
+    spec: Any,
+    state: Any
+) -> Iterator[Any]: ...
+```

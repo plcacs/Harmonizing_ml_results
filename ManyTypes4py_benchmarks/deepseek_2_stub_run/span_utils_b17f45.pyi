@@ -1,0 +1,52 @@
+```python
+from typing import Callable, List, Set, Tuple, TypeVar, Optional, Any
+
+T = TypeVar("T", str, "Token")
+
+TypedSpan = Tuple[int, Tuple[int, int]]
+TypedStringSpan = Tuple[str, Tuple[int, int]]
+
+class InvalidTagSequence(Exception):
+    tag_sequence: Optional[List[str]]
+    def __init__(self, tag_sequence: Optional[List[str]] = ...) -> None: ...
+    def __str__(self) -> str: ...
+
+def enumerate_spans(
+    sentence: List[T],
+    offset: int = ...,
+    max_span_width: Optional[int] = ...,
+    min_span_width: int = ...,
+    filter_function: Optional[Callable[[List[T]], bool]] = ...,
+) -> List[Tuple[int, int]]: ...
+
+def bio_tags_to_spans(
+    tag_sequence: List[str],
+    classes_to_ignore: Optional[List[str]] = ...,
+) -> List[TypedStringSpan]: ...
+
+def iob1_tags_to_spans(
+    tag_sequence: List[str],
+    classes_to_ignore: Optional[List[str]] = ...,
+) -> List[TypedStringSpan]: ...
+
+def _iob1_start_of_chunk(
+    prev_bio_tag: Optional[str],
+    prev_conll_tag: Optional[str],
+    curr_bio_tag: str,
+    curr_conll_tag: str,
+) -> bool: ...
+
+def bioul_tags_to_spans(
+    tag_sequence: List[str],
+    classes_to_ignore: Optional[List[str]] = ...,
+) -> List[TypedStringSpan]: ...
+
+def iob1_to_bioul(tag_sequence: List[str]) -> List[str]: ...
+
+def to_bioul(tag_sequence: List[str], encoding: str = ...) -> List[str]: ...
+
+def bmes_tags_to_spans(
+    tag_sequence: List[str],
+    classes_to_ignore: Optional[List[str]] = ...,
+) -> List[TypedStringSpan]: ...
+```

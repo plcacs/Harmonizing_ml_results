@@ -1,0 +1,314 @@
+```python
+import pendulum
+from datetime import timedelta
+from typing import Any, Dict, List, Literal
+from unittest.mock import AsyncMock
+from uuid import UUID
+from pydantic import Field, ValidationInfo, field_validator
+from sqlalchemy.ext.asyncio import AsyncSession
+from prefect.server.api.clients import OrchestrationClient
+from prefect.server.database.orm_models import (
+    ORMConcurrencyLimitV2,
+    ORMDeployment,
+    ORMFlow,
+    ORMFlowRun,
+    ORMTaskRun,
+    ORMWorkPool,
+    ORMWorkQueue,
+)
+from prefect.server.events import actions
+from prefect.server.events.schemas.automations import (
+    Automation,
+    EventTrigger,
+    Firing,
+    Posture,
+    ReceivedEvent,
+    TriggeredAction,
+    TriggerState,
+)
+from prefect.server.events.schemas.events import Event, Resource
+from prefect.server.models import deployments, flow_runs, flows, task_runs, variables, work_queues
+from prefect.server.schemas.actions import VariableCreate, WorkQueueCreate, WorkQueueUpdate
+from prefect.server.schemas.core import Deployment, Flow, FlowRun, TaskRun, WorkQueue
+from prefect.server.schemas.responses import FlowRunResponse
+from prefect.server.schemas.states import State, StateType
+from prefect.types import DateTime
+
+def ui_url() -> Any: ...
+
+class DemoAction(actions.JinjaTemplateAction):
+    type: str = ...
+    template: Any = Field(...)
+
+    @field_validator('template')
+    @classmethod
+    def is_valid_template(cls, value: Any, info: ValidationInfo) -> Any: ...
+
+    async def act(self, triggered_action: TriggeredAction) -> Any: ...
+
+    async def render(self, triggered_action: TriggeredAction) -> Any: ...
+
+async def orchestration_client() -> OrchestrationClient: ...
+
+async def tell_me_about_the_culprit() -> Automation: ...
+
+def woodchonk_triggered(
+    tell_me_about_the_culprit: Automation,
+    woodchonk_nibbled: Any,
+) -> TriggeredAction: ...
+
+async def snap_a_pic(session: AsyncSession) -> Flow: ...
+
+async def take_a_picture(
+    session: AsyncSession,
+    snap_a_pic: Flow,
+) -> FlowRun: ...
+
+async def take_a_picture_task(
+    session: AsyncSession,
+    snap_a_pic: Flow,
+    take_a_picture: FlowRun,
+) -> TaskRun: ...
+
+async def take_a_picture_deployment(
+    session: AsyncSession,
+    take_a_picture: FlowRun,
+) -> Deployment: ...
+
+async def take_a_picture_work_queue(session: AsyncSession) -> WorkQueue: ...
+
+def picture_taken(
+    start_of_test: Any,
+    take_a_picture: FlowRun,
+    take_a_picture_deployment: Deployment,
+    take_a_picture_work_queue: WorkQueue,
+) -> ReceivedEvent: ...
+
+def picture_taken_by_task(
+    start_of_test: Any,
+    take_a_picture: FlowRun,
+    take_a_picture_task: TaskRun,
+    take_a_picture_deployment: Deployment,
+    take_a_picture_work_queue: WorkQueue,
+) -> ReceivedEvent: ...
+
+def took_a_picture(
+    tell_me_about_the_culprit: Automation,
+    picture_taken: ReceivedEvent,
+) -> TriggeredAction: ...
+
+def took_a_picture_by_task(
+    tell_me_about_the_culprit: Automation,
+    picture_taken_by_task: ReceivedEvent,
+) -> TriggeredAction: ...
+
+async def test_filters_are_available_to_templates(took_a_picture: TriggeredAction) -> Any: ...
+
+async def test_flow_is_available_to_templates(
+    snap_a_pic: Flow,
+    took_a_picture: TriggeredAction,
+) -> Any: ...
+
+async def test_flow_run_is_available_to_templates(
+    take_a_picture: FlowRun,
+    took_a_picture: TriggeredAction,
+) -> Any: ...
+
+async def test_flow_run_state_comes_from_event_resource(
+    took_a_picture: TriggeredAction,
+) -> Any: ...
+
+async def test_flow_run_state_event_missing_state_data_uses_api_state(
+    session: AsyncSession,
+    took_a_picture: TriggeredAction,
+    take_a_picture: FlowRun,
+) -> Any: ...
+
+async def test_flow_run_state_event_malformed_uses_api_state(
+    session: AsyncSession,
+    took_a_picture: TriggeredAction,
+    take_a_picture: FlowRun,
+) -> Any: ...
+
+async def test_flow_run_state_comes_from_event_resource_empty_message(
+    took_a_picture: TriggeredAction,
+    take_a_picture: FlowRun,
+) -> Any: ...
+
+async def test_task_run_is_available_to_templates(
+    take_a_picture_task: TaskRun,
+    took_a_picture_by_task: TriggeredAction,
+) -> Any: ...
+
+async def test_task_run_state_comes_from_event_resource(
+    took_a_picture_by_task: TriggeredAction,
+) -> Any: ...
+
+async def test_deployment_is_available_to_templates(
+    take_a_picture_deployment: Deployment,
+    took_a_picture: TriggeredAction,
+) -> Any: ...
+
+async def test_work_queue_is_available_to_templates(
+    take_a_picture_work_queue: WorkQueue,
+    took_a_picture: TriggeredAction,
+) -> Any: ...
+
+async def test_all_objects_in_template(
+    took_a_picture: TriggeredAction,
+    snap_a_pic: Flow,
+    take_a_picture_deployment: Deployment,
+    take_a_picture_work_queue: WorkQueue,
+    take_a_picture: FlowRun,
+) -> Any: ...
+
+async def test_caches_objects(
+    took_a_picture: TriggeredAction,
+    snap_a_pic: Flow,
+) -> Any: ...
+
+async def test_retrieves_after_caching(
+    took_a_picture: TriggeredAction,
+    snap_a_pic: Flow,
+    take_a_picture: FlowRun,
+    take_a_picture_deployment: Deployment,
+    take_a_picture_work_queue: WorkQueue,
+) -> Any: ...
+
+async def test_lazy_objects_are_none_without_a_resource(
+    woodchonk_triggered: TriggeredAction,
+) -> Any: ...
+
+async def test_get_object_from_orion_null_resource(
+    orchestration_client: OrchestrationClient,
+    woodchonk_triggered: TriggeredAction,
+) -> Any: ...
+
+async def test_get_object_from_orion_resource_with_invalid_uuid(
+    orchestration_client: OrchestrationClient,
+    woodchonk_triggered: TriggeredAction,
+) -> Any: ...
+
+async def test_get_object_from_orion_resource_with_unknown_kind(
+    orchestration_client: OrchestrationClient,
+    woodchonk_triggered: TriggeredAction,
+) -> Any: ...
+
+async def test_get_object_from_orion_resource_missing_from_api(
+    orchestration_client: OrchestrationClient,
+    woodchonk_triggered: TriggeredAction,
+) -> Any: ...
+
+async def test_get_object_returns_object(
+    orchestration_client: OrchestrationClient,
+    take_a_picture: FlowRun,
+    woodchonk_triggered: TriggeredAction,
+) -> Any: ...
+
+async def test_triggering_labels_may_be_accessed_as_object(
+    woodchonk_triggered: TriggeredAction,
+) -> Any: ...
+
+async def test_triggering_labels_may_be_accessed_as_dict(
+    woodchonk_triggered: TriggeredAction,
+) -> Any: ...
+
+async def test_resource_labels_may_be_accessed_as_object(
+    woodchonk_triggered: TriggeredAction,
+) -> Any: ...
+
+async def test_resource_labels_may_be_iterated(
+    woodchonk_triggered: TriggeredAction,
+) -> Any: ...
+
+async def test_resource_labels_may_be_sorted(
+    woodchonk_triggered: TriggeredAction,
+) -> Any: ...
+
+async def test_related_labels_may_be_accessed_as_object(
+    woodchonk_triggered: TriggeredAction,
+) -> Any: ...
+
+async def workspace_variables(session: AsyncSession) -> Dict[str, str]: ...
+
+async def test_workspace_variables_may_be_accessed_as_an_object(
+    workspace_variables: Dict[str, str],
+    woodchonk_triggered: TriggeredAction,
+) -> Any: ...
+
+async def test_workspace_variables_may_be_accessed_as_a_dict(
+    workspace_variables: Dict[str, str],
+    woodchonk_triggered: TriggeredAction,
+) -> Any: ...
+
+async def test_json_workspace_variables(
+    session: AsyncSession,
+    woodchonk_triggered: TriggeredAction,
+    value: Any,
+) -> Any: ...
+
+async def test_environment_is_immutable(
+    woodchonk_triggered: TriggeredAction,
+) -> Any: ...
+
+async def test_ranges_are_limited(
+    woodchonk_triggered: TriggeredAction,
+) -> Any: ...
+
+async def test_loading_templates_is_disabled(
+    woodchonk_triggered: TriggeredAction,
+    template: str,
+) -> Any: ...
+
+async def test_unsafe_attribute_is_verboten(
+    woodchonk_triggered: TriggeredAction,
+    template: str,
+) -> Any: ...
+
+async def test_deeply_nested_for_loops_prohibited() -> Any: ...
+
+async def test_many_loops_prohibited() -> Any: ...
+
+async def test_complex_valid_template() -> Any: ...
+
+async def test_complex_invalid_template() -> Any: ...
+
+async def test_work_queue_health_late_run_count(
+    session: AsyncSession,
+    tell_me_about_the_culprit: Automation,
+    take_a_picture_work_queue: WorkQueue,
+    start_of_test: Any,
+    monkeypatch: Any,
+) -> Any: ...
+
+async def test_related_resource_by_role_in_templates(
+    work_pool: Any,
+    work_queue: Any,
+    tell_me_about_the_culprit: Automation,
+    start_of_test: Any,
+) -> Any: ...
+
+async def test_work_pool_is_available_to_templates(
+    work_pool: Any,
+    work_queue: Any,
+    tell_me_about_the_culprit: Automation,
+    start_of_test: Any,
+) -> Any: ...
+
+async def test_concurrency_limit_is_available_in_templates(
+    concurrency_limit_v2: Any,
+    tell_me_about_the_culprit: Automation,
+    start_of_test: Any,
+) -> Any: ...
+
+async def test_composite_firings_are_available_in_templates(
+    tell_me_about_the_culprit: Automation,
+    start_of_test: Any,
+) -> Any: ...
+
+async def test_composite_triggering_events_are_available_in_templates(
+    picture_taken: ReceivedEvent,
+    tell_me_about_the_culprit: Automation,
+    start_of_test: Any,
+) -> Any: ...
+```

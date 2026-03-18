@@ -1,0 +1,119 @@
+```pyi
+from __future__ import annotations
+
+from types import TracebackType
+from typing import Any, Dict, Generator, List, Optional, Type
+
+from chalice import Chalice
+from chalice.config import Config
+
+class FunctionNotFoundError(Exception): ...
+
+class Client:
+    _app: Chalice
+    _project_dir: str
+    _stage_name: str
+    _http_client: Optional[TestHTTPClient]
+    _events_client: Optional[TestEventsClient]
+    _lambda_client: Optional[TestLambdaClient]
+    _chalice_config_obj: Optional[Config]
+    _cli_factory: Any
+    def __init__(self, app: Chalice, stage_name: str = ..., project_dir: str = ...) -> None: ...
+    @property
+    def _chalice_config(self) -> Config: ...
+    @property
+    def http(self) -> TestHTTPClient: ...
+    @property
+    def lambda_(self) -> TestLambdaClient: ...
+    @property
+    def events(self) -> TestEventsClient: ...
+    def __enter__(self) -> Client: ...
+    def __exit__(
+        self,
+        exception_type: Optional[Type[BaseException]],
+        exception_value: Optional[BaseException],
+        traceback: Optional[TracebackType],
+    ) -> None: ...
+
+class BaseClient:
+    def _patched_env_vars(self, environment_variables: Dict[str, str]) -> Generator[None, None, None]: ...
+
+class TestHTTPClient(BaseClient):
+    _app: Chalice
+    _config: Config
+    _local_gateway: Any
+    def __init__(self, app: Chalice, config: Config) -> None: ...
+    def request(
+        self,
+        method: str,
+        path: str,
+        headers: Optional[Dict[str, str]] = ...,
+        body: bytes = ...,
+    ) -> HTTPResponse: ...
+    def _error_response(self, e: Any) -> HTTPResponse: ...
+    def get(self, path: str, **kwargs: Any) -> HTTPResponse: ...
+    def post(self, path: str, **kwargs: Any) -> HTTPResponse: ...
+    def put(self, path: str, **kwargs: Any) -> HTTPResponse: ...
+    def patch(self, path: str, **kwargs: Any) -> HTTPResponse: ...
+    def options(self, path: str, **kwargs: Any) -> HTTPResponse: ...
+    def delete(self, path: str, **kwargs: Any) -> HTTPResponse: ...
+    def head(self, path: str, **kwargs: Any) -> HTTPResponse: ...
+
+class HTTPResponse:
+    body: bytes
+    headers: Dict[str, Any]
+    status_code: int
+    def __init__(self, body: bytes, headers: Dict[str, Any], status_code: int) -> None: ...
+    @property
+    def json_body(self) -> Any: ...
+    @classmethod
+    def create_from_dict(cls, response_dict: Dict[str, Any]) -> HTTPResponse: ...
+
+class TestEventsClient(BaseClient):
+    _app: Chalice
+    def __init__(self, app: Chalice) -> None: ...
+    def generate_sns_event(
+        self,
+        message: str,
+        subject: str = ...,
+        message_attributes: Optional[Dict[str, Any]] = ...,
+    ) -> Dict[str, Any]: ...
+    def generate_s3_event(
+        self,
+        bucket: str,
+        key: str,
+        event_name: str = ...,
+    ) -> Dict[str, Any]: ...
+    def generate_sqs_event(
+        self,
+        message_bodies: List[str],
+        queue_name: str = ...,
+    ) -> Dict[str, Any]: ...
+    def generate_cw_event(
+        self,
+        source: str,
+        detail_type: str,
+        detail: Dict[str, Any],
+        resources: List[str],
+        region: str = ...,
+    ) -> Dict[str, Any]: ...
+    def generate_kinesis_event(
+        self,
+        message_bodies: List[bytes],
+        stream_name: str = ...,
+    ) -> Dict[str, Any]: ...
+
+class TestLambdaClient(BaseClient):
+    _app: Chalice
+    _config: Config
+    def __init__(self, app: Chalice, config: Config) -> None: ...
+    def invoke(
+        self,
+        function_name: str,
+        payload: Optional[Dict[str, Any]] = ...,
+    ) -> InvokeResponse: ...
+
+class InvokeResponse:
+    payload: Any
+    def __init__(self, payload: Any) -> None: ...
+```

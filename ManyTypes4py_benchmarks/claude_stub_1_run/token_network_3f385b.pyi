@@ -1,0 +1,147 @@
+```pyi
+from raiden.transfer.architecture import TransitionResult
+from raiden.transfer.state import TokenNetworkState
+from raiden.transfer.state_change import (
+    ActionChannelClose,
+    ActionChannelCoopSettle,
+    ActionChannelSetRevealTimeout,
+    ActionChannelWithdraw,
+    ContractReceiveChannelBatchUnlock,
+    ContractReceiveChannelClosed,
+    ContractReceiveChannelDeposit,
+    ContractReceiveChannelNew,
+    ContractReceiveChannelSettled,
+    ContractReceiveChannelWithdraw,
+    ContractReceiveUpdateTransfer,
+    ReceiveWithdrawConfirmation,
+    ReceiveWithdrawExpired,
+    ReceiveWithdrawRequest,
+)
+from raiden.utils.typing import BlockHash, BlockNumber
+from typing import Any, Union
+
+StateChangeWithChannelID = Union[
+    ActionChannelClose,
+    ActionChannelCoopSettle,
+    ActionChannelWithdraw,
+    ActionChannelSetRevealTimeout,
+    ContractReceiveChannelClosed,
+    ContractReceiveChannelDeposit,
+    ContractReceiveChannelSettled,
+    ContractReceiveUpdateTransfer,
+    ContractReceiveChannelWithdraw,
+    ReceiveWithdrawConfirmation,
+    ReceiveWithdrawRequest,
+    ReceiveWithdrawExpired,
+]
+
+def subdispatch_to_channel_by_id(
+    token_network_state: TokenNetworkState,
+    state_change: Any,
+    block_number: BlockNumber,
+    block_hash: BlockHash,
+    pseudo_random_generator: Any,
+) -> TransitionResult: ...
+def handle_channel_close(
+    token_network_state: TokenNetworkState,
+    state_change: ActionChannelClose,
+    block_number: BlockNumber,
+    block_hash: BlockHash,
+    pseudo_random_generator: Any,
+) -> TransitionResult: ...
+def handle_channel_withdraw(
+    token_network_state: TokenNetworkState,
+    state_change: ActionChannelWithdraw,
+    block_number: BlockNumber,
+    block_hash: BlockHash,
+    pseudo_random_generator: Any,
+) -> TransitionResult: ...
+def handle_channel_coop_settle(
+    token_network_state: TokenNetworkState,
+    state_change: ActionChannelCoopSettle,
+    block_number: BlockNumber,
+    block_hash: BlockHash,
+    pseudo_random_generator: Any,
+) -> TransitionResult: ...
+def handle_channel_set_reveal_timeout(
+    token_network_state: TokenNetworkState,
+    state_change: ActionChannelSetRevealTimeout,
+    block_number: BlockNumber,
+    block_hash: BlockHash,
+    pseudo_random_generator: Any,
+) -> TransitionResult: ...
+def handle_channelnew(
+    token_network_state: TokenNetworkState,
+    state_change: ContractReceiveChannelNew,
+) -> TransitionResult: ...
+def handle_balance(
+    token_network_state: TokenNetworkState,
+    state_change: ContractReceiveChannelDeposit,
+    block_number: BlockNumber,
+    block_hash: BlockHash,
+    pseudo_random_generator: Any,
+) -> TransitionResult: ...
+def handle_withdraw(
+    token_network_state: TokenNetworkState,
+    state_change: ContractReceiveChannelWithdraw,
+    block_number: BlockNumber,
+    block_hash: BlockHash,
+    pseudo_random_generator: Any,
+) -> TransitionResult: ...
+def handle_closed(
+    token_network_state: TokenNetworkState,
+    state_change: ContractReceiveChannelClosed,
+    block_number: BlockNumber,
+    block_hash: BlockHash,
+    pseudo_random_generator: Any,
+) -> TransitionResult: ...
+def handle_settled(
+    token_network_state: TokenNetworkState,
+    state_change: ContractReceiveChannelSettled,
+    block_number: BlockNumber,
+    block_hash: BlockHash,
+    pseudo_random_generator: Any,
+) -> TransitionResult: ...
+def handle_updated_transfer(
+    token_network_state: TokenNetworkState,
+    state_change: ContractReceiveUpdateTransfer,
+    block_number: BlockNumber,
+    block_hash: BlockHash,
+    pseudo_random_generator: Any,
+) -> TransitionResult: ...
+def handle_batch_unlock(
+    token_network_state: TokenNetworkState,
+    state_change: ContractReceiveChannelBatchUnlock,
+    block_number: BlockNumber,
+    block_hash: BlockHash,
+    pseudo_random_generator: Any,
+) -> TransitionResult: ...
+def handle_receive_channel_withdraw_request(
+    token_network_state: TokenNetworkState,
+    state_change: ReceiveWithdrawRequest,
+    block_number: BlockNumber,
+    block_hash: BlockHash,
+    pseudo_random_generator: Any,
+) -> TransitionResult: ...
+def handle_receive_channel_withdraw(
+    token_network_state: TokenNetworkState,
+    state_change: ReceiveWithdrawConfirmation,
+    block_number: BlockNumber,
+    block_hash: BlockHash,
+    pseudo_random_generator: Any,
+) -> TransitionResult: ...
+def handle_receive_channel_withdraw_expired(
+    token_network_state: TokenNetworkState,
+    state_change: ReceiveWithdrawExpired,
+    block_number: BlockNumber,
+    block_hash: BlockHash,
+    pseudo_random_generator: Any,
+) -> TransitionResult: ...
+def state_transition(
+    token_network_state: TokenNetworkState,
+    state_change: Any,
+    block_number: BlockNumber,
+    block_hash: BlockHash,
+    pseudo_random_generator: Any,
+) -> TransitionResult: ...
+```

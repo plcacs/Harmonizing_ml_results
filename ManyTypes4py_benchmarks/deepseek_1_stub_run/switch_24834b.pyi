@@ -1,0 +1,196 @@
+```python
+"""Integration with the Rachio Iro sprinkler system controller."""
+
+from abc import abstractmethod
+from datetime import timedelta
+from typing import Any
+import voluptuous as vol
+from homeassistant.components.switch import SwitchEntity
+from homeassistant.config_entries import ConfigEntry
+from homeassistant.core import CALLBACK_TYPE, HomeAssistant, ServiceCall
+from homeassistant.helpers import config_validation as cv
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
+from .device import RachioPerson
+from .entity import RachioDevice, RachioHoseTimerEntity
+
+ATTR_DURATION: str = ...
+ATTR_PERCENT: str = ...
+ATTR_SCHEDULE_SUMMARY: str = ...
+ATTR_SCHEDULE_ENABLED: str = ...
+ATTR_SCHEDULE_DURATION: str = ...
+ATTR_SCHEDULE_TYPE: str = ...
+ATTR_SORT_ORDER: str = ...
+ATTR_WATERING_DURATION: str = ...
+ATTR_ZONE_NUMBER: str = ...
+ATTR_ZONE_SHADE: str = ...
+ATTR_ZONE_SLOPE: str = ...
+ATTR_ZONE_SUMMARY: str = ...
+ATTR_ZONE_TYPE: str = ...
+START_MULTIPLE_ZONES_SCHEMA: vol.Schema = ...
+
+async def async_setup_entry(
+    hass: HomeAssistant,
+    config_entry: ConfigEntry,
+    async_add_entities: AddConfigEntryEntitiesCallback
+) -> None: ...
+
+def _create_entities(hass: HomeAssistant, config_entry: ConfigEntry) -> list[Any]: ...
+
+class RachioSwitch(RachioDevice, SwitchEntity):
+    """Represent a Rachio state that can be toggled."""
+
+    @callback
+    def _async_handle_any_update(self, *args: Any, **kwargs: Any) -> None: ...
+
+    @abstractmethod
+    def _async_handle_update(self, *args: Any, **kwargs: Any) -> None: ...
+
+class RachioStandbySwitch(RachioSwitch):
+    """Representation of a standby status/button."""
+
+    _attr_has_entity_name: bool
+    _attr_translation_key: str
+
+    @property
+    def unique_id(self) -> str: ...
+
+    @callback
+    def _async_handle_update(self, *args: Any, **kwargs: Any) -> None: ...
+
+    def turn_on(self, **kwargs: Any) -> None: ...
+
+    def turn_off(self, **kwargs: Any) -> None: ...
+
+    async def async_added_to_hass(self) -> None: ...
+
+class RachioRainDelay(RachioSwitch):
+    """Representation of a rain delay status/switch."""
+
+    _attr_has_entity_name: bool
+    _attr_translation_key: str
+    _cancel_update: Any
+
+    def __init__(self, controller: Any) -> None: ...
+
+    @property
+    def unique_id(self) -> str: ...
+
+    @callback
+    def _async_handle_update(self, *args: Any, **kwargs: Any) -> None: ...
+
+    @callback
+    def _delay_expiration(self, *args: Any) -> None: ...
+
+    def turn_on(self, **kwargs: Any) -> None: ...
+
+    def turn_off(self, **kwargs: Any) -> None: ...
+
+    async def async_added_to_hass(self) -> None: ...
+
+class RachioZone(RachioSwitch):
+    """Representation of one zone of sprinklers connected to the Rachio Iro."""
+
+    _attr_icon: str
+    id: Any
+    _attr_name: str
+    _zone_number: Any
+    _zone_enabled: Any
+    _attr_entity_picture: Any
+    _person: RachioPerson
+    _shade_type: Any
+    _zone_type: Any
+    _slope_type: Any
+    _summary: str
+    _current_schedule: Any
+
+    def __init__(
+        self,
+        person: RachioPerson,
+        controller: Any,
+        data: Any,
+        current_schedule: Any
+    ) -> None: ...
+
+    def __str__(self) -> str: ...
+
+    @property
+    def zone_id(self) -> Any: ...
+
+    @property
+    def zone_is_enabled(self) -> Any: ...
+
+    @property
+    def extra_state_attributes(self) -> dict[str, Any]: ...
+
+    def turn_on(self, **kwargs: Any) -> None: ...
+
+    def turn_off(self, **kwargs: Any) -> None: ...
+
+    def set_moisture_percent(self, percent: int) -> None: ...
+
+    @callback
+    def _async_handle_update(self, *args: Any, **kwargs: Any) -> None: ...
+
+    async def async_added_to_hass(self) -> None: ...
+
+class RachioSchedule(RachioSwitch):
+    """Representation of one fixed schedule on the Rachio Iro."""
+
+    _schedule_id: Any
+    _duration: Any
+    _schedule_enabled: Any
+    _summary: Any
+    type: Any
+    _current_schedule: Any
+    _attr_unique_id: str
+    _attr_name: str
+
+    def __init__(
+        self,
+        person: RachioPerson,
+        controller: Any,
+        data: Any,
+        current_schedule: Any
+    ) -> None: ...
+
+    @property
+    def icon(self) -> str: ...
+
+    @property
+    def extra_state_attributes(self) -> dict[str, Any]: ...
+
+    @property
+    def schedule_is_enabled(self) -> Any: ...
+
+    def turn_on(self, **kwargs: Any) -> None: ...
+
+    def turn_off(self, **kwargs: Any) -> None: ...
+
+    @callback
+    def _async_handle_update(self, *args: Any, **kwargs: Any) -> None: ...
+
+    async def async_added_to_hass(self) -> None: ...
+
+class RachioValve(RachioHoseTimerEntity, SwitchEntity):
+    """Representation of one smart hose timer valve."""
+
+    _attr_name: None
+    _person: RachioPerson
+    _base: Any
+    _attr_unique_id: str
+
+    def __init__(
+        self,
+        person: RachioPerson,
+        base: Any,
+        data: Any,
+        coordinator: Any
+    ) -> None: ...
+
+    def turn_on(self, **kwargs: Any) -> None: ...
+
+    def turn_off(self, **kwargs: Any) -> None: ...
+
+    @callback
+    def _update_attr(self) -> None: ...
+```

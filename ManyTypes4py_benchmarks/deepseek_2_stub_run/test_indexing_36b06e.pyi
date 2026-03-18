@@ -1,0 +1,210 @@
+```python
+import numpy as np
+import pandas as pd
+from pandas import (
+    CategoricalIndex,
+    DatetimeIndex,
+    Index,
+    Interval,
+    IntervalIndex,
+    MultiIndex,
+    NA,
+    NaT,
+    Timedelta,
+    Timestamp,
+)
+from pandas._libs.tslibs.offsets import BaseOffset
+from pandas.errors import InvalidIndexError
+from typing import Any, Optional, Sequence, Tuple, Union, overload
+
+class TestGetItem:
+    def test_getitem(self, closed: str) -> None: ...
+    def test_getitem_2d_deprecated(self) -> None: ...
+
+class TestWhere:
+    def test_where(self, listlike_box: Any) -> None: ...
+
+class TestTake:
+    def test_take(self, closed: str) -> None: ...
+
+class TestGetLoc:
+    @pytest.mark.parametrize('side', ['right', 'left', 'both', 'neither'])
+    def test_get_loc_interval(self, closed: str, side: str) -> None: ...
+    @pytest.mark.parametrize('scalar', [-0.5, 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5])
+    def test_get_loc_scalar(self, closed: str, scalar: float) -> None: ...
+    @pytest.mark.parametrize('scalar', [-1, 0, 0.5, 3, 4.5, 5, 6])
+    def test_get_loc_length_one_scalar(self, scalar: float, closed: str) -> None: ...
+    @pytest.mark.parametrize('left, right', [(0, 5), (-1, 4), (-1, 6), (6, 7)])
+    def test_get_loc_length_one_interval(
+        self, left: float, right: float, closed: str, other_closed: str
+    ) -> None: ...
+    @pytest.mark.parametrize(
+        'breaks',
+        [
+            date_range('20180101', periods=4),
+            date_range('20180101', periods=4, tz='US/Eastern'),
+            timedelta_range('0 days', periods=4),
+        ],
+        ids=lambda x: str(x.dtype),
+    )
+    def test_get_loc_datetimelike_nonoverlapping(self, breaks: Any) -> None: ...
+    @pytest.mark.parametrize(
+        'arrays',
+        [
+            (date_range('20180101', periods=4), date_range('20180103', periods=4)),
+            (
+                date_range('20180101', periods=4, tz='US/Eastern'),
+                date_range('20180103', periods=4, tz='US/Eastern'),
+            ),
+            (timedelta_range('0 days', periods=4), timedelta_range('2 days', periods=4)),
+        ],
+        ids=lambda x: str(x[0].dtype),
+    )
+    def test_get_loc_datetimelike_overlapping(self, arrays: Any) -> None: ...
+    @pytest.mark.parametrize(
+        'values',
+        [
+            date_range('2018-01-04', periods=4, freq='-1D'),
+            date_range('2018-01-04', periods=4, freq='-1D', tz='US/Eastern'),
+            timedelta_range('3 days', periods=4, freq='-1D'),
+            np.arange(3.0, -1.0, -1.0),
+            np.arange(3, -1, -1),
+        ],
+        ids=lambda x: str(x.dtype),
+    )
+    def test_get_loc_decreasing(self, values: Any) -> None: ...
+    @pytest.mark.parametrize('key', [[5], (2, 3)])
+    def test_get_loc_non_scalar_errors(self, key: Any) -> None: ...
+    def test_get_indexer_with_nans(self) -> None: ...
+
+class TestGetIndexer:
+    @pytest.mark.parametrize(
+        'query, expected',
+        [
+            ([Interval(2, 4, closed='right')], [1]),
+            ([Interval(2, 4, closed='left')], [-1]),
+            ([Interval(2, 4, closed='both')], [-1]),
+            ([Interval(2, 4, closed='neither')], [-1]),
+            ([Interval(1, 4, closed='right')], [-1]),
+            ([Interval(0, 4, closed='right')], [-1]),
+            ([Interval(0.5, 1.5, closed='right')], [-1]),
+            ([Interval(2, 4, closed='right'), Interval(0, 1, closed='right')], [1, -1]),
+            ([Interval(2, 4, closed='right'), Interval(2, 4, closed='right')], [1, 1]),
+            ([Interval(5, 7, closed='right'), Interval(2, 4, closed='right')], [2, 1]),
+            ([Interval(2, 4, closed='right'), Interval(2, 4, closed='left')], [1, -1]),
+        ],
+    )
+    def test_get_indexer_with_interval(self, query: Any, expected: Any) -> None: ...
+    @pytest.mark.parametrize(
+        'query, expected',
+        [
+            ([-0.5], [-1]),
+            ([0], [-1]),
+            ([0.5], [0]),
+            ([1], [0]),
+            ([1.5], [1]),
+            ([2], [1]),
+            ([2.5], [-1]),
+            ([3], [-1]),
+            ([3.5], [2]),
+            ([4], [2]),
+            ([4.5], [-1]),
+            ([1, 2], [0, 1]),
+            ([1, 2, 3], [0, 1, -1]),
+            ([1, 2, 3, 4], [0, 1, -1, 2]),
+            ([1, 2, 3, 4, 2], [0, 1, -1, 2, 1]),
+        ],
+    )
+    def test_get_indexer_with_int_and_float(self, query: Any, expected: Any) -> None: ...
+    @pytest.mark.parametrize('item', [[3], np.arange(0.5, 5, 0.5)])
+    def test_get_indexer_length_one(self, item: Any, closed: str) -> None: ...
+    @pytest.mark.parametrize('size', [1, 5])
+    def test_get_indexer_length_one_interval(self, size: int, closed: str) -> None: ...
+    @pytest.mark.parametrize(
+        'target',
+        [
+            IntervalIndex.from_tuples([(7, 8), (1, 2), (3, 4), (0, 1)]),
+            IntervalIndex.from_tuples([(0, 1), (1, 2), (3, 4), np.nan]),
+            IntervalIndex.from_tuples([(0, 1), (1, 2), (3, 4)], closed='both'),
+            [-1, 0, 0.5, 1, 2, 2.5, np.nan],
+            ['foo', 'foo', 'bar', 'baz'],
+        ],
+    )
+    def test_get_indexer_categorical(self, target: Any, ordered: bool) -> None: ...
+    @pytest.mark.filterwarnings('ignore:invalid value encountered in cast:RuntimeWarning')
+    def test_get_indexer_categorical_with_nans(self) -> None: ...
+    def test_get_indexer_datetime(self) -> None: ...
+    @pytest.mark.parametrize(
+        'tuples, closed',
+        [
+            ([(0, 2), (1, 3), (3, 4)], 'neither'),
+            ([(0, 5), (1, 4), (6, 7)], 'left'),
+            ([(0, 1), (0, 1), (1, 2)], 'right'),
+            ([(0, 1), (2, 3), (3, 4)], 'both'),
+        ],
+    )
+    def test_get_indexer_errors(self, tuples: Any, closed: str) -> None: ...
+    @pytest.mark.parametrize(
+        'query, expected',
+        [
+            ([-0.5], ([-1], [0])),
+            ([0], ([0], [])),
+            ([0.5], ([0], [])),
+            ([1], ([0, 1], [])),
+            ([1.5], ([0, 1], [])),
+            ([2], ([0, 1, 2], [])),
+            ([2.5], ([1, 2], [])),
+            ([3], ([2], [])),
+            ([3.5], ([2], [])),
+            ([4], ([-1], [0])),
+            ([4.5], ([-1], [0])),
+            ([1, 2], ([0, 1, 0, 1, 2], [])),
+            ([1, 2, 3], ([0, 1, 0, 1, 2, 2], [])),
+            ([1, 2, 3, 4], ([0, 1, 0, 1, 2, 2, -1], [3])),
+            ([1, 2, 3, 4, 2], ([0, 1, 0, 1, 2, 2, -1, 0, 1, 2], [3])),
+        ],
+    )
+    def test_get_indexer_non_unique_with_int_and_float(
+        self, query: Any, expected: Any
+    ) -> None: ...
+    def test_get_indexer_non_monotonic(self) -> None: ...
+    def test_get_indexer_with_nans(self) -> None: ...
+    def test_get_index_non_unique_non_monotonic(self) -> None: ...
+    def test_get_indexer_multiindex_with_intervals(self) -> None: ...
+    @pytest.mark.parametrize('box', [IntervalIndex, array, list])
+    def test_get_indexer_interval_index(self, box: Any) -> None: ...
+    def test_get_indexer_read_only(self) -> None: ...
+
+class TestSliceLocs:
+    def test_slice_locs_with_interval(self) -> None: ...
+    def test_slice_locs_with_ints_and_floats_succeeds(self) -> None: ...
+    @pytest.mark.parametrize('query', [[0, 1], [0, 2], [0, 3], [0, 4]])
+    @pytest.mark.parametrize(
+        'tuples',
+        [
+            [(0, 2), (1, 3), (2, 4)],
+            [(2, 4), (1, 3), (0, 2)],
+            [(0, 2), (0, 2), (2, 4)],
+            [(0, 2), (2, 4), (0, 2)],
+            [(0, 2), (0, 2), (2, 4), (1, 3)],
+        ],
+    )
+    def test_slice_locs_with_ints_and_floats_errors(
+        self, tuples: Any, query: Any
+    ) -> None: ...
+
+class TestPutmask:
+    @pytest.mark.parametrize('tz', ['US/Pacific', None])
+    def test_putmask_dt64(self, tz: Optional[str]) -> None: ...
+    def test_putmask_td64(self) -> None: ...
+
+class TestContains:
+    def test_contains_dunder(self) -> None: ...
+
+# Module-level fixtures and variables
+closed: Any = ...
+listlike_box: Any = ...
+other_closed: Any = ...
+ordered: Any = ...
+tz: Any = ...
+```
