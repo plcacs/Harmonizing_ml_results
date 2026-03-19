@@ -1,0 +1,136 @@
+================================================================================
+Strategy: type_corrected
+File: boxplot_5aedc4.py
+mypy error: line 328  code [list-item]
+BEFORE (error line):
+columns = [column]
+AFTER (mapped line, if any):
+columns = [column]
+
+Removed hunk (evidence):
+keys = [pprint_thing(x) for x in keys]
+_set_ticklabels(ax=ax, labels=keys, is_vertical=kwds.get('vert', True), rotation=rot)
+columns: Optional[Sequence[str]] = None
+
+Added hunk (evidence):
+keys_str: list[str] = [pprint_thing(x) for x in keys]
+_set_ticklabels(ax=ax, labels=keys_str, is_vertical=kwds.get('vert', True), rotation=rot)
+columns: Optional[Sequence[object]] = None
+
+================================================================================
+Strategy: cast_added
+File: create_user_36a545.py
+mypy error: line 201  code [dict-item]
+BEFORE (error line):
+event = dict(type='realm_user', op='add', person=get_data_for_inaccessible_user(user_profile.realm, user_profile.id), inaccessible_user=True)
+AFTER (mapped line, if any):
+event: Dict[str, Any] = dict(type='realm_user', op='add', person=get_data_for_inaccessible_user(user_profile.realm, user_profile.id), inaccessible_user=True)
+
+Removed hunk (evidence):
+event = dict(type='realm_user', op='add', person=get_data_for_inaccessible_user(user_profile.realm, user_profile.id), inaccessible_user=True)
+send_event_on_commit(user_profile.realm, event, user_ids_without_access_to_created_user)
+
+Added hunk (evidence):
+event: Dict[str, Any] = dict(type='realm_user', op='add', person=get_data_for_inaccessible_user(user_profile.realm, user_profile.id), inaccessible_user=True)
+send_event_on_commit(user_profile.realm, cast(Any, event), user_ids_without_access_to_created_user)
+
+================================================================================
+Strategy: type_ignore_added
+File: linter_43a04e.py
+mypy error: line 275  code [union-attr]
+BEFORE (error line):
+msg = value.args[0]
+AFTER (mapped line, if any):
+msg = value.args[0]
+
+Removed hunk (evidence):
+def _handle_syntactic_error(self, code: Union[str, bytes], filename: Optional[str]) -> List[Any]:
+value = sys.exc_info()[1]
+if msg.startswith('duplicate argument'):
+error = PythonError(filename, value, msg)
+error = OffsetError(filename, value, msg, offset)
+else:
+error = PythonError(filename, value, msg)
+
+Added hunk (evidence):
+def _handle_syntactic_error(self, value: SyntaxError, code: Union[str, bytes], filename: Optional[str]) -> List[Any]:
+if isinstance(msg, str) and msg.startswith('duplicate argument'):
+error = PythonError(filename, value, msg)  # type: ignore[arg-type]
+error = OffsetError(filename, value, msg, offset)  # type: ignore[arg-type]
+else:
+error = PythonError(filename, value, msg)  # type: ignore[arg-type]
+
+================================================================================
+Strategy: annotation_removed
+File: channels_8e6ab8.py
+mypy error: line 88  code [method-assign]
+BEFORE (error line):
+self.deliver: Callable[[Message], Awaitable[None]] = self._compile_deliver()
+AFTER (mapped line, if any):
+setattr(self, "deliver", self._compile_deliver())
+
+Removed hunk (evidence):
+self.deliver: Callable[[Message], Awaitable[None]] = self._compile_deliver()
+
+Added hunk (evidence):
+setattr(self, "deliver", self._compile_deliver())
+
+================================================================================
+Strategy: code_modified
+File: boxplot_5aedc4.py
+mypy error: line 313  code [arg-type]
+BEFORE (error line):
+_set_ticklabels(ax=ax, labels=keys, is_vertical=kwds.get('vert', True), rotation=rot)
+AFTER (mapped line, if any):
+_set_ticklabels(ax=ax, labels=keys_str, is_vertical=kwds.get('vert', True), rotation=rot)
+
+Removed hunk (evidence):
+_set_ticklabels(ax=ax, labels=keys, is_vertical=kwds.get('vert', True), rotation=rot)
+
+Added hunk (evidence):
+_set_ticklabels(ax=ax, labels=keys_str, is_vertical=kwds.get('vert', True), rotation=rot)
+
+================================================================================
+Strategy: non_local_fix
+File: execution_context_61aa2e.py
+mypy error: line 57  code [return-value]
+BEFORE (error line):
+return self._difficulty
+AFTER (mapped line, if any):
+return self._difficulty
+
+Removed hunk (evidence):
+from typing import ClassVar, Iterable, Optional
+
+Added hunk (evidence):
+from typing import Iterable, Optional
+
+================================================================================
+Strategy: changed_to_any
+File: stdlib_4fd1ea.py
+mypy error: line 508  code [return-value]
+BEFORE (error line):
+return Parameter.POSITIONAL_OR_KEYWORD
+AFTER (mapped line, if any):
+return Parameter.POSITIONAL_OR_KEYWORD
+
+Removed hunk (evidence):
+def get_kind(self) -> Parameter:
+
+Added hunk (evidence):
+def get_kind(self) -> Any:
+
+================================================================================
+Strategy: restructured
+File: wrappers_34ca66.py
+mypy error: line 231  code [type-arg]
+BEFORE (error line):
+def __getitem__(self, w: EventT) -> 'WindowSet[KT, VT]': ...
+AFTER (mapped line, if any):
+def __getitem__(self, w: Any) -> Any:
+
+Removed hunk (evidence):
+@overload
+def __getitem__(self, w: EventT) -> 'WindowSet[KT, VT]': ...
+@overload
+def __getitem__(self, w: Any) -> VT: ...

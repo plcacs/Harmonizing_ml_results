@@ -49,10 +49,9 @@ STRATEGY_ORDER = [
     "type_ignore_added",
     "annotation_removed",
     "code_modified",
-    "indirect_context_change",
+    "non_local_fix",
     "changed_to_any",
     "restructured",
-    "unchanged",
     "other",
 ]
 
@@ -79,7 +78,7 @@ def print_strategy_taxonomy_table(strategy_counter: Counter, total_errors: int) 
     rows: List[List[object]] = []
     for strategy in STRATEGY_ORDER:
         count = strategy_counter.get(strategy, 0)
-        if count == 0 and strategy in {"unchanged", "other"}:
+        if count == 0 and strategy in {"other"}:
             continue
         rows.append([strategy, count, format_percent(count, total_errors)])
     print_markdown_table(["Strategy", "Count", "% of errors"], rows)
@@ -307,7 +306,7 @@ def classify_from_context(
             return "code_modified"
         if file_has_changes:
             # Error line unchanged, but file changed elsewhere; likely indirect/contextual resolution.
-            return "indirect_context_change"
+            return "non_local_fix"
         return "unchanged"
 
     if "# type: ignore" in added_blob and "# type: ignore" not in removed_blob:
@@ -412,6 +411,14 @@ def analyze_model(model_name: str, config: Dict[str, str]) -> None:
 
     print("\n  --- Strategy by mypy error code (top 10) ---")
     print_strategy_by_error_code_table(strategy_by_error_code, top_k=10)
+
+    unattributed = strategy_counter.get("unchanged", 0)
+    if unattributed:
+        print("\n  --- Unattributed cases (not in main taxonomy) ---")
+        print(
+            f"  unchanged/unattributed: {unattributed}/{total_errors} "
+            f"({format_percent(unattributed, total_errors)})"
+        )
 
 
 if __name__ == "__main__":
