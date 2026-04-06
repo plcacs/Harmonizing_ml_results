@@ -19,8 +19,8 @@ SOURCE_DIR = os.path.join(PARENT_DIR, "deep_seek_2nd_run")
 FAILURE_JSON = os.path.join(
     PARENT_DIR, "mypy_results", "Section_04", "llm_only_failure_files.json"
 )
-OUTPUT_DIR = os.path.join(BASE_DIR, "fixed_files")
-LOG_FILE = os.path.join(BASE_DIR, "fix_log.json")
+OUTPUT_DIR = os.path.join(BASE_DIR, "fixed_files_strict_edit_rules")
+LOG_FILE = os.path.join(BASE_DIR, "fix_log_strict_edit_rules.json")
 MAX_ATTEMPTS = 5
 
 
@@ -53,18 +53,40 @@ def run_mypy(filepath):
 
 def fix_with_llm(code, mypy_errors):
     prompt = (
-        "Here is a Python file with type annotations that has mypy errors.\n\n"
-        "### Python Code:\n```python\n" + code + "\n```\n\n"
-        "### Mypy Errors:\n```\n" + mypy_errors + "\n```\n\n"
-        "Fix the type annotations so that mypy passes without errors. "
-        "Keep all logic and functionality identical. "
-        "Output ONLY the corrected Python code, no explanation."
+        "STRICT EDIT RULES (must follow):\n"
+        "1) You may modify ONLY:\n"
+        "   - type annotations (function parameters, returns, variable annotations, class attribute annotations, TypeAlias)\n"
+        "   - typing-related imports (from typing / typing_extensions)\n"
+        "   - `if TYPE_CHECKING:` import blocks\n"
+        "2) Do NOT change runtime behavior:\n"
+        "   - Do not change executable code, control flow, expressions, values, string literals, or function bodies.\n"
+        "   - Do not rename symbols, reorder code, reformat, or add/remove non-typing statements.\n"
+        "3) Do NOT add `# type: ignore` unless explicitly allowed. Do NOT disable mypy checks. Do not use cast.\n"
+        "4) You may remove type annotations or use Any but prefer precise standard typing: Optional/Union, Iterable/Sequence/Mapping, Protocol, TypedDict, Literal, overload, TypeVar/ParamSpec, Callable.\n"
+        "5) Keep the file complete and syntactically valid. Preserve all existing code outside the allowed edits.\n\n"
+        "TASK:\n"
+        "Given the Python file and mypy errors below, produce a corrected version of the SAME FILE that fixes the mypy errors while obeying the strict edit rules.\n\n"
+        "### Python Code:\n```python\n"
+        + code
+        + "\n```\n\n### Mypy Errors:\n```\n"
+        + mypy_errors
+        + "\n```\n\n"
+        + "OUTPUT FORMAT:\n"
+        + "- Output the entire file content, exactly once.\n"
+        + "- No explanations, no markdown, no extra text.\n"
     )
     try:
         response = client.chat.completions.create(
             model="deepseek-chat",
             messages=[
-                {"role": "system", "content": "You are a Python typing expert. Fix type annotation errors."},
+                {
+                    "role": "system",
+                    "content": (
+                        "You are a Python typing expert. "
+                        "Only change type annotations, typing imports, and `if TYPE_CHECKING:` blocks; "
+                        "never change runtime behavior. Output the full corrected file as plain text only."
+                    ),
+                },
                 {"role": "user", "content": prompt},
             ],
         )
