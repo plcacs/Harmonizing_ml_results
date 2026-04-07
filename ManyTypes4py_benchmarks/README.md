@@ -88,7 +88,7 @@ Outputs are usually `/<run_name>/<group_id>/<filename>.py`.
 
 | Directory | Description |
 |-----------|-------------|
-| `mypy_results/` | Large JSON corpora: per-model mypy outputs, filtered errors, Section_04 tables, partial vs user-annotated splits. |
+| `mypy_results/` | Large JSON corpora + analysis scripts (tables, Venn, filtered errors) — **see dedicated section *mypy_results* below.** |
 | `GPCE_mypy_results/` | Mypy JSON for GPCE-style extra runs (e.g. `deepseek_3_run`, `deepseek_4_run` as wired in `Run_mypy_on_llm_2.py`). |
 | `deepseek_mypy_fix/`, `gpt5_mypy_fix/`, `claude_mypy_fix/` | **LLM repair loops**: strict typing-only prompts, `fixed_files/` / `fixed_files_strict_edit_rules/`, logs. |
 | `mypy_fix_analysis/` | Qualitative / diff analysis of fix behavior (example before/after snippets). |
@@ -109,7 +109,130 @@ Outputs are usually `/<run_name>/<group_id>/<filename>.py`.
 | `callgraph_analysis/` | `generate_callgraph.py` + comparisons to mypy outcomes (`callgraph_vs_mypy.py`). |
 | `complexity_of_source_codes/` | Cyclomatic / file complexity vs mypy success. |
 | `codesimilarty/`, `GPCE_AST_analysis/` | Similarity and AST-focused side studies. |
-| `Type_info_collector/` | Many scripts: **Any-rate**, precision, agreement, plots, memorization (`Section_08_LLM_memorized/`), LLM-vs-LLM, etc. |
+| `Type_info_collector/` | Type-info JSON metrics, precision, **Any**-rate, semantic comparison, plots — **see dedicated section *Type_info_collector* below.** |
+
+---
+
+## `mypy_results/` (scripts and layout)
+
+**Role:** Stores **mypy batch JSON** (per file: `isCompiled`, `errors`, `stats` with parameter counts) and **downstream analysis scripts** for paper sections (tables, Venn diagrams, bar plots, filtered error sets).
+
+### Main subfolders (data + layout)
+
+| Subfolder | Contents / purpose |
+|-----------|-------------------|
+| `mypy_outputs/` | Large JSON files produced by `Run_mypy_on_llm*.py` — e.g. per-model `mypy_results_*_with_errors.json`, partial / user-annotated variants. |
+| `Filtered_type_errors/` | **Merged** JSON per model (`merged_*.json`): files where errors are treated as **type-focused** after comparing with analysis filters; **`analyze_filtered_mypy_results.py`** summarizes them. |
+| `Section_04/` | Core **compilation / consistency / Table 1–2** style analysis (see script list below). Also holds JSONs such as `both_success_files.json`, `llm_only_failure_files.json` used by repair / collection scripts. |
+| `Section_5_LLM_VS_LLM/` | **LLM vs LLM:** Venn diagrams (`Ven_diagram*.py`), bar plots by annotation ratio or total parameters. |
+| `Section_6_Human_VS_LLM/` | **Human (user-annotated / partial) vs LLM:** bar plots, `Table_8_truth_tables_llm_compilation.py`, human vs top-3 LLM Venn. |
+| `Section_07/`, `Section_08/` | Extra section-specific plots / renamed-file analysis (`Section_08/Renamed_file_analysis.py`). |
+| `split_original_files/` | Splits / overlap of **original** mypy corpora; **`analyze_model_overlap.py`** compares which files compile across models. |
+| `type_coverage_bins/`, `benchmarks_annotations/`, `analysis_outputs/` | Binned or derived coverage / annotation artifacts (pairs with `generate_coverage_bins.py` where applicable). |
+| `old_type_coverage_files/` | Legacy **`TypeCoveragePlot*.py`** scripts for older coverage plots. |
+| `Deep_analysis_of_mypy/Further_analysis/` | Ad hoc deep dives (sample modules, import checks, etc.). |
+| `archived/` | Older table scripts (e.g. `Table_1.py`). |
+
+### Top-level scripts (`mypy_results/*.py`)
+
+| Script | What it does |
+|--------|----------------|
+| **`Filter_only_type_erros_files.py`** | For each model, intersects **analysis JSON** (`analysis_*.json`) with full mypy output vs **untyped** baseline; writes **`Filtered_type_errors/merged_*.json`** (subset used for “LLM-only” / typing-centric error studies and `Find_llm_errors_files.py`). |
+| **`analyze_model_overlap_new.py`** | **Overlap** of which files compile / fail across models (newer entry point; see also `split_original_files/analyze_model_overlap.py`). |
+| **`BarPlot.py`**, **`create_stacked_bar_chart.py`** | Generic bar / stacked charts from aggregated mypy stats. |
+| **`generate_coverage_bins.py`** | Builds **coverage bins** (feeds `type_coverage_bins/` or related summaries). |
+| **`Merge_code_similarity_and_mypy_results.py`** | Joins **code similarity** features with mypy outcomes for joint analysis. |
+| **`param_distribution_analysis.py`** | Distribution of **parameter counts** / annotations vs mypy success. |
+| **`Renamed_file_analysis.py`** | Compares mypy results for **renamed** vs original file corpora. |
+
+### `mypy_results/Section_04/` (paper-style breakdown)
+
+| Script | What it does |
+|--------|----------------|
+| **`split_parameter_annotations.py`** | Splits `mypy_results_original_files_with_errors.json`-style data into files with **no param annotations** vs **some** (uses `stats.total_parameters` / `parameters_with_annotations`). |
+| **`Table_1_analysis.py`**, **`Table_1_simplified.py`**, **`Table_1_split_analysis.py`**, **`Table_1_parameter_count_analysis.py`**, **`Table_1_analysis_filter_both_fail_first.py`** | Variants of **Table 1** aggregates (compilation rates, filters, parameter strata). |
+| **`Table_2_consistency_analysis.py`** | **Consistency** across runs / conditions for Table 2. |
+| **`flip_results.py`**, **`flip_summary.py`** | Files that **flip** compile ↔ fail between two conditions; summaries. |
+| **`compilation_consistency_plot.py`**, **`compilation_consistency_plot_ccn.py`** | Plots of compilation consistency (second adds **CCN** / complexity linkage). |
+
+### `mypy_results/Section_5_LLM_VS_LLM/` and `Section_6_Human_VS_LLM/`
+
+- **Section 5:** **`Ven_diagram*.py`** (overlap of success sets across LLMs), **`barplot_compiled_by_annotation_ratio.py`**, **`barplot_compiled_by_total_parameters.py`**.
+- **Section 6:** Same style bar plots plus **partial / user-annotated** variants (`barplot_for_partial_user_annotated.py`, `barplot_for_user_annotated_total_parameter.py`), **`Ven_diagram_human_vs_top3LLM.py`**, **`Table_8_truth_tables_llm_compilation.py`**.
+
+### `mypy_results/Filtered_type_errors/`
+
+- **`analyze_filtered_mypy_results.py`** — Reads merged filtered JSONs and prints / saves summary stats for **typing-filtered** error corpora.
+
+---
+
+## `Type_info_collector/` (scripts and layout)
+
+**Role:** Consumes **type-info JSON** (from repo-root-style `Type_info_collector.py` runs or `Type_info_LLMS/*.json`) to compute **`Any` usage**, **precision vs ground truth**, **agreement** between LLMs, **semantic** type equivalence, and **memorization**-style analyses. Outputs are usually new JSON/CSV/plots beside the script or in named subfolders.
+
+### Root-level scripts
+
+| Script | What it does |
+|--------|----------------|
+| **`semantic_type_comparison.py`** | Maps “raw” type-string pairs through a **safe** typing-aware comparison; writes enriched JSON under **`semantic_comparison_results/`** (`type_comparison_semantic_*.json`). |
+| **`Compare_LLM_vs_LLM.py`**, **`Comapre_LLM_VS_Human.py`** | Cross-model or **LLM vs human** type-info comparisons (aggregates / reports — exact metrics in-file). |
+| **`parameter_vs_any_analysis.py`** | Relates **annotation coverage** to **`Any`** usage. |
+| **`hypothesis_testing_fixed.py`** | Statistical tests on collected metrics (e.g. differences in Any-rate / precision). |
+| **`visualize_any_usage.py`**, **`visualization_analysis.py`**, **`simple_rectangle_plot.py`** | Plotting helpers for Any / metric summaries. |
+| **`examine_json.py`**, **`debug_semantic.py`**, **`test_subtype.py`** | Inspection / debugging utilities for JSON layout and subtyping checks. |
+
+### `Type_info_collector/Section_04/`
+
+| Script | What it does |
+|--------|----------------|
+| **`calculate_any_rate.py`**, **`calculate_empty_rate.py`**, **`calculate_instability_rate.py`** | **Any-ratio**, empty annotation rates, **instability** across two runs. |
+| **`File_level_any_analysis.py`**, **`File_level_precision_analysis.py`** | Per-file **Any** and **precision** summaries. |
+| **`Precision_in_two_runs.py`**, **`Table_4_precsion_in_two_run.py`**, **`Table_4_precsion_in_two_run_file_level.py`** | **Precision** when comparing two annotation runs (file vs corpus level). |
+| **`simple_any_ratio_comparison.py`**, **`Table_03_any_empty_rate.py`**, **`Table_03_two_parts.py`**, **`Table_03_partially_typed_user_annotated_any_rate.py`** | **Table 3**-style **Any** / empty-rate tables, including **partial** and **user-annotated** splits. |
+| **`analyze_type_coverage.py`**, **`analyze_type_replacement.py`**, **`analyze_three_models_union.py`** | Coverage / replacement patterns; **three-model** unions. |
+
+### `Type_info_collector/Section_06/`
+
+| Script | What it does |
+|--------|----------------|
+| **`any_ratio_analysis.py`**, **`any_ratio_analysis_plot_partial_type.py`**, **`any_ratio_analysis_user_annotation.py`** | **Any** ratio trends with plots (partial / user annotation conditions). |
+| **`analyze_any_simple.py`**, **`analyze_any_final.py`**, **`analyze_any_ratio_changes.py`**, **`Common_Any_analysis.py`** | Iterations of **Any** deep dives and aggregates. |
+| **`analyze_type_replacement.py`** | Which types were replaced by `Any` / others between conditions. |
+| **`llm_agreement_analysis.py`**, **`precision_agreement_analysis.py`** | **Pairwise LLM agreement** on types; **precision agreement** across annotators/models. |
+| **`debug_test.py`**, **`simple_test.py`**, **`test_file_loading.py`** | Tests / sanity checks. |
+
+### `Type_info_collector/Sections_05/`
+
+| Script | What it does |
+|--------|----------------|
+| **`Section_5_precision.py`**, **`Section_5_precision_plot.py`**, **`Section_5_precision_plot_binary.py`** | Core **Section 5 precision** numbers and plots. |
+| **`Section5_LLM_precision_comparison.py`**, **`Section5_LLM_precision_comparison_with_plot.py`**, **`Section5_binary_precision_comparison.py`**, **`Section5_precision_plot.py`**, **`Section5_precision_plot_binary.py`** | **LLM vs LLM** precision comparisons (with / without plots); binary variants. |
+| **`winner_group_counts.py`** | Counts which model “wins” per file/group under chosen precision rules. |
+
+### `Type_info_collector/Section_08_LLM_memorized/`
+
+**Theme:** Whether LLM outputs **mirror training / prior types** (memorization) vs **generic** inference.
+
+| Script | What it does |
+|--------|----------------|
+| **`calculate_any_rate.py`**, **`any_ratio_analysis.py`** | Any metrics specialized to **memorization** corpora. |
+| **`semantic_type_analysis.py`**, **`analyze_type_replacement.py`** | Semantic / replacement analysis for memorization setting. |
+| **`precision_agreement_analysis.py`** | Agreement on “memorized” vs human / original types. |
+| **`Compare_LLM_file_level_meomorization.py`** | File-level **memorization** comparison (filename reflects typo “meomorization”). |
+
+### `Type_info_collector/Any_Anaysis/` (note: folder spelling)
+
+| Script | What it does |
+|--------|----------------|
+| **`any_type_analysis.py`**, **`any_ratio_analysis.py`**, **`any_analysis_summary.py`**, **`analyze_type_patterns.py`** | **`Any`** usage patterns and summaries. |
+| **`P_test_for_Any_type.py`** | Significance tests related to **`Any`** rates. |
+
+### `Type_info_collector/llm_vs_llm_comparison/` and `semantic_comparison_results/`
+
+| Script | What it does |
+|--------|----------------|
+| **`llm_vs_llm_comparison/analyze_semantic_results.py`** | Summarizes **semantic** LLM–LLM comparison outputs. |
+| **`semantic_comparison_results/analyze_semantic_results.py`**, **`extract_optional_differences.py`** | Drill into **`Optional`** / union differences after semantic normalization. |
 
 ---
 
@@ -190,3 +313,4 @@ Top-level folders such as `pandas/`, `aiohttp/`, `black/`, … are **upstream re
 - [ ] If you add a new top-level `Generate_code_using_*.py`, add one line under **LLM full-file annotation**.
 - [ ] If JSON locations change, update **Shared inputs** and any script that hardcodes paths.
 - [ ] Regenerate or note new **`mypy_results/`** or **`Type_info_collector/`** consumers in **`llm_analysis.py`** if the paper pipeline depends on them.
+- [ ] Add any new **`mypy_results/**/*.py`** or **`Type_info_collector/**/*.py`** to the matching section above (or one-line “see file docstring” note).
