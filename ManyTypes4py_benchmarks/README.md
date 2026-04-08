@@ -301,6 +301,23 @@ Brief index; open each file for exact paths and flags.
 
 ---
 
+## Table/Figure script mapping
+
+- **Table 2:** `mypy_results/Section_04/Table_1_analysis_filter_both_fail_first.py`
+- **Table 3:** `mypy_results/Section_04/Table_2_consistency_analysis.py`
+- **Table 4:** `Type_info_collector/Section_04/Table_03_any_empty_rate.py`
+- **Table 5:** `Type_info_collector/Section_04/Table_4_precsion_in_two_run_file_level.py`, `Type_info_collector/Section_04/Table_4_precsion_in_two_run.py`
+- **Table 7:** `Type_info_collector/Section_06/analyze_type_replacement.py`
+- **Table 8:** `Type_info_collector/Section_06/precision_agreement_analysis.py`
+- **Table 9:** `Type_info_collector/Section_06/analyze_any_ratio_changes.py`
+- **Figure 5:** `mypy_results/Section_6_Human_VS_LLM/Ven_diagram_human_vs_top3LLM.py`
+- **Figure 6:** `mypy_results/Section_6_Human_VS_LLM/barplot_compiled_by_total_parameters.py`
+- **Figure 7:** `Type_info_collector/Section_06/any_ratio_analysis.py`
+- **Figure 8:** `mypy_results/Section_6_Human_VS_LLM/barplot_for_partial_user_annotated.py`, `mypy_results/Section_6_Human_VS_LLM/barplot_for_user_annotated_total_parameter.py`
+- **Figure 9:** `Type_info_collector/Section_06/any_ratio_analysis_user_annotation.py`, `Type_info_collector/Section_06/any_ratio_analysis_plot_partial_type.py`
+
+---
+
 ## Cloned benchmark projects
 
 Top-level folders such as `pandas/`, `aiohttp/`, `black/`, … are **upstream repositories** used as source locations for real-world files. They are **not** experiment outputs; do not list them as “runs” unless you add a note here for a specific paper snapshot.
