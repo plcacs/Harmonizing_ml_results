@@ -1,0 +1,386 @@
+{
+  "GPT-5": {
+    "import_removal": [
+      {
+        "file": "0531_convert_most_ids_to_bigints_841260.py",
+        "category": "import_removal",
+        "old_snippet": "from typing_extensions import override",
+        "new_snippet": "# (removed)"
+      },
+      {
+        "file": "execution_context_61aa2e.py",
+        "category": "import_removal",
+        "old_snippet": "from typing import ClassVar",
+        "new_snippet": "# (removed)"
+      }
+    ],
+    "other_code_change": [
+      {
+        "file": "0531_convert_most_ids_to_bigints_841260.py",
+        "category": "other_code_change",
+        "old_snippet": "from typing_extensions import override",
+        "new_snippet": "# (inserted)"
+      },
+      {
+        "file": "BaseEnvironment_875d27.py",
+        "category": "other_code_change",
+        "old_snippet": "        increment: bool = True if value is None else False\n        val: float = 1.0 if increment else float(value)",
+        "new_snippet": "        if value is None:\n            increment: bool = True\n            val: float = 1.0\n        else:\n            increment = False\n            val = float(value)"
+      }
+    ],
+    "none_guard_addition": [
+      {
+        "file": "BaseEnvironment_875d27.py",
+        "category": "none_guard_addition",
+        "old_snippet": "        increment: bool = True if value is None else False\n        val: float = 1.0 if increment else float(value)",
+        "new_snippet": "        if value is None:\n            increment: bool = True\n            val: float = 1.0\n        else:\n            increment = False\n            val = float(value)"
+      },
+      {
+        "file": "__init___000e4c.py",
+        "category": "none_guard_addition",
+        "old_snippet": "            return prop.fget(self)",
+        "new_snippet": "            assert orig_fget is not None\n            return orig_fget(self)"
+      }
+    ],
+    "import_addition": [
+      {
+        "file": "PyTorchModelTrainer_91f360.py",
+        "category": "import_addition",
+        "old_snippet": "# (not present)",
+        "new_snippet": "from typing import cast"
+      },
+      {
+        "file": "__init___1a62a7.py",
+        "category": "import_addition",
+        "old_snippet": "# (not present)",
+        "new_snippet": "from typing import cast"
+      }
+    ],
+    "cast_insertion": [
+      {
+        "file": "PyTorchModelTrainer_91f360.py",
+        "category": "cast_insertion",
+        "old_snippet": "            dataset: TensorDataset = TensorDataset(x, y)",
+        "new_snippet": "            dataset_td: TensorDataset = TensorDataset(x, y)\n            dataset: Dataset[Tuple[torch.Tensor, torch.Tensor]] = cast(Dataset[Tuple[torch.Tensor, torch.Tensor]], dataset_td)"
+      },
+      {
+        "file": "PyTorchModelTrainer_91f360.py",
+        "category": "cast_insertion",
+        "old_snippet": "            dataset: WindowDataset = WindowDataset(x, y, self.window_size)",
+        "new_snippet": "            dataset_wd: WindowDataset = WindowDataset(x, y, self.window_size)\n            dataset: Dataset[Tuple[torch.Tensor, torch.Tensor]] = cast(Dataset[Tuple[torch.Tensor, torch.Tensor]], dataset_wd)"
+      }
+    ],
+    "param_annotation_change": [
+      {
+        "file": "__init___000e4c.py",
+        "category": "param_annotation_change",
+        "old_snippet": "def _getter(..., self: <none>, ...)",
+        "new_snippet": "def _getter(..., self: Any, ...)"
+      },
+      {
+        "file": "__init___000e4c.py",
+        "category": "param_annotation_change",
+        "old_snippet": "def wrapper(..., self: Any, ...)",
+        "new_snippet": "def wrapper(..., self: <none>, ...)"
+      }
+    ],
+    "return_type_fix": [
+      {
+        "file": "__init___000e4c.py",
+        "category": "return_type_fix",
+        "old_snippet": "def _getter(...) -> <none>",
+        "new_snippet": "def _getter(...) -> Any"
+      },
+      {
+        "file": "__init___315d9c.py",
+        "category": "return_type_fix",
+        "old_snippet": "def FakeScannerMixin.discovered_devices_and_advertisement_data(...) -> <none>",
+        "new_snippet": "def FakeScannerMixin.discovered_devices_and_advertisement_data(...) -> Dict[str, Tuple[BLEDevice, AdvertisementData]]"
+      }
+    ],
+    "variable_reannotation": [
+      {
+        "file": "__init___d345bd.py",
+        "category": "variable_reannotation",
+        "old_snippet": "# vars not annotated",
+        "new_snippet": "vars: Union[Dict[str, Any], str]"
+      },
+      {
+        "file": "__init___d345bd.py",
+        "category": "variable_reannotation",
+        "old_snippet": "# profile_dir not annotated",
+        "new_snippet": "profile_dir: str"
+      }
+    ],
+    "type_ignore_addition": [
+      {
+        "file": "_compat_bfcdb3.py",
+        "category": "type_ignore_addition",
+        "old_snippet": "            BodyModel.__fields__[f.name] = f",
+        "new_snippet": "            BodyModel.__fields__[f.name] = f  # type: ignore[index, assignment]"
+      },
+      {
+        "file": "array_bacc3d.py",
+        "category": "type_ignore_addition",
+        "old_snippet": "                    values[i] = DecimalDtype.type(val)  # type: ignore[call-arg]",
+        "new_snippet": "                    values[i] = DecimalDtype.type(val)  # type: ignore[arg-type]"
+      }
+    ]
+  },
+  "DeepSeek": {
+    "other_code_change": [
+      {
+        "file": "0531_convert_most_ids_to_bigints_841260.py",
+        "category": "other_code_change",
+        "old_snippet": "    @override",
+        "new_snippet": "# (inserted)"
+      },
+      {
+        "file": "BaseEnvironment_875d27.py",
+        "category": "other_code_change",
+        "old_snippet": "# (deleted)",
+        "new_snippet": "        pass"
+      }
+    ],
+    "return_type_fix": [
+      {
+        "file": "BaseEnvironment_875d27.py",
+        "category": "return_type_fix",
+        "old_snippet": "def BaseEnvironment.get_actions(...) -> Enum",
+        "new_snippet": "def BaseEnvironment.get_actions(...) -> type[BaseActions]"
+      },
+      {
+        "file": "__init___000e4c.py",
+        "category": "return_type_fix",
+        "old_snippet": "def getter(...) -> <none>",
+        "new_snippet": "def getter(...) -> Any"
+      }
+    ],
+    "param_annotation_change": [
+      {
+        "file": "__init___000e4c.py",
+        "category": "param_annotation_change",
+        "old_snippet": "def getter(..., self: <none>, ...)",
+        "new_snippet": "def getter(..., self: Any, ...)"
+      },
+      {
+        "file": "__init___000e4c.py",
+        "category": "param_annotation_change",
+        "old_snippet": "def _wrap_missing_property(..., prop: P, ...)",
+        "new_snippet": "def _wrap_missing_property(..., prop: property, ...)"
+      }
+    ],
+    "import_addition": [
+      {
+        "file": "__init___000e4c.py",
+        "category": "import_addition",
+        "old_snippet": "# (not present)",
+        "new_snippet": "from typing import overload"
+      },
+      {
+        "file": "__init___063bfe.py",
+        "category": "import_addition",
+        "old_snippet": "# (not present)",
+        "new_snippet": "from typing import Mapping"
+      }
+    ],
+    "none_guard_addition": [
+      {
+        "file": "__init___000e4c.py",
+        "category": "none_guard_addition",
+        "old_snippet": "def _wrap_property(class_name: str, property_name: str, prop: P, logger: Any) -> P:\n\n    @property\n    def wrapper(self: Any) -> Any:",
+        "new_snippet": "def _wrap_property(class_name: str, property_name: str, prop: property, logger: Any) -> property:\n    fget = prop.fget\n    fset = prop.fset\n    fdel = prop.fdel\n    doc = prop.__doc__\n\n    if fget is None:\n        raise ValueError(\"Property must have a getter\")\n\n    def getter(self: Any) -> Any:"
+      },
+      {
+        "file": "__init___000e4c.py",
+        "category": "none_guard_addition",
+        "old_snippet": "    wrapper.__doc__ = prop.__doc__\n    if prop.fset is not None:\n        wrapper = wrapper.setter(_wrap_function(class_name, prop.fset.__name__, prop.fset, logger))\n    return cast(P, wrapper)",
+        "new_snippet": "\n    getter.__doc__ = doc\n\n    if fset is not None:\n        def setter(self: Any, value: Any) -> None:\n            if hasattr(_local, 'logging') and _local.logging:\n                fset(self, value)\n                return\n            _local.logging = True\n            try:\n                start = time.perf_counter()\n                try:\n                    fset(self, value)\n                    logger.log_success(class_name, property_name + \".setter\", time.perf_counter() - start)\n                except Exception as ex:\n                    logger.log_failure(class_name, property_name + \".setter\", ex, time.perf_counter() - start)\n                    raise\n            finally:\n                _local.logging = False\n\n        if fdel is not None:\n            def deleter(self: Any) -> None:\n                if hasattr(_local, 'logging') and _local.logging:\n                    fdel(self)\n                    return\n                _local.logging = True\n                try:\n                    start = time.perf_counter()\n                    try:\n                        fdel(self)\n                        logger.log_success(class_name, property_name + \".deleter\", time.perf_counter() - start)\n                    except Exception as ex:\n                        logger.log_failure(class_name, property_name + \".deleter\", ex, time.perf_counter() - start)\n                        raise\n                finally:\n                    _local.logging = False\n\n            return property(getter, setter, deleter, doc)\n        else:\n            return property(getter, setter, None, doc)\n    else:\n        if fdel is not None:\n            def deleter(self: Any) -> None:\n                if hasattr(_local, 'logging') and _local.logging:\n                    fdel(self)\n                    return\n                _local.logging = True\n                try:\n                    start = time.perf_counter()\n                    try:\n                        fdel(self)\n                        logger.log_success(class_name, property_name + \".deleter\", time.perf_counter() - start)\n                    except Exception as ex:\n                        logger.log_failure(class_name, property_name + \".deleter\", ex, time.perf_counter() - start)\n                        raise\n                finally:\n                    _local.logging = False\n\n            return property(getter, None, deleter, doc)\n        else:\n            return property(getter, None, None, doc)"
+      }
+    ],
+    "cast_insertion": [
+      {
+        "file": "__init___063bfe.py",
+        "category": "cast_insertion",
+        "old_snippet": "    assert_metrics_values(metrics, desired_values, rtol, atol)",
+        "new_snippet": "    assert_metrics_values(\n        cast(Dict[str, Union[float, Dict[str, float]]], metrics),\n        cast(Dict[str, Union[float, Dict[str, float]]], desired_values),\n        rtol,\n        atol\n    )"
+      },
+      {
+        "file": "__init___063bfe.py",
+        "category": "cast_insertion",
+        "old_snippet": "    assert_metrics_values(metrics, desired_values, rtol, atol)",
+        "new_snippet": "    assert_metrics_values(\n        cast(Dict[str, Union[float, Dict[str, float]]], metrics),\n        cast(Dict[str, Union[float, Dict[str, float]]], desired_values),\n        rtol,\n        atol\n    )"
+      }
+    ],
+    "variable_reannotation": [
+      {
+        "file": "__init___d345bd.py",
+        "category": "variable_reannotation",
+        "old_snippet": "# vars not annotated",
+        "new_snippet": "vars: Dict[str, Any]"
+      },
+      {
+        "file": "__init___d345bd.py",
+        "category": "variable_reannotation",
+        "old_snippet": "# profile_dir not annotated",
+        "new_snippet": "profile_dir: str"
+      }
+    ],
+    "type_ignore_addition": [
+      {
+        "file": "_decorators_cfdb34.py",
+        "category": "type_ignore_addition",
+        "old_snippet": "        wrapper.__signature__ = new_sig\n        return wrapper",
+        "new_snippet": "        wrapper.__signature__ = new_sig  # type: ignore[attr-defined]\n        return cast(F, wrapper)"
+      },
+      {
+        "file": "_decorators_cfdb34.py",
+        "category": "type_ignore_addition",
+        "old_snippet": "        decorated._docstring_components = docstring_components  # type: ignore",
+        "new_snippet": "        decorated._docstring_components = docstring_components  # type: ignore[attr-defined]"
+      }
+    ],
+    "import_removal": [
+      {
+        "file": "lock_c9b41d.py",
+        "category": "import_removal",
+        "old_snippet": "from typing import final",
+        "new_snippet": "# (removed)"
+      },
+      {
+        "file": "number_c8a6fb.py",
+        "category": "import_removal",
+        "old_snippet": "from typing import NotRequired",
+        "new_snippet": "# (removed)"
+      }
+    ]
+  },
+  "Claude": {
+    "return_type_fix": [
+      {
+        "file": "BaseEnvironment_875d27.py",
+        "category": "return_type_fix",
+        "old_snippet": "def BaseEnvironment.get_actions(...) -> type",
+        "new_snippet": "def BaseEnvironment.get_actions(...) -> Type[BaseActions]"
+      },
+      {
+        "file": "__init___000e4c.py",
+        "category": "return_type_fix",
+        "old_snippet": "def _wrap_missing_property(...) -> property_type",
+        "new_snippet": "def _wrap_missing_property(...) -> property"
+      }
+    ],
+    "import_addition": [
+      {
+        "file": "BaseEnvironment_875d27.py",
+        "category": "import_addition",
+        "old_snippet": "# (not present)",
+        "new_snippet": "from typing import Type"
+      },
+      {
+        "file": "__init___e33fa3.py",
+        "category": "import_addition",
+        "old_snippet": "# (not present)",
+        "new_snippet": "from typing import IO"
+      }
+    ],
+    "none_guard_addition": [
+      {
+        "file": "BaseEnvironment_875d27.py",
+        "category": "none_guard_addition",
+        "old_snippet": "        value = 1 if increment else value",
+        "new_snippet": "        float_value: float = 1.0 if increment else (value if value is not None else 1.0)"
+      },
+      {
+        "file": "__init___605457.py",
+        "category": "none_guard_addition",
+        "old_snippet": "        self._parse_mode = self._parsers.get(parser)",
+        "new_snippet": "        self._parse_mode = self._parsers.get(parser) if parser is not None else None"
+      }
+    ],
+    "other_code_change": [
+      {
+        "file": "BaseEnvironment_875d27.py",
+        "category": "other_code_change",
+        "old_snippet": "from typing import Any, Dict, List, Optional, Tuple, Union",
+        "new_snippet": "from typing import Any, Dict, List, Optional, Tuple, Type, Union"
+      },
+      {
+        "file": "__init___000e4c.py",
+        "category": "other_code_change",
+        "old_snippet": "from typing import Any, Callable, Dict, List, Optional, Set, Type, TypeVar, Union, cast, overload, property as property_type",
+        "new_snippet": "from typing import Any, Callable, Dict, List, Optional, Set, Type, TypeVar, Union, cast, overload"
+      }
+    ],
+    "param_annotation_change": [
+      {
+        "file": "__init___000e4c.py",
+        "category": "param_annotation_change",
+        "old_snippet": "def _wrap_missing_property(..., prop: property_type, ...)",
+        "new_snippet": "def _wrap_missing_property(..., prop: property, ...)"
+      },
+      {
+        "file": "__init___000e4c.py",
+        "category": "param_annotation_change",
+        "old_snippet": "def _wrap_property(..., prop: property_type, ...)",
+        "new_snippet": "def _wrap_property(..., prop: property, ...)"
+      }
+    ],
+    "import_removal": [
+      {
+        "file": "__init___000e4c.py",
+        "category": "import_removal",
+        "old_snippet": "from typing import property",
+        "new_snippet": "# (removed)"
+      },
+      {
+        "file": "__init___81f696.py",
+        "category": "import_removal",
+        "old_snippet": "from typing import bytes",
+        "new_snippet": "# (removed)"
+      }
+    ],
+    "type_ignore_addition": [
+      {
+        "file": "__init___000e4c.py",
+        "category": "type_ignore_addition",
+        "old_snippet": "            return prop.fget(self)",
+        "new_snippet": "            return prop.fget(self)  # type: ignore[misc]"
+      },
+      {
+        "file": "__init___000e4c.py",
+        "category": "type_ignore_addition",
+        "old_snippet": "                res = prop.fget(self)",
+        "new_snippet": "                res = prop.fget(self)  # type: ignore[misc]"
+      }
+    ],
+    "variable_reannotation": [
+      {
+        "file": "__init___315d9c.py",
+        "category": "variable_reannotation",
+        "old_snippet": "# discovered_devices_and_advertisement_data not annotated",
+        "new_snippet": "discovered_devices_and_advertisement_data: Dict[str, Tuple[BLEDevice, AdvertisementData]]"
+      },
+      {
+        "file": "__init___d345bd.py",
+        "category": "variable_reannotation",
+        "old_snippet": "# vars not annotated",
+        "new_snippet": "vars: Any"
+      }
+    ],
+    "cast_insertion": [
+      {
+        "file": "__init___417be1.py",
+        "category": "cast_insertion",
+        "old_snippet": "        if len(code) > settings._cropped_file_size:\n            code = code[:settings._cropped_file_size]",
+        "new_snippet": "        code_str: str = cast(str, code)\n        if len(code_str) > settings._cropped_file_size:\n            code_str = code_str[:settings._cropped_file_size]"
+      },
+      {
+        "file": "__init___605457.py",
+        "category": "cast_insertion",
+        "old_snippet": "            self._last_message_id[chat_id] -= 1",
+        "new_snippet": "            self._last_message_id[chat_id] = cast(int, self._last_message_id[chat_id]) - 1"
+      }
+    ]
+  }
+}
