@@ -1,4 +1,3 @@
-```python
 import random
 from typing import TYPE_CHECKING, Any, Dict, List, Optional, Tuple
 
@@ -114,4 +113,3 @@ def state_transition(
     pseudo_random_generator: random.Random,
     block_number: "BlockNumber",
 ) -> "TransitionResult[Optional[InitiatorTransferState]]": ...
-```

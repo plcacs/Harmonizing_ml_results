@@ -1,4 +1,3 @@
-```python
 import asyncio
 from typing import Any, Dict, Iterable, List, Optional, Tuple, Type, Union
 from unittest.mock import Mock

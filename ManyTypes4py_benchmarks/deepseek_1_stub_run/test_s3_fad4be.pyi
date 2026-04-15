@@ -1,4 +1,3 @@
-```python
 import io
 from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import Any, Optional, Union, List, Dict, BinaryIO
@@ -224,4 +223,3 @@ async def amove_objects(
     aws_credentials: AwsCredentials,
     target_bucket_name: Optional[str] = None
 ) -> None: ...
-```

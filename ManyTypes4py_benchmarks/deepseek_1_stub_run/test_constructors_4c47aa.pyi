@@ -1,4 +1,3 @@
-```python
 from typing import Any, Optional, Union, overload
 import numpy as np
 import pandas as pd
@@ -131,4 +130,3 @@ def test_interval_index_subtype(
 def test_dtype_closed_mismatch() -> None: ...
 
 def test_ea_dtype(dtype: str) -> None: ...
-```

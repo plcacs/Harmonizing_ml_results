@@ -1,4 +1,3 @@
-```python
 from typing import Any, Set, Tuple
 from dbt.contracts.graph.manifest import Manifest
 from dbt.contracts.graph.nodes import GraphMemberNode
@@ -75,4 +74,3 @@ class ResourceTypeSelector(NodeSelector):
     ) -> None: ...
     
     def node_is_match(self, node: GraphMemberNode) -> bool: ...
-```

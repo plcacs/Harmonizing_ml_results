@@ -1,4 +1,3 @@
-```python
 import datetime
 from typing import Any, Iterable, Optional, Tuple, Type, TypeVar, Union
 import numpy as np
@@ -100,4 +99,3 @@ class TestIndexConstructorUnwrapping:
 
 class TestIndexConstructionErrors:
     def test_constructor_overflow_int64(self) -> None: ...
-```

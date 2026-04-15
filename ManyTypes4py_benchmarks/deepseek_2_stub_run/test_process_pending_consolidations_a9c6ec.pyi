@@ -1,4 +1,3 @@
-```python
 from typing import Any, Iterator
 
 def test_basic_pending_consolidation(spec: Any, state: Any) -> Iterator[Any]: ...
@@ -39,4 +38,3 @@ def run_balance_computation_test(spec: Any, state: Any, instance_tuples: Any) ->
 def test_pending_consolidation_balance_computation_eth1(spec: Any, state: Any) -> Iterator[Any]: ...
 
 def test_pending_consolidation_balance_computation_compounding(spec: Any, state: Any) -> Iterator[Any]: ...
-```

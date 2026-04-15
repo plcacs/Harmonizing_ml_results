@@ -1,4 +1,3 @@
-```python
 from typing import Any, Dict, List, Optional, Tuple, Union
 import torch
 
@@ -44,4 +43,3 @@ def multiple_runs(
     desired_values: Any,
     exact: bool = True
 ) -> None: ...
-```

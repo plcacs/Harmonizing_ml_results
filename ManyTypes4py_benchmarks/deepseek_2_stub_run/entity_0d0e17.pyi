@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from abc import abstractmethod
 from collections.abc import Callable, Collection, Mapping
@@ -130,4 +129,3 @@ class Group(Entity):
     def _async_update_group_state(self, tr_state: State | None = None) -> None: ...
 
 def async_get_component(hass: HomeAssistant) -> EntityComponent[Group]: ...
-```

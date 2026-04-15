@@ -1,4 +1,3 @@
-```python
 import pytest
 from pandas import DataFrame
 from pandas._testing import assert_frame_equal
@@ -66,4 +65,3 @@ def test_invalid_dtype_backend() -> None: ...
 @pytest.mark.network
 @pytest.mark.single_cpu
 def test_url_urlopen(httpserver: Any) -> None: ...
-```

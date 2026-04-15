@@ -1,4 +1,3 @@
-```python
 from typing import Any, Literal, overload
 from datetime import datetime, timedelta
 from decimal import Decimal
@@ -100,4 +99,3 @@ class TestSeriesMode:
     def test_mode_boolean_with_na(self) -> None: ...
     def test_single_mode_value_complex(self, array: list[Any], expected: list[Any], dtype: Any) -> None: ...
     def test_multimode_complex(self, array: list[Any], expected: list[Any], dtype: Any) -> None: ...
-```

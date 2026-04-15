@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import ast
 import tokenize
@@ -172,4 +171,3 @@ class Expr:
     def names(self) -> FrozenSet[str]: ...
 
 PARSERS: Dict[str, Union[Type[PandasExprVisitor], Type[PythonExprVisitor]]] = ...
-```

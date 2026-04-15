@@ -1,4 +1,3 @@
-```python
 import datetime
 from typing import Any, Optional, Union
 import pandas as pd
@@ -87,4 +86,3 @@ class DatetimeIndex(Index):
     def indexer_at_time(self, time: Any, asof: bool = ...) -> ks.Index: ...
 
 def disallow_nanoseconds(freq: Any) -> None: ...
-```

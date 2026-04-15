@@ -1,4 +1,3 @@
-```python
 from typing import Any, Callable, Iterator, Optional, Sequence, Tuple, Type, TypeVar, Union, overload
 from jedi.inference.base_value import ValueSet, ContextualizedNode
 from jedi.inference.value import ClassValue, ModuleValue
@@ -172,4 +171,3 @@ class EnumInstance(LazyValueWrapper):
     def get_filters(self, origin_scope: Any = ...) -> Iterator[Any]: ...
 
 def tree_name_to_values(func: Any) -> Callable[..., Any]: ...
-```

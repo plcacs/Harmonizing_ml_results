@@ -1,4 +1,3 @@
-```python
 import datetime
 import io
 from typing import Any, BinaryIO, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple, Union
@@ -229,4 +228,3 @@ def test_non_categorical_value_label_convert_categoricals_error(temp_file: Any) 
 def test_nullable_support(dtype: Any, version: Any, temp_file: Any) -> None: ...
 def test_empty_frame(temp_file: Any) -> None: ...
 def test_many_strl(temp_file: Any, version: Any) -> None: ...
-```

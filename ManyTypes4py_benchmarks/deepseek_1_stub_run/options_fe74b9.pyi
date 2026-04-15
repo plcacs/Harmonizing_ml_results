@@ -1,4 +1,3 @@
-```python
 import datetime
 import sys
 from typing import Any, Callable, Dict, Iterable, List, Optional, Set, TextIO, Tuple, Union
@@ -88,4 +87,3 @@ def print_help(file: Optional[TextIO] = ...) -> None: ...
 def add_parse_callback(callback: Callable[[], None]) -> None: ...
 
 def define_logging_options(options: OptionParser) -> None: ...
-```

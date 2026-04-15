@@ -1,4 +1,3 @@
-```python
 import os
 from typing import Any, Dict, Iterator, List, Optional, Type, TypeVar, Union
 from unittest import TestCase
@@ -98,4 +97,3 @@ def make_manifest(
     macros: List[Any] = ...,
     docs: List[Any] = ...
 ) -> Manifest: ...
-```

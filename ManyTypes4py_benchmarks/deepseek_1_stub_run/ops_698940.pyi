@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any, final, overload
 import numpy as np
@@ -47,4 +46,3 @@ class BaseComparisonOpsTests(BaseOpsUtil):
 class BaseUnaryOpsTests(BaseOpsUtil):
     def test_invert(self, data: Any) -> None: ...
     def test_unary_ufunc_dunder_equivalence(self, data: Any, ufunc: Any) -> None: ...
-```

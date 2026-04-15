@@ -1,4 +1,3 @@
-```python
 from typing import NamedTuple, Sequence, Any, Generator, Tuple, Optional, Callable, TypeVar, List
 from eth2spec.test.exceptions import BlockNotFoundException
 
@@ -65,4 +64,3 @@ def find_next_justifying_slot(spec: Any, state: Any, fill_cur_epoch: Any, fill_p
 def get_pow_block_file_name(pow_block: Any) -> str: ...
 
 def add_pow_block(spec: Any, store: Any, pow_block: Any, test_steps: Any) -> Generator[Tuple[str, Any], None, None]: ...
-```

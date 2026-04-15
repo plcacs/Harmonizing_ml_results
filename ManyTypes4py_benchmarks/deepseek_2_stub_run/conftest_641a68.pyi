@@ -1,4 +1,3 @@
-```python
 import pytest
 from _pytest.config import Config
 from _pytest.config.argparsing import Parser
@@ -299,4 +298,3 @@ def funding_rate_history_octohourly() -> List[Dict[str, Any]]: ...
 
 @pytest.fixture(scope='function')
 def leverage_tiers() -> Dict[str, List[Dict[str, Any]]]: ...
-```

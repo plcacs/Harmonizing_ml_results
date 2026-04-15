@@ -1,4 +1,3 @@
-```python
 import random
 from typing import Any, Dict, List, Set, Tuple, Optional, Union, Callable
 from unittest.mock import MagicMock, Mock
@@ -95,4 +94,3 @@ def test_matrix_user_roaming(matrix_transports: Any, roaming_peer: Any) -> None:
 def test_matrix_multi_user_roaming(matrix_transports: Any, roaming_peer: Any) -> None: ...
 
 def test_populate_services_addresses(service_registry_address: Any, private_keys: Any, web3: Any, contract_manager: Any) -> None: ...
-```

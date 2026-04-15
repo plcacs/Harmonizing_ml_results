@@ -1,4 +1,3 @@
-```python
 import logging
 from typing import Any, List, Optional, Union
 import numpy as np
@@ -75,4 +74,3 @@ def test_convert_trades_to_ohlcv(
     tmp_path: Any,
     caplog: pytest.LogCaptureFixture
 ) -> None: ...
-```

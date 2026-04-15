@@ -1,4 +1,3 @@
-```python
 from typing import Any, Callable, Literal, Union
 import numpy as np
 import pandas as pd
@@ -109,4 +108,3 @@ def test_rolling_min_max_numeric_types(
 def test_moment_functions_zero_length(
     f: Callable[..., Any]
 ) -> None: ...
-```

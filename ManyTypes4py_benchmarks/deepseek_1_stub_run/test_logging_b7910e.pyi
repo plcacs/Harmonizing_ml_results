@@ -1,4 +1,3 @@
-```python
 import logging
 from contextlib import AbstractContextManager
 from io import StringIO
@@ -315,4 +314,3 @@ def test_patch_print_writes_to_logger_with_flow_run_context(
 def test_log_adapter_get_child(flow_run: Any) -> None: ...
 
 def test_eavesdropping() -> None: ...
-```

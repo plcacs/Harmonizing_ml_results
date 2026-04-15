@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import datetime
 from typing import Any, Callable
@@ -132,4 +131,3 @@ class ManualMQTTAlarm(AlarmControlPanelEntity):
     async def async_added_to_hass(self) -> None: ...
     
     async def _async_state_changed_listener(self, event: Event) -> None: ...
-```

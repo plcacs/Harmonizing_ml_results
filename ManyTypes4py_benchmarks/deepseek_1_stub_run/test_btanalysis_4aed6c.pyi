@@ -1,4 +1,3 @@
-```python
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any
@@ -57,4 +56,3 @@ def test_calculate_max_drawdown2() -> None: ...
 def test_calculate_max_drawdown_abs(profits: Any, relative: Any, highd: Any, lowdays: Any, result: Any, result_rel: Any) -> None: ...
 
 def test_load_file_from_zip(tmp_path: Any) -> None: ...
-```

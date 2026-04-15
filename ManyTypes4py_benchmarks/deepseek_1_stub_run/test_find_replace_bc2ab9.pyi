@@ -1,4 +1,3 @@
-```python
 from typing import Any, Callable, Literal, Optional, overload, Union
 from typing_extensions import TypeAlias
 import numpy as np
@@ -141,4 +140,3 @@ def test_translate(
 def test_translate_mixed_object() -> None: ...
 
 def test_flags_kwarg(any_string_dtype: Any) -> None: ...
-```

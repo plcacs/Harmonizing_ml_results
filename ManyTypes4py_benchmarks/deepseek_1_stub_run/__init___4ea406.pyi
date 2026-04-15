@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 
 from collections.abc import Callable
@@ -116,4 +115,3 @@ def websocket_subscribe_extra_js(hass: HomeAssistant, connection: Any, msg: dict
 
 class PanelRespons(TypedDict):
     pass
-```

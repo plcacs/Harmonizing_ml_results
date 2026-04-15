@@ -1,4 +1,3 @@
-```python
 from typing import Any, List, Optional, Tuple, Union
 from datetime import datetime, timedelta
 from _pytest.logging import LogCaptureFixture
@@ -225,4 +224,3 @@ def test_order_to_ccxt(
 ) -> None: ...
 
 def test_recalc_trade_from_orders_dca(data: Any) -> None: ...
-```

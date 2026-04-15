@@ -1,4 +1,3 @@
-```python
 import asyncio
 import typing
 from collections.abc import Iterable, Mapping, MutableMapping
@@ -153,4 +152,3 @@ class Transport(base.Transport):
     driver_version: ClassVar[str] = ...
     
     def _topic_config(self, retention: Any = None, compacting: Any = None, deleting: Any = None) -> dict: ...
-```

@@ -1,4 +1,3 @@
-```python
 from typing import Any
 from typing import List
 from typing import Optional
@@ -70,4 +69,3 @@ def test_max_locks_reached(
     raiden_network: Any,
     token_addresses: Any
 ) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 import os
 from pathlib import Path
 from typing import Any, Optional, Tuple, List, Iterator, Union
@@ -97,4 +96,3 @@ def iter_module_names(
     module_cls: Any = ...,
     add_builtin_modules: bool = True
 ) -> Iterator[Any]: ...
-```

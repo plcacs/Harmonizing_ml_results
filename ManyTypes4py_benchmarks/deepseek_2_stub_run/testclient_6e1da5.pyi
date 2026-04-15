@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import contextlib
 from concurrent.futures import Future
@@ -248,4 +247,3 @@ class TestClient(httpx.Client):
     async def lifespan(self) -> None: ...
     async def wait_startup(self) -> None: ...
     async def wait_shutdown(self) -> None: ...
-```

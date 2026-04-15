@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from pandas import DataFrame, Index, MultiIndex, RangeIndex, Series
@@ -146,4 +145,3 @@ class Append:
     def time_append(self, dtype: str) -> None: ...
 
 def setup() -> None: ...
-```

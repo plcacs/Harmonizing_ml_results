@@ -1,4 +1,3 @@
-```python
 import sys
 from typing import (
     Any,
@@ -249,4 +248,3 @@ class tm:
     def assert_almost_equal(left: Any, right: Any) -> None: ...
     @staticmethod
     def assert_produces_warning(warning_class: Any, **kwargs: Any) -> Any: ...
-```

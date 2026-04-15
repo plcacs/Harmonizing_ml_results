@@ -1,4 +1,3 @@
-```python
 from typing import Any, Dict, List, Optional, Tuple, Union
 from unittest.mock import Mock
 from dataclasses import dataclass
@@ -241,4 +240,3 @@ class TestPlanLogGroup(BasePlannerTests):
 no_deployed_values: Any = ...
 function_resource: Any = ...
 lambda_function: Any = ...
-```

@@ -1,4 +1,3 @@
-```python
 import asyncio.subprocess
 import os
 import sys
@@ -55,4 +54,3 @@ def mock_env_copy() -> Generator[Mock, Any, None]: ...
 def mock_venv() -> Generator[Mock, Any, None]: ...
 
 def mock_async_subprocess() -> Mock: ...
-```

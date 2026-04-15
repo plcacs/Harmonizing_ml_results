@@ -1,4 +1,3 @@
-```python
 import sys
 from collections.abc import Generator, Iterator, Iterable
 from contextlib import contextmanager
@@ -105,4 +104,3 @@ def format_outlier_version_name(version: str) -> str: ...
 def generate_default_dockerfile(
     context: Optional[Union[str, Path]] = ...
 ) -> Generator[Path, None, None]: ...
-```

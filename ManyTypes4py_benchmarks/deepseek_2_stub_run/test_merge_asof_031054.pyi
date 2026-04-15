@@ -1,4 +1,3 @@
-```python
 import datetime
 from typing import Any, Literal, Union
 
@@ -182,4 +181,3 @@ def test_merge_asof_pyarrow_td_tolerance() -> None: ...
 def test_merge_asof_read_only_ndarray() -> None: ...
 
 def test_merge_asof_multiby_with_categorical() -> None: ...
-```

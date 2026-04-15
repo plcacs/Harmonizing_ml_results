@@ -1,4 +1,3 @@
-```python
 import datetime
 import operator
 from typing import Any, Callable, Dict, Iterator, List, Optional, Tuple, Union
@@ -181,4 +180,3 @@ class test_WindowWrapper_using_key_index:
     def test_setitem(self, *, wset: WindowSet) -> None: ...
 
     def test_delitem(self, *, wset: WindowSet) -> None: ...
-```

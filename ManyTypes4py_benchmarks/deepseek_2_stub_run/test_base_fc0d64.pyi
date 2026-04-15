@@ -1,4 +1,3 @@
-```python
 import asyncio
 from typing import Any, Callable, Dict, Iterable, List, Optional, Set, Tuple, Union
 from faust import joins
@@ -167,4 +166,3 @@ class test_Collection:
     def test_repr_info(self, *, table: MyTable) -> str: ...
     
     def test_partition_for_key__partitioner(self, *, table: MyTable, app: Any) -> None: ...
-```

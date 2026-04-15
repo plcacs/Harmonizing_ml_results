@@ -1,4 +1,3 @@
-```python
 from dataclasses import dataclass
 from typing import Any, Callable, List, Optional, Set
 from eth_utils.address import ChecksumAddress
@@ -179,4 +178,3 @@ def token_proxy_fixture(
     deploy_smart_contract_bundle_concurrently: FixtureSmartContracts,
     environment_type: Environment,
 ) -> Token: ...
-```

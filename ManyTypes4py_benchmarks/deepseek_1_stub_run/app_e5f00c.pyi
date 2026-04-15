@@ -1,4 +1,3 @@
-```python
 import os
 from pathlib import Path
 from typing import Any, Callable, Optional, TextIO, Tuple
@@ -144,4 +143,3 @@ def run_raiden_service(
     routing_mode: Any,
     **kwargs: Any,
 ) -> RaidenService: ...
-```

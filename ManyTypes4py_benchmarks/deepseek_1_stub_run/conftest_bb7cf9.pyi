@@ -1,4 +1,3 @@
-```python
 import pytest
 from pathlib import Path
 from typing import Any, Iterator, Generator
@@ -97,4 +96,3 @@ def gcp_credentials(
     job_service_client: Any,
     job_service_async_client: Any
 ) -> MagicMock: ...
-```

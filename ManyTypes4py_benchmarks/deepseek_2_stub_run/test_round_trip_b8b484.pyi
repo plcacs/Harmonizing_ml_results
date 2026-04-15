@@ -1,4 +1,3 @@
-```python
 import datetime
 from typing import Any, Callable, Literal
 from pandas import DataFrame, DatetimeIndex, Index, Series
@@ -61,4 +60,3 @@ def test_round_trip_equals(tmp_path: Path, setup_path: Any) -> None: ...
 def test_infer_string_columns(tmp_path: Path, setup_path: Any) -> None: ...
 
 pytestmark: Any = ...
-```

@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any, Iterator, Literal, overload
 from typing_extensions import Self
@@ -56,4 +55,3 @@ class Test2DCompat(base.Dim2CompatTests):
     def arrow_not_supported(self, data: Any) -> Iterator[None]: ...
 
 def test_searchsorted_with_na_raises(data_for_sorting: Any, as_series: bool) -> None: ...
-```

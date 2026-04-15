@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from collections.abc import Iterator
@@ -55,4 +54,3 @@ class DBEventLogger(AbstractEventLogger):
 
 class StdOutEventLogger(AbstractEventLogger):
     def log(self, user_id: int | None, action: str, dashboard_id: int | None, duration_ms: int | None, slice_id: int | None, referrer: str | None, curated_payload: dict[str, Any], curated_form_data: dict[str, Any], *args: Any, **kwargs: Any) -> None: ...
-```

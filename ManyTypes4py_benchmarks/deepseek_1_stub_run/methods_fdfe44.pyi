@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from pandas._typing import Dtype
@@ -60,4 +59,3 @@ class BaseMethodsTests:
     def test_insert_invalid_loc(self, data: Any) -> None: ...
     def test_equals(self, data: Any, na_value: Any, as_series: bool, box: Any) -> None: ...
     def test_equals_same_data_different_object(self, data: Any) -> None: ...
-```

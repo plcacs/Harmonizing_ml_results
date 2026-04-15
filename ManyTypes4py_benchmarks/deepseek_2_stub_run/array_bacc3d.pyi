@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any, overload, TYPE_CHECKING
 import decimal
@@ -146,4 +145,3 @@ class DecimalArray(OpsMixin, ExtensionScalarOpsMixin, ExtensionArray):
 
 def to_decimal(values: Sequence[Any], context: decimal.Context | None = ...) -> DecimalArray: ...
 def make_data() -> list[decimal.Decimal]: ...
-```

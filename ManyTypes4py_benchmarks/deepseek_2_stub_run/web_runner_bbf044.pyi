@@ -1,4 +1,3 @@
-```python
 import asyncio
 import signal
 import socket
@@ -142,4 +141,3 @@ class AppRunner(BaseRunner[Request]):
     def _make_request(self, message: 'RawRequestMessage', payload: 'StreamReader', protocol: 'RequestHandler', writer: 'AbstractStreamWriter', task: 'asyncio.Task[Any]', _cls: Type[Request] = ...) -> Request: ...
     
     async def _cleanup_server(self) -> None: ...
-```

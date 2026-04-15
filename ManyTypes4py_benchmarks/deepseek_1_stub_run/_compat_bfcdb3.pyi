@@ -1,4 +1,3 @@
-```python
 from collections.abc import Sequence as _Sequence
 from typing import Any, Callable, Deque, Dict, FrozenSet, List, Mapping, Set, Tuple, Type, Union
 from typing_extensions import Literal
@@ -184,4 +183,3 @@ def is_bytes_sequence_annotation(annotation: Any) -> bool: ...
 def is_uploadfile_sequence_annotation(annotation: Any) -> bool: ...
 
 def get_cached_model_fields(model: Any) -> List[Any]: ...
-```

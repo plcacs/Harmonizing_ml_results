@@ -1,4 +1,3 @@
-```python
 from typing import Any, Optional, Iterator, List, Tuple, Union
 from parso.python import tree
 from jedi.inference.cache import CachedMetaClass
@@ -86,4 +85,3 @@ class OverloadedFunctionValue(FunctionMixin, ValueWrapper):
     def get_type_hint(self, add_class_info: bool = ...) -> str: ...
 
 def _find_overload_functions(context: Any, tree_node: Any) -> Iterator[Any]: ...
-```

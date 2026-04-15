@@ -1,4 +1,3 @@
-```python
 import pytest
 from gevent import Timeout
 from raiden.raiden_service import RaidenService
@@ -160,4 +159,3 @@ def test_handle_insufficient_eth(
     token_addresses: Any,
     caplog: Any,
 ) -> None: ...
-```

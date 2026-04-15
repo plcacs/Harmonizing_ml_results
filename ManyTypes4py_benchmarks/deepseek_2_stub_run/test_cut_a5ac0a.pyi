@@ -1,4 +1,3 @@
-```python
 from datetime import datetime
 from typing import Any, Union, Optional, Sequence, overload
 import numpy as np
@@ -138,4 +137,3 @@ def test_cut_bins_datetime_intervalindex() -> None: ...
 def test_cut_with_nullable_int64() -> None: ...
 
 def test_cut_datetime_array_no_attributeerror() -> None: ...
-```

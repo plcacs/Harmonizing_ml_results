@@ -1,4 +1,3 @@
-```python
 from collections.abc import Callable
 from dataclasses import dataclass, field
 from random import Random
@@ -225,4 +224,3 @@ TestDirectTransfers: Any = ...
 
 def unwrap_multiple(multiple_results: Any) -> Any: ...
 def test_regression_malicious_secret_request_handled_properly() -> None: ...
-```

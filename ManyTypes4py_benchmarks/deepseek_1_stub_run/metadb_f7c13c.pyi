@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from collections.abc import Iterator
 from typing import Any, Callable, TypeVar
@@ -56,4 +55,3 @@ class SupersetShillelaghAdapter(Adapter):
     def insert_row(self, row: Row) -> int: ...
     def delete_row(self, row_id: int) -> None: ...
     def update_row(self, row_id: int, row: Row) -> None: ...
-```

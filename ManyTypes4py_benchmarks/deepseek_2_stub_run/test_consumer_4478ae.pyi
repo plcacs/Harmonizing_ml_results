@@ -1,4 +1,3 @@
-```python
 import asyncio
 from typing import Any, AsyncIterator, Dict, Iterable, List, Optional, Set, Tuple, Union
 

@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any, Optional, ClassVar
 from datetime import datetime
@@ -75,4 +74,3 @@ class DashboardScreenshot(BaseScreenshot):
     
     def __init__(self, url: str, digest: str, window_size: Optional[tuple[int, int]] = ..., thumb_size: Optional[tuple[int, int]] = ...) -> None: ...
     def get_cache_key(self, window_size: Optional[tuple[int, int]] = ..., thumb_size: Optional[tuple[int, int]] = ..., dashboard_state: Optional[Any] = ...) -> str: ...
-```

@@ -1,4 +1,3 @@
-```python
 import datetime
 from typing import Any, Union, overload
 from pandas import Categorical, CategoricalDtype, DataFrame, Index, Interval, NaT, Series, Timestamp
@@ -105,4 +104,3 @@ class TestILocSeries:
     def test_iloc_getitem_nonunique(self) -> None: ...
     def test_iloc_setitem_pure_position_based(self) -> None: ...
     def test_iloc_nullable_int64_size_1_nan(self) -> None: ...
-```

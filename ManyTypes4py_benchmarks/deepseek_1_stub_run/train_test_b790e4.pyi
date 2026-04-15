@@ -1,4 +1,3 @@
-```python
 import argparse
 import torch
 from allennlp.common import Params
@@ -54,4 +53,3 @@ class TestDryRun:
 
 def train_model(params: Params, serialization_dir: str, recover: bool = ..., force: bool = ..., dry_run: bool = ...) -> Any: ...
 def train_model_from_args(args: argparse.Namespace) -> Any: ...
-```

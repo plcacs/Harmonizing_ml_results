@@ -1,4 +1,3 @@
-```python
 import asyncio
 from collections.abc import Callable
 from datetime import datetime, timedelta
@@ -186,4 +185,3 @@ async def test_get_events_with_context_state(hass: Any, hass_ws_client: Any) -> 
 async def test_logbook_with_empty_config(hass: Any) -> None: ...
 @pytest.mark.usefixtures("recorder_mock")
 async def test_logbook_with_non_iterable_entity_filter(hass: Any) -> None: ...
-```

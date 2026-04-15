@@ -1,4 +1,3 @@
-```python
 from typing import (
     Any,
     Optional,
@@ -195,4 +194,3 @@ class ValueSet:
 NO_VALUES: ValueSet = ...
 
 def iterator_to_value_set(func: Callable[..., Iterable[Value]]) -> Callable[..., ValueSet]: ...
-```

@@ -1,4 +1,3 @@
-```python
 import torch
 from torch.nn.utils import clip_grad_norm_
 from allennlp.common.checks import ConfigurationError
@@ -124,4 +123,3 @@ class TestAmpTrainer(TrainerTestBase):
 
 class TestSparseClipGrad(AllenNlpTestCase):
     def test_sparse_clip_grad(self) -> None: ...
-```

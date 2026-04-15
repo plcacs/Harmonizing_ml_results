@@ -1,4 +1,3 @@
-```python
 import botocore
 from _typeshed import Incomplete
 from collections.abc import Callable, Iterator
@@ -107,4 +106,3 @@ class S3UploadBackend(ZulipUploadBackend):
         percent_callback: Callable[[int], None] | None = ...
     ) -> str: ...
     def delete_export_tarball(self, export_path: str) -> str | None: ...
-```

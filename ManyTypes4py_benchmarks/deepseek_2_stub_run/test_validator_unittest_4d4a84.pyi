@@ -1,4 +1,3 @@
-```python
 import random
 from typing import Any, Callable, List, Tuple
 from eth2spec.test.context import single_phase, spec_state_test, spec_test, always_bls, with_phases, with_all_phases
@@ -123,4 +122,3 @@ def test_compute_subscribed_subnets_random_2(spec: Any) -> None: ...
 @spec_test
 @single_phase
 def test_compute_subscribed_subnets_random_3(spec: Any) -> None: ...
-```

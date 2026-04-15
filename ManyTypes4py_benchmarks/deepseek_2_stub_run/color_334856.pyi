@@ -1,4 +1,3 @@
-```python
 import math
 import re
 from colorsys import hls_to_rgb, rgb_to_hls
@@ -86,4 +85,3 @@ def float_to_255(c: float) -> int: ...
 
 COLORS_BY_NAME: Dict[str, Tuple[int, int, int]] = ...
 COLORS_BY_VALUE: Dict[Tuple[int, int, int], str] = ...
-```

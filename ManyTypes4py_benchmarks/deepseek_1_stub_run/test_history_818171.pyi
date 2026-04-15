@@ -1,4 +1,3 @@
-```python
 import pytest
 from _pytest.logging import LogCaptureFixture
 from datetime import datetime
@@ -203,4 +202,3 @@ def test_download_trades_history(
     tmp_path: Path,
     time_machine: Any,
 ) -> None: ...
-```

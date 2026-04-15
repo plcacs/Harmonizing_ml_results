@@ -1,4 +1,3 @@
-```python
 import datetime
 from typing import Any, Literal, Union
 

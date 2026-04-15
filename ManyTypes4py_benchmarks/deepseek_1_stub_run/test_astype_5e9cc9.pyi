@@ -1,4 +1,3 @@
-```python
 from datetime import datetime, timedelta
 from typing import Any, Union, overload
 import numpy as np
@@ -65,4 +64,3 @@ class TestAstypeCategorical:
     def test_astype_from_categorical_with_keywords(self) -> None: ...
     def test_astype_timedelta64_with_np_nan(self) -> None: ...
     def test_astype_int_na_string(self) -> None: ...
-```

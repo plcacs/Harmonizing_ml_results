@@ -1,4 +1,3 @@
-```python
 """Aiohttp test utils."""
 
 import asyncio
@@ -157,4 +156,3 @@ class MockLongPollSideEffect:
     def queue_response(self, **kwargs: Any) -> None: ...
     
     def stop(self) -> None: ...
-```

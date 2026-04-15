@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import TYPE_CHECKING, Any, Callable, Literal, overload
 import datetime
@@ -212,4 +211,3 @@ class OnlineExponentialMovingWindow(ExponentialMovingWindow):
         update_times: Series | np.ndarray | None = ...,
         **kwargs: Any
     ) -> DataFrame | Series: ...
-```

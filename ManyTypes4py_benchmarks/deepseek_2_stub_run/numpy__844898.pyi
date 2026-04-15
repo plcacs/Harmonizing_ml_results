@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import (
     TYPE_CHECKING,
@@ -208,4 +207,3 @@ class NumpyExtensionArray(
     def _cmp_method(self, other: Any, op: Callable[..., Any]) -> Any: ...
     def _arith_method(self, other: Any, op: Callable[..., Any]) -> Any: ...
     def _wrap_ndarray_result(self, result: np.ndarray[Any]) -> Any: ...
-```

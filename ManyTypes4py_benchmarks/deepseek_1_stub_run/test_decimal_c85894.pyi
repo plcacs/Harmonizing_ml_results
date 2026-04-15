@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any, Callable, Sequence, overload
 import decimal
@@ -99,4 +98,3 @@ def test_indexing_no_materialize(monkeypatch: Any) -> None: ...
 def test_to_numpy_keyword() -> None: ...
 
 def test_array_copy_on_write() -> None: ...
-```

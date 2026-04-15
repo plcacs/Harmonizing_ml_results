@@ -1,4 +1,3 @@
-```python
 from typing import Any, List
 
 def _wrap_mode_interface(
@@ -156,4 +155,3 @@ def vertical_prefix_from_module_import(
     include_trailing_comma: bool,
     remove_comments: bool
 ) -> str: ...
-```

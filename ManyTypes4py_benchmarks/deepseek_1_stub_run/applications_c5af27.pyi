@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import typing
 from typing import Any, Callable, Dict, List, Optional, Type, TypeVar, Union
@@ -81,4 +80,3 @@ class Starlette:
     def websocket_route(self, path: str, name: Optional[str] = ...) -> Callable[[Callable[..., Any]], Callable[..., Any]]: ...
     
     def middleware(self, middleware_type: str) -> Callable[[Callable[..., Any]], Callable[..., Any]]: ...
-```

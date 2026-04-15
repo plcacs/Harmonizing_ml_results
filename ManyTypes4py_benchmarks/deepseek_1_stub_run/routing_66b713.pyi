@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any, Callable, Iterable, Iterator, Sequence, TypeVar, overload
 from typing import AsyncContextManager, AsyncGenerator, AsyncIterable, Awaitable
@@ -218,4 +217,3 @@ class Router:
     def on_event(self, event_type: str) -> Callable[[Any], Any]: ...
     
     def on_event(self, *args: Any, **kwargs: Any) -> Any: ...
-```

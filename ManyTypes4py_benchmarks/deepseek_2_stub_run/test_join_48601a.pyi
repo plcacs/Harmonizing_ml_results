@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from pandas import Categorical, DataFrame, Index, MultiIndex, Series, Timestamp
@@ -111,4 +110,3 @@ def test_join_multiindex_categorical_output_index_dtype(
 ) -> None: ...
 
 def test_join_multiindex_with_none_as_label() -> None: ...
-```

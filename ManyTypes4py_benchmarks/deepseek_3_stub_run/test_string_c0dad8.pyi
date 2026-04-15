@@ -1,0 +1,155 @@
+from __future__ import annotations
+
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Callable,
+    Literal,
+    Sequence,
+    TypeVar,
+    overload,
+)
+import numpy as np
+import pandas as pd
+import pytest
+from pandas._testing import TestCase
+from pandas.api.types import is_string_dtype
+from pandas.core.arrays import ArrowStringArray
+from pandas.core.arrays.string_ import StringDtype
+from pandas.core.dtypes.base import StorageExtensionDtype
+from pandas.tests.extension import base
+
+if TYPE_CHECKING:
+    from collections.abc import Generator
+    import pyarrow
+
+_T = TypeVar("_T")
+
+def maybe_split_array(
+    arr: ArrowStringArray | pd.core.arrays.StringArray,
+    chunked: bool,
+) -> ArrowStringArray | pd.core.arrays.StringArray: ...
+
+@pytest.fixture
+def chunked(request: pytest.FixtureRequest) -> bool: ...
+
+@pytest.fixture
+def dtype(string_dtype_arguments: tuple[str, Any]) -> StringDtype: ...
+
+@pytest.fixture
+def data(
+    dtype: StringDtype,
+    chunked: bool,
+) -> ArrowStringArray | pd.core.arrays.StringArray: ...
+
+@pytest.fixture
+def data_missing(
+    dtype: StringDtype,
+    chunked: bool,
+) -> ArrowStringArray | pd.core.arrays.StringArray: ...
+
+@pytest.fixture
+def data_for_sorting(
+    dtype: StringDtype,
+    chunked: bool,
+) -> ArrowStringArray | pd.core.arrays.StringArray: ...
+
+@pytest.fixture
+def data_missing_for_sorting(
+    dtype: StringDtype,
+    chunked: bool,
+) -> ArrowStringArray | pd.core.arrays.StringArray: ...
+
+@pytest.fixture
+def data_for_grouping(
+    dtype: StringDtype,
+    chunked: bool,
+) -> ArrowStringArray | pd.core.arrays.StringArray: ...
+
+class TestStringArray(base.ExtensionTests):
+    def test_eq_with_str(self, dtype: StringDtype) -> None: ...
+    def test_is_not_string_type(self, dtype: StringDtype) -> None: ...
+    def test_is_dtype_from_name(
+        self,
+        dtype: StringDtype,
+        using_infer_string: bool,
+    ) -> None: ...
+    def test_construct_from_string_own_name(
+        self,
+        dtype: StringDtype,
+        using_infer_string: bool,
+    ) -> None: ...
+    def test_view(
+        self,
+        data: ArrowStringArray | pd.core.arrays.StringArray,
+    ) -> None: ...
+    def test_from_dtype(
+        self,
+        data: ArrowStringArray | pd.core.arrays.StringArray,
+    ) -> None: ...
+    def test_transpose(
+        self,
+        data: ArrowStringArray | pd.core.arrays.StringArray,
+    ) -> None: ...
+    def test_setitem_preserves_views(
+        self,
+        data: ArrowStringArray | pd.core.arrays.StringArray,
+    ) -> None: ...
+    def test_dropna_array(
+        self,
+        data_missing: ArrowStringArray | pd.core.arrays.StringArray,
+    ) -> None: ...
+    def test_fillna_no_op_returns_copy(
+        self,
+        data: ArrowStringArray | pd.core.arrays.StringArray,
+    ) -> None: ...
+    def _get_expected_exception(
+        self,
+        op_name: str,
+        obj: Any,
+        other: Any,
+    ) -> type[Exception] | None: ...
+    def _supports_reduction(self, ser: pd.Series, op_name: str) -> bool: ...
+    def _supports_accumulation(self, ser: pd.Series, op_name: str) -> bool: ...
+    def _cast_pointwise_result(
+        self,
+        op_name: str,
+        obj: Any,
+        other: Any,
+        pointwise_result: Any,
+    ) -> Any: ...
+    def test_compare_scalar(
+        self,
+        data: ArrowStringArray | pd.core.arrays.StringArray,
+        comparison_op: Callable[[Any, Any], bool],
+    ) -> None: ...
+    def test_groupby_extension_apply(
+        self,
+        data_for_grouping: ArrowStringArray | pd.core.arrays.StringArray,
+        groupby_apply_op: Callable[[Any], Any],
+    ) -> None: ...
+    def test_combine_add(
+        self,
+        data_repeated: Callable[[int], Sequence[ArrowStringArray | pd.core.arrays.StringArray]],
+        using_infer_string: bool,
+        request: pytest.FixtureRequest,
+    ) -> None: ...
+    def test_arith_series_with_array(
+        self,
+        data: ArrowStringArray | pd.core.arrays.StringArray,
+        all_arithmetic_operators: str,
+        using_infer_string: bool,
+        request: pytest.FixtureRequest,
+    ) -> None: ...
+
+class Test2DCompat(base.Dim2CompatTests):
+    @pytest.fixture(autouse=True)
+    def arrow_not_supported(
+        self,
+        data: ArrowStringArray | pd.core.arrays.StringArray,
+    ) -> Generator[None, None, None]: ...
+
+def test_searchsorted_with_na_raises(
+    data_for_sorting: ArrowStringArray | pd.core.arrays.StringArray,
+    as_series: bool,
+) -> None: ...

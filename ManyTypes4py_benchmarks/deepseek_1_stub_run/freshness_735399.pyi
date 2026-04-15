@@ -1,4 +1,3 @@
-```python
 import os
 import threading
 import time
@@ -57,4 +56,3 @@ class FreshnessTask(RunTask):
     def get_hooks_by_type(self, hook_type: RunHookType) -> List[HookNode]: ...
     def populate_metadata_freshness_cache(self, adapter: BaseAdapter, selected_uids: Set[str]) -> RunStatus: ...
     def get_freshness_metadata_cache(self) -> Dict[Any, Any]: ...
-```

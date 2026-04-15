@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from pandas import CategoricalIndex, Series, Timedelta, Timestamp
@@ -133,4 +132,3 @@ class TestAsArray:
     def test_asarray_tz_naive(self) -> None: ...
     
     def test_asarray_tz_aware(self) -> None: ...
-```

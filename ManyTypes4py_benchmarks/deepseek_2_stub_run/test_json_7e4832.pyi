@@ -1,4 +1,3 @@
-```python
 import collections.abc
 import pytest
 import pandas as pd
@@ -87,4 +86,3 @@ def custom_assert_series_equal(left: pd.Series, right: pd.Series, *args: Any, **
 def custom_assert_frame_equal(left: pd.DataFrame, right: pd.DataFrame, *args: Any, **kwargs: Any) -> None: ...
 
 def test_custom_asserts() -> None: ...
-```

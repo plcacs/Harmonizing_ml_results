@@ -1,4 +1,3 @@
-```python
 import asyncio
 import re
 import sys
@@ -258,4 +257,3 @@ class App(AppT, Service):
     def label(self) -> str: ...
     @property
     def shortlabel(self) -> str: ...
-```

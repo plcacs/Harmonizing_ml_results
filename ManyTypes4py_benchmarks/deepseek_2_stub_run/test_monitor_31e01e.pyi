@@ -1,4 +1,3 @@
-```python
 from collections.abc import MutableMapping
 from http import HTTPStatus
 from typing import Any, Deque, Dict, List, Optional, Set, Tuple, Union
@@ -148,4 +147,3 @@ class TableState(_TableState):
     def __init__(self, table: Table) -> None: ...
     def asdict(self) -> Dict[str, int]: ...
     def __reduce_keywords__(self) -> Dict[str, Any]: ...
-```

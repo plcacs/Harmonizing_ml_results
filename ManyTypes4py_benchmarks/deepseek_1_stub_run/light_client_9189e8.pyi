@@ -1,4 +1,3 @@
-```python
 from typing import Any, Optional, Tuple, List
 from eth2spec.test.helpers.constants import CAPELLA, DENEB, ELECTRA
 from eth2spec.test.helpers.fork_transition import transition_across_forks
@@ -27,4 +26,3 @@ def check_lc_finality_update_equal(spec: Any, new_spec: Any, data: Any, upgraded
 def upgrade_lc_finality_update_to_new_spec(spec: Any, new_spec: Any, data: Any, phases: Any) -> Any: ...
 def check_lc_store_equal(spec: Any, new_spec: Any, data: Any, upgraded: Any) -> None: ...
 def upgrade_lc_store_to_new_spec(spec: Any, new_spec: Any, data: Any, phases: Any) -> Any: ...
-```

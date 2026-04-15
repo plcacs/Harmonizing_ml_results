@@ -1,4 +1,3 @@
-```python
 from typing import Any, Optional, Iterator, Generator, Tuple, Dict, List, Set, Union
 from jedi.inference import compiled
 from jedi.inference import analysis
@@ -155,4 +154,3 @@ class Slice(LazyValueWrapper):
     def __init__(self, python_context: Any, start: Any, stop: Any, step: Any) -> None: ...
     def _get_wrapped_value(self) -> Any: ...
     def get_safe_value(self, default: Any = ...) -> Any: ...
-```

@@ -1,4 +1,3 @@
-```python
 import random
 from typing import Any, Generator, List, Set, Callable
 
@@ -37,4 +36,3 @@ def test_sync_committee_with_participating_exited_member(spec: Any, state: Any) 
 def test_sync_committee_with_nonparticipating_exited_member(spec: Any, state: Any) -> Generator[Any, None, None]: ...
 def test_sync_committee_with_participating_withdrawable_member(spec: Any, state: Any) -> Generator[Any, None, None]: ...
 def test_sync_committee_with_nonparticipating_withdrawable_member(spec: Any, state: Any) -> Generator[Any, None, None]: ...
-```

@@ -1,4 +1,3 @@
-```python
 import datetime
 from collections.abc import Iterable
 from typing import Any, List, Tuple
@@ -119,4 +118,3 @@ def parse_message_retention_days(
     value: str | int,
     special_values_map: dict[str, int],
 ) -> int: ...
-```

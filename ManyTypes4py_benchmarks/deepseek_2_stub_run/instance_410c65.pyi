@@ -1,4 +1,3 @@
-```python
 from typing import Any, Iterator, Optional, overload
 from abc import abstractproperty
 from parso.tree import NodeOrLeaf
@@ -138,4 +137,3 @@ class InstanceArguments(TreeArgumentsWrapper):
     instance: Any
     def __init__(self, instance: Any, arguments: Any) -> None: ...
     def unpack(self, func: Any = ...) -> Iterator[tuple[Optional[str], LazyValue]]: ...
-```

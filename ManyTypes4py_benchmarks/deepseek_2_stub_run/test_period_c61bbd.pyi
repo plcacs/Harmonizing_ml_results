@@ -1,4 +1,3 @@
-```python
 from datetime import date, datetime, timedelta
 from typing import Any, ClassVar
 import numpy as np
@@ -109,4 +108,3 @@ class TestPeriodComparisons:
 def test_period_immutable() -> None: ...
 def test_small_year_parsing() -> None: ...
 def test_negone_ordinals() -> None: ...
-```

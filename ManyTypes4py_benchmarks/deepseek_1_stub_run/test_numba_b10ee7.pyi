@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pytest
 from pandas import DataFrame, Series
@@ -64,4 +63,3 @@ def test_multilabel_numba_vs_cython(
 ) -> None: ...
 
 def test_multilabel_udf_numba_vs_cython() -> None: ...
-```

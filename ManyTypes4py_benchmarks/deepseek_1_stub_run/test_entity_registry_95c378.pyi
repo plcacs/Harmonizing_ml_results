@@ -1,4 +1,3 @@
-```python
 import attr
 from datetime import datetime
 from typing import Any, Callable, Collection, Dict, Iterable, List, Optional, Set, Tuple, Union
@@ -149,4 +148,3 @@ async def test_async_update_entity_thread_safety(hass: HomeAssistant, entity_reg
 async def test_async_remove_thread_safety(hass: HomeAssistant, entity_registry: er.EntityRegistry) -> None: ...
 
 async def test_subentry(hass: HomeAssistant, entity_registry: er.EntityRegistry) -> None: ...
-```

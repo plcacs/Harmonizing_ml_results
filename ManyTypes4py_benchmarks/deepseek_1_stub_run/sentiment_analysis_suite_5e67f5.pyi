@@ -1,4 +1,3 @@
-```python
 from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 import numpy as np
 from checklist.test_suite import TestSuite
@@ -123,4 +122,3 @@ class SentimentAnalysisSuite(TaskSuite):
         meta: Optional[Any] = None
     ) -> Union[bool, float]:
         ...
-```

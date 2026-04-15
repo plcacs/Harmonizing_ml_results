@@ -1,4 +1,3 @@
-```python
 from typing import Any, Callable, Dict, List, Optional, Tuple, Union, TYPE_CHECKING
 import numpy as np
 import numpy.typing as npt
@@ -87,4 +86,3 @@ def lgbm_classification_learner(
     callbacks: Optional[List[Callable[..., Any]]] = ...,
     dataset_init_score: Optional[Union[List[Any], List[List[Any]], np.ndarray, pd.Series, pd.DataFrame]] = ...
 ) -> LearnerReturnType: ...
-```

@@ -1,4 +1,3 @@
-```python
 import pytest
 from eth_utils.typing import HexStr
 from gevent import Timeout
@@ -163,4 +162,3 @@ def test_handle_insufficient_eth(
     token_addresses: Any,
     caplog: Any,
 ) -> None: ...
-```

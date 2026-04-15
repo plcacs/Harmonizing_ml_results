@@ -1,4 +1,3 @@
-```python
 import pytest
 import pandas.util._test_decorators as td
 from pandas import DataFrame
@@ -152,4 +151,3 @@ class TestS3:
         feather_file: Any,
         s3so: Any,
     ) -> None: ...
-```

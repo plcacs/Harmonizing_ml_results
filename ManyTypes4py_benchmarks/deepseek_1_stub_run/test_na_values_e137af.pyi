@@ -1,4 +1,3 @@
-```python
 import _pytest.fixtures
 import _pytest.mark.structures
 import io
@@ -121,4 +120,3 @@ def test_na_values_dict_without_dtype(
     all_parsers: Any,
     na_values: List[Union[float, int]]
 ) -> None: ...
-```

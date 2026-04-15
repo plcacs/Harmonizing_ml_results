@@ -1,4 +1,3 @@
-```python
 from typing import Any, Optional, Dict, List, Protocol
 from kedro.framework.context import KedroContext
 from kedro.io import CatalogProtocol
@@ -83,4 +82,3 @@ class DatasetSpecs:
 class KedroContextSpecs:
     """Namespace that defines all specifications for a Kedro context's lifecycle hooks."""
     def after_context_created(self, context: KedroContext) -> None: ...
-```

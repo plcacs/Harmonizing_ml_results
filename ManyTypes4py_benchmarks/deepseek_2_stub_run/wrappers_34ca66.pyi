@@ -1,4 +1,3 @@
-```python
 from typing import (
     Any,
     Callable,
@@ -135,4 +134,3 @@ class WindowWrapper(WindowWrapperT):
     def get_relative_timestamp(self) -> Optional[RelativeHandler]: ...
     @get_relative_timestamp.setter
     def get_relative_timestamp(self, relative_to: RelativeArg) -> None: ...
-```

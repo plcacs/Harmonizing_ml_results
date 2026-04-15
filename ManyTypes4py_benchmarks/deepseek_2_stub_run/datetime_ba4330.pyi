@@ -1,4 +1,3 @@
-```python
 import datetime as dt
 import operator as op
 from functools import partial
@@ -112,4 +111,3 @@ def timedeltas(
 def timezone_keys(*, allow_prefix: bool = ...) -> SearchStrategy[str]: ...
 
 def timezones(*, no_cache: bool = ...) -> SearchStrategy[dt.tzinfo]: ...
-```

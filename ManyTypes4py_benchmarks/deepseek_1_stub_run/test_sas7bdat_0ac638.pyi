@@ -1,4 +1,3 @@
-```python
 import contextlib
 from datetime import datetime
 import io
@@ -58,4 +57,3 @@ def test_0x00_control_byte(datapath: Any) -> None: ...
 
 WASM: Any = ...
 IS64: Any = ...
-```

@@ -1,4 +1,3 @@
-```python
 import pytest
 from pandas import DataFrame, Index, MultiIndex
 from typing import Any, Dict, List, Optional, Union, Sequence
@@ -121,4 +120,3 @@ def test_na_values_dict_without_dtype(
     all_parsers: Any,
     na_values: List[Union[float, int]]
 ) -> None: ...
-```

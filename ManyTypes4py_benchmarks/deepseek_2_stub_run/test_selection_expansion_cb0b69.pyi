@@ -1,4 +1,3 @@
-```python
 import pytest
 from typing import Any, Optional, List
 
@@ -55,4 +54,3 @@ class TestExpansionWithSelectors(TestSelectionExpansion):
     def test_selector_model_a_cautious_indirect_selection(self, project: Any) -> None: ...
     def test_selector_model_a_eager_indirect_selection(self, project: Any) -> None: ...
     def test_selector_model_a_buildable_indirect_selection(self, project: Any) -> None: ...
-```

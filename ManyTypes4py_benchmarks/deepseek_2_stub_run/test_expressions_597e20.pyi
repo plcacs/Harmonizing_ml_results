@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas._testing as tm
 from pandas import DataFrame
@@ -138,4 +137,3 @@ class TestExpressions:
         scalar: int,
         monkeypatch: Any
     ) -> None: ...
-```

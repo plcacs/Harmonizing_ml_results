@@ -1,4 +1,3 @@
-```python
 """The motionEye integration."""
 
 from __future__ import annotations
@@ -81,4 +80,3 @@ def _get_media_event_data(
 ) -> dict[str, Any]: ...
 
 def get_media_url(client: MotionEyeClient, camera_id: int, path: str, image: bool) -> str | None: ...
-```

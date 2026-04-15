@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import torch as pt
 from typing import Any, Callable, Dict, Iterable, List, Optional, Sequence, Tuple, Union
@@ -40,4 +39,3 @@ def test_unshift_target_factors(sequence: np.ndarray, fill_with: int, expected_s
 
 _BOS: int
 _EOS: int
-```

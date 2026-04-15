@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import torch
 import torch.nn as nn
@@ -63,4 +62,3 @@ class LabelModel(nn.Module):
     def _clamp_params(self) -> None: ...
     def _break_col_permutation_symmetry(self) -> None: ...
     def fit(self, L_train: np.ndarray, Y_dev: Optional[np.ndarray] = None, class_balance: Optional[List[float]] = None, progress_bar: bool = True, **kwargs: Any) -> None: ...
-```

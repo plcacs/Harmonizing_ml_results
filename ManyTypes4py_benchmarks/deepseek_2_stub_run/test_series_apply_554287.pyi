@@ -1,4 +1,3 @@
-```python
 import pandas as pd
 import numpy as np
 from pandas import DataFrame, Index, MultiIndex, Series
@@ -102,4 +101,3 @@ def test_apply_retains_column_name(by_row: Union[bool, str]) -> None: ...
 def test_apply_type() -> None: ...
 
 def test_series_apply_unpack_nested_data() -> None: ...
-```

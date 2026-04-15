@@ -1,4 +1,3 @@
-```python
 from typing import Any, Literal, Union
 from datetime import datetime, timedelta
 import numpy as np
@@ -82,4 +81,3 @@ class TestRank:
     def test_rank_mixed_axis_zero(self, data: dict[str, list[Any]], expected: DataFrame) -> None: ...
     
     def test_rank_string_dtype(self, string_dtype_no_object: Any) -> None: ...
-```

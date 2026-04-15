@@ -1,4 +1,3 @@
-```python
 from typing import Any, Optional, Union, Sequence, Tuple, List, Dict, Iterable
 from pandas import DataFrame, Series, Index, MultiIndex, PeriodIndex
 import matplotlib.axes

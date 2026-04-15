@@ -1,4 +1,3 @@
-```python
 import logging
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -77,4 +76,3 @@ def test_auto_hyperopt_interface_loadparams(default_conf: Any, mocker: Any, capl
 def test_pandas_warning_direct(ohlcv_history: Any, function: Any, raises: Any, recwarn: Any) -> None: ...
 
 def test_pandas_warning_through_analyze_pair(ohlcv_history: Any, mocker: Any, recwarn: Any) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any
 import pytest
@@ -46,4 +45,3 @@ class TestSuggestResumeScenario:
     def test_suggest_resume_scenario(self, caplog: Any, two_branches_crossed_pipeline: Any, persistent_dataset_catalog: Any, failing_node_names: Any, expected_pattern: Any) -> None: ...
     @pytest.mark.parametrize
     def test_stricter_suggest_resume_scenario(self, caplog: Any, two_branches_crossed_pipeline_variable_inputs: Any, persistent_dataset_catalog: Any, failing_node_names: Any, expected_pattern: Any) -> None: ...
-```

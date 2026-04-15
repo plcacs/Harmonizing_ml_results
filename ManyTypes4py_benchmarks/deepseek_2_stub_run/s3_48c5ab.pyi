@@ -1,4 +1,3 @@
-```python
 import asyncio
 import io
 import os
@@ -367,4 +366,3 @@ class S3Bucket(WritableFileSystem, WritableDeploymentStorage, ObjectStorageBlock
         to_path: Any,
         to_bucket: Any = ...,
     ) -> Any: ...
-```

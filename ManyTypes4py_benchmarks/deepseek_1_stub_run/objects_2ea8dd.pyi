@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any, Dict, Optional, Tuple, Union
 import numpy as np
@@ -130,4 +129,3 @@ class ExponentialMovingWindowIndexer(BaseIndexer):
         step: Optional[int] = None,
         win_type: Optional[str] = None
     ) -> Tuple[np.ndarray, np.ndarray]: ...
-```

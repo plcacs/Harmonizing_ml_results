@@ -1,4 +1,3 @@
-```python
 import torch
 import numpy
 from typing import Any, Union, Callable, Dict, List, Tuple, Optional
@@ -132,4 +131,3 @@ class DistributedFixtureSubmodule(torch.nn.Module):
 
 class ShardedDistributedFixtureSubmodule(DistributedFixtureSubmodule):
     def get_original_module(self) -> torch.nn.Module: ...
-```

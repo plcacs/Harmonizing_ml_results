@@ -1,4 +1,3 @@
-```python
 import pandas as pd
 import numpy as np
 from typing import Any, Union, Optional, Dict, List, Pattern, overload
@@ -71,4 +70,3 @@ class TestSeriesReplace:
     def test_replace_numeric_column_with_na(self, val: Any) -> None: ...
     def test_replace_ea_float_with_bool(self) -> None: ...
     def test_replace_all_NA(self) -> None: ...
-```

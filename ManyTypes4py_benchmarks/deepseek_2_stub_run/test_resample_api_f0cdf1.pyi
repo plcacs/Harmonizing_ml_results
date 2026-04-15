@@ -1,4 +1,3 @@
-```python
 from datetime import datetime
 from typing import Any, Callable, Literal, overload, Union
 from typing_extensions import TypeAlias
@@ -108,4 +107,3 @@ def test_resample_empty() -> None: ...
 # Parameterized fixture
 @pytest.fixture(params=['df_resample', 'df_col_resample', 'df_mult_resample', 'df_grouper_resample'])
 def cases(request: Any) -> Any: ...
-```

@@ -1,4 +1,3 @@
-```python
 from typing import Any, List as TypingList, Optional
 from eth2spec.altair.types import ValidatorIndex, Gwei, Hash32, Root, Bytes32, ExecutionAddress, ByteVector, ByteList
 from eth2spec.bellatrix.types import ExecutionPayload, ExecutionPayloadHeader, SignedExecutionPayloadHeader
@@ -55,4 +54,3 @@ def build_state_with_complete_transition(spec: Any, state: Any) -> Any: ...
 def build_state_with_execution_payload_header(spec: Any, state: Any, execution_payload_header: ExecutionPayloadHeader) -> Any: ...
 
 def get_random_tx(rng: random.Random) -> bytes: ...
-```

@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import re
 from typing import Any, ClassVar, Mapping, Optional, Pattern, Union, overload
@@ -96,4 +95,3 @@ class DataCatalog:
     ) -> DataCatalog: ...
     
     def confirm(self, name: str) -> None: ...
-```

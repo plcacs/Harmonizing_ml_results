@@ -1,4 +1,3 @@
-```python
 import builtins
 from _typeshed import Incomplete
 from typing import Any, ClassVar, Dict, Iterable, List, Mapping, Optional, Pattern, Sequence, Tuple, Union
@@ -120,4 +119,3 @@ class TestKedroDataCatalog:
         def test_redefine_save_version_with_cached_dataset(
             self, correct_config: Any, cached_dataset_versioned: Any
         ) -> None: ...
-```

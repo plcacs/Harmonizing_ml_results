@@ -1,4 +1,3 @@
-```python
 import datetime as dt
 from typing import Any, Optional, Union
 from hypothesis.strategies._internal.strategies import SearchStrategy
@@ -97,4 +96,3 @@ def timedeltas(
 def timezone_keys(*, allow_prefix: bool = True) -> SearchStrategy[str]: ...
 
 def timezones(*, no_cache: bool = False) -> SearchStrategy[Any]: ...
-```

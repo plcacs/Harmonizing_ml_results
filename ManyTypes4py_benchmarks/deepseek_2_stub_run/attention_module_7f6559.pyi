@@ -1,4 +1,3 @@
-```python
 import math
 from typing import Optional, Tuple, TYPE_CHECKING, Any
 from dataclasses import dataclass
@@ -174,4 +173,3 @@ class SelfAttention(AttentionModule):
     def _from_config(
         cls, config: "PretrainedConfig", **kwargs: Any
     ) -> "SelfAttention": ...
-```

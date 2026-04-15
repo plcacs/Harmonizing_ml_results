@@ -1,4 +1,3 @@
-```python
 from datetime import datetime
 from typing import Any, Callable, Literal, overload
 from typing_extensions import Self
@@ -159,4 +158,3 @@ def test_frame_downsample_method(method: str, numeric_only: bool | lib.NoDefault
 def test_series_downsample_method(method: str, numeric_only: bool | lib.NoDefault, expected_data: list[str] | tuple, using_infer_string: bool) -> None: ...
 
 def test_resample_empty() -> None: ...
-```

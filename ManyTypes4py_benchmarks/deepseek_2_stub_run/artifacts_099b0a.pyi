@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import TYPE_CHECKING, Any, Optional, Union, overload
 from uuid import UUID
@@ -333,4 +332,3 @@ def create_image_artifact(
 ) -> UUID: ...
 
 logger: logging.Logger = ...
-```

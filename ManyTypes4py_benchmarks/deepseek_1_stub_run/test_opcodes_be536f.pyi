@@ -1,4 +1,3 @@
-```python
 import pytest
 from typing import Any, Optional, Tuple, List, Union
 from eth_utils import ValidationError
@@ -134,4 +133,3 @@ def test_selfdestruct_does_not_issue_deprecation_warning_pre_shanghai(
 def test_selfdestruct_issues_deprecation_warning_for_shanghai_and_later(
     vm_class: Any,
 ) -> None: ...
-```

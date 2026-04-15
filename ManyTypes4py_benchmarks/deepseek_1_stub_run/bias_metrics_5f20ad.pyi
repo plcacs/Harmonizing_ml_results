@@ -1,4 +1,3 @@
-```python
 from typing import Optional, Dict, Union, List, Any
 import torch
 
@@ -60,4 +59,3 @@ class AssociationWithoutGroundTruth:
 
 def dist_reduce_sum(value: Any) -> Any: ...
 def is_distributed() -> bool: ...
-```

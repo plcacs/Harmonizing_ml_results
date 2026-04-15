@@ -1,4 +1,3 @@
-```python
 from typing import Any
 from typing import Callable
 from typing import Dict
@@ -480,4 +479,3 @@ async def test_loop_write_failure(
     setup_with_birth_msg_client_mock: Any,
     caplog: Any
 ) -> None: ...
-```

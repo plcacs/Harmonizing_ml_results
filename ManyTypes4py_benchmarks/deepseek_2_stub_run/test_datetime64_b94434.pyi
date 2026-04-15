@@ -1,4 +1,3 @@
-```python
 from datetime import datetime, time, timedelta, timezone
 from typing import Any, overload
 import numpy as np

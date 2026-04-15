@@ -1,4 +1,3 @@
-```python
 from _typeshed import Incomplete
 from datetime import datetime
 from functools import partial
@@ -223,4 +222,3 @@ def test_resample_b_55282(unit: Any) -> None: ...
 def test_arrow_timestamp_resample(tz: Any) -> None: ...
 
 def test_resample_A_raises(freq: Any) -> None: ...
-```

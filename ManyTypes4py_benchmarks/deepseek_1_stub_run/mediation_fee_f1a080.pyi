@@ -1,4 +1,3 @@
-```python
 from fractions import Fraction
 from typing import Any, Callable, List, Optional, Sequence, Tuple, TypeVar, Union
 
@@ -81,4 +80,3 @@ def calculate_imbalance_fees(
     channel_capacity: TokenAmount,
     proportional_imbalance_fee: ProportionalFeeAmount
 ) -> Optional[List[Tuple[TokenAmount, FeeAmount]]]: ...
-```

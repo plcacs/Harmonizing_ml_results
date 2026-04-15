@@ -1,4 +1,3 @@
-```python
 import os
 from typing import Any, Optional, Union, List, BinaryIO, IO
 from pathlib import Path, PurePosixPath
@@ -190,4 +189,3 @@ class GcsBucket:
         to_path: str,
         serialization_format: str = ...
     ) -> str: ...
-```

@@ -1,4 +1,3 @@
-```python
 from typing import Optional, Tuple, Iterable, Callable, Union, Any, List
 import numpy as np
 from checklist.test_suite import TestSuite
@@ -120,4 +119,3 @@ class TextualEntailmentSuite(TaskSuite):
         data: Any,
         num_test_cases: int = 100
     ) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 
 from collections.abc import Generator
@@ -146,4 +145,3 @@ async def test_create_topic_failed(hass: HomeAssistant, oauth: OAuthFixture, aio
 
 @pytest.mark.parametrize(("sdm_managed_topic", "list_subscriptions_status"), [(True, HTTPStatus.INTERNAL_SERVER_ERROR)])
 async def test_list_subscriptions_failure(hass: HomeAssistant, oauth: OAuthFixture) -> None: ...
-```

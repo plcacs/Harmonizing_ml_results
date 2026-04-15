@@ -1,4 +1,3 @@
-```python
 import pytest
 from typing import Any, Optional, Sequence, IO, ContextManager, AsyncContextManager
 from prefect.blocks.abstract import (
@@ -39,4 +38,3 @@ class TestObjectStorageBlock:
 class TestSecretBlock:
     def test_secret_block_is_abstract(self) -> None: ...
     def test_secret_block_implementation(self, caplog: Any) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 from typing import (
     Any,
     Callable,
@@ -129,4 +128,3 @@ class TextualEntailmentSuite(TaskSuite):
         data: Any,
         num_test_cases: int = 100
     ) -> None: ...
-```

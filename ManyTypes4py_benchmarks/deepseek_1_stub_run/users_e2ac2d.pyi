@@ -1,4 +1,3 @@
-```python
 import datetime
 from collections.abc import Iterable, Mapping, Sequence
 from email.headerregistry import Address
@@ -77,4 +76,3 @@ def get_active_bots_owned_by_user(user_profile: UserProfile) -> QuerySet[UserPro
 def is_2fa_verified(user: Any) -> bool: ...
 def get_users_with_access_to_real_email(user_profile: UserProfile) -> list[int]: ...
 def max_message_id_for_user(user_profile: UserProfile | None) -> int: ...
-```

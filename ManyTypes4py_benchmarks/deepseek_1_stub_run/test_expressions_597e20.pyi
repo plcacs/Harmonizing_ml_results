@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas._testing as tm
 from pandas import DataFrame
@@ -45,4 +44,3 @@ class TestExpressions:
     def test_frame_series_axis(self, axis: int, arith: str, _frame: DataFrame, monkeypatch: MonkeyPatch) -> None: ...
     
     def test_python_semantics_with_numexpr_installed(self, op: str, box_with_array: Any, scalar: int, monkeypatch: MonkeyPatch) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 from typing import Any, TypeVar, overload, TYPE_CHECKING
 from jedi.inference.base_value import ValueSet, Value, LazyValueWrapper, ValueWrapper
 from jedi.inference.arguments import Arguments
@@ -89,4 +88,3 @@ class TypedDict:
     def py__simple_getitem__(self, index: str) -> ValueSet: ...
     def get_key_values(self) -> ValueSet: ...
     def _get_wrapped_value(self) -> TreeInstance: ...
-```

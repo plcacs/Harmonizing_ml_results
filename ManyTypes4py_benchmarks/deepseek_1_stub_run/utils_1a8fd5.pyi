@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from collections.abc import Iterable
 from datetime import datetime, timedelta
@@ -221,4 +220,3 @@ async def get_rpc_script_event_types(
     device: Any,
     id: Any
 ) -> list[str]: ...
-```

@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import contextlib
 from types import TracebackType
@@ -115,4 +114,3 @@ class TestLambdaClient(BaseClient):
 class InvokeResponse:
     payload: Any
     def __init__(self, payload: Any) -> None: ...
-```

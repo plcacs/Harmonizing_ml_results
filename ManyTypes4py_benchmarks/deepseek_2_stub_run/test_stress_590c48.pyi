@@ -1,4 +1,3 @@
-```python
 import time
 from http import HTTPStatus
 from itertools import count
@@ -66,4 +65,3 @@ def assert_channels(raiden_network: Sequence[Any], token_network_address: TokenN
 @pytest.mark.parametrize('reveal_timeout', [15])
 @pytest.mark.parametrize('settle_timeout', [120])
 def test_stress(raiden_network: Any, restart_node: RestartNode, deposit: int, token_addresses: Sequence[TokenAddress], port_generator: Iterator[Any]) -> None: ...
-```

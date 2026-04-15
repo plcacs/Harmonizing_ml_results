@@ -1,4 +1,3 @@
-```python
 from typing import Any, Iterator, List, Optional, Tuple, Union
 from jedi.inference.cache import inference_state_method_cache, inference_state_method_generator_cache
 from jedi.inference.arguments import ValuesArguments
@@ -117,4 +116,3 @@ class ClassValue(ClassMixin, FunctionAndClassBase):
     
     @plugin_manager.decorate()
     def get_metaclass_signatures(self, metaclasses: ValueSet) -> List[Any]: ...
-```

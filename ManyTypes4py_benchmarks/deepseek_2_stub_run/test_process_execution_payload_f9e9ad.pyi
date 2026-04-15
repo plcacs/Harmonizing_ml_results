@@ -1,4 +1,3 @@
-```python
 from typing import Any, Iterator, Dict, List
 from random import Random
 
@@ -127,4 +126,3 @@ def test_invalid_randomized_non_validated_execution_fields_first_payload__execut
 @with_bellatrix_and_later
 @spec_state_test
 def test_invalid_randomized_non_validated_execution_fields_regular_payload__execution_invalid(spec: Any, state: Any) -> Iterator[Any]: ...
-```

@@ -1,4 +1,3 @@
-```python
 import torch
 import numpy
 from typing import Any, Union, List, Dict, Tuple, Optional, Callable
@@ -182,4 +181,3 @@ def global_distributed_func(global_rank: int, world_size: int, gpu_id: int, func
 def _dist_load_ok(global_rank: int, world_size: int, gpu_id: int) -> None: ...
 
 def _dist_load_with_errors(global_rank: int, world_size: int, gpu_id: int) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 import abc
 from datetime import datetime
 from typing import (
@@ -471,4 +470,3 @@ class WindowWrapperT(MutableMapping[KT, VT]):
     @get_relative_timestamp.setter
     def get_relative_timestamp(self, relative_to: RelativeArg) -> None:
         ...
-```

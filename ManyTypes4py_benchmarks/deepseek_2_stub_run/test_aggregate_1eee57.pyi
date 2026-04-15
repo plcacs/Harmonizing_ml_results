@@ -1,4 +1,3 @@
-```python
 import datetime
 from typing import Any, Callable, Dict, Hashable, List, Optional, Sequence, Tuple, Union
 
@@ -112,4 +111,3 @@ def test_groupby_aggregation_duplicate_columns_multiple_dict_values() -> None: .
 def test_groupby_aggregation_duplicate_columns_some_empty_result() -> None: ...
 def test_groupby_aggregation_multi_index_duplicate_columns() -> None: ...
 def test_groupby_aggregation_func_list_multi_index_duplicate_columns() -> None: ...
-```

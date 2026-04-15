@@ -1,4 +1,3 @@
-```python
 from collections.abc import Callable
 from typing import Any, TypeVar, overload
 from pydantic import BaseModel
@@ -146,4 +145,3 @@ def check_update_message(var_name: str, event: dict[str, Any], *args: Any) -> No
 def check_user_group_update(var_name: str, event: dict[str, Any], fields: set[str]) -> None: ...
 
 def check_user_status(var_name: str, event: dict[str, Any], fields: set[str]) -> None: ...
-```

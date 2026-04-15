@@ -1,4 +1,3 @@
-```python
 from datetime import datetime, timedelta
 from typing import Any, Dict, List, Optional, Tuple, Union
 from unittest.mock import MagicMock
@@ -34,4 +33,3 @@ def test_get_historic_ohlcv_binance(mocker: Any, default_conf: Any, timeframe: s
 def test_get_maintenance_ratio_and_amt_binance(default_conf: Any, mocker: Any, leverage_tiers: Any, pair: str, notional_value: float, mm_ratio: float, amt: float) -> None: ...
 
 async def test__async_get_trade_history_id_binance(default_conf_usdt: Any, mocker: Any, fetch_trades_result: Any) -> None: ...
-```

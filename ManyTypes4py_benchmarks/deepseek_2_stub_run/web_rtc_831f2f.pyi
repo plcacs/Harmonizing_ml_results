@@ -1,4 +1,3 @@
-```python
 import asyncio
 from enum import Enum
 from typing import Any, Callable, Dict, List, Optional, Union
@@ -126,4 +125,3 @@ class WebRTCManager:
     def _process_signaling_message(self, partner_address: Any, rtc_message_type: str, content: Dict[str, Any]) -> None: ...
     def process_signaling_message(self, partner_address: Any, rtc_message_type: str, content: Dict[str, Any]) -> None: ...
     def stop(self) -> None: ...
-```

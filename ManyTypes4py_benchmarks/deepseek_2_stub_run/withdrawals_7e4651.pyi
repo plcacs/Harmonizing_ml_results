@@ -1,4 +1,3 @@
-```python
 from typing import Any, Tuple, List, Generator
 
 def is_post_electra(spec: Any) -> bool: ...
@@ -96,4 +95,3 @@ def run_withdrawals_processing(
     pending_withdrawal_requests: Any = ...,
     valid: bool = ...
 ) -> Generator[Tuple[str, Any], None, Any]: ...
-```

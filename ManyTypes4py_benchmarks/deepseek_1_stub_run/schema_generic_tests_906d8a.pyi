@@ -1,4 +1,3 @@
-```python
 import itertools
 import os
 import pathlib
@@ -48,4 +47,3 @@ class SchemaGenericTestParser(SimpleParser):
     def parse_tests(self, block: Any) -> None: ...
     def parse_versioned_tests(self, block: Any) -> None: ...
     def generate_unique_id(self, resource_name: str, hash: Optional[str] = None) -> str: ...
-```

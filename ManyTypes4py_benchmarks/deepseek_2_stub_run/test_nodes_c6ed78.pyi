@@ -1,4 +1,3 @@
-```python
 from datetime import datetime
 from typing import Any, List, Optional, Union
 from dbt.artifacts.resources import Defaults, Dimension, Entity, FileHash, Measure, TestMetadata
@@ -94,4 +93,3 @@ class TestParsedNode:
         subdirectory: str,
         split: str
     ) -> None: ...
-```

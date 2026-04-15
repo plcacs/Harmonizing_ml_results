@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from matplotlib.axes import Axes
@@ -86,4 +85,3 @@ class TestDataFrameColor:
     def test_colors_of_columns_with_same_name(self) -> None: ...
     def test_invalid_colormap(self) -> None: ...
     def test_dataframe_none_color(self) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import datetime
 import typing
@@ -158,4 +157,3 @@ class Cookies(typing.MutableMapping[str, str]):
     def __iter__(self) -> typing.Iterator[str]: ...
     def __bool__(self) -> bool: ...
     def __repr__(self) -> str: ...
-```

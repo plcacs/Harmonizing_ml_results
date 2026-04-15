@@ -1,4 +1,3 @@
-```python
 import functools
 from typing import Any, Iterable, Sequence, Tuple, cast
 from eth_typing import BlockNumber, Hash32
@@ -64,4 +63,3 @@ class HeaderDB(HeaderDatabaseAPI):
     def _find_new_ancestors(cls, db: Any, header: Any, genesis_parent_hash: Any) -> Any: ...
     @staticmethod
     def _add_block_number_to_hash_lookup(db: Any, header: Any) -> None: ...
-```

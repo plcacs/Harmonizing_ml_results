@@ -1,4 +1,3 @@
-```python
 """Base-interface for sensors."""
 
 from typing import Any, Dict, Iterator, Mapping, Optional, Set
@@ -65,4 +64,3 @@ class SensorDelegate(SensorDelegateT):
     def on_web_request_start(self, app: AppT, request: web.Request, *, view: Any = None) -> Dict[SensorT, Any]: ...
     def on_web_request_end(self, app: AppT, request: web.Request, response: web.Response, state: Dict[SensorT, Any], *, view: Any = None) -> None: ...
     def __repr__(self) -> str: ...
-```

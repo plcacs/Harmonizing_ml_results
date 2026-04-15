@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from typing import Any, Optional, Union, Tuple, List, Sequence
@@ -96,4 +95,3 @@ class TestDataFrameGroupByPlots:
 
 ts: pd.Series = ...
 hist_df: pd.DataFrame = ...
-```

@@ -1,4 +1,3 @@
-```python
 from contextlib import contextmanager
 from typing import Any, Iterator, TypeVar
 from unittest.mock import Mock
@@ -153,4 +152,3 @@ def test_apply_stub_using_libcst__exception(
 def test_apply_stub_using_libcst__overwrite_existing_annotations() -> None: ...
 def test_apply_stub_using_libcst__confine_new_imports_in_type_checking_block() -> None: ...
 def get_newly_imported_items(stub: Module, source: Module) -> list[ImportItem]: ...
-```

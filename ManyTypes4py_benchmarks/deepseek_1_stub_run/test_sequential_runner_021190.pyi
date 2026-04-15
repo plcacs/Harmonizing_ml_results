@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any, ClassVar, Dict, List, Pattern, Sequence, TYPE_CHECKING
 import pandas as pd
@@ -69,4 +68,3 @@ class TestSuggestResumeScenario:
 
 class TestMemoryDatasetBehaviour:
     def test_run_includes_memory_datasets(self, pipeline_with_memory_datasets: Any) -> None: ...
-```

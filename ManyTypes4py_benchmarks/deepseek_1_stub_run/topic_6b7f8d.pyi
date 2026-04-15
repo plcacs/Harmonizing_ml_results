@@ -1,4 +1,3 @@
-```python
 from collections.abc import Callable
 from datetime import datetime
 from typing import Any, Optional, Sequence, Set, Tuple, Union
@@ -90,4 +89,3 @@ def maybe_rename_empty_topic_to_general_chat(
 ) -> str: ...
 
 def get_topic_display_name(topic_name: str, language: str) -> str: ...
-```

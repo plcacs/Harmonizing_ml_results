@@ -1,4 +1,3 @@
-```python
 from typing import Any, Optional, Union, List, Dict, Tuple, BinaryIO
 from enum import Enum
 from pathlib import Path, PurePosixPath
@@ -201,4 +200,3 @@ class GcsBucket(WritableDeploymentStorage, WritableFileSystem, ObjectStorageBloc
         serialization_format: Any = ...,
         **upload_kwargs: Any
     ) -> Any: ...
-```

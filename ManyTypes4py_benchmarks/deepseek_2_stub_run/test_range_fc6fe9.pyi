@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from pandas import Index, RangeIndex
@@ -129,4 +128,3 @@ def test_value_counts(sort: Any, dropna: Any, ascending: Any, normalize: Any, rn
 @pytest.mark.parametrize
 @pytest.mark.parametrize
 def test_searchsorted(side: str, value: Any) -> None: ...
-```

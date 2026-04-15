@@ -1,4 +1,3 @@
-```python
 import sys
 from typing import (
     Any,
@@ -273,4 +272,3 @@ def test_find_result_type_floats(right: Any, result: np.dtype) -> None: ...
 # Fixtures (type hints for pytest fixtures used in tests)
 coerce: Any = ...
 maybe_list_like: Any = ...
-```

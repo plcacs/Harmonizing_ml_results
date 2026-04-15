@@ -1,4 +1,3 @@
-```python
 import datetime
 from typing import Any, Literal, overload
 
@@ -254,4 +253,3 @@ def test_agg_list(
     test_series: Any,
     keys: Any
 ) -> None: ...
-```

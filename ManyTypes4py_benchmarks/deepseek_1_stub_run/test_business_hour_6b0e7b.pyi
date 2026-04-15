@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any
 from datetime import datetime, time as dt_time
@@ -70,4 +69,3 @@ class TestBusinessHour:
 
 class TestOpeningTimes:
     def test_opening_time(self, case: Any) -> None: ...
-```

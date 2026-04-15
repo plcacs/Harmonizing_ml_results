@@ -1,4 +1,3 @@
-```python
 import _csv
 import io
 import os
@@ -50,4 +49,3 @@ class TestToCSV:
     def test_to_csv_errors(self, errors: Any) -> None: ...
     def test_to_csv_binary_handle(self, mode: Any) -> None: ...
     def test_to_csv_encoding_binary_handle(self, mode: Any) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 from datetime import timedelta
 from typing import Any
 import numpy as np
@@ -35,4 +34,3 @@ class TestPeriodComparisons:
     def test_period_comparison_nat(self) -> None: ...
     @pytest.mark.parametrize
     def test_period_comparison_numpy_zerodim_arr(self, scalar: Any, expected: Any) -> None: ...
-```

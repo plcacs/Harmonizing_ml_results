@@ -1,4 +1,3 @@
-```python
 from typing import Any, Iterable, Iterator, List, Optional, Tuple
 from dataclasses import dataclass
 from pathlib import Path
@@ -68,4 +67,3 @@ def wait_for_usable_channel(raiden: Any, partner_address: Any, token_network_reg
 def wait_for_token_networks(raiden_apps: Any, token_network_registry_address: Any, token_addresses: Any, retry_timeout: Any = ...) -> None: ...
 
 def wait_for_channels(app_channels: Any, token_network_registry_address: Any, token_addresses: Any, deposit: Any, retry_timeout: Any = ...) -> None: ...
-```

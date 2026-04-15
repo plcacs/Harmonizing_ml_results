@@ -1,4 +1,3 @@
-```python
 import datetime
 from io import StringIO
 from typing import Any, Optional, Union, Sequence, Dict, List, Tuple
@@ -77,4 +76,3 @@ def test_parse_dates_dict_format_index(all_parsers: Any) -> None: ...
 def test_parse_dates_arrow_engine(all_parsers: Any) -> None: ...
 
 def test_from_csv_with_mixed_offsets(all_parsers: Any) -> None: ...
-```

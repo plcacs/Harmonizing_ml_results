@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import sys
 import os
@@ -147,4 +146,3 @@ class CLIFactory:
     ) -> Any: ...
     
     def create_package_options(self) -> PackageOptions: ...
-```

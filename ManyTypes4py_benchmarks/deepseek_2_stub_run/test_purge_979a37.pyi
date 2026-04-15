@@ -1,4 +1,3 @@
-```python
 from collections.abc import Generator
 from datetime import datetime, timedelta
 import sqlite3
@@ -105,4 +104,3 @@ async def test_purge_old_events_purges_the_event_type_ids(hass: HomeAssistant, r
 async def test_purge_old_states_purges_the_state_metadata_ids(hass: HomeAssistant, recorder_mock: Any) -> None: ...
 
 async def test_purge_entities_keep_days(hass: HomeAssistant, recorder_mock: Any) -> None: ...
-```

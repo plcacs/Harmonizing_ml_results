@@ -1,4 +1,3 @@
-```python
 import pandas as pd
 import numpy as np
 from typing import Any, Optional, Union, Sequence, Literal, overload
@@ -126,4 +125,3 @@ class TestWideToLong:
     def test_missing_stubname(self, any_string_dtype: str) -> None: ...
 
 def test_wide_to_long_string_columns(string_storage: str) -> None: ...
-```

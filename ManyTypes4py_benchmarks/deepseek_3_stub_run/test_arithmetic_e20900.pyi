@@ -1,0 +1,601 @@
+import builtins
+from collections import deque
+from datetime import datetime, timezone
+from enum import Enum
+import functools
+import operator
+import re
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    Iterable,
+    List,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    TypeVar,
+    Union,
+    overload,
+)
+
+import numpy as np
+import pytest
+from pandas.compat import HAS_PYARROW
+import pandas as pd
+from pandas import DataFrame, Index, MultiIndex, Series
+import pandas._testing as tm
+from pandas.core.computation import expressions as expr
+from pandas.tests.frame.common import _check_mixed_float, _check_mixed_int
+
+@pytest.fixture
+def simple_frame() -> DataFrame:
+    ...
+
+@pytest.fixture(autouse=True, params=[0, 100], ids=["numexpr", "python"])
+def switch_numexpr_min_elements(
+    request: pytest.FixtureRequest, monkeypatch: pytest.MonkeyPatch
+) -> Iterable[int]:
+    ...
+
+class DummyElement:
+    value: Any
+    dtype: np.dtype
+
+    def __init__(self, value: Any, dtype: Union[str, np.dtype]) -> None:
+        ...
+
+    def __array__(
+        self, dtype: Optional[np.dtype] = None, copy: Optional[bool] = None
+    ) -> np.ndarray:
+        ...
+
+    def __str__(self) -> str:
+        ...
+
+    def __repr__(self) -> str:
+        ...
+
+    def astype(self, dtype: np.dtype, copy: bool = False) -> "DummyElement":
+        ...
+
+    def view(self, dtype: np.dtype) -> "DummyElement":
+        ...
+
+    def any(self, axis: Optional[int] = None) -> bool:
+        ...
+
+class TestFrameComparisons:
+    def test_comparison_with_categorical_dtype(self) -> None:
+        ...
+
+    def test_frame_in_list(self) -> None:
+        ...
+
+    @pytest.mark.parametrize(
+        "arg, arg2",
+        [
+            [
+                {
+                    "a": np.random.default_rng(2).integers(10, size=10),
+                    "b": pd.date_range("20010101", periods=10),
+                },
+                {
+                    "a": np.random.default_rng(2).integers(10, size=10),
+                    "b": np.random.default_rng(2).integers(10, size=10),
+                },
+            ],
+            [
+                {
+                    "a": np.random.default_rng(2).integers(10, size=10),
+                    "b": np.random.default_rng(2).integers(10, size=10),
+                },
+                {
+                    "a": np.random.default_rng(2).integers(10, size=10),
+                    "b": pd.date_range("20010101", periods=10),
+                },
+            ],
+            [
+                {
+                    "a": pd.date_range("20010101", periods=10),
+                    "b": pd.date_range("20010101", periods=10),
+                },
+                {
+                    "a": np.random.default_rng(2).integers(10, size=10),
+                    "b": np.random.default_rng(2).integers(10, size=10),
+                },
+            ],
+            [
+                {
+                    "a": np.random.default_rng(2).integers(10, size=10),
+                    "b": pd.date_range("20010101", periods=10),
+                },
+                {
+                    "a": pd.date_range("20010101", periods=10),
+                    "b": pd.date_range("20010101", periods=10),
+                },
+            ],
+        ],
+    )
+    def test_comparison_invalid(self, arg: Dict[str, Any], arg2: Dict[str, Any]) -> None:
+        ...
+
+    @pytest.mark.parametrize(
+        "left, right",
+        [
+            ("gt", "lt"),
+            ("lt", "gt"),
+            ("ge", "le"),
+            ("le", "ge"),
+            ("eq", "eq"),
+            ("ne", "ne"),
+        ],
+    )
+    def test_timestamp_compare(self, left: str, right: str) -> None:
+        ...
+
+    def test_mixed_comparison(self) -> None:
+        ...
+
+    def test_df_boolean_comparison_error(self) -> None:
+        ...
+
+    def test_df_float_none_comparison(self) -> None:
+        ...
+
+    def test_df_string_comparison(self) -> None:
+        ...
+
+class TestFrameFlexComparisons:
+    def test_bool_flex_frame(self, comparison_op: Callable[..., Any]) -> None:
+        ...
+
+    @pytest.mark.parametrize("box", [np.array, Series])
+    def test_bool_flex_series(self, box: Type[Union[np.ndarray, Series]]) -> None:
+        ...
+
+    def test_bool_flex_frame_na(self) -> None:
+        ...
+
+    def test_bool_flex_frame_complex_dtype(self) -> None:
+        ...
+
+    def test_bool_flex_frame_object_dtype(self) -> None:
+        ...
+
+    def test_flex_comparison_nat(self) -> None:
+        ...
+
+    def test_df_flex_cmp_constant_return_types(
+        self, comparison_op: Callable[..., Any]
+    ) -> None:
+        ...
+
+    def test_df_flex_cmp_constant_return_types_empty(
+        self, comparison_op: Callable[..., Any]
+    ) -> None:
+        ...
+
+    def test_df_flex_cmp_ea_dtype_with_ndarray_series(self) -> None:
+        ...
+
+class TestFrameFlexArithmetic:
+    def test_floordiv_axis0(self) -> None:
+        ...
+
+    def test_df_add_td64_columnwise(self) -> None:
+        ...
+
+    def test_df_add_flex_filled_mixed_dtypes(self) -> None:
+        ...
+
+    def test_arith_flex_frame(
+        self,
+        all_arithmetic_operators: str,
+        float_frame: DataFrame,
+        mixed_float_frame: DataFrame,
+    ) -> None:
+        ...
+
+    @pytest.mark.parametrize("op", ["__add__", "__sub__", "__mul__"])
+    def test_arith_flex_frame_mixed(
+        self,
+        op: str,
+        int_frame: DataFrame,
+        mixed_int_frame: DataFrame,
+        mixed_float_frame: DataFrame,
+        switch_numexpr_min_elements: int,
+    ) -> None:
+        ...
+
+    @pytest.mark.parametrize("dim", range(3, 6))
+    def test_arith_flex_frame_raise(
+        self,
+        all_arithmetic_operators: str,
+        float_frame: DataFrame,
+        dim: int,
+    ) -> None:
+        ...
+
+    def test_arith_flex_frame_corner(self, float_frame: DataFrame) -> None:
+        ...
+
+    @pytest.mark.parametrize("op", ["add", "sub", "mul", "mod"])
+    def test_arith_flex_series_ops(self, simple_frame: DataFrame, op: str) -> None:
+        ...
+
+    def test_arith_flex_series(self, simple_frame: DataFrame) -> None:
+        ...
+
+    def test_arith_flex_series_broadcasting(
+        self, any_real_numpy_dtype: str
+    ) -> None:
+        ...
+
+    def test_arith_flex_zero_len_raises(self) -> None:
+        ...
+
+    def test_flex_add_scalar_fill_value(self) -> None:
+        ...
+
+    def test_sub_alignment_with_duplicate_index(self) -> None:
+        ...
+
+    @pytest.mark.parametrize(
+        "op", ["__add__", "__mul__", "__sub__", "__truediv__"]
+    )
+    def test_arithmetic_with_duplicate_columns(self, op: str) -> None:
+        ...
+
+    @pytest.mark.parametrize("level", [0, None])
+    def test_broadcast_multiindex(self, level: Optional[int]) -> None:
+        ...
+
+    def test_frame_multiindex_operations(self) -> None:
+        ...
+
+    def test_frame_multiindex_operations_series_index_to_frame_index(self) -> None:
+        ...
+
+    def test_frame_multiindex_operations_no_align(self) -> None:
+        ...
+
+    def test_frame_multiindex_operations_part_align(self) -> None:
+        ...
+
+class TestFrameArithmetic:
+    def test_td64_op_nat_casting(self) -> None:
+        ...
+
+    def test_df_add_2d_array_rowlike_broadcasts(self) -> None:
+        ...
+
+    def test_df_add_2d_array_collike_broadcasts(self) -> None:
+        ...
+
+    def test_df_arith_2d_array_rowlike_broadcasts(
+        self, request: pytest.FixtureRequest, all_arithmetic_operators: str
+    ) -> None:
+        ...
+
+    def test_df_arith_2d_array_collike_broadcasts(
+        self, request: pytest.FixtureRequest, all_arithmetic_operators: str
+    ) -> None:
+        ...
+
+    def test_df_bool_mul_int(self) -> None:
+        ...
+
+    def test_arith_mixed(self) -> None:
+        ...
+
+    @pytest.mark.parametrize("col", ["A", "B"])
+    def test_arith_getitem_commute(
+        self, all_arithmetic_functions: Callable[..., Any], col: str
+    ) -> None:
+        ...
+
+    @pytest.mark.parametrize(
+        "values",
+        [
+            [1, 2],
+            (1, 2),
+            np.array([1, 2]),
+            range(1, 3),
+            deque([1, 2]),
+        ],
+    )
+    def test_arith_alignment_non_pandas_object(
+        self, values: Union[List[int], Tuple[int, int], np.ndarray, range, deque]
+    ) -> None:
+        ...
+
+    def test_arith_non_pandas_object(self) -> None:
+        ...
+
+    def test_operations_with_interval_categories_index(
+        self, all_arithmetic_operators: str
+    ) -> None:
+        ...
+
+    def test_frame_with_frame_reindex(self) -> None:
+        ...
+
+    @pytest.mark.parametrize(
+        "value, dtype",
+        [
+            (1, "i8"),
+            (1.0, "f8"),
+            (2**63, "f8"),
+            (1j, "complex128"),
+            (2**63, "complex128"),
+            (True, "bool"),
+            (np.timedelta64(20, "ns"), "<m8[ns]"),
+            (np.datetime64(20, "ns"), "<M8[ns]"),
+        ],
+    )
+    @pytest.mark.parametrize(
+        "op",
+        [
+            operator.add,
+            operator.sub,
+            operator.mul,
+            operator.truediv,
+            operator.mod,
+            operator.pow,
+        ],
+        ids=lambda x: x.__name__,
+    )
+    def test_binop_other(
+        self,
+        op: Callable[..., Any],
+        value: Any,
+        dtype: str,
+        switch_numexpr_min_elements: int,
+    ) -> None:
+        ...
+
+    def test_arithmetic_midx_cols_different_dtypes(self) -> None:
+        ...
+
+    def test_arithmetic_midx_cols_different_dtypes_different_order(self) -> None:
+        ...
+
+def test_frame_with_zero_len_series_corner_cases() -> None:
+    ...
+
+def test_zero_len_frame_with_series_corner_cases() -> None:
+    ...
+
+def test_frame_single_columns_object_sum_axis_1() -> None:
+    ...
+
+class TestFrameArithmeticUnsorted:
+    def test_frame_add_tz_mismatch_converts_to_utc(self) -> None:
+        ...
+
+    def test_align_frame(self) -> None:
+        ...
+
+    @pytest.mark.parametrize(
+        "op",
+        [
+            operator.add,
+            operator.sub,
+            operator.mul,
+            operator.truediv,
+        ],
+    )
+    def test_operators_none_as_na(self, op: Callable[..., Any]) -> None:
+        ...
+
+    @pytest.mark.parametrize("op,res", [("__eq__", False), ("__ne__", True)])
+    @pytest.mark.filterwarnings("ignore:elementwise:FutureWarning")
+    def test_logical_typeerror_with_non_valid(
+        self, op: str, res: bool, float_frame: DataFrame
+    ) -> None:
+        ...
+
+    @pytest.mark.parametrize("op", ["add", "sub", "mul", "div", "truediv"])
+    def test_binary_ops_align(self, op: str) -> None:
+        ...
+
+    def test_binary_ops_align_series_dataframe(self) -> None:
+        ...
+
+    def test_add_with_dti_mismatched_tzs(self) -> None:
+        ...
+
+    def test_combineFrame(
+        self,
+        float_frame: DataFrame,
+        mixed_float_frame: DataFrame,
+        mixed_int_frame: DataFrame,
+    ) -> None:
+        ...
+
+    def test_combine_series(
+        self,
+        float_frame: DataFrame,
+        mixed_float_frame: DataFrame,
+        mixed_int_frame: DataFrame,
+    ) -> None:
+        ...
+
+    def test_combine_timeseries(self, datetime_frame: DataFrame) -> None:
+        ...
+
+    def test_combineFunc(
+        self, float_frame: DataFrame, mixed_float_frame: DataFrame
+    ) -> None:
+        ...
+
+    @pytest.mark.parametrize(
+        "func",
+        [
+            operator.eq,
+            operator.ne,
+            operator.lt,
+            operator.gt,
+            operator.ge,
+            operator.le,
+        ],
+    )
+    def test_comparisons(
+        self,
+        simple_frame: DataFrame,
+        float_frame: DataFrame,
+        func: Callable[..., Any],
+    ) -> None:
+        ...
+
+    def test_strings_to_numbers_comparisons_raises(
+        self, compare_operators_no_eq_ne: str
+    ) -> None:
+        ...
+
+    def test_comparison_protected_from_errstate(self) -> None:
+        ...
+
+    def test_boolean_comparison(self) -> None:
+        ...
+
+    def test_inplace_ops_alignment(self) -> None:
+        ...
+
+    def test_inplace_ops_identity(self) -> None:
+        ...
+
+    @pytest.mark.parametrize(
+        "op",
+        [
+            "add",
+            "and",
+            pytest.param(
+                "div",
+                marks=pytest.mark.xfail(
+                    raises=AttributeError, reason="__idiv__ not implemented"
+                ),
+            ),
+            "floordiv",
+            "mod",
+            "mul",
+            "or",
+            "pow",
+            "sub",
+            "truediv",
+            "xor",
+        ],
+    )
+    def test_inplace_ops_identity2(self, op: str) -> None:
+        ...
+
+    @pytest.mark.parametrize(
+        "val",
+        [
+            [1, 2, 3],
+            (1, 2, 3),
+            np.array([1, 2, 3], dtype=np.int64),
+            range(1, 4),
+        ],
+    )
+    def test_alignment_non_pandas(self, val: Union[List[int], Tuple[int, ...], np.ndarray, range]) -> None:
+        ...
+
+    @pytest.mark.parametrize(
+        "val",
+        [
+            [1, 2],
+            (1, 2),
+            np.array([1, 2]),
+            range(1, 3),
+        ],
+    )
+    def test_alignment_non_pandas_length_mismatch(
+        self, val: Union[List[int], Tuple[int, int], np.ndarray, range]
+    ) -> None:
+        ...
+
+    def test_alignment_non_pandas_index_columns(self) -> None:
+        ...
+
+    def test_no_warning(self, all_arithmetic_operators: str) -> None:
+        ...
+
+    def test_dunder_methods_binary(self, all_arithmetic_operators: str) -> None:
+        ...
+
+    def test_align_int_fill_bug(self) -> None:
+        ...
+
+def test_pow_with_realignment() -> None:
+    ...
+
+def test_dataframe_series_extension_dtypes() -> None:
+    ...
+
+def test_dataframe_blockwise_slicelike() -> None:
+    ...
+
+@pytest.mark.parametrize(
+    "df, col_dtype",
+    [
+        (
+            DataFrame([[1.0, 2.0], [4.0, 5.0]], columns=list("ab")),
+            "float64",
+        ),
+        (
+            DataFrame([[1.0, "b"], [4.0, "b"]], columns=list("ab")).astype(
+                {"b": object}
+            ),
+            "object",
+        ),
+    ],
+)
+def test_dataframe_operation_with_non_numeric_types(
+    df: DataFrame, col_dtype: str
+) -> None:
+    ...
+
+def test_arith_reindex_with_duplicates() -> None:
+    ...
+
+@pytest.mark.parametrize(
+    "to_add",
+    [[Series([1, 1])], [Series([1, 1]), Series([1, 1])]],
+)
+def test_arith_list_of_arraylike_raise(
+    to_add: Union[List[Series], List[Series, Series]]
+) -> None:
+    ...
+
+def test_inplace_arithmetic_series_update() -> None:
+    ...
+
+def test_arithmetic_multiindex_align() -> None:
+    ...
+
+def test_arithmetic_multiindex_column_align() -> None:
+    ...
+
+def test_arithmetic_multiindex_column_align_with_fillvalue() -> None:
+    ...
+
+def test_bool_frame_mult_float() -> None:
+    ...
+
+def test_frame_sub_nullable_int(any_int_ea_dtype: str) -> None:
+    ...
+
+@pytest.mark.filterwarnings(
+    "ignore:Passing a BlockManager|Passing a SingleBlockManager:DeprecationWarning"
+)
+def test_frame_op_subclass_nonclass_constructor() -> None:
+    ...
+
+def test_enum_column_equality() -> None:
+    ...
+
+def test_mixed_col_index_dtype(using_infer_string: bool) -> None:
+    ...

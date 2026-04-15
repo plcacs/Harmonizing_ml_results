@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from pandas import Categorical, DataFrame, NaT, Timestamp
@@ -104,4 +103,3 @@ class TestSortValuesLevelAsStr:
     def test_sort_values_validate_ascending_functional(
         self, ascending: bool
     ) -> None: ...
-```

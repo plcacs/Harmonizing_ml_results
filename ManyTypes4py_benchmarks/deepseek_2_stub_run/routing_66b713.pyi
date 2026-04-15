@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import contextlib
 import functools
@@ -155,4 +154,3 @@ class Router:
     def websocket_route(self, path: str, name: typing.Optional[str] = None) -> typing.Any: ...
     def add_event_handler(self, event_type: str, func: typing.Any) -> None: ...
     def on_event(self, event_type: str) -> typing.Any: ...
-```

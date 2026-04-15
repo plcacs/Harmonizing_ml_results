@@ -1,4 +1,3 @@
-```python
 from collections.abc import Sequence
 from typing import Any, Deque, Dict, List, Optional, Union
 import jsonschema
@@ -244,4 +243,3 @@ class TestPreprocessSchemaPydanticV2Tuples:
     def test_pydantic_v2_model_union_type_tuple(self) -> None: ...
     
     def test_pydantic_v2_model_ordered_multi_type_tuple(self) -> None: ...
-```

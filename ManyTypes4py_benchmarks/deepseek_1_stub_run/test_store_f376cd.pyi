@@ -1,4 +1,3 @@
-```python
 import contextlib
 import datetime as dt
 from typing import Any, Dict, Iterator, List, Optional, Set, Tuple, Union
@@ -86,4 +85,3 @@ def test_to_hdf_with_object_column_names_should_run(tmp_path: Any, setup_path: A
 def test_hdfstore_strides(setup_path: Any) -> None: ...
 
 def test_store_bool_index(tmp_path: Any, setup_path: Any) -> None: ...
-```

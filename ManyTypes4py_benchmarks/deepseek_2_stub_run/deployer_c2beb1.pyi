@@ -1,4 +1,3 @@
-```python
 import botocore.exceptions
 from botocore.vendored.requests import ConnectionError as RequestsConnectionError
 from botocore.session import Session
@@ -123,4 +122,3 @@ class DeploymentReporter:
     def _report_lambda_layer(self, resource: Dict[str, Any], report: List[str]) -> None: ...
     def _default_report(self, resource: Dict[str, Any], report: List[str]) -> None: ...
     def display_report(self, deployed_values: Dict[str, Any]) -> None: ...
-```

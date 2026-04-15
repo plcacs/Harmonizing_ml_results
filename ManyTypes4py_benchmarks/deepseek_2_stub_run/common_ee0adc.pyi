@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any, Sequence
 import numpy as np
@@ -106,4 +105,3 @@ def _check_plot_works(
 def _gen_default_plot(f: Any, fig: Any, **kwargs: Any) -> Any: ...
 
 def _gen_two_subplots(f: Any, fig: Any, **kwargs: Any) -> Any: ...
-```

@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from datetime import datetime, timedelta
@@ -117,4 +116,3 @@ def test_backtesting_start_multi_strat_caching(default_conf: Dict[str, Any], moc
 def test_get_strategy_run_id(default_conf_usdt: Dict[str, Any]) -> None: ...
 
 def test_get_backtest_metadata_filename() -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 import pytest
 from hypothesis import HealthCheck
 from hypothesis.internal.conjecture.data import ConjectureData
@@ -75,4 +74,3 @@ def test_silly_shrinker_subclass() -> None: ...
 numeric_nodes: Any = ...
 
 def test_redistribute_numeric_pairs(node1: ChoiceNode, node2: ChoiceNode, stop: Any) -> None: ...
-```

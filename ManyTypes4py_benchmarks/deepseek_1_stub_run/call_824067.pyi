@@ -1,4 +1,3 @@
-```python
 from abc import ABC, abstractmethod
 from typing import Tuple, Any
 from eth_typing import Address
@@ -50,4 +49,3 @@ class StaticCall(CallEIP161):
 
 class CallByzantium(CallEIP161):
     def get_call_params(self, computation: Any) -> CallParams: ...
-```

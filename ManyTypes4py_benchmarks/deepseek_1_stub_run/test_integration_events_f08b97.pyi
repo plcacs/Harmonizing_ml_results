@@ -1,4 +1,3 @@
-```python
 from typing import Any, Dict, List
 from unittest.mock import patch
 import gevent
@@ -118,4 +117,3 @@ def test_clear_closed_queue(
     token_addresses: Any,
     network_wait: Any
 ) -> None: ...
-```

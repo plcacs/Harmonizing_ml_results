@@ -1,4 +1,3 @@
-```python
 import pytest
 from typing import Any
 from unittest.mock import MagicMock
@@ -79,4 +78,3 @@ def test_dca_handle_similar_open_order(
     mocker: Any,
     caplog: Any
 ) -> None: ...
-```

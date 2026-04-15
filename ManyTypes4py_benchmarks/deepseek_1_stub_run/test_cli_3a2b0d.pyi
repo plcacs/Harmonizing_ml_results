@@ -1,4 +1,3 @@
-```python
 from collections import namedtuple
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple, Union
@@ -138,4 +137,3 @@ class TestRunCommand:
     def test_run_with_alternative_conf_source(self, fake_project_cli: Any, fake_metadata: Any) -> None: ...
 
     def test_run_with_non_existent_conf_source(self, fake_project_cli: Any, fake_metadata: Any) -> None: ...
-```

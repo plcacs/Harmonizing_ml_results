@@ -1,4 +1,3 @@
-```python
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from typing import Any, Generator, List, Optional
@@ -350,4 +349,3 @@ def test__send_with_client_errors(notification_mock: Mock, logger_mock: Mock) ->
 def test__send_with_multiple_errors(notification_mock: Mock, logger_mock: Mock) -> None: ...
 
 def test__send_with_server_errors(notification_mock: Mock, logger_mock: Mock) -> None: ...
-```

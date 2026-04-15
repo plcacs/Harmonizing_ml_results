@@ -1,4 +1,3 @@
-```python
 import pandas as pd
 import numpy as np
 from pandas import (
@@ -76,4 +75,3 @@ class TestDataFrameSortIndexKey:
     def test_sort_index_multiindex_sparse_column(self) -> None: ...
     def test_sort_index_na_position(self) -> None: ...
     def test_sort_index_multiindex_sort_remaining(self, ascending: Any) -> None: ...
-```

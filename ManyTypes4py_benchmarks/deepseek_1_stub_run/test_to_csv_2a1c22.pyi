@@ -1,4 +1,3 @@
-```python
 import _csv
 import io
 import numpy as np
@@ -47,4 +46,3 @@ class TestToCSV:
 
 def test_to_csv_iterative_compression_name(compression: Any) -> None: ...
 def test_to_csv_iterative_compression_buffer(compression: Any) -> None: ...
-```

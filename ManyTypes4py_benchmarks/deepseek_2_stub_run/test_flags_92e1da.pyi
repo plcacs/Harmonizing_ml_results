@@ -1,4 +1,3 @@
-```python
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 import click
@@ -100,4 +99,3 @@ class TestFlags:
     def test_from_dict_0_value(self) -> None: ...
 
 def test_project_flag_defaults() -> None: ...
-```

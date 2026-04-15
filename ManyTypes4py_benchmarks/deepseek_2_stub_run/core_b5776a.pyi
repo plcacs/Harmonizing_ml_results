@@ -1,4 +1,3 @@
-```python
 import pickle
 from collections.abc import Hashable
 from types import SimpleNamespace
@@ -45,4 +44,3 @@ class lambda_mapper:
     
     def __init__(self, name: Optional[str] = ..., pre: Optional[List[Any]] = ..., memoize: bool = ..., memoize_key: Optional[HashingFunction] = ...) -> None: ...
     def __call__(self, f: MapFunction) -> LambdaMapper: ...
-```

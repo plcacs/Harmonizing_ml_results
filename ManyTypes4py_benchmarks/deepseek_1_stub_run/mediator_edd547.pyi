@@ -1,4 +1,3 @@
-```python
 from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 from fractions import Fraction
 from raiden.exceptions import UndefinedMediationFee
@@ -78,4 +77,3 @@ def handle_onchain_secretreveal(mediator_state: Any, onchain_secret_reveal: Any,
 def handle_unlock(mediator_state: Any, state_change: Any, channelidentifiers_to_channels: Any) -> TransitionResult: ...
 def handle_lock_expired(mediator_state: Any, state_change: Any, channelidentifiers_to_channels: Any, block_number: Any) -> TransitionResult: ...
 def state_transition(mediator_state: Any, state_change: Any, channelidentifiers_to_channels: Any, addresses_to_channel: Any, pseudo_random_generator: Any, block_number: Any, block_hash: Any) -> TransitionResult: ...
-```

@@ -1,4 +1,3 @@
-```python
 import uuid
 from typing import Any, AsyncGenerator, Dict, List, Optional, Type
 from unittest.mock import AsyncMock, MagicMock, Mock
@@ -298,4 +297,3 @@ async def test_worker_removes_flow_run_from_submitting_when_not_ready(
     worker_deployment_wq1: Any,
     work_pool: Any
 ) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 from typing import Any, overload
 from mimesis import BaseProvider, Generic
 
@@ -49,4 +48,3 @@ class TestSeededGeneric:
     def test_generic_person(self, g1: Generic, g2: Generic) -> None: ...
     def test_generic_science(self, g1: Generic, g2: Generic) -> None: ...
     def test_generic_transport(self, g1: Generic, g2: Generic) -> None: ...
-```

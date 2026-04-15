@@ -1,4 +1,3 @@
-```python
 import sys
 from collections.abc import Callable, Iterable, Sequence
 from functools import _lru_cache_wrapper
@@ -120,4 +119,3 @@ class IgnoreUnhashableLruCacheWrapper(Generic[ParamT, ReturnT]):
 def ignore_unhashable_lru_cache(maxsize: int = ..., typed: bool = ...) -> Callable[[Callable[ParamT, ReturnT]], IgnoreUnhashableLruCacheWrapper[ParamT, ReturnT]]: ...
 def dict_to_items_tuple(user_function: Callable[..., ReturnT]) -> Callable[..., ReturnT]: ...
 def items_tuple_to_dict(user_function: Callable[..., ReturnT]) -> Callable[..., ReturnT]: ...
-```

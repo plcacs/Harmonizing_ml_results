@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import typing
 from typing import Any, overload
@@ -184,4 +183,3 @@ class State:
     def __setattr__(self, key: str, value: typing.Any) -> None: ...
     def __getattr__(self, key: str) -> typing.Any: ...
     def __delattr__(self, key: str) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 from typing import Any, Optional, List, Callable, Union, Dict
 from pypinyin.style import Style
 
@@ -34,4 +33,3 @@ class UltimateConverter(DefaultConverter):
     def post_pinyin(self, han: str, heteronym: bool, pinyin: List[Any], **kwargs: Any) -> Optional[List[Any]]: ...
 
 _mixConverter: Any = ...
-```

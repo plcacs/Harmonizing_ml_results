@@ -1,4 +1,3 @@
-```python
 import datetime
 import ssl
 from typing import Any, Optional, Dict, Callable, Union, Type
@@ -138,4 +137,3 @@ class _RequestProxy:
     def __getattr__(self, name: str) -> Any: ...
 
 def main() -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import abc
 from typing import TYPE_CHECKING, Any, Literal
@@ -161,4 +160,3 @@ class BaseStringArrayMethods(abc.ABC):
     
     @abc.abstractmethod
     def _str_extract(self, pat: Any, flags: int = ..., expand: bool = ...) -> Any: ...
-```

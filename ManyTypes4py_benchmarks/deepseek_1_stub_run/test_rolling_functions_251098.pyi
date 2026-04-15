@@ -1,4 +1,3 @@
-```python
 from typing import Any, Callable, Literal, TypeVar
 from datetime import datetime
 import numpy as np
@@ -112,4 +111,3 @@ def test_rolling_min_max_numeric_types(
 def test_moment_functions_zero_length(
     f: Callable[[Any], Any],
 ) -> None: ...
-```

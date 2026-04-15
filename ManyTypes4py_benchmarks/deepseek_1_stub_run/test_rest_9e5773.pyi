@@ -1,4 +1,3 @@
-```python
 import datetime
 from http import HTTPStatus
 from typing import Any, Dict, List, Optional, Union
@@ -178,4 +177,3 @@ def test_no_udc_configured(api_server_test_instance: Any, retry_timeout: Any) ->
 @pytest.mark.parametrize('channels_per_node', [0])
 @pytest.mark.parametrize('enable_rest_api', [True])
 def test_shutdown(api_server_test_instance: Any) -> None: ...
-```

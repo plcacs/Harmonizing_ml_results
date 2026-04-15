@@ -1,4 +1,3 @@
-```python
 import tornado.httpclient
 import tornado.httputil
 import tornado.web
@@ -208,4 +207,3 @@ def _oauth10a_signature(
 def _oauth_escape(val: Any) -> str: ...
 
 def _oauth_parse_response(body: bytes) -> Dict[str, Any]: ...
-```

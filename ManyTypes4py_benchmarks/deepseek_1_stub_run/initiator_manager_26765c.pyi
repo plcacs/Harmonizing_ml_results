@@ -1,4 +1,3 @@
-```python
 from typing import Any, Dict, List, Optional, Tuple
 from raiden.transfer.architecture import Event, StateChange, TransitionResult
 from raiden.transfer.events import EventPaymentSentFailed
@@ -139,4 +138,3 @@ def state_transition(
     pseudo_random_generator: Any,
     block_number: BlockNumber,
 ) -> TransitionResult: ...
-```

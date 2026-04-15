@@ -1,4 +1,3 @@
-```python
 """
 Helper functions for Trainers
 """
@@ -84,4 +83,3 @@ def get_valid_tokens_mask(
     tensor: torch.Tensor,
     exclude_indices: Set[int]
 ) -> torch.Tensor: ...
-```

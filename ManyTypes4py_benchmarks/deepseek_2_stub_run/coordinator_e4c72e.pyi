@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from datetime import datetime
 import logging
@@ -124,4 +123,3 @@ class IBeaconCoordinator:
     def _async_restore_from_registry(self) -> None: ...
     
     async def async_start(self) -> None: ...
-```

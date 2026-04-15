@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any, ClassVar, Dict, List, Tuple, Union
 from datetime import datetime, timedelta
@@ -219,4 +218,3 @@ def test_is_yqm_start_end() -> None: ...
 @pytest.mark.parametrize('left', [DateOffset(1), Nano(1)])
 @pytest.mark.parametrize('right', [DateOffset(1), Nano(1)])
 def test_multiply_dateoffset_typeerror(left: Any, right: Any) -> None: ...
-```

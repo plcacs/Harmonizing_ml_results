@@ -1,4 +1,3 @@
-```python
 import datetime
 from typing import Any, Literal, overload
 
@@ -147,4 +146,3 @@ class Align:
     def setup(self) -> None: ...
     def time_series_align_int64_index(self) -> None: ...
     def time_series_align_left_monotonic(self) -> None: ...
-```

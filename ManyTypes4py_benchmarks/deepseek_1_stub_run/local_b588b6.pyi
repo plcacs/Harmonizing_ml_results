@@ -1,4 +1,3 @@
-```python
 import os
 from collections.abc import Callable, Iterator
 from datetime import datetime
@@ -77,4 +76,3 @@ class LocalUploadBackend(ZulipUploadBackend):
     
     @override
     def delete_export_tarball(self, export_path: Any) -> str | None: ...
-```

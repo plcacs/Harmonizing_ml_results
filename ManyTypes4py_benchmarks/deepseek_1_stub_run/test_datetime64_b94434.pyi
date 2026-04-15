@@ -1,4 +1,3 @@
-```python
 from _typeshed import Incomplete
 from datetime import datetime, time, timedelta, timezone
 from itertools import product, starmap

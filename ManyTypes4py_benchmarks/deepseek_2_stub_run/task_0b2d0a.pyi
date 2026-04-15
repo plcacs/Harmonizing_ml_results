@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import TYPE_CHECKING, Any, ClassVar
 from collections.abc import Iterable, Iterator
@@ -93,4 +92,3 @@ class Task:
         hook_manager: PluginManager,
         session_id: str | None = ...
     ) -> dict[str, Any]: ...
-```

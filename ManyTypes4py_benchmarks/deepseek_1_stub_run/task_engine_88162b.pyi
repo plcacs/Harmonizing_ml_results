@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import TYPE_CHECKING, Any, AsyncGenerator, Callable, Coroutine, Generator, Generic, Literal, Optional, Sequence, TypeVar, Union
 from uuid import UUID
@@ -160,4 +159,3 @@ def run_task(
     dependencies: Any = ...,
     context: Any = ...
 ) -> Any: ...
-```

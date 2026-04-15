@@ -1,4 +1,3 @@
-```python
 from typing import Any, Callable, Dict, Iterable, Iterator, List, NamedTuple, Optional, Set, Tuple
 from dataclasses import dataclass
 from collections import Counter
@@ -90,4 +89,3 @@ class MatrixTransport(Runnable):
 def _metadata_key_func(message_data: Any) -> str: ...
 def _query_metadata(pfs_proxy: PFSProxy, address: Address) -> Optional[AddressMetadata]: ...
 def populate_services_addresses(transport: MatrixTransport, service_registry: Any, block_identifier: BlockIdentifier) -> None: ...
-```

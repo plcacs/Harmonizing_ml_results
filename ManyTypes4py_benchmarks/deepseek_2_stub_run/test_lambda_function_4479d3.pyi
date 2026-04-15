@@ -1,4 +1,3 @@
-```python
 import io
 from typing import Any, Optional, Union, Dict, List, BinaryIO, Iterator, Generator
 from typing_extensions import Literal
@@ -80,4 +79,3 @@ class TestLambdaFunctionAsync:
     async def test_ainvoke_lambda_qualifier_base_version(self, mock_lambda_function: Any, lambda_function: Any, mock_invoke_base: Any) -> None: ...
     
     async def test_ainvoke_lambda_qualifier_updated_version(self, add_lambda_version: Any, lambda_function: Any, mock_invoke_updated: Any) -> None: ...
-```

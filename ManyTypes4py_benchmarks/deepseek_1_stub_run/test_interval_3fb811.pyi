@@ -1,4 +1,3 @@
-```python
 from typing import Any, Literal, overload
 from pandas import Index, Interval, IntervalIndex, Timedelta, Timestamp
 import numpy as np
@@ -62,4 +61,3 @@ def test_searchsorted_different_argument_classes(listlike_box: Any) -> None: ...
 def test_searchsorted_different_argument_classes(listlike_box: Any) -> None: ...
 @pytest.mark.parametrize
 def test_searchsorted_invalid_argument(arg: Any) -> None: ...
-```

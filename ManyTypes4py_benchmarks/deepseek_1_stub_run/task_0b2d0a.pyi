@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import TYPE_CHECKING, Any
 from collections.abc import Iterator
@@ -83,4 +82,3 @@ class Task:
         hook_manager: Any,
         session_id: Any = ...
     ) -> dict[Any, Any]: ...
-```

@@ -1,4 +1,3 @@
-```python
 import datetime
 from enum import Enum
 from pathlib import Path
@@ -91,4 +90,3 @@ class TestEntrypointToSchema:
     def test_handles_dynamically_created_models(self, tmp_path: Path) -> None: ...
     def test_function_with_kwargs_only(self, tmp_path: Path) -> None: ...
     def test_function_with_positional_only_args(self, tmp_path: Path) -> None: ...
-```

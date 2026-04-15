@@ -1,4 +1,3 @@
-```python
 import sys
 import unittest
 from typing import Any
@@ -40,4 +39,3 @@ class ParserTest(unittest.TestCase):
     def test_validate_mismatch_jinja2_whitespace_markers_1(self) -> None: ...
     def test_validate_jinja2_whitespace_type2_markers(self) -> None: ...
     def test_tokenize(self) -> None: ...
-```

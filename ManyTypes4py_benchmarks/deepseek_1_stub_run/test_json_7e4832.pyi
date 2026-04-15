@@ -1,4 +1,3 @@
-```python
 import collections.abc
 import sys
 from typing import Any, Optional, Union, overload
@@ -93,4 +92,3 @@ def custom_assert_series_equal(left: Any, right: Any, *args: Any, **kwargs: Any)
 def custom_assert_frame_equal(left: Any, right: Any, *args: Any, **kwargs: Any) -> None: ...
 
 def test_custom_asserts() -> None: ...
-```

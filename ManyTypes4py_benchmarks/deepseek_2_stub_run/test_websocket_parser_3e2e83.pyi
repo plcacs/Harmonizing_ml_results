@@ -1,4 +1,3 @@
-```python
 import asyncio
 from typing import Any, Generator, Tuple, Union
 from unittest.mock import Mock
@@ -192,4 +191,3 @@ def test_flow_control_multi_byte_text(
     out_low_limit: WebSocketDataQueue,
     parser_low_limit: PatchableWebSocketReader,
 ) -> None: ...
-```

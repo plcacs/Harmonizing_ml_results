@@ -1,4 +1,3 @@
-```python
 from typing import Any
 from typing import Callable
 from typing import List
@@ -487,4 +486,3 @@ async def test_auto_reconnect(
     hass: HomeAssistant,
     setup_with_birth_msg_client_mock: Any,
     caplog: Any,
-   

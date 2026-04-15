@@ -1,4 +1,3 @@
-```python
 import datetime
 from typing import Any, List, Optional, Sequence, Tuple, Union
 
@@ -71,4 +70,3 @@ class TestSetIndexCustomLabelType:
     def test_set_index_custom_label_hashable_iterable(self) -> None: ...
     def test_set_index_custom_label_type_raises(self) -> None: ...
     def test_set_index_periodindex(self) -> None: ...
-```

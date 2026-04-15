@@ -1,4 +1,3 @@
-```python
 from collections.abc import Sequence
 from typing import Any, Deque, List, Optional, Union
 import jsonschema
@@ -241,4 +240,3 @@ async def test_hydration_error_causes_validation_error() -> None: ...
 async def test_circular_schema_ref() -> None: ...
 
 async def test_ignore_required() -> None: ...
-```

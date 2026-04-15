@@ -1,4 +1,3 @@
-```python
 import logging
 from typing import Any, List, Optional
 from flask_appbuilder import Model
@@ -96,4 +95,3 @@ def delete_table_users_associations(table: SqlaTable) -> None: ...
 def delete_all_inserted_dbs() -> None: ...
 
 def delete_database(database: Database, do_commit: bool = ...) -> None: ...
-```

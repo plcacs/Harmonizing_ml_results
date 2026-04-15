@@ -1,4 +1,3 @@
-```python
 from typing import Any, Optional, Union, Sequence, Literal
 from pandas import DataFrame, Series, Index, MultiIndex, Timedelta
 from pandas._libs import lib
@@ -509,4 +508,3 @@ class TestStackUnstackMultiLevel:
     ) -> None: ...
     
     def test_unstack_mixed_level_names(self) -> None: ...
-```

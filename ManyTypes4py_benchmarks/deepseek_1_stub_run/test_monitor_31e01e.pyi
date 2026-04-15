@@ -1,4 +1,3 @@
-```python
 from collections.abc import MutableMapping
 from http import HTTPStatus
 from typing import Any, ClassVar, Deque, Dict, List, Optional, Set, Tuple, Union
@@ -151,4 +150,3 @@ class Monitor:
     def _http_response_codes_dict(self) -> Dict[int, int]: ...
 
 TP1: TP = ...
-```

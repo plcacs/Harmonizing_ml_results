@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any
 from unittest.mock import Mock
@@ -123,4 +122,3 @@ def test_catalogs_with_oauth2(mocker: MockerFixture, client: Any, full_api_acces
 def test_schemas(mocker: MockerFixture, client: Any, full_api_access: Any) -> None: ...
 
 def test_schemas_with_oauth2(mocker: MockerFixture, client: Any, full_api_access: Any) -> None: ...
-```

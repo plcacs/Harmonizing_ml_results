@@ -1,4 +1,3 @@
-```python
 import datetime
 from typing import Any, Iterable, Optional, TypeVar, Union
 from pandas import NA, Categorical, CategoricalIndex, DatetimeIndex, Index, IntervalIndex, MultiIndex, NaT, PeriodIndex, Series, Timestamp
@@ -48,4 +47,3 @@ class TestIndexConstructorUnwrapping:
 
 class TestIndexConstructionErrors:
     def test_constructor_overflow_int64(self) -> None: ...
-```

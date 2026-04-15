@@ -1,4 +1,3 @@
-```python
 import gzip
 import numpy as np
 import torch as pt
@@ -48,4 +47,3 @@ def compute_isometric_score(hypothesis: str, hypothesis_score: float, source: st
 def update_dict_with_prefix_kv(dest: Dict[str, Any], prefix_kv: Dict[str, Any]) -> None: ...
 
 def fault_tolerant_symlink(src: str, dst: str) -> None: ...
-```

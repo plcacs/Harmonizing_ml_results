@@ -1,4 +1,3 @@
-```python
 import datetime
 from typing import Any, Callable, Literal, overload
 
@@ -194,4 +193,3 @@ def test_min_all_empty_data_no_type_coercion() -> None: ...
 def test_min_one_dim_no_type_coercion() -> None: ...
 
 def test_nan_in_cumsum_group_label() -> None: ...
-```

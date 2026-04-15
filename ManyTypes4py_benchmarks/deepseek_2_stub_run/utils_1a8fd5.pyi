@@ -1,4 +1,3 @@
-```python
 """Shelly helpers functions."""
 
 from __future__ import annotations
@@ -96,4 +95,3 @@ class ShellyReceiver(HomeAssistantView):
     async def get(self, request: Request) -> WebSocketResponse: ...
 
 async def get_ws_context(hass: HomeAssistant) -> WsServer: ...
-```

@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any, Dict, Iterator, List, Mapping, Optional, Pattern, Tuple, Type, Union
 from typing_extensions import Protocol
@@ -88,4 +87,3 @@ class KedroDataCatalog(CatalogProtocol):
     def add_feed_dict(self, feed_dict: Dict[str, Any], replace: bool = ...) -> None: ...
     def shallow_copy(self, extra_dataset_patterns: Optional[Dict[str, Dict[str, Any]]] = ...) -> KedroDataCatalog: ...
     def exists(self, name: str) -> bool: ...
-```

@@ -1,4 +1,3 @@
-```python
 from typing import Any, Optional, List, Dict, Set, Tuple, Union, Generator
 from uuid import UUID
 from datetime import timedelta

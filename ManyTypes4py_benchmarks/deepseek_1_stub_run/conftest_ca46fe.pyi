@@ -1,4 +1,3 @@
-```python
 from collections.abc import Generator
 from typing import Any
 from unittest.mock import AsyncMock
@@ -278,4 +277,3 @@ async def mock_plex_server(
     entry: Any,
     setup_plex_server: Any
 ) -> Any: ...
-```

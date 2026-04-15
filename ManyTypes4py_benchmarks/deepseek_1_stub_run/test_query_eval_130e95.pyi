@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from pandas import DataFrame, Index, MultiIndex, Series
@@ -297,4 +296,3 @@ class TestDataFrameQueryBacktickQuoting:
     def test_query_ea_equality_comparison(self, dtype: str, engine: str) -> None: ...
     
     def test_all_nat_in_object(self) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 import collections.abc
 import os
 import sys
@@ -165,4 +164,3 @@ def ratelimit_rule(
 ) -> AbstractContextManager[None]: ...
 
 def consume_response(response: HttpResponse) -> None: ...
-```

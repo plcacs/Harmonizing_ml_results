@@ -1,4 +1,3 @@
-```python
 import json
 import os
 from dataclasses import asdict
@@ -94,4 +93,3 @@ class GraphPrettyPrint:
     def _add_remaining_lines(self, lines: List[str], remaining: List[Tuple[str, Any]], full: str) -> None: ...
     
     def _get_filtered_params(self, model: Any) -> Dict[str, Any]: ...
-```

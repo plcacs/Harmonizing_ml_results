@@ -1,4 +1,3 @@
-```python
 import asyncio
 import sys
 import typing

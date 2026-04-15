@@ -1,4 +1,3 @@
-```python
 import pytest
 from datetime import datetime
 from typing import Any, List, Optional, Union
@@ -93,4 +92,3 @@ def test_protection_manager_desc(
     desc_expected: str,
     exception_expected: Optional[Any]
 ) -> None: ...
-```

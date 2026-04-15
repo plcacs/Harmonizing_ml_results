@@ -1,4 +1,3 @@
-```python
 import pytest
 from hypothesis import given
 from hypothesis import strategies as st
@@ -299,4 +298,3 @@ def test_fuzz_vertical_prefix_from_module_import(
     include_trailing_comma: bool,
     remove_comments: bool
 ) -> None: ...
-```

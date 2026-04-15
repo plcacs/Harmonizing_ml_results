@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from pandas import DataFrame, MultiIndex, Series
@@ -65,4 +64,3 @@ def test_frame_setitem_view_direct(multiindex_dataframe_random_data: Any) -> Non
 def test_frame_setitem_copy_raises(multiindex_dataframe_random_data: Any) -> None: ...
 def test_frame_setitem_copy_no_write(multiindex_dataframe_random_data: Any) -> None: ...
 def test_frame_setitem_partial_multiindex() -> None: ...
-```

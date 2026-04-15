@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from pandas import DataFrame, Index, MultiIndex, Series
@@ -30,4 +29,3 @@ class TestPairwise:
     def test_corr_freq_memory_error(self) -> None: ...
     def test_cov_mulittindex(self) -> None: ...
     def test_multindex_columns_pairwise_func(self) -> None: ...
-```

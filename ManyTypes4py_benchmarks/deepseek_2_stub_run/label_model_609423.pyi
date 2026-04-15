@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import torch
 from collections.abc import Iterable
@@ -85,4 +84,3 @@ class LabelModel(torch.nn.Module):
     def fit(self, L_train: np.ndarray, Y_dev: Optional[np.ndarray] = None, class_balance: Optional[np.ndarray] = None, progress_bar: bool = True, **kwargs: Any) -> None: ...
 
 Metrics = Dict[str, float]
-```

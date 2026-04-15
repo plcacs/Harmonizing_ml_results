@@ -1,4 +1,3 @@
-```python
 from datetime import date, datetime, timedelta
 from typing import Any, Literal, overload
 from typing_extensions import Self
@@ -138,4 +137,3 @@ class TestPivot:
     def test_unstack_copy(self, m: int) -> None: ...
     def test_pivot_empty_with_datetime(self) -> None: ...
     def test_pivot_margins_with_none_index(self) -> None: ...
-```

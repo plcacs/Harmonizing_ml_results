@@ -1,4 +1,3 @@
-```python
 from datetime import timedelta
 from typing import Any, Literal, overload
 from pandas import DateOffset, Interval, IntervalIndex, Timedelta, Timestamp
@@ -86,4 +85,3 @@ class TestIntervalRange:
     def test_errors(self) -> None: ...
     
     def test_float_freq(self) -> None: ...
-```

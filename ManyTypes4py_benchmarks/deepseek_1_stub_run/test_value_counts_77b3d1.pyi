@@ -1,4 +1,3 @@
-```python
 import datetime
 from typing import Any, Literal, overload
 
@@ -296,4 +295,3 @@ def test_value_counts_all_na(
     dropna: Any,
     groupby_sort: bool,
 ) -> None: ...
-```

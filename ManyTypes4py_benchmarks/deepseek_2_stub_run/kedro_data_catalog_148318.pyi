@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 
 import re
@@ -117,4 +116,3 @@ class KedroDataCatalog(CatalogProtocol):
         extra_dataset_patterns: Optional[Dict[str, Dict[str, Any]]] = None,
     ) -> KedroDataCatalog: ...
     def exists(self, name: str) -> bool: ...
-```

@@ -1,4 +1,3 @@
-```python
 from typing import Any, Callable, Dict, List, Optional, Sequence, Tuple, Union, overload
 from typing_extensions import Protocol
 from dataclasses import dataclass
@@ -131,4 +130,3 @@ def set_fork_metas(fork_metas: List[ForkMeta]) -> Callable[[Callable[..., Any]],
 def with_fork_metas(fork_metas: List[ForkMeta]) -> Callable[[Callable[..., Any]], Callable[..., Any]]: ...
 
 def yield_fork_meta(fork_metas: List[ForkMeta]) -> Callable[[Callable[..., Any]], Callable[..., Any]]: ...
-```

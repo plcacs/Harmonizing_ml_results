@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 
 import datetime
@@ -95,4 +94,3 @@ class SupersetShillelaghAdapter(Adapter):
     def delete_row(self, row_id: int) -> None: ...
 
     def update_row(self, row_id: int, row: dict[str, Any]) -> None: ...
-```

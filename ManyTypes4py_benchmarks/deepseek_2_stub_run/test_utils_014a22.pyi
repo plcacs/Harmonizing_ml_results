@@ -1,4 +1,3 @@
-```python
 import io
 import os
 from collections.abc import Iterable, Iterator, Mapping, Sequence
@@ -94,4 +93,3 @@ class TestGuessJSONUTF:
     def test_encoded(self, encoding: str) -> None: ...
     def test_bad_utf_like_encoding(self) -> None: ...
     def test_guess_by_bom(self, encoding: str, expected: str) -> None: ...
-```

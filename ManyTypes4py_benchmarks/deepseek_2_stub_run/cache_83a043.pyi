@@ -1,4 +1,3 @@
-```python
 import hashlib
 import logging
 import os
@@ -132,4 +131,3 @@ class IgnoreUnhashableLruCacheWrapper(Generic[ParamT, ReturnT]):
 def ignore_unhashable_lru_cache(maxsize: int = ..., typed: bool = ...) -> Callable[[Callable[..., ReturnT]], IgnoreUnhashableLruCacheWrapper[ParamT, ReturnT]]: ...
 def dict_to_items_tuple(user_function: Callable[..., ReturnT]) -> Callable[..., ReturnT]: ...
 def items_tuple_to_dict(user_function: Callable[..., ReturnT]) -> Callable[..., ReturnT]: ...
-```

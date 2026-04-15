@@ -1,4 +1,3 @@
-```python
 import abc
 from typing import Any, Dict, List, Optional, Type, Union
 from easytrader import grid_strategies, pop_dialog_handler, refresh_strategies
@@ -98,4 +97,3 @@ class BaseLoginClientTrader(ClientTrader):
     @abc.abstractmethod
     def login(self, user: str, password: str, exe_path: str, comm_password: Optional[str] = None, **kwargs: Any) -> None: ...
     def prepare(self, config_path: Optional[str] = None, user: Optional[str] = None, password: Optional[str] = None, exe_path: Optional[str] = None, comm_password: Optional[str] = None, **kwargs: Any) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 from typing import Any, Iterator
 from random import Random
 
@@ -65,4 +64,3 @@ def _run_randomized_state_test_for_inactivity_updates(
 def test_randomized_state(spec: Any, state: Any) -> Iterator[Any]: ...
 
 def test_randomized_state_leaking(spec: Any, state: Any) -> Iterator[Any]: ...
-```

@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pytest
 from pandas import DataFrame, Index, RangeIndex, Series
@@ -23,4 +22,3 @@ class TestFloatIndexers:
     def test_floating_index_doc_example(self) -> None: ...
     def test_floating_misc(self, indexer_sl: Any) -> None: ...
     def test_floatindex_slicing_bug(self, float_numpy_dtype: Any) -> None: ...
-```

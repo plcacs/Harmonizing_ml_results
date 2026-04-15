@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from pandas import SparseDtype
@@ -147,4 +146,3 @@ class TestSparseArray(base.ExtensionTests):
     def test_groupby_extension_agg(self, as_index: bool, data_for_grouping: SparseArray) -> None: ...
 
 def test_array_type_with_arg(dtype: SparseDtype) -> None: ...
-```

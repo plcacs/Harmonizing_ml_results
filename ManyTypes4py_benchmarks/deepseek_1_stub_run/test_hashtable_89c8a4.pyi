@@ -1,4 +1,3 @@
-```python
 from collections.abc import Generator
 from contextlib import AbstractContextManager
 import numpy as np

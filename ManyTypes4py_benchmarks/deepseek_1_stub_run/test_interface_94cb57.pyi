@@ -1,4 +1,3 @@
-```python
 import pandas
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -80,4 +79,3 @@ def test_auto_hyperopt_interface_loadparams(default_conf: Dict[str, Any], mocker
 def test_pandas_warning_direct(ohlcv_history: DataFrame, function: str, raises: bool, recwarn: Any) -> None: ...
 
 def test_pandas_warning_through_analyze_pair(ohlcv_history: DataFrame, mocker: Any, recwarn: Any) -> None: ...
-```

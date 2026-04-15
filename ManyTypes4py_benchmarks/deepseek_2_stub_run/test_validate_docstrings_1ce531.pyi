@@ -1,4 +1,3 @@
-```python
 import _typeshed
 import io
 import pytest
@@ -72,4 +71,3 @@ class TestMainFunction:
     def test_no_exit_status_noerrors_for_validate_all(self, monkeypatch: Any) -> None: ...
     def test_exit_status_for_validate_all_json(self, monkeypatch: Any) -> None: ...
     def test_errors_param_filters_errors(self, monkeypatch: Any) -> None: ...
-```

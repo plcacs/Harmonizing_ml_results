@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import TYPE_CHECKING, Any, overload
 import numpy as np
@@ -58,4 +57,3 @@ class PeriodProperties(Properties): ...
 
 class CombinedDatetimelikeProperties(DatetimeProperties, TimedeltaProperties, PeriodProperties):
     def __new__(cls, data: Any) -> Any: ...
-```

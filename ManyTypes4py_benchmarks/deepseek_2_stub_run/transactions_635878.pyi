@@ -1,4 +1,3 @@
-```python
 from typing import Any, Dict, Sequence, Tuple, Type, Union, overload
 from cached_property import cached_property
 from eth_hash.auto import keccak
@@ -175,4 +174,3 @@ class BerlinTransactionBuilder(TransactionBuilderAPI):
     def new_access_list_transaction(cls, chain_id: int, nonce: int, gas_price: int, gas: int, to: Address, value: int, data: bytes, access_list: Sequence[AccountAccesses], y_parity: int, r: int, s: int) -> TypedTransaction: ...
 
 def _calculate_txn_intrinsic_gas_berlin(klass: Any) -> int: ...
-```

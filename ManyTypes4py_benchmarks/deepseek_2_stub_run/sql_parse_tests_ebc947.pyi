@@ -1,4 +1,3 @@
-```python
 from typing import Any, Optional, Set, Union
 from unittest.mock import Mock
 import pytest
@@ -168,4 +167,3 @@ def insert_rls_in_predicate(token_list: TokenList, database_id: int, default_sch
 def sanitize_clause(clause: str) -> str: ...
 
 def strip_comments_from_sql(sql: str) -> str: ...
-```

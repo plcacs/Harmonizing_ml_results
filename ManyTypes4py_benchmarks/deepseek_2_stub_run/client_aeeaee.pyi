@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import TYPE_CHECKING, Any
 from httpx import HTTPStatusError, RequestError
@@ -98,4 +97,3 @@ class ConcurrencyLimitAsyncClient(BaseAsyncClient):
     async def read_global_concurrency_limits(
         self, limit: int = ..., offset: int = ...
     ) -> Any: ...
-```

@@ -1,4 +1,3 @@
-```python
 from typing import Any, Optional, Dict, Union
 from faust.types import AppT, CollectionT, EventT, Message, PendingMessage, RecordMetadata, StreamT, TP
 from faust.types.assignor import PartitionAssignorT
@@ -68,4 +67,3 @@ class PrometheusMonitor(Monitor):
     def on_web_request_end(self, app: AppT, request: web.Request, response: web.Response, state: Any, *, view: Any = None) -> None: ...
     
     def expose_metrics(self) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 import asyncio
 import collections
 import enum
@@ -194,4 +193,3 @@ class StubIndexBuilder(CallTraceLogger):
     def get_stubs(self) -> Dict[str, ModuleStub]: ...
 
 logger: logging.Logger = ...
-```

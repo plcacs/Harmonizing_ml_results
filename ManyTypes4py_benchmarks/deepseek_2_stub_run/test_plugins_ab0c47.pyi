@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import contextlib
 from collections.abc import Generator
@@ -42,4 +41,3 @@ def test_plugin_path_validate_call() -> None: ...
 def test_plugin_path_create_model() -> None: ...
 
 def test_plugin_path_complex() -> None: ...
-```

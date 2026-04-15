@@ -1,4 +1,3 @@
-```python
 import logging
 import sys
 from contextlib import AbstractContextManager
@@ -277,4 +276,3 @@ def test_patch_print_writes_to_logger_with_flow_run_context(caplog: Any, capsys:
 def test_log_adapter_get_child(flow_run: Any) -> None: ...
 
 def test_eavesdropping() -> None: ...
-```

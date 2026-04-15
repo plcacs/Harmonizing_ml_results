@@ -1,4 +1,3 @@
-```python
 from collections.abc import Generator
 from contextlib import AbstractContextManager
 import numpy as np
@@ -103,4 +102,3 @@ class TestHelpFunctionsWithNans:
 def test_ismember_tuple_with_nans() -> None: ...
 
 def test_float_complex_int_are_equal_as_objects() -> None: ...
-```

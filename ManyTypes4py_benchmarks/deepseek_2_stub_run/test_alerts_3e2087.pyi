@@ -1,4 +1,3 @@
-```python
 import json
 import unittest
 from datetime import datetime
@@ -51,4 +50,3 @@ class DummyRemoteIPPlugin(PluginBase):
     def pre_receive(self, alert: Alert, **kwargs: Any) -> Alert: ...
     def post_receive(self, alert: Alert, **kwargs: Any) -> Alert: ...
     def status_change(self, alert: Alert, status: str, text: str, **kwargs: Any) -> tuple[Alert, str, str]: ...
-```

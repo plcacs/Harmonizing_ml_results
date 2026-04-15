@@ -1,4 +1,3 @@
-```python
 import datetime
 from typing import Any, Callable, List, Optional, Sequence, Tuple, Union
 
@@ -192,4 +191,3 @@ def test_setitem_bool_indexer_dont_broadcast_length1_values(
     item: float,
     box: Callable
 ) -> None: ...
-```

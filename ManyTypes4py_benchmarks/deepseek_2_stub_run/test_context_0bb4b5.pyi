@@ -1,4 +1,3 @@
-```python
 from typing import Any, Dict, Set, FrozenSet, Iterator, Generator
 from unittest import mock
 import pytest
@@ -93,4 +92,3 @@ def test_unit_test_runtime_context_macro_overrides_global(config_postgres: Any, 
 def test_unit_test_runtime_context_macro_overrides_package(config_postgres: Any, manifest_fx: mock.MagicMock, get_adapter: mock.MagicMock, get_include_paths: mock.MagicMock) -> None: ...
 @pytest.mark.parametrize
 def test_unit_test_runtime_context_macro_overrides_dbt_macro(overrides: Dict[str, str], expected_override_value: str, config_postgres: Any, manifest_fx: mock.MagicMock, get_adapter: mock.MagicMock, get_include_paths: mock.MagicMock) -> None: ...
-```

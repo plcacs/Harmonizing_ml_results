@@ -1,4 +1,3 @@
-```python
 from typing import Any, Optional, Tuple, Union, overload, Iterator, Sequence, List
 from pandas import MultiIndex as PandasMultiIndex
 from pyspark.sql import Column
@@ -90,4 +89,3 @@ class MultiIndex(Index):
     def asi8(self) -> None: ...
     def factorize(self, sort: bool = ..., na_sentinel: int = ...) -> Any: ...
     def __iter__(self) -> Iterator[Any]: ...
-```

@@ -1,4 +1,3 @@
-```python
 from typing import Any, Optional, Tuple, List, Dict
 import socket
 import unittest
@@ -83,4 +82,3 @@ class ConnectorTest(AsyncTestCase):
     def test_two_family_timeout_before_connect_timeout(self) -> None: ...
     def test_two_family_success_after_timeout(self) -> None: ...
     def test_two_family_timeout_after_connect_timeout(self) -> None: ...
-```

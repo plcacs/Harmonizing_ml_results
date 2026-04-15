@@ -1,4 +1,3 @@
-```python
 from typing import Any, Optional, Union, overload
 from pandas import Categorical, CategoricalIndex, Index, Interval, IntervalIndex
 from pandas.core.dtypes.dtypes import IntervalDtype
@@ -130,4 +129,3 @@ def test_interval_index_subtype(
 ) -> None: ...
 def test_dtype_closed_mismatch() -> None: ...
 def test_ea_dtype(dtype: Any) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from pandas import DataFrame, Series, Timedelta
@@ -40,4 +39,3 @@ def win_types(request: Any) -> Any: ...
 
 @pytest.fixture(params=['kaiser', 'gaussian', 'general_gaussian', 'exponential'])
 def win_types_special(request: Any) -> Any: ...
-```

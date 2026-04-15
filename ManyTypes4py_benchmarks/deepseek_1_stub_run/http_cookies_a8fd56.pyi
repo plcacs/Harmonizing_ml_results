@@ -1,4 +1,3 @@
-```python
 import sys
 from typing import Any, Optional, Union, Iterator, Dict, List, Tuple
 from collections.abc import MutableMapping
@@ -82,4 +81,3 @@ def morsel_to_cookie(morsel: Any) -> Any: ...
 def cookiejar_from_dict(cookie_dict: Optional[Dict[str, Any]], cookiejar: Optional[Any] = ..., overwrite: bool = ...) -> Any: ...
 
 def merge_cookies(cookiejar: Any, cookies: Any) -> Any: ...
-```

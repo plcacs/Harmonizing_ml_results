@@ -1,4 +1,3 @@
-```python
 from collections.abc import Sequence
 from typing import Any, Dict, List, Optional, Union
 
@@ -52,4 +51,3 @@ class SavedQueryParser(YamlReader):
     def _get_query_params(self, unparsed: Any) -> Any: ...
     def parse_saved_query(self, unparsed: Any) -> None: ...
     def parse(self) -> Any: ...
-```

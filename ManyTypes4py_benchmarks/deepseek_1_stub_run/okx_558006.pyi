@@ -1,4 +1,3 @@
-```python
 import logging
 from datetime import timedelta
 from typing import Any, Dict, List, Optional, Tuple, Union
@@ -47,4 +46,3 @@ class Okx(Exchange):
     def cancel_stoploss_order(self, order_id: str, pair: str, params: Optional[Dict[str, Any]] = ...) -> Dict[str, Any]: ...
     
     def _fetch_orders_emulate(self, pair: str, since_ms: int) -> List[Dict[str, Any]]: ...
-```

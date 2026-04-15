@@ -1,4 +1,3 @@
-```python
 from typing import Any, List as PyList, Optional
 from eth2spec.test.helpers.keys import privkeys
 from eth2spec.debug.random_value import get_random_bytes_list
@@ -62,4 +61,3 @@ def build_state_with_complete_transition(spec: Any, state: Any) -> Any: ...
 def build_state_with_execution_payload_header(spec: Any, state: Any, execution_payload_header: Any) -> Any: ...
 
 def get_random_tx(rng: Any) -> Any: ...
-```

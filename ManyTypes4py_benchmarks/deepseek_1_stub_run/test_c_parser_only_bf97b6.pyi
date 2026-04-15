@@ -1,4 +1,3 @@
-```python
 from decimal import Decimal
 from io import BytesIO, StringIO, TextIOWrapper
 import mmap
@@ -64,4 +63,3 @@ def test_unix_style_breaks(c_parser_only: Any) -> None: ...
 def test_1000_sep_with_decimal(c_parser_only: Any, data: str, thousands: str, decimal: str, float_precision: Optional[str]) -> None: ...
 
 def test_float_precision_options(c_parser_only: Any) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 from typing import List, Iterator, Dict, Tuple, Any, Type, Union, Optional, ContextManager
 import logging
 from os import PathLike
@@ -69,4 +68,3 @@ class Predictor(Registrable):
         frozen: bool = ...,
         extra_args: Optional[Dict[str, Any]] = ...
     ) -> "Predictor": ...
-```

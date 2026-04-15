@@ -1,4 +1,3 @@
-```python
 from collections.abc import Sequence
 from typing import Any, Literal, overload
 
@@ -60,4 +59,3 @@ def test_safe_sort_multiindex() -> None: ...
 
 # Import pytest for decorators
 import pytest
-```

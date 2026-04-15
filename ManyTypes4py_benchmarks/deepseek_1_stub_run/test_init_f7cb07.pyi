@@ -1,4 +1,3 @@
-```python
 from typing import Any
 from typing import Literal
 from typing import Optional
@@ -211,4 +210,3 @@ async def test_deprecated_turn_on_arguments(
     hass: HomeAssistant,
     caplog: Any
 ) -> None: ...
-```

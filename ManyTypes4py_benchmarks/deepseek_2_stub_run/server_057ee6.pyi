@@ -1,4 +1,3 @@
-```python
 """
 Command line interface for working with the Prefect API and server.
 """
@@ -107,4 +106,3 @@ def start_services(background: bool = ...) -> None: ...
 
 @services_app.command(aliases=['stop'])
 async def stop_services() -> None: ...
-```

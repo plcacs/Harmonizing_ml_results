@@ -1,4 +1,3 @@
-```python
 import json
 import os
 from dataclasses import asdict
@@ -59,4 +58,3 @@ class GraphPrettyPrint:
     def _get_model_text(self, model: Any, spaces: Any, level: Any) -> Any: ...
     def _add_remaining_lines(self, lines: Any, remaining: Any, full: Any) -> None: ...
     def _get_filtered_params(self, model: Any) -> Any: ...
-```

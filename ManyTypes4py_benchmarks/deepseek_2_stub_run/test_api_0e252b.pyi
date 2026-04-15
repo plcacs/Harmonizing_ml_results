@@ -1,4 +1,3 @@
-```python
 import os
 import sys
 import tempfile
@@ -101,4 +100,3 @@ class IntegrationTests(TestCase):
     def test_fileWithFlakes(self) -> None: ...
     def test_errors(self) -> None: ...
     def test_readFromStdin(self) -> None: ...
-```

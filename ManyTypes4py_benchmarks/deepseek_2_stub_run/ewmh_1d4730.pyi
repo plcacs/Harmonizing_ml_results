@@ -1,4 +1,3 @@
-```python
 from typing import Any, List, Optional, Union
 from Xlib import X, display, protocol
 
@@ -48,4 +47,3 @@ class EWMH:
     def getProperty(self, prop: str, *args: Any, **kwargs: Any) -> Any: ...
     def getWritableProperties(self) -> Any: ...
     def setProperty(self, prop: str, *args: Any, **kwargs: Any) -> None: ...
-```

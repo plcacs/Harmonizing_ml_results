@@ -1,4 +1,3 @@
-```python
 import logging
 from pathlib import Path
 from typing import Any, Optional, Sequence, Union
@@ -100,4 +99,3 @@ def _generate_dfs(
     trades: pd.DataFrame,
     date_col: str
 ) -> pd.DataFrame: ...
-```

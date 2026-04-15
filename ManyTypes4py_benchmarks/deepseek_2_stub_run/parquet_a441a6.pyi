@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import io
 from typing import (
@@ -139,4 +138,3 @@ def read_parquet(
     to_pandas_kwargs: Any = ...,
     **kwargs: Any,
 ) -> DataFrame: ...
-```

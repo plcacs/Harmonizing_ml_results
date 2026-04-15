@@ -1,4 +1,3 @@
-```python
 import datetime
 import decimal
 import math
@@ -193,4 +192,3 @@ def test_regex_filter_rewriting(
 def test_error_on_method_which_requires_multiple_args(_: Any) -> None: ...
 
 def test_dates_filter_rewriting() -> None: ...
-```

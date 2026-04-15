@@ -1,4 +1,3 @@
-```python
 from datetime import datetime
 from typing import Any, List, Optional, Union
 from dbt.artifacts.resources import Defaults, Dimension, Entity, FileHash, Measure, TestMetadata
@@ -73,4 +72,3 @@ class TestParsedNode:
     def test_get_target_write_path(self, parsed_node: Any) -> None: ...
     
     def test_get_target_write_path_split(self, parsed_node: Any) -> None: ...
-```

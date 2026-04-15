@@ -1,4 +1,3 @@
-```python
 import pytest
 import pandas as pd
 from pandas import DataFrame, Index, MultiIndex, RangeIndex, Series, Timestamp
@@ -78,4 +77,3 @@ class TestJoinMultiMulti:
     def test_single_common_level(self) -> None: ...
     
     def test_join_multi_wrong_order(self) -> None: ...
-```

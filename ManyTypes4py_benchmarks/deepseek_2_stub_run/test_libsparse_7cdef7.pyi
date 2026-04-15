@@ -1,4 +1,3 @@
-```python
 import numpy as np
 from typing import Any, List, Tuple
 
@@ -34,4 +33,3 @@ def sparse_sub_float64(x: np.ndarray, xindex: Any, xfill: float, y: np.ndarray, 
 def sparse_mul_float64(x: np.ndarray, xindex: Any, xfill: float, y: np.ndarray, yindex: Any, yfill: float) -> Tuple[np.ndarray, Any, float]: ...
 def sparse_truediv_float64(x: np.ndarray, xindex: Any, xfill: float, y: np.ndarray, yindex: Any, yfill: float) -> Tuple[np.ndarray, Any, float]: ...
 def sparse_floordiv_float64(x: np.ndarray, xindex: Any, xfill: float, y: np.ndarray, yindex: Any, yfill: float) -> Tuple[np.ndarray, Any, float]: ...
-```

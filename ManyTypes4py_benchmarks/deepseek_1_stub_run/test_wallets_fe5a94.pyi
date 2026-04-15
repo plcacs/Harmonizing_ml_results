@@ -1,4 +1,3 @@
-```python
 from typing import Any
 from typing import Dict
 from typing import List
@@ -34,4 +33,3 @@ def test_check_exit_amount_futures(mocker: Any, default_conf: Any, fee: Any) -> 
 
 @pytest.mark.parametrize
 def test_dry_run_wallet_initialization(mocker: Any, default_conf_usdt: Any, config: Any, wallets: Any) -> None: ...
-```

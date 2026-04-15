@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from pandas import DataFrame, Index, MultiIndex, Series, Timestamp
@@ -100,4 +99,3 @@ def test_nth_after_selection(selection: Any, dropna: Any) -> None: ...
 
 @pytest.mark.parametrize('data', [(Timestamp('2011-01-15 12:50:28.502376'), Timestamp('2011-01-20 12:50:28.593448')), (24650000000000001, 24650000000000002)])
 def test_groupby_nth_int_like_precision(data: Any) -> None: ...
-```

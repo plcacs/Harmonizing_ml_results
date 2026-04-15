@@ -1,4 +1,3 @@
-```python
 from enum import Enum
 from typing import Any, Callable, Dict, List, Optional, Sequence, Union
 from fastapi.openapi.models import Example
@@ -341,4 +340,3 @@ class Security(Depends):
     scopes: List[Any] = ...
     
     def __init__(self, dependency: Any = None, *, scopes: Any = None, use_cache: bool = True) -> None: ...
-```

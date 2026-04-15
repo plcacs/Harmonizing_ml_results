@@ -1,4 +1,3 @@
-```python
 """Tracking for iBeacon devices."""
 
 from __future__ import annotations
@@ -78,4 +77,3 @@ class IBeaconCoordinator:
     def _async_restore_from_registry(self) -> None: ...
     
     async def async_start(self) -> None: ...
-```

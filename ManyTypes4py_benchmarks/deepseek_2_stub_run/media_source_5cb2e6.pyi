@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from collections.abc import Mapping
 from dataclasses import dataclass
@@ -78,4 +77,3 @@ async def _async_get_recent_event_id(device_id: MediaId, device: Device) -> Medi
 def _browse_device(device_id: MediaId, device: Device) -> BrowseMediaSource: ...
 def _browse_clip_preview(event_id: MediaId, device: Device, event: ClipPreviewSession) -> BrowseMediaSource: ...
 def _browse_image_event(event_id: MediaId, device: Device, event: ImageSession) -> BrowseMediaSource: ...
-```

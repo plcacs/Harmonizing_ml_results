@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import (
     TYPE_CHECKING,
@@ -224,4 +223,3 @@ class StringArrayNumpySemantics(StringArray):
         dtype: Optional[Dtype] = None,
         copy: bool = False
     ) -> StringArrayNumpySemantics: ...
-```

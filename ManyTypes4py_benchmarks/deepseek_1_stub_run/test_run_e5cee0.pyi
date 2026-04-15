@@ -1,4 +1,3 @@
-```python
 from argparse import Namespace
 from typing import Any, Optional, Type, Union
 from unittest.mock import MagicMock
@@ -107,4 +106,3 @@ class TestRunTask:
         error_to_raise: Optional[Type[BaseException]],
         expected_result: Union[RunStatus, Type[BaseException]]
     ) -> None: ...
-```

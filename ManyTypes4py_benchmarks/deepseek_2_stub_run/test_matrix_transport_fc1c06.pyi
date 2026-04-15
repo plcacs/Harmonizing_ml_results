@@ -1,4 +1,3 @@
-```python
 import pytest
 from eth_utils import to_normalized_address
 from gevent import Timeout
@@ -123,4 +122,3 @@ def test_populate_services_addresses(
 
 HOP1_BALANCE_PROOF: Any = ...
 TIMEOUT_MESSAGE_RECEIVE: int = ...
-```

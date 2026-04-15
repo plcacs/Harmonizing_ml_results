@@ -1,4 +1,3 @@
-```python
 import pandas as pd
 import numpy as np
 from datetime import datetime
@@ -41,4 +40,3 @@ def calculate_sortino(trades: pd.DataFrame, min_date: Any, max_date: Any, starti
 def calculate_sharpe(trades: pd.DataFrame, min_date: Any, max_date: Any, starting_balance: Any) -> Any: ...
 
 def calculate_calmar(trades: pd.DataFrame, min_date: Any, max_date: Any, starting_balance: Any) -> Any: ...
-```

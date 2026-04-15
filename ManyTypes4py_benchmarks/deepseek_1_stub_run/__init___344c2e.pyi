@@ -1,4 +1,3 @@
-```python
 """Support for Amcrest IP cameras."""
 from __future__ import annotations
 from collections.abc import AsyncIterator, Callable
@@ -127,4 +126,3 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 class AmcrestDevice:
     """Representation of a base Amcrest discovery device."""
     channel: ClassVar[int] = ...
-```

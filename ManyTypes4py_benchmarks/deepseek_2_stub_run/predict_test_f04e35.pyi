@@ -1,4 +1,3 @@
-```python
 import argparse
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
@@ -32,4 +31,3 @@ class TestPredict(AllenNlpTestCase):
     def test_can_specify_extra_args(self) -> None: ...
     def test_other_modules(self) -> None: ...
     def test_alternative_file_formats(self) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 """
 Provide the class Message and its subclasses.
 """
@@ -137,4 +136,3 @@ class PercentFormatExpectedMapping(Message): ...
 class PercentFormatExpectedSequence(Message): ...
 
 class PercentFormatStarRequiresSequence(Message): ...
-```

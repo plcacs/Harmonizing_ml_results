@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any
 
@@ -51,4 +50,3 @@ class RachioBaseStation:
     def create_skip(self, program_id: Any, timestamp: Any) -> None: ...
 
 def is_invalid_auth_code(http_status_code: Any) -> bool: ...
-```

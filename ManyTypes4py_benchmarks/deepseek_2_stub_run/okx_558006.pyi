@@ -1,4 +1,3 @@
-```python
 import ccxt
 from datetime import timedelta
 from freqtrade.constants import BuySell
@@ -48,4 +47,3 @@ class Okx(Exchange):
     def cancel_stoploss_order(self, order_id: str, pair: str, params: Optional[Dict[str, Any]] = ...) -> Dict[str, Any]: ...
     
     def _fetch_orders_emulate(self, pair: str, since_ms: int) -> List[Dict[str, Any]]: ...
-```

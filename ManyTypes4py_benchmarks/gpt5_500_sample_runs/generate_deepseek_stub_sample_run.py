@@ -76,8 +76,20 @@ def load_processed_files(log_path: str) -> set[str]:
     return set()
 
 
+def strip_markdown_fences(text: str) -> str:
+    """Remove markdown code fences (```python ... ```) from LLM output."""
+    stripped = text.strip()
+    if stripped.startswith("```"):
+        first_newline = stripped.find("\n")
+        if first_newline != -1:
+            stripped = stripped[first_newline + 1:]
+        if stripped.endswith("```"):
+            stripped = stripped[:-3].rstrip()
+    return stripped
+
+
 def generate_stub(code: str, module_name: str) -> tuple[str, bool, float]:
-    prompt = f"""You are generating a Python type stub (.pyi) file for static type checking.
+    prompt = f"""You are a Python type inference expert. Your task is to analyze an UNTYPED Python module and produce a fully typed .pyi stub file by inferring concrete types from the code.
 
 Here is the implementation of a Python module named {module_name!r}:
 
@@ -85,20 +97,28 @@ Here is the implementation of a Python module named {module_name!r}:
 {code}
 <<<PYTHON MODULE END>>>
 
-Produce a .pyi stub for this module that follows these rules:
+IMPORTANT: The source code has NO type annotations. You must INFER concrete types by analyzing:
+- How parameters are used in the function body (e.g., passed to str() → str, iterated → Iterable, indexed → Sequence/list, used in arithmetic → int/float).
+- What values are returned (e.g., returns UUID(...) → UUID, returns a list comprehension → list[...], returns True/False → bool).
+- Constructor calls and attribute access patterns (e.g., obj.model_dump() suggests a Pydantic model).
+- Docstring hints (e.g., "names (List[str])" or "Returns: Response").
+- Default parameter values (e.g., =None → Optional[...], =0 → int, =True → bool, =[] → list).
+- Standard library and well-known third-party API signatures.
+- Class inheritance and method overrides.
 
-1. Preserve all public API:
-   - Include all top-level functions, classes, methods, and public variables that appear in the module.
-   - Keep the same names and parameter structures as in the original code.
-2. Use standard Python type hints (PEP 484) suitable for mypy and other type checkers.
-3. For any type you are unsure about, use 'Any' rather than guessing unsafely.
+Rules for the .pyi stub:
+
+1. Preserve all public API: include all top-level functions, classes, methods, and public variables.
+2. Use standard Python type hints (PEP 484) suitable for mypy.
+3. Be as SPECIFIC as possible. Prefer concrete types (str, int, list[str], UUID, Response, etc.) over Any. Use Union or Optional where appropriate. Only use Any as a LAST RESORT when there is genuinely no evidence to infer a type.
 4. Use proper .pyi stub syntax:
    - Function and method bodies must be '...'.
    - Class bodies may contain method/attribute declarations with '...'.
    - Module-level variables should be annotated with a type and assigned '...'.
-5. Do NOT include any executable code, logic, or imports that are only used at runtime.
-6. Do NOT add explanations, comments, or extra prose; output only stub code.
-7. The output must be a single, complete .pyi file corresponding to this module.
+5. Include all necessary imports for the types you use in the stub.
+6. Do NOT include any executable code, logic, or imports that are only used at runtime.
+7. Do NOT add explanations, comments, or extra prose; output only stub code.
+8. The output must be a single, complete .pyi file corresponding to this module.
 
 Return only valid .pyi stub code."""
 
@@ -120,7 +140,7 @@ Return only valid .pyi stub code."""
             duration = time.time() - start_time
             message = response.choices[0].message
             content = getattr(message, "content", "") or ""
-            return content, True, duration
+            return strip_markdown_fences(content), True, duration
         except Exception as e:
             error_msg = str(e)
             print(f"Error: {error_msg}")

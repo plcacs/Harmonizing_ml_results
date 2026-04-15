@@ -1,4 +1,3 @@
-```python
 import torch
 from typing import Any, Dict, List, Optional, Union
 from allennlp.common.params import Params
@@ -91,4 +90,3 @@ class TestAmpTrainer(TrainerTestBase):
 
 class TestSparseClipGrad:
     def test_sparse_clip_grad(self) -> None: ...
-```

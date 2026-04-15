@@ -1,4 +1,3 @@
-```python
 import datetime
 from typing import Any, Literal, Optional, Union, Dict, List, Tuple, Set
 from django.db.models import Model
@@ -170,4 +169,3 @@ def do_send_realm_deactivation_email(
     acting_user: Optional[UserProfile],
     deletion_delay_days: Optional[int]
 ) -> None: ...
-```

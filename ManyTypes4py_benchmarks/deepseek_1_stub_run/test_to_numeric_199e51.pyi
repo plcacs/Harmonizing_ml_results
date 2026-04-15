@@ -1,4 +1,3 @@
-```python
 from decimal import Decimal
 from typing import Any, Callable, Literal, Sequence, TypeVar, Union
 from typing_extensions import TypeAlias
@@ -118,4 +117,3 @@ def to_numeric(
     downcast: Union[None, Literal["integer", "signed", "unsigned", "float"]] = ...,
     dtype_backend: Union[None, Literal["numpy_nullable", "pyarrow"]] = ...,
 ) -> Any: ...
-```

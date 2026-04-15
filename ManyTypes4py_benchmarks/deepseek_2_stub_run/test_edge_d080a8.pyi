@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from datetime import datetime
@@ -49,4 +48,3 @@ def test_process_expectancy(mocker: Any, edge_conf: Any, fee: float, risk_reward
 def test_process_expectancy_remove_pumps(mocker: Any, edge_conf: Any, fee: Any) -> None: ...
 
 def test_process_expectancy_only_wins(mocker: Any, edge_conf: Any, fee: Any) -> None: ...
-```

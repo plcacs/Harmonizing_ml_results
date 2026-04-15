@@ -1,4 +1,3 @@
-```python
 from typing import Any, Dict, List, Tuple, Union
 import torch
 import numpy as np
@@ -78,4 +77,3 @@ class FBetaVerboseMeasureTest(AllenNlpTestCase):
     def test_multiple_distributed_runs(self) -> None: ...
 
 def multiple_runs(global_rank: Any, world_size: Any, gpu_id: Any, metric: Any, metric_kwargs: Any, desired_values: Any, exact: bool = ...) -> None: ...
-```

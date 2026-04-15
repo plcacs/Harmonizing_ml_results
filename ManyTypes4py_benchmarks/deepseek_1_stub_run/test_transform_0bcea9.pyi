@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from pandas import (
@@ -200,4 +199,3 @@ def test_min_all_empty_data_no_type_coercion() -> None: ...
 def test_min_one_dim_no_type_coercion() -> None: ...
 
 def test_nan_in_cumsum_group_label() -> None: ...
-```

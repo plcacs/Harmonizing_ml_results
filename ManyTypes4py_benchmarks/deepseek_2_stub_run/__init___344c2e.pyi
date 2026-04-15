@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from collections.abc import AsyncIterator, Callable
 from contextlib import asynccontextmanager
@@ -162,4 +161,3 @@ class AmcrestDevice:
         resolution: tuple[int, int],
         control_light: bool,
     ) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 import uuid
 from typing import Any, Dict, List, Optional, Type
 from unittest.mock import AsyncMock, MagicMock, Mock
@@ -170,4 +169,3 @@ class TestBaseWorkerHeartbeat:
 async def test_worker_gives_labels_to_flow_runs_when_using_cloud_api(prefect_client: Any, worker_deployment_wq1: Any, work_pool: Any) -> None: ...
 
 async def test_worker_removes_flow_run_from_submitting_when_not_ready(prefect_client: Any, worker_deployment_wq1: Any, work_pool: Any) -> None: ...
-```

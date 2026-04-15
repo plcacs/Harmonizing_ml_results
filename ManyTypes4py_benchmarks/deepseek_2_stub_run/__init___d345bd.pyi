@@ -1,4 +1,3 @@
-```python
 import os
 from typing import Any, Dict, Iterator, List, Optional, Type, TypeVar, Union
 from unittest import TestCase
@@ -75,4 +74,3 @@ def dict_replace(dct: Dict[str, Any], **kwargs: Any) -> Dict[str, Any]: ...
 def replace_config(n: Any, **kwargs: Any) -> Any: ...
 
 def make_manifest(nodes: List[Any] = ..., sources: List[Any] = ..., macros: List[Any] = ..., docs: List[Any] = ...) -> Manifest: ...
-```

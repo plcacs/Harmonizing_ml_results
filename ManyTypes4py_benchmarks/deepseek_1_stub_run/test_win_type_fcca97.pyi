@@ -1,4 +1,3 @@
-```python
 import numpy as np
 from pandas import DataFrame, Series, Timedelta
 from pandas.api.indexers import BaseIndexer
@@ -56,4 +55,3 @@ def test_cmov_window_special(win_types_special: Any, step: Any) -> None: ...
 def test_cmov_window_special_linear_range(win_types_special: Any, step: Any) -> None: ...
 
 def test_weighted_var_big_window_no_segfault(win_types: Any, center: Any) -> None: ...
-```

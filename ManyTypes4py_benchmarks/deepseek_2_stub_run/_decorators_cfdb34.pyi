@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any, Callable, TypeVar, overload
 from typing_extensions import ParamSpec
@@ -57,4 +56,3 @@ def indent(text: str, indents: int = ...) -> str: ...
 def set_module(module: str | None) -> Callable[[_F], _F]: ...
 
 cache_readonly: Any = ...
-```

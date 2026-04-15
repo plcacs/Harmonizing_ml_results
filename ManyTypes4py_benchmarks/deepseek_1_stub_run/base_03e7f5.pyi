@@ -1,4 +1,3 @@
-```python
 from collections.abc import Iterable
 from datetime import datetime, timedelta
 from typing import Any, Optional, Union, overload
@@ -142,4 +141,3 @@ class Backend(Database):
     def get_unack(self) -> Iterable[dict[str, Any]]: ...
     
     def get_db(self) -> MongoDatabase: ...
-```

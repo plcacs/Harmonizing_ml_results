@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from collections.abc import Collection, Iterable
@@ -110,4 +109,3 @@ def run_node(
     is_async: bool = ...,
     session_id: str | None = ...
 ) -> Node: ...
-```

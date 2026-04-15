@@ -1,4 +1,3 @@
-```python
 import sys
 from typing import Any, Callable, Optional, Tuple, Union, overload
 import numpy as np

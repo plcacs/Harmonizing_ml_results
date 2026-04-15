@@ -1,4 +1,3 @@
-```python
 from typing import Any, Optional, Union, Tuple, List, Dict, Iterator, Callable, Pattern, Match as MatchType
 import sys
 
@@ -80,4 +79,3 @@ def sub(pattern: str, repl: Union[str, Callable[[Match], str]], string: str, cou
 def subn(pattern: str, repl: Union[str, Callable[[Match], str]], string: str, count: int = ..., flags: int = ...) -> Tuple[str, int]: ...
 def escape(string: str) -> str: ...
 def purge() -> None: ...
-```

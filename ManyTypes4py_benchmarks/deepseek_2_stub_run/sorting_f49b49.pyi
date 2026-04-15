@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import (
     TYPE_CHECKING,
@@ -124,4 +123,3 @@ def _reorder_by_uniques(
     uniques: np.ndarray,
     labels: np.ndarray,
 ) -> tuple[np.ndarray, np.ndarray]: ...
-```

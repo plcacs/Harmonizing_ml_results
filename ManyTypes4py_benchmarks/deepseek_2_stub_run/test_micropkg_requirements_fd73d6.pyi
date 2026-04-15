@@ -1,4 +1,3 @@
-```python
 import pytest
 from click.testing import CliRunner
 from kedro.framework.cli.micropkg import _get_sdist_name, _safe_parse_requirements
@@ -23,4 +22,3 @@ class TestMicropkgRequirements:
     def test_empty_pipeline_requirements_txt(self, fake_project_cli: Any, fake_metadata: Any, fake_package_path: Any, fake_repo_path: Any) -> None: ...
     @pytest.mark.parametrize('requirement', COMPLEX_REQUIREMENTS.splitlines())
     def test_complex_requirements(self, requirement: Any, fake_project_cli: Any, fake_metadata: Any, fake_package_path: Any) -> None: ...
-```

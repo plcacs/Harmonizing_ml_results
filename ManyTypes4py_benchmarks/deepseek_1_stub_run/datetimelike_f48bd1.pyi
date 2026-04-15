@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import (
     TYPE_CHECKING,
@@ -152,4 +151,3 @@ class DatetimeTimedeltaMixin(DatetimeIndexOpsMixin, ABC):
     def insert(self, loc: Any, item: Any) -> Any: ...
     
     def take(self, indices: Any, axis: int = ..., allow_fill: bool = ..., fill_value: Any = ..., **kwargs: Any) -> Self: ...
-```

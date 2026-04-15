@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any, overload
 from datetime import datetime, timedelta
@@ -166,4 +165,3 @@ def period_range(
     freq: Any = None,
     name: Any = None
 ) -> PeriodIndex: ...
-```

@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any, Literal, TYPE_CHECKING
 import matplotlib as mpl
@@ -82,4 +81,3 @@ def autocorrelation_plot(
 ) -> Any: ...
 
 def unpack_single_str_list(keys: Any) -> Any: ...
-```

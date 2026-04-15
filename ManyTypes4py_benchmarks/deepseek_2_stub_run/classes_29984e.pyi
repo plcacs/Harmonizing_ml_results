@@ -1,4 +1,3 @@
-```python
 from typing import Any, Optional, Tuple, List, Callable, Iterator
 from pathlib import Path
 
@@ -108,4 +107,3 @@ class ParamName(Name):
     def to_string(self) -> str: ...
     @property
     def kind(self) -> Any: ...
-```

@@ -1,4 +1,3 @@
-```python
 import ssl
 from contextlib import AbstractAsyncContextManager
 from datetime import timedelta

@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import (
     TYPE_CHECKING,
@@ -163,4 +162,3 @@ def boxplot_frame_groupby(
     sharey: bool = True,
     **kwds: Any
 ) -> Any: ...
-```

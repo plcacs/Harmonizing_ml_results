@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from pandas import Categorical, CategoricalDtype, DataFrame, Index, Series
@@ -38,4 +37,3 @@ class TestCategoricalAnalytics:
     @pytest.mark.parametrize('value', [1, 'True', [1, 2, 3], 5.0])
     def test_validate_inplace_raises(self, value: Any) -> None: ...
     def test_quantile_empty(self) -> None: ...
-```

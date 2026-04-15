@@ -1,4 +1,3 @@
-```python
 from typing import Any, Dict, List, Optional, cast
 from mode.utils.objects import cached_property
 from faust import web
@@ -60,4 +59,3 @@ class DatadogMonitor(Monitor):
     def _format_table_label(self, table: CollectionT) -> Dict[str, Any]: ...
     @cached_property
     def client(self) -> DatadogStatsClient: ...
-```

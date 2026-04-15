@@ -1,4 +1,3 @@
-```python
 import random
 from typing import Any, Dict, List, Union
 
@@ -162,4 +161,3 @@ def state_transition(
     block_hash: BlockHash,
     pseudo_random_generator: random.Random,
 ) -> TransitionResult[TokenNetworkState]: ...
-```

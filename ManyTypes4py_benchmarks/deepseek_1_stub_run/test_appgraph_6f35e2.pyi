@@ -1,4 +1,3 @@
-```python
 import pytest
 from _typeshed import Incomplete
 from typing import Any, Optional, Sequence
@@ -49,4 +48,3 @@ class TestApplicationGraphBuilder:
     def test_can_create_websocket_app_missing_connect(self, websocket_app_without_connect: Chalice) -> None: ...
     def test_can_create_websocket_app_missing_message(self, websocket_app_without_message: Chalice) -> None: ...
     def test_can_create_websocket_app_missing_disconnect(self, websocket_app_without_disconnect: Chalice) -> None: ...
-```

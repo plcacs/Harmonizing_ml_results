@@ -1,4 +1,3 @@
-```python
 from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 import numpy as np
 from checklist.test_suite import TestSuite
@@ -42,4 +41,3 @@ class SentimentAnalysisSuite(TaskSuite):
     def _diff_up(self, orig_pred: Any, pred: Any, orig_conf: Any, conf: Any, labels: Any = ..., meta: Any = ...) -> Union[bool, float]: ...
     
     def _diff_down(self, orig_pred: Any, pred: Any, orig_conf: Any, conf: Any, labels: Any = ..., meta: Any = ...) -> Union[bool, float]: ...
-```

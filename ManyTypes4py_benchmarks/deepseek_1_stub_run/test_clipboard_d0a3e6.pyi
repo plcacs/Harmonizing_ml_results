@@ -1,4 +1,3 @@
-```python
 from typing import Any, Callable, Generator, Literal, overload
 from typing_extensions import ParamSpec
 import numpy as np
@@ -66,4 +65,3 @@ class TestClipboard:
     @pytest.mark.parametrize('engine', ['c', 'python'])
     def test_read_clipboard_dtype_backend(self, clipboard: Any, string_storage: Any, dtype_backend: Literal['numpy_nullable', 'pyarrow'], engine: str, using_infer_string: Any) -> None: ...
     def test_invalid_dtype_backend(self) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 from typing import Any, Union, Optional, Dict, List, Tuple, Sequence, overload
 from pandas import DataFrame, Series, Index, Timestamp
 from pandas._typing import Scalar, DtypeObj
@@ -108,4 +107,3 @@ class TestDataFrameReplaceRegex:
     def test_replace_with_value_also_being_replaced(self) -> None: ...
     def test_replace_categorical_no_replacement(self) -> None: ...
     def test_replace_object_splitting(self, using_infer_string: Any) -> None: ...
-```

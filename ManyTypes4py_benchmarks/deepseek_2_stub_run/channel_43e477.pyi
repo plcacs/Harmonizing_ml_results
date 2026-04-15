@@ -1,4 +1,3 @@
-```python
 from enum import Enum
 from functools import singledispatch
 from typing import TYPE_CHECKING, Any, Dict, List, NamedTuple, Optional, Tuple, Union

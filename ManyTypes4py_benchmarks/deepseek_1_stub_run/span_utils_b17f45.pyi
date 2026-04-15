@@ -1,4 +1,3 @@
-```python
 from typing import Callable, List, Set, Tuple, TypeVar, Optional, Any
 
 T = TypeVar("T", str, Token)
@@ -49,4 +48,3 @@ def bmes_tags_to_spans(
     tag_sequence: List[str],
     classes_to_ignore: Optional[List[str]] = ...,
 ) -> List[TypedStringSpan]: ...
-```

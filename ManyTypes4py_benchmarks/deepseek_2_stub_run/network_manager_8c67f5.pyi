@@ -1,4 +1,3 @@
-```python
 import asyncio
 from typing import Any, Awaitable, Dict, List, Optional, Union
 from pyee import EventEmitter
@@ -143,4 +142,3 @@ class SecurityDetails:
     def protocol(self) -> str: ...
 
 statusTexts: Dict[str, str] = ...
-```

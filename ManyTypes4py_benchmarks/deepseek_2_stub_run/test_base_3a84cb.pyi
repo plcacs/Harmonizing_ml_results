@@ -1,4 +1,3 @@
-```python
 import datetime
 from collections.abc import (
     Generator,

@@ -1,4 +1,3 @@
-```python
 from typing import (
     Any,
     Optional,
@@ -146,4 +145,3 @@ class StringMethods:
     def zfill(self, width: int) -> "Series": ...
     
     def get_dummies(self, sep: str = '|') -> Any: ...
-```

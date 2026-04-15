@@ -1,4 +1,3 @@
-```python
 from typing import Any, Union, Sequence, overload
 from pandas import Categorical, DataFrame, Index, Series, Timestamp
 from pandas._typing import Scalar
@@ -159,4 +158,3 @@ class TestILocSeries:
     def test_iloc_getitem_nonunique(self) -> None: ...
     def test_iloc_setitem_pure_position_based(self) -> None: ...
     def test_iloc_nullable_int64_size_1_nan(self) -> None: ...
-```

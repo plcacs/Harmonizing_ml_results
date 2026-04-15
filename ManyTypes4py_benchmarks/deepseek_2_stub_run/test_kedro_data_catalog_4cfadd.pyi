@@ -1,4 +1,3 @@
-```python
 import pandas as pd
 from datetime import datetime
 from pathlib import Path
@@ -123,4 +122,3 @@ class TestKedroDataCatalog:
         def test_redefine_load_version(self, correct_config: Any, dataset_versioned: Any) -> None: ...
         def test_redefine_save_version(self, correct_config: Any, dataset_versioned: Any) -> None: ...
         def test_redefine_save_version_with_cached_dataset(self, correct_config: Any, cached_dataset_versioned: Any) -> None: ...
-```

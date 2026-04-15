@@ -1,4 +1,3 @@
-```python
 import pandas as pd
 import numpy as np
 from typing import Any, Callable, Dict, List, Optional, Union
@@ -74,4 +73,3 @@ def exponential_coefficient_evaluator(test_data: pd.DataFrame, prediction_column
 
 @curry
 def logistic_coefficient_evaluator(test_data: pd.DataFrame, prediction_column: str = 'prediction', target_column: str = 'target', eval_name: Optional[str] = None) -> Dict[str, Any]: ...
-```

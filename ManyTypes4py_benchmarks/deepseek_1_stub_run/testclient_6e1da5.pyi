@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import contextlib
 import typing
@@ -103,4 +102,3 @@ class TestClient(httpx.Client):
     async def lifespan(self) -> None: ...
     async def wait_startup(self) -> None: ...
     async def wait_shutdown(self) -> None: ...
-```

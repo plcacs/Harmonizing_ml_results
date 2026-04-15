@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import abc
 from typing import (
@@ -260,4 +259,3 @@ class BaseWorker(abc.ABC, Generic[C, V, R]):
     async def _emit_worker_started_event(self) -> Event: ...
 
     async def _emit_worker_stopped_event(self, started_event: Event) -> None: ...
-```

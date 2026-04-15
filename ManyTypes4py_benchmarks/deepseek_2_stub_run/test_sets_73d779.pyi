@@ -1,4 +1,3 @@
-```python
 import faust
 from typing import Any, AsyncIterator, Iterator, Optional, Set, Type, TypeVar, Union
 from _typeshed import Incomplete
@@ -71,4 +70,3 @@ class SetTable:
     async def on_stop(self) -> None: ...
     def _new_store(self) -> ChangeloggedSetManager: ...
     def __getitem__(self, key: Any) -> Any: ...
-```

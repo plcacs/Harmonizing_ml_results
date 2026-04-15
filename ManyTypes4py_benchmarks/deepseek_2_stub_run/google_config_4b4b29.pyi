@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import TYPE_CHECKING, Any, Callable, Dict, Optional, Set, Tuple, Union
 from http import HTTPStatus
@@ -100,4 +99,3 @@ class CloudGoogleConfig(AbstractConfig):
     
     @callback
     def _handle_device_registry_updated(self, event: Any) -> None: ...
-```

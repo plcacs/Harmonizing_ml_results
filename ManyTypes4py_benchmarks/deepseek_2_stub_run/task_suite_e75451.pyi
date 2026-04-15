@@ -1,4 +1,3 @@
-```python
 import sys
 from typing import Any, Callable, Dict, List, Optional, TextIO, Tuple, Union, Iterable
 import numpy as np
@@ -85,4 +84,3 @@ class TaskSuite(Registrable):
     def _setup_editor(self) -> None: ...
     
     def add_test(self, test: Any) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import contextlib
 from typing import Optional, Type, Dict, Any, List, Generator, Mapping, Union, BinaryIO
@@ -113,4 +112,3 @@ class TestLambdaClient(BaseClient):
 class InvokeResponse:
     payload: Any
     def __init__(self, payload: Any) -> None: ...
-```

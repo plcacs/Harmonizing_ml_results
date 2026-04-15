@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from pandas import DataFrame, DatetimeIndex, Index, MultiIndex, Series
@@ -123,4 +122,3 @@ def test_numeric_only_corr_cov_series(
     numeric_only: Any,
     dtype: Any
 ) -> None: ...
-```

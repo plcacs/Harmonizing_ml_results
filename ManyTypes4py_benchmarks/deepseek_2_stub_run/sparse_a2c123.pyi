@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import scipy.sparse
 import pandas as pd
@@ -105,4 +104,3 @@ class GetItemMask:
     
     def setup(self, fill_value: Any) -> None: ...
     def time_mask(self, fill_value: Any) -> Any: ...
-```

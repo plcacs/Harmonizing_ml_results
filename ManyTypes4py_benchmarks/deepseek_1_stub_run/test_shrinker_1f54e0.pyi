@@ -1,4 +1,3 @@
-```python
 import pytest
 from hypothesis import HealthCheck
 from hypothesis.internal.conjecture.data import ConjectureData
@@ -85,4 +84,3 @@ def test_redistribute_numeric_pairs(
     node2: ChoiceNode,
     stop: Union[int, float]
 ) -> None: ...
-```

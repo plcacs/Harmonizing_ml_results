@@ -1,4 +1,3 @@
-```python
 """
 Utility code to generate randomized block tests
 """
@@ -83,4 +82,3 @@ def _iter_temporal(spec: Any, description: Any) -> Iterator[int]: ...
 def _compute_statistics(scenario: Dict[str, Any]) -> Dict[str, int]: ...
 
 def run_generated_randomized_test(spec: Any, state: Any, scenario: Dict[str, Any]) -> Iterator[Tuple[str, Any]]: ...
-```

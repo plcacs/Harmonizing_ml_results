@@ -1,4 +1,3 @@
-```python
 from collections.abc import Sequence
 from typing import Any, ClassVar, Literal, overload
 import numpy as np
@@ -54,4 +53,3 @@ def test_np_matmul_1D(box: Any) -> None: ...
 def test_array_ufuncs_for_many_arguments() -> None: ...
 
 def test_np_fix() -> None: ...
-```

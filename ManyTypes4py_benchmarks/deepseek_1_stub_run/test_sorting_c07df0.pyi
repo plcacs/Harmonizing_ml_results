@@ -1,4 +1,3 @@
-```python
 from collections.abc import Sequence
 from typing import Any, Literal, overload
 
@@ -56,4 +55,3 @@ class TestSafeSort:
 def test_mixed_str_null(nulls_fixture: Any) -> None: ...
 
 def test_safe_sort_multiindex() -> None: ...
-```

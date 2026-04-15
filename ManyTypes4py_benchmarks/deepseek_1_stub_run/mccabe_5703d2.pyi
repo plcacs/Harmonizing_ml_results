@@ -1,4 +1,3 @@
-```python
 from typing import Any, Optional, List, Iterator, Tuple, Dict, DefaultDict
 import ast
 import optparse
@@ -81,4 +80,3 @@ def get_code_complexity(code: str, threshold: int = ..., filename: str = ...) ->
 def get_module_complexity(module_path: str, threshold: int = ...) -> int: ...
 def _read(filename: str) -> str: ...
 def main(argv: Optional[List[str]] = ...) -> None: ...
-```

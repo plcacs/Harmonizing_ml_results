@@ -1,4 +1,3 @@
-```python
 from typing import Any, Optional, Union, List, Dict, Tuple
 from datetime import datetime, timedelta
 from unittest.mock import MagicMock
@@ -115,4 +114,3 @@ async def test__async_get_trade_history_id_binance(
     mocker: Any,
     fetch_trades_result: Any
 ) -> None: ...
-```

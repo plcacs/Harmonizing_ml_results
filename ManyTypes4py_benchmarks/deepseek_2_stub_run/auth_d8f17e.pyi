@@ -1,4 +1,3 @@
-```python
 import base64
 import binascii
 import hashlib
@@ -110,4 +109,3 @@ def _oauth10a_signature(consumer_token: Dict[str, str], method: str, url: str, p
 def _oauth_escape(val: Union[str, bytes]) -> str: ...
 
 def _oauth_parse_response(body: bytes) -> Dict[str, Any]: ...
-```

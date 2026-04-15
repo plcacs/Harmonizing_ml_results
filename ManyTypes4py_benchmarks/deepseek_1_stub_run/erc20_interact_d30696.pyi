@@ -1,4 +1,3 @@
-```python
 from abc import abstractmethod
 from typing import Tuple, Any, Callable
 from eth.chains.base import MiningChain
@@ -91,4 +90,3 @@ class ERC20TransferFromBenchmark(BaseERC20Benchmark):
     def _setup_benchmark(self, chain: MiningChain) -> None: ...
     
     def _next_transaction(self, chain: MiningChain) -> Tuple[Any, Callable]: ...
-```

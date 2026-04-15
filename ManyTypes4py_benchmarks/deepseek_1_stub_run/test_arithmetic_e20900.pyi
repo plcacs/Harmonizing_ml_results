@@ -1,4 +1,3 @@
-```python
 from collections import deque
 from datetime import datetime, timezone
 from enum import Enum
@@ -151,4 +150,3 @@ def test_frame_op_subclass_nonclass_constructor() -> None: ...
 def test_enum_column_equality() -> None: ...
 
 def test_mixed_col_index_dtype(using_infer_string: Any) -> None: ...
-```

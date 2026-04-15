@@ -1,4 +1,3 @@
-```python
 import pytest
 from _pytest.outcomes import Failed, Skipped
 from hypothesis import HealthCheck, Phase, __version__
@@ -550,4 +549,3 @@ class Machine(RuleBasedStateMachine):
 
     def set_initial(self) -> Any: ...
     def check(self, instance: Any) -> None: ...
-```

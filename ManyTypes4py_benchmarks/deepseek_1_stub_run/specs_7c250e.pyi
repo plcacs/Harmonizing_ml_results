@@ -1,4 +1,3 @@
-```python
 from typing import Any, Optional, Dict, List, Protocol
 
 class DataCatalogSpecs:
@@ -104,4 +103,3 @@ class KedroContextSpecs:
         self,
         context: Any
     ) -> None: ...
-```

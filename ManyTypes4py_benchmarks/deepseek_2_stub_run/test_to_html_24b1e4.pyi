@@ -1,4 +1,3 @@
-```python
 import pytest
 from typing import Any, Optional, Union, List, Dict, Callable, Sequence, Tuple, IO
 from pandas import DataFrame, Index, MultiIndex, Series
@@ -158,4 +157,3 @@ def test_to_html_multiindex_col_with_colspace() -> None: ...
 def test_to_html_tuple_col_with_colspace() -> None: ...
 
 def test_to_html_empty_complex_array() -> None: ...
-```

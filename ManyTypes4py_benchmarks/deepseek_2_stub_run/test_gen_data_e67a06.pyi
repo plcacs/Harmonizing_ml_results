@@ -1,4 +1,3 @@
-```python
 import sys
 from typing import Any, Callable, Optional, Tuple, Union, List, Dict, overload
 import numpy as np
@@ -180,4 +179,3 @@ def test_array_owns_memory(x: np.ndarray) -> None: ...
 def test_no_recursion_in_multi_line_reprs_issue_3560(data: Any) -> None: ...
 
 def test_infers_elements_and_fill() -> None: ...
-```

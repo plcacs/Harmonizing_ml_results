@@ -1,4 +1,3 @@
-```python
 from typing import Any, Callable, Generator, Iterator, List, Optional, Set, Tuple
 from lru import LRU
 from eth2spec.utils.ssz.ssz_typing import Bitlist
@@ -165,4 +164,3 @@ def get_eip7549_aggregation_bits_offset(
     committee_bits: Any,
     committee_index: int
 ) -> int: ...
-```

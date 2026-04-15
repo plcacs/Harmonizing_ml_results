@@ -1,4 +1,3 @@
-```python
 from collections import deque
 from typing import (
     Any,
@@ -139,4 +138,3 @@ class LogWriterCallback(TrainerCallback):
     def _log_distributions(self) -> None: ...
 
     def _log_gradient_updates(self, param_updates: Dict[str, torch.Tensor]) -> None: ...
-```

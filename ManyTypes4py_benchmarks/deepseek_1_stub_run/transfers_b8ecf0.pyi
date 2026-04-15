@@ -1,4 +1,3 @@
-```python
 from dataclasses import dataclass, field
 from typing import Any, ClassVar
 
@@ -125,4 +124,3 @@ class LockExpired(EnvelopeMessage):
     
     @property
     def message_hash(self) -> Any: ...
-```

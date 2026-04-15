@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import TYPE_CHECKING, Any, Literal
 import numpy as np
@@ -48,4 +47,3 @@ class ArrowStringArrayMixin:
     def _str_match(self, pat: str, case: bool = ..., flags: int = ..., na: Any = ...) -> Any: ...
     def _str_fullmatch(self, pat: str, case: bool = ..., flags: int = ..., na: Any = ...) -> Any: ...
     def _str_find(self, sub: str, start: int = ..., end: int | None = ...) -> Any: ...
-```

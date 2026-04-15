@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import torch as pt
 from typing import Any, Callable, Dict, Iterable, List, Optional, Sequence, Set, Tuple, Union
@@ -115,4 +114,3 @@ def test_unshift_target_factors(
     fill_with: int,
     expected_sequence: List[Any],
 ) -> None: ...
-```

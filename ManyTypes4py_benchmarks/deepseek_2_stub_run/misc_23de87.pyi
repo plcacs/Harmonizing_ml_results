@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any, Literal
 from typing_extensions import TypeAlias
@@ -87,4 +86,3 @@ def autocorrelation_plot(
 ) -> _Axes: ...
 
 def unpack_single_str_list(keys: list[str] | str) -> str: ...
-```

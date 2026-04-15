@@ -1,4 +1,3 @@
-```python
 import pytest
 from dbt.artifacts.schemas.catalog import CatalogArtifact
 from dbt.artifacts.schemas.results import RunStatus, TestStatus
@@ -84,4 +83,3 @@ class TestPrefectDbtRunnerLineage:
     @pytest.mark.asyncio
     @pytest.mark.parametrize('provide_manifest', [True, False])
     async def test_aemit_lineage_events(self, mock_dbt_runner: Any, settings: PrefectDbtSettings, mock_manifest_with_nodes: Mock, provide_manifest: bool) -> None: ...
-```

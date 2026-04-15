@@ -1,4 +1,3 @@
-```python
 import sys
 from typing import Any, Optional, Union, TypeVar, overload
 import numpy as np
@@ -225,4 +224,3 @@ def test_multi_column_dtype_assignment() -> None: ...
 def test_loc_setitem_empty_labels_no_dtype_conversion() -> None: ...
 
 def test_categorical_nan_no_dtype_conversion() -> None: ...
-```

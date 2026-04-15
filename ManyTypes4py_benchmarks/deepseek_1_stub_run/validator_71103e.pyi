@@ -1,4 +1,3 @@
-```python
 import pandas as pd
 from typing import Any, Callable, List, Tuple, Union
 from typing_extensions import TypeAlias
@@ -50,4 +49,3 @@ def parallel_validator(
     return_eval_logs_on_train: bool = ...,
     verbose: bool = ...
 ) -> ValidatorReturnType: ...
-```

@@ -1,4 +1,3 @@
-```python
 from typing import Any, List as TypingList, Tuple, Iterator, Optional
 from random import Random
 from eth2spec.test.context import expect_assertion_error
@@ -132,4 +131,3 @@ def run_pending_deposit_applying(
     validator_index: int,
     effective: bool = ...
 ) -> Iterator[Tuple[str, Any]]: ...
-```

@@ -1,4 +1,3 @@
-```python
 from datetime import datetime, timedelta
 from typing import Any, Dict, List, Optional, Tuple, Union
 
@@ -37,4 +36,3 @@ class TestCCXTExchange:
     def test_ccxt_dry_run_liquidation_price(self, exchange_futures: EXCHANGE_FIXTURE_TYPE) -> None: ...
     def test_ccxt_get_max_pair_stake_amount(self, exchange_futures: EXCHANGE_FIXTURE_TYPE) -> None: ...
     def test_private_method_presence(self, exchange: EXCHANGE_FIXTURE_TYPE) -> None: ...
-```

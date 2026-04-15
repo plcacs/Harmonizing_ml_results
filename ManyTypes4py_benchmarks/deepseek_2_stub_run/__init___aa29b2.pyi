@@ -1,4 +1,3 @@
-```python
 from typing import Any, List, Tuple, Union, overload
 
 class Matrix:
@@ -31,4 +30,3 @@ f: Functor
 def g(x: Any, y: Any = ..., *args: Any, m: Any = ..., n: Any, **kwargs: Any) -> Tuple[Any, Any, Tuple[Any, ...], Any, Any]: ...
 
 def run(autoTester: Any) -> None: ...
-```

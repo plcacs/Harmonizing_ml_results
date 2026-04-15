@@ -1,4 +1,3 @@
-```python
 import pandas as pd
 import numpy as np
 from typing import Any, List, Dict, Optional, Union
@@ -36,4 +35,3 @@ def test_convert_ohlcv_format(default_conf: Dict[str, Any], testdatadir: Any, tm
 def test_reduce_dataframe_footprint() -> None: ...
 
 def test_convert_trades_to_ohlcv(testdatadir: Any, tmp_path: Any, caplog: Any) -> None: ...
-```

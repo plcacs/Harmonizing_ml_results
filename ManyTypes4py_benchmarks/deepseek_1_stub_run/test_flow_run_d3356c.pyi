@@ -1,4 +1,3 @@
-```python
 from typing import Any, Awaitable, Callable
 from uuid import UUID
 import pytest
@@ -112,4 +111,3 @@ class TestFlowRunExecute:
 
     @pytest.mark.usefixtures('use_hosted_api_server')
     async def test_execute_flow_run_via_environment_variable(self, prefect_client: Any, monkeypatch: Any) -> None: ...
-```

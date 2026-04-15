@@ -1,4 +1,3 @@
-```python
 import asyncio
 from typing import Any, Dict, Iterable, List, Optional, Tuple, Type, Union
 from unittest.mock import Mock
@@ -310,4 +309,3 @@ def test_parse_uri_utf8(parser: HttpRequestParser) -> None: ...
 def test_parse_uri_utf8_percent_encoded(parser: HttpRequestParser) -> None: ...
 
 def test_parse_bad_method_for_c_parser_raises(loop: asyncio.AbstractEventLoop, protocol: BaseProtocol) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 from typing import Any, Iterator, List, Optional, Tuple, Union
 from jedi.inference.arguments import ValuesArguments
 from jedi.inference.base_value import ValueSet
@@ -54,4 +53,3 @@ class ClassValue(ClassMixin, FunctionAndClassBase, metaclass=CachedMetaClass):
     def get_metaclass_filters(self, metaclasses: Any, is_instance: bool) -> Iterator[Any]: ...
     def get_metaclasses(self) -> ValueSet: ...
     def get_metaclass_signatures(self, metaclasses: Any) -> List[Any]: ...
-```

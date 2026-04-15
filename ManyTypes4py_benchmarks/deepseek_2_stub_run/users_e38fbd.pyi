@@ -1,4 +1,3 @@
-```python
 import secrets
 from collections import defaultdict
 from email.headerregistry import Address
@@ -56,4 +55,3 @@ def get_service_dicts_for_bots(bot_dicts: List[Dict[str, Any]], realm: Realm) ->
 def get_owned_bot_dicts(user_profile: UserProfile, include_all_realm_bots_if_admin: bool = ...) -> List[Dict[str, Any]]: ...
 def generate_password_reset_url(user_profile: UserProfile, token_generator: PasswordResetTokenGenerator) -> str: ...
 def do_send_password_reset_email(email: str, realm: Realm, user_profile: Optional[UserProfile], *, token_generator: PasswordResetTokenGenerator = ..., request: Optional[HttpRequest] = None) -> None: ...
-```

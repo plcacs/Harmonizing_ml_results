@@ -1,4 +1,3 @@
-```python
 """Google config for Cloud."""
 
 from typing import TYPE_CHECKING, Any, Callable, Dict, Iterable, List, Optional, Set, Tuple, Union
@@ -121,4 +120,3 @@ class CloudGoogleConfig:
     def async_schedule_google_sync_all(self) -> None: ...
     
     async def async_sync_entities_all(self) -> None: ...
-```

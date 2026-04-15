@@ -1,4 +1,3 @@
-```python
 from typing import Any, Dict, List, Optional, Union, cast
 from mode.utils.objects import cached_property
 from faust import web
@@ -142,4 +141,3 @@ class DatadogMonitor(Monitor):
     
     @cached_property
     def client(self) -> DatadogStatsClient: ...
-```

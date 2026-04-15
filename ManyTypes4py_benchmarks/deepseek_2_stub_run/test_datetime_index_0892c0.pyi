@@ -1,4 +1,3 @@
-```python
 from _typeshed import Incomplete
 from collections.abc import Callable
 from datetime import datetime
@@ -265,4 +264,3 @@ def test_resample_b_55282(unit: str) -> None: ...
 def test_arrow_timestamp_resample(tz: Any) -> None: ...
 
 def test_resample_A_raises(freq: str) -> None: ...
-```

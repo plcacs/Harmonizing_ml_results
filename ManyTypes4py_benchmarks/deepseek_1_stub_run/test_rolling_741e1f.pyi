@@ -1,4 +1,3 @@
-```python
 from datetime import datetime, timedelta
 from typing import Any, Literal, overload
 from pandas import DataFrame, DatetimeIndex, MultiIndex, Series, Timedelta, Timestamp
@@ -175,4 +174,3 @@ def test_numeric_only_series(arithmetic_win_operators: Any, numeric_only: Any, d
 def test_numeric_only_corr_cov_series(kernel: Any, use_arg: Any, numeric_only: Any, dtype: Any) -> None: ...
 
 def test_rolling_timedelta_window_non_nanoseconds(unit: Any, tz: Any) -> None: ...
-```

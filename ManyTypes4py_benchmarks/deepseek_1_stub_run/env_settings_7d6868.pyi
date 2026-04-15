@@ -1,4 +1,3 @@
-```python
 import os
 from pathlib import Path
 from typing import (
@@ -126,4 +125,3 @@ def read_env_file(
 def find_case_path(
     dir_path: Path, file_name: str, case_sensitive: bool
 ) -> Optional[Path]: ...
-```

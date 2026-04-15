@@ -1,4 +1,3 @@
-```python
 from datetime import datetime
 from typing import Any, Callable, Dict, List, Optional, Sequence, Tuple, Union
 import numpy as np
@@ -282,4 +281,3 @@ def test_agg_list(
     test_series: bool,
     keys: List[str]
 ) -> None: ...
-```

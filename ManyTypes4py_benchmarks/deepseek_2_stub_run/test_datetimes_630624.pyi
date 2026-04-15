@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any, overload
 from datetime import datetime, timedelta
@@ -91,4 +90,3 @@ class TestDatetimeArray:
     def test_date_range_uppercase_frequency_raises(self, freq: Any) -> None: ...
 
 def test_factorize_sort_without_freq() -> None: ...
-```

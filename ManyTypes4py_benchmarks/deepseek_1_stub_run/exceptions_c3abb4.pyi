@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any, Optional
 
@@ -178,4 +177,3 @@ class TableNotFoundException(SupersetErrorException):
     status: int = ...
     
     def __init__(self, message: str) -> None: ...
-```

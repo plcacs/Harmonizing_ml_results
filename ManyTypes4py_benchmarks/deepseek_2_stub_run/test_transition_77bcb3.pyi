@@ -1,4 +1,3 @@
-```python
 import random
 from typing import Any, Iterator, Tuple, Union, Callable, List, Optional
 
@@ -113,4 +112,3 @@ def test_non_empty_historical_roots(
     pre_tag: Any,
     post_tag: Any,
 ) -> Iterator[Tuple[str, Any]]: ...
-```

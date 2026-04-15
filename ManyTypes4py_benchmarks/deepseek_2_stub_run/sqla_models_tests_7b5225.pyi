@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any, Dict, List, Optional, Set, Tuple, Union
 from datetime import datetime
@@ -102,4 +101,3 @@ def test__normalize_prequery_result_type(
 ) -> None: ...
 
 def test__temporal_range_operator_in_adhoc_filter(physical_dataset: Any) -> None: ...
-```

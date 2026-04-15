@@ -1,4 +1,3 @@
-```python
 """Integration with the Rachio Iro sprinkler system controller."""
 
 from abc import abstractmethod
@@ -193,4 +192,3 @@ class RachioValve(RachioHoseTimerEntity, SwitchEntity):
 
     @callback
     def _update_attr(self) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 import json
 import os
 import time
@@ -48,4 +47,3 @@ class CustomNotify(PluginBase):
     def pre_receive(self, alert: Any, **kwargs: Any) -> Any: ...
     def post_receive(self, alert: Any, **kwargs: Any) -> Any: ...
     def status_change(self, alert: Any, status: Any, text: Any, **kwargs: Any) -> None: ...
-```

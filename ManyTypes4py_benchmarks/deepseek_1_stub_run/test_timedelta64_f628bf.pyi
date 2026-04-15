@@ -1,4 +1,3 @@
-```python
 from datetime import datetime, timedelta
 from typing import Any, overload, Union
 import numpy as np
@@ -124,4 +123,3 @@ class TestTimedelta64ArrayLikeArithmetic:
     def test_td64arr_pow_invalid(self, scalar_td: Any, box_with_array: Any) -> None: ...
 
 def test_add_timestamp_to_timedelta() -> None: ...
-```

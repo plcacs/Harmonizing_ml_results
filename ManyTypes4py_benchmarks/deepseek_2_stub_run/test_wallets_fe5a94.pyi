@@ -1,4 +1,3 @@
-```python
 from typing import Any
 from typing import Dict
 from typing import List
@@ -64,4 +63,3 @@ def test_dry_run_wallet_initialization(
     config: Dict[str, Any],
     wallets: Dict[str, Dict[str, Any]]
 ) -> None: ...
-```

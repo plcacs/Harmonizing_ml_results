@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import datetime
 from typing import Any, Optional, Dict, Callable, List, Iterator, Iterable, Sequence, IO, Tuple, Union, TypedDict
@@ -186,4 +185,3 @@ class TypedAWSClient:
     def create_stage(self, api_id: str, stage_name: str, deployment_id: str) -> None: ...
     def _call_client_method_with_retries(self, method: Callable[..., Any], kwargs: Dict[str, Any], max_attempts: int, should_retry: Optional[Callable[[Exception], bool]] = ..., delay_time: int = ..., retryable_exceptions: Optional[Tuple[Any, ...]] = ...) -> Any: ...
     def _random_id(self) -> str: ...
-```

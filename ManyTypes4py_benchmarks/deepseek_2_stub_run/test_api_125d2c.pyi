@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from pandas import Categorical, CategoricalIndex, DataFrame, Index, Series
@@ -33,4 +32,3 @@ class TestPrivateCategoricalAPI:
     def test_codes_immutable(self) -> None: ...
     def test_recode_to_categories(self, codes: np.ndarray, old: Index, new: Index, expected: np.ndarray) -> None: ...
     def test_recode_to_categories_large(self) -> None: ...
-```

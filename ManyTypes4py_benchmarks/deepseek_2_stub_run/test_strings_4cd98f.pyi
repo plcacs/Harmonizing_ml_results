@@ -1,4 +1,3 @@
-```python
 import datetime
 from typing import Any, Optional, Union, overload
 
@@ -105,4 +104,3 @@ def test_zfill_with_leading_sign() -> None: ...
 def test_get_with_dict_label() -> None: ...
 
 def test_series_str_decode() -> None: ...
-```

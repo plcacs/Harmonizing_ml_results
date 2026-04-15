@@ -1,4 +1,3 @@
-```python
 """Monitor - sensor tracking metrics."""
 
 import asyncio
@@ -207,4 +206,3 @@ class Monitor(Sensor):
         pattern: Pattern[str] = RE_NORMALIZE,
         substitution: str = RE_NORMALIZE_SUBSTITUTION,
     ) -> str: ...
-```

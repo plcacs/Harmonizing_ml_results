@@ -1,4 +1,3 @@
-```python
 from collections.abc import Iterable
 from contextlib import contextmanager
 import time
@@ -139,4 +138,3 @@ class FakeRemoteScanner(BaseHaRemoteScanner):
         advertisement_data: AdvertisementData,
         now: float | None = None,
     ) -> None: ...
-```

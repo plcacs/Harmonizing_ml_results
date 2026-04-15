@@ -1,4 +1,3 @@
-```python
 from typing import Any, Optional, Union, Dict, List, Iterator, ContextManager, TypeVar, overload
 from datetime import datetime
 from contextlib import contextmanager
@@ -178,4 +177,3 @@ class SupersetTestCase(TestCase):
 
 @contextmanager
 def db_insert_temp_object(obj: Any) -> Iterator[Any]: ...
-```

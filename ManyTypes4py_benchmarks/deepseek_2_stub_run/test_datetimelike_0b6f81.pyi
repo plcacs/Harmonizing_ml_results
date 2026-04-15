@@ -1,4 +1,3 @@
-```python
 import datetime
 from typing import Any, Optional, Union, List, Tuple, Sequence
 from pandas import DataFrame, Series, Index, PeriodIndex, DatetimeIndex
@@ -239,4 +238,3 @@ class TestTSPlot:
     def test_check_xticks_rot_sharex(cls) -> None: ...
     @classmethod
     def test_pickle_fig(cls, temp_file: Any, frame_or_series: Any, idx: Any) -> None: ...
-```

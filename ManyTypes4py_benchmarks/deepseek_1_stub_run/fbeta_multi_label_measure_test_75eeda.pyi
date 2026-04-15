@@ -1,4 +1,3 @@
-```python
 from typing import Any, Dict, List, Optional, Tuple, Union
 import torch
 from allennlp.common.checks import ConfigurationError
@@ -38,4 +37,3 @@ class FBetaMultiLabelMeasureTest(AllenNlpTestCase):
     def test_multiple_distributed_runs(self) -> None: ...
 
 def multiple_runs(global_rank: Any, world_size: Any, gpu_id: Any, metric: Any, metric_kwargs: Any, desired_values: Any, exact: bool = ...) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 from collections.abc import Sequence
 from datetime import timedelta
 from typing import Any, Optional, Union
@@ -104,4 +103,3 @@ class TestContains:
     def test_multiindex_contains_dropped(self) -> None: ...
     def test_contains_td64_level(self) -> None: ...
     def test_large_mi_contains(self, monkeypatch: Any) -> None: ...
-```

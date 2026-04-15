@@ -1,4 +1,3 @@
-```python
 import json
 import os
 import unittest
@@ -97,4 +96,3 @@ class Teapot(PluginBase):
     def take_action(self, alert: Alert, action: Any, text: Any, **kwargs: Any) -> Tuple[Alert, Any, Any]: ...
     def take_note(self, alert: Alert, text: Any, **kwargs: Any) -> None: ...
     def delete(self, alert: Alert, **kwargs: Any) -> Any: ...
-```

@@ -1,4 +1,3 @@
-```python
 import random
 from typing import Any, Iterator, Tuple
 
@@ -229,4 +228,3 @@ def test_incorrect_inactive_validator(
     spec: Any,
     state: Any
 ) -> Iterator[Any]: ...
-```

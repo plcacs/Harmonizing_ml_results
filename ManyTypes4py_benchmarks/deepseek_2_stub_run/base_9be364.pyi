@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import TYPE_CHECKING, Any, Callable, Dict, Generic, List, Optional, Set, Type, Union
 from uuid import UUID
@@ -192,4 +191,3 @@ class BaseWorker(abc.ABC, Generic[C, V, R]):
 
     @property
     def type(self) -> str: ...
-```

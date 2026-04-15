@@ -1,4 +1,3 @@
-```python
 from collections.abc import Callable
 from typing import Any, DefaultDict, Dict, List, Optional, Tuple, Union
 from _pytest.fixtures import FixtureRequest
@@ -121,4 +120,3 @@ def test_retryqueue_enqueue_not_blocking(
     mock_matrix: MatrixTransport,
     monkeypatch: Any
 ) -> None: ...
-```

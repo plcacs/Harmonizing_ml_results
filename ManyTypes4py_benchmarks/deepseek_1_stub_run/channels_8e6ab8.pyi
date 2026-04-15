@@ -1,4 +1,3 @@
-```python
 from typing import Any, Awaitable, Callable, Mapping, MutableSet, Optional, Set, Tuple, TypeVar
 from weakref import WeakSet
 from mode import Seconds
@@ -80,4 +79,3 @@ class SerializedChannel(Channel[T]):
     def _clone_args(self) -> dict: ...
     def prepare_key(self, key: Any, key_serializer: CodecArg, schema: Optional[SchemaT] = ..., headers: Optional[OpenHeadersArg] = ...) -> Tuple[Any, OpenHeadersArg]: ...
     def prepare_value(self, value: Any, value_serializer: CodecArg, schema: Optional[SchemaT] = ..., headers: Optional[OpenHeadersArg] = ...) -> Tuple[Any, OpenHeadersArg]: ...
-```

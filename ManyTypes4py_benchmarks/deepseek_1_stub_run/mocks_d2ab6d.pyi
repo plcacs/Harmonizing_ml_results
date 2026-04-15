@@ -1,4 +1,3 @@
-```python
 import dataclasses
 import json
 from collections import defaultdict
@@ -203,4 +202,3 @@ class PFSMock:
     ) -> Tuple[Optional[str], List[Any], None]: ...
 
 def make_pfs_config() -> PFSConfig: ...
-```

@@ -1,4 +1,3 @@
-```python
 from typing import Any
 from unittest.mock import Mock
 import pytest
@@ -48,4 +47,3 @@ def test_get_dataset_access_denied(mock_can_access_datasource: Mock, test_client
 def test_delete(test_client: Any, login_as_admin: Any) -> None: ...
 def test_delete_access_denied(test_client: Any, login_as: Any) -> None: ...
 def test_delete_not_owner(test_client: Any, login_as_admin: Any, chart_id: Any, datasource: Any, admin_id: Any) -> None: ...
-```

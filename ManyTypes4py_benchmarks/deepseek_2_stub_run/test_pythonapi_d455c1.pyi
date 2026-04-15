@@ -1,4 +1,3 @@
-```python
 from typing import Any, List, Set
 from unittest.mock import Mock
 import gevent
@@ -128,4 +127,3 @@ def test_same_addresses_for_payment(
     raiden_network: List[RaidenService],
     token_addresses: List[TokenAddress],
 ) -> None: ...
-```

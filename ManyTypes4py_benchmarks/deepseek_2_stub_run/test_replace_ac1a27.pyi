@@ -1,4 +1,3 @@
-```python
 from typing import Any, Dict, List, Optional, Sequence, Union
 import numpy as np
 import pandas as pd
@@ -309,4 +308,3 @@ class TestDataFrameReplaceRegex:
         self,
         using_infer_string: Any
     ) -> None: ...
-```

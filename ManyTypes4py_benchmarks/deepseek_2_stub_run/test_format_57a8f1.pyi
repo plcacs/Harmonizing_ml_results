@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pytest
 from pandas import DataFrame, IndexSlice, MultiIndex, NaT, Timestamp
@@ -128,4 +127,3 @@ def test_format_index_names_callable(
 
 def test_format_index_names_dict(styler_multi: Styler) -> None: ...
 def test_format_index_names_with_hidden_levels(styler_multi: Styler) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from http import HTTPStatus
 from typing import Any
@@ -49,4 +48,3 @@ class RachioBaseStation:
     def start_watering(self, valve_id: Any, duration: Any) -> None: ...
     def stop_watering(self, valve_id: Any) -> None: ...
     def create_skip(self, program_id: Any, timestamp: Any) -> None: ...
-```

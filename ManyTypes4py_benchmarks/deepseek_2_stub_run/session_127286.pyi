@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 
 import logging
@@ -83,4 +82,3 @@ class KedroSession:
         load_versions: dict[str, str] | None = ...,
         namespace: str | None = ...,
     ) -> dict[str, Any]: ...
-```

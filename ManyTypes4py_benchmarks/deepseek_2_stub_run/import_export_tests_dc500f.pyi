@@ -1,4 +1,3 @@
-```python
 import pytest
 import unittest
 from typing import Any, List, Optional, Dict, Set
@@ -86,4 +85,3 @@ class TestImportExport(SupersetTestCase):
     def test_import_table_override(self) -> None: ...
     
     def test_import_table_override_identical(self) -> None: ...
-```

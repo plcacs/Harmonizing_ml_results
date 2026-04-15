@@ -1,4 +1,3 @@
-```python
 from typing import Dict, Tuple, Union, Any, List, Optional
 import numpy as np
 import torch
@@ -61,4 +60,3 @@ class BeamSearchTest(AllenNlpTestCase):
     def test_repeated_ngram_blocking_end_to_end_bigrams(self) -> None: ...
     def test_repeated_ngram_blocking_end_to_end_trigrams(self) -> None: ...
     def test_repeated_ngram_blocking_end_indices(self) -> None: ...
-```

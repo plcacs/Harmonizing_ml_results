@@ -1,4 +1,3 @@
-```python
 import os
 from typing import Any, Dict, List, Optional, Union, TypeVar, Protocol, runtime_checkable
 from dataclasses import dataclass, field
@@ -138,4 +137,3 @@ class Project:
     def get_macro_search_order(self, macro_namespace: str) -> Optional[List[str]]: ...
     @property
     def project_target_path(self) -> str: ...
-```

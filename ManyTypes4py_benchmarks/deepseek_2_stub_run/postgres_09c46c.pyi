@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import logging
 from re import Pattern
@@ -99,4 +98,3 @@ class PostgresEngineSpec(BasicParametersMixin, PostgresBaseEngineSpec):
     
     @classmethod
     def cancel_query(cls, cursor: Any, query: Query, cancel_query_id: int) -> bool: ...
-```

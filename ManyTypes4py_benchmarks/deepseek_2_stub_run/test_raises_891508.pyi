@@ -1,4 +1,3 @@
-```python
 import datetime
 from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 import numpy as np
@@ -128,4 +127,3 @@ def test_groupby_raises_category_on_category(
     observed: Any,
     df_with_cat_col: DataFrame
 ) -> None: ...
-```

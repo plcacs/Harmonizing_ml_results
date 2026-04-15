@@ -1,4 +1,3 @@
-```python
 import pytest
 from eth.db.atomic import AtomicDB
 from eth.db.chain import ChainDB
@@ -105,4 +104,3 @@ def test_chaindb_raises_blocknotfound_on_missing_transactions(
     chaindb: ChainDB,
     header: BlockHeader
 ) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 from typing import Any, Iterator
 from random import Random
 
@@ -109,4 +108,3 @@ def test_randomized_state(spec: Any, state: Any) -> Iterator[Any]: ...
 @spec_state_test
 @leaking()
 def test_randomized_state_leaking(spec: Any, state: Any) -> Iterator[Any]: ...
-```

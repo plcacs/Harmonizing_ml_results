@@ -119,26 +119,20 @@ def analyze_model_filter_both_fail_first(model_name, model_file):
 
 
 if __name__ == "__main__":
-    # GPCE comparison: focus on prompt variants/runs
+    # GPCE comparison: stub-based runs
     models = [
         (
-            "gpt5_2_run",
-            "mypy_results_gpt5_2_run_with_errors.json",
+            "gpt5_1_stub_run",
+            "mypy_results_gpt5_1_stub_run_with_errors.json",
         ),
         (
-            "gpt5_3_run",
-            "mypy_results_gpt5_3_run_with_errors.json",
+            "claude_stub_1_run",
+            "mypy_results_claude_stub_1_run_with_errors.json",
         ),
         (
-            "claude3_sonnet_3_run",
-            "mypy_results_claude3_sonnet_3_run_with_errors.json",
+            "deepseek_1_stub_run",
+            "mypy_results_deepseek_1_stub_run_with_errors.json",
         ),
-        (
-            "claude3_sonnet_4_run",
-            "mypy_results_claude3_sonnet_4_run_with_errors.json",
-        ),
-        ("deepseek_3_run", "mypy_results_deepseek_3_run_with_errors.json"),
-        ("deepseek_4_run", "mypy_results_deepseek_4_run_with_errors.json"),
     ]
 
     all_results = []
@@ -156,12 +150,12 @@ if __name__ == "__main__":
         all_both_success_files[model_name] = results["both_success_files"]
         all_unprocessed_files[model_name] = results["unprocessed_files"]
 
-    with open("GPCE_llm_only_failure_files.json", "w") as f:
+    """with open("GPCE_llm_only_failure_files.json", "w") as f:
         json.dump(all_llm_only_failures, f, indent=2)
     with open("GPCE_both_success_files.json", "w") as f:
         json.dump(all_both_success_files, f, indent=2)
     with open("GPCE_unprocessed_files.json", "w") as f:
-        json.dump(all_unprocessed_files, f, indent=2)
+        json.dump(all_unprocessed_files, f, indent=2)"""
 
     for result in all_results:
         model = result["model"]

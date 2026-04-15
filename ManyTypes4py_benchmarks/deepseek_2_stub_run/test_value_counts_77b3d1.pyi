@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from pandas import Categorical, CategoricalIndex, DataFrame, Grouper, Index, MultiIndex, Series
@@ -114,4 +113,3 @@ def test_value_counts_sort_categorical(sort: Any, vc_sort: Any, normalize: Any) 
 
 @pytest.mark.parametrize('groupby_sort', [True, False])
 def test_value_counts_all_na(sort: Any, dropna: Any, groupby_sort: Any) -> None: ...
-```

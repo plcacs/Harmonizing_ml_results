@@ -1,4 +1,3 @@
-```python
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from typing import Any, Callable, Dict, FrozenSet, List, Set, Tuple, Type, Union
@@ -187,4 +186,3 @@ def is_bytes_sequence_annotation(annotation: Any) -> bool: ...
 def is_uploadfile_sequence_annotation(annotation: Any) -> bool: ...
 
 def get_cached_model_fields(model: Any) -> List[Any]: ...
-```

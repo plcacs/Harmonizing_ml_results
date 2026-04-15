@@ -1,4 +1,3 @@
-```python
 import pytest
 from typing import Any, Protocol, runtime_checkable
 from dbt.artifacts.resources import (
@@ -234,4 +233,3 @@ def test_non_additive_dimension_satisfies_protocol(
 ) -> None: ...
 
 def test_saved_query_satisfies_protocol(saved_query: SavedQuery) -> None: ...
-```

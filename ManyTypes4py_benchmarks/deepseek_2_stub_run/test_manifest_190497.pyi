@@ -1,4 +1,3 @@
-```python
 from argparse import Namespace
 from typing import Any, Dict, Optional, Tuple, Union
 from unittest.mock import MagicMock
@@ -48,4 +47,3 @@ class TestCheckForcingConcurrentBatches:
     def event_catcher() -> EventCatcher: ...
     @staticmethod
     def test_check_forcing_concurrent_batches(mocker: MockerFixture, manifest_loader: ManifestLoader, postgres_adapter: PostgresAdapter, event_catcher: EventCatcher, adapter_support: bool, concurrent_batches_config: Optional[bool], expect_warning: bool) -> None: ...
-```

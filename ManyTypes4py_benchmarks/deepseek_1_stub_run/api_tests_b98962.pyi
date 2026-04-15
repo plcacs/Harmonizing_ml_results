@@ -1,4 +1,3 @@
-```python
 from typing import Any, Optional
 from unittest.mock import Mock
 from flask import Response
@@ -256,4 +255,3 @@ def test_chart_data_subquery_not_allowed(test_client: Any, login_as_admin: Any, 
 @with_feature_flags(ALLOW_ADHOC_SUBQUERY=True)
 @pytest.mark.usefixtures('load_birth_names_dashboard_with_slices')
 def test_chart_data_subquery_allowed(test_client: Any, login_as_admin: Any, physical_dataset: Any, physical_query_context: dict[str, Any], status_code: int, extras: dict[str, Any]) -> None: ...
-```

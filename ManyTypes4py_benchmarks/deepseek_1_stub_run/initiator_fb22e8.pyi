@@ -1,4 +1,3 @@
-```python
 from typing import Any, Dict, List, Optional, Tuple
 from raiden.constants import ABSENT_SECRET
 from raiden.settings import (
@@ -130,4 +129,3 @@ def state_transition(
     pseudo_random_generator: Any,
     block_number: BlockNumber,
 ) -> TransitionResult[Optional[InitiatorTransferState]]: ...
-```

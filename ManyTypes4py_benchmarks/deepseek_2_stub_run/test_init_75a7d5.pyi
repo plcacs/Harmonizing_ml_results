@@ -1,4 +1,3 @@
-```python
 import asyncio
 from collections.abc import Callable
 from datetime import datetime, timedelta
@@ -205,4 +204,3 @@ async def test_logbook_with_empty_config(hass: HomeAssistant) -> None: ...
 
 @pytest.mark.usefixtures("recorder_mock")
 async def test_logbook_with_non_iterable_entity_filter(hass: HomeAssistant) -> None: ...
-```

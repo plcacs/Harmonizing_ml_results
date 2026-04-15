@@ -1,4 +1,3 @@
-```python
 from collections.abc import MutableMapping
 from typing import (
     Any,
@@ -147,4 +146,3 @@ class LogWriterCallback(TrainerCallback):
         self,
         param_updates: Dict[str, torch.Tensor],
     ) -> None: ...
-```

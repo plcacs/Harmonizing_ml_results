@@ -1,4 +1,3 @@
-```python
 from pathlib import Path
 from typing import Any, Optional, Dict, List, Union
 from IPython.core.interactiveshell import InteractiveShell
@@ -86,4 +85,3 @@ class TestFormatNodeInputsText:
     def test_format_node_inputs_text_single_input(self) -> None: ...
     def test_format_node_inputs_text_multiple_inputs(self) -> None: ...
     def test_format_node_inputs_text_no_catalog_load(self) -> None: ...
-```

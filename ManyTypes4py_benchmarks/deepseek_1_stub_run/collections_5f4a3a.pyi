@@ -1,4 +1,3 @@
-```python
 from collections.abc import Iterable
 from typing import Any, TypeVar, overload
 
@@ -92,4 +91,3 @@ class FixedAndOptionalKeysDictStrategy(SearchStrategy[dict[Any, Any]]):
     def calc_is_empty(self, recur: Any) -> bool: ...
     def __repr__(self) -> str: ...
     def do_draw(self, data: Any) -> dict[Any, Any]: ...
-```

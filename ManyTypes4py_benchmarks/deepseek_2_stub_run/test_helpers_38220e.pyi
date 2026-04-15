@@ -1,4 +1,3 @@
-```python
 import collections.abc
 import sys
 from _typeshed import Incomplete
@@ -163,4 +162,3 @@ def ratelimit_rule(
 ) -> ContextManager[None]: ...
 
 def consume_response(response: HttpResponse) -> None: ...
-```

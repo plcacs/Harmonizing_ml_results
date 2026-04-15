@@ -1,4 +1,3 @@
-```python
 import argparse
 from collections import OrderedDict
 from typing import Any, Callable, Counter, Dict, List, Optional, Set, Union
@@ -51,4 +50,3 @@ class TestDryRun:
 
 def train_model(params: Params, serialization_dir: str, recover: bool = ..., force: bool = ..., dry_run: bool = ...) -> Any: ...
 def train_model_from_args(args: argparse.Namespace) -> Any: ...
-```

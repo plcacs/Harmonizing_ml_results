@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any, overload
 from decimal import Decimal
@@ -191,4 +190,3 @@ class TestLegacyLoadAndSave:
         my_legacy_versioned_dataset: MyLegacyVersionedDataset,
         dummy_data: str
     ) -> None: ...
-```

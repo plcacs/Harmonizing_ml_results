@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from collections.abc import Callable, Mapping
 from typing import Any, TypedDict
@@ -55,4 +54,3 @@ def async_get_entity_settings(hass: HomeAssistant, entity_id: str) -> dict[str, 
 def async_expose_entity(hass: HomeAssistant, assistant: str, entity_id: str, should_expose: bool) -> None: ...
 def async_should_expose(hass: HomeAssistant, assistant: str, entity_id: str) -> bool: ...
 def async_set_assistant_option(hass: HomeAssistant, assistant: str, entity_id: str, option: str, value: Any) -> None: ...
-```

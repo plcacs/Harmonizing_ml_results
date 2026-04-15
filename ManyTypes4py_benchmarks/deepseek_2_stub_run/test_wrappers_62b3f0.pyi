@@ -1,4 +1,3 @@
-```python
 import datetime
 from typing import Any, Callable, Iterator, Optional, Union, overload
 from faust.events import Event
@@ -161,4 +160,3 @@ class test_WindowWrapper_using_key_index:
     def test_setitem(self, *, wset: Any) -> None: ...
     
     def test_delitem(self, *, wset: Any) -> None: ...
-```

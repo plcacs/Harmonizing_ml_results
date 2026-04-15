@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from concurrent.futures import Executor, Future, ProcessPoolExecutor
@@ -112,4 +111,3 @@ def run_node(
     is_async: bool = ...,
     session_id: Any | None = ...
 ) -> Node: ...
-```

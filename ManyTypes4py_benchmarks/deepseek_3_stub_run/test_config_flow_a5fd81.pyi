@@ -1,0 +1,365 @@
+from __future__ import annotations
+
+from collections.abc import Callable, Coroutine
+from http import HTTPStatus
+from typing import Any, ClassVar
+from unittest.mock import MagicMock, Mock
+
+from google_nest_sdm.exceptions import AuthException
+import pytest
+from homeassistant import config_entries
+from homeassistant.components.nest.const import DOMAIN, OAUTH2_AUTHORIZE, OAUTH2_TOKEN
+from homeassistant.config_entries import ConfigEntry
+from homeassistant.core import HomeAssistant
+from homeassistant.data_entry_flow import FlowResult, FlowResultType
+from homeassistant.helpers import config_entry_oauth2_flow
+from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo
+from tests.common import MockConfigEntry
+from tests.test_util.aiohttp import AiohttpClientMocker
+from tests.typing import ClientSessionGenerator
+
+from .common import (
+    CLIENT_ID,
+    CLOUD_PROJECT_ID,
+    PROJECT_ID,
+    SUBSCRIBER_ID,
+    TEST_CONFIG_APP_CREDS,
+    TEST_CONFIGFLOW_APP_CREDS,
+    NestTestConfig,
+)
+from .conftest import FakeAuth, PlatformSetup
+
+WEB_REDIRECT_URL: str = ...
+APP_REDIRECT_URL: str = ...
+RAND_SUFFIX: str = ...
+FAKE_DHCP_DATA: DhcpServiceInfo = ...
+
+@pytest.fixture
+def nest_test_config() -> NestTestConfig: ...
+
+@pytest.fixture(autouse=True)
+def mock_rand_topic_name_fixture() -> None: ...
+
+@pytest.fixture(autouse=True)
+def mock_request_setup(auth: FakeAuth) -> None: ...
+
+class OAuthFixture:
+    def __init__(
+        self,
+        hass: HomeAssistant,
+        hass_client_no_auth: ClientSessionGenerator,
+        aioclient_mock: AiohttpClientMocker,
+    ) -> None: ...
+    
+    async def async_app_creds_flow(
+        self,
+        result: FlowResult,
+        cloud_project_id: str = ...,
+        project_id: str = ...,
+    ) -> None: ...
+    
+    async def async_oauth_web_flow(
+        self,
+        result: FlowResult,
+        project_id: str = ...,
+    ) -> None: ...
+    
+    async def async_reauth(self, config_entry: ConfigEntry) -> FlowResult: ...
+    
+    def async_progress(self) -> FlowResult: ...
+    
+    def create_state(self, result: FlowResult, redirect_url: str) -> str: ...
+    
+    def authorize_url(
+        self,
+        state: str,
+        redirect_url: str,
+        client_id: str,
+        project_id: str,
+    ) -> str: ...
+    
+    def async_mock_refresh(self) -> None: ...
+    
+    async def async_complete_pubsub_flow(
+        self,
+        result: FlowResult,
+        selected_topic: str,
+        selected_subscription: str = ...,
+        user_input: dict[str, Any] | None = ...,
+        existing_errors: dict[str, str] | None = ...,
+    ) -> ConfigEntry: ...
+    
+    async def async_finish_setup(
+        self,
+        result: FlowResult,
+        user_input: dict[str, Any] | None = ...,
+    ) -> ConfigEntry: ...
+    
+    async def async_configure(
+        self,
+        result: FlowResult,
+        user_input: dict[str, Any] | None,
+    ) -> FlowResult: ...
+    
+    def get_config_entry(self) -> ConfigEntry: ...
+
+@pytest.fixture
+async def oauth(
+    hass: HomeAssistant,
+    hass_client_no_auth: ClientSessionGenerator,
+    aioclient_mock: AiohttpClientMocker,
+    current_request_with_host: None,
+) -> OAuthFixture: ...
+
+@pytest.fixture(name="sdm_managed_topic")
+def mock_sdm_managed_topic() -> bool: ...
+
+@pytest.fixture(name="user_managed_topics")
+def mock_user_managed_topics() -> list[str]: ...
+
+@pytest.fixture(name="subscriptions")
+def mock_subscriptions() -> list[tuple[str, str]]: ...
+
+@pytest.fixture(name="cloud_project_id")
+def mock_cloud_project_id() -> str: ...
+
+@pytest.fixture(name="create_topic_status")
+def mock_create_topic_status() -> HTTPStatus: ...
+
+@pytest.fixture(name="create_subscription_status")
+def mock_create_subscription_status() -> HTTPStatus: ...
+
+@pytest.fixture(name="list_topics_status")
+def mock_list_topics_status() -> HTTPStatus: ...
+
+@pytest.fixture(name="list_subscriptions_status")
+def mock_list_subscriptions_status() -> HTTPStatus: ...
+
+def setup_mock_list_subscriptions_responses(
+    aioclient_mock: AiohttpClientMocker,
+    cloud_project_id: str,
+    subscriptions: list[tuple[str, str]] | None,
+    list_subscriptions_status: HTTPStatus = ...,
+) -> None: ...
+
+def setup_mock_create_topic_responses(
+    aioclient_mock: AiohttpClientMocker,
+    cloud_project_id: str,
+    create_topic_status: HTTPStatus = ...,
+) -> None: ...
+
+def setup_mock_create_subscription_responses(
+    aioclient_mock: AiohttpClientMocker,
+    cloud_project_id: str,
+    create_subscription_status: HTTPStatus = ...,
+) -> None: ...
+
+@pytest.fixture(autouse=True)
+def mock_pubsub_api_responses(
+    aioclient_mock: AiohttpClientMocker,
+    sdm_managed_topic: bool,
+    user_managed_topics: list[str],
+    subscriptions: list[tuple[str, str]],
+    device_access_project_id: str,
+    cloud_project_id: str,
+    create_topic_status: HTTPStatus,
+    create_subscription_status: HTTPStatus,
+    list_topics_status: HTTPStatus,
+    list_subscriptions_status: HTTPStatus,
+) -> None: ...
+
+@pytest.mark.parametrize("sdm_managed_topic", [True])
+async def test_app_credentials(
+    hass: HomeAssistant,
+    oauth: OAuthFixture,
+) -> None: ...
+
+@pytest.mark.parametrize(
+    ("sdm_managed_topic", "device_access_project_id", "cloud_project_id"),
+    [(True, "new-project-id", "new-cloud-project-id")],
+)
+async def test_config_flow_restart(
+    hass: HomeAssistant,
+    oauth: OAuthFixture,
+) -> None: ...
+
+@pytest.mark.parametrize("sdm_managed_topic", [True])
+async def test_config_flow_wrong_project_id(
+    hass: HomeAssistant,
+    oauth: OAuthFixture,
+) -> None: ...
+
+@pytest.mark.parametrize(
+    ("sdm_managed_topic", "create_subscription_status"),
+    [(True, HTTPStatus.NOT_FOUND)],
+)
+async def test_config_flow_pubsub_configuration_error(
+    hass: HomeAssistant,
+    oauth: OAuthFixture,
+) -> None: ...
+
+@pytest.mark.parametrize(
+    ("sdm_managed_topic", "create_subscription_status"),
+    [(True, HTTPStatus.INTERNAL_SERVER_ERROR)],
+)
+async def test_config_flow_pubsub_subscriber_error(
+    hass: HomeAssistant,
+    oauth: OAuthFixture,
+) -> None: ...
+
+@pytest.mark.parametrize(
+    ("nest_test_config", "sdm_managed_topic", "device_access_project_id"),
+    [(TEST_CONFIG_APP_CREDS, True, "project-id-2")],
+)
+async def test_multiple_config_entries(
+    hass: HomeAssistant,
+    oauth: OAuthFixture,
+    setup_platform: PlatformSetup,
+) -> None: ...
+
+@pytest.mark.parametrize(
+    ("nest_test_config", "sdm_managed_topic"),
+    [(TEST_CONFIG_APP_CREDS, True)],
+)
+async def test_duplicate_config_entries(
+    hass: HomeAssistant,
+    oauth: OAuthFixture,
+    setup_platform: PlatformSetup,
+) -> None: ...
+
+@pytest.mark.parametrize(
+    ("nest_test_config", "sdm_managed_topic"),
+    [(TEST_CONFIG_APP_CREDS, True)],
+)
+async def test_reauth_multiple_config_entries(
+    hass: HomeAssistant,
+    oauth: OAuthFixture,
+    setup_platform: PlatformSetup,
+    config_entry: ConfigEntry,
+) -> None: ...
+
+@pytest.mark.parametrize(
+    ("sdm_managed_topic", "create_subscription_status"),
+    [(True, HTTPStatus.UNAUTHORIZED)],
+)
+async def test_pubsub_subscription_auth_failure(
+    hass: HomeAssistant,
+    oauth: OAuthFixture,
+    mock_subscriber: MagicMock,
+) -> None: ...
+
+@pytest.mark.parametrize(
+    ("nest_test_config", "sdm_managed_topic"),
+    [(TEST_CONFIG_APP_CREDS, True)],
+)
+async def test_pubsub_subscriber_config_entry_reauth(
+    hass: HomeAssistant,
+    oauth: OAuthFixture,
+    setup_platform: PlatformSetup,
+    config_entry: ConfigEntry,
+) -> None: ...
+
+@pytest.mark.parametrize("sdm_managed_topic", [True])
+async def test_config_entry_title_from_home(
+    hass: HomeAssistant,
+    oauth: OAuthFixture,
+    auth: FakeAuth,
+) -> None: ...
+
+@pytest.mark.parametrize("sdm_managed_topic", [True])
+async def test_config_entry_title_multiple_homes(
+    hass: HomeAssistant,
+    oauth: OAuthFixture,
+    auth: FakeAuth,
+) -> None: ...
+
+@pytest.mark.parametrize("sdm_managed_topic", [True])
+async def test_title_failure_fallback(
+    hass: HomeAssistant,
+    oauth: OAuthFixture,
+    mock_subscriber: MagicMock,
+) -> None: ...
+
+@pytest.mark.parametrize("sdm_managed_topic", [True])
+async def test_structure_missing_trait(
+    hass: HomeAssistant,
+    oauth: OAuthFixture,
+    auth: FakeAuth,
+) -> None: ...
+
+@pytest.mark.parametrize("nest_test_config", [NestTestConfig()])
+async def test_dhcp_discovery(
+    hass: HomeAssistant,
+    oauth: OAuthFixture,
+    nest_test_config: NestTestConfig,
+) -> None: ...
+
+@pytest.mark.parametrize("sdm_managed_topic", [True])
+async def test_dhcp_discovery_with_creds(
+    hass: HomeAssistant,
+    oauth: OAuthFixture,
+) -> None: ...
+
+@pytest.mark.parametrize(
+    ("status_code", "error_reason"),
+    [
+        (HTTPStatus.UNAUTHORIZED, "oauth_unauthorized"),
+        (HTTPStatus.NOT_FOUND, "oauth_failed"),
+        (HTTPStatus.INTERNAL_SERVER_ERROR, "oauth_failed"),
+    ],
+)
+async def test_token_error(
+    hass: HomeAssistant,
+    oauth: OAuthFixture,
+    status_code: HTTPStatus,
+    error_reason: str,
+) -> None: ...
+
+@pytest.mark.parametrize(
+    ("user_managed_topics", "subscriptions"),
+    [
+        (
+            [f"projects/{CLOUD_PROJECT_ID}/topics/some-topic-id"],
+            [
+                (
+                    f"projects/{CLOUD_PROJECT_ID}/subscriptions/some-subscription-id",
+                    f"projects/{CLOUD_PROJECT_ID}/topics/some-topic-id",
+                )
+            ],
+        )
+    ],
+)
+async def test_existing_topic_and_subscription(
+    hass: HomeAssistant,
+    oauth: OAuthFixture,
+) -> None: ...
+
+async def test_no_eligible_topics(
+    hass: HomeAssistant,
+    oauth: OAuthFixture,
+) -> None: ...
+
+@pytest.mark.parametrize("list_topics_status", [HTTPStatus.INTERNAL_SERVER_ERROR])
+async def test_list_topics_failure(
+    hass: HomeAssistant,
+    oauth: OAuthFixture,
+) -> None: ...
+
+@pytest.mark.parametrize("create_topic_status", [HTTPStatus.INTERNAL_SERVER_ERROR])
+async def test_create_topic_failed(
+    hass: HomeAssistant,
+    oauth: OAuthFixture,
+    aioclient_mock: AiohttpClientMocker,
+    cloud_project_id: str,
+    subscriptions: list[tuple[str, str]],
+    auth: FakeAuth,
+) -> None: ...
+
+@pytest.mark.parametrize(
+    ("sdm_managed_topic", "list_subscriptions_status"),
+    [(True, HTTPStatus.INTERNAL_SERVER_ERROR)],
+)
+async def test_list_subscriptions_failure(
+    hass: HomeAssistant,
+    oauth: OAuthFixture,
+) -> None: ...

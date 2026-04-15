@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from pandas import CategoricalIndex, DataFrame, Index, IntervalIndex, MultiIndex, Series
@@ -182,4 +181,3 @@ def test_intersection_keep_ea_dtypes(
 ) -> None: ...
 
 def test_union_with_na_when_constructing_dataframe() -> None: ...
-```

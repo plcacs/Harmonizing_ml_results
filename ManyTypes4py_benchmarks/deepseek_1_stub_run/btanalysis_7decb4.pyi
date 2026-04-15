@@ -1,4 +1,3 @@
-```python
 import datetime
 from io import BytesIO
 from pathlib import Path
@@ -64,4 +63,3 @@ def load_trades_from_db(db_url: str, strategy: Optional[str] = None) -> pd.DataF
 def load_trades(source: str, db_url: str, exportfilename: Union[str, Path], no_trades: bool = False, strategy: Optional[str] = None) -> pd.DataFrame: ...
 
 def extract_trades_of_period(dataframe: pd.DataFrame, trades: pd.DataFrame, date_index: bool = False) -> pd.DataFrame: ...
-```

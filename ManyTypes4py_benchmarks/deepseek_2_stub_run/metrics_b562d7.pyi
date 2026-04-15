@@ -1,4 +1,3 @@
-```python
 import time
 from typing import Any, Optional, Union, List, Dict, Callable, TypeVar, overload
 from functools import wraps
@@ -119,4 +118,3 @@ class Timer:
     def find_all(cls) -> List['Timer']: ...
 
 def timer(metric: Timer) -> Callable[[F], F]: ...
-```

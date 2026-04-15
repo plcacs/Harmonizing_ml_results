@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any, overload, TYPE_CHECKING, Union, Optional, Iterator
 import datetime
@@ -113,4 +112,3 @@ class SAS7BDATReader(SASReader):
     def __next__(self) -> DataFrame: ...
     
     def read(self, nrows: Optional[int] = None) -> DataFrame: ...
-```

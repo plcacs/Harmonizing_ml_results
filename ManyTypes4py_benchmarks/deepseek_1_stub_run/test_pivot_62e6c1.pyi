@@ -1,4 +1,3 @@
-```python
 import datetime
 from typing import Any, Literal, Optional, Sequence, Union
 
@@ -276,4 +275,3 @@ tm: Any
 
 # pytest is used for fixtures and parametrize
 pytest: Any
-```

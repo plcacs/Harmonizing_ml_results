@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from datetime import datetime
 from typing import Any
@@ -92,4 +91,3 @@ class DemoBrowsePlayer(AbstractDemoPlayer):
 
 class DemoGroupPlayer(AbstractDemoPlayer):
     _attr_supported_features: MediaPlayerEntityFeature = ...
-```

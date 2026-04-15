@@ -1,4 +1,3 @@
-```python
 from typing import Any
 from typing import List
 
@@ -90,4 +89,3 @@ def test_api_payments_with_invalid_input(
     token_addresses: Any,
     pfs_mock: Any,
 ) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 import ipaddress
@@ -98,4 +97,3 @@ def state_needs_accessory_mode(state: State) -> bool: ...
 def state_changed_event_is_same_state(event: Any) -> bool: ...
 
 def get_min_max(value1: Any, value2: Any) -> Tuple[Any, Any]: ...
-```

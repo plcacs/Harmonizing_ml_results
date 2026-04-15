@@ -1,4 +1,3 @@
-```python
 import torch
 import numpy
 from typing import Any, Dict, List, Optional, Tuple, Union
@@ -70,4 +69,3 @@ class _ElmoBiLm(torch.nn.Module):
         word_inputs: Optional[torch.Tensor] = ...
     ) -> Dict[str, Any]: ...
     def create_cached_cnn_embeddings(self, tokens: List[str]) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from pandas import DataFrame, MultiIndex, Series
@@ -54,4 +53,3 @@ def test_rolling_groupby_with_fixed_forward_many(group_keys: Tuple[int, ...], wi
 def test_unequal_start_end_bounds() -> None: ...
 
 def test_unequal_bounds_to_object() -> None: ...
-```

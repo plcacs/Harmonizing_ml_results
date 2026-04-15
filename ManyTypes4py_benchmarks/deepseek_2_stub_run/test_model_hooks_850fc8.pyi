@@ -1,4 +1,3 @@
-```python
 from pathlib import Path
 from typing import Any, Dict, List
 import pytest
@@ -130,4 +129,3 @@ class TestDuplicateHooksInConfigs:
     def models(self) -> Dict[str, Any]: ...
     
     def test_run_duplicate_hook_defs(self, project: Any) -> None: ...
-```

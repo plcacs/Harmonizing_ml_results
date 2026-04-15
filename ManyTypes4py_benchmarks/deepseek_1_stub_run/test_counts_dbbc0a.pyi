@@ -1,4 +1,3 @@
-```python
 from collections.abc import Iterator
 from contextlib import AbstractContextManager
 from datetime import datetime, timedelta
@@ -204,4 +203,3 @@ class TestRealmActiveHumans(AnalyticsTestCase):
 
 class GetLastIdFromServerTest(ZulipTestCase):
     def test_get_last_id_from_server_ignores_null(self) -> None: ...
-```

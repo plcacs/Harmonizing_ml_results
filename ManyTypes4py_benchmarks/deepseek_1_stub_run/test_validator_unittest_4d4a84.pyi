@@ -1,4 +1,3 @@
-```python
 import random
 from typing import Any, List, Tuple
 
@@ -129,4 +128,3 @@ def test_compute_subscribed_subnets_random_2(spec: Any) -> None: ...
 @spec_test
 @single_phase
 def test_compute_subscribed_subnets_random_3(spec: Any) -> None: ...
-```

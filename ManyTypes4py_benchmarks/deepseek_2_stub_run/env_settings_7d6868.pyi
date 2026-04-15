@@ -1,4 +1,3 @@
-```python
 import os
 from pathlib import Path
 from typing import (
@@ -130,4 +129,3 @@ def find_case_path(
     file_name: str,
     case_sensitive: bool,
 ) -> Optional[Path]: ...
-```

@@ -1,4 +1,3 @@
-```python
 import sys
 from datetime import datetime
 from typing import Any, Dict, List, Optional, Tuple, Union
@@ -50,4 +49,3 @@ class HyperOptimizer:
     def get_optimizer(self, cpu_count: int, random_state: Any, initial_points: int, model_queue_size: int) -> Optimizer: ...
     def advise_and_trim(self, data: Dict[str, DataFrame]) -> Dict[str, DataFrame]: ...
     def prepare_hyperopt_data(self) -> None: ...
-```

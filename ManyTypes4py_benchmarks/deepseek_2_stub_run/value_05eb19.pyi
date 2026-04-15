@@ -1,4 +1,3 @@
-```python
 import re
 from typing import Optional, Tuple, Iterator, List, Any, Callable
 from pathlib import Path
@@ -129,4 +128,3 @@ def create_from_access_path(inference_state: Any, access_path: Any) -> Any: ...
 @_normalize_create_args
 @inference_state_function_cache()
 def create_cached_compiled_value(inference_state: Any, access_handle: Any, parent_context: Optional[Any] = ...) -> Any: ...
-```

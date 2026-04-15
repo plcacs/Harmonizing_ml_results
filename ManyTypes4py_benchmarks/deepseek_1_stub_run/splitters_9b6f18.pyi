@@ -1,4 +1,3 @@
-```python
 import datetime
 from typing import Any, Callable, Iterable, List, Optional, Sequence, Tuple, Union
 import numpy as np
@@ -40,4 +39,3 @@ def stability_curve_time_space_splitter(train_data: pd.DataFrame, training_time_
 
 @curry
 def forward_stability_curve_time_splitter(train_data: pd.DataFrame, training_time_start: Union[datetime.datetime, str], training_time_end: Union[datetime.datetime, str], time_column: str, holdout_gap: datetime.timedelta = datetime.timedelta(days=0), holdout_size: datetime.timedelta = datetime.timedelta(days=90), step: datetime.timedelta = datetime.timedelta(days=90), move_training_start_with_steps: bool = True) -> SplitterReturnType: ...
-```

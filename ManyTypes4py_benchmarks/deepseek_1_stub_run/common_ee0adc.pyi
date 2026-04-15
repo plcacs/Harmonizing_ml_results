@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import TYPE_CHECKING, Any, overload
 import numpy as np
@@ -143,4 +142,3 @@ def _check_plot_works(
 def _gen_default_plot(f: Any, fig: Any, **kwargs: Any) -> Any: ...
 
 def _gen_two_subplots(f: Any, fig: Any, **kwargs: Any) -> Any: ...
-```

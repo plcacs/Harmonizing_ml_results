@@ -1,4 +1,3 @@
-```python
 import collections.abc
 import queue
 import subprocess
@@ -72,4 +71,3 @@ class AccessHandle:
     def __getattr__(self, name: str) -> Any: ...
     def _workaround(self, name: str, *args: Any, **kwargs: Any) -> Any: ...
     def _cached_results(self, name: str, *args: Any, **kwargs: Any) -> Any: ...
-```

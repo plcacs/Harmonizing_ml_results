@@ -1,4 +1,3 @@
-```python
 import datetime
 from typing import Any, Optional, Union, overload
 
@@ -138,4 +137,3 @@ class TestTSPlot:
     def test_check_xticks_rot_use_idx(self) -> None: ...
     def test_check_xticks_rot_sharex(self) -> None: ...
     def test_pickle_fig(self, temp_file: Any, frame_or_series: Any, idx: Any) -> None: ...
-```

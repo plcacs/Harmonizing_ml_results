@@ -1,4 +1,3 @@
-```python
 import _typeshed as _typeshed
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -176,4 +175,3 @@ def funding_rate_history_hourly() -> list[dict[str, Any]]: ...
 def funding_rate_history_octohourly() -> list[dict[str, Any]]: ...
 @pytest.fixture(scope="function")
 def leverage_tiers() -> dict[str, list[dict[str, Any]]]: ...
-```

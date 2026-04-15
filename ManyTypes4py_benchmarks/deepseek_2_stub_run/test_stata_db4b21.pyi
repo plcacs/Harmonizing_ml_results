@@ -1,4 +1,3 @@
-```python
 import datetime
 import io
 from typing import Any, BinaryIO, Dict, List, Mapping, Optional, Sequence, Tuple, Union

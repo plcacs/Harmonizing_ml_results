@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 
 from collections.abc import Callable, Mapping
@@ -130,4 +129,3 @@ class Stream:
 def _should_retry() -> bool: ...
 
 STREAM_OPTIONS_SCHEMA: vol.Schema = ...
-```

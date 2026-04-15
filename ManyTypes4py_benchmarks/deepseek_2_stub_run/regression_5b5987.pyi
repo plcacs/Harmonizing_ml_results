@@ -1,4 +1,3 @@
-```python
 from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 import numpy as np
 import pandas as pd
@@ -82,4 +81,3 @@ def elasticnet_regression_learner(
     weight_column: Optional[str] = ...,
     encode_extra_cols: bool = ...
 ) -> LearnerReturnType: ...
-```

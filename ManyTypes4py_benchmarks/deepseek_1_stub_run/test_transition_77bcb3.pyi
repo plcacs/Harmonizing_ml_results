@@ -1,4 +1,3 @@
-```python
 import random
 from typing import Any, Iterator, Tuple, Union, Callable, Optional, List
 
@@ -43,4 +42,3 @@ def test_transition_with_no_attestations_until_after_fork(state: Any, fork_epoch
 
 @with_fork_metas([ForkMeta(pre_fork_name=pre, post_fork_name=post, fork_epoch=2) for pre, post in ALL_PRE_POST_FORKS])
 def test_non_empty_historical_roots(state: Any, fork_epoch: Any, spec: Any, post_spec: Any, pre_tag: Any, post_tag: Any) -> Iterator[Tuple[str, Any]]: ...
-```

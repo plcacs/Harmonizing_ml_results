@@ -1,4 +1,3 @@
-```python
 import pytest
 from _pytest.fixtures import FixtureRequest
 from io import StringIO
@@ -92,4 +91,3 @@ def test_short_single_line(all_parsers: Any) -> None: ...
 def test_short_multi_line(all_parsers: Any) -> None: ...
 
 def test_read_seek(all_parsers: Any) -> None: ...
-```

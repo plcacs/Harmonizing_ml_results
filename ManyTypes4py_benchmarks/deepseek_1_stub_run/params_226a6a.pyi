@@ -1,4 +1,3 @@
-```python
 import sys
 from collections.abc import MutableMapping
 from os import PathLike
@@ -79,4 +78,3 @@ def pop_choice(params: Dict[str, Any], key: str, choices: List[Any], default_to_
 def _replace_none(params: Any) -> Any: ...
 
 def remove_keys_from_params(params: Params, keys: List[str] = ...) -> None: ...
-```

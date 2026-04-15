@@ -1,4 +1,3 @@
-```python
 import builtins
 import re
 from email.headerregistry import Address, AddressHeader
@@ -69,4 +68,3 @@ class RateLimitedRealmMirror:
     def rules(self) -> Any: ...
 
 def rate_limit_mirror_by_realm(recipient_realm: Realm) -> None: ...
-```

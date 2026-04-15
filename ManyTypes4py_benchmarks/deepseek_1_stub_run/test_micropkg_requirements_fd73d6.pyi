@@ -1,4 +1,3 @@
-```python
 import pytest
 from click.testing import CliRunner
 from pathlib import Path
@@ -77,4 +76,3 @@ class TestMicropkgRequirements:
         fake_metadata: Any, 
         fake_package_path: Path
     ) -> None: ...
-```

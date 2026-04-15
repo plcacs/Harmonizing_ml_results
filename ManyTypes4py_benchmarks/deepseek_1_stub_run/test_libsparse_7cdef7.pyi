@@ -1,4 +1,3 @@
-```python
 import numpy as np
 from typing import Any, List, Tuple
 
@@ -114,4 +113,3 @@ def sparse_floordiv_float64(
     yindex: Any, 
     yfill: float
 ) -> Tuple[np.ndarray, Any, float]: ...
-```

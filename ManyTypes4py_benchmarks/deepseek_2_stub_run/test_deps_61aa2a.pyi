@@ -1,4 +1,3 @@
-```python
 import unittest
 from argparse import Namespace
 from typing import Any
@@ -57,4 +56,3 @@ class TestPackageSpec(unittest.TestCase):
     def test_dependency_resolution_allow_prerelease(self) -> None: ...
     def test_validation_error_when_version_is_missing_from_package_config(self) -> None: ...
     def test_validation_error_when_namespace_is_missing_from_package_config(self) -> None: ...
-```

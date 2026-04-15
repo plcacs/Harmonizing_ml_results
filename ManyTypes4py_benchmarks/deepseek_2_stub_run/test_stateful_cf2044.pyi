@@ -1,4 +1,3 @@
-```python
 import pytest
 from _pytest.outcomes import Failed, Skipped
 from hypothesis import HealthCheck, Phase, __version__, reproduce_failure, seed, settings as Settings, strategies as st
@@ -174,4 +173,3 @@ TestLotsOfEntropyPerStepMachine: Type[LotsOfEntropyPerStepMachine.TestCase] = ..
 
 def test_flatmap() -> None: ...
 def test_use_bundle_within_other_strategies() -> None: ...
-```

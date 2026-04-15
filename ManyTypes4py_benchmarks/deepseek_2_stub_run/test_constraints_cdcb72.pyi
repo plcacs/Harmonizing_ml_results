@@ -1,4 +1,3 @@
-```python
 import pytest
 from typing import Any, List, Tuple, Dict, Union
 
@@ -114,4 +113,3 @@ class TestIncrementalForeignKeyConstraint:
     @pytest.fixture(scope='class')
     def models(self) -> Dict[str, str]: ...
     def test_incremental_foreign_key_constraint(self, project: Any) -> None: ...
-```

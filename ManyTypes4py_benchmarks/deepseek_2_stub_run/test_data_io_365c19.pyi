@@ -1,4 +1,3 @@
-```python
 from typing import Any, Iterable, List, Optional, Tuple, Union
 import numpy as np
 import torch
@@ -143,4 +142,3 @@ def get_training_data_iters(
 def create_target_and_shifted_label_sequences(
     target_and_label: torch.Tensor,
 ) -> Tuple[torch.Tensor, torch.Tensor]: ...
-```

@@ -1,4 +1,3 @@
-```python
 from collections.abc import Iterable
 from email.headerregistry import Address
 from typing import Any, Optional, Union
@@ -50,4 +49,3 @@ def get_owned_bot_dicts(user_profile: UserProfile, include_all_realm_bots_if_adm
 def generate_password_reset_url(user_profile: UserProfile, token_generator: PasswordResetTokenGenerator) -> str: ...
 
 def do_send_password_reset_email(email: str, realm: Realm, user_profile: Optional[UserProfile], *, token_generator: PasswordResetTokenGenerator = ..., request: Optional[HttpRequest] = None) -> None: ...
-```

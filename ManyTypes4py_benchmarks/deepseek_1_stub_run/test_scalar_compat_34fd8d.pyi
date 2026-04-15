@@ -1,4 +1,3 @@
-```python
 import datetime
 from typing import Any, List, Optional, Union
 import numpy as np
@@ -77,4 +76,3 @@ def test_against_scalar_parametric(
     dt: datetime.datetime,
     n: int
 ) -> None: ...
-```

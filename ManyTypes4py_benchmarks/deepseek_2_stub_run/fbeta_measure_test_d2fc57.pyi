@@ -1,4 +1,3 @@
-```python
 from typing import Any, Dict, List, Optional, Tuple, Union
 import torch
 from allennlp.common.testing import multi_device
@@ -79,4 +78,3 @@ def multiple_runs(
     desired_values: Dict[str, Any],
     exact: bool = True
 ) -> None: ...
-```

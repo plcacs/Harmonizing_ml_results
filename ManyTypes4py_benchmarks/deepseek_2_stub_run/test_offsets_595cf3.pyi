@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any, ClassVar, Dict, List, Tuple, Union
 import numpy as np
@@ -152,4 +151,3 @@ def test_dateoffset_operations_on_dataframes(performance_warning: Any) -> None: 
 def test_is_yqm_start_end() -> None: ...
 
 def test_multiply_dateoffset_typeerror(left: Any, right: Any) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 from typing import Any, Callable, Dict, Iterable, List, Mapping, Optional, Set, Tuple, Type, TypeVar, Union
 import torch
 from allennlp.common import Lazy, Params, Registrable
@@ -79,4 +78,3 @@ class Baz(FromParams):
     @property
     def bar(self) -> Any: ...
     def __init__(self, bar: Any) -> None: ...
-```

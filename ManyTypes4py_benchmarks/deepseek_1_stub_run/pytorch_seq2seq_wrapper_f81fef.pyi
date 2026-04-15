@@ -1,4 +1,3 @@
-```python
 import torch
 from typing import Optional, Tuple, Union, List, Any
 from torch.nn.utils.rnn import PackedSequence
@@ -88,4 +87,3 @@ class StackedBidirectionalLstmSeq2SeqEncoder(PytorchSeq2SeqWrapper):
         use_highway: bool = ...,
         stateful: bool = ...
     ) -> None: ...
-```

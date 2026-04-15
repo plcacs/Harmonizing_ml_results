@@ -1,4 +1,3 @@
-```python
 """The bluetooth integration."""
 
 from __future__ import annotations
@@ -94,4 +93,3 @@ class HomeAssistantBluetoothManager(BluetoothManager):
     
     @hass_callback
     def _handle_config_entry_removed(self, entry: Any) -> None: ...
-```

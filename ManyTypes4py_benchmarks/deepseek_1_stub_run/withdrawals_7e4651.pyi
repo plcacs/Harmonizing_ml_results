@@ -1,4 +1,3 @@
-```python
 from typing import Any, Tuple, List, Iterator, Optional
 from eth2spec.test.helpers.forks import is_post_electra
 
@@ -95,4 +94,3 @@ def run_withdrawals_processing(
     pending_withdrawal_requests: Any = None,
     valid: bool = True
 ) -> Iterator[Tuple[str, Optional[Any]]]: ...
-```

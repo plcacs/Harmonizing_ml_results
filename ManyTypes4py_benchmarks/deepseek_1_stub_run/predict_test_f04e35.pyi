@@ -1,4 +1,3 @@
-```python
 import argparse
 import pathlib
 import sys
@@ -20,4 +19,3 @@ class TestPredict:
     def test_can_specify_extra_args(self) -> None: ...
     def test_other_modules(self) -> None: ...
     def test_alternative_file_formats(self) -> None: ...
-```

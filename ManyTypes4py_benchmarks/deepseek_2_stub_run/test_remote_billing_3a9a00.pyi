@@ -1,4 +1,3 @@
-```python
 from datetime import timedelta
 from typing import TYPE_CHECKING, Any, Optional
 from unittest.mock import Mock
@@ -129,4 +128,3 @@ class LegacyServerLoginTest(RemoteServerTestCase):
 
 class TestGenerateDeactivationLink(BouncerTestCase):
     def test_generate_deactivation_link(self) -> None: ...
-```

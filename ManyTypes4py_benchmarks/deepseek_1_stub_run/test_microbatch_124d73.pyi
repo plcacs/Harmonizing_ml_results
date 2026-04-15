@@ -1,4 +1,3 @@
-```python
 import pytest
 from pytest_mock import MockerFixture
 from dbt.events.types import (
@@ -191,4 +190,3 @@ class TestCanSilenceInvalidConcurrentBatchesConfigWarning(BaseMicrobatchTest):
     @pytest.fixture
     def event_catcher(self) -> Any: ...
     def test_microbatch(self, project: Any, event_catcher: Any) -> None: ...
-```

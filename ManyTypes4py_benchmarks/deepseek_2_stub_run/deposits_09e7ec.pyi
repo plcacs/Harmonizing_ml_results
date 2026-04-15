@@ -1,4 +1,3 @@
-```python
 from typing import Any, List, Tuple, Iterator
 from random import Random
 
@@ -123,4 +122,3 @@ def run_pending_deposit_applying(
     validator_index: int,
     effective: bool = ...
 ) -> Iterator[Tuple[str, Any]]: ...
-```

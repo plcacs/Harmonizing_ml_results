@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import asyncio
 import os
@@ -111,4 +110,3 @@ def start_services(background: bool = ...) -> None: ...
 
 @services_app.command(aliases=['stop'])
 async def stop_services() -> None: ...
-```

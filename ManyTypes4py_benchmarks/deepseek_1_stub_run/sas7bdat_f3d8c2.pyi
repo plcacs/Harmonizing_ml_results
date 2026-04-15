@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from datetime import datetime
 from typing import (
@@ -105,4 +104,3 @@ class SAS7BDATReader(SASReader):
     def __iter__(self) -> Iterator[DataFrame]: ...
     
     def read(self, nrows: int | None = None) -> DataFrame: ...
-```

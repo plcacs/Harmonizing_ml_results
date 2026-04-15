@@ -1,4 +1,3 @@
-```python
 import threading
 import time
 from typing import Any, Callable, Iterable, Optional, Tuple, List, Generator
@@ -68,4 +67,3 @@ def get_errors_from_dynamodb(temp_dirname: str) -> Optional[str]: ...
 def find_skips_in_seq(numbers: Iterable[int]) -> List[Tuple[int, int]]: ...
 
 def test_websocket_redployment_does_not_lose_messages(smoke_test_app_ws: SmokeTestApplication) -> None: ...
-```

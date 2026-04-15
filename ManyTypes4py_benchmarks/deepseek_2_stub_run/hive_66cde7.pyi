@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import logging
 from typing import Any, TYPE_CHECKING
@@ -105,4 +104,3 @@ class HiveEngineSpec(PrestoEngineSpec):
 
     @classmethod
     def get_view_names(cls, database: Database, inspector: Inspector, schema: str | None) -> set[str]: ...
-```

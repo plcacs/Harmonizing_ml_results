@@ -1,4 +1,3 @@
-```python
 import pendulum
 from datetime import timedelta
 from typing import Any, Dict, List, Literal
@@ -311,4 +310,3 @@ async def test_composite_triggering_events_are_available_in_templates(
     tell_me_about_the_culprit: Automation,
     start_of_test: Any,
 ) -> Any: ...
-```

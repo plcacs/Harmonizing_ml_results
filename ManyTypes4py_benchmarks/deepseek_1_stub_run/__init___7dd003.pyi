@@ -1,4 +1,3 @@
-```python
 import io
 import logging
 from collections.abc import Callable, Iterator
@@ -125,4 +124,3 @@ def upload_export_tarball(
 ) -> str: ...
 
 def delete_export_tarball(export_path: str) -> None: ...
-```

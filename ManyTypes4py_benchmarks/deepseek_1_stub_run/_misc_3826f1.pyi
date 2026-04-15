@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import TYPE_CHECKING, Any
 from contextlib import contextmanager
@@ -92,4 +91,3 @@ class _Options(dict[str, Any]):
     def use(self, key: str, value: Any) -> Generator[_Options, None, None]: ...
 
 plot_params: _Options = ...
-```

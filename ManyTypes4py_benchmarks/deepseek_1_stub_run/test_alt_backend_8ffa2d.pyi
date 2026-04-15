@@ -1,4 +1,3 @@
-```python
 import sys
 from contextlib import contextmanager
 from typing import Any, Dict, Generator, Iterable, List, Optional, Union
@@ -184,4 +183,3 @@ def test_notes_incorrect_verification(provider: type) -> None: ...
 def test_invalid_provider_kw() -> None: ...
 
 def test_available_providers_deprecation() -> None: ...
-```

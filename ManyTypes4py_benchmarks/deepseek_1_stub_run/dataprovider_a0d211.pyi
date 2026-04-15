@@ -1,4 +1,3 @@
-```python
 from collections import deque
 from datetime import datetime
 from typing import Any, Dict, List, Optional, Tuple, Union
@@ -119,4 +118,3 @@ class DataProvider:
     def ticker(self, pair: str) -> Dict[str, Any]: ...
     def orderbook(self, pair: str, maximum: int) -> OrderBook: ...
     def send_msg(self, message: str, *, always_send: bool = ...) -> None: ...
-```

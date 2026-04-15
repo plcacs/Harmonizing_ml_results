@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from pandas import Categorical, CategoricalIndex, DataFrame, Index, Series
@@ -41,4 +40,3 @@ def recode_for_categories(codes: Any, old: Any, new: Any) -> Any: ...
 
 pytest: Any = ...
 PY311: bool = ...
-```

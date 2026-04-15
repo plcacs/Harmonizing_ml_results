@@ -1,4 +1,3 @@
-```python
 import io
 from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import Any, Optional, Union, List, Dict, BinaryIO, overload
@@ -80,4 +79,3 @@ class TestS3Bucket:
     
     @pytest.fixture
     def s3_bucket_with_similar_objects(self, s3_bucket_with_objects: Any, objects_in_folder: Any) -> S3Bucket: ...
-```

@@ -1,4 +1,3 @@
-```python
 import decimal
 from typing import Any, Literal, overload
 from typing_extensions import TypeAlias
@@ -75,4 +74,3 @@ def to_numeric(
 ) -> Any: ...
 
 __all__: list[str] = ...
-```

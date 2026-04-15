@@ -1,4 +1,3 @@
-```python
 from typing import Any, Dict, List, Optional, Union
 from unittest.mock import Mock
 import dbt.deps
@@ -68,4 +67,3 @@ class TestPackageSpec(unittest.TestCase):
     def test_dependency_resolution_allow_prerelease(self) -> None: ...
     def test_validation_error_when_version_is_missing_from_package_config(self) -> None: ...
     def test_validation_error_when_namespace_is_missing_from_package_config(self) -> None: ...
-```

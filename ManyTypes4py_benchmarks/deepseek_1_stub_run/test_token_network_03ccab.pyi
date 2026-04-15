@@ -1,4 +1,3 @@
-```python
 import pytest
 from typing import Any
 
@@ -47,4 +46,3 @@ def test_token_network_actions_at_pruned_blocks(
 def test_concurrent_set_total_deposit(
     token_network_proxy: Any
 ) -> None: ...
-```

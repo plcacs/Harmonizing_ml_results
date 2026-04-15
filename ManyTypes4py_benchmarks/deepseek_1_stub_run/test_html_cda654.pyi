@@ -1,4 +1,3 @@
-```python
 from _typeshed import Incomplete
 from collections.abc import Iterator
 from functools import partial
@@ -238,4 +237,3 @@ class TestReadHtml:
     def test_invalid_dtype_backend(self) -> None: ...
     
     def test_style_tag(self, flavor_read_html: Any) -> None: ...
-```

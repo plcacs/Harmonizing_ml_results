@@ -1,4 +1,3 @@
-```python
 from datetime import datetime, timedelta
 from typing import Any, Literal, overload
 from pandas import Categorical, CategoricalIndex, DataFrame, Index, MultiIndex, Series, Timestamp, Timedelta
@@ -79,4 +78,3 @@ class TestDataFrameSelectReindex:
     @pytest.mark.parametrize("data", ["A", "B"])
     def test_reindex_not_category(self, klass: Any, data: str) -> None: ...
     def test_invalid_method(self) -> None: ...
-```

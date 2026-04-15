@@ -1,4 +1,3 @@
-```python
 from typing import Dict, Union, Any
 import pytest
 from dbt.cli.main import dbtRunner, dbtRunnerResult
@@ -35,4 +34,3 @@ class TestWarnErrorOptionsFromProject:
 class TestEmptyWarnError:
     def models(self) -> Dict[str, str]: ...
     def test_project_flags(self, project: Any) -> None: ...
-```

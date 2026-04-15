@@ -1,4 +1,3 @@
-```python
 from typing import Any, List
 from http import HTTPStatus
 import gevent
@@ -91,4 +90,3 @@ def test_api_channel_deposit_limit(
     token_addresses: Any,
     reveal_timeout: Any
 ) -> None: ...
-```

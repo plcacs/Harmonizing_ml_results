@@ -1,4 +1,3 @@
-```python
 import datetime
 from typing import Any, List, Optional, Union
 import numpy as np
@@ -35,4 +34,3 @@ class TestDatetimeIndexOps:
     def test_dti_is_year_quarter_start_freq_business_month_begin(self, freq: Union[str, pd.offsets.BusinessMonthBegin]) -> None: ...
 
 def test_against_scalar_parametric(freq: str, dt: datetime.datetime, n: int) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 import functools
 import threading
 from datetime import datetime
@@ -100,4 +99,3 @@ class RunTask(CompileTask):
     def get_node_selector(self) -> ResourceTypeSelector: ...
     def get_runner_type(self, node: ModelNode) -> Type[BaseRunner]: ...
     def task_end_messages(self, results: List[RunResult]) -> None: ...
-```

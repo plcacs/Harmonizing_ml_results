@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 
 import logging
@@ -133,4 +132,3 @@ def package(ctx: click.Context, single_file: bool, stage: str, merge_template: O
 def generate_pipeline(ctx: click.Context, pipeline_version: str, codebuild_image: Optional[str], source: str, buildspec_file: Optional[str], filename: str) -> None: ...
 
 def main() -> int: ...
-```

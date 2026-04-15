@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import (
     Any,
@@ -173,4 +172,3 @@ class ArrowStringArray(ObjectStringArrayMixin, ArrowExtensionArray, BaseStringAr
 
 class ArrowStringArrayNumpySemantics(ArrowStringArray):
     _na_value: Any = ...
-```

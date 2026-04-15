@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 
 import contextlib
@@ -215,4 +214,3 @@ class MusicCastMediaPlayer(MusicCastDeviceEntity, MediaPlayerEntity):
     
     @callback
     def async_schedule_check_client_list(self) -> None: ...
-```

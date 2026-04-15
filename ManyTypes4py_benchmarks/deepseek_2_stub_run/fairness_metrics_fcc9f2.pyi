@@ -1,4 +1,3 @@
-```python
 from typing import Any, Callable, Dict, Optional, Union
 import torch
 from allennlp.training.metrics.metric import Metric
@@ -85,4 +84,3 @@ class Sufficiency(Metric):
     def get_metric(self, reset: bool = False) -> Dict[int, Dict[int, torch.Tensor]]: ...
     
     def reset(self) -> None: ...
-```

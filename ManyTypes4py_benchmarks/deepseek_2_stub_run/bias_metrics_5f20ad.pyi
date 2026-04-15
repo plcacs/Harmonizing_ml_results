@@ -1,4 +1,3 @@
-```python
 from typing import Optional, Dict, Union, List, Any
 import torch
 
@@ -76,4 +75,3 @@ class AssociationWithoutGroundTruth:
     def _all_pmi_terms(self) -> torch.Tensor: ...
     
     def detach_tensors(self, *args: Any) -> Any: ...
-```

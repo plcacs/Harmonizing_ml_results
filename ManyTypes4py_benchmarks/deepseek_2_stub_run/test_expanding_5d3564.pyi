@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from pandas import DataFrame, DatetimeIndex, Index, MultiIndex, Series
@@ -83,4 +82,3 @@ def test_numeric_only_corr_cov_frame(kernel: Any, numeric_only: Any, use_arg: An
 def test_numeric_only_series(arithmetic_win_operators: Any, numeric_only: Any, dtype: Any) -> None: ...
 
 def test_numeric_only_corr_cov_series(kernel: Any, use_arg: Any, numeric_only: Any, dtype: Any) -> None: ...
-```

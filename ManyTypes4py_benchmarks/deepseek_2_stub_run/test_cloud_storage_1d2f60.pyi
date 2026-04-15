@@ -1,4 +1,3 @@
-```python
 import os
 from typing import Any, Optional, Union, List, BinaryIO, IO
 from pathlib import Path, PurePosixPath
@@ -255,4 +254,3 @@ class TestGcsBucket:
         gcs_bucket_with_bucket_folder: GcsBucket,
         pandas_dataframe: pd.DataFrame
     ) -> None: ...
-```

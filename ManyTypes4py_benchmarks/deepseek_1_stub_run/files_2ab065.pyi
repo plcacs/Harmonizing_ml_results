@@ -1,4 +1,3 @@
-```python
 import os
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional, Union
@@ -181,4 +180,3 @@ class FixtureSourceFile(BaseSourceFile):
     def add_unit_test(self, value: Any) -> None: ...
 
 AnySourceFile = Union[SchemaSourceFile, SourceFile, FixtureSourceFile]
-```

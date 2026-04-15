@@ -1,4 +1,3 @@
-```python
 from _typeshed import Incomplete
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -33,4 +32,3 @@ def test_calculate_cagr(start: Incomplete, end: Incomplete, days: Incomplete, ex
 def test_calculate_max_drawdown2() -> None: ...
 def test_calculate_max_drawdown_abs(profits: Incomplete, relative: Incomplete, highd: Incomplete, lowdays: Incomplete, result: Incomplete, result_rel: Incomplete) -> None: ...
 def test_load_file_from_zip(tmp_path: Incomplete) -> None: ...
-```

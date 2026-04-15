@@ -1,4 +1,3 @@
-```python
 import socket
 import ssl
 from typing import Any, Awaitable, Callable, Dict, List, Optional, Set, Tuple, Type, Union
@@ -66,4 +65,3 @@ class _ProxyAdapter(httputil.HTTPMessageDelegate):
     def _cleanup(self) -> None: ...
 
 HTTPRequest: Type[httputil.HTTPServerRequest] = ...
-```

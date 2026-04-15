@@ -1,4 +1,3 @@
-```python
 """Type stubs for template_entity_f0503d."""
 
 from __future__ import annotations
@@ -158,4 +157,3 @@ class TemplateEntity(Entity):
         run_variables: _VarsType | None = None,
         context: Context | None = None,
     ) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 from typing import Any
 from pandas import DataFrame, Index, MultiIndex, Series
 import numpy as np
@@ -47,4 +46,3 @@ class TestMultiIndexConcat:
     @pytest.mark.parametrize('dtype', ['Int8', 'Int16', 'Int32'])
     def test_concat_index_find_common(self, dtype: Any) -> None: ...
     def test_concat_axis_1_sort_false_rangeindex(self, using_infer_string: Any) -> None: ...
-```

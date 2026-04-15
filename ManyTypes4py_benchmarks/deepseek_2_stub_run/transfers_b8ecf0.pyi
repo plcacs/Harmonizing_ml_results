@@ -1,4 +1,3 @@
-```python
 from dataclasses import dataclass, field
 from typing import Any, ClassVar
 from raiden.messages.abstract import SignedRetrieableMessage
@@ -110,4 +109,3 @@ class LockExpired(EnvelopeMessage):
     
     @property
     def message_hash(self) -> Any: ...
-```

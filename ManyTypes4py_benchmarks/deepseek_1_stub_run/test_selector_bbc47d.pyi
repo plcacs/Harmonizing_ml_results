@@ -1,4 +1,3 @@
-```python
 from enum import Enum
 from typing import Any, Dict, List, Optional, Tuple, Union
 import pytest
@@ -266,4 +265,3 @@ def test_floor_selector_schema(
     valid_selections: Tuple[Any, ...],
     invalid_selections: Tuple[Any, ...]
 ) -> None: ...
-```

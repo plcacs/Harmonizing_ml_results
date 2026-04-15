@@ -1,4 +1,3 @@
-```python
 import typing as t
 from ipaddress import IPv4Address, IPv6Address
 from mimesis.enums import DSNType, IPv4Purpose, Locale, MimeType, PortRange, TLDType, URLScheme
@@ -74,4 +73,3 @@ class Internet(BaseProvider):
     def special_ip_v4_object(self, purpose: t.Optional[IPv4Purpose] = None) -> IPv4Address: ...
     
     def special_ip_v4(self, purpose: t.Optional[IPv4Purpose] = None) -> str: ...
-```

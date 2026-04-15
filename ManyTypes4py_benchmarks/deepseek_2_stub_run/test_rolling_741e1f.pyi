@@ -1,4 +1,3 @@
-```python
 from datetime import datetime, timedelta
 from typing import Any, Literal, overload, Union
 from pandas import DataFrame, DatetimeIndex, MultiIndex, Series, Timedelta, Timestamp

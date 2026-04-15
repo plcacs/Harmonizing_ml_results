@@ -1,4 +1,3 @@
-```python
 import click
 import io
 import types
@@ -227,4 +226,3 @@ class test_AppCommand:
     def test_from_handler_no_params(self, *, command: AppCommand) -> None: ...
 
 DEFAULT_LOGLEVEL: Any = ...
-```

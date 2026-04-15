@@ -1,4 +1,3 @@
-```python
 from _typeshed import Incomplete
 from typing import Any, Literal, overload
 
@@ -62,4 +61,3 @@ def test_ffill_bfill_limit_area(data: Any, expected_data: Any, method: Literal["
 @overload
 def test_ffill_bfill_limit_area(data: Any, expected_data: Any, method: Literal["bfill"], kwargs: dict[str, Any]) -> None: ...
 def test_ffill_bfill_limit_area(data: Any, expected_data: Any, method: Any, kwargs: Any) -> None: ...
-```

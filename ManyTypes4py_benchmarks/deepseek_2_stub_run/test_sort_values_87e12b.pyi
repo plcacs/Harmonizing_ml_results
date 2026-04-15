@@ -1,4 +1,3 @@
-```python
 import pytest
 import pandas as pd
 import numpy as np
@@ -85,4 +84,3 @@ class TestSortValuesLevelAsStr:
         self, 
         ascending: bool
     ) -> None: ...
-```

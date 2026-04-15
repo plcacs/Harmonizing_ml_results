@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from abc import abstractmethod
 from typing import Any
@@ -346,4 +345,3 @@ class XiaomiFan1C(XiaomiFanMiot):
     def _handle_coordinator_update(self) -> None: ...
     
     async def async_set_percentage(self, percentage: Any) -> None: ...
-```

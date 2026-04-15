@@ -1,4 +1,3 @@
-```python
 from typing import Any, Optional, Dict, Mapping, cast
 from faust.exceptions import ImproperlyConfigured
 from faust import web
@@ -77,4 +76,3 @@ class PrometheusMonitor(Monitor):
     def track_tp_end_offset(self, tp: TP, offset: int) -> None: ...
     def on_web_request_end(self, app: AppT, request: web.Request, response: web.Response, state: Any, *, view: Any = None) -> None: ...
     def expose_metrics(self) -> None: ...
-```

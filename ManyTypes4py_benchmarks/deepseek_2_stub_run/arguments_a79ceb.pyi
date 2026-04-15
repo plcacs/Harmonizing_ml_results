@@ -1,4 +1,3 @@
-```python
 import re
 from typing import Any, Iterator, Optional, Tuple, Union, overload
 from parso.python import tree
@@ -81,4 +80,3 @@ def _star_star_dict(
     input_node: Any, 
     funcdef: Any
 ) -> dict[Any, Any]: ...
-```

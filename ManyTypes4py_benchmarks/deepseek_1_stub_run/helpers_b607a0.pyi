@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from collections.abc import Callable
 from typing import Any
@@ -93,4 +92,3 @@ def get_value_state_schema(value: ZwaveValue | ConfigurationValue) -> vol.Schema
 def get_device_info(driver: Driver, node: ZwaveNode) -> DeviceInfo: ...
 
 def get_network_identifier_for_notification(hass: HomeAssistant, config_entry: ConfigEntry, controller: Controller) -> str: ...
-```

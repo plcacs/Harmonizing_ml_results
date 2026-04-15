@@ -1,4 +1,3 @@
-```python
 import pytest
 from typing import Any, Iterator, Tuple, Type, Union
 from eth._utils.address import force_bytes_to_address
@@ -64,4 +63,3 @@ def test_chaindb_persist_unexecuted_block(chain: Any, chain_without_block_valida
 def test_chaindb_raises_blocknotfound_on_missing_uncles(VM: Any, chaindb: ChainDB, header: BlockHeader) -> None: ...
 
 def test_chaindb_raises_blocknotfound_on_missing_transactions(VM: Any, chaindb: ChainDB, header: BlockHeader) -> None: ...
-```

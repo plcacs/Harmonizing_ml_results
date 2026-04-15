@@ -1,4 +1,3 @@
-```python
 import pytest
 from pathlib import Path
 from typing import Any, Generator, Iterator
@@ -91,4 +90,3 @@ def service_account_info_json(monkeypatch: Any) -> str: ...
 
 @pytest.fixture
 def gcp_credentials(monkeypatch: Any, google_auth: Any, mock_credentials: Any, job_service_client: Any, job_service_async_client: Any) -> MagicMock: ...
-```

@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any, Callable, Collection
 import datetime as dt
@@ -69,4 +68,3 @@ class WebHookManager:
     async def _async_handle_webhook(self, hass: HomeAssistant, webhook_id: str, request: Request) -> None: ...
     async def _async_process_webhook(self, hass: HomeAssistant, webhook_id: str, content: bytes | None) -> None: ...
     async def _async_unsubscribe_webhook(self) -> None: ...
-```

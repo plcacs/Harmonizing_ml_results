@@ -1,4 +1,3 @@
-```python
 import pytest
 from chalice.app import Chalice
 from chalice.config import Config
@@ -78,4 +77,3 @@ class TestApplicationGraphBuilder:
     def test_can_create_websocket_app_missing_message(self, websocket_app_without_message: Chalice) -> None: ...
 
     def test_can_create_websocket_app_missing_disconnect(self, websocket_app_without_disconnect: Chalice) -> None: ...
-```

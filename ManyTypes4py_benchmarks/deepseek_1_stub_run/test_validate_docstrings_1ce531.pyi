@@ -1,4 +1,3 @@
-```python
 import _typeshed
 import io
 import pytest
@@ -73,4 +72,3 @@ class TestMainFunction:
     def test_errors_param_filters_errors(self, monkeypatch: Any) -> None: ...
 
 ERROR_MSGS: Dict[str, str]
-```

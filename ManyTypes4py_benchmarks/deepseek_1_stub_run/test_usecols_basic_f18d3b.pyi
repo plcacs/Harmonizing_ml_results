@@ -1,4 +1,3 @@
-```python
 import pytest
 from pandas import DataFrame
 from pandas.errors import ParserError
@@ -84,4 +83,3 @@ def test_usecols_additional_columns(all_parsers: Any) -> None: ...
 def test_usecols_additional_columns_integer_columns(all_parsers: Any) -> None: ...
 
 def test_usecols_dtype(all_parsers: Any) -> None: ...
-```

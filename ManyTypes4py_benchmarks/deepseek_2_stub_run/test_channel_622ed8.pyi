@@ -1,4 +1,3 @@
-```python
 from typing import Any
 from _pytest.fixtures import FixtureRequest
 from eth_utils import Address
@@ -80,4 +79,3 @@ def test_api_channel_deposit_limit(
     token_addresses: list[Address],
     reveal_timeout: int
 ) -> None: ...
-```

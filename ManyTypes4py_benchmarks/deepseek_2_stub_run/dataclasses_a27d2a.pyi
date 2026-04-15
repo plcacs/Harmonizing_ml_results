@@ -1,4 +1,3 @@
-```python
 import sys
 from typing import (
     TYPE_CHECKING,
@@ -144,4 +143,3 @@ def make_dataclass_validator(
 ) -> Generator[Any, None, None]: ...
 
 __all__: list[str] = ...
-```

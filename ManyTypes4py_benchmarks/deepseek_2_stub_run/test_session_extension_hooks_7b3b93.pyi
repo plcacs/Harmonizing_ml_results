@@ -1,4 +1,3 @@
-```python
 import logging
 import multiprocessing
 import re
@@ -103,4 +102,3 @@ class TestAsyncNodeDatasetHooks:
 
 class TestKedroContextSpecsHook:
     def test_after_context_created_hook(self, mock_session: Any, caplog: Any) -> None: ...
-```

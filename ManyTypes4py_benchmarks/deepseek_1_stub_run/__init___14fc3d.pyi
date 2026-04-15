@@ -1,4 +1,3 @@
-```python
 from typing import Any, Optional, List, Iterator, Union, overload
 from pathlib import Path
 from jedi.api import classes
@@ -141,4 +140,3 @@ class Interpreter(Script):
     ) -> None: ...
     @property
     def namespaces(self) -> List[dict]: ...
-```

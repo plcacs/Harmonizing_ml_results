@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from collections.abc import Callable
 from datetime import timedelta
@@ -372,4 +371,3 @@ def create_powerview_shade_entity(
     shade: BaseShade,
     name_before_refresh: str
 ) -> list[PowerViewShadeBase]: ...
-```

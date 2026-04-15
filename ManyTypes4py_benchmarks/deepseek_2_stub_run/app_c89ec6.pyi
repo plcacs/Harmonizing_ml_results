@@ -1,4 +1,3 @@
-```python
 import abc
 import asyncio
 import typing
@@ -384,4 +383,3 @@ class AppT(ServiceT):
     def _span_add_default_tags(self, span: Any) -> Any: ...
     @abc.abstractmethod
     def _start_span_from_rebalancing(self, name: Any) -> Any: ...
-```

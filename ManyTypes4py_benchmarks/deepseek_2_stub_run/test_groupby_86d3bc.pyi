@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from pandas import DataFrame, DatetimeIndex, Index, MultiIndex, NamedAgg, Series, Timestamp
@@ -102,4 +101,3 @@ class TestEWM:
 
 def test_rolling_corr_with_single_integer_in_index() -> None: ...
 def test_rolling_corr_with_tuples_in_index() -> None: ...
-```

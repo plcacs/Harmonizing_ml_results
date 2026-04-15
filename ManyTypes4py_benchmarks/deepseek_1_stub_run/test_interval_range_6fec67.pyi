@@ -1,4 +1,3 @@
-```python
 from _typeshed import Incomplete
 from datetime import timedelta
 import numpy as np
@@ -56,4 +55,3 @@ pytest: Incomplete
 tm: Incomplete
 date_range: Incomplete
 timedelta_range: Incomplete
-```

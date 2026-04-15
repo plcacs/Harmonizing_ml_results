@@ -1,4 +1,3 @@
-```python
 from typing import Any, Callable, Generator, Iterator, List, Optional, Set, Tuple
 from lru import LRU
 from eth2spec.utils.ssz.ssz_typing import Bitlist
@@ -48,4 +47,3 @@ def get_max_attestations(spec: Any) -> Any: ...
 def get_empty_eip7549_aggregation_bits(spec: Any, state: Any, committee_bits: Any, slot: Any) -> Bitlist: ...
 
 def get_eip7549_aggregation_bits_offset(spec: Any, state: Any, slot: Any, committee_bits: Any, committee_index: Any) -> int: ...
-```

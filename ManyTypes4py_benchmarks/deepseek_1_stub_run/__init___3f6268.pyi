@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import TYPE_CHECKING, Any, Callable, Mapping, Final
 import asyncio
@@ -53,4 +52,3 @@ class Stream:
 
 def _should_retry() -> bool: ...
 STREAM_OPTIONS_SCHEMA: Final[vol.Schema] = ...
-```

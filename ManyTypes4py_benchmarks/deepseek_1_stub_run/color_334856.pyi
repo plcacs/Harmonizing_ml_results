@@ -1,4 +1,3 @@
-```python
 import math
 from typing import Any, Dict, Optional, Tuple, Union
 
@@ -68,4 +67,3 @@ def float_to_255(c: float) -> int: ...
 
 COLORS_BY_NAME: Dict[str, Tuple[int, int, int]] = ...
 COLORS_BY_VALUE: Dict[Tuple[int, int, int], str] = ...
-```

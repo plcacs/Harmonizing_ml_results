@@ -1,4 +1,3 @@
-```python
 from typing import (
     Any,
     Callable,
@@ -384,4 +383,3 @@ class EnumInstance(LazyValueWrapper):
 
 def tree_name_to_values(func: Any) -> Callable[..., Any]:
     ...
-```

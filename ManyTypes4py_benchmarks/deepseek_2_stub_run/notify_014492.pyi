@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any, Optional
 from homeassistant.core import HomeAssistant, ServiceCall
@@ -86,4 +85,3 @@ class HTML5NotificationService(BaseNotificationService):
     def _push_message(self, payload: dict[str, Any], **kwargs: Any) -> None: ...
 
 def add_jwt(timestamp: int, target: str, tag: str, jwt_secret: str) -> str: ...
-```

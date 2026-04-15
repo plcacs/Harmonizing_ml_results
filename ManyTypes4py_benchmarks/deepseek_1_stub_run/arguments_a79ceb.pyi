@@ -1,4 +1,3 @@
-```python
 from typing import Any, Iterator, Optional, Tuple, Union, overload
 from parso.python import tree
 from jedi.inference.utils import PushBackIterator
@@ -59,4 +58,3 @@ class TreeArgumentsWrapper(_AbstractArgumentsMixin):
 def _iterate_star_args(context: Any, array: Any, input_node: Any, funcdef: Any = ...) -> Iterator[Any]: ...
 
 def _star_star_dict(context: Any, array: Any, input_node: Any, funcdef: Any) -> dict[Any, Any]: ...
-```

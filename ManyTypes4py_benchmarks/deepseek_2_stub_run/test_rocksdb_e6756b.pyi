@@ -1,4 +1,3 @@
-```python
 from pathlib import Path
 from typing import Any, AsyncIterator, Dict, Iterator, List, Mapping, Optional, Set, Tuple, Union
 import pytest
@@ -146,4 +145,3 @@ class test_Store:
     def test_clear(self, *, store: "Store") -> None: ...
     
     def test_reset_state(self, *, store: "Store") -> None: ...
-```

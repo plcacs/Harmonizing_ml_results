@@ -1,4 +1,3 @@
-```python
 from typing import List, Iterator, Dict, Tuple, Any, Type, Union, Optional
 import logging
 from os import PathLike
@@ -35,4 +34,3 @@ class Predictor(Registrable):
     def from_path(cls, archive_path: Union[str, PathLike], predictor_name: Optional[str] = ..., cuda_device: int = ..., dataset_reader_to_load: str = ..., frozen: bool = ..., import_plugins: bool = ..., overrides: Union[str, Dict[str, Any]] = ..., **kwargs: Any) -> "Predictor": ...
     @classmethod
     def from_archive(cls, archive: Archive, predictor_name: Optional[str] = ..., dataset_reader_to_load: str = ..., frozen: bool = ..., extra_args: Optional[Dict[str, Any]] = ...) -> "Predictor": ...
-```

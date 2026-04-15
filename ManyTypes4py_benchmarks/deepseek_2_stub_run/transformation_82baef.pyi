@@ -1,4 +1,3 @@
-```python
 from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 import numpy as np
 import pandas as pd
@@ -163,4 +162,3 @@ def missing_warner(
     detailed_warning: bool = False,
     detailed_column_name: Optional[str] = None
 ) -> LearnerReturnType: ...
-```

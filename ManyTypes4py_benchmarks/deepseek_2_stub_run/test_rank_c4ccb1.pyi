@@ -1,4 +1,3 @@
-```python
 from typing import Any, Literal, Union
 from pandas import Series, Timestamp
 from pandas._libs.algos import Infinity, NegInfinity
@@ -39,4 +38,3 @@ def test_rank_average_pct(dtype: str, ser: list[Any], exp: list[Any]) -> None: .
 def test_rank_first_pct(dtype: str, ser: list[Any], exp: list[Any]) -> None: ...
 @pytest.mark.single_cpu
 def test_pct_max_many_rows() -> None: ...
-```

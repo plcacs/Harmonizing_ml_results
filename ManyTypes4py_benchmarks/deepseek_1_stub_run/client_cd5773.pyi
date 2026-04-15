@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import TYPE_CHECKING, Any, Optional, Union, List
 from datetime import datetime
@@ -109,4 +108,3 @@ class WorkPoolAsyncClient(BaseAsyncClient):
         work_queue_names: Optional[List[str]] = None,
         scheduled_before: Optional[datetime] = None
     ) -> List[WorkerFlowRunResponse]: ...
-```

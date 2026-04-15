@@ -1,4 +1,3 @@
-```python
 import asyncio
 from typing import Any, Awaitable, Callable, Mapping, MutableSet, Optional, Set, Tuple, TypeVar, Union
 from weakref import WeakSet
@@ -241,4 +240,3 @@ class SerializedChannel(Channel[T]):
         schema: Optional[SchemaT] = ...,
         headers: Optional[OpenHeadersArg] = ...
     ) -> Tuple[Any, OpenHeadersArg]: ...
-```

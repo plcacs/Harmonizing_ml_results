@@ -1,4 +1,3 @@
-```python
 import os
 import sys
 import tempfile
@@ -77,4 +76,3 @@ class IntegrationTests(TestCase):
 def checkPath(path: str, reporter: Optional[Any] = ...) -> int: ...
 def checkRecursive(paths: Sequence[str], reporter: Any) -> int: ...
 def iterSourceCode(paths: Sequence[str]) -> Iterator[str]: ...
-```

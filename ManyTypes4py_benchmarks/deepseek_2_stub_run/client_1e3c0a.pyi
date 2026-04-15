@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from collections.abc import Iterable
 from typing import TYPE_CHECKING, Any, Union
@@ -50,4 +49,3 @@ class DeploymentAsyncClient(BaseAsyncClient):
     async def delete_deployment_schedule(self, deployment_id: Any, schedule_id: Any) -> None: ...
     async def get_scheduled_flow_runs_for_deployments(self, deployment_ids: Any, scheduled_before: Any = ..., limit: Any = ...) -> list[FlowRun]: ...
     async def create_flow_run_from_deployment(self, deployment_id: Any, *, parameters: Any = ..., context: Any = ..., state: Any = ..., name: Any = ..., tags: Any = ..., idempotency_key: Any = ..., parent_task_run_id: Any = ..., work_queue_name: Any = ..., job_variables: Any = ..., labels: Any = ...) -> FlowRun: ...
-```

@@ -1,4 +1,3 @@
-```python
 from typing import Any, Optional, Union, overload
 import pandas as pd
 import numpy as np
@@ -123,4 +122,3 @@ class OpsOnDiffFramesDisabledTest(ReusedSQLTestCase, SQLTestUtils):
     def test_mask(self) -> None: ...
     def test_align(self) -> None: ...
     def test_pow_and_rpow(self) -> None: ...
-```

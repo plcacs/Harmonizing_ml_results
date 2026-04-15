@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from matplotlib.axes import Axes
@@ -97,4 +96,3 @@ class TestDataFrameGroupByPlots:
 
 ts: Series = ...
 hist_df: DataFrame = ...
-```

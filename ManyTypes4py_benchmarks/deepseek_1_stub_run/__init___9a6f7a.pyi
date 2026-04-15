@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from collections.abc import Callable
 from typing import TYPE_CHECKING, Any, final
@@ -72,4 +71,3 @@ class TagEntity(Entity):
     def extra_state_attributes(self) -> dict[str, str | None]: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
-```

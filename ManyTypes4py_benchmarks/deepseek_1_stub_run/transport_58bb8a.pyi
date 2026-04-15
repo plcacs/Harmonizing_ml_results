@@ -1,4 +1,3 @@
-```python
 import asyncio
 from collections import Counter
 from typing import TYPE_CHECKING, Any, Callable, Dict, Iterable, Iterator, List, NamedTuple, Optional, Set, Tuple
@@ -106,4 +105,3 @@ class MatrixTransport(Runnable):
 def _query_metadata(pfs_proxy: PFSProxy, address: Address) -> Optional[AddressMetadata]: ...
 
 def populate_services_addresses(transport: MatrixTransport, service_registry: Optional["ServiceRegistry"], block_identifier: Any) -> None: ...
-```

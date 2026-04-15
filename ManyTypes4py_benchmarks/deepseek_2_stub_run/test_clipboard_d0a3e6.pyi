@@ -1,4 +1,3 @@
-```python
 from typing import Any, Callable, Iterator, Literal, overload
 from typing_extensions import Self
 import numpy as np
@@ -116,4 +115,3 @@ class TestClipboard:
     ) -> None: ...
 
     def test_invalid_dtype_backend(self) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 import builtins
 import datetime as dt
 from typing import Any, Literal, overload
@@ -221,4 +220,3 @@ def test_regression_allowlist_methods(
 def test_groupby_prod_with_int64_dtype() -> None: ...
 
 def test_groupby_std_datetimelike() -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 import pytest
 from pandas import DataFrame, Series
 from pandas.errors import NumbaUtilError
@@ -64,4 +63,3 @@ class TestTableMethod:
 
 @td.skip_if_no('numba')
 def test_npfunc_no_warnings() -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 import random
 from typing import Any, Dict, List, Optional, Tuple, Union
 from raiden.transfer.architecture import Event, StateChange, TransitionResult
@@ -111,4 +110,3 @@ def state_transition(
     pseudo_random_generator: Any,
     block_number: Any,
 ) -> Any: ...
-```

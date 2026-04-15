@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Dict, Any, Optional, List, Union
 
@@ -123,4 +122,3 @@ class DeployedResources:
     def resource_values(self, name: str) -> Dict[str, Any]: ...
     
     def resource_names(self) -> List[str]: ...
-```

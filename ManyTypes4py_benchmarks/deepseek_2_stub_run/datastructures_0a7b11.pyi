@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import typing
 from typing import Any, Mapping, Sequence, TypeVar
@@ -168,4 +167,3 @@ class State:
     def __setattr__(self, key: str, value: Any) -> None: ...
     def __getattr__(self, key: str) -> Any: ...
     def __delattr__(self, key: str) -> None: ...
-```

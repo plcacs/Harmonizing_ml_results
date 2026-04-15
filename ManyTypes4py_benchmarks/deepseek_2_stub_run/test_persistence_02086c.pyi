@@ -1,4 +1,3 @@
-```python
 from datetime import datetime, timedelta
 from typing import Any, List, Optional, Tuple, Union
 from _pytest.logging import LogCaptureFixture
@@ -189,4 +188,3 @@ def test_select_filled_orders_usdt(fee: Any) -> None: ...
 def test_order_to_ccxt(limit_buy_order_open: Any, limit_sell_order_usdt_open: Any) -> None: ...
 
 def test_recalc_trade_from_orders_dca(data: Any) -> None: ...
-```

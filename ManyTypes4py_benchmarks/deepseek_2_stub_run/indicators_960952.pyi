@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from typing import Any, Literal, overload, Union
@@ -59,4 +58,3 @@ def zlhma(series: pd.Series, window: int, min_periods: Any = ...) -> pd.Series: 
 def zscore(bars: pd.DataFrame, window: int = ..., stds: int = ..., col: str = ...) -> pd.Series: ...
 def pvt(bars: pd.DataFrame) -> pd.Series: ...
 def chopiness(bars: pd.DataFrame, window: int = ...) -> pd.Series: ...
-```

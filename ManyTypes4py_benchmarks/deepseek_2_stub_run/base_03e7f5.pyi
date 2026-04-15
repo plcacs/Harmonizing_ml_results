@@ -1,4 +1,3 @@
-```python
 from collections.abc import Iterable
 from datetime import datetime, timedelta
 from typing import Any, Optional, Union, overload
@@ -135,4 +134,3 @@ class Backend(Database):
     def get_expired(self, expired_threshold: int, info_threshold: int) -> Any: ...
     def get_unshelve(self) -> Any: ...
     def get_unack(self) -> Any: ...
-```

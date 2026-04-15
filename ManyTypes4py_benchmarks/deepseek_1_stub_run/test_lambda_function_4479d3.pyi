@@ -1,4 +1,3 @@
-```python
 import io
 from typing import Any, Optional, Union, Dict, List, BinaryIO, Iterator, Generator
 from typing_extensions import Literal
@@ -189,4 +188,3 @@ class TestLambdaFunctionAsync:
         lambda_function: LambdaFunction,
         mock_invoke_updated: Any
     ) -> None: ...
-```

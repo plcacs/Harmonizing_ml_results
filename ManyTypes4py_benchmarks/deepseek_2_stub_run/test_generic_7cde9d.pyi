@@ -1,4 +1,3 @@
-```python
 from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 import numpy as np
 import pandas as pd
@@ -60,4 +59,3 @@ class TestNDFrame:
     def test_take_invalid_kwargs(self, frame_or_series: Any) -> None: ...
     def test_axis_classmethods(self, frame_or_series: Any) -> None: ...
     def test_flags_identity(self, frame_or_series: Any) -> None: ...
-```

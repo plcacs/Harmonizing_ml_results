@@ -1,4 +1,3 @@
-```python
 import pytest
 from typing import Any, Dict, List, Optional, Callable
 from dbt.events.types import (
@@ -188,4 +187,3 @@ class TestCanSilenceInvalidConcurrentBatchesConfigWarning(BaseMicrobatchTest):
     @pytest.fixture
     def event_catcher(self) -> EventCatcher: ...
     def test_microbatch(self, project: Any, event_catcher: EventCatcher) -> None: ...
-```

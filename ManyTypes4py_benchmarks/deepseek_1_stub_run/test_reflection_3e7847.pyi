@@ -1,4 +1,3 @@
-```python
 import sys
 from typing import Any, Callable, Dict, List, Optional, Set, Tuple, Union
 from inspect import Parameter, Signature
@@ -198,4 +197,3 @@ def repr_call(f: Callable[..., Any], args: Tuple[Any, ...], kwargs: Dict[str, An
 def required_args(target: Any, args: Tuple[Any, ...], kwargs: Dict[str, Any]) -> Set[str]: ...
 
 def source_exec_as_module(source: str) -> Any: ...
-```

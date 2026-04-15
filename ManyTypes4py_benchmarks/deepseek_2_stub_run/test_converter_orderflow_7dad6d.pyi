@@ -1,4 +1,3 @@
-```python
 import pandas as pd
 import pytest
 from typing import Any
@@ -68,4 +67,3 @@ def test_analyze_with_orderflow(
 def test_stacked_imbalances_multiple_prices() -> None: ...
 
 def test_timeframe_to_DateOffset() -> None: ...
-```

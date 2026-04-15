@@ -1,4 +1,3 @@
-```python
 import datetime
 import sys
 from typing import Any, Callable, Dict, List, Optional, TextIO, Union, Iterable, Iterator, Set, Tuple
@@ -86,4 +85,3 @@ def parse_config_file(path: str, final: bool = ...) -> None: ...
 def print_help(file: Optional[TextIO] = ...) -> None: ...
 
 def add_parse_callback(callback: Callable[[], None]) -> None: ...
-```

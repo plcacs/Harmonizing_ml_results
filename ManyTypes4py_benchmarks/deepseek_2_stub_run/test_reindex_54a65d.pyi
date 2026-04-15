@@ -1,4 +1,3 @@
-```python
 import datetime
 from typing import Any, Literal, overload
 
@@ -116,4 +115,3 @@ class TestDataFrameSelectReindex:
         self, klass: Any, data: str
     ) -> None: ...
     def test_invalid_method(self) -> None: ...
-```

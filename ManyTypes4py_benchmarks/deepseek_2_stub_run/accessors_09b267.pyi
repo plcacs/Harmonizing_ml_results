@@ -1,4 +1,3 @@
-```python
 from abc import ABCMeta, abstractmethod
 from typing import TYPE_CHECKING, Optional, Union, List, Any, Callable, overload
 import pyspark
@@ -74,4 +73,3 @@ class CachedSparkFrameMethods(SparkFrameMethods):
     @property
     def storage_level(self) -> StorageLevel: ...
     def unpersist(self) -> None: ...
-```

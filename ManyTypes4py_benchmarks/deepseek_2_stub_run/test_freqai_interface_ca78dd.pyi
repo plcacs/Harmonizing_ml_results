@@ -1,4 +1,3 @@
-```python
 import pytest
 from _pytest.fixtures import FixtureRequest
 from _pytest.logging import LogCaptureFixture
@@ -40,4 +39,3 @@ def test_download_all_data_for_training(mocker: Any, freqai_conf: Any, caplog: L
 @pytest.mark.usefixtures('init_persistence')
 @pytest.mark.parametrize('dp_exists', [False, True])
 def test_get_state_info(mocker: Any, freqai_conf: Any, dp_exists: bool, caplog: LogCaptureFixture, tickers: Any) -> None: ...
-```

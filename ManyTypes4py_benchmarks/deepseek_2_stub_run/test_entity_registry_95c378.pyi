@@ -1,4 +1,3 @@
-```python
 from typing import Any
 from typing import Callable
 from typing import Dict
@@ -148,4 +147,3 @@ async def test_async_update_entity_thread_safety(hass: HomeAssistant, entity_reg
 async def test_async_remove_thread_safety(hass: HomeAssistant, entity_registry: er.EntityRegistry) -> None: ...
 
 async def test_subentry(hass: HomeAssistant, entity_registry: er.EntityRegistry) -> None: ...
-```

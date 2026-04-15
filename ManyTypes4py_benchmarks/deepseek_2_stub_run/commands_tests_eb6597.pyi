@@ -1,4 +1,3 @@
-```python
 from typing import Any, Generator, List, Optional, Union
 from datetime import datetime
 from unittest.mock import Mock
@@ -133,4 +132,3 @@ def test_prune_log_soft_time_out(bulk_delete_logs: Mock, create_report_email_das
 def test__send_with_client_errors(notification_mock: Mock, logger_mock: Mock) -> None: ...
 def test__send_with_multiple_errors(notification_mock: Mock, logger_mock: Mock) -> None: ...
 def test__send_with_server_errors(notification_mock: Mock, logger_mock: Mock) -> None: ...
-```

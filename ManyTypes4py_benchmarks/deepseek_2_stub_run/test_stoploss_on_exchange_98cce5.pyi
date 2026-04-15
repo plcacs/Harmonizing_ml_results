@@ -1,4 +1,3 @@
-```python
 from typing import Any
 from _pytest.fixtures import FixtureRequest
 from _pytest.logging import LogCaptureFixture
@@ -162,4 +161,3 @@ def test_may_execute_trade_exit_after_stoploss_on_exchange_hit(
     mocker: MonkeyPatch,
     is_short: bool
 ) -> None: ...
-```

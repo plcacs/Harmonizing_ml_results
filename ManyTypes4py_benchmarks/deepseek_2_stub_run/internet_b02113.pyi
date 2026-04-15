@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 
 import typing as t
@@ -76,4 +75,3 @@ class Internet(BaseProvider):
     def special_ip_v4_object(self, purpose: t.Optional[IPv4Purpose] = ...) -> IPv4Address: ...
 
     def special_ip_v4(self, purpose: t.Optional[IPv4Purpose] = ...) -> str: ...
-```

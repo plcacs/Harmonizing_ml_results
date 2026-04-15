@@ -1,4 +1,3 @@
-```python
 import asyncio
 import logging
 from datetime import datetime, timedelta

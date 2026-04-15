@@ -1,4 +1,3 @@
-```python
 import abc
 from collections.abc import Callable, Iterable, Iterator, Mapping, MutableMapping, MutableSet
 from datetime import datetime
@@ -172,4 +171,3 @@ class Collection(Service, CollectionT):
     ) -> None: ...
     async def call_recover_callbacks(self) -> None: ...
     async def on_changelog_event(self, event: EventT) -> None: ...
-```

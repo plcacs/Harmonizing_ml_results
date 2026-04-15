@@ -1,4 +1,3 @@
-```python
 import pytest
 import pandas as pd
 import numpy as np
@@ -57,4 +56,3 @@ class TestJoinMultiMulti:
     def test_merge_datetime_index(self, box: Any) -> None: ...
     def test_single_common_level(self) -> None: ...
     def test_join_multi_wrong_order(self) -> None: ...
-```

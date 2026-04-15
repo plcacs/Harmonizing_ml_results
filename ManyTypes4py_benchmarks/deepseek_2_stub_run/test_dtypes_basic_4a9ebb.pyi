@@ -1,4 +1,3 @@
-```python
 from collections import defaultdict
 from io import StringIO
 from typing import Any, Dict, List, Optional, Sequence, Union
@@ -119,4 +118,3 @@ def test_accurate_parsing_of_large_integers(all_parsers: Any) -> None: ...
 def test_dtypes_with_usecols(all_parsers: Any) -> None: ...
 
 def test_index_col_with_dtype_no_rangeindex(all_parsers: Any) -> None: ...
-```

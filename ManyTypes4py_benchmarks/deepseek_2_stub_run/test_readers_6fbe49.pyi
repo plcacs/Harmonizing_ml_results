@@ -1,4 +1,3 @@
-```python
 from typing import Any, Callable, Dict, IO, List, Optional, Sequence, Tuple, Union
 from pandas import DataFrame, Index, MultiIndex, Series
 import numpy as np
@@ -153,4 +152,3 @@ class TestExcelFileRead:
     def test_engine_invalid_option(self, read_ext: str) -> None: ...
     def test_ignore_chartsheets(self, request: Any, engine: Any, read_ext: str) -> None: ...
     def test_corrupt_files_closed(self, engine: Any, tmp_excel: str) -> None: ...
-```

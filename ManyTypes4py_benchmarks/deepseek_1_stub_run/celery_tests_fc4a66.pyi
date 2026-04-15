@@ -1,4 +1,3 @@
-```python
 import datetime
 import typing
 import typing as t
@@ -93,4 +92,3 @@ def test_in_app_context() -> None: ...
 def delete_tmp_view_or_table(name: str, db_object_type: str) -> None: ...
 
 def wait_for_success(result: dict[str, Any]) -> Query: ...
-```

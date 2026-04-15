@@ -1,4 +1,3 @@
-```python
 import abc
 import sys
 from typing import Any, Dict, List, Optional, Type, Union
@@ -102,4 +101,3 @@ class BaseLoginClientTrader(ClientTrader):
     @abc.abstractmethod
     def login(self, user: str, password: str, exe_path: str, comm_password: Optional[str] = ..., **kwargs: Any) -> None: ...
     def prepare(self, config_path: Optional[str] = ..., user: Optional[str] = ..., password: Optional[str] = ..., exe_path: Optional[str] = ..., comm_password: Optional[str] = ..., **kwargs: Any) -> None: ...
-```

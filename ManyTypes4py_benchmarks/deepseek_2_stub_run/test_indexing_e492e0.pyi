@@ -1,4 +1,3 @@
-```python
 from datetime import date, datetime, time, timedelta
 from typing import Any, overload
 import numpy as np
@@ -93,4 +92,3 @@ class TestGetSliceBounds:
 class TestIndexerBetweenTime:
     def test_indexer_between_time(self) -> None: ...
     def test_indexer_between_time_non_nano(self, unit: str) -> None: ...
-```

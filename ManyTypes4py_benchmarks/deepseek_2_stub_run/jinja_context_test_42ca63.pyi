@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any, Callable, Dict, List, Optional, Sequence, Tuple, Union
 
@@ -73,4 +72,3 @@ def metric_macro(
     metric_name: str,
     dataset_id: Optional[int] = ...
 ) -> str: ...
-```

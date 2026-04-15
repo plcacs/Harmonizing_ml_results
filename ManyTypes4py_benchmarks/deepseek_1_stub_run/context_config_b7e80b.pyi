@@ -1,4 +1,3 @@
-```python
 from abc import abstractmethod
 from typing import Any, Dict, Generic, Iterator, List, Optional, TypeVar
 from dbt.config import Project, RuntimeConfig
@@ -66,4 +65,3 @@ class ContextConfig:
     def add_config_call(self, opts: Dict[str, Any]) -> None: ...
     def add_unrendered_config_call(self, opts: Dict[str, Any]) -> None: ...
     def build_config_dict(self, base: bool = ..., *, rendered: bool = ..., patch_config_dict: Optional[Dict[str, Any]] = ...) -> Dict[str, Any]: ...
-```

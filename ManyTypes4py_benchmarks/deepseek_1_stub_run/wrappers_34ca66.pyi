@@ -1,4 +1,3 @@
-```python
 from typing import Any, Callable, ClassVar, Iterator, Optional, TypeVar, Union, overload
 from datetime import datetime
 from mode.utils.typing import NoReturn
@@ -91,4 +90,3 @@ class WindowWrapper(WindowWrapperT):
     def get_relative_timestamp(self) -> Optional[RelativeHandler]: ...
     @get_relative_timestamp.setter
     def get_relative_timestamp(self, relative_to: RelativeArg) -> None: ...
-```

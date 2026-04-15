@@ -1,4 +1,3 @@
-```python
 from typing import Any, Optional, Tuple, List, Callable, Union
 from pathlib import Path
 from inspect import Parameter
@@ -103,4 +102,3 @@ class ParamName(Name):
 def defined_names(inference_state: Any, value: Any) -> List[Name]: ...
 def _sort_names_by_start_pos(names: Any) -> Any: ...
 def _values_to_definitions(values: Any) -> List[Name]: ...
-```

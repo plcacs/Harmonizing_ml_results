@@ -1,4 +1,3 @@
-```python
 from datetime import datetime
 from typing import Any, Literal, Sequence, Union
 from pandas import DataFrame, Index, MultiIndex, Period, Series, Timedelta
@@ -201,4 +200,3 @@ def test_stack_tuple_columns(future_stack: bool) -> None: ...
 @pytest.mark.parametrize('dtype, na_value', ...)
 @pytest.mark.parametrize('test_multiindex', ...)
 def test_stack_preserves_na(dtype: Any, na_value: Any, test_multiindex: bool) -> None: ...
-```

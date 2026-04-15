@@ -1,4 +1,3 @@
-```python
 import torch
 from typing import Any, List, Optional, Tuple, Union, Iterable, Sequence
 from numpy import ndarray
@@ -138,4 +137,3 @@ class DataConfig:
     data_statistics: Any
 
 class SockeyeError(Exception): ...
-```

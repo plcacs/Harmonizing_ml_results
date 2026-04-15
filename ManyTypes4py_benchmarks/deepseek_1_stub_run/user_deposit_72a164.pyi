@@ -1,4 +1,3 @@
-```python
 from contextlib import contextmanager
 from dataclasses import dataclass
 from typing import Any, Dict, Iterator, Optional, Tuple
@@ -165,4 +164,3 @@ class UserDeposit:
         token: Token,
         previous_token_balance: TokenAmount,
     ) -> TransactionHash: ...
-```

@@ -1,4 +1,3 @@
-```python
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple, Union
@@ -201,4 +200,3 @@ def test_max_open_trades_consistency(
     tmp_path: Path,
     fee: Any
 ) -> None: ...
-```

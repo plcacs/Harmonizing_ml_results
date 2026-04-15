@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import datetime
 import typing
@@ -197,4 +196,3 @@ class Cookies(MutableMapping[str, str]):
     def __repr__(self) -> str: ...
     class _CookieCompatRequest: ...
     class _CookieCompatResponse: ...
-```

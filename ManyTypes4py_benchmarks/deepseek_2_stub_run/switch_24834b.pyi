@@ -1,4 +1,3 @@
-```python
 """Integration with the Rachio Iro sprinkler system controller."""
 from abc import abstractmethod
 from datetime import timedelta
@@ -113,4 +112,3 @@ class RachioValve(RachioHoseTimerEntity, SwitchEntity):
     def turn_off(self, **kwargs: Any) -> None: ...
     @callback
     def _update_attr(self) -> None: ...
-```

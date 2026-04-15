@@ -1,4 +1,3 @@
-```python
 import os
 from pathlib import Path
 from typing import Any, Optional, Tuple, List, Iterator, Union
@@ -36,4 +35,3 @@ def load_module_from_path(inference_state: Any, file_io: FileIO, import_names: O
 def load_namespace_from_path(inference_state: Any, folder_io: FolderIO) -> Any: ...
 def follow_error_node_imports_if_possible(context: Any, name: Any) -> Optional[ValueSet]: ...
 def iter_module_names(inference_state: Any, module_context: Any, search_path: List[str], module_cls: Any = ..., add_builtin_modules: bool = True) -> Iterator[AbstractName]: ...
-```

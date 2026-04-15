@@ -1,4 +1,3 @@
-```python
 from typing import Any, TypeVar, overload, TYPE_CHECKING
 from jedi.inference.base_value import ValueSet, Value, LazyValueWrapper, ValueWrapper
 from jedi.inference.arguments import Arguments
@@ -118,4 +117,3 @@ class TypedDict(LazyValueWrapper):
 _PROXY_CLASS_TYPES: tuple = ...
 _TYPE_ALIAS_TYPES: dict = ...
 _PROXY_TYPES: tuple = ...
-```

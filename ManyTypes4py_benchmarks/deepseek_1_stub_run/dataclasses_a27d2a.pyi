@@ -1,4 +1,3 @@
-```python
 import sys
 from typing import (
     TYPE_CHECKING,
@@ -138,4 +137,3 @@ def create_pydantic_model_from_dataclass(
 def is_builtin_dataclass(_cls: Any) -> bool: ...
 
 def make_dataclass_validator(dc_cls: Any, config: Any) -> Generator[Any, None, None]: ...
-```

@@ -1,4 +1,3 @@
-```python
 from typing import Any
 from datetime import datetime, timedelta
 from unittest.mock import ANY
@@ -78,4 +77,3 @@ def test_rpc_edge_disabled(mocker: Any, default_conf: Any) -> None: ...
 def test_rpc_edge_enabled(mocker: Any, edge_conf: Any) -> None: ...
 
 def test_rpc_health(mocker: Any, default_conf: Any) -> None: ...
-```

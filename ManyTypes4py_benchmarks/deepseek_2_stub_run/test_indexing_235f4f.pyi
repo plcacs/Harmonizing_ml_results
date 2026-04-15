@@ -1,4 +1,3 @@
-```python
 import numpy as np
 from pandas import Index, Series, NA, Timestamp
 from pandas.errors import InvalidIndexError
@@ -62,4 +61,3 @@ class TestSliceLocs:
 class TestGetSliceBounds:
     def test_get_slice_bounds_within(self, side: str, expected: int) -> None: ...
     def test_get_slice_bounds_outside(self, side: str, expected: int, bound: int) -> None: ...
-```

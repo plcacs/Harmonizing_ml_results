@@ -1,4 +1,3 @@
-```python
 import sys
 from typing import Any, Callable, Dict, List, Optional, Sequence, Tuple, Union
 from typing_extensions import Literal
@@ -95,4 +94,3 @@ def test_format_index_names_callable(styler_multi: Styler, axis: int) -> None: .
 
 def test_format_index_names_dict(styler_multi: Styler) -> None: ...
 def test_format_index_names_with_hidden_levels(styler_multi: Styler) -> None: ...
-```

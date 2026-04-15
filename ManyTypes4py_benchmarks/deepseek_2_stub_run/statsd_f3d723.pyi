@@ -1,4 +1,3 @@
-```python
 import typing
 from typing import Any, Dict, Optional, cast
 from mode.utils.objects import cached_property
@@ -99,4 +98,3 @@ class StatsdMonitor(Monitor):
     
     @cached_property
     def client(self) -> Any: ...
-```

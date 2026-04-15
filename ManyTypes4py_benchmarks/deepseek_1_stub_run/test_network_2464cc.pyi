@@ -1,4 +1,3 @@
-```python
 import pytest
 from pandas import DataFrame
 from typing import Any, Iterator, Union
@@ -138,4 +137,3 @@ class TestS3:
     ) -> None: ...
 
 pytestmark: Any = ...
-```

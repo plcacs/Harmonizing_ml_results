@@ -1,4 +1,3 @@
-```python
 import datetime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Literal
@@ -96,4 +95,3 @@ def test_in_app_context() -> None: ...
 def delete_tmp_view_or_table(name: str, db_object_type: str) -> None: ...
 
 def wait_for_success(result: Dict[str, Any]) -> Query: ...
-```

@@ -1,4 +1,3 @@
-```python
 from typing import Any, Awaitable, Dict, List, Optional, Union
 from pyee import EventEmitter
 from pyppeteer.connection import CDPSession
@@ -91,4 +90,3 @@ class SecurityDetails:
     def protocol(self) -> str: ...
 
 statusTexts: Dict[str, str] = ...
-```

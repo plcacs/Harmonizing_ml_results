@@ -1,4 +1,3 @@
-```python
 import pytest
 import numpy as np
 import pandas as pd
@@ -41,4 +40,3 @@ class TestPartialSetting:
 
 class TestStringSlicing:
     def test_slice_irregular_datetime_index_with_nan(self) -> None: ...
-```

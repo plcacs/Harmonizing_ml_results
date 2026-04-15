@@ -1,4 +1,3 @@
-```python
 from typing import Any, Iterator, List, Set, Tuple
 from random import Random
 
@@ -111,4 +110,3 @@ def get_random_consolidation_requests(
     rng: Any,
     num_consolidations: Any = None
 ) -> List[Any]: ...
-```

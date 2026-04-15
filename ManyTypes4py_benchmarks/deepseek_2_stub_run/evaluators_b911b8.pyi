@@ -1,4 +1,3 @@
-```python
 import warnings
 from typing import Any, Callable, Dict, List, Optional, Sequence, Union
 import numpy as np
@@ -53,4 +52,3 @@ def hash_evaluator(test_data: pd.DataFrame, hash_columns: Optional[List[str]] = 
 def exponential_coefficient_evaluator(test_data: pd.DataFrame, prediction_column: str = 'prediction', target_column: str = 'target', eval_name: Optional[str] = None) -> Dict[str, Any]: ...
 @curry
 def logistic_coefficient_evaluator(test_data: pd.DataFrame, prediction_column: str = 'prediction', target_column: str = 'target', eval_name: Optional[str] = None) -> Dict[str, Any]: ...
-```

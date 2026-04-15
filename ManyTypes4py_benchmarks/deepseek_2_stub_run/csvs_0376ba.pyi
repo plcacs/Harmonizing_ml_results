@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from collections.abc import Hashable, Iterable, Iterator, Sequence
 import csv as csvlib
@@ -83,4 +82,3 @@ class CSVFormatter:
     def _generate_multiindex_header_rows(self) -> Iterator[list[Any]]: ...
     def _save_body(self) -> None: ...
     def _save_chunk(self, start_i: int, end_i: int) -> None: ...
-```

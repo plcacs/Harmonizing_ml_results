@@ -1,4 +1,3 @@
-```python
 import sys
 from typing import Any, Optional, Union, List, Dict, Tuple
 from django import forms
@@ -107,4 +106,3 @@ class RealmRedirectForm(forms.Form):
     subdomain: forms.CharField
     
     def clean_subdomain(self) -> str: ...
-```

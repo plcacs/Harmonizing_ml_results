@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from pandas import DataFrame, Index, Series, Timestamp
@@ -59,4 +58,3 @@ class TestQuantileExtensionDtype:
     def test_datelike_numeric_only(self, expected_data: Any, expected_index: Any, axis: Any) -> None: ...
 
 def test_multi_quantile_numeric_only_retains_columns() -> None: ...
-```

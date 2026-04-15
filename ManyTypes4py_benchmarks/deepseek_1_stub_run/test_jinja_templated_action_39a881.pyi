@@ -1,4 +1,3 @@
-```python
 import pendulum
 from datetime import timedelta
 from typing import Any, Dict, Generator, List, Literal
@@ -178,4 +177,3 @@ async def test_concurrency_limit_is_available_in_templates(concurrency_limit_v2:
 async def test_composite_firings_are_available_in_templates(tell_me_about_the_culprit: Automation, start_of_test: Any) -> None: ...
 
 async def test_composite_triggering_events_are_available_in_templates(picture_taken: ReceivedEvent, tell_me_about_the_culprit: Automation, start_of_test: Any) -> None: ...
-```

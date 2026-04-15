@@ -1,4 +1,3 @@
-```python
 import datetime
 from decimal import Decimal
 from typing import Any, Callable, List, Optional, Sequence, Tuple, Union
@@ -80,4 +79,3 @@ def test_none_comparison(request: Any, series_with_simple_index: Any) -> None: .
 def test_series_varied_multiindex_alignment() -> None: ...
 
 def test_rmod_consistent_large_series() -> None: ...
-```

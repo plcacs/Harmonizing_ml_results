@@ -1,4 +1,3 @@
-```python
 from typing import Optional, Tuple, List
 import torch
 from torch.nn.utils.rnn import PackedSequence
@@ -96,4 +95,3 @@ class BiAugmentedLstm(torch.nn.Module):
         inputs: PackedSequence,
         states: Optional[Tuple[torch.Tensor, torch.Tensor]] = None
     ) -> Tuple[PackedSequence, Tuple[torch.Tensor, torch.Tensor]]: ...
-```

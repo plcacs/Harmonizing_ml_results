@@ -1,4 +1,3 @@
-```python
 import sys
 import types
 from pathlib import Path
@@ -222,4 +221,3 @@ class test_AppCommand:
     def test_from_handler_no_params(self, *, command: AppCommand) -> None: ...
 
 DEFAULT_LOGLEVEL: str = ...
-```

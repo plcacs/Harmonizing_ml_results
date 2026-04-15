@@ -1,4 +1,3 @@
-```python
 import pandas as pd
 import numpy as np
 from typing import Any, Callable, Dict, List, Optional, Tuple, Union
@@ -39,4 +38,3 @@ def _get_model_fcn(df: pd.DataFrame, treatment_col: str, treatment_name: str, le
 def _get_learners(df: pd.DataFrame, control_learner: Callable, treatment_learner: Callable, unique_treatments: List[str], control_name: str, treatment_col: str) -> Tuple[Dict[str, Any], Dict[str, Any]]: ...
 
 def causal_t_classification_learner(df: pd.DataFrame, treatment_col: str, control_name: str, prediction_column: str, learner: Callable, treatment_learner: Optional[Callable] = None, learner_transformers: Optional[List[Callable]] = None) -> LearnerReturnType: ...
-```

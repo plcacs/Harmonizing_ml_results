@@ -1,4 +1,3 @@
-```python
 from abc import abstractmethod, abstractproperty
 from typing import Any, List, Optional, Tuple, Union
 
@@ -111,4 +110,3 @@ class ErrorLeaf(Leaf):
     def __init__(self, token_type: str, value: str, start_pos: Tuple[int, int], prefix: str = ...) -> None: ...
     
     def __repr__(self) -> str: ...
-```

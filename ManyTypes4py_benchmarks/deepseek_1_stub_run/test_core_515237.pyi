@@ -1,4 +1,3 @@
-```python
 import unittest
 from types import SimpleNamespace
 from typing import Any, Optional, Callable, Union, Sequence
@@ -75,4 +74,3 @@ class TestGetHashable(unittest.TestCase):
     def test_get_hashable_unhashable(self) -> None: ...
 
 def get_hashable(x: Any) -> Any: ...
-```

@@ -1,4 +1,3 @@
-```python
 import asyncio
 import collections
 from typing import Any, AsyncIterator, Awaitable, Callable, Deque, Final, Generic, List, Optional, Tuple, Type, TypeVar, Union
@@ -111,4 +110,3 @@ class DataQueue(Generic[_T]):
     def feed_eof(self) -> None: ...
     async def read(self) -> _T: ...
     def __aiter__(self) -> AsyncStreamIterator[_T]: ...
-```

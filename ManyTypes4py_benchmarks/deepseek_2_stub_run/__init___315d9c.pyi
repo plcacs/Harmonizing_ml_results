@@ -1,4 +1,3 @@
-```python
 """Tests for the Bluetooth integration."""
 
 from collections.abc import Iterable, Iterator
@@ -222,4 +221,3 @@ class FakeRemoteScanner(BaseHaRemoteScanner):
     ) -> None:
         """Inject an advertisement."""
         ...
-```

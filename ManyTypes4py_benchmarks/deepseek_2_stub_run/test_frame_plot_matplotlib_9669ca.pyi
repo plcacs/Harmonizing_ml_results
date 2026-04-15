@@ -1,4 +1,3 @@
-```python
 import base64
 from io import BytesIO
 from typing import Any, Optional, Tuple, Union
@@ -50,4 +49,3 @@ class DataFramePlotMatplotlibTest:
     def test_hist_plot(self) -> None: ...
     
     def test_kde_plot(self) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any, Callable, List, Dict, Set, Optional, Union, Mapping
 from homeassistant.components.media_player import (
@@ -196,4 +195,3 @@ class MusicCastMediaPlayer(MusicCastDeviceEntity, MediaPlayerEntity):
     
     @callback
     def async_schedule_check_client_list(self) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 from typing import Any, Iterator, Tuple, Callable, Optional, overload
 from random import Random
 from lru import LRU
@@ -67,4 +66,3 @@ def run_test_duplicate_attestations_at_later_slots(spec: Any, state: Any) -> Ite
 def run_test_all_balances_too_low_for_reward(spec: Any, state: Any) -> Iterator[Any]: ...
 
 def run_test_full_random(spec: Any, state: Any, rng: Random = ...) -> Iterator[Any]: ...
-```

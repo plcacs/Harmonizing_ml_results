@@ -1,4 +1,3 @@
-```python
 import os
 from typing import Any, Dict, Optional, Tuple
 from dbt.adapters.contracts.connection import Credentials, HasCredentials
@@ -52,4 +51,3 @@ class Profile(HasCredentials):
     
     @classmethod
     def render(cls, renderer: ProfileRenderer, project_profile_name: Optional[str], profile_name_override: Optional[str] = ..., target_override: Optional[str] = ..., threads_override: Optional[int] = ...) -> 'Profile': ...
-```

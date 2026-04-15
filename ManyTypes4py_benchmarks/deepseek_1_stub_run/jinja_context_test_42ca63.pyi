@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any, List, Dict, Optional, Union, overload
 
@@ -75,4 +74,3 @@ class TimeFilter:
 def safe_proxy(func: Any, obj: Any) -> Any: ...
 def dataset_macro(dataset_id: int, include_metrics: bool = ..., columns: Optional[List[str]] = ...) -> str: ...
 def metric_macro(metric_name: str, dataset_id: Optional[int] = ...) -> str: ...
-```

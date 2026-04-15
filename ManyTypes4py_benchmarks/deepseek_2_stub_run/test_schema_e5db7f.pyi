@@ -1,4 +1,3 @@
-```python
 import csv
 import json
 import pickle
@@ -128,4 +127,3 @@ def test_field_aliasing(default_field: Any) -> None: ...
 
 @pytest.mark.parametrize('aliases', [{'🇺🇸': tuple}, {'hey': 22}, {12: 'email'}, {b'hey': 'email'}, None, [], tuple()])
 def test_field_invalid_aliases(default_field: Any, aliases: Any) -> None: ...
-```

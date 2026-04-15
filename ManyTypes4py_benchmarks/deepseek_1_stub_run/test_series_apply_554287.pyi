@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 from pandas import DataFrame, Index, MultiIndex, Series
@@ -104,4 +103,3 @@ def test_apply_retains_column_name(by_row: _ByRow) -> None: ...
 def test_apply_type() -> None: ...
 
 def test_series_apply_unpack_nested_data() -> None: ...
-```

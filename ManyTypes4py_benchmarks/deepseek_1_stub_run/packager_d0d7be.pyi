@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 import sys
 from typing import Any, Optional, Dict, List, Set, Tuple, Iterable, Iterator, Callable, MutableMapping
@@ -126,4 +125,3 @@ class PipRunner:
     def download_all_dependencies(self, requirements_filename: str, directory: str) -> None: ...
     def download_manylinux_wheels(self, abi: str, packages: List[str], directory: str) -> None: ...
     def download_sdists(self, packages: List[str], directory: str) -> None: ...
-```

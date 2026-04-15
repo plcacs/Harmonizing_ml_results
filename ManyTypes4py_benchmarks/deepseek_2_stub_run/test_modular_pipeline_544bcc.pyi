@@ -1,4 +1,3 @@
-```python
 import pytest
 from kedro.pipeline import node, pipeline
 from kedro.pipeline.modular_pipeline import ModularPipelineError
@@ -89,4 +88,3 @@ class TestPipelineHelper:
     def test_pipeline_always_copies(self) -> None: ...
     
     def test_pipeline_tags(self) -> None: ...
-```

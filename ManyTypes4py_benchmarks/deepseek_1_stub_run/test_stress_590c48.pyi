@@ -1,4 +1,3 @@
-```python
 import time
 from http import HTTPStatus
 from itertools import count
@@ -108,4 +107,3 @@ def test_stress(
     token_addresses: List[TokenAddress],
     port_generator: Iterator[Port]
 ) -> None: ...
-```

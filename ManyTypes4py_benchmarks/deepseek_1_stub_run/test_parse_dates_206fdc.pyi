@@ -1,4 +1,3 @@
-```python
 from typing import Any, List, Optional, Sequence, Union
 from datetime import datetime, timedelta
 from io import StringIO
@@ -80,4 +79,3 @@ def test_parse_dates_dict_format_index(all_parsers: Any) -> None: ...
 def test_parse_dates_arrow_engine(all_parsers: Any) -> None: ...
 
 def test_from_csv_with_mixed_offsets(all_parsers: Any) -> None: ...
-```

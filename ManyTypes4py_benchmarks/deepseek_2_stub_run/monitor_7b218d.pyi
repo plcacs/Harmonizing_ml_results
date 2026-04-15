@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from collections import deque
 from http import HTTPStatus
@@ -152,4 +151,3 @@ class Monitor(Sensor, KeywordReduce):
     def on_web_request_start(self, app: AppT, request: web.Request, *, view: Optional[web.View] = ...) -> Dict[str, float]: ...
     def on_web_request_end(self, app: AppT, request: web.Request, response: Optional[web.Response], state: Dict[str, Any], *, view: Optional[web.View] = ...) -> None: ...
     def _normalize(self, name: str, *, pattern: Pattern[str] = ..., substitution: str = ...) -> str: ...
-```

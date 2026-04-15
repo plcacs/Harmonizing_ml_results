@@ -1,4 +1,3 @@
-```python
 import os
 import threading
 import time
@@ -78,4 +77,3 @@ class BaseRunner(metaclass=ABCMeta):
     def do_skip(self, cause: Any = ...) -> None: ...
 
 def resource_types_from_args(args: Any, all_resource_values: Any, default_resource_values: Any) -> Set[Any]: ...
-```

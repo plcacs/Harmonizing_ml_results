@@ -1,0 +1,294 @@
+from collections.abc import Iterable, Mapping
+from http import HTTPStatus
+from typing import Any, Optional, Union
+from unittest.mock import Mock
+
+import pytest
+from faust import Event, Stream, Table, Topic
+from faust.sensors.monitor import Monitor, TableState
+from faust.transport.consumer import Consumer
+from faust.transport.producer import Producer
+from faust.types import Message, TP
+
+TP1: TP = ...
+
+class test_Monitor:
+    @pytest.fixture
+    def time(self) -> Mock: ...
+    
+    @pytest.fixture
+    def message(self) -> Mock: ...
+    
+    @pytest.fixture
+    def stream(self) -> Mock: ...
+    
+    @pytest.fixture
+    def topic(self) -> Mock: ...
+    
+    @pytest.fixture
+    def event(self) -> Mock: ...
+    
+    @pytest.fixture
+    def table(self) -> Mock: ...
+    
+    @pytest.fixture
+    def mon(self, *, time: Mock) -> Monitor: ...
+    
+    def create_monitor(self, **kwargs: Any) -> Monitor: ...
+    
+    def create_populated_monitor(
+        self,
+        messages_active: int = ...,
+        messages_received_total: int = ...,
+        messages_sent: int = ...,
+        messages_s: int = ...,
+        messages_received_by_topic: Mapping[str, int] = ...,
+        events_active: int = ...,
+        events_total: int = ...,
+        events_s: int = ...,
+        events_runtime_avg: float = ...,
+        events_by_task: Mapping[str, int] = ...,
+        events_by_stream: Mapping[str, int] = ...,
+        commit_latency: list[float] = ...,
+        send_latency: list[float] = ...,
+        topic_buffer_full: Mapping[TP, int] = ...,
+        **kwargs: Any
+    ) -> Monitor: ...
+    
+    def test_init_max_avg_history(self) -> None: ...
+    
+    def test_init_max_avg_history__default(self) -> None: ...
+    
+    def test_init_max_commit_latency_history(self) -> None: ...
+    
+    def test_init_max_commit_latency_history__default(self) -> None: ...
+    
+    def test_init_max_send_latency_history(self) -> None: ...
+    
+    def test_init_max_send_latency_history__default(self) -> None: ...
+    
+    def test_init_max_assignment_latency_history(self) -> None: ...
+    
+    def test_init_max_assignment_latency_history__default(self) -> None: ...
+    
+    def test_init_rebalances(self) -> None: ...
+    
+    def test_asdict(self) -> None: ...
+    
+    def test_on_message_in(
+        self,
+        *,
+        message: Mock,
+        mon: Monitor,
+        time: Mock
+    ) -> None: ...
+    
+    def test_on_stream_event_in(
+        self,
+        *,
+        event: Mock,
+        mon: Monitor,
+        stream: Mock,
+        time: Mock
+    ) -> dict[str, Optional[float]]: ...
+    
+    def test_on_stream_event_out(
+        self,
+        *,
+        event: Mock,
+        mon: Monitor,
+        stream: Mock,
+        time: Mock
+    ) -> None: ...
+    
+    def test_on_stream_event_out__missing_state(
+        self,
+        *,
+        event: Mock,
+        mon: Monitor,
+        stream: Mock,
+        time: Mock
+    ) -> None: ...
+    
+    def test_on_topic_buffer_full(
+        self,
+        *,
+        mon: Monitor
+    ) -> None: ...
+    
+    def test_on_message_out(
+        self,
+        *,
+        message: Mock,
+        mon: Monitor,
+        time: Mock
+    ) -> None: ...
+    
+    def test_on_table_get(
+        self,
+        *,
+        mon: Monitor,
+        table: Mock
+    ) -> None: ...
+    
+    def test_on_table_set(
+        self,
+        *,
+        mon: Monitor,
+        table: Mock,
+        k: str,
+        v: str
+    ) -> None: ...
+    
+    def test_on_table_del(
+        self,
+        *,
+        mon: Monitor,
+        table: Mock,
+        k: str
+    ) -> None: ...
+    
+    def test_on_commit_initiated(
+        self,
+        *,
+        mon: Monitor,
+        time: Mock
+    ) -> float: ...
+    
+    def test_on_commit_completed(
+        self,
+        *,
+        mon: Monitor,
+        time: Mock
+    ) -> None: ...
+    
+    def test_on_send_initiated(
+        self,
+        *,
+        mon: Monitor,
+        time: Mock
+    ) -> float: ...
+    
+    def test_on_send_completed(
+        self,
+        *,
+        mon: Monitor,
+        time: Mock
+    ) -> None: ...
+    
+    def test_on_send_error(
+        self,
+        *,
+        mon: Monitor,
+        time: Mock
+    ) -> None: ...
+    
+    def test_on_assignment_start(
+        self,
+        *,
+        mon: Monitor,
+        time: Mock
+    ) -> dict[str, float]: ...
+    
+    def test_on_assignment_completed(
+        self,
+        *,
+        mon: Monitor,
+        time: Mock
+    ) -> None: ...
+    
+    def test_on_assignment_error(
+        self,
+        *,
+        mon: Monitor,
+        time: Mock
+    ) -> None: ...
+    
+    def test_on_rebalance_start(
+        self,
+        *,
+        mon: Monitor,
+        time: Mock,
+        app: Any
+    ) -> dict[str, float]: ...
+    
+    def test_on_rebalance_return(
+        self,
+        *,
+        mon: Monitor,
+        time: Mock,
+        app: Any
+    ) -> None: ...
+    
+    def test_on_rebalance_end(
+        self,
+        *,
+        mon: Monitor,
+        time: Mock,
+        app: Any
+    ) -> None: ...
+    
+    def test_on_web_request_start(
+        self,
+        *,
+        mon: Monitor,
+        time: Mock,
+        app: Any
+    ) -> dict[str, float]: ...
+    
+    def test_on_web_request_end(
+        self,
+        *,
+        mon: Monitor,
+        time: Mock,
+        app: Any
+    ) -> None: ...
+    
+    def test_on_web_request_end__None_response(
+        self,
+        *,
+        mon: Monitor,
+        time: Mock,
+        app: Any
+    ) -> None: ...
+    
+    def assert_on_web_request_end(
+        self,
+        mon: Monitor,
+        time: Mock,
+        app: Any,
+        response: Optional[Mock],
+        expected_status: int
+    ) -> None: ...
+    
+    def test_TableState_asdict(
+        self,
+        *,
+        mon: Monitor,
+        table: Mock
+    ) -> None: ...
+    
+    def test_on_tp_commit(
+        self,
+        *,
+        mon: Monitor
+    ) -> None: ...
+    
+    def test_track_tp_end_offsets(
+        self,
+        *,
+        mon: Monitor
+    ) -> None: ...
+    
+    @pytest.mark.asyncio
+    async def test_service_sampler(
+        self,
+        *,
+        mon: Monitor
+    ) -> None: ...
+    
+    def test__sample(
+        self,
+        *,
+        mon: Monitor
+    ) -> None: ...

@@ -1,4 +1,3 @@
-```python
 from collections.abc import Callable, Iterable
 from typing import (
     Any,
@@ -111,4 +110,3 @@ class FixedAndOptionalKeysDictStrategy(SearchStrategy[dict[str, Any]]):
     def calc_is_empty(self, recur: Callable[[SearchStrategy[Any]], bool]) -> bool: ...
     def __repr__(self) -> str: ...
     def do_draw(self, data: Any) -> dict[str, Any]: ...
-```

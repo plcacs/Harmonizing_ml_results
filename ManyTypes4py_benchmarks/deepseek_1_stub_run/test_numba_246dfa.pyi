@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pytest
 from pandas import DataFrame, Index, NamedAgg, Series
@@ -64,4 +63,3 @@ def test_multiindex_multi_key_not_supported(nogil: Any, parallel: Any, nopython:
 def test_multilabel_numba_vs_cython(numba_supported_reductions: Any) -> None: ...
 
 def test_multilabel_udf_numba_vs_cython() -> None: ...
-```

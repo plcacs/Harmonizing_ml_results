@@ -1,4 +1,3 @@
-```python
 import pytest
 import numpy as np
 from pandas import DataFrame, Index, IndexSlice, MultiIndex, Series
@@ -42,4 +41,3 @@ class TestXSWithMultiIndex:
     def test_xs_droplevel_false(self) -> None: ...
     def test_xs_droplevel_false_view(self) -> None: ...
     def test_xs_list_indexer_droplevel_false(self) -> None: ...
-```

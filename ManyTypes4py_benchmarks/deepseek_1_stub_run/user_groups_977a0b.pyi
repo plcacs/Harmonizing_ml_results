@@ -1,4 +1,3 @@
-```python
 from collections.abc import Mapping, Sequence
 from datetime import datetime
 from typing import Any, TypedDict
@@ -123,4 +122,3 @@ def do_change_user_group_permission_setting(
     old_setting_api_value: Any = ...,
     acting_user: Any
 ) -> None: ...
-```

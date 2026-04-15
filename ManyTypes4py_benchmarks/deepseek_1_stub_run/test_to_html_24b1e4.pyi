@@ -1,4 +1,3 @@
-```python
 from datetime import datetime
 from io import StringIO
 from typing import Any, Callable, Dict, List, Optional, Sequence, Tuple, Union
@@ -159,4 +158,3 @@ def test_to_html_multiindex_col_with_colspace() -> None: ...
 def test_to_html_tuple_col_with_colspace() -> None: ...
 
 def test_to_html_empty_complex_array() -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 from typing import Any, Awaitable, Callable, ClassVar, Deque, Iterable, List, Mapping, MutableMapping, Optional, Set, Tuple, Type, Union, cast
 from mode.utils.times import Seconds
 from faust.auth import GSSAPICredentials, SASLCredentials, SSLCredentials
@@ -141,4 +140,3 @@ class Transport(base.Transport):
     async def _really_create_topic(self, owner: Any, client: Any, topic: str, partitions: int, replication: int, *, config: Optional[Mapping[str, Any]] = None, timeout: int = 30000, retention: Optional[int] = None, compacting: Optional[bool] = None, deleting: Optional[bool] = None, ensure_created: bool = False) -> None: ...
 
 def credentials_to_aiokafka_auth(credentials: Optional[CredentialsT] = None, ssl_context: Any = None) -> Mapping[str, Any]: ...
-```

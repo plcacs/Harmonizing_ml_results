@@ -1,4 +1,3 @@
-```python
 from typing import Any, Callable, Literal, overload
 from typing_extensions import TypeAlias
 import numpy as np
@@ -260,4 +259,3 @@ def test_agg_mapping_func_deprecated() -> None: ...
 def test_agg_std() -> None: ...
 
 def test_agg_dist_like_and_nonunique_columns() -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 import codecs
 from datetime import datetime
 from typing import Any, Optional, Union, Sequence, Dict, List, Tuple
@@ -112,4 +111,3 @@ class TestToLatexMultiindex:
     def test_to_latex_multiindex_format_single_index_hidden(self) -> None: ...
     def test_to_latex_multiindex_format_triple_index_two_hidden(self) -> None: ...
     def test_to_latex_multiindex_format_triple_index_all_hidden(self) -> None: ...
-```

@@ -1,4 +1,3 @@
-```python
 import datetime
 from io import StringIO
 from typing import (
@@ -219,4 +218,3 @@ def test_filepath_or_buffer_bad_arg_raises(
     float_frame: Any,
     method: str,
 ) -> None: ...
-```

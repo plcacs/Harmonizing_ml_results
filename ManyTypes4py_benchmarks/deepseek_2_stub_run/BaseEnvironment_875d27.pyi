@@ -1,4 +1,3 @@
-```python
 import logging
 from abc import abstractmethod
 from enum import Enum
@@ -142,4 +141,3 @@ class BaseEnvironment(gym.Env):
     def current_price(self) -> float: ...
     
     def get_actions(self) -> type[BaseActions]: ...
-```

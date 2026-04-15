@@ -1,4 +1,3 @@
-```python
 import asyncio
 from collections.abc import Callable, Coroutine, Generator
 from ipaddress import IPv4Address, IPv6Address
@@ -183,4 +182,3 @@ def zgs_event_fixture(hass: HomeAssistant, soco: MockSoCo, zgs_discovery: str) -
 
 @pytest.fixture(name="sonos_setup_two_speakers")
 async def sonos_setup_two_speakers(hass: HomeAssistant, soco_factory: SoCoMockFactory) -> list[MockSoCo]: ...
-```

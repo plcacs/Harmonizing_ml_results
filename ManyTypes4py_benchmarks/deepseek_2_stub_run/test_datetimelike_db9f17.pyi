@@ -1,4 +1,3 @@
-```python
 from __future__ import annotations
 from typing import Any, ClassVar, Iterator, List, Sequence, Tuple, Type, TypeVar, Union
 import numpy as np
@@ -220,4 +219,3 @@ def test_period_index_construction_from_strings(klass: Any) -> None: ...
 
 @pytest.mark.parametrize
 def test_from_pandas_array(dtype: str) -> None: ...
-```
