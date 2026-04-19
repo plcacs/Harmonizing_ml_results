@@ -1,0 +1,67 @@
+from __future__ import annotations
+
+import datetime
+import logging
+from os import PathLike
+from typing import Any, Counter, Dict, Iterable, Optional, Tuple, Union
+
+import torch
+from torch.optim import Optimizer
+
+from allennlp.common.params import Params
+from allennlp.data import DataLoader, Vocabulary
+from allennlp.models.model import Model
+
+
+logger: logging.Logger = ...
+
+class HasBeenWarned:
+    tqdm_ignores_underscores: bool
+
+def move_optimizer_to_cuda(optimizer: Optimizer) -> None: ...
+def get_batch_size(batch: Any) -> int: ...
+def time_to_str(timestamp: Union[int, float]) -> str: ...
+def str_to_time(time_str: str) -> datetime.datetime: ...
+def data_loaders_from_params(
+    params: Params,
+    train: bool = ...,
+    validation: bool = ...,
+    test: bool = ...,
+    serialization_dir: Optional[str] = ...,
+) -> Dict[str, DataLoader]: ...
+def create_serialization_dir(
+    params: Params,
+    serialization_dir: Union[str, PathLike[str]],
+    recover: bool,
+    force: bool,
+) -> None: ...
+def enable_gradient_clipping(model: Model, grad_clipping: Optional[float]) -> None: ...
+def rescale_gradients(model: Model, grad_norm: Optional[float] = ...) -> Optional[torch.Tensor]: ...
+def get_metrics(
+    model: Model,
+    total_loss: float,
+    total_reg_loss: Optional[float],
+    batch_loss: Optional[float],
+    batch_reg_loss: Optional[float],
+    num_batches: int,
+    reset: bool = ...,
+) -> Dict[str, float]: ...
+def get_train_and_validation_metrics(
+    metrics: Dict[str, float],
+) -> Tuple[Dict[str, float], Dict[str, float]]: ...
+def evaluate(
+    model: Model,
+    data_loader: DataLoader,
+    cuda_device: Union[int, torch.device] = ...,
+    batch_weight_key: Optional[str] = ...,
+    output_file: Optional[str] = ...,
+    predictions_output_file: Optional[str] = ...,
+) -> Dict[str, float]: ...
+def description_from_metrics(metrics: Dict[str, float]) -> str: ...
+def make_vocab_from_params(
+    params: Params,
+    serialization_dir: Union[str, PathLike[str]],
+    print_statistics: bool = ...,
+) -> Vocabulary: ...
+def ngrams(tensor: torch.Tensor, ngram_size: int, exclude_indices: Iterable[int]) -> Counter[Tuple[int, ...]]: ...
+def get_valid_tokens_mask(tensor: torch.Tensor, exclude_indices: Iterable[int]) -> torch.Tensor: ...

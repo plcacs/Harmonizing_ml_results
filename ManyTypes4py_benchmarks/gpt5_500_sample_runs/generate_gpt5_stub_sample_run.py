@@ -36,6 +36,11 @@ GROUPED_JSON = os.path.join(
 )
 
 
+def _repo_rel_path(file_path: str) -> str:
+    """grouped_file_paths.json uses '\\' separators; normalize for POSIX basename/join."""
+    return file_path.replace("\\", "/")
+
+
 def get_run_paths(run_number: int) -> dict:
     run_name = f"gpt5_{run_number}_stub_run"
     output_dir = os.path.join(PARENT_DIR, run_name)
@@ -155,7 +160,7 @@ def process_files(run_number: int, max_files: int | None = None) -> None:
     files_to_run: list[tuple[str, str]] = []
     for group_id in sorted(file_map.keys(), key=int):
         for file_path in file_map[group_id]:
-            basename = os.path.basename(file_path)
+            basename = os.path.basename(_repo_rel_path(file_path))
             if basename in selected_filenames:
                 files_to_run.append((group_id, file_path))
 
@@ -176,7 +181,7 @@ def process_files(run_number: int, max_files: int | None = None) -> None:
             continue
 
         print(f"Processing for stub: {file_path}")
-        full_path = os.path.join(PARENT_DIR, file_path)
+        full_path = os.path.join(PARENT_DIR, _repo_rel_path(file_path))
         try:
             with open(full_path, "r", encoding="utf-8", errors="ignore") as f:
                 code = f.read()
@@ -184,7 +189,7 @@ def process_files(run_number: int, max_files: int | None = None) -> None:
             print(f"Read error, skipping: {e}")
             continue
 
-        module_name = os.path.splitext(os.path.basename(file_path))[0]
+        module_name = os.path.splitext(os.path.basename(_repo_rel_path(file_path)))[0]
         stub_content, success, duration = generate_stub(code, module_name)
         log_timing(file_path, duration, paths["timing_log"])
 
@@ -197,7 +202,7 @@ def process_files(run_number: int, max_files: int | None = None) -> None:
         # Store all stubs directly under the run's output directory (no subgroups)
         os.makedirs(paths["output_dir"], exist_ok=True)
 
-        base_name = os.path.splitext(os.path.basename(file_path))[0] + ".pyi"
+        base_name = os.path.splitext(os.path.basename(_repo_rel_path(file_path)))[0] + ".pyi"
         out_path = os.path.join(paths["output_dir"], base_name)
         try:
             with open(out_path, "w", encoding="utf-8", errors="ignore") as f:

@@ -38,6 +38,11 @@ GROUPED_JSON = os.path.join(
 )
 
 
+def _repo_rel_path(file_path):
+    """grouped_file_paths.json uses '\\' separators; normalize for POSIX basename/join."""
+    return file_path.replace("\\", "/")
+
+
 def get_run_paths(run_number):
     run_name = f"deepseek_{run_number}_run"
     logs_dir = os.path.join(PARENT_DIR, "Files_not_for_root_directories")
@@ -141,7 +146,7 @@ def process_files(run_number):
     files_to_run = []
     for group_id in sorted(file_map.keys(), key=int):
         for file_path in file_map[group_id]:
-            basename = os.path.basename(file_path)
+            basename = os.path.basename(_repo_rel_path(file_path))
             if basename in selected_filenames:
                 files_to_run.append((group_id, file_path))
 
@@ -159,7 +164,7 @@ def process_files(run_number):
             continue
 
         print(f"Processing: {file_path}")
-        full_path = os.path.join(PARENT_DIR, file_path)
+        full_path = os.path.join(PARENT_DIR, _repo_rel_path(file_path))
         try:
             with open(full_path, "r", encoding="utf-8", errors="ignore") as f:
                 code = f.read()
@@ -185,7 +190,7 @@ def process_files(run_number):
         out_dir = os.path.join(paths["output_dir"], group_id)
         os.makedirs(out_dir, exist_ok=True)
 
-        out_path = os.path.join(out_dir, os.path.basename(file_path))
+        out_path = os.path.join(out_dir, os.path.basename(_repo_rel_path(file_path)))
         try:
             with open(out_path, "w", encoding="utf-8", errors="ignore") as f:
                 f.write(content)

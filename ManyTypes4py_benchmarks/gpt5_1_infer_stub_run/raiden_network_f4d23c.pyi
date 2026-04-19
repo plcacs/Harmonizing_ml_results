@@ -1,0 +1,103 @@
+from typing import Iterator, List, Optional
+from pathlib import Path
+from subprocess import Popen
+import pytest
+from gevent.event import AsyncResult
+from raiden.constants import Environment, RoutingMode
+from raiden.raiden_service import RaidenService
+from raiden.settings import CapabilitiesConfig
+from raiden.tests.utils.network import BlockchainServices
+from raiden.tests.utils.mocks import PFSMock
+from raiden.tests.utils.transport import ParsedURL
+from raiden.utils.typing import (
+    BlockTimeout,
+    ChainID,
+    MonitoringServiceAddress,
+    OneToNAddress,
+    Port,
+    TokenAddress,
+    TokenAmount,
+    TokenNetworkRegistryAddress,
+    UserDepositAddress,
+)
+
+def timeout(blockchain_type: str) -> int: ...
+def routing_mode() -> RoutingMode: ...
+def raiden_chain(
+    token_addresses: List[TokenAddress],
+    token_network_registry_address: TokenNetworkRegistryAddress,
+    one_to_n_address: OneToNAddress,
+    monitoring_service_address: MonitoringServiceAddress,
+    channels_per_node: object,
+    deposit: TokenAmount,
+    settle_timeout: BlockTimeout,
+    chain_id: ChainID,
+    blockchain_services: BlockchainServices,
+    reveal_timeout: BlockTimeout,
+    retry_interval_initial: float,
+    retry_interval_max: float,
+    retries_before_backoff: int,
+    environment_type: Environment,
+    unrecoverable_error_should_crash: bool,
+    local_matrix_servers: List[ParsedURL],
+    blockchain_type: str,
+    contracts_path: Path,
+    user_deposit_address: UserDepositAddress,
+    logs_storage: str,
+    register_tokens: bool,
+    start_raiden_apps: bool,
+    routing_mode: RoutingMode,
+    blockchain_query_interval: float,
+    resolver_ports: List[Optional[Port]],
+    enable_rest_api: bool,
+    port_generator: Iterator[Port],
+    capabilities: CapabilitiesConfig,
+) -> Iterator[List[RaidenService]]: ...
+def resolvers(resolver_ports: List[Optional[Port]]) -> Iterator[List[Optional[Popen[bytes]]]]: ...
+def adhoc_capability() -> bool: ...
+def capabilities(adhoc_capability: bool) -> CapabilitiesConfig: ...
+def pfs_mock(
+    monkeypatch: pytest.MonkeyPatch,
+    local_matrix_servers: List[ParsedURL],
+    chain_id: ChainID,
+    token_network_registry_address: Optional[TokenNetworkRegistryAddress],
+    user_deposit_address: Optional[UserDepositAddress],
+) -> PFSMock: ...
+def raiden_network(
+    token_addresses: List[TokenAddress],
+    token_network_registry_address: TokenNetworkRegistryAddress,
+    one_to_n_address: OneToNAddress,
+    monitoring_service_address: MonitoringServiceAddress,
+    channels_per_node: object,
+    deposit: TokenAmount,
+    settle_timeout: BlockTimeout,
+    chain_id: ChainID,
+    blockchain_services: BlockchainServices,
+    reveal_timeout: BlockTimeout,
+    retry_interval_initial: float,
+    retry_interval_max: float,
+    retries_before_backoff: int,
+    environment_type: Environment,
+    unrecoverable_error_should_crash: bool,
+    local_matrix_servers: List[ParsedURL],
+    blockchain_type: str,
+    contracts_path: Path,
+    user_deposit_address: UserDepositAddress,
+    logs_storage: str,
+    register_tokens: bool,
+    start_raiden_apps: bool,
+    routing_mode: RoutingMode,
+    blockchain_query_interval: float,
+    resolver_ports: List[Optional[Port]],
+    enable_rest_api: bool,
+    port_generator: Iterator[Port],
+    capabilities: CapabilitiesConfig,
+) -> Iterator[List[RaidenService]]: ...
+
+class RestartNode:
+    async_result: Optional[AsyncResult]
+    def __init__(self) -> None: ...
+    def link_exception_to(self, result: AsyncResult) -> None: ...
+    def __call__(self, service: RaidenService) -> None: ...
+
+def restart_node() -> RestartNode: ...
