@@ -95,14 +95,14 @@ if __name__ == "__main__":
     run_mypy_and_save_results(
         "partial_annoated_code_generation_by_LLM/o3_mini_partially_typed_files",
         "mypy_results/mypy_outputs/partial_typed/mypy_results_o3_mini_partially_typed_files_with_errors.json",
-    )"""
+    )
     run_mypy_and_save_results(
         "deepseek_3_run",
         "GPCE_mypy_results/mypy_results_deepseek_3_run_with_errors.json",
-    )
+    )"""
     run_mypy_and_save_results(
-        "deepseek_4_run",
-        "GPCE_mypy_results/mypy_results_deepseek_4_run_with_errors.json",
+        "deepseek_3_stub_run/merged",
+        "GPCE_mypy_results/mypy_results_deepseek_3_merge_stub_run_with_errors.json",
     )
     
     """

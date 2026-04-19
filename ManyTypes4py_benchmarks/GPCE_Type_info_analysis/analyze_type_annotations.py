@@ -210,7 +210,7 @@ def main() -> None:
 
     results["deepseek_3_stub_run"] = run_analysis(
         DIR_STUB, ".pyi", recursive=False,
-        label="deepseek_3_stub_run (.pyi files)"
+        label="deepseek_3_stub_run (.pyi stubs)"
     )
 
     with open(OUTPUT_JSON, "w", encoding="utf-8") as f:

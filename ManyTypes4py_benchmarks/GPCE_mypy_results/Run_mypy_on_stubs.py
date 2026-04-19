@@ -4,6 +4,7 @@ import glob
 import json
 import ast
 import time
+import shutil
 
 
 def _strip_markdown_fences(text):
@@ -67,80 +68,101 @@ def count_parameters(filename):
     return total_params, annotated_params
 
 
-def run_mypy_and_save_results(directory, output_file):
+def run_mypy_and_save_results(py_directory, stub_directory, output_file):
     results = {}
-    all_py_files = list(glob.glob(os.path.join(directory, "**", "*.py"), recursive=True))
+    all_py_files = list(glob.glob(os.path.join(py_directory, "**", "*.py"), recursive=True))
     total_py = len(all_py_files)
+
+    # Match .py files to their .pyi stubs by stem name
+    stub_map = {}
+    for stub_path in glob.glob(os.path.join(stub_directory, "*.pyi")):
+        stem = os.path.splitext(os.path.basename(stub_path))[0]
+        stub_map[stem] = stub_path
 
     has_stub = []
     skipped = []
     for f in all_py_files:
-        stub_path = os.path.splitext(f)[0] + ".pyi"
-        if os.path.exists(stub_path):
-            has_stub.append(f)
+        stem = os.path.splitext(os.path.basename(f))[0]
+        if stem in stub_map:
+            has_stub.append((f, stub_map[stem]))
         else:
             skipped.append(os.path.basename(f))
 
     total_files = len(has_stub)
-    print(f"Found {total_py} .py files, {total_files} have matching .pyi stubs, {len(skipped)} skipped")
+    print(f"Found {total_py} .py files, {total_files} have matching stubs, {len(skipped)} skipped")
 
-    for i, filename in enumerate(has_stub, 1):
-        print(f"Processing file {i}/{total_files}: {filename}")
-        abs_path = os.path.abspath(filename)
-        command = [
-            "mypy",
-            "--ignore-missing-imports",
-            "--allow-untyped-defs",
-            "--no-incremental",
-            "--python-version=3.10",
-            "--disable-error-code=no-redef",
-            "--cache-dir=/dev/null",
-            abs_path,
-        ]
+    for i, (py_file, stub_file) in enumerate(has_stub, 1):
+        print(f"Processing file {i}/{total_files}: {py_file}")
+
+        abs_py = os.path.abspath(py_file)
+        py_dir = os.path.dirname(abs_py)
+
+        # Copy the .pyi stub right next to the .py file
+        stub_basename = os.path.basename(stub_file)
+        temp_stub = os.path.join(py_dir, stub_basename)
+        copied = False
         try:
+            if not os.path.exists(temp_stub):
+                shutil.copy2(stub_file, temp_stub)
+                copied = True
+
+            command = [
+                "mypy",
+                "--ignore-missing-imports",
+                "--no-incremental",
+                "--python-version=3.10",
+                "--disable-error-code=no-redef",
+                "--cache-dir=/dev/null",
+                abs_py,
+            ]
+
             process = subprocess.run(
                 command,
-                cwd=os.path.dirname(abs_path),
+                cwd=py_dir,
                 capture_output=True,
                 text=True,
                 check=False,
             )
+
             output = process.stdout.strip()
             error_output = process.stderr.strip()
-            file_result = {}
-            stub_path = os.path.splitext(filename)[0] + ".pyi"
-            total_params, annotated_params = count_parameters(stub_path)
-            file_result["stats"] = {
-                "total_parameters": total_params,
-                "parameters_with_annotations": annotated_params,
+
+            # Count only actual error lines, not summary lines
+            all_lines = output.splitlines() if output else error_output.splitlines()
+            error_lines = [l for l in all_lines if ": error:" in l]
+
+            # Parameter stats from the stub
+            total_params, annotated_params = count_parameters(stub_file)
+
+            file_result = {
+                "stats": {
+                    "total_parameters": total_params,
+                    "parameters_with_annotations": annotated_params,
+                },
+                "error_count": len(error_lines),
+                "isCompiled": process.returncode == 0,
+                "errors": error_lines,
             }
-            if process.returncode == 0:
-                file_result["error_count"] = 0
-                file_result["isCompiled"] = True
-                file_result["errors"] = []
-            else:
-                error_count = output.count("\n")
-                if error_count == 0 and error_output:
-                    error_count = error_output.count("\n")
-                errors = output.splitlines() if output else error_output.splitlines()
-                file_result["error_count"] = error_count
-                file_result["isCompiled"] = False
-                file_result["errors"] = errors
-            file_key = os.path.basename(filename)
-            results[file_key] = file_result
-        except FileNotFoundError:
-            print("Error: mypy not found. Make sure it's installed and in your PATH.")
-            return
-        with open(output_file, "w") as f:
-            json.dump(results, f, indent=4)
+
+            # Use relative path as key to avoid basename collisions
+            rel_key = os.path.relpath(py_file, py_directory)
+            results[rel_key] = file_result
+
+        finally:
+            # Always clean up the copied stub
+            if copied and os.path.exists(temp_stub):
+                os.remove(temp_stub)
 
     results["_metadata"] = {
         "total_py_files": total_py,
         "files_with_stubs": total_files,
         "skipped_no_stub": skipped,
     }
+
+    # Write once, after the loop
     with open(output_file, "w") as f:
         json.dump(results, f, indent=4)
+
     print(f"\nResults saved to {output_file}")
 
 
@@ -150,15 +172,18 @@ if __name__ == "__main__":
    
     run_mypy_and_save_results(
         "../deepseek_3_stub_run",
+        "../deepseek_3_stub_run",
         "mypy_results_deepseek_3_stub_run_with_errors.json",
     )
     """
     run_mypy_and_save_results(
         "../gpt5_1_stub_run",
+        "../gpt5_1_stub_run",
         "mypy_results_gpt5_1_stub_run_with_errors.json",
     )
     
     run_mypy_and_save_results(
+        "../claude_stub_1_run",
         "../claude_stub_1_run",
         "mypy_results_claude_stub_1_run_with_errors.json",
     )"""
