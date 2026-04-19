@@ -342,48 +342,48 @@ def _strip_markdown_fences(text):
 
 
 def main():
-    py_directory = os.path.join("..", "deepseek_3_stub_run")
-    stub_directory = os.path.join("..", "deepseek_3_stub_run")
-    output_directory = os.path.join("..", "deepseek_3_stub_run", "merged")
+    # `py_directory` is the stub run root that contains .pyi files.
+    py_directory = os.path.join("..", "gpt5_1_infer_stub_run")
+    untyped_benchmarks_directory = os.path.join("..", "untyped_benchmarks")
+    output_directory = os.path.join("..", "gpt5_1_infer_stub_run", "merged")
 
-    if len(sys.argv) >= 4:
+    if len(sys.argv) >= 3:
         py_directory = sys.argv[1]
-        stub_directory = sys.argv[2]
-        output_directory = sys.argv[3]
+        output_directory = sys.argv[2]
+    if len(sys.argv) >= 4:
+        untyped_benchmarks_directory = sys.argv[3]
 
     os.makedirs(output_directory, exist_ok=True)
 
-    # Build stub map: stem -> stub path
-    stub_map = {}
-    for stub_path in glob.glob(os.path.join(stub_directory, "*.pyi")):
-        stem = os.path.splitext(os.path.basename(stub_path))[0]
-        stub_map[stem] = stub_path
-
-    py_files = glob.glob(os.path.join(py_directory, "*.py"))
+    # Recursively find all stub files under the provided stub-run directory.
+    stub_files = glob.glob(os.path.join(py_directory, "**", "*.pyi"), recursive=True)
     total = 0
     merged = 0
     skipped = 0
 
-    for py_path in sorted(py_files):
-        stem = os.path.splitext(os.path.basename(py_path))[0]
-        if stem not in stub_map:
+    for stub_path in sorted(stub_files):
+        rel_stub_path = os.path.relpath(stub_path, py_directory)
+        rel_py_path = os.path.splitext(rel_stub_path)[0] + ".py"
+        py_path = os.path.join(untyped_benchmarks_directory, rel_py_path)
+
+        if not os.path.exists(py_path):
             continue
 
         total += 1
-        stub_path = stub_map[stem]
-        print(f"[{total}] Merging: {os.path.basename(py_path)}")
+        print(f"[{total}] Merging: {rel_py_path}")
 
         result = merge_stub_into_py(py_path, stub_path)
         if result is None:
             skipped += 1
             continue
 
-        out_path = os.path.join(output_directory, os.path.basename(py_path))
+        out_path = os.path.join(output_directory, rel_py_path)
+        os.makedirs(os.path.dirname(out_path), exist_ok=True)
         with open(out_path, "w", encoding="utf-8") as f:
             f.write(result)
         merged += 1
 
-    print(f"\nDone. {merged} files merged, {skipped} skipped, out of {total} with stubs.")
+    print(f"\nDone. {merged} files merged, {skipped} skipped, out of {total} matched stub/source pairs.")
     print(f"Output directory: {os.path.abspath(output_directory)}")
 
 
