@@ -121,18 +121,23 @@ def analyze_model_filter_both_fail_first(model_name, model_file):
 if __name__ == "__main__":
     # GPCE comparison: stub-based runs
     models = [
-        (
-            "gpt5_1_stub_run",
-            "mypy_results_gpt5_1_stub_run_with_errors.json",
+       
+         ("gpt5_seting1",
+        "mypy_results_gpt5_2_run_with_errors.json"
         ),
         (
-            "claude_stub_1_run",
-            "mypy_results_claude_stub_1_run_with_errors.json",
+            "gpt5_seting2",
+            "mypy_results_gpt5_1_infer_stub_run_with_errors.json",
+        ),
+       
+ ("deepseek_3_setting1",
+            "mypy_results_deepseek_3_run_with_errors.json",
         ),
         (
-            "deepseek_1_stub_run",
-            "mypy_results_deepseek_1_stub_run_with_errors.json",
+            "deepseek_3_setting2",
+            "mypy_results_deepseek_3_merge_stub_run_with_errors.json",
         ),
+       
     ]
 
     all_results = []
