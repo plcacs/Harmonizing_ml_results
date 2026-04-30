@@ -113,7 +113,9 @@ def analyze_file_ast(filepath):
     concrete = 0
     total_returns = 0
     ret_blank = 0
-    ret_any = 0
+    ret_exact_any = 0
+    ret_partial_any = 0
+    ret_concrete = 0
 
     for node in ast.walk(tree):
         if not isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
@@ -142,21 +144,28 @@ def analyze_file_ast(filepath):
         rcat = classify(node.returns)
         if rcat == "blank":
             ret_blank += 1
-        elif rcat in ("exact_any", "partial_any"):
-            ret_any += 1
+        elif rcat == "exact_any":
+            ret_exact_any += 1
+        elif rcat == "partial_any":
+            ret_partial_any += 1
+        else:
+            ret_concrete += 1
 
     total_slots = total_params + total_returns
-    annotated = total_slots - blank - ret_blank
-    any_count = exact_any + partial_any + ret_any
+
+    # Type coverage: concrete + partial_any (static or partially-static types)
+    typed_count = (concrete + ret_concrete) + (partial_any + ret_partial_any)
+    # Any coverage: blank + exact_any (unannotated or pure "Any")
+    any_or_blank = (blank + ret_blank) + (exact_any + ret_exact_any)
 
     return {
         "total_slots": total_slots,
-        "annotated": annotated,
-        "coverage_pct": (annotated / total_slots * 100) if total_slots else 0,
-        "any_count": any_count,
-        "any_pct": (any_count / total_slots * 100) if total_slots else 0,
-        "concrete": concrete,
-        "concrete_pct": (concrete / total_slots * 100) if total_slots else 0,
+        "annotated": total_slots - blank - ret_blank,
+        "coverage_pct": (typed_count / total_slots * 100) if total_slots else 0,
+        "any_count": any_or_blank,
+        "any_pct": (any_or_blank / total_slots * 100) if total_slots else 0,
+        "concrete": concrete + ret_concrete,
+        "concrete_pct": ((concrete + ret_concrete) / total_slots * 100) if total_slots else 0,
     }
 
 

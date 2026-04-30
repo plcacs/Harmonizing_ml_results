@@ -1,10 +1,10 @@
 """
-plot_annotation_mypy_figures_v2.py
+plot_strict_unstrict_figures.py
 
-Extended visualization suite: 7 figures.
+Extended visualization suite: 7 figures comparing strict vs unstrict prompts.
 
-  Fig 1  - Error code breakdown stacked bar (setting1 vs setting2)
-  Fig 2  - Per-file error delta scatter     (setting1 error vs setting2 error)
+  Fig 1  - Error code breakdown stacked bar (unstrict vs strict)
+  Fig 2  - Per-file error delta scatter     (unstrict error vs strict error)
   Fig 3  - Coverage gain vs error change    (paired coverage vs errors)
   Fig 4  - Error code heatmap by coverage bucket
   Fig 5  - Clean-rate 2-D heatmap           (coverage bucket x Any bucket)
@@ -12,63 +12,40 @@ Extended visualization suite: 7 figures.
   Fig 7  - Error count distribution violin  (failing files only)
 
 Usage:
-  python plot_annotation_mypy_figures_v2.py            # show all figures
-  python plot_annotation_mypy_figures_v2.py --no-show  # build without displaying
+  python plot_strict_unstrict_figures.py             # show all figures
+  python plot_strict_unstrict_figures.py --save       # save to figures/
+  python plot_strict_unstrict_figures.py --no-show    # build without displaying
 """
 
 import argparse
 import json
 import re
-from collections import Counter, defaultdict
+from collections import Counter
 from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
 
-from annotation_vs_mypy_joined import SETTINGS, build_joined, load_selected_stems
+from prompt_settings import (
+    SETTINGS,
+    SETTING_PAIRS,
+    COLOR_MAP,
+    load_rows_by_setting,
+    short,
+)
+from prompt_settings import load_selected_stems
 
-MYPY_DIR = Path(__file__).resolve().parent.parent / "GPCE_mypy_results"
-
-MYPY_JSONS = {
-    "GPT5 setting1 (inline)":     MYPY_DIR / "mypy_results_gpt5_2_run_with_errors.json",
-    "GPT5 setting2 (stub)":       MYPY_DIR / "mypy_results_gpt5_1_infer_stub_run_with_errors.json",
-    "DeepSeek setting1 (inline)": MYPY_DIR / "mypy_results_deepseek_3_run_with_errors.json",
-    "DeepSeek setting2 (stub)":   MYPY_DIR / "mypy_results_deepseek_3_merge_stub_run_with_errors.json",
-}
-
-SETTING_PAIRS = [
-    ("GPT5 setting1 (inline)",     "GPT5 setting2 (stub)"),
-    ("DeepSeek setting1 (inline)", "DeepSeek setting2 (stub)"),
-]
-
-COLOR_MAP = {
-    "GPT5 setting1 (inline)":     "#1f77b4",
-    "GPT5 setting2 (stub)":       "#ff7f0e",
-    "DeepSeek setting1 (inline)": "#2ca02c",
-    "DeepSeek setting2 (stub)":   "#d62728",
-}
+MYPY_JSONS = {s["label"]: s["mypy_json"] for s in SETTINGS}
 
 COV_BUCKETS = [(0, 50), (50, 80), (80, 95), (95, 101)]
 COV_LABELS  = ["0-50%", "50-80%", "80-95%", "95-100%"]
 ANY_BUCKETS = [(0, 0.01), (0.01, 25), (25, 50), (50, 101)]
 ANY_LABELS  = ["0%", "0-25%", "25-50%", "50%+"]
 
-
-def short(label):
-    return {
-        "GPT5 setting1 (inline)":     "GPT5-inline",
-        "GPT5 setting2 (stub)":       "GPT5-stub",
-        "DeepSeek setting1 (inline)": "DS-inline",
-        "DeepSeek setting2 (stub)":   "DS-stub",
-    }.get(label, label)
+OUT_DIR = Path(__file__).resolve().parent / "figures"
 
 
 # -- Data loaders -------------------------------------------------------------
-
-def load_rows_by_setting():
-    allowed = load_selected_stems()
-    return {s["label"]: build_joined(s, allowed) for s in SETTINGS}
-
 
 def load_error_codes_by_setting(allowed_stems):
     result = {}
@@ -120,7 +97,7 @@ def plot_error_code_breakdown(error_codes_by_setting, top_n=12):
         )
         lefts += counts[:, j]
 
-    ax.set_title(f"Figure 1: Top-{top_n} Mypy Error Codes by Setting")
+    ax.set_title(f"Figure 1: Top-{top_n} Mypy Error Codes (Unstrict vs Strict Prompt)")
     ax.set_xlabel("Error count (all evaluable files)")
     ax.legend(bbox_to_anchor=(1.01, 1), loc="upper left", fontsize=8, title="Error code")
     ax.grid(axis="x", alpha=0.25)
@@ -152,10 +129,10 @@ def plot_per_file_error_delta(rows_by_setting):
         ax.set_xlabel(f"{short(l1)} errors")
         ax.set_ylabel(f"{short(l2)} errors")
         ax.set_title(f"{short(l1)} vs {short(l2)}\n"
-                     f"(green=cov up in s2, red=cov down)")
+                     f"(green=cov up in strict, red=cov down)")
         ax.grid(alpha=0.2)
 
-    fig.suptitle("Figure 2: Per-file Error Count -- Setting1 vs Setting2", fontweight="bold")
+    fig.suptitle("Figure 2: Per-file Error Count -- Unstrict vs Strict", fontweight="bold")
     fig.tight_layout()
     return fig
 
@@ -177,8 +154,8 @@ def plot_coverage_gain_vs_error_change(rows_by_setting):
         ax.scatter(dx, dy, s=18, alpha=0.55, color=COLOR_MAP[l1], edgecolors="none")
         ax.axhline(0, color="black", linewidth=0.8, linestyle="--")
         ax.axvline(0, color="black", linewidth=0.8, linestyle="--")
-        ax.set_xlabel("Coverage delta % (s2 - s1)")
-        ax.set_ylabel("Error count delta (s2 - s1)")
+        ax.set_xlabel("Coverage delta % (strict - unstrict)")
+        ax.set_ylabel("Error count delta (strict - unstrict)")
         ax.set_title(f"{short(l1)} -> {short(l2)}\n(n={len(common)} paired files)")
         ax.grid(alpha=0.2)
 
@@ -375,8 +352,9 @@ def plot_error_count_violin(rows_by_setting):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Generate 7 annotation-vs-mypy figures."
+        description="Generate 7 strict-vs-unstrict prompt figures."
     )
+    parser.add_argument("--save", action="store_true", help="Save figures to figures/")
     parser.add_argument("--no-show", action="store_true",
                         help="Build all figures without opening display windows.")
     args = parser.parse_args()
@@ -388,31 +366,28 @@ def main():
     allowed = load_selected_stems()
     error_codes_by_setting = load_error_codes_by_setting(allowed)
 
-    print("Plotting Figure 1: Error code breakdown...")
-    plot_error_code_breakdown(error_codes_by_setting)
+    figures = [
+        ("fig1_error_code_breakdown",    plot_error_code_breakdown(error_codes_by_setting)),
+        ("fig2_error_delta_scatter",     plot_per_file_error_delta(rows_by_setting)),
+        ("fig3_coverage_vs_error",       plot_coverage_gain_vs_error_change(rows_by_setting)),
+        ("fig4_error_heatmap",           plot_error_code_heatmap_by_coverage(rows_by_setting, error_codes_by_setting)),
+        ("fig5_clean_rate_heatmap",      plot_2d_clean_rate_heatmap(rows_by_setting)),
+        ("fig6_transition_matrix",       plot_transition_matrix(rows_by_setting)),
+        ("fig7_error_violin",            plot_error_count_violin(rows_by_setting)),
+    ]
 
-    print("Plotting Figure 2: Per-file error delta scatter...")
-    plot_per_file_error_delta(rows_by_setting)
+    if args.save:
+        OUT_DIR.mkdir(exist_ok=True)
+        for name, fig in figures:
+            fname = OUT_DIR / f"{name}.png"
+            fig.savefig(fname, dpi=150, bbox_inches="tight")
+            print(f"Saved {fname}")
 
-    print("Plotting Figure 3: Coverage gain vs error change...")
-    plot_coverage_gain_vs_error_change(rows_by_setting)
-
-    print("Plotting Figure 4: Error code heatmap by coverage bucket...")
-    plot_error_code_heatmap_by_coverage(rows_by_setting, error_codes_by_setting)
-
-    print("Plotting Figure 5: 2D clean-rate heatmap...")
-    plot_2d_clean_rate_heatmap(rows_by_setting)
-
-    print("Plotting Figure 6: Transition matrix...")
-    plot_transition_matrix(rows_by_setting)
-
-    print("Plotting Figure 7: Error count violin...")
-    plot_error_count_violin(rows_by_setting)
-
-    if args.no_show:
-        print("\nAll 7 figures generated (not shown, not saved).")
-    else:
+    if not args.no_show and not args.save:
         plt.show()
+
+    if args.no_show and not args.save:
+        print("\nAll 7 figures generated (not shown, not saved).")
 
 
 if __name__ == "__main__":
