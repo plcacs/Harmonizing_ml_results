@@ -1,0 +1,65 @@
+attr-defined error examples in: ManyTypes4py_benchmarks\gpt5_4_run
+
+===============================================================================================
+boxplot_5aedc4.py:
+"boxplot_5aedc4.py:240: error: \"object\" has no attribute \"items\"  [attr-defined]",
+colors = kwds.pop('color', None)
+        if colors:
+            if is_dict_like(colors):
+                valid_keys = ['boxes', 'whiskers', 'medians', 'caps']
+                key_to_index = dict(zip(valid_keys, range(4)))
+                for key, value in colors.items():
+                    if key in valid_keys:
+                        result[key_to_index[key]] = value
+                    else:
+                        raise ValueError(f"color dict contains invalid key '{key}'. The key must be either {valid_keys}")
+            else:
+                result.fill(colors)
+        return result
+
+===============================================================================================
+conftest_ca46fe.py
+ "conftest_ca46fe.py:478: error: \"object\" has no attribute \"add_to_hass\"  [attr-defined]",
+ "conftest_ca46fe.py:479: error: \"object\" has no attribute \"entry_id\"  [attr-defined]",
+config_entry = kwargs.get('config_entry', entry)
+  with patch('homeassistant.components.plex.GDM', return_value=MockGDM(disabled=disable_gdm)):
+            config_entry.add_to_hass(hass)
+            assert await hass.config_entries.async_setup(config_entry.entry_id)
+===============================================================================================
+network_7ec1c6.py
+"network_7ec1c6.py:278: error: AppChannels? has no attribute \"__iter__\" (not iterable)  [attr-defined]",
+def wait_for_channels(app_channels: AppChannels, token_network_registry_address: TokenNetworkRegistryAddress, token_addresses: Iterable[TokenAddress], deposit: TokenAmount, retry_timeout: float = DEFAULT_RETRY_TIMEOUT) -> None:
+    """Wait until all channels are usable from both directions."""
+    for app0, app1 in app_channels:
+        for token_address in token_addresses:
+            wait_for_usable_channel(raiden=app0, partner_address=app1.address, token_network_registry_address=token_network_registry_address, token_address=token_address, our_deposit=deposit, partner_deposit=deposit, retry_timeout=retry_timeout)
+            wait_for_usable_channel(raiden=app1, partner_address=app0.address, token_network_registry_address=token_network_registry_address, token_address=token_address, our_deposit=deposit, partner_deposit=deposit, retry_timeout=retry_timeout)
+
+===============================================================================================
+raiden_network_f4d23c.py
+ "raiden_network_f4d23c.py:124: error: \"object\" has no attribute \"setattr\"; maybe \"__setattr__\"?  [attr-defined]",
+ "raiden_network_f4d23c.py:125: error: \"object\" has no attribute \"setattr\"; maybe \"__setattr__\"?  [attr-defined]",
+ "raiden_network_f4d23c.py:126: error: \"object\" has no attribute \"setattr\"; maybe \"__setattr__\"?  [attr-defined]",
+ 
+def pfs_mock(
+    monkeypatch: object,
+    local_matrix_servers: List[ParsedURL],
+    chain_id: ChainID,
+    token_network_registry_address: Optional[TokenNetworkRegistryAddress],
+    user_deposit_address: Optional[UserDepositAddress],
+) -> PFSMock:
+    pfs_info = PFSInfo(url='http://mock_pfs', chain_id=chain_id, token_network_registry_address=TokenNetworkRegistryAddress(to_canonical_address(token_network_registry_address or factories.make_address())), user_deposit_address=to_canonical_address(user_deposit_address or factories.make_address()), payment_address=to_canonical_address(factories.make_address()), confirmed_block_number=BlockNumber(0), message='', operator='', version='', price=TokenAmount(0), matrix_server=local_matrix_servers[0])
+    pfs_mock = PFSMock(pfs_info)
+    monkeypatch.setattr('raiden.network.pathfinding._query_address_metadata', pfs_mock.query_address_metadata)
+    monkeypatch.setattr('raiden.routing.get_best_routes_pfs', pfs_mock.get_best_routes_pfs)
+    monkeypatch.setattr('raiden.network.pathfinding.get_pfs_info', pfs_mock.get_pfs_info)
+    return pfs_mock 
+ 
+===============================================================================================
+train_test_b790e4.py:
+"train_test_b790e4.py:325: error: \"ExceptionInfo[SystemExit]\" has no attribute \"exception\"  [attr-defined]",
+
+ with pytest.raises(SystemExit) as cm:
+            args = parser.parse_args(['train', '-s', 'serialization_dir'])
+            assert cm.exception.code == 2
+===============================================================================================
