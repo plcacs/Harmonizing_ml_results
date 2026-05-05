@@ -1,0 +1,3424 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CHANGES_REPORT.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="ast-comparison-report-deepseek_4_run-vs-500_untyped_files">AST Comparison Report: deepseek_4_run vs 500_untyped_files</h1>
+<p><strong>Total files compared</strong>: 500
+<strong>Files with changes</strong>: 70
+<strong>Percentage changed</strong>: 14.00%</p>
+<hr>
+<h2 id="summary-by-change-type">Summary by Change Type</h2>
+<ul>
+<li><strong>method_removed</strong>: 394 occurrences</li>
+<li><strong>class_removed</strong>: 111 occurrences</li>
+<li><strong>control_flow_change</strong>: 66 occurrences</li>
+<li><strong>parameter_mismatch</strong>: 18 occurrences</li>
+<li><strong>method_added</strong>: 2 occurrences</li>
+</ul>
+<hr>
+<h2 id="files-with-changes">Files with Changes</h2>
+<h3 id="1-network_manager_8c67f5py-folder-1">1. <strong>network_manager_8c67f5.py</strong> (Folder 1)</h3>
+<p><strong>Total differences</strong>: 3</p>
+<p><strong>Classes Removed:</strong></p>
+<ul>
+<li><code>SecurityDetails</code></li>
+<li><code>Response</code></li>
+</ul>
+<p><strong>Parameter Changes:</strong></p>
+<p><strong>Function</strong>: <code>__init__</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Untyped</th>
+<th>Typed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Count</strong></td>
+<td>6</td>
+<td>11</td>
+</tr>
+<tr>
+<td><strong>Params</strong></td>
+<td><code>self, subjectName, issuer, validFrom, validTo, protocol</code></td>
+<td><code>self, client, requestId, interceptionId, isNavigationRequest, allowInterception, url, resourceType, payload, frame, redirectChain</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>4</td>
+<td>2</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>42</td>
+<td>31</td>
+<td>-11</td>
+</tr>
+<tr>
+<td>try_except</td>
+<td>5</td>
+<td>2</td>
+<td>-3</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="2-trainer_test_f0df2apy-folder-1">2. <strong>trainer_test_f0df2a.py</strong> (Folder 1)</h3>
+<p><strong>Total differences</strong>: 4</p>
+<p><strong>Classes Removed:</strong></p>
+<ul>
+<li><code>FakeOnBatchCallback</code></li>
+<li><code>SlowDataLoader</code></li>
+<li><code>TestSparseClipGrad</code></li>
+<li><code>TestAmpTrainer</code></li>
+<li><code>FakeTrainerCallback</code></li>
+<li><code>RecordMetricLearningRateScheduler</code></li>
+</ul>
+<p><strong>Methods Added:</strong></p>
+<ul>
+<li><code>FakeModel.__init__</code></li>
+</ul>
+<p><strong>Parameter Changes:</strong></p>
+<p><strong>Function</strong>: <code>__init__</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Untyped</th>
+<th>Typed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Count</strong></td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>Params</strong></td>
+<td><code>self, optimizer</code></td>
+<td><code>self, vocab</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>24</td>
+<td>8</td>
+<td>-16</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>11</td>
+<td>2</td>
+<td>-9</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>6</td>
+<td>2</td>
+<td>-4</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="3-api_test_5baf5cpy-folder-2">3. <strong>api_test_5baf5c.py</strong> (Folder 2)</h3>
+<p><strong>Total differences</strong>: 1</p>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>with_statements</td>
+<td>5</td>
+<td>2</td>
+<td>-3</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="4-datetimes_c4b343py-folder-2">4. <strong>datetimes_c4b343.py</strong> (Folder 2)</h3>
+<p><strong>Total differences</strong>: 1</p>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>if_statements</td>
+<td>8</td>
+<td>9</td>
+<td>+1</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="5-test_interface_94cb57py-folder-2">5. <strong>test_interface_94cb57.py</strong> (Folder 2)</h3>
+<p><strong>Total differences</strong>: 1</p>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>if_statements</td>
+<td>4</td>
+<td>0</td>
+<td>-4</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>17</td>
+<td>5</td>
+<td>-12</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="6-augmented_lstm_c8e957py-folder-3">6. <strong>augmented_lstm_c8e957.py</strong> (Folder 3)</h3>
+<p><strong>Total differences</strong>: 2</p>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>BiAugmentedLstm._forward_unidirectional</code></li>
+</ul>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>4</td>
+<td>3</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>17</td>
+<td>15</td>
+<td>-2</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="7-test_na_values_e137afpy-folder-3">7. <strong>test_na_values_e137af.py</strong> (Folder 3)</h3>
+<p><strong>Total differences</strong>: 1</p>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>if_statements</td>
+<td>28</td>
+<td>21</td>
+<td>-7</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>17</td>
+<td>9</td>
+<td>-8</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="8-expr_a7337fpy-folder-4">8. <strong>expr_a7337f.py</strong> (Folder 4)</h3>
+<p><strong>Total differences</strong>: 4</p>
+<p><strong>Classes Removed:</strong></p>
+<ul>
+<li><code>PythonExprVisitor</code></li>
+<li><code>PandasExprVisitor</code></li>
+<li><code>Expr</code></li>
+</ul>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>BaseExprVisitor.visit_Attribute</code></li>
+<li><code>BaseExprVisitor.visit_Call</code></li>
+<li><code>BaseExprVisitor.visit_Index</code></li>
+<li><code>BaseExprVisitor.translate_In</code></li>
+<li><code>BaseExprVisitor.visit_Compare</code></li>
+<li><code>BaseExprVisitor.visit_Assign</code></li>
+<li><code>BaseExprVisitor.visit_Subscript</code></li>
+<li><code>BaseExprVisitor.visit_Slice</code></li>
+<li><code>BaseExprVisitor._try_visit_binop</code></li>
+<li><code>BaseExprVisitor.visit_BoolOp</code></li>
+</ul>
+<p><strong>Parameter Changes:</strong></p>
+<p><strong>Function</strong>: <code>__init__</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Untyped</th>
+<th>Typed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Count</strong></td>
+<td>6</td>
+<td>5</td>
+</tr>
+<tr>
+<td><strong>Params</strong></td>
+<td><code>self, expr, engine, parser, env, level</code></td>
+<td><code>self, env, engine, parser, preparser</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>5</td>
+<td>3</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>42</td>
+<td>22</td>
+<td>-20</td>
+</tr>
+<tr>
+<td>try_except</td>
+<td>6</td>
+<td>1</td>
+<td>-5</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="9-mediator_edd547py-folder-4">9. <strong>mediator_edd547.py</strong> (Folder 4)</h3>
+<p><strong>Total differences</strong>: 1</p>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>17</td>
+<td>8</td>
+<td>-9</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>78</td>
+<td>30</td>
+<td>-48</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="10-users_e38fbdpy-folder-4">10. <strong>users_e38fbd.py</strong> (Folder 4)</h3>
+<p><strong>Total differences</strong>: 1</p>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>16</td>
+<td>12</td>
+<td>-4</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>32</td>
+<td>18</td>
+<td>-14</td>
+</tr>
+<tr>
+<td>try_except</td>
+<td>1</td>
+<td>0</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="11-value_05eb19py-folder-4">11. <strong>value_05eb19.py</strong> (Folder 4)</h3>
+<p><strong>Total differences</strong>: 1</p>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>10</td>
+<td>7</td>
+<td>-3</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>39</td>
+<td>35</td>
+<td>-4</td>
+</tr>
+<tr>
+<td>while_loops</td>
+<td>1</td>
+<td>0</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="12-classes_29984epy-folder-5">12. <strong>classes_29984e.py</strong> (Folder 5)</h3>
+<p><strong>Total differences</strong>: 4</p>
+<p><strong>Classes Removed:</strong></p>
+<ul>
+<li><code>ParamName</code></li>
+<li><code>Completion</code></li>
+<li><code>Name</code></li>
+<li><code>BaseSignature</code></li>
+<li><code>Signature</code></li>
+</ul>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>BaseName._get_signatures</code></li>
+<li><code>BaseName.get_signatures</code></li>
+<li><code>BaseName.__repr__</code></li>
+<li><code>BaseName.get_line_code</code></li>
+<li><code>BaseName.execute</code></li>
+<li><code>BaseName.get_type_hint</code></li>
+</ul>
+<p><strong>Parameter Changes:</strong></p>
+<p><strong>Function</strong>: <code>defined_names</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Untyped</th>
+<th>Typed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Count</strong></td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>Params</strong></td>
+<td><code>self</code></td>
+<td><code>inference_state, value</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>if_statements</td>
+<td>43</td>
+<td>29</td>
+<td>-14</td>
+</tr>
+<tr>
+<td>while_loops</td>
+<td>1</td>
+<td>0</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="13-deployer_c2beb1py-folder-5">13. <strong>deployer_c2beb1.py</strong> (Folder 5)</h3>
+<p><strong>Total differences</strong>: 4</p>
+<p><strong>Classes Removed:</strong></p>
+<ul>
+<li><code>WebsocketPolicyInjector</code></li>
+<li><code>DeploymentReporter</code></li>
+<li><code>NoopResultsRecorder</code></li>
+<li><code>BuildStage</code></li>
+<li><code>PolicyGenerator</code></li>
+<li><code>ResultsRecorder</code></li>
+</ul>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>LambdaEventSourcePolicyInjector._inject_trigger_policy</code></li>
+<li><code>LambdaEventSourcePolicyInjector.handle_dynamodbeventsource</code></li>
+<li><code>LambdaEventSourcePolicyInjector.handle_kinesiseventsource</code></li>
+<li><code>LambdaEventSourcePolicyInjector.handle_sqseventsource</code></li>
+<li><code>LambdaEventSourcePolicyInjector._needs_policy_injected</code></li>
+</ul>
+<p><strong>Parameter Changes:</strong></p>
+<p><strong>Function</strong>: <code>__init__</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Untyped</th>
+<th>Typed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Count</strong></td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong>Params</strong></td>
+<td><code>self, ui</code></td>
+<td><code>self</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>3</td>
+<td>0</td>
+<td>-3</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>27</td>
+<td>17</td>
+<td>-10</td>
+</tr>
+<tr>
+<td>try_except</td>
+<td>4</td>
+<td>3</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="14-import_export_tests_dc500fpy-folder-5">14. <strong>import_export_tests_dc500f.py</strong> (Folder 5)</h3>
+<p><strong>Total differences</strong>: 2</p>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>TestImportExport.test_import_override_dashboard_2_slices</code></li>
+<li><code>TestImportExport._create_dashboard_for_import</code></li>
+<li><code>TestImportExport.test_import_table_1_col_1_met</code></li>
+<li><code>TestImportExport.test_import_table_2_col_2_met</code></li>
+<li><code>TestImportExport.test_import_table_override</code></li>
+<li><code>TestImportExport.test_import_new_dashboard_slice_reset_ownership</code></li>
+<li><code>TestImportExport.test_import_table_no_metadata</code></li>
+<li><code>TestImportExport.test_import_override_dashboard_slice_reset_ownership</code></li>
+<li><code>TestImportExport.test_import_table_override_identical</code></li>
+</ul>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>if_statements</td>
+<td>10</td>
+<td>9</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="15-join_merge_5c5786py-folder-5">15. <strong>join_merge_5c5786.py</strong> (Folder 5)</h3>
+<p><strong>Total differences</strong>: 2</p>
+<p><strong>Classes Removed:</strong></p>
+<ul>
+<li><code>Align</code></li>
+<li><code>MergeOrdered</code></li>
+<li><code>MergeMultiIndex</code></li>
+<li><code>MergeAsof</code></li>
+</ul>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>MergeCategoricals.time_merge_cat</code></li>
+<li><code>MergeCategoricals.time_merge_on_cat_idx</code></li>
+<li><code>MergeCategoricals.time_merge_on_cat_col</code></li>
+</ul>
+<hr>
+<h3 id="16-messages_bf1e5cpy-folder-5">16. <strong>messages_bf1e5c.py</strong> (Folder 5)</h3>
+<p><strong>Total differences</strong>: 2</p>
+<p><strong>Methods Added:</strong></p>
+<ul>
+<li><code>ReturnWithArgsInsideGenerator.__init__</code></li>
+</ul>
+<p><strong>Parameter Changes:</strong></p>
+<p><strong>Function</strong>: <code>__init__</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Untyped</th>
+<th>Typed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Count</strong></td>
+<td>4</td>
+<td>3</td>
+</tr>
+<tr>
+<td><strong>Params</strong></td>
+<td><code>self, filename, loc, missing_arguments</code></td>
+<td><code>self, filename, loc</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="17-multi_7dfe48py-folder-5">17. <strong>multi_7dfe48.py</strong> (Folder 5)</h3>
+<p><strong>Total differences</strong>: 2</p>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>MultiIndex.__iter__</code></li>
+<li><code>MultiIndex.factorize</code></li>
+<li><code>MultiIndex.insert</code></li>
+<li><code>MultiIndex.item</code></li>
+<li><code>MultiIndex.inferred_type</code></li>
+<li><code>MultiIndex.asi8</code></li>
+<li><code>MultiIndex.hasnans</code></li>
+<li><code>MultiIndex.intersection</code></li>
+<li><code>MultiIndex.get_level_values</code></li>
+</ul>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>if_statements</td>
+<td>41</td>
+<td>32</td>
+<td>-9</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="18-test_arithmetics_2d6e2bpy-folder-5">18. <strong>test_arithmetics_2d6e2b.py</strong> (Folder 5)</h3>
+<p><strong>Total differences</strong>: 2</p>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>TestSparseArrayArithmetics.test_mixed_array_comparison</code></li>
+<li><code>TestSparseArrayArithmetics.test_bool_same_index</code></li>
+<li><code>TestSparseArrayArithmetics.test_bool_array_logical</code></li>
+<li><code>TestSparseArrayArithmetics.test_mixed_array_float_int</code></li>
+<li><code>TestSparseArrayArithmetics.test_xor</code></li>
+</ul>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>try_except</td>
+<td>1</td>
+<td>0</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>5</td>
+<td>2</td>
+<td>-3</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="19-__init___7ab01apy-folder-6">19. <strong>__init___7ab01a.py</strong> (Folder 6)</h3>
+<p><strong>Total differences</strong>: 4</p>
+<p><strong>Classes Removed:</strong></p>
+<ul>
+<li><code>PyRegExp</code></li>
+</ul>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>Regex.subn</code></li>
+<li><code>Regex.finditer</code></li>
+<li><code>Regex.sub</code></li>
+</ul>
+<p><strong>Parameter Changes:</strong></p>
+<p><strong>Function</strong>: <code>__init__</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Untyped</th>
+<th>Typed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Count</strong></td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td><strong>Params</strong></td>
+<td><code>self, pyPattern, flags</code></td>
+<td><code>self, pattern, flags</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>if_statements</td>
+<td>60</td>
+<td>49</td>
+<td>-11</td>
+</tr>
+<tr>
+<td>while_loops</td>
+<td>2</td>
+<td>1</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="20-test_backtesting_c617d3py-folder-6">20. <strong>test_backtesting_c617d3.py</strong> (Folder 6)</h3>
+<p><strong>Total differences</strong>: 1</p>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>18</td>
+<td>4</td>
+<td>-14</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>35</td>
+<td>5</td>
+<td>-30</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>9</td>
+<td>3</td>
+<td>-6</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="21-test_base_fc0d64py-folder-6">21. <strong>test_base_fc0d64.py</strong> (Folder 6)</h3>
+<p><strong>Total differences</strong>: 2</p>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>test_Collection.test_to_value</code></li>
+<li><code>test_Collection.test_windowed_delta</code></li>
+<li><code>test_Collection.test_label</code></li>
+<li><code>test_Collection.test_relative_event__raises_if_no_event</code></li>
+<li><code>test_Collection.test_apply_changelog_batch</code></li>
+<li><code>test_Collection.test_partition_for_key__partitioner</code></li>
+<li><code>test_Collection.test_windowed_timestamp</code></li>
+<li><code>test_Collection.test__human_channel</code></li>
+<li><code>test_Collection.test__maybe_set_key_ttl</code></li>
+<li><code>test_Collection.test_windowed_now</code></li>
+<li><code>test_Collection.test_and</code></li>
+<li><code>test_Collection.test_relative_timestamp</code></li>
+<li><code>test_Collection.test_shortlabel</code></li>
+<li><code>test_Collection.test_set_del_windowed</code></li>
+<li><code>test_Collection.test_relative_now</code></li>
+<li><code>test_Collection.mock_ranges</code></li>
+<li><code>test_Collection.test_relative_event</code></li>
+<li><code>test_Collection.test_relative_field__raises_if_no_event</code></li>
+<li><code>test_Collection.test_repr_info</code></li>
+<li><code>test_Collection.test_to_key</code></li>
+<li><code>test_Collection.test_relative_now__no_event</code></li>
+<li><code>test_Collection.test__maybe_del_key_ttl</code></li>
+<li><code>test_Collection.test_window_ranges</code></li>
+<li><code>test_Collection.test_apply_window_op</code></li>
+<li><code>test_Collection.test_relative_field</code></li>
+</ul>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>2</td>
+<td>0</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>11</td>
+<td>4</td>
+<td>-7</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="22-test_cut_a5ac0apy-folder-6">22. <strong>test_cut_a5ac0a.py</strong> (Folder 6)</h3>
+<p><strong>Total differences</strong>: 1</p>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>if_statements</td>
+<td>6</td>
+<td>2</td>
+<td>-4</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>12</td>
+<td>7</td>
+<td>-5</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="23-test_process_pending_consolidations_a9c6ecpy-folder-6">23. <strong>test_process_pending_consolidations_a9c6ec.py</strong> (Folder 6)</h3>
+<p><strong>Total differences</strong>: 1</p>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>9</td>
+<td>3</td>
+<td>-6</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>7</td>
+<td>0</td>
+<td>-7</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="24-test_series_apply_554287py-folder-6">24. <strong>test_series_apply_554287.py</strong> (Folder 6)</h3>
+<p><strong>Total differences</strong>: 1</p>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>if_statements</td>
+<td>9</td>
+<td>8</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>15</td>
+<td>13</td>
+<td>-2</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="25-context_54b9a9py-folder-7">25. <strong>context_54b9a9.py</strong> (Folder 7)</h3>
+<p><strong>Total differences</strong>: 3</p>
+<p><strong>Classes Removed:</strong></p>
+<ul>
+<li><code>quoted_str</code></li>
+</ul>
+<p><strong>Parameter Changes:</strong></p>
+<p><strong>Function</strong>: <code>wrapper</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Untyped</th>
+<th>Typed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Count</strong></td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong>Params</strong></td>
+<td>``</td>
+<td><code>spec</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>8</td>
+<td>2</td>
+<td>-6</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>34</td>
+<td>13</td>
+<td>-21</td>
+</tr>
+<tr>
+<td>try_except</td>
+<td>3</td>
+<td>2</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="26-test_c_parser_only_bf97b6py-folder-7">26. <strong>test_c_parser_only_bf97b6.py</strong> (Folder 7)</h3>
+<p><strong>Total differences</strong>: 2</p>
+<p><strong>Classes Removed:</strong></p>
+<ul>
+<li><code>NoNextBuffer</code></li>
+</ul>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>with_statements</td>
+<td>18</td>
+<td>7</td>
+<td>-11</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="27-test_deps_61aa2apy-folder-7">27. <strong>test_deps_61aa2a.py</strong> (Folder 7)</h3>
+<p><strong>Total differences</strong>: 3</p>
+<p><strong>Classes Removed:</strong></p>
+<ul>
+<li><code>TestPackageSpec</code></li>
+<li><code>MockRegistry</code></li>
+</ul>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>TestHubPackage.test_resolve_ranges</code></li>
+<li><code>TestHubPackage.test_resolve_ranges_install_prerelease_default_false</code></li>
+<li><code>TestHubPackage.test_get_version_latest_prelease_false</code></li>
+<li><code>TestHubPackage.test_resolve_ranges_install_prerelease_true</code></li>
+<li><code>TestHubPackage.test_get_version_latest_prelease_true</code></li>
+<li><code>TestHubPackage.test_get_version_prerelease_explicitly_requested</code></li>
+</ul>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>try_except</td>
+<td>2</td>
+<td>0</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>15</td>
+<td>11</td>
+<td>-4</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="28-test_expanding_5d3564py-folder-7">28. <strong>test_expanding_5d3564.py</strong> (Folder 7)</h3>
+<p><strong>Total differences</strong>: 1</p>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>if_statements</td>
+<td>9</td>
+<td>6</td>
+<td>-3</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>4</td>
+<td>2</td>
+<td>-2</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="29-test_helpers_38220epy-folder-7">29. <strong>test_helpers_38220e.py</strong> (Folder 7)</h3>
+<p><strong>Total differences</strong>: 1</p>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>8</td>
+<td>6</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>24</td>
+<td>22</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>12</td>
+<td>6</td>
+<td>-6</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="30-test_setitem_31620dpy-folder-7">30. <strong>test_setitem_31620d.py</strong> (Folder 7)</h3>
+<p><strong>Total differences</strong>: 2</p>
+<p><strong>Classes Removed:</strong></p>
+<ul>
+<li><code>TestCoercionComplex</code></li>
+<li><code>CoercionTest</code></li>
+<li><code>TestSetitemNADatetimeLikeDtype</code></li>
+<li><code>TestCoercionDatetime64</code></li>
+<li><code>TestCoercionString</code></li>
+<li><code>TestCoercionInt64</code></li>
+<li><code>TestCoercionInt8</code></li>
+<li><code>TestSetitemCastingEquivalents</code></li>
+<li><code>TestSetitemWithExpansion</code></li>
+<li><code>TestSetitemNAPeriodDtype</code></li>
+<li><code>TestCoercionObject</code></li>
+<li><code>TestSeriesNoneCoercion</code></li>
+<li><code>TestCoercionFloat64</code></li>
+<li><code>TestSetitemDT64IntoInt</code></li>
+<li><code>TestSmallIntegerSetitemUpcast</code></li>
+<li><code>TestCoercionBool</code></li>
+<li><code>TestSetitemRangeIntoIntegerSeries</code></li>
+<li><code>TestCoercionTimedelta64</code></li>
+<li><code>SetitemCastingEquivalents</code></li>
+<li><code>TestSetitemCallable</code></li>
+<li><code>TestSetitemFloatNDarrayIntoIntegerSeries</code></li>
+<li><code>TestCoercionFloat32</code></li>
+<li><code>TestCoercionDatetime64TZ</code></li>
+<li><code>TestSetitemCasting</code></li>
+<li><code>TestSetitemFloatIntervalWithIntIntervalValues</code></li>
+<li><code>TestSetitemTimedelta64IntoNumeric</code></li>
+<li><code>TestSetitemIntoIntegerSeriesNeedsUpcast</code></li>
+<li><code>TestPeriodIntervalCoercion</code></li>
+<li><code>TestSetitemMismatchedTZCastsToObject</code></li>
+<li><code>TestCoercionDatetime64HigherReso</code></li>
+</ul>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>2</td>
+<td>0</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>30</td>
+<td>0</td>
+<td>-30</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>51</td>
+<td>9</td>
+<td>-42</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="31-test_core_9112bfpy-folder-8">31. <strong>test_core_9112bf.py</strong> (Folder 8)</h3>
+<p><strong>Total differences</strong>: 4</p>
+<p><strong>Classes Removed:</strong></p>
+<ul>
+<li><code>MyLegacyDataset</code></li>
+<li><code>MyLegacyVersionedDataset</code></li>
+<li><code>TestLegacyLoadAndSave</code></li>
+</ul>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>TestAbstractVersionedDataset.test_cache_release</code></li>
+</ul>
+<p><strong>Parameter Changes:</strong></p>
+<p><strong>Function</strong>: <code>test_save_version_warning</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Untyped</th>
+<th>Typed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Count</strong></td>
+<td>5</td>
+<td>5</td>
+</tr>
+<tr>
+<td><strong>Params</strong></td>
+<td><code>self, my_legacy_versioned_dataset, load_version, save_version, dummy_data</code></td>
+<td><code>self, my_versioned_dataset, load_version, save_version, dummy_data</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>try_except</td>
+<td>3</td>
+<td>2</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>22</td>
+<td>15</td>
+<td>-7</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="32-test_alerts_3e2087py-folder-9">32. <strong>test_alerts_3e2087.py</strong> (Folder 9)</h3>
+<p><strong>Total differences</strong>: 3</p>
+<p><strong>Classes Removed:</strong></p>
+<ul>
+<li><code>DummyRemoteIPPlugin</code></li>
+</ul>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>AlertsTestCase.test_alert_tagging</code></li>
+<li><code>AlertsTestCase.test_history_limit</code></li>
+<li><code>AlertsTestCase.test_alert_no_attributes</code></li>
+<li><code>AlertsTestCase.test_filter_params</code></li>
+<li><code>AlertsTestCase.test_filter_and_query_params</code></li>
+<li><code>AlertsTestCase.test_alert_attributes</code></li>
+<li><code>AlertsTestCase.test_get_body</code></li>
+<li><code>AlertsTestCase.test_timeout</code></li>
+<li><code>AlertsTestCase.test_alerts_show_fields</code></li>
+<li><code>AlertsTestCase.test_duplicate_value</code></li>
+<li><code>AlertsTestCase.test_duplicate_status</code></li>
+<li><code>AlertsTestCase.test_query_param</code></li>
+</ul>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>with_statements</td>
+<td>1</td>
+<td>0</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="33-test_integration_ae2f32py-folder-9">33. <strong>test_integration_ae2f32.py</strong> (Folder 9)</h3>
+<p><strong>Total differences</strong>: 1</p>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>if_statements</td>
+<td>5</td>
+<td>0</td>
+<td>-5</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="34-base_value_caa0ccpy-folder-10">34. <strong>base_value_caa0cc.py</strong> (Folder 10)</h3>
+<p><strong>Total differences</strong>: 3</p>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>ValueSet.get_signatures</code></li>
+<li><code>ValueSet.goto</code></li>
+<li><code>ValueSet.gather_annotation_classes</code></li>
+<li><code>ValueSet.py__getattribute__</code></li>
+<li><code>ValueSet.infer_type_vars</code></li>
+<li><code>ValueSet.get_item</code></li>
+<li><code>ValueSet.try_merge</code></li>
+<li><code>ValueSet.get_type_hint</code></li>
+</ul>
+<p><strong>Parameter Changes:</strong></p>
+<p><strong>Function</strong>: <code>goto</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Untyped</th>
+<th>Typed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Count</strong></td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td><strong>Params</strong></td>
+<td><code>self</code></td>
+<td><code>self, name_or_str, name_context, analysis_errors</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>8</td>
+<td>6</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>22</td>
+<td>17</td>
+<td>-5</td>
+</tr>
+<tr>
+<td>try_except</td>
+<td>3</td>
+<td>2</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="35-bias_metrics_5f20adpy-folder-10">35. <strong>bias_metrics_5f20ad.py</strong> (Folder 10)</h3>
+<p><strong>Total differences</strong>: 4</p>
+<p><strong>Classes Removed:</strong></p>
+<ul>
+<li><code>AssociationWithoutGroundTruth</code></li>
+</ul>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>NaturalLanguageInference.reset</code></li>
+</ul>
+<p><strong>Parameter Changes:</strong></p>
+<p><strong>Function</strong>: <code>__call__</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Untyped</th>
+<th>Typed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Count</strong></td>
+<td>4</td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>Params</strong></td>
+<td><code>self, predicted_labels, protected_variable_labels, mask</code></td>
+<td><code>self, nli_probabilities</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>4</td>
+<td>1</td>
+<td>-3</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>26</td>
+<td>11</td>
+<td>-15</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="36-test_init_f7cb07py-folder-10">36. <strong>test_init_f7cb07.py</strong> (Folder 10)</h3>
+<p><strong>Total differences</strong>: 2</p>
+<p><strong>Classes Removed:</strong></p>
+<ul>
+<li><code>MockLightEntityEntity</code></li>
+</ul>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>4</td>
+<td>1</td>
+<td>-3</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>6</td>
+<td>1</td>
+<td>-5</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>14</td>
+<td>4</td>
+<td>-10</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="37-test_series_5f79c1py-folder-10">37. <strong>test_series_5f79c1.py</strong> (Folder 10)</h3>
+<p><strong>Total differences</strong>: 2</p>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>TestSeriesPlots.test_standard_colors</code></li>
+<li><code>TestSeriesPlots.test_plot_no_numeric_data</code></li>
+<li><code>TestSeriesPlots.test_table_self</code></li>
+<li><code>TestSeriesPlots.test_series_plot_color_kwargs</code></li>
+<li><code>TestSeriesPlots.test_df_series_secondary_legend</code></li>
+<li><code>TestSeriesPlots.test_pie_series_nan</code></li>
+<li><code>TestSeriesPlots.test_style_single_ok</code></li>
+<li><code>TestSeriesPlots.test_errorbar_plot_yerr_0</code></li>
+<li><code>TestSeriesPlots.test_timedelta_index</code></li>
+<li><code>TestSeriesPlots.test_standard_colors_all</code></li>
+<li><code>TestSeriesPlots.test_boxplot_series</code></li>
+<li><code>TestSeriesPlots.test_errorbar_asymmetrical_error</code></li>
+<li><code>TestSeriesPlots.test_plot_no_warning</code></li>
+<li><code>TestSeriesPlots.test_pie_nan</code></li>
+<li><code>TestSeriesPlots.test_df_series_secondary_legend_both</code></li>
+<li><code>TestSeriesPlots.test_dup_datetime_index_plot</code></li>
+<li><code>TestSeriesPlots.test_xlabel_ylabel_series</code></li>
+<li><code>TestSeriesPlots.test_secondary_logy</code></li>
+<li><code>TestSeriesPlots.test_table_true</code></li>
+<li><code>TestSeriesPlots.test_errorbar_plot_invalid_yerr</code></li>
+<li><code>TestSeriesPlots.test_plot_xlim_for_series</code></li>
+<li><code>TestSeriesPlots.test_series_none_color</code></li>
+<li><code>TestSeriesPlots.test_invalid_plot_data</code></li>
+<li><code>TestSeriesPlots.test_time_series_plot_color_kwargs</code></li>
+<li><code>TestSeriesPlots.test_kind_kwarg</code></li>
+<li><code>TestSeriesPlots.test_df_series_secondary_legend_both_with_axis_2</code></li>
+<li><code>TestSeriesPlots.test_pie_series_less_colors_than_elements</code></li>
+<li><code>TestSeriesPlots.test_valid_object_plot</code></li>
+<li><code>TestSeriesPlots.test_errorbar_plot</code></li>
+<li><code>TestSeriesPlots.test_plot_no_rows</code></li>
+<li><code>TestSeriesPlots.test_plot_fails_with_dupe_color_and_style</code></li>
+<li><code>TestSeriesPlots.test_xtick_barPlot</code></li>
+<li><code>TestSeriesPlots.test_kde_kwargs_check_axes</code></li>
+<li><code>TestSeriesPlots.test_invalid_kind</code></li>
+<li><code>TestSeriesPlots.test_pie_arrow_type</code></li>
+<li><code>TestSeriesPlots.test_kde_kwargs</code></li>
+<li><code>TestSeriesPlots.test_custom_business_day_freq</code></li>
+<li><code>TestSeriesPlots.test_series_grid_settings</code></li>
+<li><code>TestSeriesPlots.test_errorbar_plot_invalid_yerr_shape</code></li>
+<li><code>TestSeriesPlots.test_pie_series_labels_and_colors</code></li>
+<li><code>TestSeriesPlots.test_plot_accessor_updates_on_inplace</code></li>
+<li><code>TestSeriesPlots.test_density_kwargs</code></li>
+<li><code>TestSeriesPlots.test_secondary_y_subplot_axis_labels</code></li>
+<li><code>TestSeriesPlots.test_pie_series_no_label</code></li>
+<li><code>TestSeriesPlots.test_pie_series_autopct_and_fontsize</code></li>
+<li><code>TestSeriesPlots.test_pie_series_negative_raises</code></li>
+<li><code>TestSeriesPlots.test_xticklabels</code></li>
+<li><code>TestSeriesPlots.test_kde_kwargs_weights</code></li>
+<li><code>TestSeriesPlots.test_partially_invalid_plot_data</code></li>
+<li><code>TestSeriesPlots.test_errorbar_plot_ts</code></li>
+<li><code>TestSeriesPlots.test_time_series_plot_color_with_empty_kwargs</code></li>
+<li><code>TestSeriesPlots.test_plot_order</code></li>
+<li><code>TestSeriesPlots.test_kde_missing_vals</code></li>
+<li><code>TestSeriesPlots.test_kind_attr</code></li>
+<li><code>TestSeriesPlots.test_errorbar_asymmetrical</code></li>
+</ul>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>4</td>
+<td>0</td>
+<td>-4</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>2</td>
+<td>0</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>11</td>
+<td>1</td>
+<td>-10</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="38-test_session_extension_hooks_7b3b93py-folder-10">38. <strong>test_session_extension_hooks_7b3b93.py</strong> (Folder 10)</h3>
+<p><strong>Total differences</strong>: 3</p>
+<p><strong>Classes Removed:</strong></p>
+<ul>
+<li><code>LogCatalog</code></li>
+<li><code>TestKedroContextSpecsHook</code></li>
+<li><code>TestAsyncNodeDatasetHooks</code></li>
+</ul>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>TestBeforeNodeRunHookWithInputUpdates.test_correct_input_update_parallel</code></li>
+<li><code>TestBeforeNodeRunHookWithInputUpdates.test_broken_input_update_parallel</code></li>
+<li><code>TestBeforeNodeRunHookWithInputUpdates.test_broken_input_update</code></li>
+</ul>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>if_statements</td>
+<td>1</td>
+<td>0</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>5</td>
+<td>3</td>
+<td>-2</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="39-test_token_network_03ccabpy-folder-10">39. <strong>test_token_network_03ccab.py</strong> (Folder 10)</h3>
+<p><strong>Total differences</strong>: 1</p>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>3</td>
+<td>1</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>26</td>
+<td>18</td>
+<td>-8</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="40-ewmh_1d4730py-folder-11">40. <strong>ewmh_1d4730.py</strong> (Folder 11)</h3>
+<p><strong>Total differences</strong>: 2</p>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>EWMH.getProperty</code></li>
+<li><code>EWMH.getReadableProperties</code></li>
+<li><code>EWMH.setProperty</code></li>
+<li><code>EWMH._setProperty</code></li>
+<li><code>EWMH._getAtomName</code></li>
+<li><code>EWMH.getWritableProperties</code></li>
+<li><code>EWMH._createWindow</code></li>
+</ul>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>if_statements</td>
+<td>18</td>
+<td>12</td>
+<td>-6</td>
+</tr>
+<tr>
+<td>try_except</td>
+<td>1</td>
+<td>0</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="41-fbeta_multi_label_measure_test_75eedapy-folder-11">41. <strong>fbeta_multi_label_measure_test_75eeda.py</strong> (Folder 11)</h3>
+<p><strong>Total differences</strong>: 2</p>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>FBetaMultiLabelMeasureTest.test_distributed_fbeta_multilabel_measure</code></li>
+<li><code>FBetaMultiLabelMeasureTest.test_multiple_distributed_runs</code></li>
+</ul>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>3</td>
+<td>0</td>
+<td>-3</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="42-objects_2ea8ddpy-folder-11">42. <strong>objects_2ea8dd.py</strong> (Folder 11)</h3>
+<p><strong>Total differences</strong>: 1</p>
+<p><strong>Parameter Changes:</strong></p>
+<p><strong>Function</strong>: <code>get_window_bounds</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Untyped</th>
+<th>Typed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Count</strong></td>
+<td>6</td>
+<td>7</td>
+</tr>
+<tr>
+<td><strong>Params</strong></td>
+<td><code>self, num_values, min_periods, center, closed, step</code></td>
+<td><code>self, num_values, min_periods, center, closed, step, win_type</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="43-test_range_fc6fe9py-folder-11">43. <strong>test_range_fc6fe9.py</strong> (Folder 11)</h3>
+<p><strong>Total differences</strong>: 2</p>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>TestRangeIndex.test_engineless_lookup</code></li>
+<li><code>TestRangeIndex.test_sort_values_key</code></li>
+<li><code>TestRangeIndex.test_append</code></li>
+<li><code>TestRangeIndex.test_range_index_rsub_by_const</code></li>
+<li><code>TestRangeIndex.test_append_len_one</code></li>
+<li><code>TestRangeIndex.test_isin_range</code></li>
+</ul>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>if_statements</td>
+<td>3</td>
+<td>1</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>9</td>
+<td>5</td>
+<td>-4</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="44-test_settlement_0a3fe7py-folder-11">44. <strong>test_settlement_0a3fe7.py</strong> (Folder 11)</h3>
+<p><strong>Total differences</strong>: 1</p>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>with_statements</td>
+<td>19</td>
+<td>2</td>
+<td>-17</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="45-__init___4ea406py-folder-12">45. <strong>__init___4ea406.py</strong> (Folder 12)</h3>
+<p><strong>Total differences</strong>: 3</p>
+<p><strong>Classes Removed:</strong></p>
+<ul>
+<li><code>ManifestJSONView</code></li>
+<li><code>IndexView</code></li>
+<li><code>PanelRespons</code></li>
+</ul>
+<p><strong>Parameter Changes:</strong></p>
+<p><strong>Function</strong>: <code>__init__</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Untyped</th>
+<th>Typed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Count</strong></td>
+<td>3</td>
+<td>8</td>
+</tr>
+<tr>
+<td><strong>Params</strong></td>
+<td><code>self, repo_path, hass</code></td>
+<td><code>self, component_name, sidebar_title, sidebar_icon, frontend_url_path, config, require_admin, config_panel_domain</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>4</td>
+<td>3</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>23</td>
+<td>12</td>
+<td>-11</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>1</td>
+<td>0</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="46-test_abstract_0be2c2py-folder-12">46. <strong>test_abstract_0be2c2.py</strong> (Folder 12)</h3>
+<p><strong>Total differences</strong>: 1</p>
+<p><strong>Parameter Changes:</strong></p>
+<p><strong>Function</strong>: <code>__exit__</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Untyped</th>
+<th>Typed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Count</strong></td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td><strong>Params</strong></td>
+<td><code>self</code></td>
+<td><code>self, exc_type, exc_val, exc_tb</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="47-test_api_0e252bpy-folder-12">47. <strong>test_api_0e252b.py</strong> (Folder 12)</h3>
+<p><strong>Total differences</strong>: 2</p>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>IntegrationTests.test_goodFile</code></li>
+<li><code>IntegrationTests.test_fileWithFlakes</code></li>
+<li><code>IntegrationTests.test_errors</code></li>
+<li><code>IntegrationTests.getPyflakesBinary</code></li>
+<li><code>IntegrationTests.runPyflakes</code></li>
+<li><code>IntegrationTests.test_readFromStdin</code></li>
+<li><code>IntegrationTests.tearDown</code></li>
+</ul>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>if_statements</td>
+<td>6</td>
+<td>4</td>
+<td>-2</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="48-test_base_3a84cbpy-folder-12">48. <strong>test_base_3a84cb.py</strong> (Folder 12)</h3>
+<p><strong>Total differences</strong>: 3</p>
+<p><strong>Classes Removed:</strong></p>
+<ul>
+<li><code>TestMixedIntIndex</code></li>
+<li><code>TestIndexUtils</code></li>
+</ul>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>TestIndex.test_isin_string_null</code></li>
+<li><code>TestIndex.test_isin_empty</code></li>
+<li><code>TestIndex.test_drop_by_numeric_label_raises_missing_keys</code></li>
+<li><code>TestIndex.test_isin_level_kwarg</code></li>
+<li><code>TestIndex.test_map_tseries_indices_accsr_return_index</code></li>
+<li><code>TestIndex.test_reindex_no_type_preserve_target_empty_mi</code></li>
+<li><code>TestIndex.test_str_attribute</code></li>
+<li><code>TestIndex.test_isin_level_kwarg_bad_label_raises</code></li>
+<li><code>TestIndex.test_str_bool_return</code></li>
+<li><code>TestIndex.test_get_level_values</code></li>
+<li><code>TestIndex.test_equals_op_mismatched_multiindex_raises</code></li>
+<li><code>TestIndex.test_reindex_preserves_type_if_target_is_empty_list_or_array</code></li>
+<li><code>TestIndex.test_map_dictlike_simple</code></li>
+<li><code>TestIndex.test_cached_properties_not_settable</code></li>
+<li><code>TestIndex.test_tab_complete_warning</code></li>
+<li><code>TestIndex.test_index_round</code></li>
+<li><code>TestIndex.test_drop_by_str_label_errors_ignore</code></li>
+<li><code>TestIndex.test_map_with_non_function_missing_values</code></li>
+<li><code>TestIndex.test_dt_conversion_preserves_name</code></li>
+<li><code>TestIndex.test_drop_by_str_label_raises_missing_keys</code></li>
+<li><code>TestIndex.test_indexing_doesnt_change_class</code></li>
+<li><code>TestIndex.test_reindex_ignoring_level</code></li>
+<li><code>TestIndex.test_slice_is_montonic</code></li>
+<li><code>TestIndex.test_boolean_cmp</code></li>
+<li><code>TestIndex.test_str_attribute_raises</code></li>
+<li><code>TestIndex.test_append_empty_preserve_name</code></li>
+<li><code>TestIndex.test_join_self</code></li>
+<li><code>TestIndex.test_map_defaultdict</code></li>
+<li><code>TestIndex.test_map_tseries_indices_return_index</code></li>
+<li><code>TestIndex.test_drop_tuple</code></li>
+<li><code>TestIndex.test_isin_nan_common_object</code></li>
+<li><code>TestIndex.test_drop_by_numeric_label_loc</code></li>
+<li><code>TestIndex.test_drop_with_duplicates_in_index</code></li>
+<li><code>TestIndex.test_str_split</code></li>
+<li><code>TestIndex.test_isin_level_kwarg_bad_level_raises</code></li>
+<li><code>TestIndex.test_map_with_tuples_mi</code></li>
+<li><code>TestIndex.test_str_bool_series_indexing</code></li>
+<li><code>TestIndex.test_summary</code></li>
+<li><code>TestIndex.test_take_fill_value_none_raises</code></li>
+<li><code>TestIndex.test_slice_keep_name</code></li>
+<li><code>TestIndex.test_drop_by_numeric_label_errors_ignore</code></li>
+<li><code>TestIndex.test_map_with_tuples</code></li>
+<li><code>TestIndex.test_isin</code></li>
+<li><code>TestIndex.test_isin_nan_common_float64</code></li>
+<li><code>TestIndex.test_equals_op_multiindex</code></li>
+<li><code>TestIndex.test_index_diff</code></li>
+<li><code>TestIndex.test_reindex_doesnt_preserve_type_if_target_is_empty_index</code></li>
+<li><code>TestIndex.test_sortlevel</code></li>
+<li><code>TestIndex.test_sortlevel_na_position</code></li>
+<li><code>TestIndex.test_equals_op_index_vs_mi_same_length</code></li>
+<li><code>TestIndex.test_reindex_doesnt_preserve_type_if_target_is_empty_index_numeric</code></li>
+<li><code>TestIndex.test_groupby</code></li>
+<li><code>TestIndex.test_map_na_exclusion</code></li>
+<li><code>TestIndex.test_tab_completion</code></li>
+<li><code>TestIndex.test_reindex_preserves_name_if_target_is_list_or_ndarray</code></li>
+<li><code>TestIndex.test_equals_op_multiindex_identify</code></li>
+<li><code>TestIndex.test_is_monotonic_incomparable</code></li>
+<li><code>TestIndex.test_take_bad_bounds_raises</code></li>
+<li><code>TestIndex.test_take_fill_value</code></li>
+<li><code>TestIndex.test_map_dictlike</code></li>
+<li><code>TestIndex.test_is_numeric</code></li>
+<li><code>TestIndex.test_logical_compat</code></li>
+<li><code>TestIndex.test_outer_join_sort</code></li>
+<li><code>TestIndex.test_is_object</code></li>
+<li><code>TestIndex.test_slice_is_unique</code></li>
+<li><code>TestIndex.test_drop_by_str_label</code></li>
+<li><code>TestIndex.test_contains_method_removed</code></li>
+</ul>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>6</td>
+<td>3</td>
+<td>-3</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>34</td>
+<td>16</td>
+<td>-18</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>45</td>
+<td>12</td>
+<td>-33</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="49-test_common_27891cpy-folder-12">49. <strong>test_common_27891c.py</strong> (Folder 12)</h3>
+<p><strong>Total differences</strong>: 3</p>
+<p><strong>Classes Removed:</strong></p>
+<ul>
+<li><code>TestError</code></li>
+</ul>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>TestMMapWrapper.test_binary_mode</code></li>
+<li><code>TestMMapWrapper.test_unknown_engine</code></li>
+<li><code>TestMMapWrapper.test_warning_missing_utf_bom</code></li>
+</ul>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>if_statements</td>
+<td>9</td>
+<td>6</td>
+<td>-3</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>50</td>
+<td>21</td>
+<td>-29</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="50-test_frame_apply_391b73py-folder-12">50. <strong>test_frame_apply_391b73.py</strong> (Folder 12)</h3>
+<p><strong>Total differences</strong>: 1</p>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>3</td>
+<td>0</td>
+<td>-3</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>24</td>
+<td>8</td>
+<td>-16</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>15</td>
+<td>5</td>
+<td>-10</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="51-test_plugins_ab0c47py-folder-12">51. <strong>test_plugins_ab0c47.py</strong> (Folder 12)</h3>
+<p><strong>Total differences</strong>: 3</p>
+<p><strong>Classes Removed:</strong></p>
+<ul>
+<li><code>Model1</code></li>
+<li><code>Model2</code></li>
+</ul>
+<p><strong>Parameter Changes:</strong></p>
+<p><strong>Function</strong>: <code>foo</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Untyped</th>
+<th>Typed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Count</strong></td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong>Params</strong></td>
+<td>``</td>
+<td><code>a</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>with_statements</td>
+<td>18</td>
+<td>16</td>
+<td>-2</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="52-btanalysis_7decb4py-folder-13">52. <strong>btanalysis_7decb4.py</strong> (Folder 13)</h3>
+<p><strong>Total differences</strong>: 1</p>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>if_statements</td>
+<td>45</td>
+<td>39</td>
+<td>-6</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="53-notify_014492py-folder-13">53. <strong>notify_014492.py</strong> (Folder 13)</h3>
+<p><strong>Total differences</strong>: 1</p>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>if_statements</td>
+<td>23</td>
+<td>22</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="54-test_arithmetic_e20900py-folder-13">54. <strong>test_arithmetic_e20900.py</strong> (Folder 13)</h3>
+<p><strong>Total differences</strong>: 3</p>
+<p><strong>Classes Removed:</strong></p>
+<ul>
+<li><code>TestFrameArithmeticUnsorted</code></li>
+<li><code>SubclassedSeries</code></li>
+<li><code>TestFrameArithmetic</code></li>
+<li><code>TestFrameFlexArithmetic</code></li>
+<li><code>SubclassedDataFrame</code></li>
+</ul>
+<p><strong>Parameter Changes:</strong></p>
+<p><strong>Function</strong>: <code>__init__</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Untyped</th>
+<th>Typed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Count</strong></td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td><strong>Params</strong></td>
+<td><code>self, my_extra_data</code></td>
+<td><code>self, value, dtype</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>7</td>
+<td>0</td>
+<td>-7</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>21</td>
+<td>2</td>
+<td>-19</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>53</td>
+<td>17</td>
+<td>-36</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="55-test_json_7e4832py-folder-13">55. <strong>test_json_7e4832.py</strong> (Folder 13)</h3>
+<p><strong>Total differences</strong>: 2</p>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>TestJSONArray.test_EA_types</code></li>
+<li><code>TestJSONArray.test_setitem_2d_values</code></li>
+</ul>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>1</td>
+<td>0</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>8</td>
+<td>7</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>4</td>
+<td>2</td>
+<td>-2</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="56-test_offsets_595cf3py-folder-13">56. <strong>test_offsets_595cf3.py</strong> (Folder 13)</h3>
+<p><strong>Total differences</strong>: 3</p>
+<p><strong>Classes Removed:</strong></p>
+<ul>
+<li><code>TestOffsetNames</code></li>
+<li><code>TestOffsetAliases</code></li>
+<li><code>TestReprNames</code></li>
+<li><code>TestDateOffset</code></li>
+</ul>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>TestCommon.test_pickle_roundtrip</code></li>
+<li><code>TestCommon.test_add_empty_datetimeindex</code></li>
+<li><code>TestCommon.test_add</code></li>
+<li><code>TestCommon.test_pickle_dateoffset_odd_inputs</code></li>
+<li><code>TestCommon.test_offsets_hashable</code></li>
+<li><code>TestCommon.test_add_dt64_ndarray_non_nano</code></li>
+</ul>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>20</td>
+<td>8</td>
+<td>-12</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>21</td>
+<td>13</td>
+<td>-8</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>25</td>
+<td>5</td>
+<td>-20</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="57-test_transform_0bcea9py-folder-13">57. <strong>test_transform_0bcea9.py</strong> (Folder 13)</h3>
+<p><strong>Total differences</strong>: 1</p>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>12</td>
+<td>4</td>
+<td>-8</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>56</td>
+<td>6</td>
+<td>-50</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>17</td>
+<td>7</td>
+<td>-10</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="58-test_wallets_fe5a94py-folder-13">58. <strong>test_wallets_fe5a94.py</strong> (Folder 13)</h3>
+<p><strong>Total differences</strong>: 1</p>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>1</td>
+<td>0</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>3</td>
+<td>2</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="59-cover_ccbdb1py-folder-14">59. <strong>cover_ccbdb1.py</strong> (Folder 14)</h3>
+<p><strong>Total differences</strong>: 3</p>
+<p><strong>Classes Removed:</strong></p>
+<ul>
+<li><code>PowerViewShadeTDBUTop</code></li>
+<li><code>PowerViewShadeDualRailBase</code></li>
+<li><code>PowerViewShadeTDBUBottom</code></li>
+<li><code>PowerViewShadeDualOverlappedFront</code></li>
+<li><code>PowerViewShadeDualOverlappedCombined</code></li>
+<li><code>PowerViewShadeDualOverlappedRear</code></li>
+<li><code>PowerViewShadeTopDown</code></li>
+<li><code>PowerViewShadeDualOverlappedBase</code></li>
+<li><code>PowerViewShadeDualOverlappedCombinedTilt</code></li>
+</ul>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>PowerViewShadeTiltOnly.transition_steps</code></li>
+<li><code>PowerViewShadeTiltOnly.is_closed</code></li>
+<li><code>PowerViewShadeTiltOnly.current_cover_position</code></li>
+</ul>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>if_statements</td>
+<td>10</td>
+<td>7</td>
+<td>-3</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="60-util_e9973apy-folder-14">60. <strong>util_e9973a.py</strong> (Folder 14)</h3>
+<p><strong>Total differences</strong>: 1</p>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>4</td>
+<td>2</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>42</td>
+<td>35</td>
+<td>-7</td>
+</tr>
+<tr>
+<td>try_except</td>
+<td>5</td>
+<td>2</td>
+<td>-3</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="61-__init___db92f1py-folder-15">61. <strong>__init___db92f1.py</strong> (Folder 15)</h3>
+<p><strong>Total differences</strong>: 1</p>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>if_statements</td>
+<td>17</td>
+<td>12</td>
+<td>-5</td>
+</tr>
+<tr>
+<td>try_except</td>
+<td>3</td>
+<td>1</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>3</td>
+<td>1</td>
+<td>-2</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="62-test_logging_b7910epy-folder-15">62. <strong>test_logging_b7910e.py</strong> (Folder 15)</h3>
+<p><strong>Total differences</strong>: 4</p>
+<p><strong>Classes Removed:</strong></p>
+<ul>
+<li><code>CloudWorkerTestImpl</code></li>
+<li><code>TestObfuscateApiKeyFilter</code></li>
+<li><code>TestJsonFormatter</code></li>
+<li><code>TestPrefectConsoleHandler</code></li>
+<li><code>ServerWorkerTestImpl</code></li>
+<li><code>TestWorkerLogging</code></li>
+<li><code>TestAPILogWorker</code></li>
+</ul>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>TestAPILogHandler.test_does_not_send_logs_outside_of_run_context_with_warn_setting</code></li>
+<li><code>TestAPILogHandler.test_does_not_write_error_for_logs_outside_run_context_that_opt_out</code></li>
+<li><code>TestAPILogHandler.test_does_not_warn_when_logger_outside_of_run_context_with_error_setting</code></li>
+<li><code>TestAPILogHandler.test_does_not_raise_when_logger_outside_of_run_context_with_default_setting</code></li>
+<li><code>TestAPILogHandler.test_does_not_raise_when_logger_outside_of_run_context_with_warn_setting</code></li>
+<li><code>TestAPILogHandler.test_writes_logging_errors_to_stderr</code></li>
+<li><code>TestAPILogHandler.test_does_not_send_logs_outside_of_run_context_with_error_setting</code></li>
+<li><code>TestAPILogHandler.test_does_not_send_logs_that_opt_out</code></li>
+<li><code>TestAPILogHandler.test_does_not_send_logs_outside_of_run_context_with_ignore_setting</code></li>
+<li><code>TestAPILogHandler.test_missing_context_warning_refers_to_caller_lineno</code></li>
+<li><code>TestAPILogHandler.test_does_not_raise_or_warn_when_logger_outside_of_run_context_with_ignore_setting</code></li>
+<li><code>TestAPILogHandler.test_handler_knows_how_large_logs_are</code></li>
+<li><code>TestAPILogHandler.test_does_not_send_logs_outside_of_run_context_with_default_setting</code></li>
+<li><code>TestAPILogHandler.test_does_not_send_logs_when_handler_is_disabled</code></li>
+</ul>
+<p><strong>Parameter Changes:</strong></p>
+<p><strong>Function</strong>: <code>my_flow</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Untyped</th>
+<th>Typed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Count</strong></td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong>Params</strong></td>
+<td>``</td>
+<td><code>loggers</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>9</td>
+<td>2</td>
+<td>-7</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>7</td>
+<td>2</td>
+<td>-5</td>
+</tr>
+<tr>
+<td>try_except</td>
+<td>2</td>
+<td>0</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>67</td>
+<td>14</td>
+<td>-53</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="63-test_matrix_transport_afccccpy-folder-15">63. <strong>test_matrix_transport_afcccc.py</strong> (Folder 15)</h3>
+<p><strong>Total differences</strong>: 1</p>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>try_except</td>
+<td>1</td>
+<td>0</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>2</td>
+<td>1</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="64-test_reindex_54a65dpy-folder-15">64. <strong>test_reindex_54a65d.py</strong> (Folder 15)</h3>
+<p><strong>Total differences</strong>: 2</p>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>TestDataFrameSelectReindex.test_reindex_with_categoricalindex</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_name_remains</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_not_category</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_single_column_ea_index_and_columns</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_corner</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_positional_raises</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_sparse</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_multi</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_without_upcasting</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_nan</code></li>
+<li><code>TestDataFrameSelectReindex.test_invalid_method</code></li>
+<li><code>TestDataFrameSelectReindex.test_non_monotonic_reindex_methods</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_empty_frame</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_with_nans</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_dups</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_single_named_indexer</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_uint_dtypes_fill_value</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_level_verify</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_signature</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_multiindex_ffill_added_rows</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_axis_style</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_empty</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_objects</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_with_duplicate_columns</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_boolean</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_columns</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_int</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_axes</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_api_equivalence</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_columns_method</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_fill_value</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_level_verify_repeats</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_axis_style_raises</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_datetimelike_to_object</code></li>
+<li><code>TestDataFrameSelectReindex.test_reindex_multi_categorical_time</code></li>
+</ul>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>9</td>
+<td>0</td>
+<td>-9</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>5</td>
+<td>0</td>
+<td>-5</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>24</td>
+<td>0</td>
+<td>-24</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="65-test_set_index_3c0de8py-folder-15">65. <strong>test_set_index_3c0de8.py</strong> (Folder 15)</h3>
+<p><strong>Total differences</strong>: 3</p>
+<p><strong>Classes Removed:</strong></p>
+<ul>
+<li><code>TestSetIndexCustomLabelType</code></li>
+<li><code>Thing</code></li>
+<li><code>TestSetIndexInvalid</code></li>
+</ul>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>TestSetIndex.test_set_index_period</code></li>
+</ul>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>with_statements</td>
+<td>18</td>
+<td>2</td>
+<td>-16</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="66-test_to_numeric_199e51py-folder-15">66. <strong>test_to_numeric_199e51.py</strong> (Folder 15)</h3>
+<p><strong>Total differences</strong>: 1</p>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>if_statements</td>
+<td>16</td>
+<td>11</td>
+<td>-5</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>14</td>
+<td>11</td>
+<td>-3</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="67-streams_d2f3a4py-folder-16">67. <strong>streams_d2f3a4.py</strong> (Folder 16)</h3>
+<p><strong>Total differences</strong>: 2</p>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>DataQueue.__aiter__</code></li>
+<li><code>DataQueue.feed_eof</code></li>
+</ul>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>if_statements</td>
+<td>58</td>
+<td>53</td>
+<td>-5</td>
+</tr>
+<tr>
+<td>try_except</td>
+<td>7</td>
+<td>6</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="68-test_hashtable_89c8a4py-folder-17">68. <strong>test_hashtable_89c8a4.py</strong> (Folder 17)</h3>
+<p><strong>Total differences</strong>: 3</p>
+<p><strong>Classes Removed:</strong></p>
+<ul>
+<li><code>TestHelpFunctionsWithNans</code></li>
+<li><code>TestHashTableWithNans</code></li>
+<li><code>TestHelpFunctions</code></li>
+</ul>
+<p><strong>Parameter Changes:</strong></p>
+<p><strong>Function</strong>: <code>test_map_locations</code></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Untyped</th>
+<th>Typed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Count</strong></td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr>
+<td><strong>Params</strong></td>
+<td><code>self, table_type, dtype</code></td>
+<td><code>self, table_type, dtype, writable</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>if_statements</td>
+<td>10</td>
+<td>8</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>15</td>
+<td>12</td>
+<td>-3</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="69-test_stata_db4b21py-folder-17">69. <strong>test_stata_db4b21.py</strong> (Folder 17)</h3>
+<p><strong>Total differences</strong>: 2</p>
+<p><strong>Methods Removed:</strong></p>
+<ul>
+<li><code>TestStata.test_stata_doc_examples</code></li>
+<li><code>TestStata.test_invalid_timestamp</code></li>
+<li><code>TestStata.test_big_dates</code></li>
+<li><code>TestStata.test_all_none_exception</code></li>
+<li><code>TestStata.test_set_index</code></li>
+<li><code>TestStata.test_categorical_warnings_and_errors</code></li>
+<li><code>TestStata.test_date_export_formats</code></li>
+<li><code>TestStata.test_strl_latin1</code></li>
+<li><code>TestStata.test_excessively_long_string</code></li>
+<li><code>TestStata.test_unsupported_datetype</code></li>
+<li><code>TestStata.test_iterator</code></li>
+<li><code>TestStata.test_writer_117</code></li>
+<li><code>TestStata.test_value_labels_old_format</code></li>
+<li><code>TestStata.test_writer_118_exceptions</code></li>
+<li><code>TestStata.test_timestamp_and_label</code></li>
+<li><code>TestStata.test_unicode_dta_118_119</code></li>
+<li><code>TestStata.test_numeric_column_names</code></li>
+<li><code>TestStata.test_variable_labels</code></li>
+<li><code>TestStata.test_encoding</code></li>
+<li><code>TestStata.test_categorical_writing</code></li>
+<li><code>TestStata.test_categorical_sorting</code></li>
+<li><code>TestStata.test_read_write_ea_dtypes</code></li>
+<li><code>TestStata.test_nonfile_writing</code></li>
+<li><code>TestStata.test_missing_value_generator</code></li>
+<li><code>TestStata.test_unsupported_type</code></li>
+<li><code>TestStata.test_invalid_variable_label_encoding</code></li>
+<li><code>TestStata.test_invalid_file_not_written</code></li>
+<li><code>TestStata.test_read_data_int_validranges_compat</code></li>
+<li><code>TestStata.test_write_variable_label_errors</code></li>
+<li><code>TestStata.test_nan_to_missing_value</code></li>
+<li><code>TestStata.test_inf</code></li>
+<li><code>TestStata.test_default_date_conversion</code></li>
+<li><code>TestStata.test_stata_119</code></li>
+<li><code>TestStata.test_dtype_conversion</code></li>
+<li><code>TestStata.test_dates_invalid_column</code></li>
+<li><code>TestStata.test_write_missing_strings</code></li>
+<li><code>TestStata.test_repeated_column_labels</code></li>
+<li><code>TestStata.test_minimal_size_col</code></li>
+<li><code>TestStata.test_read_write_dta12</code></li>
+<li><code>TestStata.test_convert_strl_name_swap</code></li>
+<li><code>TestStata.test_missing_value_conversion_compat_nobyte</code></li>
+<li><code>TestStata.test_105</code></li>
+<li><code>TestStata.test_read_chunks_115</code></li>
+<li><code>TestStata.test_drop_column</code></li>
+<li><code>TestStata.test_read_write_reread_dta15</code></li>
+<li><code>TestStata.test_date_parsing_ignores_format_details</code></li>
+<li><code>TestStata.test_mixed_string_strl</code></li>
+<li><code>TestStata.test_string_no_dates</code></li>
+<li><code>TestStata.test_large_value_conversion</code></li>
+<li><code>TestStata.test_out_of_range_float</code></li>
+<li><code>TestStata.test_path_pathlib</code></li>
+<li><code>TestStata.test_gzip_writing</code></li>
+<li><code>TestStata.test_utf8_writer</code></li>
+<li><code>TestStata.test_out_of_range_double</code></li>
+<li><code>TestStata.test_write_preserves_original</code></li>
+<li><code>TestStata.test_read_write_dta13</code></li>
+<li><code>TestStata.test_invalid_variable_labels</code></li>
+<li><code>TestStata.test_no_index</code></li>
+<li><code>TestStata.test_missing_value_conversion_compat</code></li>
+<li><code>TestStata.test_invalid_date_conversion</code></li>
+<li><code>TestStata._convert_categorical</code></li>
+<li><code>TestStata.test_categorical_with_stata_missing_values</code></li>
+<li><code>TestStata.test_stata_111</code></li>
+<li><code>TestStata.test_read_data_int_validranges</code></li>
+<li><code>TestStata.test_read_write_dta11</code></li>
+<li><code>TestStata.test_bool_uint</code></li>
+<li><code>TestStata.test_read_chunks_117</code></li>
+<li><code>TestStata.test_read_data_int_validranges_compat_nobyte</code></li>
+<li><code>TestStata.test_categorical_ordering</code></li>
+<li><code>TestStata.test_read_chunks_columns</code></li>
+<li><code>TestStata.test_missing_value_conversion</code></li>
+<li><code>TestStata.test_encoding_latin1_118</code></li>
+<li><code>TestStata.test_write_variable_labels</code></li>
+<li><code>TestStata.test_read_write_reread_dta14</code></li>
+<li><code>TestStata.test_categorical_order</code></li>
+<li><code>TestStata.test_value_labels_iterator</code></li>
+</ul>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>28</td>
+<td>3</td>
+<td>-25</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>31</td>
+<td>4</td>
+<td>-27</td>
+</tr>
+<tr>
+<td>try_except</td>
+<td>2</td>
+<td>0</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>86</td>
+<td>4</td>
+<td>-82</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="70-test_to_html_24b1e4py-folder-17">70. <strong>test_to_html_24b1e4.py</strong> (Folder 17)</h3>
+<p><strong>Total differences</strong>: 2</p>
+<p><strong>Classes Removed:</strong></p>
+<ul>
+<li><code>TestReprHTML</code></li>
+<li><code>TestHTMLIndex</code></li>
+</ul>
+<p><strong>Control Flow Changes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Untyped</th>
+<th>Typed</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for_loops</td>
+<td>4</td>
+<td>1</td>
+<td>-3</td>
+</tr>
+<tr>
+<td>if_statements</td>
+<td>16</td>
+<td>5</td>
+<td>-11</td>
+</tr>
+<tr>
+<td>with_statements</td>
+<td>29</td>
+<td>8</td>
+<td>-21</td>
+</tr>
+</tbody>
+</table>
+<hr>
+
+</body>
+</html>
