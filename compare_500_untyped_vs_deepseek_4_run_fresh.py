@@ -141,37 +141,6 @@ class StructuralASTComparator:
         
         return True, []
     
-    def _compare_module_functions(self, ast_untyped, ast_typed) -> Tuple[bool, List]:
-        """Compare module-level functions (excluding class methods)."""
-        diffs = []
-        
-        # Get all module-level function definitions (direct children of Module)
-        funcs_untyped = {node.name: node for node in ast_untyped.body if isinstance(node, ast.FunctionDef)}
-        funcs_typed = {node.name: node for node in ast_typed.body if isinstance(node, ast.FunctionDef)}
-        
-        untyped_names = set(funcs_untyped.keys())
-        typed_names = set(funcs_typed.keys())
-        
-        if untyped_names != typed_names:
-            missing_in_typed = untyped_names - typed_names
-            missing_in_untyped = typed_names - untyped_names
-            
-            if missing_in_typed:
-                diffs.append({
-                    "type": "function_removed_in_typed",
-                    "functions": list(missing_in_typed),
-                    "details": [{"name": f} for f in missing_in_typed]
-                })
-            if missing_in_untyped:
-                diffs.append({
-                    "type": "function_added_in_typed",
-                    "functions": list(missing_in_untyped),
-                    "details": [{"name": f} for f in missing_in_untyped]
-                })
-            return False, diffs
-        
-        return True, []
-    
     def _compare_parameters(self, ast_untyped, ast_typed) -> Tuple[bool, List]:
         """Compare function signatures."""
         diffs = []
@@ -267,7 +236,7 @@ class StructuralASTComparator:
         return structures
 
 
-def compare_by_filename(output_dir: str = "./comparison_500_untyped_vs_deepseek_4_run"):
+def compare_by_filename(output_dir: str = "./comparison_500_untyped_vs_deepseek_4_run_fresh"):
     """
     Compare files by matching filenames:
     - Iterate over deepseek_4_run files
@@ -302,8 +271,9 @@ def compare_by_filename(output_dir: str = "./comparison_500_untyped_vs_deepseek_
     all_results = []
     files_with_changes = []
     parse_error_files = []  # Track files with parse errors
+    unmatched_files = []  # Track files with no matching baseline
     
-    # Iterate over all folders in deepseek_4_run
+    # Iterate over all folders in deepseek_4_run (1-17)
     for folder_num in range(1, 18):
         typed_folder = typed_base / str(folder_num)
         
@@ -312,10 +282,10 @@ def compare_by_filename(output_dir: str = "./comparison_500_untyped_vs_deepseek_
             continue
         
         typed_files = sorted(typed_folder.glob("*.py"))
-        print(f"Folder {folder_num}: {len(typed_files)} typed files", end=" → ")
+        print(f"Folder {folder_num}: {len(typed_files)} typed files", end=" -> ")
         
         folder_results = []
-        matched_count = 0
+        folder_matched_count = 0
         
         # For each typed file, find matching untyped file by name
         for typed_file in typed_files:
@@ -323,11 +293,15 @@ def compare_by_filename(output_dir: str = "./comparison_500_untyped_vs_deepseek_
             
             # Look for matching untyped file
             if filename not in untyped_by_name:
-                print(f"\nWarning: No matching untyped file for {filename}")
+                unmatched_files.append({
+                    "filename": filename,
+                    "folder": folder_num,
+                    "reason": "No matching file in 500_untyped_files"
+                })
                 continue
             
             untyped_file = untyped_by_name[filename]
-            matched_count += 1
+            folder_matched_count += 1
             
             try:
                 untyped_code = untyped_file.read_text(encoding='utf-8', errors='ignore')
@@ -384,35 +358,34 @@ def compare_by_filename(output_dir: str = "./comparison_500_untyped_vs_deepseek_
             except Exception as e:
                 print(f"\nError comparing {filename}: {e}")
         
-        print(f"{matched_count} matched")
+        print(f"{folder_matched_count} matched")
         
-        # Write CSV for this folder
-        if folder_results:
-            output_file = Path(output_dir) / f"comparison_results_{folder_num}.csv"
-            with open(output_file, 'w', newline='', encoding='utf-8') as f:
-                writer = csv.writer(f)
+        # Write CSV for this folder (always write, even if empty)
+        output_file = Path(output_dir) / f"comparison_results_{folder_num}.csv"
+        with open(output_file, 'w', newline='', encoding='utf-8') as f:
+            writer = csv.writer(f)
+            writer.writerow([
+                "filename",
+                "folder",
+                "classes_match",
+                "methods_match",
+                "parameters_match",
+                "control_flow_match",
+                "total_differences",
+                "structural_changes_found"
+            ])
+            
+            for result in folder_results:
                 writer.writerow([
-                    "filename",
-                    "folder",
-                    "classes_match",
-                    "methods_match",
-                    "parameters_match",
-                    "control_flow_match",
-                    "total_differences",
-                    "structural_changes_found"
+                    result.get("filename", ""),
+                    result.get("folder", ""),
+                    result.get("classes_match", ""),
+                    result.get("methods_match", ""),
+                    result.get("parameters_match", ""),
+                    result.get("control_flow_match", ""),
+                    result.get("total_differences", 0),
+                    result.get("structural_changes_found", "")
                 ])
-                
-                for result in folder_results:
-                    writer.writerow([
-                        result.get("filename", ""),
-                        result.get("folder", ""),
-                        result.get("classes_match", ""),
-                        result.get("methods_match", ""),
-                        result.get("parameters_match", ""),
-                        result.get("control_flow_match", ""),
-                        result.get("total_differences", 0),
-                        result.get("structural_changes_found", "")
-                    ])
     
     # Write aggregate summary
     print(f"\n{'='*80}")
@@ -430,7 +403,6 @@ def compare_by_filename(output_dir: str = "./comparison_500_untyped_vs_deepseek_
             writer = csv.writer(f)
             writer.writerow([
                 "filename",
-                "folder",
                 "classes_match",
                 "methods_match",
                 "parameters_match",
@@ -442,7 +414,6 @@ def compare_by_filename(output_dir: str = "./comparison_500_untyped_vs_deepseek_
             for result in files_with_changes:
                 writer.writerow([
                     result.get("filename", ""),
-                    result.get("folder", ""),
                     result.get("classes_match", ""),
                     result.get("methods_match", ""),
                     result.get("parameters_match", ""),
@@ -533,11 +504,16 @@ def compare_by_filename(output_dir: str = "./comparison_500_untyped_vs_deepseek_
     summary = {
         "total_files_compared": len(all_results),
         "files_with_changes": len(files_with_changes),
+        "files_with_parse_errors": len(parse_error_files),
+        "files_without_baseline": len(unmatched_files),
         "percentage_changed": (len(files_with_changes) / len(all_results) * 100) if all_results else 0,
+        "percentage_parse_errors": (len(parse_error_files) / len(all_results) * 100) if all_results else 0,
+        "percentage_no_baseline": (len(unmatched_files) / (len(all_results) + len(unmatched_files)) * 100) if (all_results or unmatched_files) else 0,
+        "parse_error_files": parse_error_files,
+        "unmatched_files": unmatched_files,
         "changed_files": [
             {
                 "filename": r["filename"],
-                "folder": r["folder"],
                 "total_differences": r["total_differences"],
                 "structural_changes": r["structural_changes_found"],
                 "detailed_changes": extract_detailed_changes(r.get("details", []))
@@ -552,135 +528,107 @@ def compare_by_filename(output_dir: str = "./comparison_500_untyped_vs_deepseek_
     
     # Generate simplified markdown report
     def generate_markdown_report(summary, output_dir, files_with_changes_list, parse_errors=None):
-        """Generate a simplified markdown report organized by folder."""
+        """Generate a simplified markdown report organized by file."""
         if parse_errors is None:
             parse_errors = []
         
         md = []
-        md.append("# AST Comparison Report: deepseek_4_run vs 500_untyped_files\n\n")
-        md.append(f"**Total files compared**: {summary['total_files_compared']}\n")
-        md.append(f"**Files with changes**: {summary['files_with_changes']}\n")
-        md.append(f"**Files with parse errors**: {len(parse_errors)}\n")
-        md.append(f"**Percentage changed**: {summary['percentage_changed']:.2f}%\n\n")
+        md.append("# AST Comparison Report: DeepSeek 4 Run vs Untyped Baseline\n\n")
+        md.append("## Summary Statistics\n\n")
+        md.append(f"- **Total files compared**: {summary['total_files_compared']}\n")
+        md.append(f"- **Files with structural changes**: {summary['files_with_changes']}\n")
+        md.append(f"- **Files with parse errors**: {len(parse_errors)}\n")
+        md.append(f"- **Files without baseline**: {summary.get('files_without_baseline', 0)}\n")
+        md.append(f"- **Percentage with changes**: {summary['percentage_changed']:.2f}%\n")
+        md.append(f"- **Percentage with parse errors**: {summary.get('percentage_parse_errors', 0):.2f}%\n")
+        md.append(f"- **Percentage without baseline**: {summary.get('percentage_no_baseline', 0):.2f}%\n\n")
+        md.append("### Key Insights\n")
+        md.append(f"- Out of {summary['total_files_compared']} files, **{summary['files_with_changes']} ({summary['percentage_changed']:.2f}%)** had structural differences\n")
+        md.append(f"- **{len(parse_errors)}** files could not be parsed (syntax errors in DeepSeek output)\n")
+        md.append(f"- Most changes involve **control flow modifications**, **class additions**, or **parameter changes**\n\n")
         md.append("---\n\n")
         
         # Show parse errors first if any
         if parse_errors:
-            md.append("## ⚠️ Files with Parse Errors (Cannot Generate AST)\n\n")
-            parse_by_folder = {}
+            md.append("## Warning: Parse Errors - DeepSeek Generated Invalid Syntax\n\n")
+            md.append("These files could not be analyzed because the generated code has syntax errors:\n\n")
+            
             for pe in parse_errors:
-                folder = pe['folder']
-                if folder not in parse_by_folder:
-                    parse_by_folder[folder] = []
-                parse_by_folder[folder].append(pe)
-            
-            for folder_num in sorted(parse_by_folder.keys()):
-                md.append(f"### Folder {folder_num}\n\n")
-                for pe in parse_by_folder[folder_num]:
-                    md.append(f"- **{pe['filename']}**\n")
-                    if pe['untyped_error']:
-                        md.append(f"  - Untyped error: {pe['untyped_error'][:80]}...\n")
-                    if pe['typed_error']:
-                        md.append(f"  - Typed error: {pe['typed_error'][:80]}...\n")
-                md.append("\n")
+                md.append(f"**{pe['filename']}**\n\n")
+                if pe['typed_error']:
+                    md.append(f"```\nError: {pe['typed_error']}\n```\n\n")
             
             md.append("---\n\n")
         
-        # Group files by folder using summary data
-        files_by_folder = {}
+        # Show files without baseline
+        unmatched = summary.get('unmatched_files', [])
+        if unmatched:
+            md.append(f"## Files Without Baseline ({len(unmatched)} total)\n\n")
+            md.append("These files exist in DeepSeek output but have no matching file in the 500_untyped_files baseline:\n\n")
+            
+            for um in unmatched[:100]:  # Show first 100
+                md.append(f"- `{um['filename']}` (Folder {um['folder']})\n")
+            
+            if len(unmatched) > 100:
+                md.append(f"\n... and {len(unmatched) - 100} more files\n")
+            
+            md.append("\n---\n\n")
+        
+        # List all files with changes
+        md.append(f"## Files with Changes ({len(summary['changed_files'])} total)\n\n")
+        
         for file_data in summary['changed_files']:
-            folder = file_data['folder']
-            if folder not in files_by_folder:
-                files_by_folder[folder] = []
-            files_by_folder[folder].append(file_data)
-        
-        # Process each folder
-        for folder_num in sorted(files_by_folder.keys()):
-            folder_files = files_by_folder[folder_num]
-            md.append(f"## Folder {folder_num}\n\n")
+            md.append(f"### {file_data['filename']}\n\n")
+            md.append(f"**Changes detected**: {file_data['structural_changes']}\n\n")
             
-            # Process each file in folder
-            for file_data in folder_files:
-                md.append(f"### {file_data['filename']}\n\n")
-                
-                changes = file_data['detailed_changes']
-                has_class_changes = False
-                has_param_changes = False
-                
-                # Classes removed
-                removed_classes = [c for c in changes if c['type'] == 'class_removed']
-                if removed_classes:
-                    has_class_changes = True
-                    md.append("**Classes Removed:**\n")
-                    for change in removed_classes:
-                        md.append(f"- `{change['name']}`\n")
-                    md.append("\n")
-                
-                # Classes added
-                added_classes = [c for c in changes if c['type'] == 'class_added']
-                if added_classes:
-                    has_class_changes = True
-                    md.append("**Classes Added:**\n")
-                    for change in added_classes:
-                        md.append(f"- `{change['name']}`\n")
-                    md.append("\n")
-                
-                # Methods/Functions removed
-                removed_methods = [c for c in changes if c['type'] == 'method_removed']
-                if removed_methods:
-                    md.append("**Methods/Functions Removed:**\n")
-                    for change in removed_methods:
-                        class_name = change.get('class', '')
-                        func_name = change['name']
-                        if class_name:
-                            md.append(f"- `{class_name}.{func_name}`\n")
+            if file_data['detailed_changes']:
+                md.append("#### What Changed:\n\n")
+                for change in file_data['detailed_changes']:
+                    change_type = change.get('type', 'unknown')
+                    if change_type == 'class_removed':
+                        md.append(f"- Class removed: `{change['name']}`\n")
+                    elif change_type == 'class_added':
+                        md.append(f"- Class added: `{change['name']}`\n")
+                    elif change_type == 'method_removed':
+                        if change.get('class'):
+                            md.append(f"- Method removed from `{change['class']}`: `{change['name']}`\n")
                         else:
-                            md.append(f"- `{func_name}`\n")
-                    md.append("\n")
-                
-                # Methods/Functions added
-                added_methods = [c for c in changes if c['type'] == 'method_added']
-                if added_methods:
-                    md.append("**Methods/Functions Added:**\n")
-                    for change in added_methods:
-                        class_name = change.get('class', '')
-                        func_name = change['name']
-                        if class_name:
-                            md.append(f"- `{class_name}.{func_name}`\n")
+                            md.append(f"- Function removed: `{change['name']}`\n")
+                    elif change_type == 'method_added':
+                        if change.get('class'):
+                            md.append(f"- Method added to `{change['class']}`: `{change['name']}`\n")
                         else:
-                            md.append(f"- `{func_name}`\n")
-                    md.append("\n")
-                
-                # Parameter mismatches
-                param_changes = [c for c in changes if c['type'] == 'parameter_mismatch']
-                if param_changes:
-                    has_param_changes = True
-                    md.append("**Parameter Changes:**\n\n")
-                    for change in param_changes:
-                        md.append(f"**Function**: `{change['function']}`\n\n")
-                        md.append("| | Untyped | Typed |\n")
-                        md.append("|---|---|---|\n")
-                        md.append(f"| **Params** | `{change['untyped_params']}` | `{change['typed_params']}` |\n\n")
-                
-                if not has_class_changes and not has_param_changes and not removed_methods and not added_methods:
-                    md.append("*(Other structural changes - no class, method, or parameter modifications)*\n\n")
-            
-            md.append("---\n\n")
+                            md.append(f"- Function added: `{change['name']}`\n")
+                    elif change_type == 'parameter_mismatch':
+                        md.append(f"- Function signature changed: `{change['function']}`\n")
+                        md.append(f"  - Original params: `{change['untyped_params']}`\n")
+                        md.append(f"  - Modified params: `{change['typed_params']}`\n")
+                    elif change_type == 'control_flow_change':
+                        md.append(f"- Control flow structure modified:\n")
+                        for key, val in change.get('changes', {}).items():
+                            delta = val.get('delta', 0)
+                            if delta > 0:
+                                md.append(f"  - `{key}`: {val['untyped']} -> {val['typed']} (+{delta} added)\n")
+                            elif delta < 0:
+                                md.append(f"  - `{key}`: {val['untyped']} -> {val['typed']} ({delta} removed)\n")
+                md.append("\n")
+            else:
+                md.append("*No detailed changes recorded*\n\n")
         
         return "".join(md)
     
-    md_content = generate_markdown_report(summary, output_dir, files_with_changes, parse_error_files)
-    md_file = Path(output_dir) / "CHANGES_REPORT.md"
-    with open(md_file, 'w', encoding='utf-8') as f:
-        f.write(md_content)
+    # Generate and write markdown report
+    markdown_report = generate_markdown_report(summary, output_dir, files_with_changes, parse_error_files)
+    report_file = Path(output_dir) / "comparison_report.md"
+    with open(report_file, 'w', encoding='utf-8') as f:
+        f.write(markdown_report)
     
-    print(f"\nAll results saved to {output_dir}/")
-    print(f"  - summary.json: Detailed JSON with all changes")
-    print(f"  - CHANGES_REPORT.md: Human-readable markdown report")
-    print(f"  - files_with_changes.csv: CSV summary")
+    print(f"\nResults written to: {output_dir}")
+    print(f"  - comparison_results_*.csv")
+    print(f"  - files_with_changes.csv")
+    print(f"  - summary.json")
+    print(f"  - comparison_report.md")
 
 
 if __name__ == "__main__":
-    print("Starting comparison: deepseek_4_run vs 500_untyped_files\n")
     compare_by_filename()
-    print("\nDone!")

@@ -38,10 +38,10 @@ def combine_csvs_to_excel(csv_dir: str, output_file: str = "comparison_results_a
             print(f"  ✓ Sheet '{sheet_name}' - {len(df)} rows")
     
     print(f"\n✅ Excel file created: {output_path}")
-    print(f"   Sheets: Folder_1 through Folder_17")
+    print(f"   Sheets: Folder_1 through Folder_18")
 
 
 if __name__ == "__main__":
     # Use the comparison directory
-    csv_directory = "./comparison_500_untyped_vs_gpt5_2_run_v2"
+    csv_directory = "./comparison_500_untyped_vs_deepseek_4_run_fresh"
     combine_csvs_to_excel(csv_directory)
