@@ -101,8 +101,12 @@ if __name__ == "__main__":
         "GPCE_mypy_results/mypy_results_deepseek_3_run_with_errors.json",
     )"""
     run_mypy_and_save_results(
-        "gpt5_4_run",
-        "GPCE_mypy_results/mypy_results_gpt5_4_run_with_errors.json",
+        "deepseek_3_stub_run/merged_union_import",
+        "GPCE_mypy_results/mypy_results_deepseek_3_stub_union_import_run_with_errors.json",
+    )
+    run_mypy_and_save_results(
+        "gpt5_1_infer_stub_run/merged_union_import",
+        "GPCE_mypy_results/mypy_results_gpt5_1_infer_stub_union_import_run_with_errors.json",
     )
     
     """
