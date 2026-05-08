@@ -1,0 +1,37 @@
+| Name of the experiment | Script of this experiment | Results of this experiment |
+| :--- | :--- | :--- |
+| **Code generation** | | |
+| With unstrict prompt | `Generate_code_using_OPENAI_gpt5.py`<br>`Generate_code_using_deepseek.py` | `gpt5_1st_run/`<br>`deep_seek_2nd_run/` |
+| With strict prompt | | `gpt5_4_run/`<br>`deepseek_4_run/` |
+| Pyi file generation. | `gpt5_500_sample_runs/generate_gpt5_stub_sample_run.py`<br>`gpt5_500_sample_runs/generate_deepseek_stub_sample_run.py`<br>`gpt5_500_sample_runs/generate_claude_stub_sample_run.py` | `deepseek_1_stub_run/`<br>`deepseek_2_stub_run/`<br>`deepseek_3_stub_run/`<br>`gpt5_1_stub_run/`<br>`gpt5_2_stub_run/` |
+
+| Name of the experiment | Script of this experiment | Results of this experiment |
+| :--- | :--- | :--- |
+| **Correctness** | | |
+| Type Correctness of LLM-generated code. | `Run_mypy_on_llm_2.py` | `GPCE_mypy_results/mypy_outputs/`<br>`mypy_results/mypy_outputs/` |
+| Run to run consistency of LLM generated code | `mypy_results/Section_04/Table_2_consistency_analysis.py` | Command prompt |
+| Files that succeed in one run but fail in other (categorization). | `mypy_results/Section_04/flip_results.py`<br>`mypy_results/Section_04/flip_summary.py` | Command prompt |
+| Venn diagrams comparing human type annotations with individual LLMs and their collective union on files that have original annotations. Each diagram shows overlap and unique successes. | `mypy_results/Section_6_Human_VS_LLM/Ven_diagram_human_vs_top3LLM.py` | Command prompt |
+| Type check success ratio interms of parameter count (figure 6) | `mypy_results/Section_6_Human_VS_LLM/barplot_compiled_by_total_parameters.py` | Command prompt |
+| Type check success ratio interms of parameter count when input program is partially typed and the original human-annotated program (figure 8) | `mypy_results/Section_6_Human_VS_LLM/barplot_for_partial_user_annotated.py`<br>`mypy_results/Section_6_Human_VS_LLM/barplot_for_user_annotated_total_parameter.py` | Command prompt |
+| Do LLM memorize? | `Type_info_collector/Section_08_LLM_memorized/Compare_LLM_file_level_meomorization.py`<br>`Type_info_collector/Section_08_LLM_memorized/precision_agreement_analysis.py` | Command prompt |
+
+| Name of the experiment | Script of this experiment | Results of this experiment |
+| :--- | :--- | :--- |
+| **Precision** | | |
+| Usage of Any in LLM-generated annotations. | `Type_info_collector/Section_04/calculate_any_rate.py` | Command prompt |
+| Run to run comparisons of Any usage (Table 5) | `Type_info_collector/Section_04/Table_4_precsion_in_two_run.py`<br>`Type_info_collector/Section_04/Table_4_precsion_in_two_run_file_level.py` | Command prompt |
+| Distribution of Any usage across LLMs compared to human annotations (Figure 7). | `Type_info_collector/Section_06/any_ratio_analysis.py` | Command prompt |
+| Specificity loss: per-model losses of human concrete types to Any. Reported are total concrete types, losses, preserved types, and loss ratio. | `Type_info_collector/Section_06/analyze_type_replacement.py` | Command prompt |
+| Type annotation agreement between LLMs and the human baseline. Total = number of type slots compared; Agreed =number matched; Ratio = matching ratio. Category-specific columns report agreement by type categories (Table 8) | `Type_info_collector/Section_06/precision_agreement_analysis.py` | Command prompt |
+| Comparison of Any usage across LLMs and human annotations when 50% of human annotations are removed from inputs (top) and when no human annotations are removed (bottom). | `Type_info_collector/Section_06/any_ratio_analysis_plot_partial_type.py`<br>`Type_info_collector/Section_06/any_ratio_analysis_user_annotation.py` | Command prompt |
+| Induced gains and random losses analysis across LLMs. Gains and losses indicate parameter-level changes where one variant outperformed or underperformed another (Table 9). | `Type_info_collector/Section_06/analyze_any_ratio_changes.py` | Command prompt |
+| Any usage on renamed files (Table 10) | `mypy_results/Section_08/Renamed_file_analysis.py` | Command prompt |
+| Semantic type matching results across original and renamed files (Table 11). | `Type_info_collector/semantic_type_comparison.py` | `Type_info_collector/semantic_comparison_results/type_comparison_semantic_deepseek.json`<br>`Type_info_collector/semantic_comparison_results/type_comparison_semantic_gpt4o.json`<br>`Type_info_collector/semantic_comparison_results/type_comparison_semantic_o1-mini.json` |
+
+| Name of the experiment | Script of this experiment | Results of this experiment |
+| :--- | :--- | :--- |
+| **LLM Type fixing** | | |
+| Type fix using strict prompt | `deepseek_mypy_fix/fix_mypy_errors.py`<br>`gpt5_mypy_fix/fix_mypy_errors.py`<br>`claude_mypy_fix/fix_mypy_errors.py` | `deepseek_mypy_fix/fix_log_strict_edit_rules.json`<br>`gpt5_mypy_fix/fix_log_strict_edit_rules.json`<br>`deepseek_mypy_fix/fixed_files_strict_edit_rules/`<br>`gpt5_mypy_fix/fixed_files_strict_edit_rules/` |
+| Type fix using not strict prompt() | `deepseek_hybrid_fix/fix_mypy_errors_merged.py` | `deepseek_hybrid_fix/fix_log_option2.json`<br>`deepseek_hybrid_fix/fixed_merged_option2/` |
+| Type fix for stub(.pyi files) | `deepseek_hybrid_fix/fix_mypy_errors_hybrid.py`<br>`GPCE_mypy_results/Run_mypy_on_stubs.py` | `deepseek_hybrid_fix/fix_log.json`<br>`deepseek_hybrid_fix/fixed_stubs/`<br>`GPCE_mypy_results/mypy_results_deepseek_3_stub_run_with_errors.json` |
