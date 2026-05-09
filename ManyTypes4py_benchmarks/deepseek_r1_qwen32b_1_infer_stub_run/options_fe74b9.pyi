@@ -1,0 +1,177 @@
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    Iterable,
+    Iterator,
+    List,
+    Optional,
+    Set,
+    Tuple,
+    Union,
+    TextIO,
+)
+from datetime import datetime, timedelta
+from tornado.log import _Option as Option
+
+class Error(Exception):
+    pass
+
+class OptionParser:
+    def __init__(self) -> None:
+        ...
+
+    def _normalize_name(self, name: str) -> str:
+        ...
+
+    def __getattr__(self, name: str) -> Any:
+        ...
+
+    def __setattr__(self, name: str, value: Any) -> None:
+        ...
+
+    def __getitem__(self, name: str) -> Any:
+        ...
+
+    def __setitem__(self, name: str, value: Any) -> None:
+        ...
+
+    def __iter__(self) -> Iterator[str]:
+        ...
+
+    def __contains__(self, name: str) -> bool:
+        ...
+
+    def items(self) -> Iterable[Tuple[str, Any]]:
+        ...
+
+    def groups(self) -> Set[str]:
+        ...
+
+    def group_dict(self, group: Optional[str] = None) -> Dict[str, Any]:
+        ...
+
+    def as_dict(self) -> Dict[str, Any]:
+        ...
+
+    def define(
+        self,
+        name: str,
+        default: Any = ...,
+        type: type = ...,
+        help: Optional[str] = ...,
+        metavar: Optional[str] = ...,
+        multiple: bool = ...,
+        group: Optional[str] = ...,
+        callback: Optional[Callable[[Any], None]] = ...,
+    ) -> None:
+        ...
+
+    def parse_command_line(
+        self,
+        args: Optional[List[str]] = ...,
+        final: bool = ...,
+    ) -> List[str]:
+        ...
+
+    def parse_config_file(
+        self,
+        path: str,
+        final: bool = ...,
+    ) -> None:
+        ...
+
+    def print_help(self, file: Optional[TextIO] = ...) -> None:
+        ...
+
+    def add_parse_callback(self, callback: Callable[[], None]) -> None:
+        ...
+
+    def run_parse_callbacks(self) -> None:
+        ...
+
+    def mockable(self) -> "_Mockable":
+        ...
+
+class _Mockable:
+    def __init__(self, options: OptionParser) -> None:
+        ...
+
+    def __getattr__(self, name: str) -> Any:
+        ...
+
+    def __setattr__(self, name: str, value: Any) -> None:
+        ...
+
+    def __delattr__(self, name: str) -> None:
+        ...
+
+class _Option:
+    UNSET: Any
+
+    def __init__(
+        self,
+        name: str,
+        default: Any = ...,
+        type: type = ...,
+        help: Optional[str] = ...,
+        metavar: Optional[str] = ...,
+        multiple: bool = ...,
+        file_name: Optional[str] = ...,
+        group_name: Optional[str] = ...,
+        callback: Optional[Callable[[Any], None]] = ...,
+    ) -> None:
+        ...
+
+    def value(self) -> Any:
+        ...
+
+    def parse(self, value: str) -> Any:
+        ...
+
+    def set(self, value: Any) -> None:
+        ...
+
+    def _parse_datetime(self, value: str) -> datetime:
+        ...
+
+    def _parse_timedelta(self, value: str) -> timedelta:
+        ...
+
+    def _parse_bool(self, value: str) -> bool:
+        ...
+
+    def _parse_string(self, value: str) -> str:
+        ...
+
+options: OptionParser
+
+def define(
+    name: str,
+    default: Any = ...,
+    type: type = ...,
+    help: Optional[str] = ...,
+    metavar: Optional[str] = ...,
+    multiple: bool = ...,
+    group: Optional[str] = ...,
+    callback: Optional[Callable[[Any], None]] = ...,
+) -> None:
+    ...
+
+def parse_command_line(
+    args: Optional[List[str]] = ...,
+    final: bool = ...,
+) -> List[str]:
+    ...
+
+def parse_config_file(
+    path: str,
+    final: bool = ...,
+) -> None:
+    ...
+
+def print_help(file: Optional[TextIO] = ...) -> None:
+    ...
+
+def add_parse_callback(callback: Callable[[], None]) -> None:
+    ...

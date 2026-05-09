@@ -1,0 +1,678 @@
+from datetime import date, datetime
+from typing import Any, Dict, List, Optional, Tuple, Union
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import pytest
+from matplotlib.figure import Figure
+from pandas import DataFrame, Series
+from pandas.core.dtypes.api import is_list_like
+
+pytestmark = pytest.mark.slow
+
+class TestDataFramePlots:
+    def test_plot(self) -> None:
+        ...
+
+    def test_plot_subplots(self) -> None:
+        ...
+
+    def test_plot_subplots_negative_layout(self) -> None:
+        ...
+
+    def test_plot_subplots_use_index(self) -> None:
+        ...
+
+    def test_plot_invalid_arg(self) -> None:
+        ...
+
+    def test_plot_tick_props(self) -> None:
+        ...
+
+    def test_plot_other_args(self, kwargs: Dict[str, Any]) -> None:
+        ...
+
+    def test_plot_visible_ax(self) -> None:
+        ...
+
+    def test_plot_title(self) -> None:
+        ...
+
+    def test_plot_multiindex(self) -> None:
+        ...
+
+    def test_plot_multiindex_unicode(self) -> None:
+        ...
+
+    def test_plot_single_column_bar(self, layout: Optional[Tuple[int, int]]) -> None:
+        ...
+
+    def test_plot_passed_ax(self) -> None:
+        ...
+
+    def test_nullable_int_plot(
+        self,
+        cols: Union[List[str], List[List[str]]],
+        x: str,
+        y: str,
+    ) -> None:
+        ...
+
+    def test_integer_array_plot_series(self, plot: str) -> None:
+        ...
+
+    def test_integer_array_plot_df(
+        self,
+        plot: str,
+        kwargs: Dict[str, Any],
+    ) -> None:
+        ...
+
+    def test_nonnumeric_exclude(self) -> None:
+        ...
+
+    def test_implicit_label(self) -> None:
+        ...
+
+    def test_donot_overwrite_index_name(self) -> None:
+        ...
+
+    def test_plot_xy(self) -> None:
+        ...
+
+    def test_plot_xy_int_cols(self) -> None:
+        ...
+
+    def test_plot_xy_figsize_and_title(self) -> None:
+        ...
+
+    def test_logscales(
+        self,
+        input_log: Union[bool, str],
+        expected_log: str,
+    ) -> None:
+        ...
+
+    def test_invalid_logscale(self, input_param: str) -> None:
+        ...
+
+    def test_xcompat(self) -> None:
+        ...
+
+    def test_xcompat_plot_params(self) -> None:
+        ...
+
+    def test_xcompat_plot_params_x_compat(self) -> None:
+        ...
+
+    def test_xcompat_plot_params_context_manager(self) -> None:
+        ...
+
+    def test_xcompat_plot_period(self) -> None:
+        ...
+
+    def test_period_compat(self) -> None:
+        ...
+
+    def test_unsorted_index(self, index_dtype: np.dtype) -> None:
+        ...
+
+    def test_unsorted_index_lims(self, df: DataFrame) -> None:
+        ...
+
+    def test_unsorted_index_lims_x_y(self) -> None:
+        ...
+
+    def test_negative_log(self) -> None:
+        ...
+
+    def _compare_stacked_y_cood(
+        self,
+        normal_lines: List[plt.Line2D],
+        stacked_lines: List[plt.Line2D],
+    ) -> None:
+        ...
+
+    def test_line_area_stacked(
+        self,
+        kind: str,
+        mult: int,
+    ) -> None:
+        ...
+
+    def test_line_area_stacked_sep_df(self, kind: str) -> None:
+        ...
+
+    def test_line_area_stacked_mixed(self) -> None:
+        ...
+
+    def test_line_area_stacked_positive_idx(self, kind: str) -> None:
+        ...
+
+    def test_line_area_nan_df(self, idx: Union[List[int], pd.DatetimeIndex]) -> None:
+        ...
+
+    def test_line_area_nan_df_stacked(self, idx: Union[List[int], pd.DatetimeIndex]) -> None:
+        ...
+
+    def test_line_area_nan_df_stacked_area(
+        self,
+        idx: Union[List[int], pd.DatetimeIndex],
+        kwargs: Dict[str, Any],
+    ) -> None:
+        ...
+
+    def test_line_lim(self, kwargs: Dict[str, Any]) -> None:
+        ...
+
+    def test_line_lim_subplots(self) -> None:
+        ...
+
+    def test_area_lim(self, stacked: bool) -> None:
+        ...
+
+    def test_area_sharey_dont_overwrite(self) -> None:
+        ...
+
+    def test_bar_linewidth(self, stacked: bool) -> None:
+        ...
+
+    def test_bar_linewidth_subplots(self) -> None:
+        ...
+
+    def test_bar_barwidth(
+        self,
+        meth: str,
+        dim: str,
+        stacked: bool,
+    ) -> None:
+        ...
+
+    def test_barh_barwidth_subplots(self, meth: str, dim: str) -> None:
+        ...
+
+    def test_bar_bottom_left_bottom(self) -> None:
+        ...
+
+    def test_bar_bottom_left_left(self) -> None:
+        ...
+
+    def test_bar_bottom_left_subplots(self) -> None:
+        ...
+
+    def test_bar_nan(self) -> None:
+        ...
+
+    def test_bar_nan_stacked(self) -> None:
+        ...
+
+    def test_bar_stacked_label_position_with_zero_height(self) -> None:
+        ...
+
+    def test_bar_categorical(self, idx: Union[pd.Index, pd.CategoricalIndex]) -> None:
+        ...
+
+    def test_plot_scatter(
+        self,
+        x: Union[str, int],
+        y: Union[str, int],
+    ) -> None:
+        ...
+
+    def test_plot_scatter_error(self) -> None:
+        ...
+
+    def test_plot_scatter_shape(self) -> None:
+        ...
+
+    def test_raise_error_on_datetime_time_data(self) -> None:
+        ...
+
+    def test_scatterplot_datetime_data(
+        self,
+        x: Union[str, int],
+        y: Union[str, int],
+    ) -> None:
+        ...
+
+    def test_scatterplot_object_data(
+        self,
+        b_col: Union[List[int], List[str]],
+        x: Union[str, int],
+        y: Union[str, int],
+        infer_string: bool,
+    ) -> None:
+        ...
+
+    def test_scatterplot_color_by_categorical(
+        self,
+        ordered: bool,
+        categories: List[str],
+    ) -> None:
+        ...
+
+    def test_plot_scatter_with_categorical_data(
+        self,
+        x: Union[str, int],
+        y: Union[str, int],
+    ) -> None:
+        ...
+
+    def test_plot_scatter_with_c(
+        self,
+        x: Union[str, int],
+        y: Union[str, int],
+        c: Union[str, int],
+    ) -> None:
+        ...
+
+    def test_plot_scatter_with_c_props(self) -> None:
+        ...
+
+    def test_plot_scatter_with_c_array(self) -> None:
+        ...
+
+    def test_plot_scatter_with_s(self) -> None:
+        ...
+
+    def test_plot_scatter_with_norm(self) -> None:
+        ...
+
+    def test_plot_scatter_without_norm(self) -> None:
+        ...
+
+    def test_plot_bar(self, kwargs: Dict[str, Any]) -> None:
+        ...
+
+    def test_plot_bar_int_col(self) -> None:
+        ...
+
+    def test_plot_bar_ticks(self) -> None:
+        ...
+
+    def test_plot_barh_ticks(self) -> None:
+        ...
+
+    def test_boxplot(self, hist_df: DataFrame) -> None:
+        ...
+
+    def test_boxplot_series(self, hist_df: DataFrame) -> None:
+        ...
+
+    def test_boxplot_series_positions(self, hist_df: DataFrame) -> None:
+        ...
+
+    def test_boxplot_vertical(self, hist_df: DataFrame) -> None:
+        ...
+
+    def test_boxplot_vertical_subplots(self, hist_df: DataFrame) -> None:
+        ...
+
+    def test_boxplot_vertical_positions(self, hist_df: DataFrame) -> None:
+        ...
+
+    def test_boxplot_return_type_invalid(self) -> None:
+        ...
+
+    def test_boxplot_return_type_invalid_type(
+        self,
+        return_type: str,
+    ) -> None:
+        ...
+
+    def test_kde_df(self) -> None:
+        ...
+
+    def test_kde_df_rot(self) -> None:
+        ...
+
+    def test_kde_df_subplots(self) -> None:
+        ...
+
+    def test_kde_df_logy(self) -> None:
+        ...
+
+    def test_kde_missing_vals(self) -> None:
+        ...
+
+    def test_hist_df(self) -> None:
+        ...
+
+    def test_hist_df_series(self) -> None:
+        ...
+
+    def test_hist_df_series_cumulative_density(self) -> None:
+        ...
+
+    def test_hist_df_series_cumulative(self) -> None:
+        ...
+
+    def test_hist_df_orientation(self) -> None:
+        ...
+
+    def test_hist_weights(self, weight_shape: Tuple[int, ...]) -> None:
+        ...
+
+    def _check_box_coord(
+        self,
+        patches: List[plt.Artist],
+        expected_y: Optional[np.ndarray],
+        expected_h: Optional[np.ndarray],
+        expected_x: Optional[np.ndarray],
+        expected_w: Optional[np.ndarray],
+    ) -> None:
+        ...
+
+    def test_hist_df_coord(self, data: Dict[str, np.ndarray]) -> None:
+        ...
+
+    def test_style_by_column(self, markers: Union[List[str], Dict[int, str]]) -> None:
+        ...
+
+    def test_line_label_none(self) -> None:
+        ...
+
+    def test_specified_props_kwd_plot_box(
+        self,
+        props: str,
+        expected: str,
+    ) -> None:
+        ...
+
+    def test_unordered_ts(self) -> None:
+        ...
+
+    def test_kind_both_ways(self, kind: str) -> None:
+        ...
+
+    def test_kind_both_ways_x_y(self, kind: str) -> None:
+        ...
+
+    def test_all_invalid_plot_data(self, kind: str) -> None:
+        ...
+
+    def test_partially_invalid_plot_data_numeric(self, kind: str) -> None:
+        ...
+
+    def test_invalid_kind(self) -> None:
+        ...
+
+    def test_invalid_xy_args(
+        self,
+        x: Union[str, List[str]],
+        y: Union[str, List[str]],
+        lbl: Union[str, List[str]],
+    ) -> None:
+        ...
+
+    def test_bad_label(self) -> None:
+        ...
+
+    def test_invalid_xy_args_dup_cols(
+        self,
+        x: Union[str, List[str]],
+        y: Union[str, List[str]],
+    ) -> None:
+        ...
+
+    def test_y_listlike(
+        self,
+        x: Union[str, int],
+        y: List[Union[str, int]],
+        lbl: List[str],
+        colors: List[str],
+    ) -> None:
+        ...
+
+    def test_xy_args_integer(
+        self,
+        x: Union[str, int],
+        y: Union[str, int],
+        colnames: List[Union[str, int]],
+    ) -> None:
+        ...
+
+    def test_hexbin_basic(self) -> None:
+        ...
+
+    def test_hexbin_basic_subplots(self) -> None:
+        ...
+
+    def test_hexbin_with_c(self, reduce_C: Optional[callable]) -> None:
+        ...
+
+    def test_hexbin_cmap(
+        self,
+        kwargs: Dict[str, Union[str, None]],
+        expected: str,
+    ) -> None:
+        ...
+
+    def test_pie_df_err(self) -> None:
+        ...
+
+    def test_pie_df(
+        self,
+        y: Union[str, int],
+    ) -> None:
+        ...
+
+    def test_pie_df_subplots(self) -> None:
+        ...
+
+    def test_pie_df_labels_colors(self) -> None:
+        ...
+
+    def test_pie_df_nan(self) -> None:
+        ...
+
+    def test_errorbar_plot(self, kwargs: Dict[str, bool]) -> None:
+        ...
+
+    def test_errorbar_plot_bar(self) -> None:
+        ...
+
+    def test_errorbar_plot_yerr_array(self) -> None:
+        ...
+
+    def test_errorbar_plot_column_name(
+        self,
+        yerr: str,
+    ) -> None:
+        ...
+
+    def test_errorbar_plot_external_valueerror(self) -> None:
+        ...
+
+    def test_errorbar_plot_external_typeerror(self) -> None:
+        ...
+
+    def test_errorbar_plot_different_yerr(
+        self,
+        kind: str,
+        y_err: Union[pd.Series, pd.DataFrame],
+    ) -> None:
+        ...
+
+    def test_errorbar_plot_different_yerr_xerr(
+        self,
+        kind: str,
+        y_err: Union[pd.Series, pd.DataFrame],
+        x_err: Union[pd.Series, pd.DataFrame],
+    ) -> None:
+        ...
+
+    def test_errorbar_plot_different_yerr_xerr_subplots(
+        self,
+        kind: str,
+    ) -> None:
+        ...
+
+    def test_errorbar_plot_iterator(self) -> None:
+        ...
+
+    def test_errorbar_with_integer_column_names(self) -> None:
+        ...
+
+    def test_errorbar_with_partial_columns_kind(
+        self,
+        kind: str,
+    ) -> None:
+        ...
+
+    def test_errorbar_with_partial_columns_dti(self) -> None:
+        ...
+
+    def test_errorbar_with_partial_columns_box(
+        self,
+        err_box: callable,
+    ) -> None:
+        ...
+
+    def test_errorbar_timeseries(
+        self,
+        kind: str,
+    ) -> None:
+        ...
+
+    def test_errorbar_asymmetrical(self) -> None:
+        ...
+
+    def test_table(self) -> None:
+        ...
+
+    def test_errorbar_scatter(self) -> None:
+        ...
+
+    def test_errorbar_scatter_color(self) -> None:
+        ...
+
+    def test_sharex_and_ax(self) -> None:
+        ...
+
+    def test_sharex_false_and_ax(self) -> None:
+        ...
+
+    def test_sharey_and_ax(self) -> None:
+        ...
+
+    def test_sharey_and_ax_tight(self) -> None:
+        ...
+
+    def test_memory_leak(self, kind: str) -> None:
+        ...
+
+    def test_df_gridspec_patterns_vert_horiz(self) -> None:
+        ...
+
+    def test_df_gridspec_patterns_boxed(self) -> None:
+        ...
+
+    def test_df_grid_settings(self) -> None:
+        ...
+
+    def test_plain_axes(self) -> None:
+        ...
+
+    def test_plain_axes_df(self) -> None:
+        ...
+
+    def test_plain_axes_make_axes_locatable(self) -> None:
+        ...
+
+    def test_plain_axes_make_inset_axes(self) -> None:
+        ...
+
+    def test_secondary_axis_font_size(
+        self,
+        method: str,
+    ) -> None:
+        ...
+
+    def test_x_string_values_ticks(self) -> None:
+        ...
+
+    def test_x_multiindex_values_ticks(self) -> None:
+        ...
+
+    def test_xlim_plot_line(self, kind: str) -> None:
+        ...
+
+    def test_xlim_plot_line_correctly_in_mixed_plot_type(self) -> None:
+        ...
+
+    def test_plot_no_rows(self) -> None:
+        ...
+
+    def test_plot_no_numeric_data(self) -> None:
+        ...
+
+    def test_group_subplot(
+        self,
+        kind: str,
+    ) -> None:
+        ...
+
+    def test_group_subplot_series_notimplemented(self) -> None:
+        ...
+
+    def test_group_subplot_multiindex_notimplemented(self) -> None:
+        ...
+
+    def test_group_subplot_nonunique_cols_notimplemented(self) -> None:
+        ...
+
+    def test_group_subplot_bad_input(
+        self,
+        subplots: Any,
+        expected_msg: str,
+    ) -> None:
+        ...
+
+    def test_group_subplot_invalid_column_name(self) -> None:
+        ...
+
+    def test_group_subplot_duplicated_column(self) -> None:
+        ...
+
+    def test_group_subplot_invalid_kind(
+        self,
+        kind: str,
+    ) -> None:
+        ...
+
+    def test_xlabel_ylabel_dataframe_single_plot(
+        self,
+        kind: str,
+        index_name: Optional[str],
+        old_label: str,
+        new_label: Any,
+    ) -> None:
+        ...
+
+    def test_xlabel_ylabel_dataframe_plane_plot(
+        self,
+        kind: str,
+        xlabel: Optional[str],
+        ylabel: Optional[str],
+    ) -> None:
+        ...
+
+    def test_secondary_y(
+        self,
+        secondary_y: bool,
+    ) -> None:
+        ...
+
+    def test_plot_no_warning(self) -> None:
+        ...
+
+    def test_plot_period_index_makes_no_right_shift(
+        self,
+        freq: str,
+    ) -> None:
+        ...
+
+    def test_plot_display_xlabel_and_xticks(self) -> None:
+        ...

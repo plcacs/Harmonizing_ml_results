@@ -1,0 +1,202 @@
+@cached(LRUCache(maxsize=1000))
+def truncate_logger_name(logger: str) -> str:
+    """Truncate dotted logger path names.
+
+    Keeps the last component unchanged.
+
+    >>> truncate_logger_name("some.logger.name")
+    s.l.name
+
+    >>> truncate_logger_name("name")
+    name
+    """
+    if '.' not in logger:
+        return logger
+    logger_path, _, logger_module = logger.rpartition('.')
+    return '.'.join(chain((part[0] for part in logger_path.split('.')), [logger_module]))
+
+def _colorize_cache_key(value: Any, min_luminance: float) -> Tuple[str, float]:
+    if isinstance(value, (list, dict)):
+        return (repr(value), min_luminance)
+    return (value, min_luminance)
+
+@cached(LRUCache(maxsize=2 ** 24))
+def rgb_color_picker(obj: Any, min_luminance: Optional[float] = None, max_luminance: Optional[float] = None) -> Color:
+    """Modified version of colour.RGB_color_picker"""
+    color_value = int.from_bytes(hashlib.md5(str(obj).encode('utf-8')).digest(), 'little') % 16777215
+    color = Color(f'#{color_value:06x}')
+    if min_luminance and color.get_luminance() < min_luminance:
+        color.set_luminance(min_luminance)
+    elif max_luminance and color.get_luminance() > max_luminance:
+        color.set_luminance(max_luminance)
+    return color
+
+def nice_time_diff(time_base: datetime, time_now: datetime) -> Tuple[str, float]:
+    delta = time_now - time_base
+    total_seconds = delta.total_seconds()
+    if total_seconds < 0.001:
+        return (f'+ {delta.microseconds: 10.0f} µs', total_seconds)
+    if total_seconds < 1:
+        return (f'+ {delta.microseconds / 1000: 10.3f} ms', total_seconds)
+    if total_seconds < 10:
+        formatted_seconds = f'{total_seconds: 9.6f}'
+        formatted_seconds = f'{formatted_seconds[:6]} {formatted_seconds[6:]}'
+        return (f'+ {formatted_seconds} s', total_seconds)
+    return (time_now.isoformat(), total_seconds)
+
+def get_time_display(prev_record: Optional[Record], record: Record) -> Tuple[str, str, str]:
+    time_absolute = record.timestamp.isoformat()
+    time_color = ''
+    if prev_record:
+        time_display, delta_seconds = nice_time_diff(prev_record.timestamp, record.timestamp)
+        if delta_seconds <= 10:
+            if delta_seconds < 0.0001:
+                time_color_value = COLORMAP[0]
+            elif delta_seconds < 1:
+                duration_value = delta_seconds * 1000000 / 100
+                time_color_value = COLORMAP[int(log10(duration_value) / 4 * 255)]
+            else:
+                time_color_value = COLORMAP[-1]
+            time_color = f'color: {time_color_value}'
+    else:
+        time_display = time_absolute
+    return (time_absolute, time_color, time_display)
+
+@cached(LRUCache(maxsize=2 ** 24), key=_colorize_cache_key)
+def colorize_value(value: Any, min_luminance: float) -> str:
+    if isinstance(value, (list, tuple)):
+        return type(value)((colorize_value(inner, min_luminance) for inner in value))
+    elif isinstance(value, dict):
+        return {colorize_value(k, min_luminance): colorize_value(v, min_luminance) for k, v in value.items()}
+    str_value = str(value)
+    color = rgb_color_picker(str_value, min_luminance=min_luminance)
+    return f'<span style="color: {color.web}">{escape(str_value)}</span>'
+
+def render_fields(record: Record, sorted_known_fields: List[str]) -> List[str]:
+    rendered_fields = []
+    for field_name in sorted_known_fields:
+        if field_name not in record.fields:
+            continue
+        field_value = record.fields[field_name]
+        colorized_value = str(colorize_value(field_value, min_luminance=0.6))
+        rendered_fields.append(f'<span class="fn">{field_name}</span> = {colorized_value}')
+    return rendered_fields
+
+def parse_log(log_file: TextIO) -> Tuple[List[Record], CounterType[str]]:
+    known_fields = Counter()
+    log_records = []
+    last_ts = TIME_PAST
+    for i, line in enumerate(log_file, start=1):
+        try:
+            line_dict = json.loads(line.strip())
+        except JSONDecodeError as ex:
+            click.secho(f'Error parsing line {i}: {ex}')
+            continue
+        timestamp_str = line_dict.pop('timestamp', None)
+        if timestamp_str:
+            timestamp = last_ts = datetime.fromisoformat(timestamp_str)
+        else:
+            timestamp = last_ts
+        logger_name = line_dict.pop('logger', 'MISSING')
+        log_records.append(Record(line_dict.pop('event'), timestamp, logger_name, truncate_logger_name(logger_name), line_dict.pop('level', 'MISSING'), line_dict))
+        for field_name in line_dict.keys():
+            known_fields[field_name] += 1
+    return (log_records, known_fields)
+
+def filter_records(log_records: Iterable[Record], *, drop_events: Set[str], keep_events: Set[str], drop_loggers: Set[str], time_range: Tuple[datetime, datetime]) -> Generator[Optional[Record], None, None]:
+    time_from, time_to = time_range
+    for record in log_records:
+        event_name = record.event.lower()
+        drop = (drop_events and event_name in drop_events or (keep_events and event_name not in keep_events)) or record.logger in drop_loggers or record.timestamp < time_from or (record.timestamp > time_to)
+        if drop:
+            yield None
+        else:
+            yield record
+
+def transform_records(log_records: Iterable[Record], replacements: Dict[str, str]) -> Generator[Record, None, None]:
+
+    def replace(value: Any) -> Any:
+        if isinstance(value, tuple) and hasattr(value, '_fields'):
+            return type(value)(*[replace(inner) for inner in value])
+        if isinstance(value, (list, tuple)):
+            return type(value)((replace(inner) for inner in value))
+        elif isinstance(value, dict):
+            return {replace(k): replace(v) for k, v in value.items()}
+        str_value = str(value).casefold()
+        if isinstance(value, str):
+            keys_in_value = [key for key in replacement_keys if key in str_value]
+            for key in keys_in_value:
+                try:
+                    repl_start = str_value.index(key)
+                except ValueError:
+                    continue
+                value = f'{value[:repl_start]}{replacements[key]}{value[repl_start + len(key):]}'
+                str_value = value.casefold()
+        return replacements.get(str_value, value)
+    replacements = {str(k).casefold(): v for k, v in replacements.items()}
+    for k, v in copy(replacements).items():
+        if isinstance(k, str) and k.startswith('0x') and is_address(k):
+            bytes_address = to_canonical_address(k)
+            replacements[pex(bytes_address)] = v
+            replacements[repr(bytes_address).casefold()] = v
+    replacement_keys = replacements.keys()
+    for record in log_records:
+        yield replace(record)
+
+def render(name: str, log_records: Iterable[Record], known_fields: CounterType[str], output: TextIO, wrap: bool, show_time_diff: bool, truncate_logger: bool, highlight_records: Tuple[int, ...]) -> None:
+    sorted_known_fields = [name for name, count in known_fields.most_common()]
+    highlight_records_set = set(highlight_records) if highlight_records else set()
+    prev_record = None
+    output.write(PAGE_BEGIN.format(name=name, date=datetime.now()))
+    if wrap:
+        field_joiner = '<br/>'
+    else:
+        field_joiner = ' '
+    for i, record in enumerate(log_records):
+        if record is None:
+            continue
+        time_absolute, time_color, time_display = get_time_display(prev_record, record)
+        event_color = rgb_color_picker(record.event, min_luminance=0.6)
+        rendered_fields = render_fields(record, sorted_known_fields)
+        output.write(ROW_TEMPLATE.format(index=i, record=record, logger_name=record.truncated_logger if truncate_logger else record.logger, time_absolute=time_absolute, time_display=time_display, time_color=time_color, event_color=event_color, fields=field_joiner.join(rendered_fields), additional_row_class='highlight' if i in highlight_records_set else ''))
+        if show_time_diff:
+            prev_record = record
+    output.write(PAGE_END)
+
+@click.command(help=__doc__)
+@click.argument('log-file', type=click.File('rt'))
+@click.option('-o', '--output', type=click.File('wt'), default='-', show_default=True)
+@click.option('-e', '--drop-event', 'drop_events', multiple=True, help='Filter out log records with the given event. Case insensitive. Can be given multiple times.')
+@click.option('--keep-event', 'keep_events', multiple=True, help='Only keep log records with the given event. Case insensitive. Can be given multiple times. Cannot be used together with with --drop-event.')
+@click.option('-l', '--drop-logger', 'drop_loggers', multiple=True, help='Filter out log records with the given logger name. Case insensitive. Can be given multiple times.')
+@click.option('-r', '--replacements', help='Replace values before rendering. Input must be a JSON object. Keys are transformed to lowercase strings before matching. Partial substring matches will also be replaced. Eth-Addresses will also be replaced in pex()ed and binary format.')
+@click.option('-f', '--replacements-from-file', type=click.File('rt'), help='Behaves as -r / --replacements but reads the JSON object from the given file.')
+@click.option('--time-range', default='^', help='Specify a time range of log messages to process. Format: "[<from>]^[<to>]", both in ISO8601')
+@click.option('--time-diff/--no-time-diff', default=True, help='Display log record timestamps relative to previous lines (absolute on hover)', show_default=True)
+@click.option('-w', '--wrap', is_flag=True, help='Wrap event details into multiple lines.', show_default=True)
+@click.option('-t', '--truncate-logger', is_flag=True, show_default=True, help="Shorten logger module paths ('some.module.logger' -> 's.m.logger').")
+@click.option('-h', '--highlight-record', 'highlight_records', multiple=True, type=int, help='Highlight record with given number. Can be given multiple times.')
+@click.option('-b', '--open-browser', is_flag=True, help='Open output file in default browser after rendering', show_default=True)
+def main(log_file: TextIO, drop_events: Tuple[str, ...], keep_events: Tuple[str, ...], drop_loggers: Tuple[str, ...], replacements: str, replacements_from_file: Optional[TextIO], time_range: str, wrap: bool, time_diff: bool, truncate_logger: bool, highlight_records: Tuple[int, ...], open_browser: bool, output: TextIO) -> None:
+    if replacements_from_file:
+        replacements = replacements_from_file.read()
+    if not replacements:
+        replacements = '{}'
+    try:
+        replacements_dict = json.loads(replacements)
+    except (JSONDecodeError, UnicodeDecodeError) as ex:
+        raise UsageError(f"Option '--replacements' contains invalid JSON: {ex}") from ex
+    if drop_events and keep_events:
+        raise UsageError("Options '--keep-event' and '--drop-event' cannot be used together.")
+    time_from, _, time_to = time_range.partition('^')
+    time_range_dt = (datetime.fromisoformat(time_from) if time_from else TIME_PAST, datetime.fromisoformat(time_to) if time_to else TIME_FUTURE)
+    click.secho(f'Processing {click.style(log_file.name, fg="yellow")}', fg='green')
+    log_records, known_fields = parse_log(log_file)
+    prog_bar = click.progressbar(log_records, label=click.style('Rendering', fg='green'), file=_default_text_stderr())
+    with prog_bar as log_records_progr:
+        render(log_file.name, transform_records(filter_records(log_records_progr, drop_events=set((d.lower() for d in drop_events)), keep_events=set((k.lower() for k in keep_events)), drop_loggers=set((logger.lower() for logger in drop_loggers)), time_range=time_range_dt), replacements=replacements_dict), known_fields=known_fields, output=output, wrap=wrap, show_time_diff=time_diff, truncate_logger=truncate_logger, highlight_records=highlight_records)
+    click.secho(f'Output written to {click.style(output.name, fg="yellow")}', fg='green')
+    if open_browser:
+        if output.name == '<stdout>':
+            click.secho("Can't open output when writing to stdout.", fg='red')
+        webbrowser.open(f'file://{Path(output.name).resolve()}')

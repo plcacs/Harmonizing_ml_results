@@ -1,0 +1,81 @@
+from collections.abc import Iterable, Sequence
+from datetime import datetime, timedelta
+from typing import Any, Callable, Dict, List, Optional, Tuple, Union, Type, Iterable, Sequence
+
+import numpy as np
+import pandas as pd
+from pandas import Index, Series, DataFrame, SparseArray, IntervalIndex
+from pandas._testing import tm
+from pytest import fixture, param, mark
+
+@fixture(params=[np.add, np.logaddexp])
+def ufunc() -> np.ufunc: ...
+
+@fixture(params=[pytest.param(True, marks=pytest.mark.fails_arm_wheels), False], ids=['sparse', 'dense'])
+def sparse() -> bool: ...
+
+@fixture
+def arrays_for_binary_ufunc() -> Tuple[np.ndarray[np.int64], np.ndarray[np.int64]]: ...
+
+@pytest.mark.parametrize('ufunc', [np.positive, np.floor, np.exp])
+def test_unary_ufunc(ufunc: np.ufunc, sparse: bool) -> None: ...
+
+@pytest.mark.parametrize('flip', [True, False], ids=['flipped', 'straight'])
+def test_binary_ufunc_with_array(flip: bool, sparse: bool, ufunc: np.ufunc, arrays_for_binary_ufunc: Tuple[np.ndarray[np.int64], np.ndarray[np.int64]]) -> None: ...
+
+@pytest.mark.parametrize('flip', [True, False], ids=['flipped', 'straight'])
+def test_binary_ufunc_with_index(flip: bool, sparse: bool, ufunc: np.ufunc, arrays_for_binary_ufunc: Tuple[np.ndarray[np.int64], np.ndarray[np.int64]]) -> None: ...
+
+@pytest.mark.parametrize('shuffle', [True, False], ids=['unaligned', 'aligned'])
+@pytest.mark.parametrize('flip', [True, False], ids=['flipped', 'straight'])
+def test_binary_ufunc_with_series(flip: bool, shuffle: bool, sparse: bool, ufunc: np.ufunc, arrays_for_binary_ufunc: Tuple[np.ndarray[np.int64], np.ndarray[np.int64]]) -> None: ...
+
+@pytest.mark.parametrize('flip', [True, False])
+def test_binary_ufunc_scalar(ufunc: np.ufunc, sparse: bool, flip: bool, arrays_for_binary_ufunc: Tuple[np.ndarray[np.int64], np.ndarray[np.int64]]) -> None: ...
+
+@pytest.mark.parametrize('ufunc', [np.divmod])
+@pytest.mark.parametrize('shuffle', [True, False])
+@pytest.mark.filterwarnings('ignore:divide by zero:RuntimeWarning')
+def test_multiple_output_binary_ufuncs(ufunc: np.ufunc, sparse: bool, shuffle: bool, arrays_for_binary_ufunc: Tuple[np.ndarray[np.int64], np.ndarray[np.int64]]) -> None: ...
+
+def test_multiple_output_ufunc(sparse: bool, arrays_for_binary_ufunc: Tuple[np.ndarray[np.int64], np.ndarray[np.int64]]) -> None: ...
+
+def test_binary_ufunc_drops_series_name(ufunc: np.ufunc, sparse: bool, arrays_for_binary_ufunc: Tuple[np.ndarray[np.int64], np.ndarray[np.int64]]) -> None: ...
+
+def test_object_series_ok() -> None: ...
+
+@fixture(params=[
+    pd.array([1, 3, 2], dtype=np.int64),
+    pd.array([1, 3, 2], dtype='Int64'),
+    pd.array([1, 3, 2], dtype='Float32'),
+    pd.array([1, 10, 2], dtype='Sparse[int]'),
+    pd.to_datetime(['2000', '2010', '2001']),
+    pd.to_datetime(['2000', '2010', '2001']).tz_localize('CET'),
+    pd.to_datetime(['2000', '2010', '2001']).to_period(freq='D'),
+    pd.to_timedelta(['1 Day', '3 Days', '2 Days']),
+    pd.IntervalIndex([pd.Interval(0, 1), pd.Interval(2, 3), pd.Interval(1, 2)])
+], ids=lambda x: str(x.dtype))
+def values_for_np_reduce(request) -> Union[pd.arrays.IntegerArray, pd.arrays.SparseArray, pd.DatetimeArray, pd.PeriodArray, pd.TimedeltaArray, pd.IntervalIndex]: ...
+
+class TestNumpyReductions:
+    def test_multiply(self, values_for_np_reduce: Union[pd.arrays.IntegerArray, pd.arrays.SparseArray, pd.DatetimeArray, pd.PeriodArray, pd.TimedeltaArray, pd.IntervalIndex], box_with_array: Type, request) -> None: ...
+    def test_add(self, values_for_np_reduce: Union[pd.arrays.IntegerArray, pd.arrays.SparseArray, pd.DatetimeArray, pd.PeriodArray, pd.TimedeltaArray, pd.IntervalIndex], box_with_array: Type) -> None: ...
+    def test_max(self, values_for_np_reduce: Union[pd.arrays.IntegerArray, pd.arrays.SparseArray, pd.DatetimeArray, pd.PeriodArray, pd.TimedeltaArray, pd.IntervalIndex], box_with_array: Type) -> None: ...
+    def test_min(self, values_for_np_reduce: Union[pd.arrays.IntegerArray, pd.arrays.SparseArray, pd.DatetimeArray, pd.PeriodArray, pd.TimedeltaArray, pd.IntervalIndex], box_with_array: Type) -> None: ...
+
+@pytest.mark.parametrize('type_', [list, deque, tuple])
+def test_binary_ufunc_other_types(type_: Type) -> None: ...
+
+def test_object_dtype_ok() -> None: ...
+
+def test_outer() -> None: ...
+
+def test_np_matmul() -> None: ...
+
+@pytest.mark.parametrize('box', [pd.Index, pd.Series])
+def test_np_matmul_1D(box: Type) -> None: ...
+
+def test_array_ufuncs_for_many_arguments() -> None: ...
+
+@pytest.mark.xfail(reason='see https://github.com/pandas-dev/pandas/pull/51082')
+def test_np_fix() -> None: ...

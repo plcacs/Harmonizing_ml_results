@@ -1,0 +1,124 @@
+"""
+Stub file for test_usecols_basic_f18d3b.py
+"""
+
+from io import StringIO
+from typing import (
+    Any,
+    Callable,
+    List,
+    Optional,
+    ParamSpec,
+    Tuple,
+    Union,
+    cast,
+)
+import numpy as np
+import pytest
+from pandas import DataFrame, Index
+from pandas._testing import tm
+from pytest import FixtureRequest, Mark, ParamSpec
+
+P = ParamSpec("P")
+
+@pytest.mark.filterwarnings('ignore:Passing a BlockManager to DataFrame:DeprecationWarning')
+@pytest.mark.filterwarnings('ignore:Passing a BlockManager to DataFrame is deprecated:DeprecationWarning')
+def test_raise_on_mixed_dtype_usecols(all_parsers: pytest.FixtureRequest) -> None:
+    ...
+
+@pytest.mark.parametrize('usecols', [(1, 2), ('b', 'c')])
+def test_usecols(all_parsers: pytest.FixtureRequest, usecols: Union[Tuple[int, int], Tuple[str, str]]) -> None:
+    ...
+
+def test_usecols_with_names(all_parsers: pytest.FixtureRequest) -> None:
+    ...
+
+@pytest.mark.parametrize('names,usecols', [(['b', 'c'], [1, 2]), (['a', 'b', 'c'], ['b', 'c'])])
+def test_usecols_relative_to_names(all_parsers: pytest.FixtureRequest, names: List[str], usecols: Union[List[int], List[str]]) -> None:
+    ...
+
+def test_usecols_relative_to_names2(all_parsers: pytest.FixtureRequest) -> None:
+    ...
+
+@xfail_pyarrow
+def test_usecols_name_length_conflict(all_parsers: pytest.FixtureRequest) -> None:
+    ...
+
+def test_usecols_single_string(all_parsers: pytest.FixtureRequest) -> None:
+    ...
+
+@skip_pyarrow
+@pytest.mark.parametrize('data', ['a,b,c,d\n1,2,3,4\n5,6,7,8', 'a,b,c,d\n1,2,3,4,\n5,6,7,8,'])
+def test_usecols_index_col_false(all_parsers: pytest.FixtureRequest, data: str) -> None:
+    ...
+
+@pytest.mark.parametrize('index_col', ['b', 0])
+@pytest.mark.parametrize('usecols', [['b', 'c'], [1, 2]])
+def test_usecols_index_col_conflict(all_parsers: pytest.FixtureRequest, usecols: Union[List[str], List[int]], index_col: Union[str, int]) -> None:
+    ...
+
+def test_usecols_index_col_conflict2(all_parsers: pytest.FixtureRequest) -> None:
+    ...
+
+@skip_pyarrow
+def test_usecols_implicit_index_col(all_parsers: pytest.FixtureRequest) -> None:
+    ...
+
+def test_usecols_index_col_middle(all_parsers: pytest.FixtureRequest) -> None:
+    ...
+
+def test_usecols_index_col_end(all_parsers: pytest.FixtureRequest) -> None:
+    ...
+
+def test_usecols_regex_sep(all_parsers: pytest.FixtureRequest) -> None:
+    ...
+
+@skip_pyarrow
+def test_usecols_with_whitespace(all_parsers: pytest.FixtureRequest) -> None:
+    ...
+
+@pytest.mark.parametrize('usecols,expected', [([0, 1], DataFrame(data=[[1000, 2000], [4000, 5000]], columns=['2', '0'])), (['0', '1'], DataFrame(data=[[2000, 3000], [5000, 6000]], columns=['0', '1']))])
+def test_usecols_with_integer_like_header(all_parsers: pytest.FixtureRequest, usecols: Union[List[int], List[str]], expected: DataFrame) -> None:
+    ...
+
+@xfail_pyarrow
+def test_empty_usecols(all_parsers: pytest.FixtureRequest) -> None:
+    ...
+
+def test_np_array_usecols(all_parsers: pytest.FixtureRequest) -> None:
+    ...
+
+@pytest.mark.parametrize('usecols,expected', [(lambda x: x.upper() in ['AAA', 'BBB', 'DDD'], DataFrame({'AaA': {0: 0.056674973, 1: 2.6132309819999997, 2: 3.5689350380000002}, 'bBb': {0: 8, 1: 2, 2: 7}, 'ddd': {0: 'a', 1: 'b', 2: 'a'}})), (lambda x: False, DataFrame(columns=Index([])))])
+def test_callable_usecols(all_parsers: pytest.FixtureRequest, usecols: Callable[[str], bool], expected: DataFrame) -> None:
+    ...
+
+@skip_pyarrow
+@pytest.mark.parametrize('usecols', [['a', 'c'], lambda x: x in ['a', 'c']])
+def test_incomplete_first_row(all_parsers: pytest.FixtureRequest, usecols: Union[List[str], Callable[[str], bool]]) -> None:
+    ...
+
+@skip_pyarrow
+@pytest.mark.parametrize('data,usecols,kwargs,expected', [('19,29,39\n' * 2 + '10,20,30,40', [0, 1, 2], {'header': None}, [[19, 29, 39], [19, 29, 39], [10, 20, 30]]), ('A,B,C\n1,2,3\n3,4,5\n1,2,4,5,1,6\n1,2,3,,,1,\n1,2,3\n5,6,7', ['A', 'B', 'C'], {}, {'A': [1, 3, 1, 1, 1, 5], 'B': [2, 4, 2, 2, 2, 6], 'C': [3, 5, 4, 3, 3, 7]})])
+def test_uneven_length_cols(all_parsers: pytest.FixtureRequest, data: str, usecols: List[str], kwargs: dict, expected: DataFrame) -> None:
+    ...
+
+@pytest.mark.parametrize('usecols,kwargs,expected,msg', [(['a', 'b', 'c', 'd'], {}, DataFrame({'a': [1, 5], 'b': [2, 6], 'c': [3, 7], 'd': [4, 8]}), None), (['a', 'b', 'c', 'f'], {}, None, _msg_validate_usecols_names.format("\\['f'\\]")), (['a', 'b', 'f'], {}, None, _msg_validate_usecols_names.format("\\['f'\\]")), (['a', 'b', 'f', 'g'], {}, None, _msg_validate_usecols_names.format("\\[('f', 'g'|'g', 'f')\\]")), (None, {'header': 0, 'names': ['A', 'B', 'C', 'D']}, DataFrame({'A': [1, 5], 'B': [2, 6], 'C': [3, 7], 'D': [4, 8]}), None), (['A', 'B', 'C', 'f'], {'header': 0, 'names': ['A', 'B', 'C', 'D']}, None, _msg_validate_usecols_names.format("\\['f'\\]")), (['A', 'B', 'f'], {'names': ['A', 'B', 'C', 'D']}, None, _msg_validate_usecols_names.format("\\['f'\\]"))])
+def test_raises_on_usecols_names_mismatch(all_parsers: pytest.FixtureRequest, usecols: Optional[List[str]], kwargs: dict, expected: Optional[DataFrame], msg: Optional[str]) -> None:
+    ...
+
+@pytest.mark.parametrize('usecols', [['A', 'C'], [0, 2]])
+def test_usecols_subset_names_mismatch_orig_columns(all_parsers: pytest.FixtureRequest, usecols: Union[List[str], List[int]]) -> None:
+    ...
+
+@pytest.mark.parametrize('names', [None, ['a', 'b']])
+def test_usecols_indices_out_of_bounds(all_parsers: pytest.FixtureRequest, names: Optional[List[str]]) -> None:
+    ...
+
+def test_usecols_additional_columns(all_parsers: pytest.FixtureRequest) -> None:
+    ...
+
+def test_usecols_additional_columns_integer_columns(all_parsers: pytest.FixtureRequest) -> None:
+    ...
+
+def test_usecols_dtype(all_parsers: pytest.FixtureRequest) -> None:
+    ...

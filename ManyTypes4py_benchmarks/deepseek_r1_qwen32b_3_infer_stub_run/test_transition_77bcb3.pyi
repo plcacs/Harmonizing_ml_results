@@ -1,0 +1,39 @@
+import random
+from typing import Generator, List, Tuple, Callable, Union, Optional
+from eth2spec.types import Spec, SpecState, Block, TaggedBlock, ForkMeta
+
+def test_simple_transition(state: SpecState, fork_epoch: int, spec: Spec, post_spec: Spec, pre_tag: Callable[[Block], TaggedBlock], post_tag: Callable[[Block], TaggedBlock]) -> Generator[Tuple[str, SpecState], None, None]:
+    ...
+
+def test_normal_transition(state: SpecState, fork_epoch: int, spec: Spec, post_spec: Spec, pre_tag: Callable[[Block], TaggedBlock], post_tag: Callable[[Block], TaggedBlock]) -> Generator[Tuple[str, Union[SpecState, List[TaggedBlock]]], None, None]:
+    ...
+
+def test_transition_randomized_state(state: SpecState, fork_epoch: int, spec: Spec, post_spec: Spec, pre_tag: Callable[[Block], TaggedBlock], post_tag: Callable[[Block], TaggedBlock]) -> Generator[Tuple[str, Union[SpecState, List[TaggedBlock]]], None, None]:
+    ...
+
+def test_transition_missing_first_post_block(state: SpecState, fork_epoch: int, spec: Spec, post_spec: Spec, pre_tag: Callable[[Block], TaggedBlock], post_tag: Callable[[Block], TaggedBlock]) -> Generator[Tuple[str, Union[SpecState, List[TaggedBlock]]], None, None]:
+    ...
+
+def test_transition_missing_last_pre_fork_block(state: SpecState, fork_epoch: int, spec: Spec, post_spec: Spec, pre_tag: Callable[[Block], TaggedBlock], post_tag: Callable[[Block], TaggedBlock]) -> Generator[Tuple[str, Union[SpecState, List[TaggedBlock]]], None, None]:
+    ...
+
+def test_transition_only_blocks_post_fork(state: SpecState, fork_epoch: int, spec: Spec, post_spec: Spec, pre_tag: Callable[[Block], TaggedBlock], post_tag: Callable[[Block], TaggedBlock]) -> Generator[Tuple[str, Union[SpecState, List[TaggedBlock]]], None, None]:
+    ...
+
+def _run_transition_test_with_attestations(state: SpecState, fork_epoch: int, spec: Spec, post_spec: Spec, pre_tag: Callable[[Block], TaggedBlock], post_tag: Callable[[Block], TaggedBlock], participation_fn: Optional[Callable[[int, int, List[int]], List[int]]], expect_finality: bool) -> Generator[Tuple[str, Union[SpecState, List[TaggedBlock]]], None, None]:
+    ...
+
+def test_transition_with_finality(state: SpecState, fork_epoch: int, spec: Spec, post_spec: Spec, pre_tag: Callable[[Block], TaggedBlock], post_tag: Callable[[Block], TaggedBlock]) -> Generator[Tuple[str, Union[SpecState, List[TaggedBlock]]], None, None]:
+    ...
+
+def test_transition_with_random_three_quarters_participation(state: SpecState, fork_epoch: int, spec: Spec, post_spec: Spec, pre_tag: Callable[[Block], TaggedBlock], post_tag: Callable[[Block], TaggedBlock]) -> Generator[Tuple[str, Union[SpecState, List[TaggedBlock]]], None, None]:
+    ...
+
+def test_transition_with_random_half_participation(state: SpecState, fork_epoch: int, spec: Spec, post_spec: Spec, pre_tag: Callable[[Block], TaggedBlock], post_tag: Callable[[Block], TaggedBlock]) -> Generator[Tuple[str, Union[SpecState, List[TaggedBlock]]], None, None]:
+    ...
+
+def test_transition_with_no_attestations_until_after_fork(state: SpecState, fork_epoch: int, spec: Spec, post_spec: Spec, pre_tag: Callable[[Block], TaggedBlock], post_tag: Callable[[Block], TaggedBlock]) -> Generator[Tuple[str, Union[SpecState, List[TaggedBlock]]], None, None]:
+    ...
+
+def test_non_empty_historical_roots(state: SpecState, fork_epoch: int, spec: Spec, post_spec: Spec, pre_tag: Callable[[Block], TaggedBlock], post_tag: Callable[[Block], TaggedBlock]) -> Generator[Tuple[str, Union[SpecState, List[TaggedBlock]]], None, None]:
+    ...

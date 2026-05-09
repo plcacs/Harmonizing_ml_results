@@ -1,0 +1,79 @@
+"""
+datetimelike delegation
+"""
+
+from __future__ import annotations
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Optional,
+    Union,
+    NoReturn,
+    List,
+    PropertyDescriptor,
+    Tuple,
+    Dict,
+    cast,
+)
+import numpy as np
+from pandas import (
+    Series,
+    DataFrame,
+    DatetimeIndex,
+    TimedeltaIndex,
+    PeriodArray,
+    ArrowExtensionArray,
+    CategoricalDtype,
+    DatetimeTZDtype,
+    PeriodDtype,
+    TimedeltaArray,
+    DatetimeArray,
+)
+from pandas.core.dtypes.generic import ABCSeries
+from pandas.core.accessor import PandasDelegate
+from pandas.core.base import PandasObject
+
+if TYPE_CHECKING:
+    from pandas import DataFrame, Series
+
+class Properties(PandasDelegate, PandasObject, NoNewAttributesMixin):
+    _hidden_attrs: ClassVar[set[str]] = ...
+    orig: Optional[Any] = ...
+    name: Optional[str] = ...
+
+    def __init__(self, data: ABCSeries, orig: Optional[Any]) -> None: ...
+    def _get_values(self) -> Union[_DATETIME_INDEX, _PERIOD_ARRAY]: ...
+    def _delegate_property_get(self, name: str) -> Union[Any, Series[Any]]: ...
+    def _delegate_property_set(self, name: str, value: Any) -> None: ...
+    def _delegate_method(self, name: str, *args: Any, **kwargs: Any) -> Union[Any, Series[Any]]: ...
+
+class ArrowTemporalProperties(Properties):
+    _orig: Optional[Any] = ...
+
+    def __init__(self, data: ABCSeries, orig: Optional[Any]) -> None: ...
+    def _delegate_property_get(self, name: str) -> Union[Any, Series[Any]]: ...
+    def _delegate_method(self, name: str, *args: Any, **kwargs: Any) -> Union[Any, Series[Any]]: ...
+    def to_pytimedelta(self) -> np.ndarray: ...
+    def to_pydatetime(self) -> np.ndarray: ...
+    def isocalendar(self) -> DataFrame[Any, Any]: ...
+    @property
+    def components(self) -> DataFrame[Any, Any]: ...
+
+class DatetimeProperties(Properties):
+    def to_pydatetime(self) -> Series[Any]: ...
+    @property
+    def freq(self) -> Optional[str]: ...
+    def isocalendar(self) -> DataFrame[Any, Any]: ...
+
+class TimedeltaProperties(Properties):
+    def to_pytimedelta(self) -> np.ndarray: ...
+    @property
+    def components(self) -> DataFrame[Any, Any]: ...
+    @property
+    def freq(self) -> Optional[str]: ...
+
+class PeriodProperties(Properties):
+    ...
+
+class CombinedDatetimelikeProperties(DatetimeProperties, TimedeltaProperties, PeriodProperties):
+    def __new__(cls, data: ABCSeries) -> Union[ArrowTemporalProperties, DatetimeProperties, TimedeltaProperties, PeriodProperties]: ...

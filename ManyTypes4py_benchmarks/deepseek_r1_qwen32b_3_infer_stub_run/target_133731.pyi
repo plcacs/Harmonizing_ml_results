@@ -1,0 +1,54 @@
+from raiden.transfer.state import NettingChannelState
+from raiden.transfer.state_change import (
+    ActionInitTarget,
+    Block,
+    ContractReceiveSecretReveal,
+    ReceiveLockExpired,
+    ReceiveSecretReveal,
+    ReceiveUnlock,
+)
+from raiden.transfer.mediated_transfer.state import TargetTransferState
+from raiden.transfer.mediated_transfer.state_change import TargetTransferState
+from raiden.transfer.mediated_transfer.events import (
+    EventUnlockClaimFailed,
+    EventUnlockClaimSuccess,
+    SendSecretRequest,
+    SendSecretReveal,
+)
+from raiden.utils.typing import (
+    BlockHash,
+    BlockNumber,
+    List,
+    Optional,
+    PaymentAmount,
+    TransitionResult,
+)
+import random
+from typing import Any
+
+def sanity_check(old_state: Optional[TargetTransferState], new_state: Optional[TargetTransferState], channel_state: NettingChannelState) -> None:
+    ...
+
+def events_for_onchain_secretreveal(target_state: TargetTransferState, channel_state: NettingChannelState, block_number: BlockNumber, block_hash: BlockHash) -> List[Event]:
+    ...
+
+def handle_inittarget(state_change: ActionInitTarget, channel_state: NettingChannelState, pseudo_random_generator: random.Random, block_number: BlockNumber) -> TransitionResult[Optional[TargetTransferState], List[Event]]:
+    ...
+
+def handle_offchain_secretreveal(target_state: TargetTransferState, state_change: ReceiveSecretReveal, channel_state: NettingChannelState, pseudo_random_generator: random.Random, block_number: BlockNumber) -> TransitionResult[TargetTransferState, List[Event]]:
+    ...
+
+def handle_onchain_secretreveal(target_state: TargetTransferState, state_change: ContractReceiveSecretReveal, channel_state: NettingChannelState) -> TransitionResult[TargetTransferState, List[Event]]:
+    ...
+
+def handle_unlock(target_state: TargetTransferState, state_change: ReceiveUnlock, channel_state: NettingChannelState) -> TransitionResult[Optional[TargetTransferState], List[Event]]:
+    ...
+
+def handle_block(target_state: TargetTransferState, channel_state: NettingChannelState, block_number: BlockNumber, block_hash: BlockHash) -> TransitionResult[TargetTransferState, List[Event]]:
+    ...
+
+def handle_lock_expired(target_state: TargetTransferState, state_change: ReceiveLockExpired, channel_state: NettingChannelState, block_number: BlockNumber) -> TransitionResult[Optional[TargetTransferState], List[Event]]:
+    ...
+
+def state_transition(target_state: Optional[TargetTransferState], state_change: Any, channel_state: NettingChannelState, pseudo_random_generator: random.Random, block_number: BlockNumber) -> TransitionResult[Optional[TargetTransferState], List[Event]]:
+    ...

@@ -1,0 +1,116 @@
+"""
+Stub file for 'test_ccxt_compat_f96503.py'
+"""
+
+from __future__ import annotations
+from datetime import datetime, timedelta, timezone
+from typing import Any, Dict, List, Optional, Tuple, Union
+from freqtrade.enums import CandleType
+from freqtrade.exchange import timeframe_to_minutes, timeframe_to_prev_date, timeframe_to_msecs
+from freqtrade.util import dt_floor_day, dt_now, dt_ts
+import pytest
+
+EXCHANGE_FIXTURE_TYPE = Tuple[Any, str]
+EXCHANGES = Dict[str, Dict[str, Any]]
+
+@pytest.mark.longrun
+class TestCCXTExchange:
+    def test_load_markets(self, exchange: EXCHANGE_FIXTURE_TYPE) -> None:
+        ...
+    
+    def test_has_validations(self, exchange: EXCHANGE_FIXTURE_TYPE) -> None:
+        ...
+    
+    def test_ohlcv_limit(self, exchange: EXCHANGE_FIXTURE_TYPE) -> None:
+        ...
+    
+    def test_ohlcv_limit_futures(self, exchange_futures: EXCHANGE_FIXTURE_TYPE) -> None:
+        ...
+    
+    def test_load_markets_futures(self, exchange_futures: EXCHANGE_FIXTURE_TYPE) -> None:
+        ...
+    
+    def test_ccxt_order_parse(self, exchange: EXCHANGE_FIXTURE_TYPE) -> None:
+        ...
+    
+    def test_ccxt_my_trades_parse(self, exchange: EXCHANGE_FIXTURE_TYPE) -> None:
+        ...
+    
+    def test_ccxt_balances_parse(self, exchange: EXCHANGE_FIXTURE_TYPE) -> None:
+        ...
+    
+    def test_ccxt_fetch_tickers(self, exchange: EXCHANGE_FIXTURE_TYPE) -> None:
+        ...
+    
+    def test_ccxt_fetch_tickers_futures(self, exchange_futures: EXCHANGE_FIXTURE_TYPE) -> None:
+        ...
+    
+    def test_ccxt_fetch_ticker(self, exchange: EXCHANGE_FIXTURE_TYPE) -> None:
+        ...
+    
+    def test_ccxt_fetch_l2_orderbook(self, exchange: EXCHANGE_FIXTURE_TYPE) -> None:
+        ...
+    
+    def test_ccxt_fetch_ohlcv(self, exchange: EXCHANGE_FIXTURE_TYPE) -> None:
+        ...
+    
+    def test_ccxt_fetch_ohlcv_startdate(self, exchange: EXCHANGE_FIXTURE_TYPE) -> None:
+        ...
+    
+    def ccxt__async_get_candle_history(
+        self,
+        exchange: Any,
+        exchangename: str,
+        pair: str,
+        timeframe: str,
+        candle_type: CandleType,
+        factor: float = ...
+    ) -> None:
+        ...
+    
+    def test_ccxt__async_get_candle_history(self, exchange: EXCHANGE_FIXTURE_TYPE) -> None:
+        ...
+    
+    @pytest.mark.parametrize('candle_type', [CandleType.FUTURES, CandleType.FUNDING_RATE, CandleType.MARK])
+    def test_ccxt__async_get_candle_history_futures(
+        self,
+        exchange_futures: EXCHANGE_FIXTURE_TYPE,
+        candle_type: CandleType
+    ) -> None:
+        ...
+    
+    def test_ccxt_fetch_funding_rate_history(self, exchange_futures: EXCHANGE_FIXTURE_TYPE) -> None:
+        ...
+    
+    def test_ccxt_fetch_mark_price_history(self, exchange_futures: EXCHANGE_FIXTURE_TYPE) -> None:
+        ...
+    
+    def test_ccxt__calculate_funding_fees(self, exchange_futures: EXCHANGE_FIXTURE_TYPE) -> None:
+        ...
+    
+    def test_ccxt__async_get_trade_history(self, exchange: EXCHANGE_FIXTURE_TYPE) -> None:
+        ...
+    
+    def test_ccxt_get_fee(self, exchange: EXCHANGE_FIXTURE_TYPE) -> None:
+        ...
+    
+    def test_ccxt_get_max_leverage_spot(self, exchange: EXCHANGE_FIXTURE_TYPE) -> None:
+        ...
+    
+    def test_ccxt_get_max_leverage_futures(self, exchange_futures: EXCHANGE_FIXTURE_TYPE) -> None:
+        ...
+    
+    def test_ccxt_get_contract_size(self, exchange_futures: EXCHANGE_FIXTURE_TYPE) -> None:
+        ...
+    
+    def test_ccxt_load_leverage_tiers(self, exchange_futures: EXCHANGE_FIXTURE_TYPE) -> None:
+        ...
+    
+    def test_ccxt_dry_run_liquidation_price(self, exchange_futures: EXCHANGE_FIXTURE_TYPE) -> None:
+        ...
+    
+    def test_ccxt_get_max_pair_stake_amount(self, exchange_futures: EXCHANGE_FIXTURE_TYPE) -> None:
+        ...
+    
+    def test_private_method_presence(self, exchange: EXCHANGE_FIXTURE_TYPE) -> None:
+        ...

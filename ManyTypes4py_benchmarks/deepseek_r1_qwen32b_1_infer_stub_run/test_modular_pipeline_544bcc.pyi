@@ -1,0 +1,105 @@
+from typing import Dict, List, Optional, Union, Any
+from kedro.pipeline import node, pipeline
+from kedro.pipeline.modular_pipeline import ModularPipelineError
+
+def constant_output() -> str:
+    ...
+
+def identity(input1: str) -> str:
+    ...
+
+def biconcat(input1: Union[str, Any], input2: Union[str, Any]) -> str:
+    ...
+
+def triconcat(input1: Union[str, Any], input2: Union[str, Any], input3: Union[str, Any]) -> str:
+    ...
+
+class TestPipelineHelper:
+    def test_transform_dataset_names(self) -> None:
+        ...
+
+    def test_prefix_dataset_names(self) -> None:
+        ...
+
+    def test_prefixing_and_renaming(self) -> None:
+        ...
+
+    def test_prefix_exclude_free_inputs(self, inputs: Union[str, List[str], Dict[str, str]], outputs: Union[str, List[str], Dict[str, str]]) -> None:
+        ...
+
+    def test_transform_params_prefix_and_parameters(self) -> None:
+        ...
+
+    def test_dataset_transcoding_mapping_base_name(self) -> None:
+        ...
+
+    def test_dataset_transcoding_mapping_full_dataset(self) -> None:
+        ...
+
+    def test_empty_input(self) -> None:
+        ...
+
+    def test_empty_output(self) -> None:
+        ...
+
+    def test_missing_dataset_name_no_suggestion(
+        self,
+        func: Union[str, Any],
+        inputs: Union[str, List[str], Dict[str, str]],
+        outputs: Union[str, List[str], Dict[str, str]],
+        inputs_map: Dict[str, str],
+        outputs_map: Dict[str, str],
+        expected_missing: List[str]
+    ) -> None:
+        ...
+
+    def test_missing_dataset_with_suggestion(
+        self,
+        func: Union[str, Any],
+        inputs: Union[str, List[str], Dict[str, str]],
+        outputs: Union[str, List[str], Dict[str, str]],
+        inputs_map: Dict[str, str],
+        outputs_map: Dict[str, str],
+        expected_missing: List[str],
+        expected_suggestion: List[str]
+    ) -> None:
+        ...
+
+    def test_node_properties_preserved(self) -> None:
+        ...
+
+    def test_default_node_name_is_namespaced(self) -> None:
+        ...
+
+    def test_expose_intermediate_output(self) -> None:
+        ...
+
+    def test_parameters_left_intact_when_defined_as_str(self) -> None:
+        ...
+
+    def test_parameters_left_intact_when_defined_as_(self, parameters: Union[str, List[str], Dict[str, str]]) -> None:
+        ...
+
+    def test_parameters_updated_with_dict(self) -> None:
+        ...
+
+    def test_parameters_defined_with_params_prefix(self) -> None:
+        ...
+
+    def test_parameters_specified_under_inputs(self) -> None:
+        ...
+
+    def test_non_existent_parameters_mapped(self) -> None:
+        ...
+
+    def test_bad_inputs_mapping(self) -> None:
+        ...
+
+    def test_bad_outputs_mapping(self) -> None:
+        ...
+
+    def test_pipeline_always_copies(self) -> None:
+        ...
+
+    def test_pipeline_tags(self) -> None:
+        ...

@@ -1,0 +1,298 @@
+import io
+import os
+import pytest
+from pathlib import Path
+from typing import Any, Optional, List, Dict, Union
+from botocore.exceptions import ClientError, EndpointConnectionError
+from moto import mock_s3
+from prefect_aws import AwsCredentials, MinIOCredentials
+from prefect_aws.client_parameters import AwsClientParameters
+from prefect_aws.s3 import S3Bucket
+from boto3.resources.base import ServiceResource
+from prefect import flow
+
+aws_clients: List[str] = ...
+
+@pytest.fixture
+def s3_mock(monkeypatch, client_parameters: str) -> ...:
+    ...
+
+@pytest.fixture
+def client_parameters(request: pytest.FixtureRequest) -> str:
+    ...
+
+@pytest.fixture
+def bucket(s3_mock: ..., request: pytest.FixtureRequest) -> ServiceResource:
+    ...
+
+@pytest.fixture
+def bucket_2(s3_mock: ..., request: pytest.FixtureRequest) -> ServiceResource:
+    ...
+
+@pytest.fixture
+def object(bucket: ServiceResource, tmp_path: Path) -> ServiceResource:
+    ...
+
+@pytest.fixture
+def object_in_folder(bucket: ServiceResource, tmp_path: Path) -> ServiceResource:
+    ...
+
+@pytest.fixture
+def objects_in_folder(bucket: ServiceResource, tmp_path: Path) -> List[ServiceResource]:
+    ...
+
+@pytest.fixture
+def a_lot_of_objects(bucket: ServiceResource, tmp_path: Path) -> List[ServiceResource]:
+    ...
+
+@pytest.mark.parametrize('client_parameters', ['aws_client_parameters_custom_endpoint'], indirect=True)
+async def test_s3_download_failed_with_wrong_endpoint_setup(object: ServiceResource, client_parameters: str, aws_credentials: AwsCredentials) -> None:
+    ...
+
+@pytest.mark.parametrize('client_parameters', [pytest.param('aws_client_parameters_custom_endpoint', marks=pytest.mark.is_public(False)), pytest.param('aws_client_parameters_custom_endpoint', marks=pytest.mark.is_public(True)), pytest.param('aws_client_parameters_empty', marks=pytest.mark.is_public(False)), pytest.param('aws_client_parameters_empty', marks=pytest.mark.is_public(True)), pytest.param('aws_client_parameters_public_bucket', marks=[pytest.mark.is_public(False), pytest.mark.xfail]), pytest.param('aws_client_parameters_public_bucket', marks=pytest.mark.is_public(True))], indirect=True)
+async def test_s3_download(object: ServiceResource, client_parameters: str, aws_credentials: AwsCredentials) -> bytes:
+    ...
+
+@pytest.mark.parametrize('client_parameters', aws_clients, indirect=True)
+async def test_s3_download_object_not_found(object: ServiceResource, client_parameters: str, aws_credentials: AwsCredentials) -> None:
+    ...
+
+@pytest.mark.parametrize('client_parameters', aws_clients, indirect=True)
+async def test_s3_upload(bucket: ServiceResource, client_parameters: str, tmp_path: Path, aws_credentials: AwsCredentials) -> None:
+    ...
+
+@pytest.mark.parametrize('client_parameters', aws_clients, indirect=True)
+async def test_s3_copy(object: ServiceResource, bucket: ServiceResource, bucket_2: ServiceResource, aws_credentials: AwsCredentials) -> None:
+    ...
+
+@pytest.mark.parametrize('client_parameters', aws_clients, indirect=True)
+async def test_s3_move(object: ServiceResource, bucket: ServiceResource, bucket_2: ServiceResource, aws_credentials: AwsCredentials) -> None:
+    ...
+
+@pytest.mark.parametrize('client_parameters', aws_clients, indirect=True)
+async def test_move_object_to_nonexistent_bucket_fails(object: ServiceResource, bucket: ServiceResource, aws_credentials: AwsCredentials) -> None:
+    ...
+
+@pytest.mark.parametrize('client_parameters', aws_clients, indirect=True)
+async def test_move_object_fail_cases(object: ServiceResource, bucket: ServiceResource, aws_credentials: AwsCredentials) -> None:
+    ...
+
+@pytest.mark.parametrize('client_parameters', aws_clients, indirect=True)
+async def test_s3_list_objects(object: ServiceResource, client_parameters: str, object_in_folder: ServiceResource, aws_credentials: AwsCredentials) -> List[Dict[str, str]]:
+    ...
+
+@pytest.mark.parametrize('client_parameters', aws_clients, indirect=True)
+async def test_s3_list_objects_multiple_pages(a_lot_of_objects: List[ServiceResource], client_parameters: str, aws_credentials: AwsCredentials) -> List[Dict[str, str]]:
+    ...
+
+@pytest.mark.parametrize('client_parameters', aws_clients, indirect=True)
+async def test_s3_list_objects_prefix(object: ServiceResource, client_parameters: str, object_in_folder: ServiceResource, aws_credentials: AwsCredentials) -> List[Dict[str, str]]:
+    ...
+
+@pytest.mark.parametrize('client_parameters', aws_clients, indirect=True)
+async def test_s3_list_objects_prefix_slashes(object: ServiceResource, client_parameters: str, objects_in_folder: List[ServiceResource], aws_credentials: AwsCredentials) -> List[Dict[str, str]]:
+    ...
+
+@pytest.mark.parametrize('client_parameters', aws_clients, indirect=True)
+async def test_s3_list_objects_filter(object: ServiceResource, client_parameters: str, object_in_folder: ServiceResource, aws_credentials: AwsCredentials) -> List[Dict[str, str]]:
+    ...
+
+@pytest.fixture
+def aws_creds_block() -> AwsCredentials:
+    ...
+
+@pytest.fixture
+def minio_creds_block() -> MinIOCredentials:
+    ...
+
+@pytest.fixture
+def s3() -> ...:
+    ...
+
+@pytest.fixture
+def nested_s3_bucket_structure(s3: ..., s3_bucket: S3Bucket, tmp_path: Path) -> None:
+    ...
+
+@pytest.fixture
+def s3_bucket(s3: ..., request: pytest.FixtureRequest, aws_creds_block: AwsCredentials, minio_creds_block: MinIOCredentials) -> S3Bucket:
+    ...
+
+@pytest.fixture
+def s3_bucket_with_file(s3_bucket: S3Bucket) -> Tuple[S3Bucket, str]:
+    ...
+
+async def test_read_write_roundtrip(s3_bucket: S3Bucket) -> None:
+    ...
+
+async def test_write_with_missing_directory_succeeds(s3_bucket: S3Bucket) -> None:
+    ...
+
+async def test_read_fails_does_not_exist(s3_bucket: S3Bucket) -> None:
+    ...
+
+@pytest.mark.parametrize('type_', [PureWindowsPath, PurePosixPath, str])
+@pytest.mark.parametrize('delimiter', ['\\', '/'])
+async def test_aws_bucket_folder(s3_bucket: S3Bucket, aws_creds_block: AwsCredentials, delimiter: str, type_: Union[Type[PureWindowsPath], Type[PurePosixPath], Type[str]]) -> None:
+    ...
+
+async def test_get_directory(nested_s3_bucket_structure: ..., s3_bucket: S3Bucket, tmp_path: Path) -> None:
+    ...
+
+async def test_get_directory_respects_bucket_folder(nested_s3_bucket_structure: ..., s3_bucket: S3Bucket, tmp_path: Path, aws_creds_block: AwsCredentials) -> None:
+    ...
+
+async def test_get_directory_respects_from_path(nested_s3_bucket_structure: ..., s3_bucket: S3Bucket, tmp_path: Path, aws_creds_block: AwsCredentials) -> None:
+    ...
+
+async def test_put_directory(s3_bucket: S3Bucket, tmp_path: Path) -> None:
+    ...
+
+async def test_put_directory_respects_basepath(s3_bucket: S3Bucket, tmp_path: Path, aws_creds_block: AwsCredentials) -> None:
+    ...
+
+async def test_put_directory_with_ignore_file(s3_bucket: S3Bucket, tmp_path: Path, aws_creds_block: AwsCredentials) -> None:
+    ...
+
+async def test_put_directory_respects_local_path(s3_bucket: S3Bucket, tmp_path: Path, aws_creds_block: AwsCredentials) -> None:
+    ...
+
+async def test_read_path_in_sync_context(s3_bucket_with_file: Tuple[S3Bucket, str]) -> None:
+    ...
+
+async def test_write_path_in_sync_context(s3_bucket: S3Bucket) -> None:
+    ...
+
+def test_resolve_path(s3_bucket: S3Bucket) -> None:
+    ...
+
+class TestS3Bucket:
+    @pytest.fixture
+    def credentials(self, request: pytest.FixtureRequest) -> Union[AwsCredentials, MinIOCredentials]:
+        ...
+
+    @pytest.fixture
+    def s3_bucket_empty(self, credentials: Union[AwsCredentials, MinIOCredentials], bucket: ServiceResource) -> S3Bucket:
+        ...
+
+    @pytest.fixture
+    def s3_bucket_2_empty(self, credentials: Union[AwsCredentials, MinIOCredentials], bucket_2: ServiceResource) -> S3Bucket:
+        ...
+
+    @pytest.fixture
+    def s3_bucket_with_object(self, s3_bucket_empty: S3Bucket, object: ServiceResource) -> S3Bucket:
+        ...
+
+    @pytest.fixture
+    def s3_bucket_2_with_object(self, s3_bucket_2_empty: S3Bucket) -> S3Bucket:
+        ...
+
+    @pytest.fixture
+    def s3_bucket_with_objects(self, s3_bucket_with_object: S3Bucket, object_in_folder: ServiceResource) -> S3Bucket:
+        ...
+
+    @pytest.fixture
+    def s3_bucket_with_similar_objects(self, s3_bucket_with_objects: S3Bucket, objects_in_folder: List[ServiceResource]) -> S3Bucket:
+        ...
+
+    def test_credentials_are_correct_type(self, credentials: Union[AwsCredentials, MinIOCredentials]) -> None:
+        ...
+
+    @pytest.mark.parametrize('client_parameters', aws_clients[-1:], indirect=True)
+    def test_list_objects_empty(self, s3_bucket_empty: S3Bucket, client_parameters: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('client_parameters', aws_clients[-1:], indirect=True)
+    def test_list_objects_one(self, s3_bucket_with_object: S3Bucket, client_parameters: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('client_parameters', aws_clients[-1:], indirect=True)
+    def test_list_objects(self, s3_bucket_with_objects: S3Bucket, client_parameters: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('client_parameters', aws_clients[-1:], indirect=True)
+    def test_list_objects_with_params(self, s3_bucket_with_similar_objects: S3Bucket, client_parameters: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('to_path', [Path('to_path'), 'to_path', None])
+    @pytest.mark.parametrize('client_parameters', aws_clients[-1:], indirect=True)
+    def test_download_object_to_path(self, s3_bucket_with_object: S3Bucket, to_path: Optional[Union[Path, str]], client_parameters: str, tmp_path: Path) -> None:
+        ...
+
+    @pytest.mark.parametrize('client_parameters', aws_clients[-1:], indirect=True)
+    def test_download_object_to_file_object(self, s3_bucket_with_object: S3Bucket, client_parameters: str, tmp_path: Path) -> None:
+        ...
+
+    @pytest.mark.parametrize('to_path', [Path('to_path'), 'to_path', None])
+    @pytest.mark.parametrize('client_parameters', aws_clients[-1:], indirect=True)
+    def test_download_folder_to_path(self, s3_bucket_with_objects: S3Bucket, client_parameters: str, tmp_path: Path, to_path: Optional[Union[Path, str]]) -> None:
+        ...
+
+    @pytest.mark.parametrize('client_parameters', aws_clients[-1:], indirect=True)
+    def test_download_object_with_bucket_folder(self, s3_bucket_empty: S3Bucket, client_parameters: str, tmp_path: Path) -> None:
+        ...
+
+    @pytest.mark.parametrize('to_path', ['to_path', None])
+    @pytest.mark.parametrize('client_parameters', aws_clients[-1:], indirect=True)
+    def test_stream_from(self, s3_bucket_2_with_object: S3Bucket, s3_bucket_empty: S3Bucket, client_parameters: str, to_path: Optional[str]) -> None:
+        ...
+
+    @pytest.mark.parametrize('client_parameters', aws_clients[-1:], indirect=True)
+    def test_upload_from_path(self, s3_bucket_empty: S3Bucket, client_parameters: str, tmp_path: Path, to_path: Optional[str]) -> None:
+        ...
+
+    @pytest.mark.parametrize('client_parameters', aws_clients[-1:], indirect=True)
+    def test_upload_from_file_object(self, s3_bucket_empty: S3Bucket, client_parameters: str, tmp_path: Path) -> None:
+        ...
+
+    @pytest.mark.parametrize('client_parameters', aws_clients[-1:], indirect=True)
+    def test_upload_from_folder(self, s3_bucket_empty: S3Bucket, client_parameters: str, tmp_path: Path, caplog: pytest.LogCaptureFixture) -> None:
+        ...
+
+    @pytest.mark.parametrize('client_parameters', aws_clients[-1:], indirect=True)
+    def test_copy_object(self, s3_bucket_with_object: S3Bucket, s3_bucket_2_empty: S3Bucket) -> None:
+        ...
+
+    @pytest.mark.parametrize('client_parameters', aws_clients[-1:], indirect=True)
+    @pytest.mark.parametrize('to_bucket, bucket_folder, expected_path', [(None, None, 'object'), (None, 'subfolder', 'subfolder/object'), ('bucket_2', None, 'object'), (None, None, 'object'), (None, 'subfolder', 'subfolder/object'), ('bucket_2', None, 'object')])
+    def test_copy_subpaths(self, s3_bucket_with_object: S3Bucket, s3_bucket_2_empty: S3Bucket, to_bucket: Optional[str], bucket_folder: Optional[str], expected_path: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('client_parameters', aws_clients[-1:], indirect=True)
+    def test_move_object_within_bucket(self, s3_bucket_with_object: S3Bucket) -> None:
+        ...
+
+    @pytest.mark.parametrize('client_parameters', aws_clients[-1:], indirect=True)
+    def test_move_object_to_nonexistent_bucket_fails(self, s3_bucket_with_object: S3Bucket) -> None:
+        ...
+
+    @pytest.mark.parametrize('client_parameters', aws_clients[-1:], indirect=True)
+    def test_move_object_onto_itself_fails(self, s3_bucket_with_object: S3Bucket) -> None:
+        ...
+
+    @pytest.mark.parametrize('client_parameters', aws_clients[-1:], indirect=True)
+    def test_move_object_between_buckets(self, s3_bucket_with_object: S3Bucket, s3_bucket_2_empty: S3Bucket) -> None:
+        ...
+
+    @pytest.mark.parametrize('client_parameters', aws_clients[-1:], indirect=True)
+    @pytest.mark.parametrize('to_bucket, bucket_folder, expected_path', [(None, None, 'object'), (None, 'subfolder', 'subfolder/object'), ('bucket_2', None, 'object'), (None, None, 'object'), (None, 'subfolder', 'subfolder/object'), ('bucket_2', None, 'object')])
+    def test_move_subpaths(self, s3_bucket_with_object: S3Bucket, s3_bucket_2_empty: S3Bucket, to_bucket: Optional[str], bucket_folder: Optional[str], expected_path: str) -> None:
+        ...
+
+    def test_round_trip_default_credentials(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('client_parameters', [pytest.param('aws_client_parameters_custom_endpoint', marks=pytest.mark.is_public(False)), pytest.param('aws_client_parameters_custom_endpoint', marks=pytest.mark.is_public(True)), pytest.param('aws_client_parameters_empty', marks=pytest.mark.is_public(False)), pytest.param('aws_client_parameters_empty', marks=pytest.mark.is_public(True)), pytest.param('aws_client_parameters_public_bucket', marks=[pytest.mark.is_public(False), pytest.mark.xfail]), pytest.param('aws_client_parameters_public_bucket', marks=pytest.mark.is_public(True))], indirect=True)
+    async def test_async_download_from_bucket(self, object: ServiceResource, client_parameters: str, aws_credentials: AwsCredentials) -> bytes:
+        ...
+
+    @pytest.mark.parametrize('client_parameters', aws_clients, indirect=True)
+    async def test_async_list_objects(self, object: ServiceResource, object_in_folder: ServiceResource, client_parameters: str, aws_credentials: AwsCredentials) -> List[Dict[str, str]]:
+        ...
+
+    @pytest.mark.parametrize('client_parameters', aws_clients, indirect=True)
+    async def test_async_copy_objects(self, object: ServiceResource, bucket: ServiceResource, bucket_2: ServiceResource, aws_credentials: AwsCredentials) -> None:
+        ...
+
+    @pytest.mark.parametrize('client_parameters', aws_clients, indirect=True)
+    async def test_async_move_objects(self, object: ServiceResource, bucket: ServiceResource, bucket_2: ServiceResource, aws_credentials: AwsCredentials) -> None:
+        ...

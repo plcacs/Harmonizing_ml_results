@@ -1,0 +1,134 @@
+import pytest
+from chalice.app import Chalice
+from chalice.deploy.models import models
+from typing import Dict, List, Optional, TypedDict, Union
+
+class DomainNameDict(TypedDict):
+    domain_name: str
+    tls_version: str
+    certificate_arn: str
+    tags: Dict[str, str]
+    url_prefix: str
+
+@pytest.fixture
+def websocket_app_without_connect() -> Chalice:
+    ...
+
+@pytest.fixture
+def websocket_app_without_message() -> Chalice:
+    ...
+
+@pytest.fixture
+def websocket_app_without_disconnect() -> Chalice:
+    ...
+
+class TestApplicationGraphBuilder:
+    def create_config(
+        self, 
+        app: Chalice,
+        app_name: str = ...,
+        iam_role_arn: Optional[str] = ...,
+        policy_file: Optional[str] = ...,
+        api_gateway_stage: str = ...,
+        autogen_policy: bool = ...,
+        security_group_ids: Optional[List[str]] = ...,
+        subnet_ids: Optional[List[str]] = ...,
+        reserved_concurrency: Optional[int] = ...,
+        layers: Optional[List[str]] = ...,
+        automatic_layer: bool = ...,
+        api_gateway_endpoint_type: Optional[str] = ...,
+        api_gateway_endpoint_vpce: Optional[str] = ...,
+        api_gateway_policy_file: Optional[str] = ...,
+        api_gateway_custom_domain: Optional[DomainNameDict] = ...,
+        websocket_api_custom_domain: Optional[DomainNameDict] = ...,
+        log_retention_in_days: Optional[int] = ...,
+        project_dir: str = ...
+    ) -> models.Config:
+        ...
+
+    def test_can_build_single_lambda_function_app(self, sample_app_lambda_only: Chalice) -> None:
+        ...
+
+    def test_can_build_single_lambda_function_app_with_log_retention(self, sample_app_lambda_only: Chalice) -> None:
+        ...
+
+    def test_can_build_single_lambda_function_app_with_managed_layer(self, sample_app_lambda_only: Chalice) -> None:
+        ...
+
+    def test_all_lambda_functions_share_managed_layer(self, sample_app_lambda_only: Chalice) -> None:
+        ...
+
+    def test_can_build_lambda_function_with_layers(self, sample_app_lambda_only: Chalice) -> None:
+        ...
+
+    def test_can_build_app_with_domain_name(self, sample_app: Chalice, domain_name: DomainNameDict) -> None:
+        ...
+
+    def test_can_build_lambda_function_app_with_vpc_config(self, sample_app_lambda_only: Chalice) -> None:
+        ...
+
+    def test_vpc_trait_added_when_vpc_configured(self, sample_app_lambda_only: Chalice) -> None:
+        ...
+
+    def test_exception_raised_when_missing_vpc_params(self, sample_app_lambda_only: Chalice) -> None:
+        ...
+
+    def test_can_build_lambda_function_app_with_reserved_concurrency(self, sample_app_lambda_only: Chalice) -> None:
+        ...
+
+    def test_multiple_lambda_functions_share_role_and_package(self, sample_app_lambda_only: Chalice) -> None:
+        ...
+
+    def test_autogen_policy_for_function(self, sample_app_lambda_only: Chalice) -> None:
+        ...
+
+    def test_cloudwatch_event_models(self, sample_cloudwatch_event_app: Chalice) -> None:
+        ...
+
+    def test_scheduled_event_models(self, sample_app_schedule_only: Chalice) -> None:
+        ...
+
+    def test_can_build_private_rest_api(self, sample_app: Chalice) -> None:
+        ...
+
+    def test_can_build_private_rest_api_custom_policy(self, tmpdir: str, sample_app: Chalice) -> None:
+        ...
+
+    def test_can_build_rest_api(self, sample_app: Chalice) -> None:
+        ...
+
+    def test_can_build_rest_api_with_authorizer(self, sample_app_with_auth: Chalice) -> None:
+        ...
+
+    def test_can_create_s3_event_handler(self, sample_s3_event_app: Chalice) -> None:
+        ...
+
+    def test_can_create_sns_event_handler(self, sample_sns_event_app: Chalice) -> None:
+        ...
+
+    def test_can_create_sqs_event_handler(self, sample_sqs_event_app: Chalice) -> None:
+        ...
+
+    def test_can_create_sqs_handler_with_queue_arn(self, sample_sqs_event_app: Chalice) -> None:
+        ...
+
+    def test_can_create_kinesis_event_handler(self, sample_kinesis_event_app: Chalice) -> None:
+        ...
+
+    def test_can_create_ddb_event_handler(self, sample_ddb_event_app: Chalice) -> None:
+        ...
+
+    def test_can_create_websocket_event_handler(self, sample_websocket_app: Chalice) -> None:
+        ...
+
+    def test_can_create_websocket_api_with_domain_name(self, sample_websocket_app: Chalice, domain_name: DomainNameDict) -> None:
+        ...
+
+    def test_can_create_websocket_app_missing_connect(self, websocket_app_without_connect: Chalice) -> None:
+        ...
+
+    def test_can_create_websocket_app_missing_message(self, websocket_app_without_message: Chalice) -> None:
+        ...
+
+    def test_can_create_websocket_app_missing_disconnect(self, websocket_app_without_disconnect: Chalice) -> None:
+        ...

@@ -1,0 +1,80 @@
+import numpy as np
+import pandas as pd
+from collections.abc import Hashable, Callable
+from typing import Any, Dict, List, Mapping, Optional, Union, overload
+from snorkel.types import DataPoint, FieldMap, HashingFunction
+
+MapFunction = Callable[[DataPoint], Optional[DataPoint]]
+
+def get_parameters(f: Callable[..., Any], allow_args: bool = False, allow_kwargs: bool = False) -> List[str]: ...
+
+def is_hashable(obj: Any) -> bool: ...
+
+def get_hashable(obj: Any) -> Hashable: ...
+
+class BaseMapper:
+    name: str
+    memoize: bool
+    _pre: List['BaseMapper']
+    _memoize_key: HashingFunction
+    _cache: Dict[Hashable, DataPoint]
+
+    def __init__(self, name: str, pre: List['BaseMapper'], memoize: bool, memoize_key: Optional[HashingFunction] = None) -> None: ...
+
+    def reset_cache(self) -> None: ...
+
+    def _generate_mapped_data_point(self, x: DataPoint) -> Optional[DataPoint]: ...
+
+    def __call__(self, x: DataPoint) -> Optional[DataPoint]: ...
+
+    def __repr__(self) -> str: ...
+
+class Mapper(BaseMapper):
+    field_names: Mapping[str, str]
+    mapped_field_names: Optional[Mapping[str, str]]
+
+    def __init__(
+        self,
+        name: str,
+        field_names: Optional[Mapping[str, str]] = None,
+        mapped_field_names: Optional[Mapping[str, str]] = None,
+        pre: Optional[List[BaseMapper]] = None,
+        memoize: bool = False,
+        memoize_key: Optional[HashingFunction] = None,
+    ) -> None: ...
+
+    def run(self, **kwargs: Any) -> Optional[FieldMap]: ...
+
+    def _update_fields(self, x: DataPoint, mapped_fields: FieldMap) -> DataPoint: ...
+
+    def _generate_mapped_data_point(self, x: DataPoint) -> Optional[DataPoint]: ...
+
+class LambdaMapper(BaseMapper):
+    _f: MapFunction
+
+    def __init__(
+        self,
+        name: str,
+        f: MapFunction,
+        pre: Optional[List[BaseMapper]] = None,
+        memoize: bool = False,
+        memoize_key: Optional[HashingFunction] = None,
+    ) -> None: ...
+
+    def _generate_mapped_data_point(self, x: DataPoint) -> Optional[DataPoint]: ...
+
+class lambda_mapper:
+    name: Optional[str]
+    pre: Optional[List[BaseMapper]]
+    memoize: bool
+    memoize_key: Optional[HashingFunction]
+
+    def __init__(
+        self,
+        name: Optional[str] = None,
+        pre: Optional[List[BaseMapper]] = None,
+        memoize: bool = False,
+        memoize_key: Optional[HashingFunction] = None,
+    ) -> None: ...
+
+    def __call__(self, f: MapFunction) -> LambdaMapper: ...

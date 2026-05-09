@@ -1,0 +1,167 @@
+import numpy as np
+import pytest
+import pandas as pd
+from pandas import CategoricalIndex, DataFrame, Index, IntervalIndex, MultiIndex, Series
+from pandas.api.types import (
+    is_float_dtype,
+    is_unsigned_integer_dtype,
+)
+from pandas._testing import tm
+from typing import Any, Dict, List, Optional, Tuple, Union
+from pytest import param
+
+@pytest.mark.parametrize('case', [0.5, 'xxx'])
+@pytest.mark.parametrize('method', ['intersection', 'union', 'difference', 'symmetric_difference'])
+def test_set_ops_error_cases(idx: MultiIndex, case: Union[float, str], sort: Optional[bool], method: str) -> None:
+    ...
+
+@pytest.mark.parametrize('klass', [MultiIndex, np.array, Series, list])
+def test_intersection_base(idx: MultiIndex, sort: Optional[bool], klass: type) -> None:
+    ...
+
+@pytest.mark.arm_slow
+@pytest.mark.parametrize('klass', [MultiIndex, np.array, Series, list])
+def test_union_base(idx: MultiIndex, sort: Optional[bool], klass: type) -> None:
+    ...
+
+def test_difference_base(idx: MultiIndex, sort: Optional[bool]) -> None:
+    ...
+
+def test_symmetric_difference(idx: MultiIndex, sort: Optional[bool]) -> None:
+    ...
+
+def test_multiindex_symmetric_difference() -> None:
+    ...
+
+def test_empty(idx: MultiIndex) -> None:
+    ...
+
+def test_difference(idx: MultiIndex, sort: Optional[bool]) -> None:
+    ...
+
+def test_difference_sort_special() -> None:
+    ...
+
+def test_difference_sort_special_true() -> None:
+    ...
+
+def test_difference_sort_incomparable() -> None:
+    ...
+
+def test_difference_sort_incomparable_true() -> None:
+    ...
+
+def test_union(idx: MultiIndex, sort: Optional[bool]) -> None:
+    ...
+
+def test_union_with_regular_index(idx: MultiIndex, using_infer_string: bool) -> None:
+    ...
+
+def test_intersection(idx: MultiIndex, sort: Optional[bool]) -> None:
+    ...
+
+@pytest.mark.parametrize('method', ['intersection', 'union', 'difference', 'symmetric_difference'])
+def test_setop_with_categorical(idx: MultiIndex, sort: Optional[bool], method: str) -> None:
+    ...
+
+def test_intersection_non_object(idx: MultiIndex, sort: Optional[bool]) -> None:
+    ...
+
+def test_intersect_equal_sort() -> None:
+    ...
+
+def test_intersect_equal_sort_true() -> None:
+    ...
+
+@pytest.mark.parametrize('slice_', [slice(None), slice(0)])
+def test_union_sort_other_empty(slice_: slice) -> None:
+    ...
+
+def test_union_sort_other_empty_sort() -> None:
+    ...
+
+def test_union_sort_other_incomparable() -> None:
+    ...
+
+def test_union_sort_other_incomparable_sort() -> None:
+    ...
+
+def test_union_non_object_dtype_raises() -> None:
+    ...
+
+def test_union_empty_self_different_names() -> None:
+    ...
+
+def test_union_multiindex_empty_rangeindex() -> None:
+    ...
+
+@pytest.mark.parametrize('method', ['union', 'intersection', 'difference', 'symmetric_difference'])
+def test_setops_sort_validation(method: str) -> None:
+    ...
+
+@pytest.mark.parametrize('val', [pd.NA, 100])
+def test_difference_keep_ea_dtypes(any_numeric_ea_dtype: Any, val: Any) -> None:
+    ...
+
+@pytest.mark.parametrize('val', [pd.NA, 5])
+def test_symmetric_difference_keeping_ea_dtype(any_numeric_ea_dtype: Any, val: Any) -> None:
+    ...
+
+@pytest.mark.parametrize(('tuples', 'exp_tuples'), [([('val1', 'test1')], [('val1', 'test1')]), ([('val1', 'test1'), ('val1', 'test1')], [('val1', 'test1')]), ([('val2', 'test2'), ('val1', 'test1')], [('val2', 'test2'), ('val1', 'test1')])])
+def test_intersect_with_duplicates(tuples: List[Tuple[str, str]], exp_tuples: List[Tuple[str, str]]) -> None:
+    ...
+
+@pytest.mark.parametrize('data, names, expected', [((1,), None, [None, None]), ((1,), ['a'], [None, None]), ((1,), ['b'], [None, None]), ((1, 2), ['c', 'd'], [None, None]), ((1, 2), ['b', 'a'], [None, None]), ((1, 2, 3), ['a', 'b', 'c'], [None, None]), ((1, 2), ['a', 'c'], ['a', None]), ((1, 2), ['c', 'b'], [None, 'b']), ((1, 2), ['a', 'b'], ['a', 'b']), ((1, 2), [None, 'b'], [None, 'b'])])
+def test_maybe_match_names(data: Tuple[int, ...], names: Optional[List[str]], expected: List[Optional[str]]) -> None:
+    ...
+
+def test_intersection_equal_different_names() -> None:
+    ...
+
+def test_intersection_different_names() -> None:
+    ...
+
+def test_intersection_with_missing_values_on_both_sides(nulls_fixture: Any) -> None:
+    ...
+
+def test_union_with_missing_values_on_both_sides(nulls_fixture: Any) -> None:
+    ...
+
+@pytest.mark.parametrize('dtype', ['float64', 'Float64'])
+@pytest.mark.parametrize('sort', [None, False])
+def test_union_nan_got_duplicated(dtype: str, sort: Optional[bool]) -> None:
+    ...
+
+@pytest.mark.parametrize('val', [4, 1])
+def test_union_keep_ea_dtype(any_numeric_ea_dtype: Any, val: int) -> None:
+    ...
+
+@pytest.mark.parametrize('dupe_val', [3, pd.NA])
+def test_union_with_duplicates_keep_ea_dtype(dupe_val: Any, any_numeric_ea_dtype: Any) -> None:
+    ...
+
+@pytest.mark.filterwarnings('ignore:PeriodDtype\\[B\\] is deprecated:FutureWarning')
+def test_union_duplicates(index: Any, request: Any) -> None:
+    ...
+
+def test_union_keep_dtype_precision(any_real_numeric_dtype: Any) -> None:
+    ...
+
+def test_union_keep_ea_dtype_with_na(any_numeric_ea_dtype: Any) -> None:
+    ...
+
+@pytest.mark.parametrize('levels1, levels2, codes1, codes2, names', [([['a', 'b', 'c'], [0, '']], [['c', 'd', 'b'], ['']], [[0, 1, 2], [1, 1, 1]], [[0, 1, 2], [0, 0, 0]], ['name1', 'name2'])])
+def test_intersection_lexsort_depth(levels1: Any, levels2: Any, codes1: Any, codes2: Any, names: List[str]) -> None:
+    ...
+
+@pytest.mark.parametrize('a', [pd.Categorical(['a', 'b'], categories=['a', 'b']), ['a', 'b']])
+@pytest.mark.parametrize('b_ordered', [True, False])
+def test_intersection_with_non_lex_sorted_categories(a: Any, b_ordered: bool) -> None:
+    ...
+
+@pytest.mark.parametrize('val', [pd.NA, 100])
+def test_intersection_keep_ea_dtypes(val: Any, any_numeric_ea_dtype: Any) -> None:
+    ...
+
+def test_union_with_na_when_constructing_dataframe() -> None:
+    ...

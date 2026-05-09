@@ -1,0 +1,91 @@
+import asyncio
+import os
+import random
+import sys
+from itertools import count
+from time import monotonic
+from faust.cli import option
+
+__all__ = ['Benchmark']
+
+TIME_EVERY: int = 10000
+BENCH_TYPE: str = os.environ.get('F_BENCH', 'worker')
+ACKS: int = int(os.environ.get('F_ACKS') or 0)
+BSIZE: int = int(os.environ.get('F_BSIZE', 16384))
+LINGER: int = int(os.environ.get('F_LINGER', 0))
+
+class Benchmark:
+    _agent: 'asyncio.Task' = None
+    _produce: 'asyncio.Task' = None
+    produce_options: list[option.Option] = [
+        option('--max-latency', type=float, default=0.0, envvar='PRODUCE_LATENCY', help='Add delay of (at most) n seconds between publishing.'),
+        option('--max-messages', type=int, default=None, help='Send at most N messages or 0 for infinity.')
+    ]
+
+    def __init__(self, app: 'faust.App', topic: str, *, n: int = TIME_EVERY, consume_topic: str = None) -> None:
+        self.app: 'faust.App' = app
+        self.topic: str = topic
+        if consume_topic is None:
+            consume_topic = topic
+        self.consume_topic: str = consume_topic
+        self.n: int = n
+        self.app.finalize()
+        self.app.conf.producer_acks = ACKS
+        self.app.conf.producer_max_batch_size = BSIZE
+        self.app.conf.producer_linger = LINGER
+
+    def install(self, main_name: str) -> None:
+        self.create_benchmark_agent()
+        self.create_produce_command()
+        if main_name == '__main__':
+            bench_args: dict[str, list[str]] = {'worker': ['worker', '-l', 'info'], 'produce': ['produce']}
+            if len(sys.argv) < 2:
+                sys.argv.extend(bench_args[BENCH_TYPE])
+            self.app.main()
+
+    def create_benchmark_agent(self) -> None:
+        self._agent = self.app.agent(self.consume_topic)(self.process)
+
+    async def process(self, stream: 'faust.Stream') -> None:
+        time_last: float = None
+        async for i, value in stream.enumerate():
+            if not i:
+                time_last = monotonic()
+            await self.process_value(value)
+            if i and (not i % self.n):
+                now: float = monotonic()
+                runtime, time_last = (now - time_last, now)
+                print(f'RECV {i} in {runtime}s')
+
+    async def process_value(self, value: bytes) -> None:
+        ...
+
+    def create_produce_command(self) -> None:
+        self._produce = self.app.command(*self.produce_options)(self.produce)
+
+    async def produce(self, max_latency: float, max_messages: int, **kwargs: dict[str, str]) -> None:
+        i: int = 0
+        time_start: float = None
+        app: 'faust.App' = self.app
+        topic: str = self.topic
+        for i, (key, value) in enumerate(self.generate_values(max_messages)):
+            callback: callable = None
+            if not i:
+                time_start = monotonic()
+                time_1st: float = monotonic()
+
+                def on_published(meta: dict[str, str]) -> None:
+                    print(f'1ST OK: {meta} AFTER {monotonic() - time_1st}s')
+                callback = on_published
+            await topic.send(key=key, value=value, callback=callback)
+            if i and (not i % self.n):
+                print(f'+SEND {i} in {monotonic() - time_start}s')
+                time_start = monotonic()
+            if max_latency:
+                await asyncio.sleep(random.uniform(0, max_latency))
+        await asyncio.sleep(10)
+        await app.producer.stop()
+        print(f'Time spent on {i} messages: {monotonic() - time_start}s')
+
+    def generate_values(self, max_messages: int) -> iter[tuple[None, bytes]]:
+        return ((None, str(i).encode()) for i in (range(max_messages) if max_messages else count()))

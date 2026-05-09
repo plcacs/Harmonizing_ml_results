@@ -1,0 +1,321 @@
+from datetime import datetime, timedelta
+from decimal import Decimal
+from typing import Any, Callable, List, Optional, Union
+import numpy as np
+import pytest
+import pandas as pd
+from pandas import (
+    Categorical,
+    DataFrame,
+    DatetimeIndex,
+    Index,
+    NaT,
+    Period,
+    PeriodIndex,
+    RangeIndex,
+    Series,
+    Timedelta,
+    TimedeltaIndex,
+    Timestamp,
+)
+from _pytest.mark import IndexOrSeries
+
+def get_objs() -> list[Index | Series]:
+    ...
+
+class TestReductions:
+    @pytest.mark.filterwarnings('ignore:Period with BDay freq is deprecated:FutureWarning')
+    @pytest.mark.parametrize('opname', ['max', 'min'])
+    @pytest.mark.parametrize('obj', get_objs())
+    def test_ops(self, opname: str, obj: Union[Index, Series, PeriodIndex]) -> None:
+        ...
+
+    @pytest.mark.parametrize('opname', ['max', 'min'])
+    @pytest.mark.parametrize('dtype, val', [('object', 2.0), ('float64', 2.0), ('datetime64[ns]', datetime(2011, 11, 1)), ('Int64', 2), ('boolean', True)])
+    def test_nanminmax(self, opname: str, dtype: str, val: Any, index_or_series: IndexOrSeries) -> None:
+        ...
+
+    @pytest.mark.parametrize('opname', ['max', 'min'])
+    def test_nanargminmax(self, opname: str, index_or_series: IndexOrSeries) -> None:
+        ...
+
+    @pytest.mark.parametrize('opname', ['max', 'min'])
+    @pytest.mark.parametrize('dtype', ['M8[ns]', 'datetime64[ns, UTC]'])
+    def test_nanops_empty_object(self, opname: str, index_or_series: IndexOrSeries, dtype: str) -> None:
+        ...
+
+    def test_argminmax(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('op, expected_col', [['max', 'a'], ['min', 'b']])
+    def test_same_tz_min_max_axis_1(self, op: str, expected_col: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('func', ['maximum', 'minimum'])
+    def test_numpy_reduction_with_tz_aware_dtype(self, func: str) -> None:
+        ...
+
+    def test_nan_int_timedelta_sum(self) -> None:
+        ...
+
+class TestIndexReductions:
+    @pytest.mark.parametrize('start,stop,step', [(0, 400, 3), (500, 0, -6), (-10 ** 6, 10 ** 6, 4), (10 ** 6, -10 ** 6, -4), (0, 10, 20)])
+    def test_max_min_range(self, start: int, stop: int, step: int) -> None:
+        ...
+
+    def test_minmax_timedelta64(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('op', ['min', 'max'])
+    def test_minmax_timedelta_empty_or_na(self, op: str) -> None:
+        ...
+
+    def test_numpy_minmax_timedelta64(self) -> None:
+        ...
+
+    def test_timedelta_ops(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('opname', ['skew', 'kurt', 'sem', 'prod', 'var'])
+    def test_invalid_td64_reductions(self, opname: str) -> None:
+        ...
+
+    def test_minmax_tz(self, tz_naive_fixture: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('op', ['min', 'max'])
+    def test_minmax_nat_datetime64(self, op: str) -> None:
+        ...
+
+    def test_numpy_minmax_integer(self) -> None:
+        ...
+
+    def test_numpy_minmax_range(self) -> None:
+        ...
+
+    def test_numpy_minmax_datetime64(self) -> None:
+        ...
+
+    def test_minmax_period(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('op', ['min', 'max'])
+    @pytest.mark.parametrize('data', [[], [NaT], [NaT, NaT, NaT]])
+    def test_minmax_period_empty_nat(self, op: str, data: list) -> None:
+        ...
+
+    def test_numpy_minmax_period(self) -> None:
+        ...
+
+    def test_min_max_categorical(self) -> None:
+        ...
+
+class TestSeriesReductions:
+    def test_sum_inf(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('method, unit', [('sum', 0.0), ('prod', 1.0)])
+    @pytest.mark.parametrize('dtype', ['float64', 'Float32', 'Int64', 'boolean', 'object'])
+    @pytest.mark.parametrize('use_bottleneck', [True, False])
+    def test_empty(self, method: str, unit: float, use_bottleneck: bool, dtype: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('method', ['mean', 'var'])
+    @pytest.mark.parametrize('dtype', ['Float64', 'Int64', 'boolean'])
+    def test_ops_consistency_on_empty_nullable(self, method: str, dtype: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('method', ['mean', 'median', 'std', 'var'])
+    def test_ops_consistency_on_empty(self, method: str) -> None:
+        ...
+
+    def test_nansum_buglet(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('dtype', ['int32', 'int64'])
+    @pytest.mark.parametrize('use_bottleneck', [True, False])
+    def test_sum_overflow_int(self, use_bottleneck: bool, dtype: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('dtype', ['float32', 'float64'])
+    @pytest.mark.parametrize('use_bottleneck', [True, False])
+    def test_sum_overflow_float(self, use_bottleneck: bool, dtype: str) -> None:
+        ...
+
+    def test_mean_masked_overflow(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('ddof, exp', [(1, 2.5), (0, 2.0)])
+    def test_var_masked_array(self, ddof: int, exp: float) -> None:
+        ...
+
+    @pytest.mark.parametrize('dtype', ('m8[ns]', 'M8[ns]', 'M8[ns, UTC]'))
+    def test_empty_timeseries_reductions_return_nat(self, dtype: str, skipna: bool) -> None:
+        ...
+
+    def test_numpy_argmin(self) -> None:
+        ...
+
+    def test_numpy_argmax(self) -> None:
+        ...
+
+    def test_idxmin_dt64index(self, unit: str) -> None:
+        ...
+
+    def test_idxmin(self) -> None:
+        ...
+
+    def test_idxmax(self) -> None:
+        ...
+
+    def test_all_any(self) -> None:
+        ...
+
+    def test_numpy_all_any(self, index_or_series: IndexOrSeries) -> None:
+        ...
+
+    def test_all_any_skipna(self) -> None:
+        ...
+
+    def test_all_any_bool_only(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('any_string_dtype', [str])
+    def test_any_all_object_dtype(self, all_boolean_reductions: str, skipna: bool, any_string_dtype: type) -> None:
+        ...
+
+    @pytest.mark.parametrize('data', [[False, None], [None, False], [False, np.nan], [np.nan, False]])
+    def test_any_all_object_dtype_missing(self, data: list, all_boolean_reductions: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('dtype', ['boolean', 'Int64', 'UInt64', 'Float64'])
+    @pytest.mark.parametrize('data, expected_data', [([0, 0, 0], [[False, False], [False, False]]), ([1, 1, 1], [[True, True], [True, True]]), ([pd.NA, pd.NA, pd.NA], [[pd.NA, pd.NA], [False, True]]), ([0, pd.NA, 0], [[pd.NA, False], [False, False]]), ([1, pd.NA, 1], [[True, pd.NA], [True, True]]), ([1, pd.NA, 0], [[True, False], [True, False]])])
+    def test_any_all_nullable_kleene_logic(self, all_boolean_reductions: str, skipna: bool, data: list, dtype: str, expected_data: list) -> None:
+        ...
+
+    def test_any_axis1_bool_only(self) -> None:
+        ...
+
+    def test_any_all_datetimelike(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('any_string_dtype', [str])
+    def test_any_all_string_dtype(self, any_string_dtype: type, skipna: bool) -> None:
+        ...
+
+    def test_timedelta64_analytics(self) -> None:
+        ...
+
+    def test_assert_idxminmax_empty_raises(self) -> None:
+        ...
+
+    def test_idxminmax_object_dtype(self, using_infer_string: bool) -> None:
+        ...
+
+    def test_idxminmax_object_frame(self) -> None:
+        ...
+
+    def test_idxminmax_object_tuples(self) -> None:
+        ...
+
+    def test_idxminmax_object_decimals(self) -> None:
+        ...
+
+    def test_argminmax_object_ints(self) -> None:
+        ...
+
+    def test_idxminmax_with_inf(self) -> None:
+        ...
+
+    def test_sum_uint64(self) -> None:
+        ...
+
+    def test_signedness_preserved_after_sum(self) -> None:
+        ...
+
+class TestDatetime64SeriesReductions:
+    @pytest.mark.parametrize('nat_ser', [Series([NaT, NaT]), Series([NaT, Timedelta('nat')]), Series([Timedelta('nat'), Timedelta('nat')])])
+    def test_minmax_nat_series(self, nat_ser: Series) -> None:
+        ...
+
+    @pytest.mark.parametrize('nat_df', [[NaT, NaT], [NaT, Timedelta('nat')], [Timedelta('nat'), Timedelta('nat')]])
+    def test_minmax_nat_dataframe(self, nat_df: list) -> None:
+        ...
+
+    def test_min_max(self) -> None:
+        ...
+
+    def test_min_max_series(self) -> None:
+        ...
+
+class TestCategoricalSeriesReductions:
+    @pytest.mark.parametrize('function', ['min', 'max'])
+    def test_min_max_unordered_raises(self, function: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('values, categories', [(list('abc'), list('abc')), (list('abc'), list('cba')), (list('abc') + [np.nan], list('cba')), ([1, 2, 3], [3, 2, 1]), ([1, 2, 3, np.nan], [3, 2, 1])])
+    @pytest.mark.parametrize('function', ['min', 'max'])
+    def test_min_max_ordered(self, values: list, categories: list, function: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('function', ['min', 'max'])
+    def test_min_max_ordered_with_nan_only(self, function: str, skipna: bool) -> None:
+        ...
+
+    @pytest.mark.parametrize('function', ['min', 'max'])
+    def test_min_max_skipna(self, function: str, skipna: bool) -> None:
+        ...
+
+class TestSeriesMode:
+    def test_mode_empty(self, dropna: bool) -> None:
+        ...
+
+    @pytest.mark.parametrize('dropna, data, expected', [(True, [1, 1, 1, 2], [1]), (True, [1, 1, 1, 2, 3, 3, 3], [1, 3]), (False, [1, 1, 1, 2], [1]), (False, [1, 1, 1, 2, 3, 3, 3], [1, 3])])
+    def test_mode_numerical(self, dropna: bool, data: list, expected: list, any_real_numpy_dtype: type) -> None:
+        ...
+
+    @pytest.mark.parametrize('dropna, expected', [(True, [1.0]), (False, [1, np.nan])])
+    def test_mode_numerical_nan(self, dropna: bool, expected: list) -> None:
+        ...
+
+    @pytest.mark.parametrize('dropna, expected1, expected2', [(True, ['b'], ['bar']), (False, ['b'], [np.nan])])
+    def test_mode_object(self, dropna: bool, expected1: list, expected2: list) -> None:
+        ...
+
+    @pytest.mark.parametrize('dropna, expected1, expected2', [(True, ['b'], ['bar']), (False, ['b'], [np.nan])])
+    def test_mode_string(self, dropna: bool, expected1: list, expected2: list, any_string_dtype: type) -> None:
+        ...
+
+    @pytest.mark.parametrize('dropna, expected1, expected2', [(True, ['foo'], ['foo']), (False, ['foo'], [np.nan])])
+    def test_mode_mixeddtype(self, dropna: bool, expected1: list, expected2: list) -> None:
+        ...
+
+    @pytest.mark.parametrize('dropna, expected1, expected2', [(True, ['1900-05-03', '2011-01-03', '2013-01-02'], ['2011-01-03', '2013-01-02']), (False, [np.nan], [np.nan, '2011-01-03', '2013-01-02'])])
+    def test_mode_datetime(self, dropna: bool, expected1: list, expected2: list) -> None:
+        ...
+
+    @pytest.mark.parametrize('dropna, expected1, expected2', [(True, ['-1 days', '0 days', '1 days'], ['2 min', '1 day']), (False, [np.nan], [np.nan, '2 min', '1 day'])])
+    def test_mode_timedelta(self, dropna: bool, expected1: list, expected2: list) -> None:
+        ...
+
+    @pytest.mark.parametrize('dropna, expected1, expected2, expected3', [(True, Categorical([1, 2], categories=[1, 2]), Categorical(['a'], categories=[1, 'a']), Categorical([3, 1], categories=[3, 2, 1], ordered=True)), (False, Categorical([np.nan], categories=[1, 2]), Categorical([np.nan, 'a'], categories=[1, 'a']), Categorical([np.nan, 3, 1], categories=[3, 2, 1], ordered=True))])
+    def test_mode_category(self, dropna: bool, expected1: Categorical, expected2: Categorical, expected3: Categorical) -> None:
+        ...
+
+    @pytest.mark.parametrize('dropna, expected1, expected2', [(True, [2 ** 63], [1, 2 ** 63]), (False, [2 ** 63], [1, 2 ** 63])])
+    def test_mode_intoverflow(self, dropna: bool, expected1: list, expected2: list) -> None:
+        ...
+
+    def test_mode_sort_with_na(self) -> None:
+        ...
+
+    def test_mode_boolean_with_na(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('array,expected,dtype', [([0, 1j, 1, 1, 1 + 1j, 1 + 2j], [1], np.complex128), ([0, 1j, 1, 1, 1 + 1j, 1 + 2j], [1], np.complex64), ([1 + 1j, 2j, 1 + 1j], [1 + 1j], np.complex128)])
+    def test_single_mode_value_complex(self, array: list, expected: list, dtype: type) -> None:
+        ...
+
+    @pytest.mark.parametrize('array,expected,dtype', [([0, 1j, 1, 1 + 1j, 1 + 2j], [0j, 1j, 1 + 0j, 1 + 1j, 1 + 2j], np.complex128), ([1 + 1j, 2j, 1 + 1j, 2j, 3], [2j, 1 + 1j], np.complex64)])
+    def test_multimode_complex(self, array: list, expected: list, dtype: type) -> None:
+        ...

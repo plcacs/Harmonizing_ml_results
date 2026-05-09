@@ -1,0 +1,196 @@
+from datetime import date, timedelta, timezone
+from decimal import Decimal
+import operator
+import numpy as np
+import pytest
+from pandas._libs import lib
+from pandas._libs.tslibs import IncompatibleFrequency
+import pandas as pd
+from pandas import (
+    Categorical,
+    DatetimeTZDtype,
+    Index,
+    Series,
+    Timedelta,
+    bdate_range,
+    date_range,
+    isna,
+)
+import pandas._testing as tm
+from pandas.core import ops
+from pandas.core.computation import expressions as expr
+from pandas.core.computation.check import NUMEXPR_INSTALLED
+
+@pytest.fixture(autouse=True, params=[0, 1000000], ids=['numexpr', 'python'])
+def switch_numexpr_min_elements(request: pytest.FixtureRequest, monkeypatch: pytest.MonkeyPatch) -> None:
+    ...
+
+class TestSeriesFlexArithmetic:
+    @pytest.mark.parametrize('ts', [(lambda x: x, lambda x: x * 2, False), (lambda x: x, lambda x: x[::2], False), (lambda x: Series(range(10), dtype=np.float64), lambda x: Series(range(10), dtype=np.float64), True)])
+    @pytest.mark.parametrize('opname', ['add', 'sub', 'mul', 'floordiv', 'truediv', 'pow'])
+    def test_flex_method_equivalence(self, opname: str, ts: tuple[callable, callable, bool]) -> None:
+        ...
+
+    def test_flex_method_subclass_metadata_preservation(self, all_arithmetic_operators: str) -> None:
+        ...
+
+    def test_flex_add_scalar_fill_value(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('op, equiv_op, fv', pairings)
+    def test_operators_combine(self, op: callable, equiv_op: callable, fv: int) -> None:
+        ...
+
+class TestSeriesArithmetic:
+    def test_add_series_with_period_index(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('target_add,input_value,expected_value', [('!', ['hello', 'world'], ['hello!', 'world!']), ('m', ['hello', 'world'], ['hellom', 'worldm'])])
+    def test_string_addition(self, target_add: str, input_value: list[str], expected_value: list[str]) -> None:
+        ...
+
+    def test_divmod(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('index', [None, range(9)])
+    def test_series_integer_mod(self, index: int | None) -> None:
+        ...
+
+    def test_add_with_duplicate_index(self) -> None:
+        ...
+
+    def test_add_na_handling(self) -> None:
+        ...
+
+    def test_add_corner_cases(self, datetime_series: Series) -> None:
+        ...
+
+    def test_add_float_plus_int(self, datetime_series: Series) -> None:
+        ...
+
+    def test_mul_empty_int_corner_case(self) -> None:
+        ...
+
+    def test_sub_datetimelike_align(self) -> None:
+        ...
+
+    def test_alignment_doesnt_change_tz(self) -> None:
+        ...
+
+    def test_alignment_categorical(self) -> None:
+        ...
+
+    def test_arithmetic_with_duplicate_index(self) -> None:
+        ...
+
+    def test_masked_and_non_masked_propagate_na(self) -> None:
+        ...
+
+    def test_mask_div_propagate_na_for_non_na_dtype(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('val, dtype', [(3, 'Int64'), (3.5, 'Float64')])
+    def test_add_list_to_masked_array(self, val: int | float, dtype: str) -> None:
+        ...
+
+    def test_add_list_to_masked_array_boolean(self, request: pytest.FixtureRequest) -> None:
+        ...
+
+class TestSeriesFlexComparison:
+    @pytest.mark.parametrize('axis', [0, None, 'index'])
+    def test_comparison_flex_basic(self, axis: int | str | None, comparison_op: callable) -> None:
+        ...
+
+    def test_comparison_bad_axis(self, comparison_op: callable) -> None:
+        ...
+
+    @pytest.mark.parametrize('values, op', [([False, False, True, False], 'eq'), ([True, True, False, True], 'ne'), ([False, False, True, False], 'le'), ([False, False, False, False], 'lt'), ([False, True, True, False], 'ge'), ([False, True, False, False], 'gt')])
+    def test_comparison_flex_alignment(self, values: list[bool], op: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('values, op, fill_value', [([False, False, True, True], 'eq', 2), ([True, True, False, False], 'ne', 2), ([False, False, True, True], 'le', 0), ([False, False, False, True], 'lt', 0), ([True, True, True, False], 'ge', 0), ([True, True, False, False], 'gt', 0)])
+    def test_comparison_flex_alignment_fill(self, values: list[bool], op: str, fill_value: int) -> None:
+        ...
+
+class TestSeriesComparison:
+    def test_comparison_different_length(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('opname', ['eq', 'ne', 'gt', 'lt', 'ge', 'le'])
+    def test_ser_flex_cmp_return_dtypes(self, opname: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('opname', ['eq', 'ne', 'gt', 'lt', 'ge', 'le'])
+    def test_ser_flex_cmp_return_dtypes_empty(self, opname: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('names', [(None, None, None), ('foo', 'bar', None), ('baz', 'baz', 'baz')])
+    def test_ser_cmp_result_names(self, names: tuple[str | None, str | None, str | None], comparison_op: callable) -> None:
+        ...
+
+    def test_comparisons(self) -> None:
+        ...
+
+    def test_categorical_comparisons(self) -> None:
+        ...
+
+    def test_unequal_categorical_comparison_raises_type_error(self) -> None:
+        ...
+
+    def test_comparison_tuples(self) -> None:
+        ...
+
+    def test_comparison_frozenset(self) -> None:
+        ...
+
+    def test_comparison_operators_with_nas(self, comparison_op: callable) -> None:
+        ...
+
+    def test_ne(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('right_data', [[2, 2, 2], [2, 2, 2, 2]])
+    def test_comp_ops_df_compat(self, right_data: list[int], frame_or_series: type[Series | pd.DataFrame]) -> None:
+        ...
+
+    def test_compare_series_interval_keyword(self) -> None:
+        ...
+
+class TestTimeSeriesArithmetic:
+    def test_series_add_tz_mismatch_converts_to_utc(self) -> None:
+        ...
+
+    def test_series_add_aware_naive_raises(self) -> None:
+        ...
+
+    def test_datetime_understood(self, unit: str) -> None:
+        ...
+
+    def test_align_date_objects_with_datetimeindex(self) -> None:
+        ...
+
+class TestNamePreservation:
+    @pytest.mark.parametrize('box', [list, tuple, np.array, Index, Series, pd.array])
+    @pytest.mark.parametrize('flex', [True, False])
+    def test_series_ops_name_retention(self, flex: bool, box: type[list | tuple | np.ndarray | Index | Series | pd.array], names: tuple[str | None, str | None, str | None], all_binary_operators: callable) -> None:
+        ...
+
+    def test_binop_maybe_preserve_name(self, datetime_series: Series) -> None:
+        ...
+
+    def test_scalarop_preserve_name(self, datetime_series: Series) -> None:
+        ...
+
+class TestInplaceOperations:
+    @pytest.mark.parametrize('dtype1, dtype2, dtype_expected, dtype_mul', (('Int64', 'Int64', 'Int64', 'Int64'), ('float', 'float', 'float', 'float'), ('Int64', 'float', 'Float64', 'Float64'), ('Int64', 'Float64', 'Float64', 'Float64')))
+    def test_series_inplace_ops(self, dtype1: str, dtype2: str, dtype_expected: str, dtype_mul: str) -> None:
+        ...
+
+def test_none_comparison(request: pytest.FixtureRequest, series_with_simple_index: Series) -> None:
+    ...
+
+def test_series_varied_multiindex_alignment() -> None:
+    ...
+
+def test_rmod_consistent_large_series() -> None:
+    ...

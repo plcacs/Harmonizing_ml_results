@@ -1,0 +1,110 @@
+"""Adapter to wrap the rachiopy api for home assistant."""
+from __future__ import annotations
+from http import HTTPStatus
+import logging
+from typing import Any, Dict, List, Optional, Union
+from rachiopy import Rachio
+import voluptuous as vol
+from homeassistant.config_entries import ConfigEntry
+from homeassistant.core import HomeAssistant, ServiceCall
+from homeassistant.exceptions import ConfigEntryAuthFailed, ConfigEntryNotReady
+
+_LOGGER = logging.getLogger(__name__)
+
+ATTR_DEVICES = 'devices'
+ATTR_DURATION = 'duration'
+PERMISSION_ERROR = '7'
+
+PAUSE_SERVICE_SCHEMA = vol.Schema(...)
+RESUME_SERVICE_SCHEMA = vol.Schema(...)
+STOP_SERVICE_SCHEMA = vol.Schema(...)
+
+class RachioPerson:
+    """Represent a Rachio user."""
+    def __init__(self, rachio: Rachio, config_entry: ConfigEntry) -> None:
+        ...
+
+    async def async_setup(self, hass: HomeAssistant) -> None:
+        ...
+
+    def _setup(self, hass: HomeAssistant) -> None:
+        ...
+
+    @property
+    def user_id(self) -> str:
+        ...
+
+    @property
+    def controllers(self) -> List['RachioIro']:
+        ...
+
+    @property
+    def base_stations(self) -> List['RachioBaseStation']:
+        ...
+
+    def start_multiple_zones(self, zones: List[Dict[str, Any]]) -> None:
+        ...
+
+class RachioIro:
+    """Represent a Rachio Iro."""
+    def __init__(self, hass: HomeAssistant, rachio: Rachio, data: Dict[str, Any], webhooks: Dict[str, Any]) -> None:
+        ...
+
+    def setup(self) -> None:
+        ...
+
+    def _init_webhooks(self) -> None:
+        ...
+
+    def __str__(self) -> str:
+        ...
+
+    @property
+    def controller_id(self) -> str:
+        ...
+
+    @property
+    def current_schedule(self) -> Dict[str, Any]:
+        ...
+
+    @property
+    def init_data(self) -> Dict[str, Any]:
+        ...
+
+    def list_zones(self, include_disabled: bool = False) -> List[Dict[str, Any]]:
+        ...
+
+    def get_zone(self, zone_id: str) -> Optional[Dict[str, Any]]:
+        ...
+
+    def list_schedules(self) -> List[Dict[str, Any]]:
+        ...
+
+    def list_flex_schedules(self) -> List[Dict[str, Any]]:
+        ...
+
+    def stop_watering(self) -> None:
+        ...
+
+    def pause_watering(self, duration: int) -> None:
+        ...
+
+    def resume_watering(self) -> None:
+        ...
+
+class RachioBaseStation:
+    """Represent a smart hose timer base station."""
+    def __init__(self, rachio: Rachio, data: Dict[str, Any], status_coordinator: 'RachioUpdateCoordinator', schedule_coordinator: 'RachioScheduleUpdateCoordinator') -> None:
+        ...
+
+    def start_watering(self, valve_id: int, duration: int) -> None:
+        ...
+
+    def stop_watering(self, valve_id: int) -> None:
+        ...
+
+    def create_skip(self, program_id: int, timestamp: int) -> None:
+        ...
+
+def is_invalid_auth_code(http_status_code: int) -> bool:
+    ...

@@ -1,0 +1,215 @@
+from __future__ import annotations
+import numpy as np
+import pytest
+from pandas import DataFrame, DatetimeIndex, Index, MultiIndex, NamedAgg, Series, Timestamp, date_range, to_datetime
+import pandas._testing as tm
+from pandas.api.indexers import BaseIndexer
+from pandas.core.groupby.groupby import get_groupby
+
+@pytest.fixture
+def times_frame() -> DataFrame:
+    ...
+
+@pytest.fixture
+def roll_frame() -> DataFrame:
+    ...
+
+class TestRolling:
+    def test_groupby_unsupported_argument(self, roll_frame: DataFrame) -> None:
+        ...
+
+    def test_getitem(self, roll_frame: DataFrame) -> None:
+        ...
+
+    def test_getitem_multiple(self, roll_frame: DataFrame) -> None:
+        ...
+
+    @pytest.mark.parametrize('f', ['sum', 'mean', 'min', 'max', 'first', 'last', 'count', 'kurt', 'skew'])
+    def test_rolling(self, f: str, roll_frame: DataFrame) -> None:
+        ...
+
+    @pytest.mark.parametrize('f', ['std', 'var'])
+    def test_rolling_ddof(self, f: str, roll_frame: DataFrame) -> None:
+        ...
+
+    @pytest.mark.parametrize('interpolation', ['linear', 'lower', 'higher', 'midpoint', 'nearest'])
+    def test_rolling_quantile(self, interpolation: str, roll_frame: DataFrame) -> None:
+        ...
+
+    @pytest.mark.parametrize('f, expected_val', [['corr', 1], ['cov', 0.5]])
+    def test_rolling_corr_cov_other_same_size_as_groups(self, f: str, expected_val: float) -> None:
+        ...
+
+    @pytest.mark.parametrize('f', ['corr', 'cov'])
+    def test_rolling_corr_cov_other_diff_size_as_groups(self, f: str, roll_frame: DataFrame) -> None:
+        ...
+
+    @pytest.mark.parametrize('f', ['corr', 'cov'])
+    def test_rolling_corr_cov_pairwise(self, f: str, roll_frame: DataFrame) -> None:
+        ...
+
+    @pytest.mark.parametrize('func, expected_values', [('cov', [[1.0, 1.0], [1.0, 4.0]]), ('corr', [[1.0, 0.5], [0.5, 1.0]])])
+    def test_rolling_corr_cov_unordered(self, func: str, expected_values: list[list[float]]) -> None:
+        ...
+
+    def test_rolling_apply(self, raw: bool, roll_frame: DataFrame) -> None:
+        ...
+
+    def test_rolling_apply_mutability(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('expected_value,raw_value', [[1.0, True], [0.0, False]])
+    def test_groupby_rolling(self, expected_value: float, raw_value: bool) -> None:
+        ...
+
+    def test_groupby_rolling_center_center(self) -> None:
+        ...
+
+    def test_groupby_rolling_center_on(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('min_periods', [5, 4, 3])
+    def test_groupby_rolling_center_min_periods(self, min_periods: int) -> None:
+        ...
+
+    def test_groupby_subselect_rolling(self) -> None:
+        ...
+
+    def test_groupby_rolling_custom_indexer(self) -> None:
+        ...
+
+    def test_groupby_rolling_subset_with_closed(self) -> None:
+        ...
+
+    def test_groupby_rolling_agg_namedagg(self) -> None:
+        ...
+
+    def test_groupby_subset_rolling_subset_with_closed(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('func', ['max', 'min'])
+    def test_groupby_rolling_index_changed(self, func: str) -> None:
+        ...
+
+    def test_groupby_rolling_empty_frame(self) -> None:
+        ...
+
+    def test_groupby_rolling_string_index(self) -> None:
+        ...
+
+    def test_groupby_rolling_no_sort(self) -> None:
+        ...
+
+    def test_groupby_rolling_count_closed_on(self, unit: str) -> None:
+        ...
+
+    @pytest.mark.parametrize(('func', 'kwargs'), [('rolling', {'window': 2, 'min_periods': 1}), ('expanding', {})])
+    def test_groupby_rolling_sem(self, func: str, kwargs: dict) -> None:
+        ...
+
+    @pytest.mark.parametrize(('rollings', 'key'), [({'on': 'a'}, 'a'), ({'on': None}, 'index')])
+    def test_groupby_rolling_nans_in_index(self, rollings: dict, key: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('group_keys', [True, False])
+    def test_groupby_rolling_group_keys(self, group_keys: bool) -> None:
+        ...
+
+    def test_groupby_rolling_index_level_and_column_label(self) -> None:
+        ...
+
+    def test_groupby_rolling_resulting_multiindex(self) -> None:
+        ...
+
+    def test_groupby_rolling_resulting_multiindex2(self) -> None:
+        ...
+
+    def test_groupby_rolling_resulting_multiindex3(self) -> None:
+        ...
+
+    def test_groupby_rolling_object_doesnt_affect_groupby_apply(self, roll_frame: DataFrame) -> None:
+        ...
+
+    @pytest.mark.parametrize(('window', 'min_periods', 'closed', 'expected'), [(2, 0, 'left', [None, 0.0, 1.0, 1.0, None, 0.0, 1.0, 1.0]), (2, 2, 'left', [None, None, 1.0, 1.0, None, None, 1.0, 1.0]), (4, 4, 'left', [None, None, None, None, None, None, None, None]), (4, 4, 'right', [None, None, None, 5.0, None, None, None, 5.0])])
+    def test_groupby_rolling_var(self, window: int, min_periods: int, closed: str, expected: list) -> None:
+        ...
+
+    @pytest.mark.parametrize('columns', [MultiIndex.from_tuples([('A', ''), ('B', 'C')]), ['A', 'B']])
+    def test_by_column_not_in_values(self, columns: list | MultiIndex) -> None:
+        ...
+
+    def test_groupby_level(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('by, expected_data', [[['id'], {'num': [100.0, 150.0, 150.0, 200.0]}], [['id', 'index'], {'date': [Timestamp('2018-01-01'), Timestamp('2018-01-02'), Timestamp('2018-01-01'), Timestamp('2018-01-02')], 'num': [100.0, 200.0, 150.0, 250.0]}]])
+    def test_as_index_false(self, by: list, expected_data: dict, unit: str) -> None:
+        ...
+
+    def test_nan_and_zero_endpoints(self, any_int_numpy_dtype: np.dtype) -> None:
+        ...
+
+    def test_groupby_rolling_non_monotonic(self) -> None:
+        ...
+
+    def test_groupby_monotonic(self) -> None:
+        ...
+
+    def test_datelike_on_monotonic_within_each_group(self) -> None:
+        ...
+
+    def test_datelike_on_not_monotonic_within_each_group(self) -> None:
+        ...
+
+class TestExpanding:
+    @pytest.fixture
+    def frame(self) -> DataFrame:
+        ...
+
+    @pytest.mark.parametrize('f', ['sum', 'mean', 'min', 'max', 'first', 'last', 'count', 'kurt', 'skew'])
+    def test_expanding(self, f: str, frame: DataFrame) -> None:
+        ...
+
+    @pytest.mark.parametrize('f', ['std', 'var'])
+    def test_expanding_ddof(self, f: str, frame: DataFrame) -> None:
+        ...
+
+    @pytest.mark.parametrize('interpolation', ['linear', 'lower', 'higher', 'midpoint', 'nearest'])
+    def test_expanding_quantile(self, interpolation: str, frame: DataFrame) -> None:
+        ...
+
+    @pytest.mark.parametrize('f', ['corr', 'cov'])
+    def test_expanding_corr_cov(self, f: str, frame: DataFrame) -> None:
+        ...
+
+    def test_expanding_apply(self, raw: bool, frame: DataFrame) -> None:
+        ...
+
+    def test_groupby_expanding_agg_namedagg(self) -> None:
+        ...
+
+class TestEWM:
+    @pytest.mark.parametrize('method, expected_data', [['mean', [0.0, 0.6666666666666666, 1.4285714285714286, 2.2666666666666666]], ['std', [np.nan, 0.707107, 0.963624, 1.177164]], ['var', [np.nan, 0.5, 0.9285714285714286, 1.3857142857142857]]])
+    def test_methods(self, method: str, expected_data: list) -> None:
+        ...
+
+    def test_groupby_ewm_agg_namedagg(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('method, expected_data', [['corr', [np.nan, 1.0, 1.0, 1]], ['cov', [np.nan, 0.5, 0.928571, 1.385714]]])
+    def test_pairwise_methods(self, method: str, expected_data: list) -> None:
+        ...
+
+    def test_times(self, times_frame: DataFrame) -> None:
+        ...
+
+    def test_times_array(self, times_frame: DataFrame) -> None:
+        ...
+
+    def test_dont_mutate_obj_after_slicing(self) -> None:
+        ...
+
+def test_rolling_corr_with_single_integer_in_index() -> None:
+    ...
+
+def test_rolling_corr_with_tuples_in_index() -> None:
+    ...

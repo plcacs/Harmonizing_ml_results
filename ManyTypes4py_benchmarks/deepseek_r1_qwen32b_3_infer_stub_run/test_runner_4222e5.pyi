@@ -1,0 +1,146 @@
+import logging
+from pathlib import Path
+from unittest.mock import ANY, Mock, patch
+import pytest
+from dbt.artifacts.resources.types import NodeType
+from dbt.artifacts.schemas.catalog import CatalogArtifact
+from dbt.artifacts.schemas.results import RunStatus, TestStatus
+from dbt.artifacts.schemas.run import RunExecutionResult
+from dbt.cli.main import dbtRunnerResult
+from dbt.contracts.graph.manifest import Manifest
+from dbt.contracts.graph.nodes import ManifestNode
+from dbt_common.events.base_types import EventLevel
+from prefect_dbt.core.runner import PrefectDbtRunner
+from prefect_dbt.core.settings import PrefectDbtSettings
+from prefect import flow
+from prefect.events.schemas.events import RelatedResource
+
+@pytest.fixture
+def mock_dbt_runner() -> pytest.MockFixture[Mock]:
+    ...
+
+@pytest.fixture
+def settings() -> pytest.Fixture[PrefectDbtSettings]:
+    ...
+
+@pytest.fixture
+def mock_manifest() -> pytest.Fixture[Mock]:
+    ...
+
+@pytest.fixture
+def mock_nodes() -> pytest.Fixture[dict[str, Mock]]:
+    ...
+
+@pytest.fixture
+def mock_manifest_with_nodes(mock_manifest: Mock, mock_nodes: dict[str, Mock]) -> pytest.Fixture[Mock]:
+    ...
+
+class TestPrefectDbtRunnerInitialization:
+    def test_runner_initialization(self, settings: PrefectDbtSettings) -> None:
+        ...
+
+    def test_runner_default_initialization(self) -> None:
+        ...
+
+class TestPrefectDbtRunnerParse:
+    def test_parse_success(self, mock_dbt_runner: Mock, settings: PrefectDbtSettings) -> None:
+        ...
+
+    def test_parse_failure(self, mock_dbt_runner: Mock, settings: PrefectDbtSettings) -> None:
+        ...
+
+class TestPrefectDbtRunnerInvoke:
+    def test_invoke_with_custom_kwargs(self, mock_dbt_runner: Mock, settings: PrefectDbtSettings) -> None:
+        ...
+
+    @pytest.mark.asyncio
+    async def test_ainvoke_with_custom_kwargs(self, mock_dbt_runner: Mock, settings: PrefectDbtSettings) -> None:
+        ...
+
+    def test_invoke_with_parsing(self, mock_dbt_runner: Mock, settings: PrefectDbtSettings) -> None:
+        ...
+
+    @pytest.mark.asyncio
+    async def test_ainvoke_with_parsing(self, mock_dbt_runner: Mock, settings: PrefectDbtSettings) -> None:
+        ...
+
+    def test_invoke_raises_on_failure(self, mock_dbt_runner: Mock, settings: PrefectDbtSettings) -> None:
+        ...
+
+    @pytest.mark.asyncio
+    async def test_ainvoke_raises_on_failure(self, mock_dbt_runner: Mock, settings: PrefectDbtSettings) -> None:
+        ...
+
+    def test_invoke_multiple_failures(self, mock_dbt_runner: Mock, settings: PrefectDbtSettings) -> None:
+        ...
+
+    @pytest.mark.asyncio
+    async def test_ainvoke_multiple_failures(self, mock_dbt_runner: Mock, settings: PrefectDbtSettings) -> None:
+        ...
+
+    def test_invoke_no_raise_on_failure(self, mock_dbt_runner: Mock, settings: PrefectDbtSettings) -> None:
+        ...
+
+    @pytest.mark.asyncio
+    async def test_ainvoke_no_raise_on_failure(self, mock_dbt_runner: Mock, settings: PrefectDbtSettings) -> None:
+        ...
+
+    @pytest.mark.parametrize('command,expected_type,requires_manifest', [(['run'], RunExecutionResult, True), (['test'], RunExecutionResult, True), (['seed'], RunExecutionResult, True), (['snapshot'], RunExecutionResult, True), (['build'], RunExecutionResult, True), (['compile'], RunExecutionResult, True), (['run-operation'], RunExecutionResult, True), (['parse'], Manifest, False), (['docs', 'generate'], CatalogArtifact, True), (['list'], list, True), (['ls'], list, True), (['debug'], bool, False), (['clean'], None, False), (['deps'], None, False), (['init'], None, False), (['source'], None, True)])
+    def test_invoke_command_return_types(self, mock_dbt_runner: Mock, settings: PrefectDbtSettings, command: list[str], expected_type: type, requires_manifest: bool) -> None:
+        ...
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('command,expected_type,requires_manifest', [(['run'], RunExecutionResult, True), (['test'], RunExecutionResult, True), (['seed'], RunExecutionResult, True), (['snapshot'], RunExecutionResult, True), (['build'], RunExecutionResult, True), (['compile'], RunExecutionResult, True), (['run-operation'], RunExecutionResult, True), (['parse'], Manifest, False), (['docs', 'generate'], CatalogArtifact, True), (['list'], list, True), (['ls'], list, True), (['debug'], bool, False), (['clean'], None, False), (['deps'], None, False), (['init'], None, False), (['source'], None, True)])
+    async def test_ainvoke_command_return_types(self, mock_dbt_runner: Mock, settings: PrefectDbtSettings, command: list[str], expected_type: type, requires_manifest: bool) -> None:
+        ...
+
+    def test_invoke_with_manifest_requiring_commands(self, mock_dbt_runner: Mock, settings: PrefectDbtSettings) -> None:
+        ...
+
+    def test_invoke_with_preloaded_manifest(self, mock_dbt_runner: Mock, settings: PrefectDbtSettings) -> None:
+        ...
+
+    def test_invoke_debug_command(self, mock_dbt_runner: Mock, settings: PrefectDbtSettings) -> None:
+        ...
+
+    @pytest.mark.parametrize('command,expected_type', [(['run'], RunExecutionResult), (['test'], RunExecutionResult), (['seed'], RunExecutionResult), (['snapshot'], RunExecutionResult), (['build'], RunExecutionResult), (['compile'], RunExecutionResult), (['run-operation'], RunExecutionResult), (['parse'], Manifest), (['docs', 'generate'], CatalogArtifact), (['list'], list), (['ls'], list), (['debug'], bool), (['clean'], type(None)), (['deps'], type(None)), (['init'], type(None)), (['source'], type(None))])
+    def test_failure_result_types(self, mock_dbt_runner: Mock, settings: PrefectDbtSettings, command: list[str], expected_type: type) -> None:
+        ...
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('command,expected_type', [(['run'], RunExecutionResult), (['test'], RunExecutionResult), (['seed'], RunExecutionResult), (['snapshot'], RunExecutionResult), (['build'], RunExecutionResult), (['compile'], RunExecutionResult), (['run-operation'], RunExecutionResult), (['parse'], Manifest), (['docs', 'generate'], CatalogArtifact), (['list'], list), (['ls'], list), (['debug'], bool), (['clean'], type(None)), (['deps'], type(None)), (['init'], type(None)), (['source'], type(None))])
+    async def test_failure_result_types_async(self, mock_dbt_runner: Mock, settings: PrefectDbtSettings, command: list[str], expected_type: type) -> None:
+        ...
+
+class TestPrefectDbtRunnerLogging:
+    def test_logging_callback(self, mock_dbt_runner: Mock, settings: PrefectDbtSettings, caplog: pytest.LogCaptureFixture) -> None:
+        ...
+
+    def test_logging_callback_no_flow(self, mock_dbt_runner: Mock, settings: PrefectDbtSettings, caplog: pytest.LogCaptureFixture) -> None:
+        ...
+
+class TestPrefectDbtRunnerEvents:
+    def test_events_callback_node_finished(self, mock_dbt_runner: Mock, settings: PrefectDbtSettings) -> None:
+        ...
+
+    def test_events_callback_with_emit_events_false(self, mock_dbt_runner: Mock, settings: PrefectDbtSettings) -> None:
+        ...
+
+    def test_events_callback_with_emit_node_events_false(self, mock_dbt_runner: Mock, settings: PrefectDbtSettings) -> None:
+        ...
+
+    def test_events_callback_with_emit_lineage_events_false(self, mock_dbt_runner: Mock, settings: PrefectDbtSettings) -> None:
+        ...
+
+    def test_events_callback_with_all_events_disabled(self, mock_dbt_runner: Mock, settings: PrefectDbtSettings) -> None:
+        ...
+
+class TestPrefectDbtRunnerLineage:
+    @pytest.mark.parametrize('provide_manifest', [True, False])
+    def test_emit_lineage_events(self, mock_dbt_runner: Mock, settings: PrefectDbtSettings, mock_manifest_with_nodes: Mock, provide_manifest: bool) -> None:
+        ...
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('provide_manifest', [True, False])
+    async def test_aemit_lineage_events(self, mock_dbt_runner: Mock, settings: PrefectDbtSettings, mock_manifest_with_nodes: Mock, provide_manifest: bool) -> None:
+        ...

@@ -1,0 +1,180 @@
+"""Tests for the Bluetooth integration."""
+from collections.abc import Iterable
+from contextlib import ContextManager
+from typing import Any, Dict, List, Optional, Union
+from unittest.mock import MagicMock
+
+from bleak import BleakClient
+from bleak.backends.scanner import AdvertisementData, BLEDevice
+from homeassistant.components.bluetooth import (
+    BluetoothServiceInfo,
+    BluetoothServiceInfoBleak,
+    DOMAIN,
+    SOURCE_LOCAL,
+)
+from homeassistant.components.bluetooth.manager import HomeAssistantBluetoothManager
+from homeassistant.core import HomeAssistant
+from homeassistant.setup import MockConfigEntry
+from habluetooth import BaseHaScanner, BaseHaRemoteScanner
+
+__all__ = [
+    'MockBleakClient',
+    'generate_advertisement_data',
+    'generate_ble_device',
+    'inject_advertisement',
+    'inject_advertisement_with_source',
+    'inject_advertisement_with_time_and_source',
+    'inject_advertisement_with_time_and_source_connectable',
+    'inject_bluetooth_service_info',
+    'patch_all_discovered_devices',
+    'patch_bluetooth_time',
+    'patch_discovered_devices',
+]
+
+ADVERTISEMENT_DATA_DEFAULTS: Dict[str, Any] = ...
+BLE_DEVICE_DEFAULTS: Dict[str, Any] = ...
+HCI0_SOURCE_ADDRESS: str = ...
+HCI1_SOURCE_ADDRESS: str = ...
+NON_CONNECTABLE_REMOTE_SOURCE_ADDRESS: str = ...
+
+@contextmanager
+def patch_bluetooth_time(mock_time: Union[float, int]) -> ContextManager[Any]:
+    ...
+
+def generate_advertisement_data(**kwargs: Any) -> AdvertisementData:
+    ...
+
+def generate_ble_device(
+    address: Optional[str] = None,
+    name: Optional[str] = None,
+    details: Optional[Dict[str, Any]] = None,
+    rssi: Optional[int] = None,
+    **kwargs: Any
+) -> BLEDevice:
+    ...
+
+def _get_manager() -> HomeAssistantBluetoothManager:
+    ...
+
+def inject_advertisement(
+    hass: HomeAssistant,
+    device: BLEDevice,
+    adv: AdvertisementData
+) -> None:
+    ...
+
+def inject_advertisement_with_source(
+    hass: HomeAssistant,
+    device: BLEDevice,
+    adv: AdvertisementData,
+    source: str
+) -> None:
+    ...
+
+def inject_advertisement_with_time_and_source(
+    hass: HomeAssistant,
+    device: BLEDevice,
+    adv: AdvertisementData,
+    time: float,
+    source: str
+) -> None:
+    ...
+
+def inject_advertisement_with_time_and_source_connectable(
+    hass: HomeAssistant,
+    device: BLEDevice,
+    adv: AdvertisementData,
+    time: float,
+    source: str,
+    connectable: bool
+) -> None:
+    ...
+
+def inject_bluetooth_service_info_bleak(
+    hass: HomeAssistant,
+    info: BluetoothServiceInfoBleak
+) -> None:
+    ...
+
+def inject_bluetooth_service_info(
+    hass: HomeAssistant,
+    info: BluetoothServiceInfo
+) -> None:
+    ...
+
+@contextmanager
+def patch_all_discovered_devices(
+    mock_discovered: Iterable[BLEDevice]
+) -> ContextManager[Any]:
+    ...
+
+@contextmanager
+def patch_discovered_devices(
+    mock_discovered: Iterable[BLEDevice]
+) -> ContextManager[Any]:
+    ...
+
+async def async_setup_with_default_adapter(
+    hass: HomeAssistant
+) -> MockConfigEntry:
+    ...
+
+async def async_setup_with_one_adapter(
+    hass: HomeAssistant
+) -> MockConfigEntry:
+    ...
+
+async def _async_setup_with_adapter(
+    hass: HomeAssistant,
+    address: str
+) -> MockConfigEntry:
+    ...
+
+class MockBleakClient(BleakClient):
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        ...
+
+    @property
+    def is_connected(self) -> bool:
+        ...
+
+    async def connect(self, *args: Any, **kwargs: Any) -> bool:
+        ...
+
+    async def disconnect(self, *args: Any, **kwargs: Any) -> None:
+        ...
+
+    async def get_services(self, *args: Any, **kwargs: Any) -> List[Any]:
+        ...
+
+    async def clear_cache(self, *args: Any, **kwargs: Any) -> bool:
+        ...
+
+class FakeScannerMixin:
+    def get_discovered_device_advertisement_data(
+        self,
+        address: str
+    ) -> Optional[Tuple[BLEDevice, AdvertisementData]]:
+        ...
+
+    @property
+    def discovered_addresses(self) -> Dict[str, Any]:
+        ...
+
+class FakeScanner(FakeScannerMixin, BaseHaScanner):
+    @property
+    def discovered_devices(self) -> List[BLEDevice]:
+        ...
+
+    @property
+    def discovered_devices_and_advertisement_data(self) -> Dict[str, Any]:
+        ...
+
+class FakeRemoteScanner(BaseHaRemoteScanner):
+    def inject_advertisement(
+        self,
+        device: BLEDevice,
+        advertisement_data: AdvertisementData,
+        now: Optional[float] = None
+    ) -> None:
+        ...

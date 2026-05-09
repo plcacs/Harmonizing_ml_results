@@ -1,0 +1,151 @@
+from typing import Any, Optional, Tuple, Union, Sequence, Iterable, Iterator, cast
+import pandas as pd
+from databricks.koalas.base import IndexOpsMixin
+from databricks.koalas.frame import DataFrame
+from databricks.koalas.indexes.base import Index
+from databricks.koalas.series import Series
+
+class MultiIndex(Index):
+    """
+    Koalas MultiIndex that corresponds to pandas MultiIndex logically. This might hold Spark Column
+    internally.
+    """
+
+    def __new__(
+        cls,
+        levels: Optional[Sequence[Any]] = None,
+        codes: Optional[Sequence[Any]] = None,
+        sortorder: Optional[int] = None,
+        names: Optional[Sequence[Any]] = None,
+        dtype: Optional[Any] = None,
+        copy: bool = False,
+        name: Optional[Any] = None,
+        verify_integrity: bool = True,
+    ) -> 'MultiIndex': ...
+
+    @property
+    def _internal(self) -> Any: ...
+
+    @property
+    def _column_label(self) -> None: ...
+
+    def __abs__(self) -> Any: ...
+
+    def _with_new_scol(self, scol: Any, *, dtype: Optional[Any] = None) -> Any: ...
+
+    def _align_and_column_op(self, f: Any, *args: Any) -> Any: ...
+
+    def any(self, *args: Any, **kwargs: Any) -> Any: ...
+
+    def all(self, *args: Any, **kwargs: Any) -> Any: ...
+
+    @staticmethod
+    def from_tuples(
+        tuples: Sequence[Tuple[Any, ...]],
+        sortorder: Optional[int] = None,
+        names: Optional[Sequence[str]] = None,
+    ) -> 'MultiIndex': ...
+
+    @staticmethod
+    def from_arrays(
+        arrays: Sequence[Sequence[Any]],
+        sortorder: Optional[int] = None,
+        names: Optional[Sequence[str]] = None,
+    ) -> 'MultiIndex': ...
+
+    @staticmethod
+    def from_product(
+        iterables: Sequence[Iterable[Any]],
+        sortorder: Optional[int] = None,
+        names: Optional[Sequence[str]] = None,
+    ) -> 'MultiIndex': ...
+
+    @staticmethod
+    def from_frame(df: DataFrame, names: Optional[Sequence[Any]] = None) -> 'MultiIndex': ...
+
+    @property
+    def name(self) -> Any: ...
+
+    @name.setter
+    def name(self, name: Any) -> None: ...
+
+    def _verify_for_rename(self, name: Any) -> Sequence[Tuple[Any, ...]]: ...
+
+    def swaplevel(self, i: Union[int, str] = -2, j: Union[int, str] = -1) -> 'MultiIndex': ...
+
+    @property
+    def levshape(self) -> Tuple[int, ...]: ...
+
+    @staticmethod
+    def _comparator_for_monotonic_increasing(data_type: Any) -> Any: ...
+
+    def _is_monotonic(self, order: str) -> bool: ...
+
+    def _is_monotonic_increasing(self) -> Series: ...
+
+    @staticmethod
+    def _comparator_for_monotonic_decreasing(data_type: Any) -> Any: ...
+
+    def _is_monotonic_decreasing(self) -> Series: ...
+
+    def to_frame(self, index: bool = True, name: Optional[Sequence[str]] = None) -> DataFrame: ...
+
+    def to_pandas(self) -> pd.MultiIndex: ...
+
+    def toPandas(self) -> pd.MultiIndex: ...
+
+    def nunique(self, dropna: bool = True) -> Any: ...
+
+    def copy(self, deep: Optional[bool] = None) -> 'MultiIndex': ...
+
+    def symmetric_difference(
+        self,
+        other: Union['MultiIndex', Sequence[Tuple[Any, ...]]],
+        result_name: Optional[Sequence[Any]] = None,
+        sort: Optional[bool] = None,
+    ) -> 'MultiIndex': ...
+
+    def drop(self, codes: Sequence[Any], level: Optional[Union[int, str]] = None) -> 'MultiIndex': ...
+
+    def value_counts(
+        self,
+        normalize: bool = False,
+        sort: bool = True,
+        ascending: bool = False,
+        bins: Optional[Any] = None,
+        dropna: bool = True,
+    ) -> Series: ...
+
+    def argmax(self) -> Any: ...
+
+    def argmin(self) -> Any: ...
+
+    def asof(self, label: Any) -> Any: ...
+
+    @property
+    def is_all_dates(self) -> bool: ...
+
+    def __getattr__(self, item: str) -> Any: ...
+
+    def _get_level_number(self, level: Union[int, str]) -> int: ...
+
+    def get_level_values(self, level: Union[int, str]) -> Index: ...
+
+    def insert(self, loc: int, item: Tuple[Any, ...]) -> 'MultiIndex': ...
+
+    def item(self) -> Tuple[Any, ...]: ...
+
+    def intersection(self, other: Union['MultiIndex', Sequence[Tuple[Any, ...]]]) -> 'MultiIndex': ...
+
+    @property
+    def hasnans(self) -> bool: ...
+
+    @property
+    def inferred_type(self) -> str: ...
+
+    @property
+    def asi8(self) -> None: ...
+
+    def factorize(self, sort: bool = True, na_sentinel: int = -1) -> Tuple[Any, Any]: ...
+
+    def __iter__(self) -> Iterator[Tuple[Any, ...]]: ...

@@ -1,0 +1,50 @@
+from __future__ import annotations
+import contextlib
+from collections.abc import Generator
+from typing import Any, Optional, Tuple, Union, List, Dict, Type, Generator, Callable, TypeVar, Generic
+from pydantic import BaseModel, TypeAdapter, validate_call
+from pydantic.plugin import PydanticPluginProtocol, SchemaTypePath, ValidateJsonHandlerProtocol, ValidatePythonHandlerProtocol, ValidateStringsHandlerProtocol
+from pydantic.plugin._loader import _plugins
+
+@contextlib.contextmanager
+def install_plugin(plugin: PydanticPluginProtocol) -> Generator[None, None, None]:
+    ...
+
+def test_on_validate_json_on_success() -> None:
+    ...
+
+def test_on_validate_json_on_error() -> None:
+    ...
+
+def test_on_validate_python_on_success() -> None:
+    ...
+
+def test_on_validate_python_on_error() -> None:
+    ...
+
+def test_stateful_plugin() -> None:
+    ...
+
+def test_all_handlers() -> None:
+    ...
+
+def test_plugin_path_dataclass() -> None:
+    ...
+
+def test_plugin_path_type_adapter() -> None:
+    ...
+
+def test_plugin_path_type_adapter_with_module() -> None:
+    ...
+
+def test_plugin_path_type_adapter_without_name_in_globals() -> None:
+    ...
+
+def test_plugin_path_validate_call() -> None:
+    ...
+
+def test_plugin_path_create_model() -> None:
+    ...
+
+def test_plugin_path_complex() -> None:
+    ...

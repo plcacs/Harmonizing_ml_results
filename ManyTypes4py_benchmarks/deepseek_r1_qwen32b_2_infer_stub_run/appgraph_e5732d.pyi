@@ -1,0 +1,105 @@
+import json
+import os
+from typing import Dict, List, Optional, Any, Set, Union, Tuple, cast
+from typing import Text
+from chalice.config import Config
+from chalice.deploy import models
+from chalice.utils import UI
+
+StrMapAny = Dict[str, Any]
+
+class ChaliceBuildError(Exception):
+    ...
+
+class ApplicationGraphBuilder:
+    def __init__(self) -> None:
+        ...
+
+    def build(self, config: Config, stage_name: str) -> models.Application:
+        ...
+
+    def _create_log_group(self, config: Config, resource_name: str, log_group_name: str) -> models.LogGroup:
+        ...
+
+    def _create_custom_domain_name(self, api_type: models.APIType, domain_name_data: StrMapAny, endpoint_configuration: str, api_gateway_stage: str) -> models.DomainName:
+        ...
+
+    def _create_api_mapping_model(self, key: str, stage: str) -> models.APIMapping:
+        ...
+
+    def _create_lambda_event_resources(self, config: Config, deployment: models.DeploymentPackage, stage_name: str) -> List[models.Resource]:
+        ...
+
+    def _create_rest_api_model(self, config: Config, deployment: models.DeploymentPackage, stage_name: str) -> models.RestAPI:
+        ...
+
+    def _get_default_private_api_policy(self, config: Config) -> Dict[str, Any]:
+        ...
+
+    def _create_websocket_api_model(self, config: Config, deployment: models.DeploymentPackage, stage_name: str) -> models.WebsocketAPI:
+        ...
+
+    def _create_cwe_subscription(self, config: Config, deployment: models.DeploymentPackage, event_source: app.CloudWatchEventConfig, stage_name: str) -> models.CloudWatchEvent:
+        ...
+
+    def _create_scheduled_model(self, config: Config, deployment: models.DeploymentPackage, event_source: app.ScheduledEventConfig, stage_name: str) -> models.ScheduledEvent:
+        ...
+
+    def _create_domain_name_model(self, protocol: models.APIType, data: StrMapAny, endpoint_type: str, api_mapping: models.APIMapping) -> models.DomainName:
+        ...
+
+    def _create_lambda_model(self, config: Config, deployment: models.DeploymentPackage, name: str, handler_name: str, stage_name: str) -> models.LambdaFunction:
+        ...
+
+    def _get_managed_lambda_layer(self, config: Config) -> Optional[models.LambdaLayer]:
+        ...
+
+    def _get_role_reference(self, config: Config, stage_name: str, function_name: str) -> Union[models.ManagedIAMRole, models.PreCreatedIAMRole]:
+        ...
+
+    def _get_role_identifier(self, role: Union[models.ManagedIAMRole, models.PreCreatedIAMRole]) -> str:
+        ...
+
+    def _create_role_reference(self, config: Config, stage_name: str, function_name: str) -> Union[models.ManagedIAMRole, models.PreCreatedIAMRole]:
+        ...
+
+    def _get_vpc_params(self, function_name: str, config: Config) -> Tuple[List[str], List[str]]:
+        ...
+
+    def _get_lambda_layers(self, config: Config) -> List[models.LambdaLayer]:
+        ...
+
+    def _build_lambda_function(self, config: Config, name: str, handler_name: str, deployment: models.DeploymentPackage, role: Union[models.ManagedIAMRole, models.PreCreatedIAMRole]) -> models.LambdaFunction:
+        ...
+
+    def _inject_role_traits(self, function: models.LambdaFunction, role: Union[models.ManagedIAMRole, models.PreCreatedIAMRole]) -> None:
+        ...
+
+    def _create_bucket_notification(self, config: Config, deployment: models.DeploymentPackage, s3_event: app.S3EventConfig, stage_name: str) -> models.S3BucketNotification:
+        ...
+
+    def _create_sns_subscription(self, config: Config, deployment: models.DeploymentPackage, sns_config: app.SNSEventConfig, stage_name: str) -> models.SNSLambdaSubscription:
+        ...
+
+    def _create_sqs_subscription(self, config: Config, deployment: models.DeploymentPackage, sqs_config: app.SQSEventConfig, stage_name: str) -> models.SQSEventSource:
+        ...
+
+    def _create_kinesis_subscription(self, config: Config, deployment: models.DeploymentPackage, kinesis_config: app.KinesisEventConfig, stage_name: str) -> models.KinesisEventSource:
+        ...
+
+    def _create_ddb_subscription(self, config: Config, deployment: models.DeploymentPackage, ddb_config: app.DynamoDBEventConfig, stage_name: str) -> models.DynamoDBEventSource:
+        ...
+
+class DependencyBuilder:
+    def __init__(self) -> None:
+        ...
+
+    def build_dependencies(self, graph: models.Application) -> List[models.Resource]:
+        ...
+
+class GraphPrettyPrint:
+    def __init__(self, ui: UI) -> None:
+        ...
+
+    def display_graph(self, graph: models.Application) -> None:
+        ...

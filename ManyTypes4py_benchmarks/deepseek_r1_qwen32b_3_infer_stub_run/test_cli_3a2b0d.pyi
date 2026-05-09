@@ -1,0 +1,220 @@
+from collections import namedtuple
+from itertools import cycle
+from os import rename
+from pathlib import Path
+from unittest.mock import MagicMock, patch
+import click
+import pytest
+from click.testing import CliRunner
+from omegaconf import OmegaConf
+from pytest import fixture, mark, raises, warns
+from kedro import KedroDeprecationWarning
+from kedro import __version__ as version
+from kedro.framework.cli import load_entry_points
+from kedro.framework.cli.cli import KedroCLI, _init_plugins, cli, global_commands, project_commands
+from kedro.framework.cli.utils import CommandCollection, KedroCliError, _clean_pycache, find_run_command, forward_command, get_pkg_version
+from kedro.framework.session import KedroSession
+from kedro.runner import ParallelRunner, SequentialRunner
+
+@fixture
+def requirements_file(tmp_path: Path) -> Path:
+    ...
+
+@fixture
+def fake_session(mocker: Any) -> MagicMock:
+    ...
+
+class TestCliCommands:
+    def test_cli(self) -> None:
+        ...
+
+    def test_print_version(self) -> None:
+        ...
+
+    def test_info_contains_plugin_versions(self, entry_point: Any) -> None:
+        ...
+
+    def test_info_only_kedro_telemetry_plugin_installed(self) -> None:
+        ...
+
+    def test_help(self) -> None:
+        ...
+
+class TestCommandCollection:
+    def test_found(self) -> None:
+        ...
+
+    def test_found_reverse(self) -> None:
+        ...
+
+    def test_not_found(self) -> None:
+        ...
+
+    def test_not_found_closest_match(self, mocker: Any) -> None:
+        ...
+
+    def test_not_found_closet_match_singular(self, mocker: Any) -> None:
+        ...
+
+    def test_help(self) -> None:
+        ...
+
+class TestForwardCommand:
+    def test_regular(self) -> None:
+        ...
+
+    def test_unnamed(self) -> None:
+        ...
+
+    def test_help(self) -> None:
+        ...
+
+    def test_forwarded_help(self) -> None:
+        ...
+
+class TestCliUtils:
+    def test_get_pkg_version(self, requirements_file: Path) -> None:
+        ...
+
+    def test_get_pkg_version_deprecated(self, requirements_file: Path) -> None:
+        ...
+
+    def test_clean_pycache(self, tmp_path: Path, mocker: Any) -> None:
+        ...
+
+    def test_find_run_command_non_existing_project(self) -> None:
+        ...
+
+    def test_find_run_command_with_clipy(self, fake_metadata: Any, fake_repo_path: Path, fake_project_cli: Any, mocker: Any) -> None:
+        ...
+
+    def test_find_run_command_no_clipy(self, fake_metadata: Any, fake_repo_path: Path, mocker: Any) -> None:
+        ...
+
+    def test_find_run_command_use_plugin_run(self, fake_metadata: Any, fake_repo_path: Path, mocker: Any) -> None:
+        ...
+
+    def test_find_run_command_use_default_run(self, fake_metadata: Any, mocker: Any) -> None:
+        ...
+
+class TestEntryPoints:
+    def test_project_groups(self, entry_points: Any, entry_point: Any) -> None:
+        ...
+
+    def test_project_error_is_caught(self, entry_points: Any, entry_point: Any, caplog: Any) -> None:
+        ...
+
+    def test_global_groups(self, entry_points: Any, entry_point: Any) -> None:
+        ...
+
+    def test_global_error_is_caught(self, entry_points: Any, entry_point: Any, caplog: Any) -> None:
+        ...
+
+    def test_init(self, entry_points: Any, entry_point: Any) -> None:
+        ...
+
+    def test_init_error_is_caught(self, entry_points: Any, entry_point: Any) -> None:
+        ...
+
+class TestKedroCLI:
+    def test_project_commands_no_clipy(self, mocker: Any, fake_metadata: Any) -> None:
+        ...
+
+    def test_project_commands_no_project(self, mocker: Any, tmp_path: Path) -> None:
+        ...
+
+    def test_project_commands_invalid_clipy(self, mocker: Any, fake_metadata: Any) -> None:
+        ...
+
+    def test_project_commands_valid_clipy(self, mocker: Any, fake_metadata: Any) -> None:
+        ...
+
+    def test_kedro_cli_no_project(self, mocker: Any, tmp_path: Path) -> None:
+        ...
+
+    def test_kedro_run_no_project(self, mocker: Any, tmp_path: Path) -> None:
+        ...
+
+    def test_kedro_cli_with_project(self, mocker: Any, fake_metadata: Any) -> None:
+        ...
+
+    def test_main_hook_exception_handling(self, fake_metadata: Any) -> None:
+        ...
+
+@mark.usefixtures('chdir_to_dummy_project')
+class TestRunCommand:
+    @staticmethod
+    @fixture(params=['run_config.yml', 'run_config.json'])
+    def fake_run_config(request: Any, fake_root_dir: Path) -> Path:
+        ...
+
+    @staticmethod
+    @fixture(params=['run_config.yml', 'run_config.json'])
+    def fake_invalid_run_config(request: Any, fake_root_dir: Path) -> Path:
+        ...
+
+    @staticmethod
+    @fixture
+    def fake_run_config_with_params(fake_run_config: Path, request: Any) -> Path:
+        ...
+
+    def test_run_successfully(self, fake_project_cli: Any, fake_metadata: Any, fake_session: Any, mocker: Any) -> None:
+        ...
+
+    @mark.parametrize('nodes_input, nodes_expected', [['splitting_data', ('splitting_data',)], ['splitting_data,training_model', ('splitting_data', 'training_model')], ['splitting_data, training_model', ('splitting_data', 'training_model')]])
+    def test_run_specific_nodes(self, fake_project_cli: Any, fake_metadata: Any, fake_session: Any, mocker: Any, nodes_input: str, nodes_expected: tuple[str, ...]) -> None:
+        ...
+
+    @mark.parametrize('tags_input, tags_expected', [['tag1', ('tag1',)], ['tag1,tag2', ('tag1', 'tag2')], ['tag1, tag2', ('tag1', 'tag2')]])
+    def test_run_with_tags(self, fake_project_cli: Any, fake_metadata: Any, fake_session: Any, mocker: Any, tags_input: str, tags_expected: tuple[str, ...]) -> None:
+        ...
+
+    def test_run_with_pipeline_filters(self, fake_project_cli: Any, fake_metadata: Any, fake_session: Any, mocker: Any) -> None:
+        ...
+
+    def test_run_successfully_parallel(self, fake_project_cli: Any, fake_metadata: Any, fake_session: Any, mocker: Any) -> None:
+        ...
+
+    def test_run_async(self, fake_project_cli: Any, fake_metadata: Any, fake_session: Any) -> None:
+        ...
+
+    @mark.parametrize('config_flag', ['--config', '-c'])
+    def test_run_with_config(self, config_flag: str, fake_project_cli: Any, fake_metadata: Any, fake_session: Any, fake_run_config: Path, mocker: Any) -> None:
+        ...
+
+    @mark.parametrize('config_flag', ['--config', '-c'])
+    def test_run_with_invalid_config(self, config_flag: str, fake_project_cli: Any, fake_metadata: Any, fake_session: Any, fake_invalid_run_config: Path) -> None:
+        ...
+
+    @mark.parametrize('fake_run_config_with_params,expected', [({}, {}), ({'params': {'foo': 'baz'}}, {'foo': 'baz'}), ({'params': 'foo=baz'}, {'foo': 'baz'}), ({'params': {'foo': '123.45', 'baz': '678', 'bar': 9}}, {'foo': '123.45', 'baz': '678', 'bar': 9})], indirect=['fake_run_config_with_params'])
+    def test_run_with_params_in_config(self, expected: dict, fake_project_cli: Any, fake_metadata: Any, fake_run_config_with_params: Path, mocker: Any) -> None:
+        ...
+
+    @mark.parametrize('cli_arg,expected_extra_params', [('foo=bar', {'foo': 'bar'}), ('foo=123.45, bar=1a,baz=678. ,qux=1e-2,quux=0,quuz=', {'foo': 123.45, 'bar': '1a', 'baz': 678.0, 'qux': 0.01, 'quux': 0, 'quuz': None}), ('foo=bar,baz=fizz=buzz', {'foo': 'bar', 'baz': 'fizz=buzz'}), ('foo=fizz=buzz', {'foo': 'fizz=buzz'}), ('foo=bar, baz= https://example.com', {'foo': 'bar', 'baz': 'https://example.com'}), ('foo=bar, foo=fizz buzz', {'foo': 'fizz buzz'}), ('foo=bar,baz=fizz buzz', {'foo': 'bar', 'baz': 'fizz buzz'}), ('foo.nested=bar', {'foo': {'nested': 'bar'}}), ('foo.nested=123.45', {'foo': {'nested': 123.45}}), ('foo.nested_1.double_nest=123.45,foo.nested_2=1a', {'foo': {'nested_1': {'double_nest': 123.45}, 'nested_2': '1a'}})])
+    def test_run_extra_params(self, mocker: Any, fake_project_cli: Any, fake_metadata: Any, cli_arg: str, expected_extra_params: dict) -> None:
+        ...
+
+    @mark.parametrize('bad_arg', ['bad', 'foo=bar,bad'])
+    def test_bad_extra_params(self, fake_project_cli: Any, fake_metadata: Any, bad_arg: str) -> None:
+        ...
+
+    @mark.parametrize('bad_arg', ['=', '=value', ' =value'])
+    def test_bad_params_key(self, fake_project_cli: Any, fake_metadata: Any, bad_arg: str) -> None:
+        ...
+
+    @mark.parametrize('lv_input, lv_dict', [['dataset1:time1', {'dataset1': 'time1'}], ['dataset1:time1,dataset2:time2', {'dataset1': 'time1', 'dataset2': 'time2'}], ['dataset1:time1, dataset2:time2', {'dataset1': 'time1', 'dataset2': 'time2'}]])
+    def test_split_load_versions(self, fake_project_cli: Any, fake_metadata: Any, fake_session: Any, lv_input: str, lv_dict: dict, mocker: Any) -> None:
+        ...
+
+    def test_fail_split_load_versions(self, fake_project_cli: Any, fake_metadata: Any) -> None:
+        ...
+
+    @mark.parametrize('from_nodes, expected', [(['--from-nodes', 'A,B,C'], ['A', 'B', 'C']), (['--from-nodes', 'two_inputs([A0,B0]) -> [C1]'], ['two_inputs([A0,B0]) -> [C1]']), (['--from-nodes', 'two_outputs([A0]) -> [B1,C1]'], ['two_outputs([A0]) -> [B1,C1]']), (['--from-nodes', 'multi_in_out([A0,B0]) -> [C1,D1]'], ['multi_in_out([A0,B0]) -> [C1,D1]']), (['--from-nodes', 'two_inputs([A0,B0]) -> [C1],X,Y,Z'], ['two_inputs([A0,B0]) -> [C1]', 'X', 'Y', 'Z'])])
+    def test_safe_split_option_arguments(self, fake_project_cli: Any, fake_metadata: Any, fake_session: Any, mocker: Any, from_nodes: list[str], expected: list[str]) -> None:
+        ...
+
+    def test_run_with_alternative_conf_source(self, fake_project_cli: Any, fake_metadata: Any) -> None:
+        ...
+
+    def test_run_with_non_existent_conf_source(self, fake_project_cli: Any, fake_metadata: Any) -> None:
+        ...

@@ -1,0 +1,65 @@
+from datetime import datetime, timedelta
+import numpy as np
+import pytest
+from pandas._libs.algos import Infinity, NegInfinity
+from pandas import DataFrame, Index, Series
+import pandas._testing as tm
+
+class TestRank:
+    s: Series
+    df: DataFrame
+    results: dict[str, np.ndarray]
+    
+    def test_rank(self, float_frame: DataFrame) -> None:
+        ...
+    
+    def test_rank2(self) -> None:
+        ...
+    
+    def test_rank_does_not_mutate(self) -> None:
+        ...
+    
+    def test_rank_mixed_frame(self, float_string_frame: DataFrame) -> None:
+        ...
+    
+    def test_rank_na_option(self, float_frame: DataFrame) -> None:
+        ...
+    
+    def test_rank_axis(self) -> None:
+        ...
+    
+    def test_rank_methods_frame(self, ax: int, rank_method: str) -> None:
+        ...
+    
+    def test_rank_descending(self, rank_method: str, dtype: str) -> None:
+        ...
+    
+    def test_rank_2d_tie_methods(self, rank_method: str, axis: int, dtype: None | object) -> None:
+        ...
+    
+    def test_rank_pct_true(self, rank_method: str, exp: list[list[float]]) -> None:
+        ...
+    
+    def test_pct_max_many_rows(self) -> None:
+        ...
+    
+    def test_rank_inf_and_nan(self, contents: list, dtype: str, frame_or_series: type[Series | DataFrame]) -> None:
+        ...
+    
+    def test_df_series_inf_nan_consistency(self) -> None:
+        ...
+    
+    def test_rank_both_inf(self) -> None:
+        ...
+    
+    def test_rank_inf_nans_na_option(self, frame_or_series: type[Series | DataFrame], rank_method: str, na_option: str, ascending: bool, expected: list[float]) -> None:
+        ...
+    
+    def test_rank_object_first(self, frame_or_series: type[Series | DataFrame], na_option: str, ascending: bool, expected: list[float]) -> None:
+        ...
+    
+    def test_rank_mixed_axis_zero(self, data: dict, expected: DataFrame) -> None:
+        ...
+    
+    def test_rank_string_dtype(self, string_dtype_no_object: str) -> None:
+        ...

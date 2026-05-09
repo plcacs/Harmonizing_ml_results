@@ -1,0 +1,92 @@
+import numpy as np
+import pytest
+from pandas import DataFrame, Series, Index, MultiIndex
+from pandas.core.window.rolling import Rolling
+from pandas.core.window.expanding import Expanding
+from pandas.core.window.ewm import EWM
+
+@pytest.fixture
+def pairwise_frames() -> DataFrame:
+    ...
+
+@pytest.fixture
+def pairwise_target_frame() -> DataFrame:
+    ...
+
+@pytest.fixture
+def pairwise_other_frame() -> DataFrame:
+    ...
+
+def test_rolling_cov(series: Series) -> None:
+    ...
+
+def test_rolling_corr(series: Series) -> None:
+    ...
+
+def test_rolling_corr_bias_correction() -> None:
+    ...
+
+@pytest.mark.parametrize('func', ['cov', 'corr'])
+def test_rolling_pairwise_cov_corr(func: str, frame: DataFrame) -> None:
+    ...
+
+@pytest.mark.parametrize('method', ['corr', 'cov'])
+def test_flex_binary_frame(method: str, frame: DataFrame) -> None:
+    ...
+
+@pytest.mark.parametrize('window', range(7))
+def test_rolling_corr_with_zero_variance(window: int) -> None:
+    ...
+
+def test_corr_sanity() -> None:
+    ...
+
+def test_rolling_cov_diff_length() -> None:
+    ...
+
+def test_rolling_corr_diff_length() -> None:
+    ...
+
+@pytest.mark.parametrize('f', [lambda x: x.rolling(window=10, min_periods=5).cov(x, pairwise=True), lambda x: x.rolling(window=10, min_periods=5).corr(x, pairwise=True)])
+def test_rolling_functions_window_non_shrinkage_binary(f: callable) -> None:
+    ...
+
+@pytest.mark.parametrize('f', [lambda x: x.rolling(window=10, min_periods=5).cov(x, pairwise=True), lambda x: x.rolling(window=10, min_periods=5).corr(x, pairwise=True)])
+def test_moment_functions_zero_length_pairwise(f: callable) -> None:
+    ...
+
+class TestPairwise:
+
+    @pytest.mark.parametrize('f', [lambda x: x.cov(), lambda x: x.corr()])
+    def test_no_flex(self, pairwise_frames: DataFrame, pairwise_target_frame: DataFrame, f: callable) -> None:
+        ...
+
+    @pytest.mark.parametrize('f', [lambda x: x.expanding().cov(pairwise=True), lambda x: x.expanding().corr(pairwise=True), lambda x: x.rolling(window=3).cov(pairwise=True), lambda x: x.rolling(window=3).corr(pairwise=True), lambda x: x.ewm(com=3).cov(pairwise=True), lambda x: x.ewm(com=3).corr(pairwise=True)])
+    def test_pairwise_with_self(self, pairwise_frames: DataFrame, pairwise_target_frame: DataFrame, f: callable) -> None:
+        ...
+
+    @pytest.mark.parametrize('f', [lambda x: x.expanding().cov(pairwise=False), lambda x: x.expanding().corr(pairwise=False), lambda x: x.rolling(window=3).cov(pairwise=False), lambda x: x.rolling(window=3).corr(pairwise=False), lambda x: x.ewm(com=3).cov(pairwise=False), lambda x: x.ewm(com=3).corr(pairwise=False)])
+    def test_no_pairwise_with_self(self, pairwise_frames: DataFrame, pairwise_target_frame: DataFrame, f: callable) -> None:
+        ...
+
+    @pytest.mark.parametrize('f', [lambda x, y: x.expanding().cov(y, pairwise=True), lambda x, y: x.expanding().corr(y, pairwise=True), lambda x, y: x.rolling(window=3).cov(y, pairwise=True), pytest.param(lambda x, y: x.rolling(window=3).corr(y, pairwise=True), marks=pytest.mark.xfail(not IS64, reason='Precision issues on 32 bit', strict=False)), lambda x, y: x.ewm(com=3).cov(y, pairwise=True), lambda x, y: x.ewm(com=3).corr(y, pairwise=True)])
+    def test_pairwise_with_other(self, pairwise_frames: DataFrame, pairwise_target_frame: DataFrame, pairwise_other_frame: DataFrame, f: callable) -> None:
+        ...
+
+    @pytest.mark.filterwarnings('ignore:RuntimeWarning')
+    @pytest.mark.parametrize('f', [lambda x, y: x.expanding().cov(y, pairwise=False), lambda x, y: x.expanding().corr(y, pairwise=False), lambda x, y: x.rolling(window=3).cov(y, pairwise=False), lambda x, y: x.rolling(window=3).corr(y, pairwise=False), lambda x, y: x.ewm(com=3).cov(y, pairwise=False), lambda x, y: x.ewm(com=3).corr(y, pairwise=False)])
+    def test_no_pairwise_with_other(self, pairwise_frames: DataFrame, pairwise_other_frame: DataFrame, f: callable) -> None:
+        ...
+
+    @pytest.mark.parametrize('f', [lambda x, y: x.expanding().cov(y), lambda x, y: x.expanding().corr(y), lambda x, y: x.rolling(window=3).cov(y), lambda x, y: x.rolling(window=3).corr(y), lambda x, y: x.ewm(com=3).cov(y), lambda x, y: x.ewm(com=3).corr(y)])
+    def test_pairwise_with_series(self, pairwise_frames: DataFrame, pairwise_target_frame: DataFrame, f: callable) -> None:
+        ...
+
+    def test_corr_freq_memory_error(self) -> None:
+        ...
+
+    def test_cov_mulittindex(self) -> None:
+        ...
+
+    def test_multindex_columns_pairwise_func(self) -> None:
+        ...

@@ -1,0 +1,222 @@
+"""Channel.
+
+A channel is used to send values to streams.
+
+The stream will iterate over incoming events in the channel.
+
+"""
+import asyncio
+from typing import (
+    Any,
+    Awaitable,
+    Callable,
+    Dict,
+    Iterable,
+    List,
+    Mapping,
+    MutableSet,
+    Optional,
+    Set,
+    Tuple,
+    TypeVar,
+    Union,
+    cast,
+)
+from weakref import WeakSet
+from mode import Seconds, get_logger, want_seconds
+from mode.utils.futures import maybe_async, stampede
+from mode.utils.queues import ThrowableQueue
+from faust.types import (
+    AppT,
+    ChannelT,
+    CodecArg,
+    EventT,
+    FutureMessage,
+    K,
+    Message,
+    MessageSentCallback,
+    ModelArg,
+    PendingMessage,
+    RecordMetadata,
+    SchemaT,
+    StreamT,
+    TP,
+    V,
+)
+from faust.types.core import HeadersArg, OpenHeadersArg
+
+__all__ = ['Channel']
+
+T = TypeVar('T')
+T_contra = TypeVar('T_contra', contravariant=True)
+
+class Channel(ChannelT[T]):
+    """Create new channel."""
+    app: AppT
+    loop: asyncio.events.AbstractEventLoop
+    is_iterator: bool
+    _queue: Optional[ThrowableQueue]
+    maxsize: Optional[int]
+    Deliver: Callable[[Message], Awaitable[None]]
+    _root: 'Channel'
+    active_partitions: Optional[Set[TP]]
+    _subscribers: WeakSet['Channel']
+    schema: SchemaT
+    key_type: ModelArg
+    value_type: ModelArg
+
+    def __init__(self, app: AppT, *, schema: Optional[SchemaT] = None, key_type: Optional[ModelArg] = None, value_type: Optional[ModelArg] = None, is_iterator: bool = False, queue: Optional[ThrowableQueue] = None, maxsize: Optional[int] = None, root: Optional['Channel'] = None, active_partitions: Optional[Set[TP]] = None, loop: Optional[asyncio.events.AbstractEventLoop] = None) -> None:
+        ...
+
+    def _get_default_schema(self, key_type: Optional[ModelArg] = None, value_type: Optional[ModelArg] = None) -> SchemaT:
+        ...
+
+    @property
+    def queue(self) -> ThrowableQueue:
+        ...
+
+    def clone(self, *, is_iterator: Optional[bool] = None, **kwargs: Any) -> ChannelT[T]:
+        ...
+
+    def clone_using_queue(self, queue: ThrowableQueue) -> ChannelT[T]:
+        ...
+
+    def _clone(self, **kwargs: Any) -> ChannelT[T]:
+        ...
+
+    def _clone_args(self) -> Dict[str, Any]:
+        ...
+
+    def stream(self, **kwargs: Any) -> StreamT:
+        ...
+
+    def get_topic_name(self) -> str:
+        ...
+
+    async def send(self, *, key: Optional[K] = None, value: Optional[V] = None, partition: Optional[int] = None, timestamp: Optional[float] = None, headers: Optional[HeadersArg] = None, schema: Optional[SchemaT] = None, key_serializer: CodecArg = None, value_serializer: CodecArg = None, callback: MessageSentCallback = None, force: bool = False) -> Awaitable[RecordMetadata]:
+        ...
+
+    def send_soon(self, *, key: Optional[K] = None, value: Optional[V] = None, partition: Optional[int] = None, timestamp: Optional[float] = None, headers: Optional[HeadersArg] = None, schema: Optional[SchemaT] = None, key_serializer: CodecArg = None, value_serializer: CodecArg = None, callback: MessageSentCallback = None, force: bool = False, eager_partitioning: bool = False) -> None:
+        ...
+
+    def as_future_message(self, key: Optional[K] = None, value: Optional[V] = None, partition: Optional[int] = None, timestamp: Optional[float] = None, headers: Optional[HeadersArg] = None, schema: Optional[SchemaT] = None, key_serializer: CodecArg = None, value_serializer: CodecArg = None, callback: MessageSentCallback = None, eager_partitioning: bool = False) -> FutureMessage:
+        ...
+
+    def prepare_headers(self, headers: Optional[HeadersArg]) -> OpenHeadersArg:
+        ...
+
+    async def _send_now(self, key: Optional[K] = None, value: Optional[V] = None, partition: Optional[int] = None, timestamp: Optional[float] = None, headers: Optional[HeadersArg] = None, schema: Optional[SchemaT] = None, key_serializer: CodecArg = None, value_serializer: CodecArg = None, callback: MessageSentCallback = None) -> Awaitable[RecordMetadata]:
+        ...
+
+    async def publish_message(self, fut: FutureMessage, wait: bool = True) -> Awaitable[RecordMetadata]:
+        ...
+
+    def _future_message_to_event(self, fut: FutureMessage) -> EventT:
+        ...
+
+    async def _finalize_message(self, fut: FutureMessage, result: RecordMetadata) -> Awaitable[FutureMessage]:
+        ...
+
+    @stampede
+    async def maybe_declare(self) -> None:
+        ...
+
+    async def declare(self) -> None:
+        ...
+
+    def prepare_key(self, key: Optional[K], key_serializer: CodecArg, schema: Optional[SchemaT] = None, headers: Optional[OpenHeadersArg] = None) -> Tuple[Optional[K], OpenHeadersArg]:
+        ...
+
+    def prepare_value(self, value: Optional[V], value_serializer: CodecArg, schema: Optional[SchemaT] = None, headers: Optional[OpenHeadersArg] = None) -> Tuple[Optional[V], OpenHeadersArg]:
+        ...
+
+    async def decode(self, message: Message, *, propagate: bool = False) -> Awaitable[EventT]:
+        ...
+
+    async def deliver(self, message: Message) -> Awaitable[None]:
+        ...
+
+    def _compile_deliver(self) -> Callable[[Message], Awaitable[None]]:
+        ...
+
+    def _create_event(self, key: Optional[K], value: Optional[V], headers: Optional[HeadersArg], message: Message) -> EventT:
+        ...
+
+    async def put(self, value: EventT) -> Awaitable[None]:
+        ...
+
+    async def get(self, *, timeout: Optional[Seconds] = None) -> Awaitable[EventT]:
+        ...
+
+    def empty(self) -> bool:
+        ...
+
+    async def on_key_decode_error(self, exc: Exception, message: Message) -> Awaitable[None]:
+        ...
+
+    async def on_value_decode_error(self, exc: Exception, message: Message) -> Awaitable[None]:
+        ...
+
+    async def on_decode_error(self, exc: Exception, message: Message) -> Awaitable[None]:
+        ...
+
+    def on_stop_iteration(self) -> None:
+        ...
+
+    def derive(self, **kwargs: Any) -> ChannelT[T]:
+        ...
+
+    def __aiter__(self) -> ChannelT[T]:
+        ...
+
+    async def __anext__(self) -> Awaitable[EventT]:
+        ...
+
+    async def throw(self, exc: Exception) -> Awaitable[None]:
+        ...
+
+    def _throw(self, exc: Exception) -> None:
+        ...
+
+    def __repr__(self) -> str:
+        ...
+
+    def _object_id_as_hex(self) -> str:
+        ...
+
+    def __str__(self) -> str:
+        ...
+
+    @property
+    def subscriber_count(self) -> int:
+        ...
+
+    @property
+    def label(self) -> str:
+        ...
+
+class SerializedChannel(Channel[T]):
+    """Channel with serialization support."""
+    app: AppT
+    key_serializer: CodecArg
+    value_serializer: CodecArg
+    allow_empty: Optional[bool]
+
+    def __init__(self, app: AppT, *, schema: Optional[SchemaT] = None, key_type: Optional[ModelArg] = None, value_type: Optional[ModelArg] = None, key_serializer: CodecArg = None, value_serializer: CodecArg = None, allow_empty: Optional[bool] = None, **kwargs: Any) -> None:
+        ...
+
+    def _contribute_to_schema(self, schema: SchemaT, *, key_type: Optional[ModelArg] = None, value_type: Optional[ModelArg] = None, key_serializer: CodecArg = None, value_serializer: CodecArg = None, allow_empty: Optional[bool] = None) -> None:
+        ...
+
+    def _get_default_schema(self, key_type: Optional[ModelArg] = None, value_type: Optional[ModelArg] = None, key_serializer: CodecArg = None, value_serializer: CodecArg = None, allow_empty: Optional[bool] = None) -> SchemaT:
+        ...
+
+    @no_type_check
+    def _clone_args(self) -> Dict[str, Any]:
+        ...
+
+    def prepare_key(self, key: Optional[K], key_serializer: CodecArg, schema: Optional[SchemaT] = None, headers: Optional[OpenHeadersArg] = None) -> Tuple[Optional[K], OpenHeadersArg]:
+        ...
+
+    def prepare_value(self, value: Optional[V], value_serializer: CodecArg, schema: Optional[SchemaT] = None, headers: Optional[OpenHeadersArg] = None) -> Tuple[Optional[V], OpenHeadersArg]:
+        ...

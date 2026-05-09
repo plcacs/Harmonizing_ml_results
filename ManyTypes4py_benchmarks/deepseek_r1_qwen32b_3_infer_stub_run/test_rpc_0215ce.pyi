@@ -1,0 +1,106 @@
+from datetime import datetime, timedelta, timezone
+from typing import Any, Dict, List, Optional, Tuple, Union
+from unittest.mock import MagicMock, PropertyMock
+import pytest
+import numpy
+import sqlalchemy
+from freqtrade.enums import SignalDirection, State, TradingMode
+from freqtrade.persistence import Order, Trade
+from freqtrade.rpc import RPC
+from freqtrade.rpc.fiat_convert import CryptoToFiatConverter
+
+def test_rpc_trade_status(default_conf: Dict[str, Any], ticker: Any, fee: Any, mocker: pytest.MockFixture) -> None:
+    ...
+
+def test_rpc_status_table(default_conf: Dict[str, Any], ticker: Any, fee: Any, mocker: pytest.MockFixture) -> Tuple[List[List[str]], List[str], float, float]:
+    ...
+
+def test__rpc_timeunit_profit(default_conf_usdt: Dict[str, Any], ticker: Any, fee: Any, markets: Any, mocker: pytest.MockFixture, time_machine: Any) -> Dict[str, Any]:
+    ...
+
+def test_rpc_trade_history(mocker: pytest.MockFixture, default_conf: Dict[str, Any], markets: Any, fee: Any) -> Dict[str, Any]:
+    ...
+
+def test_rpc_delete_trade(mocker: pytest.MockFixture, default_conf: Dict[str, Any], fee: Any, markets: Any, caplog: pytest.LogCaptureFixture, is_short: bool) -> None:
+    ...
+
+def test_rpc_trade_statistics(default_conf_usdt: Dict[str, Any], ticker: Any, fee: Any, mocker: pytest.MockFixture) -> Dict[str, Any]:
+    ...
+
+def test_rpc_balance_handle_error(default_conf: Dict[str, Any], mocker: pytest.MockFixture) -> Dict[str, Any]:
+    ...
+
+def test_rpc_balance_handle(default_conf_usdt: Dict[str, Any], mocker: pytest.MockFixture, tickers: Any, proxy_coin: Optional[str], margin_mode: str) -> Dict[str, Any]:
+    ...
+
+def test_rpc_start(mocker: pytest.MockFixture, default_conf: Dict[str, Any]) -> Dict[str, str]:
+    ...
+
+def test_rpc_stop(mocker: pytest.MockFixture, default_conf: Dict[str, Any]) -> Dict[str, str]:
+    ...
+
+def test_rpc_stopentry(mocker: pytest.MockFixture, default_conf: Dict[str, Any]) -> Dict[str, str]:
+    ...
+
+def test_rpc_force_exit(default_conf: Dict[str, Any], ticker: Any, fee: Any, mocker: pytest.MockFixture) -> Dict[str, str]:
+    ...
+
+def test_performance_handle(default_conf_usdt: Dict[str, Any], ticker: Any, fee: Any, mocker: pytest.MockFixture) -> List[Dict[str, Any]]:
+    ...
+
+def test_enter_tag_performance_handle(default_conf: Dict[str, Any], ticker: Any, fee: Any, mocker: pytest.MockFixture) -> List[Dict[str, Any]]:
+    ...
+
+def test_enter_tag_performance_handle_2(mocker: pytest.MockFixture, default_conf: Dict[str, Any], markets: Any, fee: Any) -> List[Dict[str, Any]]:
+    ...
+
+def test_exit_reason_performance_handle(default_conf_usdt: Dict[str, Any], ticker: Any, fee: Any, mocker: pytest.MockFixture) -> List[Dict[str, Any]]:
+    ...
+
+def test_exit_reason_performance_handle_2(mocker: pytest.MockFixture, default_conf: Dict[str, Any], markets: Any, fee: Any) -> List[Dict[str, Any]]:
+    ...
+
+def test_mix_tag_performance_handle(default_conf: Dict[str, Any], ticker: Any, fee: Any, mocker: pytest.MockFixture) -> List[Dict[str, Any]]:
+    ...
+
+def test_mix_tag_performance_handle_2(mocker: pytest.MockFixture, default_conf: Dict[str, Any], markets: Any, fee: Any) -> List[Dict[str, Any]]:
+    ...
+
+def test_rpc_count(mocker: pytest.MockFixture, default_conf: Dict[str, Any], ticker: Any, fee: Any) -> Dict[str, int]:
+    ...
+
+def test_rpc_force_entry(mocker: pytest.MockFixture, default_conf: Dict[str, Any], ticker: Any, fee: Any, limit_buy_order_open: Any) -> Union[Trade, None]:
+    ...
+
+def test_rpc_force_entry_stopped(mocker: pytest.MockFixture, default_conf: Dict[str, Any]) -> None:
+    ...
+
+def test_rpc_force_entry_disabled(mocker: pytest.MockFixture, default_conf: Dict[str, Any]) -> None:
+    ...
+
+def test_rpc_force_entry_wrong_mode(mocker: pytest.MockFixture, default_conf: Dict[str, Any]) -> None:
+    ...
+
+def test_rpc_add_and_delete_lock(mocker: pytest.MockFixture, default_conf: Dict[str, Any]) -> Dict[str, Any]:
+    ...
+
+def test_rpc_whitelist(mocker: pytest.MockFixture, default_conf: Dict[str, Any]) -> Dict[str, Any]:
+    ...
+
+def test_rpc_whitelist_dynamic(mocker: pytest.MockFixture, default_conf: Dict[str, Any]) -> Dict[str, Any]:
+    ...
+
+def test_rpc_blacklist(mocker: pytest.MockFixture, default_conf: Dict[str, Any]) -> Dict[str, Any]:
+    ...
+
+def test_rpc_blacklist_delete(mocker: pytest.MockFixture, default_conf: Dict[str, Any]) -> Dict[str, Any]:
+    ...
+
+def test_rpc_edge_disabled(mocker: pytest.MockFixture, default_conf: Dict[str, Any]) -> None:
+    ...
+
+def test_rpc_edge_enabled(mocker: pytest.MockFixture, edge_conf: Dict[str, Any]) -> List[Dict[str, Any]]:
+    ...
+
+def test_rpc_health(mocker: pytest.MockFixture, default_conf: Dict[str, Any]) -> Dict[str, Any]:
+    ...

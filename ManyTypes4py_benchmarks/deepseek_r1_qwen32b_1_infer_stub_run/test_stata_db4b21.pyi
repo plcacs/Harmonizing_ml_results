@@ -1,0 +1,444 @@
+import bz2
+import datetime as dt
+from datetime import datetime
+import gzip
+import io
+import itertools
+import os
+import string
+import struct
+import tarfile
+import zipfile
+import numpy as np
+import pytest
+import pandas.util._test_decorators as td
+import pandas as pd
+from pandas import CategoricalDtype
+import pandas._testing as tm
+from pandas.core.frame import DataFrame, Series
+from pandas.io.parsers import read_csv
+from pandas.io.stata import (
+    CategoricalConversionWarning,
+    InvalidColumnName,
+    PossiblePrecisionLoss,
+    StataMissingValue,
+    StataReader,
+    StataWriter,
+    StataWriterUTF8,
+    ValueLabelTypeMismatch,
+    read_stata,
+)
+
+@pytest.fixture
+def mixed_frame() -> DataFrame:
+    ...
+
+@pytest.fixture
+def parsed_114(datapath: callable) -> DataFrame:
+    ...
+
+class TestStata:
+    def read_dta(self, file: str) -> DataFrame:
+        ...
+
+    def read_csv(self, file: str) -> DataFrame:
+        ...
+
+    @pytest.mark.parametrize('version', [114, 117, 118, 119, None])
+    def test_read_empty_dta(self, version: int, temp_file: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('version', [114, 117, 118, 119, None])
+    def test_read_empty_dta_with_dtypes(self, version: int, temp_file: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('version', [114, 117, 118, 119, None])
+    def test_read_index_col_none(self, version: int, temp_file: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('version', [102, 103, 104, 105, 108, 110, 111, 113, 114, 115, 117, 118, 119])
+    def test_read_dta1(self, version: int, datapath: callable) -> None:
+        ...
+
+    def test_read_dta2(self, datapath: callable) -> None:
+        ...
+
+    @pytest.mark.parametrize('file', ['stata3_113', 'stata3_114', 'stata3_115', 'stata3_117'])
+    def test_read_dta3(self, file: str, datapath: callable) -> None:
+        ...
+
+    @pytest.mark.parametrize('version', [110, 111, 113, 114, 115, 117])
+    def test_read_dta4(self, version: int, datapath: callable) -> None:
+        ...
+
+    @pytest.mark.parametrize('version', [102, 103, 104, 105, 108])
+    def test_readold_dta4(self, version: int, datapath: callable) -> None:
+        ...
+
+    @pytest.mark.parametrize('file', ['stata12_117', 'stata12_be_117', 'stata12_118', 'stata12_be_118', 'stata12_119', 'stata12_be_119'])
+    def test_read_dta_strl(self, file: str, datapath: callable) -> None:
+        ...
+
+    @pytest.mark.parametrize('file', ['stata14_118', 'stata14_be_118', 'stata14_119', 'stata14_be_119'])
+    def test_read_dta118_119(self, file: str, datapath: callable) -> None:
+        ...
+
+    @pytest.mark.parametrize('version', [114, 117, 118, 119, None])
+    def test_read_write_dta10(self, version: int, temp_file: str, using_infer_string: bool) -> None:
+        ...
+
+    def test_stata_doc_examples(self, temp_file: str) -> None:
+        ...
+
+    def test_write_preserves_original(self, temp_file: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('version', [114, 117, 118, 119, None])
+    def test_encoding(self, version: int, datapath: callable, temp_file: str) -> None:
+        ...
+
+    def test_read_write_dta11(self, temp_file: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('version', [114, 117, 118, 119, None])
+    def test_read_write_dta12(self, version: int, temp_file: str) -> None:
+        ...
+
+    def test_read_write_dta13(self, temp_file: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('version', [114, 117, 118, 119, None])
+    @pytest.mark.parametrize('file', ['stata5_113', 'stata5_114', 'stata5_115', 'stata5_117'])
+    def test_read_write_reread_dta14(self, file: str, parsed_114: DataFrame, version: int, datapath: callable, temp_file: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('file', ['stata6_113', 'stata6_114', 'stata6_115', 'stata6_117'])
+    def test_read_write_reread_dta15(self, file: str, datapath: callable) -> None:
+        ...
+
+    @pytest.mark.parametrize('version', [114, 117, 118, 119, None])
+    def test_timestamp_and_label(self, version: int, temp_file: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('version', [114, 117, 118, 119, None])
+    def test_invalid_timestamp(self, version: int, temp_file: str) -> None:
+        ...
+
+    def test_numeric_column_names(self, temp_file: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('version', [114, 117, 118, 119, None])
+    def test_nan_to_missing_value(self, version: int, temp_file: str) -> None:
+        ...
+
+    def test_no_index(self, temp_file: str) -> None:
+        ...
+
+    def test_string_no_dates(self, temp_file: str) -> None:
+        ...
+
+    def test_large_value_conversion(self, temp_file: str) -> None:
+        ...
+
+    def test_dates_invalid_column(self, temp_file: str) -> None:
+        ...
+
+    def test_105(self, datapath: callable) -> None:
+        ...
+
+    def test_value_labels_old_format(self, datapath: callable) -> None:
+        ...
+
+    def test_date_export_formats(self, temp_file: str) -> None:
+        ...
+
+    def test_write_missing_strings(self, temp_file: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('version', [114, 117, 118, 119, None])
+    @pytest.mark.parametrize('byteorder', ['>', '<'])
+    def test_bool_uint(self, byteorder: str, version: int, temp_file: str) -> None:
+        ...
+
+    def test_variable_labels(self, datapath: callable) -> None:
+        ...
+
+    def test_minimal_size_col(self, temp_file: str) -> None:
+        ...
+
+    def test_excessively_long_string(self, temp_file: str) -> None:
+        ...
+
+    def test_missing_value_generator(self, temp_file: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('version', [113, 115, 117])
+    def test_missing_value_conversion(self, version: int, datapath: callable) -> None:
+        ...
+
+    @pytest.mark.parametrize('version', [104, 105, 108, 110, 111])
+    def test_missing_value_conversion_compat(self, version: int, datapath: callable) -> None:
+        ...
+
+    @pytest.mark.parametrize('version', [102, 103])
+    def test_missing_value_conversion_compat_nobyte(self, version: int, datapath: callable) -> None:
+        ...
+
+    def test_big_dates(self, datapath: callable, temp_file: str) -> None:
+        ...
+
+    def test_dtype_conversion(self, datapath: callable) -> None:
+        ...
+
+    def test_drop_column(self, datapath: callable) -> None:
+        ...
+
+    @pytest.mark.parametrize('version', [114, 117, 118, 119, None])
+    @pytest.mark.filterwarnings('ignore:\\nStata value:pandas.io.stata.ValueLabelTypeMismatch')
+    def test_categorical_writing(self, version: int, temp_file: str) -> None:
+        ...
+
+    def test_categorical_warnings_and_errors(self, temp_file: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('version', [114, 117, 118, 119, None])
+    def test_categorical_with_stata_missing_values(self, version: int, temp_file: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('file', ['stata10_115', 'stata10_117'])
+    def test_categorical_order(self, file: str, datapath: callable) -> None:
+        ...
+
+    @pytest.mark.parametrize('file', ['stata11_115', 'stata11_117'])
+    def test_categorical_sorting(self, file: str, datapath: callable) -> None:
+        ...
+
+    @pytest.mark.parametrize('file', ['stata10_115', 'stata10_117'])
+    def test_categorical_ordering(self, file: str, datapath: callable) -> None:
+        ...
+
+    @pytest.mark.filterwarnings('ignore::UserWarning')
+    @pytest.mark.parametrize('file', ['stata1_117', 'stata2_117', 'stata3_117', 'stata4_117', 'stata5_117', 'stata6_117', 'stata7_117', 'stata8_117', 'stata9_117', 'stata10_117', 'stata11_117'])
+    @pytest.mark.parametrize('chunksize', [1, 2])
+    @pytest.mark.parametrize('convert_categoricals', [False, True])
+    @pytest.mark.parametrize('convert_dates', [False, True])
+    def test_read_chunks_117(self, file: str, chunksize: int, convert_categoricals: bool, convert_dates: bool, datapath: callable) -> None:
+        ...
+
+    @staticmethod
+    def _convert_categorical(from_frame: DataFrame) -> DataFrame:
+        ...
+
+    def test_iterator(self, datapath: callable) -> None:
+        ...
+
+    @pytest.mark.filterwarnings('ignore::UserWarning')
+    @pytest.mark.parametrize('file', ['stata2_115', 'stata3_115', 'stata4_115', 'stata5_115', 'stata6_115', 'stata7_115', 'stata8_115', 'stata9_115', 'stata10_115', 'stata11_115'])
+    @pytest.mark.parametrize('chunksize', [1, 2])
+    @pytest.mark.parametrize('convert_categoricals', [False, True])
+    @pytest.mark.parametrize('convert_dates', [False, True])
+    def test_read_chunks_115(self, file: str, chunksize: int, convert_categoricals: bool, convert_dates: bool, datapath: callable) -> None:
+        ...
+
+    def test_read_chunks_columns(self, datapath: callable) -> None:
+        ...
+
+    @pytest.mark.parametrize('version', [114, 117, 118, 119, None])
+    def test_write_variable_labels(self, version: int, mixed_frame: DataFrame, temp_file: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('version', [114, 117, 118, 119, None])
+    def test_invalid_variable_labels(self, version: int, mixed_frame: DataFrame, temp_file: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('version', [114, 117])
+    def test_invalid_variable_label_encoding(self, version: int, mixed_frame: DataFrame, temp_file: str) -> None:
+        ...
+
+    def test_write_variable_label_errors(self, mixed_frame: DataFrame, temp_file: str) -> None:
+        ...
+
+    def test_default_date_conversion(self, temp_file: str) -> None:
+        ...
+
+    def test_unsupported_type(self, temp_file: str) -> None:
+        ...
+
+    def test_unsupported_datetype(self, temp_file: str) -> None:
+        ...
+
+    def test_repeated_column_labels(self, datapath: callable) -> None:
+        ...
+
+    def test_stata_111(self, datapath: callable) -> None:
+        ...
+
+    def test_out_of_range_double(self, temp_file: str) -> None:
+        ...
+
+    def test_out_of_range_float(self, temp_file: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('infval', [np.inf, -np.inf])
+    def test_inf(self, infval: float, temp_file: str) -> None:
+        ...
+
+    def test_path_pathlib(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('write_index', [True, False])
+    def test_value_labels_iterator(self, write_index: bool, temp_file: str) -> None:
+        ...
+
+    def test_set_index(self, temp_file: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('column', ['ms', 'day', 'week', 'month', 'qtr', 'half', 'yr'])
+    def test_date_parsing_ignores_format_details(self, column: str, datapath: callable) -> None:
+        ...
+
+    @pytest.mark.parametrize('byteorder', ['little', 'big'])
+    def test_writer_117(self, byteorder: str, temp_file: str, using_infer_string: bool) -> None:
+        ...
+
+    def test_convert_strl_name_swap(self, temp_file: str) -> None:
+        ...
+
+    def test_invalid_date_conversion(self, temp_file: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('version', [114, 117, 118, 119, None])
+    def test_nonfile_writing(self, version: int, temp_file: str) -> None:
+        ...
+
+    def test_gzip_writing(self, temp_file: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('file', ['stata16_118', 'stata16_be_118', 'stata16_119', 'stata16_be_119'])
+    def test_unicode_dta_118_119(self, file: str, datapath: callable) -> None:
+        ...
+
+    def test_mixed_string_strl(self, temp_file: str, using_infer_string: bool) -> None:
+        ...
+
+    @pytest.mark.parametrize('version', [114, 117, 118, 119, None])
+    def test_all_none_exception(self, version: int, temp_file: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('version', [114, 117, 118, 119, None])
+    def test_invalid_file_not_written(self, version: int, temp_file: str) -> None:
+        ...
+
+    def test_strl_latin1(self, temp_file: str) -> None:
+        ...
+
+    def test_encoding_latin1_118(self, datapath: callable) -> None:
+        ...
+
+    @pytest.mark.slow
+    def test_stata_119(self, datapath: callable) -> None:
+        ...
+
+    @pytest.mark.parametrize('version', [118, 119, None])
+    @pytest.mark.parametrize('byteorder', ['little', 'big'])
+    def test_utf8_writer(self, version: int, byteorder: str, temp_file: str) -> None:
+        ...
+
+    def test_writer_118_exceptions(self, temp_file: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('dtype_backend', ['numpy_nullable', pytest.param('pyarrow', marks=td.skip_if_no('pyarrow'))])
+    def test_read_write_ea_dtypes(self, dtype_backend: str, temp_file: str, tmp_path: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('version', [113, 114, 115, 117, 118, 119])
+    def test_read_data_int_validranges(self, version: int, datapath: callable) -> None:
+        ...
+
+    @pytest.mark.parametrize('version', [104, 105, 108, 110, 111])
+    def test_read_data_int_validranges_compat(self, version: int, datapath: callable) -> None:
+        ...
+
+    @pytest.mark.parametrize('version', [102, 103])
+    def test_read_data_int_validranges_compat_nobyte(self, version: int, datapath: callable) -> None:
+        ...
+
+@pytest.mark.parametrize('version', [105, 108, 110, 111, 113, 114])
+def test_backward_compat(version: int, datapath: callable) -> None:
+    ...
+
+@pytest.mark.parametrize('version', [103, 104])
+def test_backward_compat_nodateconversion(version: int, datapath: callable) -> None:
+    ...
+
+@pytest.mark.parametrize('version', [102])
+def test_backward_compat_nostring(version: int, datapath: callable) -> None:
+    ...
+
+@pytest.mark.parametrize('version', [105, 108, 110, 111, 113, 114, 118])
+def test_bigendian(version: int, datapath: callable) -> None:
+    ...
+
+@pytest.mark.parametrize('version', [103, 104])
+def test_bigendian_nodateconversion(version: int, datapath: callable) -> None:
+    ...
+
+def test_direct_read(datapath: callable, monkeypatch: pytest.MonkeyPatch) -> None:
+    ...
+
+@pytest.mark.parametrize('version', [114, 117, 118, 119, None])
+@pytest.mark.parametrize('use_dict', [True, False])
+@pytest.mark.parametrize('infer', [True, False])
+def test_compression(compression: str, version: int, use_dict: bool, infer: bool, compression_to_extension: dict, tmp_path: str) -> None:
+    ...
+
+@pytest.mark.parametrize('method', ['zip', 'infer'])
+@pytest.mark.parametrize('file_ext', [None, 'dta', 'zip'])
+def test_compression_dict(method: str, file_ext: str, tmp_path: str) -> None:
+    ...
+
+@pytest.mark.parametrize('version', [114, 117, 118, 119, None])
+def test_chunked_categorical(version: int, temp_file: str) -> None:
+    ...
+
+def test_chunked_categorical_partial(datapath: callable) -> None:
+    ...
+
+@pytest.mark.parametrize('chunksize', (-1, 0, 'apple'))
+def test_iterator_errors(datapath: callable, chunksize: int) -> None:
+    ...
+
+def test_iterator_value_labels(temp_file: str) -> None:
+    ...
+
+def test_precision_loss(temp_file: str) -> None:
+    ...
+
+def test_compression_roundtrip(compression: str, temp_file: str) -> None:
+    ...
+
+@pytest.mark.parametrize('to_infer', [True, False])
+@pytest.mark.parametrize('read_infer', [True, False])
+def test_stata_compression(compression_only: str, read_infer: bool, to_infer: bool, compression_to_extension: dict, tmp_path: str) -> None:
+    ...
+
+def test_non_categorical_value_labels(temp_file: str) -> None:
+    ...
+
+def test_non_categorical_value_label_name_conversion(temp_file: str) -> None:
+    ...
+
+def test_non_categorical_value_label_convert_categoricals_error(temp_file: str) -> None:
+    ...
+
+@pytest.mark.parametrize('version', [114, 117, 118, 119, None])
+@pytest.mark.parametrize('dtype', [pd.BooleanDtype, pd.Int8Dtype, pd.Int16Dtype, pd.Int32Dtype, pd.Int64Dtype, pd.UInt8Dtype, pd.UInt16Dtype, pd.UInt32Dtype, pd.UInt64Dtype])
+def test_nullable_support(dtype: type, version: int, temp_file: str) -> None:
+    ...
+
+def test_empty_frame(temp_file: str) -> None:
+    ...
+
+@pytest.mark.parametrize('version', [114, 117, 118, 119, None])
+def test_many_strl(temp_file: str, version: int) -> None:
+    ...

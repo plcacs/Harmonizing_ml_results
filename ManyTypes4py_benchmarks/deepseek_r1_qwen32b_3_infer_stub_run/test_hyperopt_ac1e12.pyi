@@ -1,0 +1,232 @@
+from datetime import datetime, timedelta
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Union
+from unittest.mock import MagicMock, PropertyMock
+import pandas as pd
+import pytest
+from filelock import Timeout
+from skopt.space import Integer
+from freqtrade.commands.optimize_commands import setup_optimize_configuration, start_hyperopt
+from freqtrade.data.history import load_data
+from freqtrade.enums import ExitType, RunMode
+from freqtrade.exceptions import OperationalException
+from freqtrade.optimize.hyperopt import Hyperopt
+from freqtrade.optimize.hyperopt.hyperopt_auto import HyperOptAuto
+from freqtrade.optimize.hyperopt_tools import HyperoptTools
+from freqtrade.optimize.space import SKDecimal
+from freqtrade.strategy import IntParameter
+from freqtrade.util import dt_utc
+
+def generate_result_metrics() -> Dict[str, Union[int, float, timedelta]]:
+    ...
+
+def test_setup_hyperopt_configuration_without_arguments(
+    mocker: pytest_mock.MockerFixture,
+    default_conf: Dict[str, Any],
+    caplog: pytest.LogCaptureFixture
+) -> None:
+    ...
+
+def test_setup_hyperopt_configuration_with_arguments(
+    mocker: pytest_mock.MockerFixture,
+    default_conf: Dict[str, Any],
+    caplog: pytest.LogCaptureFixture
+) -> None:
+    ...
+
+def test_setup_hyperopt_configuration_stake_amount(
+    mocker: pytest_mock.MockerFixture,
+    default_conf: Dict[str, Any]
+) -> None:
+    ...
+
+def test_start_not_installed(
+    mocker: pytest_mock.MockerFixture,
+    default_conf: Dict[str, Any],
+    import_fails: None
+) -> None:
+    ...
+
+def test_start_no_hyperopt_allowed(
+    mocker: pytest_mock.MockerFixture,
+    hyperopt_conf: Dict[str, Any],
+    caplog: pytest.LogCaptureFixture
+) -> None:
+    ...
+
+def test_start_no_data(
+    mocker: pytest_mock.MockerFixture,
+    hyperopt_conf: Dict[str, Any],
+    tmp_path: Path
+) -> None:
+    ...
+
+def test_start_filelock(
+    mocker: pytest_mock.MockerFixture,
+    hyperopt_conf: Dict[str, Any],
+    caplog: pytest.LogCaptureFixture
+) -> None:
+    ...
+
+def test_log_results_if_loss_improves(
+    hyperopt: Hyperopt,
+    capsys: pytest.CaptureFixture
+) -> None:
+    ...
+
+def test_no_log_if_loss_does_not_improve(
+    hyperopt: Hyperopt,
+    caplog: pytest.LogCaptureFixture
+) -> None:
+    ...
+
+def test_roi_table_generation(
+    hyperopt: Hyperopt
+) -> None:
+    ...
+
+def test_params_no_optimize_details(
+    hyperopt: Hyperopt
+) -> None:
+    ...
+
+def test_start_calls_optimizer(
+    mocker: pytest_mock.MockerFixture,
+    hyperopt_conf: Dict[str, Any],
+    capsys: pytest.CaptureFixture
+) -> None:
+    ...
+
+def test_hyperopt_format_results(
+    hyperopt: Hyperopt
+) -> None:
+    ...
+
+def test_populate_indicators(
+    hyperopt: Hyperopt,
+    testdatadir: Path
+) -> None:
+    ...
+
+def test_generate_optimizer(
+    mocker: pytest_mock.MockerFixture,
+    hyperopt_conf: Dict[str, Any]
+) -> None:
+    ...
+
+def test_clean_hyperopt(
+    mocker: pytest_mock.MockerFixture,
+    hyperopt_conf: Dict[str, Any],
+    caplog: pytest.LogCaptureFixture
+) -> None:
+    ...
+
+def test_print_json_spaces_all(
+    mocker: pytest_mock.MockerFixture,
+    hyperopt_conf: Dict[str, Any],
+    capsys: pytest.CaptureFixture
+) -> None:
+    ...
+
+def test_print_json_spaces_default(
+    mocker: pytest_mock.MockerFixture,
+    hyperopt_conf: Dict[str, Any],
+    capsys: pytest.CaptureFixture
+) -> None:
+    ...
+
+def test_print_json_spaces_roi_stoploss(
+    mocker: pytest_mock.MockerFixture,
+    hyperopt_conf: Dict[str, Any],
+    capsys: pytest.CaptureFixture
+) -> None:
+    ...
+
+def test_simplified_interface_roi_stoploss(
+    mocker: pytest_mock.MockerFixture,
+    hyperopt_conf: Dict[str, Any],
+    capsys: pytest.CaptureFixture
+) -> None:
+    ...
+
+def test_simplified_interface_all_failed(
+    mocker: pytest_mock.MockerFixture,
+    hyperopt_conf: Dict[str, Any],
+    caplog: pytest.LogCaptureFixture
+) -> None:
+    ...
+
+def test_simplified_interface_buy(
+    mocker: pytest_mock.MockerFixture,
+    hyperopt_conf: Dict[str, Any],
+    capsys: pytest.CaptureFixture
+) -> None:
+    ...
+
+def test_simplified_interface_sell(
+    mocker: pytest_mock.MockerFixture,
+    hyperopt_conf: Dict[str, Any],
+    capsys: pytest.CaptureFixture
+) -> None:
+    ...
+
+@pytest.mark.parametrize('space', ['buy', 'sell', 'protection'])
+def test_simplified_interface_failed(
+    mocker: pytest_mock.MockerFixture,
+    hyperopt_conf: Dict[str, Any],
+    space: str
+) -> None:
+    ...
+
+def test_in_strategy_auto_hyperopt(
+    mocker: pytest_mock.MockerFixture,
+    hyperopt_conf: Dict[str, Any],
+    tmp_path: Path,
+    fee: pytest_mock.MockFixture
+) -> None:
+    ...
+
+@pytest.mark.filterwarnings('ignore::DeprecationWarning')
+def test_in_strategy_auto_hyperopt_with_parallel(
+    mocker: pytest_mock.MockerFixture,
+    hyperopt_conf: Dict[str, Any],
+    tmp_path: Path,
+    fee: pytest_mock.MockFixture
+) -> None:
+    ...
+
+def test_in_strategy_auto_hyperopt_per_epoch(
+    mocker: pytest_mock.MockerFixture,
+    hyperopt_conf: Dict[str, Any],
+    tmp_path: Path,
+    fee: pytest_mock.MockFixture
+) -> None:
+    ...
+
+def test_SKDecimal() -> None:
+    ...
+
+def test_stake_amount_unlimited_max_open_trades(
+    mocker: pytest_mock.MockerFixture,
+    hyperopt_conf: Dict[str, Any],
+    tmp_path: Path,
+    fee: pytest_mock.MockFixture
+) -> None:
+    ...
+
+def test_max_open_trades_dump(
+    mocker: pytest_mock.MockerFixture,
+    hyperopt_conf: Dict[str, Any],
+    tmp_path: Path,
+    fee: pytest_mock.MockFixture,
+    capsys: pytest.CaptureFixture
+) -> None:
+    ...
+
+def test_max_open_trades_consistency(
+    mocker: pytest_mock.MockerFixture,
+    hyperopt_conf: Dict[str, Any],
+    tmp_path: Path,
+    fee: pytest_mock.MockFixture
+) -> None:
+    ...

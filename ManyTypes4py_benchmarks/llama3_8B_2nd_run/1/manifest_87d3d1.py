@@ -1,0 +1,23 @@
+from typing import Any, Dict, List
+import pytest
+
+def make_model(pkg: str, name: str, code: str, language: str = 'sql', refs: List[Any] = None, sources: List[Any] = None, tags: List[str] = None, path: str = None, alias: str = None, config_kwargs: Dict[str, str] = None, fqn_extras: List[str] = None, depends_on_macros: List[Any] = None, version: str = None, latest_version: str = None, access: str = None, patch_path: str = None) -> ModelNode:
+    ...
+
+def make_seed(pkg: str, name: str, path: str = None, loader: str = None, alias: str = None, tags: List[str] = None, fqn_extras: List[str] = None, checksum: str = None) -> SeedNode:
+    ...
+
+def make_source(pkg: str, source_name: str, table_name: str, path: str = None, loader: str = None, identifier: str = None, fqn_extras: List[str] = None) -> SourceDefinition:
+    ...
+
+def make_macro(pkg: str, name: str, macro_sql: str, path: str = None, depends_on_macros: List[Any] = None) -> Macro:
+    ...
+
+def make_unique_test(pkg: str, test_model: Any, column_name: str, path: str = None, refs: List[Any] = None, sources: List[Any] = None, tags: List[str] = None) -> GenericTestNode:
+    ...
+
+def make_not_null_test(pkg: str, test_model: Any, column_name: str, path: str = None, refs: List[Any] = None, sources: List[Any] = None, tags: List[str] = None) -> GenericTestNode:
+    ...
+
+def make_manifest(disabled: Dict[str, str] = {}, docs: List[Any] = [], exposures: List[Any] = [], files: Dict[str, str] = {}, groups: List[Any] = [], macros: List[Any] = [], metrics: List[Any] = [], nodes: List[Any] = [], saved_queries: List[Any] = [], selectors: Dict[str, str] = {}, semantic_models: List[Any] = [], sources: List[Any] = [], unit_tests: List[Any] = []) -> Manifest:
+    ...

@@ -1,0 +1,381 @@
+"""Test cases for time series specific (freq conversion, etc)"""
+
+from datetime import date, datetime, time, timedelta
+import pickle
+import numpy as np
+import pytest
+from pandas._libs.tslibs import BaseOffset, to_offset
+from pandas.core.dtypes.dtypes import PeriodDtype
+from pandas import DataFrame, Index, NaT, Series, concat, isna, to_datetime
+import pandas._testing as tm
+from pandas.core.indexes.datetimes import DatetimeIndex, bdate_range, date_range
+from pandas.core.indexes.period import Period, PeriodIndex, period_range
+from pandas.core.indexes.timedeltas import timedelta_range
+from pandas.tests.plotting.common import _check_ticks_props
+from pandas.tseries.offsets import WeekOfMonth
+import matplotlib as mpl
+from matplotlib import pyplot
+import pandas.plotting._matplotlib.converter as conv
+
+class TestTSPlot:
+    def test_ts_plot_with_tz(self, tz_aware_fixture: datetime) -> None:
+        ...
+
+    def test_fontsize_set_correctly(self) -> None:
+        ...
+
+    def test_frame_inferred(self) -> None:
+        ...
+
+    def test_frame_inferred_n_gt_1(self) -> None:
+        ...
+
+    def test_is_error_nozeroindex(self) -> None:
+        ...
+
+    def test_nonnumeric_exclude(self) -> None:
+        ...
+
+    def test_nonnumeric_exclude_error(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('freq', ['s', 'min', 'h', 'D', 'W', 'M', 'Q', 'Y'])
+    def test_tsplot_period(self, freq: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('freq', ['s', 'min', 'h', 'D', 'W', 'ME', 'QE-DEC', 'YE', '1B30Min'])
+    def test_tsplot_datetime(self, freq: str) -> None:
+        ...
+
+    def test_tsplot(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('index', [None, date_range('2020-01-01', periods=10)])
+    def test_both_style_and_color(self, index: Index | None) -> None:
+        ...
+
+    @pytest.mark.parametrize('freq', ['ms', 'us'])
+    def test_high_freq(self, freq: str) -> None:
+        ...
+
+    def test_get_datevalue(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('freq, expected_string', [['YE-DEC', 't = 2014  y = 1.000000'], ['D', 't = 2014-01-01  y = 1.000000']])
+    def test_ts_plot_format_coord(self, freq: str, expected_string: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('freq', ['s', 'min', 'h', 'D', 'W', 'M', 'Q', 'Y'])
+    def test_line_plot_period_series(self, freq: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('frqncy', ['1s', '3s', '5min', '7h', '4D', '8W', '11M', '3Y'])
+    def test_line_plot_period_mlt_series(self, frqncy: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('freq', ['s', 'min', 'h', 'D', 'W', 'ME', 'QE-DEC', 'YE', '1B30Min'])
+    def test_line_plot_datetime_series(self, freq: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('freq', ['s', 'min', 'h', 'D', 'W', 'ME', 'QE', 'YE'])
+    def test_line_plot_period_frame(self, freq: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('frqncy', ['1s', '3s', '5min', '7h', '4D', '8W', '11M', '3Y'])
+    def test_line_plot_period_mlt_frame(self, frqncy: str) -> None:
+        ...
+
+    @pytest.mark.filterwarnings('ignore:PeriodDtype\\[B\\] is deprecated:FutureWarning')
+    @pytest.mark.parametrize('freq', ['s', 'min', 'h', 'D', 'W', 'ME', 'QE-DEC', 'YE', '1B30Min'])
+    def test_line_plot_datetime_frame(self, freq: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('freq', ['s', 'min', 'h', 'D', 'W', 'ME', 'QE-DEC', 'YE', '1B30Min'])
+    def test_line_plot_inferred_freq(self, freq: str) -> None:
+        ...
+
+    def test_fake_inferred_business(self) -> None:
+        ...
+
+    def test_plot_offset_freq(self) -> None:
+        ...
+
+    def test_plot_offset_freq_business(self) -> None:
+        ...
+
+    def test_plot_multiple_inferred_freq(self) -> None:
+        ...
+
+    def test_irreg_hf(self) -> None:
+        ...
+
+    def test_irreg_hf_object(self) -> None:
+        ...
+
+    def test_irregular_datetime64_repr_bug(self) -> None:
+        ...
+
+    def test_business_freq(self) -> None:
+        ...
+
+    def test_business_freq_convert(self) -> None:
+        ...
+
+    def test_freq_with_no_period_alias(self) -> None:
+        ...
+
+    def test_nonzero_base(self) -> None:
+        ...
+
+    def test_dataframe(self) -> None:
+        ...
+
+    @pytest.mark.filterwarnings('ignore:Period with BDay freq is deprecated:FutureWarning')
+    @pytest.mark.parametrize('obj', [Series(np.arange(10, dtype=np.float64), index=date_range('2020-01-01', periods=10)), DataFrame({'a': Series(np.arange(10, dtype=np.float64), index=date_range('2020-01-01', periods=10)), 'b': Series(np.arange(10, dtype=np.float64), index=date_range('2020-01-01', periods=10)) + 1})])
+    def test_axis_limits(self, obj: Series | DataFrame) -> None:
+        ...
+
+    def test_get_finder(self) -> None:
+        ...
+
+    def test_finder_daily(self) -> None:
+        ...
+
+    def test_finder_quarterly(self) -> None:
+        ...
+
+    def test_finder_monthly(self) -> None:
+        ...
+
+    def test_finder_monthly_long(self) -> None:
+        ...
+
+    def test_finder_annual(self) -> None:
+        ...
+
+    @pytest.mark.slow
+    def test_finder_minutely(self) -> None:
+        ...
+
+    def test_finder_hourly(self) -> None:
+        ...
+
+    def test_gaps(self) -> None:
+        ...
+
+    def test_gaps_irregular(self) -> None:
+        ...
+
+    def test_gaps_non_ts(self) -> None:
+        ...
+
+    def test_gap_upsample(self) -> None:
+        ...
+
+    def test_secondary_y(self) -> None:
+        ...
+
+    def test_secondary_y_yaxis(self) -> None:
+        ...
+
+    def test_secondary_both(self) -> None:
+        ...
+
+    def test_secondary_y_ts(self) -> None:
+        ...
+
+    def test_secondary_y_ts_yaxis(self) -> None:
+        ...
+
+    def test_secondary_y_ts_visible(self) -> None:
+        ...
+
+    def test_secondary_kde(self) -> None:
+        ...
+
+    def test_secondary_bar(self) -> None:
+        ...
+
+    def test_secondary_frame(self) -> None:
+        ...
+
+    def test_secondary_bar_frame(self) -> None:
+        ...
+
+    def test_mixed_freq_regular_first(self) -> None:
+        ...
+
+    def test_mixed_freq_irregular_first(self) -> None:
+        ...
+
+    def test_mixed_freq_regular_first_df(self) -> None:
+        ...
+
+    def test_mixed_freq_irregular_first_df(self) -> None:
+        ...
+
+    def test_mixed_freq_hf_first(self) -> None:
+        ...
+
+    def test_mixed_freq_alignment(self) -> None:
+        ...
+
+    def test_mixed_freq_lf_first(self) -> None:
+        ...
+
+    def test_mixed_freq_lf_first_hourly(self) -> None:
+        ...
+
+    @pytest.mark.filterwarnings('ignore:PeriodDtype\\[B\\] is deprecated:FutureWarning')
+    def test_mixed_freq_irreg_period(self) -> None:
+        ...
+
+    def test_mixed_freq_shared_ax(self) -> None:
+        ...
+
+    def test_mixed_freq_shared_ax_twin_x(self) -> None:
+        ...
+
+    @pytest.mark.xfail(reason='TODO (GH14330, GH14322)')
+    def test_mixed_freq_shared_ax_twin_x_irregular_first(self) -> None:
+        ...
+
+    def test_nat_handling(self) -> None:
+        ...
+
+    def test_to_weekly_resampling_disallow_how_kwd(self) -> None:
+        ...
+
+    def test_to_weekly_resampling(self) -> None:
+        ...
+
+    def test_from_weekly_resampling(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('kind1, kind2', [('line', 'area'), ('area', 'line')])
+    def test_from_resampling_area_line_mixed(self, kind1: str, kind2: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('kind1, kind2', [('line', 'area'), ('area', 'line')])
+    def test_from_resampling_area_line_mixed_high_to_low(self, kind1: str, kind2: str) -> None:
+        ...
+
+    def test_mixed_freq_second_millisecond(self) -> None:
+        ...
+
+    def test_mixed_freq_second_millisecond_low_to_high(self) -> None:
+        ...
+
+    def test_irreg_dtypes(self) -> None:
+        ...
+
+    def test_irreg_dtypes_dt64(self) -> None:
+        ...
+
+    def test_time(self) -> None:
+        ...
+
+    def test_time_change_xlim(self) -> None:
+        ...
+
+    def test_time_musec(self) -> None:
+        ...
+
+    def test_secondary_upsample(self) -> None:
+        ...
+
+    def test_secondary_legend(self) -> None:
+        ...
+
+    def test_secondary_legend_right(self) -> None:
+        ...
+
+    def test_secondary_legend_bar(self) -> None:
+        ...
+
+    def test_secondary_legend_bar_right(self) -> None:
+        ...
+
+    def test_secondary_legend_multi_col(self) -> None:
+        ...
+
+    def test_secondary_legend_nonts(self) -> None:
+        ...
+
+    def test_secondary_legend_nonts_multi_col(self) -> None:
+        ...
+
+    @pytest.mark.xfail(reason='Api changed in 3.6.0')
+    def test_format_date_axis(self) -> None:
+        ...
+
+    def test_ax_plot(self) -> None:
+        ...
+
+    def test_mpl_nopandas(self) -> None:
+        ...
+
+    def test_irregular_ts_shared_ax_xlim(self) -> None:
+        ...
+
+    def test_secondary_y_non_ts_xlim(self) -> None:
+        ...
+
+    def test_secondary_y_regular_ts_xlim(self) -> None:
+        ...
+
+    def test_secondary_y_mixed_freq_ts_xlim(self) -> None:
+        ...
+
+    def test_secondary_y_irregular_ts_xlim(self) -> None:
+        ...
+
+    def test_plot_outofbounds_datetime(self) -> None:
+        ...
+
+    def test_format_timedelta_ticks_narrow(self) -> None:
+        ...
+
+    def test_format_timedelta_ticks_wide(self) -> None:
+        ...
+
+    def test_timedelta_plot(self) -> None:
+        ...
+
+    def test_timedelta_long_period(self) -> None:
+        ...
+
+    def test_timedelta_short_period(self) -> None:
+        ...
+
+    def test_hist(self) -> None:
+        ...
+
+    def test_overlapping_datetime(self) -> None:
+        ...
+
+    @pytest.mark.xfail(reason='GH9053 matplotlib does not use ax.xaxis.converter')
+    def test_add_matplotlib_datetime64(self) -> None:
+        ...
+
+    def test_matplotlib_scatter_datetime64(self) -> None:
+        ...
+
+    def test_check_xticks_rot(self) -> None:
+        ...
+
+    def test_check_xticks_rot_irregular(self) -> None:
+        ...
+
+    def test_check_xticks_rot_use_idx(self) -> None:
+        ...
+
+    def test_check_xticks_rot_sharex(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('idx', [date_range('2020-01-01', periods=5), date_range('2020-01-01', periods=5, tz='UTC'), timedelta_range('1 day', periods=5, freq='D'), period_range('2020-01-01', periods=5, freq='D'), Index([date(2000, 1, i) for i in [1, 3, 6, 20, 22]], dtype=object), range(5)])
+    def test_pickle_fig(self, temp_file: str, frame_or_series: DataFrame | Series, idx: Index) -> None:
+        ...
+
+def _check_plot_works(f: callable, freq: BaseOffset | None = None, series: Series | None = None, *args: Any, **kwargs: Any) -> None:
+    ...

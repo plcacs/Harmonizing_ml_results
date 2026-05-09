@@ -1,0 +1,140 @@
+import numpy as np
+import pytest
+import pandas as pd
+from pandas import DataFrame, Index, MultiIndex, Series, Timestamp, CategoricalDtype
+
+def test_first_last_nth(df: DataFrame) -> None:
+    ...
+
+@pytest.mark.parametrize('method', ['first', 'last'])
+def test_first_last_with_na_object(method: str, nulls_fixture: Any) -> None:
+    ...
+
+@pytest.mark.parametrize('index', [0, -1])
+def test_nth_with_na_object(index: int, nulls_fixture: Any) -> None:
+    ...
+
+@pytest.mark.parametrize('method', ['first', 'last'])
+def test_first_last_with_None(method: str) -> None:
+    ...
+
+@pytest.mark.parametrize('method', ['first', 'last'])
+@pytest.mark.parametrize('df, expected', [(DataFrame, DataFrame), (DataFrame, DataFrame)])
+def test_first_last_with_None_expanded(method: str, df: DataFrame, expected: DataFrame) -> None:
+    ...
+
+def test_first_last_nth_dtypes() -> None:
+    ...
+
+def test_first_last_nth_dtypes2() -> None:
+    ...
+
+def test_first_last_nth_nan_dtype() -> None:
+    ...
+
+def test_first_strings_timestamps() -> None:
+    ...
+
+def test_nth() -> None:
+    ...
+
+def test_nth2() -> None:
+    ...
+
+def test_nth3() -> None:
+    ...
+
+def test_nth4() -> None:
+    ...
+
+def test_nth5() -> None:
+    ...
+
+def test_nth_bdays(unit: str) -> None:
+    ...
+
+def test_nth_multi_grouper(three_group: DataFrame) -> None:
+    ...
+
+@pytest.mark.parametrize('data, expected_first, expected_last', [({'id': ['A'], 'time': Timestamp, 'foo': [1]}, {'id': ['A'], 'time': Timestamp, 'foo': [1]}, {'id': ['A'], 'time': Timestamp, 'foo': [1]}), ({'id': ['A', 'B', 'A'], 'time': [Timestamp, Timestamp, Timestamp], 'foo': [1, 2, 3]}, {'id': ['A', 'B'], 'time': [Timestamp, Timestamp], 'foo': [1, 2]}, {'id': ['A', 'B'], 'time': [Timestamp, Timestamp], 'foo': [3, 2]})])
+def test_first_last_tz(data: dict, expected_first: dict, expected_last: dict) -> None:
+    ...
+
+@pytest.mark.parametrize('method, ts, alpha', [['first', Timestamp, 'a'], ['last', Timestamp, 'b']])
+def test_first_last_tz_multi_column(method: str, ts: Timestamp, alpha: str, unit: str) -> None:
+    ...
+
+@pytest.mark.parametrize('values', [pd.array([True, False], dtype='boolean'), pd.array([1, 2], dtype='Int64'), pd.to_datetime(['2020-01-01', '2020-02-01']), pd.to_timedelta([1, 2], unit='D')])
+@pytest.mark.parametrize('function', ['first', 'last', 'min', 'max'])
+def test_first_last_extension_array_keeps_dtype(values: Any, function: str) -> None:
+    ...
+
+def test_nth_multi_index_as_expected() -> None:
+    ...
+
+@pytest.mark.parametrize('op, n, expected_rows', [('head', -1, [0]), ('head', 0, []), ('head', 1, [0, 2]), ('head', 7, [0, 1, 2]), ('tail', -1, [1]), ('tail', 0, []), ('tail', 1, [1, 2]), ('tail', 7, [0, 1, 2])])
+@pytest.mark.parametrize('columns', [None, [], ['A'], ['B'], ['A', 'B']])
+def test_groupby_head_tail(op: str, n: int, expected_rows: list[int], columns: list[str] | None, as_index: bool) -> None:
+    ...
+
+def test_group_selection_cache() -> None:
+    ...
+
+def test_nth_empty() -> None:
+    ...
+
+def test_nth_column_order() -> None:
+    ...
+
+@pytest.mark.parametrize('dropna', [None, 'any', 'all'])
+def test_nth_nan_in_grouper(dropna: str | None) -> None:
+    ...
+
+@pytest.mark.parametrize('dropna', [None, 'any', 'all'])
+def test_nth_nan_in_grouper_series(dropna: str | None) -> None:
+    ...
+
+def test_first_categorical_and_datetime_data_nat() -> None:
+    ...
+
+def test_first_multi_key_groupby_categorical() -> None:
+    ...
+
+@pytest.mark.parametrize('method', ['first', 'last', 'nth'])
+def test_groupby_last_first_nth_with_none(method: str, nulls_fixture: Any) -> None:
+    ...
+
+@pytest.mark.parametrize('arg, expected_rows', [[slice(None, 3, 2), [0, 1, 4, 5]], [slice(None, -2), [0, 2, 5]], [[slice(None, 2), slice(-2, None)], [0, 1, 2, 3, 4, 6, 7]], [[0, 1, slice(-2, None)], [0, 1, 2, 3, 4, 6, 7]]])
+def test_slice(slice_test_df: DataFrame, slice_test_grouped: Any, arg: Any, expected_rows: list[int]) -> None:
+    ...
+
+def test_nth_indexed(slice_test_df: DataFrame, slice_test_grouped: Any) -> None:
+    ...
+
+def test_invalid_argument(slice_test_grouped: Any) -> None:
+    ...
+
+def test_negative_step(slice_test_grouped: Any) -> None:
+    ...
+
+def test_np_ints(slice_test_df: DataFrame, slice_test_grouped: Any) -> None:
+    ...
+
+def test_groupby_nth_interval() -> None:
+    ...
+
+@pytest.mark.filterwarnings('ignore:invalid value encountered in remainder:RuntimeWarning')
+def test_head_tail_dropna_true() -> None:
+    ...
+
+def test_head_tail_dropna_false() -> None:
+    ...
+
+@pytest.mark.parametrize('selection', ('b', ['b'], ['b', 'c']))
+@pytest.mark.parametrize('dropna', ['any', 'all', None])
+def test_nth_after_selection(selection: str | list[str], dropna: str | None) -> None:
+    ...
+
+@pytest.mark.parametrize('data', [(Timestamp, Timestamp), (int, int)])
+def test_groupby_nth_int_like_precision(data: tuple) -> None:
+    ...

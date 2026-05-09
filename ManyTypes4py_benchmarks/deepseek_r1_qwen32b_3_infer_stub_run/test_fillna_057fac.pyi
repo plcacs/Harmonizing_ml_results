@@ -1,0 +1,276 @@
+from datetime import datetime, timedelta, timezone
+from typing import Any, Dict, List, Optional, Tuple, Union
+from pandas import (
+    Categorical,
+    DataFrame,
+    DatetimeIndex,
+    NaT,
+    Period,
+    Series,
+    Timedelta,
+    Timestamp,
+    date_range,
+    isna,
+    timedelta_range,
+)
+import pandas._testing as tm
+from pandas.core.arrays import period_array
+
+
+class TestSeriesFillNA:
+    def test_fillna_nat(self) -> None:
+        ...
+
+    def test_fillna(self) -> None:
+        ...
+
+    def test_fillna_nonscalar(self) -> None:
+        ...
+
+    def test_fillna_aligns(self) -> None:
+        ...
+
+    def test_fillna_limit(self) -> None:
+        ...
+
+    def test_fillna_dont_cast_strings(self) -> None:
+        ...
+
+    def test_fillna_consistency(self) -> None:
+        ...
+
+    def test_timedelta_fillna(
+        self, frame_or_series: Any, unit: Optional[str] = None
+    ) -> None:
+        ...
+
+    def test_datetime64_fillna(self) -> None:
+        ...
+
+    @pytest.mark.parametrize("scalar", [False, True])
+    @pytest.mark.parametrize("tz", [None, "UTC"])
+    def test_datetime64_fillna_mismatched_reso_no_rounding(
+        self, tz: Optional[str], scalar: bool
+    ) -> None:
+        ...
+
+    @pytest.mark.parametrize("scalar", [False, True])
+    def test_timedelta64_fillna_mismatched_reso_no_rounding(
+        self, scalar: bool
+    ) -> None:
+        ...
+
+    def test_datetime64_fillna_backfill(self) -> None:
+        ...
+
+    @pytest.mark.parametrize("tz", ["US/Eastern", "Asia/Tokyo"])
+    def test_datetime64_tz_fillna(
+        self, tz: str, unit: Optional[str] = None
+    ) -> None:
+        ...
+
+    def test_fillna_dt64tz_with_method(self) -> None:
+        ...
+
+    def test_fillna_pytimedelta(self) -> None:
+        ...
+
+    def test_fillna_period(self) -> None:
+        ...
+
+    def test_fillna_dt64_timestamp(
+        self, frame_or_series: Any
+    ) -> None:
+        ...
+
+    def test_fillna_dt64_non_nao(self) -> None:
+        ...
+
+    def test_fillna_numeric_inplace(self) -> None:
+        ...
+
+    @pytest.mark.parametrize(
+        "fill_value, expected_output",
+        [
+            ("a", ["a", "a", "b", "a", "a"]),
+            ({1: "a", 3: "b", 4: "b"}, ["a", "a", "b", "b", "b"]),
+            ({1: "a"}, ["a", "a", "b", np.nan, np.nan]),
+            ({1: "a", 3: "b"}, ["a", "a", "b", "b", np.nan]),
+            (Series("a"), ["a", np.nan, "b", np.nan, np.nan]),
+            (Series("a", index=[1]), ["a", "a", "b", np.nan, np.nan]),
+            (Series({1: "a", 3: "b"}), ["a", "a", "b", "b", np.nan]),
+            (Series(["a", "b"], index=[3, 4]), ["a", np.nan, "b", "a", "b"]),
+        ],
+    )
+    def test_fillna_categorical(
+        self, fill_value: Union[str, Dict[int, str], Series], expected_output: List[str]
+    ) -> None:
+        ...
+
+    @pytest.mark.parametrize(
+        "fill_value, expected_output",
+        [
+            (
+                ["a", "b", "c", "d", "e"],
+                ["a", "b", "b", "d", "e"],
+            ),
+            (
+                ["b", "d", "a", "d", "a"],
+                ["a", "d", "b", "d", "a"],
+            ),
+            (
+                Categorical(
+                    ["b", "d", "a", "d", "a"],
+                    categories=["b", "c", "d", "e", "a"],
+                ),
+                ["a", "d", "b", "d", "a"],
+            ),
+        ],
+    )
+    def test_fillna_categorical_with_new_categories(
+        self, fill_value: Union[List[str], Categorical], expected_output: List[str]
+    ) -> None:
+        ...
+
+    def test_fillna_categorical_raises(self) -> None:
+        ...
+
+    @pytest.mark.parametrize("dtype", [float, "float32", "float64"])
+    @pytest.mark.parametrize("any_real_numpy_dtype", [np.float32, np.float64])
+    def test_fillna_float_casting(
+        self, dtype: Union[type, str], any_real_numpy_dtype: type, scalar: bool
+    ) -> None:
+        ...
+
+    def test_fillna_f32_upcast_with_dict(self) -> None:
+        ...
+
+    def test_fillna_listlike_invalid(self) -> None:
+        ...
+
+    def test_fillna_method_and_limit_invalid(self) -> None:
+        ...
+
+    def test_fillna_datetime64_with_timezone_tzinfo(self) -> None:
+        ...
+
+    @pytest.mark.parametrize(
+        "input, input_fillna, expected_data, expected_categories",
+        [
+            (["A", "B", None, "A"], "B", ["A", "B", "B", "A"], ["A", "B"]),
+            (
+                ["A", "B", np.nan, "A"],
+                "B",
+                ["A", "B", "B", "A"],
+                ["A", "B"],
+            ),
+        ],
+    )
+    def test_fillna_categorical_accept_same_type(
+        self,
+        input: List[Union[str, None]],
+        input_fillna: str,
+        expected_data: List[str],
+        expected_categories: List[str],
+    ) -> None:
+        ...
+
+
+class TestFillnaPad:
+    def test_fillna_bug(self) -> None:
+        ...
+
+    def test_ffill_mixed_dtypes_without_missing_data(self) -> None:
+        ...
+
+    def test_pad_nan(self) -> None:
+        ...
+
+    def test_series_fillna_limit(self) -> None:
+        ...
+
+    def test_series_pad_backfill_limit(self) -> None:
+        ...
+
+    def test_fillna_int(self) -> None:
+        ...
+
+    def test_datetime64tz_fillna_round_issue(self) -> None:
+        ...
+
+    def test_fillna_parr(self) -> None:
+        ...
+
+
+@pytest.mark.parametrize(
+    "data, expected_data, method, kwargs",
+    (
+        (
+            [np.nan, np.nan, 3, np.nan, np.nan, np.nan, 7, np.nan, np.nan],
+            [np.nan, np.nan, 3.0, 3.0, 3.0, 3.0, 7.0, np.nan, np.nan],
+            "ffill",
+            {"limit_area": "inside"},
+        ),
+        (
+            [np.nan, np.nan, 3, np.nan, np.nan, np.nan, 7, np.nan, np.nan],
+            [np.nan, np.nan, 3.0, 3.0, np.nan, np.nan, 7.0, np.nan, np.nan],
+            "ffill",
+            {"limit_area": "inside", "limit": 1},
+        ),
+        (
+            [np.nan, np.nan, 3, np.nan, np.nan, np.nan, 7, np.nan, np.nan],
+            [np.nan, np.nan, 3.0, np.nan, np.nan, np.nan, 7.0, 7.0, 7.0],
+            "ffill",
+            {"limit_area": "outside"},
+        ),
+        (
+            [np.nan, np.nan, 3, np.nan, np.nan, np.nan, 7, np.nan, np.nan],
+            [np.nan, np.nan, 3.0, np.nan, np.nan, np.nan, 7.0, 7.0, np.nan],
+            "ffill",
+            {"limit_area": "outside", "limit": 1},
+        ),
+        (
+            [np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan],
+            [np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan],
+            "ffill",
+            {"limit_area": "outside", "limit": 1},
+        ),
+        (
+            range(5),
+            range(5),
+            "ffill",
+            {"limit_area": "outside", "limit": 1},
+        ),
+        (
+            [np.nan, np.nan, 3, np.nan, np.nan, np.nan, 7, np.nan, np.nan],
+            [np.nan, np.nan, 3.0, 7.0, 7.0, 7.0, 7.0, np.nan, np.nan],
+            "bfill",
+            {"limit_area": "inside"},
+        ),
+        (
+            [np.nan, np.nan, 3, np.nan, np.nan, np.nan, 7, np.nan, np.nan],
+            [np.nan, np.nan, 3.0, np.nan, np.nan, 7.0, 7.0, np.nan, np.nan],
+            "bfill",
+            {"limit_area": "inside", "limit": 1},
+        ),
+        (
+            [np.nan, np.nan, 3, np.nan, np.nan, np.nan, 7, np.nan, np.nan],
+            [3.0, 3.0, 3.0, np.nan, np.nan, np.nan, 7.0, np.nan, np.nan],
+            "bfill",
+            {"limit_area": "outside"},
+        ),
+        (
+            [np.nan, np.nan, 3, np.nan, np.nan, np.nan, 7, np.nan, np.nan],
+            [np.nan, 3.0, 3.0, np.nan, np.nan, np.nan, 7.0, np.nan, np.nan],
+            "bfill",
+            {"limit_area": "outside", "limit": 1},
+        ),
+    ),
+)
+def test_ffill_bfill_limit_area(
+    data: List[Union[float, int]],
+    expected_data: List[Union[float, int]],
+    method: str,
+    kwargs: Dict[str, Union[str, int]],
+) -> None:
+    ...

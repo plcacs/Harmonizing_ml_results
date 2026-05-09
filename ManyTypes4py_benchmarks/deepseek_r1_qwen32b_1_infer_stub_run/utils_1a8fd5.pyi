@@ -1,0 +1,214 @@
+"""Shelly helpers functions."""
+
+from __future__ import annotations
+from collections.abc import Iterable
+from datetime import datetime
+from ipaddress import IPv4Address, IPv6Address, IPv4Interface, IPv6Interface
+from types import MappingProxyType
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    FrozenSet,
+    Iterable,
+    List,
+    Mapping,
+    Optional,
+    Set,
+    Tuple,
+    Union,
+    cast,
+)
+from aiohttp.web import Request, WebSocketResponse
+from aioshelly.block_device import COAP, Block, BlockDevice
+from aioshelly.const import (
+    BLOCK_GENERATIONS,
+    DEFAULT_COAP_PORT,
+    DEFAULT_HTTP_PORT,
+    MODEL_1L,
+    MODEL_DIMMER,
+    MODEL_DIMMER_2,
+    MODEL_EM3,
+    MODEL_I3,
+    MODEL_NAMES,
+    RPC_GENERATIONS,
+)
+from aioshelly.rpc_device import RpcDevice, WsServer
+from homeassistant.components import network
+from homeassistant.components.http import HomeAssistantView
+from homeassistant.config_entries import ConfigEntry
+from homeassistant.const import CONF_PORT, EVENT_HOMEASSISTANT_STOP
+from homeassistant.core import Event, HomeAssistant, callback
+from homeassistant.helpers import (
+    device_registry as dr,
+    entity_registry as er,
+    issue_registry as ir,
+    singleton,
+)
+from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC
+from homeassistant.util.dt import utcnow
+
+API_WS_URL: str
+BASIC_INPUTS_EVENTS_TYPES: Tuple[str, ...]
+COMPONENT_ID_PATTERN: str
+CONF_COAP_PORT: str
+CONF_GEN: str
+DEVICES_WITHOUT_FIRMWARE_CHANGELOG: FrozenSet[str]
+DOMAIN: str
+FIRMWARE_UNSUPPORTED_ISSUE_ID: str
+GEN1_RELEASE_URL: str
+GEN2_BETA_RELEASE_URL: str
+GEN2_RELEASE_URL: str
+LOGGER: Any
+RPC_INPUTS_EVENTS_TYPES: Tuple[str, ...]
+SHBTN_INPUTS_EVENTS_TYPES: Tuple[str, ...]
+SHBTN_MODELS: Tuple[str, ...]
+SHELLY_EMIT_EVENT_PATTERN: str
+SHIX3_1_INPUTS_EVENTS_TYPES: Tuple[str, ...]
+UPTIME_DEVIATION: int
+VIRTUAL_COMPONENTS_MAP: Dict[str, Any]
+
+@callback
+def async_remove_shelly_entity(hass: HomeAssistant, domain: str, unique_id: str) -> None:
+    ...
+
+def get_number_of_channels(device: BlockDevice, block: Block) -> int:
+    ...
+
+def get_block_entity_name(device: BlockDevice, block: Block, description: Optional[str] = None) -> str:
+    ...
+
+def get_block_channel_name(device: BlockDevice, block: Block) -> str:
+    ...
+
+def is_block_momentary_input(settings: Dict[str, Any], block: Block, include_detached: bool = False) -> bool:
+    ...
+
+def get_device_uptime(uptime: int, last_uptime: Optional[datetime]) -> datetime:
+    ...
+
+def get_block_input_triggers(device: BlockDevice, block: Block) -> List[Tuple[str, str]]:
+    ...
+
+def get_shbtn_input_triggers() -> List[Tuple[str, str]]:
+    ...
+
+@singleton.singleton('shelly_coap')
+async def get_coap_context(hass: HomeAssistant) -> COAP:
+    ...
+
+class ShellyReceiver(HomeAssistantView):
+    requires_auth: bool
+    url: str
+    name: str
+
+    def __init__(self, ws_server: WsServer) -> None:
+        ...
+
+    async def get(self, request: Request) -> WebSocketResponse:
+        ...
+
+@singleton.singleton('shelly_ws_server')
+async def get_ws_context(hass: HomeAssistant) -> WsServer:
+    ...
+
+def get_block_device_sleep_period(settings: Dict[str, Any]) -> int:
+    ...
+
+def get_rpc_device_wakeup_period(status: Dict[str, Any]) -> int:
+    ...
+
+def get_info_auth(info: Dict[str, Any]) -> bool:
+    ...
+
+def get_info_gen(info: Dict[str, Any]) -> int:
+    ...
+
+def get_model_name(info: Dict[str, Any]) -> str:
+    ...
+
+def get_rpc_channel_name(device: RpcDevice, key: str) -> str:
+    ...
+
+def get_rpc_entity_name(device: RpcDevice, key: str, description: Optional[str] = None) -> str:
+    ...
+
+def get_device_entry_gen(entry: ConfigEntry) -> int:
+    ...
+
+def get_rpc_key_instances(keys_dict: Dict[str, Any], key: str) -> List[str]:
+    ...
+
+def get_rpc_key_ids(keys_dict: Dict[str, Any], key: str) -> List[int]:
+    ...
+
+def is_rpc_momentary_input(config: Dict[str, Any], status: Dict[str, Any], key: str) -> bool:
+    ...
+
+def is_block_channel_type_light(settings: Dict[str, Any], channel: int) -> bool:
+    ...
+
+def is_rpc_channel_type_light(config: Dict[str, Any], channel: int) -> bool:
+    ...
+
+def is_rpc_thermostat_internal_actuator(status: Dict[str, Any]) -> bool:
+    ...
+
+def get_rpc_input_triggers(device: RpcDevice) -> List[Tuple[str, str]]:
+    ...
+
+@callback
+def update_device_fw_info(hass: HomeAssistant, shellydevice: Any, entry: ConfigEntry) -> None:
+    ...
+
+def brightness_to_percentage(brightness: int) -> int:
+    ...
+
+def percentage_to_brightness(percentage: int) -> int:
+    ...
+
+def mac_address_from_name(name: str) -> Optional[str]:
+    ...
+
+def get_release_url(gen: int, model: str, beta: bool) -> Optional[str]:
+    ...
+
+@callback
+def async_create_issue_unsupported_firmware(hass: HomeAssistant, entry: ConfigEntry) -> None:
+    ...
+
+def is_rpc_wifi_stations_disabled(config: Dict[str, Any], _status: Dict[str, Any], key: str) -> bool:
+    ...
+
+def get_http_port(data: Dict[str, Any]) -> int:
+    ...
+
+def get_host(host: str) -> str:
+    ...
+
+@callback
+def async_remove_shelly_rpc_entities(hass: HomeAssistant, domain: str, mac: str, keys: Iterable[str]) -> None:
+    ...
+
+def is_rpc_thermostat_mode(ident: int, status: Dict[str, Any]) -> bool:
+    ...
+
+def get_virtual_component_ids(config: Dict[str, Any], platform: str) -> List[str]:
+    ...
+
+@callback
+def async_remove_orphaned_entities(
+    hass: HomeAssistant,
+    config_entry_id: str,
+    mac: str,
+    platform: str,
+    keys: Iterable[str],
+    key_suffix: Optional[str] = None,
+) -> None:
+    ...
+
+def get_rpc_ws_url(hass: HomeAssistant) -> Optional[str]:
+    ...
+
+async def get_rpc_script_event_types(device: RpcDevice, id: str) -> List[str]:
+    ...

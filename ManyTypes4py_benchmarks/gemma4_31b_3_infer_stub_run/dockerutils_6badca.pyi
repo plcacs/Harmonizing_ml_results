@@ -1,0 +1,96 @@
+import docker
+from collections.abc import Generator
+from pathlib import Path, PurePosixPath
+from typing import Optional, Union, TextIO, Tuple, Any, ContextManager
+from typing_extensions import Self
+
+CONTAINER_LABELS: dict[str, str] = ...
+IMAGE_LABELS: dict[str, str] = ...
+
+def python_version_minor() -> str: ...
+
+def python_version_micro() -> str: ...
+
+def get_prefect_image_name(
+    prefect_version: Optional[str] = None,
+    python_version: Optional[str] = None,
+    flavor: Optional[str] = None,
+) -> str: ...
+
+@ContextManager
+def silence_docker_warnings() -> None: ...
+
+@ContextManager
+def docker_client() -> Generator[docker.DockerClient, None, None]: ...
+
+class BuildError(Exception):
+    """Raised when a Docker build fails"""
+    ...
+
+def build_image(
+    context: Union[str, Path],
+    dockerfile: str = 'Dockerfile',
+    tag: Optional[str] = None,
+    pull: bool = False,
+    platform: Optional[str] = None,
+    stream_progress_to: Optional[TextIO] = None,
+    **kwargs: Any,
+) -> str: ...
+
+class ImageBuilder:
+    """An interface for preparing Docker build contexts and building images"""
+
+    def __init__(
+        self,
+        base_image: str,
+        base_directory: Optional[Union[str, Path]] = None,
+        platform: Optional[str] = None,
+        context: Optional[Union[str, Path]] = None,
+    ) -> None: ...
+
+    def __enter__(self) -> Self: ...
+
+    def __exit__(self, exc: Any, value: Any, traceback: Any) -> Optional[bool]: ...
+
+    def add_line(self, line: str) -> None: ...
+
+    def add_lines(self, lines: list[str]) -> None: ...
+
+    def copy(self, source: Union[str, Path], destination: Union[str, PurePosixPath]) -> None: ...
+
+    def write_text(self, text: str, destination: Union[str, PurePosixPath]) -> None: ...
+
+    def build(self, pull: bool = False, stream_progress_to: Optional[TextIO] = None) -> str: ...
+
+    def assert_has_line(self, line: str) -> None: ...
+
+    def assert_line_absent(self, line: str) -> None: ...
+
+    def assert_line_before(self, first: str, second: str) -> None: ...
+
+    def assert_line_after(self, second: str, first: str) -> None: ...
+
+    def assert_has_file(self, source: Path, container_path: str) -> None: ...
+
+class PushError(Exception):
+    """Raised when a Docker image push fails"""
+    ...
+
+def push_image(
+    image_id: str,
+    registry_url: str,
+    name: str,
+    tag: Optional[str] = None,
+    stream_progress_to: Optional[TextIO] = None,
+) -> str: ...
+
+def to_run_command(command: list[str]) -> str: ...
+
+def parse_image_tag(name: str) -> Tuple[str, Optional[str]]: ...
+
+def split_repository_path(repository_path: str) -> Tuple[Optional[str], str]: ...
+
+def format_outlier_version_name(version: str) -> str: ...
+
+@ContextManager
+def generate_default_dockerfile(context: Optional[Union[str, Path]] = None) -> Generator[Path, None, None]: ...

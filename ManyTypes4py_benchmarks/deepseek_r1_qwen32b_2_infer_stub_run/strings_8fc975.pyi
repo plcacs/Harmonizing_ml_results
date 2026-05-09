@@ -1,0 +1,176 @@
+"""
+Stub file for 'strings_8fc975' module
+"""
+
+from typing import Union, Optional, List, Any
+from databricks.koalas import ks
+from pyspark.sql.types import StringType, BinaryType, ArrayType
+
+class StringMethods:
+    """
+    String methods for Koalas Series
+    """
+    def __init__(self, series: ks.Series) -> None:
+        ...
+
+    def capitalize(self) -> ks.Series:
+        ...
+
+    def title(self) -> ks.Series:
+        ...
+
+    def lower(self) -> ks.Series:
+        ...
+
+    def upper(self) -> ks.Series:
+        ...
+
+    def swapcase(self) -> ks.Series:
+        ...
+
+    def startswith(self, pattern: str, na: Optional[Any] = None) -> ks.Series:
+        ...
+
+    def endswith(self, pattern: str, na: Optional[Any] = None) -> ks.Series:
+        ...
+
+    def strip(self, to_strip: Optional[str] = None) -> ks.Series:
+        ...
+
+    def lstrip(self, to_strip: Optional[str] = None) -> ks.Series:
+        ...
+
+    def rstrip(self, to_strip: Optional[str] = None) -> ks.Series:
+        ...
+
+    def get(self, i: int) -> ks.Series:
+        ...
+
+    def isalnum(self) -> ks.Series:
+        ...
+
+    def isalpha(self) -> ks.Series:
+        ...
+
+    def isdigit(self) -> ks.Series:
+        ...
+
+    def isspace(self) -> ks.Series:
+        ...
+
+    def islower(self) -> ks.Series:
+        ...
+
+    def isupper(self) -> ks.Series:
+        ...
+
+    def istitle(self) -> ks.Series:
+        ...
+
+    def isnumeric(self) -> ks.Series:
+        ...
+
+    def isdecimal(self) -> ks.Series:
+        ...
+
+    def cat(self, others: Optional[Any] = None, sep: Optional[str] = None, 
+            na_rep: Optional[str] = None, join: Optional[str] = None) -> Any:
+        ...
+
+    def center(self, width: int, fillchar: str = ' ') -> ks.Series:
+        ...
+
+    def contains(self, pat: str, case: bool = True, flags: int = 0, 
+                 na: Optional[Any] = None, regex: bool = True) -> ks.Series:
+        ...
+
+    def count(self, pat: str, flags: int = 0) -> ks.Series:
+        ...
+
+    def decode(self, encoding: str, errors: str = 'strict') -> Any:
+        ...
+
+    def encode(self, encoding: str, errors: str = 'strict') -> Any:
+        ...
+
+    def extract(self, pat: str, flags: int = 0, expand: bool = True) -> Any:
+        ...
+
+    def extractall(self, pat: str, flags: int = 0) -> Any:
+        ...
+
+    def find(self, sub: str, start: int = 0, end: Optional[int] = None) -> ks.Series:
+        ...
+
+    def findall(self, pat: str, flags: int = 0) -> ks.Series:
+        ...
+
+    def index(self, sub: str, start: int = 0, end: Optional[int] = None) -> ks.Series:
+        ...
+
+    def join(self, sep: str) -> ks.Series:
+        ...
+
+    def len(self) -> ks.Series:
+        ...
+
+    def ljust(self, width: int, fillchar: str = ' ') -> ks.Series:
+        ...
+
+    def match(self, pat: str, case: bool = True, flags: int = 0, 
+              na: Optional[Any] = np.nan) -> ks.Series:
+        ...
+
+    def normalize(self, form: str) -> ks.Series:
+        ...
+
+    def pad(self, width: int, side: str = 'left', fillchar: str = ' ') -> ks.Series:
+        ...
+
+    def partition(self, sep: str = ' ', expand: bool = True) -> Any:
+        ...
+
+    def repeat(self, repeats: int) -> ks.Series:
+        ...
+
+    def replace(self, pat: str, repl: str, n: int = -1, case: Optional[bool] = None, 
+                flags: int = 0, regex: bool = True) -> ks.Series:
+        ...
+
+    def rfind(self, sub: str, start: int = 0, end: Optional[int] = None) -> ks.Series:
+        ...
+
+    def rindex(self, sub: str, start: int = 0, end: Optional[int] = None) -> ks.Series:
+        ...
+
+    def rjust(self, width: int, fillchar: str = ' ') -> ks.Series:
+        ...
+
+    def rpartition(self, sep: str = ' ', expand: bool = True) -> Any:
+        ...
+
+    def slice(self, start: Optional[int] = None, stop: Optional[int] = None, 
+              step: Optional[int] = None) -> ks.Series:
+        ...
+
+    def slice_replace(self, start: Optional[int] = None, stop: Optional[int] = None, 
+                      repl: Optional[str] = None) -> ks.Series:
+        ...
+
+    def split(self, pat: Optional[str] = None, n: int = -1, expand: bool = False) -> Union[ks.Series, ks.DataFrame]:
+        ...
+
+    def rsplit(self, pat: Optional[str] = None, n: int = -1, expand: bool = False) -> Union[ks.Series, ks.DataFrame]:
+        ...
+
+    def translate(self, table: dict) -> ks.Series:
+        ...
+
+    def wrap(self, width: int, **kwargs: Any) -> ks.Series:
+        ...
+
+    def zfill(self, width: int) -> ks.Series:
+        ...
+
+    def get_dummies(self, sep: str = '|') -> Any:
+        ...

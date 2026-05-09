@@ -1,0 +1,365 @@
+from collections import defaultdict
+from datetime import datetime
+from functools import partial
+import math
+import operator
+import re
+import numpy as np
+import pytest
+from pandas.compat import IS64
+from pandas.errors import InvalidIndexError
+from pandas._testing import tm
+from pandas.core.indexes.api import Index, MultiIndex, _get_combined_index, ensure_index, ensure_index_from_sequences
+from pandas.core.dtypes.common import is_any_real_numeric_dtype, is_numeric_dtype, is_object_dtype
+from pandas import CategoricalIndex, DataFrame, DatetimeIndex, IntervalIndex, PeriodIndex, RangeIndex, Series, TimedeltaIndex, date_range, period_range, timedelta_range
+
+class TestIndex:
+    @pytest.fixture
+    def simple_index(self) -> Index[str]:
+        ...
+
+    def test_can_hold_identifiers(self, simple_index: Index[str]) -> None:
+        ...
+
+    @pytest.mark.parametrize('index', ['datetime'], indirect=True)
+    def test_new_axis(self, index: DatetimeIndex) -> None:
+        ...
+
+    def test_constructor_regular(self, index: Index) -> None:
+        ...
+
+    @pytest.mark.parametrize('index', ['string'], indirect=True)
+    def test_constructor_casting(self, index: Index) -> None:
+        ...
+
+    def test_constructor_copy(self, using_infer_string: bool) -> None:
+        ...
+
+    @pytest.mark.parametrize('cast_as_obj', [True, False])
+    @pytest.mark.parametrize('index', [date_range('2015-01-01 10:00', freq='D', periods=3, tz='US/Eastern', name='Green Eggs & Ham'), date_range('2015-01-01 10:00', freq='D', periods=3), timedelta_range('1 days', freq='D', periods=3), period_range('2015-01-01', freq='D', periods=3)])
+    def test_constructor_from_index_dtlike(self, cast_as_obj: bool, index: Index) -> None:
+        ...
+
+    @pytest.mark.parametrize('index,has_tz', [(date_range('2015-01-01 10:00', freq='D', periods=3, tz='US/Eastern'), True), (timedelta_range('1 days', freq='D', periods=3), False), (period_range('2015-01-01', freq='D', periods=3), False)])
+    def test_constructor_from_series_dtlike(self, index: Index, has_tz: bool) -> None:
+        ...
+
+    def test_constructor_from_frame_series_freq(self, using_infer_string: bool) -> None:
+        ...
+
+    def test_constructor_int_dtype_nan(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('klass,dtype,na_val', [(Index, np.float64, np.nan), (DatetimeIndex, 'datetime64[s]', pd.NaT)])
+    def test_index_ctor_infer_nan_nat(self, klass: type[Index], dtype: str, na_val: float | pd.NaT) -> None:
+        ...
+
+    @pytest.mark.parametrize('vals,dtype', [([1, 2, 3, 4, 5], 'int'), ([1.1, np.nan, 2.2, 3.0], 'float'), (['A', 'B', 'C', np.nan], 'obj')])
+    def test_constructor_simple_new(self, vals: list[int | float | str], dtype: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('attr', ['values', 'asi8'])
+    @pytest.mark.parametrize('klass', [Index, DatetimeIndex])
+    def test_constructor_dtypes_datetime(self, tz_naive_fixture: str | None, attr: str, klass: type[Index]) -> None:
+        ...
+
+    @pytest.mark.parametrize('attr', ['values', 'asi8'])
+    @pytest.mark.parametrize('klass', [Index, TimedeltaIndex])
+    def test_constructor_dtypes_timedelta(self, attr: str, klass: type[Index]) -> None:
+        ...
+
+    @pytest.mark.parametrize('value', [[], iter([]), (_ for _ in [])])
+    @pytest.mark.parametrize('klass', [Index, CategoricalIndex, DatetimeIndex, TimedeltaIndex])
+    def test_constructor_empty(self, value: list[any], klass: type[Index]) -> None:
+        ...
+
+    @pytest.mark.parametrize('empty,klass', [(PeriodIndex([], freq='D'), PeriodIndex), (PeriodIndex(iter([]), freq='D'), PeriodIndex), (PeriodIndex((_ for _ in []), freq='D'), PeriodIndex), (RangeIndex(step=1), RangeIndex), (MultiIndex(levels=[[1, 2], ['blue', 'red']], codes=[[], []]), MultiIndex)])
+    def test_constructor_empty_special(self, empty: Index, klass: type[Index]) -> None:
+        ...
+
+    @pytest.mark.parametrize('index', ['datetime', 'float64', 'float32', 'int64', 'int32', 'period', 'range', 'repeats', 'timedelta', 'tuples', 'uint64', 'uint32'], indirect=True)
+    def test_view_with_args(self, index: Index) -> None:
+        ...
+
+    @pytest.mark.parametrize('index', ['string', pytest.param('categorical', marks=pytest.mark.xfail(reason='gh-25464')), 'bool-object', 'bool-dtype', 'empty'], indirect=True)
+    def test_view_with_args_object_array_raises(self, index: Index) -> None:
+        ...
+
+    @pytest.mark.parametrize('index', ['int64', 'int32', 'range'], indirect=True)
+    def test_astype(self, index: Index) -> None:
+        ...
+
+    def test_equals_object(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('comp', [Index(['a', 'b']), Index(['a', 'b', 'd']), ['a', 'b', 'c']])
+    def test_not_equals_object(self, comp: Index) -> None:
+        ...
+
+    def test_identical(self) -> None:
+        ...
+
+    def test_is_(self) -> None:
+        ...
+
+    def test_asof_numeric_vs_bool_raises(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('index', ['string'], indirect=True)
+    def test_booleanindex(self, index: Index[str]) -> None:
+        ...
+
+    def test_fancy(self, simple_index: Index[str]) -> None:
+        ...
+
+    @pytest.mark.parametrize('index', ['string', 'int64', 'int32', 'uint64', 'uint32', 'float64', 'float32'], indirect=True)
+    @pytest.mark.parametrize('dtype', [int, np.bool_])
+    def test_empty_fancy(self, index: Index, dtype: type[int | np.bool_], request: pytest.FixtureRequest, using_infer_string: bool) -> None:
+        ...
+
+    @pytest.mark.parametrize('index', ['string', 'int64', 'int32', 'uint64', 'uint32', 'float64', 'float32'], indirect=True)
+    def test_empty_fancy_raises(self, index: Index) -> None:
+        ...
+
+    def test_union_dt_as_obj(self, simple_index: Index[str]) -> None:
+        ...
+
+    def test_map_with_tuples(self) -> None:
+        ...
+
+    def test_map_with_tuples_mi(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('index', [date_range('2020-01-01', freq='D', periods=10), period_range('2020-01-01', freq='D', periods=10), timedelta_range('1 day', periods=10)])
+    def test_map_tseries_indices_return_index(self, index: Index) -> None:
+        ...
+
+    def test_map_tseries_indices_accsr_return_index(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('mapper', [lambda values, index: {i: e for e, i in zip(values, index)}, lambda values, index: Series(values, index)])
+    def test_map_dictlike_simple(self, mapper: callable) -> None:
+        ...
+
+    @pytest.mark.parametrize('mapper', [lambda values, index: {i: e for e, i in zip(values, index)}, lambda values, index: Series(values, index)])
+    @pytest.mark.filterwarnings('ignore:PeriodDtype\\[B\\] is deprecated:FutureWarning')
+    def test_map_dictlike(self, index: Index, mapper: callable, request: pytest.FixtureRequest) -> None:
+        ...
+
+    @pytest.mark.parametrize('mapper', [Series(['foo', 2.0, 'baz'], index=[0, 2, -1]), {0: 'foo', 2: 2.0, -1: 'baz'}])
+    def test_map_with_non_function_missing_values(self, mapper: callable) -> None:
+        ...
+
+    def test_map_na_exclusion(self) -> None:
+        ...
+
+    def test_map_defaultdict(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('name,expected', [('foo', 'foo'), ('bar', None)])
+    def test_append_empty_preserve_name(self, name: str, expected: str | None) -> None:
+        ...
+
+    @pytest.mark.parametrize('index, expected', [('string', False), ('bool-object', False), ('bool-dtype', False), ('categorical', False), ('int64', True), ('int32', True), ('uint64', True), ('uint32', True), ('datetime', False), ('float64', True), ('float32', True)], indirect=['index'])
+    def test_is_numeric(self, index: Index, expected: bool) -> None:
+        ...
+
+    @pytest.mark.parametrize('index, expected', [('string', True), ('bool-object', True), ('bool-dtype', False), ('categorical', False), ('int64', False), ('int32', False), ('uint64', False), ('uint32', False), ('datetime', False), ('float64', False), ('float32', False)], indirect=['index'])
+    def test_is_object(self, index: Index, expected: bool, using_infer_string: bool) -> None:
+        ...
+
+    def test_summary(self, index: Index) -> None:
+        ...
+
+    def test_logical_compat(self, all_boolean_reductions: str, simple_index: Index[str]) -> None:
+        ...
+
+    @pytest.mark.parametrize('index', ['string', 'int64', 'int32', 'float64', 'float32'], indirect=True)
+    def test_drop_by_str_label(self, index: Index) -> None:
+        ...
+
+    @pytest.mark.parametrize('index', ['string', 'int64', 'int32', 'float64', 'float32'], indirect=True)
+    @pytest.mark.parametrize('keys', [['foo', 'bar'], ['1', 'bar']])
+    def test_drop_by_str_label_raises_missing_keys(self, index: Index, keys: list[str]) -> None:
+        ...
+
+    @pytest.mark.parametrize('index', ['string', 'int64', 'int32', 'float64', 'float32'], indirect=True)
+    def test_drop_by_str_label_errors_ignore(self, index: Index) -> None:
+        ...
+
+    def test_drop_by_numeric_label_loc(self) -> None:
+        ...
+
+    def test_drop_by_numeric_label_raises_missing_keys(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('key,expected', [(4, Index([1, 2, 3])), ([3, 4, 5], Index([1, 2]))])
+    def test_drop_by_numeric_label_errors_ignore(self, key: int | list[int], expected: Index) -> None:
+        ...
+
+    @pytest.mark.parametrize('values', [['a', 'b', ('c', 'd')], ['a', ('c', 'd'), 'b'], [('c', 'd'), 'a', 'b']])
+    @pytest.mark.parametrize('to_drop', [[('c', 'd'), 'a'], ['a', ('c', 'd')]])
+    def test_drop_tuple(self, values: list[str | tuple[str, str]], to_drop: list[tuple[str, str] | str]) -> None:
+        ...
+
+    @pytest.mark.filterwarnings('ignore:PeriodDtype\\[B\\] is deprecated:FutureWarning')
+    def test_drop_with_duplicates_in_index(self, index: Index) -> None:
+        ...
+
+    @pytest.mark.parametrize('attr', ['is_monotonic_increasing', 'is_monotonic_decreasing', '_is_strictly_monotonic_increasing', '_is_strictly_monotonic_decreasing'])
+    def test_is_monotonic_incomparable(self, attr: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('values', [['foo', 'bar', 'quux'], {'foo', 'bar', 'quux'}])
+    @pytest.mark.parametrize('index,expected', [(['qux', 'baz', 'foo', 'bar'], [False, False, True, True]), ([], [])])
+    def test_isin(self, values: list[str] | set[str], index: list[str] | np.ndarray, expected: list[bool]) -> None:
+        ...
+
+    def test_isin_nan_common_object(self, nulls_fixture: any, nulls_fixture2: any, using_infer_string: bool) -> None:
+        ...
+
+    def test_isin_nan_common_float64(self, nulls_fixture: any, float_numpy_dtype: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('level', [0, -1])
+    @pytest.mark.parametrize('index', [['qux', 'baz', 'foo', 'bar'], np.array([1.0, 2.0, 3.0, 4.0], dtype=np.float64)])
+    def test_isin_level_kwarg(self, level: int, index: list[str] | np.ndarray) -> None:
+        ...
+
+    def test_isin_level_kwarg_bad_level_raises(self, index: Index) -> None:
+        ...
+
+    @pytest.mark.parametrize('label', [1.0, 'foobar', 'xyzzy', np.nan])
+    def test_isin_level_kwarg_bad_label_raises(self, label: str | float | np.nan, index: Index) -> None:
+        ...
+
+    @pytest.mark.parametrize('empty', [[], Series(dtype=object), np.array([])])
+    def test_isin_empty(self, empty: list[any] | Series | np.ndarray) -> None:
+        ...
+
+    def test_isin_string_null(self, string_dtype_no_object: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('values', [[1, 2, 3, 4], [1.0, 2.0, 3.0, 4.0], [True, True, True, True], ['foo', 'bar', 'baz', 'qux'], date_range('2018-01-01', freq='D', periods=4)])
+    def test_boolean_cmp(self, values: list[int | float | bool | str | datetime]) -> None:
+        ...
+
+    @pytest.mark.parametrize('index', ['string'], indirect=True)
+    @pytest.mark.parametrize('name,level', [(None, 0), ('a', 'a')])
+    def test_get_level_values(self, index: Index, name: str | None, level: int | str) -> None:
+        ...
+
+    def test_slice_keep_name(self) -> None:
+        ...
+
+    def test_slice_is_unique(self) -> None:
+        ...
+
+    def test_slice_is_montonic(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('index', ['string', 'datetime', 'int64', 'int32', 'uint64', 'uint32', 'float64', 'float32'], indirect=True)
+    def test_join_self(self, index: Index, join_type: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('method', ['strip', 'rstrip', 'lstrip'])
+    def test_str_attribute(self, method: str) -> None:
+        ...
+
+    @pytest.mark.parametrize('index', [Index(range(5)), date_range('2020-01-01', periods=10), MultiIndex.from_tuples([('foo', '1'), ('bar', '3')]), period_range(start='2000', end='2010', freq='Y')])
+    def test_str_attribute_raises(self, index: Index) -> None:
+        ...
+
+    @pytest.mark.parametrize('expand,expected', [(None, Index([['a', 'b', 'c'], ['d', 'e'], ['f']])), (False, Index([['a', 'b', 'c'], ['d', 'e'], ['f']])), (True, MultiIndex.from_tuples([('a', 'b', 'c'), ('d', 'e', np.nan), ('f', np.nan, np.nan)]))])
+    def test_str_split(self, expand: bool | None, expected: Index) -> None:
+        ...
+
+    def test_str_bool_return(self) -> None:
+        ...
+
+    def test_str_bool_series_indexing(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('index,expected', [(list('abcd'), True), (range(4), False)])
+    def test_tab_completion(self, index: list[str] | range, expected: bool) -> None:
+        ...
+
+    def test_indexing_doesnt_change_class(self) -> None:
+        ...
+
+    def test_outer_join_sort(self) -> None:
+        ...
+
+    def test_take_fill_value(self) -> None:
+        ...
+
+    def test_take_fill_value_none_raises(self) -> None:
+        ...
+
+    def test_take_bad_bounds_raises(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('name', [None, 'foobar'])
+    @pytest.mark.parametrize('labels', [[], np.array([]), ['A', 'B', 'C'], ['C', 'B', 'A'], np.array(['A', 'B', 'C']), np.array(['C', 'B', 'A']), date_range('20130101', periods=3).values, date_range('20130101', periods=3).tolist()])
+    def test_reindex_preserves_name_if_target_is_list_or_ndarray(self, name: str | None, labels: list[str] | np.ndarray) -> None:
+        ...
+
+    @pytest.mark.parametrize('labels', [[], np.array([]), np.array([], dtype=np.int64)])
+    def test_reindex_preserves_type_if_target_is_empty_list_or_array(self, labels: list[any] | np.ndarray) -> None:
+        ...
+
+    def test_reindex_doesnt_preserve_type_if_target_is_empty_index(self) -> None:
+        ...
+
+    def test_reindex_doesnt_preserve_type_if_target_is_empty_index_numeric(self, any_real_numpy_dtype: str) -> None:
+        ...
+
+    def test_reindex_no_type_preserve_target_empty_mi(self) -> None:
+        ...
+
+    def test_reindex_ignoring_level(self) -> None:
+        ...
+
+    def test_groupby(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('mi,expected', [(MultiIndex.from_tuples([(1, 2), (4, 5)]), np.array([True, True])), (MultiIndex.from_tuples([(1, 2), (4, 6)]), np.array([True, False]))])
+    def test_equals_op_multiindex(self, mi: MultiIndex, expected: np.ndarray) -> None:
+        ...
+
+    def test_equals_op_multiindex_identify(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('index', [MultiIndex.from_tuples([(1, 2), (4, 5), (8, 9)]), Index(['foo', 'bar', 'baz'])])
+    def test_equals_op_mismatched_multiindex_raises(self, index: Index) -> None:
+        ...
+
+    def test_equals_op_index_vs_mi_same_length(self, using_infer_string: bool) -> None:
+        ...
+
+    @pytest.mark.parametrize('dt_conv, arg', [(pd.to_datetime, ['2000-01-01', '2000-01-02']), (pd.to_timedelta, ['01:02:03', '01:02:04'])])
+    def test_dt_conversion_preserves_name(self, dt_conv: callable, arg: list[str]) -> None:
+        ...
+
+    def test_cached_properties_not_settable(self) -> None:
+        ...
+
+    def test_tab_complete_warning(self, ip: pytest.FixtureRequest) -> None:
+        ...
+
+    def test_contains_method_removed(self, index: Index) -> None:
+        ...
+
+    def test_sortlevel(self) -> None:
+        ...
+
+    def test_sortlevel_na_position(self) -> None:
+        ...
+
+    @pytest.mark.parametrize('periods, expected_results', [(1, [np.nan, 10, 10, 10, 10]), (2, [np.nan, np.nan, 20, 20, 20]), (3, [np.nan, np.nan, np.nan, 30, 30])])
+    def test_index_diff(self, periods: int, expected_results: list[float]) -> None:
+        ...
+
+    @pytest.mark.parametrize('decimals, expected_results', [(0, [1.0, 2.0, 3.0]), (1, [1.2, 2.3, 3.5]), (2, [1.23, 2.35, 3.46])])
+    def test_index_round(self, decimals: int, expected_results: list[float]) -> None:
+        ...

@@ -15,6 +15,10 @@ import time
 import tiktoken
 from dotenv import load_dotenv
 from openai import OpenAI
+try:
+    from tqdm.auto import tqdm
+except ImportError:
+    tqdm = None
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PARENT_DIR = os.path.dirname(SCRIPT_DIR)
@@ -76,6 +80,12 @@ def load_processed_files(log_path):
         with open(log_path, "r", encoding="utf-8") as f:
             return set(f.read().splitlines())
     return set()
+
+
+def progress_iter(items, desc):
+    if tqdm is None:
+        return items
+    return tqdm(items, desc=desc, total=len(items), unit="file", dynamic_ncols=True)
 
 
 def generate_type_annotated_code(code):
@@ -156,11 +166,10 @@ def process_files(run_number):
         f"{already_done} already done, {remaining} remaining"
     )
 
-    processed_count = 0
-    for group_id, file_path in files_to_run:
-        if file_path in processed_files:
-            continue
+    pending_files = [(group_id, fp) for group_id, fp in files_to_run if fp not in processed_files]
 
+    processed_count = 0
+    for group_id, file_path in progress_iter(pending_files, f"GPT-5 run {run_number}"):
         print(f"Processing: {file_path}")
         full_path = os.path.join(PARENT_DIR, _repo_rel_path(file_path))
         try:

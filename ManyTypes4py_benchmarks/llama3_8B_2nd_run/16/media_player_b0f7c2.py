@@ -1,0 +1,16 @@
+async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None:
+    ...
+
+class ForkedDaapdZone(MediaPlayerEntity):
+    _attr_should_poll: bool
+    ...
+
+class ForkedDaapdMaster(MediaPlayerEntity):
+    _attr_should_poll: bool
+    ...
+
+async def async_browse_media(self, media_content_type: MediaType | None, media_content_id: str | None) -> BrowseMedia:
+    ...
+
+async def async_get_browse_image(self, media_content_type: MediaType, media_content_id: str, media_image_id: str | None = None) -> tuple[bytes, str]:
+    ...

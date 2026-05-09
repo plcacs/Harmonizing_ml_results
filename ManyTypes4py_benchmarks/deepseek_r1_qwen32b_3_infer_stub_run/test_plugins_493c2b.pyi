@@ -1,0 +1,211 @@
+import json
+import os
+from typing import Any, Dict, List, Optional, Tuple, Union
+from uuid import UUID
+from alerta.app import create_app
+from alerta.exceptions import AlertaException, InvalidAction
+from alerta.models.alert import Alert
+from alerta.models.enums import Status
+from alerta.plugins import PluginBase
+
+class PluginsTestCase(unittest.TestCase):
+    def setUp(self) -> None:
+        ...
+
+    def tearDown(self) -> None:
+        ...
+
+    def test_status_update(self) -> None:
+        ...
+
+    def test_take_action(self) -> None:
+        ...
+
+    def test_invalid_action(self) -> None:
+        ...
+
+    def test_im_a_teapot(self) -> None:
+        ...
+
+    def test_take_note(self) -> None:
+        ...
+
+    def test_delete(self) -> None:
+        ...
+
+    def test_add_and_remove_tags(self) -> None:
+        ...
+
+    def test_custom_ack(self) -> None:
+        ...
+
+class OldPlugin1(PluginBase):
+    def pre_receive(self, alert: Alert, **kwargs: Any) -> Alert:
+        ...
+
+    def post_receive(self, alert: Alert) -> Alert:
+        ...
+
+    def status_change(self, alert: Alert, status: str, text: str, **kwargs: Any) -> Tuple[Alert, str, str]:
+        ...
+
+class CustPlugin1(PluginBase):
+    def pre_receive(self, alert: Alert, **kwargs: Any) -> Alert:
+        ...
+
+    def post_receive(self, alert: Alert, **kwargs: Any) -> Alert:
+        ...
+
+    def status_change(self, alert: Alert, status: str, text: str, **kwargs: Any) -> Tuple[Alert, str, str]:
+        ...
+
+class CustPlugin2(PluginBase):
+    def pre_receive(self, alert: Alert, **kwargs: Any) -> Alert:
+        ...
+
+    def post_receive(self, alert: Alert, **kwargs: Any) -> Alert:
+        ...
+
+    def status_change(self, alert: Alert, status: str, text: str, **kwargs: Any) -> None:
+        ...
+
+class CustPlugin3(PluginBase):
+    def pre_receive(self, alert: Alert, **kwargs: Any) -> Alert:
+        ...
+
+    def post_receive(self, alert: Alert, **kwargs: Any) -> Alert:
+        ...
+
+    def status_change(self, alert: Alert, status: str, text: str, **kwargs: Any) -> Tuple[Alert, str, str]:
+        ...
+
+class CustActionPlugin1(PluginBase):
+    def pre_receive(self, alert: Alert, **kwargs: Any) -> Alert:
+        ...
+
+    def post_receive(self, alert: Alert, **kwargs: Any) -> None:
+        ...
+
+    def status_change(self, alert: Alert, status: str, text: str, **kwargs: Any) -> Tuple[Alert, str, str]:
+        ...
+
+    def take_action(self, alert: Alert, action: str, text: str, **kwargs: Any) -> Tuple[Alert, str, str]:
+        ...
+
+    def post_action(self, alert: Alert, action: str, text: str, **kwargs: Any) -> Alert:
+        ...
+
+class CustActionPlugin2(PluginBase):
+    def pre_receive(self, alert: Alert, **kwargs: Any) -> Alert:
+        ...
+
+    def post_receive(self, alert: Alert, **kwargs: Any) -> None:
+        ...
+
+    def status_change(self, alert: Alert, status: str, text: str, **kwargs: Any) -> Tuple[Alert, str, str]:
+        ...
+
+    def take_action(self, alert: Alert, action: str, text: str, **kwargs: Any) -> Tuple[Alert, str, str]:
+        ...
+
+    def post_action(self, alert: Alert, action: str, text: str, **kwargs: Any) -> None:
+        ...
+
+class CustActionPlugin3(PluginBase):
+    def pre_receive(self, alert: Alert, **kwargs: Any) -> Alert:
+        ...
+
+    def post_receive(self, alert: Alert, **kwargs: Any) -> None:
+        ...
+
+    def status_change(self, alert: Alert, status: str, text: str, **kwargs: Any) -> Tuple[Alert, str, str]:
+        ...
+
+    def take_action(self, alert: Alert, action: str, text: str, **kwargs: Any) -> Tuple[Alert, str, str]:
+        ...
+
+    def post_action(self, alert: Alert, action: str, text: str, **kwargs: Any) -> None:
+        ...
+
+    def __init__(self) -> None:
+        ...
+
+class CustNotePlugin1(PluginBase):
+    def pre_receive(self, alert: Alert, **kwargs: Any) -> Alert:
+        ...
+
+    def post_receive(self, alert: Alert, **kwargs: Any) -> None:
+        ...
+
+    def status_change(self, alert: Alert, status: str, text: str, **kwargs: Any) -> Tuple[Alert, str, str]:
+        ...
+
+    def take_note(self, alert: Alert, text: str, **kwargs: Any) -> Tuple[Alert, str]:
+        ...
+
+class CustDeletePlugin1(PluginBase):
+    def pre_receive(self, alert: Alert, **kwargs: Any) -> Alert:
+        ...
+
+    def post_receive(self, alert: Alert, **kwargs: Any) -> None:
+        ...
+
+    def status_change(self, alert: Alert, status: str, text: str, **kwargs: Any) -> Tuple[Alert, str, str]:
+        ...
+
+    def take_action(self, alert: Alert, action: str, text: str, **kwargs: Any) -> Tuple[Alert, str, str]:
+        ...
+
+    def delete(self, alert: Alert, **kwargs: Any) -> bool:
+        ...
+
+class CustDeletePlugin2(PluginBase):
+    def pre_receive(self, alert: Alert, **kwargs: Any) -> Alert:
+        ...
+
+    def post_receive(self, alert: Alert, **kwargs: Any) -> None:
+        ...
+
+    def status_change(self, alert: Alert, status: str, text: str, **kwargs: Any) -> Tuple[Alert, str, str]:
+        ...
+
+    def take_action(self, alert: Alert, action: str, text: str, **kwargs: Any) -> Tuple[Alert, str, str]:
+        ...
+
+    def delete(self, alert: Alert, **kwargs: Any) -> bool:
+        ...
+
+class CustAckPlugin1(PluginBase):
+    def pre_receive(self, alert: Alert, **kwargs: Any) -> Alert:
+        ...
+
+    def post_receive(self, alert: Alert, **kwargs: Any) -> None:
+        ...
+
+    def status_change(self, alert: Alert, status: str, text: str, **kwargs: Any) -> Tuple[Alert, str, str]:
+        ...
+
+    def take_action(self, alert: Alert, action: str, text: str, **kwargs: Any) -> Optional[Alert]:
+        ...
+
+    def delete(self, alert: Alert, **kwargs: Any) -> bool:
+        ...
+
+class Teapot(PluginBase):
+    def pre_receive(self, alert: Alert, **kwargs: Any) -> Alert:
+        ...
+
+    def post_receive(self, alert: Alert, **kwargs: Any) -> None:
+        ...
+
+    def status_change(self, alert: Alert, status: str, text: str, **kwargs: Any) -> Tuple[Alert, str, str]:
+        ...
+
+    def take_action(self, alert: Alert, action: str, text: str, **kwargs: Any) -> Tuple[Alert, str, str]:
+        ...
+
+    def take_note(self, alert: Alert, text: str, **kwargs: Any) -> None:
+        ...
+
+    def delete(self, alert: Alert, **kwargs: Any) -> None:
+        ...

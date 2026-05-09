@@ -1,0 +1,149 @@
+"""Control which entities are exposed to voice assistants."""
+from __future__ import annotations
+from collections.abc import Callable, Mapping
+from typing import Any, Callable, Dict, List, Optional, Set, Tuple, Union
+
+from homeassistant.components import websocket_api
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass
+from homeassistant.components.sensor import SensorDeviceClass
+from homeassistant.core import CALLBACK_TYPE, HomeAssistant, callback
+from homeassistant.helpers import entity_registry as er
+from homeassistant.helpers.storage import Store
+
+from .const import DATA_EXPOSED_ENTITIES, DOMAIN
+
+KNOWN_ASSISTANTS: Tuple[str, ...] = ...
+STORAGE_KEY: str = ...
+STORAGE_VERSION: int = ...
+SAVE_DELAY: int = ...
+DEFAULT_EXPOSED_DOMAINS: Set[str] = ...
+DEFAULT_EXPOSED_BINARY_SENSOR_DEVICE_CLASSES: Set[BinarySensorDeviceClass] = ...
+DEFAULT_EXPOSED_SENSOR_DEVICE_CLASSES: Set[SensorDeviceClass] = ...
+DEFAULT_EXPOSED_ASSISTANT: Dict[str, bool] = ...
+
+@dataclasses.dataclass(frozen=True)
+class AssistantPreferences:
+    expose_new: bool = ...
+
+    def to_json(self) -> Dict[str, Any]:
+        ...
+
+@dataclasses.dataclass(frozen=True)
+class ExposedEntity:
+    assistants: Dict[str, Dict[str, Any]] = ...
+
+    def to_json(self) -> Dict[str, Dict[str, Any]]:
+        ...
+
+class SerializedExposedEntities(TypedDict):
+    assistants: Dict[str, Dict[str, Any]]
+    exposed_entities: Dict[str, Dict[str, Any]]
+
+class ExposedEntities:
+    def __init__(self, hass: HomeAssistant) -> None:
+        ...
+
+    async def async_initialize(self) -> None:
+        ...
+
+    @callback
+    def async_listen_entity_updates(self, assistant: str, listener: Callable) -> Callable[[], None]:
+        ...
+
+    @callback
+    def async_set_assistant_option(self, assistant: str, entity_id: str, key: str, value: Any) -> None:
+        ...
+
+    def _async_set_legacy_assistant_option(self, assistant: str, entity_id: str, key: str, value: Any) -> None:
+        ...
+
+    @callback
+    def async_get_expose_new_entities(self, assistant: str) -> bool:
+        ...
+
+    @callback
+    def async_set_expose_new_entities(self, assistant: str, expose_new: bool) -> None:
+        ...
+
+    @callback
+    def async_get_assistant_settings(self, assistant: str) -> Dict[str, Dict[str, Any]]:
+        ...
+
+    @callback
+    def async_get_entity_settings(self, entity_id: str) -> Dict[str, Dict[str, Any]]:
+        ...
+
+    @callback
+    def async_should_expose(self, assistant: str, entity_id: str) -> bool:
+        ...
+
+    def _async_should_expose_legacy_entity(self, assistant: str, entity_id: str) -> bool:
+        ...
+
+    def _is_default_exposed(self, entity_id: str, registry_entry: Optional[er.RegistryEntry]) -> bool:
+        ...
+
+    def _update_exposed_entity(self, assistant: str, entity_id: str, key: str, value: Any) -> ExposedEntity:
+        ...
+
+    def _new_exposed_entity(self, assistant: str, key: str, value: Any) -> ExposedEntity:
+        ...
+
+    async def _async_load_data(self) -> Optional[Dict[str, Any]]:
+        ...
+
+    @callback
+    def _async_schedule_save(self) -> None:
+        ...
+
+    @callback
+    def _data_to_save(self) -> Dict[str, Any]:
+        ...
+
+@callback
+@websocket_api.require_admin
+@websocket_api.websocket_command({vol.Required('type'): 'homeassistant/expose_entity', vol.Required('assistants'): [vol.In(KNOWN_ASSISTANTS)], vol.Required('entity_ids'): [str], vol.Required('should_expose'): bool})
+def ws_expose_entity(hass: HomeAssistant, connection: websocket_api.WebSocketConnection, msg: Dict[str, Any]) -> None:
+    ...
+
+@callback
+@websocket_api.require_admin
+@websocket_api.websocket_command({vol.Required('type'): 'homeassistant/expose_entity/list'})
+def ws_list_exposed_entities(hass: HomeAssistant, connection: websocket_api.WebSocketConnection, msg: Dict[str, Any]) -> None:
+    ...
+
+@callback
+@websocket_api.require_admin
+@websocket_api.websocket_command({vol.Required('type'): 'homeassistant/expose_new_entities/get', vol.Required('assistant'): vol.In(KNOWN_ASSISTANTS)})
+def ws_expose_new_entities_get(hass: HomeAssistant, connection: websocket_api.WebSocketConnection, msg: Dict[str, Any]) -> None:
+    ...
+
+@callback
+@websocket_api.require_admin
+@websocket_api.websocket_command({vol.Required('type'): 'homeassistant/expose_new_entities/set', vol.Required('assistant'): vol.In(KNOWN_ASSISTANTS), vol.Required('expose_new'): bool})
+def ws_expose_new_entities_set(hass: HomeAssistant, connection: websocket_api.WebSocketConnection, msg: Dict[str, Any]) -> None:
+    ...
+
+@callback
+def async_listen_entity_updates(hass: HomeAssistant, assistant: str, listener: Callable) -> Callable[[], None]:
+    ...
+
+@callback
+def async_get_assistant_settings(hass: HomeAssistant, assistant: str) -> Dict[str, Dict[str, Any]]:
+    ...
+
+@callback
+def async_get_entity_settings(hass: HomeAssistant, entity_id: str) -> Dict[str, Dict[str, Any]]:
+    ...
+
+@callback
+def async_expose_entity(hass: HomeAssistant, assistant: str, entity_id: str, should_expose: bool) -> None:
+    ...
+
+@callback
+def async_should_expose(hass: HomeAssistant, assistant: str, entity_id: str) -> bool:
+    ...
+
+@callback
+def async_set_assistant_option(hass: HomeAssistant, assistant: str, entity_id: str, option: str, value: Any) -> None:
+    ...

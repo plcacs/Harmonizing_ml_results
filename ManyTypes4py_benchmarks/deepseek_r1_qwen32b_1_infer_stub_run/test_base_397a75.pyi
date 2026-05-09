@@ -1,0 +1,366 @@
+import io
+import json
+import os
+import sys
+import types
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple, Union
+
+import click
+import pytest
+from faust.cli import AppCommand, Command, call_command
+from faust.cli.base import (
+    DEFAULT_LOGLEVEL,
+    _Group,
+    _prepare_cli,
+    argument,
+    compat_option,
+    find_app,
+    option,
+)
+from faust.types._env import CONSOLE_PORT
+from mode import Worker
+from mode.utils.mocks import AsyncMock, Mock, call, patch
+
+class test_argument:
+    def test_repr(self) -> None:
+        ...
+
+class test_option:
+    def test_repr(self) -> None:
+        ...
+
+def test_call_command() -> Tuple[int, io.StringIO, io.StringIO]:
+    ...
+
+def test_call_command__no_exit() -> Tuple[int, io.StringIO, io.StringIO]:
+    ...
+
+def test_call_command__custom_ins(
+    o_out: io.StringIO, o_err: io.StringIO
+) -> Tuple[int, io.StringIO, io.StringIO]:
+    ...
+
+def test_compat_option() -> None:
+    ...
+
+def test_find_app(
+    imp: Mock, symbol_by_name: Mock
+) -> Optional[faust.types.app.App]:
+    ...
+
+def test_find_app__attribute_error(
+    imp: Mock, symbol_by_name: Mock
+) -> Optional[faust.types.app.App]:
+    ...
+
+def test_find_app__app_is_module(
+    imp: Mock, symbol_by_name: Mock
+) -> None:
+    ...
+
+def test_find_app__app_is_module_but_has_app(
+    imp: Mock, symbol_by_name: Mock
+) -> None:
+    ...
+
+class test_Group:
+    @pytest.fixture()
+    def group(self) -> _Group:
+        ...
+
+    def test_get_help(self, group: _Group) -> None:
+        ...
+
+    def test_get_usage(self, group: _Group) -> None:
+        ...
+
+    @pytest.mark.parametrize(
+        'argv,expected_chdir,expected_app',
+        [
+            (['--foo', '-W', '/foo'], '/foo', None),
+            (['--foo', '--workdir', '/foo'], '/foo', None),
+            (['--foo', '--workdir=/foo'], '/foo', None),
+            (['--foo', '-A', 'foo'], None, 'foo'),
+            (['--foo', '--app', 'foo'], None, 'foo'),
+            (['--foo', '--app=foo'], None, 'foo'),
+            (['--foo', '--app=foo', '--workdir', '/foo'], '/foo', 'foo'),
+            ([], None, None),
+        ],
+    )
+    def test_maybe_import_app(
+        self,
+        argv: List[str],
+        expected_chdir: Optional[str],
+        expected_app: Optional[str],
+        group: _Group,
+    ) -> None:
+        ...
+
+    def test_maybe_import_app__missing_argument(
+        self, group: _Group
+    ) -> None:
+        ...
+
+def test__prepare_cli() -> None:
+    ...
+
+class test_Command:
+    class TestCommand(Command):
+        options: List[click.Option] = [click.option('--quiet/--no-quiet')]
+
+    @pytest.fixture()
+    def ctx(self) -> Mock:
+        ...
+
+    @pytest.fixture()
+    def command(self, ctx: Mock) -> TestCommand:
+        ...
+
+    @pytest.mark.asyncio
+    async def test_run(self, command: TestCommand) -> None:
+        ...
+
+    @pytest.mark.asyncio
+    async def test_execute(
+        self, command: TestCommand
+    ) -> None:
+        ...
+
+    def test_parse(self, command: TestCommand) -> None:
+        ...
+
+    def test__parse(self, command: TestCommand) -> None:
+        ...
+
+    @pytest.mark.asyncio
+    async def test_on_stop(self, command: TestCommand) -> None:
+        ...
+
+    def test__call__(
+        self, command: TestCommand
+    ) -> None:
+        ...
+
+    def test_run_using_worker(
+        self, command: TestCommand
+    ) -> None:
+        ...
+
+    def test_on_worker_created(
+        self, command: TestCommand
+    ) -> None:
+        ...
+
+    def test_as_service(
+        self, command: TestCommand
+    ) -> None:
+        ...
+
+    def test_worker_for_service(
+        self, command: TestCommand
+    ) -> None:
+        ...
+
+    def test__Worker(self, command: TestCommand) -> None:
+        ...
+
+    def test_tabulate__when_text(
+        self, command: TestCommand
+    ) -> None:
+        ...
+
+    def test_tabulate__when_json(
+        self, command: TestCommand
+    ) -> None:
+        ...
+
+    def test_tabulate_json(
+        self, command: TestCommand
+    ) -> None:
+        ...
+
+    def test_tabulate_json__headers(
+        self, command: TestCommand
+    ) -> None:
+        ...
+
+    def test_table(
+        self, command: TestCommand
+    ) -> None:
+        ...
+
+    def test_color(
+        self, command: TestCommand
+    ) -> None:
+        ...
+
+    def test_dark(
+        self, command: TestCommand
+    ) -> None:
+        ...
+
+    def test_bold(
+        self, command: TestCommand
+    ) -> None:
+        ...
+
+    def test_bold_tail(
+        self, command: TestCommand
+    ) -> None:
+        ...
+
+    def test_table_wrap(
+        self, command: TestCommand
+    ) -> None:
+        ...
+
+    def test_say(
+        self, command: TestCommand
+    ) -> None:
+        ...
+
+    def test_carp(
+        self, command: TestCommand
+    ) -> None:
+        ...
+
+    def test_dumps(
+        self, command: TestCommand
+    ) -> None:
+        ...
+
+    def test_loglevel(
+        self, command: TestCommand, ctx: Mock
+    ) -> None:
+        ...
+
+    def test_blocking_timeout(
+        self, command: TestCommand, ctx: Mock
+    ) -> None:
+        ...
+
+    def test_console_port(
+        self, command: TestCommand, ctx: Mock
+    ) -> None:
+        ...
+
+class test_AppCommand:
+    @pytest.fixture()
+    def ctx(self) -> Mock:
+        ...
+
+    @pytest.fixture()
+    def command(self, app: faust.types.app.App, ctx: Mock) -> AppCommand:
+        ...
+
+    def test_finalize_app__str(
+        self, command: AppCommand
+    ) -> None:
+        ...
+
+    def test_finalize_app__concrete(
+        self, command: AppCommand, app: faust.types.app.App
+    ) -> None:
+        ...
+
+    def test_blocking_timeout(
+        self, command: AppCommand, ctx: Mock
+    ) -> None:
+        ...
+
+    def test_app_from_str(
+        self, command: AppCommand
+    ) -> None:
+        ...
+
+    def test_app_from_str__empty(
+        self, command: AppCommand
+    ) -> None:
+        ...
+
+    def test_finalize_concrete_app(
+        self, command: AppCommand, app: faust.types.app.App
+    ) -> None:
+        ...
+
+    @pytest.mark.asyncio
+    async def test_on_stop(
+        self, command: AppCommand, ctx: Mock
+    ) -> None:
+        ...
+
+    def test_to_key(
+        self, command: AppCommand
+    ) -> None:
+        ...
+
+    def test_to_value(
+        self, command: AppCommand
+    ) -> None:
+        ...
+
+    def test_to_model(
+        self, command: AppCommand
+    ) -> None:
+        ...
+
+    def test_to_model__bytes(
+        self, command: AppCommand
+    ) -> None:
+        ...
+
+    def test_import_relative_to_app(
+        self, command: AppCommand, ctx: Mock
+    ) -> None:
+        ...
+
+    def test_import_relative_to_app__no_origin(
+        self, command: AppCommand, ctx: Mock
+    ) -> None:
+        ...
+
+    def test_import_relative_to_app__with_origin(
+        self, command: AppCommand, ctx: Mock
+    ) -> None:
+        ...
+
+    def test_import_relative_to_app__with_origin_l1(
+        self, command: AppCommand, ctx: Mock
+    ) -> None:
+        ...
+
+    def test_import_relative_to_app__with_origin_l2(
+        self, command: AppCommand, ctx: Mock
+    ) -> None:
+        ...
+
+    def test_to_topic__missing(
+        self, command: AppCommand
+    ) -> None:
+        ...
+
+    def test_to_topic__agent_prefix(
+        self, command: AppCommand
+    ) -> None:
+        ...
+
+    def test_to_topic__topic_name(
+        self, command: AppCommand, ctx: Mock
+    ) -> None:
+        ...
+
+    def test_abbreviate_fqdn(
+        self, command: AppCommand, ctx: Mock
+    ) -> None:
+        ...
+
+    def test_abbreviate_fqdn__no_origin(
+        self, command: AppCommand, ctx: Mock
+    ) -> None:
+        ...
+
+    def test_from_handler_no_params(
+        self, command: AppCommand
+    ) -> None:
+        ...

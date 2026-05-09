@@ -1,0 +1,15 @@
+class EarlyStoppingTrainer:
+    def __init__(self, 
+                 config: Config, 
+                 optimizer_config: optimizer_config, 
+                 sockeye_model: SockeyeModel, 
+                 model_object: Model, 
+                 optimizer: torch.optim.Optimizer, 
+                 lr_scheduler: lr_scheduler, 
+                 zero_grad_kwargs: dict, 
+                 loss_functions: List[Loss], 
+                 device: torch.device, 
+                 using_amp: bool = False, 
+                 using_apex_amp: bool = False, 
+                 custom_metrics_logger: Callable[[Dict[str, Any], int], None] = None, 
+                 checkpoint_callback: Callable[[int], None]

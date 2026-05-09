@@ -1,0 +1,148 @@
+from pathlib import Path
+import pytest
+from dbt.exceptions import ParsingError
+from dbt.tests.util import run_dbt, write_file
+from dbt_common.exceptions import CompilationError
+from tests.functional.adapter.hooks.fixtures import (
+    macros__before_and_after,
+    models__hooked,
+    models__hooks,
+    models__hooks_configured,
+    models__hooks_error,
+    models__hooks_kwargs,
+    models__post,
+    models__pre,
+    properties__model_hooks,
+    properties__model_hooks_list,
+    properties__seed_models,
+    properties__test_snapshot_models,
+    seeds__example_seed_csv,
+    snapshots__test_snapshot,
+)
+from typing import Any, Dict, List, Optional, Union
+
+MODEL_PRE_HOOK: str
+MODEL_POST_HOOK: str
+
+class BaseTestPrePost:
+    @pytest.fixture(scope='class', autouse=True)
+    def setUp(self, project: Any) -> None: ...
+
+    def get_ctx_vars(self, state: str, count: int, project: Any) -> List[Dict[str, Any]]: ...
+
+    def check_hooks(self, state: str, project: Any, host: str, count: int = 1) -> None: ...
+
+class TestPrePostModelHooks(BaseTestPrePost):
+    @pytest.fixture(scope='class')
+    def project_config_update(self) -> Dict[str, Any]: ...
+
+    @pytest.fixture(scope='class')
+    def models(self) -> Dict[str, Any]: ...
+
+    def test_pre_and_post_run_hooks(self, project: Any, dbt_profile_target: Dict[str, Any]) -> None: ...
+
+class TestPrePostModelHooksUnderscores(TestPrePostModelHooks):
+    @pytest.fixture(scope='class')
+    def project_config_update(self) -> Dict[str, Any]: ...
+
+class TestHookRefs(BaseTestPrePost):
+    @pytest.fixture(scope='class')
+    def project_config_update(self) -> Dict[str, Any]: ...
+
+    @pytest.fixture(scope='class')
+    def models(self) -> Dict[str, Any]: ...
+
+    def test_pre_post_model_hooks_refed(self, project: Any, dbt_profile_target: Dict[str, Any]) -> None: ...
+
+class TestPrePostModelHooksOnSeeds:
+    @pytest.fixture(scope='class')
+    def seeds(self) -> Dict[str, Any]: ...
+
+    @pytest.fixture(scope='class')
+    def models(self) -> Dict[str, Any]: ...
+
+    @pytest.fixture(scope='class')
+    def project_config_update(self) -> Dict[str, Any]: ...
+
+    def test_hooks_on_seeds(self, project: Any) -> None: ...
+
+class TestPrePostModelHooksWithMacros(BaseTestPrePost):
+    @pytest.fixture(scope='class')
+    def macros(self) -> Dict[str, Any]: ...
+
+    @pytest.fixture(scope='class')
+    def models(self) -> Dict[str, Any]: ...
+
+    def test_pre_and_post_run_hooks(self, project: Any, dbt_profile_target: Dict[str, Any]) -> None: ...
+
+class TestPrePostModelHooksListWithMacros(TestPrePostModelHooksWithMacros):
+    @pytest.fixture(scope='class')
+    def models(self) -> Dict[str, Any]: ...
+
+class TestHooksRefsOnSeeds:
+    @pytest.fixture(scope='class')
+    def seeds(self) -> Dict[str, Any]: ...
+
+    @pytest.fixture(scope='class')
+    def models(self) -> Dict[str, Any]: ...
+
+    @pytest.fixture(scope='class')
+    def project_config_update(self) -> Dict[str, Any]: ...
+
+    def test_hook_with_ref_on_seeds(self, project: Any) -> None: ...
+
+class TestPrePostModelHooksOnSeedsPlusPrefixed(TestPrePostModelHooksOnSeeds):
+    @pytest.fixture(scope='class')
+    def project_config_update(self) -> Dict[str, Any]: ...
+
+class TestPrePostModelHooksOnSeedsPlusPrefixedWhitespace(TestPrePostModelHooksOnSeeds):
+    @pytest.fixture(scope='class')
+    def project_config_update(self) -> Dict[str, Any]: ...
+
+class TestPrePostModelHooksOnSnapshots:
+    @pytest.fixture(scope='class', autouse=True)
+    def setUp(self, project: Any) -> None: ...
+
+    @pytest.fixture(scope='class')
+    def models(self) -> Dict[str, Any]: ...
+
+    @pytest.fixture(scope='class')
+    def seeds(self) -> Dict[str, Any]: ...
+
+    @pytest.fixture(scope='class')
+    def project_config_update(self) -> Dict[str, Any]: ...
+
+    def test_hooks_on_snapshots(self, project: Any) -> None: ...
+
+class PrePostModelHooksInConfigSetup(BaseTestPrePost):
+    @pytest.fixture(scope='class')
+    def project_config_update(self) -> Dict[str, Any]: ...
+
+    @pytest.fixture(scope='class')
+    def models(self) -> Dict[str, Any]: ...
+
+class TestPrePostModelHooksInConfig(PrePostModelHooksInConfigSetup):
+    def test_pre_and_post_model_hooks_model(self, project: Any, dbt_profile_target: Dict[str, Any]) -> None: ...
+
+class TestPrePostModelHooksInConfigWithCount(PrePostModelHooksInConfigSetup):
+    @pytest.fixture(scope='class')
+    def project_config_update(self) -> Dict[str, Any]: ...
+
+    def test_pre_and_post_model_hooks_model_and_project(self, project: Any, dbt_profile_target: Dict[str, Any]) -> None: ...
+
+class TestPrePostModelHooksInConfigKwargs(TestPrePostModelHooksInConfig):
+    @pytest.fixture(scope='class')
+    def models(self) -> Dict[str, Any]: ...
+
+class TestPrePostSnapshotHooksInConfigKwargs(TestPrePostModelHooksOnSnapshots):
+    @pytest.fixture(scope='class', autouse=True)
+    def setUp(self, project: Any) -> None: ...
+
+    @pytest.fixture(scope='class')
+    def project_config_update(self) -> Dict[str, Any]: ...
+
+class TestDuplicateHooksInConfigs:
+    @pytest.fixture(scope='class')
+    def models(self) -> Dict[str, Any]: ...
+
+    def test_run_duplicate_hook_defs(self, project: Any) -> None: ...

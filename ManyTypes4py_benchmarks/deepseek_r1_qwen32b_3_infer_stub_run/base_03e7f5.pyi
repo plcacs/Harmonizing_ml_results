@@ -1,0 +1,474 @@
+from datetime import datetime, timedelta
+from typing import (
+    Any,
+    Dict,
+    List,
+    Optional,
+    Tuple,
+    Union,
+    Iterable,
+    Callable,
+    TypeVar,
+    Generic,
+    overload,
+)
+from pymongo import Database, ReturnDocument
+from pymongo.collection import Collection
+from pymongo.cursor import Cursor
+from pymongo.results import InsertOneResult, DeleteResult, UpdateResult
+from alerta.app import alarm_model
+from alerta.models.enums import ADMIN_SCOPES
+from alerta.models.heartbeat import HeartbeatStatus
+from .utils import Query
+
+T = TypeVar('T')
+
+class Backend:
+    def create_engine(
+        self,
+        app: Any,
+        uri: str,
+        dbname: Optional[str] = None,
+        schema: Optional[str] = None,
+        raise_on_error: bool = True,
+    ) -> None:
+        ...
+
+    def connect(self) -> Database:
+        ...
+
+    @staticmethod
+    def _create_indexes(db: Database) -> None:
+        ...
+
+    @staticmethod
+    def _update_lookups(db: Database) -> None:
+        ...
+
+    @property
+    def name(self) -> str:
+        ...
+
+    @property
+    def version(self) -> str:
+        ...
+
+    @property
+    def is_alive(self) -> bool:
+        ...
+
+    def close(self, db: Database) -> None:
+        ...
+
+    def destroy(self) -> None:
+        ...
+
+    def get_severity(self, alert: Any) -> Optional[str]:
+        ...
+
+    def get_status(self, alert: Any) -> Optional[str]:
+        ...
+
+    def is_duplicate(self, alert: Any) -> Optional[Dict[str, Any]]:
+        ...
+
+    def is_correlated(self, alert: Any) -> Optional[Dict[str, Any]]:
+        ...
+
+    def is_flapping(
+        self, alert: Any, window: int = 1800, count: int = 2
+    ) -> bool:
+        ...
+
+    def dedup_alert(
+        self, alert: Any, history: Any
+    ) -> Optional[Dict[str, Any]]:
+        ...
+
+    def correlate_alert(
+        self, alert: Any, history: Any
+    ) -> Optional[Dict[str, Any]]:
+        ...
+
+    def create_alert(self, alert: Any) -> Optional[Dict[str, Any]]:
+        ...
+
+    def set_alert(
+        self,
+        id: str,
+        severity: str,
+        status: str,
+        tags: List[str],
+        attributes: Dict[str, Any],
+        timeout: Optional[int],
+        previous_severity: Optional[str],
+        update_time: datetime,
+        history: Optional[List[Any]] = None,
+    ) -> Optional[Dict[str, Any]]:
+        ...
+
+    def get_alert(
+        self, id: str, customers: Optional[List[str]] = None
+    ) -> Optional[Dict[str, Any]]:
+        ...
+
+    def set_status(
+        self,
+        id: str,
+        status: str,
+        timeout: Optional[int],
+        update_time: datetime,
+        history: Optional[List[Any]] = None,
+    ) -> Optional[Dict[str, Any]]:
+        ...
+
+    def tag_alert(self, id: str, tags: List[str]) -> bool:
+        ...
+
+    def untag_alert(self, id: str, tags: List[str]) -> bool:
+        ...
+
+    def update_tags(self, id: str, tags: List[str]) -> bool:
+        ...
+
+    def update_attributes(
+        self, id: str, old_attrs: Dict[str, Any], new_attrs: Dict[str, Any]
+    ) -> Dict[str, Any]:
+        ...
+
+    def delete_alert(self, id: str) -> bool:
+        ...
+
+    def tag_alerts(
+        self, query: Optional[Query] = None, tags: Optional[List[str]] = None
+    ) -> List[Dict[str, Any]]:
+        ...
+
+    def untag_alerts(
+        self, query: Optional[Query] = None, tags: Optional[List[str]] = None
+    ) -> List[Dict[str, Any]]:
+        ...
+
+    def update_attributes_by_query(
+        self, query: Optional[Query] = None, attributes: Optional[Dict[str, Any]] = None
+    ) -> List[Dict[str, Any]]:
+        ...
+
+    def delete_alerts(self, query: Optional[Query] = None) -> List[Dict[str, Any]]:
+        ...
+
+    def add_history(
+        self, id: str, history: Any
+    ) -> Optional[Dict[str, Any]]:
+        ...
+
+    def get_alerts(
+        self,
+        query: Optional[Query] = None,
+        raw_data: bool = True,
+        history: bool = True,
+        page: Optional[int] = None,
+        page_size: Optional[int] = None,
+    ) -> Any:
+        ...
+
+    def get_alert_history(
+        self, alert: Any, page: Optional[int] = None, page_size: Optional[int] = None
+    ) -> List[Dict[str, Any]]:
+        ...
+
+    def get_history(
+        self, query: Optional[Query] = None, page: Optional[int] = None, page_size: Optional[int] = None
+    ) -> List[Dict[str, Any]]:
+        ...
+
+    def get_count(self, query: Optional[Query] = None) -> int:
+        ...
+
+    def get_counts(
+        self, query: Optional[Query] = None, group: Optional[str] = None
+    ) -> Dict[str, int]:
+        ...
+
+    def get_counts_by_severity(self, query: Optional[Query] = None) -> Dict[str, int]:
+        ...
+
+    def get_counts_by_status(self, query: Optional[Query] = None) -> Dict[str, int]:
+        ...
+
+    def get_topn_count(
+        self, query: Optional[Query] = None, group: str = 'event', topn: int = 100
+    ) -> List[Dict[str, Any]]:
+        ...
+
+    def get_topn_flapping(
+        self, query: Optional[Query] = None, group: str = 'event', topn: int = 100
+    ) -> List[Dict[str, Any]]:
+        ...
+
+    def get_topn_standing(
+        self, query: Optional[Query] = None, group: str = 'event', topn: int = 100
+    ) -> List[Dict[str, Any]]:
+        ...
+
+    def get_environments(
+        self, query: Optional[Query] = None, topn: int = 1000
+    ) -> List[Dict[str, Any]]:
+        ...
+
+    def get_services(
+        self, query: Optional[Query] = None, topn: int = 1000
+    ) -> List[Dict[str, Any]]:
+        ...
+
+    def get_alert_groups(
+        self, query: Optional[Query] = None, topn: int = 1000
+    ) -> List[Dict[str, Any]]:
+        ...
+
+    def get_alert_tags(
+        self, query: Optional[Query] = None, topn: int = 1000
+    ) -> List[Dict[str, Any]]:
+        ...
+
+    def create_blackout(self, blackout: Any) -> Optional[Dict[str, Any]]:
+        ...
+
+    def get_blackout(
+        self, id: str, customers: Optional[List[str]] = None
+    ) -> Optional[Dict[str, Any]]:
+        ...
+
+    def get_blackouts(
+        self, query: Optional[Query] = None, page: Optional[int] = None, page_size: Optional[int] = None
+    ) -> Union[List[Dict[str, Any]], Cursor]:
+        ...
+
+    def get_blackouts_count(self, query: Optional[Query] = None) -> int:
+        ...
+
+    def is_blackout_period(self, alert: Any) -> bool:
+        ...
+
+    def update_blackout(
+        self, id: str, **kwargs: Dict[str, Any]
+    ) -> Optional[Dict[str, Any]]:
+        ...
+
+    def delete_blackout(self, id: str) -> bool:
+        ...
+
+    def upsert_heartbeat(self, heartbeat: Any) -> Optional[Dict[str, Any]]:
+        ...
+
+    def get_heartbeat(
+        self, id: str, customers: Optional[List[str]] = None
+    ) -> Optional[Dict[str, Any]]:
+        ...
+
+    def get_heartbeats(
+        self, query: Optional[Query] = None, page: Optional[int] = None, page_size: Optional[int] = None
+    ) -> Union[List[Dict[str, Any]], Cursor]:
+        ...
+
+    def get_heartbeats_by_status(
+        self, status: Optional[List[HeartbeatStatus]] = None, query: Optional[Query] = None, page: Optional[int] = None, page_size: Optional[int] = None
+    ) -> Any:
+        ...
+
+    def get_heartbeats_count(self, query: Optional[Query] = None) -> int:
+        ...
+
+    def delete_heartbeat(self, id: str) -> bool:
+        ...
+
+    def create_key(self, key: Any) -> Optional[Dict[str, Any]]:
+        ...
+
+    def get_key(self, key: str, user: Optional[str] = None) -> Optional[Dict[str, Any]]:
+        ...
+
+    def get_keys(
+        self, query: Optional[Query] = None, page: Optional[int] = None, page_size: Optional[int] = None
+    ) -> Union[List[Dict[str, Any]], Cursor]:
+        ...
+
+    def get_keys_by_user(self, user: str) -> Union[List[Dict[str, Any]], Cursor]:
+        ...
+
+    def get_keys_count(self, query: Optional[Query] = None) -> int:
+        ...
+
+    def update_key(self, key: str, **kwargs: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        ...
+
+    def update_key_last_used(self, key: str) -> bool:
+        ...
+
+    def delete_key(self, key: str) -> bool:
+        ...
+
+    def create_user(self, user: Any) -> Optional[Dict[str, Any]]:
+        ...
+
+    def get_user(self, id: str) -> Optional[Dict[str, Any]]:
+        ...
+
+    def get_users(
+        self, query: Optional[Query] = None, page: Optional[int] = None, page_size: Optional[int] = None
+    ) -> Union[List[Dict[str, Any]], Cursor]:
+        ...
+
+    def get_users_count(self, query: Optional[Query] = None) -> int:
+        ...
+
+    def get_user_by_username(self, username: str) -> Optional[Dict[str, Any]]:
+        ...
+
+    def get_user_by_email(self, email: str) -> Optional[Dict[str, Any]]:
+        ...
+
+    def update_last_login(self, id: str) -> bool:
+        ...
+
+    def update_user(self, id: str, **kwargs: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        ...
+
+    def update_user_attributes(
+        self, id: str, old_attrs: Dict[str, Any], new_attrs: Dict[str, Any]
+    ) -> bool:
+        ...
+
+    def delete_user(self, id: str) -> bool:
+        ...
+
+    def set_email_hash(self, id: str, hash: str) -> bool:
+        ...
+
+    def create_group(self, group: Any) -> Optional[Dict[str, Any]]:
+        ...
+
+    def get_group(self, id: str) -> Optional[Dict[str, Any]]:
+        ...
+
+    def get_groups(
+        self, query: Optional[Query] = None, page: Optional[int] = None, page_size: Optional[int] = None
+    ) -> Union[List[Dict[str, Any]], Cursor]:
+        ...
+
+    def get_groups_count(self, query: Optional[Query] = None) -> int:
+        ...
+
+    def get_group_users(self, id: str) -> List[Dict[str, Any]]:
+        ...
+
+    def update_group(self, id: str, **kwargs: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        ...
+
+    def add_user_to_group(self, group: str, user: str) -> bool:
+        ...
+
+    def remove_user_from_group(self, group: str, user: str) -> bool:
+        ...
+
+    def delete_group(self, id: str) -> bool:
+        ...
+
+    def get_groups_by_user(self, user: str) -> Union[List[Dict[str, Any]], Cursor]:
+        ...
+
+    def create_perm(self, perm: Any) -> Optional[Dict[str, Any]]:
+        ...
+
+    def get_perm(self, id: str) -> Optional[Dict[str, Any]]:
+        ...
+
+    def get_perms(
+        self, query: Optional[Query] = None, page: Optional[int] = None, page_size: Optional[int] = None
+    ) -> Union[List[Dict[str, Any]], Cursor]:
+        ...
+
+    def get_perms_count(self, query: Optional[Query] = None) -> int:
+        ...
+
+    def update_perm(self, id: str, **kwargs: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        ...
+
+    def delete_perm(self, id: str) -> bool:
+        ...
+
+    def get_scopes_by_match(self, login: str, matches: List[str]) -> List[str]:
+        ...
+
+    def create_customer(self, customer: Any) -> Optional[Dict[str, Any]]:
+        ...
+
+    def get_customer(self, id: str) -> Optional[Dict[str, Any]]:
+        ...
+
+    def get_customers(
+        self, query: Optional[Query] = None, page: Optional[int] = None, page_size: Optional[int] = None
+    ) -> Union[List[Dict[str, Any]], Cursor]:
+        ...
+
+    def get_customers_count(self, query: Optional[Query] = None) -> int:
+        ...
+
+    def update_customer(self, id: str, **kwargs: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        ...
+
+    def delete_customer(self, id: str) -> bool:
+        ...
+
+    def get_customers_by_match(self, login: str, matches: List[str]) -> Union[str, None]:
+        ...
+
+    def create_note(self, note: Any) -> Optional[Dict[str, Any]]:
+        ...
+
+    def get_note(self, id: str) -> Optional[Dict[str, Any]]:
+        ...
+
+    def get_notes(
+        self, query: Optional[Query] = None, page: Optional[int] = None, page_size: Optional[int] = None
+    ) -> Union[List[Dict[str, Any]], Cursor]:
+        ...
+
+    def get_alert_notes(
+        self, id: str, page: Optional[int] = None, page_size: Optional[int] = None
+    ) -> Union[List[Dict[str, Any]], Cursor]:
+        ...
+
+    def get_customer_notes(
+        self, customer: str, page: Optional[int] = None, page_size: Optional[int] = None
+    ) -> Union[List[Dict[str, Any]], Cursor]:
+        ...
+
+    def update_note(self, id: str, **kwargs: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        ...
+
+    def delete_note(self, id: str) -> bool:
+        ...
+
+    def get_metrics(self, type: Optional[str] = None) -> List[Dict[str, Any]]:
+        ...
+
+    def set_gauge(self, gauge: Any) -> Any:
+        ...
+
+    def inc_counter(self, counter: Any) -> int:
+        ...
+
+    def update_timer(self, timer: Any) -> Dict[str, Any]:
+        ...
+
+    def get_expired(
+        self, expired_threshold: Optional[int] = None, info_threshold: Optional[int] = None
+    ) -> Any:
+        ...
+
+    def get_unshelve(self) -> Any:
+        ...
+
+    def get_unack(self) -> Any:
+        ...
