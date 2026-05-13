@@ -1,0 +1,104 @@
+import os
+import random
+from tempfile import TemporaryDirectory
+from typing import Optional, List, Tuple, Any, Dict, Iterable, Sequence, Union
+import numpy as np
+import pytest
+import torch
+from sockeye import constants as C
+from sockeye import data_io
+from sockeye import utils
+from sockeye import vocab
+from sockeye.test_utils import tmp_digits_dataset
+from sockeye.utils import SockeyeError, get_tokens, seed_rngs
+
+seed_rngs(12)
+
+define_bucket_tests: List[Tuple[int, int, List[int]]]
+
+@pytest.mark.parametrize('max_seq_len, step, expected_buckets', define_bucket_tests)
+def test_define_buckets(max_seq_len: int, step: int, expected_buckets: List[int]) -> None: ...
+
+define_parallel_bucket_tests: List[Tuple[int, int, int, bool, float, List[Tuple[int, int]]]]
+
+@pytest.mark.parametrize('max_seq_len_source, max_seq_len_target, bucket_width, bucket_scaling, length_ratio,expected_buckets', define_parallel_bucket_tests)
+def test_define_parallel_buckets(max_seq_len_source: int, max_seq_len_target: int, bucket_width: int, bucket_scaling: bool, length_ratio: float, expected_buckets: List[Tuple[int, int]]) -> None: ...
+
+get_bucket_tests: List[Tuple[List[int], int, Optional[int]]]
+
+@pytest.mark.parametrize('buckets, length, expected_bucket', get_bucket_tests)
+def test_get_bucket(buckets: List[int], length: int, expected_bucket: Optional[int]) -> None: ...
+
+tokens2ids_tests: List[Tuple[List[str], Dict[str, int], List[int]]]
+
+@pytest.mark.parametrize('tokens, vocab, expected_ids', tokens2ids_tests)
+def test_tokens2ids(tokens: List[str], vocab: Dict[str, int], expected_ids: List[int]) -> None: ...
+
+@pytest.mark.parametrize('tokens, expected_ids', [(['1', '2', '3', '0'], [1, 2, 3, 0]), ([], [])])
+def test_strids2ids(tokens: List[str], expected_ids: List[int]) -> None: ...
+
+sequence_reader_tests: List[Tuple[List[str], bool, bool, bool]]
+
+@pytest.mark.parametrize('sequences, use_vocab, add_bos, add_eos', sequence_reader_tests)
+def test_sequence_reader(sequences: List[str], use_vocab: bool, add_bos: bool, add_eos: bool) -> None: ...
+
+@pytest.mark.parametrize('source_iterables, target_iterables', [([[[0], [1, 1], [2], [3, 3, 3]], [[0], [1, 1], [2], [3, 3, 3]]], [[[0], [1]]]), ([[[0], [1, 1]], [[0], [1, 1]]], [[[0], [1, 1], [2], [3, 3, 3]]]), ([[[0], [1, 1]]], [[[0], [1, 1], [2], [3, 3, 3]]])])
+def test_nonparallel_iter(source_iterables: List[List[Optional[List[int]]]], target_iterables: List[List[Optional[List[int]]]]) -> None: ...
+
+@pytest.mark.parametrize('source_iterables, target_iterables', [([[[0], [1, 1]], [[0], [1]]], [[[0], [1]]])])
+def test_not_source_token_parallel_iter(source_iterables: List[List[Optional[List[int]]]], target_iterables: List[List[Optional[List[int]]]]) -> None: ...
+
+@pytest.mark.parametrize('source_iterables, target_iterables', [([[[0], [1]]], [[[0], [1, 1]], [[0], [1]]])])
+def test_not_target_token_parallel_iter(source_iterables: List[List[Optional[List[int]]]], target_iterables: List[List[Optional[List[int]]]]) -> None: ...
+
+@pytest.mark.parametrize('source_iterables, target_iterables, expected', [([[[0], [1, 1]], [[0], [1, 1]]], [[[0], [1]]], [([[0], [0]], [[0]]), ([[1, 1], [1, 1]], [[1]])]), ([[[0], None], [[0], None]], [[[0], [1]]], [([[0], [0]], [[0]])]), ([[[0], [1, 1]], [[0], [1, 1]]], [[[0], None]], [([[0], [0]], [[0]])]), ([[None, [1, 1]], [None, [1, 1]]], [[None, [1]]], [([[1, 1], [1, 1]], [[1]])]), ([[None, [1]]], [[None, [1, 1]], [None, [1, 1]]], [([[1]], [[1, 1], [1, 1]])]), ([[None, [1, 1]], [None, [1, 1]]], [[None, None]], [])])
+def test_parallel_iter(source_iterables: List[List[Optional[List[int]]]], target_iterables: List[List[Optional[List[int]]]], expected: List[Tuple[List[List[int]], List[List[int]]]]) -> None: ...
+
+def test_sample_based_define_bucket_batch_sizes() -> None: ...
+
+@pytest.mark.parametrize('length_ratio,batch_sentences_multiple_of,expected_batch_sizes', [(0.5, 1, [200, 100, 67, 50, 40, 33, 29, 25, 22, 20]), (1.5, 1, [100, 50, 33, 25, 20, 20, 20, 20]), (1.5, 8, [96, 48, 32, 24, 16, 16, 16, 16])])
+def test_word_based_define_bucket_batch_sizes(length_ratio: float, batch_sentences_multiple_of: int, expected_batch_sizes: List[int]) -> None: ...
+
+@pytest.mark.parametrize('length_ratio,batch_sentences_multiple_of,expected_batch_sizes', [(0.5, 1, [200, 100, 66, 50, 40, 33, 28, 25, 22, 20]), (1.5, 1, [100, 50, 33, 25, 20, 20, 20, 20]), (1.5, 8, [96, 48, 32, 24, 16, 16, 16, 16])])
+def test_max_word_based_define_bucket_batch_sizes(length_ratio: float, batch_sentences_multiple_of: int, expected_batch_sizes: List[int]) -> None: ...
+
+def _get_random_bucketed_data(buckets: List[Tuple[int, int]], min_count: int, max_count: int, bucket_counts: Optional[Sequence[Optional[int]]] = None, include_prepended_source_length: bool = False) -> Tuple[List[torch.Tensor], List[torch.Tensor], Optional[List[torch.Tensor]]]: ...
+
+@pytest.mark.parametrize('include_prepended_source_length', [False, True])
+def test_parallel_data_set(include_prepended_source_length: bool) -> None: ...
+
+@pytest.mark.parametrize('include_prepended_source_length', [False, True])
+def test_parallel_data_set_fill_up(include_prepended_source_length: bool) -> None: ...
+
+def test_get_permutations() -> None: ...
+
+@pytest.mark.parametrize('include_prepended_source_length', [False, True])
+def test_parallel_data_set_permute(include_prepended_source_length: bool) -> None: ...
+
+def test_get_batch_indices() -> None: ...
+
+get_parallel_bucket_tests: List[Tuple[List[Tuple[int, int]], int, int, Optional[int], Optional[Tuple[int, int]]]]
+
+@pytest.mark.parametrize('buckets, source_length, target_length, expected_bucket_index, expected_bucket', get_parallel_bucket_tests)
+def test_get_parallel_bucket(buckets: List[Tuple[int, int]], source_length: int, target_length: int, expected_bucket_index: Optional[int], expected_bucket: Optional[Tuple[int, int]]) -> None: ...
+
+@pytest.mark.parametrize('sources, targets, expected_num_sents, expected_mean, expected_std', [([[[1, 1, 1], [2, 2, 2], [3, 3, 3]]], [[[1, 1, 1], [2, 2, 2], [3, 3, 3]]], 3, 1.0, 0.0), ([[[1, 1], [2, 2], [3, 3]]], [[[1, 1, 1], [2, 2, 2], [3, 3, 3]]], 3, 1.5, 0.0), ([[[1, 1, 1], [2, 2], [3, 3, 3, 3, 3, 3, 3]]], [[[1, 1, 1], [2], [3, 3, 3]]], 2, 0.75, 0.25)])
+def test_calculate_length_statistics(sources: List[List[List[int]]], targets: List[List[List[int]]], expected_num_sents: int, expected_mean: float, expected_std: float) -> None: ...
+
+@pytest.mark.parametrize('sources, targets', [([[[1, 1, 1], [2, 2, 2], [3, 3, 3]], [[1, 1, 1], [2, 2], [3, 3, 3]]], [[[1, 1, 1], [2, 2, 2], [3, 3, 3]]])])
+def test_non_parallel_calculate_length_statistics(sources: List[List[List[int]]], targets: List[List[List[int]]]) -> None: ...
+
+@pytest.mark.parametrize('end_of_prepending_tag', [None, '<EOP>'])
+def test_get_training_data_iters(end_of_prepending_tag: Optional[str]) -> None: ...
+
+def _data_batches_equal(db1: Any, db2: Any) -> bool: ...
+
+def test_parallel_sample_iter() -> None: ...
+
+def test_sharded_parallel_sample_iter() -> None: ...
+
+def test_sharded_parallel_sample_iter_num_batches() -> None: ...
+
+def test_sharded_and_parallel_iter_same_num_batches() -> None: ...
+
+def test_create_target_and_shifted_label_sequences() -> None: ...

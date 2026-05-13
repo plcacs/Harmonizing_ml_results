@@ -1,0 +1,110 @@
+from argparse import Namespace
+from typing import Optional, Union, Any
+from unittest import mock
+from unittest.mock import MagicMock, patch
+import pytest
+from psycopg2 import DatabaseError
+from pytest_mock import MockerFixture
+from dbt.adapters.contracts.connection import AdapterResponse
+from dbt.adapters.postgres import PostgresAdapter
+from dbt.artifacts.resources.base import FileHash
+from dbt.artifacts.resources.types import NodeType, RunHookType
+from dbt.artifacts.resources.v1.components import DependsOn
+from dbt.artifacts.resources.v1.config import NodeConfig
+from dbt.artifacts.resources.v1.model import ModelConfig
+from dbt.artifacts.schemas.results import RunStatus
+from dbt.artifacts.schemas.run import RunResult
+from dbt.config.runtime import RuntimeConfig
+from dbt.contracts.graph.manifest import Manifest
+from dbt.contracts.graph.nodes import HookNode, ModelNode
+from dbt.events.types import LogModelResult
+from dbt.exceptions import DbtRuntimeError
+from dbt.flags import get_flags, set_from_args, FlagValues
+from dbt.task.run import MicrobatchModelRunner, ModelRunner, RunTask, _get_adapter_info
+from dbt.tests.util import safe_set_invocation_context
+from dbt_common.events.base_types import EventLevel
+from dbt_common.events.event_manager_client import add_callback_to_manager
+from tests.utils import EventCatcher
+
+class Relation:
+    def __init__(self, type: str = ...) -> None: ...
+
+def test_run_task_cancel_connections(
+    exception_to_raise: type[BaseException],
+    expected_cancel_connections: bool,
+    runtime_config: RuntimeConfig,
+) -> None: ...
+
+def test_run_task_preserve_edges() -> None: ...
+
+def test_tracking_fails_safely_for_missing_adapter() -> None: ...
+
+def test_adapter_info_tracking() -> None: ...
+
+class TestModelRunner:
+    @pytest.fixture
+    def log_model_result_catcher(self) -> EventCatcher: ...
+    @pytest.fixture
+    def model_runner(
+        self,
+        postgres_adapter: PostgresAdapter,
+        table_model: ModelNode,
+        runtime_config: RuntimeConfig,
+    ) -> ModelRunner: ...
+    @pytest.fixture
+    def run_result(self, table_model: ModelNode) -> RunResult: ...
+    def test_print_result_line(
+        self,
+        log_model_result_catcher: EventCatcher,
+        model_runner: ModelRunner,
+        run_result: RunResult,
+    ) -> None: ...
+    def test_execute(
+        self,
+        table_model: ModelNode,
+        manifest: Manifest,
+        model_runner: ModelRunner,
+    ) -> None: ...
+
+class TestMicrobatchModelRunner:
+    @pytest.fixture
+    def model_runner(
+        self,
+        postgres_adapter: PostgresAdapter,
+        table_model: ModelNode,
+        runtime_config: RuntimeConfig,
+    ) -> MicrobatchModelRunner: ...
+    def test__is_incremental(
+        self,
+        mocker: MockerFixture,
+        model_runner: MicrobatchModelRunner,
+        has_relation: bool,
+        relation_type: str,
+        materialized: str,
+        full_refresh_config: Optional[bool],
+        full_refresh_flag: bool,
+        expectation: bool,
+    ) -> None: ...
+    def test_should_run_in_parallel(
+        self,
+        mocker: MockerFixture,
+        model_runner: MicrobatchModelRunner,
+        adapter_microbatch_concurrency: bool,
+        has_relation: bool,
+        concurrent_batches: Optional[bool],
+        has_this: bool,
+        expectation: bool,
+    ) -> None: ...
+
+class TestRunTask:
+    @pytest.fixture
+    def hook_node(self) -> HookNode: ...
+    def test_safe_run_hooks(
+        self,
+        mocker: MockerFixture,
+        runtime_config: RuntimeConfig,
+        manifest: Manifest,
+        hook_node: HookNode,
+        error_to_raise: Optional[type[BaseException]],
+        expected_result: Union[RunStatus, type[BaseException]],
+    ) -> None: ...

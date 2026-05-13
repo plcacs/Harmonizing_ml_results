@@ -1,0 +1,137 @@
+import datetime
+from datetime import timedelta
+from typing import Any, Callable, Iterable, List, Optional, Sequence, Tuple, Union
+
+import numpy as np
+import pandas as pd
+
+from fklearn.types import LogType, SplitterReturnType
+
+def _log_time_fold(time_fold: Tuple[pd.Series, pd.Series]) -> LogType: ...
+
+def _get_lc_folds(
+    date_range: Iterable[Any],
+    date_fold_filter_fn: Callable[[Any], pd.DataFrame],
+    test_time: pd.Series,
+    time_column: str,
+    min_samples: int,
+) -> List[Tuple[pd.Series, pd.Series]]: ...
+
+def _get_sc_folds(
+    date_range: Iterable[Any],
+    date_fold_filter_fn: Callable[[Any], pd.DataFrame],
+    time_column: str,
+    min_samples: int,
+) -> List[pd.Series]: ...
+
+def _get_sc_test_fold_idx_and_logs(
+    test_data: pd.DataFrame,
+    train_time: pd.Series,
+    time_column: str,
+    first_test_moment: Any,
+    last_test_moment: Any,
+    min_samples: int,
+    freq: str,
+) -> Tuple[List[LogType], List[List[pd.Index]]]: ...
+
+def _lc_fold_to_indexes(
+    folds: Iterable[Tuple[pd.Series, pd.Series]],
+) -> List[Tuple[pd.Index, List[pd.Index]]]: ...
+
+def k_fold_splitter(
+    train_data: pd.DataFrame,
+    n_splits: int,
+    random_state: Optional[int] = ...,
+    stratify_column: Optional[str] = ...,
+) -> SplitterReturnType: ...
+
+def out_of_time_and_space_splitter(
+    train_data: pd.DataFrame,
+    n_splits: int,
+    in_time_limit: Union[str, datetime.datetime],
+    time_column: str,
+    space_column: str,
+    holdout_gap: datetime.timedelta = ...,
+) -> SplitterReturnType: ...
+
+def time_and_space_learning_curve_splitter(
+    train_data: pd.DataFrame,
+    training_time_limit: str,
+    space_column: str,
+    time_column: str,
+    freq: str = ...,
+    space_hold_percentage: float = ...,
+    holdout_gap: datetime.timedelta = ...,
+    random_state: Optional[int] = ...,
+    min_samples: int = ...,
+) -> SplitterReturnType: ...
+
+def time_learning_curve_splitter(
+    train_data: pd.DataFrame,
+    training_time_limit: str,
+    time_column: str,
+    freq: str = ...,
+    holdout_gap: datetime.timedelta = ...,
+    min_samples: int = ...,
+) -> SplitterReturnType: ...
+
+def reverse_time_learning_curve_splitter(
+    train_data: pd.DataFrame,
+    time_column: str,
+    training_time_limit: str,
+    lower_time_limit: Optional[str] = ...,
+    freq: str = ...,
+    holdout_gap: datetime.timedelta = ...,
+    min_samples: int = ...,
+) -> SplitterReturnType: ...
+
+def spatial_learning_curve_splitter(
+    train_data: pd.DataFrame,
+    space_column: str,
+    time_column: str,
+    training_limit: Union[datetime.datetime, str],
+    holdout_gap: datetime.timedelta = ...,
+    train_percentages: Sequence[float] = ...,
+    random_state: Optional[int] = ...,
+) -> SplitterReturnType: ...
+
+def stability_curve_time_splitter(
+    train_data: pd.DataFrame,
+    training_time_limit: str,
+    time_column: str,
+    freq: str = ...,
+    min_samples: int = ...,
+) -> SplitterReturnType: ...
+
+def stability_curve_time_in_space_splitter(
+    train_data: pd.DataFrame,
+    training_time_limit: str,
+    space_column: str,
+    time_column: str,
+    freq: str = ...,
+    space_hold_percentage: float = ...,
+    random_state: Optional[int] = ...,
+    min_samples: int = ...,
+) -> SplitterReturnType: ...
+
+def stability_curve_time_space_splitter(
+    train_data: pd.DataFrame,
+    training_time_limit: str,
+    space_column: str,
+    time_column: str,
+    freq: str = ...,
+    space_hold_percentage: float = ...,
+    random_state: Optional[int] = ...,
+    min_samples: int = ...,
+) -> SplitterReturnType: ...
+
+def forward_stability_curve_time_splitter(
+    train_data: pd.DataFrame,
+    training_time_start: Union[datetime.datetime, str],
+    training_time_end: Union[datetime.datetime, str],
+    time_column: str,
+    holdout_gap: datetime.timedelta = ...,
+    holdout_size: datetime.timedelta = ...,
+    step: datetime.timedelta = ...,
+    move_training_start_with_steps: bool = ...,
+) -> SplitterReturnType: ...

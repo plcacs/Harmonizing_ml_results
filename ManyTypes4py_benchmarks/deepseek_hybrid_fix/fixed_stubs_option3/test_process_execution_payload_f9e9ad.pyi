@@ -1,0 +1,136 @@
+from random import Random
+from typing import Any, Dict, Generator, List, Optional, Tuple, Union
+
+from eth2spec.test.helpers.execution_payload import (
+    build_empty_execution_payload,
+    build_randomized_execution_payload,
+    compute_el_block_hash,
+    get_execution_payload_header,
+    build_state_with_incomplete_transition,
+    build_state_with_complete_transition,
+)
+from eth2spec.test.context import BELLATRIX, expect_assertion_error, spec_state_test, with_bellatrix_and_later, with_phases
+from eth2spec.test.helpers.state import next_slot
+
+class Spec:
+    Hash32: Any
+    Bytes32: Any
+    Transaction: Any
+    BeaconBlockBody: Any
+    NoopExecutionEngine: Any
+    def process_execution_payload(self, state: Any, body: Any, engine: Any) -> None: ...
+
+class State:
+    latest_execution_payload_header: Any
+
+class ExecutionPayload:
+    parent_hash: Any
+    prev_randao: Any
+    timestamp: int
+    block_hash: Any
+    extra_data: bytes
+    transactions: Any
+    def hash_tree_root(self) -> Any: ...
+
+class BeaconBlockBody:
+    execution_payload: ExecutionPayload
+    def __init__(self, execution_payload: ExecutionPayload) -> None: ...
+
+class NoopExecutionEngine:
+    def verify_and_notify_new_payload(self, new_payload_request: Any) -> bool: ...
+
+def run_execution_payload_processing(
+    spec: Spec,
+    state: State,
+    execution_payload: ExecutionPayload,
+    valid: bool = True,
+    execution_valid: bool = True,
+) -> Generator[Union[Tuple[str, State], Tuple[str, Dict[str, bool]], Tuple[str, BeaconBlockBody], Tuple[str, Optional[State]]], None, None]: ...
+def run_success_test(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+@with_bellatrix_and_later
+@spec_state_test
+def test_success_first_payload(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+@with_bellatrix_and_later
+@spec_state_test
+def test_success_regular_payload(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+def run_gap_slot_test(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+@with_bellatrix_and_later
+@spec_state_test
+def test_success_first_payload_with_gap_slot(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+@with_bellatrix_and_later
+@spec_state_test
+def test_success_regular_payload_with_gap_slot(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+def run_bad_execution_test(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+@with_bellatrix_and_later
+@spec_state_test
+def test_invalid_bad_execution_first_payload(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+@with_bellatrix_and_later
+@spec_state_test
+def test_invalid_bad_execution_regular_payload(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+@with_phases([BELLATRIX])
+@spec_state_test
+def test_bad_parent_hash_first_payload(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+@with_bellatrix_and_later
+@spec_state_test
+def test_invalid_bad_parent_hash_regular_payload(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+def run_bad_prev_randao_test(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+@with_bellatrix_and_later
+@spec_state_test
+def test_invalid_bad_prev_randao_first_payload(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+@with_bellatrix_and_later
+@spec_state_test
+def test_invalid_bad_pre_randao_regular_payload(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+def run_bad_everything_test(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+@with_bellatrix_and_later
+@spec_state_test
+def test_invalid_bad_everything_first_payload(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+@with_bellatrix_and_later
+@spec_state_test
+def test_invalid_bad_everything_regular_payload(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+def run_bad_timestamp_test(spec: Spec, state: State, is_future: bool) -> Generator[Any, None, None]: ...
+@with_bellatrix_and_later
+@spec_state_test
+def test_invalid_future_timestamp_first_payload(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+@with_bellatrix_and_later
+@spec_state_test
+def test_invalid_future_timestamp_regular_payload(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+@with_bellatrix_and_later
+@spec_state_test
+def test_invalid_past_timestamp_first_payload(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+@with_bellatrix_and_later
+@spec_state_test
+def test_invalid_past_timestamp_regular_payload(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+def run_non_empty_extra_data_test(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+@with_bellatrix_and_later
+@spec_state_test
+def test_non_empty_extra_data_first_payload(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+@with_bellatrix_and_later
+@spec_state_test
+def test_non_empty_extra_data_regular_payload(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+def run_non_empty_transactions_test(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+@with_bellatrix_and_later
+@spec_state_test
+def test_non_empty_transactions_first_payload(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+@with_bellatrix_and_later
+@spec_state_test
+def test_non_empty_transactions_regular_payload(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+def run_zero_length_transaction_test(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+@with_bellatrix_and_later
+@spec_state_test
+def test_zero_length_transaction_first_payload(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+@with_bellatrix_and_later
+@spec_state_test
+def test_zero_length_transaction_regular_payload(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+def run_randomized_non_validated_execution_fields_test(spec: Spec, state: State, rng: Random, execution_valid: bool = True) -> Generator[Any, None, None]: ...
+@with_bellatrix_and_later
+@spec_state_test
+def test_randomized_non_validated_execution_fields_first_payload__execution_valid(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+@with_bellatrix_and_later
+@spec_state_test
+def test_randomized_non_validated_execution_fields_regular_payload__execution_valid(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+@with_bellatrix_and_later
+@spec_state_test
+def test_invalid_randomized_non_validated_execution_fields_first_payload__execution_invalid(spec: Spec, state: State) -> Generator[Any, None, None]: ...
+@with_bellatrix_and_later
+@spec_state_test
+def test_invalid_randomized_non_validated_execution_fields_regular_payload__execution_invalid(spec: Spec, state: State) -> Generator[Any, None, None]: ...
