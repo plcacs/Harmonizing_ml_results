@@ -1,34 +1,48 @@
 """
-Analyze type annotation quality in function parameters and return types.
+Analyze type annotation quality across strict, unstrict, and stub settings.
 
-Compares two directories:
-  1. deepseek_3_run     — LLM-generated .py files (recursive, in numbered subdirs)
-  2. deepseek_3_stub_run — LLM-generated .pyi stubs (flat)
+For each model (DeepSeek, GPT-5), compares annotation quality in:
+  - strict: fully strict LLM-annotated .py files
+  - unstrict: unstrict LLM-annotated .py files
+  - stub: merged stub+source .py files
 
-For every function/method, each parameter annotation and return annotation is
-classified as: concrete, exact_any, partial_any, or blank.
+Only analyzes the 500 canonical files from 500_untyped_files.
+
+Each parameter/return annotation is classified as:
+  concrete, exact_any, partial_any, or blank.
 
 Usage:
     python analyze_type_annotations.py
 """
 
 import ast
-import json
 import os
-import sys
 from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 PARENT_DIR = SCRIPT_DIR.parent
 
-DIR_PY = PARENT_DIR / "deepseek_3_run"
-DIR_STUB = PARENT_DIR / "deepseek_3_stub_run"
+CANONICAL_DIR = PARENT_DIR / "500_untyped_files"
 
-OUTPUT_JSON = SCRIPT_DIR / "type_annotation_analysis.json"
+MODELS = {
+    "DeepSeek": {
+        "strict": {"dir": PARENT_DIR / "deepseek_4_run", "recursive": True},
+        "unstrict": {"dir": PARENT_DIR / "deepseek_3_run", "recursive": True},
+        "stub": {"dir": PARENT_DIR / "deepseek_3_stub_run" / "merged", "recursive": False},
+    },
+    "GPT-5": {
+        "strict": {"dir": PARENT_DIR / "gpt5_4_run", "recursive": True},
+        "unstrict": {"dir": PARENT_DIR / "gpt5_1st_run", "recursive": True},
+        "stub": {"dir": PARENT_DIR / "gpt5_1_infer_stub_run" / "merged", "recursive": False},
+    },
+}
+
+
+def get_canonical_filenames() -> set[str]:
+    return {f.stem for f in CANONICAL_DIR.iterdir() if f.suffix == ".py"}
 
 
 def contains_any(node: ast.expr) -> bool:
-    """Return True if the AST annotation node references 'Any' anywhere."""
     if isinstance(node, ast.Name) and node.id == "Any":
         return True
     if isinstance(node, ast.Attribute) and node.attr == "Any":
@@ -42,7 +56,6 @@ def contains_any(node: ast.expr) -> bool:
 
 
 def is_exact_any(node: ast.expr) -> bool:
-    """Return True if the annotation is exactly 'Any' (not nested)."""
     if isinstance(node, ast.Name) and node.id == "Any":
         return True
     if isinstance(node, ast.Attribute) and node.attr == "Any":
@@ -53,7 +66,6 @@ def is_exact_any(node: ast.expr) -> bool:
 
 
 def classify_annotation(node) -> str:
-    """Classify an annotation node: 'blank', 'exact_any', 'partial_any', or 'concrete'."""
     if node is None:
         return "blank"
     if is_exact_any(node):
@@ -63,13 +75,12 @@ def classify_annotation(node) -> str:
     return "concrete"
 
 
-def analyze_file(filepath: Path) -> dict:
-    """Parse a single file and return annotation statistics."""
+def analyze_file(filepath: Path) -> dict | None:
     try:
         source = filepath.read_text(encoding="utf-8", errors="ignore")
         tree = ast.parse(source, filename=str(filepath))
-    except SyntaxError as e:
-        return {"_syntax_error": f"Line {e.lineno}: {e.msg}"}
+    except SyntaxError:
+        return None
 
     stats = {
         "total_params": 0,
@@ -112,111 +123,85 @@ def analyze_file(filepath: Path) -> dict:
     return stats
 
 
-def collect_files(directory: Path, extension: str, recursive: bool) -> dict[str, Path]:
-    """Collect files keyed by base name (without extension)."""
-    pattern = f"**/*{extension}" if recursive else f"*{extension}"
+def collect_files(directory: Path, recursive: bool, canonical: set[str]) -> dict[str, Path]:
+    pattern = "**/*.py" if recursive else "*.py"
     files = {}
     for p in directory.glob(pattern):
-        stem = p.stem
-        files[stem] = p
+        if p.stem in canonical and p.stem not in files:
+            files[p.stem] = p
     return files
 
 
-def aggregate(per_file: dict[str, dict]) -> dict:
-    """Sum per-file stats into totals."""
+def aggregate(per_file: dict[str, dict | None]) -> dict:
     totals = {}
     for stats in per_file.values():
-        if stats is None or "_syntax_error" in stats:
+        if stats is None:
             continue
         for k, v in stats.items():
             totals[k] = totals.get(k, 0) + v
     return totals
 
 
-def print_summary(label: str, totals: dict, file_count: int, parse_errors: int) -> None:
-    tp = totals.get("total_params", 0)
-    tr = totals.get("total_returns", 0)
-    total_slots = tp + tr
-
-    print(f"\n{'=' * 60}")
-    print(f"  {label}")
-    print(f"{'=' * 60}")
-    print(f"  Files analyzed:  {file_count}")
-    print(f"  Parse errors:    {parse_errors}")
-    print(f"  Total params:    {tp}")
-    print(f"  Total returns:   {tr}")
-    print(f"  Total slots:     {total_slots}")
-    print()
-
-    for kind, prefix in [("Parameters", "params"), ("Returns", "returns")]:
-        total = totals.get(f"total_{'params' if prefix == 'params' else 'returns'}", 0)
-        blank = totals.get(f"{prefix}_blank", 0)
-        exact = totals.get(f"{prefix}_exact_any", 0)
-        partial = totals.get(f"{prefix}_partial_any", 0)
-        concrete = totals.get(f"{prefix}_concrete", 0)
-
-        print(f"  {kind} (total={total}):")
-        print(f"    Concrete:     {concrete:>6}  ({concrete / total * 100:.1f}%)" if total else f"    Concrete:     {concrete:>6}")
-        print(f"    Exact Any:    {exact:>6}  ({exact / total * 100:.1f}%)" if total else f"    Exact Any:    {exact:>6}")
-        print(f"    Partial Any:  {partial:>6}  ({partial / total * 100:.1f}%)" if total else f"    Partial Any:  {partial:>6}")
-        print(f"    Blank:        {blank:>6}  ({blank / total * 100:.1f}%)" if total else f"    Blank:        {blank:>6}")
-        print()
+def pct(num: int, denom: int) -> str:
+    return f"{100 * num / denom:.1f}%" if denom else "N/A"
 
 
-def run_analysis(directory: Path, extension: str, recursive: bool, label: str) -> dict:
-    files = collect_files(directory, extension, recursive)
+def run_analysis(directory: Path, recursive: bool, canonical: set[str]) -> dict:
+    files = collect_files(directory, recursive, canonical)
     per_file = {}
-    parse_errors = {}
+    parse_errors = 0
     for name, path in sorted(files.items()):
         result = analyze_file(path)
-        if result is not None and "_syntax_error" in result:
-            parse_errors[name] = result["_syntax_error"]
+        if result is None:
+            parse_errors += 1
         per_file[name] = result
 
     totals = aggregate(per_file)
-    file_count = sum(1 for v in per_file.values() if v is not None and "_syntax_error" not in v)
-    print_summary(label, totals, file_count, len(parse_errors))
-
-    if parse_errors:
-        from collections import Counter
-        error_types = Counter()
-        for err_msg in parse_errors.values():
-            msg_part = err_msg.split(": ", 1)[1] if ": " in err_msg else err_msg
-            error_types[msg_part] += 1
-
-        print(f"  Syntax error breakdown ({len(parse_errors)} files):")
-        for msg, count in error_types.most_common():
-            print(f"    {count:>4}x  {msg}")
-        print()
-
+    analyzed = sum(1 for v in per_file.values() if v is not None)
     return {
-        "label": label,
-        "directory": str(directory),
-        "files_analyzed": file_count,
-        "parse_error_count": len(parse_errors),
+        "analyzed": analyzed,
         "parse_errors": parse_errors,
+        "missing": len(canonical) - len(files),
         "totals": totals,
-        "per_file": per_file,
     }
 
 
 def main() -> None:
-    results = {}
+    canonical = get_canonical_filenames()
+    print(f"Canonical files: {len(canonical)}\n")
 
-    results["deepseek_3_run"] = run_analysis(
-        DIR_PY, ".py", recursive=True,
-        label="deepseek_3_run (.py files)"
-    )
+    for model_name, settings in MODELS.items():
+        print(f"\n{'=' * 90}")
+        print(f"  {model_name}")
+        print(f"{'=' * 90}")
 
-    results["deepseek_3_stub_run"] = run_analysis(
-        DIR_STUB, ".pyi", recursive=False,
-        label="deepseek_3_stub_run (.pyi stubs)"
-    )
+        header = (
+            f"{'Setting':<10} {'Files':>6} {'Errs':>5} {'Miss':>5} │ "
+            f"{'Params':>6} {'Conc%':>7} {'ExAny%':>7} {'PtAny%':>7} {'Blank%':>7} │ "
+            f"{'Rets':>5} {'Conc%':>7} {'ExAny%':>7} {'PtAny%':>7} {'Blank%':>7}"
+        )
+        print(header)
+        print("─" * len(header))
 
-    with open(OUTPUT_JSON, "w", encoding="utf-8") as f:
-        json.dump(results, f, indent=2)
+        for setting_name, cfg in settings.items():
+            r = run_analysis(cfg["dir"], cfg["recursive"], canonical)
+            t = r["totals"]
+            tp = t.get("total_params", 0)
+            tr = t.get("total_returns", 0)
 
-    print(f"\nDetailed results saved to: {OUTPUT_JSON}")
+            print(
+                f"{setting_name:<10} {r['analyzed']:>6} {r['parse_errors']:>5} {r['missing']:>5} │ "
+                f"{tp:>6} {pct(t.get('params_concrete', 0), tp):>7} "
+                f"{pct(t.get('params_exact_any', 0), tp):>7} "
+                f"{pct(t.get('params_partial_any', 0), tp):>7} "
+                f"{pct(t.get('params_blank', 0), tp):>7} │ "
+                f"{tr:>5} {pct(t.get('returns_concrete', 0), tr):>7} "
+                f"{pct(t.get('returns_exact_any', 0), tr):>7} "
+                f"{pct(t.get('returns_partial_any', 0), tr):>7} "
+                f"{pct(t.get('returns_blank', 0), tr):>7}"
+            )
+
+        print("─" * len(header))
 
 
 if __name__ == "__main__":
