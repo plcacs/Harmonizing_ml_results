@@ -35,25 +35,25 @@ SETTINGS = [
         "label": "GPT5 setting1 (inline)",
         "src_dir": BENCH_DIR / "gpt5_2_run",
         "recursive": True,
-        "mypy_json": MYPY_DIR / "mypy_results_gpt5_2_run_with_errors.json",
+        "mypy_json": MYPY_DIR / "mypy_outputs" / "mypy_results_gpt5_2_run_with_errors.json",
     },
     {
         "label": "GPT5 setting2 (stub)",
         "src_dir": BENCH_DIR / "gpt5_1_infer_stub_run" / "merged",
         "recursive": False,
-        "mypy_json": MYPY_DIR / "mypy_results_gpt5_1_infer_stub_run_with_errors.json",
+        "mypy_json": MYPY_DIR / "mypy_outputs" / "mypy_results_gpt5_1_infer_stub_run_with_errors.json",
     },
     {
         "label": "DeepSeek setting1 (inline)",
         "src_dir": BENCH_DIR / "deepseek_3_run",
         "recursive": True,
-        "mypy_json": MYPY_DIR / "mypy_results_deepseek_3_run_with_errors.json",
+        "mypy_json": MYPY_DIR / "mypy_outputs" / "mypy_results_deepseek_3_run_with_errors_strict.json",
     },
     {
         "label": "DeepSeek setting2 (stub)",
         "src_dir": BENCH_DIR / "deepseek_3_stub_run" / "merged",
         "recursive": False,
-        "mypy_json": MYPY_DIR / "mypy_results_deepseek_3_merge_stub_run_with_errors.json",
+        "mypy_json": MYPY_DIR / "mypy_outputs" / "mypy_results_deepseek_3_merge_stub_run_with_errors.json",
     },
 ]
 

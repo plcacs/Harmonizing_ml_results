@@ -30,10 +30,10 @@ from annotation_vs_mypy_joined import SETTINGS, build_joined, load_selected_stem
 MYPY_DIR = Path(__file__).resolve().parent.parent / "GPCE_mypy_results"
 
 MYPY_JSONS = {
-    "GPT5 setting1 (inline)":     MYPY_DIR / "mypy_results_gpt5_2_run_with_errors.json",
-    "GPT5 setting2 (stub)":       MYPY_DIR / "mypy_results_gpt5_1_infer_stub_run_with_errors.json",
-    "DeepSeek setting1 (inline)": MYPY_DIR / "mypy_results_deepseek_3_run_with_errors.json",
-    "DeepSeek setting2 (stub)":   MYPY_DIR / "mypy_results_deepseek_3_merge_stub_run_with_errors.json",
+    "GPT5 setting1 (inline)":     MYPY_DIR / "mypy_outputs" / "mypy_results_gpt5_2_run_with_errors.json",
+    "GPT5 setting2 (stub)":       MYPY_DIR / "mypy_outputs" / "mypy_results_gpt5_1_infer_stub_run_with_errors.json",
+    "DeepSeek setting1 (inline)": MYPY_DIR / "mypy_outputs" / "mypy_results_deepseek_3_run_with_errors_strict.json",
+    "DeepSeek setting2 (stub)":   MYPY_DIR / "mypy_outputs" / "mypy_results_deepseek_3_merge_stub_run_with_errors.json",
 }
 
 SETTING_PAIRS = [
@@ -125,7 +125,7 @@ def plot_error_code_breakdown(error_codes_by_setting, top_n=12):
     ax.legend(bbox_to_anchor=(1.01, 1), loc="upper left", fontsize=8, title="Error code")
     ax.grid(axis="x", alpha=0.25)
     fig.tight_layout()
-    return fig
+    return fig, "fig1_error_code_breakdown.png"
 
 
 # -- Fig 2: Per-file error delta scatter ---------------------------------------
@@ -157,7 +157,7 @@ def plot_per_file_error_delta(rows_by_setting):
 
     fig.suptitle("Figure 2: Per-file Error Count -- Setting1 vs Setting2", fontweight="bold")
     fig.tight_layout()
-    return fig
+    return fig, "fig2_per_file_error_delta.png"
 
 
 # -- Fig 3: Coverage gain vs error change (paired) ----------------------------
@@ -194,7 +194,7 @@ def plot_coverage_gain_vs_error_change(rows_by_setting):
 
     fig.suptitle("Figure 3: Coverage Delta vs Error Delta (Paired)", fontweight="bold")
     fig.tight_layout()
-    return fig
+    return fig, "fig3_coverage_gain_vs_error_change.png"
 
 
 # -- Fig 4: Error code heatmap by coverage bucket -----------------------------
@@ -254,7 +254,7 @@ def plot_error_code_heatmap_by_coverage(rows_by_setting, error_codes_by_setting,
     fig.suptitle(f"Figure 4: Error Code Heatmap by Coverage Bucket (top {top_n})",
                  fontweight="bold")
     fig.tight_layout()
-    return fig
+    return fig, "fig4_error_code_heatmap.png"
 
 
 # -- Fig 5: Clean-rate 2-D heatmap (coverage x Any) ---------------------------
@@ -295,7 +295,7 @@ def plot_2d_clean_rate_heatmap(rows_by_setting):
     fig.suptitle("Figure 5: Clean Rate % by Coverage Bucket x Any% Bucket",
                  fontweight="bold")
     fig.tight_layout()
-    return fig
+    return fig, "fig5_2d_clean_rate_heatmap.png"
 
 
 # -- Fig 6: File outcome transition matrix -------------------------------------
@@ -337,7 +337,7 @@ def plot_transition_matrix(rows_by_setting):
     fig.suptitle("Figure 6: File Outcome Transition Matrix (Clean / Fail)",
                  fontweight="bold")
     fig.tight_layout()
-    return fig
+    return fig, "fig6_transition_matrix.png"
 
 
 # -- Fig 7: Error count distribution violin ------------------------------------
@@ -368,7 +368,7 @@ def plot_error_count_violin(rows_by_setting):
     ax.set_title("Figure 7: Error Count Distribution (Failing Files Only)")
     ax.grid(axis="y", alpha=0.25)
     fig.tight_layout()
-    return fig
+    return fig, "fig7_error_count_violin.png"
 
 
 # -- Main ----------------------------------------------------------------------
@@ -381,6 +381,9 @@ def main():
                         help="Build all figures without opening display windows.")
     args = parser.parse_args()
 
+    fig_dir = Path("figures")
+    fig_dir.mkdir(exist_ok=True)
+
     print("Loading rows...")
     rows_by_setting = load_rows_by_setting()
 
@@ -388,30 +391,42 @@ def main():
     allowed = load_selected_stems()
     error_codes_by_setting = load_error_codes_by_setting(allowed)
 
+    figs = []
+    
     print("Plotting Figure 1: Error code breakdown...")
-    plot_error_code_breakdown(error_codes_by_setting)
+    fig, fname = plot_error_code_breakdown(error_codes_by_setting)
+    figs.append((fig, fname))
 
     print("Plotting Figure 2: Per-file error delta scatter...")
-    plot_per_file_error_delta(rows_by_setting)
+    fig, fname = plot_per_file_error_delta(rows_by_setting)
+    figs.append((fig, fname))
 
     print("Plotting Figure 3: Coverage gain vs error change...")
-    plot_coverage_gain_vs_error_change(rows_by_setting)
+    fig, fname = plot_coverage_gain_vs_error_change(rows_by_setting)
+    figs.append((fig, fname))
 
     print("Plotting Figure 4: Error code heatmap by coverage bucket...")
-    plot_error_code_heatmap_by_coverage(rows_by_setting, error_codes_by_setting)
+    fig, fname = plot_error_code_heatmap_by_coverage(rows_by_setting, error_codes_by_setting)
+    figs.append((fig, fname))
 
     print("Plotting Figure 5: 2D clean-rate heatmap...")
-    plot_2d_clean_rate_heatmap(rows_by_setting)
+    fig, fname = plot_2d_clean_rate_heatmap(rows_by_setting)
+    figs.append((fig, fname))
 
     print("Plotting Figure 6: Transition matrix...")
-    plot_transition_matrix(rows_by_setting)
+    fig, fname = plot_transition_matrix(rows_by_setting)
+    figs.append((fig, fname))
 
     print("Plotting Figure 7: Error count violin...")
-    plot_error_count_violin(rows_by_setting)
+    fig, fname = plot_error_count_violin(rows_by_setting)
+    figs.append((fig, fname))
 
-    if args.no_show:
-        print("\nAll 7 figures generated (not shown, not saved).")
-    else:
+    for fig, fname in figs:
+        fig.savefig(fig_dir / fname, dpi=300, bbox_inches="tight")
+    
+    print(f"\nAll 7 figures saved to {fig_dir}/")
+    
+    if not args.no_show:
         plt.show()
 
 
