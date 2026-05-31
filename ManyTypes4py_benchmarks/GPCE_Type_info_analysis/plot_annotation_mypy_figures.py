@@ -72,7 +72,6 @@ def plot_coverage_vs_errors_scatter(rows_by_setting):
     ax.grid(alpha=0.25)
     ax.legend()
     fig.tight_layout()
-    return fig, "coverage_vs_errors.png"
 
 
 def plot_any_bucket_clean_rate(rows_by_setting):
@@ -98,12 +97,11 @@ def plot_any_bucket_clean_rate(rows_by_setting):
     ax.grid(axis="y", alpha=0.25)
     ax.legend()
     fig.tight_layout()
-    return fig, "any_bucket_clean_rate.png"
 
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Generate 2 combined annotation-vs-mypy figures."
+        description="Generate 2 combined annotation-vs-mypy figures (no file saving)."
     )
     parser.add_argument(
         "--no-show", action="store_true", help="Build figures without displaying windows."
@@ -111,17 +109,13 @@ def main():
     args = parser.parse_args()
 
     rows_by_setting = load_rows_by_setting()
-    fig_dir = Path("figures")
-    fig_dir.mkdir(exist_ok=True)
 
-    fig1, name1 = plot_coverage_vs_errors_scatter(rows_by_setting)
-    fig2, name2 = plot_any_bucket_clean_rate(rows_by_setting)
+    plot_coverage_vs_errors_scatter(rows_by_setting)
+    plot_any_bucket_clean_rate(rows_by_setting)
 
-    fig1.savefig(fig_dir / name1, dpi=300, bbox_inches="tight")
-    fig2.savefig(fig_dir / name2, dpi=300, bbox_inches="tight")
-    print(f"Figures saved to {fig_dir}/")
-
-    if not args.no_show:
+    if args.no_show:
+        print("Generated 2 figures (not shown, not saved).")
+    else:
         plt.show()
 
 

@@ -5,8 +5,6 @@ One figure per LLM (GPT-5, DeepSeek), each with both settings overlaid.
 Files with 0 errors (clean / "compiled") sit on the x-axis.
 """
 
-from pathlib import Path
-
 import matplotlib.pyplot as plt
 from annotation_vs_mypy_joined import SETTINGS, build_joined, load_selected_stems
 
@@ -31,9 +29,6 @@ def main():
     rows_by_label = {}
     for s in SETTINGS:
         rows_by_label[s["label"]] = build_joined(s, allowed)
-
-    fig_dir = Path("figures")
-    fig_dir.mkdir(exist_ok=True)
 
     # One figure per LLM
     for llm_name, setting_pairs in LLM_GROUPS.items():
@@ -61,10 +56,7 @@ def main():
         ax.legend()
         ax.grid(alpha=0.2)
         fig.tight_layout()
-        
-        filename = f"{llm_name.replace('-', '_')}_any_vs_errors.png"
-        fig.savefig(fig_dir / filename, dpi=300, bbox_inches="tight")
-        print(f"Saved: {fig_dir}/{filename}")
+        plt.show()
 
 
 if __name__ == "__main__":
