@@ -15,7 +15,7 @@ PARENT_DIR = os.path.dirname(SCRIPT_DIR)
 
 CALLGRAPH_JSON = os.path.join(SCRIPT_DIR, "callgraph_gpt5_3_run.json")
 MYPY_RESULTS_JSON = os.path.join(
-    PARENT_DIR, "GPCE_mypy_results", "mypy_results_gpt5_3_run_with_errors.json"
+    PARENT_DIR, "HarmonizingML_mypy_results", "mypy_results_gpt5_3_run_with_errors.json"
 )
 OUTPUT_CSV = os.path.join(SCRIPT_DIR, "callgraph_vs_mypy_gpt5_3_run.csv")
 

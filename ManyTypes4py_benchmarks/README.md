@@ -11,7 +11,7 @@ This folder holds the **ManyTypes4py-style benchmark corpus** (cloned open-sourc
 1. **Select files** → JSON lists under `Files_not_for_root_directories/` (e.g. `filtered_python_files.json`, `grouped_file_paths.json`).
 2. **Corpus** → `Generate_no_type_version.py` / `Generate_original_files.py` → `untyped_benchmarks/`, `original_files/`.
 3. **Annotate** → `Generate_code_using_*.py` (or subdirectory variants) → per-model folders (`deep_seek_2nd_run/`, `gpt5_1st_run/`, …).
-4. **Check types** → `Run_mypy_on_llm_2.py` (or `Run_mypy_on_llm.py`, `Human_annotations_detailed_analysis/Run_mypy_on_llm_percent.py`) → JSON under `mypy_results/`, `GPCE_mypy_results/`.
+4. **Check types** → `Run_mypy_on_llm_2.py` (or `Run_mypy_on_llm.py`, `Human_annotations_detailed_analysis/Run_mypy_on_llm_percent.py`) → JSON under `mypy_results/`, `HarmonizingML_mypy_results/`.
 5. **Optional repair** → `deepseek_mypy_fix/`, `gpt5_mypy_fix/`, `claude_mypy_fix/`.
 6. **Metrics / papers** → `Type_info_collector/` scripts, repo-root `llm_analysis.py` (parent folder), tables in `Generate_Table1.py`, `Table_3_generate.py`, etc.
 
@@ -89,7 +89,7 @@ Outputs are usually `/<run_name>/<group_id>/<filename>.py`.
 | Directory | Description |
 |-----------|-------------|
 | `mypy_results/` | Large JSON corpora + analysis scripts (tables, Venn, filtered errors) — **see dedicated section *mypy_results* below.** |
-| `GPCE_mypy_results/` | Mypy JSON for GPCE-style extra runs (e.g. `deepseek_3_run`, `deepseek_4_run` as wired in `Run_mypy_on_llm_2.py`). |
+| `HarmonizingML_mypy_results/` | Mypy JSON for HarmonizingML-style extra runs (e.g. `deepseek_3_run`, `deepseek_4_run` as wired in `Run_mypy_on_llm_2.py`). |
 | `deepseek_mypy_fix/`, `gpt5_mypy_fix/`, `claude_mypy_fix/` | **LLM repair loops**: strict typing-only prompts, `fixed_files/` / `fixed_files_strict_edit_rules/`, logs. |
 | `mypy_fix_analysis/` | Qualitative / diff analysis of fix behavior (example before/after snippets). |
 | `reprocess_unprocessed/` | Regenerated outputs for files that failed or were skipped in earlier passes. |
@@ -108,7 +108,7 @@ Outputs are usually `/<run_name>/<group_id>/<filename>.py`.
 | `LLM-WT/` | Organized mirrors of model outputs (by model: `deepseek/`, `claude/`, `gpt4o/`, `o1mini/`, `o3mini/`); use with `collect_llm_wt_files.py` and `mypy_results/Section_04` JSONs. |
 | `callgraph_analysis/` | `generate_callgraph.py` + comparisons to mypy outcomes (`callgraph_vs_mypy.py`). |
 | `complexity_of_source_codes/` | Cyclomatic / file complexity vs mypy success. |
-| `codesimilarty/`, `GPCE_AST_analysis/` | Similarity and AST-focused side studies. |
+| `codesimilarty/`, `HarmonizingML_AST_analysis/` | Similarity and AST-focused side studies. |
 | `Type_info_collector/` | Type-info JSON metrics, precision, **Any**-rate, semantic comparison, plots — **see dedicated section *Type_info_collector* below.** |
 
 ---
