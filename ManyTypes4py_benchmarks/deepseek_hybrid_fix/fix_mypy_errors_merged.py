@@ -29,7 +29,7 @@ PARENT_DIR = os.path.dirname(BASE_DIR)
 MERGED_DIR = os.path.join(PARENT_DIR, "deepseek_3_stub_run", "merged")
 MYPY_RESULTS_JSON = os.path.join(
     PARENT_DIR,
-    "GPCE_mypy_results",
+    "HarmonizingML_mypy_results",
     "mypy_outputs",
     "mypy_results_deepseek_3_merge_stub_run_with_errors.json",
 )
