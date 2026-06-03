@@ -1,0 +1,1147 @@
+Release Notes
+=============
+
+.. warning::
+
+   Py-EVM has been archived, and is now read-only. The last supported fork is Prague.
+
+.. towncrier release notes start
+
+py-evm v0.12.1-beta.1 (2025-05-14)
+----------------------------------
+
+Features
+~~~~~~~~
+
+- Add ``PRAGUE_MAINNET_BLOCK`` now that it is known, post Prague activation on mainnet. (`#2213 <https://github.com/ethereum/py-evm/issues/2213>`__)
+
+
+py-evm v0.12.0-beta.3 (2025-04-25)
+----------------------------------
+
+Bugfixes
+~~~~~~~~
+
+- Handle the case where the parent header of a Prague header does not have the ``excess_blob_gas`` property for calculation. (`#2212 <https://github.com/ethereum/py-evm/issues/2212>`__)
+
+
+Features
+~~~~~~~~
+
+- Add Shanghai mainnet block number to mainnet constants. (`#2126 <https://github.com/ethereum/py-evm/issues/2126>`__)
+- Add Cancun mainnet block number to mainnet constants. (`#2212 <https://github.com/ethereum/py-evm/issues/2212>`__)
+
+
+py-evm v0.12.0-beta.2 (2025-04-23)
+----------------------------------
+
+Bugfixes
+~~~~~~~~
+
+- Use correct fields in ``PragueUnsignedLegacyTransaction.as_signed_transaction()``. (`#2209 <https://github.com/ethereum/py-evm/issues/2209>`__)
+- Rename ``new_signed_set_code_transaction()`` -> ``new_set_code_transaction()`` and make sure this returns a ``PragueTypedTransaction``, as is expected. It can also take dictionary auth lists, as was recently added to ``new_unsigned_set_code_transaction()``. (`#2211 <https://github.com/ethereum/py-evm/issues/2211>`__)
+
+
+Features
+~~~~~~~~
+
+- Allow authorizations to be dicts when creating a new ``UnsignedSetCodeTransaction`` via ``PragueTransactionBuilder.new_unsigned_set_code_transaction()``. (`#2210 <https://github.com/ethereum/py-evm/issues/2210>`__)
+
+
+Internal Changes - For py-evm Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Test blockchain tests against latest EELS ``v4.3.0`` develop fixtures. (`#2210 <https://github.com/ethereum/py-evm/issues/2210>`__)
+
+
+py-evm v0.12.0-beta.1 (2025-04-21)
+----------------------------------
+
+Features
+~~~~~~~~
+
+- Implement EIP-7685, add support for block requests and extend prague block headers with ``requests_hash``. (`#2202 <https://github.com/ethereum/py-evm/issues/2202>`__)
+- Implement EIPs for Prague hard fork:
+
+    - EIP-7623: Increase calldata cost
+    - EIP-2935: Store historical block hashes in state
+    - EIP-7691: Blob throughput increase
+    - EIP-2537: Precompiles for BLS12-381 curve operations (`#2204 <https://github.com/ethereum/py-evm/issues/2204>`__)
+- Set fork-specific contracts if code at address not present + implement EIPs for Prague hard fork:
+
+    - EIP-6110: Validator deposit block requests
+    - EIP-7002: Withdrawal block requests
+    - EIP-7251: Consolidation block requests (`#2205 <https://github.com/ethereum/py-evm/issues/2205>`__)
+- Implement EIP-7702: Set code transaction (`#2206 <https://github.com/ethereum/py-evm/issues/2206>`__)
+
+
+Internal Changes - For py-evm Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Update ``ethereum/tests`` test fixture and introduce ``fixtures_eest`` submodule for testing against the EEST test suite. (`#2208 <https://github.com/ethereum/py-evm/issues/2208>`__)
+
+
+py-evm v0.11.0-beta.1 (2025-02-18)
+----------------------------------
+
+Breaking Changes
+~~~~~~~~~~~~~~~~
+
+- Adds running ``mypy`` locally with all deps installed, then updating typing as needed. Moves ``eth/tools/factories`` into ``tests`` as it is only ever used there. (`#2197 <https://github.com/ethereum/py-evm/issues/2197>`__)
+
+
+Features
+~~~~~~~~
+
+- Merge template, adding py313 support and replace ``bumpversion`` with ``bump-my-version``. (`#2198 <https://github.com/ethereum/py-evm/issues/2198>`__)
+
+
+Internal Changes - For py-evm Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Remove ``_warnings.py`` and all uses - related Cython issue is resolved (`#2184 <https://github.com/ethereum/py-evm/issues/2184>`__)
+- Update copyright year from 2023 to 2025 in LICENSE file. (`#2196 <https://github.com/ethereum/py-evm/issues/2196>`__)
+
+
+py-evm v0.10.1-beta.2 (2024-08-21)
+----------------------------------
+
+Bugfixes
+~~~~~~~~
+
+- Pin ckzg to ``>=2.0``; update the the trusted setup and how it is loaded. (`#2183 <https://github.com/ethereum/py-evm/issues/2183>`__)
+
+
+Internal Changes - For py-evm Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Ensure docs build on CI is running. (`#2175 <https://github.com/ethereum/py-evm/issues/2175>`__)
+
+
+py-evm v0.10.1-beta.1 (2024-04-18)
+----------------------------------
+
+Bugfixes
+~~~~~~~~
+
+- Remove scripts/__init__.py so that scripts doesn't get imported as a package. Also removes the scripts/ directory from the wheel. (`#2172 <https://github.com/ethereum/py-evm/issues/2172>`__)
+
+
+Features
+~~~~~~~~
+
+- Add support for python 3.12. (`#2171 <https://github.com/ethereum/py-evm/issues/2171>`__)
+
+
+Internal Changes - For py-evm Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Exclude `scripts` when building the wheel. (`#2170 <https://github.com/ethereum/py-evm/issues/2170>`__)
+- Update link to the getting started guide in the README. (`#2173 <https://github.com/ethereum/py-evm/issues/2173>`__)
+- Remove scripts/ directory on doc build (`#2174 <https://github.com/ethereum/py-evm/issues/2174>`__)
+
+
+py-evm v0.10.0-beta.6 (2024-04-05)
+----------------------------------
+
+Bugfixes
+~~~~~~~~
+
+- Fix ``__getattr__()`` for ``KeyMapDB`` and thus allow it to be copied / deep copied. (`#2116 <https://github.com/ethereum/py-evm/issues/2116>`__)
+- ``integer.to_bytes()`` requires size and byteorder below py311 and our fixture tests only use py311. Compare the first byte of versioned hashes by indexing instead. (`#2168 <https://github.com/ethereum/py-evm/issues/2168>`__)
+
+
+py-evm v0.10.0-beta.5 (2024-04-05)
+----------------------------------
+
+Bugfixes
+~~~~~~~~
+
+- Use the current VM's header class to check valid fields for ``vm.pack_block()``. (`#2165 <https://github.com/ethereum/py-evm/issues/2165>`__)
+- Properly configure the ``CancunBlock`` class to use the ``CancunReceiptBuilder``. (`#2166 <https://github.com/ethereum/py-evm/issues/2166>`__)
+
+
+py-evm v0.10.0-beta.4 (2024-03-18)
+----------------------------------
+
+Bugfixes
+~~~~~~~~
+
+- Clear existing transient storage db instead of resetting and creating a new one (`#2159 <https://github.com/ethereum/py-evm/issues/2159>`__)
+
+
+py-evm v0.10.0-beta.3 (2024-03-18)
+----------------------------------
+
+Bugfixes
+~~~~~~~~
+
+- bugfix: Ensure a ``type_id`` for  ``SpoofTransaction`` when unsigned -> signed spoofing. This defaults to ``None`` for legacy and uses the ``_type_id`` for unsigned typed txns. (`#2157 <https://github.com/ethereum/py-evm/issues/2157>`__)
+
+
+Internal Changes - For py-evm Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Use some general state tests for transaction tests since they have similar formats. This yielded a decent amount of new transaction tests. (`#2157 <https://github.com/ethereum/py-evm/issues/2157>`__)
+
+
+py-evm v0.10.0-beta.2 (2024-03-15)
+----------------------------------
+
+Bugfixes
+~~~~~~~~
+
+- bugfix: Address issues instantiating VM at Cancun transition. (`#2156 <https://github.com/ethereum/py-evm/issues/2156>`__)
+
+
+py-evm v0.10.0-beta.1 (2024-03-15)
+----------------------------------
+
+Breaking Changes
+~~~~~~~~~~~~~~~~
+
+- Remove ``memory_read`` from ``ComputationAPI`` interface and ``Computation`` implementation. Use ``memory_read_bytes`` in its place for call data read. (`#2140 <https://github.com/ethereum/py-evm/issues/2140>`__)
+
+
+Features
+~~~~~~~~
+
+- Implement EIP-4788: Add ``parent_beacon_block_root`` to execution block headers. (`#2135 <https://github.com/ethereum/py-evm/issues/2135>`__)
+- Implement EIP-1153: Transient Storage. (`#2142 <https://github.com/ethereum/py-evm/issues/2142>`__)
+- Implement EIP-6780: Self-destruct only in same transaction. (`#2148 <https://github.com/ethereum/py-evm/issues/2148>`__)
+- Implement EIP-4844 and EIP-7516: Blob transactions, BLOBHASH opcode, BLOBBASEFEE opcode. (`#2151 <https://github.com/ethereum/py-evm/issues/2151>`__)
+
+
+Internal Changes - For py-evm Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Drop the concept of a mining header, post-merge. (`#2134 <https://github.com/ethereum/py-evm/issues/2134>`__)
+- Fix epub docs build issue, add pdf and epub docs builds to CI (`#2137 <https://github.com/ethereum/py-evm/issues/2137>`__)
+- Update *ethereum/tests* submodule to version ``v13.1``. (`#2149 <https://github.com/ethereum/py-evm/issues/2149>`__)
+
+
+py-evm v0.9.0-beta.1 (2024-02-05)
+---------------------------------
+
+Breaking Changes
+~~~~~~~~~~~~~~~~
+
+- Drop python 3.7 support (`#2128 <https://github.com/ethereum/py-evm/issues/2128>`__)
+
+
+Bugfixes
+~~~~~~~~
+
+- Accept ``type==0`` as legacy a transaction. (`#2136 <https://github.com/ethereum/py-evm/issues/2136>`__)
+
+
+Internal Changes - For py-evm Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Merge updates from the project template, including using ``pre-commit`` for linting and changing the name of the ``master`` branch to ``main`` (`#2128 <https://github.com/ethereum/py-evm/issues/2128>`__)
+- Update `ethereum/tests` test fixture to use ``v13``. (`#2136 <https://github.com/ethereum/py-evm/issues/2136>`__)
+
+
+Performance Improvements
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Performance improvements; code refactor; some cleanup. (`#2076 <https://github.com/ethereum/py-evm/issues/2076>`__)
+
+
+py-evm v0.8.0-beta.1 (2023-10-09)
+---------------------------------
+
+Features
+~~~~~~~~
+
+- Python 3.10 and 3.11 support. (`#2088 <https://github.com/ethereum/py-evm/issues/2088>`__)
+
+
+Breaking changes
+~~~~~~~~~~~~~~~~
+
+- Remove dependency on ``pyethash``, ``pysha3``, and ``pycryptodome`` packages and internalize the ethash algorithm implementation into Python code with significant loss of performance, in an effort to un-prioritize proof-of-work consensus and logic. (`#2121 <https://github.com/ethereum/py-evm/issues/2121>`__)
+
+
+py-evm v0.7.0-alpha.4 (2023-07-24)
+----------------------------------
+
+Bugfixes
+~~~~~~~~
+
+- ``eth_now`` now returns a utc timestamp instead of a local timestamp (`#2119 <https://github.com/ethereum/py-evm/issues/2119>`__)
+
+
+Internal Changes - For py-evm Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Bumped ``mypy`` version to 1.4.0 (`#2117 <https://github.com/ethereum/py-evm/issues/2117>`__)
+
+
+py-evm v0.7.0-alpha.3 (2023-06-08)
+----------------------------------
+
+Bugfixes
+~~~~~~~~
+
+- Updated `CodeStream` slot name `pc` to `program_counter` to match the attribute name (`#2109 <https://github.com/ethereum/py-evm/issues/2109>`__)
+- Bring ``CREATE`` and ``CREATE2`` logic up to speed wrt changes to EIP-2681 (high nonce). (`#2110 <https://github.com/ethereum/py-evm/issues/2110>`__)
+
+
+Internal Changes - For py-evm Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Update ``fixtures`` (ethereum/tests) version to ``v12.2`` and turn on all Shanghai fork tests since EOF is no longer in Shanghai. (`#2108 <https://github.com/ethereum/py-evm/issues/2108>`__)
+- Fix some failing tests by properly decoding the tx bytes provided by the Transaction test fixtures. (`#2111 <https://github.com/ethereum/py-evm/issues/2111>`__)
+- bump version for flake8, flake8-bugbear, and mypy, and cleanup `tox.ini` (`#2113 <https://github.com/ethereum/py-evm/issues/2113>`__)
+
+
+py-evm v0.7.0-alpha.2 (2023-05-11)
+----------------------------------
+
+Bugfixes
+~~~~~~~~
+
+- Add missing receipt builder for the `ShanghaiBlock` class. (`#2105 <https://github.com/ethereum/py-evm/issues/2105>`__)
+
+
+Internal Changes - For py-evm Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Added [isort](https://pycqa.github.io/isort/) for automatically sorting python imports. (`#2094 <https://github.com/ethereum/py-evm/issues/2094>`__)
+- pull in less-sensitive updates from the python project template (`#2095 <https://github.com/ethereum/py-evm/issues/2095>`__)
+- Update ``pip`` version sitting in the circleci image before installing and running ``tox``. Install ``tox`` at the sys level to help avoid ``virtualenv`` version conflicts. (`#2102 <https://github.com/ethereum/py-evm/issues/2102>`__)
+- Refactored the computation class hierarchy and cleaned up the code along the way. Some abstract API classes have more of the underlying properties that the subclasses implement. (`#2106 <https://github.com/ethereum/py-evm/issues/2106>`__)
+- added `black` to lint dependencies and `isort`ed scripts directory (`#2107 <https://github.com/ethereum/py-evm/issues/2107>`__)
+
+
+Miscellaneous changes
+~~~~~~~~~~~~~~~~~~~~~
+
+- `#2083 <https://github.com/ethereum/py-evm/issues/2083>`__
+
+
+py-evm 0.7.0-alpha.1 (2023-04-10)
+---------------------------------
+
+Features
+~~~~~~~~
+
+- Add ``Shanghai`` hard fork support. (`#2093 <https://github.com/ethereum/py-evm/issues/2093>`__)
+
+
+Breaking changes
+~~~~~~~~~~~~~~~~
+
+- ``configure_header()`` now accepts a difficulty function as a ``kwarg`` rather than positional ``arg`` due to POS priority. (`#2093 <https://github.com/ethereum/py-evm/issues/2093>`__)
+
+
+py-evm 0.6.1-alpha.2 (2022-12-16)
+---------------------------------
+
+Miscellaneous internal changes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- `#2090 <https://github.com/ethereum/py-evm/issues/2090>`__
+
+
+py-evm 0.6.1-alpha.1 (2022-11-14)
+---------------------------------
+
+Features
+~~~~~~~~
+
+- Support for the ``paris`` fork a.k.a. "the merge". (`#2080 <https://github.com/ethereum/py-evm/issues/2080>`__)
+
+
+Bugfixes
+~~~~~~~~
+
+- Use the ``DIFFICULTY_MINIMUM`` more appropriately as the lower limit in all difficulty calculations. (`#2084 <https://github.com/ethereum/py-evm/issues/2084>`__)
+
+
+Internal Changes - for Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Update towncrier version to remove double headers. (`#2077 <https://github.com/ethereum/py-evm/issues/2077>`__)
+- Update openssl config on circleci builds to re-introduce ``ripemd160`` function by default. (`#2087 <https://github.com/ethereum/py-evm/issues/2087>`__)
+
+
+Miscellaneous internal changes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- `#2078 <https://github.com/ethereum/py-evm/issues/2078>`__, `#2082 <https://github.com/ethereum/py-evm/issues/2082>`__, `#2085 <https://github.com/ethereum/py-evm/issues/2085>`__
+
+
+py-evm 0.6.0-alpha.1 (2022-08-22)
+---------------------------------
+
+Features
+~~~~~~~~
+
+- Gray glacier support without ``Merge`` transition since ``Merge`` is not yet supported (`#2072 <https://github.com/ethereum/py-evm/issues/2072>`__)
+
+
+Bugfixes
+~~~~~~~~
+
+- Arrow Glacier header serialization fixed to properly inherit from LondonBlockHeader (`#2047 <https://github.com/ethereum/py-evm/issues/2047>`__)
+
+
+Deprecations and Removals
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Upgrade dependencies: eth-keys, eth-typing, eth-utils, py-ecc, rlp, trie (`#2068 <https://github.com/ethereum/py-evm/issues/2068>`__)
+- Drop python 3.6 support (`#2070 <https://github.com/ethereum/py-evm/issues/2070>`__)
+
+
+py-evm 0.5.0-alpha.3 (2022-01-26)
+---------------------------------
+
+Bugfixes
+~~~~~~~~
+
+- Downgrade upstream dependencies to allow only non-breaking changes. Once
+  we're ready to cut web3.py v6 branch, we can pull in breaking changes from
+  upstream dependencies. Namely, dropping Python 3.5 and 3.6. (`#2050
+  <https://github.com/ethereum/py-evm/issues/2050>`__)
+
+
+py-evm 0.5.0-alpha.2 (2021-12-16)
+---------------------------------
+
+Features
+~~~~~~~~
+
+- Arrow Glacier Support
+
+  - Implement `EIP-4345 <https://eips.ethereum.org/EIPS/eip-4345>`_ for Arrow Glacier support. (`#2045 <https://github.com/ethereum/py-evm/issues/2045>`__)
+
+
+Miscellaneous internal changes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- `#2040 <https://github.com/ethereum/py-evm/issues/2040>`__, `#2045 <https://github.com/ethereum/py-evm/issues/2045>`__, `#2048 <https://github.com/ethereum/py-evm/issues/2048>`__
+
+
+py-evm 0.5.0-alpha.1 (2021-10-13)
+---------------------------------
+
+Features
+~~~~~~~~
+
+- (`#2038 <https://github.com/ethereum/py-evm/issues/2038>`__)
+
+    - Add :meth:`~eth.vm.forks.berlin.transactions.UnsignedAccessListTransaction.validate` method and `intrinsic_gas` property to `UnsignedAccessListTransaction`
+    - Add :meth:`~eth.vm.forks.london.transactions.UnsignedDynamicFeeTransaction.validate` method and `intrinsic_gas` property to `UnsignedDynamicFeeTransaction`
+
+
+Improved Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+- Updated the reference to the project template in the docs to https://github.com/ethereum/ethereum-python-project-template and changed the location in the git clone command accordingly. (`#2032 <https://github.com/ethereum/py-evm/issues/2032>`__)
+- Documentation updates to use latest py-evm version, grammar updates, python version updates, replace Gitter link with Discord link, and change [.dev] -> ".[dev]" in docs for better compatibility across shells (`#2036 <https://github.com/ethereum/py-evm/issues/2036>`__)
+
+
+py-evm 0.5.0-alpha.0 (2021-09-30)
+---------------------------------
+
+Features
+~~~~~~~~
+
+**London Support**
+
+- Pass all London tests from the ethereum/tests repo (`#2017 <https://github.com/ethereum/py-evm/issues/2017>`__)
+- Implement `EIP-1559 <https://eips.ethereum.org/EIPS/eip-1559>`_ for London support. (`#2013 <https://github.com/ethereum/py-evm/issues/2013>`__)
+- Implement `EIP-3198 <https://eips.ethereum.org/EIPS/eip-3198>`_ for London support. (`#2015 <https://github.com/ethereum/py-evm/issues/2015>`__)
+- Implement `EIP-3554 <https://eips.ethereum.org/EIPS/eip-3554>`_ for London support. (`#2018 <https://github.com/ethereum/py-evm/issues/2018>`__)
+- Implement `EIP-3541 <https://eips.ethereum.org/EIPS/eip-3541>`_ for London support. (`#2018 <https://github.com/ethereum/py-evm/issues/2018>`__)
+- Implement `EIP-3529 <https://eips.ethereum.org/EIPS/eip-3529>`_ for London support. (`#2020 <https://github.com/ethereum/py-evm/issues/2020>`__)
+
+
+Bugfixes
+~~~~~~~~
+
+- Replace local timestamps with UTC timestamps (`#2013 <https://github.com/ethereum/py-evm/issues/2013>`__)
+
+  - Use UTC timestamp instead of local time zone, when creating a header.
+  - Use UTC for clique validation.
+
+- Was overly permissive on the header gas limit by one gas. (`#2021 <https://github.com/ethereum/py-evm/issues/2021>`__)
+
+  - Make header gas limit more restrictive by one, in various places.
+  - Validate uncle gas limits are within bounds of parent. This was previously not validated at all.
+- Erase return data for exceptions with `erases_return_data` flag set to True and for CREATE / CREATE2 computations with insufficient funds (`#2023 <https://github.com/ethereum/py-evm/issues/2023>`__)
+
+
+Deprecations and Removals
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Removed old options and methods for creating a header, now that headers vary by fork. (`#2013 <https://github.com/ethereum/py-evm/issues/2013>`__)
+
+  - :meth:`eth.rlp.headers.BlockHeader.from_parent()` is gone, because you should
+    always use the VM to create a header (to make sure you get the correct type).
+  - Can no longer supply some fields to the genesis, like bloom and parent_hash.
+
+
+Internal Changes - for Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- Misc test improvements (`#2013 <https://github.com/ethereum/py-evm/issues/2013>`__)
+
+  - some test_vm fixes:
+
+    - use the correctly paired VMs in PoW test
+    - make sure *only* the block number is invalid in block number validity test
+  - more robust test fixture name generation
+  - run a newer version of the lint test from `make lint`
+- Various upgrades and related updates (`#2016 <https://github.com/ethereum/py-evm/issues/2016>`__)
+
+  - Upgrade pytest and pytest-xdist. Caching was causing very slow test runs locally in pytest v5
+  - Update ethereum/tests (Updated in various PRs. At release time, checked out at v10.0)
+  - Remove json-fixture caching to resolve stale cache issues that caused test
+    failures (at some expense to speed)
+  - Make xdist failures show up correctly in the transition tests
+- During fixture tests, verify that the generated genesis block matches the fixture's RLP-encoding. (`#2022 <https://github.com/ethereum/py-evm/issues/2022>`__)
+- Squash sphinx warnings with a small documentation reorg. (`#2021 <https://github.com/ethereum/py-evm/issues/2021>`__)
+
+
+py-evm 0.4.0-alpha.4 (2021-04-07)
+---------------------------------
+
+Features
+~~~~~~~~
+
+- Add Python 3.9 support (`#1999 <https://github.com/ethereum/py-evm/issues/1999>`__)
+
+
+Internal Changes - for Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Update ethereum/tests fixture to v8.0.2, mark some new tests as too slow for CI. (`#1998 <https://github.com/ethereum/py-evm/issues/1998>`__)
+
+
+Miscellaneous internal changes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Update blake2b-py requirement from >=0.1.2 to >=0.1.4 (`#1999 <https://github.com/ethereum/py-evm/issues/1999>`__)
+
+
+py-evm 0.4.0-alpha.3 (2021-03-24)
+---------------------------------
+
+Features
+~~~~~~~~
+
+- Expose a ``type_id`` on all transactions. It is ``None`` for legacy transactions. (`#1996 <https://github.com/ethereum/py-evm/issues/1996>`__)
+- Add new LegacyTransactionFieldsAPI, with a v field for callers that want to access v directly. (`#1997 <https://github.com/ethereum/py-evm/issues/1997>`__)
+
+
+Bugfixes
+~~~~~~~~
+
+- Fix a crash in :meth:`eth.chains.base.Chain.get_transaction_receipt` and
+  :meth:`eth.chains.base.Chain.get_transaction_receipt_by_index` that resulted in this exception:
+  ``TypeError: get_receipt_by_index() got an unexpected keyword argument 'receipt_builder'`` (`#1994 <https://github.com/ethereum/py-evm/issues/1994>`__)
+
+
+py-evm 0.4.0-alpha.2 (2021-03-22)
+---------------------------------
+
+Bugfixes
+~~~~~~~~
+
+- Add Berlin block numbers for Goerli and Ropsten. Correct the type signature for
+  TransactionBuilderAPI and ReceiptBuilderAPI, because deserialize() can take a list of bytes for the legacy
+  types. (`#1993 <https://github.com/ethereum/py-evm/issues/1993>`__)
+
+
+py-evm 0.4.0-alpha.1 (2021-03-22)
+---------------------------------
+
+Features
+~~~~~~~~
+
+- Berlin Support
+
+  - EIP-2718: Typed Transactions -- no new functionality, really. It is mostly
+    refactoring in preparation for EIP-2930. (which does churn the code a
+    fair bit) (`#1973 <https://github.com/ethereum/py-evm/issues/1973>`__)
+  - EIP-2930: Optional access lists. Implement the new transaction type 1, which pre-warms account &
+    storage caches from EIP-2929, and adds first-class chain_id support. (`#1975 <https://github.com/ethereum/py-evm/issues/1975>`__)
+  - EIP-2929: Gas cost increases for state access opcodes. Charge more for cold-cache access of account
+    and storage. (`#1974 <https://github.com/ethereum/py-evm/issues/1974>`__)
+  - EIP-2565: Update ModExp precompile gas cost calculation (`#1976 <https://github.com/ethereum/py-evm/issues/1976>`__ & `#1989 <https://github.com/ethereum/py-evm/issues/1989>`__)
+
+
+Bugfixes
+~~~~~~~~
+
+- Uncles with the same timestamp as their parents are invalid. Reject them, and add the test from
+  ethereum/tests. (`#1979 <https://github.com/ethereum/py-evm/issues/1979>`__)
+
+
+Performance improvements
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Got a >10x speedup of some benchmarks and other tests, by adding a new :meth:`eth.chains.base.MiningChain.mine_all`
+  API and using it. This is a public API, and should be used whenever all the transactions are known
+  up front, to get a significant speedup. (`#1967 <https://github.com/ethereum/py-evm/issues/1967>`__)
+
+
+Internal Changes - for Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Upgrade tests fixtures to v8.0.1, with Berlin tests. Skipped several slow tests in Istanbul. Added pytest-timeout to limit annoyance of new slow tests. (`#1971 <https://github.com/ethereum/py-evm/issues/1971>`__, `#1987 <https://github.com/ethereum/py-evm/issues/1987>`__, `#1991 <https://github.com/ethereum/py-evm/issues/1991>`__, `#1989 <https://github.com/ethereum/py-evm/issues/1989>`__)
+- Make sure Berlin is tested across all core tests. (also patched in some missing Muir Glacier ones) (`#1977 <https://github.com/ethereum/py-evm/issues/1977>`__)
+
+
+py-evm 0.3.0-alpha.20 (2020-10-21)
+----------------------------------
+
+Bugfixes
+~~~~~~~~
+
+- Upgrade rlp library to ``v2.0.0`` stable, which is friendlier to 32-bit and other
+  architectures. Downstream applications can choose to explicitly install the rust
+  implementation with ``pip install rlp[rust-backend]``.
+  (`d553bd <https://github.com/ethereum/py-evm/commit/d553bd405bbf41a1da0c227a614baba7b43e9449>`__)
+
+
+py-evm 0.3.0-alpha.19 (2020-08-31)
+----------------------------------
+
+Features
+~~~~~~~~
+
+- Add a new hook :meth:`eth.abc.VirtualMachineAPI.transaction_applied_hook` which is triggered after
+  each transaction in ``apply_all_transactions``, which is called by ``import_block``. The first use
+  case is reporting progress in the middle of Beam Sync. (`#1950 <https://github.com/ethereum/py-evm/issues/1950>`__)
+
+
+Performance improvements
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Upgrade rlp library to ``v2.0.0-a1`` which uses faster rust based encoding/decoding. (`#1951 <https://github.com/ethereum/py-evm/issues/1951>`__)
+
+
+Deprecations and Removals
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Removed unused and broken ``add_uncle`` API on ``FrontierBlock`` and
+  consequentially on all other derived block classes. (`#1949 <https://github.com/ethereum/py-evm/issues/1949>`__)
+
+
+Internal Changes - for Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Improve type safety by ensuring abc types do not inherit from ``rlp.Serializable``
+  which implicitly has type ``Any``. (`#1948 <https://github.com/ethereum/py-evm/issues/1948>`__)
+
+
+Miscellaneous internal changes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- `#1953 <https://github.com/ethereum/py-evm/issues/1953>`__
+
+
+py-evm 0.3.0-alpha.18 (2020-06-25)
+----------------------------------
+
+Features
+~~~~~~~~
+
+- Expose ``get_chain_gaps()`` on ``ChainDB`` to track gaps in the chain of blocks. (`#1947 <https://github.com/ethereum/py-evm/issues/1947>`__)
+
+
+Internal Changes - for Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Allow `mine_block` of chain builder tools to take a ``transactions`` parameter.
+  This makes it easier to model test scenarios that depend on creating blocks
+  with transactions. (`#1947 <https://github.com/ethereum/py-evm/issues/1947>`__)
+- upgrade to Upgrade py-trie to the new v2.0.0-alpha.2 with fixed ``TraversedPartialPath``
+
+py-evm 0.3.0-alpha.17 (2020-06-02)
+----------------------------------
+
+Features
+~~~~~~~~
+
+- Added support for Python 3.8. (`#1940 <https://github.com/ethereum/py-evm/issues/1940>`__)
+- Methods now raise :class:`~eth.exceptions.BlockNotFound` when retrieving a block, and some part
+  of the block is missing. These methods used to raise a KeyError if transactions were missing, or a
+  ``HeaderNotFound`` if uncles were missing:
+
+    - :meth:`eth.db.chain.ChainDB.get_block_by_header`
+    - :meth:`eth.db.chain.ChainDB.get_block_by_hash` (it still raises a HeaderNotFound if there is no
+      header matching the given hash)
+    - :meth:`Block.from_header() <eth.abc.BlockAPI.from_header>` (`#1943 <https://github.com/ethereum/py-evm/issues/1943>`__)
+
+
+Bugfixes
+~~~~~~~~
+
+- A number of fixes related to checkpoints and persisting old headers, especially
+  when we try to persist headers that don't match the checkpoints.
+
+    - A new exception :class:`~eth.exceptions.CheckpointsMustBeCanonical` raised when persisting a
+      header that is not linked to a previously-saved checkpoint.
+      (note: we now explicitly save checkpoints)
+    - More broadly, any block persist that would cause the checkpoint to be decanonicalized will
+      raise the :class:`~eth.exceptions.CheckpointsMustBeCanonical`.
+    - Re-insert gaps in the chain when a checkpoint and (parent or child) header do not link
+    - De-canonicalize all children of orphans. (Previously, only decanonicalized headers with block
+      numbers that matched the new canonical headers)
+    - Added some new hypothesis tests to get more confidence that we covered most cases
+    - When filling a gap, if there's an existing child that is not a checkpoint and doesn't link to
+      the parent, then the parent block wins, and the child block is de-canonicalized (and gap added). (`#1929 <https://github.com/ethereum/py-evm/issues/1929>`__)
+
+
+Internal Changes - for Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Upgrade py-trie to the new v2.0.0-alpha.1, and pin it for stability. (`#1935 <https://github.com/ethereum/py-evm/issues/1935>`__)
+- Improve the error when transaction nonce is invalid: include expected and actual. (`#1936 <https://github.com/ethereum/py-evm/issues/1936>`__)
+
+
+py-evm 0.3.0-alpha.16 (2020-05-27)
+----------------------------------
+
+Features
+~~~~~~~~
+
+- Expose ``get_header_chain_gaps()`` API on HeaderDB to track chain gaps (`#1924 <https://github.com/ethereum/py-evm/issues/1924>`__)
+- Add a new ``persist_unexecuted_block`` API to ``ChainDB``. This API should be used to persist
+  a block without executing the EVM on it. The API is used by
+  syncing strategies that do not execute all blocks but fill old blocks
+  back in (e.g. ``beam`` or ``fast`` sync) (`#1925 <https://github.com/ethereum/py-evm/issues/1925>`__)
+- Update the allowable version of `py_ecc` library. (`#1934 <https://github.com/ethereum/py-evm/issues/1934>`__)
+
+
+py-evm 0.3.0-alpha.15 (2020-04-14)
+----------------------------------
+
+Features
+~~~~~~~~
+
+- :meth:`eth.chains.base.Chain.import_block()` now returns some meta-information about the witness.
+  You can get a list of trie node hashes needed to build the witness, as well
+  as the accesses of accounts, storage slots, and bytecodes. (`#1917
+  <https://github.com/ethereum/py-evm/issues/1917>`__)
+
+
+Internal Changes - for Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Use a more recent eth-keys, which calls an eth-typing that's not deprecated. (`#1665 <https://github.com/ethereum/py-evm/issues/1665>`__)
+- Upgrade pytest-xdist from 1.18.1 to 1.31.0, to fix a CI crash. (`#1917 <https://github.com/ethereum/py-evm/issues/1917>`__)
+- Added :class:`~eth.db.accesslog.KeyAccessLoggerDB` and its atomic twin; faster ``make
+  validate-docs`` (but you have to remember to ``pip install -e .[doc]`` yourself); ``str(block)`` now
+  includes some bytes of the block hash. (`#1918 <https://github.com/ethereum/py-evm/issues/1918>`__)
+- Fix for creating a duplicate "ghost" Computation that was never used. It didn't
+  break anything, but was inelegant and surprising to get extra objects created
+  that were mostly useless. This was achieved by changing
+  :meth:`eth.abc.ComputationAPI.apply_message` and
+  :meth:`eth.abc.ComputationAPI.apply_create_message` to be class methods. (`#1921 <https://github.com/ethereum/py-evm/issues/1921>`__)
+
+
+py-evm 0.3.0-alpha.14 (2020-02-10)
+----------------------------------
+
+Features
+~~~~~~~~
+
+- Change return type for ``import_block`` from ``Tuple[BlockAPI, Tuple[BlockAPI, ...], Tuple[BlockAPI, ...]]`` to ``BlockImportResult`` (NamedTuple). (`#1910 <https://github.com/ethereum/py-evm/issues/1910>`__)
+
+
+Bugfixes
+~~~~~~~~
+
+- Fixed a consensus-critical bug for contracts that are created and destroyed in the same block,
+  especially pre-Byzantium. (`#1912 <https://github.com/ethereum/py-evm/issues/1912>`__)
+
+
+Internal Changes - for Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Add explicit tests for ``validate_header`` (`#1911 <https://github.com/ethereum/py-evm/issues/1911>`__)
+
+
+py-evm 0.3.0-alpha.13 (2020-01-13)
+----------------------------------
+
+Features
+~~~~~~~~
+
+- Make handling of different consensus mechanisms more flexible and sound.
+
+  1. ``validate_seal`` and ``validate_header`` are now instance methods. The only reason they can
+  be classmethods today is because our Pow implementation relies on a globally shared cache
+  which should be refactored to use the ``ConsensusContextAPI``.
+
+  2. There a two new methods: ``chain.validate_chain_extension(header, parents)`` and
+  ``vm.validate_seal_extension``. They perform extension seal checks to support consensus schemes
+  where headers can not be checked if parents are missing.
+
+  3. The consensus mechanism is now abstracted via ``ConsensusAPI`` and ``ConsensusContextAPI``.
+  VMs instantiate a consensus api based on the set ``consensus_class`` and pass it a context which
+  they receive from the chain upon instantiation. The chain instantiates the consensus context api
+  based on the ``consensus_context_class``. (`#1899 <https://github.com/ethereum/py-evm/issues/1899>`__)
+- Support Istanbul fork in ``GOERLI_VM_CONFIGURATION`` (`#1904 <https://github.com/ethereum/py-evm/issues/1904>`__)
+
+
+Bugfixes
+~~~~~~~~
+
+- Do not mention PoW in the logging message that we log when `validate_seal` fails.
+  The VM could also be running under a non-PoW consensus mechanism. (`#1907 <https://github.com/ethereum/py-evm/issues/1907>`__)
+
+
+Deprecations and Removals
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Drop optional ``check_seal`` param from ``VM.validate_header`` and turn it into a ``classmethod``.
+  Seal checks now need to be made explicitly via ``VM.check_seal`` which is also aligned
+  with ``VM.check_seal_extension``. (`#1909 <https://github.com/ethereum/py-evm/issues/1909>`__)
+
+
+py-evm 0.3.0-alpha.12 (2019-12-19)
+----------------------------------
+
+Features
+~~~~~~~~
+
+- Implement the Muir Glacier fork
+
+  See: https://eips.ethereum.org/EIPS/eip-2387 (`#1901 <https://github.com/ethereum/py-evm/issues/1901>`__)
+
+
+py-evm 0.3.0-alpha.11 (2019-12-12)
+----------------------------------
+
+Bugfixes
+~~~~~~~~
+
+- When double-deleting a storage slot, got ``KeyError: (b'\x03', 'key could not be deleted in
+  JournalDB, because it was missing')``. This was fallout from `#1893
+  <https://github.com/ethereum/py-evm/pull/1893>`_ (`#1898 <https://github.com/ethereum/py-evm/issues/1898>`__)
+
+
+Performance improvements
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Improve performance when importing a header which is a child of the current canonical
+  chain tip. (`#1891 <https://github.com/ethereum/py-evm/issues/1891>`__)
+
+
+py-evm 0.3.0-alpha.10 (2019-12-09)
+----------------------------------
+
+Bugfixes
+~~~~~~~~
+
+- Bug: if data was missing during a call to :meth:`~eth.vm.base.VM.apply_all_transactions`,
+  then the call would revert and continue processing transactions. Fix: we re-raise
+  the :class:`~eth.exceptions.EVMMissingData` and do not continue processing transactions. (`#1889 <https://github.com/ethereum/py-evm/issues/1889>`__)
+- Fix for net gas metering (EIP-2200) in Istanbul. The "original value" used to calculate gas
+  costs was incorrectly accessing the value at the start of the block, instead of the start of the
+  transaction. (`#1893 <https://github.com/ethereum/py-evm/issues/1893>`__)
+
+
+Improved Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+- Add Matomo Tracking to Docs site.
+
+  Matomo is an Open Source web analytics platform that allows us
+  to get better insights and optimize for our audience without
+  the negative consequences of other compareable platforms.
+
+  Read more: https://matomo.org/why-matomo/ (`#1892 <https://github.com/ethereum/py-evm/issues/1892>`__)
+
+
+py-evm 0.3.0-alpha.9 (2019-12-02)
+---------------------------------
+
+Features
+~~~~~~~~
+
+- Add new Chain APIs (`#1887 <https://github.com/ethereum/py-evm/issues/1887>`__):
+
+  - :meth:`~eth.chains.base.Chain.get_canonical_block_header_by_number` (parallel to :meth:`~eth.chains.base.Chain.get_canonical_block_by_number`)
+  - :meth:`~eth.chains.base.Chain.get_canonical_transaction_index`
+  - :meth:`~eth.chains.base.Chain.get_canonical_transaction_by_index`
+  - :meth:`~eth.chains.base.Chain.get_transaction_receipt_by_index`
+
+
+Bugfixes
+~~~~~~~~
+
+- Remove the ice age delay that was accidentally left in Istanbul (`#1877 <https://github.com/ethereum/py-evm/issues/1877>`__)
+
+
+Improved Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+- In the API docs display class methods, static methods and methods as one group "methods".
+  While we ideally wish to separate these, Sphinx keeps them all as one group which we'll
+  be following until we find a better option. (`#794 <https://github.com/ethereum/py-evm/issues/794>`__)
+- Tweak layout of API docs to improve readability
+
+  Group API docs by member (methods, attributes) (`#1797 <https://github.com/ethereum/py-evm/issues/1797>`__)
+- API doc additions (`#1880 <https://github.com/ethereum/py-evm/issues/1880>`__)
+
+  - Add missing API docs for :class:`~eth.chains.base.MiningChain`.
+  - Add missing API docs for :mod:`eth.db.*`
+  - Add missing API docs for :class:`~eth.vm.forks.constantinople.ConstantinopleVM`,
+    :class:`~eth.vm.forks.petersburg.PetersburgVM` and
+    :class:`~eth.vm.forks.istanbul.IstanbulVM` forks
+  - Move all docstrings that aren't overly specific to a particular implementation from
+    the implementation to the interface. This has the effect that the docstring will
+    appear both on the interface as well as on the implementation except for when the
+    implementation overwrites the docstring with a more specific descriptions.
+- Add docstrings to all public APIs that were still lacking one. (`#1882 <https://github.com/ethereum/py-evm/issues/1882>`__)
+
+
+py-evm 0.3.0-alpha.8 (2019-11-05)
+---------------------------------
+
+Features
+~~~~~~~~
+
+- *Partly* implement Clique consensus according to EIP 225. The implementation doesn't yet cover
+  a mode of operation that would allow to operate as a signer and create blocks. It does however,
+  allow syncing a chain (e.g. Görli) by following the ruleset that is defined in EIP-225. (`#1855 <https://github.com/ethereum/py-evm/issues/1855>`__)
+- Set Istanbul block number for mainnet to 9069000, and for Görli to 1561651, as per
+  `EIP-1679 <https://eips.ethereum.org/EIPS/eip-1679#activation>`_. (`#1858 <https://github.com/ethereum/py-evm/issues/1858>`__)
+- Make the *max length validation* of the `extra_data` field configurable. The reason for that is that
+  different consensus engines such as Clique repurpose this field using different max length limits. (`#1864 <https://github.com/ethereum/py-evm/issues/1864>`__)
+
+
+Bugfixes
+~~~~~~~~
+
+- Resolve version conflict regarding `pluggy` dependency that came up during installation. (`#1860 <https://github.com/ethereum/py-evm/issues/1860>`__)
+- Fix issue where Py-EVM crashes when `0` is used as a value for `seal_check_random_sample_rate`.
+  Previously, this would lead to a DivideByZero error, whereas now it is recognized as not performing
+  any seal check. This is also symmetric to the current *opposite* behavior of passing `1` to check
+  every single header instead of taking samples. (`#1862 <https://github.com/ethereum/py-evm/issues/1862>`__)
+- Improve usability of error message by including hex values of affected hashes. (`#1863 <https://github.com/ethereum/py-evm/issues/1863>`__)
+- Gas estimation bugfix: storage values are now correctly reset to original value if the transaction
+  includes a self-destruct, when running estimation iterations. Previously, estimation iterations
+  would produce undefined results, if the transaction included a self-destruct. (`#1865 <https://github.com/ethereum/py-evm/issues/1865>`__)
+
+
+Performance improvements
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Use new `blake2b-py library <https://github.com/davesque/blake2b-py>`_ for 560x speedup of
+  Blake2 F compression function. (`#1836 <https://github.com/ethereum/py-evm/issues/1836>`__)
+
+
+Internal Changes - for Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Update upstream test fixtures to `v7.0.0 beta.1 <https://github.com/ethereum/tests/releases/tag/v7.0.0-beta.1>`_
+  and address the two arising disagreements on what accounts should be collected for state trie clearing (as per
+  `EIP-161 <https://eips.ethereum.org/EIPS/eip-161>`_) if a nested call frame had an error. (`#1858 <https://github.com/ethereum/py-evm/issues/1858>`__)
+
+
+py-evm 0.3.0-alpha.7 (2019-09-19)
+---------------------------------
+
+Features
+~~~~~~~~
+
+- Enable Istanbul fork on Ropsten chain (`#1851 <https://github.com/ethereum/py-evm/issues/1851>`__)
+
+
+Bugfixes
+~~~~~~~~
+
+- Update codebase to more consistently use the ``eth_typing.BlockNumber`` type. (`#1850 <https://github.com/ethereum/py-evm/issues/1850>`__)
+
+
+py-evm 0.3.0-alpha.6 (2019-09-05)
+---------------------------------
+
+Features
+~~~~~~~~
+
+- Add EIP-1344 to Istanbul: Chain ID Opcode (`#1817 <https://github.com/ethereum/py-evm/issues/1817>`__)
+- Add EIP-152 to Istanbul: Blake2b F Compression precompile at address 9 (`#1818 <https://github.com/ethereum/py-evm/issues/1818>`__)
+- Add EIP-2200 to Istanbul: Net gas metering (`#1825 <https://github.com/ethereum/py-evm/issues/1825>`__)
+- Add EIP-1884 to Istanbul: Reprice trie-size dependent opcodes (`#1826 <https://github.com/ethereum/py-evm/issues/1826>`__)
+- Add EIP-2028: Transaction data gas cost reduction (`#1832 <https://github.com/ethereum/py-evm/issues/1832>`__)
+- Expose type hint information via PEP561 (`#1845 <https://github.com/ethereum/py-evm/issues/1845>`__)
+
+
+Bugfixes
+~~~~~~~~
+
+- Add missing ``@abstractmethod`` decorator to ``ConfigurableAPI.configure``. (`#1822 <https://github.com/ethereum/py-evm/issues/1822>`__)
+
+
+Performance improvements
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- ~20% speedup on "simple value transfer" benchmarks, ~10% overall benchmark lift. Optimized retrieval
+  of transactions and receipts from the trie database. (`#1841 <https://github.com/ethereum/py-evm/issues/1841>`__)
+
+
+Improved Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+- Add a "Performance improvements" section to the release notes (`#1841 <https://github.com/ethereum/py-evm/issues/1841>`__)
+
+
+Deprecations and Removals
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Upgrade to ``eth-utils>=1.7.0`` which removes the ``eth.tools.logging`` module implementations of ``ExtendedDebugLogger`` in favor of the ones exposed by the ``eth-utils`` library.  This also removes the automatic setup of the ``DEBUG2`` logging level which was previously a side effect of importing the ``eth`` module.  See ``eth_utils.setup_DEBUG2_logging`` for more information. (`#1846 <https://github.com/ethereum/py-evm/issues/1846>`__)
+
+
+py-evm 0.3.0-alpha.5 (2019-08-22)
+---------------------------------
+
+Features
+~~~~~~~~
+
+- Add EIP-1108 to Istanbul: Reduce EC precompile costs (`#1819 <https://github.com/ethereum/py-evm/issues/1819>`__)
+
+
+Bugfixes
+~~~~~~~~
+
+- Make sure ``persist_checkpoint_header`` sets the given header as canonical head. (`#1830 <https://github.com/ethereum/py-evm/issues/1830>`__)
+
+
+Improved Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+- Remove section on Trinity's goals from the Readme. It's been a leftover from when
+  Py-EVM and Trinity where hosted in a single repository. (`#1827 <https://github.com/ethereum/py-evm/issues/1827>`__)
+
+
+py-evm 0.3.0-alpha.4 (2019-08-19)
+---------------------------------
+
+Features
+~~~~~~~~
+
+- Add an *optional* ``genesis_parent_hash`` parameter to
+  :meth:`~eth.db.header.HeaderDB.persist_header_chain` and
+  :meth:`~eth.db.chain.ChainDB.persist_block` that allows to overwrite the hash that is used
+  to identify the genesis header. This allows persisting headers / blocks that aren't (yet)
+  connected back to the true genesis header.
+
+  This feature opens up new, faster syncing techniques. (`#1823 <https://github.com/ethereum/py-evm/issues/1823>`__)
+
+
+Bugfixes
+~~~~~~~~
+
+- Add missing ``@abstractmethod`` decorator to ``ConfigurableAPI.configure``. (`#1822 <https://github.com/ethereum/py-evm/issues/1822>`__)
+
+
+Deprecations and Removals
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Remove ``AsyncHeaderDB`` that wasn't used anywhere (`#1823 <https://github.com/ethereum/py-evm/issues/1823>`__)
+
+
+py-evm 0.3.0-alpha.3 (2019-08-13)
+---------------------------------
+
+Bugfixes
+~~~~~~~~
+
+- Add back missing ``Chain.get_vm_class`` method. (`#1821 <https://github.com/ethereum/py-evm/issues/1821>`__)
+
+
+py-evm 0.3.0-alpha.2 (2019-08-13)
+---------------------------------
+
+Features
+~~~~~~~~
+
+- Package up test suites for the ``DatabaseAPI`` and ``AtomicDatabaseAPI`` to be class-based to make them reusable by other libaries. (`#1813 <https://github.com/ethereum/py-evm/issues/1813>`__)
+
+
+Bugfixes
+~~~~~~~~
+
+- Fix a crash during chain reorganization on a header-only chain (which can happen during Beam Sync) (`#1810 <https://github.com/ethereum/py-evm/issues/1810>`__)
+
+
+Improved Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+- Setup towncrier to generate release notes from fragment files to  ensure a higher standard
+  for release notes. (`#1796 <https://github.com/ethereum/py-evm/issues/1796>`__)
+
+
+Deprecations and Removals
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Drop StateRootNotFound as an over-specialized version of EVMMissingData.
+  Drop VMState.execute_transaction() as redundant to VMState.apply_transaction(). (`#1809 <https://github.com/ethereum/py-evm/issues/1809>`__)
+
+
+v0.3.0-alpha.1
+--------------------------
+
+Released 2019-06-05
+(off-schedule release to handle eth-keys dependency issue)
+
+- `#1785 <https://github.com/ethereum/py-evm/pull/1785>`_: Breaking Change: Dropped python3.5 support
+- `#1788 <https://github.com/ethereum/py-evm/pull/1788>`_: Fix dependency issue with eth-keys, don't allow v0.3+ for now
+
+
+0.2.0-alpha.43
+--------------------------
+
+Released 2019-05-20
+
+- `#1778 <https://github.com/ethereum/py-evm/pull/1778>`_: Feature: Raise custom decorated exceptions when a trie node is missing from the database (plus some bonus logging and performance improvements)
+- `#1732 <https://github.com/ethereum/py-evm/pull/1732>`_: Bugfix: squashed an occasional "mix hash mismatch" while syncing
+- `#1716 <https://github.com/ethereum/py-evm/pull/1716>`_: Performance: only calculate & persist state root at end of block (post-Byzantium)
+- `#1735 <https://github.com/ethereum/py-evm/pull/1735>`_:
+
+  - Performance: only calculate & persist storage roots at end of block (post-Byzantium)
+  - Performance: batch all account trie writes to the database once per block
+- `#1747 <https://github.com/ethereum/py-evm/pull/1747>`_:
+
+  - Maintenance: Lazily generate VM.block on first access. Enables loading the VM when you don't have its block body.
+  - Performance: Fewer DB reads when block is never accessed.
+- Performance: speedups on ``chain.import_block()``:
+
+  - `#1764 <https://github.com/ethereum/py-evm/pull/1764>`_: Speed up ``is_valid_opcode`` check, formerly 7% of total import time! (now less than 1%)
+  - `#1765 <https://github.com/ethereum/py-evm/pull/1765>`_: Reduce logging overhead, ~15% speedup
+  - `#1766 <https://github.com/ethereum/py-evm/pull/1766>`_: Cache transaction sender, ~3% speedup
+  - `#1770 <https://github.com/ethereum/py-evm/pull/1770>`_: Faster bytecode iteration, ~2.5% speedup
+  - `#1771 <https://github.com/ethereum/py-evm/pull/1771>`_: Faster opcode lookup in apply_computation, ~1.5% speedup
+  - `#1772 <https://github.com/ethereum/py-evm/pull/1772>`_: Faster Journal access of latest data, ~6% speedup
+  - `#1773 <https://github.com/ethereum/py-evm/pull/1773>`_: Faster stack operations, ~9% speedup
+  - `#1776 <https://github.com/ethereum/py-evm/pull/1776>`_: Faster Journal record & commit checkpoints, ~7% speedup
+  - `#1777 <https://github.com/ethereum/py-evm/pull/1777>`_: Faster bytecode navigation, ~7% speedup
+- `#1751 <https://github.com/ethereum/py-evm/pull/1751>`_: Maintenance: Add placeholder for Istanbul fork
+
+0.2.0-alpha.42
+--------------------------
+
+Released 2019-02-28
+
+- `#1719 <https://github.com/ethereum/py-evm/pull/1719>`_: Implement and activate Petersburg fork (aka Constantinople fixed)
+- `#1718 <https://github.com/ethereum/py-evm/pull/1718>`_: Performance: faster account lookups in EVM
+- `#1670 <https://github.com/ethereum/py-evm/pull/1670>`_: Performance: lazily look up ancestor block hashes, and cache result, so looking up parent hash in EVM is faster than grand^100 parent
+
+
+0.2.0-alpha.40
+--------------
+
+Released Jan 15, 2019
+
+- `#1717 <https://github.com/ethereum/py-evm/pull/1717>`_: Indefinitely postpone the pending Constantinople release
+- `#1715 <https://github.com/ethereum/py-evm/pull/1715>`_: Remove Eth2 Beacon code, moving to
+  trinity project

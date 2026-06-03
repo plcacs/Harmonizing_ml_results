@@ -1,0 +1,28 @@
+# Used to build an image for running tests.
+
+ARG TORCH=1.12.0-cuda11.3-python3.8
+FROM ghcr.io/allenai/pytorch:${TORCH}
+
+# These environment variables are helpful for debugging.
+# See https://pytorch.org/docs/stable/distributed.html#common-environment-variables for more info.
+ENV NCCL_DEBUG INFO
+ENV NCCL_DEBUG_SUBSYS ALL
+
+WORKDIR /stage/allennlp
+
+# Installing AllenNLP's dependencies is the most time-consuming part of building
+# this Docker image, so we make use of layer caching here by adding the minimal files
+# necessary to install the dependencies.
+COPY allennlp/version.py allennlp/version.py
+COPY setup.py .
+COPY dev-requirements.txt .
+COPY constraints.txt .
+RUN touch allennlp/__init__.py \
+    && touch README.md \
+    && pip install --no-cache-dir -c constraints.txt -e . -r dev-requirements.txt
+
+# Now add the full package source and re-install just the package.
+COPY . .
+RUN pip install --no-cache-dir --no-deps -e .
+
+ENTRYPOINT ["make"]

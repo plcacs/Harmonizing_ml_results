@@ -1,0 +1,15 @@
+dist: xenial
+sudo: yes
+
+addons:
+    chrome: stable
+    apt:
+        packages:
+            - chromium-chromedriver
+            
+language: python
+python:
+    - '3.7'
+    
+script:
+    - bash ./transcrypt/development/continuous_integration/run.sh
