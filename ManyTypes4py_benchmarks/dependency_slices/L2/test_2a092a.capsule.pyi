@@ -1,0 +1,16 @@
+from typing import Any
+
+# === Internal dependency: chalice.cli.factory ===
+class CLIFactory(object):
+    def __init__(self, project_dir, debug = ..., profile = ..., environ = ...) -> Any: ...
+
+# === Internal dependency: chalice.config ===
+class Config(object):
+    def __init__(self, chalice_stage = ..., function_name = ..., user_provided_params = ..., config_from_disk = ..., default_params = ..., layers = ...) -> Any: ...
+
+# === Internal dependency: chalice.local ===
+class LocalGatewayException(Exception): ...
+class LambdaContext(object):
+    def __init__(self, function_name, memory_size, max_runtime_ms = ..., time_source = ...) -> Any: ...
+class LocalGateway(object):
+    def __init__(self, app_object, config) -> Any: ...

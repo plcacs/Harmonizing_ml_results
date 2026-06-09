@@ -1,0 +1,53 @@
+from typing import Any
+
+# === Third-party dependency: numpy ===
+# Used symbols: array, asarray, bool_, concatenate, isnan, ndarray, random
+
+# === Internal dependency: pandas ===
+# re-export: from pandas import api
+
+# === Internal dependency: pandas._typing ===
+# re-export: from typing import Type as type_t
+
+# === Internal dependency: pandas.api.extensions ===
+# re-export: from pandas._libs.lib import no_default
+# re-export: from pandas.core.dtypes.base import register_extension_dtype
+# re-export: from pandas.core.algorithms import take
+
+# === Internal dependency: pandas.api.types ===
+is_list_like: Any
+is_scalar: Any
+
+# === Internal dependency: pandas.core.arraylike ===
+class OpsMixin:
+    ...
+def dispatch_ufunc_with_out(self, ufunc: np.ufunc, method: str, *inputs, **kwargs) -> Any: ...
+def dispatch_reduction_ufunc(self, ufunc: np.ufunc, method: str, *inputs, **kwargs) -> Any: ...
+# re-export: from pandas._libs.ops_dispatch import maybe_dispatch_ufunc_to_dunder_op
+
+# === Internal dependency: pandas.core.arrays ===
+# re-export: from pandas.core.arrays.base import ExtensionArray
+# re-export: from pandas.core.arrays.base import ExtensionScalarOpsMixin
+
+# === Internal dependency: pandas.core.dtypes.base ===
+class ExtensionDtype:
+    def na_value(self) -> object: ...
+    def type(self) -> type_t[Any]: ...
+    def kind(self) -> str: ...
+    def name(self) -> str: ...
+    def names(self) -> list[str] | None: ...
+    def _is_numeric(self) -> bool: ...
+    def _is_boolean(self) -> bool: ...
+    def _can_hold_na(self) -> bool: ...
+    def _is_immutable(self) -> bool: ...
+    def _supports_2d(self) -> bool: ...
+    def _can_fast_transpose(self) -> bool: ...
+
+# === Internal dependency: pandas.core.dtypes.common ===
+def is_dtype_equal(source, target) -> bool: ...
+def pandas_dtype(dtype) -> DtypeObj: ...
+# re-export: from pandas.core.dtypes.inference import is_float
+# re-export: from pandas.core.dtypes.inference import is_integer
+
+# === Internal dependency: pandas.core.indexers ===
+# re-export: from pandas.core.indexers.utils import check_array_indexer

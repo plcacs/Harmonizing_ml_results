@@ -1,0 +1,19 @@
+# === Internal dependency: eth2spec.test.helpers.constants ===
+CAPELLA = SpecForkName(...)
+DENEB = SpecForkName(...)
+ELECTRA = SpecForkName(...)
+
+# === Internal dependency: eth2spec.test.helpers.fork_transition ===
+def transition_across_forks(spec, state, to_slot, phases=..., with_block=..., sync_aggregate=...): ...
+
+# === Internal dependency: eth2spec.test.helpers.forks ===
+def is_post_capella(spec): ...
+def is_post_deneb(spec): ...
+def is_post_electra(spec): ...
+
+# === Internal dependency: eth2spec.test.helpers.sync_committee ===
+def compute_aggregate_sync_committee_signature(spec, state, slot, participants, block_root=..., domain_type=...): ...
+def compute_committee_indices(state, committee=...): ...
+
+# === Internal dependency: eth2spec.test.helpers.typing ===
+SpecForkName = NewType(...)

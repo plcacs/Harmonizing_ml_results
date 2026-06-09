@@ -1,0 +1,43 @@
+from typing import Any
+
+# === Third-party dependency: aiopvapi.helpers.constants ===
+ATTR_NAME: str
+MOTION_STOP: str
+MIN_POSITION: int
+MAX_POSITION: int
+CLOSED_POSITION: int
+
+# === Third-party dependency: aiopvapi.resources.shade ===
+class ShadePosition: ...
+class BaseShade(ApiResource): ...
+
+# === Internal dependency: homeassistant.components.cover ===
+class CoverDeviceClass(StrEnum): ...
+class CoverEntityFeature(IntFlag): ...
+class CoverEntity(Entity):
+    def state(self) -> str | None: ...
+    def state_attributes(self) -> dict[str, Any]: ...
+    def supported_features(self) -> CoverEntityFeature: ...
+ATTR_POSITION: str
+ATTR_TILT_POSITION: str
+
+# === Internal dependency: homeassistant.components.hunterdouglas_powerview.const ===
+DOMAIN: str
+STATE_ATTRIBUTE_ROOM_NAME: str
+
+# === Internal dependency: homeassistant.components.hunterdouglas_powerview.coordinator ===
+class PowerviewShadeUpdateCoordinator(DataUpdateCoordinator[PowerviewShadeData]): ...
+
+# === Internal dependency: homeassistant.components.hunterdouglas_powerview.entity ===
+class ShadeEntity(HDEntity):
+    def positions(self) -> ShadePosition: ...
+    def device_info(self) -> DeviceInfo: ...
+
+# === Internal dependency: homeassistant.components.hunterdouglas_powerview.model ===
+class PowerviewEntryData: ...
+
+# === Internal dependency: homeassistant.core ===
+def callback(func: _CallableT) -> _CallableT: ...
+
+# === Internal dependency: homeassistant.helpers.event ===
+def async_call_later(hass: HomeAssistant, delay: float | timedelta, action: HassJob[[datetime], Coroutine[Any, Any, None] | None] | Callable[[datetime], Coroutine[Any, Any, None] | None]) -> CALLBACK_TYPE: ...

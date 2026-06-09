@@ -1,0 +1,116 @@
+from typing import Any
+
+# === Third-party dependency: eth_utils ===
+# Used symbols: is_checksum_address, to_checksum_address, to_hex
+
+# === Third-party dependency: flask ===
+# Used symbols: url_for
+
+# === Third-party dependency: gevent ===
+# Used symbols: joinall
+
+# === Third-party dependency: grequests ===
+get: partial
+post: partial
+put: partial
+patch: partial
+
+# === Third-party dependency: pytest ===
+# Used symbols: mark
+
+# === Internal dependency: raiden.api.python ===
+class RaidenAPI: ...
+
+# === Internal dependency: raiden.constants ===
+class Environment(Enum): ...
+BLOCK_ID_LATEST: Literal['latest']
+
+# === Internal dependency: raiden.exceptions ===
+class InvalidSecret(RaidenError): ...
+
+# === Internal dependency: raiden.messages.transfers ===
+class Unlock(EnvelopeMessage): ...
+class LockedTransfer(LockedTransferBase): ...
+
+# === Internal dependency: raiden.settings ===
+INTERNAL_ROUTING_DEFAULT_FEE_PERC: float
+DEFAULT_NUMBER_OF_BLOCK_CONFIRMATIONS: BlockTimeout
+
+# === Internal dependency: raiden.tests.integration.api.rest.utils ===
+def get_json_response(response) -> Any: ...
+def assert_response_with_code(response, status_code) -> Any: ...
+def assert_response_with_error(response, status_code) -> Any: ...
+def assert_proper_response(response, status_code = ...) -> Any: ...
+def api_url_for(api_server, endpoint, **kwargs) -> Any: ...
+
+# === Internal dependency: raiden.tests.integration.api.utils ===
+def prepare_api_server(raiden_app: RaidenService) -> APIServer: ...
+
+# === Internal dependency: raiden.tests.integration.fixtures.smartcontracts ===
+RED_EYES_PER_CHANNEL_PARTICIPANT_LIMIT: TokenAmount
+
+# === Internal dependency: raiden.tests.utils.client ===
+def burn_eth(rpc_client: JSONRPCClient, amount_to_leave: int = ...) -> None: ...
+
+# === Internal dependency: raiden.tests.utils.detect_failure ===
+def raise_on_failure(test_function: Callable) -> Callable: ...
+expect_failure: Any
+
+# === Internal dependency: raiden.tests.utils.events ===
+def must_have_event(event_list: Iterable[TM], dict_data: TM) -> Optional[TM]: ...
+def must_have_events(event_list: List[TM], *args) -> bool: ...
+
+# === Internal dependency: raiden.tests.utils.factories ===
+def make_address() -> Address: ...
+def make_checksum_address() -> AddressHex: ...
+def make_secret(i: int = ...) -> Secret: ...
+def make_secret_with_hash(i: int = ...) -> Tuple[Secret, SecretHash]: ...
+
+# === Internal dependency: raiden.tests.utils.network ===
+CHAIN: Any
+
+# === Internal dependency: raiden.tests.utils.protocol ===
+class WaitForMessage(MessageHandler):
+    def __init__(self) -> Any: ...
+    def wait_for_message(self, message_type: type, attributes: dict) -> AsyncResult: ...
+class HoldRaidenEventHandler(EventHandler): ...
+
+# === Internal dependency: raiden.tests.utils.transfer ===
+def create_route_state_for_route(apps: List[RaidenService], token_address: TokenAddress, fee_estimate: FeeAmount = ...) -> RouteState: ...
+def watch_for_unlock_failures(*apps) -> Any: ...
+def block_offset_timeout(raiden: RaidenService, error_message: Optional[str] = ..., offset: Optional[BlockOffset] = ..., safety_margin: int = ...) -> BlockTimeout: ...
+
+# === Internal dependency: raiden.transfer.mediated_transfer.initiator ===
+def calculate_fee_margin(payment_amount: PaymentAmount, estimated_fee: FeeAmount) -> FeeAmount: ...
+
+# === Internal dependency: raiden.transfer.state ===
+class ChannelState(Enum): ...
+
+# === Internal dependency: raiden.transfer.views ===
+def state_from_raiden(raiden: 'RaidenService') -> ChainState: ...
+def get_token_network_address_by_token_address(chain_state: ChainState, token_network_registry_address: TokenNetworkRegistryAddress, token_address: TokenAddress) -> Optional[TokenNetworkAddress]: ...
+
+# === Internal dependency: raiden.utils.secrethash ===
+def sha256_secrethash(secret: Secret) -> SecretHash: ...
+
+# === Internal dependency: raiden.utils.system ===
+def get_system_spec() -> Dict[str, Any]: ...
+
+# === Internal dependency: raiden.utils.typing ===
+# re-export: from eth_typing import BlockNumber
+# re-export: from raiden_contracts.utils.type_aliases import TokenAmount
+BlockTimeout: NewType
+PaymentID: NewType
+PaymentAmount: NewType
+FeeAmount: NewType
+TargetAddress: NewType
+
+# === Internal dependency: raiden.waiting ===
+def wait_for_block(raiden: 'RaidenService', block_number: BlockNumber, retry_timeout: float) -> None: ...
+def wait_for_token_network(raiden: 'RaidenService', token_network_registry_address: TokenNetworkRegistryAddress, token_address: TokenAddress, retry_timeout: float) -> None: ...
+class TransferWaitResult(Enum): ...
+def wait_for_received_transfer_result(raiden: 'RaidenService', payment_identifier: PaymentID, amount: PaymentAmount, retry_timeout: float, secrethash: SecretHash) -> TransferWaitResult: ...
+
+# === Third-party dependency: raiden_contracts.constants ===
+CONTRACTS_VERSION: str
+CONTRACT_CUSTOM_TOKEN: str
