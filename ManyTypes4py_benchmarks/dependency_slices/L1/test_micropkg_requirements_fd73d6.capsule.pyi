@@ -1,0 +1,9 @@
+# === Third-party dependency: click.testing ===
+class CliRunner: ...
+
+# === Internal dependency: kedro.framework.cli.micropkg ===
+def _get_sdist_name(name, version): ...
+def _safe_parse_requirements(requirements): ...
+
+# === Third-party dependency: pytest ===
+# Used symbols: mark

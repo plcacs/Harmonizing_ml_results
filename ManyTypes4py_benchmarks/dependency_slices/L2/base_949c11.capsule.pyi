@@ -1,0 +1,9 @@
+# === Internal dependency: faust.types.sensors ===
+class SensorT(SensorInterfaceT, ServiceT):
+    ...
+class SensorDelegateT(SensorInterfaceT, Iterable):
+    def add(self, sensor: SensorT) -> None: ...
+    def remove(self, sensor: SensorT) -> None: ...
+
+# === Third-party dependency: mode ===
+# Used symbols: Service

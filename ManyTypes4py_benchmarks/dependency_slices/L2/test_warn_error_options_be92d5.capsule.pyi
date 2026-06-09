@@ -1,0 +1,23 @@
+from typing import Any
+
+# === Third-party dependency: dbt.cli.main ===
+class dbtRunner: ...
+
+# === Third-party dependency: dbt.events.types ===
+class DeprecatedModel(WarnLevel): ...
+
+# === Third-party dependency: dbt.flags ===
+def get_flags() -> Any: ...
+
+# === Third-party dependency: dbt.tests.util ===
+def run_dbt(args: Optional[List[str]] = ..., expect_pass: bool = ...) -> Any: ...
+def update_config_file(updates, *paths) -> Any: ...
+
+# === Third-party dependency: dbt_common.events.base_types ===
+class EventLevel(str, Enum): ...
+
+# === Third-party dependency: pytest ===
+# Used symbols: fixture
+
+# === Internal dependency: tests.utils ===
+class EventCatcher: ...

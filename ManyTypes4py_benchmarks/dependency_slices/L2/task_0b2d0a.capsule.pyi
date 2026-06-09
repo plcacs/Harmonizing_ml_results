@@ -1,0 +1,19 @@
+from typing import Any
+
+# === Internal dependency: kedro.framework.hooks.manager ===
+def _create_hook_manager() -> PluginManager: ...
+def _register_hooks(hook_manager: PluginManager, hooks: Iterable[Any]) -> None: ...
+def _register_hooks_entry_points(hook_manager: PluginManager, disabled_plugins: Iterable[str]) -> None: ...
+
+# === Internal dependency: kedro.framework.project ===
+def configure_project(package_name: str) -> None: ...
+def configure_logging(logging_config: dict[str, Any]) -> None: ...
+PACKAGE_NAME: None
+LOGGING: _ProjectLogging
+settings: _ProjectSettings
+
+# === Internal dependency: kedro.pipeline.node ===
+class Node: ...
+
+# === Third-party dependency: more_itertools ===
+# Used symbols: interleave

@@ -1,0 +1,23 @@
+from typing import Any
+
+# === Internal dependency: prefect.exceptions ===
+class ParameterBindError(TypeError, PrefectException): ...
+
+# === Internal dependency: prefect.types._datetime ===
+Date: Any
+DateTime: Any
+Duration: Any
+
+# === Internal dependency: prefect.utilities.callables ===
+def get_call_parameters(fn: Callable[..., Any], call_args: tuple[Any, ...], call_kwargs: dict[str, Any], apply_defaults: bool = ...) -> dict[str, Any]: ...
+def explode_variadic_parameter(fn: Callable[..., Any], parameters: dict[str, Any]) -> dict[str, Any]: ...
+def collapse_variadic_parameters(fn: Callable[..., Any], parameters: dict[str, Any]) -> dict[str, Any]: ...
+def parameters_to_args_kwargs(fn: Callable[..., Any], parameters: dict[str, Any]) -> tuple[tuple[Any, ...], dict[str, Any]]: ...
+def parameter_schema(fn: Callable[..., Any]) -> ParameterSchema: ...
+def parameter_schema_from_entrypoint(entrypoint: str) -> ParameterSchema: ...
+
+# === Third-party dependency: pydantic ===
+# Used symbols: BaseModel
+
+# === Third-party dependency: pytest ===
+# Used symbols: mark, raises

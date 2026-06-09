@@ -1,0 +1,53 @@
+from typing import Any
+
+# === Third-party dependency: numpy ===
+# Used symbols: array, asarray, bool_, concatenate, isnan, ndarray, random
+
+# === Internal dependency: pandas ===
+from pandas import api
+
+# === Internal dependency: pandas._typing ===
+from typing import Type as type_t
+
+# === Internal dependency: pandas.api.extensions ===
+from pandas._libs.lib import no_default
+from pandas.core.dtypes.base import register_extension_dtype
+from pandas.core.algorithms import take
+
+# === Internal dependency: pandas.api.types ===
+is_list_like: Any
+is_scalar: Any
+
+# === Internal dependency: pandas.core.arraylike ===
+class OpsMixin:
+    ...
+def dispatch_ufunc_with_out(self, ufunc, method, *inputs, **kwargs): ...
+def dispatch_reduction_ufunc(self, ufunc, method, *inputs, **kwargs): ...
+from pandas._libs.ops_dispatch import maybe_dispatch_ufunc_to_dunder_op
+
+# === Internal dependency: pandas.core.arrays ===
+from pandas.core.arrays.base import ExtensionArray
+from pandas.core.arrays.base import ExtensionScalarOpsMixin
+
+# === Internal dependency: pandas.core.dtypes.base ===
+class ExtensionDtype:
+    def na_value(self): ...
+    def type(self): ...
+    def kind(self): ...
+    def name(self): ...
+    def names(self): ...
+    def _is_numeric(self): ...
+    def _is_boolean(self): ...
+    def _can_hold_na(self): ...
+    def _is_immutable(self): ...
+    def _supports_2d(self): ...
+    def _can_fast_transpose(self): ...
+
+# === Internal dependency: pandas.core.dtypes.common ===
+def is_dtype_equal(source, target): ...
+def pandas_dtype(dtype): ...
+from pandas.core.dtypes.inference import is_float
+from pandas.core.dtypes.inference import is_integer
+
+# === Internal dependency: pandas.core.indexers ===
+from pandas.core.indexers.utils import check_array_indexer

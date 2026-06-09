@@ -1,0 +1,16 @@
+# === Third-party dependency: pyee ===
+class EventEmitter(object):
+    ...
+
+# === Internal dependency: pyppeteer.errors ===
+class NetworkError(PyppeteerError): ...
+
+# === Internal dependency: pyppeteer.frame_manager ===
+class Frame(object): ...
+
+# === Internal dependency: pyppeteer.helper ===
+def debugError(_logger, msg): ...
+
+# === Internal dependency: pyppeteer.multimap ===
+class Multimap(object):
+    def __init__(self): ...

@@ -1,0 +1,79 @@
+from typing import Any
+
+# === Third-party dependency: numpy ===
+# Used symbols: asarray, concatenate, diff, errstate, exp, float64, int64, log, newaxis, ones, timedelta64
+
+# === Internal dependency: pandas ===
+from pandas.core.api import Series
+
+# === Internal dependency: pandas._libs.tslibs ===
+from pandas._libs.tslibs.timedeltas import Timedelta
+
+# === Internal dependency: pandas._libs.window.aggregations ===
+def ewm(vals, start, end, minp, com, adjust, ignore_na, deltas=..., normalize=...): ...
+def ewmcov(input_x, start, end, minp, input_y, com, adjust, ignore_na, bias): ...
+
+# === Internal dependency: pandas._typing ===
+npt: Any
+
+# === Internal dependency: pandas.core.arrays.datetimelike ===
+def dtype_to_unit(dtype): ...
+
+# === Internal dependency: pandas.core.common ===
+def count_not_none(*args): ...
+
+# === Internal dependency: pandas.core.dtypes.common ===
+def is_datetime64_dtype(arr_or_dtype): ...
+def is_numeric_dtype(arr_or_dtype): ...
+
+# === Internal dependency: pandas.core.dtypes.dtypes ===
+class DatetimeTZDtype(PandasExtensionDtype): ...
+
+# === Internal dependency: pandas.core.dtypes.generic ===
+def create_pandas_abc_type(name, attr, comp): ...
+ABCSeries = cast(...)
+
+# === Internal dependency: pandas.core.dtypes.missing ===
+def isna(obj): ...
+
+# === Internal dependency: pandas.core.indexers.objects ===
+class BaseIndexer: ...
+class GroupbyIndexer(BaseIndexer):
+    def __init__(self, index_array=..., window_size=..., groupby_indices=..., window_indexer=..., indexer_kwargs=..., **kwargs): ...
+class ExponentialMovingWindowIndexer(BaseIndexer): ...
+
+# === Internal dependency: pandas.core.util.numba_ ===
+def maybe_use_numba(engine): ...
+def get_jit_arguments(engine_kwargs=..., kwargs=...): ...
+
+# === Internal dependency: pandas.core.window.common ===
+def zsqrt(x): ...
+
+# === Internal dependency: pandas.core.window.doc ===
+def create_section_header(header): ...
+def window_agg_numba_parameters(version=...): ...
+from pandas.core.shared_docs import _shared_docs
+_shared_docs = dict(...)
+template_header = '\nCalculate the {window_method} {aggregation_description}.\n\n'
+template_returns = ...(...)
+template_see_also = ...(...)
+kwargs_numeric_only = ...(...)
+numba_notes = 'See :ref:`window.numba_engine` and :ref:`enhancingperf.numba` for extended documentation and performance considerations for the Numba engine.\n\n'
+
+# === Internal dependency: pandas.core.window.numba_ ===
+def generate_numba_ewm_func(nopython, nogil, parallel, com, adjust, ignore_na, deltas, normalize): ...
+def generate_numba_ewm_table_func(nopython, nogil, parallel, com, adjust, ignore_na, deltas, normalize): ...
+
+# === Internal dependency: pandas.core.window.online ===
+def generate_online_numba_ewma_func(nopython, nogil, parallel): ...
+class EWMMeanState:
+    def __init__(self, com, adjust, ignore_na, shape): ...
+
+# === Internal dependency: pandas.core.window.rolling ===
+class BaseWindow(SelectionMixin):
+    def _index_array(self): ...
+class BaseWindowGroupby(BaseWindow):
+    ...
+
+# === Internal dependency: pandas.util._decorators ===
+def doc(*docstrings, **params): ...

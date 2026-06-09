@@ -1,0 +1,18 @@
+We evaluate two dependency-context settings. 
+
+L1: In the internal-structure setting, project-internal dependencies are summarized without synthesized type annotations: the slice contains import-resolved names, class and function skeletons, parameter names and defaults, constants in source form, and re-export relationships. This setting models early-stage type migration, where the target project itself is largely untyped. 
+
+For each file inside the directory 500_untyped_files, there is a corresponding file that provides the dependency slice within L1 for that file.
+
+L2: In the internal-typed setting, project-internal summaries are enriched with type facts that are already present in the source or conservatively recoverable from local syntax, such as explicit annotations, literal assignments, aliases, constructor calls to resolvable classes, and bounded recursive type dependencies. This setting models a later-stage or optimistic migration scenario in which neighboring internal modules have already been typed. 
+
+For each file inside the directory 500_untyped_files, there is a corresponding file that provides the dependency slice within L2 for that file.
+
+
+In both settings, we retain available type information for standard-library and third-party dependencies, since such stubs are normally available to Python type checkers and developers.
+
+
+## Provided by Sheng from the directory
+
+D:\r\HarmonizingML\HarmonizingML\code
+

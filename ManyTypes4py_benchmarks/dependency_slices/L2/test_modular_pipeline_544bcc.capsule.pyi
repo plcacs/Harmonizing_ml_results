@@ -1,0 +1,6 @@
+# === Internal dependency: kedro.pipeline.modular_pipeline ===
+class ModularPipelineError(Exception): ...
+def pipeline(pipe: Iterable[Node | Pipeline] | Pipeline, *, inputs: str | set[str] | dict[str, str] | None = ..., outputs: str | set[str] | dict[str, str] | None = ..., parameters: str | set[str] | dict[str, str] | None = ..., tags: str | Iterable[str] | None = ..., namespace: str | None = ...) -> Pipeline: ...
+
+# === Third-party dependency: pytest ===
+# Used symbols: mark, raises

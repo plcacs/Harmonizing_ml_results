@@ -1,0 +1,28 @@
+from typing import Any
+
+# === Unresolved dependency: eth2spec.phase0.mainnet ===
+# Used unresolved symbols: VALIDATOR_REGISTRY_LIMIT
+
+# === Internal dependency: eth2spec.test.helpers.attestations ===
+def cached_prepare_state_with_attestations(spec, state) -> Any: ...
+
+# === Internal dependency: eth2spec.test.helpers.forks ===
+def is_post_altair(spec) -> Any: ...
+def is_post_bellatrix(spec) -> Any: ...
+
+# === Internal dependency: eth2spec.test.helpers.random ===
+def set_some_new_deposits(spec, state, rng) -> Any: ...
+def exit_random_validators(spec, state, rng, fraction = ..., exit_epoch = ..., withdrawable_epoch = ..., from_epoch = ...) -> Any: ...
+def slash_random_validators(spec, state, rng, fraction = ...) -> Any: ...
+def randomize_state(spec, state, rng = ..., exit_fraction = ..., slash_fraction = ...) -> Any: ...
+
+# === Internal dependency: eth2spec.test.helpers.state ===
+def next_epoch(spec, state) -> Any: ...
+
+# === Internal dependency: eth2spec.utils.ssz.ssz_typing ===
+# re-export: from remerkleable.complex import Container
+# re-export: from remerkleable.complex import List
+# re-export: from remerkleable.basic import uint64
+
+# === Extension dependency: lru ===
+# Used symbols: LRU

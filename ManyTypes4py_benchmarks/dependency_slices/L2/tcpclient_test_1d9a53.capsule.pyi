@@ -1,0 +1,39 @@
+from typing import Any
+
+# === Internal dependency: tornado.concurrent ===
+Future: Any
+
+# === Internal dependency: tornado.gen ===
+# re-export: from tornado.util import TimeoutError
+
+# === Internal dependency: tornado.netutil ===
+def bind_sockets(port: int, address: Optional[str] = ..., family: socket.AddressFamily = ..., backlog: int = ..., flags: Optional[int] = ..., reuse_port: bool = ...) -> List[socket.socket]: ...
+class Resolver(Configurable):
+    ...
+
+# === Internal dependency: tornado.queues ===
+class Queue(Generic[_T]):
+    def __init__(self, maxsize: int = ...) -> None: ...
+
+# === Internal dependency: tornado.tcpclient ===
+class _Connector:
+    def __init__(self, addrinfo: List[Tuple], connect: Callable[[socket.AddressFamily, Tuple], Tuple[IOStream, 'Future[IOStream]']]) -> None: ...
+    def start(self, timeout: float = ..., connect_timeout: Optional[Union[float, datetime.timedelta]] = ...) -> 'Future[Tuple[socket.AddressFamily, Any, IOStream]]': ...
+class TCPClient:
+    def __init__(self, resolver: Optional[Resolver] = ...) -> None: ...
+
+# === Internal dependency: tornado.tcpserver ===
+class TCPServer:
+    ...
+
+# === Internal dependency: tornado.test.util ===
+def refusing_port() -> Any: ...
+skipIfNonUnix: skipIf
+skipIfNoIPv6: skipIf
+
+# === Internal dependency: tornado.testing ===
+class AsyncTestCase(unittest.TestCase):
+    ...
+def gen_test(*, timeout: Optional[float] = ...) -> Callable[[Callable[..., Union[Generator, 'Coroutine']]], Callable[..., None]]: ...
+def gen_test(func: Callable[..., Union[Generator, 'Coroutine']]) -> Callable[..., None]: ...
+def gen_test(func: Optional[Callable[..., Union[Generator, 'Coroutine']]] = ..., timeout: Optional[float] = ...) -> Union[Callable[..., None], Callable[[Callable[..., Union[Generator, 'Coroutine']]], Callable[..., None]]]: ...
