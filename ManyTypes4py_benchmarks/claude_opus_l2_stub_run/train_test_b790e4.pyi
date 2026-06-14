@@ -1,0 +1,89 @@
+import argparse
+import logging
+from collections import Counter
+from typing import Optional, List, Dict, Any, Set
+
+import torch
+from allennlp.common import Params
+from allennlp.common.testing import AllenNlpTestCase
+from allennlp.data.data_loaders import TensorDict
+from allennlp.training import TrainerCallback, GradientDescentTrainer
+from allennlp.training.learning_rate_schedulers import ExponentialLearningRateScheduler, LearningRateScheduler
+
+SEQUENCE_TAGGING_DATA_PATH: str
+SEQUENCE_TAGGING_SHARDS_PATH: str
+
+class TrainingDataLoggerOnBatchCallback(TrainerCallback):
+    def on_batch(
+        self,
+        trainer: GradientDescentTrainer,
+        batch_inputs: List[TensorDict],
+        batch_outputs: List[Dict[str, Any]],
+        batch_metrics: Dict[str, Any],
+        epoch: int,
+        batch_number: int,
+        is_training: bool,
+        is_primary: bool = True,
+        **kwargs: Any,
+    ) -> None: ...
+
+_seen_training_devices: Set[torch.device]
+
+class TrainingDeviceLoggerOnBatchCallback(TrainerCallback):
+    def on_batch(
+        self,
+        trainer: GradientDescentTrainer,
+        batch_inputs: List[TensorDict],
+        batch_outputs: List[Dict[str, Any]],
+        batch_metrics: Dict[str, Any],
+        epoch: int,
+        batch_number: int,
+        is_training: bool,
+        is_primary: bool = True,
+        **kwargs: Any,
+    ) -> None: ...
+
+class TrainingPrimaryCheckCallback(TrainerCallback):
+    """Makes sure there is only one primary worker."""
+    def on_start(
+        self,
+        trainer: GradientDescentTrainer,
+        is_primary: bool = True,
+        **kwargs: Any,
+    ) -> None: ...
+
+class TestTrain(AllenNlpTestCase):
+    DEFAULT_PARAMS: Params
+    def test_train_model(self) -> None: ...
+    def test_detect_gpu(self) -> None: ...
+    def test_force_gpu(self) -> None: ...
+    def test_force_cpu(self) -> None: ...
+    def test_train_model_distributed(self) -> None: ...
+    def test_train_model_distributed_with_gradient_accumulation(
+        self, max_instances: Optional[int], grad_acc: Optional[int], batch_size: int
+    ) -> None: ...
+    def test_train_model_distributed_with_sharded_reader(
+        self, max_instances_in_memory: Optional[int]
+    ) -> None: ...
+    def test_train_model_distributed_without_sharded_reader(
+        self, max_instances_in_memory: Optional[int]
+    ) -> None: ...
+    def test_distributed_raises_error_with_no_gpus(self) -> None: ...
+    def test_train_saves_all_keys_in_config(self) -> None: ...
+    def test_error_is_throw_when_cuda_device_is_not_available(self) -> None: ...
+    def test_train_with_test_set(self) -> None: ...
+    def test_train_number_of_steps(self) -> None: ...
+    def test_train_args(self) -> None: ...
+    def test_train_model_can_instantiate_from_params(self) -> None: ...
+    def test_train_can_fine_tune_model_from_archive(self) -> None: ...
+    def test_train_nograd_regex(self) -> None: ...
+
+class TestDryRun(AllenNlpTestCase):
+    params: Params
+    def setup_method(self) -> None: ...
+    def test_dry_run_doesnt_overwrite_vocab(self) -> None: ...
+    def test_dry_run_makes_vocab(self) -> None: ...
+    def test_dry_run_with_extension(self) -> None: ...
+    def test_dry_run_without_extension(self) -> None: ...
+    def test_make_vocab_args(self) -> None: ...
+    def test_warn_validation_loader_batches_per_epoch(self) -> None: ...

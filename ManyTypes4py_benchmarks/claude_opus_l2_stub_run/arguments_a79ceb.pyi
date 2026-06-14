@@ -1,0 +1,122 @@
+import re
+from typing import Any, Callable, Generator, Iterator, Optional
+from itertools import zip_longest
+
+from parso.python import tree
+from jedi.inference.utils import PushBackIterator
+from jedi.inference.base_value import NO_VALUES, ValueSet, ContextualizedNode
+from jedi.inference.lazy_value import LazyKnownValue, LazyKnownValues, LazyTreeValue
+from jedi.inference.names import TreeNameDefinition, AnonymousParamName, ParamName
+from jedi.inference.value import iterable
+from jedi.inference.cache import inference_state_as_method_param_cache
+
+
+def try_iter_content(types: Any, depth: int = 0) -> None: ...
+
+
+class ParamIssue(Exception): ...
+
+
+def repack_with_argument_clinic(clinic_string: str) -> Callable[..., Any]: ...
+
+
+def iterate_argument_clinic(
+    inference_state: Any,
+    arguments: AbstractArguments,
+    clinic_string: str,
+) -> Generator[ValueSet, None, None]: ...
+
+
+def _parse_argument_clinic(
+    string: str,
+) -> Generator[tuple[str, bool, bool, int], None, None]: ...
+
+
+class _AbstractArgumentsMixin:
+    def unpack(self, funcdef: Any = ...) -> Iterator[tuple[Optional[str], Any]]: ...
+    def get_calling_nodes(self) -> list[ContextualizedNode]: ...
+
+
+class AbstractArguments(_AbstractArgumentsMixin):
+    context: Any
+    argument_node: Any
+    trailer: Any
+
+
+def unpack_arglist(arglist: Any) -> Generator[tuple[int, Any], None, None]: ...
+
+
+class TreeArguments(AbstractArguments):
+    argument_node: Any
+    context: Any
+    _inference_state: Any
+    trailer: Any
+
+    def __init__(
+        self,
+        inference_state: Any,
+        context: Any,
+        argument_node: Any,
+        trailer: Any = ...,
+    ) -> None: ...
+
+    @classmethod
+    @inference_state_as_method_param_cache()
+    def create_cached(cls, *args: Any, **kwargs: Any) -> TreeArguments: ...
+
+    def unpack(self, funcdef: Any = ...) -> Generator[tuple[Optional[str], Any], None, None]: ...
+
+    def _as_tree_tuple_objects(self) -> Generator[tuple[Any, Any, int], None, None]: ...
+
+    def iter_calling_names_with_star(self) -> Generator[TreeNameDefinition, None, None]: ...
+
+    def __repr__(self) -> str: ...
+
+    def get_calling_nodes(self) -> list[ContextualizedNode]: ...
+
+
+class ValuesArguments(AbstractArguments):
+    _values_list: list[ValueSet]
+
+    def __init__(self, values_list: list[ValueSet]) -> None: ...
+
+    def unpack(self, funcdef: Any = ...) -> Generator[tuple[None, LazyKnownValues], None, None]: ...
+
+    def __repr__(self) -> str: ...
+
+
+class TreeArgumentsWrapper(_AbstractArgumentsMixin):
+    _wrapped_arguments: AbstractArguments
+
+    def __init__(self, arguments: AbstractArguments) -> None: ...
+
+    @property
+    def context(self) -> Any: ...
+
+    @property
+    def argument_node(self) -> Any: ...
+
+    @property
+    def trailer(self) -> Any: ...
+
+    def unpack(self, func: Any = ...) -> Iterator[tuple[Optional[str], Any]]: ...
+
+    def get_calling_nodes(self) -> list[ContextualizedNode]: ...
+
+    def __repr__(self) -> str: ...
+
+
+def _iterate_star_args(
+    context: Any,
+    array: Any,
+    input_node: Any,
+    funcdef: Any = ...,
+) -> Generator[Any, None, None]: ...
+
+
+def _star_star_dict(
+    context: Any,
+    array: Any,
+    input_node: Any,
+    funcdef: Any,
+) -> Any: ...

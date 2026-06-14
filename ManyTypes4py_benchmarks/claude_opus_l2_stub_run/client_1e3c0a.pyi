@@ -1,0 +1,242 @@
+from __future__ import annotations
+
+from collections.abc import Iterable
+from typing import TYPE_CHECKING, Any, Union
+from uuid import UUID
+
+from prefect.client.orchestration.base import BaseAsyncClient, BaseClient
+
+if TYPE_CHECKING:
+    import datetime
+
+    from prefect.client.schemas import FlowRun
+    from prefect.client.schemas.actions import (
+        DeploymentCreate,
+        DeploymentScheduleCreate,
+        DeploymentUpdate,
+    )
+    from prefect.client.schemas.filters import (
+        DeploymentFilter,
+        FlowFilter,
+        FlowRunFilter,
+        TaskRunFilter,
+        WorkPoolFilter,
+        WorkQueueFilter,
+    )
+    from prefect.client.schemas.objects import (
+        ConcurrencyOptions,
+        DeploymentSchedule,
+    )
+    from prefect.client.schemas.responses import DeploymentResponse, FlowRunResponse
+    from prefect.client.schemas.schedules import SCHEDULE_TYPES
+    from prefect.client.schemas.sorting import DeploymentSort
+    from prefect.states import State
+    from prefect.types import KeyValueLabelsField
+
+
+class DeploymentClient(BaseClient):
+    def create_deployment(
+        self,
+        flow_id: UUID,
+        name: str,
+        version: str | None = ...,
+        schedules: list[DeploymentScheduleCreate] | None = ...,
+        concurrency_limit: int | None = ...,
+        concurrency_options: ConcurrencyOptions | None = ...,
+        parameters: dict[str, Any] | None = ...,
+        description: str | None = ...,
+        work_queue_name: str | None = ...,
+        work_pool_name: str | None = ...,
+        tags: list[str] | None = ...,
+        storage_document_id: UUID | None = ...,
+        path: str | None = ...,
+        entrypoint: str | None = ...,
+        infrastructure_document_id: UUID | None = ...,
+        parameter_openapi_schema: dict[str, Any] | None = ...,
+        paused: bool | None = ...,
+        pull_steps: list[dict[str, Any]] | None = ...,
+        enforce_parameter_schema: bool | None = ...,
+        job_variables: dict[str, Any] | None = ...,
+    ) -> UUID: ...
+
+    def set_deployment_paused_state(
+        self, deployment_id: UUID, paused: bool
+    ) -> None: ...
+
+    def update_deployment(
+        self, deployment_id: UUID, deployment: DeploymentUpdate
+    ) -> None: ...
+
+    def _create_deployment_from_schema(self, schema: DeploymentCreate) -> UUID: ...
+
+    def read_deployment(
+        self, deployment_id: UUID | str
+    ) -> DeploymentResponse: ...
+
+    def read_deployment_by_name(self, name: str) -> DeploymentResponse: ...
+
+    def read_deployments(
+        self,
+        *,
+        flow_filter: FlowFilter | None = ...,
+        flow_run_filter: FlowRunFilter | None = ...,
+        task_run_filter: TaskRunFilter | None = ...,
+        deployment_filter: DeploymentFilter | None = ...,
+        work_pool_filter: WorkPoolFilter | None = ...,
+        work_queue_filter: WorkQueueFilter | None = ...,
+        limit: int | None = ...,
+        sort: DeploymentSort | None = ...,
+        offset: int = ...,
+    ) -> list[DeploymentResponse]: ...
+
+    def delete_deployment(self, deployment_id: UUID) -> None: ...
+
+    def create_deployment_schedules(
+        self,
+        deployment_id: UUID,
+        schedules: list[tuple[SCHEDULE_TYPES, bool]],
+    ) -> list[DeploymentSchedule]: ...
+
+    def read_deployment_schedules(
+        self, deployment_id: UUID
+    ) -> list[DeploymentSchedule]: ...
+
+    def update_deployment_schedule(
+        self,
+        deployment_id: UUID,
+        schedule_id: UUID,
+        active: bool | None = ...,
+        schedule: SCHEDULE_TYPES | None = ...,
+    ) -> None: ...
+
+    def delete_deployment_schedule(
+        self, deployment_id: UUID, schedule_id: UUID
+    ) -> None: ...
+
+    def get_scheduled_flow_runs_for_deployments(
+        self,
+        deployment_ids: Iterable[UUID],
+        scheduled_before: datetime.datetime | None = ...,
+        limit: int | None = ...,
+    ) -> list[FlowRunResponse]: ...
+
+    def create_flow_run_from_deployment(
+        self,
+        deployment_id: UUID,
+        *,
+        parameters: dict[str, Any] | None = ...,
+        context: dict[str, Any] | None = ...,
+        state: State | None = ...,
+        name: str | None = ...,
+        tags: Iterable[str] | None = ...,
+        idempotency_key: str | None = ...,
+        parent_task_run_id: UUID | None = ...,
+        work_queue_name: str | None = ...,
+        job_variables: dict[str, Any] | None = ...,
+        labels: KeyValueLabelsField | None = ...,
+    ) -> FlowRun: ...
+
+
+class DeploymentAsyncClient(BaseAsyncClient):
+    async def create_deployment(
+        self,
+        flow_id: UUID,
+        name: str,
+        version: str | None = ...,
+        schedules: list[DeploymentScheduleCreate] | None = ...,
+        concurrency_limit: int | None = ...,
+        concurrency_options: ConcurrencyOptions | None = ...,
+        parameters: dict[str, Any] | None = ...,
+        description: str | None = ...,
+        work_queue_name: str | None = ...,
+        work_pool_name: str | None = ...,
+        tags: list[str] | None = ...,
+        storage_document_id: UUID | None = ...,
+        path: str | None = ...,
+        entrypoint: str | None = ...,
+        infrastructure_document_id: UUID | None = ...,
+        parameter_openapi_schema: dict[str, Any] | None = ...,
+        paused: bool | None = ...,
+        pull_steps: list[dict[str, Any]] | None = ...,
+        enforce_parameter_schema: bool | None = ...,
+        job_variables: dict[str, Any] | None = ...,
+    ) -> UUID: ...
+
+    async def set_deployment_paused_state(
+        self, deployment_id: UUID, paused: bool
+    ) -> None: ...
+
+    async def update_deployment(
+        self, deployment_id: UUID, deployment: DeploymentUpdate
+    ) -> None: ...
+
+    async def _create_deployment_from_schema(
+        self, schema: DeploymentCreate
+    ) -> UUID: ...
+
+    async def read_deployment(
+        self, deployment_id: UUID | str
+    ) -> DeploymentResponse: ...
+
+    async def read_deployment_by_name(self, name: str) -> DeploymentResponse: ...
+
+    async def read_deployments(
+        self,
+        *,
+        flow_filter: FlowFilter | None = ...,
+        flow_run_filter: FlowRunFilter | None = ...,
+        task_run_filter: TaskRunFilter | None = ...,
+        deployment_filter: DeploymentFilter | None = ...,
+        work_pool_filter: WorkPoolFilter | None = ...,
+        work_queue_filter: WorkQueueFilter | None = ...,
+        limit: int | None = ...,
+        sort: DeploymentSort | None = ...,
+        offset: int = ...,
+    ) -> list[DeploymentResponse]: ...
+
+    async def delete_deployment(self, deployment_id: UUID) -> None: ...
+
+    async def create_deployment_schedules(
+        self,
+        deployment_id: UUID,
+        schedules: list[tuple[SCHEDULE_TYPES, bool]],
+    ) -> list[DeploymentSchedule]: ...
+
+    async def read_deployment_schedules(
+        self, deployment_id: UUID
+    ) -> list[DeploymentSchedule]: ...
+
+    async def update_deployment_schedule(
+        self,
+        deployment_id: UUID,
+        schedule_id: UUID,
+        active: bool | None = ...,
+        schedule: SCHEDULE_TYPES | None = ...,
+    ) -> None: ...
+
+    async def delete_deployment_schedule(
+        self, deployment_id: UUID, schedule_id: UUID
+    ) -> None: ...
+
+    async def get_scheduled_flow_runs_for_deployments(
+        self,
+        deployment_ids: Iterable[UUID],
+        scheduled_before: datetime.datetime | None = ...,
+        limit: int | None = ...,
+    ) -> list[FlowRun]: ...
+
+    async def create_flow_run_from_deployment(
+        self,
+        deployment_id: UUID,
+        *,
+        parameters: dict[str, Any] | None = ...,
+        context: dict[str, Any] | None = ...,
+        state: State | None = ...,
+        name: str | None = ...,
+        tags: Iterable[str] | None = ...,
+        idempotency_key: str | None = ...,
+        parent_task_run_id: UUID | None = ...,
+        work_queue_name: str | None = ...,
+        job_variables: dict[str, Any] | None = ...,
+        labels: KeyValueLabelsField | None = ...,
+    ) -> FlowRun: ...

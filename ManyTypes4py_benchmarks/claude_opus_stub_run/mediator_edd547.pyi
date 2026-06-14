@@ -1,0 +1,274 @@
+import random
+from fractions import Fraction
+from typing import Callable
+
+from raiden.transfer.architecture import Event, SuccessOrError, TransitionResult
+from raiden.transfer.mediated_transfer.events import (
+    EventUnexpectedSecretReveal,
+    EventUnlockClaimFailed,
+    EventUnlockClaimSuccess,
+    EventUnlockFailed,
+    EventUnlockSuccess,
+    SendLockedTransfer,
+    SendSecretReveal,
+)
+from raiden.transfer.mediated_transfer.mediation_fee import FeeScheduleState, Interpolate
+from raiden.transfer.mediated_transfer.state import (
+    LockedTransferSignedState,
+    LockedTransferUnsignedState,
+    MediationPairState,
+    MediatorTransferState,
+    WaitingTransferState,
+)
+from raiden.transfer.mediated_transfer.state_change import (
+    ActionInitMediator,
+    ReceiveLockExpired,
+    ReceiveSecretReveal,
+    ReceiveTransferRefund,
+)
+from raiden.transfer.state import NettingChannelState
+from raiden.transfer.state_change import Block, ContractReceiveSecretReveal, ReceiveUnlock
+from raiden.utils.typing import (
+    Address,
+    BlockExpiration,
+    BlockHash,
+    BlockNumber,
+    BlockTimeout,
+    ChannelID,
+    Dict,
+    List,
+    LockType,
+    Optional,
+    PaymentWithFeeAmount,
+    Secret,
+    SecretHash,
+    TokenAmount,
+    TokenNetworkAddress,
+    Tuple,
+    Union,
+)
+
+STATE_SECRET_KNOWN: Tuple[str, ...]
+STATE_TRANSFER_PAID: Tuple[str, ...]
+STATE_TRANSFER_FINAL: Tuple[str, ...]
+
+def is_lock_valid(expiration: BlockExpiration, block_number: BlockNumber) -> bool: ...
+
+def is_safe_to_wait(
+    lock_expiration: BlockExpiration,
+    reveal_timeout: BlockTimeout,
+    block_number: BlockNumber,
+) -> SuccessOrError: ...
+
+def is_send_transfer_almost_equal(
+    send_channel: NettingChannelState,
+    send: LockedTransferUnsignedState,
+    received: LockedTransferSignedState,
+) -> bool: ...
+
+def has_secret_registration_started(
+    channel_states: List[NettingChannelState],
+    transfers_pair: List[MediationPairState],
+    secrethash: SecretHash,
+) -> bool: ...
+
+def get_payee_channel(
+    channelidentifiers_to_channels: Dict[ChannelID, NettingChannelState],
+    transfer_pair: MediationPairState,
+) -> Optional[NettingChannelState]: ...
+
+def get_payer_channel(
+    channelidentifiers_to_channels: Dict[ChannelID, NettingChannelState],
+    transfer_pair: MediationPairState,
+) -> Optional[NettingChannelState]: ...
+
+def get_pending_transfer_pairs(
+    transfers_pair: List[MediationPairState],
+) -> List[MediationPairState]: ...
+
+def find_intersection(
+    fee_func: Interpolate,
+    line: Callable[[int], Fraction],
+) -> Optional[Fraction]: ...
+
+def get_amount_without_fees(
+    amount_with_fees: PaymentWithFeeAmount,
+    channel_in: NettingChannelState,
+    channel_out: NettingChannelState,
+) -> Optional[PaymentWithFeeAmount]: ...
+
+def sanity_check(
+    state: MediatorTransferState,
+    channelidentifiers_to_channels: Dict[ChannelID, NettingChannelState],
+) -> None: ...
+
+def clear_if_finalized(
+    iteration: TransitionResult[Optional[MediatorTransferState]],
+    channelidentifiers_to_channels: Dict[ChannelID, NettingChannelState],
+) -> TransitionResult[Optional[MediatorTransferState]]: ...
+
+def forward_transfer_pair(
+    payer_transfer: LockedTransferSignedState,
+    payer_channel: NettingChannelState,
+    payee_channel: NettingChannelState,
+    pseudo_random_generator: random.Random,
+    block_number: BlockNumber,
+) -> Tuple[Optional[MediationPairState], List[Event]]: ...
+
+def set_offchain_secret(
+    state: MediatorTransferState,
+    channelidentifiers_to_channels: Dict[ChannelID, NettingChannelState],
+    secret: Secret,
+    secrethash: SecretHash,
+) -> List[Event]: ...
+
+def set_onchain_secret(
+    state: MediatorTransferState,
+    channelidentifiers_to_channels: Dict[ChannelID, NettingChannelState],
+    secret: Secret,
+    secrethash: SecretHash,
+    block_number: BlockNumber,
+) -> List[Event]: ...
+
+def set_offchain_reveal_state(
+    transfers_pair: List[MediationPairState],
+    payee_address: Address,
+) -> None: ...
+
+def events_for_expired_pairs(
+    channelidentifiers_to_channels: Dict[ChannelID, NettingChannelState],
+    transfers_pair: List[MediationPairState],
+    waiting_transfer: Optional[WaitingTransferState],
+    block_number: BlockNumber,
+) -> List[Event]: ...
+
+def events_for_secretreveal(
+    transfers_pair: List[MediationPairState],
+    secret: Secret,
+    pseudo_random_generator: random.Random,
+) -> List[Event]: ...
+
+def events_for_balanceproof(
+    channelidentifiers_to_channels: Dict[ChannelID, NettingChannelState],
+    transfers_pair: List[MediationPairState],
+    pseudo_random_generator: random.Random,
+    block_number: BlockNumber,
+    secret: Secret,
+    secrethash: SecretHash,
+) -> List[Event]: ...
+
+def events_for_onchain_secretreveal_if_dangerzone(
+    channelmap: Dict[ChannelID, NettingChannelState],
+    secrethash: SecretHash,
+    transfers_pair: List[MediationPairState],
+    block_number: BlockNumber,
+    block_hash: BlockHash,
+) -> List[Event]: ...
+
+def events_for_onchain_secretreveal_if_closed(
+    channelmap: Dict[ChannelID, NettingChannelState],
+    transfers_pair: List[MediationPairState],
+    secret: Secret,
+    secrethash: SecretHash,
+    block_hash: BlockHash,
+) -> List[Event]: ...
+
+def events_to_remove_expired_locks(
+    mediator_state: MediatorTransferState,
+    channelidentifiers_to_channels: Dict[ChannelID, NettingChannelState],
+    block_number: BlockNumber,
+    pseudo_random_generator: random.Random,
+) -> List[Event]: ...
+
+def secret_learned(
+    state: MediatorTransferState,
+    channelidentifiers_to_channels: Dict[ChannelID, NettingChannelState],
+    pseudo_random_generator: random.Random,
+    block_number: BlockNumber,
+    block_hash: BlockHash,
+    secret: Secret,
+    secrethash: SecretHash,
+    payee_address: Address,
+) -> TransitionResult[MediatorTransferState]: ...
+
+def mediate_transfer(
+    state: MediatorTransferState,
+    payer_channel: NettingChannelState,
+    addresses_to_channel: Dict[Tuple[TokenNetworkAddress, Address], NettingChannelState],
+    pseudo_random_generator: random.Random,
+    payer_transfer: LockedTransferSignedState,
+    block_number: BlockNumber,
+) -> TransitionResult[MediatorTransferState]: ...
+
+def handle_init(
+    state_change: ActionInitMediator,
+    channelidentifiers_to_channels: Dict[ChannelID, NettingChannelState],
+    addresses_to_channel: Dict[Tuple[TokenNetworkAddress, Address], NettingChannelState],
+    pseudo_random_generator: random.Random,
+    block_number: BlockNumber,
+) -> TransitionResult[Optional[MediatorTransferState]]: ...
+
+def handle_block(
+    mediator_state: MediatorTransferState,
+    state_change: Block,
+    channelidentifiers_to_channels: Dict[ChannelID, NettingChannelState],
+    addresses_to_channel: Dict[Tuple[TokenNetworkAddress, Address], NettingChannelState],
+    pseudo_random_generator: random.Random,
+) -> TransitionResult[MediatorTransferState]: ...
+
+def handle_refundtransfer(
+    mediator_state: MediatorTransferState,
+    mediator_state_change: ReceiveTransferRefund,
+    channelidentifiers_to_channels: Dict[ChannelID, NettingChannelState],
+    addresses_to_channel: Dict[Tuple[TokenNetworkAddress, Address], NettingChannelState],
+    pseudo_random_generator: random.Random,
+    block_number: BlockNumber,
+) -> TransitionResult[MediatorTransferState]: ...
+
+def handle_offchain_secretreveal(
+    mediator_state: MediatorTransferState,
+    mediator_state_change: ReceiveSecretReveal,
+    channelidentifiers_to_channels: Dict[ChannelID, NettingChannelState],
+    pseudo_random_generator: random.Random,
+    block_number: BlockNumber,
+    block_hash: BlockHash,
+) -> TransitionResult[MediatorTransferState]: ...
+
+def handle_onchain_secretreveal(
+    mediator_state: MediatorTransferState,
+    onchain_secret_reveal: ContractReceiveSecretReveal,
+    channelidentifiers_to_channels: Dict[ChannelID, NettingChannelState],
+    pseudo_random_generator: random.Random,
+    block_number: BlockNumber,
+) -> TransitionResult[MediatorTransferState]: ...
+
+def handle_unlock(
+    mediator_state: MediatorTransferState,
+    state_change: ReceiveUnlock,
+    channelidentifiers_to_channels: Dict[ChannelID, NettingChannelState],
+) -> TransitionResult[MediatorTransferState]: ...
+
+def handle_lock_expired(
+    mediator_state: MediatorTransferState,
+    state_change: ReceiveLockExpired,
+    channelidentifiers_to_channels: Dict[ChannelID, NettingChannelState],
+    block_number: BlockNumber,
+) -> TransitionResult[MediatorTransferState]: ...
+
+def state_transition(
+    mediator_state: Optional[MediatorTransferState],
+    state_change: Union[
+        ActionInitMediator,
+        Block,
+        ReceiveTransferRefund,
+        ReceiveSecretReveal,
+        ContractReceiveSecretReveal,
+        ReceiveUnlock,
+        ReceiveLockExpired,
+    ],
+    channelidentifiers_to_channels: Dict[ChannelID, NettingChannelState],
+    addresses_to_channel: Dict[Tuple[TokenNetworkAddress, Address], NettingChannelState],
+    pseudo_random_generator: random.Random,
+    block_number: BlockNumber,
+    block_hash: BlockHash,
+) -> TransitionResult[Optional[MediatorTransferState]]: ...

@@ -1,0 +1,85 @@
+import datetime
+import unittest.mock as mock
+from typing import Optional
+
+import flask
+import pytest
+
+from superset.models.sql_lab import Query
+from superset.sql_parse import CtasMethod
+
+CELERY_SLEEP_TIME: int
+QUERY: str
+TEST_SYNC: str
+TEST_ASYNC_LOWER_LIMIT: str
+TEST_SYNC_CTA: str
+TEST_ASYNC_CTA: str
+TEST_ASYNC_CTA_CONFIG: str
+TMP_TABLES: list[str]
+
+SERIALIZATION_DATA: list[tuple[str, int, float, datetime.datetime]]
+CURSOR_DESCR: tuple[tuple[str, str], tuple[str, str], tuple[str, str], tuple[str, str]]
+
+def get_query_by_id(id: int) -> Optional[Query]: ...
+
+@pytest.fixture(autouse=True, scope="module")
+def setup_sqllab() -> None: ...
+
+def run_sql(
+    test_client: flask.testing.FlaskClient,
+    sql: str,
+    cta: bool = ...,
+    ctas_method: CtasMethod = ...,
+    tmp_table: str = ...,
+    async_: bool = ...,
+) -> dict: ...
+
+def drop_table_if_exists(table_name: str, table_type: CtasMethod) -> None: ...
+
+def quote_f(value: Optional[str]) -> Optional[str]: ...
+
+def cta_result(
+    ctas_method: CtasMethod,
+) -> tuple[list[dict[str, object]], list[dict[str, object]]]: ...
+
+def get_select_star(
+    table: str, limit: int, schema: Optional[str] = ...
+) -> str: ...
+
+def test_run_sync_query_dont_exist(
+    test_client: flask.testing.FlaskClient, ctas_method: CtasMethod
+) -> None: ...
+
+def test_run_sync_query_cta(
+    test_client: flask.testing.FlaskClient, ctas_method: CtasMethod
+) -> None: ...
+
+def test_run_sync_query_cta_no_data(
+    test_client: flask.testing.FlaskClient,
+) -> None: ...
+
+def test_run_sync_query_cta_config(
+    test_client: flask.testing.FlaskClient, ctas_method: CtasMethod
+) -> None: ...
+
+def test_run_async_query_cta_config(
+    test_client: flask.testing.FlaskClient, ctas_method: CtasMethod
+) -> None: ...
+
+def test_run_async_cta_query(
+    test_client: flask.testing.FlaskClient, ctas_method: CtasMethod
+) -> None: ...
+
+def test_run_async_cta_query_with_lower_limit(
+    test_client: flask.testing.FlaskClient, ctas_method: CtasMethod
+) -> None: ...
+
+def test_default_data_serialization() -> None: ...
+def test_new_data_serialization() -> None: ...
+def test_default_payload_serialization() -> None: ...
+def test_msgpack_payload_serialization() -> None: ...
+def test_create_table_as() -> None: ...
+def test_in_app_context() -> None: ...
+
+def delete_tmp_view_or_table(name: str, db_object_type: CtasMethod) -> None: ...
+def wait_for_success(result: dict) -> Query: ...

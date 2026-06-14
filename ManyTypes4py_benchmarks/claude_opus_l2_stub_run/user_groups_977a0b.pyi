@@ -1,0 +1,124 @@
+from collections.abc import Mapping, Sequence
+from typing import TypedDict
+
+from zerver.lib.types import AnonymousSettingGroupDict
+from zerver.models import (
+    GroupGroupMembership,
+    NamedUserGroup,
+    Realm,
+    UserGroup,
+    UserProfile,
+)
+
+class MemberGroupUserDict(TypedDict):
+    pass
+
+def create_user_group_in_database(
+    name: str,
+    members: Sequence[UserProfile],
+    realm: Realm,
+    *,
+    acting_user: UserProfile | None,
+    description: str = ...,
+    group_settings_map: Mapping[str, UserGroup] = ...,
+    is_system_group: bool = ...,
+) -> NamedUserGroup: ...
+
+def update_users_in_full_members_system_group(
+    realm: Realm,
+    affected_user_ids: list[int] = ...,
+    *,
+    acting_user: UserProfile | None,
+) -> None: ...
+
+def promote_new_full_members() -> None: ...
+
+def do_send_create_user_group_event(
+    user_group: NamedUserGroup,
+    members: Sequence[UserProfile],
+    direct_subgroups: Sequence[NamedUserGroup] = ...,
+) -> None: ...
+
+def check_add_user_group(
+    realm: Realm,
+    name: str,
+    initial_members: Sequence[UserProfile],
+    description: str = ...,
+    group_settings_map: Mapping[str, UserGroup] = ...,
+    *,
+    acting_user: UserProfile | None,
+) -> NamedUserGroup: ...
+
+def do_send_user_group_update_event(
+    user_group: NamedUserGroup,
+    data: dict[str, object],
+) -> None: ...
+
+def do_update_user_group_name(
+    user_group: NamedUserGroup,
+    name: str,
+    *,
+    acting_user: UserProfile | None,
+) -> None: ...
+
+def do_update_user_group_description(
+    user_group: NamedUserGroup,
+    description: str,
+    *,
+    acting_user: UserProfile | None,
+) -> None: ...
+
+def do_send_user_group_members_update_event(
+    event_name: str,
+    user_group: NamedUserGroup,
+    user_ids: list[int],
+) -> None: ...
+
+def bulk_add_members_to_user_groups(
+    user_groups: Sequence[NamedUserGroup],
+    user_profile_ids: list[int],
+    *,
+    acting_user: UserProfile | None,
+) -> None: ...
+
+def bulk_remove_members_from_user_groups(
+    user_groups: Sequence[NamedUserGroup],
+    user_profile_ids: list[int],
+    *,
+    acting_user: UserProfile | None,
+) -> None: ...
+
+def do_send_subgroups_update_event(
+    event_name: str,
+    user_group: NamedUserGroup,
+    subgroup_ids: list[int],
+) -> None: ...
+
+def add_subgroups_to_user_group(
+    user_group: NamedUserGroup,
+    subgroups: Sequence[NamedUserGroup],
+    *,
+    acting_user: UserProfile | None,
+) -> None: ...
+
+def remove_subgroups_from_user_group(
+    user_group: NamedUserGroup,
+    subgroups: Sequence[NamedUserGroup],
+    *,
+    acting_user: UserProfile | None,
+) -> None: ...
+
+def do_deactivate_user_group(
+    user_group: NamedUserGroup,
+    *,
+    acting_user: UserProfile | None,
+) -> None: ...
+
+def do_change_user_group_permission_setting(
+    user_group: NamedUserGroup,
+    setting_name: str,
+    setting_value_group: UserGroup,
+    *,
+    old_setting_api_value: int | AnonymousSettingGroupDict | None = ...,
+    acting_user: UserProfile | None,
+) -> None: ...

@@ -1,0 +1,72 @@
+from typing import Any
+from unittest.mock import MagicMock
+
+import pytest
+
+
+def test_may_execute_exit_stoploss_on_exchange_multi(
+    default_conf: dict[str, Any],
+    ticker: MagicMock,
+    fee: MagicMock,
+    mocker: Any,
+) -> None: ...
+
+def test_forcebuy_last_unlimited(
+    default_conf: dict[str, Any],
+    ticker: MagicMock,
+    fee: MagicMock,
+    mocker: Any,
+    balance_ratio: float,
+    result1: int,
+) -> None: ...
+
+def test_dca_buying(
+    default_conf_usdt: dict[str, Any],
+    ticker_usdt: MagicMock,
+    fee: MagicMock,
+    mocker: Any,
+) -> None: ...
+
+def test_dca_short(
+    default_conf_usdt: dict[str, Any],
+    ticker_usdt: MagicMock,
+    fee: MagicMock,
+    mocker: Any,
+) -> None: ...
+
+def test_dca_order_adjust(
+    default_conf_usdt: dict[str, Any],
+    ticker_usdt: MagicMock,
+    leverage: int,
+    fee: MagicMock,
+    mocker: Any,
+) -> None: ...
+
+def test_dca_order_adjust_entry_replace_fails(
+    default_conf_usdt: dict[str, Any],
+    ticker_usdt: MagicMock,
+    fee: MagicMock,
+    mocker: Any,
+    caplog: pytest.LogCaptureFixture,
+    is_short: bool,
+    leverage: int,
+) -> None: ...
+
+def test_dca_exiting(
+    default_conf_usdt: dict[str, Any],
+    ticker_usdt: MagicMock,
+    fee: MagicMock,
+    mocker: Any,
+    caplog: pytest.LogCaptureFixture,
+    leverage: int,
+) -> None: ...
+
+def test_dca_handle_similar_open_order(
+    default_conf_usdt: dict[str, Any],
+    ticker_usdt: MagicMock,
+    is_short: bool,
+    leverage: int,
+    fee: MagicMock,
+    mocker: Any,
+    caplog: pytest.LogCaptureFixture,
+) -> None: ...

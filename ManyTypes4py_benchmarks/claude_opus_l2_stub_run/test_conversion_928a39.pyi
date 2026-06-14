@@ -1,0 +1,86 @@
+import numpy as np
+import pytest
+from pandas import CategoricalIndex, Series, Timedelta, Timestamp
+
+
+class TestToIterable:
+    dtypes: list[tuple[str, type]]
+
+    @pytest.mark.parametrize("dtype, rdtype", dtypes)
+    @pytest.mark.parametrize(
+        "method",
+        [
+            lambda x: x.tolist(),
+            lambda x: x.to_list(),
+            lambda x: list(x),
+            lambda x: list(x.__iter__()),
+        ],
+        ids=["tolist", "to_list", "list", "iter"],
+    )
+    def test_iterable(self, index_or_series: type, method: object, dtype: str, rdtype: type) -> None: ...
+
+    @pytest.mark.parametrize(
+        "dtype, rdtype, obj",
+        [
+            ("object", object, "a"),
+            ("object", int, 1),
+            ("category", object, "a"),
+            ("category", int, 1),
+        ],
+    )
+    @pytest.mark.parametrize(
+        "method",
+        [
+            lambda x: x.tolist(),
+            lambda x: x.to_list(),
+            lambda x: list(x),
+            lambda x: list(x.__iter__()),
+        ],
+        ids=["tolist", "to_list", "list", "iter"],
+    )
+    def test_iterable_object_and_category(self, index_or_series: type, method: object, dtype: str, rdtype: type, obj: object) -> None: ...
+
+    @pytest.mark.parametrize("dtype, rdtype", dtypes)
+    def test_iterable_items(self, dtype: str, rdtype: type) -> None: ...
+
+    @pytest.mark.parametrize("dtype, rdtype", dtypes + [("object", int), ("category", int)])
+    def test_iterable_map(self, index_or_series: type, dtype: str, rdtype: type) -> None: ...
+
+    @pytest.mark.parametrize(
+        "method",
+        [
+            lambda x: x.tolist(),
+            lambda x: x.to_list(),
+            lambda x: list(x),
+            lambda x: list(x.__iter__()),
+        ],
+        ids=["tolist", "to_list", "list", "iter"],
+    )
+    def test_categorial_datetimelike(self, method: object) -> None: ...
+
+    def test_iter_box_dt64(self, unit: str) -> None: ...
+    def test_iter_box_dt64tz(self, unit: str) -> None: ...
+    def test_iter_box_timedelta64(self, unit: str) -> None: ...
+    def test_iter_box_period(self) -> None: ...
+
+
+def test_values_consistent(arr: object, expected_type: type, dtype: object, using_infer_string: bool) -> None: ...
+def test_numpy_array(arr: np.ndarray) -> None: ...
+def test_numpy_array_all_dtypes(any_numpy_dtype: object) -> None: ...
+def test_array(arr: object, attr: str, index_or_series: type) -> None: ...
+def test_array_multiindex_raises() -> None: ...
+def test_to_numpy(arr: object, expected: np.ndarray, zero_copy: bool, index_or_series_or_array: type) -> None: ...
+def test_to_numpy_copy(arr: np.ndarray, as_series: bool, using_infer_string: bool) -> None: ...
+def test_to_numpy_dtype(as_series: bool) -> None: ...
+def test_to_numpy_na_value_numpy_dtype(index_or_series: type, values: list[object], dtype: object, na_value: object, expected: list[object]) -> None: ...
+def test_to_numpy_multiindex_series_na_value(data: list[object], multiindex: list[tuple[object, ...]], dtype: object, na_value: object, expected: list[object]) -> None: ...
+def test_to_numpy_kwargs_raises() -> None: ...
+def test_to_numpy_dataframe_na_value(data: dict[str, object], dtype: type, na_value: object) -> None: ...
+def test_to_numpy_dataframe_single_block(data: dict[str, object], expected_data: list[list[float]]) -> None: ...
+def test_to_numpy_dataframe_single_block_no_mutate() -> None: ...
+
+
+class TestAsArray:
+    def test_asarray_object_dt64(self, tz: str | None) -> None: ...
+    def test_asarray_tz_naive(self) -> None: ...
+    def test_asarray_tz_aware(self) -> None: ...

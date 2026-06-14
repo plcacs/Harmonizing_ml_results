@@ -1,0 +1,193 @@
+import asyncio
+import logging
+from collections import OrderedDict
+from types import SimpleNamespace
+from typing import Any, Awaitable, Dict, List, Optional, Set, Union
+
+from pyee import EventEmitter
+from pyppeteer.connection import CDPSession
+from pyppeteer.frame_manager import Frame, FrameManager
+from pyppeteer.multimap import Multimap
+
+logger: logging.Logger
+
+class NetworkManager(EventEmitter):
+    Events: SimpleNamespace
+    _client: CDPSession
+    _frameManager: Optional[FrameManager]
+    _requestIdToRequest: Dict[str, Request]
+    _requestIdToResponseWillBeSent: Dict[str, dict]
+    _extraHTTPHeaders: OrderedDict[str, str]
+    _offline: bool
+    _credentials: Optional[Dict[str, str]]
+    _attemptedAuthentications: Set[str]
+    _userRequestInterceptionEnabled: bool
+    _protocolRequestInterceptionEnabled: bool
+    _requestHashToRequestIds: Multimap
+    _requestHashToInterceptionIds: Multimap
+
+    def __init__(self, client: CDPSession, frameManager: Optional[FrameManager]) -> None: ...
+    async def authenticate(self, credentials: Optional[Dict[str, str]]) -> None: ...
+    async def setExtraHTTPHeaders(self, extraHTTPHeaders: Dict[str, str]) -> None: ...
+    def extraHTTPHeaders(self) -> Dict[str, str]: ...
+    async def setOfflineMode(self, value: bool) -> None: ...
+    async def setUserAgent(self, userAgent: str) -> None: ...
+    async def setRequestInterception(self, value: bool) -> None: ...
+    async def _updateProtocolRequestInterception(self) -> None: ...
+    async def _onRequestWillBeSent(self, event: dict) -> None: ...
+    async def _send(self, method: str, msg: dict) -> None: ...
+    def _onRequestIntercepted(self, event: dict) -> None: ...
+    def _onRequest(self, event: dict, interceptionId: Optional[str]) -> None: ...
+    def _onRequestServedFromCache(self, event: dict) -> None: ...
+    def _handleRequestRedirect(
+        self,
+        request: Request,
+        redirectStatus: int,
+        redirectHeaders: Dict[str, str],
+        fromDiskCache: bool,
+        fromServiceWorker: bool,
+        securityDetails: Optional[dict] = ...,
+    ) -> None: ...
+    def _handleRequestStart(
+        self,
+        requestId: str,
+        interceptionId: Optional[str],
+        url: str,
+        isNavigationRequest: bool,
+        resourceType: str,
+        requestPayload: dict,
+        frameId: Optional[str],
+        redirectChain: List[Request],
+    ) -> None: ...
+    def _onResponseReceived(self, event: dict) -> None: ...
+    def _onLoadingFinished(self, event: dict) -> None: ...
+    def _onLoadingFailed(self, event: dict) -> None: ...
+
+class Request:
+    _client: CDPSession
+    _requestId: str
+    _isNavigationRequest: bool
+    _interceptionId: Optional[str]
+    _allowInterception: bool
+    _interceptionHandled: bool
+    _response: Optional[Response]
+    _failureText: Optional[str]
+    _url: str
+    _resourceType: str
+    _method: Optional[str]
+    _postData: Optional[str]
+    _headers: Dict[str, str]
+    _frame: Optional[Frame]
+    _redirectChain: List[Request]
+    _fromMemoryCache: bool
+
+    def __init__(
+        self,
+        client: CDPSession,
+        requestId: str,
+        interceptionId: Optional[str],
+        isNavigationRequest: bool,
+        allowInterception: bool,
+        url: str,
+        resourceType: str,
+        payload: dict,
+        frame: Optional[Frame],
+        redirectChain: List[Request],
+    ) -> None: ...
+    @property
+    def url(self) -> str: ...
+    @property
+    def resourceType(self) -> str: ...
+    @property
+    def method(self) -> Optional[str]: ...
+    @property
+    def postData(self) -> Optional[str]: ...
+    @property
+    def headers(self) -> Dict[str, str]: ...
+    @property
+    def response(self) -> Optional[Response]: ...
+    @property
+    def frame(self) -> Optional[Frame]: ...
+    def isNavigationRequest(self) -> bool: ...
+    @property
+    def redirectChain(self) -> List[Request]: ...
+    def failure(self) -> Optional[Dict[str, str]]: ...
+    async def continue_(self, overrides: Optional[Dict[str, Any]] = ...) -> None: ...
+    async def respond(self, response: Dict[str, Any]) -> None: ...
+    async def abort(self, errorCode: str = ...) -> None: ...
+
+errorReasons: Dict[str, str]
+
+class Response:
+    _client: CDPSession
+    _request: Request
+    _status: int
+    _contentPromise: asyncio.Future[Any]
+    _bodyLoadedPromise: asyncio.Future[Optional[Exception]]
+    _url: str
+    _fromDiskCache: bool
+    _fromServiceWorker: bool
+    _headers: Dict[str, str]
+    _securityDetails: Union[SecurityDetails, Dict[Any, Any]]
+
+    def __init__(
+        self,
+        client: CDPSession,
+        request: Request,
+        status: int,
+        headers: Dict[str, str],
+        fromDiskCache: bool,
+        fromServiceWorker: bool,
+        securityDetails: Optional[dict] = ...,
+    ) -> None: ...
+    def _bodyLoadedPromiseFulfill(self, value: Optional[Exception]) -> None: ...
+    @property
+    def url(self) -> str: ...
+    @property
+    def ok(self) -> bool: ...
+    @property
+    def status(self) -> int: ...
+    @property
+    def headers(self) -> Dict[str, str]: ...
+    @property
+    def securityDetails(self) -> Union[SecurityDetails, Dict[Any, Any]]: ...
+    async def _bufread(self) -> bytes: ...
+    def buffer(self) -> asyncio.Task[bytes]: ...
+    async def text(self) -> str: ...
+    async def json(self) -> Any: ...
+    @property
+    def request(self) -> Request: ...
+    @property
+    def fromCache(self) -> bool: ...
+    @property
+    def fromServiceWorker(self) -> bool: ...
+
+def generateRequestHash(request: dict) -> str: ...
+
+class SecurityDetails:
+    _subjectName: str
+    _issuer: str
+    _validFrom: int
+    _validTo: int
+    _protocol: str
+
+    def __init__(
+        self,
+        subjectName: str,
+        issuer: str,
+        validFrom: int,
+        validTo: int,
+        protocol: str,
+    ) -> None: ...
+    @property
+    def subjectName(self) -> str: ...
+    @property
+    def issuer(self) -> str: ...
+    @property
+    def validFrom(self) -> int: ...
+    @property
+    def validTo(self) -> int: ...
+    @property
+    def protocol(self) -> str: ...
+
+statusTexts: Dict[str, str]

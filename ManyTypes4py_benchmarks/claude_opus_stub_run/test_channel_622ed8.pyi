@@ -1,0 +1,77 @@
+from typing import List
+
+from raiden.api.rest import APIServer
+from raiden.raiden_service import RaidenService
+from raiden.utils.typing import TokenAmount
+
+def test_api_channel_status_channel_nonexistant(
+    api_server_test_instance: APIServer,
+    token_addresses: List[bytes],
+) -> None: ...
+
+def test_api_channel_open_and_deposit(
+    api_server_test_instance: APIServer,
+    token_addresses: List[bytes],
+    reveal_timeout: int,
+) -> None: ...
+
+def test_api_channel_open_and_deposit_race(
+    api_server_test_instance: APIServer,
+    raiden_network: List[RaidenService],
+    token_addresses: List[bytes],
+    reveal_timeout: int,
+    token_network_registry_address: bytes,
+    retry_timeout: float,
+) -> None: ...
+
+def test_api_channel_open_close_and_settle(
+    api_server_test_instance: APIServer,
+    token_addresses: List[bytes],
+    reveal_timeout: int,
+) -> None: ...
+
+def test_api_channel_close_insufficient_eth(
+    api_server_test_instance: APIServer,
+    token_addresses: List[bytes],
+    reveal_timeout: int,
+) -> None: ...
+
+def test_api_channel_open_channel_invalid_input(
+    api_server_test_instance: APIServer,
+    token_addresses: List[bytes],
+    reveal_timeout: int,
+) -> None: ...
+
+def test_api_channel_state_change_errors(
+    api_server_test_instance: APIServer,
+    token_addresses: List[bytes],
+    reveal_timeout: int,
+) -> None: ...
+
+def test_api_channel_withdraw(
+    api_server_test_instance: APIServer,
+    raiden_network: List[RaidenService],
+    token_addresses: List[bytes],
+    pfs_mock: object,
+) -> None: ...
+
+def test_api_channel_withdraw_with_offline_partner(
+    api_server_test_instance: APIServer,
+    raiden_network: List[RaidenService],
+    token_addresses: List[bytes],
+) -> None: ...
+
+def test_api_channel_set_reveal_timeout(
+    api_server_test_instance: APIServer,
+    raiden_network: List[RaidenService],
+    token_addresses: List[bytes],
+    settle_timeout: int,
+) -> None: ...
+
+def test_api_channel_deposit_limit(
+    api_server_test_instance: APIServer,
+    proxy_manager: object,
+    token_network_registry_address: bytes,
+    token_addresses: List[bytes],
+    reveal_timeout: int,
+) -> None: ...

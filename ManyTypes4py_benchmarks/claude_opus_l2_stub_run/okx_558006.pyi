@@ -1,0 +1,78 @@
+import logging
+from typing import Any, Dict, List, Optional
+
+from freqtrade.constants import BuySell
+from freqtrade.enums import CandleType, MarginMode, PriceType, TradingMode
+from freqtrade.exchange import Exchange
+from freqtrade.exchange.exchange_types import CcxtOrder, FtHas
+
+logger: logging.Logger
+
+class Okx(Exchange):
+    _ft_has: FtHas
+    _ft_has_futures: Dict[str, Any]
+    _supported_trading_mode_margin_pairs: list[tuple[TradingMode, MarginMode]]
+    net_only: bool
+    _ccxt_params: Dict[str, Any]
+
+    def ohlcv_candle_limit(
+        self,
+        timeframe: str,
+        candle_type: CandleType,
+        since_ms: Optional[int] = ...,
+    ) -> int: ...
+
+    def additional_exchange_init(self) -> None: ...
+
+    def _get_posSide(self, side: str, reduceOnly: bool) -> str: ...
+
+    def _get_params(
+        self,
+        side: BuySell,
+        ordertype: str,
+        leverage: float,
+        reduceOnly: bool,
+        time_in_force: str = ...,
+    ) -> Dict[str, Any]: ...
+
+    def __fetch_leverage_already_set(
+        self, pair: str, leverage: float, side: BuySell
+    ) -> bool: ...
+
+    def _lev_prep(
+        self,
+        pair: str,
+        leverage: float,
+        side: BuySell,
+        accept_fail: bool = ...,
+    ) -> None: ...
+
+    def get_max_pair_stake_amount(
+        self, pair: str, price: float, leverage: float = ...
+    ) -> float: ...
+
+    def _get_stop_params(
+        self, side: BuySell, ordertype: str, stop_price: float
+    ) -> Dict[str, Any]: ...
+
+    def _convert_stop_order(
+        self, pair: str, order_id: str, order: Dict[str, Any]
+    ) -> Dict[str, Any]: ...
+
+    def fetch_stoploss_order(
+        self, order_id: str, pair: str, params: Optional[Dict[str, Any]] = ...
+    ) -> Dict[str, Any]: ...
+
+    def _fetch_stop_order_fallback(
+        self, order_id: str, pair: str
+    ) -> Dict[str, Any]: ...
+
+    def get_order_id_conditional(self, order: Dict[str, Any]) -> str: ...
+
+    def cancel_stoploss_order(
+        self, order_id: str, pair: str, params: Optional[Dict[str, Any]] = ...
+    ) -> Dict[str, Any]: ...
+
+    def _fetch_orders_emulate(
+        self, pair: str, since_ms: int
+    ) -> List[Dict[str, Any]]: ...
