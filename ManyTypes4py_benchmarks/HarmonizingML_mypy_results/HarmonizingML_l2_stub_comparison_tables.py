@@ -7,9 +7,16 @@ Experiments:
   - Claude Opus L2 stub (claude_opus_l2_stub_run)
   - Claude Opus stub    (claude_opus_stub_run, no L2)
 
+Merged variant (stub annotations inlined into .py):
+  - GPT-5 L2 merged       (gpt5_l2_stub_run/merged)
+  - Claude Opus L2 merged (claude_opus_l2_stub_run/merged)
+  - Claude Opus merged    (claude_opus_stub_run/merged)
+
 Usage:
     python HarmonizingML_l2_stub_comparison_tables.py
     python HarmonizingML_l2_stub_comparison_tables.py --save
+    python HarmonizingML_l2_stub_comparison_tables.py --save --merged
+    python HarmonizingML_l2_stub_comparison_tables.py --save --all
 """
 
 from __future__ import annotations
@@ -26,7 +33,8 @@ BASE = Path(__file__).resolve().parent
 BENCH = BASE.parent
 MYPY_DIR = BASE / "mypy_outputs"
 CANONICAL_DIR = BENCH / "500_untyped_files"
-OUTPUT_TXT = BENCH / "Analysis_Results" / "Mypy_Typeinfo_l2_stub_comparison.txt"
+OUTPUT_STUB_TXT = BENCH / "Analysis_Results" / "Mypy_Typeinfo_l2_stub_comparison.txt"
+OUTPUT_MERGED_TXT = BENCH / "Analysis_Results" / "Mypy_Typeinfo_l2_stub_merged_comparison.txt"
 
 NON_TYPE_RELATED_ERRORS = {
     "name-defined", "import", "syntax", "no-redef", "unused-ignore",
@@ -36,21 +44,46 @@ NON_TYPE_RELATED_ERRORS = {
     "truthy-iterable", "redundant-self", "redundant-await", "unreachable",
 }
 
-EXPERIMENTS = {
+STUB_EXPERIMENTS = {
     "GPT-5": {
         "L2 stub": {
-            "stub_dir": BENCH / "gpt5_l2_stub_run",
+            "source_dir": BENCH / "gpt5_l2_stub_run",
             "mypy_json": MYPY_DIR / "mypy_results_gpt5_l2_stub_run_with_errors.json",
+            "suffix": ".pyi",
         },
     },
     "Claude Opus 4.6": {
         "L2 stub": {
-            "stub_dir": BENCH / "claude_opus_l2_stub_run",
+            "source_dir": BENCH / "claude_opus_l2_stub_run",
             "mypy_json": MYPY_DIR / "mypy_results_claude_opus_l2_stub_run_with_errors.json",
+            "suffix": ".pyi",
         },
         "stub": {
-            "stub_dir": BENCH / "claude_opus_stub_run",
+            "source_dir": BENCH / "claude_opus_stub_run",
             "mypy_json": MYPY_DIR / "mypy_results_claude_opus_stub_run_with_errors.json",
+            "suffix": ".pyi",
+        },
+    },
+}
+
+MERGED_EXPERIMENTS = {
+    "GPT-5": {
+        "L2 merged": {
+            "source_dir": BENCH / "gpt5_l2_stub_run" / "merged",
+            "mypy_json": MYPY_DIR / "mypy_results_gpt5_l2_stub_run_merged_with_errors.json",
+            "suffix": ".py",
+        },
+    },
+    "Claude Opus 4.6": {
+        "L2 merged": {
+            "source_dir": BENCH / "claude_opus_l2_stub_run" / "merged",
+            "mypy_json": MYPY_DIR / "mypy_results_claude_opus_l2_stub_run_merged_with_errors.json",
+            "suffix": ".py",
+        },
+        "merged": {
+            "source_dir": BENCH / "claude_opus_stub_run" / "merged",
+            "mypy_json": MYPY_DIR / "mypy_results_claude_opus_stub_run_merged_with_errors.json",
+            "suffix": ".py",
         },
     },
 }
@@ -159,17 +192,19 @@ def _analyze_stub_file(path: Path) -> dict | None:
     return stats
 
 
-def analyze_stub_dir(stub_dir: Path, canonical_stems: set[str]) -> dict:
+def analyze_source_dir(
+    source_dir: Path, canonical_stems: set[str], suffix: str = ".pyi"
+) -> dict:
     per_file: dict[str, dict | None] = {}
     parse_errors = 0
     missing = 0
 
     for stem in canonical_stems:
-        stub_path = stub_dir / f"{stem}.pyi"
-        if not stub_path.is_file():
+        source_path = source_dir / f"{stem}{suffix}"
+        if not source_path.is_file():
             missing += 1
             continue
-        result = _analyze_stub_file(stub_path)
+        result = _analyze_stub_file(source_path)
         if result is None:
             parse_errors += 1
         per_file[stem] = result
@@ -258,9 +293,11 @@ def analyze_mypy_json(mypy_path: Path, canonical_files: list[str]) -> dict:
     }
 
 
-def print_type_annotation_tables(canonical_stems: set[str], out) -> None:
-    out.write("Type annotation analysis:\n")
-    for model_name, settings in EXPERIMENTS.items():
+def print_type_annotation_tables(
+    experiments: dict, canonical_stems: set[str], out, title: str
+) -> None:
+    out.write(f"{title}\n")
+    for model_name, settings in experiments.items():
         out.write("=" * 90 + "\n")
         out.write(f"  {model_name}\n")
         out.write("=" * 90 + "\n")
@@ -273,7 +310,9 @@ def print_type_annotation_tables(canonical_stems: set[str], out) -> None:
         out.write("─" * len(header.rstrip()) + "\n")
 
         for setting_name, cfg in settings.items():
-            r = analyze_stub_dir(cfg["stub_dir"], canonical_stems)
+            r = analyze_source_dir(
+                cfg["source_dir"], canonical_stems, cfg.get("suffix", ".pyi")
+            )
             t = r["totals"]
             tp = t.get("total_params", 0)
             tr = t.get("total_returns", 0)
@@ -291,15 +330,15 @@ def print_type_annotation_tables(canonical_stems: set[str], out) -> None:
         out.write("─" * len(header.rstrip()) + "\n\n")
 
 
-def print_mypy_tables(canonical_files: list[str], out) -> None:
-    out.write("Mypy result analysis:\n\n")
+def print_mypy_tables(experiments: dict, canonical_files: list[str], out, title: str) -> None:
+    out.write(f"{title}\n\n")
     header = (
         f"{'Model':<16} {'Setting':<10} {'Unprocessed':>12} {'Success':>9} "
         f"{'LLM Fail':>10} {'Success%':>10} {'Overall%':>10} {'FileChanges':>12}\n"
     )
     sep = "-" * len(header.rstrip())
 
-    for model_name, settings in EXPERIMENTS.items():
+    for model_name, settings in experiments.items():
         out.write(f"{model_name}\n")
         out.write(sep + "\n")
         out.write(header)
@@ -320,33 +359,63 @@ def print_mypy_tables(canonical_files: list[str], out) -> None:
         out.write(sep + "\n\n")
 
 
+def render_tables(experiments: dict, canonical_files: list[str], canonical_stems: set[str]) -> str:
+    lines: list[str] = []
+
+    class Writer:
+        def write(self, s: str) -> None:
+            lines.append(s)
+
+    writer = Writer()
+    print_type_annotation_tables(
+        experiments, canonical_stems, writer, "Type annotation analysis:"
+    )
+    print_mypy_tables(experiments, canonical_files, writer, "Mypy result analysis:")
+    return "".join(lines)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="L2 stub comparison tables")
     parser.add_argument(
         "--save",
         action="store_true",
-        help=f"Write output to {OUTPUT_TXT}",
+        help="Write output files to Analysis_Results/",
+    )
+    parser.add_argument(
+        "--merged",
+        action="store_true",
+        help="Show/save merged (stub inlined into .py) comparison only",
+    )
+    parser.add_argument(
+        "--all",
+        action="store_true",
+        help="Show/save both stub-pair and merged comparisons",
     )
     args = parser.parse_args()
 
     canonical_files = get_canonical_filenames()
     canonical_stems = get_canonical_stems()
 
-    lines: list[str] = []
+    show_stub = not args.merged or args.all
+    show_merged = args.merged or args.all
 
-    class Writer:
-        def write(self, s: str) -> None:
-            sys.stdout.write(s)
-            lines.append(s)
+    if show_stub:
+        stub_text = render_tables(STUB_EXPERIMENTS, canonical_files, canonical_stems)
+        sys.stdout.write(stub_text)
+        if args.save:
+            OUTPUT_STUB_TXT.parent.mkdir(parents=True, exist_ok=True)
+            OUTPUT_STUB_TXT.write_text(stub_text, encoding="utf-8")
+            print(f"Saved to {OUTPUT_STUB_TXT}", file=sys.stderr)
 
-    writer = Writer()
-    print_type_annotation_tables(canonical_stems, writer)
-    print_mypy_tables(canonical_files, writer)
-
-    if args.save:
-        OUTPUT_TXT.parent.mkdir(parents=True, exist_ok=True)
-        OUTPUT_TXT.write_text("".join(lines), encoding="utf-8")
-        print(f"Saved to {OUTPUT_TXT}", file=sys.stderr)
+    if show_merged:
+        if show_stub and not args.save:
+            sys.stdout.write("\n")
+        merged_text = render_tables(MERGED_EXPERIMENTS, canonical_files, canonical_stems)
+        sys.stdout.write(merged_text)
+        if args.save:
+            OUTPUT_MERGED_TXT.parent.mkdir(parents=True, exist_ok=True)
+            OUTPUT_MERGED_TXT.write_text(merged_text, encoding="utf-8")
+            print(f"Saved to {OUTPUT_MERGED_TXT}", file=sys.stderr)
 
 
 if __name__ == "__main__":
